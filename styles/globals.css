@@ -3,6 +3,11 @@ body {
   padding: 0;
   margin: 0;
   font-family: Alatsi;
+  height: 100vh;
+}
+
+body > div {
+ height: 100%;
 }
 
 a {
