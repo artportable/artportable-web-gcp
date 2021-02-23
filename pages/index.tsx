@@ -3,7 +3,7 @@ import Main from '../app/components/Main/Main'
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -36,10 +36,6 @@ export default function Home() {
 
         </div>
       </Main>
-
-      <footer>
-        Footer
-      </footer>
-    </div>
+    </>
   )
 }
