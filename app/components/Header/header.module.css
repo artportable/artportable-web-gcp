@@ -1,0 +1,33 @@
+.container {
+    display: grid;
+    background-color: var(--header-color, #f4f4f4);
+    height: 70px;
+    padding: 0 16px;
+
+    gap: 16px;
+    align-items: center;
+    justify-items: start;
+    grid-template: 
+        "logo navigation login language" auto
+        / auto 1fr auto auto
+        ;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.navigation {
+    grid-area: navigation;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation *:not(:last-child) {
+    margin: 0 16px 0 0;
+}
+
+.language {
+    grid-area: language;
+    color: var(--text-color-accent);
+}
