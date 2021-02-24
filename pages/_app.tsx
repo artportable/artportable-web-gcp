@@ -9,6 +9,47 @@ import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faHeart,
+  faUserCircle,
+  faInfoCircle,
+  faChevronDown,
+  faChevronUp,
+  faChevronRight,
+  faCommentAlt,
+  faBell,
+  faPlusCircle,
+  faPlus,
+  faCog,
+  faStar,
+  faBookmark,
+  faEllipsisV,
+  faSearch,
+  faEye,
+  faEyeSlash
+} from '@fortawesome/free-solid-svg-icons'
+
+
+library.add(
+  faHeart,
+  faUserCircle,
+  faInfoCircle,
+  faChevronDown,
+  faChevronUp,
+  faChevronRight,
+  faCommentAlt,
+  faBell,
+  faPlusCircle,
+  faPlus,
+  faCog,
+  faStar,
+  faBookmark,
+  faEllipsisV,
+  faSearch,
+  faEye,
+  faEyeSlash
+);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);

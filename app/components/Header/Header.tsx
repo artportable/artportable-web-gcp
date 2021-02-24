@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import s from './header.module.css'
 
 export default function Header() {
@@ -27,6 +28,7 @@ export default function Header() {
             </div>
             <div className={s.language}>
                 Swe
+                <FontAwesomeIcon icon="chevron-down" />
             </div>
         </div>
     );
