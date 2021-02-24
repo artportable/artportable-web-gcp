@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Main from '../app/components/Main/Main'
 
-export default function Home() {
+export default function Home({data}) {
   return (
     <>
       <Head>
@@ -34,8 +34,37 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
 
+            <h3>Our images &rarr;</h3>
+            {data?.map(img => <div key={img?.Id}>{img?.Title} - {img?.FileName}</div>)}
+
         </div>
       </Main>
     </>
   )
+}
+
+export async function getStaticProps(context) {
+  // @ts-ignore Used for ignoring cert validation, remove before prod
+  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
+
+  try {
+    const res = await fetch(`https://localhost:5001/api/user/imgs`);
+    const data = await res?.json()
+
+    // If no data, show a 404 page instead
+    if (!data) {
+      return {
+        notFound: true,
+      }
+    }
+
+    return {
+      props: {
+        data,
+      },
+    }
+  } catch(e) {
+    console.log('Something went wrong!');
+    return { props: {} };
+  }
 }
