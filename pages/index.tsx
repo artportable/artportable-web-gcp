@@ -2,11 +2,35 @@ import Head from 'next/head'
 import Main from '../app/components/Main/Main'
 import Image from 'next/image'
 
-export default function Home({data}) {
+
+import Carousel from '../app/components/Carousel/Carousel'
+import HashNavigation from '../app/components/HashNavigation/HashNavigation'
+import { useState } from 'react'
+
+Home.getInitialProps = async (ctx) => {
+  // Fetch props for index page from server here
+  //const res = await fetch('https://api.github.com/repos/vercel/next.js')
+  //const json = await res.json()
+
+  return { 
+    hashNavigations: [
+      {
+        text: 'För dig som badar i', tag: 'Akvarell' 
+      },
+      { 
+        text: 'För dig som äter', tag:'Olja'
+      }
+    ] 
+  }
+}
+
+
+export default function Home(props) {
+  // const [currentShowing, setCurrentShowing] = useState(props.hashNavigations)
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Artportable</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -35,7 +59,7 @@ export default function Home({data}) {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
             <h3>Our images &rarr;</h3>
-            {data?.map(img =>
+            {props.data?.map(img =>
               <div key={img?.Id}>
                 {img?.Title}
                 <br/>
