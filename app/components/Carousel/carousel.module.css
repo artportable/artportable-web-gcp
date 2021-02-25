@@ -4,36 +4,16 @@
   position: relative;
 }
 
-.visible {
-  visibility: visible;
-}
-
 .show {
   animation-name: fade-in;
   animation-duration: 1s;
 }
+
 .hidden {
   visibility: hidden;
   position: absolute;
   top:0;
   opacity: 0;
-}
-
-.hide {
-  animation-name: fade-out;
-  animation-duration: 1s;
-}
-
-@keyframes fade-out {
-  from {
-    visibility: initial;
-    opacity: 1;
-  }
-
-  to {
-    visibility: hidden;
-    opacity: 0;
-  }
 }
 
 @keyframes fade-in {

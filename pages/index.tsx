@@ -10,7 +10,7 @@ import s from '../styles/Home.module.css'
 
 export default function Home( props ) {
   const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag)
-  const images = props.data.filter((image) => image.Tags[0] === currentShowing);
+  const images = props.data.filter((image) => image.Tags.includes(currentShowing));
   const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
   
   return (

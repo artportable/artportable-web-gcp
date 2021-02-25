@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import s from './radio-button-group.module.css'
 
-export default function HashNavigation({ navOptions, onNav }) {
+export default function RadioButtonGroup({ navOptions, onNav }) {
   const [selected, setSelected] = useState(navOptions[0]);
-  useEffect(() => {
-    
-  }, []);
+
   function handleClick(e, navOption) {
     onNav(navOption);
     setSelected(navOption);
