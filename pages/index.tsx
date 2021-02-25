@@ -4,29 +4,15 @@ import Image from 'next/image'
 
 
 import Carousel from '../app/components/Carousel/Carousel'
-import HashNavigation from '../app/components/HashNavigation/HashNavigation'
+import TextCarousel from '../app/components/TextCarousel/TextCarousel'
+import RadioButtonGroup from '../app/components/RadioButtonGroup/RadioButtonGroup'
 import { useState } from 'react'
 
-Home.getInitialProps = async (ctx) => {
-  // Fetch props for index page from server here
-  //const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  //const json = await res.json()
-
-  return { 
-    hashNavigations: [
-      {
-        text: 'För dig som badar i', tag: 'Akvarell' 
-      },
-      { 
-        text: 'För dig som äter', tag:'Olja'
-      }
-    ] 
-  }
-}
 
 
-export default function Home(props) {
-  // const [currentShowing, setCurrentShowing] = useState(props.hashNavigations)
+export default function Home( props ) {
+  const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag)
+  const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
   return (
     <>
       <Head>
@@ -71,6 +57,10 @@ export default function Home(props) {
               </div>
             )}
         </div>
+        <TextCarousel show={currentShowing} objects={props.carouselNavOptions}></TextCarousel>
+
+        <RadioButtonGroup navOptions={navOptions} onNav={setCurrentShowing}></RadioButtonGroup>
+
       </Main>
     </>
   )
@@ -94,10 +84,27 @@ export async function getStaticProps(context) {
     return {
       props: {
         data,
+        carouselNavOptions: [
+          {
+            text: 'För dig som badar i', tag: 'Akvarell' 
+          },
+          { 
+            text: 'För dig som äter', tag:'Olja'
+          }
+        ] 
       },
     }
   } catch(e) {
     console.log('Something went wrong!');
-    return { props: {} };
+    return { props: {
+      carouselNavOptions: [
+        {
+          text: 'För dig som badar i', tag: 'Akvarell' 
+        },
+        { 
+          text: 'För dig som äter', tag:'Olja'
+        }
+      ] 
+    } };
   }
 }
