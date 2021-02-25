@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Main from '../app/components/Main/Main'
+import Image from 'next/image'
 
 export default function Home({data}) {
   return (
@@ -33,10 +34,18 @@ export default function Home({data}) {
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
-
             <h3>Our images &rarr;</h3>
-            {data?.map(img => <div key={img?.Id}>{img?.Title} - {img?.FileName}</div>)}
-
+            {data?.map(img =>
+              <div key={img?.Id}>
+                {img?.Title}
+                <br/>
+                <Image src={`https://artportable-images.s3.eu-north-1.amazonaws.com/Images/${img?.FileName}`}
+                       alt="Logo Artportable"
+                       width={500}
+                       height={300}
+                />
+              </div>
+            )}
         </div>
       </Main>
     </>
