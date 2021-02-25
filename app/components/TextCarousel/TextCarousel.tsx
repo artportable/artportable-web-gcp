@@ -6,7 +6,10 @@ export default function TextCarousel({ show, objects }) {
   return (
     <Carousel show={show} objects={navOptions}>
       {objects.map(object => 
-        <div className={s.textContainer} key={object.tag}>{object.text} <span className={s.tag}>{object.tag}</span></div>
+        <div className={s.textContainer} key={object.tag}>
+          <div>{object.text} </div>
+          <div className={s.tag}>{object.tag}</div>
+        </div>
       )}
     </Carousel>
   );
