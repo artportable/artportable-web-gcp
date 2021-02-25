@@ -10,7 +10,7 @@ export default function Header() {
                 <Link href="/">
                     <a>
                         <Image
-                            src="/art-logo-TEMP.png"
+                            src="/art-logo-TEMP.PNG"
                             alt="Logo Artportable"
                             width={188}
                             height={51}
