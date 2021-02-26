@@ -6,12 +6,14 @@ import RadioButtonGroup from '../app/components/RadioButtonGroup/RadioButtonGrou
 import { useState } from 'react'
 import s from '../styles/Home.module.css'
 
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 export default function Home( props ) {
   const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag)
   const images = props.data.filter((image) => image.Tags.includes(currentShowing));
   const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
+  const { t } = useTranslation('common');
   
   return (
     <>
@@ -43,7 +45,7 @@ export default function Home( props ) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps({context, locale}) {
   // @ts-ignore Used for ignoring cert validation, remove before prod
   process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
   const carouselNavOptions = [
@@ -70,6 +72,7 @@ export async function getStaticProps(context) {
       props: {
         data,
         carouselNavOptions,
+        ...await serverSideTranslations(locale, ['common', 'footer']),
       },
     }
   } catch(e) {

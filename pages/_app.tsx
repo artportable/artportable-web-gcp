@@ -7,6 +7,7 @@ import React from 'react'
 
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
+import { appWithTranslation } from 'next-i18next'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -62,4 +63,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
