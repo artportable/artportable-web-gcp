@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.show {
+  animation-name: fade-in;
+  animation-duration: 1s;
+}
+
+.hidden {
+  visibility: hidden;
+  position: absolute;
+  top:0;
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
