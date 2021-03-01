@@ -5,6 +5,8 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '../app/components/Header/Header'
 import React from 'react'
+import { ThemeProvider } from '@material-ui/core'
+import { theme } from '../styles/theme'
 
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
@@ -31,6 +33,7 @@ import {
   faEye,
   faEyeSlash
 } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
@@ -66,8 +69,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Provider store={store}>
-        <Header></Header>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <Header></Header>
+          <Component {...pageProps} />
+        </ThemeProvider>
       </Provider>
     </>
   )

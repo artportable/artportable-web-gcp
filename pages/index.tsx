@@ -11,7 +11,7 @@ import { useTranslation } from 'next-i18next'
 
 export default function Home( props ) {
   const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag)
-  const images = props.data.filter((image) => image.Tags.includes(currentShowing));
+  const images = props.data?.filter((image) => image.Tags.includes(currentShowing));
   const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
   const { t } = useTranslation('common');
   
@@ -80,6 +80,7 @@ export async function getStaticProps({context, locale}) {
     return { 
       props: {
         carouselNavOptions,
+        ...await serverSideTranslations(locale, ['common', 'footer']),
       } 
     };
   }

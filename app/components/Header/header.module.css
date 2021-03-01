@@ -4,7 +4,7 @@
     height: var(--header-height, 70px);
     padding: 0 16px;
 
-    gap: 16px;
+    gap: 0 16px;
     align-items: center;
     justify-items: start;
     grid-template: 
@@ -29,6 +29,10 @@
 
 .login {
   grid-area: login;
+}
+
+.login *:not(:last-child) {
+  margin: 0 16px;
 }
 
 .language {
