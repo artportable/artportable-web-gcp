@@ -27,6 +27,10 @@
     margin: 0 16px 0 0;
 }
 
+.login {
+  grid-area: login;
+}
+
 .language {
     grid-area: language;
     color: var(--text-color-accent);

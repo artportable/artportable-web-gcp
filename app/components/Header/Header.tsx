@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
 import s from './header.module.css'
+import Button from '@material-ui/core/Button';
 
 export default function Header() {
   const { t } = useTranslation('common');
@@ -28,6 +29,9 @@ export default function Header() {
         <Link href="/about">
           <a>Om oss</a>
         </Link>
+      </div>
+      <div className={s.login}>
+        <Button variant="contained" color="primary">{t('login')}</Button>
       </div>
       <div className={s.language}>
         Swe
