@@ -10,7 +10,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 export default function Home( props ) {
-  const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag)
+  const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag);
   const images = props.data?.filter((image) => image.Tags.includes(currentShowing));
   const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
   const { t } = useTranslation('common');
@@ -42,7 +42,7 @@ export default function Home( props ) {
         )}
       </Main>
     </>
-  )
+  );
 }
 
 export async function getStaticProps({context, locale}) {
@@ -72,7 +72,7 @@ export async function getStaticProps({context, locale}) {
       props: {
         data,
         carouselNavOptions,
-        ...await serverSideTranslations(locale, ['common', 'footer']),
+        ...await serverSideTranslations(locale, ['common']),
       },
     }
   } catch(e) {
