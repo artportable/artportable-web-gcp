@@ -1,0 +1,22 @@
+{
+  "createAnAccount": "Skapa ett konto",
+  "alreadyHaveAnAccountQuestion": "Har du redan ett konto",
+  "login": "Logga in",
+  "firstName": "Förnamn",
+  "lastName": "Efternamn",
+  "email": "Epostadress",
+  "password": "Lösenord",
+  "dateOfBirth": "Födelsedatum",
+  "day": "Dag",
+  "month": "Månad",
+  "year": "År",
+  "landOrRegion": "Land/Region",
+  "emailDisclaimer1": "Artportable får informera mig med anpassade e-postmeddelanden om produkter och tjänster. Mer information finns i vår",
+  "privacyPolicy": "Sekretesspolicy",
+  "emailDisclaimer2": "Du kan när som helst avbryta prenumerationen",
+  "emailAgreementCheckbox": "Det är OK att kontakta mig via epost",
+  "agreementText1": "Genom att klicka på \"Bli medlem\" bekräftar jag att jag läst och godkänt",
+  "usageAgreement": "Användningsvillkor",
+  "word_And": "och",
+  "becomeMember": "Bli medlem"
+}

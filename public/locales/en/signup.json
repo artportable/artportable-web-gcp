@@ -1,0 +1,22 @@
+{
+  "createAnAccount": "Create an account",
+  "alreadyHaveAnAccountQuestion": "Do you already have an account",
+  "login": "Log in",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "email": "Email",
+  "password": "Password",
+  "dateOfBirth": "Date of birth",
+  "day": "Day",
+  "month": "Month",
+  "year": "Year",
+  "landOrRegion": "Country/Region",
+  "emailDisclaimer1": "Artportable may contact me with tailored e-mail messages about products and services. More information in our",
+  "privacyPolicy": "Secrecy policy",
+  "emailDisclaimer2": "You can cancel the subscription at any time",
+  "emailAgreementCheckbox": "It is OK to contact me via e-mail",
+  "agreementText1": "By clicking \"Become member\" I confirm that I have read and agreed to the",
+  "usageAgreement": "Usage agreement",
+  "word_And": "and",
+  "becomeMember": "Become member"
+}
