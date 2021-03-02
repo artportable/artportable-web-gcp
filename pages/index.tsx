@@ -13,7 +13,7 @@ export default function Home( props ) {
   const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag);
   const images = props.data?.filter((image) => image.Tags.includes(currentShowing));
   const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['header']);
   
   return (
     <>
@@ -72,7 +72,7 @@ export async function getStaticProps({context, locale}) {
       props: {
         data,
         carouselNavOptions,
-        ...await serverSideTranslations(locale, ['common']),
+        ...await serverSideTranslations(locale, ['header']),
       },
     }
   } catch(e) {
@@ -80,7 +80,7 @@ export async function getStaticProps({context, locale}) {
     return { 
       props: {
         carouselNavOptions,
-        ...await serverSideTranslations(locale, ['common', 'footer']),
+        ...await serverSideTranslations(locale, ['header']),
       } 
     };
   }

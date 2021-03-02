@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 export default function Signup() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('signup');
 
 
   return (

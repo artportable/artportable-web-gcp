@@ -6,7 +6,7 @@ import s from './header.module.css'
 import Button from '../Button/Button';
 
 export default function Header() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('header');
 
   return (
     <div className={s.container}>
