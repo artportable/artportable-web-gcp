@@ -6,21 +6,22 @@ import { useTranslation } from 'next-i18next'
 export default function Signup() {
   const { t } = useTranslation('signup');
 
-
   return (
     <>
       <Head>
-        <title>Art Portable - </title>
+        <title>Artportable</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>test</div>
+
+      <div>{t('login')}</div>
     </>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  return {
+  return { 
     props: {
-      ...await serverSideTranslations(locale, ['signup']),
-    }
-  }
+      ...await serverSideTranslations(locale, ['header', 'signup']),
+    } 
+  };
 }

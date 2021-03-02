@@ -31,14 +31,18 @@ export default function Header() {
         </Link>
       </div>
       <div className={s.login}>
-        <Button 
-          size="small" 
-          variant="contained" 
-          color="primary" 
-          disableElevation 
-          roundedButton>
-            {t('signUp')}
-        </Button>
+        <Link href="/signup">
+          <a>
+            <Button 
+              size="small" 
+              variant="contained" 
+              color="primary"
+              disableElevation 
+              roundedButton>
+                {t('signUp')}
+            </Button>
+          </a>
+        </Link>
         <Button 
           size="small"
           variant="outlined" 
