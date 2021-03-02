@@ -2,8 +2,11 @@ import '../styles/globals.css'
 import '../styles/theme.css'
 import '../styles/variables.css'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import Header from '../app/components/Header/Header'
 import React from 'react'
+import { ThemeProvider } from '@material-ui/core'
+import { theme } from '../styles/theme'
 
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
@@ -32,6 +35,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 
+
+
 library.add(
   faHeart,
   faUserCircle,
@@ -56,10 +61,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
 
   return (
-    <Provider store={store}>
-      <Header></Header>
-      <Component {...pageProps} />
-    </Provider>
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Header></Header>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
+    </>
   )
 }
 

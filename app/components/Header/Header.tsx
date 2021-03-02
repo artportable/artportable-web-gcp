@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
 import s from './header.module.css'
+import Button from '../Button/Button';
 
 export default function Header() {
   const { t } = useTranslation('common');
@@ -28,6 +29,24 @@ export default function Header() {
         <Link href="/about">
           <a>Om oss</a>
         </Link>
+      </div>
+      <div className={s.login}>
+        <Button 
+          size="small" 
+          variant="contained" 
+          color="primary" 
+          disableElevation 
+          roundedButton>
+            {t('signUp')}
+        </Button>
+        <Button 
+          size="small"
+          variant="outlined" 
+          color="primary" 
+          disableElevation 
+          roundedButton>
+            {t('login')}
+        </Button>
       </div>
       <div className={s.language}>
         Swe
