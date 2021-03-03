@@ -2,6 +2,7 @@
   "createAnAccount": "Skapa ett konto",
   "alreadyHaveAnAccountQuestion": "Har du redan ett konto",
   "login": "Logga in",
+  "username": "Användarnamn",
   "firstName": "Förnamn",
   "lastName": "Efternamn",
   "email": "Epostadress",
