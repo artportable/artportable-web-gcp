@@ -18,3 +18,34 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+@font-face {
+  font-family: "GT-America-Standard";
+  src: url("/fonts/GT-America-Standard-Regular.woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GT-America-Standard";
+  src: url("/fonts/GT-America-Standard-Medium.woff2");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LyonDisplay";
+  src: url("/fonts/LyonDisplay-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "LyonDisplay";
+  src: url("/fonts/LyonDisplay-Medium.otf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+}

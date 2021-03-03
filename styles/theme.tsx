@@ -1,9 +1,25 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-export const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#447EFF"
-    }
+const typography = {
+  h1: {
+    fontSize: '2rem',
+  },
+  button: {
+    fontFamily: 'GT-America-Standard'
+  },
+  fontFamily: [
+    'LyonDisplay',
+    'GT-America-Standard',
+  ].join(','),
+}
+
+const palette = {
+  primary: {
+    main: "#447EFF"
   }
+}
+
+export const theme = createMuiTheme({
+  palette,
+  typography
 });
