@@ -5,16 +5,17 @@ import { useTranslation } from 'next-i18next'
 import s from './header.module.css'
 import Button from '../Button/Button';
 
-export default function Header() {
+export default function Header({ isSignUp }) {
   const { t } = useTranslation('header');
+  const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
 
   return (
-    <div className={s.container}>
+    <div className={containerClasses}>
       <div className={s.logo}>
         <Link href="/">
           <a>
             <Image
-              src="/art-logo-TEMP.PNG"
+              src="/Artportable_Logotyp_Black.svg"
               alt="Logo Artportable"
               width={188}
               height={51}

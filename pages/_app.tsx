@@ -59,6 +59,7 @@ library.add(
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
+  const isSignUp = Component.name === 'Signup';
 
   return (
     <>
@@ -70,7 +71,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <Header></Header>
+          <Header isSignUp={isSignUp}></Header>
           <Component {...pageProps} />
         </ThemeProvider>
       </Provider>
