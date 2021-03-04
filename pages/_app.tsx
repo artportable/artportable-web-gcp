@@ -5,13 +5,12 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '../app/components/Header/Header'
 import React from 'react'
-import { ThemeProvider } from '@material-ui/core'
+import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { theme } from '../styles/theme'
 
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 import { appWithTranslation } from 'next-i18next'
-
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -33,9 +32,6 @@ import {
   faEye,
   faEyeSlash
 } from '@fortawesome/free-solid-svg-icons'
-
-
-
 
 library.add(
   faHeart,
@@ -71,6 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
+          <CssBaseline />
           <Header isSignUp={isSignUp}></Header>
           <Component {...pageProps} />
         </ThemeProvider>

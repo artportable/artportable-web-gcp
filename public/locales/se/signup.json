@@ -6,6 +6,8 @@
   "firstName": "Förnamn",
   "lastName": "Efternamn",
   "email": "Epostadress",
+  "valid": "Giltig",
+  "invalid": "Ogiltig",
   "password": "Lösenord",
   "dateOfBirth": "Födelsedatum",
   "day": "Dag",

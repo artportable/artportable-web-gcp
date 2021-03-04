@@ -1,0 +1,21 @@
+div.signUpContainer {
+  height: var(--viewport-minus-header);
+  display: grid;
+  grid-template: 
+  ". . ." 1fr
+  ". form ." auto
+  ". . ." 1fr
+  
+  / 1fr auto 170px;
+}
+
+.formCard {
+  grid-area: form;
+}
+
+.signUpContainer .marginRight {
+  margin-right: 6px;
+}
+.signUpContainer .marginLeft {
+  margin-left: 6px;
+}

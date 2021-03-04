@@ -6,6 +6,8 @@
   "firstName": "First name",
   "lastName": "Last name",
   "email": "Email",
+  "valid": "Valid",
+  "invalid": "Invalid",
   "password": "Password",
   "dateOfBirth": "Date of birth",
   "day": "Day",
