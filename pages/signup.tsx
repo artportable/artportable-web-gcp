@@ -12,6 +12,9 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import clsx from 'clsx';
 import s from '../styles/signup.module.css'
 
 
@@ -23,6 +26,9 @@ import { useState } from 'react';
 interface State {
   password: string;
   showPassword: boolean;
+  username: string;
+  usernameError: boolean;
+  usernameIsAvailable: boolean;
   email: string;
   emailError: boolean;
   emailIsAvailable: boolean;
@@ -33,9 +39,12 @@ export default function Signup() {
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false,
+    username: '',
+    usernameError: false,
+    usernameIsAvailable: true,
     email: '',
     emailError: false,
-    emailIsAvailable: false
+    emailIsAvailable: true
   });
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,15 +59,38 @@ export default function Signup() {
     event.preventDefault();
   };
 
+  const handleUsernameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    event.preventDefault();
+    
+    setValues({ ...values,
+      username: event.target.value,
+      usernameError: false,
+      usernameIsAvailable: true
+    });  
+  }
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
+    
+    setValues({ ...values,
+      email: event.target.value,
+      emailError: false,
+      emailIsAvailable: true
+    });  
+  }
 
-    if(values.emailError) {
-      setValues({ ...values, emailError: emailIsInvalid(event.target.value)});  
-    } else {
-      setValues({ ...values, email: event.target.value });
+  const getUsernameErrorMessage = () => {
+    if(!values.usernameIsAvailable) {
+      return t('usernameAlreadyExists');
+    }
+  }
+
+  const getEmailErrorMessage = () => {
+    if(!values.emailIsAvailable) {
+      return t('emailAlreadyExists');
     }
 
+    return values.emailError ? t('invalid') : '';
   }
 
   const handleBecomeMemberClick = (event) => {
@@ -77,15 +109,36 @@ export default function Signup() {
     return true;
   }
 
-  const checkForExistingEmail = async (event)=>  {
+  const handleOnBlurEmail = async (event) => {
+    event.preventDefault();
+
+    if(emailIsInvalid(values.email)) {
+      setValues({ ...values, 
+        emailError: true });
+    } else {
+      try {
+        const isAvailable = await (await fetch(`https://localhost:5001/api/user?email=${event.target.value}`)).json();
+        setValues({ ...values, 
+          emailIsAvailable: isAvailable, 
+          emailError: !isAvailable });
+      } catch (error) {
+         console.warn("Could not connect to server");
+      }
+    }
+  }
+
+  const handleOnBlurUsername = async (event) => {
     event.preventDefault();
 
     try {
-      const json = await (await fetch("https://localhost:5001/api/User?email=fds")).json();
-      setValues({ ...values, emailIsAvailable: true });
+      const isAvailable = await (await fetch(`https://localhost:5001/api/user?username=${event.target.value}`)).json();
+      setValues({ ...values, 
+        usernameIsAvailable: isAvailable, 
+        usernameError: !isAvailable });
     } catch (error) {
-       console.warn("Could not connect to server");
+        console.warn("Could not connect to server");
     }
+    
   }
 
   return (
@@ -109,29 +162,37 @@ export default function Signup() {
                   </MuiLink>
                 </Link>
               </Typography>
-              <div>
-                <TextField label={t('username')} fullWidth />
+              <div className={s.inputContainer}>
+                <TextField 
+                  id="username"
+                  label={t('username')} 
+                  fullWidth
+                  error={values.usernameError}
+                  onChange={handleUsernameChange}
+                  onBlur={handleOnBlurUsername}
+                  helperText={getUsernameErrorMessage()} />
               </div>
-              <div>
+              <div className={clsx(s.namesContainer, s.inputContainer)}>
                 <TextField id="first-name" className={s.marginRight} label={t('firstName')} />
                 <TextField id="last-name" className={s.marginLeft} label={t('lastName')} />
               </div>
-              <div>
+              <div className={s.inputContainer}>
                 <TextField 
                   id="email" 
                   label={t('email')} 
-                  fullWidth 
+                  fullWidth
+                  required
                   type="email"
                   onChange={handleEmailChange}
-                  onBlur={checkForExistingEmail}
+                  onBlur={handleOnBlurEmail}
                   error={values.emailError}
-                  helperText={values.emailError ? t('invalid') : t('valid')} />
+                  helperText={getEmailErrorMessage()} />
               </div>
-              <div>
-              <FormControl>
+              <div className={s.inputContainer}>
+              <FormControl fullWidth>
                 <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
                 <Input
-                  id="standard-adornment-password"
+                  id="password"
                   type={values.showPassword ? 'text' : 'password'}
                   value={values.password}
                   onChange={handleChange('password')}
@@ -146,26 +207,67 @@ export default function Signup() {
                       </IconButton>
                     </InputAdornment>
                   }
+                  required
                 />
               </FormControl>
               </div>
-              <div>
-                <TextField id="standard-basic" label={t('password')} />
+              <Typography variant="subtitle1" gutterBottom>
+                {t('dateOfBirth')}
+              </Typography>
+
+              <div className={s.ageContainer}>
+                <FormControl className={s.day}>
+                  <InputLabel id="day-label">{t('day')}</InputLabel>
+                  <Select
+                    labelId="day-label"
+                    id="day"
+                  >
+                    <MenuItem value={1}>1</MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <FormControl className={s.month}>
+                  <InputLabel id="month-label">{t('month')}</InputLabel>
+                  <Select
+                    labelId="month-label"
+                    id="month"
+                  >
+                    <MenuItem value={1}>Januari</MenuItem>
+                    <MenuItem value={2}>Februari</MenuItem>
+                    <MenuItem value={3}>Mars</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <FormControl className={s.year}>
+                  <InputLabel id="year-label">{t('year')}</InputLabel>
+                  <Select
+                    labelId="year-label"
+                    id="year"
+                  >
+                    <MenuItem value={1987}>1987</MenuItem>
+                    <MenuItem value={1988}>1988</MenuItem>
+                    <MenuItem value={1989}>1989</MenuItem>
+                  </Select>
+                </FormControl>
               </div>
 
-              <Link href="/signup">
-                <a>
-                  <Button 
-                    size="small" 
-                    variant="contained" 
-                    color="primary"
-                    disableElevation 
-                    roundedButton
-                    onClick={handleBecomeMemberClick}>
-                      {t('becomeMember')}
-                  </Button>
-                </a>
-              </Link>
+              <div className={s.postButtonContainer}>
+                <Link href="/signup">
+                  <a>
+                    <Button 
+                      size="small" 
+                      variant="contained" 
+                      color="primary"
+                      disableElevation 
+                      roundedButton
+                      onClick={handleBecomeMemberClick}>
+                        {t('becomeMember')}
+                    </Button>
+                  </a>
+                </Link>
+              </div>
             </CardContent>
           </Card>
         </div>

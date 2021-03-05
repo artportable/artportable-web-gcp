@@ -11,6 +11,20 @@ div.signUpContainer {
 
 .formCard {
   grid-area: form;
+  width: 600px;
+}
+
+.formCard .inputContainer {
+  min-height: 70px;
+}
+
+.namesContainer {
+  display: flex;
+  align-items: baseline;
+}
+
+.namesContainer div {
+  flex-grow: 1;
 }
 
 .signUpContainer .marginRight {
@@ -18,4 +32,25 @@ div.signUpContainer {
 }
 .signUpContainer .marginLeft {
   margin-left: 6px;
+}
+
+.ageContainer {
+  display: flex;
+  align-items: baseline;
+}
+
+.ageContainer .day {
+  flex-grow: 1;
+}
+
+.ageContainer .month {
+  flex-grow: 8;
+}
+
+.ageContainer .year {
+  flex-grow: 1;
+}
+
+.postButtonContainer {
+  margin: 10px 0 0 0;
 }
