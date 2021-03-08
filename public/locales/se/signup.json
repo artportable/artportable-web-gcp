@@ -4,6 +4,7 @@
   "login": "Logga in",
   "username": "Användarnamn",
   "usernameAlreadyExists": "Användarnamnet finns redan",
+  "usernameIsRequired": "Användarnamn är obligatoriskt",
   "firstName": "Förnamn",
   "lastName": "Efternamn",
   "email": "Epostadress",
@@ -15,7 +16,7 @@
   "day": "Dag",
   "month": "Månad",
   "year": "År",
-  "landOrRegion": "Land/Region",
+  "countryOrRegion": "Land/Region",
   "emailDisclaimer1": "Artportable får informera mig med anpassade e-postmeddelanden om produkter och tjänster. Mer information finns i vår",
   "privacyPolicy": "Sekretesspolicy",
   "emailDisclaimer2": "Du kan när som helst avbryta prenumerationen",
@@ -23,5 +24,25 @@
   "agreementText1": "Genom att klicka på \"Bli medlem\" bekräftar jag att jag läst och godkänt",
   "usageAgreement": "Användningsvillkor",
   "word_And": "och",
-  "becomeMember": "Bli medlem"
+  "becomeMember": "Bli medlem",
+
+  "countryOrRegionList": {
+    "sweden": "Sverige",
+    "uk": "Storbrittanien"
+  },
+  
+  "months": {
+    "jan": "Januari",
+    "feb": "Februari",
+    "mar": "Mars",
+    "apr": "April",
+    "may": "Maj",
+    "jun": "Juni",
+    "jul": "Juli",
+    "aug": "Augusti",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
+  }
 }

@@ -4,6 +4,7 @@
   "login": "Log in",
   "username": "Username",
   "usernameAlreadyExists": "Username already exists",
+  "usernameIsRequired": "Username is required",
   "firstName": "First name",
   "lastName": "Last name",
   "email": "Email",
@@ -15,13 +16,33 @@
   "day": "Day",
   "month": "Month",
   "year": "Year",
-  "landOrRegion": "Country/Region",
+  "countryOrRegion": "Country/Region",
   "emailDisclaimer1": "Artportable may contact me with tailored e-mail messages about products and services. More information in our",
-  "privacyPolicy": "Secrecy policy",
+  "privacyPolicy": "Privacy policy",
   "emailDisclaimer2": "You can cancel the subscription at any time",
   "emailAgreementCheckbox": "It is OK to contact me via e-mail",
   "agreementText1": "By clicking \"Become member\" I confirm that I have read and agreed to the",
-  "usageAgreement": "Usage agreement",
+  "usageAgreement": "User agreement",
   "word_And": "and",
-  "becomeMember": "Become member"
+  "becomeMember": "Become member",
+
+  "countryOrRegionList": {
+    "sweden": "Sweden",
+    "uk": "United Kingdom"
+  },
+
+  "months": {
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
+  }
 }
