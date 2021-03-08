@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -20,7 +22,7 @@ import s from '../styles/signup.module.css'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react';
+import { useState } from 'react'
 
 
 interface State {
@@ -46,6 +48,12 @@ export default function Signup() {
     emailError: false,
     emailIsAvailable: true
   });
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [canContact, setCanContact] = useState(false);
+  const days = getDays(1);
+  const years = getYears();
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -82,6 +90,8 @@ export default function Signup() {
   const getUsernameErrorMessage = () => {
     if(!values.usernameIsAvailable) {
       return t('usernameAlreadyExists');
+    } else if (values.usernameError && values.username === "") {
+      return t('usernameIsRequired');
     }
   }
 
@@ -100,6 +110,22 @@ export default function Signup() {
       setValues({ ...values, emailError: true });
       return;
     }
+  }
+
+  const handleMonthChange = (event) => {
+    setMonth(event.target.value);
+  }
+
+  const handleDayChange = (event) => {
+    setDay(event.target.value);
+  }
+
+  const handleYearChange = (event) => {
+    setYear(event.target.value);
+  }
+
+  const handleCanContactChange = (event) => {
+    setCanContact(event.target.checked);
   }
 
   function emailIsInvalid(email) {
@@ -130,6 +156,11 @@ export default function Signup() {
   const handleOnBlurUsername = async (event) => {
     event.preventDefault();
 
+    if(event.target.value === "") {
+      setValues({ ...values, usernameError: true });
+      return;
+    }
+
     try {
       const isAvailable = await (await fetch(`https://localhost:5001/api/user?username=${event.target.value}`)).json();
       setValues({ ...values, 
@@ -148,13 +179,13 @@ export default function Signup() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={s.signUpContainer}>
-        <div className={s.formCard}>
+        <form className={s.formCard}>
           <Card>
             <CardContent>
               <Typography variant="h1" gutterBottom>
                 {t('createAnAccount')}
               </Typography>
-              <Typography variant="subtitle1" gutterBottom>
+              <Typography variant="subtitle1" component="p" gutterBottom>
                 {t('alreadyHaveAnAccountQuestion')}?{' '}
                 <Link href="#" passHref>
                   <MuiLink>
@@ -167,6 +198,7 @@ export default function Signup() {
                   id="username"
                   label={t('username')} 
                   fullWidth
+                  required
                   error={values.usernameError}
                   onChange={handleUsernameChange}
                   onBlur={handleOnBlurUsername}
@@ -211,52 +243,114 @@ export default function Signup() {
                 />
               </FormControl>
               </div>
-              <Typography variant="subtitle1" gutterBottom>
+              <Typography variant="subtitle1" component="p" gutterBottom>
                 {t('dateOfBirth')}
               </Typography>
 
-              <div className={s.ageContainer}>
-                <FormControl className={s.day}>
+              <div className={clsx(s.ageContainer, s.inputContainer)}>
+                <FormControl className={clsx(s.day, s.marginRight)}>
                   <InputLabel id="day-label">{t('day')}</InputLabel>
                   <Select
                     labelId="day-label"
                     id="day"
+                    value={day}
+                    onChange={handleDayChange}
                   >
-                    <MenuItem value={1}>1</MenuItem>
-                    <MenuItem value={2}>2</MenuItem>
-                    <MenuItem value={3}>3</MenuItem>
+                    {days.map(d => 
+                      <MenuItem key={d} value={d}>{d}</MenuItem>  
+                    )}
                   </Select>
                 </FormControl>
 
-                <FormControl className={s.month}>
+                <FormControl className={clsx(s.month , s.marginLeft, s.marginRight)}>
                   <InputLabel id="month-label">{t('month')}</InputLabel>
                   <Select
                     labelId="month-label"
                     id="month"
+                    value={month}
+                    onChange={handleMonthChange}
                   >
-                    <MenuItem value={1}>Januari</MenuItem>
-                    <MenuItem value={2}>Februari</MenuItem>
-                    <MenuItem value={3}>Mars</MenuItem>
+                    <MenuItem value={1}>{t('months.jan')}</MenuItem>
+                    <MenuItem value={2}>{t('months.feb')}</MenuItem>
+                    <MenuItem value={3}>{t('months.mar')}</MenuItem>
+                    <MenuItem value={4}>{t('months.apr')}</MenuItem>
+                    <MenuItem value={5}>{t('months.may')}</MenuItem>
+                    <MenuItem value={6}>{t('months.jun')}</MenuItem>
+                    <MenuItem value={7}>{t('months.jul')}</MenuItem>
+                    <MenuItem value={8}>{t('months.aug')}</MenuItem>
+                    <MenuItem value={9}>{t('months.sep')}</MenuItem>
+                    <MenuItem value={10}>{t('months.oct')}</MenuItem>
+                    <MenuItem value={11}>{t('months.nov')}</MenuItem>
+                    <MenuItem value={12}>{t('months.dec')}</MenuItem>
                   </Select>
                 </FormControl>
 
-                <FormControl className={s.year}>
+                <FormControl className={clsx(s.year, s.marginLeft)}>
                   <InputLabel id="year-label">{t('year')}</InputLabel>
                   <Select
                     labelId="year-label"
                     id="year"
+                    value={year}
+                    onChange={handleYearChange}
                   >
-                    <MenuItem value={1987}>1987</MenuItem>
-                    <MenuItem value={1988}>1988</MenuItem>
-                    <MenuItem value={1989}>1989</MenuItem>
+                    {years.map(y => <MenuItem key={y} value={y}>{y}</MenuItem>)}
                   </Select>
                 </FormControl>
+              </div>
+              <div className={s.inputContainer}>
+                <FormControl fullWidth>
+                  <InputLabel id="country-or-region-label">{t('countryOrRegion')}</InputLabel>
+                  <Select
+                    labelId="country-or-region-label"
+                    id="country-or-region"
+                    defaultValue=""
+                  >
+                    <MenuItem value={"se"}>{t("countryOrRegionList.sweden")}</MenuItem>
+                    <MenuItem value={"uk"}>{t("countryOrRegionList.uk")}</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+
+
+              <div>
+                <Typography variant="body2" gutterBottom>
+                  {t('emailDisclaimer1')} {' '} 
+                  <Link href="#" passHref>
+                    <MuiLink>
+                      {t('privacyPolicy')}
+                    </MuiLink>
+                  </Link>
+                  . {t('emailDisclaimer2')}.
+                </Typography>
+              </div>
+              <div>
+                <FormControlLabel
+                  control={<Checkbox size="small" checked={canContact} onChange={handleCanContactChange} name="gilad" />}
+                  label={<Typography variant="body2" color="textSecondary">{t('emailAgreementCheckbox')}</Typography>}
+                />
+              </div>
+              <div>
+                <Typography variant="body2" gutterBottom>
+                  {t('agreementText1')} {' '} 
+                  <Link href="#" passHref>
+                    <MuiLink>
+                      {t('usageAgreement')}
+                    </MuiLink>
+                  </Link>
+                  {' '} {t('and')} {' '}
+                  <Link href="#" passHref>
+                    <MuiLink>
+                      {t('privacyPolicy')}
+                    </MuiLink>
+                  </Link>.
+                </Typography>
               </div>
 
               <div className={s.postButtonContainer}>
                 <Link href="/signup">
                   <a>
-                    <Button 
+                    <Button
+                      type="submit"
                       size="small" 
                       variant="contained" 
                       color="primary"
@@ -270,7 +364,7 @@ export default function Signup() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </form>
       </div>
       <style jsx global>{`
         body {
@@ -280,6 +374,21 @@ export default function Signup() {
       `}</style>
     </>
   );
+}
+
+function getDays(month) {
+  return new Array(31)
+    .fill(undefined)
+    .map((_, i) => i + 1);
+}
+
+function getYears() {
+  const numberOfYearsBackwards = 140;
+  const currentLegalYear = new Date().getFullYear() - 18;
+
+  return new Array(numberOfYearsBackwards)
+    .fill(undefined)
+    .map((_, i) => currentLegalYear - i);
 }
 
 export async function getStaticProps({ locale }) {

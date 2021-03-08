@@ -41,16 +41,22 @@ div.signUpContainer {
 
 .ageContainer .day {
   flex-grow: 1;
+  width: 8ch;
 }
 
 .ageContainer .month {
-  flex-grow: 8;
+  flex-grow: 20;
 }
 
 .ageContainer .year {
   flex-grow: 1;
+  width: 8ch;
 }
 
 .postButtonContainer {
-  margin: 10px 0 0 0;
+  margin:20px 0 0 0;
+}
+
+.postButtonContainer button {
+  z-index: 1;
 }
