@@ -28,7 +28,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet' />
           <link
             rel="preload"
             href="/fonts/GT-America-Standard-Regular.woff2"
