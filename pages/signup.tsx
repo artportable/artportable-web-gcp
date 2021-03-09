@@ -23,6 +23,8 @@ import s from '../styles/signup.module.css'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { ADD_DATA } from '../app/redux/actions/signupActions';
 
 
 interface State {
@@ -38,6 +40,10 @@ interface State {
 
 export default function Signup() {
   const { t } = useTranslation('signup');
+  const dispatch = useDispatch();
+  const currentLegalYear = new Date().getFullYear() - 18;
+
+  // States
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false,
@@ -48,12 +54,15 @@ export default function Signup() {
     emailError: false,
     emailIsAvailable: true
   });
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [day, setDay] = useState(1);
+  const [month, setMonth] = useState(1);
+  const [year, setYear] = useState(currentLegalYear);
+  const [location, setLocation] = useState("");
   const [canContact, setCanContact] = useState(false);
   const days = getDays(1);
-  const years = getYears();
+  const years = getYears(currentLegalYear);
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -110,6 +119,19 @@ export default function Signup() {
       setValues({ ...values, emailError: true });
       return;
     }
+
+    dispatch({
+      type: ADD_DATA,
+      payload: {
+        username: values.username,
+        email: values.email,
+        firstName: firstName,
+        lastName: lastName,
+        dateOfBirth: `${year}-${month}-${day}`,
+        location: location,
+        canContact: canContact,
+      }
+    });
   }
 
   const handleMonthChange = (event) => {
@@ -172,6 +194,24 @@ export default function Signup() {
     
   }
 
+  const handleOnChangeFirstName = (event) => {
+    event.preventDefault();
+
+    setFirstName(event.target.value);
+  }
+
+  const handleOnChangeLastName = (event) => {
+    event.preventDefault();
+
+    setLastName(event.target.value);
+  }
+
+  const handleOnChangeLocation = (event) => {
+    event.preventDefault();
+
+    setLocation(event.target.value);
+  }
+
   return (
     <>
       <Head>
@@ -205,8 +245,8 @@ export default function Signup() {
                   helperText={getUsernameErrorMessage()} />
               </div>
               <div className={clsx(s.namesContainer, s.inputContainer)}>
-                <TextField id="first-name" className={s.marginRight} label={t('firstName')} />
-                <TextField id="last-name" className={s.marginLeft} label={t('lastName')} />
+                <TextField id="first-name" className={s.marginRight} onChange={handleOnChangeFirstName} label={t('firstName')} />
+                <TextField id="last-name" className={s.marginLeft} onChange={handleOnChangeLastName} label={t('lastName')} />
               </div>
               <div className={s.inputContainer}>
                 <TextField 
@@ -304,6 +344,7 @@ export default function Signup() {
                     labelId="country-or-region-label"
                     id="country-or-region"
                     defaultValue=""
+                    onChange={handleOnChangeLocation}
                   >
                     <MenuItem value={"se"}>{t("countryOrRegionList.sweden")}</MenuItem>
                     <MenuItem value={"uk"}>{t("countryOrRegionList.uk")}</MenuItem>
@@ -382,9 +423,8 @@ function getDays(month) {
     .map((_, i) => i + 1);
 }
 
-function getYears() {
+function getYears(currentLegalYear: number) {
   const numberOfYearsBackwards = 140;
-  const currentLegalYear = new Date().getFullYear() - 18;
 
   return new Array(numberOfYearsBackwards)
     .fill(undefined)
