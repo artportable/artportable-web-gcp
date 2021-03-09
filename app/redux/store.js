@@ -1,30 +1,15 @@
 import { useMemo } from 'react'
-import { createStore } from 'redux'
-// import { composeWithDevTools } from 'redux-devtools-extension'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import rootReducer from './reducers/rootReducer';
 
 let store;
 
-const initialState = {
-  user: '',
-}
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_USER':
-      return {
-        ...state,
-        user: 'Kalle',
-      }
-    default:
-      return state
-  }
-}
-
-function initStore(preloadedState = initialState) {
+function initStore(preloadedState) {
   return createStore(
-    reducer,
+    rootReducer,
     preloadedState,
-    // composeWithDevTools(applyMiddleware())
+    composeWithDevTools(applyMiddleware())
   )
 }
 
