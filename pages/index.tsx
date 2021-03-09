@@ -10,10 +10,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
 export default function Home( props ) {
-  const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag)
+  const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag);
   const images = props.data?.filter((image) => image.Tags.includes(currentShowing));
   const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['header']);
   
   return (
     <>
@@ -42,7 +42,7 @@ export default function Home( props ) {
         )}
       </Main>
     </>
-  )
+  );
 }
 
 export async function getStaticProps({context, locale}) {
@@ -58,7 +58,7 @@ export async function getStaticProps({context, locale}) {
   ];
 
   try {
-    const res = await fetch(`https://localhost:5001/api/user/imgs`);
+    const res = await fetch(`https://localhost:5001/api/images`);
     const data = await res?.json()
 
     // If no data, show a 404 page instead
@@ -72,7 +72,7 @@ export async function getStaticProps({context, locale}) {
       props: {
         data,
         carouselNavOptions,
-        ...await serverSideTranslations(locale, ['common', 'footer']),
+        ...await serverSideTranslations(locale, ['header']),
       },
     }
   } catch(e) {
@@ -80,7 +80,7 @@ export async function getStaticProps({context, locale}) {
     return { 
       props: {
         carouselNavOptions,
-        ...await serverSideTranslations(locale, ['common', 'footer']),
+        ...await serverSideTranslations(locale, ['header']),
       } 
     };
   }

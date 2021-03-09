@@ -5,13 +5,12 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '../app/components/Header/Header'
 import React from 'react'
-import { ThemeProvider } from '@material-ui/core'
+import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { theme } from '../styles/theme'
 
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 import { appWithTranslation } from 'next-i18next'
-
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -33,9 +32,6 @@ import {
   faEye,
   faEyeSlash
 } from '@fortawesome/free-solid-svg-icons'
-
-
-
 
 library.add(
   faHeart,
@@ -59,6 +55,15 @@ library.add(
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
+  const isSignUp = Component.name === 'Signup';
+
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
 
   return (
     <>
@@ -70,7 +75,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <Header></Header>
+          <CssBaseline />
+          <Header isSignUp={isSignUp}></Header>
           <Component {...pageProps} />
         </ThemeProvider>
       </Provider>

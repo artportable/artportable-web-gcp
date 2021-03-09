@@ -1,0 +1,62 @@
+div.signUpContainer {
+  height: var(--viewport-minus-header);
+  display: grid;
+  grid-template: 
+  ". . ." 1fr
+  ". form ." auto
+  ". . ." 1fr
+  
+  / 1fr auto 170px;
+}
+
+.formCard {
+  grid-area: form;
+  width: 600px;
+}
+
+.formCard .inputContainer {
+  min-height: 70px;
+}
+
+.namesContainer {
+  display: flex;
+  align-items: baseline;
+}
+
+.namesContainer div {
+  flex-grow: 1;
+}
+
+.signUpContainer .marginRight {
+  margin-right: 6px;
+}
+.signUpContainer .marginLeft {
+  margin-left: 6px;
+}
+
+.ageContainer {
+  display: flex;
+  align-items: baseline;
+}
+
+.ageContainer .day {
+  flex-grow: 1;
+  width: 8ch;
+}
+
+.ageContainer .month {
+  flex-grow: 20;
+}
+
+.ageContainer .year {
+  flex-grow: 1;
+  width: 8ch;
+}
+
+.postButtonContainer {
+  margin:20px 0 0 0;
+}
+
+.postButtonContainer button {
+  z-index: 1;
+}

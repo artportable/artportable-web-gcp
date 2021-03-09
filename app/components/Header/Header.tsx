@@ -5,16 +5,17 @@ import { useTranslation } from 'next-i18next'
 import s from './header.module.css'
 import Button from '../Button/Button';
 
-export default function Header() {
-  const { t } = useTranslation('common');
+export default function Header({ isSignUp }) {
+  const { t } = useTranslation('header');
+  const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
 
   return (
-    <div className={s.container}>
+    <div className={containerClasses}>
       <div className={s.logo}>
         <Link href="/">
           <a>
             <Image
-              src="/art-logo-TEMP.PNG"
+              src="/Artportable_Logotyp_Black.svg"
               alt="Logo Artportable"
               width={188}
               height={51}
@@ -31,14 +32,18 @@ export default function Header() {
         </Link>
       </div>
       <div className={s.login}>
-        <Button 
-          size="small" 
-          variant="contained" 
-          color="primary" 
-          disableElevation 
-          roundedButton>
-            {t('signUp')}
-        </Button>
+        <Link href="/signup">
+          <a>
+            <Button 
+              size="small" 
+              variant="contained" 
+              color="primary"
+              disableElevation 
+              roundedButton>
+                {t('signUp')}
+            </Button>
+          </a>
+        </Link>
         <Button 
           size="small"
           variant="outlined" 
