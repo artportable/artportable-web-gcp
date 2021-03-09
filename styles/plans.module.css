@@ -2,6 +2,7 @@
   height: var(--viewport-minus-header);
   background-color: var(--background-color);
   display: grid;
+  gap: 16px 0;
   grid-template: 
   ". steps ." auto
   ". header ." auto
@@ -25,10 +26,24 @@
   grid-area: paymentOptions;
 }
 
+.optionBase, .optionStandard, .optionPremium {
+  min-width: 325px;
+}
+.optionsBase, .optionPremium {
+  padding: 32px 0 0 0;
+}
+
 .options {
   grid-area: options;
+  display: grid;
+  grid-auto-flow: column;
+
+  gap: 16px;
+  justify-content: space-between;
 }
 
 .navigation {
   grid-area: navigation;
+  display: flex;
+  justify-content: space-between;
 }

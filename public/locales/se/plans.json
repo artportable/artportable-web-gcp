@@ -1,3 +1,34 @@
 {
-  "welcomeTo": "Välkommen till Sveriges största community för konst"
+  "welcomeTo": "Välkommen till Sveriges största community för konst",
+  "plans": {
+    "base": {
+      "name": "Bas",
+      "listTexts": [
+        "Utforska konst",
+        "Läsa artiklar",
+        "Följa och interagera med konstnärer",
+        "Ta del av utställningar"
+      ]
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "listTexts": [
+        "Allt från $t(plans.base.name)",
+        "Digital portfolio inkluderande 10 konstvärk",
+        "Tillgång till Artportables Facebookgrupp",
+        "Sprid din portfolio genom Artportable social media",
+        "Personlig service med våra koordinatorer",
+        "Tillgång till grupper på Artportable"
+      ]
+    },
+    "portfolioPremium": {
+      "name": "Portolio Premium",
+      "listTexts": [
+        "Allt från $t(plans.base.name) & $t(plans.portfolio.name)",
+        "Ytterligare 10 konstverk",
+        "Mer värde för pengarna",
+        "Saker du inte kan motstå"
+      ]
+    } 
+  }
 }

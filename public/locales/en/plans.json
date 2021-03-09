@@ -1,3 +1,34 @@
 {
-  "welcomeTo": "Welcome to Swedens largest community for art"
+  "welcomeTo": "Welcome to Swedens largest community for art",
+  "plans": {
+    "base": {
+      "name": "Base",
+      "listTexts": [
+        "Explore art",
+        "Read articles",
+        "Follow and interact with artists",
+        "Enjoy exhibitions"
+      ]
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "listTexts": [
+        "Everything from $t(plans.base.name)",
+        "Digital portfolio up to 10 artworks",
+        "Access to Artportables Facebook group",
+        "Market your portfolio via Artportables social media channels",
+        "Personalized service with our coordinators",
+        "Access to groups at Artportable"
+      ]
+    },
+    "portfolioPremium": {
+      "name": "Portolio Premium",
+      "listTexts": [
+        "Everything from $t(plans.base.name) & $t(plans.portfolio.name)",
+        "Another 10 artworks",
+        "Some more value",
+        "Fantastic value you cannot resists"
+      ]
+    } 
+  }
 }
