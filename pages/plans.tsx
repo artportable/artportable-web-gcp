@@ -2,13 +2,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '../app/components/Button/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import PlansInfoList from '../app/components/PlansInfoList/PlansInfoList';
-import CheckIcon from '@material-ui/icons/Check';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import s from '../styles/plans.module.css'
 import { capitalizeFirst } from '../app/utils/util'
 
@@ -23,15 +17,17 @@ export default function Plans() {
       <div className={s.plansRootContainer}>
         <div className={s.steps}></div>
         <div className={s.header}>
-          <Typography variant="h1">
+          <Typography variant="h1" align="center">
             {t('welcomeTo')}
           </Typography>
           
         </div>
-        <div className={s.paymentOptions}></div>
+        <div className={s.paymentOptions}>
+          <Typography align="center">{t('ourMemberships')}</Typography>
+        </div>
         <div className={s.options}>
-          <div>
-            <Card className={s.optionBase}>
+          <div className={s.optionBase}>
+            <Card>
               <CardContent>
                 <Typography variant="h5" component="h2">
                   {t('plans.base.name')}
@@ -39,7 +35,7 @@ export default function Plans() {
                 
                 <PlansInfoList texts={getBaseTexts(t)}></PlansInfoList>
 
-                <div>
+                <div className={s.plansCardButtonContainer}>
                   <Button 
                     size="small" 
                     variant="contained" 
@@ -52,46 +48,50 @@ export default function Plans() {
               </CardContent>
             </Card>
           </div>
-          <Card className={s.optionStandard}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {t('plans.portfolio.name')}
-              </Typography>
+          <div className={s.optionStandard}>
+            <Card>
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  {t('plans.portfolio.name')}
+                </Typography>
 
-              <PlansInfoList everythingFromPrevious texts={getPortfolioTexts(t)}></PlansInfoList>
+                <PlansInfoList everythingFromPrevious texts={getPortfolioTexts(t)}></PlansInfoList>
 
-              <div>
-                <Button 
-                  size="small" 
-                  variant="contained" 
-                  color="primary"
-                  disableElevation 
-                  roundedButton>
-                  {capitalizeFirst(t('choose'))} {t('plans.portfolio.name')}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className={s.optionPremium}>
-            <CardContent>
-              <Typography variant="h5" component="h2">
-                {t('plans.portfolioPremium.name')}
-              </Typography>
+                <div className={s.plansCardButtonContainer}>
+                  <Button 
+                    size="small" 
+                    variant="contained" 
+                    color="primary"
+                    disableElevation 
+                    roundedButton>
+                    {capitalizeFirst(t('choose'))} {t('plans.portfolio.name')}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          <div className={s.optionPremium}>
+            <Card>
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                  {t('plans.portfolioPremium.name')}
+                </Typography>
 
-              <PlansInfoList everythingFromPrevious texts={getPortfolioPremiumTexts(t)}></PlansInfoList>
+                <PlansInfoList everythingFromPrevious texts={getPortfolioPremiumTexts(t)}></PlansInfoList>
 
-              <div>
-                <Button 
-                  size="small" 
-                  variant="contained" 
-                  color="primary"
-                  disableElevation 
-                  roundedButton>
-                  {capitalizeFirst(t('choose'))} {t('plans.portfolioPremium.name')}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+                <div className={s.plansCardButtonContainer}>
+                  <Button 
+                    size="small" 
+                    variant="contained" 
+                    color="primary"
+                    disableElevation 
+                    roundedButton>
+                    {capitalizeFirst(t('choose'))} {t('plans.portfolioPremium.name')}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         <div className={s.navigation}>

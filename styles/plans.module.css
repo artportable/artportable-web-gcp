@@ -30,16 +30,21 @@
   min-width: 325px;
 }
 .optionsBase, .optionPremium {
-  padding: 32px 0 0 0;
+  padding: 48px 0 0 0;
+}
+
+.plansCardButtonContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .options {
   grid-area: options;
   display: grid;
   grid-auto-flow: column;
-
   gap: 16px;
   justify-content: space-between;
+  align-items: end;
 }
 
 .navigation {
