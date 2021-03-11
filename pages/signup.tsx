@@ -23,6 +23,7 @@ import s from '../styles/signup.module.css'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { useDispatch } from 'react-redux';
 import { ADD_DATA } from '../app/redux/actions/signupActions';
 
@@ -41,6 +42,7 @@ interface State {
 export default function Signup() {
   const { t } = useTranslation('signup');
   const dispatch = useDispatch();
+  const router = useRouter();
   const currentLegalYear = new Date().getFullYear() - 18;
 
   // States
@@ -113,7 +115,7 @@ export default function Signup() {
   }
 
   const handleBecomeMemberClick = (event) => {
-    event.preventDefault();
+     event.preventDefault();
 
     if(emailIsInvalid(values.email)) {
       setValues({ ...values, emailError: true });
@@ -132,6 +134,8 @@ export default function Signup() {
         canContact: canContact,
       }
     });
+
+    router.push('/checkout');
   }
 
   const handleMonthChange = (event) => {
@@ -388,7 +392,7 @@ export default function Signup() {
               </div>
 
               <div className={s.postButtonContainer}>
-                <Link href="/signup">
+                <Link href="/checkout">
                   <a>
                     <Button
                       type="submit"
