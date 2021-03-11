@@ -8,8 +8,8 @@ const typography = {
     fontFamily: 'GT-America-Standard'
   },
   fontFamily: [
-    'LyonDisplay',
     'GT-America-Standard',
+    'LyonDisplay',
   ].join(','),
 }
 
