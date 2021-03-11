@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
       '&.MuiListItem-gutters': {
         paddingLeft: 0,
         paddingRight: 0,
+      },
+      '&.MuiListItem-dense': {
+        paddingTop: 2,
+        paddingBottom: 2,
       }
     },
   }),
@@ -26,35 +30,30 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function PlansInfoList({ texts, everythingFromPrevious = false}) {
   const classes = useStyles();
-
-
   const textsToRender = everythingFromPrevious ? texts.slice(1) : texts;
 
   return (
-    <div>
-      <List dense>
-        {everythingFromPrevious ? 
-        <ListItem classes={classes}>
-          <ListItemIcon> 
-            <ArrowBackIcon style={{ fontSize: 14 }} color="primary" />
-          </ListItemIcon>
-          <ListItemText
-            primary={texts[0]}
-          />
-        </ListItem> : <></>}
-        
-        {textsToRender.map(text => 
-        <ListItem key={text} classes={classes}>
-          <ListItemIcon>
-            <CheckIcon style={{ fontSize: 14 }} color="primary" />
-          </ListItemIcon>
-          <ListItemText
-            primary={text}
-          />
-        </ListItem>
-        )}
-       
-      </List>
-    </div>
+    <List dense>
+      {everythingFromPrevious ? 
+      <ListItem classes={classes}>
+        <ListItemIcon> 
+          <ArrowBackIcon style={{ fontSize: 14 }} color="primary" />
+        </ListItemIcon>
+        <ListItemText
+          primary={texts[0]}
+        />
+      </ListItem> : <></>}
+      
+      {textsToRender.map(text => 
+      <ListItem key={text} classes={classes}>
+        <ListItemIcon>
+          <CheckIcon style={{ fontSize: 14 }} color="primary" />
+        </ListItemIcon>
+        <ListItemText
+          primary={text}
+        />
+      </ListItem>
+      )}
+    </List>
   );
 }
