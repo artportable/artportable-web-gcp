@@ -1,5 +1,5 @@
-import s from './checkoutForm.module.css'
-import { Button } from "@material-ui/core";
+import { checkoutFormStyles } from './checkoutForm.css'
+import { Button, Hidden } from "@material-ui/core";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 
@@ -17,11 +17,11 @@ export default function CheckoutForm() {
 
   const stripe = useStripe();
   const elements = useElements();
+  const styles = checkoutFormStyles();
 
   useEffect(() => {
     // Create a Stripe customer as soon as the page loads
-    window
-      .fetch("https://localhost:5001/api/payments/customers", {
+    fetch("https://localhost:5001/api/payments/customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -33,7 +33,8 @@ export default function CheckoutForm() {
       })
       .then(data => {
         setCustomerId(data?.id);
-      });
+      })
+      .catch(e => console.log(e));
   }, []);
 
   const cardStyle = {
@@ -124,8 +125,10 @@ export default function CheckoutForm() {
 
   return (
     <>
-      <CardElement id="card-element" options={cardStyle} onChange={handleChange}/>
-      <Button
+      <div className={styles.cardElementContainer}>
+        <CardElement id="card-element" options={cardStyle} onChange={handleChange}/>
+      </div>
+      {/* <Button
         disabled={processing || disabled || succeeded}
         id="submit"
         onClick={createPaymentMethod}
@@ -133,19 +136,18 @@ export default function CheckoutForm() {
         <span id="button-text">
           {processing ? ("Laddar...") : ("Pay now")}
         </span>
-      </Button>
+      </Button> */}
       {/* Show any error that happens when processing the payment */}
-      {error && (
-        <div className="card-error" role="alert">
-          {error}
-        </div>
-      )}
+      <div className={styles.cardErrorContainer} role="alert">
+        {error}
+      </div>
+
       {/* Show a success message upon completion */}
-      {!succeeded && (
-        <div className={s.resultMessage}>
+      {/* {!succeeded && (
+        <div className={styles.resultMessage}>
           Payment succeeded!
         </div>
-      )}
+      )} */}
     </>
   );
 }

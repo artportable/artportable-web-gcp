@@ -22,7 +22,24 @@ const palette = {
   }
 }
 
+const overrides = {
+  MuiCard: {
+    root: {
+      boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)'
+    }
+  },
+  MuiCardContent: {
+    root: {
+      padding: '26px',
+      '&:last-child': {
+        paddingBottom: '32px'
+      }
+    },
+  },
+}
+
 export const theme = createMuiTheme({
   palette,
-  typography
+  typography,
+  overrides
 });
