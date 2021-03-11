@@ -32,7 +32,7 @@ export default function Header({ isSignUp }) {
         </Link>
       </div>
       <div className={s.login}>
-        <Link href="/signup">
+        <Link href="/plans">
           <a>
             <Button 
               size="small" 
