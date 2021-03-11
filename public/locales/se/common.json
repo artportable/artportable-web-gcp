@@ -2,6 +2,9 @@
   "words": {
     "back": "tillbaka",
     "next": "nästa",
-    "choose": "välj"
+    "choose": "välj",
+    "free": "gratis",
+    "vat": "moms",
+    "year": "år"
   }
 }
