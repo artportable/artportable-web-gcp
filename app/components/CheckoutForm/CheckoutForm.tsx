@@ -48,7 +48,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
         fontSize: "16px",
         "::placeholder": {
           color: "#32325d"
-        }
+        },
+        fontStyle: 'italic',
       },
       invalid: {
         color: "#fa755a",
@@ -86,7 +87,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
           createSubscription({
             customerId: customerId,
             paymentMethodId: result.paymentMethod.id,
-            priceId: plan.priceId,
+            priceId: plan.id,
           });
         }
       });
@@ -145,7 +146,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
       <div className={styles.product}>
             <Box fontSize="1rem">
-              Product:
+              {t('product')}
             </Box>
             <Box>
               {plan?.product}
@@ -153,12 +154,13 @@ export default function CheckoutForm({ email, fullName, plan }) {
           </div>
           <Box className={styles.subtotal}>
             <Box fontSize="1rem" fontWeight="bold">
-              {t('subtotal')}
+              {t('total')}
             </Box>
             <Box>
               {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
             </Box>
           </Box>
+          <Box className={styles.divider}></Box>
           <Box display="flex" justifyContent="flex-end" marginTop="2rem">
             <Link href="/">
               <a>
@@ -166,7 +168,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
                   variant="contained" 
                   color="primary"
                   disableElevation 
-                  roundedButton>
+                  roundedButton
+                  onClick={createPaymentMethod}>
                   {capitalizeFirst(t('common:words.pay'))}
                 </Button>
               </a>

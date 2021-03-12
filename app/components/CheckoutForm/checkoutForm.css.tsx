@@ -17,12 +17,15 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
     subtotal: {
       display: 'flex',
       justifyContent: 'space-between',
-      borderBottom: 'solid 1px ' + theme.palette.primary.main,
       marginBottom: '20px'
     },
     product: {
       display: 'flex',
       justifyContent: 'space-between',
+    },
+    divider: {
+      borderBottom: 'solid 1px var(--ion-color-medium)',
+      marginTop: '50px'
     }
   }),
 );
