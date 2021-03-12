@@ -9,10 +9,9 @@ export const checkoutStyles = makeStyles((theme: Theme) =>
       display: 'grid',
       gap: '16px 0',
       gridTemplate: (
-      '\". . .\" 1fr' +
+      '\". . .\" 2fr' +
       '\". payment-card .\" auto' +
-      '\". navigation .\" auto' +
-      '\". . .\" 1fr' +
+      '\". . .\" 4fr' +
       '/ 1fr auto 1fr'),
       
     },
@@ -25,18 +24,12 @@ export const checkoutStyles = makeStyles((theme: Theme) =>
         marginBottom: '8px',
       }
     },
-    navigationContainer: {
-      gridArea: 'navigation',
-      display: 'flex',
-      justifyContent: 'space-between'
-    },
     subtotal: {
       display: 'flex',
       justifyContent: 'space-between',
       borderBottom: 'solid 1px ' + theme.palette.primary.main,
       marginBottom: '20px'
     },
-
     product: {
       display: 'flex',
       justifyContent: 'space-between',

@@ -1,14 +1,13 @@
 import { checkoutFormStyles } from './checkoutForm.css'
-import { Button, Hidden } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import Button from '../Button/Button';
 import React, { useEffect, useState } from "react";
+import { useTranslation } from 'next-i18next';
+import { capitalizeFirst } from '../../utils/util';
+import Link from 'next/link';
 
-// TODO: Fetch from store
-const customerEmail = "test3@hejtest.com";
-const customerFullName = "Mrs Test"
-const priceIdFromStore = 'price_1IRdujA3UXZjjLWxbwLujK5l';
-
-export default function CheckoutForm() {
+export default function CheckoutForm({ email, fullName, plan }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
@@ -18,6 +17,9 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const styles = checkoutFormStyles();
+  const { t } = useTranslation(['checkout', 'common']);
+
+  const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
     // Create a Stripe customer as soon as the page loads
@@ -26,7 +28,7 @@ export default function CheckoutForm() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({email: customerEmail, fullName: customerFullName})
+        body: JSON.stringify({email: email, fullName: fullName})
       })
       .then(res => {
         return res.json();
@@ -67,8 +69,7 @@ export default function CheckoutForm() {
     // each type of element.
     const cardElement = elements.getElement(CardElement);
 
-    let billingName = customerFullName;
-    let priceId = priceIdFromStore;
+    const billingName = fullName;
 
     stripe
       .createPaymentMethod({
@@ -85,7 +86,7 @@ export default function CheckoutForm() {
           createSubscription({
             customerId: customerId,
             paymentMethodId: result.paymentMethod.id,
-            priceId: priceId,
+            priceId: plan.priceId,
           });
         }
       });
@@ -141,6 +142,36 @@ export default function CheckoutForm() {
       <div className={styles.cardErrorContainer} role="alert">
         {error}
       </div>
+
+      <div className={styles.product}>
+            <Box fontSize="1rem">
+              Product:
+            </Box>
+            <Box>
+              {plan?.product}
+            </Box>
+          </div>
+          <Box className={styles.subtotal}>
+            <Box fontSize="1rem" fontWeight="bold">
+              {t('subtotal')}
+            </Box>
+            <Box>
+              {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
+            </Box>
+          </Box>
+          <Box display="flex" justifyContent="flex-end" marginTop="2rem">
+            <Link href="/">
+              <a>
+                <Button
+                  variant="contained" 
+                  color="primary"
+                  disableElevation 
+                  roundedButton>
+                  {capitalizeFirst(t('common:words.pay'))}
+                </Button>
+              </a>
+            </Link>
+          </Box>
 
       {/* Show a success message upon completion */}
       {/* {!succeeded && (

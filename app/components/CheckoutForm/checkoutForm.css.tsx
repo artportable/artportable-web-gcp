@@ -13,6 +13,16 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
     cardErrorContainer: {
       height: '20px',
       color: 'var(--ion-color-danger)'
+    },
+    subtotal: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      borderBottom: 'solid 1px ' + theme.palette.primary.main,
+      marginBottom: '20px'
+    },
+    product: {
+      display: 'flex',
+      justifyContent: 'space-between',
     }
   }),
 );

@@ -22,13 +22,14 @@ const promise = loadStripe("pk_test_51IRGljA3UXZjjLWxcvyxrdMZLfGL3VgavI4xiWcb1Tm
 
 export default function Checkout( props ) {
   const store = useStore();
-  const { t } = useTranslation('checkout');
+  const { t } = useTranslation(['checkout', 'common']);
   const styles = checkoutStyles();
 
   const plan = store.getState()?.signup?.price;
-  const interval = t(plan?.recurringInterval);
+  const email = store.getState()?.signup?.data?.email;
+  const fullName = store.getState()?.signup?.data?.firstName + ' ' + store.getState()?.signup?.data?.lastName;
 
-  const [selectedPaymentInterval, setSelectedPaymentInterval] = useState<PaymentInterval>('yearly')
+  const [selectedPaymentInterval, setSelectedPaymentInterval] = useState<PaymentInterval>('yearly');
 
   return (
     <Box className={styles.root}>
@@ -43,46 +44,15 @@ export default function Checkout( props ) {
           <InputLabel>{t('paymentDetails')}</InputLabel>
           {/* Stripe checkout HERE */}
           <Elements stripe={promise}>
-            <CheckoutForm />
-          </Elements>
-          <div className={styles.product}>
-            <Box fontSize="1rem">
-              Product:
-            </Box>
-            <Box>
-              {plan?.product}
-            </Box>
-          </div>
-          <Box className={styles.subtotal}>
-            <Box fontSize="1rem" fontWeight="bold">
-              {t('subtotal')}
-            </Box>
-            <Box>
-              {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
-            </Box>
-          </Box>
+            <CheckoutForm 
+              email={email}
+              fullName={fullName}
+              plan={plan}
 
-          <Box marginTop="2rem">{t('checkoutTermsFooter')}</Box>
+            />
+          </Elements>
         </CardContent>
       </Card>
-      <Box className={styles.navigationContainer}>
-        <Button
-          size="small" 
-          variant="contained" 
-          color="primary"
-          disableElevation 
-          roundedButton>
-          {t('backButton')}
-        </Button>
-        <Button
-          size="small" 
-          variant="contained" 
-          color="primary"
-          disableElevation 
-          roundedButton>
-          {t('finishButton')}
-        </Button>
-      </Box>
       {/* <style jsx global>{`
         body {
           background-image: url("/images/acrylic-painting.jpg");
