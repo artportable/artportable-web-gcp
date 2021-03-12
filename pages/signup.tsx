@@ -24,7 +24,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useStore } from 'react-redux';
 import { ADD_DATA } from '../app/redux/actions/signupActions';
 
 
@@ -42,6 +42,8 @@ interface State {
 export default function Signup() {
   const { t } = useTranslation('signup');
   const dispatch = useDispatch();
+  const store = useStore();
+  const signupData = store.getState()?.signup?.data;
   const router = useRouter();
   const currentLegalYear = new Date().getFullYear() - 18;
 
@@ -49,20 +51,20 @@ export default function Signup() {
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false,
-    username: '',
+    username: signupData?.username,
     usernameError: false,
     usernameIsAvailable: true,
-    email: '',
+    email: signupData?.email,
     emailError: false,
     emailIsAvailable: true
   });
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [day, setDay] = useState(1);
-  const [month, setMonth] = useState(1);
-  const [year, setYear] = useState(currentLegalYear);
-  const [location, setLocation] = useState("");
-  const [canContact, setCanContact] = useState(false);
+  const [firstName, setFirstName] = useState(signupData?.firstName);
+  const [lastName, setLastName] = useState(signupData?.lastName);
+  const [day, setDay] = useState(signupData?.dateOfBirth?.split("-")[2] ?? 1);
+  const [month, setMonth] = useState(signupData?.dateOfBirth?.split("-")[1] ?? 1);
+  const [year, setYear] = useState(signupData?.dateOfBirth?.split("-")[0] ?? currentLegalYear);
+  const [location, setLocation] = useState(signupData?.location);
+  const [canContact, setCanContact] = useState(signupData?.canContact);
   const days = getDays(1);
   const years = getYears(currentLegalYear);
 
@@ -246,11 +248,12 @@ export default function Signup() {
                   error={values.usernameError}
                   onChange={handleUsernameChange}
                   onBlur={handleOnBlurUsername}
-                  helperText={getUsernameErrorMessage()} />
+                  helperText={getUsernameErrorMessage()}
+                  defaultValue={signupData?.username} />
               </div>
               <div className={clsx(s.namesContainer, s.inputContainer)}>
-                <TextField id="first-name" className={s.marginRight} onChange={handleOnChangeFirstName} label={t('firstName')} />
-                <TextField id="last-name" className={s.marginLeft} onChange={handleOnChangeLastName} label={t('lastName')} />
+                <TextField id="first-name" className={s.marginRight} onChange={handleOnChangeFirstName} label={t('firstName')} defaultValue={signupData?.firstName}/>
+                <TextField id="last-name" className={s.marginLeft} onChange={handleOnChangeLastName} label={t('lastName')} defaultValue={signupData?.lastName}/>
               </div>
               <div className={s.inputContainer}>
                 <TextField 
@@ -262,7 +265,8 @@ export default function Signup() {
                   onChange={handleEmailChange}
                   onBlur={handleOnBlurEmail}
                   error={values.emailError}
-                  helperText={getEmailErrorMessage()} />
+                  helperText={getEmailErrorMessage()}
+                  defaultValue={signupData?.email} />
               </div>
               <div className={s.inputContainer}>
               <FormControl fullWidth>
@@ -299,6 +303,7 @@ export default function Signup() {
                     id="day"
                     value={day}
                     onChange={handleDayChange}
+                    defaultValue={signupData?.dateOfBirth?.split("-")[2]}
                   >
                     {days.map(d => 
                       <MenuItem key={d} value={d}>{d}</MenuItem>  
@@ -313,6 +318,7 @@ export default function Signup() {
                     id="month"
                     value={month}
                     onChange={handleMonthChange}
+                    defaultValue={signupData?.dateOfBirth?.split("-")[1]}
                   >
                     <MenuItem value={1}>{t('months.jan')}</MenuItem>
                     <MenuItem value={2}>{t('months.feb')}</MenuItem>
@@ -336,6 +342,7 @@ export default function Signup() {
                     id="year"
                     value={year}
                     onChange={handleYearChange}
+                    defaultValue={signupData?.dateOfBirth?.split("-")[0]}
                   >
                     {years.map(y => <MenuItem key={y} value={y}>{y}</MenuItem>)}
                   </Select>
@@ -347,7 +354,7 @@ export default function Signup() {
                   <Select
                     labelId="country-or-region-label"
                     id="country-or-region"
-                    defaultValue=""
+                    defaultValue={signupData?.location}
                     onChange={handleOnChangeLocation}
                   >
                     <MenuItem value={"se"}>{t("countryOrRegionList.sweden")}</MenuItem>
@@ -370,7 +377,7 @@ export default function Signup() {
               </div>
               <div>
                 <FormControlLabel
-                  control={<Checkbox size="small" checked={canContact} onChange={handleCanContactChange} name="gilad" />}
+                  control={<Checkbox size="small" checked={signupData?.canContact} onChange={handleCanContactChange} name="gilad"/>}
                   label={<Typography variant="body2" color="textSecondary">{t('emailAgreementCheckbox')}</Typography>}
                 />
               </div>
