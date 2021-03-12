@@ -68,7 +68,7 @@ export default function Plans({ priceData }) {
       </div>
       <div className={s.paymentOptions}>
         <Typography align="center" component="div">
-          <Box fontWeight="fontWeightBold"> {t('ourMemberships')}</Box>
+          <Box fontWeight="fontWeightBold" marginBottom="15px"> {t('ourMemberships')}</Box>
         </Typography>
         <Tabs
           value={selectedPaymentInterval}

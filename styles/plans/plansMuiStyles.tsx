@@ -12,6 +12,9 @@ export const useCardStyles = makeStyles((theme: Theme) =>
         },
         '& a': {
           alignSelf: 'center'
+        },
+        '& .MuiButton-root': {
+          minWidth: '155px'
         }
       }
     },

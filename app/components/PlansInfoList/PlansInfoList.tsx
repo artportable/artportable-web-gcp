@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
         paddingBottom: 2,
       }
     },
+    list: {
+      marginBottom: '25px'
+    }
   }),
 );
 
@@ -33,9 +36,9 @@ export default function PlansInfoList({ texts, everythingFromPrevious = false}) 
   const textsToRender = everythingFromPrevious ? texts.slice(1) : texts;
 
   return (
-    <List dense>
+    <List dense className={classes.list}>
       {everythingFromPrevious ? 
-      <ListItem classes={classes}>
+      <ListItem className={classes.root}>
         <ListItemIcon> 
           <ArrowBackIcon style={{ fontSize: 14 }} color="primary" />
         </ListItemIcon>
