@@ -18,7 +18,10 @@ const palette = {
     main: "#447EFF"
   },
   secondary: {
-    main: "#3dc2ff",
+    main: "#FF8383",
+  },
+  test: {
+    main: "#ec407a"
   }
 }
 

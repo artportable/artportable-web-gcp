@@ -33,7 +33,8 @@ export const checkoutStyles = makeStyles((theme: Theme) =>
     subtotal: {
       display: 'flex',
       justifyContent: 'space-between',
-      borderBottom: 'solid 1px red'
+      borderBottom: 'solid 1px ' + theme.palette.primary.main,
+      marginBottom: '20px'
     },
 
     product: {

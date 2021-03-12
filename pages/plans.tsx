@@ -52,10 +52,7 @@ export default function Plans({ priceData }) {
     } else {
       dispatch({
         type: ADD_PRICE,
-        payload: {
-          id: plan.id,
-          planName: plan.product
-        }
+        payload: {...plan}
       });
     }
   }

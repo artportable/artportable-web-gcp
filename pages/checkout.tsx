@@ -22,9 +22,11 @@ const promise = loadStripe("pk_test_51IRGljA3UXZjjLWxcvyxrdMZLfGL3VgavI4xiWcb1Tm
 
 export default function Checkout( props ) {
   const store = useStore();
-  console.log(store.getState());
   const { t } = useTranslation('checkout');
   const styles = checkoutStyles();
+
+  const plan = store.getState()?.signup?.price;
+  const interval = t(plan?.recurringInterval);
 
   const [selectedPaymentInterval, setSelectedPaymentInterval] = useState<PaymentInterval>('yearly')
 
@@ -48,20 +50,19 @@ export default function Checkout( props ) {
               Product:
             </Box>
             <Box>
-              Portfolio Premium
+              {plan?.product}
             </Box>
           </div>
-          <div className={styles.subtotal}>
+          <Box className={styles.subtotal}>
             <Box fontSize="1rem" fontWeight="bold">
               {t('subtotal')}
             </Box>
             <Box>
-              2999 SEK
+              {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
             </Box>
-          </div>
-          <div>{t('discount')} årsplan</div>
-          <div>{t('toPayToday')}</div><br/>
-          <div>{t('checkoutTermsFooter')}</div>
+          </Box>
+
+          <Box marginTop="2rem">{t('checkoutTermsFooter')}</Box>
         </CardContent>
       </Card>
       <Box className={styles.navigationContainer}>
@@ -82,6 +83,12 @@ export default function Checkout( props ) {
           {t('finishButton')}
         </Button>
       </Box>
+      {/* <style jsx global>{`
+        body {
+          background-image: url("/images/acrylic-painting.jpg");
+          background-size: cover;
+        }
+      `}</style> */}
     </Box>
   );
 }
