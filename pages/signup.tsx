@@ -171,7 +171,7 @@ export default function Signup() {
         emailError: true });
     } else {
       try {
-        const isAvailable = await (await fetch(`https://localhost:5001/api/user?email=${event.target.value}`)).json();
+        const isAvailable = await (await fetch(`http://localhost:5001/api/user?email=${event.target.value}`)).json();
         setValues({ ...values, 
           emailIsAvailable: isAvailable, 
           emailError: !isAvailable });
@@ -190,7 +190,7 @@ export default function Signup() {
     }
 
     try {
-      const isAvailable = await (await fetch(`https://localhost:5001/api/user?username=${event.target.value}`)).json();
+      const isAvailable = await (await fetch(`http://localhost:5001/api/user?username=${event.target.value}`)).json();
       setValues({ ...values, 
         usernameIsAvailable: isAvailable, 
         usernameError: !isAvailable });

@@ -21,7 +21,7 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     // Create a Stripe customer as soon as the page loads
-    fetch("https://localhost:5001/api/payments/customers", {
+    fetch("http://localhost:5001/api/payments/customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -94,7 +94,7 @@ export default function CheckoutForm() {
   // Create subscription
   function createSubscription({ customerId, paymentMethodId, priceId }) {
     return (
-      fetch('https://localhost:5001/api/payments/subscriptions', {
+      fetch('http://localhost:5001/api/payments/subscriptions', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
