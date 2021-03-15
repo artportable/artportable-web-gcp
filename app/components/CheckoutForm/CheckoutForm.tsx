@@ -130,15 +130,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
       <div className={styles.cardElementContainer}>
         <CardElement id="card-element" options={cardStyle} onChange={handleChange}/>
       </div>
-      {/* <Button
-        disabled={processing || disabled || succeeded}
-        id="submit"
-        onClick={createPaymentMethod}
-        >
-        <span id="button-text">
-          {processing ? ("Laddar...") : ("Pay now")}
-        </span>
-      </Button> */}
       {/* Show any error that happens when processing the payment */}
       <div className={styles.cardErrorContainer} role="alert">
         {error}
@@ -175,13 +166,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
               </a>
             </Link>
           </Box>
-
-      {/* Show a success message upon completion */}
-      {/* {!succeeded && (
-        <div className={styles.resultMessage}>
-          Payment succeeded!
-        </div>
-      )} */}
     </>
   );
 }

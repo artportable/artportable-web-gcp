@@ -53,12 +53,6 @@ export default function Checkout( props ) {
           </Elements>
         </CardContent>
       </Card>
-      {/* <style jsx global>{`
-        body {
-          background-image: url("/images/acrylic-painting.jpg");
-          background-size: cover;
-        }
-      `}</style> */}
     </Box>
   );
 }
