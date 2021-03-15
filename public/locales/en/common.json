@@ -5,6 +5,8 @@
     "choose": "choose",
     "free": "free",
     "vat": "taxes",
-    "year": "year"
+    "year": "year",
+    "month": "month",
+    "pay": "pay"
   }
 }

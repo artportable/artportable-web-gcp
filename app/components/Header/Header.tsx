@@ -23,36 +23,40 @@ export default function Header({ isSignUp }) {
           </a>
         </Link>
       </div>
-      <div className={s.navigation}>
-        <Link href="/discover">
-          <a>{t('discover')}</a>
-        </Link>
-        <Link href="/about">
-          <a>Om oss</a>
-        </Link>
-      </div>
-      <div className={s.login}>
-        <Link href="/plans">
-          <a>
-            <Button 
-              size="small" 
-              variant="contained" 
-              color="primary"
-              disableElevation 
-              roundedButton>
-                {t('signUp')}
-            </Button>
-          </a>
-        </Link>
-        <Button 
-          size="small"
-          variant="outlined" 
-          color="primary" 
-          disableElevation 
-          roundedButton>
-            {t('login')}
-        </Button>
-      </div>
+      {!isSignUp &&
+        <div className={s.navigation}>
+          <Link href="/discover">
+            <a>{t('discover')}</a>
+          </Link>
+          <Link href="/about">
+            <a>Om oss</a>
+          </Link>
+        </div>
+      }
+      {!isSignUp &&
+        <div className={s.login}>
+          <Link href="/plans">
+            <a>
+              <Button
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation
+                roundedButton>
+                  {t('signUp')}
+              </Button>
+            </a>
+          </Link>
+          <Button
+            size="small"
+            variant="outlined"
+            color="primary"
+            disableElevation
+            roundedButton>
+              {t('login')}
+          </Button>
+        </div>
+      }
       <div className={s.language}>
         Swe
         <FontAwesomeIcon icon="chevron-down" />

@@ -52,10 +52,7 @@ export default function Plans({ priceData }) {
     } else {
       dispatch({
         type: ADD_PRICE,
-        payload: {
-          id: plan.id,
-          planName: plan.product
-        }
+        payload: {...plan}
       });
     }
   }
@@ -71,7 +68,7 @@ export default function Plans({ priceData }) {
       </div>
       <div className={s.paymentOptions}>
         <Typography align="center" component="div">
-          <Box fontWeight="fontWeightBold"> {t('ourMemberships')}</Box>
+          <Box fontWeight="fontWeightBold" marginBottom="15px"> {t('ourMemberships')}</Box>
         </Typography>
         <Tabs
           value={selectedPaymentInterval}
@@ -197,7 +194,7 @@ export async function getStaticProps({ locale }) {
 
 async function getPriceData() {
   try {
-    const res = await fetch(`https://localhost:5001/api/payments/prices`);
+    const res = await fetch(`http://localhost:5001/api/payments/prices`);
     return await res?.json();
   } catch(e) {
     console.log('Could not fetch price info', e);

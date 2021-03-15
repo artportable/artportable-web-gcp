@@ -58,7 +58,7 @@ export async function getStaticProps({context, locale}) {
   ];
 
   try {
-    const res = await fetch(`https://localhost:5001/api/images`);
+    const res = await fetch(`http://localhost:5001/api/images`);
     const data = await res?.json()
 
     // If no data, show a 404 page instead
