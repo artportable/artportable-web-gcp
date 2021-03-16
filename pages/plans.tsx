@@ -8,9 +8,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import PlansInfoList from '../app/components/PlansInfoList/PlansInfoList';
 import PaymentInfo from '../app/components/PaymentInfo/PaymentInfo';
-import s from '../styles/plans.module.css'
 import { capitalizeFirst } from '../app/utils/util'
-import { useCardStyles } from '../styles/plans/plansMuiStyles'
+import { styles } from '../styles/plans.css'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
@@ -21,7 +20,7 @@ import { ADD_PRICE } from '../app/redux/actions/signupActions';
 export default function Plans({ priceData }) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const dispatch = useDispatch();
-  const cardStyles = useCardStyles();
+  const s = styles();
   const [selectedPaymentInterval, setSelectedPaymentInterval] = useState('yearly');
 
   function getPaymentOptions() {
@@ -82,7 +81,7 @@ export default function Plans({ priceData }) {
       </div>
       <div className={s.options}>
         <div className={s.optionBase}>
-          <Card className={cardStyles.root}>
+          <Card className={s.cardRoot}>
             <CardContent>
               <Typography variant="h5" component="h2">
                 <Box fontWeight="fontWeightMedium" textAlign="center">
@@ -113,7 +112,7 @@ export default function Plans({ priceData }) {
           </Card>
         </div>
         <div className={s.optionStandard}>
-          <Card className={cardStyles.root}>
+          <Card className={s.cardRoot}>
             <CardContent>
               <Typography variant="h5" component="h2">
                 <Box fontWeight="fontWeightMedium" textAlign="center">
@@ -143,7 +142,7 @@ export default function Plans({ priceData }) {
           </Card>
         </div>
         <div className={s.optionPremium}>
-          <Card className={cardStyles.root}>
+          <Card className={s.cardRoot}>
             <CardContent>
               <Typography variant="h5" component="h2">
                 <Box fontWeight="fontWeightMedium" textAlign="center">
