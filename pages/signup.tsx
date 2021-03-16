@@ -445,6 +445,7 @@ function getYears(currentLegalYear: number) {
 export async function getStaticProps({ locale }) {
   return { 
     props: {
+      isSignUp: true,
       ...await serverSideTranslations(locale, ['header', 'signup']),
     } 
   };

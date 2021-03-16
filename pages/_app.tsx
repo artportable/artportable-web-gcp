@@ -55,7 +55,7 @@ library.add(
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
-  const isSignUp = Component.name === 'Signup';
+  const isSignUp = pageProps.isSignUp === true;
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
