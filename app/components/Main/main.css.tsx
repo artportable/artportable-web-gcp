@@ -22,7 +22,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('lg')]: {
         gridTemplate:
         ('\". content .\" auto' +
-        '/ 1fr 1024px 1fr')
+        '/ 1fr 1124px 1fr')
       }
     },
     content: {
