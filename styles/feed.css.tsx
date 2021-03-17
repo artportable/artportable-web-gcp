@@ -9,7 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
       gap: '16px',
       gridTemplate: (
       '\"left feed right\" auto' +
-      '/ 3fr 6fr 3fr'),
+      '/ 4fr 6fr 4fr'),
     },
     colLeft: {
       gridArea: 'left'

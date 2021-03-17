@@ -1,12 +1,17 @@
 import MuiButton from '@material-ui/core/Button';
-import s from './button.module.css'
+import { styles } from './button.css'
+import clsx from 'clsx'
 
 export default function Button(props) {
-  const rounded = props.roundedButton ? s.rounded : '';
-  const { roundedButton, ...muiButtonProps } = props;
+  const { roundedButton, color, ...muiButtonProps } = props;
+  const s = styles();
+  const classes = [s.root];
+  
+  classes.push(color === 'secondary' ? s.secondary : '');
+  classes.push(roundedButton ? s.rounded : '');
 
 
   return (
-    <MuiButton {...muiButtonProps} className={`${rounded} ${s.overrides}`}>{props.children}</MuiButton>
+    <MuiButton {...muiButtonProps} color={color} className={clsx(classes)}>{props.children}</MuiButton>
   );
 }

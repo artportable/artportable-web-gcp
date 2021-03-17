@@ -7,6 +7,9 @@
     "vat": "taxes",
     "year": "year",
     "month": "month",
-    "pay": "pay"
+    "pay": "pay",
+    "followers": "followers",
+    "follows": "follows",
+    "worksOfArt": "works of art"
   }
 }
