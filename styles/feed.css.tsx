@@ -4,7 +4,6 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     feedContainer: {
       backgroundColor: 'var(--background-color)',
-      height: 'var(--viewport-minus-header)',
       display: 'grid',
       gap: '16px',
       gridTemplate: (
@@ -12,13 +11,20 @@ export const styles = makeStyles((theme: Theme) =>
       '/ 4fr 6fr 4fr'),
     },
     colLeft: {
-      gridArea: 'left'
+      gridArea: 'left',
+      display: 'grid',
+      alignItems: 'start',
+      rowGap: theme.spacing(2)
     },
     colFeed: {
       gridArea: 'feed'
     },
     colRight: {
       gridArea: 'right'
+    },
+    uploadArtButton: {
+      width: '100%',
+      height: '3rem'
     }
   }),
 );

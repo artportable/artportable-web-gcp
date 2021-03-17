@@ -18,16 +18,13 @@ export const styles = makeStyles((theme: Theme) =>
         color: theme.palette.primary.dark,
       }
     },
-    editProfileButton: {
-      '& .MuiButton-label': {
-        color: 'red'
-      },
-      color: theme.palette.text.primary
-    },
     counterBox: {
       display: 'flex',
       justifyContent: 'space-around',
       paddingTop: theme.spacing(1),
+      '& > *': {
+        width: '33.3%'
+      }
     }
   }),
 );

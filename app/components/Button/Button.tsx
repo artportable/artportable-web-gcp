@@ -10,8 +10,7 @@ export default function Button(props) {
   classes.push(color === 'secondary' ? s.secondary : '');
   classes.push(roundedButton ? s.rounded : '');
 
-
   return (
-    <MuiButton {...muiButtonProps} color={color} className={clsx(classes)}>{props.children}</MuiButton>
+    <MuiButton {...muiButtonProps} color={color} className={clsx(classes, props.className)}>{props.children}</MuiButton>
   );
 }

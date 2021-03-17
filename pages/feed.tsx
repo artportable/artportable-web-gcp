@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import Link from 'next/Link'
 import Main from '../app/components/Main/Main'
+import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
 import ProfileCard from '../app/components/ProfileCard/ProfileCard'
 
@@ -31,6 +33,14 @@ export default function Feed() {
         <Box className={s.feedContainer}>
           <div className={s.colLeft}>
             <ProfileCard userId={''} user={user}></ProfileCard>
+            <Button
+              className={s.uploadArtButton}
+              size="small"
+              variant="contained"
+              color="primary"
+              disableElevation>
+                {t('uploadNewWorkOfArt')}
+            </Button>
           </div>
           <div className={s.colFeed}>feed</div>
           <div className={s.colRight}>right</div>

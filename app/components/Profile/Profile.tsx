@@ -1,12 +1,12 @@
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge'
 import { styles } from './profile.css'
-import Button from '../Button/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RoomIcon from '@material-ui/icons/Room';
-import { Typography, Box, createMuiTheme } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
+import { capitalizeFirst } from '../../utils/util';
 
 export default function Profile({ userId, user }) {
   const s = styles();
@@ -51,14 +51,6 @@ export default function Profile({ userId, user }) {
           {user.location}
         </Typography>
       </Box>
-        
-        {/* <Button 
-          className={s.editProfileButton}
-          color="secondary" 
-          variant="contained" 
-          roundedButton 
-          disableElevation>Redigera din profil
-        </Button> */}
 
       <Box className={s.counterBox} borderTop='solid 1px #4e4e4e3b' marginTop={2}>
         <Box>
@@ -66,7 +58,7 @@ export default function Profile({ userId, user }) {
             {user.followers}
           </Typography>
           <Typography variant="caption" display="block">
-            {t('words.followers')}
+            {capitalizeFirst(t('words.followers'))}
           </Typography>
         </Box>
         <Box>
@@ -74,7 +66,7 @@ export default function Profile({ userId, user }) {
             {user.follows}
           </Typography>
           <Typography variant="caption" display="block">
-            {t('words.follows')}
+            {capitalizeFirst(t('words.follows'))}
           </Typography>
         </Box>
         <Box>
@@ -82,7 +74,7 @@ export default function Profile({ userId, user }) {
             {user.worksOfArt}
           </Typography>
           <Typography variant="caption" display="block">
-            {t('words.worksOfArt')}
+            {capitalizeFirst(t('words.worksOfArt'))}
           </Typography>
         </Box>
       </Box>
