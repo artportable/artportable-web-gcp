@@ -48,7 +48,7 @@ export default function PlansInfoList({ texts, everythingFromPrevious = false}) 
       </ListItem> : <></>}
       
       {textsToRender.map(text => 
-      <ListItem key={text} classes={classes}>
+      <ListItem key={text} className={classes.root}>
         <ListItemIcon>
           <CheckIcon style={{ fontSize: 14 }} color="primary" />
         </ListItemIcon>

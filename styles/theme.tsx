@@ -26,14 +26,11 @@ const palette = {
 }
 
 const overrides = {
-  MuiCard: {
-    root: {
-      boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)'
-    }
-  },
   MuiCardContent: {
     root: {
       padding: '26px',
+      // This is just a more specific selector than Mui's own selector
+      // to have more padding bottom.
       '&:last-child': {
         paddingBottom: '32px'
       }
