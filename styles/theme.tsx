@@ -4,8 +4,14 @@ const typography = {
   h1: {
     fontSize: '2rem',
   },
-  button: {
-    fontFamily: 'GT-America-Standard'
+  h2: {
+    fontSize: '1.75rem',
+  },
+  body1: {
+    fontSize: '0.925rem',
+  },
+  body2: {
+    fontSize: '0.825rem',
   },
   fontFamily: [
     'GT-America-Standard',
@@ -20,9 +26,6 @@ const palette = {
   secondary: {
     main: "#FF8383",
   },
-  test: {
-    main: "#ec407a"
-  }
 }
 
 const overrides = {
