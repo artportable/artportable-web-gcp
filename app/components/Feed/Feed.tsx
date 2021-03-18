@@ -1,12 +1,12 @@
 import React from 'react';
-import FeedItem from '../FeedItem/FeedItem';
+import FeedCard from '../FeedCard/FeedCard';
 
 export default function Feed({ items }) {
 
   return (
     <>
       {items.map(item => {
-        return <FeedItem content={item}></FeedItem>
+        return <FeedCard content={item}></FeedCard>
       })}
     </>
   );

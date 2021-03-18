@@ -1,5 +1,5 @@
 import React from 'react';
-import { styles } from './feedItem.css'
+import { styles } from './feedCard.css'
 import { useTranslation } from "next-i18next";
 import Card from "@material-ui/core/Card";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { capitalizeFirst } from '../../utils/util';
 import { CardActions, CardHeader, CardMedia } from '@material-ui/core';
 
-export default function FeedItem({ content }) {
+export default function FeedCard({ content }) {
   const s = styles();
   const { t } = useTranslation(['feed']);
 
