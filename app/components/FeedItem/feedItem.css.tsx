@@ -5,9 +5,6 @@ export const styles = makeStyles((theme: Theme) =>
     post: {
       marginBottom: "25px"
     },
-    postContainer: {
-      margin: "10px"
-    },
     topBar: {
       margin: "5px 0px",
       display: "flex",
@@ -18,8 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "15px"
     },
     username: {
-      // @ts-ignore: It IS valid!
-      fontWeight: "500"
+      fontWeight: 500
     },
     locationAndPublishedInfo: {
       display: "flex",
@@ -27,26 +23,27 @@ export const styles = makeStyles((theme: Theme) =>
     },
     published: {
       fontStyle: "italic",
-      color: "gray",
       marginLeft: "5px"
     },
-    images: {
-      margin: "10px 0px"
+    media: {
+      display: "grid",
+      gridTemplate: ('\"primary primary\" 300px ' +
+                      '\"secondary tertiary\" 150px ' +
+                      '/ 1fr 1fr'),
+      gap: "2px",
+      position: "relative"
     },
-    imageContainer: {
-      margin: "3px",
+    primaryImage: {
+      gridArea: "primary",
+      position: "relative"
     },
-    bottomImages: {
-      display: "flex",
-      flexDirection: "row"
+    secondaryImage: {
+      gridArea: "secondary",
+      position: "relative"
     },
-    bottomBar: {
-      margin: "5px 0px",
-      display: "flex",
-      flexDirection: "row"
-    },
-    likeText: {
-      marginLeft: "5px",
+    tertiaryImage: {
+      gridArea: "tertiary",
+      position: "relative"
     }
   }),
 );
