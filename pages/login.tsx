@@ -2,10 +2,12 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/login.css';
 import LoginCard from '../app/components/LoginCard/LoginCard'
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 
 export default function Signup() {
   const s = styles();
+  const router = useRouter();
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [remember, setRemember] = useState(false);
@@ -23,6 +25,8 @@ export default function Signup() {
       } else {
         sessionStorage.setItem('login-session', JSON.stringify(res));
       }
+
+      router.push('/feed');
     } catch(e) {
       console.log('Could not fetch price info', e);
     }
