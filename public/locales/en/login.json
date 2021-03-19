@@ -1,0 +1,10 @@
+{
+  "title": "Log in",
+  "newUser": "New user?",
+  "createAccount": "Create an account here",
+  "email": "Email",
+  "password": "Password",
+  "forgotCredentials": "Forgot username or password?",
+  "keepLoggedin": "Keep me logged in",
+  "loginButton": "Log in"
+}

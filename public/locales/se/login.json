@@ -1,0 +1,10 @@
+{
+  "title": "Logga in",
+  "newUser": "Ny användare?",
+  "createAccount": "Skapa konto här",
+  "email": "Epostadress",
+  "password": "Lösenord",
+  "forgotCredentials": "Glömt lösenord eller användarnamn?",
+  "keepLoggedin": "Håll mig inloggad",
+  "loginButton": "Logga in"
+}
