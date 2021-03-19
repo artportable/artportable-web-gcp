@@ -47,14 +47,18 @@ export default function Header({ isSignUp }) {
               </Button>
             </a>
           </Link>
-          <Button
-            size="small"
-            variant="outlined"
-            color="primary"
-            disableElevation
-            roundedButton>
-              {t('login')}
-          </Button>
+          <Link href="/login">
+            <a>
+              <Button
+                size="small"
+                variant="outlined"
+                color="primary"
+                disableElevation
+                roundedButton>
+                  {t('login')}
+              </Button>
+            </a>
+          </Link>
         </div>
       }
       <div className={s.language}>

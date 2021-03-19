@@ -11,14 +11,11 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { capitalizeFirst } from '../../utils/util';
 
 
-export default function LoginCard() {
+export default function LoginCard({setEmail, setPassword, remember, setRemember, onClick}) {
   const { t } = useTranslation(['login']);
   const s = styles();
 
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [remember, setRemember] = useState(false);
 
   return (
     <Card elevation={2}>
@@ -51,7 +48,6 @@ export default function LoginCard() {
             <Input
               id="password"
               type={showPassword ? 'text' : 'password'}
-              value={password}
               onChange={(event) => setPassword(event.target.value)}
               endAdornment={
                 <InputAdornment position="end">
@@ -96,7 +92,13 @@ export default function LoginCard() {
         </div>
       </CardContent>
       <CardActions>
-        <Button color="primary" variant="contained" roundedButton size="small" disableElevation>
+        <Button
+          color="primary"
+          variant="contained"
+          roundedButton size="small"
+          disableElevation
+          onClick={onClick}
+        >
           {t('loginButton')}
         </Button>
       </CardActions>
