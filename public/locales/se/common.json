@@ -11,5 +11,14 @@
     "followers": "följare",
     "follows": "fäljer",
     "worksOfArt": "Konstverk"
+  },
+  "timeUnit": {
+    "year": "år",
+    "month": "mån",
+    "week": "v",
+    "day": "d",
+    "hour": "tim",
+    "minute": "min",
+    "second": "s"
   }
 }

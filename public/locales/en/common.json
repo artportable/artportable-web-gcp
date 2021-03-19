@@ -11,5 +11,14 @@
     "followers": "followers",
     "follows": "follows",
     "worksOfArt": "works of art"
+  },
+  "timeUnit": {
+    "year": "y",
+    "month": "mo",
+    "week": "w",
+    "day": "d",
+    "hour": "h",
+    "minute": "m",
+    "second": "s"
   }
 }

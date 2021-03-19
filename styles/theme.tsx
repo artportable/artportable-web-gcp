@@ -39,6 +39,11 @@ const overrides = {
       }
     },
   },
+  MuiCardHeader: {
+    root: {
+      padding: '8px',
+    }
+  }
 }
 
 export const theme = createMuiTheme({
