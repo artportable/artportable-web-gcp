@@ -8,7 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       gap: '16px',
       gridTemplate: (
       '\"left feed right\" auto' +
-      '/ 2fr 8fr 2fr'),
+      '/ minmax(0, 4fr) 8fr minmax(0, 4fr)'),
     },
     colLeft: {
       gridArea: 'left',

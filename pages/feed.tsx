@@ -6,6 +6,7 @@ import Main from '../app/components/Main/Main'
 import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
 import ProfileCard from '../app/components/ProfileCard/ProfileCard'
+import FollowSuggestionCard from '../app/components/FollowSuggestionCard/FollowSuggestionCard'
 
 import { styles } from '../styles/feed.css';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -17,6 +18,7 @@ export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const user = {
+    userId: "gkgkfdsgok",
     username: "mrArtist",
     shortDescription: "I like painting in nature",
     location: "Gibraltar",
@@ -24,6 +26,19 @@ export default function FeedPage() {
     follows: 15,
     worksOfArt: 22
   }
+
+  const suggestedUsers = [
+    {
+      id: "fkds",
+      username: "BigArtist",
+      location: "Stockholm"
+    },
+    {
+      id: "fsadakds",
+      username: "RautaKankkisaaaaaaaaaaaaaaaaaaaa",
+      location: "Helsinkki, Finlandiadaiddiaais"
+    }
+  ];
 
   return (
     <>
@@ -45,8 +60,12 @@ export default function FeedPage() {
                 {t('uploadNewWorkOfArt')}
             </Button>
           </div>
-          <div className={s.colFeed}><Feed items={feedItems}></Feed></div>
-          <div className={s.colRight}>right</div>
+          <div className={s.colFeed}>
+            <Feed items={feedItems}></Feed>
+          </div>
+          <div className={s.colRight}>
+            <FollowSuggestionCard suggestedUsers={suggestedUsers}></FollowSuggestionCard>
+          </div>
         </Box>
       </Main>
     </>

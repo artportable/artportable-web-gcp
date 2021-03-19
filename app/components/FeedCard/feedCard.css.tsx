@@ -2,6 +2,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    cardHeader: {
+      padding: theme.spacing(1, 1, 0, 1)
+    },
     post: {
       marginBottom: "25px"
     },

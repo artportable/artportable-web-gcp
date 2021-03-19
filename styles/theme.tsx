@@ -28,26 +28,29 @@ const palette = {
   },
 }
 
-const overrides = {
-  MuiCardContent: {
-    root: {
-      padding: '26px',
-      // This is just a more specific selector than Mui's own selector
-      // to have more padding bottom.
-      '&:last-child': {
-        paddingBottom: '32px'
-      }
-    },
-  },
-  MuiCardHeader: {
-    root: {
-      padding: '8px',
-    }
-  }
-}
-
 export const theme = createMuiTheme({
   palette,
   typography,
-  overrides
 });
+
+theme.overrides = {
+  MuiCardHeader: {
+    root: {
+      padding: theme.spacing(2),
+      '& + .MuiCardContent-root': {
+        paddingTop: theme.spacing(0),
+      },
+    },
+  },
+  MuiCardContent: {
+    root: {
+
+      padding: theme.spacing(2),
+      // This is just a more specific selector than Mui's own selector
+      // to have more padding bottom.
+      '&:last-child': {
+        paddingBottom: theme.spacing(2.5)
+      }
+    },
+  },
+}
