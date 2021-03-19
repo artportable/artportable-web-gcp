@@ -27,6 +27,19 @@ export default function FeedPage() {
     worksOfArt: 22
   }
 
+  const suggestedUsers = [
+    {
+      id: "fkds",
+      username: "BigArtist",
+      location: "Stockholm"
+    },
+    {
+      id: "fsadakds",
+      username: "RautaKankkisaaaaaaaaaaaaaaaaaaaa",
+      location: "Helsinkki, Finlandiadaiddiaais"
+    }
+  ];
+
   return (
     <>
       <Head>
@@ -51,7 +64,7 @@ export default function FeedPage() {
             <Feed items={feedItems}></Feed>
           </div>
           <div className={s.colRight}>
-            <FollowSuggestionCard userId={user.userId}></FollowSuggestionCard>
+            <FollowSuggestionCard suggestedUsers={suggestedUsers}></FollowSuggestionCard>
           </div>
         </Box>
       </Main>

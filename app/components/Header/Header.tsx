@@ -28,9 +28,9 @@ export default function Header({ isSignUp }) {
           <Link href="/discover">
             <a>{t('discover')}</a>
           </Link>
-          <Link href="/about">
+          {/* <Link href="/about">
             <a>Om oss</a>
-          </Link>
+          </Link> */}
         </div>
       }
       {!isSignUp &&

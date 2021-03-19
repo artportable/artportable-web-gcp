@@ -5,28 +5,17 @@ import { CardHeader, Avatar } from '@material-ui/core';
 import { List, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '../Button/Button'
+import { useTranslation } from 'react-i18next';
+import { capitalizeFirst } from '../../utils/util';
 
-export default function FollowSuggestionCard({ userId }) {
+export default function FollowSuggestionCard({ suggestedUsers }) {
   const s = styles();
-
-  //TODO: Load suggestions here
-  const suggestedUsers = [
-    {
-      id: "fkds",
-      username: "BigArtist",
-      location: "Stockholm"
-    },
-    {
-      id: "fsadakds",
-      username: "RautaKankkisaaaaaaaaaaaaaaaaaaaa",
-      location: "Helsinkki, Finlandiadaiddiaais"
-    }
-  ];
+  const { t } = useTranslation(['feed', 'common']);  
 
   return (
     <Card elevation={2}>
       <CardHeader 
-        title="Konstnärer vi tror du skulle gilla" 
+        title={t('artistsWeThinkYouWouldLike')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
@@ -46,7 +35,7 @@ export default function FollowSuggestionCard({ userId }) {
                   color="primary"
                   disableElevation
                   roundedButton>
-                  Följ
+                  {capitalizeFirst(t('common:words.follow'))}
                 </Button>
               </ListItemSecondaryAction>
             </ListItem>
