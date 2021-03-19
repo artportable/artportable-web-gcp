@@ -7,7 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Button from '../Button/Button';
 import Image from 'next/image'
 import { capitalizeFirst } from '../../utils/util';
-import { CardActions, CardHeader, CardMedia } from '@material-ui/core';
+import { CardActions, CardHeader, CardMedia, Box } from '@material-ui/core';
 import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 
@@ -32,15 +32,16 @@ export default function FeedCard({ content }: FeedCardProps) {
   return (
     <Card className={s.post}>
       <CardHeader
+        className={s.cardHeader}
         avatar={
           <AccountCircleIcon color="secondary" style={{fontSize: 48}}></AccountCircleIcon>
         }
         title={content.User}
         subheader={
-          <div>
+          <Box mb={1}>
             <span>{content.Location}</span>
             <span className={s.published}>{elapsedTime.Time} {t('common:timeUnit.' + elapsedTime.Unit)}</span>
-          </div>
+          </Box>
         }
       />
       <CardMedia className={mediaClasses}>
