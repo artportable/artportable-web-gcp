@@ -27,11 +27,22 @@ export const styles = makeStyles((theme: Theme) =>
     },
     media: {
       display: "grid",
-      gridTemplate: ('\"primary primary\" 300px ' +
-                      '\"secondary tertiary\" 150px ' +
-                      '/ 1fr 1fr'),
       gap: "2px",
       position: "relative"
+    },
+    oneImage: {
+      gridTemplate: ('\"primary\" 450px ' +
+      '/ 1fr'),
+    },
+    twoImages: {
+      gridTemplate: ('\"primary\" 250px ' +
+      '\"secondary\" 200px ' +
+      '/ 1fr'),
+    },
+    threeImages: {
+      gridTemplate: ('\"primary primary\" 300px ' +
+      '\"secondary tertiary\" 150px ' +
+      '/ 1fr 1fr'),
     },
     primaryImage: {
       gridArea: "primary",

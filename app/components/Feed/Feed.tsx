@@ -1,12 +1,17 @@
 import React from 'react';
 import FeedCard from '../FeedCard/FeedCard';
+import { FeedItem } from '../../models/FeedItem'
 
-export default function Feed({ items }) {
+interface FeedProps {
+  items: FeedItem[]
+}
+
+export default function Feed({ items }: FeedProps) {
 
   return (
     <>
       {items.map(item => {
-        return <FeedCard content={item}></FeedCard>
+        return <FeedCard key={item.Item.Id} content={item}></FeedCard>
       })}
     </>
   );
