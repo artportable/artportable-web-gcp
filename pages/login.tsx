@@ -3,11 +3,15 @@ import { styles } from '../styles/login.css';
 import LoginCard from '../app/components/LoginCard/LoginCard'
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { LOGIN_USER } from "../app/redux/actions/userActions";
 
 
 export default function Signup() {
   const s = styles();
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [remember, setRemember] = useState(false);
@@ -25,6 +29,11 @@ export default function Signup() {
       } else {
         sessionStorage.setItem('login-session', JSON.stringify(res));
       }
+
+      dispatch({
+        type: LOGIN_USER,
+        payload: res.Id
+      });
 
       router.push('/feed');
     } catch(e) {
