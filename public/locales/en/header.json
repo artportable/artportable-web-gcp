@@ -1,5 +1,8 @@
 {
+  "myArtNetwork": "My art network",
   "discover": "Discover",
+  "articles": "Articles",
+  "about": "About",
   "login": "Log in",
   "signUp": "Sign up"
 }
