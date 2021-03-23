@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Feed from '../app/components/Feed/Feed';
 import Head from 'next/head'
 import Link from 'next/Link'
@@ -11,8 +11,8 @@ import FollowSuggestionCard from '../app/components/FollowSuggestionCard/FollowS
 import { styles } from '../styles/feed.css';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
 import { FeedItem, FeedItemType } from '../app/models/FeedItem';
-
 
 export default function FeedPage() {
   const s = styles();
@@ -27,18 +27,8 @@ export default function FeedPage() {
     worksOfArt: 22
   }
 
-  const suggestedUsers = [
-    {
-      id: "fkds",
-      username: "BigArtist",
-      location: "Stockholm"
-    },
-    {
-      id: "fsadakds",
-      username: "RautaKankkisaaaaaaaaaaaaaaaaaaaa",
-      location: "Helsinkki, Finlandiadaiddiaais"
-    }
-  ];
+  const  loggedInUserId = '6b4282b6-3014-40cd-9de3-a3f29f10bb31';
+  const { suggestedUsers } = useFollowRecommendations(loggedInUserId);
 
   return (
     <>
@@ -71,7 +61,6 @@ export default function FeedPage() {
     </>
   );
 }
-
 
 export async function getStaticProps({ locale }) {
   return {
