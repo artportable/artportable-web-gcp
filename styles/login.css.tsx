@@ -3,12 +3,19 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     loginContainer: {
-      backgroundColor: 'var(--background-color)',
+      height: 'var(--viewport-minus-header)',
       display: 'grid',
-      gap: '16px',
       gridTemplate: (
-      '\"left feed right\" auto' +
-      '/ 4fr 6fr 4fr'),
-    }
+      '\". . .\" 1fr' +
+      '\". form .\" auto' +
+      '\". . .\" 1fr' +
+      '\". . .\" 1fr' +
+      '\". . .\" 1fr' +
+      '/ 1fr auto 170px')
+    },
+    loginCard: {
+      gridArea: 'form',
+      width: '500px',
+    },
   }),
 );

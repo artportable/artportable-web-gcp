@@ -42,21 +42,32 @@ export default function Signup() {
   }
 
   return (
+    <>
     <div className={s.loginContainer}>
-      <LoginCard
-        setEmail={setEmail}
-        setPassword={setPassword}
-        remember={remember}
-        setRemember={setRemember}
-        onClick={login}
-      />
+      <div className={s.loginCard}>
+        <LoginCard
+          setEmail={setEmail}
+          setPassword={setPassword}
+          remember={remember}
+          setRemember={setRemember}
+          onClick={login}
+        />
+      </div>
     </div>
+    <style jsx global>{`
+        body {
+          background-image: url("/images/itl.cat_ocean-wallpaper_146662.png");
+          background-size: cover;
+        }
+      `}</style>
+    </>
   );
 }
 
 export async function getStaticProps({ locale }) {
   return { 
     props: {
+      isSignUp: true,
       ...await serverSideTranslations(locale, ['header', 'login', 'common']),
     }
   };

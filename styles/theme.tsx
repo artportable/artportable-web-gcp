@@ -53,4 +53,9 @@ theme.overrides = {
       }
     },
   },
+  MuiCardActions: {
+    root: {
+      padding: theme.spacing(2),
+    },
+  },
 }
