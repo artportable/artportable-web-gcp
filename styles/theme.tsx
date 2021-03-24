@@ -20,13 +20,14 @@ const typography = {
 }
 
 const palette = {
+  background: { default: "#f4f4f4"},
   primary: {
     main: "#447EFF"
   },
   secondary: {
     main: "#FF8383",
   },
-}
+};
 
 export const theme = createMuiTheme({
   palette,
