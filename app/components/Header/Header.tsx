@@ -26,7 +26,7 @@ export default function Header({ isSignUp, isSignedIn }) {
             </a>
           </Link>
         </div>
-        <div className={s.navigation}>
+        <nav className={s.navigation}>
           {(!isSignUp && isSignedIn) &&
             <Link href="/feed">
               <a>{t('myArtNetwork')}</a>
@@ -45,7 +45,7 @@ export default function Header({ isSignUp, isSignedIn }) {
               </Link> */}
             </>
           }
-        </div>
+        </nav>
         {(!isSignUp && !isSignedIn) &&
           <div className={s.login}>
             <Link href="/plans">
