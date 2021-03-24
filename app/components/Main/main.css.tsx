@@ -4,10 +4,8 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'grid',
-      backgroundColor: 'var(--background-color)',
       height: 'var(--viewport-minus-header)',
-      boxShadow: 'inset 0px 90px 40px -100px var(--ion-color-primary)',
-      paddingTop: '35px',
+      marginTop: 'calc(35px + var(--header-height))',
 
       [theme.breakpoints.up('sm')]: {
         gridTemplate:

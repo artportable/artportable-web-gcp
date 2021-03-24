@@ -12,7 +12,7 @@ export default function Header({ isSignUp, isSignedIn }) {
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
 
   return (
-    <AppBar color="transparent">
+    <AppBar color="transparent" elevation={0}>
       <div className={containerClasses}>
         <div className={s.logo}>
           <Link href="/">

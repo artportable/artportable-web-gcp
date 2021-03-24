@@ -5,6 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       display: 'grid',
       backgroundColor: theme.palette.background.default,
+      boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
       height: 'var(--header-height, 70px)',
       padding: '0 16px',
       gap: '0 16px',
