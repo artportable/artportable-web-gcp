@@ -83,8 +83,7 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
             }
             label={
               <Typography
-                variant="body2"
-                color="textSecondary">
+                variant="body2">
                   {t('keepLoggedin')}
               </Typography>
             }
