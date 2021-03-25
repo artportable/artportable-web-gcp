@@ -1,16 +1,19 @@
 import React from 'react';
 import FeedCard from '../FeedCard/FeedCard';
-import { FeedItem } from '../../models/FeedItem'
+import { useGetFeedItems } from '../../hooks/dataFetching/useGetFeedItems';
 
 interface FeedProps {
-  items: FeedItem[]
+  // items: FeedItem[],
+  index: number,
 }
 
-export default function Feed({ items }: FeedProps) {
+export default function Feed({ index }: FeedProps) {
+  //TODO: Use index for pagination
+  const { feed } = useGetFeedItems();
 
   return (
     <>
-      {items.map(item => {
+      {feed?.map(item => {
         return <FeedCard key={item.Item.Id} content={item}></FeedCard>
       })}
     </>
