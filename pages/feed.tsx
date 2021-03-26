@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Feed from '../app/components/Feed/Feed';
 import Head from 'next/head'
 import Link from 'next/Link'
@@ -13,9 +13,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
 import { FeedItem, FeedItemType } from '../app/models/FeedItem';
+import { debounce } from '@material-ui/core/utils';
 
 export default function FeedPage() {
   const s = styles();
+  const [pageCount, setPageCount] = useState(1);
   const { t } = useTranslation(['feed', 'common']);
   const user = {
     userId: "gkgkfdsgok",
@@ -29,6 +31,45 @@ export default function FeedPage() {
 
   const  loggedInUserId = '6b4282b6-3014-40cd-9de3-a3f29f10bb31';
   const { suggestedUsers } = useFollowRecommendations(loggedInUserId);
+
+  const pages = [];
+
+  for (let i = 0; i < pageCount; i++) {
+    console.log('pages push', pages, i);
+    pages.push(<Feed index={i} key={i}></Feed>);
+  }
+
+  const loadMoreElement = useRef(null);
+
+  const callback = debounce((entries) => {
+    const [ entry ] = entries;
+    if(!entry.isIntersecting) {
+      return;
+    }
+
+    setPageCount(pageCount + 1);
+    
+  }, 500);
+
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callback, options);
+
+    if(loadMoreElement.current) {
+      observer.observe(loadMoreElement.current);
+    }
+
+    return () => {
+      if(loadMoreElement.current) {
+        observer.unobserve(loadMoreElement.current);
+      }
+    }
+  });
 
   return (
     <>
@@ -49,9 +90,11 @@ export default function FeedPage() {
               disableElevation>
                 {t('uploadNewWorkOfArt')}
             </Button>
+            
           </div>
           <div className={s.colFeed}>
-            <Feed items={feedItems}></Feed>
+            {pages}
+            <div ref={loadMoreElement} style={{ height: '500px'}}>Load more...</div>
           </div>
           <div className={s.colRight}>
             <FollowSuggestionCard suggestedUsers={suggestedUsers}></FollowSuggestionCard>
