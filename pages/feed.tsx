@@ -7,6 +7,7 @@ import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
 import ProfileCard from '../app/components/ProfileCard/ProfileCard'
 import FollowSuggestionCard from '../app/components/FollowSuggestionCard/FollowSuggestionCard'
+import FeedCardSkeleton from '../app/components/FeedCardSkeleton/FeedCardSkeleton'
 
 import { styles } from '../styles/feed.css';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -35,7 +36,6 @@ export default function FeedPage() {
   const pages = [];
 
   for (let i = 0; i < pageCount; i++) {
-    console.log('pages push', pages, i);
     pages.push(<Feed index={i} key={i}></Feed>);
   }
 
@@ -94,7 +94,9 @@ export default function FeedPage() {
           </div>
           <div className={s.colFeed}>
             {pages}
-            <div ref={loadMoreElement} style={{ height: '500px'}}>Load more...</div>
+            <div ref={loadMoreElement}>
+              <FeedCardSkeleton></FeedCardSkeleton>
+            </div>
           </div>
           <div className={s.colRight}>
             <FollowSuggestionCard suggestedUsers={suggestedUsers}></FollowSuggestionCard>
