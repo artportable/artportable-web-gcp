@@ -1,5 +1,6 @@
 div.signUpContainer {
-  height: var(--viewport-minus-header-and-padding);
+  height: 100vh;
+  padding-top: var(--header-plus-box-shadow-padding);
   display: grid;
   grid-template: 
   ". . ." 1fr
