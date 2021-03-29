@@ -34,8 +34,8 @@ export default function FeedCard({ content }: FeedCardProps) {
       <CardHeader
         className={s.cardHeader}
         avatar={
-          content?.UserImage ? (
-            <Avatar src={`${bucketUrl}${content?.UserImage}`}
+          content?.ProfilePicture ? (
+            <Avatar src={`${bucketUrl}${content?.ProfilePicture}`}
               alt="Profile picture"
               style={{ height: '40px', width: '40px', marginBottom: '4px' }}
             />
