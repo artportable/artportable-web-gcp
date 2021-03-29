@@ -12,6 +12,7 @@ export default function Profile({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
+  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
 
   return (
     <Box textAlign="center">
@@ -27,10 +28,19 @@ export default function Profile({ userProfile }) {
             color="primary" 
             onClick={() => alert('upload picture')} />
         }
-        
       >
         <Avatar className={s.avatar}>
-          <AccountCircleIcon color="secondary" style={{fontSize: 160}}></AccountCircleIcon>
+          {data?.ProfilePicture ? (
+            <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
+              alt="Profile picture"
+              style={{ height: '120px', width: '120px' }}
+            />
+          ) : (
+            <AccountCircleIcon
+              color="secondary"
+              style={{fontSize: 160}}
+            />
+          )}
         </Avatar>
       </Badge>
 

@@ -18,7 +18,7 @@ interface FeedCardProps {
 export default function FeedCard({ content }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/';
+  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
 
   const elapsedTime = getElapsedTime(content.Published);
 
