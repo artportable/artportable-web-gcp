@@ -8,9 +8,10 @@ import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst } from '../../utils/util';
 
-export default function Profile({ userId, user }) {
+export default function Profile({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('common');
+  const data = userProfile?.data;
 
   return (
     <Box textAlign="center">
@@ -35,27 +36,27 @@ export default function Profile({ userId, user }) {
 
       <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="subtitle1">
-            {user.username}
+            {data?.Username}
         </Typography>
       </Box>
 
       <Box marginTop={2}>
         <Typography>
-          {user.shortDescription}
+          {data?.Headline}
         </Typography>
       </Box>
 
       <Box display="flex" justifyContent="center" marginTop={1}>
         <RoomIcon color="secondary"></RoomIcon>
         <Typography>
-          {user.location}
+          {data?.Location}
         </Typography>
       </Box>
 
       <Box className={s.counterBox} borderTop='solid 1px #4e4e4e3b' marginTop={2}>
         <Box>
           <Typography variant="body2" display="block">
-            {user.followers}
+            {data?.Followers}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.followers'))}
@@ -63,7 +64,7 @@ export default function Profile({ userId, user }) {
         </Box>
         <Box>
           <Typography variant="body2" display="block">
-            {user.follows}
+            {data?.Followees}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.follows'))}
@@ -71,7 +72,7 @@ export default function Profile({ userId, user }) {
         </Box>
         <Box>
           <Typography variant="body2" display="block">
-            {user.worksOfArt}
+            {data?.Artworks}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.worksOfArt'))}

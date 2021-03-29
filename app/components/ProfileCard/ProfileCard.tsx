@@ -2,11 +2,11 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Profile from '../Profile/Profile'
 
-export default function ProfileCard({ userId, user }) {
+export default function ProfileCard({ userProfile }) {
   return (
     <Card elevation={2}>
       <CardContent>
-        <Profile userId={userId} user={user}></Profile>
+        <Profile userProfile={userProfile}></Profile>
       </CardContent>
     </Card>
   ); 

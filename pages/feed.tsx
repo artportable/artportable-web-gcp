@@ -16,23 +16,16 @@ import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRec
 import { FeedItem, FeedItemType } from '../app/models/FeedItem';
 import { debounce } from '@material-ui/core/utils';
 import { useStore } from 'react-redux';
+import { useGetUserProfile } from '../app/hooks/dataFetching/useGetUserProfile';
 
 export default function FeedPage() {
   const s = styles();
   const store = useStore();
   const [pageCount, setPageCount] = useState(1);
   const { t } = useTranslation(['feed', 'common']);
-  const user = {
-    userId: "gkgkfdsgok",
-    username: "mrArtist",
-    shortDescription: "I like painting in nature",
-    location: "Gibraltar",
-    followers: 13,
-    follows: 15,
-    worksOfArt: 22
-  }
   const userId = store.getState()?.user?.id;
 
+  const userProfile = useGetUserProfile(userId);
   const { suggestedUsers } = useFollowRecommendations(userId);
 
   const pages = [];
@@ -83,7 +76,7 @@ export default function FeedPage() {
       <Main>
         <Box className={s.feedContainer}>
           <div className={s.colLeft}>
-            <ProfileCard userId={''} user={user}></ProfileCard>
+            <ProfileCard userProfile={userProfile}></ProfileCard>
             <Button
               className={s.uploadArtButton}
               size="small"
