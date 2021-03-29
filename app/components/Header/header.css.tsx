@@ -36,8 +36,14 @@ export const styles = makeStyles((theme: Theme) =>
     
     login: {
       gridArea: 'login',
-      '& *:not(:last-child)': {
-          margin: '0 16px'
+      '& .MuiButton-root:not(.MuiIconButton-root) .MuiButton-label': {
+          margin: theme.spacing(0, 2)
+      },
+      '& > *:not(.MuiIconButton-root)': {
+        margin: theme.spacing(0, 1)
+      },
+      '& > .MuiIconButton-root': {
+        padding: theme.spacing(0.5)
       }
     },
     
