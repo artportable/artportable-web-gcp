@@ -5,6 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     feedContainer: {
       backgroundColor: 'var(--background-color)',
       display: 'grid',
+      alignItems: 'flex-start',
       gap: '16px',
       gridTemplate: (
       '\"left feed right\" auto' +
@@ -13,14 +14,18 @@ export const styles = makeStyles((theme: Theme) =>
     colLeft: {
       gridArea: 'left',
       display: 'grid',
+      position: 'sticky',
+      top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
       alignItems: 'start',
       rowGap: theme.spacing(2)
     },
     colFeed: {
-      gridArea: 'feed'
+      gridArea: 'feed',
     },
     colRight: {
-      gridArea: 'right'
+      gridArea: 'right',
+      position: 'sticky',
+      top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
     },
     uploadArtButton: {
       width: '100%',
