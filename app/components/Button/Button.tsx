@@ -7,7 +7,6 @@ export default function Button(props) {
   const s = styles();
   const classes = [s.root];
   
-  classes.push(color === 'secondary' ? s.secondary : '');
   classes.push(roundedButton ? s.rounded : '');
 
   return (
