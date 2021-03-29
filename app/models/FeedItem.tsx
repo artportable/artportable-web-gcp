@@ -1,7 +1,7 @@
 export interface FeedItem {
   Type: FeedItemType,
   User: string,
-  UserImage: string,
+  ProfilePicture: string,
   Location: string,
   Published: Date,
   Item: Item
