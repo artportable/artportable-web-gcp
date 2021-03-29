@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     loginContainer: {
-      height: 'var(--viewport-minus-header)',
+      height: 'var(--viewport-minus-header-and-padding)',
       display: 'grid',
       gridTemplate: (
       '\". . .\" 1fr' +

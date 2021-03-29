@@ -1,5 +1,5 @@
 div.signUpContainer {
-  height: var(--viewport-minus-header);
+  height: var(--viewport-minus-header-and-padding);
   display: grid;
   grid-template: 
   ". . ." 1fr
