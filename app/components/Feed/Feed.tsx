@@ -8,8 +8,8 @@ interface FeedProps {
 }
 
 export default function Feed({ index }: FeedProps) {
-  //TODO: Use index for pagination
-  const { feed } = useGetFeedItems();
+  const page = index + 1;
+  const { feed } = useGetFeedItems(page);
 
   return (
     <>
