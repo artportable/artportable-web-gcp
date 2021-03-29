@@ -1,17 +1,18 @@
 import useSWR from 'swr'
-const fetcher = url => fetch(url).then(r => r.json())
 
-export function useFollowRecommendations(userId) {
+const fetcher = url => fetch(url).then(r => r.json());
+
+export function useGetUserProfile(userId) {
   if (!userId) {
     return {
-      suggestedUsers: null,
+      data: null,
       isLoading: false,
       isError: true
     }
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/recommendations?userId=${userId}`, 
+    `http://localhost:5001/api/user/${userId}/profile`,
     fetcher,
     { 
       revalidateOnFocus: false,
@@ -19,7 +20,7 @@ export function useFollowRecommendations(userId) {
     });
 
   return {
-    suggestedUsers: data,
+    data: data,
     isLoading: !error && !data,
     isError: error
   }

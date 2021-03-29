@@ -3,19 +3,21 @@ import FeedCard from '../FeedCard/FeedCard';
 import { useGetFeedItems } from '../../hooks/dataFetching/useGetFeedItems';
 
 interface FeedProps {
-  // items: FeedItem[],
+  userId: string,
   index: number,
 }
 
-export default function Feed({ index }: FeedProps) {
+export default function Feed({ userId, index }: FeedProps) {
   const page = index + 1;
-  const { feed } = useGetFeedItems(page);
+  const { feed } = useGetFeedItems(userId, page);
 
   return (
     <>
-      {feed?.map(item => {
-        return <FeedCard key={item.Item.Id} content={item}></FeedCard>
-      })}
+      {userId &&
+        feed?.map(item => {
+          return <FeedCard key={item.Item.Id} content={item}></FeedCard>
+        })
+      }
     </>
   );
 }

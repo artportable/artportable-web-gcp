@@ -7,7 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Button from '../Button/Button';
 import Image from 'next/image'
 import { capitalizeFirst } from '../../utils/util';
-import { CardActions, CardHeader, CardMedia, Box } from '@material-ui/core';
+import { CardActions, CardHeader, CardMedia, Box, Avatar } from '@material-ui/core';
 import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 
@@ -18,7 +18,7 @@ interface FeedCardProps {
 export default function FeedCard({ content }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/';
+  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
 
   const elapsedTime = getElapsedTime(content.Published);
 
@@ -34,7 +34,17 @@ export default function FeedCard({ content }: FeedCardProps) {
       <CardHeader
         className={s.cardHeader}
         avatar={
-          <AccountCircleIcon color="secondary" style={{fontSize: 48}}></AccountCircleIcon>
+          content?.UserImage ? (
+            <Avatar src={`${bucketUrl}${content?.UserImage}`}
+              alt="Profile picture"
+              style={{ height: '40px', width: '40px', marginBottom: '4px' }}
+            />
+          ) : (
+            <AccountCircleIcon
+              color="secondary"
+              style={{fontSize: 48}}
+            />
+          )
         }
         title={content.User}
         subheader={
