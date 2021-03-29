@@ -23,10 +23,11 @@ export default function Profile({ userProfile }) {
           horizontal: 'right',
         }}
         badgeContent={
-          <AddCircleIcon 
-            className={s.badgeIcon} 
-            color="primary" 
-            onClick={() => alert('upload picture')} />
+          !data?.ProfilePicture &&
+            <AddCircleIcon
+              className={s.badgeIcon}
+              color="primary"
+              onClick={() => alert('upload picture')} />
         }
       >
         <Avatar className={s.avatar}>
