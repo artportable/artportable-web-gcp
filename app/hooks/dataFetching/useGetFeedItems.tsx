@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-const fetcher = url => fetch(url).then(r => r.json())
+const fetcher = url => fetch(url).then(r => r.json().then(data => data.map(mapToFeedItem)))
 
 export function useGetFeedItems(page) {
   const { data, error } = useSWR(
@@ -11,7 +11,7 @@ export function useGetFeedItems(page) {
     });
 
   return {
-    feed: data?.map(mapToFeedItem),
+    feed: data,
     isLoading: !error && !data,
     isError: error
   }
