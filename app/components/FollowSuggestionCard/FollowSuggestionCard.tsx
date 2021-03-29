@@ -21,37 +21,41 @@ export default function FollowSuggestionCard({ suggestedUsers }) {
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
-        <List className={s.list} dense>
-            {!suggestedUsers ? (
-              <div>
-                <AvatarSkeleton></AvatarSkeleton>
-                <AvatarSkeleton></AvatarSkeleton>
-                <AvatarSkeleton></AvatarSkeleton>
-                <AvatarSkeleton></AvatarSkeleton>
-              </div>
-              ) : (
-              suggestedUsers?.map((user) => 
-                <ListItem key={user.UserId} className={s.listItem}>
-                  <ListItemAvatar>
-                    <Avatar className={s.avatar}>
-                      <AccountCircleIcon style={{ fontSize: 48 }} color="secondary"></AccountCircleIcon>
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText className={s.listItemText} primary={user.Username} secondary={user.Location} />
-                  <ListItemSecondaryAction className={s.secondaryAction}>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      disableElevation
-                      roundedButton>
-                      {capitalizeFirst(t('common:words.follow'))}
-                    </Button>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              )
-            )}
-        </List>
+        {!suggestedUsers?.isError ? (
+          <List className={s.list} dense>
+              {!suggestedUsers ? (
+                <div>
+                  <AvatarSkeleton></AvatarSkeleton>
+                  <AvatarSkeleton></AvatarSkeleton>
+                  <AvatarSkeleton></AvatarSkeleton>
+                  <AvatarSkeleton></AvatarSkeleton>
+                </div>
+                ) : (
+                suggestedUsers?.map((user) => 
+                  <ListItem key={user.UserId} className={s.listItem}>
+                    <ListItemAvatar>
+                      <Avatar className={s.avatar}>
+                        <AccountCircleIcon style={{ fontSize: 48 }} color="secondary"></AccountCircleIcon>
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText className={s.listItemText} primary={user.Username} secondary={user.Location} />
+                    <ListItemSecondaryAction className={s.secondaryAction}>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        disableElevation
+                        roundedButton>
+                        {capitalizeFirst(t('common:words.follow'))}
+                      </Button>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                )
+              )}
+          </List>
+        ) : (
+          <p>Couldn't load recommended users...</p>
+        )}
       </CardContent>
     </Card>  
   );

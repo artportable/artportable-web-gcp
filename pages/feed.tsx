@@ -15,9 +15,11 @@ import { useTranslation } from "next-i18next";
 import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
 import { FeedItem, FeedItemType } from '../app/models/FeedItem';
 import { debounce } from '@material-ui/core/utils';
+import { useStore } from 'react-redux';
 
 export default function FeedPage() {
   const s = styles();
+  const store = useStore();
   const [pageCount, setPageCount] = useState(1);
   const { t } = useTranslation(['feed', 'common']);
   const user = {
@@ -29,14 +31,14 @@ export default function FeedPage() {
     follows: 15,
     worksOfArt: 22
   }
+  const userId = store.getState()?.user?.id;
 
-  const  loggedInUserId = '6b4282b6-3014-40cd-9de3-a3f29f10bb31';
-  const { suggestedUsers } = useFollowRecommendations(loggedInUserId);
+  const { suggestedUsers } = useFollowRecommendations(userId);
 
   const pages = [];
 
   for (let i = 0; i < pageCount; i++) {
-    pages.push(<Feed index={i} key={i}></Feed>);
+    pages.push(<Feed key={i} userId={userId} index={i}></Feed>);
   }
 
   const loadMoreElement = useRef(null);
@@ -93,10 +95,14 @@ export default function FeedPage() {
             
           </div>
           <div className={s.colFeed}>
-            {pages}
-            <div ref={loadMoreElement}>
-              <FeedCardSkeleton></FeedCardSkeleton>
-            </div>
+            {userId ? (
+              <>
+                {pages}
+                <div ref={loadMoreElement}>
+                  <FeedCardSkeleton></FeedCardSkeleton>
+                </div>
+              </>
+            ) : (<p>No posts to show...</p>)}
           </div>
           <div className={s.colRight}>
             <FollowSuggestionCard suggestedUsers={suggestedUsers}></FollowSuggestionCard>

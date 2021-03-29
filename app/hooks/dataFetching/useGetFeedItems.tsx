@@ -1,9 +1,17 @@
 import useSWR from 'swr'
 const fetcher = url => fetch(url).then(r => r.json())
 
-export function useGetFeedItems(page) {
+export function useGetFeedItems(userId, page) {
+  if (!userId) {
+    return {
+      feed: null,
+      isLoading: false,
+      isError: true
+    }
+  }
+
   const { data, error } = useSWR(
-    `http://localhost:5001/api/feed?page=${page}`,
+    `http://localhost:5001/api/feed?page=${page}&userId=${userId}`,
     fetcher,
     { 
       revalidateOnFocus: false,
