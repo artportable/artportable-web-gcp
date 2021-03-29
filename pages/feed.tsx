@@ -17,12 +17,15 @@ import { FeedItem, FeedItemType } from '../app/models/FeedItem';
 import { debounce } from '@material-ui/core/utils';
 import { useStore } from 'react-redux';
 import { useGetUserProfile } from '../app/hooks/dataFetching/useGetUserProfile';
+import { useRouter } from 'next/router';
 
 export default function FeedPage() {
   const s = styles();
   const store = useStore();
+  const router = useRouter();
   const [pageCount, setPageCount] = useState(1);
   const { t } = useTranslation(['feed', 'common']);
+  const isSignedIn = store.getState()?.user?.isSignedIn;
   const userId = store.getState()?.user?.id;
 
   const userProfile = useGetUserProfile(userId);
@@ -53,6 +56,11 @@ export default function FeedPage() {
   }
 
   useEffect(() => {
+    // TODO: Do redirect of unauthed users in a better way
+    if (!isSignedIn) {
+      router.push('/');
+    }
+
     const observer = new IntersectionObserver(callback, options);
 
     if(loadMoreElement.current) {
