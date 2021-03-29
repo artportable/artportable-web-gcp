@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
 import Skeleton from '@material-ui/lab/Skeleton'
 
-export default function AvatarSkeleton() {
+export default function AvatarSkeleton({widthPrimayText = 33, widthSecondaryText = 45}) {
   const s = styles();
   
   //TODO: Maybe fix. This interferred with SSG style rendering...
@@ -16,8 +16,8 @@ export default function AvatarSkeleton() {
     <Box className={s.box}>
       <Skeleton variant="circle"><Avatar /></Skeleton>
       <div className={s.textBox} >
-        <Skeleton width={33} variant="text"></Skeleton>
-        <Skeleton width={45} variant="text"></Skeleton>
+        <Skeleton width={widthPrimayText} variant="text"></Skeleton>
+        <Skeleton width={widthSecondaryText} variant="text"></Skeleton>
       </div>
     </Box>
   );
