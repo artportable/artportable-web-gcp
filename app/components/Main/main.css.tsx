@@ -4,8 +4,8 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'grid',
-      height: 'var(--viewport-minus-header)',
-      marginTop: 'calc(35px + var(--header-height))',
+      height: '100vh',
+      paddingTop: 'calc(35px + var(--header-height))',
 
       [theme.breakpoints.up('sm')]: {
         gridTemplate:
@@ -25,6 +25,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     content: {
       gridArea: 'content',
-    }
+    },
   }),
 );

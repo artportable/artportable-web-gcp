@@ -5,7 +5,7 @@ export const checkoutStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: 'var(--background-color)',
-      height: 'var(--viewport-minus-header)',
+      height: 'var(--viewport-minus-header-and-padding)',
       display: 'grid',
       gap: '16px 0',
       gridTemplate: (

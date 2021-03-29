@@ -1,4 +1,5 @@
 :root {
-    --header-height: 70px;
-    --viewport-minus-header: calc(100vh - var(--header-height));
+  --header-height: 70px;
+  --header-box-shadow-padding: 35px;
+  --viewport-minus-header-and-padding: calc(100vh - var(--header-height) - var(var(--header-box-shadow-padding)));
 }
