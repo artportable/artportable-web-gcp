@@ -106,7 +106,7 @@ export default function FeedPage() {
             ) : (<p>No posts to show...</p>)}
           </div>
           <div className={s.colRight}>
-            <FollowSuggestionCard suggestedUsers={suggestedUsers}></FollowSuggestionCard>
+            <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
           </div>
         </Box>
       </Main>
@@ -129,6 +129,21 @@ function likePost(contentId, isLike) {
   .catch((error) => {
     console.log(error);
   })
+}
+
+function follow(user) {
+  fetch(`http://localhost:5001/api/connections/${user.UserId}?userId=${userId}`, {
+    method: 'POST',
+  })
+  .then((response) => {
+    if (!response.ok) {
+      console.log(response.statusText);
+      throw response;
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
 
 export async function getStaticProps({ locale }) {

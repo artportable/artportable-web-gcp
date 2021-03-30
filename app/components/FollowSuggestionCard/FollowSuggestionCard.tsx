@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { capitalizeFirst } from '../../utils/util';
 
 
-export default function FollowSuggestionCard({ suggestedUsers }) {
+export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
 
@@ -55,8 +55,9 @@ export default function FollowSuggestionCard({ suggestedUsers }) {
                         variant="contained"
                         color="primary"
                         disableElevation
-                        roundedButton>
-                        {capitalizeFirst(t('common:words.follow'))}
+                        roundedButton
+                        onClick={() => onFollowClick(user)}>
+                          {capitalizeFirst(t('common:words.follow'))}
                       </Button>
                     </ListItemSecondaryAction>
                   </ListItem>
