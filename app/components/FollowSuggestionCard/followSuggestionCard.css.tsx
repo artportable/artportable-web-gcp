@@ -4,6 +4,10 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     list: {
       padding: 0
+    },
+    nothing: {
+      fontStyle: "italic",
+      textAlign: "center"
     }
   }),
 );

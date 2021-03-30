@@ -1,5 +1,6 @@
 {
   "uploadNewWorkOfArt": "Upload new work of art",
   "like": "Like",
-  "artistsWeThinkYouWouldLike": "Artists we think you would like"
+  "artistsWeThinkYouWouldLike": "Artists we think you would like",
+  "noRecommendedUsers": "No recommended users to show..."
 }
