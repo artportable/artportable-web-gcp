@@ -5,9 +5,10 @@ import { useGetFeedItems } from '../../hooks/dataFetching/useGetFeedItems';
 interface FeedProps {
   userId: string,
   index: number,
+  onLikeClick: any,
 }
 
-export default function Feed({ userId, index }: FeedProps) {
+export default function Feed({ userId, index, onLikeClick }: FeedProps) {
   const page = index + 1;
   const { feed } = useGetFeedItems(userId, page);
 
@@ -15,7 +16,7 @@ export default function Feed({ userId, index }: FeedProps) {
     <>
       {userId &&
         feed?.map(item => {
-          return <FeedCard key={item.Item.Id} content={item}></FeedCard>
+          return <FeedCard key={item.Item.Id} content={item} onLikeClick={onLikeClick}></FeedCard>
         })
       }
     </>
