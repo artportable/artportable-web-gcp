@@ -1,7 +1,7 @@
 import { Avatar, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText } from "@material-ui/core";
 import Button from '../Button/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import React from "react";
+import React, { useState } from "react";
 import { styles } from "./followSuggestion.css";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from '../../utils/util';
@@ -10,6 +10,8 @@ import { capitalizeFirst } from '../../utils/util';
 export default function FollowSuggestionCard({ user, onFollowClick }) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
+
+  const [isFollowed, setFollow] = useState(false);
 
   const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
 
@@ -33,9 +35,13 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           size="small"
           variant="contained"
           color="primary"
+          disabled={isFollowed}
           disableElevation
           roundedButton
-          onClick={() => onFollowClick(user)}>
+          onClick={() => {
+            onFollowClick(user.UserId);
+            setFollow(true);
+          } }>
             {capitalizeFirst(t('common:words.follow'))}
         </Button>
       </ListItemSecondaryAction>

@@ -55,6 +55,21 @@ export default function FeedPage() {
     threshold: 0
   }
 
+  function follow(id) {
+    fetch(`http://localhost:5001/api/connections/${id}?userId=${userId}`, {
+      method: 'POST',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   useEffect(() => {
     // TODO: Do redirect of unauthed users in a better way
     if (!isSignedIn) {
@@ -131,20 +146,6 @@ function likePost(contentId, isLike) {
   })
 }
 
-function follow(user) {
-  fetch(`http://localhost:5001/api/connections/${user.UserId}?userId=${userId}`, {
-    method: 'POST',
-  })
-  .then((response) => {
-    if (!response.ok) {
-      console.log(response.statusText);
-      throw response;
-    }
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-}
 
 export async function getStaticProps({ locale }) {
   return {
