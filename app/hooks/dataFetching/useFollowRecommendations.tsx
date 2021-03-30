@@ -11,7 +11,7 @@ export function useFollowRecommendations(userId) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/recommendations?userId=${userId}`, 
+    `http://localhost:5001/api/connections?userId=${userId}`,
     fetcher,
     { 
       revalidateOnFocus: false,
