@@ -70,6 +70,23 @@ export default function FeedPage() {
     });
   }
 
+  // Like a post (feed item)
+  // `isLike` states whether it's a like or an unlike
+  function likePost(contentId, isLike) {
+    fetch(`http://localhost:5001/api/artworks/${contentId}/like?userId=${userId}`, {
+      method: isLike ? 'POST' : 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
   useEffect(() => {
     // TODO: Do redirect of unauthed users in a better way
     if (!isSignedIn) {
@@ -128,24 +145,6 @@ export default function FeedPage() {
     </>
   );
 }
-
-// Like a post (feed item)
-// `isLike` states whether it's a like or an unlike
-function likePost(contentId, isLike) {
-  fetch(`http://localhost:5001/api/artworks/${contentId}/like`, {
-    method: isLike ? 'POST' : 'DELETE',
-  })
-  .then((response) => {
-    if (!response.ok) {
-      console.log(response.statusText);
-      throw response;
-    }
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-}
-
 
 export async function getStaticProps({ locale }) {
   return {
