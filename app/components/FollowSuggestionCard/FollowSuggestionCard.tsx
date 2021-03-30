@@ -13,7 +13,9 @@ import { capitalizeFirst } from '../../utils/util';
 export default function FollowSuggestionCard({ suggestedUsers }) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
+
   const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
+  const noOfSuggestions = 5;
 
   return (
     <Card elevation={2}>
@@ -32,7 +34,7 @@ export default function FollowSuggestionCard({ suggestedUsers }) {
                   <AvatarSkeleton></AvatarSkeleton>
                 </div>
                 ) : (
-                suggestedUsers?.map((user) => 
+                suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
                   <ListItem key={user.UserId} className={s.listItem}>
                     <ListItemAvatar>
                       <Avatar className={s.avatar}>
