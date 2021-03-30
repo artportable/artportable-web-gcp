@@ -7,6 +7,7 @@ import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
 import ProfileCard from '../app/components/ProfileCard/ProfileCard'
 import FollowSuggestionCard from '../app/components/FollowSuggestionCard/FollowSuggestionCard'
+import NewsletterCard from '../app/components/NewsletterCard/NewsletterCard'
 import FeedCardSkeleton from '../app/components/FeedCardSkeleton/FeedCardSkeleton'
 
 import { styles } from '../styles/feed.css';
@@ -125,7 +126,7 @@ export default function FeedPage() {
               disableElevation>
                 {t('uploadNewWorkOfArt')}
             </Button>
-            
+            <NewsletterCard></NewsletterCard>
           </div>
           <div className={s.colFeed}>
             {userId ? (

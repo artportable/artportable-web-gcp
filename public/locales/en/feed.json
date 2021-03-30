@@ -3,5 +3,9 @@
   "like": "Like",
   "artistsWeThinkYouWouldLike": "Artists we think you would like",
   "noRecommendedUsers": "No recommended users to show...",
-  "recommendedUsersError": "Couldn't load recommended users..."
+  "recommendedUsersError": "Couldn't load recommended users...",
+  "artPortableNewsLetterRegisterToGetUpdates": "Artportable newsletter, register to get all the lastest updates from the art world",
+  "stayUpToDate": "Stay up to date",
+  "register": "Register",
+  "enterEmailHere": "Enter your email here"
 }

@@ -3,5 +3,9 @@
   "like": "Gilla",
   "artistsWeThinkYouWouldLike": "Konstnärer vi tror du skulle gilla",
   "noRecommendedUsers": "Inga konstnärer att visa...",
-  "recommendedUsersError": "Kunde inte ladda rekommendationer..."
+  "recommendedUsersError": "Kunde inte ladda rekommendationer...",
+  "artPortableNewsLetterRegisterToGetUpdates": "Artportable nyhetsbrev, registrera dig och få alla senaste uppdateringar i konstvärlden",
+  "stayUpToDate": "Håll dig uppdaterad",
+  "register": "Registrera dig",
+  "enterEmailHere": "Skriv din epost här"
 }
