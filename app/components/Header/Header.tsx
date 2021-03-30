@@ -1,6 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import AppBar from '@material-ui/core/AppBar'
+import IconButton from '@material-ui/core/IconButton'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
@@ -12,6 +16,7 @@ export default function Header({ isSignUp, isSignedIn }) {
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
 
   return (
+    
     <AppBar color="transparent" elevation={0}>
       <div className={containerClasses}>
         <div className={s.logo}>
@@ -72,6 +77,31 @@ export default function Header({ isSignUp, isSignedIn }) {
                 </Button>
               </a>
             </Link>
+          </div>
+        }
+        {(!isSignUp && isSignedIn) &&
+          <div className={s.login}>
+            <Link href="/upload">
+              <a>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  color="primary"
+                  disableElevation
+                  roundedButton>
+                    {t('upload')}
+                </Button>
+              </a>
+            </Link>
+            <IconButton color="secondary" aria-label="account">
+              <ChatBubbleIcon style={{ fontSize: '30px'}} />
+            </IconButton>
+            <IconButton color="secondary" aria-label="account">
+              <NotificationsIcon style={{ fontSize: '30px'}} />
+            </IconButton>
+            <IconButton color="secondary" aria-label="account">
+              <AccountCircleIcon style={{ fontSize: '30px'}} />
+            </IconButton>
           </div>
         }
         <div className={s.language}>
