@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styles } from './feedCard.css'
 import { useTranslation } from "next-i18next";
 import Card from "@material-ui/core/Card";
@@ -12,13 +12,15 @@ import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 
 interface FeedCardProps {
-  content: FeedItem
+  content: FeedItem,
+  onLikeClick: any,
 }
 
-export default function FeedCard({ content }: FeedCardProps) {
+export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
+  const [isLiked, setLike] = useState(false); // TODO: Fetch like state from backend
 
   const elapsedTime = getElapsedTime(content.Published);
 
@@ -82,7 +84,12 @@ export default function FeedCard({ content }: FeedCardProps) {
         }
       </CardMedia>
       <CardActions>
-        <Button startIcon={<FavoriteIcon/>}>
+        <Button
+          startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
+          onClick={() => {
+            onLikeClick(content.Item.Id, !isLiked);
+            setLike(!isLiked);
+          } }>
           {capitalizeFirst(t('like'))}
         </Button>
       </CardActions>

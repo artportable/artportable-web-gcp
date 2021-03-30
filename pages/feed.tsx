@@ -34,7 +34,7 @@ export default function FeedPage() {
   const pages = [];
 
   for (let i = 0; i < pageCount; i++) {
-    pages.push(<Feed key={i} userId={userId} index={i}></Feed>);
+    pages.push(<Feed key={i} userId={userId} index={i} onLikeClick={likePost}></Feed>);
   }
 
   const loadMoreElement = useRef(null);
@@ -112,6 +112,23 @@ export default function FeedPage() {
       </Main>
     </>
   );
+}
+
+// Like a post (feed item)
+// `isLike` states whether it's a like or an unlike
+function likePost(contentId, isLike) {
+  fetch(`http://localhost:5001/api/artworks/${contentId}/like`, {
+    method: isLike ? 'POST' : 'DELETE',
+  })
+  .then((response) => {
+    if (!response.ok) {
+      console.log(response.statusText);
+      throw response;
+    }
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 }
 
 export async function getStaticProps({ locale }) {
