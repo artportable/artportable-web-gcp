@@ -2,5 +2,6 @@
   "uploadNewWorkOfArt": "Ladda upp nytt konstverk",
   "like": "Gilla",
   "artistsWeThinkYouWouldLike": "Konstnärer vi tror du skulle gilla",
-  "noRecommendedUsers": "Inga konstnärer att visa..."
+  "noRecommendedUsers": "Inga konstnärer att visa...",
+  "recommendedUsersError": "Kunde inte ladda rekommendationer..."
 }

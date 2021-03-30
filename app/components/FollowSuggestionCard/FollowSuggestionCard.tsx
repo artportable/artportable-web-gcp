@@ -36,12 +36,12 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
                     (suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
                       <FollowSuggestion user={user} onFollowClick={onFollowClick}></FollowSuggestion>
                     )) : (
-                      <p className={s.nothing}>{t('noRecommendedUsers')} </p>
+                      <p className={s.nothing}>{t('noRecommendedUsers')}</p>
                     )
               )}
           </List>
         ) : (
-          <p>Couldn't load recommended users...</p>
+          <p>{t('recommendedUsersError')}</p>
         )}
       </CardContent>
     </Card>  
