@@ -4,6 +4,8 @@ export interface FeedItem {
   ProfilePicture: string,
   Location: string,
   Published: Date,
+  Likes: number,
+  LikedByMe: boolean,
   Item: Item
 }
 

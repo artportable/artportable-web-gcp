@@ -20,7 +20,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
-  const [isLiked, setLike] = useState(false); // TODO: Fetch like state from backend
+  const [isLiked, setLike] = useState(content.LikedByMe);
 
   const elapsedTime = getElapsedTime(content.Published);
 
