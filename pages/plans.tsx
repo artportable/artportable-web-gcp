@@ -102,7 +102,7 @@ export default function Plans({ priceData }) {
                     variant="contained" 
                     color="primary"
                     disableElevation 
-                    roundedButton
+                    rounded
                     onClick={(_) => handleNavClick('free')}>
                     {capitalizeFirst(t('common:words.choose'))} {t('plans.base.name')}
                   </Button>
@@ -132,7 +132,7 @@ export default function Plans({ priceData }) {
                     variant="contained" 
                     color="primary"
                     disableElevation 
-                    roundedButton
+                    rounded
                     onClick={(_) => handleNavClick(getBasePrice())}>
                     {capitalizeFirst(t('common:words.choose'))} {t('plans.portfolio.name')}
                   </Button>
@@ -163,7 +163,7 @@ export default function Plans({ priceData }) {
                     variant="contained" 
                     color="primary"
                     disableElevation 
-                    roundedButton
+                    rounded
                     onClick={(_) => handleNavClick(getPremiumPrice())}>
                     {capitalizeFirst(t('common:words.choose'))} {t('plans.portfolioPremium.name')}
                   </Button>

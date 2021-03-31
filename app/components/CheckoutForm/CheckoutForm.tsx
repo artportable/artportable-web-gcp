@@ -159,7 +159,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
                   variant="contained" 
                   color="primary"
                   disableElevation 
-                  roundedButton
+                  rounded
                   onClick={createPaymentMethod}>
                   {capitalizeFirst(t('common:words.pay'))}
                 </Button>

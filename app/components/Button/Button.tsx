@@ -3,13 +3,14 @@ import { styles } from './button.css'
 import clsx from 'clsx'
 
 export default function Button(props) {
-  const { roundedButton, color, ...muiButtonProps } = props;
+  const { rounded, underlined, ...muiButtonProps } = props;
   const s = styles();
   const classes = [s.root];
   
-  classes.push(roundedButton ? s.rounded : '');
+  classes.push(rounded ? s.rounded : '');
+  classes.push(underlined ? s.underlined : '');
 
   return (
-    <MuiButton {...muiButtonProps} color={color} className={clsx(classes, props.className)}>{props.children}</MuiButton>
+    <MuiButton {...muiButtonProps} className={clsx(classes, props.className)}>{props.children}</MuiButton>
   );
 }

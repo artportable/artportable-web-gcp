@@ -94,7 +94,8 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
         <Button
           color="primary"
           variant="contained"
-          roundedButton size="small"
+          rounded
+          size="small"
           disableElevation
           onClick={onClick}
         >

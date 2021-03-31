@@ -6,7 +6,12 @@ export const styles = makeStyles((theme: Theme) =>
       textTransform: 'none'
     },
     rounded: {
-      borderRadius: '24px'
+      borderRadius: '24px',
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2)
     },
+    underlined: {
+      textDecoration: 'underline'
+    }
   }),
 );
