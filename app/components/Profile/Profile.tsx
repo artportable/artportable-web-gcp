@@ -49,6 +49,9 @@ export default function Profile({ userProfile }) {
         <Typography variant="subtitle1">
             {data?.Username}
         </Typography>
+        <Typography variant="caption" className="title">
+          {data?.Title}
+        </Typography>
       </Box>
 
       <Box marginTop={2}>
