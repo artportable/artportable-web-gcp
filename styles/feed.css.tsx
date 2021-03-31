@@ -13,19 +13,22 @@ export const styles = makeStyles((theme: Theme) =>
     },
     colLeft: {
       gridArea: 'left',
-      display: 'grid',
       position: 'sticky',
       top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
-      alignItems: 'start',
+      display: 'grid',
       rowGap: theme.spacing(2)
     },
     colFeed: {
       gridArea: 'feed',
+      display: 'grid',
+      rowGap: theme.spacing(2),
     },
     colRight: {
       gridArea: 'right',
       position: 'sticky',
       top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
+      display: 'grid',
+      rowGap: theme.spacing(2),
     },
     uploadArtButton: {
       width: '100%',
