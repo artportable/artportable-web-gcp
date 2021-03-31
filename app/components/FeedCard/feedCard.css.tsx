@@ -3,26 +3,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cardHeader: {
-      padding: theme.spacing(1, 1, 0, 1)
+      padding: theme.spacing(1)
     },
-    post: {
-      marginBottom: "25px"
-    },
-    topBar: {
-      margin: "5px 0px",
-      display: "flex",
-      flexDirection: "row"
-    },
-    userInfo: {
-      flexDirection: "column",
-      marginLeft: "15px"
-    },
-    username: {
-      fontWeight: 500
-    },
-    locationAndPublishedInfo: {
-      display: "flex",
-      flexDirection: "row",
+    cardActions: {
+      padding: theme.spacing(1)
     },
     published: {
       fontStyle: "italic",

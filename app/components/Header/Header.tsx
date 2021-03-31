@@ -60,7 +60,7 @@ export default function Header({ isSignUp, isSignedIn }) {
                   variant="contained"
                   color="primary"
                   disableElevation
-                  roundedButton>
+                  rounded>
                     {t('signUp')}
                 </Button>
               </a>
@@ -72,7 +72,7 @@ export default function Header({ isSignUp, isSignedIn }) {
                   variant="outlined"
                   color="primary"
                   disableElevation
-                  roundedButton>
+                  rounded>
                     {t('login')}
                 </Button>
               </a>
@@ -88,7 +88,7 @@ export default function Header({ isSignUp, isSignedIn }) {
                   variant="outlined"
                   color="primary"
                   disableElevation
-                  roundedButton>
+                  rounded>
                     {t('upload')}
                 </Button>
               </a>

@@ -37,7 +37,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           color="primary"
           disabled={isFollowed}
           disableElevation
-          roundedButton
+          rounded
           onClick={() => {
             onFollowClick(user.UserId);
             setFollow(true);

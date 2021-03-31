@@ -25,7 +25,7 @@ export default function NewsletterCard() {
         <Typography variant="caption" className={s.unsubscribeText}>Lorem ipsum, you can always unsubscribe dolor ipsum etc etc</Typography>
       </CardContent>
       <CardActions>
-        <Button className={s.button} variant="outlined" roundedButton>{t('register')}</Button>
+        <Button className={s.button} variant="outlined" rounded>{t('register')}</Button>
       </CardActions>
     </Card>
   );

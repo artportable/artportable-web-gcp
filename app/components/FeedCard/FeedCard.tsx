@@ -32,14 +32,14 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   [s.media]);
 
   return (
-    <Card className={s.post}>
+    <Card>
       <CardHeader
         className={s.cardHeader}
         avatar={
           content?.ProfilePicture ? (
             <Avatar src={`${bucketUrl}${content?.ProfilePicture}`}
               alt="Profile picture"
-              style={{ height: '40px', width: '40px', marginBottom: '4px' }}
+              style={{ height: '40px', width: '40px' }}
             />
           ) : (
             <AccountCircleIcon
@@ -50,7 +50,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         }
         title={content.User}
         subheader={
-          <Box mb={1}>
+          <Box>
             <span>{content.Location}</span>
             <span className={s.published}>{elapsedTime.Time} {t('common:timeUnit.' + elapsedTime.Unit)}</span>
           </Box>
@@ -83,7 +83,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           </div>
         }
       </CardMedia>
-      <CardActions>
+      <CardActions className={s.cardActions}>
         <Button
           startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
           onClick={() => {

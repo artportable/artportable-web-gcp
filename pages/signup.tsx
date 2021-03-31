@@ -407,7 +407,7 @@ export default function Signup() {
                       variant="contained" 
                       color="primary"
                       disableElevation 
-                      roundedButton
+                      rounded
                       onClick={handleBecomeMemberClick}>
                         {t('becomeMember')}
                     </Button>
