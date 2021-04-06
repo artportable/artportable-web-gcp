@@ -49,6 +49,9 @@ export default function Profile({ userProfile }) {
         <Typography variant="subtitle1">
             {data?.Username}
         </Typography>
+        <Typography variant="caption" className="title">
+          {data?.Title}
+        </Typography>
       </Box>
 
       <Box marginTop={2}>
@@ -67,7 +70,7 @@ export default function Profile({ userProfile }) {
       <Box className={s.counterBox} borderTop='solid 1px #4e4e4e3b' marginTop={2}>
         <Box>
           <Typography variant="body2" display="block">
-            {data?.Followers}
+            {data?.Followees}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.followers'))}
@@ -75,10 +78,10 @@ export default function Profile({ userProfile }) {
         </Box>
         <Box>
           <Typography variant="body2" display="block">
-            {data?.Followees}
+            {data?.Followers}
           </Typography>
           <Typography variant="caption" display="block">
-            {capitalizeFirst(t('words.follows'))}
+            {capitalizeFirst(t('words.following'))}
           </Typography>
         </Box>
         <Box>

@@ -25,6 +25,9 @@ export const styles = makeStyles((theme: Theme) =>
       '& > *': {
         width: '33.3%'
       }
+    },
+    title: {
+      lineHeight: 1.5,
     }
   }),
 );
