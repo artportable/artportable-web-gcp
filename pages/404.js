@@ -1,7 +1,9 @@
+import Main from '../app/components/Main/Main'
+
 export default function NotFound() {
   return (
-    <div>
+    <Main>
       Page not found!
-    </div>
+    </Main>
   );
 }
