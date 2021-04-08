@@ -1,9 +1,9 @@
 import useSWR from 'swr'
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
 
-export function useGetArtworks() {
+export function useGetArtworks(userId) {
   const { data, error } = useSWR(
-    `http://localhost:5001/api/artworks`,
+    `http://localhost:5001/api/artworks?ownerId=${userId}`,
     fetcher,
     { 
       revalidateOnFocus: false,
@@ -11,7 +11,7 @@ export function useGetArtworks() {
     });
 
   return {
-    artworks: data,
+    data,
     isLoading: !error && !data,
     isError: error
   }
