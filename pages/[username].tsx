@@ -5,6 +5,7 @@ import { Tabs, Tab } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../app/components/Profile/Profile'
+import ArtworkListItem from '../app/components/ArtworkListItem/ArtworkListItem'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { useTranslation } from "next-i18next"
@@ -87,25 +88,22 @@ export default function Profile() {
               <Tab label={t('portfolio')} />
               <Tab label={t('aboutMe')} />
             </Tabs>
-            <TabPanel value={tabValue} index={0}>
-              <div className={s.portfolioContainer}>
-                {artworks.isLoading && <div>Loading...</div>}
-                {!artworks.isLoading && !artworks.isError && artworks.data &&
-                  artworks.data?.map(artwork =>
-                    <div style={{width: "260px", height: "260px", position: "relative"}}>
-                      <Image 
-                        key={artwork.PrimaryFile}
-                        src={`${bucketUrl}${artwork.PrimaryFile}`}
-                        layout="fill"
-                        objectFit="contain"
-                         />
-                    </div>
-                  )
-                }
-                {artworks.isError && <div>error...</div>}
-              </div>
-            </TabPanel>
-            <TabPanel value={tabValue} index={1}>Om mig</TabPanel>
+            <Box p={1}>
+              <TabPanel value={tabValue} index={0}>
+                <div className={s.portfolioContainer}>
+                  {artworks.isLoading && <div>Loading...</div>}
+                  {!artworks.isLoading && !artworks.isError && artworks.data &&
+                    artworks.data?.map(artwork =>
+                      <div key={artwork.Id} style={{width: "260px", height: "260px"}}>
+                        <ArtworkListItem artwork={artwork} />
+                      </div>
+                    )
+                  }
+                  {artworks.isError && <div>error...</div>}
+                </div>
+              </TabPanel>
+              <TabPanel value={tabValue} index={1}>Om mig</TabPanel>
+            </Box>
           </div>
         </div>
       </Main>

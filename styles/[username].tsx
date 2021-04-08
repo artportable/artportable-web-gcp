@@ -29,11 +29,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gridArea: 'divider'
     },
     portfolioContainer: {
-      position: 'relative',
       display: 'grid',
       gridAutoFlow: 'row',
       gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: theme.spacing(1)
+      gap: theme.spacing(3, 1)
     }
   }),
 );
