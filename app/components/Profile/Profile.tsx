@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge'
+import Divider from '@material-ui/core/Divider'
 import { styles } from './profile.css'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -9,7 +10,7 @@ import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst } from '../../utils/util';
 
-export default function Profile({ userProfile }) {
+export default function Profile({ userProfile, divider = false }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
@@ -69,14 +70,16 @@ export default function Profile({ userProfile }) {
         </Typography>
       </Box>
 
-      <Box display="flex" justifyContent="center" marginTop={1}>
+      <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
         <RoomIcon color="secondary"></RoomIcon>
         <Typography>
           {data?.Location}
         </Typography>
       </Box>
-
-      <Box className={s.counterBox} borderTop='solid 1px #4e4e4e3b' marginTop={2}>
+      { divider &&
+        <Divider></Divider>
+      }
+      <Box className={s.counterBox}>
         <Box>
           <Typography variant="body2" display="block">
             {data?.Followees}
