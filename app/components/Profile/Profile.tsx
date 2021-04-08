@@ -42,7 +42,7 @@ export default function Profile({ userProfile }) {
               ) : (
                 <AccountCircleIcon
                   color="secondary"
-                  style={{fontSize: 160}}
+                  className={s.noPictureIcon}
                 />
               )}
             </Avatar>

@@ -28,6 +28,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     title: {
       lineHeight: 1.5,
+    },
+    noPictureIcon: {
+      fontSize: '160px',
+      backgroundColor: theme.palette.background.default,
     }
   }),
 );
