@@ -14,7 +14,7 @@ export default function Profile({ userProfile, divider = false }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
-  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
+  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   return (
     <Box textAlign="center">

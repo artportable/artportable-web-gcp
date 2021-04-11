@@ -57,7 +57,7 @@ export default function Profile() {
   const artworks = useGetArtworks('857ce515-b7dd-4eae-991b-20468cf33ec3');
   const userProfile = useGetUserProfile('857ce515-b7dd-4eae-991b-20468cf33ec3');
   const { username } = router.query;
-  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
+  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   function handleTabChange(_, newValue) {
     setTabValue(newValue);
@@ -85,8 +85,8 @@ export default function Profile() {
           <Divider className={s.divider}></Divider>
           <div className={s.tabsContainer}>
             <Tabs value={tabValue} onChange={handleTabChange} centered >
-              <Tab label={t('portfolio')} />
-              <Tab label={t('aboutMe')} />
+              <Tab label={t('portfolio')} {...a11yProps('portfolio')} />
+              <Tab label={t('aboutMe')} {...a11yProps('about me')} />
             </Tabs>
             <Box p={1}>
               <TabPanel value={tabValue} index={0}>
@@ -94,7 +94,7 @@ export default function Profile() {
                   {artworks.isLoading && <div>Loading...</div>}
                   {!artworks.isLoading && !artworks.isError && artworks.data &&
                     artworks.data?.map(artwork =>
-                      <div key={artwork.Id} style={{width: "260px", height: "260px"}}>
+                      <div key={artwork.Id} style={{height: "260px"}}>
                         <ArtworkListItem artwork={artwork} />
                       </div>
                     )

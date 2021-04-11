@@ -29,9 +29,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gridArea: 'divider'
     },
     portfolioContainer: {
-      display: 'grid',
-      gridAutoFlow: 'row',
-      gridTemplateColumns: 'repeat(4, 1fr)',
+      display: 'flex',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
       gap: theme.spacing(3, 1)
     }
   }),

@@ -2,17 +2,15 @@ import Image from 'next/image'
 import { styles } from './artworkListItem.css'
 
 export default function ArtworkListItem({ artwork }) {
-  console.log(artwork);
   const s = styles();
-  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
+  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+
   return (
     <div className={s.container}>
       <div className={s.imageContainer}>
-        <Image 
+        <img style={{height: '100%'}}
           key={artwork.PrimaryFile}
           src={`${bucketUrl}${artwork.PrimaryFile}`}
-          layout="fill"
-          objectFit="contain"
         />
       </div>
       <div className={s.titleAndLike}>
