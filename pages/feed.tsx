@@ -14,7 +14,6 @@ import { styles } from '../styles/feed.css';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
-import { FeedItem, FeedItemType } from '../app/models/FeedItem';
 import { debounce } from '@material-ui/core/utils';
 import { useStore } from 'react-redux';
 import { useGetUserProfile } from '../app/hooks/dataFetching/useGetUserProfile';

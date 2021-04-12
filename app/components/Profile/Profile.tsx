@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge'
 import { styles } from './profile.css'
@@ -30,24 +31,32 @@ export default function Profile({ userProfile }) {
               onClick={() => alert('upload picture')} />
         }
       >
-        <Avatar className={s.avatar}>
-          {data?.ProfilePicture ? (
-            <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
-              alt="Profile picture"
-              style={{ height: '120px', width: '120px' }}
-            />
-          ) : (
-            <AccountCircleIcon
-              color="secondary"
-              style={{fontSize: 160}}
-            />
-          )}
-        </Avatar>
+        <Link href={`/@${data?.Username}`}>
+          <a>
+            <Avatar className={s.avatar}>
+              {data?.ProfilePicture ? (
+                <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
+                  alt="Profile picture"
+                  style={{ height: '120px', width: '120px' }}
+                />
+              ) : (
+                <AccountCircleIcon
+                  color="secondary"
+                  style={{fontSize: 160}}
+                />
+              )}
+            </Avatar>
+          </a>
+        </Link>
       </Badge>
 
       <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="subtitle1">
-            {data?.Username}
+          <Link href={`/@${data?.Username}`}>
+            <a>
+              {data?.Username}
+            </a>
+          </Link>
         </Typography>
         <Typography variant="caption" className="title">
           {data?.Title}
