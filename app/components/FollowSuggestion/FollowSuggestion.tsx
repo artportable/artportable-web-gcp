@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Avatar, ListItem, ListItemAvatar, ListItemSecondaryAction, ListItemText } from "@material-ui/core";
 import Button from '../Button/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -17,19 +18,27 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
 
   return (
     <ListItem key={user.UserId} className={s.listItem}>
-      <ListItemAvatar>
-        <Avatar className={s.avatar}>
-          {user?.ProfilePicture ? (
-            <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
-              alt="Profile picture"
-              style={{ height: '45px', width: '45px' }}
-            />
-          ) : (
-            <AccountCircleIcon style={{ fontSize: 48 }} color="secondary"></AccountCircleIcon>
-          )}
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText className={s.listItemText} primary={user.Username} secondary={user.Location} />
+      <Link href={`/@${user.Username}`}>
+        <a>
+          <ListItemAvatar>
+            <Avatar className={s.avatar}>
+              {user?.ProfilePicture ? (
+                <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
+                  alt="Profile picture"
+                  style={{ height: '45px', width: '45px' }}
+                />
+              ) : (
+                <AccountCircleIcon style={{ fontSize: 48 }} color="secondary"></AccountCircleIcon>
+              )}
+            </Avatar>
+          </ListItemAvatar>
+        </a>
+      </Link>
+      <Link href={`/@${user.Username}`}>
+        <a>
+          <ListItemText className={s.listItemText} primary={user.Username} secondary={user.Location} />
+        </a>
+      </Link>
       <ListItemSecondaryAction className={s.secondaryAction}>
         <Button
           size="small"
@@ -41,7 +50,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           onClick={() => {
             onFollowClick(user.UserId);
             setFollow(true);
-          } }>
+          }}>
             {capitalizeFirst(t('common:words.follow'))}
         </Button>
       </ListItemSecondaryAction>

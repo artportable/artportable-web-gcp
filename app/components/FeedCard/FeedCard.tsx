@@ -6,6 +6,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Button from '../Button/Button';
 import Image from 'next/image'
+import Link from 'next/link'
 import { capitalizeFirst } from '../../utils/util';
 import { CardActions, CardHeader, CardMedia, Box, Avatar } from '@material-ui/core';
 import { FeedItem } from '../../models/FeedItem';
@@ -33,29 +34,33 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
 
   return (
     <Card>
-      <CardHeader
-        className={s.cardHeader}
-        avatar={
-          content?.ProfilePicture ? (
-            <Avatar src={`${bucketUrl}${content?.ProfilePicture}`}
-              alt="Profile picture"
-              style={{ height: '40px', width: '40px' }}
-            />
-          ) : (
-            <AccountCircleIcon
-              color="secondary"
-              style={{fontSize: 48}}
-            />
-          )
-        }
-        title={content.User}
-        subheader={
-          <Box>
-            <span>{content.Location}</span>
-            <span className={s.published}>{elapsedTime.Time} {t('common:timeUnit.' + elapsedTime.Unit)}</span>
-          </Box>
-        }
-      />
+      <Link href={`/@${content.User}`}>
+        <a>
+          <CardHeader
+            className={s.cardHeader}
+            avatar={
+              content?.ProfilePicture ? (
+                <Avatar src={`${bucketUrl}${content?.ProfilePicture}`}
+                  alt="Profile picture"
+                  style={{ height: '40px', width: '40px' }}
+                />
+              ) : (
+                <AccountCircleIcon
+                  color="secondary"
+                  style={{fontSize: 48}}
+                />
+              )
+            }
+            title={content.User}
+            subheader={
+              <Box>
+                <span>{content.Location}</span>
+                <span className={s.published}>{elapsedTime.Time} {t('common:timeUnit.' + elapsedTime.Unit)}</span>
+              </Box>
+            }
+          />
+        </a>
+      </Link>
       <CardMedia className={mediaClasses}>
         <div className={s.primaryImage}>
           <Image src={`${bucketUrl}${content.Item.PrimaryFile}`}
