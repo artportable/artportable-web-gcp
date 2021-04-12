@@ -94,8 +94,8 @@ export default function Profile() {
                   {artworks.isLoading && <div>Loading...</div>}
                   {!artworks.isLoading && !artworks.isError && artworks.data &&
                     artworks.data?.map(artwork =>
-                      <div key={artwork.Id} style={{height: "260px"}}>
-                        <ArtworkListItem artwork={artwork} />
+                      <div key={artwork.Id} className={s.artWorkListItem}>
+                        <ArtworkListItem artwork={artwork} isLikedByMe={true} />
                       </div>
                     )
                   }

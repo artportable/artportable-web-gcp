@@ -32,7 +32,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       flexWrap: 'wrap',
-      gap: theme.spacing(3, 1)
+      gap: theme.spacing(0, 2)
+    },
+    artWorkListItem: {
+      height: '300px',
     }
   }),
 );
