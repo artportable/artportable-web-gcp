@@ -3,18 +3,18 @@ import FeedCard from '../FeedCard/FeedCard';
 import { useGetFeedItems } from '../../hooks/dataFetching/useGetFeedItems';
 
 interface FeedProps {
-  userId: string,
+  user: string,
   index: number,
   onLikeClick: any,
 }
 
-export default function Feed({ userId, index, onLikeClick }: FeedProps) {
+export default function Feed({ user, index, onLikeClick }: FeedProps) {
   const page = index + 1;
-  const { feed } = useGetFeedItems(userId, page);
+  const { feed } = useGetFeedItems(user, page);
 
   return (
     <>
-      {userId &&
+      {user &&
         feed?.map(item => {
           return <FeedCard key={item.Item.Id} content={item} onLikeClick={onLikeClick}></FeedCard>
         })

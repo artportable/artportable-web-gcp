@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import Main from '../app/components/Main/Main'
 import AboutMe from '../app/components/AboutMe/AboutMe'
 import { Tabs, Tab } from '@material-ui/core'
@@ -15,6 +14,7 @@ import { useGetArtworks } from '../app/hooks/dataFetching/Artworks'
 import { useGetUserProfile, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
 import { useState } from 'react'
 import TabPanel from '../app/components/TabPanel/TabPanel'
+import { useGetProfileUser } from '../app/hooks/dataFetching/useGetProfileUser'
 
 function a11yProps(index: any) {
   return {
@@ -24,16 +24,15 @@ function a11yProps(index: any) {
 }
 
 export default function Profile() {
-  const router = useRouter();
   const { t } = useTranslation(['common', 'profile']);
   const s = profileStyles();
 
   const [activeTab, setActiveTab] = useState(0);
 
-  const artworks = useGetArtworks('857ce515-b7dd-4eae-991b-20468cf33ec3');
-  const userProfileSummary = useGetUserProfileSummary('857ce515-b7dd-4eae-991b-20468cf33ec3');
-  const userProfile = useGetUserProfile('857ce515-b7dd-4eae-991b-20468cf33ec3');
-  const { username } = router.query;
+  const profileUser = useGetProfileUser();
+  const artworks = useGetArtworks(profileUser);
+  const userProfileSummary = useGetUserProfileSummary(profileUser);
+  const userProfile = useGetUserProfile(profileUser);
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   function handleTabChange(_, newValue) {

@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 const fetcher = url => fetch(url).then(r => r.json())
 
-export function useFollowRecommendations(userId) {
-  if (!userId) {
+export function useFollowRecommendations(user) {
+  if (!user) {
     return {
       suggestedUsers: null,
       isLoading: false,
@@ -11,7 +11,7 @@ export function useFollowRecommendations(userId) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/connections?userId=${userId}`,
+    `http://localhost:5001/api/connections?myUsername=${user}`,
     fetcher,
     { 
       revalidateOnFocus: false,

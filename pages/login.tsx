@@ -32,7 +32,7 @@ export default function Signup() {
 
       dispatch({
         type: LOGIN_USER,
-        payload: res.Id
+        payload: res.Username
       });
 
       router.push('/feed');

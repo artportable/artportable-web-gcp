@@ -2,8 +2,8 @@ import useSWR from 'swr'
 
 const fetcher = url => fetch(url).then(r => r.json());
 
-export function useGetUserProfileSummary(userId) {
-  if (!userId) {
+export function useGetUserProfileSummary(user) {
+  if (!user) {
     return {
       data: null,
       isLoading: false,
@@ -12,7 +12,7 @@ export function useGetUserProfileSummary(userId) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/profile/${userId}/summary`,
+    `http://localhost:5001/api/profile/${user}/summary`,
     fetcher,
     { 
       revalidateOnFocus: false,
@@ -26,8 +26,8 @@ export function useGetUserProfileSummary(userId) {
   }
 }
 
-export function useGetUserProfile(userId) {
-  if (!userId) {
+export function useGetUserProfile(user) {
+  if (!user) {
     return {
       data: null,
       isLoading: false,
@@ -36,7 +36,7 @@ export function useGetUserProfile(userId) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/profile/${userId}`,
+    `http://localhost:5001/api/profile/${user}`,
     fetcher,
     { 
       revalidateOnFocus: false,
