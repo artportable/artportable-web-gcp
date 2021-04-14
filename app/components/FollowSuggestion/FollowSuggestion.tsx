@@ -14,7 +14,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
 
   const [isFollowed, setFollow] = useState(false);
 
-  const bucketUrl = 'https://artportable-images.s3.eu-north-1.amazonaws.com/Images/'; // TODO: Fetch from config
+  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   return (
     <ListItem key={user.UserId} className={s.listItem}>

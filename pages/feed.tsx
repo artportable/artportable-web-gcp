@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Feed from '../app/components/Feed/Feed';
 import Head from 'next/head'
-import Link from 'next/Link'
+import Link from 'next/link'
 import Main from '../app/components/Main/Main'
 import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
