@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Main from '../app/components/Main/Main'
+import AboutMe from '../app/components/AboutMe/AboutMe'
 import { Tabs, Tab } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
@@ -11,7 +12,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../styles/[username]'
 import { useGetArtworks } from '../app/hooks/dataFetching/Artworks'
-import { useGetUserProfile } from '../app/hooks/dataFetching/useGetUserProfile'
+import { useGetUserProfile, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
 import { useState } from 'react'
 import TabPanel from '../app/components/TabPanel/TabPanel'
 
@@ -24,12 +25,13 @@ function a11yProps(index: any) {
 
 export default function Profile() {
   const router = useRouter();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common', 'profile']);
   const s = profileStyles();
 
   const [activeTab, setActiveTab] = useState(0);
 
   const artworks = useGetArtworks('857ce515-b7dd-4eae-991b-20468cf33ec3');
+  const userProfileSummary = useGetUserProfileSummary('857ce515-b7dd-4eae-991b-20468cf33ec3');
   const userProfile = useGetUserProfile('857ce515-b7dd-4eae-991b-20468cf33ec3');
   const { username } = router.query;
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
@@ -55,13 +57,13 @@ export default function Profile() {
       <Main>
         <div className={s.profileGrid}>
           <div className={s.profileSummary}>
-            <ProfileComponent userProfile={userProfile}></ProfileComponent>
+            <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
           </div>
           <Divider className={s.divider}></Divider>
           <div className={s.tabsContainer}>
             <Tabs value={activeTab} onChange={handleTabChange} centered >
-              <Tab label={t('portfolio')} {...a11yProps('portfolio')} />
-              <Tab label={t('aboutMe')} {...a11yProps('about me')} />
+              <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
             </Tabs>
             <Box p={1}>
               <TabPanel value={activeTab} index={0}>
@@ -77,7 +79,9 @@ export default function Profile() {
                   {artworks.isError && <div>error...</div>}
                 </div>
               </TabPanel>
-              <TabPanel value={activeTab} index={1}>Om mig</TabPanel>
+              <TabPanel value={activeTab} index={1}>
+                <AboutMe userProfile={userProfile}></AboutMe>
+              </TabPanel>
             </Box>
           </div>
         </div>
@@ -89,7 +93,7 @@ export default function Profile() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'feed']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'profile']),
     }
   }
 }

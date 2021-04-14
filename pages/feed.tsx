@@ -16,7 +16,7 @@ import { useTranslation } from "next-i18next";
 import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
 import { debounce } from '@material-ui/core/utils';
 import { useStore } from 'react-redux';
-import { useGetUserProfile } from '../app/hooks/dataFetching/useGetUserProfile';
+import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
 import { useRouter } from 'next/router';
 
 export default function FeedPage() {
@@ -28,7 +28,7 @@ export default function FeedPage() {
   const isSignedIn = store.getState()?.user?.isSignedIn;
   const userId = store.getState()?.user?.id;
 
-  const userProfile = useGetUserProfile(userId);
+  const userProfile = useGetUserProfileSummary(userId);
   const { suggestedUsers } = useFollowRecommendations(userId);
 
   const pages = [];

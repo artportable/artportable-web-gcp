@@ -7,6 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     avatar: {
       backgroundColor: 'transparent',
+      border: `0.15rem solid ${theme.palette.common.white}`,
       width: 120,
       height: 120
     },
