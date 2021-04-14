@@ -27,7 +27,7 @@ export default function Profile() {
   const { t } = useTranslation(['common']);
   const s = profileStyles();
 
-  const [tabValue, setTabValue] = useState(0);
+  const [activeTab, setActiveTab] = useState(0);
 
   const artworks = useGetArtworks('857ce515-b7dd-4eae-991b-20468cf33ec3');
   const userProfile = useGetUserProfile('857ce515-b7dd-4eae-991b-20468cf33ec3');
@@ -35,7 +35,7 @@ export default function Profile() {
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   function handleTabChange(_, newValue) {
-    setTabValue(newValue);
+    setActiveTab(newValue);
   }
 
   return (
@@ -59,12 +59,12 @@ export default function Profile() {
           </div>
           <Divider className={s.divider}></Divider>
           <div className={s.tabsContainer}>
-            <Tabs value={tabValue} onChange={handleTabChange} centered >
+            <Tabs value={activeTab} onChange={handleTabChange} centered >
               <Tab label={t('portfolio')} {...a11yProps('portfolio')} />
               <Tab label={t('aboutMe')} {...a11yProps('about me')} />
             </Tabs>
             <Box p={1}>
-              <TabPanel value={tabValue} index={0}>
+              <TabPanel value={activeTab} index={0}>
                 <div className={s.portfolioContainer}>
                   {artworks.isLoading && <div>Loading...</div>}
                   {!artworks.isLoading && !artworks.isError && artworks.data &&
@@ -77,7 +77,7 @@ export default function Profile() {
                   {artworks.isError && <div>error...</div>}
                 </div>
               </TabPanel>
-              <TabPanel value={tabValue} index={1}>Om mig</TabPanel>
+              <TabPanel value={activeTab} index={1}>Om mig</TabPanel>
             </Box>
           </div>
         </div>
