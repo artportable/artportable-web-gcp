@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 const fetcher = url => fetch(url).then(r => r.json().then(data => data.map(mapToFeedItem)))
 
-export function useGetFeedItems(userId, page) {
-  if (!userId) {
+export function useGetFeedItems(user, page) {
+  if (!user) {
     return {
       feed: null,
       isLoading: false,
@@ -11,7 +11,7 @@ export function useGetFeedItems(userId, page) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/feed?page=${page}&userId=${userId}`,
+    `http://localhost:5001/api/feed?page=${page}&myUsername=${user}`,
     fetcher,
     { 
       revalidateOnFocus: false,

@@ -26,15 +26,15 @@ export default function FeedPage() {
   const [pageCount, setPageCount] = useState(1);
   const { t } = useTranslation(['feed', 'common']);
   const isSignedIn = store.getState()?.user?.isSignedIn;
-  const userId = store.getState()?.user?.id;
+  const myUsername = store.getState()?.user?.username;
 
-  const userProfile = useGetUserProfileSummary(userId);
-  const { suggestedUsers } = useFollowRecommendations(userId);
+  const userProfile = useGetUserProfileSummary(myUsername);
+  const { suggestedUsers } = useFollowRecommendations(myUsername);
 
   const pages = [];
 
   for (let i = 0; i < pageCount; i++) {
-    pages.push(<Feed key={i} userId={userId} index={i} onLikeClick={likePost}></Feed>);
+    pages.push(<Feed key={i} user={myUsername} index={i} onLikeClick={likePost}></Feed>);
   }
 
   const loadMoreElement = useRef(null);
@@ -55,8 +55,8 @@ export default function FeedPage() {
     threshold: 0
   }
 
-  function follow(id) {
-    fetch(`http://localhost:5001/api/connections/${id}?userId=${userId}`, {
+  function follow(username) {
+    fetch(`http://localhost:5001/api/connections/${username}?myUsername=${myUsername}`, {
       method: 'POST',
     })
     .then((response) => {
@@ -73,7 +73,7 @@ export default function FeedPage() {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`http://localhost:5001/api/artworks/${contentId}/like?userId=${userId}`, {
+    fetch(`http://localhost:5001/api/artworks/${contentId}/like?myUsername=${myUsername}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
     .then((response) => {
@@ -128,7 +128,7 @@ export default function FeedPage() {
             <NewsletterCard></NewsletterCard>
           </div>
           <div className={s.colFeed}>
-            {userId ? (
+            {myUsername ? (
               <>
                 {pages}
                 <div ref={loadMoreElement}>
