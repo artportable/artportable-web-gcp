@@ -24,7 +24,7 @@ function a11yProps(index: any) {
 
 export default function Profile() {
   const router = useRouter();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common', 'profile']);
   const s = profileStyles();
 
   const [activeTab, setActiveTab] = useState(0);
@@ -60,8 +60,8 @@ export default function Profile() {
           <Divider className={s.divider}></Divider>
           <div className={s.tabsContainer}>
             <Tabs value={activeTab} onChange={handleTabChange} centered >
-              <Tab label={t('portfolio')} {...a11yProps('portfolio')} />
-              <Tab label={t('aboutMe')} {...a11yProps('about me')} />
+              <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
             </Tabs>
             <Box p={1}>
               <TabPanel value={activeTab} index={0}>
@@ -89,7 +89,7 @@ export default function Profile() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'feed']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'profile']),
     }
   }
 }
