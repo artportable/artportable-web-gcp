@@ -12,7 +12,7 @@ export function useGetUserProfile(userId) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/user/${userId}/profile`,
+    `http://localhost:5001/api/profile/${userId}/summary`,
     fetcher,
     { 
       revalidateOnFocus: false,
