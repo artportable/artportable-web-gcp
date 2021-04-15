@@ -1,14 +1,16 @@
 import Image from 'next/image'
 import Box from '@material-ui/core/Box'
 import Card from '@material-ui/core/Card'
+import MyArtStudioCard from '../MyArtStudioCard/MyArtStudioCard'
+import SocialNetworksCard from '../SocialNetworksCard/SocialNetworksCard'
+import TagsCard from '../TagsCard/TagsCard'
+import InspiredByCard from '../InspiredByCard/InspiredByCard'
+import EducationCard from '../EducationCard/EducationCard'
+import CurrentExhibitionsCard from '../CurrentExhibitionsCard/CurrentExhibitionsCard'
 
 import { styles } from './aboutMe.css'
 import { CardContent, CardHeader, Typography } from '@material-ui/core'
-import InstagramIcon from '@material-ui/icons/Instagram'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import HttpsIcon from '@material-ui/icons/Https'
-import Icon from '@material-ui/core/Icon';
+
 
 import { useTranslation } from 'react-i18next';
 
@@ -44,47 +46,12 @@ export default function AboutMe({ userProfile }) {
         </CardContent>
       </Card>
       <Box className={s.rightCol}>
-        <Card elevation={2}>
-          <CardContent>Atelje</CardContent>
-        </Card>
-        <Card elevation={2}>
-          <CardContent>Teknik/Verktyg</CardContent>
-        </Card>
-        <Card elevation={2}>
-          <CardContent>Inspireras av</CardContent>
-        </Card>
-        <Card elevation={2}>
-          <CardContent>Utbildning</CardContent>
-        </Card>
-        <Card elevation={2}>
-          <CardContent>Aktuella utställningar</CardContent>
-        </Card>
-        <Card elevation={2}>
-          <CardHeader 
-            title={t('socialNetworks')} 
-            titleTypographyProps={{ variant: "subtitle1"}}>
-          </CardHeader>
-          <CardContent>
-            <Box>
-              <InstagramIcon color="primary"></InstagramIcon>
-            </Box>
-            <Box>
-              <FacebookIcon color="primary"></FacebookIcon>
-            </Box>
-            <Box>
-              <LinkedInIcon color="primary"></LinkedInIcon>
-            </Box>
-            <Box>
-              <Icon className="fab fa-dribbble" color="primary"></Icon>
-            </Box>
-            <Box>
-              <Icon className="fab fa-dribbble" color="primary"></Icon>
-            </Box>
-            <Box>
-              <HttpsIcon color="primary"></HttpsIcon>
-            </Box>
-          </CardContent>
-        </Card>
+        <MyArtStudioCard userProfile={userProfile}></MyArtStudioCard>
+        <TagsCard userProfile={userProfile}></TagsCard>
+        <InspiredByCard userProfile={userProfile}></InspiredByCard>
+        <EducationCard userProfile={userProfile}></EducationCard>
+        <CurrentExhibitionsCard userProfile={userProfile}></CurrentExhibitionsCard>
+        <SocialNetworksCard userProfile={userProfile}></SocialNetworksCard>
       </Box>
     </Box>
   );
