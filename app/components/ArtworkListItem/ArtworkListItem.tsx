@@ -4,19 +4,21 @@ import { useStore } from 'react-redux'
 import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
 import IconButton from '@material-ui/core/IconButton'
 import { styles } from './artworkListItem.css'
-import { initializeStore } from '../../redux/store'
 
-export default function ArtworkListItem({ artwork, isLikedByMe }) {
+export default function ArtworkListItem({ artwork, onLikeClick }) {
   const s = styles();
   const store = useStore();
-  const [isLiked, setLike] = useState(isLikedByMe);
+  const [isLiked, setIsLiked] = useState(artwork.IsLikedByMe);
   const [showArtworkModal, setShowArtworkModal] = useState(false);
 
   const userId = store.getState()?.user?.id;
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
-  function onLikeClick(event, artworkId, newValue) {
+  function toggleLike(event) {
     event.stopPropagation();
+
+    setIsLiked(!isLiked);
+    onLikeClick(artwork.Id, !isLiked);
   }
 
   function handleArtworkClick() {
@@ -45,16 +47,17 @@ export default function ArtworkListItem({ artwork, isLikedByMe }) {
               className={s.likeButton}
               disableRipple
               disableFocusRipple
-              onClick={(e) => {
-                onLikeClick(e, artwork.Id, !isLiked);
-                setLike(!isLiked);
-              }}>
+              onClick={toggleLike}>
                 <FavoriteIcon color={likedColor}/>
             </IconButton>
           </div>
         </div>
       </div>
-      <ShowArtworkModal open={showArtworkModal} setOpen={(v) => setShowArtworkModal(v)}></ShowArtworkModal>
+      <ShowArtworkModal 
+        open={showArtworkModal} 
+        setOpen={(v) => setShowArtworkModal(v)} 
+        artwork={artwork}
+        onLikeClick={onLikeClick} />
     </>
   );
 }
