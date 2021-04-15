@@ -17,6 +17,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
       '\"      .              .      profile     .              .\"       auto' +
       '\"   divider        divider   divider   divider       divider\"       auto' +
       '\"     tabs           tabs      tabs     tabs           tabs\"       1fr' +
+      '\"   divider2       divider2  divider2  divider2      divider2\"       auto' +
+      '\"   portfolio      portfolio portfolio portfolio    portfolio\"       auto' +
       '/ minmax(0, 2fr) minmax(0, 2fr) 2fr minmax(0, 2fr) minmax(0, 2fr)'),
     },
     profileSummary: {
@@ -36,6 +38,12 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     artWorkListItem: {
       height: '300px',
+    },
+    secondDivider: {
+      gridArea: 'divider2'
+    },
+    similarPortfolios: {
+      gridArea: 'portfolio'
     }
   }),
 );

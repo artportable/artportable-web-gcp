@@ -38,6 +38,30 @@ export function useGetUserProfile(user) {
   const { data, error } = useSWR(
     `http://localhost:5001/api/profile/${user}`,
     fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
+export function useGetSimilarPortfolios(user) {
+  if (!user) {
+    return {
+      data: null,
+      isLoading: false,
+      isError: true
+    }
+  }
+
+  const { data, error } = useSWR(
+    `http://localhost:5001/api/profile/${user}/similar`,
+    fetcher,
     { 
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
