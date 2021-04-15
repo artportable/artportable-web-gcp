@@ -1,5 +1,10 @@
 {
   "porfolio": "portfolio",
   "aboutMe": "About me",
-  "socialNetworks": "Social networks"
+  "socialNetworks": "Social networks",
+  "myArtStudio": "My studio",
+  "techniqueTools": "Technique / tools",
+  "inspiredBy": "Inspired by",
+  "education": "Education",
+  "currentExhibitions": "Current exhibitions"
 }
