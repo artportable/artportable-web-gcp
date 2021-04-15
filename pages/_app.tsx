@@ -34,7 +34,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
-  faDribbble
+  faDribbble,
+  faBehanceSquare
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
@@ -55,7 +56,8 @@ library.add(
   faSearch,
   faEye,
   faEyeSlash,
-  faDribbble
+  faDribbble,
+  faBehanceSquare
 );
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next';
 
-export default function EducationCard({ userProfile }) {
+export default function EducationCard({ educations }) {
   const { t } = useTranslation('profile');
 
   return (
@@ -11,7 +11,14 @@ export default function EducationCard({ userProfile }) {
         title={t('education')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <CardContent>Content</CardContent>
+      <CardContent>
+        {educations.map(e =>
+          <div>
+            <p>{e.From} - {e.To}</p>
+            <p>{e.Name}</p>
+            <br/>
+          </div>)}
+      </CardContent>
     </Card>
   );
 }

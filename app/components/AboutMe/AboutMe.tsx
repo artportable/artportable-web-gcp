@@ -15,18 +15,19 @@ import { useTranslation } from 'react-i18next';
 export default function AboutMe({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('profile');
-  console.log(userProfile.data);
 
-  return (
+  const data = userProfile.data;
+
+  return ( // TODO: Handle potential errors
     <Box className={s.container}>
-      <AboutCard userProfile={userProfile}></AboutCard>
+      <AboutCard data={data}></AboutCard>
       <Box className={s.rightCol}>
-        <MyArtStudioCard userProfile={userProfile}></MyArtStudioCard>
+        {data.Studio && <MyArtStudioCard data={data.Studio}></MyArtStudioCard>}
         <TagsCard userProfile={userProfile}></TagsCard>
-        <InspiredByCard userProfile={userProfile}></InspiredByCard>
-        <EducationCard userProfile={userProfile}></EducationCard>
-        <CurrentExhibitionsCard userProfile={userProfile}></CurrentExhibitionsCard>
-        <SocialNetworksCard userProfile={userProfile}></SocialNetworksCard>
+        {data.InspiredBy && <InspiredByCard text={data.InspiredBy}></InspiredByCard>}
+        {data.Educations?.length > 0 && <EducationCard educations={data.Educations}></EducationCard>}
+        {data.Exhibitions?.length > 0 && <CurrentExhibitionsCard exhibitions={data.Exhibitions}></CurrentExhibitionsCard>}
+        {data.SocialMedia && <SocialNetworksCard data={data.SocialMedia}></SocialNetworksCard>}
       </Box>
     </Box>
   );

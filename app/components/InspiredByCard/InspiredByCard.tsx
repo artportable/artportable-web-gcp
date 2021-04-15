@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next';
 
-export default function InspiredByCard({ userProfile }) {
+export default function InspiredByCard({ text }) {
   const { t } = useTranslation('profile');
 
   return (
@@ -11,7 +11,7 @@ export default function InspiredByCard({ userProfile }) {
         title={t('inspiredBy')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <CardContent>Content</CardContent>
+      <CardContent>{text}</CardContent>
     </Card>
   );
 }

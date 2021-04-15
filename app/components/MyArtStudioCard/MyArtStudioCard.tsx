@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next';
 
-export default function MyArtStudioCard({ userProfile }) {
+export default function MyArtStudioCard({ data }) {
   const { t } = useTranslation('profile');
 
   return (
@@ -11,7 +11,10 @@ export default function MyArtStudioCard({ userProfile }) {
         title={t('myArtStudio')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <CardContent>Content</CardContent>
+      <CardContent>
+        <div>{data.Text}</div>
+        <div style={{fontStyle: "italic"}}>{data.Location}</div>
+      </CardContent>
     </Card>
   );
 }
