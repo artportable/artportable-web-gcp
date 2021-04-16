@@ -4,6 +4,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'grid',
+      alignItems: 'start',
       gap: '16px',
       gridTemplate: 
       '\"mainCard   rightCol\" auto' +
