@@ -33,6 +33,11 @@ import {
   faEyeSlash
 } from '@fortawesome/free-solid-svg-icons'
 
+import {
+  faDribbble,
+  faBehanceSquare
+} from '@fortawesome/free-brands-svg-icons'
+
 library.add(
   faHeart,
   faUserCircle,
@@ -50,7 +55,9 @@ library.add(
   faEllipsisV,
   faSearch,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faDribbble,
+  faBehanceSquare
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
