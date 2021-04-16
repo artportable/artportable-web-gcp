@@ -16,7 +16,7 @@ export default function SocialNetworksCard({ data }) {
   const s = styles();
   const { t } = useTranslation('profile');
 
-  const websiteName = data.Website.replace(/(^\w+:|^)\/\//, '').replace(/^www\./, '');
+  const websiteName = data.Website?.replace(/(^\w+:|^)\/\//, '')?.replace(/^www\./, '');
 
   return (
     <Card elevation={2}>

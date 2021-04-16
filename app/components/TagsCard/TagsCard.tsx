@@ -1,8 +1,11 @@
-import { Card, CardContent, CardHeader } from '@material-ui/core'
+import React from 'react';
+import { Box, Card, CardContent, CardHeader, Chip } from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next';
+import { styles } from './tagsCard.css';
 
-export default function TagsCard({ userProfile }) {
+export default function TagsCard({ tags }) {
+  const s = styles();
   const { t } = useTranslation('profile');
 
   return (
@@ -11,7 +14,13 @@ export default function TagsCard({ userProfile }) {
         title={t('techniqueTools')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <CardContent>Content</CardContent>
+      <CardContent>
+        <Box className={s.tagsContainer}>
+          {tags.map(t =>
+            <Chip label={t.Tag} color="primary" size="small"></Chip>
+          )}
+        </Box>
+      </CardContent>
     </Card>
   );
 }
