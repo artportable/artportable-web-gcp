@@ -18,6 +18,7 @@ export default function ArtworkListItem({ artwork, onLikeClick }) {
     event.stopPropagation();
 
     setIsLiked(!isLiked);
+    !isLiked ? artwork.Likes++ : artwork.Likes--;
     onLikeClick(artwork.Id, !isLiked);
   }
 
@@ -42,7 +43,7 @@ export default function ArtworkListItem({ artwork, onLikeClick }) {
         <div className={s.titleAndLike}>
           <div>{artwork.Title}</div>
           <div className={s.likeContainer}>
-            {artwork.Likes}
+            {artwork.Likes > 0 ? artwork.Likes : ''}
             <IconButton
               className={s.likeButton}
               disableRipple
