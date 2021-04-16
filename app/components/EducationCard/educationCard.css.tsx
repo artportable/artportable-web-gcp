@@ -17,7 +17,8 @@ export const styles = makeStyles(() =>
       color: "grey"
     },
     title: {
-      marginTop: "0px"
+      marginTop: "0px",
+      marginLeft: "29px"
     }
   }),
 );
