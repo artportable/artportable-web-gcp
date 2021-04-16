@@ -4,6 +4,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       height: '100%',
+      cursor: 'pointer'
     },
     imageContainer: {
       position: 'relative',

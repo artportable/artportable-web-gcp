@@ -14,33 +14,37 @@ export default function AboutCard({ data }) {
   return (
     <Card elevation={2} className={s.mainCard}>
         <CardContent className={s.mainCardContent}>
-          {data?.ProfilePicture &&
-            <Image
-              src={`${bucketUrl}${data.ProfilePicture}`}
-              height={400}
-              width={300}
-              objectFit="cover">
-            </Image>
-          }
-          <Box>
+          <div>
+            {data?.ProfilePicture &&
+              <Image
+                src={`${bucketUrl}${data.ProfilePicture}`}
+                height={400}
+                width={300}
+                objectFit="cover">
+              </Image>
+            }
+          </div>
+          <Box maxWidth='70%'>
             <Typography variant="h4">
               <Box fontWeight="500" fontFamily="LyonDisplay">
                 {`${data.Name} ${data.Surname}`}
               </Box>
             </Typography>
             <Typography>
-              <Box fontWeight="500" fontFamily="LyonDisplay">
+              <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={1}>
                 {`${data.Title}`}
               </Box>
             </Typography>
             <Typography>
-              <Box fontWeight="500" fontFamily="LyonDisplay">
-              <RoomIcon color="secondary"></RoomIcon>
+              <Box className={s.location}>
+                <RoomIcon color="secondary" fontSize="small"></RoomIcon>
                 {`${data.Location}`}
               </Box>
             </Typography>
             <Box paddingTop={1}>
-              {data.About}
+              <Typography variant="body1">
+                {data.About}
+              </Typography>
             </Box>
           </Box>
         </CardContent>
