@@ -2,13 +2,19 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    dialogPaper: {
+      overflow: 'visible',
+      margin: theme.spacing(10, 4)
+    },
     modalHeader: {
       position: 'absolute',
       width: '100%',
       top: theme.spacing(-9),
+      left: theme.spacing(0)
     },
     modalContainer: {
       position: 'relative',
+      overflow: 'visible',
       '&:focus': {
         outline: 'none'
       },
@@ -17,7 +23,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     rightActions: {
       position: 'absolute',
-      right: theme.spacing(-6)
+      right: theme.spacing(-6),
     },
     colorWhite: {
       color: theme.palette.common.white
@@ -34,7 +40,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     imageContainer: {
       position: 'relative',
-      maxWidth: '100%'
+      maxWidth: '100%',
+      borderRadius: theme.spacing(1),
+      overflow: 'hidden'
     }
   }),
 );
