@@ -15,6 +15,7 @@ import { useGetSimilarPortfolios, useGetUserProfile, useGetUserProfileSummary } 
 import { useState } from 'react'
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../app/hooks/dataFetching/useGetProfileUser'
+import { useStore } from 'react-redux'
 import SimilarPortfoliosSection from '../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
 
 function a11yProps(index: any) {
@@ -27,6 +28,7 @@ function a11yProps(index: any) {
 export default function Profile() {
   const { t } = useTranslation(['common', 'profile']);
   const s = profileStyles();
+  const store = useStore();
 
   const [activeTab, setActiveTab] = useState(0);
 
@@ -36,6 +38,22 @@ export default function Profile() {
   const userProfile = useGetUserProfile(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const myUsername = store.getState()?.user?.username;
+
+  function onLikeClick(artworkId, isLike) {
+    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${myUsername}`, {
+      method: isLike ? 'POST' : 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
 
   function handleTabChange(_, newValue) {
     setActiveTab(newValue);
@@ -73,7 +91,7 @@ export default function Profile() {
                   {!artworks.isLoading && !artworks.isError && artworks.data &&
                     artworks.data?.map(artwork =>
                       <div key={artwork.Id} className={s.artWorkListItem}>
-                        <ArtworkListItem artwork={artwork} isLikedByMe={true} />
+                        <ArtworkListItem artwork={artwork} onLikeClick={onLikeClick} />
                       </div>
                     )
                   }
