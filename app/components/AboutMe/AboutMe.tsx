@@ -12,7 +12,7 @@ import { styles } from './aboutMe.css'
 import { useTranslation } from 'react-i18next';
 
 
-export default function AboutMe({ userProfile }) {
+export default function AboutMe({ userProfile, tags }) {
   const s = styles();
   const { t } = useTranslation('profile');
 
@@ -23,7 +23,7 @@ export default function AboutMe({ userProfile }) {
       <AboutCard data={data}></AboutCard>
       <Box className={s.rightCol}>
         {data.Studio && <MyArtStudioCard data={data.Studio}></MyArtStudioCard>}
-        <TagsCard userProfile={userProfile}></TagsCard>
+        {tags?.length > 0 && <TagsCard tags={tags}></TagsCard>}
         {data.InspiredBy && <InspiredByCard text={data.InspiredBy}></InspiredByCard>}
         {data.Educations?.length > 0 && <EducationCard educations={data.Educations}></EducationCard>}
         {data.Exhibitions?.length > 0 && <CurrentExhibitionsCard exhibitions={data.Exhibitions}></CurrentExhibitionsCard>}

@@ -49,3 +49,27 @@ export function useGetUserProfile(user) {
     isError: error
   }
 }
+
+export function useGetUserProfileTags(user) {
+  if (!user) {
+    return {
+      data: null,
+      isLoading: false,
+      isError: true
+    }
+  }
+
+  const { data, error } = useSWR(
+    `http://localhost:5001/api/profile/${user}/tags`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}

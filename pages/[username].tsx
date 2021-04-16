@@ -11,7 +11,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../styles/[username]'
 import { useGetArtworks } from '../app/hooks/dataFetching/Artworks'
-import { useGetUserProfile, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
+import { useGetUserProfile, useGetUserProfileSummary, useGetUserProfileTags } from '../app/hooks/dataFetching/UserProfile'
 import { useState } from 'react'
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../app/hooks/dataFetching/useGetProfileUser'
@@ -33,6 +33,7 @@ export default function Profile() {
   const artworks = useGetArtworks(profileUser);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const userProfile = useGetUserProfile(profileUser);
+  const tags = useGetUserProfileTags(profileUser);
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   function handleTabChange(_, newValue) {
@@ -79,7 +80,7 @@ export default function Profile() {
                 </div>
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <AboutMe userProfile={userProfile}></AboutMe>
+                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
               </TabPanel>
             </Box>
           </div>
