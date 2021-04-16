@@ -11,10 +11,11 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../styles/[username]'
 import { useGetArtworks } from '../app/hooks/dataFetching/Artworks'
-import { useGetUserProfile, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
+import { useGetSimilarPortfolios, useGetUserProfile, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
 import { useState } from 'react'
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../app/hooks/dataFetching/useGetProfileUser'
+import SimilarPortfoliosSection from '../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
 
 function a11yProps(index: any) {
   return {
@@ -33,6 +34,7 @@ export default function Profile() {
   const artworks = useGetArtworks(profileUser);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const userProfile = useGetUserProfile(profileUser);
+  const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   function handleTabChange(_, newValue) {
@@ -83,6 +85,12 @@ export default function Profile() {
               </TabPanel>
             </Box>
           </div>
+          {similarPortfolios?.data && !similarPortfolios?.isError && <>
+            <Divider className={s.secondDivider}></Divider>
+            <div className={s.similarPortfolios}>
+              <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
+            </div>
+          </>}
         </div>
       </Main>
     </>
