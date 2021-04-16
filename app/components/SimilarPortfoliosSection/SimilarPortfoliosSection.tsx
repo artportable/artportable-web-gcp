@@ -10,7 +10,7 @@ export default function SimilarPortfoliosSection({ portfolios }) {
 
   return (
     <>
-      <Typography variant="h5" component="h1">
+      <Typography variant="h4" component="h1">
         <Box fontWeight="medium" marginBottom={3}>
           {t('similarPortfolios')}
         </Box>

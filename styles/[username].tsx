@@ -43,7 +43,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gridArea: 'divider2'
     },
     similarPortfolios: {
-      gridArea: 'portfolio'
+      gridArea: 'portfolio',
+      marginBottom: '100px'
     }
   }),
 );
