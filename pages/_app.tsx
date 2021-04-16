@@ -30,7 +30,8 @@ import {
   faEllipsisV,
   faSearch,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faGraduationCap
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -57,7 +58,8 @@ library.add(
   faEye,
   faEyeSlash,
   faDribbble,
-  faBehanceSquare
+  faBehanceSquare,
+  faGraduationCap
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
