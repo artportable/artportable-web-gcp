@@ -34,7 +34,7 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
                 ) : (
                   suggestedUsers.length !== 0 ?
                     (suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
-                      <FollowSuggestion user={user} onFollowClick={onFollowClick}></FollowSuggestion>
+                      <FollowSuggestion key={user.Username} user={user} onFollowClick={onFollowClick}></FollowSuggestion>
                     )) : (
                       <p className={s.nothing}>{t('noRecommendedUsers')}</p>
                     )
