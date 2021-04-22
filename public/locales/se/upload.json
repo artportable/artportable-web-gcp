@@ -3,5 +3,6 @@
   "description": "Beskrivning",
   "price": "Pris",
   "tags": "Taggar",
-  "upload": "Ladda upp"
+  "upload": "Ladda upp",
+  "dragandDropOrClick": "Dra och släpp en bild här eller klicka"
 }

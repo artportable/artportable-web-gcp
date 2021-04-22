@@ -17,6 +17,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.1",
+    "material-ui-dropzone": "^3.5.0",
     "next": "10.0.8",
     "next-i18next": "^8.1.1",
     "react": "17.0.1",

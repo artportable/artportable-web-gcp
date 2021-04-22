@@ -3,5 +3,6 @@
   "description": "Description",
   "price": "Price",
   "tags": "Tags",
-  "upload": "Upload"
+  "upload": "Upload",
+  "dragandDropOrClick": "Drag and drop an image here or click"
 }

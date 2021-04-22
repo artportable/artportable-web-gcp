@@ -4,6 +4,7 @@ import Main from '../app/components/Main/Main'
 import UploadForm from '../app/components/UploadForm/UploadForm';
 import { useGetTags, usePostArtwork } from '../app/hooks/dataFetching/Artworks';
 import styles from '../styles/upload.css'
+import { DropzoneArea } from 'material-ui-dropzone'
 import Button from '../app/components/Button/Button';
 import { useTranslation } from 'next-i18next';
 import { Artwork } from '../app/models/Artwork';
@@ -39,7 +40,13 @@ export default function UploadArtworkPage() {
     <Main>
       <div className={s.mainGrid}>
         <div className={s.uploadBox}>
-          <div>Drag your files here</div>
+          <DropzoneArea
+            classes={{root: s.dropzone}}
+            acceptedFiles={['image/*']}
+            dropzoneText={t('dragandDropOrClick')}
+            onChange={(files) => console.log('Files:', files)}
+            showPreviews={true}
+            showPreviewsInDropzone={false}/>
         </div>
         <div className={s.previewsContainer}>previews</div>
         <div className={s.form}>
@@ -73,8 +80,7 @@ export default function UploadArtworkPage() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      isSignUp: true,
-      ...await serverSideTranslations(locale, ['upload']),
+      ...await serverSideTranslations(locale, ['header', 'upload']),
     }
   };
 }
