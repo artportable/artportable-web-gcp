@@ -57,31 +57,10 @@ export async function getStaticProps({context, locale}) {
     }
   ];
 
-  try {
-    const res = await fetch(`http://localhost:5001/api/images`);
-    const data = await res?.json()
-
-    // If no data, show a 404 page instead
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-
-    return {
-      props: {
-        data,
-        carouselNavOptions,
-        ...await serverSideTranslations(locale, ['header']),
-      },
-    }
-  } catch(e) {
-    console.log('Something went wrong!');
-    return { 
-      props: {
-        carouselNavOptions,
-        ...await serverSideTranslations(locale, ['header']),
-      } 
-    };
+  return {
+    props: {
+      carouselNavOptions,
+      ...await serverSideTranslations(locale, ['header']),
+    },
   }
 }
