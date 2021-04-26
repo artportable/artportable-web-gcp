@@ -6,14 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { InputAdornment, TextField, Typography } from '@material-ui/core';
 import TagChip from '../TagChip/TagChip';
 
-export default function UploadForm({ tags }) {
+export default function UploadForm({ setTitle, setDescription, setPrice, setSelectedTags, selectedTags, tags }) {
   const s = styles();
   const { t } = useTranslation('upload');
-
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [price, setPrice] = useState(0);
 
   const onChipClick = (title: string, isSelected: boolean) => {
     if (!isSelected) // Remove tag

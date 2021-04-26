@@ -26,6 +26,10 @@ const styles = makeStyles((theme: Theme) =>
     },
     form: {
       gridArea: 'form'
+    },
+    uploadButton: {
+      width: '100%',
+      marginTop: '20px'
     }
   }),
 );
