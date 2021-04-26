@@ -16,3 +16,19 @@ export function useGetArtworks(owner) {
     isError: error
   }
 }
+
+export function useGetTags() {
+  const { data, error } = useSWR(
+    `http://localhost:5001/api/artworks/tags`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
