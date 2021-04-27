@@ -91,7 +91,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
             </Box>
             <div className={s.imageContainer}>
               <Image 
-                src={`${bucketUrl}${artwork.PrimaryFile}`}
+                src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
                 width={1000}
                 height={770}
                 objectFit="contain"></Image>
@@ -109,7 +109,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
             {artwork.SecondaryFile && 
               <div className={s.imageContainer}>
                 <Image
-                  src={`${bucketUrl}${artwork.SecondaryFile}`}
+                  src={`${bucketUrl}${artwork.SecondaryFile.Name}`}
                   width={1000}
                   height={770}
                   objectFit="contain"></Image>
@@ -118,7 +118,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
             {artwork.TertiaryFile &&
               <div className={s.imageContainer}>
                 <Image 
-                  src={`${bucketUrl}${artwork.TertiaryFile}`}
+                  src={`${bucketUrl}${artwork.TertiaryFile.Name}`}
                   width={1000}
                   height={770}
                   objectFit="contain"></Image>

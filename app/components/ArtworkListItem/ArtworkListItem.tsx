@@ -37,7 +37,7 @@ export default function ArtworkListItem({ artwork, onLikeClick }) {
         <div className={s.imageContainer}>
           <img
             key={artwork?.PrimaryFile}
-            src={`${bucketUrl}${artwork.PrimaryFile}`}
+            src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
           />
         </div>
         <div className={s.titleAndLike}>
