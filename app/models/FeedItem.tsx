@@ -11,9 +11,15 @@ export interface FeedItem {
 
 interface Item {
   Id: string,
-  PrimaryFile: string,
-  SecondaryFile: string,
-  TertiaryFile: string
+  PrimaryFile: File,
+  SecondaryFile: File,
+  TertiaryFile: File
+}
+
+interface File {
+  Name: string,
+  Width: number,
+  Height: number
 }
 
 export enum FeedItemType {
