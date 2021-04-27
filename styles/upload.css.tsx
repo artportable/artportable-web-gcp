@@ -15,11 +15,15 @@ const styles = makeStyles((theme: Theme) =>
     },
     uploadBox: {
       gridArea: 'upload',
-      display: 'grid',
+      display: 'flex',
+      alignItems: 'stretch',
+      borderRadius: '6px',
+      fontFamily: 'GT-America-Standard' 
+    },
+    dropzone: {
+      display: 'flex',
       alignItems: 'center',
-      justifyItems: 'center',
-      border: '6px dashed ' + grey[500],
-      borderRadius: '6px'
+      justifyContent: 'center',
     },
     previewsContainer: {
       gridArea: 'previews'
