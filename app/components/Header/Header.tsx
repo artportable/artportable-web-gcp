@@ -5,9 +5,10 @@ import IconButton from '@material-ui/core/IconButton'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
+import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
 
 export default function Header({ isSignUp, isSignedIn }) {
@@ -105,8 +106,7 @@ export default function Header({ isSignUp, isSignedIn }) {
           </div>
         }
         <div className={s.language}>
-          Swe
-          <FontAwesomeIcon icon="chevron-down" />
+          <I18nSelector></I18nSelector>
         </div>
       </div>
     </AppBar>
