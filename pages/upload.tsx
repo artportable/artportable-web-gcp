@@ -46,7 +46,9 @@ export default function UploadArtworkPage() {
             dropzoneText={t('dragandDropOrClick')}
             onChange={(files) => console.log('Files:', files)}
             showPreviews={true}
-            showPreviewsInDropzone={false}/>
+            showPreviewsInDropzone={false}
+            filesLimit={3}
+            maxFileSize={2000000000} />
         </div>
         <div className={s.previewsContainer}>previews</div>
         <div className={s.form}>
