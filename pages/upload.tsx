@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Main from '../app/components/Main/Main'
 import UploadForm from '../app/components/UploadForm/UploadForm';
 import { useGetTags, usePostArtwork } from '../app/hooks/dataFetching/Artworks';
 import styles from '../styles/upload.css'
 import { DropzoneArea } from 'material-ui-dropzone'
-import Button from '../app/components/Button/Button';
+import ArtButton from '../app/components/Button/Button';
 import { useTranslation } from 'next-i18next';
 import { Artwork } from '../app/models/Artwork';
 import { useStore } from 'react-redux';
 import { Cropper } from 'react-cropper';
 import clsx from 'clsx';
 import "cropperjs/dist/cropper.css";
+import { Button, ButtonGroup, IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DoneIcon from '@material-ui/icons/Done';
 
 
 export default function UploadArtworkPage() {
@@ -26,9 +29,15 @@ export default function UploadArtworkPage() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
-  const [cropper, setCropper] = useState<any>();
+  // const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
   const [cropperActive, setCropperActive] = useState(false);
+  const [aspectRatio, setAspectRatio] = useState("4:3");
+
+  //Cropped images
+  const [croppedPrimary, setCroppedPrimary] = useState(null);
+  
+  const cropperRef = useRef(null);
 
   const uploadArtwork = () => {
     const artwork: Artwork = {
@@ -43,26 +52,53 @@ export default function UploadArtworkPage() {
     const res = usePostArtwork(artwork, username);
   }
 
-  // const cropperRef = useRef<HTMLImageElement>(null);
-  // const onCrop = () => {
-  //   const imageElement: any = cropperRef?.current;
-  //   const cropper: any = imageElement?.cropper;
-  //   console.log(cropper.getCroppedCanvas().toDataURL());
-  // };
-
   const onFilesChanged = (files) => {
     if(files.length === 0) { return; }
 
-    //const imgElement = document.getElementById("testimg") as HTMLImageElement;
     const url = URL.createObjectURL(files[0]);
-    //imgElement.src = url;
     setCropperImageUrl(url);
     setCropperActive(true);
   }
 
   const onCropperInitialized = (cropperInstance) => {
-    console.log("Initialized cropper");
-    setCropper(cropperInstance);
+    cropperRef.current = cropperInstance;
+    changeAspectRatio(aspectRatio);
+  }
+
+  const getButtonVariant: (btnAspectRatio: string) => "contained" | null
+    = (buttonAspectRatio: string) => aspectRatio === buttonAspectRatio ? "contained" : null;
+
+  const changeAspectRatio = (ratio: string, update: boolean = false) => {
+    const numbers: unknown[] = ratio.split(":");
+    const numberRatio: number = (numbers[0] as number) / (numbers[1] as number);
+    setAspectRatio(ratio);
+
+    cropperRef.current.options.aspectRatio = numberRatio;
+
+    if(update) {
+      wiggleCropper();
+    }
+  }
+
+  const wiggleCropper = () => {
+    if(!cropperActive) { return; }
+    const data = cropperRef.current.getData();
+    data.width++;
+    cropperRef.current.setData(data);
+    data.width--;
+    cropperRef.current.setData(data);
+  }
+
+  const cropSaveAndUploadImage = () => {
+    setCroppedPrimary(cropperRef.current.getCroppedCanvas().toDataURL());
+
+    //UPLOAD TO BUCKET HERE
+  }
+
+  const discardImageInCropper = () => {
+    setCroppedPrimary(cropperRef.current.getCroppedCanvas().toDataURL());
+
+    //UPLOAD TO BUCKET HERE
   }
 
   return (
@@ -85,26 +121,40 @@ export default function UploadArtworkPage() {
             src={cropperImageUrl}
             onInitialized={onCropperInitialized}
             style={{ height: '100%', width: '100%' }}
-            // // Cropper.js options
-            initialAspectRatio={16 / 9}
+            initialAspectRatio={4/3}
             preview={`.${s.cropperPreview}`}
-            // guides={false}
-            // crop={onCrop}
-            // ref={cropperRef}
           />
         </div>
 
         <div className={s.cropperOptions}>
-          <Button            
-            color="primary"
-            variant="contained"
-            disableElevation
-            rounded>
-              Options
+          <ButtonGroup disableElevation variant="outlined" color="primary">
+            <Button 
+              variant={getButtonVariant("16:9")} 
+              onClick={() => changeAspectRatio("16:9", true)}>
+              16:9
             </Button>
+            <Button 
+              variant={getButtonVariant("4:3")} 
+              onClick={() => changeAspectRatio("4:3", true)}>
+              4:3
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup disableElevation variant="contained" color="primary">
+            <Button
+              classes={{ startIcon: s.startIcon, root: s.deletIconButton }}
+              startIcon={<DeleteIcon />}
+              onClick={discardImageInCropper}>
+            </Button>
+            <Button 
+              classes={{ startIcon: s.startIcon }}
+              startIcon={<DoneIcon />}
+              onClick={cropSaveAndUploadImage}>
+            </Button>
+          </ButtonGroup>
         </div>
 
         <div className={s.previewsContainer}>
+          <div>{croppedPrimary && <img width="200px" height="200px" src={croppedPrimary} />}</div>
           <div className={s.cropperPreview}></div>
         </div>
         <div className={s.form}>
@@ -120,7 +170,7 @@ export default function UploadArtworkPage() {
               tags={tags.data}
             ></UploadForm>
           }
-          <Button
+          <ArtButton
             color="primary"
             variant="contained"
             className={s.uploadButton}
@@ -128,7 +178,7 @@ export default function UploadArtworkPage() {
             rounded
             onClick={uploadArtwork}>
               {t('upload')}
-          </Button>
+          </ArtButton>
         </div>
       </div>
     </Main>

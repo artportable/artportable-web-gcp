@@ -50,12 +50,23 @@ const styles = makeStyles((theme: Theme) =>
     },
     cropperOptions: {
       gridArea: 'options',
+      display: 'flex',
+      justifyContent: 'space-between'
     },
     cropperPreview: {
       height: '100%',
       maxWidth: '400px',
       overflow: 'hidden',
     },
+    startIcon: {
+      margin: theme.spacing(0.25, 0),
+    },
+    deletIconButton: {
+      backgroundColor: theme.palette.error.main,
+      '&:hover': {
+        backgroundColor: theme.palette.error.light,
+      }
+    }
   }),
 );
 
