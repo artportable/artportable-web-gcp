@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Main from '../app/components/Main/Main'
 import UploadForm from '../app/components/UploadForm/UploadForm';
@@ -10,6 +10,9 @@ import { useTranslation } from 'next-i18next';
 import { Artwork } from '../app/models/Artwork';
 import { useStore } from 'react-redux';
 import { Cropper } from 'react-cropper';
+import clsx from 'clsx';
+import "cropperjs/dist/cropper.css";
+
 
 export default function UploadArtworkPage() {
   const s = styles();
@@ -23,6 +26,9 @@ export default function UploadArtworkPage() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [cropper, setCropper] = useState<any>();
+  const [cropperImageUrl, setCropperImageUrl] = useState<any>();
+  const [cropperActive, setCropperActive] = useState(false);
 
   const uploadArtwork = () => {
     const artwork: Artwork = {
@@ -44,30 +50,62 @@ export default function UploadArtworkPage() {
   //   console.log(cropper.getCroppedCanvas().toDataURL());
   // };
 
+  const onFilesChanged = (files) => {
+    if(files.length === 0) { return; }
+
+    //const imgElement = document.getElementById("testimg") as HTMLImageElement;
+    const url = URL.createObjectURL(files[0]);
+    //imgElement.src = url;
+    setCropperImageUrl(url);
+    setCropperActive(true);
+  }
+
+  const onCropperInitialized = (cropperInstance) => {
+    console.log("Initialized cropper");
+    setCropper(cropperInstance);
+  }
+
   return (
     <Main>
       <div className={s.mainGrid}>
-        <div className={s.uploadBox}>
+        <div className={clsx(s.uploadBox, cropperActive && s.hide )}>
           <DropzoneArea
             classes={{root: s.dropzone}}
             acceptedFiles={['image/*']}
             dropzoneText={t('dragandDropOrClick')}
-            onChange={(files) => console.log('Files:', files)}
-            showPreviews={true}
+            onChange={onFilesChanged}
+            onDrop={(files) => console.log('File added:', files)}
+            showPreviews={false}
             showPreviewsInDropzone={false}
             filesLimit={3}
             maxFileSize={2000000000} />
         </div>
-        <div className={s.previewsContainer}>
+        <div className={s.cropperBox}>
           <Cropper
-            src="https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg"
-            style={{ height: 100, width: 100 }}
+            src={cropperImageUrl}
+            onInitialized={onCropperInitialized}
+            style={{ height: '100%', width: '100%' }}
             // // Cropper.js options
-            // initialAspectRatio={16 / 9}
+            initialAspectRatio={16 / 9}
+            preview={`.${s.cropperPreview}`}
             // guides={false}
             // crop={onCrop}
             // ref={cropperRef}
           />
+        </div>
+
+        <div className={s.cropperOptions}>
+          <Button            
+            color="primary"
+            variant="contained"
+            disableElevation
+            rounded>
+              Options
+            </Button>
+        </div>
+
+        <div className={s.previewsContainer}>
+          <div className={s.cropperPreview}></div>
         </div>
         <div className={s.form}>
           {tags.isLoading && <div>loading...</div>}
