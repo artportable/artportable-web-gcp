@@ -36,6 +36,8 @@ export default function UploadArtworkPage() {
 
   //Cropped images
   const [croppedPrimary, setCroppedPrimary] = useState(null);
+  const [croppedSecondary, setCroppedSecondary] = useState(null);
+  const [croppedTertiary, setCroppedTertiary] = useState(null);
   
   const cropperRef = useRef(null);
 
@@ -55,13 +57,16 @@ export default function UploadArtworkPage() {
   const onFilesChanged = (files) => {
     if(files.length === 0) { return; }
 
-    const url = URL.createObjectURL(files[0]);
+
+    const url = URL.createObjectURL(files[files.length - 1]);
+    cropperRef.current.replace(url);
     setCropperImageUrl(url);
     setCropperActive(true);
   }
 
   const onCropperInitialized = (cropperInstance) => {
     cropperRef.current = cropperInstance;
+    cropperRef.current.setDragMode('move');
     changeAspectRatio(aspectRatio);
   }
 
@@ -90,21 +95,30 @@ export default function UploadArtworkPage() {
   }
 
   const cropSaveAndUploadImage = () => {
-    setCroppedPrimary(cropperRef.current.getCroppedCanvas().toDataURL());
+    if(croppedPrimary === null) {
+      setCroppedPrimary(cropperRef.current.getCroppedCanvas().toDataURL());
+    } else if (croppedSecondary === null) {
+      setCroppedSecondary(cropperRef.current.getCroppedCanvas().toDataURL());
+    } else if (croppedTertiary === null) {
+      setCroppedTertiary(cropperRef.current.getCroppedCanvas().toDataURL());
+
+      //Go to preview and and upload artwork mode
+    }
+
+    setCropperActive(false);
+
 
     //UPLOAD TO BUCKET HERE
   }
 
   const discardImageInCropper = () => {
-    setCroppedPrimary(cropperRef.current.getCroppedCanvas().toDataURL());
-
-    //UPLOAD TO BUCKET HERE
+    //Go back to uploader
   }
 
   return (
     <Main>
       <div className={s.mainGrid}>
-        <div className={clsx(s.uploadBox, cropperActive && s.hide )}>
+        <div className={clsx(s.uploadBox, cropperActive && s.hide)}>
           <DropzoneArea
             classes={{root: s.dropzone}}
             acceptedFiles={['image/*']}
@@ -116,15 +130,18 @@ export default function UploadArtworkPage() {
             filesLimit={3}
             maxFileSize={2000000000} />
         </div>
+        {/* {cropperActive && */}
+
         <div className={s.cropperBox}>
           <Cropper
+            className={clsx(s.cropper, !cropperActive && s.hide)}
             src={cropperImageUrl}
             onInitialized={onCropperInitialized}
-            style={{ height: '100%', width: '100%' }}
             initialAspectRatio={4/3}
             preview={`.${s.cropperPreview}`}
           />
         </div>
+        {/* } */}
 
         <div className={s.cropperOptions}>
           <ButtonGroup disableElevation variant="outlined" color="primary">
@@ -154,8 +171,24 @@ export default function UploadArtworkPage() {
         </div>
 
         <div className={s.previewsContainer}>
-          <div>{croppedPrimary && <img width="200px" height="200px" src={croppedPrimary} />}</div>
+        {croppedPrimary && 
+        <div style={{ height: "100%", display: 'flex', alignItems: 'center' }}>
+          <img style={{ width: "100%" }} object-fit="scale-down" src={croppedPrimary} />
+        </div>
+        }
+        {croppedSecondary && 
+        <div style={{ height: "100%", display: 'flex', alignItems: 'center' }}>
+          <img style={{ width: "100%" }} object-fit="scale-down" src={croppedSecondary} />
+        </div>
+        }
+        {croppedTertiary && 
+        <div style={{ height: "100%", display: 'flex', alignItems: 'center' }}>
+          <img style={{ width: "100%" }} object-fit="scale-down" src={croppedTertiary} />
+        </div>
+        }
+        {!croppedTertiary && cropperActive &&
           <div className={s.cropperPreview}></div>
+        }
         </div>
         <div className={s.form}>
           {tags.isLoading && <div>loading...</div>}

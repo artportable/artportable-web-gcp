@@ -11,23 +11,25 @@ const styles = makeStyles((theme: Theme) =>
       gridTemplate: (
       '\"upload   form\" minmax(0, 2fr)' +
       '\"options   form\" auto' +
-      '\"previews form\" 1fr' +
+      '\"previews form\" minmax(0, 1fr)' +
       '/  3fr      1fr'),
       alignItems: 'stretch'
     },
     uploadBox: {
       gridArea: 'upload',
       display: 'flex',
-      alignItems: 'stretch',
       borderRadius: '6px',
       fontFamily: 'GT-America-Standard' 
     },
     cropperBox: {
       gridArea: 'upload',
       display: 'flex',
-      alignItems: 'stretch',
       borderRadius: '6px',
       fontFamily: 'GT-America-Standard' 
+    },
+    cropper: {
+      width: '100%',
+      height: '100%',
     },
     dropzone: {
       display: 'flex',
@@ -37,6 +39,11 @@ const styles = makeStyles((theme: Theme) =>
     previewsContainer: {
       gridArea: 'previews',
       position: 'relative',
+      display: 'grid',
+      gridAutoFlow: 'column',
+      gridTemplate: "1fr / repeat(3, minmax(0, 1fr))",
+      gap: theme.spacing(2),
+      paddingBottom: theme.spacing(4),
     },
     form: {
       gridArea: 'form'
@@ -56,6 +63,8 @@ const styles = makeStyles((theme: Theme) =>
     cropperPreview: {
       height: '100%',
       maxWidth: '400px',
+      minWidth: '100%',
+      minHeight: '100%',
       overflow: 'hidden',
     },
     startIcon: {
