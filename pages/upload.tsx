@@ -33,8 +33,11 @@ export default function UploadArtworkPage() {
 
   //Cropped images
   const [croppedPrimary, setCroppedPrimary] = useState(null);
+  const [namePrimary, setNamePrimary] = useState(null);
   const [croppedSecondary, setCroppedSecondary] = useState(null);
+  const [nameSecondary, setNameSecondary] = useState(null);
   const [croppedTertiary, setCroppedTertiary] = useState(null);
+  const [nameTertiary, setNameTertiary] = useState(null);
   
   const cropperRef = useRef(null);
 
@@ -50,10 +53,11 @@ export default function UploadArtworkPage() {
       Description: description,
       Price: price,
       Tags: selectedTags,
-      PrimaryFile: "enekorre.jpg",
-      SecondaryFile: null,
-      TertiaryFile: null
+      PrimaryFile: namePrimary,
+      SecondaryFile: nameSecondary,
+      TertiaryFile: nameTertiary
     }
+
     const res = usePostArtwork(artwork, username);
   }
 
@@ -71,24 +75,55 @@ export default function UploadArtworkPage() {
 
 
   const onCrop = () => {
-    if(croppedPrimary === null) {
-      setCroppedPrimary(cropper.getCroppedCanvas().toDataURL());
-    } else if (croppedSecondary === null) {
-      setCroppedSecondary(cropper.getCroppedCanvas().toDataURL());
-    } else if (croppedTertiary === null) {
-      setCroppedTertiary(cropper.getCroppedCanvas().toDataURL());
+    // Upload image and set image name
+    const width = Math.round(cropper.getData().width);
+    const height = Math.round(cropper.getData().height);
+    cropper.getCroppedCanvas().toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
-      //Go to preview and and upload artwork mode
+    // Show preview
+    const dataUrl = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+    if(croppedPrimary === null) {
+      setCroppedPrimary(dataUrl);
+    } else if (croppedSecondary === null) {
+      setCroppedSecondary(dataUrl);
+    } else if (croppedTertiary === null) {
+      setCroppedTertiary(dataUrl);
     }
 
     setCropperActive(false);
-
-
-    //UPLOAD TO BUCKET HERE
   }
 
   const onDiscard = () => {
     setCropperActive(false);
+  }
+
+  const uploadImage = (blob, width: number, height: number) => {
+    fetch(`http://localhost:5001/api/images?w=${width}&h=${height}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'image/jpeg'
+      },
+      body: blob
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+      return response.text();
+    })
+    .then((name) => {
+      if (namePrimary == null) {
+        setNamePrimary(name);
+      } else if (nameSecondary == null) {
+        setNameSecondary(name);
+      } else if (nameTertiary == null) {
+        setNameTertiary(name);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   return (
