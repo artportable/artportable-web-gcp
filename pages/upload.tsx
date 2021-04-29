@@ -11,10 +11,8 @@ import { Artwork } from '../app/models/Artwork';
 import { useStore } from 'react-redux';
 import { Cropper } from 'react-cropper';
 import clsx from 'clsx';
+import CropperOptions from '../app/components/CropperOptions/CropperOptions';
 import "cropperjs/dist/cropper.css";
-import { Button, ButtonGroup, IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import DoneIcon from '@material-ui/icons/Done';
 
 
 export default function UploadArtworkPage() {
@@ -32,7 +30,6 @@ export default function UploadArtworkPage() {
   const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
   const [cropperActive, setCropperActive] = useState(false);
-  const [aspectRatio, setAspectRatio] = useState("free");
 
   //Cropped images
   const [croppedPrimary, setCroppedPrimary] = useState(null);
@@ -72,23 +69,8 @@ export default function UploadArtworkPage() {
     setCropper(cropperInstance);
   }
 
-  const getButtonVariant: (btnAspectRatio: string) => "contained" | null
-    = (buttonAspectRatio: string) => aspectRatio === buttonAspectRatio ? "contained" : null;
 
-  const changeAspectRatio = (ratio: string, update: boolean = false) => {
-    if(ratio !== "free") {
-      const numbers: unknown[] = ratio.split(":");
-      const numberRatio: number = (numbers[0] as number) / (numbers[1] as number);
-      cropper.setAspectRatio(numberRatio);
-    } else {
-      cropper.setAspectRatio();
-    }
-    
-    setAspectRatio(ratio);
-  }
-
-
-  const cropSaveAndUploadImage = () => {
+  const onCrop = () => {
     if(croppedPrimary === null) {
       setCroppedPrimary(cropper.getCroppedCanvas().toDataURL());
     } else if (croppedSecondary === null) {
@@ -105,7 +87,7 @@ export default function UploadArtworkPage() {
     //UPLOAD TO BUCKET HERE
   }
 
-  const discardImageInCropper = () => {
+  const onDiscard = () => {
     setCropperActive(false);
   }
 
@@ -137,37 +119,9 @@ export default function UploadArtworkPage() {
           />
         </div>
 
-        <div className={s.cropperOptions}>
-          <ButtonGroup disableElevation variant="outlined" color="primary">
-            <Button 
-              variant={getButtonVariant("16:9")} 
-              onClick={() => changeAspectRatio("16:9", true)}>
-              16:9
-            </Button>
-            <Button 
-              variant={getButtonVariant("4:3")} 
-              onClick={() => changeAspectRatio("4:3", true)}>
-              4:3
-            </Button>
-            <Button 
-              variant={getButtonVariant("free")} 
-              onClick={() => changeAspectRatio("free", true)}>
-              Free
-            </Button>
-          </ButtonGroup>
-          <ButtonGroup disableElevation variant="contained" color="primary">
-            <Button
-              classes={{ startIcon: s.startIcon, root: s.deletIconButton }}
-              startIcon={<DeleteIcon />}
-              onClick={discardImageInCropper}>
-            </Button>
-            <Button 
-              classes={{ startIcon: s.startIcon }}
-              startIcon={<DoneIcon />}
-              onClick={cropSaveAndUploadImage}>
-            </Button>
-          </ButtonGroup>
-        </div>
+        {cropperActive &&
+          <CropperOptions cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
+        }
 
         <div className={s.previewsContainer}>
         {croppedPrimary && 

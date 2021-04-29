@@ -55,26 +55,12 @@ const styles = makeStyles((theme: Theme) =>
     hide: {
       display: 'none',
     },
-    cropperOptions: {
-      gridArea: 'options',
-      display: 'flex',
-      justifyContent: 'space-between'
-    },
     cropperPreview: {
       height: '100%',
       maxWidth: '400px',
       minWidth: '100%',
       minHeight: '100%',
       overflow: 'hidden',
-    },
-    startIcon: {
-      margin: theme.spacing(0.25, 0),
-    },
-    deletIconButton: {
-      backgroundColor: theme.palette.error.main,
-      '&:hover': {
-        backgroundColor: theme.palette.error.light,
-      }
     }
   }),
 );
