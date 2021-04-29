@@ -3,9 +3,11 @@ import { Chip } from '@material-ui/core'
 import { LocalOffer } from '@material-ui/icons';
 
 import { styles } from './tagChip.css';
+import { useTranslation } from 'next-i18next';
 
 export default function TagChip({title, onChipClick, ...props}) {
   const s = styles();
+  const { t } = useTranslation('tags');
   const [isSelected, setIsSelected] = useState(false);
 
   const onClick = () => {
@@ -15,7 +17,7 @@ export default function TagChip({title, onChipClick, ...props}) {
 
   return (
     <Chip
-      label={title}
+      label={t(title)}
       key={title}
       icon={<LocalOffer />} 
       className={s.chip}
