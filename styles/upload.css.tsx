@@ -9,7 +9,7 @@ const styles = makeStyles((theme: Theme) =>
       height: 'calc(100vh - var(--header-plus-box-shadow-padding))',
       gap: '16px',
       gridTemplate: (
-      '\"upload   form\" 2fr' +
+      '\"upload   form\" minmax(0, 2fr)' +
       '\"options   form\" auto' +
       '\"previews form\" 1fr' +
       '/  3fr      1fr'),
