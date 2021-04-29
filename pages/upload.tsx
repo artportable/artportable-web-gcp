@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Main from '../app/components/Main/Main'
 import UploadForm from '../app/components/UploadForm/UploadForm';
@@ -29,10 +29,10 @@ export default function UploadArtworkPage() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
-  // const [cropper, setCropper] = useState<any>();
+  const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
   const [cropperActive, setCropperActive] = useState(false);
-  const [aspectRatio, setAspectRatio] = useState("4:3");
+  const [aspectRatio, setAspectRatio] = useState("free");
 
   //Cropped images
   const [croppedPrimary, setCroppedPrimary] = useState(null);
@@ -40,6 +40,12 @@ export default function UploadArtworkPage() {
   const [croppedTertiary, setCroppedTertiary] = useState(null);
   
   const cropperRef = useRef(null);
+
+  useEffect(() => {
+    if(cropper !== undefined) {
+      cropper.setDragMode('move');
+    }
+  });
 
   const uploadArtwork = () => {
     const artwork: Artwork = {
@@ -57,50 +63,38 @@ export default function UploadArtworkPage() {
   const onFilesChanged = (files) => {
     if(files.length === 0) { return; }
 
-
     const url = URL.createObjectURL(files[files.length - 1]);
-    cropperRef.current.replace(url);
     setCropperImageUrl(url);
     setCropperActive(true);
   }
 
   const onCropperInitialized = (cropperInstance) => {
-    cropperRef.current = cropperInstance;
-    cropperRef.current.setDragMode('move');
-    changeAspectRatio(aspectRatio);
+    setCropper(cropperInstance);
   }
 
   const getButtonVariant: (btnAspectRatio: string) => "contained" | null
     = (buttonAspectRatio: string) => aspectRatio === buttonAspectRatio ? "contained" : null;
 
   const changeAspectRatio = (ratio: string, update: boolean = false) => {
-    const numbers: unknown[] = ratio.split(":");
-    const numberRatio: number = (numbers[0] as number) / (numbers[1] as number);
-    setAspectRatio(ratio);
-
-    cropperRef.current.options.aspectRatio = numberRatio;
-
-    if(update) {
-      wiggleCropper();
+    if(ratio !== "free") {
+      const numbers: unknown[] = ratio.split(":");
+      const numberRatio: number = (numbers[0] as number) / (numbers[1] as number);
+      cropper.setAspectRatio(numberRatio);
+    } else {
+      cropper.setAspectRatio();
     }
+    
+    setAspectRatio(ratio);
   }
 
-  const wiggleCropper = () => {
-    if(!cropperActive) { return; }
-    const data = cropperRef.current.getData();
-    data.width++;
-    cropperRef.current.setData(data);
-    data.width--;
-    cropperRef.current.setData(data);
-  }
 
   const cropSaveAndUploadImage = () => {
     if(croppedPrimary === null) {
-      setCroppedPrimary(cropperRef.current.getCroppedCanvas().toDataURL());
+      setCroppedPrimary(cropper.getCroppedCanvas().toDataURL());
     } else if (croppedSecondary === null) {
-      setCroppedSecondary(cropperRef.current.getCroppedCanvas().toDataURL());
+      setCroppedSecondary(cropper.getCroppedCanvas().toDataURL());
     } else if (croppedTertiary === null) {
-      setCroppedTertiary(cropperRef.current.getCroppedCanvas().toDataURL());
+      setCroppedTertiary(cropper.getCroppedCanvas().toDataURL());
 
       //Go to preview and and upload artwork mode
     }
@@ -112,7 +106,7 @@ export default function UploadArtworkPage() {
   }
 
   const discardImageInCropper = () => {
-    //Go back to uploader
+    setCropperActive(false);
   }
 
   return (
@@ -130,18 +124,18 @@ export default function UploadArtworkPage() {
             filesLimit={3}
             maxFileSize={2000000000} />
         </div>
-        {/* {cropperActive && */}
 
         <div className={s.cropperBox}>
           <Cropper
             className={clsx(s.cropper, !cropperActive && s.hide)}
             src={cropperImageUrl}
             onInitialized={onCropperInitialized}
-            initialAspectRatio={4/3}
+            initialAspectRatio={1}
+            autoCropArea={1}
             preview={`.${s.cropperPreview}`}
+            ref={cropperRef}
           />
         </div>
-        {/* } */}
 
         <div className={s.cropperOptions}>
           <ButtonGroup disableElevation variant="outlined" color="primary">
@@ -154,6 +148,11 @@ export default function UploadArtworkPage() {
               variant={getButtonVariant("4:3")} 
               onClick={() => changeAspectRatio("4:3", true)}>
               4:3
+            </Button>
+            <Button 
+              variant={getButtonVariant("free")} 
+              onClick={() => changeAspectRatio("free", true)}>
+              Free
             </Button>
           </ButtonGroup>
           <ButtonGroup disableElevation variant="contained" color="primary">
