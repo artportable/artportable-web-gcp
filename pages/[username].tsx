@@ -66,7 +66,7 @@ export default function Profile() {
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
           <Image
-            src={`${bucketUrl}${artworks.data[0]?.PrimaryFile}`}
+            src={`${bucketUrl}${artworks.data[0]?.PrimaryFile.Name}`}
             alt="Cover image"
             layout="fill"
             objectFit="cover"
