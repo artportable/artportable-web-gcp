@@ -12,8 +12,9 @@ import Replay5Icon from '@material-ui/icons/Replay5';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import LoopIcon from '@material-ui/icons/Loop';
+import clsx from 'clsx';
 
-export default function CropperOptions({ cropper, onCrop, onDiscard }) {
+export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
   const s = styles();
 
   const [aspectRatio, setAspectRatio] = useState("free");
@@ -36,7 +37,7 @@ export default function CropperOptions({ cropper, onCrop, onDiscard }) {
   }
 
   return (
-    <div className={s.cropperOptions}>
+    <div className={clsx(s.cropperOptions, !show && s.hide)}>
       <ButtonGroup disableElevation variant="outlined" color="primary">
         <Button
           variant={getButtonVariant("free")}

@@ -15,6 +15,9 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: theme.palette.error.light,
       }
+    },
+    hide: {
+      visibility: 'hidden',
     }
   }),
 );

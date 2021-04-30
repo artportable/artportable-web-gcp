@@ -4,5 +4,6 @@
   "price": "Pris",
   "tags": "Taggar",
   "upload": "Ladda upp",
-  "dragandDropOrClick": "Dra och släpp en bild här eller klicka"
+  "dragandDropOrClick": "Dra och släpp en bild här eller klicka",
+  "artworkUploadedSuccessfully": "Konstverk uppladdat!"
 }
