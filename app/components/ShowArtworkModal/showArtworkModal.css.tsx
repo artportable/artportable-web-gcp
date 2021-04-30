@@ -43,6 +43,11 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: '100%',
       borderRadius: theme.spacing(1),
       overflow: 'hidden'
+    },
+    extraImages: {
+      display: 'flex',
+      flexFlow: 'row wrap',
+      justifyContent: 'space-around'
     }
   }),
 );

@@ -106,25 +106,26 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
                 {artwork.Description}
               </Typography>
             </Box>
-            {artwork.SecondaryFile && 
-              <div className={s.imageContainer}>
-                <Image
-                  src={`${bucketUrl}${artwork.SecondaryFile.Name}`}
-                  width={1000}
-                  height={770}
-                  objectFit="contain"></Image>
-              </div>
-            }
-            {artwork.TertiaryFile &&
-              <div className={s.imageContainer}>
-                <Image 
-                  src={`${bucketUrl}${artwork.TertiaryFile.Name}`}
-                  width={1000}
-                  height={770}
-                  objectFit="contain"></Image>
-              </div>
-            }
-
+            <Box className={s.extraImages}>
+              {artwork.SecondaryFile &&
+                <div className={s.imageContainer}>
+                  <Image
+                    src={`${bucketUrl}${artwork.SecondaryFile.Name}`}
+                    width={450}
+                    height={370}
+                    objectFit="contain"></Image>
+                </div>
+              }
+              {artwork.TertiaryFile &&
+                <div className={s.imageContainer}>
+                  <Image
+                    src={`${bucketUrl}${artwork.TertiaryFile.Name}`}
+                    width={450}
+                    height={370}
+                    objectFit="contain"></Image>
+                </div>
+              }
+            </Box>
           </Box>
         </DialogContent>
     </Dialog>

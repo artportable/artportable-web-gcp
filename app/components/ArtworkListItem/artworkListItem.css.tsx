@@ -12,7 +12,9 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: '6px',
       overflow: 'hidden',
       '& img': {
-        height: '100%',
+        objectFit: 'cover',
+        width: '250px',
+        height: '250px'
       }
     },
     titleAndLike: {

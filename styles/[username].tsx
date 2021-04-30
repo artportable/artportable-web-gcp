@@ -37,7 +37,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gap: theme.spacing(0, 2)
     },
     artWorkListItem: {
-      height: '300px',
+      height: '250px'
     },
     secondDivider: {
       gridArea: 'divider2'
