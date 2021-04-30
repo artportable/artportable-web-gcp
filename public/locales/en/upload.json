@@ -4,5 +4,6 @@
   "price": "Price",
   "tags": "Tags",
   "upload": "Upload",
-  "dragandDropOrClick": "Drag and drop an image here or click"
+  "dragandDropOrClick": "Drag and drop an image here or click",
+  "artworkUploadedSuccessfully": "Artwork uploaded successfully!"
 }
