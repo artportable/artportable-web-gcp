@@ -82,6 +82,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <link rel="icon" href="/favicon.ico" />
+        <title>Artportable</title>
       </Head>
       <Provider store={store}>
         <ThemeProvider theme={theme}>

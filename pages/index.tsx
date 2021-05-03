@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Main from '../app/components/Main/Main'
 import Image from 'next/image'
 import TextCarousel from '../app/components/TextCarousel/TextCarousel'
@@ -17,11 +16,6 @@ export default function Home( props ) {
   
   return (
     <>
-      <Head>
-        <title>Artportable</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <Main>
         <div className={s.textCarouselContainer}>
           <TextCarousel show={currentShowing} objects={props.carouselNavOptions}></TextCarousel>
