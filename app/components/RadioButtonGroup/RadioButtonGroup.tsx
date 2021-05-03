@@ -14,13 +14,15 @@ export default function RadioButtonGroup({ navOptions, onNav }) {
     return navOption === selected ? s.selected : '';
   }
 
-  const buttons = navOptions.map(navOption => 
-    <button className={getSelected(navOption)} key={navOption} onClick={(e) => handleClick(e, navOption)}></button>
-  );
-
   return (
     <div className={s.buttonsContainer}>
-      {buttons}
+      {navOptions.map(navOption =>
+        <button
+          className={getSelected(navOption)}
+          key={navOption}
+          onClick={(e) => handleClick(e, navOption)}
+        ></button>
+      )}
     </div>
   );
 }
