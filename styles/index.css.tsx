@@ -9,14 +9,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     artworks: {
       display: "grid",
-      gap: "10px",
-      gridTemplate: (
-        '\". . . . . .\" 1fr' +
-        '\". . . . . .\" auto' +
-        '\". . . . . .\" 1fr' +
-        '\". . . . . .\" 1fr' +
-        '\". . . . . .\" 1fr' +
-        '/ 1fr 1fr 1fr 1fr 1fr 1fr')
+      gap: theme.spacing(0, 2),
+      gridTemplateColumns: 'repeat(6, 1fr)',
+      gridAutoRows: '10px',
+      gridAutoFlow: 'row',
     },
     welcomeToContainer: {
       display: 'flex',
