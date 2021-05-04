@@ -2,17 +2,22 @@ import React, { useState } from 'react'
 import Main from '../app/components/Main/Main'
 import TextCarousel from '../app/components/TextCarousel/TextCarousel'
 import RadioButtonGroup from '../app/components/RadioButtonGroup/RadioButtonGroup'
-import s from '../styles/Home.module.css'
+import { styles } from '../styles/index.css';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import Button from '../app/components/Button/Button'
 import Link from 'next/link'
+import { useGetArtworksForStartPage } from '../app/hooks/dataFetching/Artworks'
+import ArtworkStartItem from '../app/components/ArtworkStartItem/ArtworkStartItem'
 
 export default function Home( props ) {
+  const s = styles();
   const { t } = useTranslation(['index', 'header']);
 
   const navItems = props.navItems;
+  const tags = navItems.map(item => item.tag);
+  const artworks = useGetArtworksForStartPage(tags);
   const [currentTag, setCurrentTag] = useState(navItems[0].tag);
 
   return (
@@ -21,11 +26,15 @@ export default function Home( props ) {
         <div className={s.carouselContainer}>
           <TextCarousel show={currentTag} items={navItems}></TextCarousel>
           <RadioButtonGroup
-            navOptions={navItems.map(item => item.tag)}
+            navOptions={tags}
             onNav={setCurrentTag}
           ></RadioButtonGroup>
         </div>
-        <h1>Our images &rarr;</h1>
+        <div className={s.artworks}>
+          {artworks?.data && artworks.data.find(i => i.Tag == currentTag)?.Items.map(a =>
+            <ArtworkStartItem artwork={a} key={a.Name}></ArtworkStartItem>
+          )}
+        </div>
         <div className={s.welcomeToContainer}>
           <div className={s.welcomeTo}>
             <h1>{t('welcomeToTitle')}</h1>
