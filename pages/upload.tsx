@@ -15,14 +15,17 @@ import CropperOptions from '../app/components/CropperOptions/CropperOptions';
 import "cropperjs/dist/cropper.css";
 import { CircularProgress, Paper, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { useRouter } from 'next/router';
 
 
 export default function UploadArtworkPage() {
   const s = styles();
   const { t } = useTranslation(['upload']);
   const store = useStore();
+  const router = useRouter();
 
   const username = store.getState()?.user?.username;
+  const isSignedIn = store.getState()?.user?.isSignedIn;
   const tags = useGetTags();
 
   const [title, setTitle] = useState('');
@@ -47,6 +50,10 @@ export default function UploadArtworkPage() {
   const cropperRef = useRef(null);
 
   useEffect(() => {
+    if (!isSignedIn) {
+      router.push('/');
+    }
+    
     if(cropper !== undefined) {
       cropper.setDragMode('move');
     }
@@ -64,6 +71,7 @@ export default function UploadArtworkPage() {
     }
     setUploadSnackbarOpen(true);
     const res = usePostArtwork(artwork, username);
+    router.push('/@' + username);
   }
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -226,6 +234,7 @@ export default function UploadArtworkPage() {
               onClick={uploadArtwork}>
                 {t('upload')}
             </ArtButton>
+
           </div>
           <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
             <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
