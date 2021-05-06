@@ -2,9 +2,13 @@ import useSWR from 'swr'
 import { Artwork } from '../../models/Artwork';
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
 
-export function useGetArtworks(owner) {
+export function useGetArtworks(owner = null) {
+  const url = new URL("http://localhost:5001/api/artworks");
+  if(owner !== null) {
+    url.searchParams.append('owner', owner);
+  }
   const { data, error } = useSWR(
-    `http://localhost:5001/api/artworks?owner=${owner}`,
+    url.toString(),
     fetcher,
     { 
       revalidateOnFocus: false,
@@ -46,4 +50,25 @@ export function usePostArtwork(artwork: Artwork, username: string) {
     return res.ok;
   })
   .catch(e => console.log(e));
+}
+
+export function useGetArtworksForDiscoverPage(tags: Array<string>) {
+  const url = new URL(`http://localhost:5001/api/start`);
+  tags.forEach(tag => {
+    url.searchParams.append('tag', tag);
+  });
+
+  const { data, error } = useSWR(
+    url.href,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error
+  }
 }

@@ -10,17 +10,17 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('sm')]: {
         gridTemplate:
             ('\". content .\" auto' +
-            '/ 1fr 430px 1fr')
+            `/ 1fr ${theme.breakpointMainWidths.sm}px 1fr`)
       },
       [theme.breakpoints.up('md')]: {
         gridTemplate:
         ('\". content .\" auto' +
-        '/ 1fr 669px 1fr')
+        `/ 1fr ${theme.breakpointMainWidths.md}px 1fr`)
       },
       [theme.breakpoints.up('lg')]: {
         gridTemplate:
         ('\". content .\" auto' +
-        '/ 1fr 1224px 1fr')
+        `/ 1fr ${theme.breakpointMainWidths.lg}px 1fr`)
       }
     },
     content: {

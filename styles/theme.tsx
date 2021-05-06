@@ -41,9 +41,33 @@ const palette = {
   },
 };
 
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme {
+    breakpointMainWidths: {
+      sm: number,
+      md: number, 
+      lg: number
+    }
+  }
+  interface ThemeOptions {
+    breakpointMainWidths: {
+      sm: number,
+      md: number, 
+      lg: number
+    }
+  }
+}
+
+const breakpointMainWidths = {
+  sm: 430,
+  md: 669,
+  lg: 1224
+}
+
 export const theme = createMuiTheme({
   palette,
   typography,
+  breakpointMainWidths
 });
 
 theme.overrides = {
