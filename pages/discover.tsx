@@ -25,12 +25,12 @@ export default function DiscoverPage() {
   }
 
   return (
-    <Main>
+    <Main wide>
       <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)} centered >
         <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
         <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
       </Tabs>
-      <Box p={1}>
+      <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
           <DiscoverArt></DiscoverArt>
         </TabPanel>

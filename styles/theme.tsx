@@ -41,33 +41,81 @@ const palette = {
   },
 };
 
+interface Breakpoint {
+  breakpoint: string,
+  regular: number,
+  wide: number,
+}
+
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     breakpointMainWidths: {
-      sm: number,
-      md: number, 
-      lg: number
+      xs: Breakpoint
+      sm: Breakpoint,
+      smPlus: Breakpoint,
+      md: Breakpoint,
+      mdPlus: Breakpoint,
+      lg: Breakpoint,
+      lgPlus: Breakpoint,
+      xl: Breakpoint
     }
   }
   interface ThemeOptions {
     breakpointMainWidths: {
-      sm: number,
-      md: number, 
-      lg: number
+      xs: Breakpoint
+      sm: Breakpoint,
+      smPlus: Breakpoint,
+      md: Breakpoint,
+      mdPlus: Breakpoint,
+      lg: Breakpoint,
+      lgPlus: Breakpoint,
+      xl: Breakpoint
     }
   }
 }
 
 const breakpointMainWidths = {
-  sm: 430,
-  md: 669,
-  lg: 1224
+  xs: { breakpoint: 'xs', regular: 0, wide: 0, },
+  sm: { breakpoint: 'sm', regular: 430, wide: 450, },
+  smPlus: { breakpoint: 'smPlus', regular: 460, wide: 660, },
+  md: { breakpoint: 'md', regular: 669, wide: 860, },
+  mdPlus: { breakpoint: 'mdPlus', regular: 869, wide: 1060, },
+  lg: { breakpoint: 'lg', regular: 1124, wide: 1300, },
+  lgPlus: { breakpoint: 'lgPlus', regular: 1424, wide: 1560, },
+  xl: { breakpoint: 'xl', regular: 1624, wide: 1920, },
+}
+
+declare module "@material-ui/core/styles/createBreakpoints" {
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    smPlus: true;
+    md: true;
+    mdPlus: true;
+    lg: true;
+    lgPlus: true;
+    xl: true;
+  }
+}
+
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 460,
+    smPlus: 700,
+    md: 900,
+    mdPlus: 1100,
+    lg: 1340,
+    lgPlus: 1600,
+    xl: 1980,
+  }
 }
 
 export const theme = createMuiTheme({
   palette,
   typography,
-  breakpointMainWidths
+  breakpointMainWidths,
+  breakpoints
 });
 
 theme.overrides = {

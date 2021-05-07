@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@material-ui/core";
 import { styles } from "./discoverArt.css";
 import { useGetArtworks } from "../../hooks/dataFetching/Artworks";
-import ArtworkListItem from "../ArtworkListItem/ArtworkListItem";
+import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
 import { useStore } from 'react-redux';
 import { useMainWidth, useWidth } from '../../hooks/useWidth';
 
@@ -12,7 +12,7 @@ export default function DiscoverArt({ }) {
   const s = styles();
   const store = useStore();
   const { data } = useGetArtworks();
-  const mainWidth = useMainWidth();
+  const mainWidth = useMainWidth().wide;
 
   const rows = getRows(data, mainWidth);
 
@@ -34,16 +34,21 @@ export default function DiscoverArt({ }) {
     })
   }
 
+  if(rows === undefined) { return <></>}
   return (
-    <Box>
-      {mainWidth}
-      <Box className={s.grid}>
-        {data?.map(artwork => 
-          <ArtworkListItem 
-            key={artwork.Id} 
-            artwork={artwork} 
-            onLikeClick={onLikeClick} />)}
-      </Box>
+    <Box className={s.rowsContainer}>
+      {rows?.map((row, i) => 
+        <div className={s.row} key={i}>
+          {row.map(artwork => 
+            <ArtworkListItemDefined 
+              key={artwork.artwork.Id}
+              width={artwork.width}
+              height={artwork.height}
+              artwork={artwork.artwork} 
+              onLikeClick={onLikeClick} />
+          )}
+        </div>
+      )}
     </Box>
   );
 }
@@ -53,7 +58,7 @@ function getRows(artworks, rowWidth) {
 
   const normalized = normalizeHeights(artworks);
 
-  const rows = fillRows(normalized, rowWidth, 100);
+  return fillRows(normalized, rowWidth, 100);
 }
 
 function normalizeHeights(artworks) {
@@ -69,12 +74,13 @@ function normalizeHeights(artworks) {
 }
 
 function fillRows(normalizedArtworks, rowWidth, threshold) {
-  const allowedMinWidth = rowWidth - threshold;
+  const allowedMinWidth = rowWidth;
+  const slimmed = normalizedArtworks.slice(0, 20);
   const rows = [];
 
   let currentRow = [];
-
-  normalizedArtworks.forEach(normalizedArtwork => {
+  
+  slimmed.forEach(normalizedArtwork => {
     const aggregateWidth = currentRow.reduce((accumulated, curr) => accumulated + curr.width, 0);
     const aggregateSpacings = (currentRow.length - 1) * 16;
     const totalWidth = aggregateWidth + aggregateSpacings;
@@ -89,6 +95,8 @@ function fillRows(normalizedArtworks, rowWidth, threshold) {
       currentRow.push(normalizedArtwork);
     }
   });
+
+  return rows;
 }
 
 function checkIfArtworkFitsInRow() {}

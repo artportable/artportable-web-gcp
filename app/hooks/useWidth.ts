@@ -21,19 +21,27 @@ export function useWidth() {
   );
 }
 
-export function useMainWidth(): number {
+export function useMainWidth(): { breakpoint: string, regular: number, wide: number } {
   const theme: Theme = useTheme();
   const width: Breakpoint = useWidth();
 
   switch (width) {
-    case 'sm':
     case 'xs':
+      return theme.breakpointMainWidths.xs;
+    case 'sm':
       return theme.breakpointMainWidths.sm;
+    case 'smPlus':
+      return theme.breakpointMainWidths.smPlus;
     case 'md':
       return theme.breakpointMainWidths.md;
+    case 'mdPlus':
+      return theme.breakpointMainWidths.mdPlus;
     case 'lg':
+      return theme.breakpointMainWidths.lg
+    case 'lgPlus':
+      return theme.breakpointMainWidths.lgPlus
     case 'xl':
-      return theme.breakpointMainWidths.lg;
+      return theme.breakpointMainWidths.xl;
     default:
       break;
   }
