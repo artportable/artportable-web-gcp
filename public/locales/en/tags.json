@@ -21,5 +21,9 @@
   "spring": "spring",
   "winter": "winter",
   "historical": "historical",
-  "photography": "photography"
+  "photography": "photography",
+  "watercolor": "watercolor",
+  "gouache": "gouache",
+  "encaustic": "encaustic",
+  "pastel": "pastel"
 }
