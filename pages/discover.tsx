@@ -19,12 +19,27 @@ export default function DiscoverPage() {
   const router = useRouter();
 
   const [activeTab, setActiveTab] = useState(0);
-  const username = store.getState()?.user?.username;
 
+  const username = store.getState()?.user?.username;
   const artists = useGetArtists(username);
 
-  function follow(username) {
-    console.log('Following ' + username);
+  function follow(userToFollow) {
+    if (username === null || username === undefined) {
+      return; // TODO: Display modal to sign up
+    }
+
+    fetch(`http://localhost:5001/api/connections/${userToFollow}?myUsername=${username}`, {
+      method: 'POST',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   function a11yProps(index: any) {

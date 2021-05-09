@@ -12,7 +12,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const s = styles();
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
-  const [isFollowed, setFollow] = useState(false);
+  const [isFollowed, setFollow] = useState(artist.FollowedByMe);
 
   return (
     <div className={s.container}>
