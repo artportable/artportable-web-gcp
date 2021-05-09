@@ -1,7 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
@@ -9,19 +8,29 @@ import TabPanel from '../app/components/TabPanel/TabPanel'
 import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
 import { useGetArtists } from "../app/hooks/dataFetching/Discover";
-import { useStore } from "react-redux";
+import { useDispatch, useStore } from "react-redux";
+import { SET_TAB } from "../app/redux/actions/discoverActions";
 
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
   const s = styles();
   const store = useStore();
-  const router = useRouter();
-
-  const [activeTab, setActiveTab] = useState(0);
+  const dispatch = useDispatch();
 
   const username = store.getState()?.user?.username;
+  const discoverTab = store.getState()?.discover?.tab ?? 0;
   const artists = useGetArtists(username);
+
+  const [activeTab, setActiveTab] = useState(discoverTab);
+
+  function setTab(value) {
+    setActiveTab(value);
+    dispatch({
+      type: SET_TAB,
+      payload: value
+    });
+  }
 
   function follow(userToFollow) {
     if (username === null || username === undefined) {
@@ -51,7 +60,7 @@ export default function DiscoverPage() {
 
   return (
     <Main>
-      <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)} centered >
+      <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered >
         <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
         <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
       </Tabs>
