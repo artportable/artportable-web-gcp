@@ -5,6 +5,7 @@ import { useStore } from 'react-redux'
 import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
 import { styles } from './artworkListItemDefined.css'
 
 export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
@@ -34,6 +35,8 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
     isLiked ? "secondary" : "inherit";
 
   if(width === null || height === null) return  <></>;
+
+  console.log(height);
   
   return (
     <>
@@ -48,15 +51,17 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
         </div>
         <div className={s.titleAndLike}>
           <div className={s.title}>{artwork.Title}</div>
-          <div className={s.likeContainer}>
-            {artwork.Likes > 0 ? artwork.Likes : ''}
-            <IconButton
-              className={s.likeButton}
-              disableRipple
-              disableFocusRipple
-              onClick={toggleLike}>
-                <FavoriteIcon color={likedColor}/>
-            </IconButton>
+          <div className={s.likeInline}>
+            <div className={s.likeContainer}>
+              {artwork.Likes > 0 ? artwork.Likes : ''}
+              <IconButton
+                className={s.likeButton}
+                disableRipple
+                disableFocusRipple
+                onClick={toggleLike}>
+                  <FavoriteIcon color={likedColor}/>
+              </IconButton>
+            </div>
           </div>
         </div>
       </Paper>
