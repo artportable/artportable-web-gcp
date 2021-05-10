@@ -48,6 +48,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
       >
         {artist.Artworks.map(aw =>
           <Image src={`${bucketUrl}${aw.Name}`}
+            key={aw.Name}
             alt="Portfolio image"
             height="200"
             width={(200 / aw.Height) * aw.Width}

@@ -1,13 +1,12 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
-import { useGetArtists } from "../app/hooks/dataFetching/Discover";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 
@@ -20,15 +19,42 @@ export default function DiscoverPage() {
 
   const username = store.getState()?.user?.username;
   const discoverTab = store.getState()?.discover?.tab ?? 0;
-  const artists = useGetArtists(username);
 
   const [activeTab, setActiveTab] = useState(discoverTab);
+  const [artists, setArtists] = useState();
+
+  useEffect(() => {
+    search(null);
+  }, []);
 
   function setTab(value) {
     setActiveTab(value);
     dispatch({
       type: SET_TAB,
       payload: value
+    });
+  }
+
+  function search(searchQuery) {
+    const url = new URL(`http://localhost:5001/api/discover/artists`);
+    if (searchQuery != null && searchQuery != '') {
+      url.searchParams.append('q', searchQuery);
+    }
+    if (username != null && username != '') {
+      url.searchParams.append('myUsername', username);
+    }
+
+    fetch(url.href, {
+      method: 'GET',
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      setArtists(data);
+    })
+    .catch((error) => {
+      console.log(error);
     });
   }
 
@@ -69,9 +95,7 @@ export default function DiscoverPage() {
           <DiscoverArt></DiscoverArt>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
-          {!artists.isLoading && !artists.isError && artists.data &&
-            <DiscoverArtists artists={artists.data} onFollowClick={follow}></DiscoverArtists>
-          }
+          <DiscoverArtists artists={artists} onFollowClick={follow} onSearch={search}></DiscoverArtists>
         </TabPanel>
       </Box>
     </Main>

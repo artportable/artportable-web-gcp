@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import DiscoverArtistCard from "../DiscoverArtistCard/DiscoverArtistCard";
-import { Box } from "@material-ui/core";
+import { Box, TextField } from "@material-ui/core";
+import { styles } from "./discoverArtists.css";
+import SearchBar from "material-ui-search-bar";
 
-export default function DiscoverArtists({ artists, onFollowClick }) {
+
+export default function DiscoverArtists({ artists, onFollowClick, onSearch }) {
+  const s = styles();
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <Box>
-      {artists.map(a =>
-        <DiscoverArtistCard artist={a} onFollowClick={onFollowClick}></DiscoverArtistCard>
-      )}
+      <div className={s.searchField}>
+        <SearchBar
+          value={searchQuery}
+          onChange={(query) => setSearchQuery(query)}
+          onRequestSearch={() => onSearch(searchQuery)}
+      ></SearchBar>
+      </div>
+      {artists &&
+        artists.map(a =>
+          <DiscoverArtistCard key={a.Username} artist={a} onFollowClick={onFollowClick}></DiscoverArtistCard>
+        )
+      }
     </Box>
   );
 }
