@@ -91,10 +91,11 @@ function fillRows(normalizedArtworks, rowWidth, threshold) {
     } else {
       rows.push(currentRow);
       currentRow = [];
-      rows.push(currentRow);
       currentRow.push(normalizedArtwork);
     }
   });
+
+  rows.push(currentRow);
 
   return rows;
 }

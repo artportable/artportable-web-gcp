@@ -36,11 +36,9 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
 
   if(width === null || height === null) return  <></>;
 
-  console.log(height);
-  
   return (
     <>
-      <Paper className={s.container} onClick={handleArtworkClick}> 
+      <Paper variant="outlined" className={s.container} onClick={handleArtworkClick}> 
         <div className={s.imageContainer}>
           <Image
             key={artwork?.PrimaryFile}
