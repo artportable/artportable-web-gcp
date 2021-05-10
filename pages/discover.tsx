@@ -1,21 +1,55 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
+import { useGetArtists } from "../app/hooks/dataFetching/Discover";
+import { useDispatch, useStore } from "react-redux";
+import { SET_TAB } from "../app/redux/actions/discoverActions";
 
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
   const s = styles();
-  const router = useRouter();
+  const store = useStore();
+  const dispatch = useDispatch();
 
-  const [activeTab, setActiveTab] = useState(0);
+  const username = store.getState()?.user?.username;
+  const discoverTab = store.getState()?.discover?.tab ?? 0;
+  const artists = useGetArtists(username);
+
+  const [activeTab, setActiveTab] = useState(discoverTab);
+
+  function setTab(value) {
+    setActiveTab(value);
+    dispatch({
+      type: SET_TAB,
+      payload: value
+    });
+  }
+
+  function follow(userToFollow) {
+    if (username === null || username === undefined) {
+      return; // TODO: Display modal to sign up
+    }
+
+    fetch(`http://localhost:5001/api/connections/${userToFollow}?myUsername=${username}`, {
+      method: 'POST',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   function a11yProps(index: any) {
     return {
@@ -26,7 +60,7 @@ export default function DiscoverPage() {
 
   return (
     <Main wide>
-      <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)} centered >
+      <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered >
         <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
         <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
       </Tabs>
@@ -35,7 +69,9 @@ export default function DiscoverPage() {
           <DiscoverArt></DiscoverArt>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
-          <DiscoverArtists></DiscoverArtists>
+          {!artists.isLoading && !artists.isError && artists.data &&
+            <DiscoverArtists artists={artists.data} onFollowClick={follow}></DiscoverArtists>
+          }
         </TabPanel>
       </Box>
     </Main>
@@ -45,7 +81,7 @@ export default function DiscoverPage() {
 export async function getStaticProps({ locale }) {
   return { 
     props: {
-      ...await serverSideTranslations(locale, ['header', 'common', 'discover']),
+      ...await serverSideTranslations(locale, ['header', 'common', 'discover', 'tags']),
     }
   };
 }

@@ -1,14 +1,13 @@
 import React from "react";
+import DiscoverArtistCard from "../DiscoverArtistCard/DiscoverArtistCard";
 import { Box } from "@material-ui/core";
-import { styles } from "./discoverArtists.css";
 
-export default function DiscoverArt({ }) {
-  const s = styles();
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
-
+export default function DiscoverArtists({ artists, onFollowClick }) {
   return (
     <Box>
-      Discover new artists
+      {artists.map(a =>
+        <DiscoverArtistCard artist={a} onFollowClick={onFollowClick}></DiscoverArtistCard>
+      )}
     </Box>
   );
 }

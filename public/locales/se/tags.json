@@ -21,5 +21,9 @@
   "spring": "vår",
   "winter": "vinter",
   "historical": "historisk",
-  "photography": "fotografi"
+  "photography": "fotografi",
+  "watercolor": "vattenfärg",
+  "gouache": "gouache",
+  "encaustic": "encaustic",
+  "pastel": "pastell"
 }
