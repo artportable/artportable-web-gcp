@@ -87,7 +87,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
 
           <Box className={s.modalContent}>
             <Box className={s.tagsContainer} marginBottom={2}>
-              {artwork.Tags?.map(tag => <Chip label={tag} color="primary"></Chip>)}
+              {artwork.Tags?.map(tag => <Chip key={tag} label={tag} color="primary"></Chip>)}
             </Box>
             <div className={s.imageContainer}>
               <Image 
