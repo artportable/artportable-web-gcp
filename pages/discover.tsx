@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
@@ -21,7 +21,11 @@ export default function DiscoverPage() {
   const discoverTab = store.getState()?.discover?.tab ?? 0;
 
   const [activeTab, setActiveTab] = useState(discoverTab);
-  const [artists, setArtists] = useState(null);
+  const [artists, setArtists] = useState();
+
+  useEffect(() => {
+    search(null);
+  }, []);
 
   function setTab(value) {
     setActiveTab(value);
