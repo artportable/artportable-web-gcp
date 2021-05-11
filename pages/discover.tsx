@@ -22,6 +22,7 @@ export default function DiscoverPage() {
 
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();
+  const useWideLayout = activeTab === 0;
 
   useEffect(() => {
     search(null);
@@ -37,6 +38,7 @@ export default function DiscoverPage() {
 
   function search(searchQuery) {
     const url = new URL(`http://localhost:5001/api/discover/artists`);
+    url.searchParams.append('page', '1');
     if (searchQuery != null && searchQuery != '') {
       url.searchParams.append('q', searchQuery);
     }
@@ -85,7 +87,7 @@ export default function DiscoverPage() {
   }
 
   return (
-    <Main wide>
+    <Main wide={useWideLayout}>
       <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered >
         <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
         <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />

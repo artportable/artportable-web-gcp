@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DiscoverArtistCard from "../DiscoverArtistCard/DiscoverArtistCard";
 import { Box, TextField } from "@material-ui/core";
 import { styles } from "./discoverArtists.css";
-import SearchBar from "material-ui-search-bar";
 
 
 export default function DiscoverArtists({ artists, onFollowClick, onSearch }) {
@@ -12,11 +11,11 @@ export default function DiscoverArtists({ artists, onFollowClick, onSearch }) {
   return (
     <Box>
       <div className={s.searchField}>
-        <SearchBar
+        {/* <SearchBar
           value={searchQuery}
           onChange={(query) => setSearchQuery(query)}
           onRequestSearch={() => onSearch(searchQuery)}
-      ></SearchBar>
+      ></SearchBar> */}
       </div>
       {artists &&
         artists.map(a =>

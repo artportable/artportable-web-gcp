@@ -19,6 +19,23 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.primary.main,
       width: "28px",
       height: "28px",
+    },
+    row: {
+      height: '220px',
+    },
+    rowFlex: {
+      display: 'flex',
+      gap: theme.spacing(2),
+      '& *': {
+        flexShrink: '0'
+      }
+    },
+    scroll: {
+      overflow: 'auto'
+    },
+    imagePaper: {
+      height: '200px',
+      overflow: 'hidden',
     }
   }),
 );
