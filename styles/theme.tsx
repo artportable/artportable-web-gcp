@@ -119,6 +119,27 @@ export const theme = createMuiTheme({
 });
 
 theme.overrides = {
+  MuiCssBaseline: {
+    '@global': {
+      '*::-webkit-scrollbar': {
+        width: '10px',
+        height: '10px',
+        borderRadius: '6px',
+      },
+      '*::-webkit-scrollbar-track': {
+        '-webkit-box-shadow': `inset 0 0 4px ${theme.palette.primary.light}`,
+        borderRadius: '6px'
+      },
+      '*::-webkit-scrollbar-thumb': {
+        backgroundColor: theme.palette.primary.light,
+        borderRadius: '6px',
+        '-webkit-box-shadow': `inset 0 0 8px ${theme.palette.primary.dark}`,
+        '&:hover': {
+          backgroundColor: theme.palette.primary.dark,
+        }
+      }
+    }
+  },
   MuiCardHeader: {
     root: {
       padding: theme.spacing(2),
