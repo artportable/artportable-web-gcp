@@ -4,11 +4,17 @@ import { useMainWidth } from '../useWidth';
 
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
 
+export function useGetRows(artworks, height) {
+  const mainWidth = useMainWidth().wide;
+
+  return getRowsFromFiles(artworks, mainWidth, height);
+}
+
 export function useGetArtworkRows(owner = null) {
   const { data } = useGetArtworks(owner);
   const mainWidth = useMainWidth().wide;
 
-  return getRows(data, mainWidth);
+  return getRowsFromArtwork(data, mainWidth);
 }
 
 export function useGetArtworks(owner = null) {
@@ -83,28 +89,35 @@ export function useGetArtworksForDiscoverPage(tags: Array<string>) {
 }
 
 
-function getRows(artworks, rowWidth) {
+function getRowsFromArtwork(artworks, rowWidth) {
   if (artworks === undefined) { return; }
 
-  const normalized = normalizeHeights(artworks);
+  const normalized = normalizeHeights(artworks, artwork => artwork.PrimaryFile);
 
-  return fillRows(normalized, rowWidth, 100);
+  return fillRows(normalized, rowWidth, 250);
 }
 
-function normalizeHeights(artworks) {
-  const defaultHeight = 300;
+function getRowsFromFiles(artworks, rowWidth, height) {
+  if (artworks === undefined) { return; }
 
+  const normalized = normalizeHeights(artworks, artwork => artwork, height);
+
+  return fillRows(normalized, rowWidth, 250);
+}
+
+function normalizeHeights(artworks, fileGetter, height = 300) {
   return artworks.map(artwork => {
-    const ratio = artwork.PrimaryFile.Width / artwork.PrimaryFile.Height;
+    const fileWidth = fileGetter(artwork).Width;
+    const fileHeight = fileGetter(artwork).Height;
+    const ratio = fileWidth / fileHeight;
+    const newWidth = height * ratio;
 
-    const newWidth = defaultHeight * ratio;
-
-    return { artwork, width: newWidth, height: defaultHeight}
+    return { artwork, width: newWidth, height: height}
   });
 }
 
 function fillRows(normalizedArtworks, rowWidth, threshold) {
-  const allowedMinWidth = rowWidth;
+  const allowedMinWidth = rowWidth + threshold;
   const slimmed = normalizedArtworks.slice(0, 20);
   const rows = [];
 
