@@ -9,6 +9,7 @@ import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
+import { getRowsFromArtwork, useGetTags } from "../app/hooks/dataFetching/Artworks";
 
 
 export default function DiscoverPage() {
@@ -20,12 +21,16 @@ export default function DiscoverPage() {
   const username = store.getState()?.user?.username;
   const discoverTab = store.getState()?.discover?.tab ?? 0;
 
+  const tags = useGetTags();
+
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();
+  const [artworks, setArtworks] = useState([]);
   const useWideLayout = activeTab === 0;
 
   useEffect(() => {
     search(null);
+    filter([]);
   }, []);
 
   function setTab(value) {
@@ -33,6 +38,31 @@ export default function DiscoverPage() {
     dispatch({
       type: SET_TAB,
       payload: value
+    });
+  }
+
+  function filter(tags) {
+    const url = new URL(`http://localhost:5001/api/discover/artworks`);
+    url.searchParams.append('page', '1');
+    url.searchParams.append('pageSize', '20');
+    if (username != null && username != '') {
+      url.searchParams.append('myUsername', username);
+    }
+    tags.forEach(tag => {
+      url.searchParams.append('tag', tag);
+    });
+
+    fetch(url.href, {
+      method: 'GET',
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      setArtworks(data);
+    })
+    .catch((error) => {
+      console.log(error);
     });
   }
 
@@ -94,7 +124,9 @@ export default function DiscoverPage() {
       </Tabs>
       <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
-          <DiscoverArt></DiscoverArt>
+          {!tags?.isLoading && !tags?.isError && tags?.data &&
+            <DiscoverArt artworkRows={getRowsFromArtwork(artworks, null)} tags={tags?.data} onFilter={filter}></DiscoverArt>
+          }
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
           <DiscoverArtists artists={artists} onFollowClick={follow} onSearch={search}></DiscoverArtists>

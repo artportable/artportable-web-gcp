@@ -67,30 +67,9 @@ export function usePostArtwork(artwork: Artwork, username: string) {
   .catch(e => console.log(e));
 }
 
-export function useGetArtworksForDiscoverPage(tags: Array<string>) {
-  const url = new URL(`http://localhost:5001/api/start`);
-  tags.forEach(tag => {
-    url.searchParams.append('tag', tag);
-  });
-
-  const { data, error } = useSWR(
-    url.href,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    });
-
-  return {
-    data,
-    isLoading: !error && !data,
-    isError: error
-  }
-}
-
-
-function getRowsFromArtwork(artworks, rowWidth) {
+export function getRowsFromArtwork(artworks, rowWidth) {
   if (artworks === undefined) { return; }
+  if (rowWidth === undefined) { rowWidth = useMainWidth().wide }
 
   const normalized = normalizeHeights(artworks, artwork => artwork.PrimaryFile);
 
@@ -106,7 +85,7 @@ function getRowsFromFiles(artworks, rowWidth, height) {
 }
 
 function normalizeHeights(artworks, fileGetter, height = 300) {
-  return artworks.map(artwork => {
+  return artworks?.map(artwork => {
     const fileWidth = fileGetter(artwork).Width;
     const fileHeight = fileGetter(artwork).Height;
     const ratio = fileWidth / fileHeight;
