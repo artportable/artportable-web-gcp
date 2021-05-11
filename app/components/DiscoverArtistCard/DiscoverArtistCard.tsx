@@ -5,15 +5,20 @@ import Button from "../Button/Button";
 import { capitalizeFirst } from "../../utils/util";
 import Image from 'next/image';
 import AvatarCard from "../AvatarCard/AvatarCard";
-import Carousel from "react-material-ui-carousel";
 import Paper from "@material-ui/core/Paper";
 import { useGetRows } from "../../hooks/dataFetching/Artworks";
 import clsx from 'clsx'
+import { useRef } from "react";
+import { IconButton } from "@material-ui/core";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
   const s = styles();
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+
+  const scrollRef = useRef(null);
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
   const rows = useGetRows(artist.Artworks, 200);
@@ -37,23 +42,33 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             {capitalizeFirst(t('common:words.follow'))}
         </Button>
       </div>
-
-      <div className={clsx(s.row, s.scroll, s.rowFlex)}>
-        {rows.map((row, i) =>
-          <div className={clsx(s.rowFlex)} key={i}>
-            {row.map(artwork =>
-              <Paper className={s.imagePaper} variant="outlined">
-                <Image src={`${bucketUrl}${artwork.artwork.Name}`}
-                  priority={true}
-                  key={artwork.artwork.Name}
-                  alt="Portfolio image"
-                  width={artwork.width}
-                  height={artwork.height}
-                />
-              </Paper>
-            )}
-          </div>
-        )}
+      <div className={s.scrollContainer}>
+        <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
+          {rows.map((row, i) =>
+            <div className={clsx(s.rowFlex)} key={i}>
+              {row.map(artwork =>
+                <Paper key={artwork.artwork.Name} className={s.imagePaper} variant="outlined">
+                  <Image src={`${bucketUrl}${artwork.artwork.Name}`}
+                    priority={true}
+                    alt="Portfolio image"
+                    width={artwork.width}
+                    height={artwork.height}
+                  />
+                </Paper>
+              )}
+            </div>
+          )}
+        </div>
+        <IconButton className={s.leftButton} color="primary" onClick={() => {
+            scrollRef.current.scrollBy({ top: 0, left: -1, behavior: 'smooth'});
+          }}>
+            <ChevronLeftIcon className={s.chevron}></ChevronLeftIcon>
+        </IconButton>
+        <IconButton className={s.rightButton} color="primary" onClick={() => {
+            scrollRef.current.scrollBy({ top: 0, left: 1, behavior: 'smooth'});
+          }}>
+          <ChevronRightIcon className={s.chevron}></ChevronRightIcon>
+        </IconButton>
       </div>
     </div>
   );

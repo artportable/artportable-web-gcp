@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { relative } from 'node:path';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,12 +31,36 @@ export const styles = makeStyles((theme: Theme) =>
         flexShrink: '0'
       }
     },
+    scrollContainer: {
+      position: 'relative',
+    },
     scroll: {
-      overflow: 'auto'
+      overflow: 'auto',
+      scrollSnapType: 'x mandatory',
+      '&::-webkit-scrollbar': {
+        display: 'none',
+      }
     },
     imagePaper: {
       height: '200px',
       overflow: 'hidden',
+      scrollSnapAlign: 'end',
+    },
+    chevron: {
+      fontSize: '2rem',
+      borderRadius: '50%',
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white
+    },
+    leftButton: {
+      position: 'absolute',
+      left: '-30px',
+      top: '74px'
+    },
+    rightButton: {
+      position: 'absolute',
+      right: '-30px',
+      top: '74px'
     }
   }),
 );
