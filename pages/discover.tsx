@@ -9,7 +9,8 @@ import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
-import { getRowsFromArtwork, useGetTags } from "../app/hooks/dataFetching/Artworks";
+import { useGetTags } from "../app/hooks/dataFetching/Artworks";
+import { useMainWidth } from "../app/hooks/useWidth";
 
 
 export default function DiscoverPage() {
@@ -22,6 +23,7 @@ export default function DiscoverPage() {
   const discoverTab = store.getState()?.discover?.tab ?? 0;
 
   const tags = useGetTags();
+  const rowWidth = useMainWidth().wide + 250; // 250 is a threshold value
 
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();
@@ -125,7 +127,7 @@ export default function DiscoverPage() {
       <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
           {!tags?.isLoading && !tags?.isError && tags?.data &&
-            <DiscoverArt artworkRows={getRowsFromArtwork(artworks, null)} tags={tags?.data} onFilter={filter}></DiscoverArt>
+            <DiscoverArt artworks={artworks} tags={tags?.data} onFilter={filter} rowWidth={rowWidth}></DiscoverArt>
           }
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
