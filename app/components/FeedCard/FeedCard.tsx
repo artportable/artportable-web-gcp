@@ -64,6 +64,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
       <CardMedia className={mediaClasses}>
         <div className={s.primaryImage}>
           <Image src={`${bucketUrl}${content.Item.PrimaryFile.Name}`}
+            priority={true}
             alt="Primary image"
             layout="fill"
             objectFit="cover"
