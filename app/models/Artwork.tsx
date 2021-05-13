@@ -1,9 +1,14 @@
 export interface Artwork {
+  Id: string,
+  Owner: Owner,
   Title: string,
   Description: string,
+  Published: Date,
   Price: number,
+  PrimaryFile: Image,
+  SecondaryFile: Image,
+  TertiaryFile: Image
   Tags: Array<string>,
-  PrimaryFile: string,
-  SecondaryFile: string,
-  TertiaryFile: string
+  Likes: number,
+  LikedByMe: boolean
 }

@@ -6,12 +6,13 @@ import { capitalizeFirst } from "../../utils/util";
 import Image from 'next/image';
 import AvatarCard from "../AvatarCard/AvatarCard";
 import Paper from "@material-ui/core/Paper";
-import { useGetRows } from "../../hooks/dataFetching/Artworks";
 import clsx from 'clsx'
 import { useRef } from "react";
-import { IconButton } from "@material-ui/core";
+import { IconButton, Theme, useTheme } from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { normalizeImageSize } from "../../utils/layoutUtils";
+import { useMainWidth } from "../../hooks/useWidth";
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
@@ -21,7 +22,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const scrollRef = useRef(null);
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
-  const rows = useGetRows(artist.Artworks, 200);
+  const images = artist.Images.map(i => normalizeImageSize(i, 200));
 
   return (
     <div className={s.container}>
@@ -44,18 +45,16 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
       </div>
       <div className={s.scrollContainer}>
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
-          {rows.map((row, i) =>
+          {images.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
-              {row.map(artwork =>
-                <Paper key={artwork.artwork.Name} className={s.imagePaper} variant="outlined">
-                  <Image src={`${bucketUrl}${artwork.artwork.Name}`}
-                    priority={true}
-                    alt="Portfolio image"
-                    width={artwork.width}
-                    height={artwork.height}
-                  />
-                </Paper>
-              )}
+              <Paper key={image.Name} className={s.imagePaper} variant="outlined">
+                <Image src={`${bucketUrl}${image.Name}`}
+                  priority={true}
+                  alt="Portfolio image"
+                  width={image.Width}
+                  height={image.Height}
+                />
+              </Paper>
             </div>
           )}
         </div>

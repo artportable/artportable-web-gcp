@@ -5,7 +5,6 @@ import { useStore } from 'react-redux'
 import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
 import { styles } from './artworkListItemDefined.css'
 
 export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
