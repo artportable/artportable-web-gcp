@@ -13,7 +13,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   const [isLiked, setIsLiked] = useState(artwork.IsLikedByMe);
   const [showArtworkModal, setShowArtworkModal] = useState(false);
 
-  const userId = store.getState()?.user?.id;
+  const isSignedIn = store.getState()?.user?.isSignedIn;
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   function toggleLike(event) {
@@ -28,8 +28,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
     setShowArtworkModal(true);
   }
 
-  const isLoggedIn = userId !== undefined;
-  const likedColor = isLoggedIn ? 
+  const likedColor = !isSignedIn ?
     'disabled' : 
     isLiked ? "secondary" : "inherit";
 
@@ -37,8 +36,8 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
 
   return (
     <>
-      <Paper variant="outlined" className={s.container} onClick={handleArtworkClick}> 
-        <div className={s.imageContainer}>
+      <Paper variant="outlined" className={s.container}>
+        <div className={s.imageContainer} onClick={handleArtworkClick}>
           <Image
             key={artwork?.PrimaryFile}
             width={width}
@@ -55,6 +54,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
                 className={s.likeButton}
                 disableRipple
                 disableFocusRipple
+                disabled={!isSignedIn}
                 onClick={toggleLike}>
                   <FavoriteIcon color={likedColor}/>
               </IconButton>
