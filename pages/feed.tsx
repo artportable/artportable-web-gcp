@@ -18,12 +18,12 @@ import { debounce } from '@material-ui/core/utils';
 import { useStore } from 'react-redux';
 import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
 import { useRouter } from 'next/router';
+import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
 
 export default function FeedPage() {
   const s = styles();
   const store = useStore();
   const router = useRouter();
-  const [pageCount, setPageCount] = useState(1);
   const { t } = useTranslation(['feed', 'common']);
   const isSignedIn = store.getState()?.user?.isSignedIn;
   const myUsername = store.getState()?.user?.username;
@@ -31,28 +31,12 @@ export default function FeedPage() {
   const userProfile = useGetUserProfileSummary(myUsername);
   const { suggestedUsers } = useFollowRecommendations(myUsername);
 
+  const loadMoreElement = useRef(null);
   const pages = [];
+  const pageCount = useInfiniteScroll(loadMoreElement);
 
   for (let i = 0; i < pageCount; i++) {
     pages.push(<Feed key={i} user={myUsername} index={i} onLikeClick={likePost}></Feed>);
-  }
-
-  const loadMoreElement = useRef(null);
-
-  const callback = debounce((entries) => {
-    const [ entry ] = entries;
-    if(!entry.isIntersecting) {
-      return;
-    }
-
-    setPageCount(pageCount + 1);
-    
-  }, 500);
-
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0
   }
 
   function follow(username) {
@@ -91,18 +75,6 @@ export default function FeedPage() {
     // TODO: Do redirect of unauthed users in a better way
     if (!isSignedIn) {
       router.push('/');
-    }
-
-    const observer = new IntersectionObserver(callback, options);
-
-    if(loadMoreElement.current) {
-      observer.observe(loadMoreElement.current);
-    }
-
-    return () => {
-      if(loadMoreElement.current) {
-        observer.unobserve(loadMoreElement.current);
-      }
     }
   });
 
