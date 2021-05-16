@@ -15,15 +15,13 @@ interface InputProps {
   artworks: Artwork[],
   tags: string[],
   onFilter: any,
+  onLike: any,
   rowWidth: number
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter, rowWidth }: InputProps) {
+export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
-  const store = useStore();
-
-  const username = store.getState()?.user?.username;
 
   const [imageRows, setImageRows] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
@@ -35,21 +33,6 @@ export default function DiscoverArt({ artworks, tags, onFilter, rowWidth }: Inpu
     const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
     setImageRows(rows);
   }, [artworks]);
-
-  function onLikeClick(artworkId, isLike) {
-    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${username}`, {
-      method: isLike ? 'POST' : 'DELETE',
-    })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
 
   return (
     <Box className={s.rowsContainer}>
@@ -91,7 +74,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, rowWidth }: Inpu
                 width={image.Width}
                 height={image.Height}
                 artwork={artwork}
-                onLikeClick={onLikeClick} />
+                onLikeClick={onLike} />
             }
           }
           )}

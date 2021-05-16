@@ -11,7 +11,7 @@ import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
-
+import { isNullOrUndefined } from "../app/utils/util";
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
@@ -66,6 +66,25 @@ export default function DiscoverPage() {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  function like(artworkId, isLike) {
+    if (isNullOrUndefined(username)) {
+      return;
+    }
+
+    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${username}`, {
+      method: isLike ? 'POST' : 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   function search(searchQuery) {
@@ -127,7 +146,7 @@ export default function DiscoverPage() {
       <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
           {!tags?.isLoading && !tags?.isError && tags?.data &&
-            <DiscoverArt artworks={artworks} tags={tags?.data} onFilter={filter} rowWidth={rowWidth}></DiscoverArt>
+            <DiscoverArt artworks={artworks} tags={tags?.data} onFilter={filter} onLike={like} rowWidth={rowWidth}></DiscoverArt>
           }
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
