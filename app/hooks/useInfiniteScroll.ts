@@ -4,7 +4,7 @@ import { useSWRInfinite } from 'swr'
 
 const defaultOptions = {
   root: null,
-  rootMargin: '0px',
+  rootMargin: '0px 0px 600px 0px',
   threshold: 0
 }
 
