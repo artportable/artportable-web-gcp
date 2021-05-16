@@ -6,7 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
       cursor: 'pointer'
     },
     imageContainer: {
-      borderRadius: '6px',
+      borderRadius: '4px',
       overflow: 'hidden',
     },
     titleAndLike: {
