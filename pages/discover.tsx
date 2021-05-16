@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
@@ -11,6 +11,7 @@ import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
+import { useInfiniteScroll2 } from "../app/hooks/useInfiniteScroll";
 
 
 export default function DiscoverPage() {
@@ -28,6 +29,9 @@ export default function DiscoverPage() {
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();
   const [artworks, setArtworks] = useState([]);
+  const loadMoreElementRef = useRef(null);
+  const { data } = useInfiniteScroll2(loadMoreElementRef);
+
   const useWideLayout = activeTab === 0;
 
   useEffect(() => {
@@ -127,7 +131,7 @@ export default function DiscoverPage() {
       <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
           {!tags?.isLoading && !tags?.isError && tags?.data &&
-            <DiscoverArt artworks={artworks} tags={tags?.data} onFilter={filter} rowWidth={rowWidth}></DiscoverArt>
+            <DiscoverArt artworks={data} tags={tags?.data} onFilter={filter} rowWidth={rowWidth} loadMoreElementRef={loadMoreElementRef}></DiscoverArt>
           }
         </TabPanel>
         <TabPanel value={activeTab} index={1}>

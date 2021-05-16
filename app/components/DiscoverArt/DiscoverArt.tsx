@@ -15,10 +15,11 @@ interface InputProps {
   artworks: Artwork[],
   tags: string[],
   onFilter: any,
-  rowWidth: number
+  rowWidth: number,
+  loadMoreElementRef: any
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter, rowWidth }: InputProps) {
+export default function DiscoverArt({ artworks, tags, onFilter, rowWidth, loadMoreElementRef }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const store = useStore();
@@ -97,6 +98,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, rowWidth }: Inpu
           )}
         </div>
       )}
+      <div ref={loadMoreElementRef}></div>
     </Box>
   );
 }
