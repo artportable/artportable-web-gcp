@@ -11,6 +11,7 @@ import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
+import { isNullOrUndefined } from "../app/utils/util";
 import { useInfiniteScroll2 } from "../app/hooks/useInfiniteScroll";
 
 
@@ -30,7 +31,7 @@ export default function DiscoverPage() {
   const [artists, setArtists] = useState();
   const [selectedTags, setSelectedTags] = useState(null);
   const loadMoreElementRef = useRef(null);
-  const { data } = useInfiniteScroll2(loadMoreElementRef,     
+  const { data } = useInfiniteScroll2(loadMoreElementRef,
     (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) { return null; }
     
@@ -40,9 +41,10 @@ export default function DiscoverPage() {
       url.searchParams.append('tag', tag);
     });
     url.searchParams.append('page', (pageIndex + 1).toString());
+    url.searchParams.append('pageSize', "20");
 
     return url.href;
-  }   );
+  });
 
   const useWideLayout = activeTab === 0;
 
@@ -61,6 +63,25 @@ export default function DiscoverPage() {
 
   function filter(tags: string[]) {
     setSelectedTags(tags);
+  }
+
+  function like(artworkId, isLike) {
+    if (isNullOrUndefined(username)) {
+      return;
+    }
+
+    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${username}`, {
+      method: isLike ? 'POST' : 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   function search(searchQuery) {
@@ -122,7 +143,14 @@ export default function DiscoverPage() {
       <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
           {!tags?.isLoading && !tags?.isError && tags?.data &&
-            <DiscoverArt artworks={data} tags={tags?.data} onFilter={filter} rowWidth={rowWidth} loadMoreElementRef={loadMoreElementRef}></DiscoverArt>
+            <DiscoverArt
+              artworks={data}
+              tags={tags?.data}
+              onFilter={filter}
+              onLike={like}
+              rowWidth={rowWidth}
+              loadMoreElementRef={loadMoreElementRef}
+            ></DiscoverArt>
           }
         </TabPanel>
         <TabPanel value={activeTab} index={1}>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Box, Checkbox, TextField, Theme, useTheme } from "@material-ui/core";
 import { styles } from "./discoverArt.css";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
-import { useStore } from 'react-redux';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { capitalizeFirst } from "../../utils/util";
 import { useTranslation } from "next-i18next";
@@ -15,16 +14,14 @@ interface InputProps {
   artworks: Artwork[],
   tags: string[],
   onFilter: any,
+  onLike: any,
   rowWidth: number,
   loadMoreElementRef: any
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter, rowWidth, loadMoreElementRef }: InputProps) {
+export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
-  const store = useStore();
-
-  const username = store.getState()?.user?.username;
 
   const [imageRows, setImageRows] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
@@ -36,21 +33,6 @@ export default function DiscoverArt({ artworks, tags, onFilter, rowWidth, loadMo
     const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
     setImageRows(rows);
   }, [artworks]);
-
-  function onLikeClick(artworkId, isLike) {
-    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${username}`, {
-      method: isLike ? 'POST' : 'DELETE',
-    })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
 
   return (
     <Box className={s.rowsContainer}>
@@ -95,7 +77,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, rowWidth, loadMo
                 width={image.Width}
                 height={image.Height}
                 artwork={artwork}
-                onLikeClick={onLikeClick} />
+                onLikeClick={onLike} />
             }
           }
           )}
