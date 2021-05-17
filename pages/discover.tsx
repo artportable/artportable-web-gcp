@@ -28,9 +28,21 @@ export default function DiscoverPage() {
 
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();
-  const [artworks, setArtworks] = useState([]);
+  const [selectedTags, setSelectedTags] = useState(null);
   const loadMoreElementRef = useRef(null);
-  const { data } = useInfiniteScroll2(loadMoreElementRef);
+  const { data } = useInfiniteScroll2(loadMoreElementRef,     
+    (pageIndex, previousPageData) => {
+    if (previousPageData && !previousPageData.length) { return null; }
+    
+    const url = new URL(`http://localhost:5001/api/discover/artworks`);
+
+    selectedTags.forEach(tag => {
+      url.searchParams.append('tag', tag);
+    });
+    url.searchParams.append('page', (pageIndex + 1).toString());
+
+    return url.href;
+  }   );
 
   const useWideLayout = activeTab === 0;
 
@@ -47,29 +59,8 @@ export default function DiscoverPage() {
     });
   }
 
-  function filter(tags) {
-    const url = new URL(`http://localhost:5001/api/discover/artworks`);
-    url.searchParams.append('page', '1');
-    url.searchParams.append('pageSize', '20');
-    if (username != null && username != '') {
-      url.searchParams.append('myUsername', username);
-    }
-    tags.forEach(tag => {
-      url.searchParams.append('tag', tag);
-    });
-
-    fetch(url.href, {
-      method: 'GET',
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      setArtworks(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  function filter(tags: string[]) {
+    setSelectedTags(tags);
   }
 
   function search(searchQuery) {

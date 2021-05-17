@@ -43,18 +43,21 @@ export const useInfiniteScroll = (
   return pageCount;
 }
 
-const getKey = (pageIndex, previousPageData) => {
+const _getKey = (pageIndex, previousPageData) => {
   if (previousPageData && !previousPageData.length) { return null; }
+
   return `http://localhost:5001/api/Discover/artworks?page=${pageIndex + 1}&pageSize=10`;
-}
+}  
 
 const fetcher = url => fetch(url).then(res => res.json());
 
+
 export const useInfiniteScroll2 = (
   loadMoreElement: React.MutableRefObject<Element>, 
-  options: IntersectionObserverInit = defaultOptions
+  getKey: (pageIndex: number, previousPageData: unknown[]) => string = _getKey,
+  options: IntersectionObserverInit = defaultOptions,
 ) => {
-  const { data, size, setSize } = useSWRInfinite(getKey, fetcher, { initialSize: 1 });
+  const { data, size, setSize } = useSWRInfinite(getKey, fetcher, { initialSize: 2 , revalidateOnFocus: false});
 
   const callback = debounce((entries) => {
     const [ entry ] = entries;

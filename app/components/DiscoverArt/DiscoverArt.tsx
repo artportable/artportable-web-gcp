@@ -71,10 +71,13 @@ export default function DiscoverArt({ artworks, tags, onFilter, rowWidth, loadMo
             {capitalizeFirst(t(`tags:${tag}`))}
           </React.Fragment>
         )}
-        style={{ color: "blue" }}
+        style={{ minHeight: "56px" }}
         renderInput={(params) => <TextField {...params} label={t('tags')} variant="outlined" />}
-        onChange={(event, value) => {
+        onChange={(event, value, reason) => {
           setSelectedTags(value);
+          if(reason === 'remove-option') {
+            onFilter(value);
+          }
         }}
         onClose={(event) => {
           onFilter(selectedTags);
