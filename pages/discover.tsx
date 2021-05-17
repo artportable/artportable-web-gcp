@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
@@ -12,6 +12,8 @@ import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
+import { useInfiniteScroll2 } from "../app/hooks/useInfiniteScroll";
+
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
@@ -27,7 +29,23 @@ export default function DiscoverPage() {
 
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();
-  const [artworks, setArtworks] = useState([]);
+  const [selectedTags, setSelectedTags] = useState(null);
+  const loadMoreElementRef = useRef(null);
+  const { data } = useInfiniteScroll2(loadMoreElementRef,
+    (pageIndex, previousPageData) => {
+    if (previousPageData && !previousPageData.length) { return null; }
+    
+    const url = new URL(`http://localhost:5001/api/discover/artworks`);
+
+    selectedTags.forEach(tag => {
+      url.searchParams.append('tag', tag);
+    });
+    url.searchParams.append('page', (pageIndex + 1).toString());
+    url.searchParams.append('pageSize', "20");
+
+    return url.href;
+  });
+
   const useWideLayout = activeTab === 0;
 
   useEffect(() => {
@@ -43,29 +61,8 @@ export default function DiscoverPage() {
     });
   }
 
-  function filter(tags) {
-    const url = new URL(`http://localhost:5001/api/discover/artworks`);
-    url.searchParams.append('page', '1');
-    url.searchParams.append('pageSize', '20');
-    if (username != null && username != '') {
-      url.searchParams.append('myUsername', username);
-    }
-    tags.forEach(tag => {
-      url.searchParams.append('tag', tag);
-    });
-
-    fetch(url.href, {
-      method: 'GET',
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      setArtworks(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  function filter(tags: string[]) {
+    setSelectedTags(tags);
   }
 
   function like(artworkId, isLike) {
@@ -146,7 +143,14 @@ export default function DiscoverPage() {
       <Box paddingTop={4}>
         <TabPanel value={activeTab} index={0}>
           {!tags?.isLoading && !tags?.isError && tags?.data &&
-            <DiscoverArt artworks={artworks} tags={tags?.data} onFilter={filter} onLike={like} rowWidth={rowWidth}></DiscoverArt>
+            <DiscoverArt
+              artworks={data}
+              tags={tags?.data}
+              onFilter={filter}
+              onLike={like}
+              rowWidth={rowWidth}
+              loadMoreElementRef={loadMoreElementRef}
+            ></DiscoverArt>
           }
         </TabPanel>
         <TabPanel value={activeTab} index={1}>

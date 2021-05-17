@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Box, Checkbox, TextField, Theme, useTheme } from "@material-ui/core";
 import { styles } from "./discoverArt.css";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
-import { useStore } from 'react-redux';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { capitalizeFirst } from "../../utils/util";
 import { useTranslation } from "next-i18next";
@@ -16,10 +15,11 @@ interface InputProps {
   tags: string[],
   onFilter: any,
   onLike: any,
-  rowWidth: number
+  rowWidth: number,
+  loadMoreElementRef: any
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth }: InputProps) {
+export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
 
@@ -53,10 +53,13 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             {capitalizeFirst(t(`tags:${tag}`))}
           </React.Fragment>
         )}
-        style={{ color: "blue" }}
+        style={{ minHeight: "56px" }}
         renderInput={(params) => <TextField {...params} label={t('tags')} variant="outlined" />}
-        onChange={(event, value) => {
+        onChange={(event, value, reason) => {
           setSelectedTags(value);
+          if(reason === 'remove-option') {
+            onFilter(value);
+          }
         }}
         onClose={(event) => {
           onFilter(selectedTags);
@@ -80,6 +83,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           )}
         </div>
       )}
+      <div ref={loadMoreElementRef}></div>
     </Box>
   );
 }
