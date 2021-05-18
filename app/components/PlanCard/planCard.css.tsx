@@ -2,35 +2,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    paymentOptions: {
-      gridArea: 'paymentOptions',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    option: {
+    container: {
       display: 'flex',
       maxWidth: '325px',
-    },
-    optionBase: {
-      extend: 'option',
       paddingTop: '48px'
-    },
-    optionStandard: {
-      extend: 'option'
-    },
-    optionPremium: {
-      extend: 'option',
-      paddingTop: '48px'
-    },
-    planCards: {
-      gridArea: 'options',
-      display: 'grid',
-      gridAutoFlow: 'column',
-      gridAutoColumns: '1fr',
-      gap: '16px',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end',
     },
     cardRoot: {
       boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)',
