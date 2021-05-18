@@ -1,66 +1,83 @@
-import Head from 'next/head'
+import React, { useState } from 'react'
 import Main from '../app/components/Main/Main'
-import Image from 'next/image'
 import TextCarousel from '../app/components/TextCarousel/TextCarousel'
 import RadioButtonGroup from '../app/components/RadioButtonGroup/RadioButtonGroup'
-import { useState } from 'react'
-import s from '../styles/Home.module.css'
+import { styles } from '../styles/index.css';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import Button from '../app/components/Button/Button'
+import Link from 'next/link'
+import { useGetArtworksForStartPage } from '../app/hooks/dataFetching/Artworks'
+import ArtworkStartItem from '../app/components/ArtworkStartItem/ArtworkStartItem'
 
 export default function Home( props ) {
-  const [currentShowing, setCurrentShowing] = useState(props.carouselNavOptions[0].tag);
-  const images = props.data?.filter((image) => image.Tags.includes(currentShowing));
-  const navOptions = props.carouselNavOptions.map(navOption => navOption.tag);
-  const { t } = useTranslation(['header']);
-  
-  return (
-    <>
-      <Head>
-        <title>Artportable</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+  const s = styles();
+  const { t } = useTranslation(['index', 'header']);
 
-      <Main>
-        <div className={s.textCarouselContainer}>
-          <TextCarousel show={currentShowing} objects={props.carouselNavOptions}></TextCarousel>
-          <RadioButtonGroup navOptions={navOptions} onNav={setCurrentShowing}></RadioButtonGroup>
+  const navItems = props.navItems;
+  const tags = navItems.map(item => item.tag);
+  const artworks = useGetArtworksForStartPage();
+  const [currentTag, setCurrentTag] = useState(navItems[0].tag);
+
+  return (
+    <Main>
+      <div className={s.container}>
+        <div className={s.carouselContainer}>
+          <TextCarousel show={currentTag} items={navItems}></TextCarousel>
+          <RadioButtonGroup
+            navOptions={tags}
+            onNav={setCurrentTag}
+          ></RadioButtonGroup>
         </div>
-        <h1>Our images &rarr;</h1>
-            
-        {images?.map(img =>
-          <div key={img?.Id}>
-            {img?.Title}
-            <br/>
-            <Image src={`https://artportable-images.s3.eu-north-1.amazonaws.com/Images/${img?.FileName}`}
-                  alt="Logo Artportable"
-                  width={500}
-                  height={300}
-            />
+        <div className={s.artworks}>
+          {artworks?.data && artworks.data.map(a =>
+            <ArtworkStartItem artwork={a} key={a.Image.Name}></ArtworkStartItem>
+          )}
+        </div>
+        <div className={s.welcomeToContainer}>
+          <div className={s.welcomeTo}>
+            <h1>{t('welcomeToTitle')}</h1>
+            <p>{t('welcomeToParagraph')}</p>
+            <Link href="/plans">
+              <a>
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                  rounded>
+                    {t('header:signUp')}
+                </Button>
+              </a>
+            </Link>
           </div>
-        )}
-      </Main>
-    </>
+        </div>
+      </div>
+    </Main>
   );
 }
 
-export async function getStaticProps({context, locale}) {
-  // @ts-ignore Used for ignoring cert validation, remove before prod
-  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
-  const carouselNavOptions = [
+export async function getStaticProps({locale}) {
+  const navItems = [
     {
-      text: 'För dig som badar i', tag: 'acrylic' 
+      text: 'forYouWhoSwimIn', tag: 'acrylic'
     },
-    { 
-      text: 'För dig som äter', tag:'oil'
+    {
+      text: 'forYouWhoEat', tag:'oil'
+    },
+    {
+      text: 'forYouWhoBreath', tag:'sea'
+    },
+    {
+      text: 'forYouWhoHungerFor', tag:'summer'
     }
   ];
 
   return {
     props: {
-      carouselNavOptions,
-      ...await serverSideTranslations(locale, ['header']),
+      navItems,
+      ...await serverSideTranslations(locale, ['header', 'index', 'tags']),
     },
   }
 }

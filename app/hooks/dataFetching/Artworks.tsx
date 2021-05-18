@@ -52,3 +52,21 @@ export function usePostArtwork(artwork: Artwork, username: string) {
   })
   .catch(e => console.log(e));
 }
+
+export function useGetArtworksForStartPage() {
+  const url = new URL(`http://localhost:5001/api/start`);
+
+  const { data, error } = useSWR(
+    url.href,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
