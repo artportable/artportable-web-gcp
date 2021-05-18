@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { Artwork } from '../../models/Artwork';
+import { ArtworkForCreation } from '../../models/Artwork';
 
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
 
@@ -39,7 +39,7 @@ export function useGetTags() {
   }
 }
 
-export function usePostArtwork(artwork: Artwork, username: string) {
+export function usePostArtwork(artwork: ArtworkForCreation, username: string) {
   fetch(`http://localhost:5001/api/artworks?myUsername=${username}`, {
     method: "POST",
     headers: {

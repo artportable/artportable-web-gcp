@@ -7,7 +7,7 @@ import styles from '../styles/upload.css'
 import { DropzoneArea } from 'material-ui-dropzone'
 import ArtButton from '../app/components/Button/Button';
 import { useTranslation } from 'next-i18next';
-import { Artwork } from '../app/models/Artwork';
+import { ArtworkForCreation } from '../app/models/Artwork';
 import { useStore } from 'react-redux';
 import { Cropper } from 'react-cropper';
 import clsx from 'clsx';
@@ -60,7 +60,7 @@ export default function UploadArtworkPage() {
   });
 
   const uploadArtwork = () => {
-    const artwork: Artwork = {
+    const artwork: ArtworkForCreation = {
       Title: title,
       Description: description,
       Price: price,

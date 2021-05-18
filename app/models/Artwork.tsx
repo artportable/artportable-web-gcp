@@ -12,3 +12,13 @@ export interface Artwork {
   Likes: number,
   LikedByMe: boolean
 }
+
+export interface ArtworkForCreation {
+  Title: string,
+  Description: string,
+  Price: number,
+  PrimaryFile: Image,
+  SecondaryFile: Image,
+  TertiaryFile: Image
+  Tags: Array<string>
+}
