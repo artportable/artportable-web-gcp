@@ -29,7 +29,7 @@ export default function Checkout( props ) {
   const email = store.getState()?.signup?.data?.email;
   const fullName = store.getState()?.signup?.data?.firstName + ' ' + store.getState()?.signup?.data?.lastName;
 
-  const [selectedPaymentInterval, setSelectedPaymentInterval] = useState<PaymentInterval>('yearly');
+  const [selectedPaymentInterval, setSelectedPaymentInterval] = useState<PaymentInterval>('year');
 
   return (
     <Box className={styles.root}>

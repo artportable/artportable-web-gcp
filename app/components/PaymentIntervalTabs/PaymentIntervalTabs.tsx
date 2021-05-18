@@ -2,7 +2,8 @@ import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import { useTranslation } from "next-i18next";
 
-export type PaymentInterval = 'yearly' | 'monthly';
+export type PaymentInterval = 'year' | 'month';
+
 type Props = {
   selectedPaymentInterval: PaymentInterval,
   paymentIntervalSetter: (paymentInterval: PaymentInterval) => void
@@ -21,8 +22,8 @@ export default function PaymentIntervalTabs({ selectedPaymentInterval, paymentIn
       textColor="primary"
       onChange={handleChange}
       >
-      <Tab value="yearly" label={t('yearlyPayment')} />
-      <Tab value="monthly" label={t('monthlyPayment')} />
+      <Tab value="year" label={t('yearlyPayment')} />
+      <Tab value="month" label={t('monthlyPayment')} />
     </Tabs>
   );
 }
