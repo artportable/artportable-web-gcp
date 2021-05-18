@@ -79,9 +79,6 @@ export default function PlanSelector({ priceData }) {
   return (
     <div>
       <div className={s.paymentOptions}>
-        <Typography align="center" component="div">
-          <Box fontWeight="fontWeightBold" marginBottom="15px"> {t('ourMemberships')}</Box>
-        </Typography>
         <Tabs
           value={selectedPaymentInterval}
           indicatorColor="primary"

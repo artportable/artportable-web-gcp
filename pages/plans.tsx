@@ -21,6 +21,9 @@ export default function Plans({ priceData }) {
         </Typography>
       </div>
       <div className={s.planSelector}>
+        <Typography align="center" component="div">
+          <Box fontWeight="fontWeightBold" marginBottom="15px"> {t('ourMemberships')}</Box>
+        </Typography>
         <PlanSelector priceData={priceData}></PlanSelector>
       </div>
     </div>
