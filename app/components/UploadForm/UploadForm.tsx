@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Box from '@material-ui/core/Box'
 
 import { styles } from './uploadForm.css'
@@ -54,7 +54,8 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setSele
           {
             return <TagChip
               title={tag}
-              onChipClick={onChipClick}>
+              onChipClick={onChipClick}
+              limitReached={selectedTags.length >= 5}>
             </TagChip>;
           }
         )}
