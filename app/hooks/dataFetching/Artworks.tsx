@@ -53,11 +53,8 @@ export function usePostArtwork(artwork: Artwork, username: string) {
   .catch(e => console.log(e));
 }
 
-export function useGetArtworksForStartPage(tags: Array<string>) {
+export function useGetArtworksForStartPage() {
   const url = new URL(`http://localhost:5001/api/start`);
-  tags.forEach(tag => {
-    url.searchParams.append('tag', tag);
-  });
 
   const { data, error } = useSWR(
     url.href,

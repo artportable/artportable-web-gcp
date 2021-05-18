@@ -17,12 +17,12 @@ export default function Home( props ) {
 
   const navItems = props.navItems;
   const tags = navItems.map(item => item.tag);
-  const artworks = useGetArtworksForStartPage(tags);
+  const artworks = useGetArtworksForStartPage();
   const [currentTag, setCurrentTag] = useState(navItems[0].tag);
 
   return (
-    <>
-      <Main>
+    <Main>
+      <div className={s.container}>
         <div className={s.carouselContainer}>
           <TextCarousel show={currentTag} items={navItems}></TextCarousel>
           <RadioButtonGroup
@@ -31,8 +31,8 @@ export default function Home( props ) {
           ></RadioButtonGroup>
         </div>
         <div className={s.artworks}>
-          {artworks?.data && artworks.data.find(i => i.Tag == currentTag)?.Items.map(a =>
-            <ArtworkStartItem artwork={a} key={a.Name}></ArtworkStartItem>
+          {artworks?.data && artworks.data.map(a =>
+            <ArtworkStartItem artwork={a} key={a.Image.Name}></ArtworkStartItem>
           )}
         </div>
         <div className={s.welcomeToContainer}>
@@ -53,8 +53,8 @@ export default function Home( props ) {
             </Link>
           </div>
         </div>
-      </Main>
-    </>
+      </div>
+    </Main>
   );
 }
 

@@ -2,17 +2,24 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
     carouselContainer: {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginBottom: '30px'
     },
     artworks: {
       display: "grid",
-      gap: theme.spacing(0, 2),
-      gridTemplateColumns: 'repeat(6, 1fr)',
-      gridAutoRows: '10px',
-      gridAutoFlow: 'row',
+      gap: "10px",
+      gridTemplate: (
+        '\". . . . . .\" 1fr' +
+        '\". . . . . .\" 1fr' +
+        '\". . . . . .\" 1fr' +
+        '/ 1fr 1fr 1fr 1fr 1fr 1fr')
     },
     welcomeToContainer: {
       display: 'flex',
