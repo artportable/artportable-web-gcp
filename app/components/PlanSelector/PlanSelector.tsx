@@ -32,8 +32,8 @@ export default function PlanSelector({ priceData }) {
           textColor="primary"
           onChange={(_, val) => setPaymentInterval(val)}
           >
-          <Tab value="year" label={t('checkout:yearlyPayment')} />
           <Tab value="month" label={t('checkout:monthlyPayment')} />
+          <Tab value="year" label={t('checkout:yearlyPayment')} />
         </Tabs>
       </div>
       <div className={s.planCards}>
