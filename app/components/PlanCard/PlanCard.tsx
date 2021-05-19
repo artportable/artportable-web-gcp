@@ -16,7 +16,7 @@ export default function PlanCard({ plan }) {
   const dispatch = useDispatch();
 
   function getPriceText() {
-    if (plan.product === 'free') {
+    if (plan.productKey === 'base') {
       return capitalizeFirst(t('common:words.free'));
     }
 
