@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
       maxWidth: '325px',
-      paddingTop: '48px'
+      paddingTop: '32px'
     },
     cardRoot: {
       minHeight: '450px',

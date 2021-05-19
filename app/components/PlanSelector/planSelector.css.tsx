@@ -11,9 +11,8 @@ export const styles = makeStyles((theme: Theme) =>
     planCards: {
       display: 'grid',
       gridAutoFlow: 'column',
-      gridAutoColumns: '1fr',
       gap: '16px',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'flex-end',
     },
   }),
