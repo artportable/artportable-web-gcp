@@ -2,6 +2,8 @@
   "welcomeTo": "Welcome to Swedens largest community for art",
   "ourMemberships": "Our memberships",
   "youCanAlwaysUpdateYourMembership": "You can always update your membership in my profile",
+  "yearlyPayment": "Yearly payment",
+  "monthlyPayment": "Monthly payment",
   "sek": "SEK",
   "plans": {
     "base": {

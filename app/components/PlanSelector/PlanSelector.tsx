@@ -6,7 +6,7 @@ import PlanCard from "../PlanCard/PlanCard";
 import { styles } from "./planSelector.css";
 
 export default function PlanSelector({ priceData }) {
-  const { t } = useTranslation(['plans', 'common', 'checkout']);
+  const { t } = useTranslation(['plans', 'common']);
   const s = styles();
 
   const [paymentInterval, setPaymentInterval] = useState('year');
@@ -32,8 +32,8 @@ export default function PlanSelector({ priceData }) {
           textColor="primary"
           onChange={(_, val) => setPaymentInterval(val)}
           >
-          <Tab value="month" label={t('checkout:monthlyPayment')} />
-          <Tab value="year" label={t('checkout:yearlyPayment')} />
+          <Tab value="month" label={t('monthlyPayment')} />
+          <Tab value="year" label={t('yearlyPayment')} />
         </Tabs>
       </div>
       <div className={s.planCards}>

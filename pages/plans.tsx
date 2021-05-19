@@ -8,7 +8,7 @@ import React from 'react';
 import PlanSelector from '../app/components/PlanSelector/PlanSelector';
 
 export default function Plans({ priceData }) {
-  const { t } = useTranslation(['plans', 'common', 'checkout']);
+  const { t } = useTranslation(['plans', 'common']);
   const s = styles();
 
   return (
@@ -39,7 +39,7 @@ export async function getStaticProps({ locale }) {
   return { 
     props: {
       priceData,
-      ...await serverSideTranslations(locale, ['header', 'plans', 'common', 'checkout']),
+      ...await serverSideTranslations(locale, ['header', 'plans', 'common']),
     } 
   };
 }
