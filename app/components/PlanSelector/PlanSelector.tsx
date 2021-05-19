@@ -30,7 +30,7 @@ export default function PlanSelector({ priceData }) {
         {plans.map(plan =>
           {
             const p = priceData.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
-            return <PlanCard plan={p} paymentInterval={paymentInterval} key={p.id}></PlanCard>
+            return <PlanCard plan={p} key={p.id}></PlanCard>
           }
         )}
       </div>

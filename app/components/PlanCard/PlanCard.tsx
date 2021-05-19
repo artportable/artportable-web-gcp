@@ -4,13 +4,13 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { ADD_PRICE } from "../../redux/actions/signupActions";
-import { capitalizeFirst, toCamelCase } from "../../utils/util";
+import { capitalizeFirst } from "../../utils/util";
 import Button from "../Button/Button";
 import PaymentInfo from "../PaymentInfo/PaymentInfo";
 import PlansInfoList from "../PlansInfoList/PlansInfoList";
 import { styles } from "./planCard.css";
 
-export default function PlanCard({ plan, paymentInterval }) {
+export default function PlanCard({ plan }) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const s = styles();
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function PlanCard({ plan, paymentInterval }) {
   }
 
   function getBullets(t) {
-    return t(`plans.${toCamelCase(plan.product)}.listTexts`, {returnObjects: true});
+    return t(`plans.${plan.productKey}.listTexts`, {returnObjects: true});
   }
 
   const onNavClick = () => {
