@@ -39,7 +39,7 @@ export default function PlanCard({ plan }) {
     <div className={s.container}>
       <Card className={s.cardRoot}>
         <CardContent>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h3" component="h2">
             <Box fontWeight="fontWeightMedium" textAlign="center">
               {plan.product}
             </Box>
