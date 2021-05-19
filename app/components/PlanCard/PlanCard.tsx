@@ -24,10 +24,6 @@ export default function PlanCard({ plan }) {
       ` / ${t(`common:words.${plan.recurringInterval}`)} (+${t('common:words.vat')})`;
   }
 
-  function getBullets(t) {
-    return t(`plans.${plan.productKey}.listTexts`, {returnObjects: true});
-  }
-
   const onNavClick = () => {
     if(plan === 'free') {
       return;
@@ -53,7 +49,7 @@ export default function PlanCard({ plan }) {
             priceText={getPriceText()} 
             secondaryText={t('youCanAlwaysUpdateYourMembership')}
           ></PaymentInfo>
-          <PlansInfoList texts={getBullets(t)}></PlansInfoList>
+          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, {returnObjects: true})}></PlansInfoList>
 
           <Link href='/signup'>
             <a>
