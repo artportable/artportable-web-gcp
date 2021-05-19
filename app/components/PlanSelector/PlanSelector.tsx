@@ -11,7 +11,17 @@ export default function PlanSelector({ priceData }) {
 
   const [paymentInterval, setPaymentInterval] = useState('year');
 
-  const plans = getDistinct(priceData, (p) => p.product);
+  const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
+
+  function compareAmounts(a, b) {
+    if (a.amount < b.amount){
+      return -1;
+    }
+    if (a.amount > b.amount){
+      return 1;
+    }
+    return 0;
+  }
 
   return (
     <div>
