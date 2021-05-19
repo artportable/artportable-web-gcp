@@ -5,7 +5,6 @@
   "sek": "kr",
   "plans": {
     "base": {
-      "name": "Bas",
       "listTexts": [
         "Utforska konst",
         "Läsa artiklar",
@@ -14,7 +13,6 @@
       ]
     },
     "portfolio": {
-      "name": "Portfolio",
       "listTexts": [
         "Allt från $t(plans.base.name)",
         "Digital portfolio inkluderande 10 konstvärk",
@@ -25,7 +23,6 @@
       ]
     },
     "portfolioPremium": {
-      "name": "Portolio Premium",
       "listTexts": [
         "Allt från $t(plans.base.name) & $t(plans.portfolio.name)",
         "Ytterligare 10 konstverk",

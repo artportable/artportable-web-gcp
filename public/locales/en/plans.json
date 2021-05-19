@@ -5,7 +5,6 @@
   "sek": "SEK",
   "plans": {
     "base": {
-      "name": "Base",
       "listTexts": [
         "Explore art",
         "Read articles",
@@ -14,7 +13,6 @@
       ]
     },
     "portfolio": {
-      "name": "Portfolio",
       "listTexts": [
         "Everything from $t(plans.base.name)",
         "Digital portfolio up to 10 artworks",
@@ -25,7 +23,6 @@
       ]
     },
     "portfolioPremium": {
-      "name": "Portolio Premium",
       "listTexts": [
         "Everything from $t(plans.base.name) & $t(plans.portfolio.name)",
         "Another 10 artworks",
