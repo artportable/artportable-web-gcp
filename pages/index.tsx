@@ -10,6 +10,7 @@ import Button from '../app/components/Button/Button'
 import Link from 'next/link'
 import { useGetArtworksForStartPage } from '../app/hooks/dataFetching/Artworks'
 import ArtworkStartItem from '../app/components/ArtworkStartItem/ArtworkStartItem'
+import PlanSelector from '../app/components/PlanSelector/PlanSelector';
 
 export default function Home( props ) {
   const s = styles();
@@ -39,19 +40,10 @@ export default function Home( props ) {
           <div className={s.welcomeTo}>
             <h1>{t('welcomeToTitle')}</h1>
             <p>{t('welcomeToParagraph')}</p>
-            <Link href="/plans">
-              <a>
-                <Button
-                  size="large"
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  rounded>
-                    {t('header:signUp')}
-                </Button>
-              </a>
-            </Link>
           </div>
+        </div>
+        <div className={s.planSelector}>
+          <PlanSelector priceData={props.priceData}></PlanSelector>
         </div>
       </div>
     </Main>
@@ -73,11 +65,22 @@ export async function getStaticProps({locale}) {
       text: 'forYouWhoHungerFor', tag:'summer'
     }
   ];
+  const priceData = await getPriceData();
 
   return {
     props: {
       navItems,
-      ...await serverSideTranslations(locale, ['header', 'index', 'tags']),
+      priceData,
+      ...await serverSideTranslations(locale, ['header', 'index', 'tags', 'plans', 'common']),
     },
+  }
+}
+
+async function getPriceData() {
+  try {
+    const res = await fetch(`http://localhost:5001/api/payments/prices`);
+    return await res?.json();
+  } catch(e) {
+    console.log('Could not fetch price info', e);
   }
 }

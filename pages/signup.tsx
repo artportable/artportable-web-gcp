@@ -22,7 +22,7 @@ import s from '../styles/signup.module.css'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch, useStore } from 'react-redux';
 import { ADD_DATA } from '../app/redux/actions/signupActions';
@@ -67,6 +67,15 @@ export default function Signup() {
   const [canContact, setCanContact] = useState(signupData?.canContact);
   const days = getDays(1);
   const years = getYears(currentLegalYear);
+
+
+  useEffect(() => {
+    // TODO: Do redirect of unauthed users in a better way
+    if (!store.getState()?.signup?.price) {
+      router.push('/plans');
+    }
+  });
+
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value });

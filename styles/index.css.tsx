@@ -25,10 +25,14 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       textAlign: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginBottom: '80px'
     },
     welcomeTo: {
       width: '400px'
     },
+    planSelector: {
+      marginBottom: '50px'
+    }
   }),
 );
