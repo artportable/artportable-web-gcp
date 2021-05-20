@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -11,6 +11,7 @@ import CheckoutForm from "../app/components/CheckoutForm/CheckoutForm";
 import InputLabel from '@material-ui/core/InputLabel';
 import { checkoutStyles } from '../styles/checkout';
 import { useStore } from "../app/redux/store";
+import { useRouter } from "next/router";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -21,10 +22,22 @@ export default function Checkout() {
   const store = useStore();
   const { t } = useTranslation(['checkout', 'common']);
   const styles = checkoutStyles();
+  const router = useRouter();
 
   const plan = store.getState()?.signup?.price;
   const email = store.getState()?.signup?.data?.email;
-  const fullName = store.getState()?.signup?.data?.firstName + ' ' + store.getState()?.signup?.data?.lastName;
+  const firstName = store.getState()?.signup?.data?.firstName;
+  const lastName = store.getState()?.signup?.data?.lastName;
+  const fullName = firstName + ' ' + lastName;
+
+  useEffect(() => {
+    // TODO: Do redirect of unauthed users in a better way
+    if (!plan) {
+      router.push('/plans');
+    } else if (!email || !firstName || !lastName) {
+      router.push('/signup');
+    }
+  });
 
   return (
     <Box className={styles.root}>
