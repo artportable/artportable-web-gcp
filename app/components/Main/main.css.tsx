@@ -80,6 +80,9 @@ export const styles = makeStyles((theme: Theme) =>
           `/ 1fr ${theme.breakpointMainWidths.xl.wide}px 1fr`)
       },
     },
+    full: {
+      display: 'block'
+    },
     content: {
       gridArea: 'content',
     },
