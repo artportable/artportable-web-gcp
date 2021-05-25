@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Main from '../app/components/Main/Main'
-import TextCarousel from '../app/components/TextCarousel/TextCarousel'
-import RadioButtonGroup from '../app/components/RadioButtonGroup/RadioButtonGroup'
+import Main, { GridRow } from '../app/components/Main/Main'
 import { styles } from '../styles/index.css';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -22,24 +20,19 @@ export default function Home( props ) {
   const [currentTag, setCurrentTag] = useState(navItems[0].tag);
 
   return (
-    <Main full>
-      <div className={s.container}>
-        <div className={s.carouselContainer}>
-          <TextCarousel show={currentTag} items={navItems}></TextCarousel>
-          <RadioButtonGroup
-            navOptions={tags}
-            onNav={setCurrentTag}
-          ></RadioButtonGroup>
-        </div>
-        <Carousel>
-          {props.carouselItems.map( (item, i) =>
-            <CarouselItem
-              key={i}
-              src={item.image}
-              text={item.text}
-              user={item.user} />
-          )}
-        </Carousel>
+    <Main noHeaderPadding>
+      <GridRow fullWidth>
+          <Carousel autoPlay={false}>
+            {props.carouselItems.map( (item, i) =>
+              <CarouselItem
+                key={i}
+                src={item.image}
+                text={item.text}
+                user={item.user} />
+            )}
+          </Carousel>
+      </GridRow>
+      <GridRow>
         <div className={s.artworks}>
           {artworks?.data && artworks.data.map(a =>
             <ArtworkStartItem artwork={a} key={a.Image.Name}></ArtworkStartItem>
@@ -54,7 +47,7 @@ export default function Home( props ) {
         <div className={s.planSelector}>
           <PlanSelector priceData={props.priceData}></PlanSelector>
         </div>
-      </div>
+      </GridRow>
     </Main>
   );
 }

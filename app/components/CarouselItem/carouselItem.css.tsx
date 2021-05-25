@@ -6,14 +6,21 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
     },
+    imageContainer: {
+      position: 'relative',
+      height: '50vh',
+      width: '100vw'
+    },
     text: {
       position: 'absolute',
-      top: '35%',
-      left: '25%',
-      transform: 'translate(-50%, -50%)',
-
-      fontSize: '400%',
-      backgroundColor: 'white'
+      top: '100px',
+      left: '50px',
+      fontSize: '3rem',
+      backgroundColor: theme.palette.common.white,
+      borderRadius: '8px',
+      padding: theme.spacing(2, 2, 1, 2),
+      maxWidth: '40vw',
+      font: ''
     },
     user: {
       position: 'absolute',
