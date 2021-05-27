@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { NONAME } from 'node:dns';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,15 +28,10 @@ export const styles = makeStyles((theme: Theme) =>
     
     navigation: {
       gridArea: 'navigation',
-      display: 'flex',
-      justifyContent: 'space-between',
-      '& *:not(:last-child)': {
-        margin: '0 16px 0 0',
-      },
       marginLeft: '20px',
-      '& a:hover': {
-        textShadow: '0 0 15px ' + theme.palette.primary.main,
-      },
+    },
+    navButton: {
+      textTransform: 'none'
     },
     text: {
       fontSize: '18px',

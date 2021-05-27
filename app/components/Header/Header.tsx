@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
+import MuiButton from '@material-ui/core/Button'
 
 import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
@@ -34,30 +35,18 @@ export default function Header({ isSignUp, isSignedIn }) {
         </div>
         <nav className={s.navigation}>
           {(!isSignUp && isSignedIn) &&
-            <Link href="/feed">
-              <a>
-                <p className={s.text}>
-                  {t('myArtNetwork')}
-                </p>
-              </a>
-            </Link>
+            <MuiButton classes={{root: s.navButton}} color="default" size="large">
+              <Link href="/feed">
+                {t('myArtNetwork')}
+              </Link>
+            </MuiButton>
           }
           {!isSignUp &&
-            <>
+            <MuiButton classes={{root: s.navButton}} color="default" size="large">
               <Link href="/discover">
-                <a>
-                  <p className={s.text}>
-                    {t('discover')}
-                  </p>
-                </a>
+                {t('discover')}
               </Link>
-              {/* <Link href="/articles">
-                <a>{t('articles')}</a>
-              </Link>
-              <Link href="/about">
-                <a>{t('about')}</a>
-              </Link> */}
-            </>
+            </MuiButton>
           }
         </nav>
         {(!isSignUp && !isSignedIn) &&
