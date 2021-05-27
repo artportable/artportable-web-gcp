@@ -17,7 +17,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       textAlign: 'center',
       alignItems: 'center',
-      marginBottom: '80px'
+      marginBottom: '40px'
     },
     welcomeTo: {
       width: '400px'
