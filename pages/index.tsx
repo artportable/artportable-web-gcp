@@ -5,10 +5,11 @@ import { styles } from '../styles/index.css';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useGetArtworksForStartPage } from '../app/hooks/dataFetching/Artworks'
-import ArtworkStartItem from '../app/components/ArtworkStartItem/ArtworkStartItem'
 import PlanSelector from '../app/components/PlanSelector/PlanSelector';
 import CarouselItem from '../app/components/CarouselItem/CarouselItem';
+import IndexArtworksGrid from '../app/components/IndexArtworksGrid/IndexArtworksGrid';
 import Carousel from 'react-material-ui-carousel';
+import Box from '@material-ui/core/Box';
 
 export default function Home( props ) {
   const s = styles();
@@ -33,11 +34,11 @@ export default function Home( props ) {
           </Carousel>
       </GridRow>
       <GridRow>
-        <div className={s.artworks}>
-          {artworks?.data && artworks.data.map(a =>
-            <ArtworkStartItem artwork={a} key={a.Image.Name}></ArtworkStartItem>
-          )}
-        </div>
+
+        <Box marginTop={8}>
+          <IndexArtworksGrid artworks={artworks} />
+        </Box>
+
         <div className={s.welcomeToContainer}>
           <div className={s.welcomeTo}>
             <h1>{t('welcomeToTitle')}</h1>
