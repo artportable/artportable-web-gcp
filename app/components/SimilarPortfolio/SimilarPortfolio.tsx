@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function SimilarPortfolio({ data }) {
   const s = styles();
 
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
     <div className={s.card}>

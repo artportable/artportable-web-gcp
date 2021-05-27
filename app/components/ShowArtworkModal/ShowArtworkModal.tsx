@@ -21,7 +21,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
   //TODO: use useMediaQuery for responsive design
   //const isSm = useMediaQuery('(min-width:600px)');
 
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const handleClose = () => {
     setOpen(false);

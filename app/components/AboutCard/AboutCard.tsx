@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 export default function AboutCard({ data }) {
   const s = styles();
   const { t } = useTranslation('profile');
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
     <Card elevation={2} className={s.mainCard}>

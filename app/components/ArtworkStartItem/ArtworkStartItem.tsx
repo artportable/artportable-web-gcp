@@ -10,7 +10,7 @@ export default function ArtworkStartItem({ artwork }) {
   const s = styles();
   const breakpoint = useMainWidth();
   const theme = useTheme();
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const imageWidth = getArtworkWidth(breakpoint.regular, theme.spacing(2));
 
   return (

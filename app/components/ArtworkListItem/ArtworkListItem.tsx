@@ -12,7 +12,7 @@ export default function ArtworkListItem({ artwork, onLikeClick }) {
   const [showArtworkModal, setShowArtworkModal] = useState(false);
 
   const userId = store.getState()?.user?.id;
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   function toggleLike(event) {
     event.stopPropagation();

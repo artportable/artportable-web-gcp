@@ -10,7 +10,7 @@ export default function AvatarCard({ user }) {
   const { t } = useTranslation(['tags']);
   const s = styles();
 
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
     <Link href={`/@${user.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
