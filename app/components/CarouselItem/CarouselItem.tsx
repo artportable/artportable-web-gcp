@@ -4,9 +4,11 @@ import Image from 'next/image'
 import { Avatar, Chip, Typography, Box } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next'
 
 export default function CarouselItem({ src, text, user = null }) {
   const s = styles();
+  const { t } = useTranslation(['index', 'header']);
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
 
   return (
@@ -20,8 +22,8 @@ export default function CarouselItem({ src, text, user = null }) {
         />
       </div>
       <Typography variant="h1" className={s.text}>
-        <Box fontWeight="500" fontFamily="LyonDisplay">
-          {text}
+        <Box fontWeight="500" textAlign="center">
+          {t(text)}
         </Box>
       </Typography>
       {user && 
@@ -29,6 +31,7 @@ export default function CarouselItem({ src, text, user = null }) {
           <Link href={`/@${user.username}`}>
             <a>
               <Chip
+                clickable
                 avatar={user.profilepicture ?
                   <Avatar
                     src={`${bucketUrl}${user.profilepicture}`}

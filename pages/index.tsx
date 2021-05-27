@@ -23,7 +23,7 @@ export default function Home( props ) {
   return (
     <Main noHeaderPadding>
       <GridRow fullWidth>
-          <Carousel autoPlay={false}>
+          <Carousel>
             {props.carouselItems.map( (item, i) =>
               <CarouselItem
                 key={i}
@@ -41,8 +41,9 @@ export default function Home( props ) {
 
         <div className={s.welcomeToContainer}>
           <div className={s.welcomeTo}>
-            <h1>{t('welcomeToTitle')}</h1>
-            <p>{t('welcomeToParagraph')}</p>
+            <h1>{t('chooseMembership')}</h1>
+            <p>{t('portfolioExplanation')}</p>
+            <p>{t('memberExplanation')}</p>
           </div>
         </div>
         <div className={s.planSelector}>
@@ -71,7 +72,7 @@ export async function getStaticProps({locale}) {
   const carouselItems = [
     {
       image: '/images/index1.jpg',
-      text: 'Förenkla dina konstköp',
+      text: 'welcomeToTitle',
       user: {
         username: 'jimpa',
         profilepicture: 'd5f6f50a-a669-4f93-943c-0314305b0113.jpg'

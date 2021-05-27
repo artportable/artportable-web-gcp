@@ -13,13 +13,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
     text: {
       position: 'absolute',
-      top: '100px',
+      bottom: '100px',
       left: '50px',
-      fontSize: '3rem',
+      fontSize: '2rem',
       backgroundColor: theme.palette.common.white,
-      borderRadius: '8px',
-      padding: theme.spacing(2, 2, 1, 2),
-      maxWidth: '40vw',
+      borderRadius: '4px',
+      padding: theme.spacing(1),
+      maxWidth: '25vw',
       font: ''
     },
     user: {
