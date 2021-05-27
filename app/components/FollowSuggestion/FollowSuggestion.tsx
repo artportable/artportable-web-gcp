@@ -14,7 +14,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
 
   const [isFollowed, setFollow] = useState(false);
 
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
     <ListItem key={user.UserId} className={s.listItem}>

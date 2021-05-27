@@ -14,7 +14,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   const [showArtworkModal, setShowArtworkModal] = useState(false);
 
   const isSignedIn = store.getState()?.user?.isSignedIn;
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   function toggleLike(event) {
     event.stopPropagation();

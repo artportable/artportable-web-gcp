@@ -14,7 +14,7 @@ export default function Profile({ userProfile, divider = false }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
     <Box textAlign="center">

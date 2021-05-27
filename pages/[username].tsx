@@ -38,7 +38,7 @@ export default function Profile() {
   const userProfile = useGetUserProfile(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const myUsername = store.getState()?.user?.username;
 
   function onLikeClick(artworkId, isLike) {
