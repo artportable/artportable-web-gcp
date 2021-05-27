@@ -35,13 +35,21 @@ export default function Header({ isSignUp, isSignedIn }) {
         <nav className={s.navigation}>
           {(!isSignUp && isSignedIn) &&
             <Link href="/feed">
-              <a>{t('myArtNetwork')}</a>
+              <a>
+                <p className={s.text}>
+                  {t('myArtNetwork')}
+                </p>
+              </a>
             </Link>
           }
           {!isSignUp &&
             <>
               <Link href="/discover">
-                <a>{t('discover')}</a>
+                <a>
+                  <p className={s.text}>
+                    {t('discover')}
+                  </p>
+                </a>
               </Link>
               {/* <Link href="/articles">
                 <a>{t('articles')}</a>

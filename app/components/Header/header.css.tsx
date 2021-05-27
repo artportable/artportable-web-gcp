@@ -31,9 +31,15 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       '& *:not(:last-child)': {
         margin: '0 16px 0 0',
-      }
+      },
+      marginLeft: '20px',
+      '& a:hover': {
+        textShadow: '0 0 15px ' + theme.palette.primary.main,
+      },
     },
-    
+    text: {
+      fontSize: '18px',
+    },
     login: {
       gridArea: 'login',
       '& .MuiButton-root:not(.MuiIconButton-root) .MuiButton-label': {
