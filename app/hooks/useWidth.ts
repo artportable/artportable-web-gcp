@@ -11,7 +11,7 @@ type BreakpointOrNull = Breakpoint | null;
  */
 export function useWidth() {
   const theme: Theme = useTheme();
-  const keys: Breakpoint[] = [...theme.breakpoints.keys].reverse();
+  const keys: Breakpoint[] = ['xl', 'lgPlus', 'lg', 'mdPlus', 'md', 'smPlus', 'sm', 'xs'];
   return (
     keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -24,7 +24,7 @@ export function useWidth() {
 export function useMainWidth(): { breakpoint: string, regular: number, wide: number } {
   const theme: Theme = useTheme();
   const width: Breakpoint = useWidth();
-
+  
   switch (width) {
     case 'xs':
       return theme.breakpointMainWidths.xs;

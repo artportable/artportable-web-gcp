@@ -12,15 +12,6 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       marginBottom: '30px'
     },
-    artworks: {
-      display: "grid",
-      gap: "10px",
-      gridTemplate: (
-        '\". . . . . .\" 1fr' +
-        '\". . . . . .\" 1fr' +
-        '\". . . . . .\" 1fr' +
-        '/ 1fr 1fr 1fr 1fr 1fr 1fr')
-    },
     welcomeToContainer: {
       display: 'flex',
       flexDirection: 'column',

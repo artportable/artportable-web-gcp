@@ -1,14 +1,17 @@
-import React from 'react';
+import React from 'react'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Image from 'next/image'
 import { styles } from './artworkStartItem.css'
-import { Avatar } from '@material-ui/core';
-import Link from 'next/link';
+import { Avatar, useTheme } from '@material-ui/core'
+import Link from 'next/link'
+import { useMainWidth } from '../../hooks/useWidth'
 
 export default function ArtworkStartItem({ artwork }) {
   const s = styles();
+  const breakpoint = useMainWidth();
+  const theme = useTheme();
   const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
-  const imageWidth = 200;
+  const imageWidth = getArtworkWidth(breakpoint.regular, theme.spacing(2));
 
   return (
     <div className={s.container}>
@@ -41,4 +44,23 @@ export default function ArtworkStartItem({ artwork }) {
       </Link>
     </div>
   );
+}
+
+function getArtworkWidth(
+  availableSpace: number, 
+  spacing: number,
+  minArtworkWidth: number = 200, 
+  maxColumns: number = 6)
+    : number {
+  const getTotalSpacing = (cols) => (cols - 1) * spacing;
+  const getAvailableArtworkSpace = 
+    (availableSpace, cols = maxColumns) => availableSpace - getTotalSpacing(cols);
+  const decimalColumns = getAvailableArtworkSpace(availableSpace) / minArtworkWidth;
+
+  if(decimalColumns > maxColumns) {
+    return getAvailableArtworkSpace(availableSpace) / maxColumns;    
+  }
+
+  const roundedDown = Math.floor(decimalColumns);
+  return getAvailableArtworkSpace(availableSpace, roundedDown) / roundedDown;
 }

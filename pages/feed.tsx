@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Feed from '../app/components/Feed/Feed';
 import Head from 'next/head'
 import Link from 'next/link'
-import Main from '../app/components/Main/Main'
+import Main, { GridRow } from '../app/components/Main/Main'
 import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
 import ProfileCard from '../app/components/ProfileCard/ProfileCard'
@@ -86,33 +86,35 @@ export default function FeedPage() {
       </Head>
 
       <Main>
-        <Box className={s.feedContainer}>
-          <div className={s.colLeft}>
-            <ProfileCard userProfile={userProfile}></ProfileCard>
-            <Button
-              className={s.uploadArtButton}
-              size="small"
-              variant="contained"
-              color="primary"
-              disableElevation>
-                {t('uploadNewWorkOfArt')}
-            </Button>
-            <NewsletterCard></NewsletterCard>
-          </div>
-          <div className={s.colFeed}>
-            {myUsername ? (
-              <>
-                {pages}
-                <div ref={loadMoreElement}>
-                  <FeedCardSkeleton></FeedCardSkeleton>
-                </div>
-              </>
-            ) : (<p>No posts to show...</p>)}
-          </div>
-          <div className={s.colRight}>
-            <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
-          </div>
-        </Box>
+        <GridRow>
+          <Box className={s.feedContainer}>
+            <div className={s.colLeft}>
+              <ProfileCard userProfile={userProfile}></ProfileCard>
+              <Button
+                className={s.uploadArtButton}
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation>
+                  {t('uploadNewWorkOfArt')}
+              </Button>
+              <NewsletterCard></NewsletterCard>
+            </div>
+            <div className={s.colFeed}>
+              {myUsername ? (
+                <>
+                  {pages}
+                  <div ref={loadMoreElement}>
+                    <FeedCardSkeleton></FeedCardSkeleton>
+                  </div>
+                </>
+              ) : (<p>No posts to show...</p>)}
+            </div>
+            <div className={s.colRight}>
+              <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
+            </div>
+          </Box>
+        </GridRow>
       </Main>
     </>
   );
