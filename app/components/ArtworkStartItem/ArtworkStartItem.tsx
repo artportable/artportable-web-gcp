@@ -2,7 +2,7 @@ import React from 'react'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Image from 'next/image'
 import { styles } from './artworkStartItem.css'
-import { Avatar, useTheme } from '@material-ui/core'
+import { Avatar, Paper, useTheme } from '@material-ui/core'
 import Link from 'next/link'
 import { useMainWidth } from '../../hooks/useWidth'
 
@@ -14,35 +14,37 @@ export default function ArtworkStartItem({ artwork }) {
   const imageWidth = getArtworkWidth(breakpoint.regular, theme.spacing(2));
 
   return (
-    <div className={s.container}>
-      <div className={s.image}>
-        <Image src={`${bucketUrl}${artwork.Image.Name}`}
-            alt="Artwork"
-            width={imageWidth+"px"}
-            height={(artwork.Image.Height / artwork.Image.Width) * imageWidth}
-            objectFit="cover"></Image>
-      </div>
-      <Link href={`/@${artwork.Username}`}>
-        <a>
-          <div className={s.footer}>
-            {artwork?.ProfilePicture ? (
-              <Avatar src={`${bucketUrl}${artwork?.ProfilePicture}`}
-                alt="Profile picture"
-                style={{ height: '24px', width: '24px' }}
-              />
-            ) : (
-              <AccountCircleIcon
-                color="secondary"
-                style={{fontSize: 28}}
-              />
-            )}
-            <div className={s.username}>
-              {artwork?.Username}
+    <Paper variant="outlined" className={s.paper}>
+      <div className={s.container}>
+        <div>
+          <Image src={`${bucketUrl}${artwork.Image.Name}`}
+              alt="Artwork"
+              width={imageWidth+"px"}
+              height={(artwork.Image.Height / artwork.Image.Width) * imageWidth}
+              objectFit="cover"></Image>
+        </div>
+        <Link href={`/@${artwork.Username}`}>
+          <a>
+            <div className={s.footer}>
+              {artwork?.ProfilePicture ? (
+                <Avatar src={`${bucketUrl}${artwork?.ProfilePicture}`}
+                  alt="Profile picture"
+                  style={{ height: '24px', width: '24px' }}
+                />
+              ) : (
+                <AccountCircleIcon
+                  color="secondary"
+                  style={{fontSize: 28}}
+                />
+              )}
+              <div className={s.username}>
+                {artwork?.Username}
+              </div>
             </div>
-          </div>
-        </a>
-      </Link>
-    </div>
+          </a>
+        </Link>
+      </div>
+    </Paper>
   );
 }
 
