@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { NONAME } from 'node:dns';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,13 +28,14 @@ export const styles = makeStyles((theme: Theme) =>
     
     navigation: {
       gridArea: 'navigation',
-      display: 'flex',
-      justifyContent: 'space-between',
-      '& *:not(:last-child)': {
-        margin: '0 16px 0 0',
-      }
+      marginLeft: '20px',
     },
-    
+    navButton: {
+      textTransform: 'none'
+    },
+    text: {
+      fontSize: '18px',
+    },
     login: {
       gridArea: 'login',
       '& .MuiButton-root:not(.MuiIconButton-root) .MuiButton-label': {
