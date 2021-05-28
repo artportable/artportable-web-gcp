@@ -9,7 +9,7 @@ import { useTranslation } from 'next-i18next'
 export default function CarouselItem({ src, text, user = null }) {
   const s = styles();
   const { t } = useTranslation(['index', 'header']);
-  const bucketUrl = process.env.NEXT_PUBLIC_S3_BUCKET_AWS;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
     <div className={s.container}>
