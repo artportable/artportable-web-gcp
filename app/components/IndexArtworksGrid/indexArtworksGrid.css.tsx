@@ -5,9 +5,13 @@ export const styles = makeStyles((theme: Theme) =>
     artworks: {
       display: 'flex',
       gap: theme.spacing(2),
-      flexWrap: 'wrap',
+      justifyContent: 'center',
+      minHeight: '500px'
     },
     column: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: theme.spacing(2),
       '&:nth-child(2)': {
         paddingTop: '70px',
       },

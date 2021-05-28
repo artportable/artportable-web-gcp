@@ -1,7 +1,7 @@
 import React from 'react';
 import { styles } from './carouselItem.css';
 import Image from 'next/image'
-import { Avatar, Chip, Typography, Box } from '@material-ui/core';
+import { Avatar, Chip, Typography, Box, Paper } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
@@ -21,11 +21,13 @@ export default function CarouselItem({ src, text, user = null }) {
           objectFit="cover"
         />
       </div>
-      <Typography variant="h1" className={s.text}>
-        <Box fontWeight="500" textAlign="center">
-          {t(text)}
-        </Box>
-      </Typography>
+      <Paper variant="outlined" className={s.text}>
+        <Typography variant="h1">
+          <Box fontWeight="500" textAlign="center">
+            {t(text)}
+          </Box>
+        </Typography>
+      </Paper>
       {user && 
         <div className={s.user}>
           <Link href={`/@${user.username}`}>
