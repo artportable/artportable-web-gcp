@@ -15,14 +15,15 @@ import { styles } from './header.css'
 export default function Header({ isSignUp, isSignedIn }) {
   const { t } = useTranslation('header');
   const s = styles();
+
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
+  const logoHref = isSignedIn ? "/feed" : "/";
 
   return (
-    
     <AppBar color="transparent" elevation={0}>
       <div className={containerClasses}>
         <div className={s.logo}>
-          <Link href="/">
+          <Link href={logoHref}>
             <a>
               <Image
                 src="/Artportable_Logotyp_Black.svg"
