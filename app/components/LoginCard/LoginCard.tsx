@@ -18,6 +18,12 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onClick();
+    }
+  }
+
   return (
     <Card elevation={2}>
       <CardContent>
@@ -39,7 +45,9 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
             fullWidth
             required
             type="email"
-            onChange={(event) => setEmail(event.target.value)}/>
+            onChange={(event) => setEmail(event.target.value)}
+            onKeyDown={handleKeyDown}
+          />
         </div>
         <div>
           <FormControl fullWidth>
@@ -48,6 +56,7 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
               id="password"
               type={showPassword ? 'text' : 'password'}
               onChange={(event) => setPassword(event.target.value)}
+              onKeyDown={handleKeyDown}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
