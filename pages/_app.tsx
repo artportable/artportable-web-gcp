@@ -65,7 +65,10 @@ library.add(
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
   const isSignUp = pageProps.isSignUp === true;
-  const isSignedIn = store.getState()?.user?.isSignedIn ?? false;
+  const user = store.getState()?.user;
+  const isSignedIn = user?.isSignedIn ?? false;
+  const username = user?.username ?? null;
+  const profilePicture = user?.profilePicture ?? null; // TODO: Save profile picture in store
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -88,7 +91,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Header isSignUp={isSignUp} isSignedIn={isSignedIn}></Header>
+          <Header
+            isSignUp={isSignUp}
+            isSignedIn={isSignedIn}
+            username={username}
+            profilePicture={profilePicture}
+          ></Header>
           <Component {...pageProps} />
         </ThemeProvider>
       </Provider>

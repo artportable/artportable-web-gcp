@@ -11,11 +11,14 @@ import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
+import React from 'react'
+import { Avatar } from '@material-ui/core'
 
-export default function Header({ isSignUp, isSignedIn }) {
+export default function Header({ isSignUp, isSignedIn, username = null, profilePicture = null }) {
   const { t } = useTranslation('header');
   const s = styles();
 
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
 
@@ -99,7 +102,14 @@ export default function Header({ isSignUp, isSignedIn }) {
               <NotificationsIcon style={{ fontSize: '30px'}} />
             </IconButton>
             <IconButton color="secondary" aria-label="account">
-              <AccountCircleIcon style={{ fontSize: '30px'}} />
+              {profilePicture ? (
+                <Avatar src={`${bucketUrl}${profilePicture}`}
+                  alt="Profile picture"
+                  className={s.avatar}
+                />
+              ) : (
+                <AccountCircleIcon style={{ fontSize: 30 }} color="secondary"></AccountCircleIcon>
+              )}
             </IconButton>
           </div>
         }
