@@ -32,7 +32,7 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
             </MuiLink>
           </Link>
         </Typography>
-        <div className={s.inputContainer}>
+        <div>
           <TextField
             id="email"
             label={capitalizeFirst(t('email'))}
@@ -41,7 +41,7 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
             type="email"
             onChange={(event) => setEmail(event.target.value)}/>
         </div>
-        <div className={s.inputContainer}>
+        <div>
           <FormControl fullWidth>
             <InputLabel htmlFor="standard-adornment-password">{capitalizeFirst(t('password'))}</InputLabel>
             <Input
