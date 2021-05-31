@@ -90,14 +90,18 @@ export default function FeedPage() {
           <Box className={s.feedContainer}>
             <div className={s.colLeft}>
               <ProfileCard userProfile={userProfile}></ProfileCard>
-              <Button
-                className={s.uploadArtButton}
-                size="small"
-                variant="contained"
-                color="primary"
-                disableElevation>
-                  {t('uploadNewWorkOfArt')}
-              </Button>
+              <Link href="/upload">
+                <a>
+                  <Button
+                    className={s.uploadArtButton}
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    disableElevation>
+                      {t('uploadNewWorkOfArt')}
+                  </Button>
+                </a>
+              </Link>
               <NewsletterCard></NewsletterCard>
             </div>
             <div className={s.colFeed}>
