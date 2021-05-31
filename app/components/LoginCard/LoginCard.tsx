@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import React, { useState } from 'react';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { capitalizeFirst } from '../../utils/util';
+import MuiLink from '@material-ui/core/Link';
 
 
 export default function LoginCard({setEmail, setPassword, remember, setRemember, onClick}) {
@@ -19,20 +20,18 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
 
   return (
     <Card elevation={2}>
-      <CardHeader
-        title={t('title')}
-        subheader= {
-          <div>
-            {t('newUser')}{' '}
-            <Link href="/signup">
-              <a>
-                {t('createAccount')}
-              </a>
-            </Link>
-          </div>
-        }
-      />
       <CardContent>
+        <Typography variant="h1" gutterBottom>
+          {t('title')}
+        </Typography>
+        <Typography variant="subtitle1" component="p" gutterBottom>
+          {t('newUser')}{' '}
+          <Link href="/signup" passHref>
+            <MuiLink>
+              {t('createAccount')}
+            </MuiLink>
+          </Link>
+        </Typography>
         <div className={s.inputContainer}>
           <TextField
             id="email"
