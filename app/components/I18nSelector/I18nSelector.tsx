@@ -1,13 +1,15 @@
 import { Menu, MenuItem } from '@material-ui/core'
 import Button from '../Button/Button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react';
 import { Locales, DisplayLocales } from '../../models/i18n/locales'
 import { useRouter } from 'next/router';
+import { styles } from './i18nSelector.css'
 
 export default function I18nSelector() {
   const { t } = useTranslation('i18n');
+  const s = styles();
   const [anchorElement, setAnchorElement] = useState(null);
   const router = useRouter();
   const displayLocale = router.locale === Locales.se ?
@@ -29,11 +31,12 @@ export default function I18nSelector() {
     <>
       <Button
         size="small"
-        color="secondary"
-        endIcon={<FontAwesomeIcon icon="chevron-down" />}
-        aria-controls="language-menu" 
+        className={s.button}
+        endIcon={<KeyboardArrowDownIcon />}
+        aria-controls="language-menu"
         aria-haspopup="true"
         onClick={handleClick}
+        variant="contained"
         disableElevation
         rounded>
         {displayLocale}
