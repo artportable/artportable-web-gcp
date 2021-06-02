@@ -364,7 +364,7 @@ export default function Signup() {
                   <Select
                     labelId="country-or-region-label"
                     id="country-or-region"
-                    defaultValue={signupData?.location ?? ''}
+                    defaultValue={signupData?.location ?? 'SE'}
                     onChange={handleOnChangeLocation}
                     displayEmpty
                   >
