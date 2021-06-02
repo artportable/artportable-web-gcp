@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import React, { useState } from 'react';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { capitalizeFirst } from '../../utils/util';
+import MuiLink from '@material-ui/core/Link';
 
 
 export default function LoginCard({setEmail, setPassword, remember, setRemember, onClick}) {
@@ -17,38 +18,45 @@ export default function LoginCard({setEmail, setPassword, remember, setRemember,
 
   const [showPassword, setShowPassword] = useState(false);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onClick();
+    }
+  }
+
   return (
     <Card elevation={2}>
-      <CardHeader
-        title={t('title')}
-        subheader= {
-          <div>
-            {t('newUser')}{' '}
-            <Link href="/signup">
-              <a>
-                {t('createAccount')}
-              </a>
-            </Link>
-          </div>
-        }
-      />
       <CardContent>
-        <div className={s.inputContainer}>
+        <Typography variant="h1" gutterBottom>
+          {t('title')}
+        </Typography>
+        <Typography variant="subtitle1" component="p" gutterBottom>
+          {t('newUser')}{' '}
+          <Link href="/signup" passHref>
+            <MuiLink>
+              {t('createAccount')}
+            </MuiLink>
+          </Link>
+        </Typography>
+        <div>
           <TextField
             id="email"
             label={capitalizeFirst(t('email'))}
             fullWidth
             required
             type="email"
-            onChange={(event) => setEmail(event.target.value)}/>
+            onChange={(event) => setEmail(event.target.value)}
+            onKeyDown={handleKeyDown}
+          />
         </div>
-        <div className={s.inputContainer}>
+        <div>
           <FormControl fullWidth>
             <InputLabel htmlFor="standard-adornment-password">{capitalizeFirst(t('password'))}</InputLabel>
             <Input
               id="password"
               type={showPassword ? 'text' : 'password'}
               onChange={(event) => setPassword(event.target.value)}
+              onKeyDown={handleKeyDown}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton

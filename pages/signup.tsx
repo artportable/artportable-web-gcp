@@ -242,7 +242,7 @@ export default function Signup() {
               </Typography>
               <Typography variant="subtitle1" component="p" gutterBottom>
                 {t('alreadyHaveAnAccountQuestion')}?{' '}
-                <Link href="#" passHref>
+                <Link href="/login" passHref>
                   <MuiLink>
                     {t('login')}
                   </MuiLink>

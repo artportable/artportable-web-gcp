@@ -48,7 +48,10 @@ export const styles = makeStyles((theme: Theme) =>
         padding: theme.spacing(0.5)
       }
     },
-    
+    avatar: {
+      width: 33,
+      height: 33
+    },
     language: {
       gridArea: 'language',
       color: 'var(--text-color-accent)'

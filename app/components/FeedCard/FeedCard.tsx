@@ -55,7 +55,6 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             subheader={
               <Box>
                 <span>{content.Location}</span>
-                <span className={s.published}>{elapsedTime.Time} {t('common:timeUnit.' + elapsedTime.Unit)}</span>
               </Box>
             }
           />
