@@ -6,5 +6,6 @@
   "password": "Password",
   "forgotCredentials": "Forgot username or password?",
   "keepLoggedin": "Keep me logged in",
-  "loginButton": "Log in"
+  "loginButton": "Log in",
+  "loginfailed": "Could not log in, please try again"
 }
