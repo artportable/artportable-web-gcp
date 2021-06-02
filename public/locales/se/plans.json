@@ -5,8 +5,10 @@
   "yearlyPayment": "Årsvis",
   "monthlyPayment": "Månadsvis",
   "sek": "kr",
+  "signUp": "Bli medlem",
   "plans": {
-    "base": {
+    "free": {
+      "name": "Gratis",
       "listTexts": [
         "Utforska konst",
         "Läsa artiklar",
@@ -15,8 +17,9 @@
       ]
     },
     "portfolio": {
+      "name": "Portfolio",
       "listTexts": [
-        "Allt från $t(plans.base.name)",
+        "Allt från $t(plans.free.name)",
         "Digital portfolio inkluderande 10 konstvärk",
         "Tillgång till Artportables Facebookgrupp",
         "Sprid din portfolio genom Artportable social media",
@@ -25,8 +28,9 @@
       ]
     },
     "portfolioPremium": {
+      "name": "Portfolio Premium",
       "listTexts": [
-        "Allt från $t(plans.base.name) & $t(plans.portfolio.name)",
+        "Allt från $t(plans.free.name) & $t(plans.portfolio.name)",
         "Ytterligare 10 konstverk",
         "Mer värde för pengarna",
         "Saker du inte kan motstå"
