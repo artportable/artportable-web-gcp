@@ -1,4 +1,4 @@
-import { Avatar, Box, Link, Typography } from '@material-ui/core';
+import { Avatar, Box, Link, Typography, Paper } from '@material-ui/core';
 import React from 'react';
 import { styles } from './similarPortfolio.css';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -9,64 +9,56 @@ export default function SimilarPortfolio({ data }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
-    <div className={s.card}>
-      <div className={s.images}>
-        <Link href={`/@${data?.Username}`}>
-          <a>
-            <div className={s.imageGrid}>
-              {data.Artworks[0] &&
-                <div className={s.first}>
-                  <img src={`${bucketUrl}${data.Artworks[0]}`}
-                    alt="Portfolio image"
-                    height="200"
-                    width="200"
-                  />
-                </div>
-              }
-              {data.Artworks[1] &&
-                <div className={s.second}>
-                  <img src={`${bucketUrl}${data.Artworks[1]}`}
-                    alt="Portfolio image"
-                    height="100"
-                    width="100"
-                  />
-                </div>
-              }
-              {data.Artworks[2] &&
-                <div className={s.third}>
-                  <img src={`${bucketUrl}${data.Artworks[2]}`}
-                    alt="Portfolio image"
-                    height="100"
-                    width="100"
-                  />
-                </div>
-              }
-              {data.Artworks[3] &&
-                <div className={s.forth}>
-                  <img src={`${bucketUrl}${data.Artworks[3]}`}
-                    alt="Portfolio image"
-                    height="100"
-                    width="100"
-                  />
-                </div>
-              }
-              {data.Artworks[4] &&
-                <div className={s.fifth}>
-                  <img src={`${bucketUrl}${data.Artworks[4]}`}
-                    alt="Portfolio image"
-                    height="100"
-                    width="100"
-                  />
-                </div>
-              }
-            </div>
-          </a>
-        </Link>
-      </div>
+    <Paper variant="outlined" className={s.card}>
+      <Link href={`/@${data?.Username}`} >
+        
+          <div className={s.imageGrid}>
+            {data.Artworks[0] &&
+              <div className={s.first}>
+                <img className={s.image}
+                  src={`${bucketUrl}${data.Artworks[0].Name}`}
+                  alt="Portfolio image"
+                />
+              </div>
+            }
+            {data.Artworks[1] &&
+              <div className={s.second}>
+                <img className={s.image}
+                  src={`${bucketUrl}${data.Artworks[1].Name}`}
+                  alt="Portfolio image"
+                />
+              </div>
+            }
+            {data.Artworks[2] &&
+              <div className={s.third}>
+                <img className= {s.image}
+                  src={`${bucketUrl}${data.Artworks[2].Name}`}
+                  alt="Portfolio image"
+                />
+              </div>
+            }
+            {data.Artworks[3] &&
+              <div className={s.forth}>
+                <img className= {s.image}
+                  src={`${bucketUrl}${data.Artworks[3].Name}`}
+                  alt="Portfolio image"
+                />
+              </div>
+            }
+            {data.Artworks[4] &&
+              <div className={s.fifth}>
+                <img className={s.image}
+                  src={`${bucketUrl}${data.Artworks[4].Name}`}
+                  alt="Portfolio image"
+                />
+              </div>
+            }
+          </div>
+        
+      </Link>
       <div className={s.footer}>
-        <div className={s.avatar}>
           <Link href={`/@${data?.Username}`}>
-            <a>
+            
               {data?.ProfilePicture ? (
                 <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
                   alt="Profile picture"
@@ -78,19 +70,18 @@ export default function SimilarPortfolio({ data }) {
                   style={{fontSize: 48}}
                 />
               )}
-            </a>
+            
           </Link>
-        </div>
         <Box fontWeight="fontWeightBold">
           <Typography variant="subtitle1">
             <Link href={`/@${data?.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
-              <a>
+              
                 {data?.Username}
-              </a>
+            
             </Link>
           </Typography>
         </Box>
       </div>
-    </div>
+    </Paper>
   );
 }
