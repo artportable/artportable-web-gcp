@@ -40,7 +40,7 @@ interface State {
 }
 
 export default function Signup() {
-  const { t } = useTranslation('signup');
+  const { t } = useTranslation(['signup', 'countries']);
   const dispatch = useDispatch();
   const store = useStore();
   const signupData = store.getState()?.signup?.data;
@@ -67,6 +67,7 @@ export default function Signup() {
   const [canContact, setCanContact] = useState(signupData?.canContact);
   const days = getDays(1);
   const years = getYears(currentLegalYear);
+  const countries: Country[] = t(`countries:countries`, {returnObjects: true});
 
 
   useEffect(() => {
@@ -363,11 +364,13 @@ export default function Signup() {
                   <Select
                     labelId="country-or-region-label"
                     id="country-or-region"
-                    defaultValue={signupData?.location}
+                    defaultValue={signupData?.location ?? 'SE'}
                     onChange={handleOnChangeLocation}
+                    displayEmpty
                   >
-                    <MenuItem value={"se"}>{t("countryOrRegionList.sweden")}</MenuItem>
-                    <MenuItem value={"uk"}>{t("countryOrRegionList.uk")}</MenuItem>
+                    {countries.map(c =>
+                      <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)
+                    }
                   </Select>
                 </FormControl>
               </div>
@@ -455,7 +458,7 @@ export async function getStaticProps({ locale }) {
   return { 
     props: {
       isSignUp: true,
-      ...await serverSideTranslations(locale, ['header', 'signup']),
+      ...await serverSideTranslations(locale, ['header', 'signup', 'countries']),
     } 
   };
 }
