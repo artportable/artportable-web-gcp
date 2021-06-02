@@ -28,7 +28,7 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
         <div className={s.logo}>
           <Link href={logoHref}>
             <a>
-              <Image
+              <img
                 src="/Artportable_Logotyp_Black.svg"
                 alt="Logo Artportable"
                 width={188}

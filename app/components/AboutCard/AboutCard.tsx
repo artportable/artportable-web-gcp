@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Card, CardContent, Typography } from '@material-ui/core'
-import Image from 'next/image'
 import { styles } from './aboutCard.css'
 import RoomIcon from '@material-ui/icons/Room';
 
@@ -16,12 +15,10 @@ export default function AboutCard({ data }) {
         <CardContent className={s.mainCardContent}>
           <div>
             {data?.ProfilePicture &&
-              <Image
+              <img
                 src={`${bucketUrl}${data.ProfilePicture}`}
-                height={400}
-                width={300}
-                objectFit="cover">
-              </Image>
+                width={300}>
+              </img>
             }
           </div>
           <Box maxWidth='70%'>

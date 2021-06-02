@@ -42,12 +42,22 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'relative',
       maxWidth: '100%',
       borderRadius: theme.spacing(1),
-      overflow: 'hidden'
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
+    primaryImage: {
+      maxWidth: '850px',
+      maxHeight: '850px'
     },
     extraImages: {
       display: 'flex',
       flexFlow: 'row wrap',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
+      alignItems: 'center'
+    },
+    extraImage: {
+      maxWidth: '400px',
+      maxHeight: '400px'
     }
   }),
 );

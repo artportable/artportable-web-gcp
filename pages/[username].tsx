@@ -62,18 +62,15 @@ export default function Profile() {
 
   return (
     <>
-      <div className={s.profileCoverPhoto}>        
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
-          <Image
+          <img
             src={`${bucketUrl}${artworks.data[0]?.PrimaryFile.Name}`}
             alt="Cover image"
-            layout="fill"
-            objectFit="cover"
+            className={s.profileCoverPhoto}
           />
         }
         {artworks.isError && <div>error...</div>}
-      </div>
       <Main>
         <GridRow>
           <div className={s.profileGrid}>

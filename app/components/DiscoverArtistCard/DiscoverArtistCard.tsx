@@ -53,8 +53,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
           {images.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <Image src={`${bucketUrl}${image.Name}`}
-                  priority={true}
+                <img src={`${bucketUrl}${image.Name}`}
                   alt="Portfolio image"
                   width={image.Width}
                   height={image.Height}
