@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Image from 'next/image'
 import { styles } from './artworkStartItem.css'
 import { Avatar, Paper, useTheme } from '@material-ui/core'
 import Link from 'next/link'
+import Skeleton from '@material-ui/lab/Skeleton';
+import clsx from 'clsx'
+
 import { useMainWidth } from '../../hooks/useWidth'
 
 export default function ArtworkStartItem({ artwork }) {
@@ -12,16 +15,31 @@ export default function ArtworkStartItem({ artwork }) {
   const theme = useTheme();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const imageWidth = getArtworkWidth(breakpoint.regular, theme.spacing(2));
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const imageHeight = (artwork.Image.Height / artwork.Image.Width) * imageWidth;
+  const skeletonHeight = imageHeight + 4;
 
   return (
     <Paper variant="outlined" className={s.paper}>
       <div className={s.container}>
         <div>
-          <Image src={`${bucketUrl}${artwork.Image.Name}`}
+          <img
+              className={clsx(!isLoaded && s.hidden)} 
+              src={`${bucketUrl}${artwork.Image.Name}`}
               alt="Artwork"
-              width={imageWidth+"px"}
-              height={(artwork.Image.Height / artwork.Image.Width) * imageWidth}
-              objectFit="cover"></Image>
+              width={imageWidth}
+              height={imageHeight}
+              onLoad={() => setIsLoaded(true)}
+              ></img>
+            
+            <Skeleton
+              variant="rect"
+              animation="wave"
+              className={clsx(isLoaded && s.hidden)}
+              width={imageWidth} 
+              height={skeletonHeight}>
+            </Skeleton>
         </div>
         <Link href={`/@${artwork.Username}`}>
           <a>

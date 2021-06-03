@@ -19,6 +19,12 @@ export const styles = makeStyles((theme: Theme) =>
     username: {
       marginLeft: '10px',
       fontWeight: 500
+    },
+    hidden: {
+      display: 'none',
+      '&.MuiSkeleton-root': {
+        display: 'none'
+      }
     }
   }),
 );
