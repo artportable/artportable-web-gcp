@@ -19,7 +19,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       '\"     tabs           tabs      tabs     tabs           tabs\"       1fr' +
       '\"   divider2       divider2  divider2  divider2      divider2\"       auto' +
       '\"   portfolio      portfolio portfolio portfolio    portfolio\"       auto' +
-      '/ minmax(0, 2fr) minmax(0, 2fr) 2fr minmax(0, 2fr) minmax(0, 2fr)'),
+      '/ minmax(0, 2fr) minmax(0, 2fr) minmax(200px, 2fr) minmax(0, 2fr) minmax(0, 2fr)'),
     },
     profileSummary: {
       gridArea: 'profile'
