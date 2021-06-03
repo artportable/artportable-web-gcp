@@ -35,7 +35,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
 
   return (
     <>
-      <Paper variant="outlined" className={s.container}>
+      <Paper title={artwork.Title} variant="outlined" className={s.container}>
         <div className={s.imageContainer} onClick={handleArtworkClick}>
           <img
             key={artwork?.PrimaryFile}
