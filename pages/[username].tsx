@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Main, { GridRow } from '../app/components/Main/Main'
 import AboutMe from '../app/components/AboutMe/AboutMe'
 import { Tabs, Tab } from '@material-ui/core'
@@ -66,7 +65,7 @@ export default function Profile() {
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
           <img
-            src={`${bucketUrl}${artworks.data[0]?.PrimaryFile.Name}`}
+            src={`images/index4.jpg`}
             alt="Cover image"
             className={s.profileCoverPhoto}
           />
