@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useState } from 'react'
 import { useStore } from 'react-redux'
@@ -36,9 +35,9 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
 
   return (
     <>
-      <Paper variant="outlined" className={s.container}>
+      <Paper title={artwork.Title} variant="outlined" className={s.container}>
         <div className={s.imageContainer} onClick={handleArtworkClick}>
-          <Image
+          <img
             key={artwork?.PrimaryFile}
             width={width}
             height={height}

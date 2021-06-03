@@ -25,7 +25,7 @@ export default function DiscoverPage() {
   const discoverTab = store.getState()?.discover?.tab ?? 0;
 
   const tags = useGetTags();
-  const rowWidth = useMainWidth().wide + 250; // 250 is a threshold value
+  const rowWidth = useMainWidth().wide
 
   const [activeTab, setActiveTab] = useState(discoverTab);
   const [artists, setArtists] = useState();

@@ -61,7 +61,6 @@ export const useInfiniteScroll2 = (
 
   const callback = debounce((entries) => {
     const [ entry ] = entries;
-    console.log(entries, 'entries');
     if(!entry.isIntersecting) {
       return;
     }

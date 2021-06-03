@@ -26,6 +26,11 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'absolute',
       bottom: '50px',
       right: '60px',
+    },
+    carouselImage: {
+      objectFit: 'cover',
+      width: '100%',
+      height: '100%'
     }
   }),
 );

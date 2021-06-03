@@ -2,7 +2,6 @@ import { Avatar, Box, Link, Typography } from '@material-ui/core';
 import React from 'react';
 import { styles } from './similarPortfolio.css';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import Image from 'next/image';
 
 export default function SimilarPortfolio({ data }) {
   const s = styles();
@@ -17,7 +16,7 @@ export default function SimilarPortfolio({ data }) {
             <div className={s.imageGrid}>
               {data.Artworks[0] &&
                 <div className={s.first}>
-                  <Image src={`${bucketUrl}${data.Artworks[0]}`}
+                  <img src={`${bucketUrl}${data.Artworks[0]}`}
                     alt="Portfolio image"
                     height="200"
                     width="200"
@@ -26,7 +25,7 @@ export default function SimilarPortfolio({ data }) {
               }
               {data.Artworks[1] &&
                 <div className={s.second}>
-                  <Image src={`${bucketUrl}${data.Artworks[1]}`}
+                  <img src={`${bucketUrl}${data.Artworks[1]}`}
                     alt="Portfolio image"
                     height="100"
                     width="100"
@@ -35,7 +34,7 @@ export default function SimilarPortfolio({ data }) {
               }
               {data.Artworks[2] &&
                 <div className={s.third}>
-                  <Image src={`${bucketUrl}${data.Artworks[2]}`}
+                  <img src={`${bucketUrl}${data.Artworks[2]}`}
                     alt="Portfolio image"
                     height="100"
                     width="100"
@@ -44,7 +43,7 @@ export default function SimilarPortfolio({ data }) {
               }
               {data.Artworks[3] &&
                 <div className={s.forth}>
-                  <Image src={`${bucketUrl}${data.Artworks[3]}`}
+                  <img src={`${bucketUrl}${data.Artworks[3]}`}
                     alt="Portfolio image"
                     height="100"
                     width="100"
@@ -53,7 +52,7 @@ export default function SimilarPortfolio({ data }) {
               }
               {data.Artworks[4] &&
                 <div className={s.fifth}>
-                  <Image src={`${bucketUrl}${data.Artworks[4]}`}
+                  <img src={`${bucketUrl}${data.Artworks[4]}`}
                     alt="Portfolio image"
                     height="100"
                     width="100"

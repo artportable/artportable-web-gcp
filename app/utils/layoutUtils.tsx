@@ -14,13 +14,14 @@ export function getImageAsRows(images: Image[], gapSpace: number, rowWidth: numb
 
     if((widthSum + gapSum) > rowWidth) {
       rows.push([]);
+      rows[i] = setFinalRowDimensions(rows[i], (rowWidth - gapSum) / widthSum);
       i++;
     }
 
     const ratio = image.Width / image.Height;
     const newWidth = rowHeight * ratio;
 
-    const normalizedImage = normalizeImageSize(image, rowHeight);
+    const normalizedImage = normalizeImageSize(image, undefined, newWidth);
 
     rows[i].push(normalizedImage);
   });
@@ -28,14 +29,30 @@ export function getImageAsRows(images: Image[], gapSpace: number, rowWidth: numb
   return rows;
 }
 
-export function normalizeImageSize(image: Image, newHeight: number) {
+export function normalizeImageSize(image: Image, newHeight?: number, newWidth?: number) {
   const ratio = image.Width / image.Height;
-  const newWidth = newHeight * ratio;
+  const newX = newWidth ? newWidth : newHeight * ratio;
+  const newY = newHeight ? newHeight : newWidth / ratio
 
   return {
     Name: image.Name,
-    Width: newWidth,
-    Height: newHeight
+    Width: newX,
+    Height: newY
   };
+}
+
+function setFinalRowDimensions(row, adjustBy) {
+  const borderWidthAdjustment = 2;
+  const borderHeightAdjustment = 2 * adjustBy;
+
+  return row.map(image => ({
+    
+      Name: image.Name,
+      Width: (image.Width * adjustBy) - borderWidthAdjustment,
+      Height: (image.Height * adjustBy) - borderHeightAdjustment
+    
+
+    
+  }));
 }
 

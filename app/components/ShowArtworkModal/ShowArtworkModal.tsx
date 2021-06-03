@@ -90,11 +90,10 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
               {artwork.Tags?.map(tag => <Chip key={tag} label={tag} color="primary"></Chip>)}
             </Box>
             <div className={s.imageContainer}>
-              <Image 
+              <img
                 src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-                width={1000}
-                height={770}
-                objectFit="contain"></Image>
+                className={s.primaryImage}
+              />
             </div>
             <Box textAlign="center" marginY={2}>
               <Typography variant="h3" component="h2" id="artwork-modal-title">
@@ -109,20 +108,18 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
             <Box className={s.extraImages}>
               {artwork.SecondaryFile &&
                 <div className={s.imageContainer}>
-                  <Image
+                  <img
                     src={`${bucketUrl}${artwork.SecondaryFile.Name}`}
-                    width={450}
-                    height={370}
-                    objectFit="contain"></Image>
+                    className={s.extraImage}
+                  />
                 </div>
               }
               {artwork.TertiaryFile &&
                 <div className={s.imageContainer}>
-                  <Image
+                  <img
                     src={`${bucketUrl}${artwork.TertiaryFile.Name}`}
-                    width={450}
-                    height={370}
-                    objectFit="contain"></Image>
+                    className={s.extraImage}
+                  />
                 </div>
               }
             </Box>
