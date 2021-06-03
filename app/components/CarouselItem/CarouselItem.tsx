@@ -14,11 +14,9 @@ export default function CarouselItem({ src, text, user = null }) {
   return (
     <div className={s.container}>
       <div className={s.imageContainer}>
-        <Image
+        <img className={s.carouselImage}
           src={src}
           alt={text}
-          layout="fill"
-          objectFit="cover"
         />
       </div>
       <Paper variant="outlined" className={s.text}>
