@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import React from 'react';
 import PlanSelector from '../app/components/PlanSelector/PlanSelector';
+import Price from '../app/models/Price';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 

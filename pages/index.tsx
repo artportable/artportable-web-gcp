@@ -10,6 +10,7 @@ import CarouselItem from '../app/components/CarouselItem/CarouselItem';
 import IndexArtworksGrid from '../app/components/IndexArtworksGrid/IndexArtworksGrid';
 import Carousel from 'react-material-ui-carousel';
 import Box from '@material-ui/core/Box';
+import Price from '../app/models/Price';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
