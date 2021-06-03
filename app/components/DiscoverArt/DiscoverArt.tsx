@@ -9,6 +9,7 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { Artwork } from "../../models/Artwork";
 import { getImageAsRows } from "../../utils/layoutUtils";
+import Image from "../../models/Image";
 
 interface InputProps {
   artworks: Artwork[],

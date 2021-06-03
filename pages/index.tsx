@@ -11,6 +11,8 @@ import IndexArtworksGrid from '../app/components/IndexArtworksGrid/IndexArtworks
 import Carousel from 'react-material-ui-carousel';
 import Box from '@material-ui/core/Box';
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+
 export default function Home( props ) {
   const s = styles();
   const { t } = useTranslation(['index', 'header']);
@@ -135,7 +137,7 @@ async function getPriceData() {
 
   try {
     return (
-      fetch(`http://localhost:5001/api/payments/prices`)
+      fetch(`${apiBaseUrl}/api/payments/prices`)
       .then((response) => {
         return response.json();
       })

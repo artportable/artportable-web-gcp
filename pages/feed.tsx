@@ -27,6 +27,7 @@ export default function FeedPage() {
   const { t } = useTranslation(['feed', 'common']);
   const isSignedIn = store.getState()?.user?.isSignedIn;
   const myUsername = store.getState()?.user?.username;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const userProfile = useGetUserProfileSummary(myUsername);
   const { suggestedUsers } = useFollowRecommendations(myUsername);
@@ -40,7 +41,7 @@ export default function FeedPage() {
   }
 
   function follow(username) {
-    fetch(`http://localhost:5001/api/connections/${username}?myUsername=${myUsername}`, {
+    fetch(`${apiBaseUrl}/api/connections/${username}?myUsername=${myUsername}`, {
       method: 'POST',
     })
     .then((response) => {
@@ -57,7 +58,7 @@ export default function FeedPage() {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`http://localhost:5001/api/artworks/${contentId}/like?myUsername=${myUsername}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${myUsername}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
     .then((response) => {

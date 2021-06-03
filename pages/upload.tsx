@@ -24,6 +24,8 @@ export default function UploadArtworkPage() {
   const store = useStore();
   const router = useRouter();
 
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+
   const username = store.getState()?.user?.username;
   const isSignedIn = store.getState()?.user?.isSignedIn;
   const tags = useGetTags();
@@ -131,7 +133,7 @@ export default function UploadArtworkPage() {
   }
 
   const uploadImage = (blob, width: number, height: number) => {
-    fetch(`http://localhost:5001/api/images?w=${width}&h=${height}`, {
+    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'image/jpeg'

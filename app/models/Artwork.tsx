@@ -1,3 +1,6 @@
+import Image from "./Image";
+import Owner from "./Owner";
+
 export interface Artwork {
   Id: string,
   Owner: Owner,

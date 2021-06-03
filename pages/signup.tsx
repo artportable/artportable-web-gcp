@@ -18,6 +18,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import clsx from 'clsx';
 import s from '../styles/signup.module.css'
+import Country from '../app/models/Country';
 
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -27,6 +28,7 @@ import { useRouter } from 'next/router'
 import { useDispatch, useStore } from 'react-redux';
 import { ADD_DATA } from '../app/redux/actions/signupActions';
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
 interface State {
   password: string;
@@ -181,7 +183,7 @@ export default function Signup() {
         emailError: true });
     } else {
       try {
-        const isAvailable = await (await fetch(`http://localhost:5001/api/user?email=${event.target.value}`)).json();
+        const isAvailable = await (await fetch(`${apiBaseUrl}/api/user?email=${event.target.value}`)).json();
         setValues({ ...values, 
           emailIsAvailable: isAvailable, 
           emailError: !isAvailable });
@@ -200,7 +202,7 @@ export default function Signup() {
     }
 
     try {
-      const isAvailable = await (await fetch(`http://localhost:5001/api/user?username=${event.target.value}`)).json();
+      const isAvailable = await (await fetch(`${apiBaseUrl}/api/user?username=${event.target.value}`)).json();
       setValues({ ...values, 
         usernameIsAvailable: isAvailable, 
         usernameError: !isAvailable });

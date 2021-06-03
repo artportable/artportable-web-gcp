@@ -1,4 +1,5 @@
 import { isNullOrUndefined } from './util';
+import Image from '../models/Image';
 
 export function getImageAsRows(images: Image[], gapSpace: number, rowWidth: number, rowHeight: number = 300): Image[][] {
   if (isNullOrUndefined(images)) {

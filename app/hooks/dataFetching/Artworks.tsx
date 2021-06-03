@@ -2,9 +2,10 @@ import useSWR from 'swr'
 import { ArtworkForCreation } from '../../models/Artwork';
 
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
 export function useGetArtworks(owner = null) {
-  const url = new URL("http://localhost:5001/api/artworks");
+  const url = new URL(`${apiBaseUrl}/api/artworks`);
   if(owner !== null) {
     url.searchParams.append('owner', owner);
   }
@@ -25,7 +26,7 @@ export function useGetArtworks(owner = null) {
 
 export function useGetTags() {
   const { data, error } = useSWR(
-    `http://localhost:5001/api/artworks/tags`,
+    `${apiBaseUrl}/api/artworks/tags`,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -40,7 +41,7 @@ export function useGetTags() {
 }
 
 export function usePostArtwork(artwork: ArtworkForCreation, username: string) {
-  fetch(`http://localhost:5001/api/artworks?myUsername=${username}`, {
+  fetch(`${apiBaseUrl}/api/artworks?myUsername=${username}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -54,7 +55,7 @@ export function usePostArtwork(artwork: ArtworkForCreation, username: string) {
 }
 
 export function useGetArtworksForStartPage() {
-  const url = new URL(`http://localhost:5001/api/start`);
+  const url = new URL(`${apiBaseUrl}/api/start`);
 
   const { data, error } = useSWR(
     url.href,

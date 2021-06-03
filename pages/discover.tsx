@@ -20,6 +20,7 @@ export default function DiscoverPage() {
   const s = styles();
   const store = useStore();
   const dispatch = useDispatch();
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const username = store.getState()?.user?.username;
   const discoverTab = store.getState()?.discover?.tab ?? 0;
@@ -35,7 +36,7 @@ export default function DiscoverPage() {
     (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.length) { return null; }
     
-    const url = new URL(`http://localhost:5001/api/discover/artworks`);
+    const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
 
     selectedTags.forEach(tag => {
       url.searchParams.append('tag', tag);
@@ -70,7 +71,7 @@ export default function DiscoverPage() {
       return;
     }
 
-    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
     .then((response) => {
@@ -85,7 +86,7 @@ export default function DiscoverPage() {
   }
 
   function search(searchQuery) {
-    const url = new URL(`http://localhost:5001/api/discover/artists`);
+    const url = new URL(`${apiBaseUrl}/api/discover/artists`);
     url.searchParams.append('page', '1');
     if (searchQuery != null && searchQuery != '') {
       url.searchParams.append('q', searchQuery);
@@ -113,7 +114,7 @@ export default function DiscoverPage() {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`http://localhost:5001/api/connections/${userToFollow}?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: 'POST',
     })
     .then((response) => {

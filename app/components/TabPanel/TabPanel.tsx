@@ -1,5 +1,6 @@
 import React from "react";
 import { Box } from "@material-ui/core";
+import TabPanelProps from './TabPanelProps'
 
 export default function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;

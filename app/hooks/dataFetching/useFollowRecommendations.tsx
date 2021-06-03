@@ -2,6 +2,8 @@ import useSWR from 'swr'
 const fetcher = url => fetch(url).then(r => r.json())
 
 export function useFollowRecommendations(user) {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+
   if (!user) {
     return {
       suggestedUsers: null,
@@ -11,7 +13,7 @@ export function useFollowRecommendations(user) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/connections?myUsername=${user}`,
+    `${apiBaseUrl}/api/connections?myUsername=${user}`,
     fetcher,
     { 
       revalidateOnFocus: false,

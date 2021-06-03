@@ -7,6 +7,8 @@ import { useTranslation } from 'next-i18next'
 import React from 'react';
 import PlanSelector from '../app/components/PlanSelector/PlanSelector';
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+
 export default function Plans({ priceData }) {
   const { t } = useTranslation(['plans', 'common']);
   const s = styles();
@@ -66,7 +68,7 @@ async function getPriceData() {
 
   try {
     return (
-      fetch(`http://localhost:5001/api/payments/prices`)
+      fetch(`${apiBaseUrl}/api/payments/prices`)
       .then((response) => {
         return response.json();
       })

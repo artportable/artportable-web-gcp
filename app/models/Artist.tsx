@@ -1,4 +1,6 @@
-interface Artist {
+import Image from "./Image";
+
+export default interface Artist {
   Username: string,
   ProfilePicture: string,
   Location: string,

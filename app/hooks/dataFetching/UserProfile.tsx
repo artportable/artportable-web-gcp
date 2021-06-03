@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 
 const fetcher = url => fetch(url).then(r => r.json());
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
 export function useGetUserProfileSummary(user) {
   if (!user) {
@@ -12,7 +13,7 @@ export function useGetUserProfileSummary(user) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/profile/${user}/summary`,
+    `${apiBaseUrl}/api/profile/${user}/summary`,
     fetcher,
     { 
       revalidateOnFocus: false,
@@ -36,7 +37,7 @@ export function useGetUserProfile(user) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/profile/${user}`,
+    `${apiBaseUrl}/api/profile/${user}`,
     fetcher,
     {
       revalidateOnFocus: false,
@@ -60,7 +61,7 @@ export function useGetSimilarPortfolios(user) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/profile/${user}/similar`,
+    `${apiBaseUrl}/api/profile/${user}/similar`,
     fetcher,
     { 
       revalidateOnFocus: false,
@@ -84,7 +85,7 @@ export function useGetUserProfileTags(user) {
   }
 
   const { data, error } = useSWR(
-    `http://localhost:5001/api/profile/${user}/tags`,
+    `${apiBaseUrl}/api/profile/${user}/tags`,
     fetcher,
     {
       revalidateOnFocus: false,

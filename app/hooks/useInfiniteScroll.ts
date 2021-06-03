@@ -8,6 +8,8 @@ const defaultOptions = {
   threshold: 0
 }
 
+const apiBaseurl = process.env.NEXT_PUBLIC_API_BASEURL;
+
 export const useInfiniteScroll = (
   loadMoreElement: React.MutableRefObject<Element>,
   options: IntersectionObserverInit = defaultOptions) => {
@@ -46,7 +48,7 @@ export const useInfiniteScroll = (
 const _getKey = (pageIndex, previousPageData) => {
   if (previousPageData && !previousPageData.length) { return null; }
 
-  return `http://localhost:5001/api/Discover/artworks?page=${pageIndex + 1}&pageSize=10`;
+  return `${apiBaseurl}/api/Discover/artworks?page=${pageIndex + 1}&pageSize=10`;
 }
 
 const fetcher = url => fetch(url).then(res => res.json());

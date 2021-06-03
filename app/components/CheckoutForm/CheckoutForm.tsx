@@ -7,6 +7,8 @@ import { useTranslation } from 'next-i18next';
 import { capitalizeFirst } from '../../utils/util';
 import Link from 'next/link';
 
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+
 export default function CheckoutForm({ email, fullName, plan }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -23,7 +25,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   useEffect(() => {
     // Create a Stripe customer as soon as the page loads
-    fetch("http://localhost:5001/api/payments/customers", {
+    fetch(`${apiBaseUrl}/api/payments/customers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -96,7 +98,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   // Create subscription
   function createSubscription({ customerId, paymentMethodId, priceId }) {
     return (
-      fetch('http://localhost:5001/api/payments/subscriptions', {
+      fetch(`${apiBaseUrl}/api/payments/subscriptions`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',

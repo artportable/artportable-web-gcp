@@ -20,10 +20,11 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [remember, setRemember] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   async function login() {
     try {
-      const resJson = await fetch(`http://localhost:5001/api/user/login?email=${email}`);
+      const resJson = await fetch(`${apiBaseUrl}/api/user/login?email=${email}`);
       if (!resJson.ok) {
         setSnackbarOpen(true);
         return;

@@ -9,6 +9,7 @@
 .env
 .env.build
 next-env.d.ts
+.env.local
 
 ##
 ## Dependency directories

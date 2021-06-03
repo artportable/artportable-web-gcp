@@ -39,10 +39,11 @@ export default function Profile() {
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const myUsername = store.getState()?.user?.username;
 
   function onLikeClick(artworkId, isLike) {
-    fetch(`http://localhost:5001/api/artworks/${artworkId}/like?myUsername=${myUsername}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${myUsername}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
     .then((response) => {
