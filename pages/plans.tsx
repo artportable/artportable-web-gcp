@@ -45,9 +45,38 @@ export async function getStaticProps({ locale }) {
 }
 
 async function getPriceData() {
+  const freeYearPlan: Price =
+    {
+      amount: 0,
+      currency: 'sek',
+      id: 'free_month',
+      product: 'free',
+      productKey: 'free',
+      recurringInterval: 'month'
+    };
+    const freeMonthPlan: Price =
+    {
+      amount: 0,
+      currency: 'sek',
+      id: 'free_year',
+      product: 'free',
+      productKey: 'free',
+      recurringInterval: 'year'
+    };
+
   try {
-    const res = await fetch(`http://localhost:5001/api/payments/prices`);
-    return await res?.json();
+    return (
+      fetch(`http://localhost:5001/api/payments/prices`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result: Array<Price>) => {
+        result.push(freeYearPlan);
+        result.push(freeMonthPlan);
+
+        return result;
+      })
+    )
   } catch(e) {
     console.log('Could not fetch price info', e);
   }

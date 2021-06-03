@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { ADD_PRICE } from "../../redux/actions/signupActions";
-import { capitalizeFirst } from "../../utils/util";
+import { capitalizeFirst, toCamelCase } from "../../utils/util";
 import Button from "../Button/Button";
 import PaymentInfo from "../PaymentInfo/PaymentInfo";
 import PlansInfoList from "../PlansInfoList/PlansInfoList";
@@ -15,9 +15,11 @@ export default function PlanCard({ plan }) {
   const s = styles();
   const dispatch = useDispatch();
 
+  const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
+
   function getPriceText() {
-    if (plan.productKey === 'base') {
-      return capitalizeFirst(t('common:words.free'));
+    if (plan.product === 'free') {
+      return '-';
     }
 
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
@@ -25,14 +27,10 @@ export default function PlanCard({ plan }) {
   }
 
   const onNavClick = () => {
-    if(plan === 'free') {
-      return;
-    } else {
-      dispatch({
-        type: ADD_PRICE,
-        payload: {...plan}
-      });
-    }
+    dispatch({
+      type: ADD_PRICE,
+      payload: {...plan}
+    });
   }
 
   return (
@@ -41,15 +39,15 @@ export default function PlanCard({ plan }) {
         <CardContent>
           <Typography variant="h3" component="h2">
             <Box fontWeight="fontWeightMedium" textAlign="center">
-              {plan.product}
+              {planName}
             </Box>
           </Typography>
 
           <PaymentInfo 
-            priceText={getPriceText()} 
+            priceText={getPriceText()}
             secondaryText={t('youCanAlwaysUpdateYourMembership')}
           ></PaymentInfo>
-          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, {returnObjects: true})}></PlansInfoList>
+          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', {returnObjects: true})}></PlansInfoList>
 
           <Link href='/signup'>
             <a>
@@ -60,7 +58,10 @@ export default function PlanCard({ plan }) {
                 disableElevation
                 rounded
                 onClick={(_) => onNavClick()}>
-                {capitalizeFirst(t('common:words.choose'))} {plan.product}
+                {plan.product === 'free' ?
+                  t('signUp') :
+                  `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                }
               </Button>
             </a>
           </Link>

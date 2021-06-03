@@ -12,7 +12,6 @@ export default function PaymentInfo({priceText, secondaryText}) {
         <Typography variant="body2" color="textSecondary">
           {secondaryText}
         </Typography>
-
       </Box>
     </Box>
   );

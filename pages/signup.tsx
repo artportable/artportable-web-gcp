@@ -432,7 +432,7 @@ export default function Signup() {
       </div>
       <style jsx global>{`
         body {
-          background-image: url("/images/itl.cat_ocean-wallpaper_146662.png");
+          background-image: url("/images/boosted-bg.jpg");
           background-size: cover;
         }
       `}</style>

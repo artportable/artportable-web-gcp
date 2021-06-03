@@ -1,25 +1,31 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/login.css';
 import LoginCard from '../app/components/LoginCard/LoginCard'
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { LOGIN_USER } from "../app/redux/actions/userActions";
+import { Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import { useTranslation } from "next-i18next";
 
 
 export default function Signup() {
   const s = styles();
   const router = useRouter();
   const dispatch = useDispatch();
+  const { t } = useTranslation(['login']);
 
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [remember, setRemember] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   async function login() {
     try {
       const resJson = await fetch(`http://localhost:5001/api/user/login?email=${email}`);
       if (!resJson.ok) {
+        setSnackbarOpen(true);
         return;
       }
       const res = await resJson?.json();
@@ -53,10 +59,15 @@ export default function Signup() {
           onClick={login}
         />
       </div>
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={() => setSnackbarOpen(false)}>
+        <Alert onClose={() => setSnackbarOpen(false)} variant="filled" severity="error">
+          {t('loginfailed')}
+        </Alert>
+      </Snackbar>
     </div>
     <style jsx global>{`
         body {
-          background-image: url("/images/itl.cat_ocean-wallpaper_146662.png");
+          background-image: url("/images/boosted-bg.jpg");
           background-size: cover;
         }
       `}</style>

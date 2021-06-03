@@ -19,7 +19,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     
     isSignUp: {
-      backgroundColor: 'rgba(var(--background-color-rgb), 0.3)'
+      backgroundColor: 'transparent',
+      boxShadow: 'none'
     },
     
     logo: {
@@ -53,8 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
       height: 33
     },
     language: {
-      gridArea: 'language',
-      color: 'var(--text-color-accent)'
+      gridArea: 'language'
     }
   }),
 );

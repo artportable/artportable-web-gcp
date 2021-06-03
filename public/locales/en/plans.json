@@ -5,8 +5,10 @@
   "yearlyPayment": "Yearly payment",
   "monthlyPayment": "Monthly payment",
   "sek": "SEK",
+  "signUp": "Sign up",
   "plans": {
-    "base": {
+    "free": {
+      "name": "Free",
       "listTexts": [
         "Explore art",
         "Read articles",
@@ -15,8 +17,9 @@
       ]
     },
     "portfolio": {
+      "name": "Portfolio",
       "listTexts": [
-        "Everything from $t(plans.base.name)",
+        "Everything from $t(plans.free.name)",
         "Digital portfolio up to 10 artworks",
         "Access to Artportables Facebook group",
         "Market your portfolio via Artportables social media channels",
@@ -25,8 +28,9 @@
       ]
     },
     "portfolioPremium": {
+      "name": "Portfolio Premium",
       "listTexts": [
-        "Everything from $t(plans.base.name) & $t(plans.portfolio.name)",
+        "Everything from $t(plans.free.name) & $t(plans.portfolio.name)",
         "Another 10 artworks",
         "Some more value",
         "Fantastic value you cannot resists"
