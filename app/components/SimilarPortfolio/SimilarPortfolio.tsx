@@ -1,7 +1,8 @@
-import { Avatar, Box, Link, Typography, Paper } from '@material-ui/core';
+import { Avatar, Box, Typography, Paper } from '@material-ui/core';
 import React from 'react';
 import { styles } from './similarPortfolio.css';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Link from 'next/link'
 
 export default function SimilarPortfolio({ data }) {
   const s = styles();
@@ -11,7 +12,8 @@ export default function SimilarPortfolio({ data }) {
   return (
     <Paper variant="outlined" className={s.card}>
       <Link href={`/@${data?.Username}`} >
-        
+        <a>
+
           <div className={s.imageGrid}>
             {data.Artworks[0] &&
               <div className={s.first}>
@@ -54,11 +56,11 @@ export default function SimilarPortfolio({ data }) {
               </div>
             }
           </div>
-        
+        </a>
       </Link>
       <div className={s.footer}>
           <Link href={`/@${data?.Username}`}>
-            
+            <a>
               {data?.ProfilePicture ? (
                 <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
                   alt="Profile picture"
@@ -70,14 +72,14 @@ export default function SimilarPortfolio({ data }) {
                   style={{fontSize: 48}}
                 />
               )}
-            
+            </a>
           </Link>
         <Box fontWeight="fontWeightBold">
           <Typography variant="subtitle1">
             <Link href={`/@${data?.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
-              
+              <a>
                 {data?.Username}
-            
+              </a>
             </Link>
           </Typography>
         </Box>
