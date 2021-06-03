@@ -65,7 +65,7 @@ export default function Profile() {
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
           <img
-            src={`images/index4.jpg`}
+            src={`${bucketUrl}907d3d64-ca20-4595-9697-a6218576e7af.jpg`}
             alt="Cover image"
             className={s.profileCoverPhoto}
           />
