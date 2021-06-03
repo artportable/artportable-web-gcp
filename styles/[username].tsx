@@ -8,6 +8,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       width: '100vw',
       maxWidth: '100%',
       height: '300px',
+      objectFit: 'cover'
     },
     profileGrid: {
       display: 'grid',
