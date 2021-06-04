@@ -6,7 +6,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 
-export default function CarouselItem({ src, text, user = null }) {
+export default function CarouselItem({ src, text, subheader, user = null }) {
   const s = styles();
   const { t } = useTranslation(['index', 'header']);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
@@ -19,12 +19,15 @@ export default function CarouselItem({ src, text, user = null }) {
           alt={text}
         />
       </div>
-      <Paper variant="outlined" className={s.text}>
+      <Paper variant="outlined" className={s.text} classes={{ root: s.paperOverride }}>
         <Typography variant="h1">
-          <Box fontWeight="500" textAlign="center">
+          <Box className={s.textHeader} fontWeight="500" textAlign="center">
             {t(text)}
           </Box>
         </Typography>
+        <Box className={s.textBody}>
+          {t(subheader)}
+        </Box>
       </Paper>
       {user && 
         <div className={s.user}>

@@ -32,6 +32,7 @@ const typography = {
 }
 
 const palette = {
+  common: { white: '#ffffff', black: '#000000'},
   background: { default: "#f4f4f4"},
   primary: {
     main: "#447EFF"
