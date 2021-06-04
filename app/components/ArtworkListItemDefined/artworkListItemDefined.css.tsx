@@ -10,6 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
     },
     titleAndLike: {
+      display: 'flex',
       height:'30px',
       justifyContent: 'space-between',
       alignItems: 'flex-start',
