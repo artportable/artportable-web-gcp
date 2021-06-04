@@ -17,6 +17,11 @@ export const styles = makeStyles((theme: Theme) =>
       gap: "2px",
       position: "relative"
     },
+    image: {
+      objectFit: 'cover',
+      height: '100%',
+      width: '100%'
+    },
     oneImage: {
       gridTemplate: ('\"primary\" 450px ' +
       '/ 1fr'),
