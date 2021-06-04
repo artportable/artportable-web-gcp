@@ -30,3 +30,8 @@ npm-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+##
+## macOS files
+##
+.DS_Store
+
