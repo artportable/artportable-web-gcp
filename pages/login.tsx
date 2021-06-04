@@ -68,7 +68,7 @@ export default function Signup() {
     </div>
     <style jsx global>{`
         body {
-          background-image: url("/images/boosted-bg.jpg");
+          background-image: url("/images/victoria-wendish-FYTn1u5OArU-unsplash.jpg");
           background-size: cover;
         }
       `}</style>

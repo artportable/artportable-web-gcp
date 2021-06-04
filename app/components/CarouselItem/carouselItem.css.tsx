@@ -20,7 +20,10 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: '4px',
       padding: theme.spacing(1),
       maxWidth: '25vw',
-      font: ''
+    },
+    textHeader: {
+      backgroundColor: theme.palette.common.white,
+      padding: theme.spacing(1)
     },
     user: {
       position: 'absolute',
@@ -31,6 +34,18 @@ export const styles = makeStyles((theme: Theme) =>
       objectFit: 'cover',
       width: '100%',
       height: '100%'
-    }
+    },
+    paperOverride: {
+      backgroundColor: `${theme.palette.common.black}99`,
+      padding: 0,
+      border: `1px solid ${theme.palette.common.white}88`,
+      overflow: 'hidden'
+    },
+    textBody: {
+      fontFamily: 'LyonDisplay',
+      color: theme.palette.common.white,
+      padding: '12px',
+      fontSize: '1.1rem'
+    },
   }),
 );

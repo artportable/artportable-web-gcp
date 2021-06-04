@@ -3,8 +3,27 @@
   "forYouWhoEat": "För dig som äter",
   "forYouWhoBreath": "För dig som andas",
   "forYouWhoHungerFor": "För dig som längtar till",
-  "welcomeToTitle": "Välkommen till Sveriges största community för konst",
+  "welcomeToTitle": "Sovrum",
+  "subheaderCarouselOne": "Konst direkt från konstnärer du följer",
   "chooseMembership": "Välj medlemsskap",
   "portfolioExplanation": "Din Artportable-portfolio är ett verktyg som hjälper dig att presentera ditt konstnärskap på ett professionellt sätt. Artportable är en mötesplats för konstnärer, konstköpare och konstentusiaster.",
-  "memberExplanation": "Ett medlemsskap är perfekt för att leta runt bland konstnärer och konstverk från hela världen. Gå med och bli inspirerad av tusentals vackra konstverk."
+  "memberExplanation": "Ett medlemsskap är perfekt för att leta runt bland konstnärer och konstverk från hela världen. Gå med och bli inspirerad av tusentals vackra konstverk.",
+  "carouselItems": [
+    {
+      "header": "Bara på Artportable",
+      "subheader": "Vacker originalkonst från konstnärer du följer"
+    },
+    {
+      "header": "Hitta unik konst att älska",
+      "subheader": "Dekorera ditt vardagsrum konst från konstnärer världen över"
+    },
+    {
+      "header": "Avslappnande minimalism",
+      "subheader": "Hitta och ta kontakt med konstnärer som väcker ditt intresse"
+    },
+    {
+      "header": "Från jord till bord",
+      "subheader": "Upptäck dina handgjorda favoriter"
+    }
+  ]
 }

@@ -17,6 +17,11 @@ const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 export default function Home( props ) {
   const s = styles();
   const { t } = useTranslation(['index', 'header']);
+  const i18nCarouselItems = props.carouselItems.map((item, i) => ({
+    ...item,
+    // header: t(`index:carouselItems.${i}.header`),
+    // subheader: t(`index:carouselItem.${i}.subheader`)
+  }))
 
   const navItems = props.navItems;
   const tags = navItems.map(item => item.tag);
@@ -26,12 +31,13 @@ export default function Home( props ) {
   return (
     <Main noHeaderPadding>
       <GridRow fullWidth>
-          <Carousel>
-            {props.carouselItems.map( (item, i) =>
+          <Carousel autoPlay={false}>
+            {props.i18nCarouselItems.map( (item, i) =>
               <CarouselItem
                 key={i}
                 src={item.image}
-                text={item.text}
+                text={item.header}
+                subheader={item.subheader}
                 user={item.user} />
             )}
           </Carousel>
@@ -77,6 +83,7 @@ export async function getStaticProps({locale}) {
     {
       image: '/images/index1.jpg',
       text: 'welcomeToTitle',
+      subheader: 'subheaderTextCarouselOne',
       user: {
         username: 'jimpa',
         profilepicture: 'd5f6f50a-a669-4f93-943c-0314305b0113.jpg'
@@ -84,7 +91,8 @@ export async function getStaticProps({locale}) {
     },
     {
       image: '/images/index2.jpg',
-      text:'Förenkla dina konstköp från konstnärer du följer',
+      text:'Vardagsrum',
+      subheader: 'subheaderTe',
       user: {
         username: 'andersand',
         profilepicture: null
