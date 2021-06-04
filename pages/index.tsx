@@ -17,11 +17,14 @@ const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 export default function Home( props ) {
   const s = styles();
   const { t } = useTranslation(['index', 'header']);
-  const i18nCarouselItems = props.carouselItems.map((item, i) => ({
+  const temp = props.carouselItems;
+
+  const i18nCarouselItems = temp.map((item, i) => ({
     ...item,
-    // header: t(`index:carouselItems.${i}.header`),
-    // subheader: t(`index:carouselItem.${i}.subheader`)
+    header: t(`index:carouselItems.${i}.header`),
+    subheader: t(`index:carouselItems.${i}.subheader`)
   }))
+
 
   const navItems = props.navItems;
   const tags = navItems.map(item => item.tag);
@@ -32,7 +35,7 @@ export default function Home( props ) {
     <Main noHeaderPadding>
       <GridRow fullWidth>
           <Carousel autoPlay={false}>
-            {props.i18nCarouselItems.map( (item, i) =>
+            {i18nCarouselItems.map( (item, i) =>
               <CarouselItem
                 key={i}
                 src={item.image}
@@ -84,18 +87,14 @@ export async function getStaticProps({locale}) {
       image: '/images/index1.jpg',
       text: 'welcomeToTitle',
       subheader: 'subheaderTextCarouselOne',
-      user: {
-        username: 'jimpa',
-        profilepicture: 'd5f6f50a-a669-4f93-943c-0314305b0113.jpg'
-      }
     },
     {
       image: '/images/index2.jpg',
       text:'Vardagsrum',
       subheader: 'subheaderTe',
       user: {
-        username: 'andersand',
-        profilepicture: null
+        username: 'jimpa',
+        profilepicture: 'd5f6f50a-a669-4f93-943c-0314305b0113.jpg'
       }
     },
     {
