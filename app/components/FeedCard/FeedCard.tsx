@@ -62,28 +62,27 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
       </Link>
       <CardMedia className={mediaClasses}>
         <div className={s.primaryImage}>
-          <Image src={`${bucketUrl}${content.Item.PrimaryFile.Name}`}
-            priority={true}
-            alt="Primary image"
-            layout="fill"
-            objectFit="cover"
+          <img
+            className={s.image}
+            src={`${bucketUrl}${content.Item.PrimaryFile.Name}`}
+            alt="Primary image"            
           />
         </div>
         {content.Item.SecondaryFile &&
           <div className={s.secondaryImage}>
-            <Image src={`${bucketUrl}${content.Item.SecondaryFile.Name}`}
-              alt="Secondary image"
-              layout="fill"
-              objectFit="cover"
+            <img
+              className={s.image}
+              src={`${bucketUrl}${content.Item.SecondaryFile.Name}`}
+              alt="Primary image"            
             />
           </div>
         }
         {content.Item.TertiaryFile &&
           <div className={s.tertiaryImage}>
-            <Image src={`${bucketUrl}${content.Item.TertiaryFile.Name}`}
-              alt="Tertiary image"
-              layout="fill"
-              objectFit="cover"
+            <img
+              className={s.image}
+              src={`${bucketUrl}${content.Item.TertiaryFile.Name}`}
+              alt="Primary image"            
             />
           </div>
         }
