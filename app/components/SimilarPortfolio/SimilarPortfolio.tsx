@@ -76,8 +76,8 @@ export default function SimilarPortfolio({ data }) {
           </Link>
         <Box fontWeight="fontWeightBold">
           <Typography variant="subtitle1">
-            <Link href={`/@${data?.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
-              <a>
+            <Link href={`/@${data?.Username}`}>
+              <a style={{ textDecoration: 'none', color: 'black' }}>
                 {data?.Username}
               </a>
             </Link>
