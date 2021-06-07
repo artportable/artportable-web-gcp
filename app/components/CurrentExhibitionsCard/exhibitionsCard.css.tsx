@@ -10,7 +10,7 @@ export const styles = makeStyles(() =>
     datesRow: {
       display: "flex",
       flexDirection: "row",
-      alignItems: "flex-end"
+      alignItems: "center"
     },
     icon: {
       overflow: "visible",

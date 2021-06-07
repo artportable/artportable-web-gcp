@@ -1,6 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, CardContent, CardHeader, Icon } from '@material-ui/core'
 import React from 'react';
+import { Card, CardContent, CardHeader, Icon } from '@material-ui/core'
+import SchoolIcon from '@material-ui/icons/School';
 
 import { useTranslation } from 'react-i18next';
 import { styles } from './educationCard.css'
@@ -19,9 +19,7 @@ export default function EducationCard({ educations }) {
         {educations.map(e =>
           <div>
             <div className={s.yearsRow}>
-              <Icon color="primary" className={s.icon}>
-                <FontAwesomeIcon icon={["fas", "graduation-cap"]} size="xs"/>
-              </Icon>
+              <SchoolIcon color="primary" className={s.icon}></SchoolIcon>
               <div className={s.years}>{e.From} - {e.To}</div>
             </div>
             <div className={s.title}>
