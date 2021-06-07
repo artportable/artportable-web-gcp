@@ -5,7 +5,7 @@ export const styles = makeStyles(() =>
     yearsRow: {
       display: "flex",
       flexDirection: "row",
-      alignItems: "baseline"
+      alignItems: "center"
     },
     icon: {
       overflow: "visible",

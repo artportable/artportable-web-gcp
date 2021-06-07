@@ -14,52 +14,13 @@ import { appWithTranslation } from 'next-i18next'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faHeart,
-  faUserCircle,
-  faInfoCircle,
-  faChevronDown,
-  faChevronUp,
-  faChevronRight,
-  faCommentAlt,
-  faBell,
-  faPlusCircle,
-  faPlus,
-  faCog,
-  faStar,
-  faBookmark,
-  faEllipsisV,
-  faSearch,
-  faEye,
-  faEyeSlash,
-  faGraduationCap
-} from '@fortawesome/free-solid-svg-icons'
-
-import {
   faDribbble,
   faBehanceSquare
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(
-  faHeart,
-  faUserCircle,
-  faInfoCircle,
-  faChevronDown,
-  faChevronUp,
-  faChevronRight,
-  faCommentAlt,
-  faBell,
-  faPlusCircle,
-  faPlus,
-  faCog,
-  faStar,
-  faBookmark,
-  faEllipsisV,
-  faSearch,
-  faEye,
-  faEyeSlash,
   faDribbble,
-  faBehanceSquare,
-  faGraduationCap
+  faBehanceSquare
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
