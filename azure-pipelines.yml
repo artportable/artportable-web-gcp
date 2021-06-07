@@ -17,8 +17,7 @@ stages:
     - task: Npm@1
       displayName: Install npm packages
       inputs:
-        command: 'custom'
-        customCommand: 'install --production --ignore-scripts --prefer-offline'
+        command: 'install'
     - task: Npm@1
       displayName: Build next.js project
       inputs:
