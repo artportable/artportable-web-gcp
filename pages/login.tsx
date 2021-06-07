@@ -69,7 +69,8 @@ export default function Signup() {
     <style jsx global>{`
         body {
           background-image: url("/images/victoria-wendish-FYTn1u5OArU-unsplash.jpg");
-          background-size: cover;
+          background-size: 123%;
+          background-position: -411px -370px;
         }
       `}</style>
     </>
