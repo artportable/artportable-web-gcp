@@ -1,4 +1,4 @@
-import Main, { GridRow } from '../app/components/Main/Main'
+import Main from '../app/components/Main/Main'
 import AboutMe from '../app/components/AboutMe/AboutMe'
 import { Tabs, Tab } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
@@ -72,44 +72,42 @@ export default function Profile() {
         }
         {artworks.isError && <div>error...</div>}
       <Main>
-        <GridRow>
-          <div className={s.profileGrid}>
-            <div className={s.profileSummary}>
-              <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
-            </div>
-            <Divider className={s.divider}></Divider>
-            <div className={s.tabsContainer}>
-              <Tabs value={activeTab} onChange={handleTabChange} centered >
-                <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
-                <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-              </Tabs>
-              <Box p={1}>
-                <TabPanel value={activeTab} index={0}>
-                  <div className={s.portfolioContainer}>
-                    {artworks.isLoading && <div>Loading...</div>}
-                    {!artworks.isLoading && !artworks.isError && artworks.data &&
-                      artworks.data?.map(artwork =>
-                        <div key={artwork.Id} className={s.artWorkListItem}>
-                          <ArtworkListItem artwork={artwork} onLikeClick={onLikeClick} />
-                        </div>
-                      )
-                    }
-                    {artworks.isError && <div>error...</div>}
-                  </div>
-                </TabPanel>
-                <TabPanel value={activeTab} index={1}>
-                  <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
-                </TabPanel>
-              </Box>
-            </div>
-            {similarPortfolios?.data && !similarPortfolios?.isError && <>
-              <Divider className={s.secondDivider}></Divider>
-              <div className={s.similarPortfolios}>
-                <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
-              </div>
-            </>}
+        <div className={s.profileGrid}>
+          <div className={s.profileSummary}>
+            <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
           </div>
-        </GridRow>
+          <Divider className={s.divider}></Divider>
+          <div className={s.tabsContainer}>
+            <Tabs value={activeTab} onChange={handleTabChange} centered >
+              <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+            </Tabs>
+            <Box p={1}>
+              <TabPanel value={activeTab} index={0}>
+                <div className={s.portfolioContainer}>
+                  {artworks.isLoading && <div>Loading...</div>}
+                  {!artworks.isLoading && !artworks.isError && artworks.data &&
+                    artworks.data?.map(artwork =>
+                      <div key={artwork.Id} className={s.artWorkListItem}>
+                        <ArtworkListItem artwork={artwork} onLikeClick={onLikeClick} />
+                      </div>
+                    )
+                  }
+                  {artworks.isError && <div>error...</div>}
+                </div>
+              </TabPanel>
+              <TabPanel value={activeTab} index={1}>
+                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
+              </TabPanel>
+            </Box>
+          </div>
+          {similarPortfolios?.data && !similarPortfolios?.isError && <>
+            <Divider className={s.secondDivider}></Divider>
+            <div className={s.similarPortfolios}>
+              <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
+            </div>
+          </>}
+        </div>
       </Main>
     </>
   );

@@ -8,6 +8,10 @@ export const styles = makeStyles((theme: Theme) =>
       paddingTop: 'calc(35px + var(--header-height))',
       gridAutoRows: 'auto',
 
+      '& > *': {
+        gridColumn: '2/3'
+      },
+
       [theme.breakpoints.up('sm')]: {
         gridTemplateColumns: `1fr ${theme.breakpointMainWidths.sm.regular}px 1fr`
       },
@@ -53,8 +57,16 @@ export const styles = makeStyles((theme: Theme) =>
         gridTemplateColumns: `1fr ${theme.breakpointMainWidths.xl.wide}px 1fr`
       },
     },
+    fullWidth: {
+      '& > *': {
+        gridColumn: '1/4'
+      }
+    },
     noHeaderPadding: {
       paddingTop: 'var(--header-height)',
     },
+    fullWidthBlock: {
+      gridColumn: '1/4'
+    }
   }),
 );

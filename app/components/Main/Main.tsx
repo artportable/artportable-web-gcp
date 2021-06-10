@@ -1,15 +1,24 @@
 import { styles } from './main.css'
 import clsx from 'clsx'
-import { MainGridItem } from './MainGridItem/MainGridItem';
 
-export default function Main({ children, wide = false, noHeaderPadding = false }) {
+interface Props {
+  children: any;
+  wide?: boolean;
+  noHeaderPadding?: boolean;
+  fullWidth?: boolean;
+}
+
+export default function Main({ children, wide = false, noHeaderPadding = false, fullWidth = false }: Props) {
   const s = styles();
 
   return (
-    <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding)}>
+    <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
       {children}
     </div>
   );
 }
 
-export const GridRow = MainGridItem;
+export const FullWidthBlock = ({ children }) => {
+  const s = styles();
+  return <div className={s.fullWidthBlock}>{children}</div>
+}

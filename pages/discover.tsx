@@ -1,7 +1,7 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/discover.css';
 import React, { useEffect, useRef, useState } from "react";
-import Main, { GridRow } from '../app/components/Main/Main'
+import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
@@ -13,7 +13,6 @@ import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
 import { useInfiniteScroll2 } from "../app/hooks/useInfiniteScroll";
-
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
@@ -137,29 +136,27 @@ export default function DiscoverPage() {
 
   return (
     <Main wide={useWideLayout}>
-      <GridRow>
-        <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered >
-          <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
-          <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
-        </Tabs>
-        <Box paddingTop={4}>
-          <TabPanel value={activeTab} index={0}>
-            {!tags?.isLoading && !tags?.isError && tags?.data &&
-              <DiscoverArt
-                artworks={data}
-                tags={tags?.data}
-                onFilter={filter}
-                onLike={like}
-                rowWidth={rowWidth}
-                loadMoreElementRef={loadMoreElementRef}
-              ></DiscoverArt>
-            }
-          </TabPanel>
-          <TabPanel value={activeTab} index={1}>
-            <DiscoverArtists artists={artists} onFollowClick={follow} onSearch={search}></DiscoverArtists>
-          </TabPanel>
-        </Box>
-      </GridRow>
+      <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered >
+        <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+        <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+      </Tabs>
+      <Box paddingTop={4}>
+        <TabPanel value={activeTab} index={0}>
+          {!tags?.isLoading && !tags?.isError && tags?.data &&
+            <DiscoverArt
+              artworks={data}
+              tags={tags?.data}
+              onFilter={filter}
+              onLike={like}
+              rowWidth={rowWidth}
+              loadMoreElementRef={loadMoreElementRef}
+            ></DiscoverArt>
+          }
+        </TabPanel>
+        <TabPanel value={activeTab} index={1}>
+          <DiscoverArtists artists={artists} onFollowClick={follow} onSearch={search}></DiscoverArtists>
+        </TabPanel>
+      </Box>
     </Main>
   );
 }
