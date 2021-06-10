@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Main, { GridRow } from '../app/components/Main/Main'
+import Main, { FullWidthBlock } from '../app/components/Main/Main'
 import { styles } from '../styles/index.css';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -33,35 +33,33 @@ export default function Home( props ) {
 
   return (
     <Main noHeaderPadding>
-      <GridRow fullWidth>
-          <Carousel autoPlay={false}>
-            {i18nCarouselItems.map( (item, i) =>
-              <CarouselItem
-                key={i}
-                src={item.image}
-                text={item.header}
-                subheader={item.subheader}
-                user={item.user} />
-            )}
-          </Carousel>
-      </GridRow>
-      <GridRow>
+      <FullWidthBlock>
+        <Carousel autoPlay={false}>
+          {i18nCarouselItems.map( (item, i) =>
+            <CarouselItem
+              key={i}
+              src={item.image}
+              text={item.header}
+              subheader={item.subheader}
+              user={item.user} />
+          )}
+        </Carousel>
+      </FullWidthBlock>
 
-        <Box marginTop={8}>
-          <IndexArtworksGrid artworks={artworks} />
-        </Box>
+      <Box marginTop={8}>
+        <IndexArtworksGrid artworks={artworks} />
+      </Box>
 
-        <div className={s.welcomeToContainer}>
-          <div className={s.welcomeTo}>
-            <h1>{t('chooseMembership')}</h1>
-            <p>{t('portfolioExplanation')}</p>
-            <p>{t('memberExplanation')}</p>
-          </div>
+      <div className={s.welcomeToContainer}>
+        <div className={s.welcomeTo}>
+          <h1>{t('chooseMembership')}</h1>
+          <p>{t('portfolioExplanation')}</p>
+          <p>{t('memberExplanation')}</p>
         </div>
-        <div className={s.planSelector}>
-          <PlanSelector priceData={props.priceData}></PlanSelector>
-        </div>
-      </GridRow>
+      </div>
+      <div className={s.planSelector}>
+        <PlanSelector priceData={props.priceData}></PlanSelector>
+      </div>
     </Main>
   );
 }

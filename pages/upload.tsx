@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Main, { GridRow } from '../app/components/Main/Main'
+import Main from '../app/components/Main/Main'
 import UploadForm from '../app/components/UploadForm/UploadForm';
 import { useGetTags, usePostArtwork } from '../app/hooks/dataFetching/Artworks';
 import styles from '../styles/upload.css'
@@ -163,91 +163,88 @@ export default function UploadArtworkPage() {
 
   return (
     <Main>
-      <GridRow>
-
-        <div className={s.mainGrid}>
-          <div className={s.uploadBox}>
-            <DropzoneArea
-              classes={{root: `${s.dropzone} ${cropperActive ? s.hide : ''}`}}
-              acceptedFiles={['image/*']}
-              dropzoneText={t('dragandDropOrClick')}
-              onChange={onFilesChanged}
-              showPreviews={false}
-              showPreviewsInDropzone={true}
-              filesLimit={3}
-              maxFileSize={2000000000} />
-          </div>
-
-          <div className={s.cropperBox}>
-            <Cropper
-              className={clsx(s.cropper, !cropperActive && s.hide)}
-              src={cropperImageUrl}
-              onInitialized={onCropperInitialized}
-              initialAspectRatio={1}
-              autoCropArea={1}
-              preview={`.${s.cropperPreview}`}
-              ref={cropperRef}
-            />
-          </div>
-
-          <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
-
-          <div className={s.previewsContainer}>
-          {croppedPrimary && 
-          <Paper elevation={3} className={s.previewItem}>
-            <img src={croppedPrimary} />
-          </Paper>
-          }
-          {croppedSecondary && 
-          <Paper elevation={3} className={s.previewItem}>
-            <img src={croppedSecondary} />
-          </Paper>
-          }
-          {croppedTertiary && 
-          <Paper elevation={3} className={s.previewItem}>
-            <img src={croppedTertiary} />
-          </Paper>
-          }
-          {!croppedTertiary && cropperActive &&
-            <Paper elevation={3} className={s.previewItem}>
-              <div className={s.cropperPreview}></div>
-            </Paper>
-          }
-          </div>
-          <div className={s.form}>
-            {tags.isLoading && <div>loading...</div>}
-            {tags.isError && <div>error...</div>}
-            {tags.data && !tags.isLoading && !tags.isError &&
-              <UploadForm
-                setTitle={setTitle}
-                setDescription={setDescription}
-                setPrice={setPrice}
-                setSelectedTags={setSelectedTags}
-                selectedTags={selectedTags}
-                tags={tags.data}
-              ></UploadForm>
-            }
-            <div>
-              <ArtButton
-                color="primary"
-                variant="contained"
-                className={s.uploadButton}
-                disabled={!croppedPrimary}
-                disableElevation
-                rounded
-                onClick={uploadArtwork}>
-                  {t('upload')}
-              </ArtButton>
-
-            </div>
-            <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-              <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
-                {t('artworkUploadedSuccessfully')}
-              </Alert>
-            </Snackbar>
-          </div>
+      <div className={s.mainGrid}>
+        <div className={s.uploadBox}>
+          <DropzoneArea
+            classes={{root: `${s.dropzone} ${cropperActive ? s.hide : ''}`}}
+            acceptedFiles={['image/*']}
+            dropzoneText={t('dragandDropOrClick')}
+            onChange={onFilesChanged}
+            showPreviews={false}
+            showPreviewsInDropzone={true}
+            filesLimit={3}
+            maxFileSize={2000000000} />
         </div>
-      </GridRow>
+
+        <div className={s.cropperBox}>
+          <Cropper
+            className={clsx(s.cropper, !cropperActive && s.hide)}
+            src={cropperImageUrl}
+            onInitialized={onCropperInitialized}
+            initialAspectRatio={1}
+            autoCropArea={1}
+            preview={`.${s.cropperPreview}`}
+            ref={cropperRef}
+          />
+        </div>
+
+        <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
+
+        <div className={s.previewsContainer}>
+        {croppedPrimary && 
+        <Paper elevation={3} className={s.previewItem}>
+          <img src={croppedPrimary} />
+        </Paper>
+        }
+        {croppedSecondary && 
+        <Paper elevation={3} className={s.previewItem}>
+          <img src={croppedSecondary} />
+        </Paper>
+        }
+        {croppedTertiary && 
+        <Paper elevation={3} className={s.previewItem}>
+          <img src={croppedTertiary} />
+        </Paper>
+        }
+        {!croppedTertiary && cropperActive &&
+          <Paper elevation={3} className={s.previewItem}>
+            <div className={s.cropperPreview}></div>
+          </Paper>
+        }
+        </div>
+        <div className={s.form}>
+          {tags.isLoading && <div>loading...</div>}
+          {tags.isError && <div>error...</div>}
+          {tags.data && !tags.isLoading && !tags.isError &&
+            <UploadForm
+              setTitle={setTitle}
+              setDescription={setDescription}
+              setPrice={setPrice}
+              setSelectedTags={setSelectedTags}
+              selectedTags={selectedTags}
+              tags={tags.data}
+            ></UploadForm>
+          }
+          <div>
+            <ArtButton
+              color="primary"
+              variant="contained"
+              className={s.uploadButton}
+              disabled={!croppedPrimary}
+              disableElevation
+              rounded
+              onClick={uploadArtwork}>
+                {t('upload')}
+            </ArtButton>
+
+          </div>
+          <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+            <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
+              {t('artworkUploadedSuccessfully')}
+            </Alert>
+          </Snackbar>
+        </div>
+      </div>
     </Main>
   );
 }
