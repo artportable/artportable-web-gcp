@@ -11,8 +11,9 @@ import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Avatar } from '@material-ui/core'
+import { useGetChatClient } from '../../hooks/useGetChatClient'
 
 export default function Header({ isSignUp, isSignedIn, username = null, profilePicture = null }) {
   const { t } = useTranslation('header');
@@ -21,6 +22,23 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
+  let chatClient;
+
+  React.useEffect(() => {
+    if (isSignedIn) {
+      chatClient = useGetChatClient(username, profilePicture)
+    }
+    console.log(chatClient)
+    chatClient.on((event) => {
+      if (event.total_unread_count !== undefined) {
+        console.log(event.total_unread_count);
+      }
+
+      if (event.unread_channels !== undefined) {
+        console.log(event.unread_channels);
+      }
+    });
+  }, [isSignedIn]);
 
   return (
     <AppBar color="transparent" elevation={0}>
@@ -95,9 +113,13 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
                 </Button>
               </a>
             </Link>
-            <IconButton color="secondary" aria-label="account">
-              <ChatBubbleIcon style={{ fontSize: '30px'}} />
-            </IconButton>
+            <Link href="/messages">
+              <a>
+                <IconButton color="secondary" aria-label="account">
+                  <ChatBubbleIcon style={{ fontSize: '30px'}} />
+                </IconButton>
+              </a>
+            </Link>
             <IconButton color="secondary" aria-label="account">
               <NotificationsIcon style={{ fontSize: '30px'}} />
             </IconButton>
