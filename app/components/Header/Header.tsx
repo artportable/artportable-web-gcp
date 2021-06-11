@@ -11,7 +11,7 @@ import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Avatar } from '@material-ui/core'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 
@@ -22,22 +22,27 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
-  let chatClient;
+  const chatClient = useRef(null);
 
   React.useEffect(() => {
     if (isSignedIn) {
-      chatClient = useGetChatClient(username, profilePicture)
-    }
-    console.log(chatClient)
-    chatClient.on((event) => {
-      if (event.total_unread_count !== undefined) {
-        console.log(event.total_unread_count);
-      }
+      (async () => {
+        chatClient.current = await useGetChatClient(username, profilePicture);
+        //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
+        // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
+        chatClient.current.on((event) => {
+          if (event.total_unread_count !== undefined) {
+            console.log(event.total_unread_count);
+          }
+    
+          if (event.unread_channels !== undefined) {
+            console.log(event.unread_channels);
+          }
+        });
 
-      if (event.unread_channels !== undefined) {
-        console.log(event.unread_channels);
-      }
-    });
+      })();
+    }
+    
   }, [isSignedIn]);
 
   return (
