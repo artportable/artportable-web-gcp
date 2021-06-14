@@ -3,6 +3,7 @@ import Link from 'next/link'
 import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
 import NotificationsIcon from '@material-ui/icons/Notifications'
+import Badge from '@material-ui/core/Badge'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import MuiButton from '@material-ui/core/Button'
@@ -11,7 +12,7 @@ import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar } from '@material-ui/core'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 
@@ -22,28 +23,28 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
-  const chatClient = useRef(null);
+  const [unreadChatMessages, setUnreadChatMessages] = useState(0);
+  const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
+  
 
-  React.useEffect(() => {
-    if (isSignedIn) {
-      (async () => {
-        chatClient.current = await useGetChatClient(username, profilePicture);
-        //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
-        // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
-        chatClient.current.on((event) => {
-          if (event.total_unread_count !== undefined) {
-            console.log(event.total_unread_count);
-          }
-    
-          if (event.unread_channels !== undefined) {
-            console.log(event.unread_channels);
-          }
-        });
+    //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
+    // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
-      })();
+  useEffect(() => {
+    if(chatClient) {
+      chatClient.on((event) => {
+        if (event.total_unread_count !== undefined) {
+          setUnreadChatMessages(event.total_unread_count);
+        }
+      });
+      
     }
-    
-  }, [isSignedIn]);
+
+    return () => {
+      chatClient.off((_) => {});
+    }
+  }, [chatClient]);
+
 
   return (
     <AppBar color="transparent" elevation={0}>
@@ -121,7 +122,9 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
             <Link href="/messages">
               <a>
                 <IconButton color="secondary" aria-label="account">
-                  <ChatBubbleIcon style={{ fontSize: '30px'}} />
+                  <Badge badgeContent={unreadChatMessages} max={99} color="primary">
+                    <ChatBubbleIcon style={{ fontSize: '30px'}} />
+                  </Badge>
                 </IconButton>
               </a>
             </Link>
