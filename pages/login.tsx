@@ -8,6 +8,8 @@ import { LOGIN_USER } from "../app/redux/actions/userActions";
 import { Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useTranslation } from "next-i18next";
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance} from 'keycloak-js'
 
 
 export default function Signup() {
@@ -21,6 +23,7 @@ export default function Signup() {
   const [remember, setRemember] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const { keycloak } = useKeycloak<KeycloakInstance>()
 
   async function login() {
     try {
@@ -43,30 +46,46 @@ export default function Signup() {
       });
 
       router.push('/feed');
-    } catch(e) {
+    } catch (e) {
       console.log('Could not fetch price info', e);
     }
   }
 
   return (
     <>
-    <div className={s.loginContainer}>
-      <div className={s.loginCard}>
-        <LoginCard
-          setEmail={setEmail}
-          setPassword={setPassword}
-          remember={remember}
-          setRemember={setRemember}
-          onClick={login}
-        />
+      <div className={s.loginContainer}>
+        <div className={s.loginCard}>
+          <LoginCard
+            setEmail={setEmail}
+            setPassword={setPassword}
+            remember={remember}
+            setRemember={setRemember}
+            onClick={login}
+          />
+          <div>
+            <div>{`User is ${!keycloak.authenticated ? 'NOT ' : ''
+              }authenticated`}</div>
+              {console.log(keycloak)}
+            {!keycloak.authenticated && (
+              
+              <button type="button" onClick={() => keycloak.login({idpHint : "google"})}>
+                Login Google
+              </button>
+            )}
+            {keycloak.authenticated && (
+              <button type="button" onClick={() => keycloak.logout()}>
+                Logout d
+              </button>
+            )}
+          </div>
+        </div>
+        <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={() => setSnackbarOpen(false)}>
+          <Alert onClose={() => setSnackbarOpen(false)} variant="filled" severity="error">
+            {t('loginfailed')}
+          </Alert>
+        </Snackbar>
       </div>
-      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={() => setSnackbarOpen(false)}>
-        <Alert onClose={() => setSnackbarOpen(false)} variant="filled" severity="error">
-          {t('loginfailed')}
-        </Alert>
-      </Snackbar>
-    </div>
-    <style jsx global>{`
+      <style jsx global>{`
         body {
           background-image: url("/images/victoria-wendish-FYTn1u5OArU-unsplash.jpg");
           background-size: 123%;
@@ -78,7 +97,7 @@ export default function Signup() {
 }
 
 export async function getStaticProps({ locale }) {
-  return { 
+  return {
     props: {
       isSignUp: true,
       ...await serverSideTranslations(locale, ['header', 'login', 'common']),
