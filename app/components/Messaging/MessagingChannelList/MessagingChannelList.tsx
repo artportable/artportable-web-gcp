@@ -37,12 +37,6 @@ const MessagingChannelList: React.FC<Props> = (props) => {
   const { id, image, name = 'Example User' } =
     client.user || {};
 
-  useEffect(() => {
-    //@ts-expect-error hack to ensure a channel is always loaded
-    if (!loading && !children?.props?.children?.length) {
-      //getDemoChannel(client);
-    }
-  }, [loading]); // eslint-disable-line
 
   const ListHeaderWrapper: React.FC = ({ children }) => {
     return (
