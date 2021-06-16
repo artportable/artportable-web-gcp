@@ -17,6 +17,8 @@ import type {
   ReactionType,
   UserType,
 } from '../MessagingTypes';
+import clsx from 'clsx'
+import styles from './messagingChannelPreview.css'
 
 const AvatarGroup = ({ members }: { members: ChannelMemberResponse[] }) => {
   if (members.length === 1) {
@@ -109,8 +111,9 @@ type Props = ChannelPreviewUIComponentProps & {
   setActiveChannel?: ChatContextValue['setActiveChannel'];
 };
 
-const MessagingChannelPreview: React.FC<Props> = (props) => {
-  const { channel, latestMessage, setActiveChannel, setIsCreating } = props;
+const MessagingChannelPreview: React.FC<Props> = (props: Props) => {
+  const s = styles();
+  const { channel, latestMessage, setActiveChannel, setIsCreating, unread } = props;
 
   const { channel: activeChannel, client } = useChatContext<
     AttachmentType,
@@ -129,9 +132,10 @@ const MessagingChannelPreview: React.FC<Props> = (props) => {
   return (
     <div
       className={
-        channel?.id === activeChannel?.id
-          ? 'channel-preview__container selected'
-          : 'channel-preview__container'
+        clsx(
+          channel?.id === activeChannel?.id && 'selected',
+          'channel-preview__container',
+          unread > 0 && s.unread)
       }
       onClick={() => {
         setIsCreating(false);

@@ -37,36 +37,6 @@ const MessagingChannelList: React.FC<Props> = (props) => {
   const { id, image, name = 'Example User' } =
     client.user || {};
 
-  useEffect(() => {
-    const getDemoChannel = async (
-      client: StreamChat<
-        AttachmentType,
-        ChannelType,
-        CommandType,
-        EventType,
-        MessageType,
-        ReactionType,
-        UserType
-      >,
-    ) => {
-      const channel = client.channel('messaging', 'first', {
-        name: 'Social Demo',
-      });
-
-      await channel.watch();
-
-      if (client.user) {
-        await channel.addMembers([client.user.id]);
-      }
-
-      setActiveChannel(channel);
-    };
-
-    //@ts-expect-error hack to ensure a channel is always loaded
-    if (!loading && !children?.props?.children?.length) {
-      getDemoChannel(client);
-    }
-  }, [loading]); // eslint-disable-line
 
   const ListHeaderWrapper: React.FC = ({ children }) => {
     return (
