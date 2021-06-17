@@ -105,7 +105,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
   // Extract cookies from AppContext
   return {
     cookies: parseCookies(context?.ctx?.req),
-    ...pageProps
+    pageProps : {...pageProps}
   };
 };
 
