@@ -9,7 +9,7 @@ import { Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useTranslation } from "next-i18next";
 import { useKeycloak } from '@react-keycloak/ssr'
-import type { KeycloakInstance} from 'keycloak-js'
+import type { KeycloakInstance } from 'keycloak-js'
 
 
 export default function Signup() {
@@ -65,12 +65,16 @@ export default function Signup() {
           <div>
             <div>{`User is ${!keycloak.authenticated ? 'NOT ' : ''
               }authenticated`}</div>
-              {console.log(keycloak)}
+            {console.log(keycloak)}
             {!keycloak.authenticated && (
-              
-              <button type="button" onClick={() => keycloak.login({idpHint : "google"})}>
-                Login Google
-              </button>
+              <div>
+                <button type="button" onClick={() => keycloak.login({ idpHint: "google" })}>
+                  Login Google
+                </button>
+                <button type="button" onClick={() => keycloak.login({ idpHint: "facebook" })}>
+                  Login Facebook
+                </button>
+              </div>
             )}
             {keycloak.authenticated && (
               <button type="button" onClick={() => keycloak.logout()}>
