@@ -13,14 +13,13 @@ import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
 import React, { useState } from 'react'
-import { Avatar } from '@material-ui/core'
 import useSubscribeToUnreadChatMessages from '../../hooks/streamChatUtils/useSubscribeToUnreadChatMessages'
+import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
 
 export default function Header({ isSignUp, isSignedIn, username = null, profilePicture = null }) {
   const { t } = useTranslation('header');
   const s = styles();
 
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
@@ -100,28 +99,21 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
                 </Button>
               </a>
             </Link>
-            <Link href="/messages">
-              <a>
-                <IconButton color="secondary" aria-label="account">
-                  <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                    <ChatBubbleIcon style={{ fontSize: '30px'}} />
-                  </Badge>
-                </IconButton>
-              </a>
-            </Link>
-            <IconButton color="secondary" aria-label="account">
-              <NotificationsIcon style={{ fontSize: '30px'}} />
-            </IconButton>
-            <IconButton color="secondary" aria-label="account">
-              {profilePicture ? (
-                <Avatar src={`${bucketUrl}${profilePicture}`}
-                  alt="Profile picture"
-                  className={s.avatar}
-                />
-              ) : (
-                <AccountCircleIcon style={{ fontSize: 30 }} color="secondary"></AccountCircleIcon>
-              )}
-            </IconButton>
+            <div className={s.iconButtons}>
+              <Link href="/messages">
+                <a>
+                  <IconButton color="secondary" aria-label="account">
+                    <Badge badgeContent={unreadChatMessages} max={99} color="primary">
+                      <ChatBubbleIcon style={{ fontSize: '30px'}} />
+                    </Badge> 
+                  </IconButton>
+                </a>
+              </Link>
+              <IconButton color="secondary" aria-label="account">
+                <NotificationsIcon style={{ fontSize: '30px'}} />
+              </IconButton>
+              <ProfileIconButton></ProfileIconButton>
+            </div>
           </div>
         }
         <div className={s.language}>
