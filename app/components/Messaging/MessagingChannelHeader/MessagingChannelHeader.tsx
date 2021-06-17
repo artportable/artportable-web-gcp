@@ -56,7 +56,7 @@ const MessagingChannelHeader: React.FC<Props> = (props) => {
   useEffect(() => {
     if (!channelName) {
       setTitle(
-        member.user?.name || member.user?.id || 'Unnamed User',
+        member?.user?.name || member?.user?.id || 'Unnamed User',
       );
     }
   }, [channelName, member]);
