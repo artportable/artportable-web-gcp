@@ -50,7 +50,7 @@ const CreateChannel: React.FC<Props> = (props) => {
   const [resultsOpen, setResultsOpen] = useState(false);
   const [searchEmpty, setSearchEmpty] = useState(false);
   const [searching, setSearching] = useState(false);
-  const [selectedUsers, setSelectedUsers] = useState<UserResponse<UserType>[]>([]);
+  const [selectedUser, setSelectedUser] = useState<UserResponse<UserType>>(null);
   const [users, setUsers] = useState<UserResponse<UserType>[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -114,27 +114,24 @@ const CreateChannel: React.FC<Props> = (props) => {
   }, [inputText]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const createChannel = async () => {
-    const selectedUsersIds = selectedUsers.map((u) => u.id);
+    const selectedUserId = selectedUser?.id;
 
-    if (!selectedUsersIds.length || !client.userID) return;
+    if (!selectedUserId || !client.userID) return;
 
     const conversation = await client.channel('messaging', {
-      members: [...selectedUsersIds, client.userID],
+      members: [selectedUserId, client.userID],
     });
 
     await conversation.watch();
 
     setActiveChannel?.(conversation);
-    setSelectedUsers([]);
+    setSelectedUser(null);
     setUsers([]);
     onClose();
   };
 
   const addUser = (addedUser: UserResponse<UserType>) => {
-    const isAlreadyAdded = selectedUsers.find((user) => user.id === addedUser.id);
-    if (isAlreadyAdded) return;
-
-    setSelectedUsers([...selectedUsers, addedUser]);
+    setSelectedUser(addedUser);
     setResultsOpen(false);
     setInputText('');
     if (inputRef.current) {
@@ -143,8 +140,7 @@ const CreateChannel: React.FC<Props> = (props) => {
   };
 
   const removeUser = (user: UserResponse<UserType>) => {
-    const newUsers = selectedUsers.filter((item) => item.id !== user.id);
-    setSelectedUsers(newUsers);
+    setSelectedUser(null);
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -187,18 +183,16 @@ const CreateChannel: React.FC<Props> = (props) => {
         <div className='messaging-create-channel__left'>
           <div className='messaging-create-channel__left-text'>To: </div>
           <div className='users-input-container'>
-            {!!selectedUsers?.length && (
+            {!!selectedUser && (
               <div className='messaging-create-channel__users'>
-                {selectedUsers.map((user) => (
-                  <div
-                    className='messaging-create-channel__user'
-                    onClick={() => removeUser(user)}
-                    key={user.id}
-                  >
-                    <div className='messaging-create-channel__user-text'>{user.name}</div>
-                    <XButton />
-                  </div>
-                ))}
+                <div
+                  className='messaging-create-channel__user'
+                  onClick={() => removeUser(selectedUser)}
+                  key={selectedUser.id}
+                >
+                  <div className='messaging-create-channel__user-text'>{selectedUser.name}</div>
+                  <XButton />
+                </div>
               </div>
             )}
             <form>
@@ -207,7 +201,7 @@ const CreateChannel: React.FC<Props> = (props) => {
                 ref={inputRef}
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                placeholder={!selectedUsers.length ? 'Start typing for suggestions' : ''}
+                placeholder={!selectedUser ? 'Start typing for suggestions' : ''}
                 type='text'
                 className='messaging-create-channel__input'
               />
