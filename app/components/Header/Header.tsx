@@ -12,9 +12,9 @@ import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Avatar } from '@material-ui/core'
-import { useGetChatClient } from '../../hooks/useGetChatClient'
+import useSubscribeToUnreadChatMessages from '../../hooks/streamChatUtils/useSubscribeToUnreadChatMessages'
 
 export default function Header({ isSignUp, isSignedIn, username = null, profilePicture = null }) {
   const { t } = useTranslation('header');
@@ -24,27 +24,8 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   
-
-    //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
-    // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
-
-  useEffect(() => {
-    if(chatClient) {
-      chatClient.on((event) => {
-        if (event.total_unread_count !== undefined) {
-          setUnreadChatMessages(event.total_unread_count);
-        }
-      });
-      
-    }
-
-    return () => {
-      chatClient.off((_) => {});
-    }
-  }, [chatClient]);
-
+  useSubscribeToUnreadChatMessages(username, profilePicture, isSignedIn, setUnreadChatMessages);
 
   return (
     <AppBar color="transparent" elevation={0}>
