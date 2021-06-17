@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Main from '../app/components/Main/Main'
 import { useTranslation } from 'next-i18next';
 import { useStore } from 'react-redux';
@@ -22,8 +22,7 @@ export default function MessagesPage( props ) {
   const isSignedIn = store.getState()?.user?.isSignedIn;
 
   const username = store.getState()?.user.username;
-  const profilePicture = 'https://getstream.io/random_svg/?name=Anders'; //store.getState()?.user?.profilePicture;
-  const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYW5kZXJzYW5kIn0.mW_m6BRY6MFOUMin-7KyiAzPybZTBtILBc9re6GaQU0'; // TODO: Fetch from Store: store.getState()?.user?.chatToken;
+  const profilePicture = null; //store.getState()?.user?.profilePicture;
   const theme = 'light';
   const sort: ChannelSort = {
     last_message_at: -1,

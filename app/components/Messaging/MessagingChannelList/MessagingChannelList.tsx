@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import { Avatar, ChannelListTeamProps, useChatContext } from 'stream-chat-react';
+import React from 'react';
+import { ChannelListTeamProps, useChatContext } from 'stream-chat-react';
 
 import { SkeletonLoader } from './SkeletonLoader';
 
 import AddIcon from '@material-ui/icons/Add';
-
-import type { StreamChat } from 'stream-chat';
 
 import type {
   AttachmentType,
@@ -16,6 +14,7 @@ import type {
   ReactionType,
   UserType,
 } from '../MessagingTypes';
+import { ChatAvatar } from '../MessagingUtils';
 
 type Props = ChannelListTeamProps & {
   onCreateChannel: () => void;
@@ -34,7 +33,7 @@ const MessagingChannelList: React.FC<Props> = (props) => {
     UserType
   >();
 
-  const { id, image, name = 'Example User' } =
+  const { id, image, name = 'Unknown User' } =
     client.user || {};
 
 
@@ -42,7 +41,7 @@ const MessagingChannelList: React.FC<Props> = (props) => {
     return (
       <div className='messaging__channel-list'>
         <div className='messaging__channel-list__header'>
-          <Avatar image={image} name={name} size={40} />
+          <ChatAvatar image={image}/>
           <div className='messaging__channel-list__header__name'>{name || id}</div>
           <button className='messaging__channel-list__header__button' onClick={onCreateChannel}>
             <AddIcon />

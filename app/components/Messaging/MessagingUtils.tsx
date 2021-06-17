@@ -1,12 +1,21 @@
-import { ChannelMemberResponse } from "stream-chat";
-import { UserType } from "./MessagingTypes";
+import { Avatar } from "@material-ui/core";
+import React from "react";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import styles from "./messagingUtils.css";
 
-export const getCleanImage = (member: ChannelMemberResponse<UserType>) => {
-  if (!member?.user?.image) return '<AccountCircleIcon/>'; // TODO: Return <AccountCircleIcon/> & make sure user image is returned down below
+export const ChatAvatar = ({ image }: {image: string }) => {
+  const s = styles();
 
-  if (typeof member.user?.image === 'string' && member.user?.image?.includes('jen-avatar')) {
-    return member.user?.image as string;
+  if (image) {
+    return <Avatar src={`${image}`}
+      alt="Profile picture"
+      className={s.avatar}
+    />
+   } else {
+    return (
+      <Avatar className={s.avatar}>
+        <AccountCircleIcon style={{ fontSize: 48 }} color="secondary"></AccountCircleIcon>
+      </Avatar>
+    )
   }
-
-  return member.user.image;
-};
+}

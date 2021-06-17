@@ -1,9 +1,11 @@
 import { StreamChat } from 'stream-chat';
 import { useEffect, useRef } from 'react';
+import { isNullOrUndefined } from '../utils/util';
 
 export function useGetChatClient(username, profilePicture, isSignedIn, setUnreadCount = null) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const chatClientRef = useRef(StreamChat.getInstance(apiKey)); 
 
@@ -12,11 +14,16 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
       const response = await fetch(`${apiBaseUrl}/api/messages/connect?username=${username}`, {
         method: 'GET',
       });
+
+      if (profilePicture === null) {
+        profilePicture = await getProfilePicture(username, apiBaseUrl);
+      }
+
       const user = await response.json();
       const result = await chatClientRef.current.connectUser({
         id: username,
         name: username,
-        image: profilePicture ?? 'https://getstream.io/random_svg/?name=Anders', // TODO: Use avatar if null
+        image: `${bucketUrl}${profilePicture}`,
       }, user.Token); 
 
       if(setUnreadCount !== null) {
@@ -40,4 +47,26 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
   }, [isSignedIn]);
 
   return chatClientRef.current;
+}
+
+const getProfilePicture = async (username: string, apiBaseUrl: string) => {
+  return await fetch(`${apiBaseUrl}/api/profile/${username}/profilepicture`, {
+    method: 'GET',
+  })
+  .then(response => {
+    if (!response.ok) {
+      return null;
+    }
+
+    return response?.text();
+  })
+  .then(text => {
+    if (isNullOrUndefined(text)) {
+      return null;
+    }
+    return text;
+  })
+  .catch((error) => {
+    return null;
+  });
 }
