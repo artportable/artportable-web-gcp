@@ -17,8 +17,6 @@ import { useGetChatClient } from '../app/hooks/useGetChatClient'
 export default function MessagesPage( props ) {
   const { t } = useTranslation(['upload']);
   const store = useStore();
-
-  const [isCreating, setIsCreating] = useState(false);
   const isSignedIn = store.getState()?.user?.isSignedIn;
 
   const username = store.getState()?.user.username;
@@ -31,6 +29,7 @@ export default function MessagesPage( props ) {
   };
 
   const chatClient = useGetChatClient(username, profilePicture, isSignedIn);
+  const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
   const filter = { members: { $in: [username] } };
 
   return (
@@ -45,21 +44,23 @@ export default function MessagesPage( props ) {
                 <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} />
               )}
               Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating }} />}
-            />
-            <Channel maxNumberOfFiles={10} multipleUploads={true}>
-              {isCreating && (
-                <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={null} />
-              )}
-              <Window>
-                <MessagingChannelHeader theme={theme} toggleMobile={null} />
-                <MessageList
-                  messageActions={['delete', 'edit', 'flag', 'mute', 'react']}
-                  Message={CustomMessage}
-                  TypingIndicator={() => null}
-                />
-                <MessageInput focus Input={MessagingInput} />
-              </Window>
-            </Channel>
+            />         
+            {isCreating && (
+              <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={null} />
+            )}
+            {!isCreating && 
+              <Channel maxNumberOfFiles={10} multipleUploads={true}>
+                <Window>
+                  <MessagingChannelHeader theme={theme} toggleMobile={null} />
+                  <MessageList
+                    messageActions={['delete', 'edit', 'flag', 'mute', 'react']}
+                    Message={CustomMessage}
+                    TypingIndicator={() => null}
+                  />
+                  <MessageInput focus Input={MessagingInput} />
+                </Window>
+              </Channel>
+            }
           </Chat>
         }
       </div>

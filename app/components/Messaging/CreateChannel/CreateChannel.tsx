@@ -178,81 +178,85 @@ const CreateChannel: React.FC<Props> = (props) => {
   }, [handleKeyDown]);
 
   return (
-    <div className='messaging-create-channel'>
-      <header>
-        <div className='messaging-create-channel__left'>
-          <div className='messaging-create-channel__left-text'>To: </div>
-          <div className='users-input-container'>
-            {!!selectedUser && (
-              <div className='messaging-create-channel__users'>
-                <div
-                  className='messaging-create-channel__user'
-                  onClick={() => removeUser(selectedUser)}
-                  key={selectedUser.id}
-                >
-                  <div className='messaging-create-channel__user-text'>{selectedUser.name}</div>
-                  <XButton />
-                </div>
-              </div>
-            )}
-            <form>
-              <input
-                autoFocus
-                ref={inputRef}
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder={!selectedUser ? 'Start typing for suggestions' : ''}
-                type='text'
-                className='messaging-create-channel__input'
-              />
-            </form>
-          </div>
-          <div className='close-mobile-create' onClick={() => toggleMobile()}>
-            <XButtonBackground />
-          </div>
-        </div>
-        <Button
-          size="small"
-          variant="contained"
-          color="primary"
-          disableElevation
-          onClick={createChannel}
-        >
-          Start chat
-        </Button>
-      </header>
-      {inputText && (
-        <main>
-          <ul className='messaging-create-channel__user-results'>
-            {!!users?.length && !searchEmpty && (
-              <div>
-                {users.map((user, i) => (
-                  <div
-                    className={`messaging-create-channel__user-result ${
-                      focusedUser === i && 'focused'
-                    }`}
-                    onClick={() => addUser(user)}
-                    key={user.id}
-                  >
-                    <UserResult user={user} />
+    <div className='str-chat str-chat-channel messaging light'>
+      <div className='str-chat__container'>
+        <div className='messaging-create-channel'>
+          <header>
+            <div className='messaging-create-channel__left'>
+              <div className='messaging-create-channel__left-text'>To: </div>
+              <div className='users-input-container'>
+                {!!selectedUser && (
+                  <div className='messaging-create-channel__users'>
+                      <div
+                        className='messaging-create-channel__user'
+                        onClick={() => removeUser(selectedUser)}
+                        key={selectedUser.id}
+                      >
+                        <div className='messaging-create-channel__user-text'>{selectedUser.name}</div>
+                        <XButton />
+                      </div>
                   </div>
-                ))}
+                )}
+                <form>
+                  <input
+                    autoFocus
+                    ref={inputRef}
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    placeholder={!selectedUser ? 'Start typing for suggestions' : ''}
+                    type='text'
+                    className='messaging-create-channel__input'
+                  />
+                </form>
               </div>
-            )}
-            {searchEmpty && (
-              <div
-                onClick={() => {
-                  inputRef.current?.focus();
-                  clearState();
-                }}
-                className='messaging-create-channel__user-result empty'
-              >
-                No people found...
+              <div className='close-mobile-create' onClick={() => toggleMobile()}>
+                <XButtonBackground />
               </div>
-            )}
-          </ul>
-        </main>
-      )}
+            </div>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              disableElevation
+              onClick={createChannel}
+            >
+              Start chat
+            </Button>
+          </header>
+          {inputText && (
+            <main>
+              <ul className='messaging-create-channel__user-results'>
+                {!!users?.length && !searchEmpty && (
+                  <div>
+                    {users.map((user, i) => (
+                      <div
+                        className={`messaging-create-channel__user-result ${
+                          focusedUser === i && 'focused'
+                        }`}
+                        onClick={() => addUser(user)}
+                        key={user.id}
+                      >
+                        <UserResult user={user} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {searchEmpty && (
+                  <div
+                    onClick={() => {
+                      inputRef.current?.focus();
+                      clearState();
+                    }}
+                    className='messaging-create-channel__user-result empty'
+                  >
+                    No people found...
+                  </div>
+                )}
+              </ul>
+            </main>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
