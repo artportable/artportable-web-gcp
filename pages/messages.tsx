@@ -31,6 +31,7 @@ export default function MessagesPage( props ) {
   };
 
   const chatClient = useGetChatClient(username, profilePicture, isSignedIn);
+  const filter = { members: { $in: [username] } };
 
   return (
     <Main noHeaderPadding>
@@ -38,6 +39,7 @@ export default function MessagesPage( props ) {
         {(chatClient && chatClient.user) &&
           <Chat client={chatClient} theme={`messaging ${theme}`}>
             <ChannelList
+              filters={filter}
               sort={sort}
               List={(props) => (
                 <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} />
