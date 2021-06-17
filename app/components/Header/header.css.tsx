@@ -5,6 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'grid',
+      width: 'calc(100% + 10px)',
       backgroundColor: theme.palette.background.default,
       boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
       height: 'var(--header-height, 70px)',
@@ -39,10 +40,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     login: {
       gridArea: 'login',
-      '& .MuiButton-root:not(.MuiIconButton-root) .MuiButton-label': {
+      '& .MuiButton-root .MuiButton-label': {
           margin: theme.spacing(0, 2)
       },
-      '& > *:not(.MuiIconButton-root)': {
+      '& > *': {
         margin: theme.spacing(0, 1)
       },
       '& > .MuiIconButton-root': {
@@ -55,6 +56,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     language: {
       gridArea: 'language'
+    },
+    iconButtons: {
+      display: 'inline'
     }
   }),
 );

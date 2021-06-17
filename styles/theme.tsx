@@ -128,15 +128,15 @@ theme.overrides = {
         borderRadius: '6px',
       },
       '*::-webkit-scrollbar-track': {
-        '-webkit-box-shadow': `inset 0 0 4px ${theme.palette.primary.light}`,
+        '-webkit-box-shadow': `inset 0 0 4px ${theme.palette.grey[500]}44`,
+        border: `1px solid ${theme.palette.grey[600]}44`,
         borderRadius: '6px'
       },
       '*::-webkit-scrollbar-thumb': {
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: `${theme.palette.grey[700]}66`,
         borderRadius: '6px',
-        '-webkit-box-shadow': `inset 0 0 8px ${theme.palette.primary.dark}`,
         '&:hover': {
-          backgroundColor: theme.palette.primary.dark,
+          backgroundColor: theme.palette.grey[700],
         }
       }
     }
@@ -165,4 +165,9 @@ theme.overrides = {
       padding: theme.spacing(2),
     },
   },
+  MuiButton: {
+    root: {
+      textTransform: 'none'
+    }
+  }
 }

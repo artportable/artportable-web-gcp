@@ -4,6 +4,8 @@
   "articles": "Artiklar",
   "about": "Om oss",
   "login": "Logga in",
+  "logout": "Logga ut",
   "signUp": "Bli medlem",
-  "upload": "Ladda upp"
+  "upload": "Ladda upp",
+  "profile": "Profil"
 }

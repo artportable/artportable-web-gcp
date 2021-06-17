@@ -4,6 +4,8 @@
   "articles": "Articles",
   "about": "About",
   "login": "Log in",
+  "logout": "Log out",
   "signUp": "Sign up",
-  "upload": "Upload"
+  "upload": "Upload",
+  "profile": "Profile"
 }
