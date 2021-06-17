@@ -165,4 +165,9 @@ theme.overrides = {
       padding: theme.spacing(2),
     },
   },
+  MuiButton: {
+    root: {
+      textTransform: 'none'
+    }
+  }
 }
