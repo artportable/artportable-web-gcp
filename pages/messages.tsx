@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Main from '../app/components/Main/Main'
 import { useTranslation } from 'next-i18next';
 import { useStore } from 'react-redux';
@@ -30,7 +30,12 @@ export default function MessagesPage( props ) {
 
   const chatClient = useGetChatClient(username, profilePicture, isSignedIn);
   const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
+  const [hasChannels, setHasChannels] = useState(false);
   const filter = { members: { $in: [username] } };
+
+  useEffect(() => {
+    setIsCreating(Object.keys(chatClient.activeChannels).length === 0);
+  }, [hasChannels]);
 
   return (
     <Main noHeaderPadding>
@@ -43,7 +48,7 @@ export default function MessagesPage( props ) {
               List={(props) => (
                 <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} />
               )}
-              Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating }} />}
+              Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
             />         
             {isCreating && (
               <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={null} />

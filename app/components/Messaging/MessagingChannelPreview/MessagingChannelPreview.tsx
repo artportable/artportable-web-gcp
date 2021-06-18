@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ChannelPreviewUIComponentProps,
   ChatContextValue,
@@ -38,13 +38,14 @@ const getTimeStamp = (channel: Channel) => {
 type Props = ChannelPreviewUIComponentProps & {
   channel: Channel;
   setIsCreating: React.Dispatch<React.SetStateAction<boolean>>;
+  setHasChannels: React.Dispatch<React.SetStateAction<boolean>>;
   latestMessage?: string;
   setActiveChannel?: ChatContextValue['setActiveChannel'];
 };
 
 const MessagingChannelPreview: React.FC<Props> = (props: Props) => {
   const s = styles();
-  const { channel, latestMessage, setActiveChannel, setIsCreating, unread } = props;
+  const { channel, latestMessage, setActiveChannel, setIsCreating, setHasChannels, unread } = props;
 
   const { channel: activeChannel, client } = useChatContext<
     AttachmentType,
@@ -55,6 +56,8 @@ const MessagingChannelPreview: React.FC<Props> = (props: Props) => {
     ReactionType,
     UserType
   >();
+
+  useEffect(() => setHasChannels(true), []);
 
   const member = Object.values(channel.state.members).filter(
     ({ user }) => user?.id !== client.userID,
