@@ -4915,7 +4915,8 @@
     font-size: 15px;
     min-height: 42px;
     transition: height 100ms ease-in;
-    resize: none; }
+    resize: none;
+    overflow: hidden; }
     .str-chat__textarea textarea:focus {
       background: #fff;
       border: 1px solid #006cff;
