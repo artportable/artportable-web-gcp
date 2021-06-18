@@ -10,7 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
     row: {
       display: 'flex',
       gap: theme.spacing(2),
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       overflow: 'hidden'
     },
   }),
