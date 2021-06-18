@@ -31,6 +31,7 @@ export default function MessagesPage( props ) {
   const chatClient = useGetChatClient(username, profilePicture, isSignedIn);
   const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
   const [hasChannels, setHasChannels] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const filter = { members: { $in: [username] } };
 
   useEffect(() => {
@@ -45,12 +46,14 @@ export default function MessagesPage( props ) {
             <ChannelList
               filters={filter}
               sort={sort}
-              List={(props) => (
-                <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} />
-              )}
+              List={(props) => {
+                setIsLoading(props.loading);
+                return <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} />;
+                }
+              }
               Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
             />         
-            {isCreating && (
+            {isCreating && !isLoading && (
               <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={null} />
             )}
             {!isCreating && 
