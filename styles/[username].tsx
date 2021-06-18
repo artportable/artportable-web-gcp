@@ -33,12 +33,15 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     portfolioContainer: {
       display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-      gap: theme.spacing(0, 2)
+      flexDirection: 'column',
+      gap: theme.spacing(2)
     },
-    artWorkListItem: {
-      height: '250px'
+    portfolioRow: {
+      display: 'flex',
+      gap: theme.spacing(2),
+      justifyContent: 'flex-start',
+      overflow: 'hidden'
+
     },
     secondDivider: {
       gridArea: 'divider2'
