@@ -1,24 +1,24 @@
-import Main from '../app/components/Main/Main'
-import AboutMe from '../app/components/AboutMe/AboutMe'
+import Main from '../../app/components/Main/Main'
+import AboutMe from '../../app/components/AboutMe/AboutMe'
 import { Tabs, Tab } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
-import ProfileComponent from '../app/components/Profile/Profile'
-import ArtworkListItemDefined from '../app/components/ArtworkListItemDefined/ArtworkListItemDefined'
-import Image from "../app/models/Image"
+import ProfileComponent from '../../app/components/Profile/Profile'
+import ArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/ArtworkListItemDefined'
+import Image from "../../app/models/Image"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
 import { useTranslation } from "next-i18next"
-import { profileStyles } from '../styles/[username]'
-import { useGetArtworks } from '../app/hooks/dataFetching/Artworks'
-import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
+import { profileStyles } from '../../styles/[username]'
+import { useGetArtworks } from '../../app/hooks/dataFetching/Artworks'
+import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary } from '../../app/hooks/dataFetching/UserProfile'
 import { useEffect, useState } from 'react'
-import TabPanel from '../app/components/TabPanel/TabPanel'
-import { useGetProfileUser } from '../app/hooks/dataFetching/useGetProfileUser'
+import TabPanel from '../../app/components/TabPanel/TabPanel'
+import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
 import { useStore } from 'react-redux'
-import SimilarPortfoliosSection from '../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
-import { useMainWidth } from '../app/hooks/useWidth'
-import { getImageAsRows } from '../app/utils/layoutUtils'
+import SimilarPortfoliosSection from '../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
+import { useMainWidth } from '../../app/hooks/useWidth'
+import { getImageAsRows } from '../../app/utils/layoutUtils'
 import { useTheme, Theme } from '@material-ui/core'
 
 function a11yProps(index: any) {

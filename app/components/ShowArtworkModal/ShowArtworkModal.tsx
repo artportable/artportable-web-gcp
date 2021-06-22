@@ -42,7 +42,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
         className: s.backdrop
       }}>
         <DialogContent className={s.modalContainer}> 
-          <Link href={`/@${artwork.Owner?.Username}`}>
+          <Link href={`/profile/@${artwork.Owner?.Username}`}>
             <a>
               <CardHeader
                 classes={{

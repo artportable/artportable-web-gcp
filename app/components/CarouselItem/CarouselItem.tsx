@@ -31,7 +31,7 @@ export default function CarouselItem({ src, text, subheader, user = null }) {
       </Paper>
       {user && 
         <div className={s.user}>
-          <Link href={`/@${user.username}`}>
+          <Link href={`/profile/@${user.username}`}>
             <a>
               <Chip
                 clickable

@@ -18,7 +18,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
 
   return (
     <ListItem key={user.UserId} className={s.listItem}>
-      <Link href={`/@${user.Username}`}>
+      <Link href={`/profile/@${user.Username}`}>
         <a>
           <ListItemAvatar>
             <Avatar className={s.avatar}>
@@ -34,7 +34,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           </ListItemAvatar>
         </a>
       </Link>
-      <Link href={`/@${user.Username}`}>
+      <Link href={`/profile/@${user.Username}`}>
         <a>
           <ListItemText className={s.listItemText} primary={user.Username} secondary={user.Location} />
         </a>

@@ -41,7 +41,7 @@ const ProfileIconButton = () => {
           aria-label="Profile menu"
           size="large"
         >
-          <Link href={`/@${user.username}`} passHref>
+          <Link href={`/profile/@${user.username}`} passHref>
             <Button
               className={'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedVertical MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedVertical MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeLarge MuiButton-sizeLarge'}
               href="/"

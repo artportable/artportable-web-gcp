@@ -32,7 +32,7 @@ export default function Profile({ userProfile, divider = false }) {
               onClick={() => alert('upload picture')} />
         }
       >
-        <Link href={`/@${data?.Username}`}>
+        <Link href={`/profile/@${data?.Username}`}>
           <a>
             <Avatar className={s.avatar}>
               {data?.ProfilePicture ? (
@@ -53,7 +53,7 @@ export default function Profile({ userProfile, divider = false }) {
 
       <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="subtitle1">
-          <Link href={`/@${data?.Username}`}>
+          <Link href={`/profile/@${data?.Username}`}>
             <a>
               {data?.Username}
             </a>

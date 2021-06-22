@@ -13,7 +13,7 @@ export default function AvatarCard({ user }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
-    <Link href={`/@${user.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
+    <Link href={`/profile/@${user.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
       <div className={s.container}>
         {user?.ProfilePicture ? (
           <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}

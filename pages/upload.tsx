@@ -73,7 +73,7 @@ export default function UploadArtworkPage() {
     }
     setUploadSnackbarOpen(true);
     const res = usePostArtwork(artwork, username);
-    router.push('/@' + username);
+    router.push('/profile/@' + username);
   }
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
