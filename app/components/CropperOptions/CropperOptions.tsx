@@ -54,6 +54,11 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           onClick={() => changeAspectRatio("4:3", true)}>
           4:3
         </Button>
+        <Button
+          variant={getButtonVariant("1:1")}
+          onClick={() => changeAspectRatio("1:1", true)}>
+          1:1
+        </Button>
       </ButtonGroup>
       <ButtonGroup disableElevation variant="outlined" color="primary">
         <Button
