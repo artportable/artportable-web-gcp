@@ -14,6 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
     text: {
       display: "flex",
       flexDirection: "column",
+      justifyContent: "center",
       marginLeft: "30px"
     },
     username: {

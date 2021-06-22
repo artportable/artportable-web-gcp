@@ -24,6 +24,24 @@ export function useGetArtworks(owner = null) {
   }
 }
 
+export function useGetArtwork(id: string) {
+  const url = new URL(`${apiBaseUrl}/api/artworks/${id}`);
+
+  const { data, error } = useSWR(
+    url.href,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
 export function useGetTags() {
   const { data, error } = useSWR(
     `${apiBaseUrl}/api/artworks/tags`,
