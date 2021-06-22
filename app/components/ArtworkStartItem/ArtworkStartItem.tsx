@@ -41,7 +41,7 @@ export default function ArtworkStartItem({ artwork }) {
               height={skeletonHeight}>
             </Skeleton>
         </div>
-        <Link href={`/@${artwork.Username}`}>
+        <Link href={`/profile/@${artwork.Username}`}>
           <a>
             <div className={s.footer}>
               {artwork?.ProfilePicture ? (

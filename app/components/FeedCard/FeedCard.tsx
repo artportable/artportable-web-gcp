@@ -34,7 +34,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
 
   return (
     <Card>
-      <Link href={`/@${content.User}`}>
+      <Link href={`/profile/@${content.User}`}>
         <a>
           <CardHeader
             className={s.cardHeader}

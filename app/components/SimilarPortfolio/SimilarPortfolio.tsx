@@ -11,7 +11,7 @@ export default function SimilarPortfolio({ data }) {
 
   return (
     <Paper variant="outlined" className={s.card}>
-      <Link href={`/@${data?.Username}`} >
+      <Link href={`/profile/@${data?.Username}`} >
         <a>
 
           <div className={s.imageGrid}>
@@ -59,7 +59,7 @@ export default function SimilarPortfolio({ data }) {
         </a>
       </Link>
       <div className={s.footer}>
-          <Link href={`/@${data?.Username}`}>
+          <Link href={`/profile/@${data?.Username}`}>
             <a>
               {data?.ProfilePicture ? (
                 <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
@@ -76,7 +76,7 @@ export default function SimilarPortfolio({ data }) {
           </Link>
         <Box fontWeight="fontWeightBold">
           <Typography variant="subtitle1">
-            <Link href={`/@${data?.Username}`}>
+            <Link href={`/profile/@${data?.Username}`}>
               <a style={{ textDecoration: 'none', color: 'black' }}>
                 {data?.Username}
               </a>
