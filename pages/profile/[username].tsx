@@ -12,7 +12,7 @@ import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
 import { useGetArtworks } from '../../app/hooks/dataFetching/Artworks'
 import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary } from '../../app/hooks/dataFetching/UserProfile'
-import { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import TabPanel from '../../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
 import { useStore } from 'react-redux'
@@ -20,6 +20,7 @@ import SimilarPortfoliosSection from '../../app/components/SimilarPortfoliosSect
 import { useMainWidth } from '../../app/hooks/useWidth'
 import { getImageAsRows } from '../../app/utils/layoutUtils'
 import { useTheme, Theme } from '@material-ui/core'
+import ArtworkModal from '../../app/components/ArtworkModal/ArtworkModal'
 
 function a11yProps(index: any) {
   return {
@@ -48,6 +49,19 @@ export default function Profile() {
   const myUsername = store.getState()?.user?.username;
 
   const [imageRows, setImageRows] = useState(null);
+  const [currentImage, setCurrentImage] = useState(0);
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [modalSrc, setModalSrc] = useState([]);
+
+  const closeImageViewer = () => {
+    setCurrentImage(0);
+    setIsViewerOpen(false);
+  };
+
+  const openImageViewer = useCallback(index => {
+    setCurrentImage(index);
+    setIsViewerOpen(true);
+  }, []);
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
@@ -57,6 +71,14 @@ export default function Profile() {
         setImageRows(rows);
       }
     }
+
+    setModalSrc(artworks?.data?.map(a => {
+      return {
+        url: `${bucketUrl}${a.PrimaryFile.Name}`,
+        id: a.Id,
+        alt: a.Title
+      }
+    }));
   }, [artworks]);
 
   useEffect(() => {
@@ -118,6 +140,7 @@ export default function Profile() {
                   <div className={s.portfolioRow} key={i}>   
                     {row.map(image => {
                         let artwork = artworks.data.find(a => a.PrimaryFile.Name === image.Name);
+                        let index = artworks.data.indexOf(artwork);
 
                         if (artwork) {
                           return <ArtworkListItemDefined
@@ -125,7 +148,8 @@ export default function Profile() {
                             width={image.Width}
                             height={image.Height}
                             artwork={artwork}
-                            onLikeClick={onLikeClick} />
+                            onLikeClick={onLikeClick}
+                            onClick={() => openImageViewer(index)} />
                         }
                       }
                     )}
@@ -147,6 +171,16 @@ export default function Profile() {
           </>}
         </div>
       </Main>
+      {isViewerOpen && (
+        <ArtworkModal
+          src={modalSrc}
+          currentIndex={currentImage}
+          onClose={closeImageViewer}
+          backgroundStyle={{
+            backgroundColor: "rgba(0,0,0,0.9)"
+          }}
+        />
+      )}
     </>
   );
 }
