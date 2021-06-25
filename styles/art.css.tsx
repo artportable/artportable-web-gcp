@@ -42,6 +42,14 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: '5px',
       marginRight: '5px',
     },
+    actionBar: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginLeft: '5px',
+      marginRight: '5px',
+      alignItems: 'center'
+    },
     text: {
       marginLeft: '10px',
       marginRight: '10px',

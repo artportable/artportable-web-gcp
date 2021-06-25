@@ -10,6 +10,8 @@ import { styles } from "../../styles/art.css";
 import { capitalizeFirst } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
 import { useStore } from "react-redux";
 
 export default function ArtworkPage(props) {
@@ -25,6 +27,7 @@ export default function ArtworkPage(props) {
   const username = store.getState()?.user?.username;
 
   const [isFollowed, setFollow] = useState(false); // TODO: Fetch and initialize with FollowedByMe
+  const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
 
   const formatter = new Intl.NumberFormat(props.locale, {
     style: 'currency',
@@ -48,6 +51,28 @@ export default function ArtworkPage(props) {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  // Like a post (feed item)
+  // `isLike` states whether it's a like or an unlike
+  function likeArtwork(isLike) {
+    if (username === null || username === undefined) {
+      return; // TODO: Display modal to sign up
+    }
+
+    fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username}`, {
+      method: isLike ? 'POST' : 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      setIsLiked(!isLiked)
+      console.log(error);
+    })
   }
 
   return (
@@ -86,6 +111,25 @@ export default function ArtworkPage(props) {
                 width={artwork.data.PrimaryFile.Width > artwork.data.PrimaryFile.Height ? artwork.data.PrimaryFile.Width : null}
                 height={artwork.data.PrimaryFile.Height > artwork.data.PrimaryFile.Width ? artwork.data.PrimaryFile.Height : null}
               />
+            </div>
+            <div className={s.actionBar}>
+              <Button
+                startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
+                onClick={() => {
+                  likeArtwork(!isLiked);
+                  setIsLiked(!isLiked);
+                } }>
+                {capitalizeFirst(t('like'))}
+              </Button>
+              {/* <Button // TODO: Implement Share functionality
+                variant="outlined"
+                size='small'
+                color="primary"
+                disableElevation
+                rounded
+                startIcon={<ShareIcon/>}>
+                  Share
+              </Button> */}
             </div>
             <div className={s.infoBar}>
               {artwork.data.Likes > 0 &&
