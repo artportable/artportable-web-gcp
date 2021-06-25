@@ -1,9 +1,9 @@
 export enum Locales {
-  se = 'se',
+  sv = 'sv',
   en = 'en'
 }
 
 export enum DisplayLocales {
-  se = 'Swe',
+  sv = 'Swe',
   en = 'Eng'
 }

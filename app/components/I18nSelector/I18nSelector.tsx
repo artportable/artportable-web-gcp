@@ -12,8 +12,8 @@ export default function I18nSelector() {
   const s = styles();
   const [anchorElement, setAnchorElement] = useState(null);
   const router = useRouter();
-  const displayLocale = router.locale === Locales.se ?
-    DisplayLocales.se : DisplayLocales.en; 
+  const displayLocale = router.locale === Locales.sv ?
+    DisplayLocales.sv : DisplayLocales.en;
 
   function handleClick(event) {
     setAnchorElement(event.currentTarget);
@@ -39,7 +39,7 @@ export default function I18nSelector() {
         variant="contained"
         disableElevation
         rounded>
-        {displayLocale}
+          {displayLocale}
       </Button>
       <Menu
         id="language-menu"
@@ -57,7 +57,7 @@ export default function I18nSelector() {
         open={Boolean(anchorElement)}
         onClose={(_) => handleClose(_)}
       >
-        <MenuItem onClick={(_) => handleClose(_, Locales.se)}>Swe</MenuItem>
+        <MenuItem onClick={(_) => handleClose(_, Locales.sv)}>Swe</MenuItem>
         <MenuItem onClick={(_) => handleClose(_, Locales.en)}>Eng</MenuItem>
       </Menu>
     </>
