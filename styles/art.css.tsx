@@ -35,6 +35,13 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: '850px',
       maxHeight: '850px'
     },
+    infoBar: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginLeft: '5px',
+      marginRight: '5px',
+    },
     text: {
       marginLeft: '10px',
       marginRight: '10px',

@@ -12,9 +12,9 @@ import Button from "../../app/components/Button/Button";
 import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
 import { useStore } from "react-redux";
 
-export default function ArtworkPage() {
+export default function ArtworkPage(props) {
   const s = styles();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['art', 'common']);
   const router = useRouter();
   const store = useStore();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
@@ -25,6 +25,11 @@ export default function ArtworkPage() {
   const username = store.getState()?.user?.username;
 
   const [isFollowed, setFollow] = useState(false); // TODO: Fetch and initialize with FollowedByMe
+
+  const formatter = new Intl.NumberFormat(props.locale, {
+    style: 'currency',
+    currency: 'SEK',
+  });
 
   function follow(userToFollow) {
     if (username === null || username === undefined) {
@@ -82,6 +87,12 @@ export default function ArtworkPage() {
                 height={artwork.data.PrimaryFile.Height > artwork.data.PrimaryFile.Width ? artwork.data.PrimaryFile.Height : null}
               />
             </div>
+            <div className={s.infoBar}>
+              {artwork.data.Likes > 0 &&
+                <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
+              }
+              <p>{formatter.format(artwork.data.Price)} </p>
+            </div>
             <Box textAlign="center" marginY={2} className={s.text}>
               {artwork.data.Title &&
                 <Typography variant="h3" component="h2" id="artwork-modal-title">
@@ -129,7 +140,8 @@ export default function ArtworkPage() {
 export async function getStaticProps({ locale }) {
   return { 
     props: {
-      ...await serverSideTranslations(locale, ['header', 'common']),
+      locale: locale,
+      ...await serverSideTranslations(locale, ['header', 'art', 'common']),
     }
   };
 }
