@@ -8,5 +8,6 @@ export const keycloakConfig : KeycloakConfig= {
 export const keycloakInitOptions : KeycloakInitOptions = {
   onLoad : 'check-sso',
   silentCheckSsoRedirectUri : 'http://localhost:3000/silent-check-sso.html',
-  pkceMethod : 'S256'
+  pkceMethod : 'S256',
+  enableLogging : true
 }

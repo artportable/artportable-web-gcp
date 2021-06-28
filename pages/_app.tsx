@@ -26,6 +26,7 @@ import type { IncomingMessage } from 'http';
 import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr';
 import cookie from 'cookie';
 import { keycloakConfig, keycloakInitOptions }  from '../constants/keycloakSettings';
+import { AuthClientEvent, AuthClientError} from '@react-keycloak/core';
 
 
 library.add(
@@ -75,6 +76,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         keycloakConfig={keycloakConfig}
         persistor={SSRCookies(cookies)}
         initOptions={keycloakInitOptions}
+        onEvent={testEvent}
       >
         <Provider store={store}>
           <ThemeProvider theme={theme}>
@@ -92,6 +94,10 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
     </>
   )
 }
+
+function testEvent (event: AuthClientEvent, error?: AuthClientError | undefined) {
+  console.log(event);
+};
 
 function parseCookies(req?: IncomingMessage) {
   if (!req || !req.headers) {

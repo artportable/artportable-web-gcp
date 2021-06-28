@@ -66,6 +66,8 @@ export default function Signup() {
             <div>{`User is ${!keycloak.authenticated ? 'NOT ' : ''
               }authenticated`}</div>
             {console.log(keycloak)}
+            {console.log(keycloak.token)}
+            {console.log(keycloak.tokenParsed)}
             {!keycloak.authenticated && (
               <div>
                 <button type="button" onClick={() => keycloak.login({ idpHint: "google" })}>
