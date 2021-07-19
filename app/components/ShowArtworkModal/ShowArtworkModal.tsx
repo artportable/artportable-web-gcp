@@ -1,14 +1,12 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Dialog, DialogContent } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar'
-import { Card, CardContent, CardHeader } from '@material-ui/core'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { CardHeader } from '@material-ui/core'
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box'
 import { styles } from './showArtworkModal.css'
 import Button from '../Button/Button';
+import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 
 import { useTranslation } from "next-i18next"
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -52,17 +50,10 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
                   action: s.followButton
                 }}
                 avatar={
-                  artwork.Owner?.ProfilePicture ? (
-                    <Avatar src={`${bucketUrl}${artwork.Owner?.ProfilePicture}`}
-                      alt="Profile picture"
-                      style={{ height: '40px', width: '40px' }}
-                    />
-                  ) : (
-                    <AccountCircleIcon
-                      color="secondary"
-                      style={{fontSize: 48}}
-                    />
-                  )
+                  <ProfileAvatar 
+                    size={48} 
+                    profilePicture={`${artwork.Owner?.ProfilePicture}`} 
+                  />
                 }
                 title={artwork.Owner?.Username}
                 subheader={

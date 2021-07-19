@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import Badge from '@material-ui/core/Badge'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import MuiButton from '@material-ui/core/Button'
 
@@ -13,14 +12,15 @@ import Button from '../Button/Button';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
 import React, { useEffect, useState } from 'react'
-import { Avatar } from '@material-ui/core'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
+import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 
-export default function Header({ isSignUp, isSignedIn, username = null, profilePicture = null }) {
+export default function Header({ isSignUp, isSignedIn, username = null }) {
   const { t } = useTranslation('header');
   const s = styles();
-
+  const { profilePicture } = useGetUserProfilePicture(username);
+  
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   const logoHref = isSignedIn ? "/feed" : "/";
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
@@ -132,7 +132,7 @@ export default function Header({ isSignUp, isSignedIn, username = null, profileP
               <IconButton color="secondary" aria-label="account">
                 <NotificationsIcon style={{ fontSize: '30px'}} />
               </IconButton>
-              <ProfileIconButton></ProfileIconButton>
+              <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
             </div>
           </div>
         }
