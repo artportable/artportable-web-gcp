@@ -29,7 +29,8 @@ export const styles = makeStyles((theme: Theme) =>
       color: theme.palette.common.white
     },
     followButton: {
-      margin: 0
+      margin: 0,
+      alignSelf: 'center'
     },
     backdrop: {
       background: 'rgba(0,0,0,0.7) !important',
