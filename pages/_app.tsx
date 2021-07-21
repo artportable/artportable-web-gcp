@@ -83,7 +83,6 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
             <CssBaseline />
             <Header
               isSignUp={isSignUp}
-              isSignedIn={isSignedIn}
               username={username}
             ></Header>
             <Component {...pageProps} />
