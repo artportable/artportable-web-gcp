@@ -85,7 +85,6 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
               isSignUp={isSignUp}
               isSignedIn={isSignedIn}
               username={username}
-              profilePicture={profilePicture}
             ></Header>
             <Component {...pageProps} />
           </ThemeProvider>

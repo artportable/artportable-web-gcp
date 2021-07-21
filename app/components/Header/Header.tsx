@@ -31,7 +31,6 @@ export default function Header({ isSignUp, isSignedIn, username = null }) {
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isAuthenticated, setUnreadChatMessages));
   const logoHref = isAuthenticated ? "/feed" : "/";
-  console.log(isAuthenticated);
   
 
     //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
