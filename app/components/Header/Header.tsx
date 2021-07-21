@@ -15,24 +15,24 @@ import React, { useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
+import { useIsAuthenticated } from '../../hooks/useIsAuthenticated'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 
-export default function Header({ isSignUp, isSignedIn, username = null }) {
+export default function Header({ isSignUp, username = null }) {
   const { t } = useTranslation('header');
   const s = styles();
   const { profilePicture } = useGetUserProfilePicture(username);
+  const isAuthenticated = useIsAuthenticated();
   const { keycloak } = useKeycloak<KeycloakInstance>();
-  
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
-  const [isAuthenticated, setIsAuthenticated] = useState(keycloak.authenticated);
+  
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isAuthenticated, setUnreadChatMessages));
   const logoHref = isAuthenticated ? "/feed" : "/";
   
-
     //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
     // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
@@ -50,11 +50,6 @@ export default function Header({ isSignUp, isSignedIn, username = null }) {
       chatClient.off((_) => {});
     }
   }, [chatClient]);
-
-  useEffect(() => {
-    setIsAuthenticated(keycloak.authenticated);
-  }, [keycloak.authenticated]);
-
 
   return (
     <AppBar color="transparent" elevation={0}>

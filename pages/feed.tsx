@@ -19,13 +19,14 @@ import { useStore } from 'react-redux';
 import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
 import { useRouter } from 'next/router';
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
+import { useIsAuthenticated } from '../app/hooks/useIsAuthenticated';
 
 export default function FeedPage() {
   const s = styles();
   const store = useStore();
   const router = useRouter();
   const { t } = useTranslation(['feed', 'common']);
-  const isSignedIn = store.getState()?.user?.isSignedIn;
+  const { isAuthenticated } = useIsAuthenticated();;
   const myUsername = store.getState()?.user?.username;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -74,7 +75,7 @@ export default function FeedPage() {
 
   useEffect(() => {
     // TODO: Do redirect of unauthed users in a better way
-    if (!isSignedIn) {
+    if (!isAuthenticated) {
       router.push('/');
     }
   });
