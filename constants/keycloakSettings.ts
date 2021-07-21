@@ -7,6 +7,7 @@ export const keycloakConfig : KeycloakConfig= {
 
 export const keycloakInitOptions : KeycloakInitOptions = {
   onLoad : 'check-sso',
+  //TODO add environment URI. Prod dev etc
   silentCheckSsoRedirectUri : 'http://localhost:3000/silent-check-sso.html',
   pkceMethod : 'S256',
   enableLogging : true
