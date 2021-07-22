@@ -27,16 +27,12 @@ export default function AboutCard({ data }) {
                 {`${data.Name} ${data.Surname}`}
               </Box>
             </Typography>
-            <Typography>
-              <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={1}>
-                {`${data.Title}`}
-              </Box>
+            <Typography className={s.artistTitle}>
+              {`${data.Title}`}
             </Typography>
-            <Typography>
-              <Box className={s.location}>
-                <RoomIcon color="secondary" fontSize="small"></RoomIcon>
-                {`${data.Location}`}
-              </Box>
+            <Typography className={s.location}>
+              <RoomIcon color="secondary" fontSize="small"></RoomIcon>
+              {`${data.Location}`}
             </Typography>
             <Box paddingTop={1}>
               <Typography variant="body1">

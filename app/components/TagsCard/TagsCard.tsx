@@ -16,8 +16,8 @@ export default function TagsCard({ tags }) {
       </CardHeader>
       <CardContent>
         <Box className={s.tagsContainer}>
-          {tags.map(t =>
-            <Chip label={t.Tag} color="primary" size="small"></Chip>
+          {tags.map((t, i) =>
+            <Chip key={i} label={t.Tag} color="primary" size="small"></Chip>
           )}
         </Box>
       </CardContent>

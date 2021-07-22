@@ -4,7 +4,8 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     tagsContainer: {
       display: 'flex',
-      gap: theme.spacing(1)
+      gap: theme.spacing(1),
+      flexWrap: 'wrap'
     }
   }),
 );

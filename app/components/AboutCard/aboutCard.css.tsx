@@ -16,6 +16,11 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       fontWeight: 500,
       fontFamily: "LyonDisplay" 
+    },
+    artistTitle: {
+      fontWeight: 500,
+      fontFamily: "LyonDisplay",
+      marginBottom: theme.spacing(1)
     }
   }),
 );

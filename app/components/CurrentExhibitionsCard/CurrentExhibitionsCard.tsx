@@ -17,8 +17,8 @@ export default function CurrentExhibitionsCard({ exhibitions }) {
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
-      {exhibitions.map(e =>
-          <div className={s.exhibition}>
+      {exhibitions.map((e, i) =>
+          <div key={i} className={s.exhibition}>
             <div className={s.datesRow}>
               <PaletteIcon color="primary" className={s.icon}></PaletteIcon>
               <div className={s.dates}>{e.From.split('T')[0]} - {e.To.split('T')[0]}</div>
