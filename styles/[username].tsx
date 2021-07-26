@@ -7,7 +7,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gap: '16px',
       gridTemplate: (
       '\"      .              .         .        .              .\"       185px' +
-      '\"      .              .      profile     .              .\"       auto' +
+      '\"      .              .      profile     .              .\"       50px' +
+      '\"      .              .      profile     .              actions\"       auto' +
       '\"   divider        divider   divider   divider       divider\"       auto' +
       '\"     tabs           tabs      tabs     tabs           tabs\"       1fr' +
       '\"   divider2       divider2  divider2  divider2      divider2\"       auto' +
@@ -16,6 +17,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     profileSummary: {
       gridArea: 'profile'
+    },
+    editActions: {
+      gridArea: 'actions',
+      justifySelf: 'flex-end',
     },
     tabsContainer: {
       gridArea: 'tabs'

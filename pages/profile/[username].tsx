@@ -8,6 +8,7 @@ import ProfileComponent from '../../app/components/Profile/Profile'
 import ArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/ArtworkListItemDefined'
 import Image from "../../app/models/Image"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
 
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
@@ -103,6 +104,12 @@ export default function Profile() {
       <div className={s.profileGrid}>
         <div className={s.profileSummary}>
           <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
+        </div>
+        <div className={s.editActions}>
+          {/* Add condition to show if user is on own profile */}
+          <EditProfileDialog
+            userProfileSummary={userProfileSummary.data}
+            tags={tags} />
         </div>
         <Divider className={s.divider}></Divider>
         <div className={s.tabsContainer}>
