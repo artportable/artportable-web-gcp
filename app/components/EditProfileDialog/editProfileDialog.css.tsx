@@ -15,6 +15,15 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       width: 'clamp(10px, 100vw - 88px, 660px)',
+      gap: theme.spacing(2),
+      '& > :last-child': {
+        marginBottom: theme.spacing(2)
+      }
+    },
+    flexColumn: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: 'clamp(10px, 100vw - 88px, 660px)',
       gap: theme.spacing(2)
     }
   }),

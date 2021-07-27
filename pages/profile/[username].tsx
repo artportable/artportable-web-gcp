@@ -109,6 +109,7 @@ export default function Profile() {
           {/* Add condition to show if user is on own profile */}
           <EditProfileDialog
             userProfileSummary={userProfileSummary.data}
+            userProfile={userProfile.data}
             tags={tags} />
         </div>
         <Divider className={s.divider}></Divider>
