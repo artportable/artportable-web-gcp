@@ -1,29 +1,22 @@
-import { TextField, Badge, IconButton, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
+import { TextField, Badge, IconButton } from '@material-ui/core'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { EditDialogSection } from '../EditDialogSection/EditDialogSection'
+import DateFnsUtils from '@date-io/date-fns'
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers'
 import Button from '../../Button/Button'
 import { useTranslation } from 'react-i18next'
 import { styles } from './editEducation.css'
-
 import { Education } from '../EditProfileDialog'
-import { getYear } from 'date-fns'
-
-
+import { subYears } from 'date-fns'
+import { v4 } from 'uuid'
 
 export const EditEducation = ({ profile, setProfile }) => {
   const s = styles();
   const { t } = useTranslation('profile');
-  const currentYear = getYear(new Date());
-
-  const generateYears = () => {
-    const yearsBackwards = 70;
-    const firstYear = currentYear - yearsBackwards;
-
-    return Array.from({length: yearsBackwards}, (_, i) => firstYear + (i + 1));    
-  }
-
-  const possibleYears = generateYears(); 
 
   const deleteEducation = (education: Education) => {
     const newEducations = profile.educations.filter(e => e !== education);
@@ -31,7 +24,7 @@ export const EditEducation = ({ profile, setProfile }) => {
   }
   
   const addEducation = () => {
-    profile.educations.push({});
+    profile.educations.push({ key: v4() });
     setProfile({...profile});
   };
 
@@ -72,29 +65,32 @@ export const EditEducation = ({ profile, setProfile }) => {
       >
         <div className={s.educationContainer}>
           <div className={s.fromToContainer}>
-            <FormControl>
-              <InputLabel id="select-from-label">{t('from')}</InputLabel>
-              <Select
-                labelId="select-from-label"
-                id="select-from"
-                value={e.from}
-                onChange={(event) => setFrom(e, event.target.value)}
-              >
-                {possibleYears.map(year => <MenuItem key={year} value={year}>{year}</MenuItem>)}
-              </Select>
-            </FormControl>
-
-            <FormControl >
-              <InputLabel id="select-to-label">{t('to')}</InputLabel>
-              <Select
-                labelId="select-to-label"
-                id="select-to"
-                value={e.to}
-                onChange={(event) => setTo(e, event.target.value)}
-              >
-                {possibleYears.map(year => <MenuItem key={year} value={year}>{year}</MenuItem>)}
-              </Select>
-            </FormControl>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  autoOk
+                  variant="inline"
+                  label={t('from')}
+                  views={["year"]}
+                  minDate={subYears(new Date(), 70)}
+                  maxDate={e.to}
+                  value={e.from}
+                  InputAdornmentProps={{position: 'start'}}
+                  onChange={date => setFrom(e, date)}
+                />
+              </MuiPickersUtilsProvider>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  autoOk
+                  variant="inline"
+                  label={t('to')}
+                  views={["year"]}
+                  value={e.to}
+                  minDate={e.from}
+                  maxDate={new Date()}
+                  InputAdornmentProps={{position: 'start'}}
+                  onChange={date => setTo(e, date)}
+                />
+              </MuiPickersUtilsProvider>
           </div>
 
           <TextField 

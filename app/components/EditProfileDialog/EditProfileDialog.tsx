@@ -8,6 +8,7 @@ import { styles } from './editProfileDialog.css'
 import { EditMyStudio } from './EditMyStudio/EditMyStudio'
 import { EditInspiredBy } from './EditInspiredBy/EditInspiredBy'
 import { EditEducation } from './EditEducation/EditEducation'
+import { EditExhibitions } from './EditExhibitions/EditExhibitions'
 
 import { v4 } from 'uuid'
 
@@ -18,7 +19,8 @@ interface Profile {
   longDescription: string;
   myStudio: Studio;
   inspiredBy: string;
-  educations: Education;
+  educations: Education[];
+  exhibitions: Exhibition[];
 }
 
 interface Studio {
@@ -30,6 +32,13 @@ export interface Education {
   from: number;
   to: number;
   name: string;
+}
+
+export interface Exhibition {
+  from: Date;
+  to: Date;
+  locationName: string;
+  location: string;
 }
 
 export default function EditProfileDialog({ userProfileSummary, userProfile, tags }) {
@@ -109,20 +118,12 @@ export default function EditProfileDialog({ userProfileSummary, userProfile, tag
             <div>
               <EditEducation profile={profile} setProfile={setProfile}></EditEducation>
             </div>
+            <div>
+              <EditExhibitions profile={profile} setProfile={setProfile}></EditExhibitions>
+            </div>
 
             
           </form>
-
-          <Box className={s.tagsContainer}>
-          {/* {tags?.map((t, i) =>
-            <Chip 
-              key={i} 
-              label={t.Tag} 
-              color="primary" 
-              size="small"
-              onDelete={() =>  handleDeleteTag(t)}></Chip>
-          )} */}
-        </Box>
         </DialogContent>
       </Dialog>
     </>  
@@ -137,6 +138,18 @@ const populateProfileObject = (userProfileSummary, userProfile): Profile => {
     longDescription: userProfile?.About,
     myStudio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
-    educations: userProfile?.Educations.map(e => ({ from: e.From, to: e.To, name: e.Name, key: v4() }))
+    educations: userProfile?.Educations.map(e => ({ 
+      from: new Date(e.From, 0, 0),
+      to: new Date(e.To, 0, 0),
+      name: e.Name,
+      key: v4()
+    })),
+    exhibitions: userProfile?.Exhibitions.map(e => ({ 
+      key: v4(),
+      from: e.From,
+      to: e.To,
+      locationName: e.Name,
+      location: e.Place
+    })),
   }
 }
