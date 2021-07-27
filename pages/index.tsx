@@ -220,4 +220,4 @@ export async function getStaticProps({ locale }) {
       ...await serverSideTranslations(locale, ['header', 'footer', 'common', 'discover', 'tags', 'index', 'plans']),
     }
   };
-}
+ }
