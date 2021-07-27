@@ -28,7 +28,9 @@ export default function AvatarCard({ user }) {
         <div className={s.text}>
           <span className={s.username}>{user.Username}</span>
           <span>{user.Location}</span>
-          <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>
+          {user?.Tags &&
+            <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>
+          }
         </div>
       </div>
     </Link>

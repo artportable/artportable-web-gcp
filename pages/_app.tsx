@@ -30,7 +30,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const user = store.getState()?.user;
   const isSignedIn = user?.isSignedIn ?? false;
   const username = user?.username ?? null;
-  const profilePicture = user?.profilePicture ?? null; // TODO: Save profile picture in store
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -57,7 +56,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             isSignUp={isSignUp}
             isSignedIn={isSignedIn}
             username={username}
-            profilePicture={profilePicture}
           ></Header>
           <Component {...pageProps} />
         </ThemeProvider>

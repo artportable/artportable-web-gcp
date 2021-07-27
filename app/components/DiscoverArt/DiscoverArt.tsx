@@ -24,6 +24,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
 
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+
   const [imageRows, setImageRows] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
 
@@ -36,55 +38,58 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   }, [artworks]);
 
   return (
-    <Box className={s.rowsContainer}>
-      <Autocomplete
-        multiple
-        id="combo-box-demo"
-        options={tags}
-        getOptionLabel={(tag: string) => capitalizeFirst(t(`tags:${tag}`))}
-        disableCloseOnSelect
-        renderOption={(tag, { selected }) => (
-          <React.Fragment>
-            <Checkbox
-              icon={<CheckBoxOutlineBlankIcon/>}
-              checkedIcon={<CheckBoxIcon/>}
-              style={{ marginRight: 8 }}
-              checked={selected}
-            />
-            {capitalizeFirst(t(`tags:${tag}`))}
-          </React.Fragment>
-        )}
-        style={{ minHeight: "56px" }}
-        renderInput={(params) => <TextField {...params} label={t('tags')} variant="outlined" />}
-        onChange={(event, value, reason) => {
-          setSelectedTags(value);
-          if(reason === 'remove-option') {
-            onFilter(value);
-          }
-        }}
-        onClose={(event) => {
-          onFilter(selectedTags);
-        }}
-      ></Autocomplete>
-
-      {imageRows && imageRows.map((row: Image[], i) =>
-        <div className={s.row} key={i}>
-          {row.map(image => {
-            let artwork = artworks.find(a => a.PrimaryFile.Name === image.Name);
-
-            if (artwork) {
-              return <ArtworkListItemDefined
-                key={image.Name}
-                width={image.Width}
-                height={image.Height}
-                artwork={artwork}
-                onLikeClick={onLike} />
-            }
-          }
+    <>
+      <Box className={s.rowsContainer}>
+        <Autocomplete
+          multiple
+          id="combo-box-demo"
+          options={tags}
+          getOptionLabel={(tag: string) => capitalizeFirst(t(`tags:${tag}`))}
+          disableCloseOnSelect
+          renderOption={(tag, { selected }) => (
+            <React.Fragment>
+              <Checkbox
+                icon={<CheckBoxOutlineBlankIcon/>}
+                checkedIcon={<CheckBoxIcon/>}
+                style={{ marginRight: 8 }}
+                checked={selected}
+              />
+              {capitalizeFirst(t(`tags:${tag}`))}
+            </React.Fragment>
           )}
-        </div>
-      )}
-      <div ref={loadMoreElementRef}></div>
-    </Box>
+          style={{ minHeight: "56px" }}
+          renderInput={(params) => <TextField {...params} label={t('tags')} variant="outlined" />}
+          onChange={(event, value, reason) => {
+            setSelectedTags(value);
+            if(reason === 'remove-option') {
+              onFilter(value);
+            }
+          }}
+          onClose={(event) => {
+            onFilter(selectedTags);
+          }}
+        ></Autocomplete>
+
+        {imageRows && imageRows.map((row: Image[], i) =>
+          <div className={s.row} key={i}>
+            {row.map(image => {
+              let artwork = artworks.find(a => a.PrimaryFile.Name === image.Name);
+              let index = artworks.indexOf(artwork);
+
+              if (artwork) {
+                return <ArtworkListItemDefined
+                  key={image.Name}
+                  width={image.Width}
+                  height={image.Height}
+                  artwork={artwork}
+                  onLikeClick={onLike} />
+              }
+            }
+            )}
+          </div>
+        )}
+        <div ref={loadMoreElementRef}></div>
+      </Box>
+    </>
   );
 }

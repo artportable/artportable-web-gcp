@@ -5,11 +5,11 @@ import { isNullOrUndefined } from '../utils/util';
 export function useGetChatClient(username, profilePicture, isSignedIn, setUnreadCount = null) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;  
-  const chatClientRef = useRef(StreamChat.getInstance(apiKey)); 
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const chatClientRef = useRef(StreamChat.getInstance(apiKey));
 
   useEffect(() => {
-    const initChat = async () => { 
+    const initChat = async () => {
       const response = await fetch(`${apiBaseUrl}/api/messages/connect?username=${username}`, {
         method: 'GET',
       });
@@ -23,21 +23,21 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
         id: username,
         name: username,
         image: `${bucketUrl}${profilePicture}`,
-      }, user.Token).catch(error => console.warn(error)); 
+      }, user.Token).catch(error => console.warn(error));
 
       if(setUnreadCount !== null) {
         setUnreadCount(chatClientRef.current.user.total_unread_count);
       }
-    } 
+    }
 
     if(!chatClientRef.current.user && isSignedIn) {
-      initChat(); 
-    }    
+      initChat();
+    }
 
     return () => {
       if(chatClientRef && chatClientRef.current.user && !isSignedIn) {
         const disconnectChat = async () => {
-          await chatClientRef.current.disconnectUser(); 
+          await chatClientRef.current.disconnectUser();
         }
         disconnectChat();
 

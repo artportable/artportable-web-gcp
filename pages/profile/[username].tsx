@@ -12,7 +12,7 @@ import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
 import { useGetArtworks } from '../../app/hooks/dataFetching/Artworks'
 import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary } from '../../app/hooks/dataFetching/UserProfile'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TabPanel from '../../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
 import { useStore } from 'react-redux'
