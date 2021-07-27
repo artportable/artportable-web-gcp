@@ -6,7 +6,6 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
-
   const chatClientRef = useRef(StreamChat.getInstance(apiKey));
 
   useEffect(() => {
@@ -24,7 +23,7 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
         id: username,
         name: username,
         image: `${bucketUrl}${profilePicture}`,
-      }, user.Token);
+      }, user.Token).catch(error => console.warn(error));
 
       if(setUnreadCount !== null) {
         setUnreadCount(chatClientRef.current.user.total_unread_count);

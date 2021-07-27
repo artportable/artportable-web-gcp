@@ -10,7 +10,7 @@ import { useTranslation } from 'next-i18next'
 import { useStore } from '../../redux/store'
 import styles from './profileIconButton.css'
 
-const ProfileIconButton = () => {
+const ProfileIconButton = ({profilePicture = null}) => {
   const store = useStore();
   const s = styles();
   const { t } = useTranslation('header');
@@ -25,7 +25,7 @@ const ProfileIconButton = () => {
         color="secondary" 
         aria-label="account"
         onClick={(event) => setPopoverAnchorEl(event.currentTarget)}>
-        <ProfileAvatar size={30} profilePicture={user.profilePicture}></ProfileAvatar>
+        <ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>
       </IconButton>
       <Popover
         open={open}
@@ -45,7 +45,7 @@ const ProfileIconButton = () => {
             <Button
               className={'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedVertical MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedVertical MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeLarge MuiButton-sizeLarge'}
               href="/"
-              startIcon={<ProfileAvatar size={30} profilePicture={user.profilePicture}></ProfileAvatar>}>
+              startIcon={<ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>}>
               {t('profile')}
             </Button>
           </Link>

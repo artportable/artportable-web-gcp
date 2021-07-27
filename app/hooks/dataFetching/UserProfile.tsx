@@ -98,3 +98,30 @@ export function useGetUserProfileTags(user) {
     isError: error
   }
 }
+
+export function useGetUserProfilePicture(user) {
+  const { data, error } = useSWR(
+    `${apiBaseUrl}/api/profile/${user}/profilepicture`,
+    async url => {
+      if (!user) {
+        return {
+          data: null,
+          isLoading: false,
+          isError: true
+        }
+      }
+      const response = await fetch(url);
+      const data = await response.text();
+      return data;
+    },
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
+
+  return {
+    profilePicture: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
