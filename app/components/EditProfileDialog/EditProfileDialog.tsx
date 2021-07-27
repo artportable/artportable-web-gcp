@@ -3,10 +3,13 @@ import { Box, Dialog, DialogContent, DialogTitle, TextField, Typography } from '
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
 
-import { useTranslation } from 'react-i18next';
-import { styles } from './editProfileDialog.css';
-import { EditMyStudio } from './EditMyStudio/EditMyStudio';
-import { EditInspiredBy } from './EditInspiredBy/EditInspiredBy';
+import { useTranslation } from 'react-i18next'
+import { styles } from './editProfileDialog.css'
+import { EditMyStudio } from './EditMyStudio/EditMyStudio'
+import { EditInspiredBy } from './EditInspiredBy/EditInspiredBy'
+import { EditEducation } from './EditEducation/EditEducation'
+
+import { v4 } from 'uuid'
 
 interface Profile {
   title: string;
@@ -15,11 +18,18 @@ interface Profile {
   longDescription: string;
   myStudio: Studio;
   inspiredBy: string;
+  educations: Education;
 }
 
 interface Studio {
   name: string;
   location: string;
+}
+
+export interface Education {
+  from: number;
+  to: number;
+  name: string;
 }
 
 export default function EditProfileDialog({ userProfileSummary, userProfile, tags }) {
@@ -96,6 +106,9 @@ export default function EditProfileDialog({ userProfileSummary, userProfile, tag
             <div>
               <EditInspiredBy profile={profile} setProfile={setProfile}></EditInspiredBy>
             </div>
+            <div>
+              <EditEducation profile={profile} setProfile={setProfile}></EditEducation>
+            </div>
 
             
           </form>
@@ -123,6 +136,7 @@ const populateProfileObject = (userProfileSummary, userProfile): Profile => {
     location: userProfileSummary?.Location,
     longDescription: userProfile?.About,
     myStudio: userProfile?.Studio,
-    inspiredBy: userProfile?.InspiredBy
+    inspiredBy: userProfile?.InspiredBy,
+    educations: userProfile?.Educations.map(e => ({ from: e.From, to: e.To, name: e.Name, key: v4() }))
   }
 }
