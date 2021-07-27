@@ -1,11 +1,12 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useStore } from 'react-redux'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
 import { styles } from './artworkListItemDefined.css'
+import { Link } from '@material-ui/core'
 
-export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width, onClick }) {
+export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
   const s = styles();
   const store = useStore();
   const [isLiked, setIsLiked] = useState(artwork.IsLikedByMe);
@@ -30,13 +31,17 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   return (
     <>
       <Paper title={artwork.Title} variant="outlined" className={s.container}>
-        <div className={s.imageContainer} onClick={onClick}>
-          <img
-            key={artwork?.PrimaryFile}
-            width={width}
-            height={height}
-            src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-          />
+        <div className={s.imageContainer}>
+          <Link href={`/art/${artwork.Id}`}>
+            <a>
+              <img
+                key={artwork?.PrimaryFile}
+                width={width}
+                height={height}
+                src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+              />
+            </a>
+          </Link>
         </div>
         <div className={s.titleAndLike}>
           <div className={s.title}>{artwork.Title}</div>

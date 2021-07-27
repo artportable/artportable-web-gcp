@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Checkbox, TextField, Theme, useTheme } from "@material-ui/core";
 import { styles } from "./discoverArt.css";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
@@ -10,7 +10,6 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { Artwork } from "../../models/Artwork";
 import { getImageAsRows } from "../../utils/layoutUtils";
 import Image from "../../models/Image";
-import ArtworkModal from "../ArtworkModal/ArtworkModal";
 
 interface InputProps {
   artworks: Artwork[],
@@ -29,19 +28,6 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
 
   const [imageRows, setImageRows] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const [modalSrc, setModalSrc] = useState([]);
-
-  const closeImageViewer = () => {
-    setCurrentImage(0);
-    setIsViewerOpen(false);
-  };
-
-  const openImageViewer = useCallback(index => {
-    setCurrentImage(index);
-    setIsViewerOpen(true);
-  }, []);
 
   const theme: Theme = useTheme();
   
@@ -49,14 +35,6 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     const primaryImages = artworks.map(a => a.PrimaryFile);
     const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
     setImageRows(rows);
-
-    setModalSrc(artworks.map(a => {
-      return {
-        url: `${bucketUrl}${a.PrimaryFile.Name}`,
-        id: a.Id,
-        alt: a.Title
-      }
-    }));
   }, [artworks]);
 
   return (
@@ -104,8 +82,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
                   width={image.Width}
                   height={image.Height}
                   artwork={artwork}
-                  onLikeClick={onLike}
-                  onClick={() => openImageViewer(index)} />
+                  onLikeClick={onLike} />
               }
             }
             )}
@@ -113,16 +90,6 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
         )}
         <div ref={loadMoreElementRef}></div>
       </Box>
-      {isViewerOpen && (
-        <ArtworkModal
-          src={modalSrc}
-          currentIndex={currentImage}
-          onClose={closeImageViewer}
-          backgroundStyle={{
-            backgroundColor: "rgba(0,0,0,0.9)"
-          }}
-        />
-      )}
     </>
   );
 }
