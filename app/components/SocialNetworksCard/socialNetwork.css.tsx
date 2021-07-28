@@ -1,14 +1,21 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-export const styles = makeStyles(() =>
+export const styles = makeStyles((theme: Theme) =>
   createStyles({
     row: {
       display: "flex",
       flexDirection: "row",
       alignItems: "center"
     },
+    cardContent: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: theme.spacing(1)
+    },
     icon: {
-      marginRight: "5px"
+      marginRight: "5px",
+      display: 'flex',
+      alignItems: 'center'
     },
     sitename: {
       display: "block",

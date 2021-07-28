@@ -24,7 +24,7 @@ export default function SocialNetworksCard({ data }) {
         title={t('socialNetworks')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <CardContent>
+      <CardContent classes={{ root: s.cardContent }}>
         {data.Instagram && <Box>
           <a href={'//' + data.Instagram} className={s.row}>
             <div className={s.icon}><InstagramIcon color="primary"></InstagramIcon></div>
@@ -46,8 +46,8 @@ export default function SocialNetworksCard({ data }) {
         {data.Dribble && <Box>
           <a href={'//' + data.Dribble} className={s.row}>
             <div className={s.icon}>
-              <Icon color="primary">
-                <FontAwesomeIcon icon={["fab", "dribbble"]}/>
+              <Icon color="primary" className="fab fa-dribbble">
+                {/* <FontAwesomeIcon icon={["fab", "dribbble"]}/> */}
               </Icon>
             </div>
             Dribbble
@@ -56,8 +56,8 @@ export default function SocialNetworksCard({ data }) {
         {data.Behance && <Box>
           <a href={'//' + data.Behance} className={s.row}>
             <div className={s.icon}>
-              <Icon color="primary">
-                <FontAwesomeIcon icon={["fab", "behance-square"]}/>
+              <Icon color="primary" className="fab fa-behance-square">
+                {/* <FontAwesomeIcon icon={["fab", "behance-square"]}/> */}
               </Icon>
             </div>
             Behance
@@ -65,8 +65,10 @@ export default function SocialNetworksCard({ data }) {
         </Box>}
         {data.Website && <Box>
           <a href={'//' + data.Website} className={s.row}>
-            <div className={s.icon}><LanguageIcon color="primary"></LanguageIcon></div>
-            <p className={s.sitename}>{websiteName}</p>
+            <div className={s.icon}>
+              <LanguageIcon color="primary"></LanguageIcon>
+              </div>
+            <span className={s.sitename}>{websiteName}</span>
           </a>
         </Box>}
       </CardContent>
