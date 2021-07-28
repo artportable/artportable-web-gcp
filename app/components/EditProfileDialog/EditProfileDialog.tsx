@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Dialog, DialogContent, DialogTitle, TextField, Typography } from '@material-ui/core'
+import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Typography } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
 
 import { useTranslation } from 'react-i18next'
+import { useStore } from "react-redux";
 import { styles } from './editProfileDialog.css'
 import { EditMyStudio } from './EditMyStudio/EditMyStudio'
 import { EditInspiredBy } from './EditInspiredBy/EditInspiredBy'
 import { EditEducation } from './EditEducation/EditEducation'
 import { EditExhibitions } from './EditExhibitions/EditExhibitions'
+import { EditSocials } from './EditSocials/EditSocials'
 
 import { v4 } from 'uuid'
 
 interface Profile {
   title: string;
-  shortDescription: string;
+  headline: string;
   location: string;
-  longDescription: string;
-  myStudio: Studio;
+  about: string;
+  studio: Studio;
   inspiredBy: string;
   educations: Education[];
   exhibitions: Exhibition[];
+  socialMedia: Socials;
 }
 
 interface Studio {
@@ -41,22 +44,45 @@ export interface Exhibition {
   location: string;
 }
 
-export default function EditProfileDialog({ userProfileSummary, userProfile, tags }) {
+export interface Socials {
+  instagram: string;
+  facebook: string;
+  linkedIn: string;
+  dribbble: string;
+  behance: string;
+  website: string;
+}
+
+export default function EditProfileDialog({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('profile');
+  const store = useStore();
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const username = store.getState()?.user?.username;
+
   
   const [openEdit, setOpenEdit] = useState(false);
-  const [profile, setProfile] = useState<Profile>(populateProfileObject(userProfileSummary, userProfile));
+  const [profile, setProfile] = useState<Profile>(populateProfileObject(userProfile));
+
+  const makeChanges = async (_) => {
+    setOpenEdit(false);
+    try {
+      await fetch(`${apiBaseUrl}/api/profile/${username}`, {
+        method: 'POST',
+      });
+      
+    } catch (error) {
+      
+    }
+  }
+  const cancel = (_) => {
+    setProfile(populateProfileObject(userProfile));
+    setOpenEdit(false);
+  };
 
   useEffect(() => {
-    setProfile(populateProfileObject(userProfileSummary, userProfile));
-  }, [userProfileSummary]);
-
-
-
-  const handleDeleteTag = (_) => {
-    setOpenEdit(false);
-  }
+    setProfile(populateProfileObject(userProfile));
+  }, [userProfile]);
 
   return (
     <>
@@ -93,10 +119,10 @@ export default function EditProfileDialog({ userProfileSummary, userProfile, tag
                 onChange={(event) => setProfile({ ...profile, title: event.target.value })} />
 
               <TextField 
-                label={t('shortDescription')} 
-                defaultValue={profile.shortDescription}
+                label={t('headline')} 
+                defaultValue={profile.headline}
                 multiline
-                onChange={(event) => setProfile({ ...profile, shortDescription: event.target.value })} />
+                onChange={(event) => setProfile({ ...profile, headline: event.target.value })} />
 
               <TextField 
                 label={t('location')} 
@@ -104,10 +130,10 @@ export default function EditProfileDialog({ userProfileSummary, userProfile, tag
                 onChange={(event) => setProfile({ ...profile, location: event.target.value })} />
 
               <TextField 
-                label={t('longDescription')} 
-                defaultValue={profile.shortDescription}
+                label={t('about')} 
+                defaultValue={profile.about}
                 multiline
-                onChange={(event) => setProfile({ ...profile, longDescription: event.target.value })} />
+                onChange={(event) => setProfile({ ...profile, about: event.target.value })} />
             </div>
             <div>
               <EditMyStudio profile={profile} setProfile={setProfile}></EditMyStudio>
@@ -121,22 +147,31 @@ export default function EditProfileDialog({ userProfileSummary, userProfile, tag
             <div>
               <EditExhibitions profile={profile} setProfile={setProfile}></EditExhibitions>
             </div>
-
-            
+            <div>
+              <EditSocials profile={profile} setProfile={setProfile}></EditSocials>
+            </div>
           </form>
         </DialogContent>
+        <DialogActions>
+          <Button onClick={makeChanges} color="primary">
+            Submit
+          </Button>
+          <Button onClick={cancel} color="primary" autoFocus>
+            Cancel
+          </Button>
+        </DialogActions>
       </Dialog>
     </>  
   );
 }
 
-const populateProfileObject = (userProfileSummary, userProfile): Profile => {
+const populateProfileObject = (userProfile): Profile => {
   return {
-    title: userProfileSummary?.Title,
-    shortDescription: userProfileSummary?.Headline,
-    location: userProfileSummary?.Location,
-    longDescription: userProfile?.About,
-    myStudio: userProfile?.Studio,
+    title: userProfile?.Title,
+    headline: userProfile?.Headline,
+    location: userProfile?.Location,
+    about: userProfile?.About,
+    studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
     educations: userProfile?.Educations.map(e => ({ 
       from: new Date(e.From, 0, 0),
@@ -151,5 +186,13 @@ const populateProfileObject = (userProfileSummary, userProfile): Profile => {
       locationName: e.Name,
       location: e.Place
     })),
+    socialMedia: {
+      instagram: userProfile?.SocialMedia.Instagram,
+      facebook: userProfile?.SocialMedia.Facebook,
+      linkedIn: userProfile?.SocialMedia.LinkedIn,
+      dribbble: userProfile?.SocialMedia.Dribble,
+      behance: userProfile?.SocialMedia.Behance,
+      website: userProfile?.SocialMedia.Website
+    }
   }
 }

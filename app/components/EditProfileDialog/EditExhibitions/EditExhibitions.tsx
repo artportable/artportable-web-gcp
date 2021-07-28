@@ -76,6 +76,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 autoOk
+                variant="inline"
                 label={t('from')}
                 format="MM/dd/yyyy"
                 minDate={new Date()}
@@ -87,6 +88,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardDatePicker
                 autoOk
+                variant="inline"
                 label={t('to')}
                 format="MM/dd/yyyy"
                 value={e.to}
