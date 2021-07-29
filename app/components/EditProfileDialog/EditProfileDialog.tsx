@@ -3,7 +3,9 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Typograph
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
 
+
 import { useTranslation } from 'react-i18next'
+import { mutate } from 'swr'
 import { useStore } from "react-redux";
 import { styles } from './editProfileDialog.css'
 import { EditMyStudio } from './EditMyStudio/EditMyStudio'
@@ -13,6 +15,7 @@ import { EditExhibitions } from './EditExhibitions/EditExhibitions'
 import { EditSocials } from './EditSocials/EditSocials'
 
 import { v4 } from 'uuid'
+import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFetching/UserProfile';
 
 interface Profile {
   title: string;
@@ -40,8 +43,8 @@ export interface Education {
 export interface Exhibition {
   from: Date;
   to: Date;
-  locationName: string;
-  location: string;
+  name: string;
+  place: string;
 }
 
 export interface Socials {
@@ -67,10 +70,17 @@ export default function EditProfileDialog({ userProfile }) {
   const makeChanges = async (_) => {
     setOpenEdit(false);
     try {
-      await fetch(`${apiBaseUrl}/api/profile/${username}`, {
-        method: 'POST',
-      });
-      
+      mutate(getUserProfileUri(username), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
+            
+      const result = await fetch(`${apiBaseUrl}/api/profile/${username}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(profile),
+      });      
+
+      mutate(getUserProfileSummaryUri(username));
     } catch (error) {
       
     }
@@ -100,7 +110,7 @@ export default function EditProfileDialog({ userProfile }) {
       
       <Dialog
        open={openEdit}
-       onClose={() => setOpenEdit(false)}
+       onClose={cancel}
        maxWidth="md"
        aria-labelledby="artwork-modal-title"
        aria-describedby="artwork-modal-description"
@@ -174,8 +184,8 @@ const populateProfileObject = (userProfile): Profile => {
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
     educations: userProfile?.Educations.map(e => ({ 
-      from: new Date(e.From, 0, 0),
-      to: new Date(e.To, 0, 0),
+      from: e.From,
+      to: e.To,
       name: e.Name,
       key: v4()
     })),
@@ -183,8 +193,8 @@ const populateProfileObject = (userProfile): Profile => {
       key: v4(),
       from: e.From,
       to: e.To,
-      locationName: e.Name,
-      location: e.Place
+      name: e.Name,
+      place: e.Place
     })),
     socialMedia: {
       instagram: userProfile?.SocialMedia.Instagram,
@@ -193,6 +203,36 @@ const populateProfileObject = (userProfile): Profile => {
       dribbble: userProfile?.SocialMedia.Dribble,
       behance: userProfile?.SocialMedia.Behance,
       website: userProfile?.SocialMedia.Website
+    }
+  }
+}
+
+const createOriginalProfileObject = (userProfile: Profile) => {
+  return {
+    Title: userProfile?.title,
+    Headline: userProfile?.headline,
+    Location: userProfile?.location,
+    About: userProfile?.about,
+    Studio: userProfile?.studio,
+    InspiredBy: userProfile?.inspiredBy,
+    Educations: userProfile?.educations.map(e => ({ 
+      From: e.from,
+      To: e.to,
+      Name: e.name,
+    })),
+    Exhibitions: userProfile?.exhibitions.map(e => ({ 
+      From: e.from,
+      To: e.to,
+      Name: e.name,
+      Place: e.place
+    })),
+    SocialMedia: {
+      Instagram: userProfile?.socialMedia.instagram,
+      Facebook: userProfile?.socialMedia.facebook,
+      LinkedIn: userProfile?.socialMedia.linkedIn,
+      Dribble: userProfile?.socialMedia.dribbble,
+      Behance: userProfile?.socialMedia.behance,
+      Website: userProfile?.socialMedia.website
     }
   }
 }

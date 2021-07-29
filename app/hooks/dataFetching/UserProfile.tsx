@@ -3,6 +3,7 @@ import useSWR from 'swr'
 const fetcher = url => fetch(url).then(r => r.json());
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
+export const getUserProfileSummaryUri = (user: string) => `${apiBaseUrl}/api/profile/${user}/summary`;
 export function useGetUserProfileSummary(user) {
   if (!user) {
     return {
@@ -13,10 +14,10 @@ export function useGetUserProfileSummary(user) {
   }
 
   const { data, error } = useSWR(
-    `${apiBaseUrl}/api/profile/${user}/summary`,
+    getUserProfileSummaryUri(user),
     fetcher,
     { 
-      revalidateOnFocus: false,
+      revalidateOnFocus: true,
       revalidateOnReconnect: false,
     });
 
@@ -27,6 +28,7 @@ export function useGetUserProfileSummary(user) {
   }
 }
 
+export const getUserProfileUri = (user: string) => `${apiBaseUrl}/api/profile/${user}`;
 export function useGetUserProfile(user) {
   if (!user) {
     return {
@@ -37,7 +39,7 @@ export function useGetUserProfile(user) {
   }
 
   const { data, error } = useSWR(
-    `${apiBaseUrl}/api/profile/${user}`,
+    getUserProfileUri(user),
     fetcher,
     {
       revalidateOnFocus: false,

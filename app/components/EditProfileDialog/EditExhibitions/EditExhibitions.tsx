@@ -41,13 +41,13 @@ export const EditExhibitions = ({ profile, setProfile }) => {
     setProfile({ ...profile });
   }
 
-  const setLocationName = (exhibition: Exhibition, newLocationName: string) => {
-    exhibition.locationName = newLocationName;
+  const setName = (exhibition: Exhibition, newName: string) => {
+    exhibition.name = newName;
     setProfile({ ...profile });
   }
 
-  const setLocation = (exhibition: Exhibition, newLocation: string) => {
-    exhibition.location = newLocation;
+  const setPlace = (exhibition: Exhibition, newPlace: string) => {
+    exhibition.place = newPlace;
     setProfile({ ...profile });
   }
 
@@ -100,14 +100,14 @@ export const EditExhibitions = ({ profile, setProfile }) => {
           </div>
 
           <TextField 
-            label={t('locationName')} 
-            defaultValue={e.locationName}
-            onChange={(event) => setLocationName(e, event.target.value)} />
+            label={t('name')} 
+            defaultValue={e.name}
+            onChange={(event) => setName(e, event.target.value)} />
           
           <TextField 
-            label={t('location')} 
-            defaultValue={e.location}
-            onChange={(event) => setLocation(e, event.target.value)} />
+            label={t('place')} 
+            defaultValue={e.place}
+            onChange={(event) => setPlace(e, event.target.value)} />
         </div>
       </Badge>
       )}

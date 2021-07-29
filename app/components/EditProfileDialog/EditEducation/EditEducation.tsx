@@ -28,13 +28,13 @@ export const EditEducation = ({ profile, setProfile }) => {
     setProfile({...profile});
   };
 
-  const setFrom = (education: Education, newFrom: any) => {
-    education.from = newFrom;
+  const setFrom = (education: Education, newFrom: Date) => {
+    education.from = newFrom.getFullYear();
     setProfile({ ...profile });
   }
 
-  const setTo = (education: Education, newTo: any) => {
-    education.to = newTo;
+  const setTo = (education: Education, newTo: Date) => {
+    education.to = newTo.getFullYear();
     setProfile({ ...profile });
   }
 
@@ -72,8 +72,8 @@ export const EditEducation = ({ profile, setProfile }) => {
                   label={t('from')}
                   views={["year"]}
                   minDate={subYears(new Date(), 70)}
-                  maxDate={e.to}
-                  value={e.from}
+                  maxDate={new Date(e.to, 0, 1)}
+                  value={new Date(e.from, 0, 1)}
                   InputAdornmentProps={{position: 'start'}}
                   onChange={date => setFrom(e, date)}
                 />
@@ -84,8 +84,8 @@ export const EditEducation = ({ profile, setProfile }) => {
                   variant="inline"
                   label={t('to')}
                   views={["year"]}
-                  value={e.to}
-                  minDate={e.from}
+                  value={new Date(e.to, 0, 1)}
+                  minDate={new Date(e.from, 0, 1)}
                   maxDate={new Date()}
                   InputAdornmentProps={{position: 'start'}}
                   onChange={date => setTo(e, date)}
