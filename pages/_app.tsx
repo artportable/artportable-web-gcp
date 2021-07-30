@@ -12,17 +12,7 @@ import { theme } from '../styles/theme'
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 import { appWithTranslation } from 'next-i18next'
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faDribbble,
-  faBehanceSquare
-} from '@fortawesome/free-brands-svg-icons'
-
-library.add(
-  faDribbble,
-  faBehanceSquare
-);
+import { loadCSS } from 'fg-loadcss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore(pageProps.initialReduxState);
@@ -37,6 +27,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
+
+    const faCSSNode = loadCSS(
+      'https://use.fontawesome.com/releases/v5.12.0/css/all.css',
+      document.querySelector('#font-awesome-css'),
+    );
+
+    return () => {
+      faCSSNode.parentNode!.removeChild(faCSSNode);
+    };
   }, []);
 
   return (

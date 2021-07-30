@@ -1,5 +1,6 @@
-import Main from '../../app/components/Main/Main'
+import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import AboutMe from '../../app/components/AboutMe/AboutMe'
+import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
 import { Tabs, Tab } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
@@ -7,6 +8,7 @@ import ProfileComponent from '../../app/components/Profile/Profile'
 import ArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/ArtworkListItemDefined'
 import Image from "../../app/models/Image"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
 
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
@@ -88,66 +90,70 @@ export default function Profile() {
     setActiveTab(newValue);
   }
 
-  return (
-    <>
+  return (       
+    <Main>
+      <FullWidthBlock>
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
-          <img
-            src={`${bucketUrl}907d3d64-ca20-4595-9697-a6218576e7af.jpg`}
-            alt="Cover image"
-            className={s.profileCoverPhoto}
-          />
+          <ProfileCoverPhoto />
+        
         }
         {artworks.isError && <div>error...</div>}
-      <Main>
-        <div className={s.profileGrid}>
-          <div className={s.profileSummary}>
-            <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
-          </div>
-          <Divider className={s.divider}></Divider>
-          <div className={s.tabsContainer}>
-            <Tabs value={activeTab} onChange={handleTabChange} centered >
-              <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
-              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-            </Tabs>
-            <Box paddingY={1}>
-              <TabPanel value={activeTab} index={0}>
-                <div className={s.portfolioContainer}>
+      </FullWidthBlock>
 
-                {imageRows && imageRows.map((row: Image[], i) =>
-                  <div className={s.portfolioRow} key={i}>   
-                    {row.map(image => {
-                        let artwork = artworks.data.find(a => a.PrimaryFile.Name === image.Name);
-
-                        if (artwork) {
-                          return <ArtworkListItemDefined
-                            key={image.Name}
-                            width={image.Width}
-                            height={image.Height}
-                            artwork={artwork}
-                            onLikeClick={onLikeClick} />
-                        }
-                      }
-                    )}
-                  </div>
-                )}
-
-                </div>
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
-              </TabPanel>
-            </Box>
-          </div>
-          {similarPortfolios?.data && !similarPortfolios?.isError && <>
-            <Divider className={s.secondDivider}></Divider>
-            <div className={s.similarPortfolios}>
-              <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
-            </div>
-          </>}
+      <div className={s.profileGrid}>
+        <div className={s.profileSummary}>
+          <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
         </div>
-      </Main>
-    </>
+        <div className={s.editActions}>
+          {/* Add condition to show if user is on own profile */}
+          <EditProfileDialog
+            userProfile={userProfile.data}
+          />
+        </div>
+        <Divider className={s.divider}></Divider>
+        <div className={s.tabsContainer}>
+          <Tabs value={activeTab} onChange={handleTabChange} centered >
+            <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+            <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+          </Tabs>
+          <Box paddingY={1}>
+            <TabPanel value={activeTab} index={0}>
+              <div className={s.portfolioContainer}>
+
+              {imageRows && imageRows.map((row: Image[], i) =>
+                <div className={s.portfolioRow} key={i}>   
+                  {row.map(image => {
+                      let artwork = artworks.data.find(a => a.PrimaryFile.Name === image.Name);
+
+                      if (artwork) {
+                        return <ArtworkListItemDefined
+                          key={image.Name}
+                          width={image.Width}
+                          height={image.Height}
+                          artwork={artwork}
+                          onLikeClick={onLikeClick} />
+                      }
+                    }
+                  )}
+                </div>
+              )}
+
+              </div>
+            </TabPanel>
+            <TabPanel value={activeTab} index={1}>
+              <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
+            </TabPanel>
+          </Box>
+        </div>
+        {similarPortfolios?.data && !similarPortfolios?.isError && <>
+          <Divider className={s.secondDivider}></Divider>
+          <div className={s.similarPortfolios}>
+            <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
+          </div>
+        </>}
+      </div>
+    </Main>
   );
 }
 

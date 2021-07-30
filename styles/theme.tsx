@@ -2,22 +2,22 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const typography = {
   h1: {
-    fontSize: '2rem',
+    fontSize: '2.1rem',
   },
   h2: {
-    fontSize: '1.75rem',
+    fontSize: '1.85rem',
   },
   h3: {
-    fontSize: '1.5rem',
+    fontSize: '1.65rem',
   },
   h4: {
-    fontSize: '1.25rem',
+    fontSize: '1.35rem',
   },
   h5: {
-    fontSize: '1rem'
+    fontSize: '1.15rem'
   },
   h6: {
-    fontSize: '0.95rem'
+    fontSize: '1.05rem'
   },
   body1: {
     fontSize: '0.925rem',

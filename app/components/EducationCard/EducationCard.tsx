@@ -16,8 +16,8 @@ export default function EducationCard({ educations }) {
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
-        {educations.map(e =>
-          <div>
+        {educations.map((e, i) =>
+          <div key={i}>
             <div className={s.yearsRow}>
               <SchoolIcon color="primary" className={s.icon}></SchoolIcon>
               <div className={s.years}>{e.From} - {e.To}</div>
