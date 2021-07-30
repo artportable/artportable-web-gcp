@@ -36,7 +36,6 @@ const ProfileIconButton = ({profilePicture = null}) => {
             horizontal: 'left'
         }}>
         <ButtonGroup
-          classes={{ root: s.buttonGroup }}
           orientation="vertical"
           aria-label="Profile menu"
           size="large"
