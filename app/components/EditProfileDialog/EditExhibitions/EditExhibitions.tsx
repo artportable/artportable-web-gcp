@@ -78,7 +78,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
                 autoOk
                 variant="inline"
                 label={t('from')}
-                format="MM/dd/yyyy"
+                format="dd/MM/yyyy"
                 minDate={new Date()}
                 value={e.from}
                 InputAdornmentProps={{position: 'start'}}
@@ -90,7 +90,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
                 autoOk
                 variant="inline"
                 label={t('to')}
-                format="MM/dd/yyyy"
+                format="dd/MM/yyyy"
                 value={e.to}
                 minDate={e.from}
                 InputAdornmentProps={{position: 'start'}}

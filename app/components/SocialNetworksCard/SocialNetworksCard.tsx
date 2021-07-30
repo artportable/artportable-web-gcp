@@ -46,9 +46,7 @@ export default function SocialNetworksCard({ data }) {
         {data.Dribble && <Box>
           <a href={'//' + data.Dribble} className={s.row}>
             <div className={s.icon}>
-              <Icon color="primary" className="fab fa-dribbble">
-                {/* <FontAwesomeIcon icon={["fab", "dribbble"]}/> */}
-              </Icon>
+              <Icon color="primary" className="fab fa-dribbble"></Icon>
             </div>
             Dribbble
           </a>
@@ -56,9 +54,7 @@ export default function SocialNetworksCard({ data }) {
         {data.Behance && <Box>
           <a href={'//' + data.Behance} className={s.row}>
             <div className={s.icon}>
-              <Icon color="primary" className="fab fa-behance-square">
-                {/* <FontAwesomeIcon icon={["fab", "behance-square"]}/> */}
-              </Icon>
+              <Icon color="primary" className="fab fa-behance-square"></Icon>
             </div>
             Behance
           </a>
