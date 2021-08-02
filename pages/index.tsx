@@ -35,7 +35,6 @@ export default function Home( props ) {
               key={i}
               src={item.image}
               text={item.header}
-              subheader={item.subheader}
               user={item.user} />
           )}
         </Carousel>
