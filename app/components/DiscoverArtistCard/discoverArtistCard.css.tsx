@@ -29,7 +29,8 @@ export const styles = makeStyles((theme: Theme) =>
       gap: theme.spacing(2),
       '& *': {
         flexShrink: '0'
-      }
+      },
+      scrollSnapAlign: 'center'
     },
     scrollContainer: {
       position: 'relative',
