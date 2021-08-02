@@ -183,7 +183,7 @@ export default function Signup() {
         emailError: true });
     } else {
       try {
-        const isAvailable = await (await fetch(`${apiBaseUrl}/api/user?email=${event.target.value}`)).json();
+        const isAvailable = await (await fetch(`${apiBaseUrl}/api/user/exists?email=${event.target.value}`)).json();
         setValues({ ...values, 
           emailIsAvailable: isAvailable, 
           emailError: !isAvailable });
@@ -202,7 +202,7 @@ export default function Signup() {
     }
 
     try {
-      const isAvailable = await (await fetch(`${apiBaseUrl}/api/user?username=${event.target.value}`)).json();
+      const isAvailable = await (await fetch(`${apiBaseUrl}/api/user/exists?username=${event.target.value}`)).json();
       setValues({ ...values, 
         usernameIsAvailable: isAvailable, 
         usernameError: !isAvailable });
