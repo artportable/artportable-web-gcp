@@ -24,12 +24,7 @@ export default function Home( props ) {
     header: t(`index:carouselItems.${i}.header`),
     subheader: t(`index:carouselItems.${i}.subheader`)
   }))
-
-
-  const navItems = props.navItems;
-  const tags = navItems.map(item => item.tag);
   const artworks = useGetArtworksForStartPage();
-  const [currentTag, setCurrentTag] = useState(navItems[0].tag);
 
   return (
     <Main noHeaderPadding>
@@ -65,29 +60,14 @@ export default function Home( props ) {
 }
 
 export async function getStaticProps({locale}) {
-  const navItems = [
-    {
-      text: 'forYouWhoSwimIn', tag: 'acrylic'
-    },
-    {
-      text: 'forYouWhoEat', tag:'oil'
-    },
-    {
-      text: 'forYouWhoBreath', tag:'sea'
-    },
-    {
-      text: 'forYouWhoHungerFor', tag:'summer'
-    }
-  ];
-
   const carouselItems = [
     {
-      image: '/images/index1.jpg',
+      image: `/images/index1_${locale}.jpg`,
       text: 'welcomeToTitle',
       subheader: 'subheaderTextCarouselOne',
     },
     {
-      image: '/images/index2.jpg',
+      image: `/images/index2_${locale}.jpg`,
       text:'Vardagsrum',
       subheader: 'subheaderTe',
       user: {
@@ -96,11 +76,11 @@ export async function getStaticProps({locale}) {
       }
     },
     {
-      image: '/images/index3.jpg',
+      image: `/images/index3_${locale}.jpg`,
       text:'Avslappnande minimalism',
     },
     {
-      image: '/images/index4.jpg',
+      image: `/images/index4_${locale}.jpg`,
       text:'Från jord till bord',
       user: {
         username: 'sillynilly',
@@ -113,7 +93,6 @@ export async function getStaticProps({locale}) {
 
   return {
     props: {
-      navItems,
       carouselItems,
       priceData,
       ...await serverSideTranslations(locale, ['header', 'index', 'tags', 'plans', 'common']),
