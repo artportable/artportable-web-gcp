@@ -19,7 +19,7 @@ export default function CarouselItem({ src, text, subheader, user = null }) {
           alt={text}
         />
       </div>
-      <Paper variant="outlined" className={s.text} classes={{ root: s.paperOverride }}>
+      {/* <Paper variant="outlined" className={s.text} classes={{ root: s.paperOverride }}>
         <Typography variant="h1">
           <Box className={s.textHeader} fontWeight="500" textAlign="center">
             {t(text)}
@@ -28,7 +28,7 @@ export default function CarouselItem({ src, text, subheader, user = null }) {
         <Box className={s.textBody}>
           {t(subheader)}
         </Box>
-      </Paper>
+      </Paper> */}
       {user && 
         <div className={s.user}>
           <Link href={`/profile/@${user.username}`}>
