@@ -18,6 +18,7 @@ import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { useIsAuthenticated } from '../../hooks/useIsAuthenticated'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
+import router from 'next/router'
 
 export default function Header({ isSignUp, username = null }) {
   const { t } = useTranslation('header');
@@ -25,7 +26,6 @@ export default function Header({ isSignUp, username = null }) {
   const { profilePicture } = useGetUserProfilePicture(username);
   const isAuthenticated = useIsAuthenticated();
   const { keycloak } = useKeycloak<KeycloakInstance>();
-
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   
@@ -37,17 +37,17 @@ export default function Header({ isSignUp, username = null }) {
     // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
   useEffect(() => {
-    if(chatClient) {
+    if (chatClient) {
       chatClient.on((event) => {
         if (event.total_unread_count !== undefined) {
           setUnreadChatMessages(event.total_unread_count);
         }
       });
-      
+
     }
 
     return () => {
-      chatClient.off((_) => {});
+      chatClient.off((_) => { });
     }
   }, [chatClient]);
 
@@ -68,14 +68,14 @@ export default function Header({ isSignUp, username = null }) {
         </div>
         <nav className={s.navigation}>
           {(!isSignUp && isAuthenticated) &&
-            <MuiButton classes={{root: s.navButton}} color="default" size="large">
+            <MuiButton classes={{ root: s.navButton }} color="default" size="large">
               <Link href="/feed">
                 {t('myArtNetwork')}
               </Link>
             </MuiButton>
           }
           {!isSignUp &&
-            <MuiButton classes={{root: s.navButton}} color="default" size="large">
+            <MuiButton classes={{ root: s.navButton }} color="default" size="large">
               <Link href="/discover">
                 {t('discover')}
               </Link>
@@ -91,8 +91,9 @@ export default function Header({ isSignUp, username = null }) {
                   variant="contained"
                   color="primary"
                   disableElevation
-                  rounded>
-                    {t('signUp')}
+                  rounded
+                  onClick={() => keycloak.register({ locale : router.locale})}>
+                  {t('signUp')}
                 </Button>
               </a>
             </Link>
@@ -102,8 +103,8 @@ export default function Header({ isSignUp, username = null }) {
               color="primary"
               disableElevation
               rounded
-              onClick={() => keycloak.login()}>
-                {t('login')}
+              onClick={() => keycloak.login({ locale : router.locale})}>
+              {t('login')}
             </Button>
           </div>
         }
@@ -117,7 +118,7 @@ export default function Header({ isSignUp, username = null }) {
                   color="primary"
                   disableElevation
                   rounded>
-                    {t('upload')}
+                  {t('upload')}
                 </Button>
               </a>
             </Link>
@@ -126,13 +127,13 @@ export default function Header({ isSignUp, username = null }) {
                 <a>
                   <IconButton color="secondary" aria-label="account">
                     <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                      <ChatBubbleIcon style={{ fontSize: '30px'}} />
-                    </Badge> 
+                      <ChatBubbleIcon style={{ fontSize: '30px' }} />
+                    </Badge>
                   </IconButton>
                 </a>
               </Link>
               <IconButton color="secondary" aria-label="account">
-                <NotificationsIcon style={{ fontSize: '30px'}} />
+                <NotificationsIcon style={{ fontSize: '30px' }} />
               </IconButton>
               <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
             </div>
