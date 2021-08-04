@@ -13,15 +13,16 @@ import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
 import { useInfiniteScroll2 } from "../app/hooks/useInfiniteScroll";
+import { useUser } from "../app/hooks/useUser";
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
   const s = styles();
   const store = useStore();
+  const { username } = useUser();
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
-  const username = store.getState()?.user?.username;
   const discoverTab = store.getState()?.discover?.tab ?? 0;
 
   const tags = useGetTags();
