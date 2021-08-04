@@ -5,11 +5,9 @@ import '../styles/variables.css'
 import type { AppProps, AppContext } from 'next/app'
 import App from 'next/app';
 import Head from 'next/head'
-import Header from '../app/components/Header/Header'
 import React from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { theme } from '../styles/theme'
-
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 import { appWithTranslation } from 'next-i18next'
@@ -25,8 +23,8 @@ import {
 import type { IncomingMessage } from 'http';
 import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr';
 import cookie from 'cookie';
-import { keycloakConfig, keycloakInitOptions }  from '../constants/keycloakSettings';
-import { AuthClientEvent, AuthClientError} from '@react-keycloak/core';
+import { keycloakConfig, keycloakInitOptions } from '../constants/keycloakSettings';
+import { AuthClientEvent, AuthClientError } from '@react-keycloak/core';
 
 
 library.add(
@@ -40,7 +38,6 @@ interface InitialProps {
 
 function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const store = useStore(pageProps.initialReduxState);
-  const isSignUp = pageProps.isSignUp === true;
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -78,9 +75,6 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header
-              isSignUp={isSignUp}
-            ></Header>
             <Component {...pageProps} />
           </ThemeProvider>
         </Provider>
@@ -89,7 +83,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   )
 }
 
-function testEvent (event: AuthClientEvent, error?: AuthClientError | undefined) {
+function testEvent(event: AuthClientEvent, error?: AuthClientError | undefined) {
   console.log(event);
 };
 
@@ -105,7 +99,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
   // Extract cookies from AppContext
   return {
     cookies: parseCookies(context?.ctx?.req),
-    pageProps : {...pageProps}
+    pageProps: { ...pageProps }
   };
 };
 

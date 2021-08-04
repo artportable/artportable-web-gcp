@@ -14,24 +14,30 @@ import { styles } from './header.css'
 import React, { useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
-import { useUser } from '../../hooks/useUser'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
+import { useUser } from '../../hooks/useUser'
 
-export default function Header({ isSignUp }) {
+export default function Header({ username = null }) {
   const { t } = useTranslation('header');
   const s = styles();
-  const { username, profilePicture, isSignedIn } = useUser();
-  const { keycloak } = useKeycloak<KeycloakInstance>();
-  const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
-  
+  // const { profilePicture } = useGetUserProfilePicture(username);
+  const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
+  const { isSignedIn } = useUser();
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
+  const [chatClient] = useState(useGetChatClient(username, null, isSignedIn, setUnreadChatMessages));
   const logoHref = isSignedIn ? "/feed" : "/";
-  
-    //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
-    // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
+  const [loginUrl, setLoginUrl] = useState('/');
+  useEffect(() => {
+    setLoginUrl(keycloak.createLoginUrl({
+      locale: router.locale,
+    }))
+  }, [initialized]);
+
+  //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
+  // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
   useEffect(() => {
     if (chatClient) {
@@ -50,7 +56,7 @@ export default function Header({ isSignUp }) {
 
   return (
     <AppBar color="transparent" elevation={0}>
-      <div className={containerClasses}>
+      <div className={s.container}>
         <div className={s.logo}>
           <Link href={logoHref}>
             <a>
@@ -64,22 +70,20 @@ export default function Header({ isSignUp }) {
           </Link>
         </div>
         <nav className={s.navigation}>
-          {(!isSignUp && isSignedIn) &&
+          {(isSignedIn) &&
             <MuiButton classes={{ root: s.navButton }} color="default" size="large">
               <Link href="/feed">
                 {t('myArtNetwork')}
               </Link>
             </MuiButton>
           }
-          {!isSignUp &&
-            <MuiButton classes={{ root: s.navButton }} color="default" size="large">
-              <Link href="/discover">
-                {t('discover')}
-              </Link>
-            </MuiButton>
-          }
+          <MuiButton classes={{ root: s.navButton }} color="default" size="large">
+            <Link href="/discover">
+              {t('discover')}
+            </Link>
+          </MuiButton>
         </nav>
-        {(!isSignUp && !isSignedIn) &&
+        {(!isSignedIn) &&
           <div className={s.login}>
             <Link href="/plans">
               <a>
@@ -105,7 +109,7 @@ export default function Header({ isSignUp }) {
             </Button>
           </div>
         }
-        {(!isSignUp && isSignedIn) &&
+        {(isSignedIn) &&
           <div className={s.login}>
             <Link href="/upload">
               <a>
@@ -132,7 +136,7 @@ export default function Header({ isSignUp }) {
               <IconButton color="secondary" aria-label="account">
                 <NotificationsIcon style={{ fontSize: '30px' }} />
               </IconButton>
-              <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
+              <ProfileIconButton profilePicture={null}></ProfileIconButton>
             </div>
           </div>
         }

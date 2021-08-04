@@ -23,10 +23,13 @@ import Country from '../app/models/Country';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useDispatch, useStore } from 'react-redux';
 import { ADD_DATA } from '../app/redux/actions/signupActions';
+import Main from '../app/components/Main/Main';
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -48,6 +51,9 @@ export default function Signup() {
   const signupData = store.getState()?.signup?.data;
   const router = useRouter();
   const currentLegalYear = new Date().getFullYear() - 18;
+  const { keycloak } = useKeycloak<KeycloakInstance>()
+  console.log(keycloak)
+
 
   // States
   const [values, setValues] = useState<State>({
@@ -67,17 +73,25 @@ export default function Signup() {
   const [year, setYear] = useState(signupData?.dateOfBirth?.split("-")[0] ?? currentLegalYear);
   const [location, setLocation] = useState(signupData?.location);
   const [canContact, setCanContact] = useState(signupData?.canContact);
-  const days = getDays(1);
+  const [days, setDays] = useState(getDays(month, year));
   const years = getYears(currentLegalYear);
-  const countries: Country[] = t(`countries:countries`, {returnObjects: true});
+  const countries: Country[] = t(`countries:countries`, { returnObjects: true });
 
+
+  // useEffect(() => {
+  //   // TODO: Do redirect of unauthed users in a better way
+  //   if (!store.getState()?.signup?.price) {
+  //     router.push('/plans');
+  //   }
+  // });
 
   useEffect(() => {
-    // TODO: Do redirect of unauthed users in a better way
-    if (!store.getState()?.signup?.price) {
-      router.push('/plans');
+    var days = getDays(month, year);
+    if(days.length < day){
+      setDay(days.length);
     }
-  });
+    setDays(getDays(month, year));
+  }, [month, year]);
 
 
   const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,26 +108,28 @@ export default function Signup() {
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
-    
-    setValues({ ...values,
+
+    setValues({
+      ...values,
       username: event.target.value,
       usernameError: false,
       usernameIsAvailable: true
-    });  
+    });
   }
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.preventDefault();
-    
-    setValues({ ...values,
+
+    setValues({
+      ...values,
       email: event.target.value,
       emailError: false,
       emailIsAvailable: true
-    });  
+    });
   }
 
   const getUsernameErrorMessage = () => {
-    if(!values.usernameIsAvailable) {
+    if (!values.usernameIsAvailable) {
       return t('usernameAlreadyExists');
     } else if (values.usernameError && values.username === "") {
       return t('usernameIsRequired');
@@ -121,7 +137,7 @@ export default function Signup() {
   }
 
   const getEmailErrorMessage = () => {
-    if(!values.emailIsAvailable) {
+    if (!values.emailIsAvailable) {
       return t('emailAlreadyExists');
     }
 
@@ -129,9 +145,9 @@ export default function Signup() {
   }
 
   const handleBecomeMemberClick = (event) => {
-     event.preventDefault();
+    event.preventDefault();
 
-    if(emailIsInvalid(values.email)) {
+    if (emailIsInvalid(values.email)) {
       setValues({ ...values, emailError: true });
       return;
     }
@@ -170,7 +186,7 @@ export default function Signup() {
 
   function emailIsInvalid(email) {
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-        return false;
+      return false;
     }
     return true;
   }
@@ -178,17 +194,21 @@ export default function Signup() {
   const handleOnBlurEmail = async (event) => {
     event.preventDefault();
 
-    if(emailIsInvalid(values.email)) {
-      setValues({ ...values, 
-        emailError: true });
+    if (emailIsInvalid(values.email)) {
+      setValues({
+        ...values,
+        emailError: true
+      });
     } else {
       try {
-        const isAvailable = await (await fetch(`${apiBaseUrl}/api/user/exists?email=${event.target.value}`)).json();
-        setValues({ ...values, 
-          emailIsAvailable: isAvailable, 
-          emailError: !isAvailable });
+        const isAvailable = await (await fetch(`${apiBaseUrl}/api/user?email=${event.target.value}`)).json();
+        setValues({
+          ...values,
+          emailIsAvailable: isAvailable,
+          emailError: !isAvailable
+        });
       } catch (error) {
-         console.warn("Could not connect to server");
+        console.warn("Could not connect to server");
       }
     }
   }
@@ -196,20 +216,22 @@ export default function Signup() {
   const handleOnBlurUsername = async (event) => {
     event.preventDefault();
 
-    if(event.target.value === "") {
+    if (event.target.value === "") {
       setValues({ ...values, usernameError: true });
       return;
     }
 
     try {
-      const isAvailable = await (await fetch(`${apiBaseUrl}/api/user/exists?username=${event.target.value}`)).json();
-      setValues({ ...values, 
-        usernameIsAvailable: isAvailable, 
-        usernameError: !isAvailable });
+      const isAvailable = await (await fetch(`${apiBaseUrl}/api/user?username=${event.target.value}`)).json();
+      setValues({
+        ...values,
+        usernameIsAvailable: isAvailable,
+        usernameError: !isAvailable
+      });
     } catch (error) {
-        console.warn("Could not connect to server");
+      console.warn("Could not connect to server");
     }
-    
+
   }
 
   const handleOnChangeFirstName = (event) => {
@@ -236,215 +258,186 @@ export default function Signup() {
         <title>Artportable</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={s.signUpContainer}>
-        <form className={s.formCard}>
-          <Card>
-            <CardContent>
-              <Typography variant="h1" gutterBottom>
-                {t('createAnAccount')}
-              </Typography>
-              <Typography variant="subtitle1" component="p" gutterBottom>
-                {t('alreadyHaveAnAccountQuestion')}?{' '}
-                <Link href="/login" passHref>
-                  <MuiLink>
-                    {t('login')}
-                  </MuiLink>
-                </Link>
-              </Typography>
-              <div className={s.inputContainer}>
-                <TextField 
-                  id="username"
-                  label={t('username')} 
-                  fullWidth
-                  required
-                  error={values.usernameError}
-                  onChange={handleUsernameChange}
-                  onBlur={handleOnBlurUsername}
-                  helperText={getUsernameErrorMessage()}
-                  defaultValue={signupData?.username} />
-              </div>
-              <div className={clsx(s.namesContainer, s.inputContainer)}>
-                <TextField id="first-name" className={s.marginRight} onChange={handleOnChangeFirstName} label={t('firstName')} defaultValue={signupData?.firstName}/>
-                <TextField id="last-name" className={s.marginLeft} onChange={handleOnChangeLastName} label={t('lastName')} defaultValue={signupData?.lastName}/>
-              </div>
-              <div className={s.inputContainer}>
-                <TextField 
-                  id="email" 
-                  label={t('email')} 
-                  fullWidth
-                  required
-                  type="email"
-                  onChange={handleEmailChange}
-                  onBlur={handleOnBlurEmail}
-                  error={values.emailError}
-                  helperText={getEmailErrorMessage()}
-                  defaultValue={signupData?.email} />
-              </div>
-              <div className={s.inputContainer}>
-              <FormControl fullWidth>
-                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                <Input
-                  id="password"
-                  type={values.showPassword ? 'text' : 'password'}
-                  value={values.password}
-                  onChange={handleChange('password')}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                      >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  required
-                />
-              </FormControl>
-              </div>
-              <Typography variant="subtitle1" component="p" gutterBottom>
-                {t('dateOfBirth')}
-              </Typography>
-
-              <div className={clsx(s.ageContainer, s.inputContainer)}>
-                <FormControl className={clsx(s.day, s.marginRight)}>
-                  <InputLabel id="day-label">{t('day')}</InputLabel>
-                  <Select
-                    labelId="day-label"
-                    id="day"
-                    value={day}
-                    onChange={handleDayChange}
-                    defaultValue={signupData?.dateOfBirth?.split("-")[2]}
-                  >
-                    {days.map(d => 
-                      <MenuItem key={d} value={d}>{d}</MenuItem>  
-                    )}
-                  </Select>
-                </FormControl>
-
-                <FormControl className={clsx(s.month , s.marginLeft, s.marginRight)}>
-                  <InputLabel id="month-label">{t('month')}</InputLabel>
-                  <Select
-                    labelId="month-label"
-                    id="month"
-                    value={month}
-                    onChange={handleMonthChange}
-                    defaultValue={signupData?.dateOfBirth?.split("-")[1]}
-                  >
-                    <MenuItem value={1}>{t('months.jan')}</MenuItem>
-                    <MenuItem value={2}>{t('months.feb')}</MenuItem>
-                    <MenuItem value={3}>{t('months.mar')}</MenuItem>
-                    <MenuItem value={4}>{t('months.apr')}</MenuItem>
-                    <MenuItem value={5}>{t('months.may')}</MenuItem>
-                    <MenuItem value={6}>{t('months.jun')}</MenuItem>
-                    <MenuItem value={7}>{t('months.jul')}</MenuItem>
-                    <MenuItem value={8}>{t('months.aug')}</MenuItem>
-                    <MenuItem value={9}>{t('months.sep')}</MenuItem>
-                    <MenuItem value={10}>{t('months.oct')}</MenuItem>
-                    <MenuItem value={11}>{t('months.nov')}</MenuItem>
-                    <MenuItem value={12}>{t('months.dec')}</MenuItem>
-                  </Select>
-                </FormControl>
-
-                <FormControl className={clsx(s.year, s.marginLeft)}>
-                  <InputLabel id="year-label">{t('year')}</InputLabel>
-                  <Select
-                    labelId="year-label"
-                    id="year"
-                    value={year}
-                    onChange={handleYearChange}
-                    defaultValue={signupData?.dateOfBirth?.split("-")[0]}
-                  >
-                    {years.map(y => <MenuItem key={y} value={y}>{y}</MenuItem>)}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className={s.inputContainer}>
-                <FormControl fullWidth>
-                  <InputLabel id="country-or-region-label">{t('countryOrRegion')}</InputLabel>
-                  <Select
-                    labelId="country-or-region-label"
-                    id="country-or-region"
-                    defaultValue={signupData?.location ?? 'SE'}
-                    onChange={handleOnChangeLocation}
-                    displayEmpty
-                  >
-                    {countries.map(c =>
-                      <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)
-                    }
-                  </Select>
-                </FormControl>
-              </div>
-
-
-              <div>
-                <Typography variant="body2" gutterBottom>
-                  {t('emailDisclaimer1')} {' '} 
-                  <Link href="#" passHref>
-                    <MuiLink>
-                      {t('privacyPolicy')}
-                    </MuiLink>
-                  </Link>
-                  . {t('emailDisclaimer2')}.
+      <Main>
+        <div className={s.signUpContainer}>
+          <form className={s.formCard}>
+            <Card elevation={2}>
+              <CardContent>
+                <Typography variant="h1" gutterBottom>
+                  {t('completeProfile')}
                 </Typography>
-              </div>
-              <div>
-                <FormControlLabel
-                  control={<Checkbox size="small" checked={signupData?.canContact} onChange={handleCanContactChange} name="gilad"/>}
-                  label={<Typography variant="body2" color="textSecondary">{t('emailAgreementCheckbox')}</Typography>}
-                />
-              </div>
-              <div>
-                <Typography variant="body2" gutterBottom>
-                  {t('agreementText1')} {' '} 
-                  <Link href="#" passHref>
-                    <MuiLink>
-                      {t('usageAgreement')}
-                    </MuiLink>
-                  </Link>
-                  {' '} {t('and')} {' '}
-                  <Link href="#" passHref>
-                    <MuiLink>
-                      {t('privacyPolicy')}
-                    </MuiLink>
-                  </Link>.
+                <div className={s.inputContainer}>
+                  <TextField
+                    id="username"
+                    label={t('username')}
+                    fullWidth
+                    required
+                    error={values.usernameError}
+                    onChange={handleUsernameChange}
+                    onBlur={handleOnBlurUsername}
+                    helperText={getUsernameErrorMessage()}
+                    />
+                </div>
+                <div className={clsx(s.namesContainer, s.inputContainer)}>
+                  <TextField id="first-name" className={s.marginRight} onChange={handleOnChangeFirstName} label={t('firstName')} defaultValue={signupData?.firstName}/>
+                  <TextField id="last-name" className={s.marginLeft} onChange={handleOnChangeLastName} label={t('lastName')} value={lastName}/>
+                </div>
+                <div className={s.inputContainer}>
+                  <TextField
+                    id="email"
+                    label={t('email')}
+                    fullWidth
+                    required
+                    type="email"
+                    onChange={handleEmailChange}
+                    onBlur={handleOnBlurEmail}
+                    error={values.emailError}
+                    helperText={getEmailErrorMessage()}
+                    defaultValue={signupData?.email} />
+                </div>
+                <div className={s.inputContainer}>
+                  <FormControl fullWidth>
+                    <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                    <Input
+                      id="password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.password}
+                      onChange={handleChange('password')}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                          >
+                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      required
+                    />
+                  </FormControl>
+                </div>
+                <Typography variant="subtitle1" component="p" gutterBottom>
+                  {t('dateOfBirth')}
                 </Typography>
-              </div>
 
-              <div className={s.postButtonContainer}>
-                <Link href="/checkout">
-                  <a>
-                    <Button
-                      type="submit"
-                      size="small" 
-                      variant="contained" 
-                      color="primary"
-                      disableElevation 
-                      rounded
-                      onClick={handleBecomeMemberClick}>
+                <div className={clsx(s.ageContainer, s.inputContainer)}>
+                  <FormControl className={clsx(s.day, s.marginRight)}>
+                    <InputLabel id="day-label">{t('day')}</InputLabel>
+                    <Select
+                      labelId="day-label"
+                      id="day"
+                      value={day}
+                      onChange={handleDayChange}
+                      defaultValue={signupData?.dateOfBirth?.split("-")[2]}
+                    >
+                      {days.map(d =>
+                        <MenuItem key={d} value={d}>{d}</MenuItem>
+                      )}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl className={clsx(s.month, s.marginLeft, s.marginRight)}>
+                    <InputLabel id="month-label">{t('month')}</InputLabel>
+                    <Select
+                      labelId="month-label"
+                      id="month"
+                      value={month}
+                      onChange={handleMonthChange}
+                      defaultValue={signupData?.dateOfBirth?.split("-")[1]}
+                    >
+                      <MenuItem value={1}>{t('months.jan')}</MenuItem>
+                      <MenuItem value={2}>{t('months.feb')}</MenuItem>
+                      <MenuItem value={3}>{t('months.mar')}</MenuItem>
+                      <MenuItem value={4}>{t('months.apr')}</MenuItem>
+                      <MenuItem value={5}>{t('months.may')}</MenuItem>
+                      <MenuItem value={6}>{t('months.jun')}</MenuItem>
+                      <MenuItem value={7}>{t('months.jul')}</MenuItem>
+                      <MenuItem value={8}>{t('months.aug')}</MenuItem>
+                      <MenuItem value={9}>{t('months.sep')}</MenuItem>
+                      <MenuItem value={10}>{t('months.oct')}</MenuItem>
+                      <MenuItem value={11}>{t('months.nov')}</MenuItem>
+                      <MenuItem value={12}>{t('months.dec')}</MenuItem>
+                    </Select>
+                  </FormControl>
+
+                  <FormControl className={clsx(s.year, s.marginLeft)}>
+                    <InputLabel id="year-label">{t('year')}</InputLabel>
+                    <Select
+                      labelId="year-label"
+                      id="year"
+                      value={year}
+                      onChange={handleYearChange}
+                      defaultValue={signupData?.dateOfBirth?.split("-")[0]}
+                    >
+                      {years.map(y => <MenuItem key={y} value={y}>{y}</MenuItem>)}
+                    </Select>
+                  </FormControl>
+                </div>
+                <div className={s.inputContainer}>
+                  <FormControl fullWidth>
+                    <InputLabel id="country-or-region-label">{t('countryOrRegion')}</InputLabel>
+                    <Select
+                      labelId="country-or-region-label"
+                      id="country-or-region"
+                      defaultValue={signupData?.location ?? 'SE'}
+                      onChange={handleOnChangeLocation}
+                      displayEmpty
+                    >
+                      {countries.map(c =>
+                        <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>)
+                      }
+                    </Select>
+                  </FormControl>
+                </div>
+
+
+                <div>
+                  <Typography variant="body2" gutterBottom>
+                    {t('emailDisclaimer1')} {' '}
+                    <Link href="#" passHref>
+                      <MuiLink>
+                        {t('privacyPolicy')}
+                      </MuiLink>
+                    </Link>
+                    . {t('emailDisclaimer2')}.
+                  </Typography>
+                </div>
+                <div>
+                  <FormControlLabel
+                    control={<Checkbox size="small" checked={signupData?.canContact} onChange={handleCanContactChange} name="gilad" />}
+                    label={<Typography variant="body2" color="textSecondary">{t('emailAgreementCheckbox')}</Typography>}
+                  />
+                </div>
+                <div className={s.postButtonContainer}>
+                  <Link href="/checkout">
+                    <a>
+                      <Button
+                        type="submit"
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        disableElevation
+                        rounded
+                        onClick={handleBecomeMemberClick}>
                         {t('becomeMember')}
-                    </Button>
-                  </a>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </form>
-      </div>
-      <style jsx global>{`
-        body {
-          background-image: url("/images/victoria-wendish-FYTn1u5OArU-unsplash.jpg");
-          background-size: 123%;
-          background-position: -411px -370px;
-        }
-      `}</style>
+                      </Button>
+                    </a>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </form>
+        </div>
+      </Main>
     </>
   );
 }
 
-function getDays(month) {
-  return new Array(31)
+function getDays(month, year) {
+  var numberOfDays = new Date(year, month, 0).getDate();
+  return new Array(numberOfDays)
     .fill(undefined)
     .map((_, i) => i + 1);
 }
@@ -458,10 +451,9 @@ function getYears(currentLegalYear: number) {
 }
 
 export async function getStaticProps({ locale }) {
-  return { 
+  return {
     props: {
-      isSignUp: true,
       ...await serverSideTranslations(locale, ['header', 'signup', 'countries']),
-    } 
+    }
   };
 }

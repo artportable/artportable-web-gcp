@@ -19,11 +19,6 @@ export const styles = makeStyles((theme: Theme) =>
       ),
     },
     
-    isSignUp: {
-      backgroundColor: 'transparent',
-      boxShadow: 'none'
-    },
-    
     logo: {
       gridArea: 'logo'
     },

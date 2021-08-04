@@ -105,7 +105,6 @@ export default function Signup() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      isSignUp: true,
       ...await serverSideTranslations(locale, ['header', 'login', 'common']),
     }
   };
