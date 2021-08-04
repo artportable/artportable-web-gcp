@@ -4,9 +4,10 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'grid',
-      height: '100vh',
+      minHeight: '100vh',
       paddingTop: 'calc(35px + var(--header-height))',
       gridAutoRows: 'auto',
+      paddingBottom: '2rem',
 
       '& > *': {
         gridColumn: '2/3'
