@@ -27,7 +27,7 @@ export default function Header({ username = null }) {
   const { isSignedIn } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(username, null, isSignedIn, setUnreadChatMessages));
+  // const [chatClient] = useState(useGetChatClient(username, null, isSignedIn, setUnreadChatMessages));
   const logoHref = isSignedIn ? "/feed" : "/";
   const [loginUrl, setLoginUrl] = useState('/');
   useEffect(() => {
@@ -39,20 +39,20 @@ export default function Header({ username = null }) {
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
-  useEffect(() => {
-    if (chatClient) {
-      chatClient.on((event) => {
-        if (event.total_unread_count !== undefined) {
-          setUnreadChatMessages(event.total_unread_count);
-        }
-      });
+  // useEffect(() => {
+  //   if (chatClient) {
+  //     chatClient.on((event) => {
+  //       if (event.total_unread_count !== undefined) {
+  //         setUnreadChatMessages(event.total_unread_count);
+  //       }
+  //     });
 
-    }
+  //   }
 
-    return () => {
-      chatClient.off((_) => { });
-    }
-  }, [chatClient]);
+  //   return () => {
+  //     chatClient.off((_) => { });
+  //   }
+  // }, [chatClient]);
 
   return (
     <AppBar color="transparent" elevation={0}>
