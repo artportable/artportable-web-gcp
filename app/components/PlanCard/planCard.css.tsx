@@ -8,7 +8,6 @@ export const styles = makeStyles((theme: Theme) =>
       paddingTop: '32px'
     },
     cardRoot: {
-      minHeight: '450px',
       boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)',
       '& .MuiCardContent-root': {
         height: '100%',

@@ -13,7 +13,7 @@ export const styles = makeStyles((theme: Theme) =>
       gridAutoFlow: 'column',
       gap: '16px',
       justifyContent: 'center',
-      alignItems: 'flex-end',
+      alignItems: 'stretch',
     },
   }),
 );
