@@ -17,7 +17,7 @@ import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useG
 import React, { useEffect, useState } from 'react'
 import TabPanel from '../../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
-import { useStore } from 'react-redux'
+import { useUser } from '../../app/hooks/useUser'
 import SimilarPortfoliosSection from '../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
 import { useMainWidth } from '../../app/hooks/useWidth'
 import { getImageAsRows } from '../../app/utils/layoutUtils'
@@ -33,7 +33,6 @@ function a11yProps(index: any) {
 export default function Profile() {
   const { t } = useTranslation(['common', 'profile']);
   const s = profileStyles();
-  const store = useStore();
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
 
@@ -47,7 +46,7 @@ export default function Profile() {
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const myUsername = store.getState()?.user?.username;
+  const { username } = useUser();
 
   const [imageRows, setImageRows] = useState(null);
 
@@ -72,7 +71,7 @@ export default function Profile() {
   }, [rowWidth]);
 
   function onLikeClick(artworkId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${myUsername}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
     .then((response) => {

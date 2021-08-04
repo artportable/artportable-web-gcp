@@ -13,19 +13,19 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
-import { useStore } from "react-redux";
+import { useUser } from '../../hooks/useUser'
+
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
   const s = styles();
-  const store = useStore();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const scrollRef = useRef(null);
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
   const images = artist.Images.map(i => normalizeImageSize(i, 200));
-  const isSignedIn = store.getState()?.user?.isSignedIn;
+  const { isSignedIn } = useUser();
 
   return (
     <div className={s.container}>

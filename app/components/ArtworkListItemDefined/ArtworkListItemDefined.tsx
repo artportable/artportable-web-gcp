@@ -1,17 +1,17 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import React, { useState } from 'react'
-import { useStore } from 'react-redux'
+import { useState } from 'react'
+import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
-import { styles } from './artworkListItemDefined.css'
 import { Link } from '@material-ui/core'
+import { styles } from './artworkListItemDefined.css'
+import { useUser } from '../../hooks/useUser'
 
 export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
   const s = styles();
-  const store = useStore();
   const [isLiked, setIsLiked] = useState(artwork.IsLikedByMe);
 
-  const isSignedIn = store.getState()?.user?.isSignedIn;
+  const { isSignedIn } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   function toggleLike(event) {

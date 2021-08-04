@@ -41,9 +41,6 @@ interface InitialProps {
 function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const store = useStore(pageProps.initialReduxState);
   const isSignUp = pageProps.isSignUp === true;
-  const user = store.getState()?.user;
-  const isSignedIn = user?.isSignedIn ?? false;
-  const username = user?.username ?? null;
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -83,7 +80,6 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
             <CssBaseline />
             <Header
               isSignUp={isSignUp}
-              username={username}
             ></Header>
             <Component {...pageProps} />
           </ThemeProvider>

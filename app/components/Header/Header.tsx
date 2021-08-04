@@ -14,24 +14,21 @@ import { styles } from './header.css'
 import React, { useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
-import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
-import { useIsAuthenticated } from '../../hooks/useIsAuthenticated'
+import { useUser } from '../../hooks/useUser'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
 
-export default function Header({ isSignUp, username = null }) {
+export default function Header({ isSignUp }) {
   const { t } = useTranslation('header');
   const s = styles();
-  const { profilePicture } = useGetUserProfilePicture(username);
-  const isAuthenticated = useIsAuthenticated();
+  const { username, profilePicture, isSignedIn } = useUser();
   const { keycloak } = useKeycloak<KeycloakInstance>();
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
   
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(username, profilePicture, isAuthenticated, setUnreadChatMessages));
-  const logoHref = isAuthenticated ? "/feed" : "/";
+  const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
+  const logoHref = isSignedIn ? "/feed" : "/";
   
     //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
     // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -67,7 +64,7 @@ export default function Header({ isSignUp, username = null }) {
           </Link>
         </div>
         <nav className={s.navigation}>
-          {(!isSignUp && isAuthenticated) &&
+          {(!isSignUp && isSignedIn) &&
             <MuiButton classes={{ root: s.navButton }} color="default" size="large">
               <Link href="/feed">
                 {t('myArtNetwork')}
@@ -82,7 +79,7 @@ export default function Header({ isSignUp, username = null }) {
             </MuiButton>
           }
         </nav>
-        {(!isSignUp && !isAuthenticated) &&
+        {(!isSignUp && !isSignedIn) &&
           <div className={s.login}>
             <Link href="/plans">
               <a>
@@ -108,7 +105,7 @@ export default function Header({ isSignUp, username = null }) {
             </Button>
           </div>
         }
-        {(!isSignUp && isAuthenticated) &&
+        {(!isSignUp && isSignedIn) &&
           <div className={s.login}>
             <Link href="/upload">
               <a>
