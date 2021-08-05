@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Main from '../app/components/Main/Main'
 import { useTranslation } from 'next-i18next';
-import { useStore } from 'react-redux';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ChannelSort, StreamChat } from 'stream-chat';
 import { Channel, ChannelList, Chat, MessageInput, MessageList, Window } from 'stream-chat-react'
@@ -12,15 +11,12 @@ import CreateChannel from '../app/components/Messaging/CreateChannel/CreateChann
 import CustomMessage from '../app/components/Messaging/CustomMessage/CustomMessage';
 import MessagingInput from '../app/components/Messaging/MessagingInput/MessagingInput';
 import { useGetChatClient } from '../app/hooks/useGetChatClient'
+import { useUser } from '../app/hooks/useUser';
 
 
 export default function MessagesPage( props ) {
   const { t } = useTranslation(['upload']);
-  const store = useStore();
-  const isSignedIn = store.getState()?.user?.isSignedIn;
-
-  const username = store.getState()?.user.username;
-  const profilePicture = null; //store.getState()?.user?.profilePicture;
+  const { username, isSignedIn, profilePicture } = useUser();
   const theme = 'light';
   const sort: ChannelSort = {
     last_message_at: -1,

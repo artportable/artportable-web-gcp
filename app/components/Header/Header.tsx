@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
@@ -14,41 +13,54 @@ import { styles } from './header.css'
 import React, { useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
-import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
+import router from 'next/router'
+import { useUser } from '../../hooks/useUser'
 
-export default function Header({ isSignUp, isSignedIn, username = null }) {
+export default function Header() {
   const { t } = useTranslation('header');
   const s = styles();
-  const { profilePicture } = useGetUserProfilePicture(username);
-  
-  const containerClasses = `${s.container} ${isSignUp ? s.isSignUp : ''}`;
-  const logoHref = isSignedIn ? "/feed" : "/";
+  const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
+  const { username, profilePicture, isSignedIn } = useUser();
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
-  
+  const logoHref = isSignedIn ? "/feed" : "/";
+  const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
+  const [loginUrl, setLoginUrl] = useState('/');
+  useEffect(() => {
+    setLoginUrl(keycloak.createLoginUrl({
+      locale: router.locale,
+    }))
+  }, [initialized]);
+  useEffect(() => {
+    const isDefaultLocale = router.locale == router.defaultLocale;
+    const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
+    setSignUpRedirectHref(redirectHref);
+  }, []);
 
-    //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
-    // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
+  //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
+  // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
   useEffect(() => {
-    if(chatClient) {
+    if (chatClient) {
       chatClient.on((event) => {
         if (event.total_unread_count !== undefined) {
           setUnreadChatMessages(event.total_unread_count);
         }
       });
-      
+
     }
 
     return () => {
-      chatClient.off((_) => {});
+      chatClient.off((_) => { });
     }
   }, [chatClient]);
 
-
   return (
     <AppBar color="transparent" elevation={0}>
-      <div className={containerClasses}>
+      <div className={s.container}>
         <div className={s.logo}>
           <Link href={logoHref}>
             <a>
@@ -62,50 +74,44 @@ export default function Header({ isSignUp, isSignedIn, username = null }) {
           </Link>
         </div>
         <nav className={s.navigation}>
-          {(!isSignUp && isSignedIn) &&
-            <MuiButton classes={{root: s.navButton}} color="default" size="large">
+          {(isSignedIn) &&
+            <MuiButton classes={{ root: s.navButton }} color="default" size="large">
               <Link href="/feed">
                 {t('myArtNetwork')}
               </Link>
             </MuiButton>
           }
-          {!isSignUp &&
-            <MuiButton classes={{root: s.navButton}} color="default" size="large">
-              <Link href="/discover">
-                {t('discover')}
-              </Link>
-            </MuiButton>
-          }
+          <MuiButton classes={{ root: s.navButton }} color="default" size="large">
+            <Link href="/discover">
+              {t('discover')}
+            </Link>
+          </MuiButton>
         </nav>
-        {(!isSignUp && !isSignedIn) &&
+        {(!isSignedIn) &&
           <div className={s.login}>
-            <Link href="/plans">
-              <a>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  rounded>
-                    {t('signUp')}
-                </Button>
-              </a>
-            </Link>
-            <Link href="/login">
-              <a>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color="primary"
-                  disableElevation
-                  rounded>
-                    {t('login')}
-                </Button>
-              </a>
-            </Link>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              disableElevation
+              rounded
+              onClick={() => keycloak.register({ 
+                locale: router.locale,
+                redirectUri: signUpRedirectHref})}>
+              {t('signUp')}
+            </Button>
+            <Button
+              size="small"
+              variant="outlined"
+              color="primary"
+              disableElevation
+              rounded
+              onClick={() => keycloak.login({ locale : router.locale})}>
+              {t('login')}
+            </Button>
           </div>
         }
-        {(!isSignUp && isSignedIn) &&
+        {(isSignedIn) &&
           <div className={s.login}>
             <Link href="/upload">
               <a>
@@ -115,7 +121,7 @@ export default function Header({ isSignUp, isSignedIn, username = null }) {
                   color="primary"
                   disableElevation
                   rounded>
-                    {t('upload')}
+                  {t('upload')}
                 </Button>
               </a>
             </Link>
@@ -124,15 +130,15 @@ export default function Header({ isSignUp, isSignedIn, username = null }) {
                 <a>
                   <IconButton color="secondary" aria-label="account">
                     <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                      <ChatBubbleIcon style={{ fontSize: '30px'}} />
-                    </Badge> 
+                      <ChatBubbleIcon style={{ fontSize: '30px' }} />
+                    </Badge>
                   </IconButton>
                 </a>
               </Link>
               <IconButton color="secondary" aria-label="account">
-                <NotificationsIcon style={{ fontSize: '30px'}} />
+                <NotificationsIcon style={{ fontSize: '30px' }} />
               </IconButton>
-              <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
+              <ProfileIconButton profilePicture={null}></ProfileIconButton>
             </div>
           </div>
         }

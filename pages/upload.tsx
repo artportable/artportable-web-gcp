@@ -16,18 +16,17 @@ import "cropperjs/dist/cropper.css";
 import { CircularProgress, Paper, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useRouter } from 'next/router';
+import { useUser } from '../app/hooks/useUser'
 
 
 export default function UploadArtworkPage() {
   const s = styles();
   const { t } = useTranslation(['upload']);
-  const store = useStore();
   const router = useRouter();
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
-  const username = store.getState()?.user?.username;
-  const isSignedIn = store.getState()?.user?.isSignedIn;
+  const { username, isSignedIn } = useUser();
   const tags = useGetTags();
 
   const [title, setTitle] = useState('');

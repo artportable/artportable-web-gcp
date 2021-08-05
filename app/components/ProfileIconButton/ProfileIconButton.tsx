@@ -7,14 +7,16 @@ import Popover from '@material-ui/core/Popover'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import { useTranslation } from 'next-i18next'
-import { useStore } from '../../redux/store'
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
 import styles from './profileIconButton.css'
+import { useUser } from '../../hooks/useUser'
 
 const ProfileIconButton = ({profilePicture = null}) => {
-  const store = useStore();
   const s = styles();
   const { t } = useTranslation('header');
-  const user = store.getState()?.user;
+  const user = useUser();
+  const { keycloak } = useKeycloak<KeycloakInstance>();
 
   const [popoverAnchorEl, setPopoverAnchorEl] = useState<HTMLButtonElement | null>(null);
   const open = Boolean(popoverAnchorEl);
@@ -49,7 +51,7 @@ const ProfileIconButton = ({profilePicture = null}) => {
             </Button>
           </Link>
           <Button
-            
+            onClick={(_) => keycloak.logout()}
             startIcon={<ExitToAppIcon style={{ fontSize: 30 }} color="action" />}>
             {t('logout')}
           </Button>

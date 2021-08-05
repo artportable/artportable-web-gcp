@@ -10,8 +10,8 @@ import Box from '@material-ui/core/Box';
 import CheckoutForm from "../app/components/CheckoutForm/CheckoutForm";
 import InputLabel from '@material-ui/core/InputLabel';
 import { checkoutStyles } from '../styles/checkout';
-import { useStore } from "../app/redux/store";
 import { useRouter } from "next/router";
+import { useStore } from "react-redux";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -26,7 +26,7 @@ export default function Checkout() {
 
   const plan = store.getState()?.signup?.price;
   const email = store.getState()?.signup?.data?.email;
-  const firstName = store.getState()?.signup?.data?.firstName;
+  const firstName = store.getState()?.user?.data?.firstName;
   const lastName = store.getState()?.signup?.data?.lastName;
   const fullName = firstName + ' ' + lastName;
 
@@ -34,9 +34,10 @@ export default function Checkout() {
     // TODO: Do redirect of unauthed users in a better way
     if (!plan) {
       router.push('/plans');
-    } else if (!email || !firstName || !lastName) {
-      router.push('/signup');
-    }
+    } 
+    // else if (!email || !firstName || !lastName) {
+    //   router.push('/signup');
+    // }
   });
 
   return (

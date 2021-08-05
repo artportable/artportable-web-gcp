@@ -14,6 +14,7 @@ export default function PlanCard({ plan }) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const s = styles();
   const dispatch = useDispatch();
+  const href = plan.product === 'free' ? 'feed' : '/checkout';
 
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
 
@@ -49,7 +50,7 @@ export default function PlanCard({ plan }) {
           ></PaymentInfo>
           <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', {returnObjects: true})}></PlansInfoList>
 
-          <Link href='/signup'>
+          <Link href={href}>
             <a>
               <Button 
                 size="small"

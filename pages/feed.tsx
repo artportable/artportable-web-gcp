@@ -19,29 +19,29 @@ import { useStore } from 'react-redux';
 import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
 import { useRouter } from 'next/router';
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
+import { useUser } from '../app/hooks/useUser';
 
 export default function FeedPage() {
   const s = styles();
   const store = useStore();
   const router = useRouter();
   const { t } = useTranslation(['feed', 'common']);
-  const isSignedIn = store.getState()?.user?.isSignedIn;
-  const myUsername = store.getState()?.user?.username;
+  const { username,  isSignedIn } = useUser();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
-  const userProfile = useGetUserProfileSummary(myUsername);
-  const { suggestedUsers } = useFollowRecommendations(myUsername);
+  const userProfile = useGetUserProfileSummary(username);
+  const { suggestedUsers } = useFollowRecommendations(username);
 
   const loadMoreElement = useRef(null);
   const pages = [];
   const pageCount = useInfiniteScroll(loadMoreElement);
 
   for (let i = 0; i < pageCount; i++) {
-    pages.push(<Feed key={i} user={myUsername} index={i} onLikeClick={likePost}></Feed>);
+    pages.push(<Feed key={i} user={username} index={i} onLikeClick={likePost}></Feed>);
   }
 
   function follow(username) {
-    fetch(`${apiBaseUrl}/api/connections/${username}?myUsername=${myUsername}`, {
+    fetch(`${apiBaseUrl}/api/connections/${username}?myUsername=${username}`, {
       method: 'POST',
     })
     .then((response) => {
@@ -58,7 +58,7 @@ export default function FeedPage() {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${myUsername}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
     .then((response) => {
@@ -105,7 +105,7 @@ export default function FeedPage() {
             <NewsletterCard></NewsletterCard>
           </div>
           <div className={s.colFeed}>
-            {myUsername ? (
+            {username ? (
               <>
                 {pages}
                 <div ref={loadMoreElement}>

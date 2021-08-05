@@ -3,10 +3,9 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Typograph
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
 
-
+import { useUser } from '../../hooks/useUser'
 import { useTranslation } from 'react-i18next'
 import { mutate } from 'swr'
-import { useStore } from "react-redux";
 import { styles } from './editProfileDialog.css'
 import { EditMyStudio } from './EditMyStudio/EditMyStudio'
 import { EditInspiredBy } from './EditInspiredBy/EditInspiredBy'
@@ -59,9 +58,8 @@ export interface Socials {
 export default function EditProfileDialog({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('profile');
-  const store = useStore();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const username = store.getState()?.user?.username;
+  const { username } = useUser();
 
   
   const [openEdit, setOpenEdit] = useState(false);

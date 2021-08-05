@@ -19,14 +19,20 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
       }
 
       const user = await response.json();
-      const result = await chatClientRef.current.connectUser({
-        id: username,
-        name: username,
-        image: `${bucketUrl}${profilePicture}`,
-      }, user.Token).catch(error => console.warn(error));
 
-      if(setUnreadCount !== null) {
-        setUnreadCount(chatClientRef.current.user.total_unread_count);
+      try {
+        const result = await chatClientRef.current.connectUser({
+          id: username,
+          name: username,
+          image: `${bucketUrl}${profilePicture}`,
+        }, user.Token).catch(error => console.warn(error)); 
+  
+        if(setUnreadCount !== null) {
+          setUnreadCount(chatClientRef.current.user.total_unread_count);
+        }
+        
+      } catch (error) {
+        console.warn(error)
       }
     }
 

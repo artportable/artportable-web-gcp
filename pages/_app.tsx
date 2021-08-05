@@ -2,24 +2,42 @@ import '../styles/messages.css'
 import '../styles/globals.css'
 import '../styles/theme.css'
 import '../styles/variables.css'
-import type { AppProps } from 'next/app'
+import type { AppProps, AppContext } from 'next/app'
+import App from 'next/app';
 import Head from 'next/head'
-import Header from '../app/components/Header/Header'
 import React from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { theme } from '../styles/theme'
-
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 import { appWithTranslation } from 'next-i18next'
 import { loadCSS } from 'fg-loadcss';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faDribbble,
+  faBehanceSquare
+} from '@fortawesome/free-brands-svg-icons'
+
+//keycloak 
+import type { IncomingMessage } from 'http';
+import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr';
+import cookie from 'cookie';
+import { keycloakConfig, keycloakInitOptions } from '../constants/keycloakSettings';
+import { AuthClientEvent, AuthClientError } from '@react-keycloak/core';
+
+
+library.add(
+  faDribbble,
+  faBehanceSquare
+);
+
+interface InitialProps {
+  cookies: unknown
+}
+
+function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const store = useStore(pageProps.initialReduxState);
-  const isSignUp = pageProps.isSignUp === true;
-  const user = store.getState()?.user;
-  const isSignedIn = user?.isSignedIn ?? false;
-  const username = user?.username ?? null;
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -48,19 +66,41 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
         <title>Artportable</title>
       </Head>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Header
-            isSignUp={isSignUp}
-            isSignedIn={isSignedIn}
-            username={username}
-          ></Header>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </Provider>
+      <SSRKeycloakProvider
+        keycloakConfig={keycloakConfig}
+        persistor={SSRCookies(cookies)}
+        initOptions={keycloakInitOptions}
+        onEvent={testEvent}
+      >
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </Provider>
+      </SSRKeycloakProvider>
     </>
   )
 }
+
+function testEvent(event: AuthClientEvent, error?: AuthClientError | undefined) {
+  console.log(event);
+};
+
+function parseCookies(req?: IncomingMessage) {
+  if (!req || !req.headers) {
+    return {};
+  }
+  return cookie.parse(req.headers.cookie || "");
+}
+
+MyApp.getInitialProps = async (context: AppContext) => {
+  var pageProps = App.getInitialProps(context);
+  // Extract cookies from AppContext
+  return {
+    cookies: parseCookies(context?.ctx?.req),
+    pageProps: { ...pageProps }
+  };
+};
 
 export default appWithTranslation(MyApp)
