@@ -3,7 +3,7 @@ import { useState } from 'react'
 import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
-import { Link } from '@material-ui/core'
+import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useUser } from '../../hooks/useUser'
 
