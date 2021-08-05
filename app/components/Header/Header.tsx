@@ -22,7 +22,7 @@ import { useUser } from '../../hooks/useUser'
 export default function Header() {
   const { t } = useTranslation('header');
   const s = styles();
-  // const { profilePicture } = useGetUserProfilePicture(username);
+  const { profilePicture } = useGetUserProfilePicture(username);
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const { username, profilePicture, isSignedIn } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
