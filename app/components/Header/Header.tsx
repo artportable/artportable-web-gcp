@@ -18,11 +18,11 @@ import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
 import { useUser } from '../../hooks/useUser'
+import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 
 export default function Header() {
   const { t } = useTranslation('header');
   const s = styles();
-  const { profilePicture } = useGetUserProfilePicture(username);
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const { username, profilePicture, isSignedIn } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
