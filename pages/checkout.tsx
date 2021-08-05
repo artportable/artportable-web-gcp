@@ -34,9 +34,10 @@ export default function Checkout() {
     // TODO: Do redirect of unauthed users in a better way
     if (!plan) {
       router.push('/plans');
-    } else if (!email || !firstName || !lastName) {
-      router.push('/signup');
-    }
+    } 
+    // else if (!email || !firstName || !lastName) {
+    //   router.push('/signup');
+    // }
   });
 
   return (

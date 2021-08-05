@@ -4,15 +4,53 @@ import { styles } from '../styles/plans.css'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-import React from 'react';
+import React, { useEffect } from 'react';
 import PlanSelector from '../app/components/PlanSelector/PlanSelector';
 import Price from '../app/models/Price';
+import { useKeycloak } from '@react-keycloak/ssr';
+import type { KeycloakInstance } from 'keycloak-js'
+import { useDispatch } from "react-redux";
+import { LOGIN_USER } from '../app/redux/actions/userActions'
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
 export default function Plans({ priceData }) {
   const { t } = useTranslation(['plans', 'common']);
   const s = styles();
+  const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(initialized && keycloak.tokenParsed) {
+      const parsedToken = keycloak.tokenParsed as any;
+      const createUser = async () => {
+        try {
+          const response = await fetch(`${apiBaseUrl}/api/user`, {
+            method: 'POST',
+            body: JSON.stringify({
+              Username: parsedToken.username,
+              Name: parsedToken.givenName,
+              Surname: parsedToken.lastName,
+              Email: parsedToken.email,
+            }),
+          });
+          const data = await response.json();
+  
+          dispatch({
+            type: LOGIN_USER,
+            payload: { 
+              username: data.Username,
+              isSignedIn: true
+            }
+          });
+        } catch (error) {
+          console.warn(error);
+        }
+      }
+  
+      createUser();
+    }
+  }, [initialized]);
 
   return (
     <div className={s.plansRootContainer}>

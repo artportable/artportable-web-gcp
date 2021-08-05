@@ -10,10 +10,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
     planCards: {
       display: 'grid',
-      gridAutoFlow: 'column',
+      gridAutoFlow: 'row',
       gap: '16px',
       justifyContent: 'center',
       alignItems: 'stretch',
+      [theme.breakpoints.up('smPlus')]: {
+        gridAutoFlow: 'column',
+      },
     },
   }),
 );

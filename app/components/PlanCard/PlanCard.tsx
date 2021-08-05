@@ -49,7 +49,7 @@ export default function PlanCard({ plan }) {
           ></PaymentInfo>
           <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', {returnObjects: true})}></PlansInfoList>
 
-          <Link href='/signup'>
+          <Link href='/checkout'>
             <a>
               <Button 
                 size="small"
