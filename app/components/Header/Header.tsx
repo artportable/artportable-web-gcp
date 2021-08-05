@@ -19,15 +19,15 @@ import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
 import { useUser } from '../../hooks/useUser'
 
-export default function Header({ username = null }) {
+export default function Header() {
   const { t } = useTranslation('header');
   const s = styles();
   // const { profilePicture } = useGetUserProfilePicture(username);
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
-  const { isSignedIn } = useUser();
+  const { username, profilePicture, isSignedIn } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  // const [chatClient] = useState(useGetChatClient(username, null, isSignedIn, setUnreadChatMessages));
+  const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   const logoHref = isSignedIn ? "/feed" : "/";
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [loginUrl, setLoginUrl] = useState('/');
@@ -45,20 +45,20 @@ export default function Header({ username = null }) {
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
-  // useEffect(() => {
-  //   if (chatClient) {
-  //     chatClient.on((event) => {
-  //       if (event.total_unread_count !== undefined) {
-  //         setUnreadChatMessages(event.total_unread_count);
-  //       }
-  //     });
+  useEffect(() => {
+    if (chatClient) {
+      chatClient.on((event) => {
+        if (event.total_unread_count !== undefined) {
+          setUnreadChatMessages(event.total_unread_count);
+        }
+      });
 
-  //   }
+    }
 
-  //   return () => {
-  //     chatClient.off((_) => { });
-  //   }
-  // }, [chatClient]);
+    return () => {
+      chatClient.off((_) => { });
+    }
+  }, [chatClient]);
 
   return (
     <AppBar color="transparent" elevation={0}>
