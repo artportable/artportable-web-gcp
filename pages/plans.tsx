@@ -28,11 +28,14 @@ export default function Plans({ priceData }) {
           const response = await fetch(`${apiBaseUrl}/api/user`, {
             method: 'POST',
             body: JSON.stringify({
-              Username: parsedToken.username,
-              Name: parsedToken.givenName,
-              Surname: parsedToken.lastName,
+              Username: parsedToken.preferred_username,
+              Name: parsedToken.given_name,
+              Surname: parsedToken.family_name,
               Email: parsedToken.email,
             }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
           });
           const data = await response.json();
   

@@ -29,12 +29,18 @@ export default function Header({ username = null }) {
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   // const [chatClient] = useState(useGetChatClient(username, null, isSignedIn, setUnreadChatMessages));
   const logoHref = isSignedIn ? "/feed" : "/";
+  const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [loginUrl, setLoginUrl] = useState('/');
   useEffect(() => {
     setLoginUrl(keycloak.createLoginUrl({
       locale: router.locale,
     }))
   }, [initialized]);
+  useEffect(() => {
+    const isDefaultLocale = router.locale == router.defaultLocale;
+    const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
+    setSignUpRedirectHref(redirectHref);
+  }, []);
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -85,19 +91,21 @@ export default function Header({ username = null }) {
         </nav>
         {(!isSignedIn) &&
           <div className={s.login}>
-            <Link href="/plans">
-              <a>
+            {/* <Link href="/plans">
+              <a> */}
                 <Button
                   size="small"
                   variant="contained"
                   color="primary"
                   disableElevation
                   rounded
-                  onClick={() => keycloak.register({ locale : router.locale})}>
+                  onClick={() => keycloak.register({ 
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref})}>
                   {t('signUp')}
                 </Button>
-              </a>
-            </Link>
+              {/* </a>
+            </Link> */}
             <Button
               size="small"
               variant="outlined"
