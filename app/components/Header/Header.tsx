@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import AppBar from '@material-ui/core/AppBar'
 import IconButton from '@material-ui/core/IconButton'
@@ -18,7 +17,6 @@ import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
 import { useUser } from '../../hooks/useUser'
-import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 
 export default function Header() {
   const { t } = useTranslation('header');
