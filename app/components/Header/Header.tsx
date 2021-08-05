@@ -91,21 +91,17 @@ export default function Header({ username = null }) {
         </nav>
         {(!isSignedIn) &&
           <div className={s.login}>
-            {/* <Link href="/plans">
-              <a> */}
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  rounded
-                  onClick={() => keycloak.register({ 
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref})}>
-                  {t('signUp')}
-                </Button>
-              {/* </a>
-            </Link> */}
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              disableElevation
+              rounded
+              onClick={() => keycloak.register({ 
+                locale: router.locale,
+                redirectUri: signUpRedirectHref})}>
+              {t('signUp')}
+            </Button>
             <Button
               size="small"
               variant="outlined"
