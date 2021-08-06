@@ -135,9 +135,9 @@ export default function Header() {
                   </IconButton>
                 </a>
               </Link>
-              <IconButton color="secondary" aria-label="account">
+              {/* <IconButton color="secondary" aria-label="account">
                 <NotificationsIcon style={{ fontSize: '30px' }} />
-              </IconButton>
+              </IconButton> */}
               <ProfileIconButton profilePicture={null}></ProfileIconButton>
             </div>
           </div>
