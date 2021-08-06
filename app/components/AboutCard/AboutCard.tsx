@@ -24,23 +24,23 @@ export default function AboutCard({ data }) {
           <Box maxWidth='70%'>
             <Typography variant="h4">
               <Box fontWeight="500" fontFamily="LyonDisplay">
-                {`${data.Name} ${data.Surname}`}
+                {`${data?.Name} ${data?.Surname}`}
               </Box>
             </Typography>
-            {data.Title &&
+            {data?.Title &&
               <Typography className={s.artistTitle}>
-                {`${data.Title}`}
+                {`${data?.Title}`}
               </Typography>
             }
-            {data.Location &&
+            {data?.Location &&
               <Typography className={s.location}>
                 <RoomIcon color="secondary" fontSize="small"></RoomIcon>
-                {`${data.Location}`}
+                {`${data?.Location}`}
               </Typography>
             }
             <Box paddingTop={1}>
               <Typography variant="body1">
-                {data.About}
+                {data?.About}
               </Typography>
             </Box>
           </Box>
