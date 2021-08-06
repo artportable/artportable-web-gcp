@@ -37,6 +37,7 @@ export default function Profile() {
   const theme: Theme = useTheme();
 
   const [activeTab, setActiveTab] = useState(0);
+  const [isMyProfile, setIsMyProfile] = useState(false);
 
   const profileUser = useGetProfileUser();
   const artworks = useGetArtworks(profileUser);
@@ -44,7 +45,6 @@ export default function Profile() {
   const userProfile = useGetUserProfile(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const { username } = useUser();
 
@@ -59,6 +59,10 @@ export default function Profile() {
       }
     }
   }, [artworks]);
+
+  useEffect(() => {
+    setIsMyProfile(username !== null && profileUser !== null && username == profileUser);
+  }, [username, profileUser]);
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
@@ -94,21 +98,21 @@ export default function Profile() {
       <FullWidthBlock>
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
-          <ProfileCoverPhoto />
-        
+          <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} isMyProfile={isMyProfile}/>
         }
         {artworks.isError && <div>error...</div>}
       </FullWidthBlock>
 
       <div className={s.profileGrid}>
         <div className={s.profileSummary}>
-          <ProfileComponent userProfile={userProfileSummary}></ProfileComponent>
+          <ProfileComponent userProfile={userProfileSummary} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
         </div>
         <div className={s.editActions}>
-          {/* Add condition to show if user is on own profile */}
-          <EditProfileDialog
-            userProfile={userProfile.data}
-          />
+          {isMyProfile &&
+            <EditProfileDialog
+              userProfile={userProfile.data}
+            />
+          }
         </div>
         <Divider className={s.divider}></Divider>
         <div className={s.tabsContainer}>
@@ -123,7 +127,7 @@ export default function Profile() {
               {imageRows && imageRows.map((row: Image[], i) =>
                 <div className={s.portfolioRow} key={i}>   
                   {row.map(image => {
-                      let artwork = artworks.data.find(a => a.PrimaryFile.Name === image.Name);
+                      let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
 
                       if (artwork) {
                         return <ArtworkListItemDefined

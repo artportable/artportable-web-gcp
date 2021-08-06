@@ -10,7 +10,7 @@ import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst } from '../../utils/util';
 
-export default function Profile({ userProfile, divider = false }) {
+export default function Profile({ userProfile, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
@@ -25,39 +25,61 @@ export default function Profile({ userProfile, divider = false }) {
           horizontal: 'right',
         }}
         badgeContent={
-          !data?.ProfilePicture &&
+          isMyProfile && !data?.ProfilePicture &&
             <AddCircleIcon
               className={s.badgeIcon}
               color="primary"
               onClick={() => alert('upload picture')} />
         }
       >
-        <Link href={`/profile/@${data?.Username}`}>
-          <a>
-            <Avatar className={s.avatar}>
-              {data?.ProfilePicture ? (
-                <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
-                  alt="Profile picture"
-                  style={{ height: '120px', width: '120px' }}
-                />
-              ) : (
-                <AccountCircleIcon
-                  color="secondary"
-                  className={s.noPictureIcon}
-                />
-              )}
-            </Avatar>
-          </a>
-        </Link>
+        {linkToProfile ?
+          <Link href={`/profile/@${data?.Username}`}>
+            <a>
+              <Avatar className={s.avatar}>
+                {data?.ProfilePicture ? (
+                  <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
+                    alt="Profile picture"
+                    style={{ height: '120px', width: '120px' }}
+                  />
+                ) : (
+                  <AccountCircleIcon
+                    color="secondary"
+                    className={s.noPictureIcon}
+                  />
+                )}
+              </Avatar>
+            </a>
+          </Link>
+        :
+          <Avatar className={s.avatar}>
+            {data?.ProfilePicture ? (
+              <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
+                alt="Profile picture"
+                style={{ height: '120px', width: '120px' }}
+              />
+            ) : (
+              <AccountCircleIcon
+                color="secondary"
+                className={s.noPictureIcon}
+              />
+            )}
+          </Avatar>
+        }
       </Badge>
 
       <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="subtitle1">
-          <Link href={`/profile/@${data?.Username}`}>
-            <a>
+          {linkToProfile ?
+            <Link href={`/profile/@${data?.Username}`}>
+              <a>
+                {data?.Username}
+              </a>
+            </Link>
+          :
+            <span>
               {data?.Username}
-            </a>
-          </Link>
+            </span>
+          }
         </Typography>
         <Typography variant="caption" className="title">
           {data?.Title}
@@ -70,12 +92,14 @@ export default function Profile({ userProfile, divider = false }) {
         </Typography>
       </Box>
 
-      <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
-        <RoomIcon color="secondary"></RoomIcon>
-        <Typography>
-          {data?.Location}
-        </Typography>
-      </Box>
+      {data?.Location &&
+        <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
+          <RoomIcon color="secondary"></RoomIcon>
+          <Typography>
+            {data?.Location}
+          </Typography>
+        </Box>
+      }
       { divider &&
         <Divider></Divider>
       }

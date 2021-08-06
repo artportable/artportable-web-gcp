@@ -12,7 +12,8 @@ const styles = makeStyles((theme: Theme) =>
     profileCoverPhoto: {
       position: 'relative',
       objectFit: 'cover',
-      maxWidth: '100vw'
+      maxWidth: '100vw',
+      width: '100%'
     },
     buttonContainer: {
       position: 'absolute',
