@@ -11,20 +11,6 @@ export const styles = makeStyles((theme: Theme) =>
       height: '50vh',
       width: '100vw'
     },
-    text: {
-      position: 'absolute',
-      bottom: '100px',
-      left: '50px',
-      fontSize: '2rem',
-      backgroundColor: theme.palette.common.white,
-      borderRadius: '4px',
-      padding: theme.spacing(1),
-      maxWidth: '25vw',
-    },
-    textHeader: {
-      backgroundColor: theme.palette.common.white,
-      padding: theme.spacing(1)
-    },
     user: {
       position: 'absolute',
       bottom: '50px',
@@ -40,12 +26,6 @@ export const styles = makeStyles((theme: Theme) =>
       padding: 0,
       border: `1px solid ${theme.palette.common.white}88`,
       overflow: 'hidden'
-    },
-    textBody: {
-      fontFamily: 'LyonDisplay',
-      color: theme.palette.common.white,
-      padding: '12px',
-      fontSize: '1.1rem'
     },
   }),
 );

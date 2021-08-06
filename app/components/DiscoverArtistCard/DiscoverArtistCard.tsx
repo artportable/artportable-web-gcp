@@ -13,19 +13,21 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
-import { useUser } from '../../hooks/useUser'
-
+import { useStore } from "react-redux";
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
+  const mainWidth = useMainWidth().regular;
   const s = styles();
+  const store = useStore();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const scrollRef = useRef(null);
+  const scrollBy = mainWidth / 1.5;
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
   const images = artist.Images.map(i => normalizeImageSize(i, 200));
-  const { isSignedIn } = useUser();
+  const isSignedIn = store.getState()?.user?.isSignedIn;
 
   return (
     <div className={s.container}>
@@ -63,12 +65,12 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
           )}
         </div>
         <IconButton className={s.leftButton} color="primary" onClick={() => {
-            scrollRef.current.scrollBy({ top: 0, left: -1, behavior: 'smooth'});
+            scrollRef.current.scrollBy({ top: 0, left: -scrollBy, behavior: 'smooth'});
           }}>
             <ChevronLeftIcon className={s.chevron}></ChevronLeftIcon>
         </IconButton>
         <IconButton className={s.rightButton} color="primary" onClick={() => {
-            scrollRef.current.scrollBy({ top: 0, left: 1, behavior: 'smooth'});
+            scrollRef.current.scrollBy({ top: 0, left: scrollBy, behavior: 'smooth'});
           }}>
           <ChevronRightIcon className={s.chevron}></ChevronRightIcon>
         </IconButton>

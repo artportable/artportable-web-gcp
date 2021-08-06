@@ -1,14 +1,12 @@
 import React from 'react';
 import { styles } from './carouselItem.css';
 import Image from 'next/image'
-import { Avatar, Chip, Typography, Box, Paper } from '@material-ui/core';
+import { Avatar, Chip } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next'
 
-export default function CarouselItem({ src, text, subheader, user = null }) {
+export default function CarouselItem({ src, text, user = null }) {
   const s = styles();
-  const { t } = useTranslation(['index', 'header']);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   return (
