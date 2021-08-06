@@ -13,6 +13,7 @@ import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { useStore } from "react-redux";
+import { useUser } from "../../app/hooks/useUser";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -24,7 +25,7 @@ export default function ArtworkPage(props) {
 
   const { id } = router.query
   const artwork = useGetArtwork(id as string);
-  const username = store.getState()?.user?.username;
+  const { username } = useUser();
 
   const [isFollowed, setFollow] = useState(false); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
@@ -38,6 +39,7 @@ export default function ArtworkPage(props) {
     if (username === null || username === undefined) {
       return; // TODO: Display modal to sign up
     }
+
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: 'POST',
