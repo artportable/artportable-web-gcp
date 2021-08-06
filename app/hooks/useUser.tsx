@@ -5,6 +5,7 @@ import { useDispatch, useStore } from "react-redux";
 import { LOGIN_USER } from '../redux/actions/userActions';
 import User from '../models/User'
 import { useRouter } from 'next/router';
+import { Membership } from '../models/Membership';
 
 export function useUser(): User {
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
@@ -28,7 +29,7 @@ export function useUser(): User {
           const response = await fetch(loginUrl.href);
 
           if(response.status === 204) {
-            const anonymousUser = { username: null, profilePicture: null, isSignedIn: true }
+            const anonymousUser = { username: null, profilePicture: null, isSignedIn: true, membership: Membership.Base }
             setLocalUser(anonymousUser);
             dispatch({
               type: LOGIN_USER,
@@ -45,8 +46,9 @@ export function useUser(): User {
               type: LOGIN_USER,
               payload: { 
                 username: data.Username,
-                profilePicture: data.ProfilePicture, 
-                isSignedIn: true
+                profilePicture: data.ProfilePicture,
+                isSignedIn: true,
+                membership: data.Product
               }
             });
   

@@ -1,9 +1,11 @@
+import { Membership } from '../../models/Membership';
 import {LOGIN_USER, LOGOUT_USER} from '../actions/userActions';
 
 const initialUserState = {
   isSignedIn: false,
   username: null,
-  profilePicture: null
+  profilePicture: null,
+  membership: Membership.Base
 }
 
 const userReducer = (state = initialUserState, action) => {
@@ -11,7 +13,7 @@ const userReducer = (state = initialUserState, action) => {
     case LOGIN_USER:
       return {...state, ...action.payload };
     case LOGOUT_USER:
-      return {...state, isSignedIn: false, username: null};
+      return {...state, isSignedIn: false, username: null, membership: Membership.Base};
     default:
       return {...state};
   }
