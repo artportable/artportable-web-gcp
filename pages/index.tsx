@@ -76,17 +76,15 @@ export async function getStaticProps({locale}) {
     }
   ];
 
-  const priceData = await getPriceData();
-
   return {
     props: {
       carouselItems,
-      priceData,
       ...await serverSideTranslations(locale, ['header', 'index', 'tags', 'plans', 'common']),
     },
   }
 }
 
+// NOT USED ATM
 async function getPriceData() {
   const freeYearPlan: Price =
     {
