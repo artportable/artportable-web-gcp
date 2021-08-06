@@ -93,7 +93,7 @@ export default function FeedPage() {
                 </a>
               </Link>
             }
-            <NewsletterCard></NewsletterCard>
+            {/* <NewsletterCard></NewsletterCard> */}
           </div>
           <div className={s.colFeed}>
             {username ? (
