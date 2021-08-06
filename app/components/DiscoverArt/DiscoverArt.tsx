@@ -37,6 +37,10 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     setImageRows(rows);
   }, [artworks]);
 
+  useEffect(() => {
+    onFilter([]);
+  }, []);
+
   return (
     <>
       <Box className={s.rowsContainer}>
