@@ -8,6 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
     imageContainer: {
       borderRadius: '4px',
       overflow: 'hidden',
+      textAlign: 'center'
     },
     titleAndLike: {
       display: 'flex',
