@@ -45,7 +45,6 @@ export default function Profile() {
   const userProfile = useGetUserProfile(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const { username } = useUser();
 
@@ -99,7 +98,7 @@ export default function Profile() {
       <FullWidthBlock>
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
-          <ProfileCoverPhoto isMyProfile={isMyProfile}/>
+          <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} isMyProfile={isMyProfile}/>
         }
         {artworks.isError && <div>error...</div>}
       </FullWidthBlock>
