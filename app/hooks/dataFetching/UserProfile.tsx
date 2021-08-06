@@ -1,21 +1,13 @@
 import useSWR from 'swr'
+import { getFetcher } from '../../utils/util'
 
-const fetcher = url => fetch(url).then(r => r.json());
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
 export const getUserProfileSummaryUri = (user: string) => `${apiBaseUrl}/api/profile/${user}/summary`;
 export function useGetUserProfileSummary(user) {
-  if (!user) {
-    return {
-      data: null,
-      isLoading: false,
-      isError: true
-    }
-  }
-
   const { data, error } = useSWR(
     getUserProfileSummaryUri(user),
-    fetcher,
+    getFetcher(user),
     { 
       revalidateOnFocus: true,
       revalidateOnReconnect: false,
@@ -30,17 +22,9 @@ export function useGetUserProfileSummary(user) {
 
 export const getUserProfileUri = (user: string) => `${apiBaseUrl}/api/profile/${user}`;
 export function useGetUserProfile(user) {
-  if (!user) {
-    return {
-      data: null,
-      isLoading: false,
-      isError: true
-    }
-  }
-
   const { data, error } = useSWR(
     getUserProfileUri(user),
-    fetcher,
+    getFetcher(user),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -54,17 +38,9 @@ export function useGetUserProfile(user) {
 }
 
 export function useGetSimilarPortfolios(user) {
-  if (!user) {
-    return {
-      data: null,
-      isLoading: false,
-      isError: true
-    }
-  }
-
   const { data, error } = useSWR(
     `${apiBaseUrl}/api/profile/${user}/similar`,
-    fetcher,
+    getFetcher(user),
     { 
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -78,17 +54,9 @@ export function useGetSimilarPortfolios(user) {
 }
 
 export function useGetUserProfileTags(user) {
-  if (!user) {
-    return {
-      data: null,
-      isLoading: false,
-      isError: true
-    }
-  }
-
   const { data, error } = useSWR(
     `${apiBaseUrl}/api/profile/${user}/tags`,
-    fetcher,
+    getFetcher(user),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
@@ -104,18 +72,7 @@ export function useGetUserProfileTags(user) {
 export function useGetUserProfilePicture(user) {
   const { data, error } = useSWR(
     `${apiBaseUrl}/api/profile/${user}/profilepicture`,
-    async url => {
-      if (!user) {
-        return {
-          data: null,
-          isLoading: false,
-          isError: true
-        }
-      }
-      const response = await fetch(url);
-      const data = await response.text();
-      return data;
-    },
+    getFetcher(user, 'text'),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
