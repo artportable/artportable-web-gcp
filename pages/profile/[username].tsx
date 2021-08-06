@@ -22,6 +22,8 @@ import SimilarPortfoliosSection from '../../app/components/SimilarPortfoliosSect
 import { useMainWidth } from '../../app/hooks/useWidth'
 import { getImageAsRows } from '../../app/utils/layoutUtils'
 import { useTheme, Theme } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton'
 
 function a11yProps(index: any) {
   return {
@@ -35,6 +37,7 @@ export default function Profile() {
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
+  const router = useRouter();  
 
   const [activeTab, setActiveTab] = useState(0);
   const [isMyProfile, setIsMyProfile] = useState(false);
@@ -51,6 +54,19 @@ export default function Profile() {
   const [imageRows, setImageRows] = useState(null);
 
   useEffect(() => {
+    const handleRouteChangeStart = (url) => {
+      if(url.startsWith(`/profile/`)) {
+        setImageRows(null);
+      }
+    }
+    router.events.on('routeChangeComplete', handleRouteChangeStart);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChangeStart);
+    }
+  }, []);
+
+  useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
     if(imageRows === null) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
@@ -58,7 +74,7 @@ export default function Profile() {
         setImageRows(rows);
       }
     }
-  }, [artworks]);
+  }, [artworks, imageRows]);
 
   useEffect(() => {
     setIsMyProfile(username !== null && profileUser !== null && username == profileUser);
@@ -141,7 +157,21 @@ export default function Profile() {
                   )}
                 </div>
               )}
-
+              {artworks.isLoading && 
+              <>
+                <div className={s.portfolioRow}> 
+                  <ArtworkListItemDefinedSkeleton grow={1} />
+                  <ArtworkListItemDefinedSkeleton grow={3} />
+                  <ArtworkListItemDefinedSkeleton grow={2} />
+                  <ArtworkListItemDefinedSkeleton grow={1} />
+                </div>
+                <div className={s.portfolioRow}> 
+                  <ArtworkListItemDefinedSkeleton grow={2} />
+                  <ArtworkListItemDefinedSkeleton grow={4} />
+                  <ArtworkListItemDefinedSkeleton grow={3} />
+                </div>
+              </>
+              }
               </div>
             </TabPanel>
             <TabPanel value={activeTab} index={1}>
