@@ -48,7 +48,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           disableElevation
           rounded
           onClick={() => {
-            onFollowClick(user.UserId);
+            onFollowClick(user.Username);
             setFollow(true);
           }}>
             {capitalizeFirst(t('common:words.follow'))}

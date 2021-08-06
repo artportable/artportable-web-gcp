@@ -35,8 +35,8 @@ export default function FeedPage() {
     pages.push(<Feed key={i} user={username} index={i} onLikeClick={likePost}></Feed>);
   }
 
-  function follow(username) {
-    fetch(`${apiBaseUrl}/api/connections/${username}?myUsername=${username}`, {
+  function follow(user) {
+    fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username}`, {
       method: 'POST',
     })
     .then((response) => {
