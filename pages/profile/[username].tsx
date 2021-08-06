@@ -123,7 +123,7 @@ export default function Profile() {
               {imageRows && imageRows.map((row: Image[], i) =>
                 <div className={s.portfolioRow} key={i}>   
                   {row.map(image => {
-                      let artwork = artworks.data.find(a => a.PrimaryFile.Name === image.Name);
+                      let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
 
                       if (artwork) {
                         return <ArtworkListItemDefined
