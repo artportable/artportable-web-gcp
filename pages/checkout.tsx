@@ -12,6 +12,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { checkoutStyles } from '../styles/checkout';
 import { useRouter } from "next/router";
 import { useStore } from "react-redux";
+import { useKeycloak } from "@react-keycloak/ssr";
+import { KeycloakInstance } from "keycloak-js";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -24,21 +26,25 @@ export default function Checkout() {
   const styles = checkoutStyles();
   const router = useRouter();
 
+  const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
+  const [email, setEmail] = useState(null);
+  const [fullName, setFullName] = useState(null);
   const plan = store.getState()?.signup?.price;
-  const email = store.getState()?.signup?.data?.email;
-  const firstName = store.getState()?.user?.data?.firstName;
-  const lastName = store.getState()?.signup?.data?.lastName;
-  const fullName = firstName + ' ' + lastName;
 
   useEffect(() => {
     // TODO: Do redirect of unauthed users in a better way
     if (!plan) {
       router.push('/plans');
-    } 
-    // else if (!email || !firstName || !lastName) {
-    //   router.push('/signup');
-    // }
+    }
   });
+
+  useEffect(() => {
+    if(initialized && keycloak.tokenParsed) {
+      const parsedToken = keycloak.tokenParsed as any;
+      setEmail(parsedToken.email);
+      setFullName(parsedToken.given_name + ' ' + parsedToken.family_name);
+    }
+  }, [initialized]);
 
   return (
     <Box className={styles.root}>
@@ -57,7 +63,6 @@ export default function Checkout() {
               email={email}
               fullName={fullName}
               plan={plan}
-
             />
           </Elements>
         </CardContent>
