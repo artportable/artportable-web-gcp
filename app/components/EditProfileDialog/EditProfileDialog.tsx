@@ -181,13 +181,13 @@ const populateProfileObject = (userProfile): Profile => {
     about: userProfile?.About,
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
-    educations: userProfile?.Educations.map(e => ({ 
+    educations: userProfile?.Educations?.map(e => ({
       from: e.From,
       to: e.To,
       name: e.Name,
       key: v4()
     })),
-    exhibitions: userProfile?.Exhibitions.map(e => ({ 
+    exhibitions: userProfile?.Exhibitions?.map(e => ({
       key: v4(),
       from: e.From,
       to: e.To,
@@ -195,12 +195,12 @@ const populateProfileObject = (userProfile): Profile => {
       place: e.Place
     })),
     socialMedia: {
-      instagram: userProfile?.SocialMedia.Instagram,
-      facebook: userProfile?.SocialMedia.Facebook,
-      linkedIn: userProfile?.SocialMedia.LinkedIn,
-      dribbble: userProfile?.SocialMedia.Dribble,
-      behance: userProfile?.SocialMedia.Behance,
-      website: userProfile?.SocialMedia.Website
+      instagram: userProfile?.SocialMedia?.Instagram,
+      facebook: userProfile?.SocialMedia?.Facebook,
+      linkedIn: userProfile?.SocialMedia?.LinkedIn,
+      dribbble: userProfile?.SocialMedia?.Dribble,
+      behance: userProfile?.SocialMedia?.Behance,
+      website: userProfile?.SocialMedia?.Website
     }
   }
 }
@@ -213,24 +213,24 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     About: userProfile?.about,
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,
-    Educations: userProfile?.educations.map(e => ({ 
+    Educations: userProfile?.educations?.map(e => ({ 
       From: e.from,
       To: e.to,
       Name: e.name,
     })),
-    Exhibitions: userProfile?.exhibitions.map(e => ({ 
+    Exhibitions: userProfile?.exhibitions?.map(e => ({ 
       From: e.from,
       To: e.to,
       Name: e.name,
       Place: e.place
     })),
     SocialMedia: {
-      Instagram: userProfile?.socialMedia.instagram,
-      Facebook: userProfile?.socialMedia.facebook,
-      LinkedIn: userProfile?.socialMedia.linkedIn,
-      Dribble: userProfile?.socialMedia.dribbble,
-      Behance: userProfile?.socialMedia.behance,
-      Website: userProfile?.socialMedia.website
+      Instagram: userProfile?.socialMedia?.instagram,
+      Facebook: userProfile?.socialMedia?.facebook,
+      LinkedIn: userProfile?.socialMedia?.linkedIn,
+      Dribble: userProfile?.socialMedia?.dribbble,
+      Behance: userProfile?.socialMedia?.behance,
+      Website: userProfile?.socialMedia?.website
     }
   }
 }
