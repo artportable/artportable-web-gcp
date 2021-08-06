@@ -32,7 +32,7 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
                   <AvatarSkeleton></AvatarSkeleton>
                 </div>
                 ) : (
-                  suggestedUsers.length !== 0 ?
+                  suggestedUsers.length !== 0 && suggestedUsers.length > 0 ?
                     (suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
                       <FollowSuggestion key={user.Username} user={user} onFollowClick={onFollowClick}></FollowSuggestion>
                     )) : (

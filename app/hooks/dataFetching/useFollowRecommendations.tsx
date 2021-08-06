@@ -1,20 +1,12 @@
 import useSWR from 'swr'
-const fetcher = url => fetch(url).then(r => r.json())
+import { getFetcher } from '../../utils/util'
 
 export function useFollowRecommendations(user) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
-  if (!user) {
-    return {
-      suggestedUsers: null,
-      isLoading: false,
-      isError: true
-    }
-  }
-
   const { data, error } = useSWR(
     `${apiBaseUrl}/api/connections?myUsername=${user}`,
-    fetcher,
+    getFetcher(user),
     { 
       revalidateOnFocus: false,
       revalidateOnReconnect: false,

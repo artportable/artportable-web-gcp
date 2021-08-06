@@ -14,19 +14,14 @@ import { styles } from '../styles/feed.css';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
-import { debounce } from '@material-ui/core/utils';
-import { useStore } from 'react-redux';
 import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
-import { useRouter } from 'next/router';
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
 import { useUser } from '../app/hooks/useUser';
 
 export default function FeedPage() {
   const s = styles();
-  const store = useStore();
-  const router = useRouter();
   const { t } = useTranslation(['feed', 'common']);
-  const { username,  isSignedIn } = useUser();
+  const { username } = useUser();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const userProfile = useGetUserProfileSummary(username);
@@ -71,13 +66,6 @@ export default function FeedPage() {
       console.log(error);
     })
   }
-
-  useEffect(() => {
-    // TODO: Do redirect of unauthed users in a better way
-    if (!isSignedIn) {
-      router.push('/');
-    }
-  });
 
   return (
     <>

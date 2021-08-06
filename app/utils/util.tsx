@@ -40,3 +40,24 @@ export const shuffleArray = (array) => {
 
   return array;
 }
+
+const fetcherJson = url => fetch(url).then(r => r.json());
+const fetcherText = url => fetch(url).then(r => r.text());
+
+type ResponseValue = 'text' | 'json';
+
+export const getFetcher = (condition, responseValue: ResponseValue = 'json') => {
+  if (!condition) {
+    return async (_) => null;
+  }
+
+  switch (responseValue) {
+    case 'json':
+      return fetcherJson;
+    case 'text':
+      return fetcherText;
+    default:
+      return async (_) => null;
+  }
+
+}
