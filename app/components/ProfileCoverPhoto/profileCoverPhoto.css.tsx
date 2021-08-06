@@ -5,6 +5,7 @@ const styles = makeStyles((theme: Theme) =>
     container: {
       height: '300px',
       width: '100%',
+      backgroundColor: theme.palette.grey[300],
       overflow: 'hidden',
       position: 'absolute',
       top: 'var(--header-height)',
