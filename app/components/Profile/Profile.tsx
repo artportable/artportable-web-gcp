@@ -92,12 +92,14 @@ export default function Profile({ userProfile, divider = false, isMyProfile = fa
         </Typography>
       </Box>
 
-      <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
-        <RoomIcon color="secondary"></RoomIcon>
-        <Typography>
-          {data?.Location}
-        </Typography>
-      </Box>
+      {data?.Location &&
+        <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
+          <RoomIcon color="secondary"></RoomIcon>
+          <Typography>
+            {data?.Location}
+          </Typography>
+        </Box>
+      }
       { divider &&
         <Divider></Divider>
       }
