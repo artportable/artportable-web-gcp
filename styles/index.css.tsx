@@ -12,19 +12,9 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       marginBottom: '30px'
     },
-    welcomeToContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      textAlign: 'center',
-      alignItems: 'center',
-      marginTop: '40px',
-      marginBottom: '40px'
-    },
-    welcomeTo: {
-      width: '400px'
-    },
-    planSelector: {
-      marginBottom: '50px'
+    artworkGrid: {
+      marginTop: '64px',
+      marginBottom: '48px',
     }
   }),
 );

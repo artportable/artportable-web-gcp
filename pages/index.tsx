@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Main, { FullWidthBlock } from '../app/components/Main/Main'
 import { styles } from '../styles/index.css';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 import { useGetArtworksForStartPage } from '../app/hooks/dataFetching/Artworks'
-import PlanSelector from '../app/components/PlanSelector/PlanSelector';
 import CarouselItem from '../app/components/CarouselItem/CarouselItem';
 import IndexArtworksGrid from '../app/components/IndexArtworksGrid/IndexArtworksGrid';
 import Carousel from 'react-material-ui-carousel';
@@ -41,20 +40,9 @@ export default function Home( props ) {
         </Carousel>
       </FullWidthBlock>
 
-      <Box marginTop={8}>
+      <Box className={s.artworkGrid}>
         <IndexArtworksGrid artworks={artworks} />
       </Box>
-
-      <div className={s.welcomeToContainer}>
-        <div className={s.welcomeTo}>
-          <h1>{t('chooseMembership')}</h1>
-          <p>{t('portfolioExplanation')}</p>
-          <p>{t('memberExplanation')}</p>
-        </div>
-      </div>
-      <div className={s.planSelector}>
-        <PlanSelector priceData={props.priceData}></PlanSelector>
-      </div>
     </Main>
   );
 }
