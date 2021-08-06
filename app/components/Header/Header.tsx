@@ -17,12 +17,13 @@ import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
 import { useUser } from '../../hooks/useUser'
+import { Membership } from '../../models/Membership'
 
 export default function Header() {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
-  const { username, profilePicture, isSignedIn } = useUser();
+  const { username, profilePicture, isSignedIn, membership } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
@@ -50,7 +51,6 @@ export default function Header() {
           setUnreadChatMessages(event.total_unread_count);
         }
       });
-
     }
 
     return () => {
@@ -113,18 +113,20 @@ export default function Header() {
         }
         {(isSignedIn) &&
           <div className={s.login}>
-            <Link href="/upload">
-              <a>
-                <Button
-                  size="small"
-                  variant="outlined"
-                  color="primary"
-                  disableElevation
-                  rounded>
-                  {t('upload')}
-                </Button>
-              </a>
-            </Link>
+            {(membership === Membership.PortfolioPremium) &&
+              <Link href="/upload">
+                <a>
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    color="primary"
+                    disableElevation
+                    rounded>
+                    {t('upload')}
+                  </Button>
+                </a>
+              </Link>
+            }
             <div className={s.iconButtons}>
               <Link href="/messages">
                 <a>
