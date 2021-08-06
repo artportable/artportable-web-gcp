@@ -17,11 +17,12 @@ import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRec
 import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
 import { useUser } from '../app/hooks/useUser';
+import { Membership } from '../app/models/Membership';
 
 export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const { username } = useUser();
+  const { username, membership } = useUser();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const userProfile = useGetUserProfileSummary(username);
@@ -78,18 +79,20 @@ export default function FeedPage() {
         <Box className={s.feedContainer}>
           <div className={s.colLeft}>
             <ProfileCard userProfile={userProfile}></ProfileCard>
-            <Link href="/upload">
-              <a>
-                <Button
-                  className={s.uploadArtButton}
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  disableElevation>
-                    {t('uploadNewWorkOfArt')}
-                </Button>
-              </a>
-            </Link>
+            {membership === Membership.PortfolioPremium &&
+              <Link href="/upload">
+                <a>
+                  <Button
+                    className={s.uploadArtButton}
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    disableElevation>
+                      {t('uploadNewWorkOfArt')}
+                  </Button>
+                </a>
+              </Link>
+            }
             <NewsletterCard></NewsletterCard>
           </div>
           <div className={s.colFeed}>
