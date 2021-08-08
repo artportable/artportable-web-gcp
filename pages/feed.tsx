@@ -31,9 +31,14 @@ export default function FeedPage() {
   const loadMoreElement = useRef(null);
   const pages = [];
   const pageCount = useInfiniteScroll(loadMoreElement);
+  const [fetchMorePosts, setFetchMorePosts] = useState(0);
 
-  for (let i = 0; i < pageCount; i++) {
-    pages.push(<Feed key={i} user={username} index={i} onLikeClick={likePost}></Feed>);
+  if (fetchMorePosts <= 2) {
+    for (let i = 0; i < pageCount; i++) {
+      pages.push(
+        <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} setFetchMorePosts={setFetchMorePosts}></Feed>
+      );
+    }
   }
 
   function follow(user) {
@@ -96,7 +101,7 @@ export default function FeedPage() {
             {/* <NewsletterCard></NewsletterCard> */}
           </div>
           <div className={s.colFeed}>
-            {username ? (
+            {(username && (fetchMorePosts <= 2 || pages?.length > 0)) ? (
               <>
                 {pages}
                 <div ref={loadMoreElement}>
