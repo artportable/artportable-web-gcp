@@ -108,7 +108,7 @@ export default function FeedPage() {
                   <FeedCardSkeleton></FeedCardSkeleton>
                 </div>
               </>
-            ) : (<p>No posts to show...</p>)}
+            ) : (<p>{t('noPosts')}</p>)}
           </div>
           <div className={s.colRight}>
             <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
