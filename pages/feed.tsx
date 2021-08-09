@@ -33,7 +33,7 @@ export default function FeedPage() {
   const pageCount = useInfiniteScroll(loadMoreElement);
   const [fetchMorePosts, setFetchMorePosts] = useState(0);
 
-  if (fetchMorePosts <= 2) {
+  if (fetchMorePosts <= 3) {
     for (let i = 0; i < pageCount; i++) {
       pages.push(
         <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} setFetchMorePosts={setFetchMorePosts}></Feed>
@@ -45,15 +45,15 @@ export default function FeedPage() {
     fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username}`, {
       method: 'POST',
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   // Like a post (feed item)
@@ -62,15 +62,15 @@ export default function FeedPage() {
     fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   return (
@@ -93,7 +93,7 @@ export default function FeedPage() {
                     variant="contained"
                     color="primary"
                     disableElevation>
-                      {t('uploadNewWorkOfArt')}
+                    {t('uploadNewWorkOfArt')}
                   </Button>
                 </a>
               </Link>
@@ -101,12 +101,16 @@ export default function FeedPage() {
             {/* <NewsletterCard></NewsletterCard> */}
           </div>
           <div className={s.colFeed}>
-            {(username && (fetchMorePosts <= 2 || pages?.length > 0)) ? (
+            {(username && (pages?.length > 0)) ? (
               <>
                 {pages}
-                <div ref={loadMoreElement}>
-                  <FeedCardSkeleton></FeedCardSkeleton>
-                </div>
+                {(fetchMorePosts <= 2) &&
+                  <>
+                    <div ref={loadMoreElement}>
+                      <FeedCardSkeleton></FeedCardSkeleton>
+                    </div>
+                  </>
+                }
               </>
             ) : (<p>{t('noPosts')}</p>)}
           </div>
