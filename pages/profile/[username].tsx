@@ -1,7 +1,7 @@
 import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
-import { Tabs, Tab } from '@material-ui/core'
+import { Tabs, Tab, Snackbar } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
@@ -24,6 +24,7 @@ import { getImageAsRows } from '../../app/utils/layoutUtils'
 import { useTheme, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton'
+import { Alert } from '@material-ui/lab'
 
 function a11yProps(index: any) {
   return {
@@ -41,6 +42,7 @@ export default function Profile() {
 
   const [activeTab, setActiveTab] = useState(0);
   const [isMyProfile, setIsMyProfile] = useState(false);
+  const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
 
   const profileUser = useGetProfileUser();
   const artworks = useGetArtworks(profileUser);
@@ -109,6 +111,51 @@ export default function Profile() {
     setActiveTab(newValue);
   }
 
+  const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setUploadSnackbarOpen(false);
+  }
+
+  function updateProfilePicture(blob, width: number, height: number) {
+    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'image/jpeg'
+      },
+      body: blob
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+      return response.text();
+    })
+    .then((name) => {
+      fetch(`${apiBaseUrl}/api/profile/${username}/profilepicture?filename=${name}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'image/jpeg'
+        },
+      })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+        setUploadSnackbarOpen(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
   return (       
     <Main>
       <FullWidthBlock>
@@ -121,7 +168,7 @@ export default function Profile() {
 
       <div className={s.profileGrid}>
         <div className={s.profileSummary}>
-          <ProfileComponent userProfile={userProfileSummary} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
+          <ProfileComponent userProfile={userProfileSummary} onUpdateProfilePicture={updateProfilePicture} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
         </div>
         <div className={s.editActions}>
           {isMyProfile &&
@@ -186,6 +233,11 @@ export default function Profile() {
           </div>
         </>}
       </div>
+      <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
+          {t('profile:profilePictureUpdated')}
+        </Alert>
+      </Snackbar>
     </Main>
   );
 }

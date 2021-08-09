@@ -84,3 +84,17 @@ export function useGetUserProfilePicture(user) {
     isError: error
   }
 }
+
+// export function useUpdateProfilePicture(filename: string, username: string) {
+//   fetch(`${apiBaseUrl}/api/artworks?myUsername=${username}`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(artwork)
+//   })
+//   .then(res => {
+//     return res.ok;
+//   })
+//   .catch(e => console.log(e));
+// }

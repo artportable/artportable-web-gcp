@@ -8,28 +8,55 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RoomIcon from '@material-ui/icons/Room';
 import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
-import { capitalizeFirst } from '../../utils/util';
+import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
+import { useRef } from 'react'
 
-export default function Profile({ userProfile, divider = false, isMyProfile = false, linkToProfile = true }) {
+export default function Profile({ userProfile, onUpdateProfilePicture, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
+  const fileInput = useRef(null);
+
+  const handleFileUpload = event => {
+    if (isNullOrUndefined(event?.target?.files[0])) {
+      return;
+    }
+
+    var fr = new FileReader;
+    fr.onload = function() {
+      var img = new Image;
+      img.onload = function() {
+          onUpdateProfilePicture(event.target.files[0], img.width, img.height)
+      };
+
+      img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
+    };
+    fr.readAsDataURL(event.target.files[0]);
+  };
+
   return (
     <Box textAlign="center">
+      <input
+        ref={fileInput}
+        onChange={handleFileUpload}
+        type="file"
+        style={{ display: "none" }}
+        multiple={false}
+      />
       <Badge
         overlap="circle"
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        badgeContent={
-          isMyProfile && !data?.ProfilePicture &&
+        badgeContent= {
+          isMyProfile &&
             <AddCircleIcon
               className={s.badgeIcon}
               color="primary"
-              onClick={() => alert('upload picture')} />
+              onClick={() => fileInput.current.click()} />
         }
       >
         {linkToProfile ?
