@@ -41,6 +41,7 @@ export default function Profile() {
 
   const [activeTab, setActiveTab] = useState(0);
   const [isMyProfile, setIsMyProfile] = useState(false);
+  const [hasArtwork, setHasArtwork] = useState(false);
 
   const profileUser = useGetProfileUser();
   const artworks = useGetArtworks(profileUser);
@@ -74,6 +75,8 @@ export default function Profile() {
         setImageRows(rows);
       }
     }
+
+    setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
   }, [artworks, imageRows]);
 
   useEffect(() => {
@@ -131,54 +134,67 @@ export default function Profile() {
           }
         </div>
         <Divider className={s.divider}></Divider>
-        <div className={s.tabsContainer}>
-          <Tabs value={activeTab} onChange={handleTabChange} centered >
-            <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
-            <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-          </Tabs>
-          <Box paddingY={1}>
-            <TabPanel value={activeTab} index={0}>
-              <div className={s.portfolioContainer}>
+        {hasArtwork ?
+          <div className={s.tabsContainer}>
+            <Tabs value={activeTab} onChange={handleTabChange} centered >
+              <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+            </Tabs>
+            <Box paddingY={1}>
+              <TabPanel value={activeTab} index={0}>
+                <div className={s.portfolioContainer}>
 
-              {imageRows && imageRows.map((row: Image[], i) =>
-                <div className={s.portfolioRow} key={i}>   
-                  {row.map(image => {
-                      let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
+                {imageRows && imageRows.map((row: Image[], i) =>
+                  <div className={s.portfolioRow} key={i}>
+                    {row.map(image => {
+                        let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
 
-                      if (artwork) {
-                        return <ArtworkListItemDefined
-                          key={image.Name}
-                          width={image.Width}
-                          height={image.Height}
-                          artwork={artwork}
-                          onLikeClick={onLikeClick} />
+                        if (artwork) {
+                          return <ArtworkListItemDefined
+                            key={image.Name}
+                            width={image.Width}
+                            height={image.Height}
+                            artwork={artwork}
+                            onLikeClick={onLikeClick} />
+                        }
                       }
-                    }
-                  )}
+                    )}
+                  </div>
+                )}
+                {artworks.isLoading &&
+                <>
+                  <div className={s.portfolioRow}>
+                    <ArtworkListItemDefinedSkeleton grow={1} />
+                    <ArtworkListItemDefinedSkeleton grow={3} />
+                    <ArtworkListItemDefinedSkeleton grow={2} />
+                    <ArtworkListItemDefinedSkeleton grow={1} />
+                  </div>
+                  <div className={s.portfolioRow}>
+                    <ArtworkListItemDefinedSkeleton grow={2} />
+                    <ArtworkListItemDefinedSkeleton grow={4} />
+                    <ArtworkListItemDefinedSkeleton grow={3} />
+                  </div>
+                </>
+                }
                 </div>
-              )}
-              {artworks.isLoading && 
-              <>
-                <div className={s.portfolioRow}> 
-                  <ArtworkListItemDefinedSkeleton grow={1} />
-                  <ArtworkListItemDefinedSkeleton grow={3} />
-                  <ArtworkListItemDefinedSkeleton grow={2} />
-                  <ArtworkListItemDefinedSkeleton grow={1} />
-                </div>
-                <div className={s.portfolioRow}> 
-                  <ArtworkListItemDefinedSkeleton grow={2} />
-                  <ArtworkListItemDefinedSkeleton grow={4} />
-                  <ArtworkListItemDefinedSkeleton grow={3} />
-                </div>
-              </>
-              }
-              </div>
-            </TabPanel>
-            <TabPanel value={activeTab} index={1}>
-              <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
-            </TabPanel>
-          </Box>
-        </div>
+              </TabPanel>
+              <TabPanel value={activeTab} index={1}>
+                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
+              </TabPanel>
+            </Box>
+          </div>
+        :
+          <div className={s.tabsContainer}>
+            <Tabs value={activeTab} centered >
+              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+            </Tabs>
+            <Box paddingY={1}>
+              <TabPanel value={activeTab} index={0}>
+                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
+              </TabPanel>
+            </Box>
+          </div>
+        }
         {similarPortfolios?.data && !similarPortfolios?.isError && <>
           <Divider className={s.secondDivider}></Divider>
           <div className={s.similarPortfolios}>

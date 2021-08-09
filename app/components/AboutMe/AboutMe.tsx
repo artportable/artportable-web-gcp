@@ -22,12 +22,12 @@ export default function AboutMe({ userProfile, tags }) {
     <Box className={s.container}>
       <AboutCard data={data}></AboutCard>
       <Box className={s.rightCol}>
-        {data.Studio && <MyArtStudioCard data={data.Studio}></MyArtStudioCard>}
+        {data?.Studio && <MyArtStudioCard data={data?.Studio}></MyArtStudioCard>}
         {tags?.length > 0 && <TagsCard tags={tags}></TagsCard>}
-        {data.InspiredBy && <InspiredByCard text={data.InspiredBy}></InspiredByCard>}
-        {data.Educations?.length > 0 && <EducationCard educations={data.Educations}></EducationCard>}
-        {data.Exhibitions?.length > 0 && <CurrentExhibitionsCard exhibitions={data.Exhibitions}></CurrentExhibitionsCard>}
-        {data.SocialMedia && <SocialNetworksCard data={data.SocialMedia}></SocialNetworksCard>}
+        {data?.InspiredBy && <InspiredByCard text={data?.InspiredBy}></InspiredByCard>}
+        {data?.Educations?.length > 0 && <EducationCard educations={data?.Educations}></EducationCard>}
+        {data?.Exhibitions?.length > 0 && <CurrentExhibitionsCard exhibitions={data?.Exhibitions}></CurrentExhibitionsCard>}
+        {data?.SocialMedia && <SocialNetworksCard data={data?.SocialMedia}></SocialNetworksCard>}
       </Box>
     </Box>
   );
