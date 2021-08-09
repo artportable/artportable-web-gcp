@@ -28,7 +28,7 @@ export default function Profile({ userProfile, onUpdateProfilePicture, divider =
     fr.onload = function() {
       var img = new Image;
       img.onload = function() {
-          onUpdateProfilePicture(event.target.files[0], img.width, img.height)
+          onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
       };
 
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL

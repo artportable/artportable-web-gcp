@@ -43,6 +43,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState(0);
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
+  const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
 
   const profileUser = useGetProfileUser();
   const artworks = useGetArtworks(profileUser);
@@ -118,7 +119,14 @@ export default function Profile() {
     setUploadSnackbarOpen(false);
   }
 
-  function updateProfilePicture(blob, width: number, height: number) {
+  const handleCoverSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setUploadCoverSnackbarOpen(false);
+  }
+
+  function updateImage(blob, width: number, height: number, type: string) {
     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
       method: 'POST',
       headers: {
@@ -134,7 +142,11 @@ export default function Profile() {
       return response.text();
     })
     .then((name) => {
-      fetch(`${apiBaseUrl}/api/profile/${username}/profilepicture?filename=${name}`, {
+      const url = type === 'profile' ?
+        `${apiBaseUrl}/api/profile/${username}/profilepicture?filename=${name}` :
+        `${apiBaseUrl}/api/profile/${username}/coverphoto?filename=${name}`;
+
+      fetch(url, {
         method: 'PUT',
         headers: {
           'Content-Type': 'image/jpeg'
@@ -145,7 +157,9 @@ export default function Profile() {
           console.log(response.statusText);
           throw response;
         }
-        setUploadSnackbarOpen(true);
+        type === 'profile' ?
+          setUploadSnackbarOpen(true) :
+          setUploadCoverSnackbarOpen(true);
       })
       .catch((error) => {
         console.log(error);
@@ -161,14 +175,14 @@ export default function Profile() {
       <FullWidthBlock>
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
-          <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} isMyProfile={isMyProfile}/>
+          <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile}/>
         }
         {artworks.isError && <div>error...</div>}
       </FullWidthBlock>
 
       <div className={s.profileGrid}>
         <div className={s.profileSummary}>
-          <ProfileComponent userProfile={userProfileSummary} onUpdateProfilePicture={updateProfilePicture} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
+          <ProfileComponent userProfile={userProfileSummary} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
         </div>
         <div className={s.editActions}>
           {isMyProfile &&
@@ -236,6 +250,11 @@ export default function Profile() {
       <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
         <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
           {t('profile:profilePictureUpdated')}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={uploadCoverSnackbarOpen} autoHideDuration={6000} onClose={handleCoverSnackbarClose}>
+        <Alert onClose={handleCoverSnackbarClose} variant="filled" severity="success">
+          {t('profile:coverPhotoUpdated')}
         </Alert>
       </Snackbar>
     </Main>
