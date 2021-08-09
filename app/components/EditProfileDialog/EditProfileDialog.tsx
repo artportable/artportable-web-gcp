@@ -117,10 +117,6 @@ export default function EditProfileDialog({ userProfile }) {
         <DialogContent>
           <form className={s.form}>
             <div className={s.flexColumn}>
-              <Typography variant="subtitle1" component="h3">
-                {t('shortBioSection')}
-              </Typography>
-
               <TextField 
                 label={t('title')} 
                 defaultValue={profile.title} 
@@ -138,7 +134,7 @@ export default function EditProfileDialog({ userProfile }) {
                 onChange={(event) => setProfile({ ...profile, location: event.target.value })} />
 
               <TextField 
-                label={t('about')} 
+                label={t('aboutMe')} 
                 defaultValue={profile.about}
                 multiline
                 onChange={(event) => setProfile({ ...profile, about: event.target.value })} />

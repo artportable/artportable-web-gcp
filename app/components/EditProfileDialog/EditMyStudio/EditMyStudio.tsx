@@ -32,7 +32,7 @@ export const EditMyStudio = ({ profile, setProfile }) => {
     <>
       <div className={s.headerContainer}>
         <Typography variant="subtitle2" component="h4">
-          {t('myStudio')}
+          {t('myArtStudio')}
         </Typography>
 
         {!hasStudio ? 
@@ -58,12 +58,12 @@ export const EditMyStudio = ({ profile, setProfile }) => {
       { hasStudio &&
         <div className={s.fieldsContainer}>
           <TextField 
-            label={'studioName'} 
+            label={t('name')}
             defaultValue={profile?.myStudio?.Text}
             onChange={(event) => setStudioName(event.target.value)} />
 
           <TextField 
-            label={'studioLocation'} 
+            label={t('place')}
             defaultValue={profile?.myStudio?.Location}
             onChange={(event) => setStudioLocation(event.target.value)} />
         </div>
