@@ -6,7 +6,7 @@ export default function ProfileCard({ userProfile }) {
   return (
     <Card elevation={2}>
       <CardContent>
-        <Profile userProfile={userProfile} divider></Profile>
+        <Profile userProfile={userProfile} hideAddBtn={true} divider></Profile>
       </CardContent>
     </Card>
   ); 
