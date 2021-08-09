@@ -11,7 +11,7 @@ import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
 import { useRef } from 'react'
 
-export default function Profile({ userProfile, onUpdateProfilePicture, divider = false, isMyProfile = false, linkToProfile = true }) {
+export default function Profile({ userProfile, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
@@ -52,7 +52,7 @@ export default function Profile({ userProfile, onUpdateProfilePicture, divider =
           horizontal: 'right',
         }}
         badgeContent= {
-          isMyProfile &&
+          isMyProfile && !hideAddBtn &&
             <AddCircleIcon
               className={s.badgeIcon}
               color="primary"
