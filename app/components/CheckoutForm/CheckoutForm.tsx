@@ -24,22 +24,24 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
-    // Create a Stripe customer as soon as the page loads
-    fetch(`${apiBaseUrl}/api/payments/customers`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({email: email, fullName: fullName})
-      })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setCustomerId(data?.id);
-      })
-      .catch(e => console.log(e));
-  }, []);
+    if (email !== null && fullName !== null && plan !== null) {
+      // Create a Stripe customer as soon as the page loads
+      fetch(`${apiBaseUrl}/api/payments/customers`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({email: email, fullName: fullName})
+        })
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setCustomerId(data?.id);
+        })
+        .catch(e => console.log(e));
+      }
+  }, [email, fullName, plan]);
 
   const cardStyle = {
     style: {

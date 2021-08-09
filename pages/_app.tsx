@@ -84,7 +84,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
 }
 
 function testEvent(event: AuthClientEvent, error?: AuthClientError | undefined) {
-  console.log(event);
+  // console.log(event);
 };
 
 function parseCookies(req?: IncomingMessage) {
