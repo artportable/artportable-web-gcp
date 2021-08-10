@@ -13,7 +13,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "5px"
     },
     media: {
-      display: "grid",
+      display: "grid !important;",
       gap: "2px",
       position: "relative"
     },
