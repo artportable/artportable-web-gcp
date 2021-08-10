@@ -14,10 +14,11 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { useStore } from "react-redux";
 import { useUser } from "../../app/hooks/useUser";
+import TagChip from "../../app/components/TagChip/TagChip";
 
 export default function ArtworkPage(props) {
   const s = styles();
-  const { t } = useTranslation(['art', 'common']);
+  const { t } = useTranslation(['art', 'common', 'tags']);
   const router = useRouter();
   const store = useStore();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
@@ -172,8 +173,14 @@ export default function ArtworkPage(props) {
               }
             </Box>
             <Box className={s.tagsContainer} marginBottom={2}>
-              {artwork.data.Tags?.map((tag: string) =>
-                <Chip key={tag} label={tag} color="primary" className={s.chip}></Chip>
+              {Array.from(artwork.data.Tags).map((tag: string) =>
+                {
+                  return <TagChip
+                    title={tag}
+                    onChipClick={null}
+                    limitReached={true}>
+                  </TagChip>;
+                }
               )}
             </Box>
           </Paper>
@@ -187,7 +194,7 @@ export async function getStaticProps({ locale }) {
   return { 
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['header', 'art', 'common']),
+      ...await serverSideTranslations(locale, ['header', 'art', 'common', 'tags']),
     }
   };
 }
