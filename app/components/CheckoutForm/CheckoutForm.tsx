@@ -87,7 +87,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
       })
       .then((result) => {
         if (result.error) {
-          console.log(result.error)
           setError(result.error.message);
         } else {
           createSubscription({
