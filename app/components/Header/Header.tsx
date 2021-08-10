@@ -27,7 +27,7 @@ export default function Header() {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
-  const logoHref = isSignedIn ? "/feed" : "/";
+  const logoHref = "/";
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [loginUrl, setLoginUrl] = useState('/');
   useEffect(() => {

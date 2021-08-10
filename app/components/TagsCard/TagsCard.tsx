@@ -3,6 +3,7 @@ import { Box, Card, CardContent, CardHeader, Chip } from '@material-ui/core'
 
 import { useTranslation } from 'react-i18next';
 import { styles } from './tagsCard.css';
+import TagChip from '../TagChip/TagChip';
 
 export default function TagsCard({ tags }) {
   const s = styles();
@@ -16,8 +17,14 @@ export default function TagsCard({ tags }) {
       </CardHeader>
       <CardContent>
         <Box className={s.tagsContainer}>
-          {tags.map((t, i) =>
-            <Chip key={i} label={t.Tag} color="primary" size="small"></Chip>
+          {Array.from(tags).map((tag: any) => tag.Tag).map((tag: string) =>
+            {
+              return <TagChip
+                title={tag}
+                onChipClick={null}
+                limitReached={true}>
+              </TagChip>;
+            }
           )}
         </Box>
       </CardContent>

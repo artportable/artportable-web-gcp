@@ -280,7 +280,7 @@ export default function Profile() {
 export async function getServerSideProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'profile']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'profile', 'tags']),
     }
   }
 }

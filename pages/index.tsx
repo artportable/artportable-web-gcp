@@ -57,10 +57,10 @@ export async function getStaticProps({locale}) {
       image: `/images/index2_${locale}.jpg`,
       text:'Vardagsrum',
       subheader: 'subheaderTe',
-      user: {
-        username: 'jimpa',
-        profilepicture: 'd5f6f50a-a669-4f93-943c-0314305b0113.jpg'
-      }
+      // user: {
+      //   username: 'jimpa',
+      //   profilepicture: 'd5f6f50a-a669-4f93-943c-0314305b0113.jpg'
+      // }
     },
     {
       image: `/images/index3_${locale}.jpg`,
@@ -69,10 +69,10 @@ export async function getStaticProps({locale}) {
     {
       image: `/images/index4_${locale}.jpg`,
       text:'Från jord till bord',
-      user: {
-        username: 'sillynilly',
-        profilepicture: '1a0d2b6e-562d-4bb0-8ca8-49871c84aa8e.jpg'
-      }
+      // user: {
+      //   username: 'sillynilly',
+      //   profilepicture: '1a0d2b6e-562d-4bb0-8ca8-49871c84aa8e.jpg'
+      // }
     }
   ];
 

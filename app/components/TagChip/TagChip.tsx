@@ -22,10 +22,10 @@ export default function TagChip({title, onChipClick, limitReached, ...props}) {
     <Chip
       label={t(title)}
       key={title}
-      icon={<LocalOffer />} 
       className={s.chip}
       size="small"
-      color= {isSelected ? "primary" : "default"}
+      color= {onChipClick === null ? 'primary' : (isSelected ? "primary" : "default")}
+      clickable={onChipClick !== null}
       onClick={onClick}
     />
   );

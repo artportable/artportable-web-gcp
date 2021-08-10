@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function AboutMe({ userProfile, tags }) {
   const s = styles();
-  const { t } = useTranslation('profile');
+  const { t } = useTranslation(['profile', 'tags']);
 
   const data = userProfile.data;
 
