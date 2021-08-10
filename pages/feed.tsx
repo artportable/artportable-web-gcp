@@ -31,15 +31,23 @@ export default function FeedPage() {
   const loadMoreElement = useRef(null);
   const pages = [];
   const pageCount = useInfiniteScroll(loadMoreElement);
-  const [fetchMorePosts, setFetchMorePosts] = useState(0);
+  const [fetchMorePosts, setFetchMorePosts] = useState(true);
+  const [isNoPosts, setIsNoPosts] = useState(false);
+  const [entriesCount, setEntriesCount] = useState(0);
 
-  if (fetchMorePosts <= 3) {
+  if (username) {
     for (let i = 0; i < pageCount; i++) {
       pages.push(
-        <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} setFetchMorePosts={setFetchMorePosts}></Feed>
+        <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} entriesCount={entriesCount} setEntriesCount={setEntriesCount} setFetchMorePosts={setFetchMorePosts}></Feed>
       );
     }
   }
+
+  useEffect(() => {
+    if (!fetchMorePosts && entriesCount <= 0) {
+      setIsNoPosts(true);
+    }
+  }, [fetchMorePosts]);
 
   function follow(user) {
     fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username}`, {
@@ -101,10 +109,10 @@ export default function FeedPage() {
             {/* <NewsletterCard></NewsletterCard> */}
           </div>
           <div className={s.colFeed}>
-            {(username && (pages?.length > 0)) ? (
+            {(username && !isNoPosts) ? (
               <>
                 {pages}
-                {(fetchMorePosts <= 2) &&
+                {(fetchMorePosts) &&
                   <>
                     <div ref={loadMoreElement}>
                       <FeedCardSkeleton></FeedCardSkeleton>
@@ -113,6 +121,7 @@ export default function FeedPage() {
                 }
               </>
             ) : (<p>{t('noPosts')}</p>)}
+
           </div>
           <div className={s.colRight}>
             <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>

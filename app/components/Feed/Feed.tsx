@@ -9,22 +9,30 @@ interface FeedProps {
   onLikeClick: any,
   fetchMorePosts: any,
   setFetchMorePosts: any
+  entriesCount: any
+  setEntriesCount: any
 }
 
-export default function Feed({ user, index, onLikeClick, fetchMorePosts, setFetchMorePosts }: FeedProps) {
+export default function Feed({ user, index, onLikeClick, fetchMorePosts, setFetchMorePosts, setEntriesCount, entriesCount }: FeedProps) {
   const page = index + 1;
-  const { feed } = useGetFeedItems(user, page);
+  const { data, error } = useGetFeedItems(user, page);
 
   useEffect(() => {
-    if (isNullOrUndefined(feed)) {
-      setFetchMorePosts(fetchMorePosts + 1);
+    if (error) {
+      setFetchMorePosts(false);
     }
-  }, [feed]);
+    if (data) {
+      if(data.length <= 0) {
+        setFetchMorePosts(false);
+      }
+      setEntriesCount(entriesCount + data.length);
+    }
+  }, [data, error]);
 
   return (
     <>
       {user &&
-        feed?.map(item => {
+        data?.map(item => {
           return <FeedCard key={item.Item.Id} content={item} onLikeClick={onLikeClick}></FeedCard>
         })
       }
