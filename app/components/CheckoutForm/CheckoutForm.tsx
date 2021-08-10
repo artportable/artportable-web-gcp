@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from 'next-i18next';
 import { capitalizeFirst } from '../../utils/util';
 import Link from 'next/link';
+import router from 'next/router';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -86,12 +87,16 @@ export default function CheckoutForm({ email, fullName, plan }) {
       })
       .then((result) => {
         if (result.error) {
-          setError(result.error);
+          console.log(result.error)
+          setError(result.error.message);
         } else {
           createSubscription({
             customerId: customerId,
             paymentMethodId: result.paymentMethod.id,
             priceId: plan.id,
+          })
+          .then((result) => {
+            router.push('/');
           });
         }
       });
@@ -117,7 +122,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
       .then((result) => {
         if (result.error) {
           // If the card is declined, display an error to the user.
-          setError(error);
+          setError(result.error);
           throw result;
         }
         setSucceeded(true);
@@ -158,13 +163,16 @@ export default function CheckoutForm({ email, fullName, plan }) {
           <Box className={styles.divider}></Box>
           <Box display="flex" justifyContent="flex-end" marginTop="2rem">
             <Link href="/">
-              <a>
+              <a onClick={(e) => {
+                   e.preventDefault();
+                   return false;}}>
                 <Button
                   variant="contained" 
                   color="primary"
                   disableElevation 
                   rounded
-                  onClick={createPaymentMethod}>
+                  onClick={createPaymentMethod}
+                  >
                   {capitalizeFirst(t('common:words.pay'))}
                 </Button>
               </a>
