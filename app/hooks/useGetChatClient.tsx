@@ -14,10 +14,6 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
         method: 'GET',
       });
 
-      if (profilePicture === null) {
-        profilePicture = await getProfilePicture(username, apiBaseUrl);
-      }
-
       const user = await response.json();
 
       try {

@@ -5,7 +5,7 @@ import RoomIcon from '@material-ui/icons/Room';
 
 import { useTranslation } from 'react-i18next';
 
-export default function AboutCard({ data }) {
+export default function AboutCard({ data, userProfilePicture }) {
   const s = styles();
   const { t } = useTranslation('profile');
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
@@ -14,9 +14,9 @@ export default function AboutCard({ data }) {
     <Card elevation={2} className={s.mainCard}>
         <CardContent className={s.mainCardContent}>
           <div>
-            {data?.ProfilePicture &&
+            {userProfilePicture &&
               <img
-                src={`${bucketUrl}${data.ProfilePicture}`}
+                src={`${bucketUrl}${userProfilePicture}`}
                 width={300}>
               </img>
             }
