@@ -25,6 +25,8 @@ import { useTheme, Theme } from '@material-ui/core'
 import { useRouter } from 'next/router'
 import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton'
 import { Alert } from '@material-ui/lab'
+import { useDispatch } from 'react-redux'
+import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
 
 function a11yProps(index: any) {
   return {
@@ -38,7 +40,7 @@ export default function Profile() {
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
-  const router = useRouter();  
+  const router = useRouter();
 
   const [activeTab, setActiveTab] = useState(0);
   const [isMyProfile, setIsMyProfile] = useState(false);
@@ -53,13 +55,26 @@ export default function Profile() {
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const { username } = useUser();
-
+  const { username, profilePicture } = useUser();
   const [imageRows, setImageRows] = useState(null);
+  const [coverPhoto, setCoverPhoto] = useState(undefined);
+  const dispatch = useDispatch();
+
+
+  const onUpdateProfilePicture = (profilePicture: any) => {
+    dispatch({
+      type: UPDATE_PROFILE_PICTURE,
+      profilePicture: profilePicture
+    });
+  }
+
+  useEffect(() => {
+    setCoverPhoto(userProfile?.data?.CoverPhoto);
+  }, [userProfile?.data?.CoverPhoto]);
 
   useEffect(() => {
     const handleRouteChangeStart = (url) => {
-      if(url.startsWith(`/profile/`)) {
+      if (url.startsWith(`/profile/`)) {
         setImageRows(null);
       }
     }
@@ -72,7 +87,7 @@ export default function Profile() {
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
-    if(imageRows === null) {
+    if (imageRows === null) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
       if (rows) {
         setImageRows(rows);
@@ -88,7 +103,7 @@ export default function Profile() {
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
-    if(imageRows !== null) {
+    if (imageRows !== null) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
       if (rows) {
         setImageRows(rows);
@@ -100,15 +115,15 @@ export default function Profile() {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   function handleTabChange(_, newValue) {
@@ -137,55 +152,62 @@ export default function Profile() {
       },
       body: blob
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-      return response.text();
-    })
-    .then((name) => {
-      const url = type === 'profile' ?
-        `${apiBaseUrl}/api/profile/${username}/profilepicture?filename=${name}` :
-        `${apiBaseUrl}/api/profile/${username}/coverphoto?filename=${name}`;
-
-      fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'image/jpeg'
-        },
-      })
       .then((response) => {
         if (!response.ok) {
           console.log(response.statusText);
           throw response;
         }
-        type === 'profile' ?
-          setUploadSnackbarOpen(true) :
-          setUploadCoverSnackbarOpen(true);
+        return response.text();
+      })
+      .then((name) => {
+        const url = type === 'profile' ?
+          `${apiBaseUrl}/api/profile/${username}/profilepicture?filename=${name}` :
+          `${apiBaseUrl}/api/profile/${username}/coverphoto?filename=${name}`;
+
+        fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'image/jpeg'
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              console.log(response.statusText);
+              throw response;
+            }
+            switch (type) {
+              case 'profile':
+                onUpdateProfilePicture(name);
+                setUploadSnackbarOpen(true)
+                break;
+              default:
+                setCoverPhoto(name)
+                setUploadCoverSnackbarOpen(true);
+                break;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          })
       })
       .catch((error) => {
         console.log(error);
       })
-    })
-    .catch((error) => {
-      console.log(error);
-    })
   }
 
-  return (       
+  return (
     <Main>
       <FullWidthBlock>
         {artworks.isLoading && <div>Loading...</div>}
         {!artworks.isLoading && !artworks.isError && artworks &&
-          <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile}/>
+          <ProfileCoverPhoto coverPhoto={coverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile} />
         }
         {artworks.isError && <div>error...</div>}
       </FullWidthBlock>
 
       <div className={s.profileGrid}>
         <div className={s.profileSummary}>
-          <ProfileComponent userProfile={userProfileSummary} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
+          <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
         </div>
         <div className={s.editActions}>
           {isMyProfile &&
@@ -205,9 +227,9 @@ export default function Profile() {
               <TabPanel value={activeTab} index={0}>
                 <div className={s.portfolioContainer}>
 
-                {imageRows && imageRows.map((row: Image[], i) =>
-                  <div className={s.portfolioRow} key={i}>
-                    {row.map(image => {
+                  {imageRows && imageRows.map((row: Image[], i) =>
+                    <div className={s.portfolioRow} key={i}>
+                      {row.map(image => {
                         let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
 
                         if (artwork) {
@@ -219,39 +241,39 @@ export default function Profile() {
                             onLikeClick={onLikeClick} />
                         }
                       }
-                    )}
-                  </div>
-                )}
-                {artworks.isLoading &&
-                <>
-                  <div className={s.portfolioRow}>
-                    <ArtworkListItemDefinedSkeleton grow={1} />
-                    <ArtworkListItemDefinedSkeleton grow={3} />
-                    <ArtworkListItemDefinedSkeleton grow={2} />
-                    <ArtworkListItemDefinedSkeleton grow={1} />
-                  </div>
-                  <div className={s.portfolioRow}>
-                    <ArtworkListItemDefinedSkeleton grow={2} />
-                    <ArtworkListItemDefinedSkeleton grow={4} />
-                    <ArtworkListItemDefinedSkeleton grow={3} />
-                  </div>
-                </>
-                }
+                      )}
+                    </div>
+                  )}
+                  {artworks.isLoading &&
+                    <>
+                      <div className={s.portfolioRow}>
+                        <ArtworkListItemDefinedSkeleton grow={1} />
+                        <ArtworkListItemDefinedSkeleton grow={3} />
+                        <ArtworkListItemDefinedSkeleton grow={2} />
+                        <ArtworkListItemDefinedSkeleton grow={1} />
+                      </div>
+                      <div className={s.portfolioRow}>
+                        <ArtworkListItemDefinedSkeleton grow={2} />
+                        <ArtworkListItemDefinedSkeleton grow={4} />
+                        <ArtworkListItemDefinedSkeleton grow={3} />
+                      </div>
+                    </>
+                  }
                 </div>
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
+                <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
               </TabPanel>
             </Box>
           </div>
-        :
+          :
           <div className={s.tabsContainer}>
             <Tabs value={activeTab} centered >
               <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
             </Tabs>
             <Box paddingY={1}>
               <TabPanel value={activeTab} index={0}>
-                <AboutMe userProfile={userProfile} tags={tags.data}></AboutMe>
+                <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
               </TabPanel>
             </Box>
           </div>

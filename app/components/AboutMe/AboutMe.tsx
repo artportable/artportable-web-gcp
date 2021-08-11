@@ -12,7 +12,7 @@ import { styles } from './aboutMe.css'
 import { useTranslation } from 'react-i18next';
 
 
-export default function AboutMe({ userProfile, tags }) {
+export default function AboutMe({ userProfile, userProfilePicture, tags }) {
   const s = styles();
   const { t } = useTranslation(['profile', 'tags']);
 
@@ -20,7 +20,7 @@ export default function AboutMe({ userProfile, tags }) {
 
   return ( // TODO: Handle potential errors
     <Box className={s.container}>
-      <AboutCard data={data}></AboutCard>
+      <AboutCard data={data} userProfilePicture={userProfilePicture}></AboutCard>
       <Box className={s.rightCol}>
         {data?.Studio && <MyArtStudioCard data={data?.Studio}></MyArtStudioCard>}
         {tags?.length > 0 && <TagsCard tags={tags}></TagsCard>}

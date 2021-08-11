@@ -22,7 +22,7 @@ import { Membership } from '../app/models/Membership';
 export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const { username, membership } = useUser();
+  const { username, membership, profilePicture } = useUser();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const userProfile = useGetUserProfileSummary(username);
@@ -91,7 +91,7 @@ export default function FeedPage() {
       <Main>
         <Box className={s.feedContainer}>
           <div className={s.colLeft}>
-            <ProfileCard userProfile={userProfile}></ProfileCard>
+            <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
             {membership === Membership.PortfolioPremium &&
               <Link href="/upload">
                 <a>
