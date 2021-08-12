@@ -74,7 +74,7 @@ export default function Profile() {
 
   useEffect(() => {
     const handleRouteChangeStart = (url) => {
-      if (url.startsWith(`/profile/`)) {
+      if (url.includes(`/profile/@`)) {
         setImageRows(null);
       }
     }

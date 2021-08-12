@@ -20,6 +20,7 @@ export default function TagsCard({ tags }) {
           {Array.from(tags).map((tag: any) => tag.Tag).map((tag: string) =>
             {
               return <TagChip
+                key={tag}
                 title={tag}
                 onChipClick={null}
                 limitReached={true}>

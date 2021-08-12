@@ -176,6 +176,7 @@ export default function ArtworkPage(props) {
               {Array.from(artwork.data.Tags).map((tag: string) =>
                 {
                   return <TagChip
+                    key={tag}
                     title={tag}
                     onChipClick={null}
                     limitReached={true}>
