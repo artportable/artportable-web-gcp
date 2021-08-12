@@ -34,17 +34,18 @@ export default function DiscoverPage() {
   const loadMoreElementRef = useRef(null);
   const { data } = useInfiniteScroll2(loadMoreElementRef,
     (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.length) { return null; }
-    
-    const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+    if (previousPageData && !previousPageData.next) { return null; }
 
-    selectedTags.forEach(tag => {
-      url.searchParams.append('tag', tag);
-    });
-    url.searchParams.append('page', (pageIndex + 1).toString());
-    url.searchParams.append('pageSize', "20");
-
-    return url.href;
+    if(pageIndex == 0){
+      const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+      selectedTags.forEach(tag => {
+        url.searchParams.append('tag', tag);
+      });
+      url.searchParams.append('page', (pageIndex + 1).toString());
+      url.searchParams.append('pageSize', "20");
+      return url.href;
+    }
+    return previousPageData.next;
   });
 
   const useWideLayout = activeTab === 0;

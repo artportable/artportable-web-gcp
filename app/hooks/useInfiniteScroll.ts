@@ -51,12 +51,41 @@ const _getKey = (pageIndex, previousPageData) => {
   return `${apiBaseurl}/api/Discover/artworks?page=${pageIndex + 1}&pageSize=10`;
 }
 
-const fetcher = url => fetch(url).then(res => res.json());
+const fetcher = url => fetch(url).then(res => {
+  var links = undefined;
+  if(res.headers.has('Link')){
+    links = res.headers.get('Link').split(/(?!\B"[^"]*),(?![^"]*"\B)/).reduce((links, part) => {
+      const section = part.split(/(?!\B"[^"]*);(?![^"]*"\B)/);
+      if (section.length < 2) {
+          throw new Error("section could not be split on ';'");
+      }
+      const url = section[0].replace(/<(.*)>/, '$1').trim();
+      const name = section[1].replace(/rel="(.*)"/, '$1').trim();
 
+      links[name] = url;
+
+      return links;
+  }, {});
+  }
+  return res.json().then(value => {
+        return {
+          data : value,
+          ...links
+        };
+      });
+});
+
+
+export interface PageData {
+  data? : any;
+  first?: string;
+  next?: string;
+  previous?: string;
+}
 
 export const useInfiniteScroll2 = (
   loadMoreElement: React.MutableRefObject<Element>, 
-  getKey: (pageIndex: number, previousPageData: unknown[]) => string = _getKey,
+  getKey: (pageIndex: number, previousPageData: PageData) => string = _getKey,
   options: IntersectionObserverInit = defaultOptions,
 ) => {
   const { data, size, setSize } = useSWRInfinite(getKey, fetcher, { initialSize: 1 , revalidateOnFocus: false});
@@ -86,7 +115,7 @@ export const useInfiniteScroll2 = (
   });
 
   return {
-    data: data ? [].concat(...data) : [],
+    data: data ? [].concat(...data.map( ({ data }) => data)) : [],
     size, setSize
   };
 }
