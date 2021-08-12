@@ -3,7 +3,8 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      cursor: 'pointer'
+      cursor: 'pointer',
+      display: 'inline-block'
     },
     imageContainer: {
       borderRadius: '4px',
@@ -26,13 +27,14 @@ export const styles = makeStyles((theme: Theme) =>
     likeContainer: {
       display: 'flex',
       alignItems: 'center',
+      marginLeft: '10px',
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary
     },
     title: {
-      display: 'inline-block',
-      width: 'calc(100% - 48px)',
+      flexGrow: 1,
+      width: 0,
       padding: '3px 0 0 4px',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
