@@ -196,11 +196,12 @@ export async function getStaticProps({ locale }) {
     props: {
       locale: locale,
       ...await serverSideTranslations(locale, ['header', 'art', 'common', 'tags']),
-    }
+    },
+    revalidate: 10
   };
 }
 
-export const getStaticPaths = async () => {  
+export const getStaticPaths = () => {  
   return {
     paths: [], //indicates that no page needs be created at build time
     fallback: 'blocking' //indicates the type of fallback

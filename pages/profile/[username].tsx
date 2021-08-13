@@ -303,6 +303,14 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       ...await serverSideTranslations(locale, ['common', 'header', 'profile', 'tags']),
-    }
+    },
+    revalidate: 10,
   }
 }
+
+export const getStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+};
