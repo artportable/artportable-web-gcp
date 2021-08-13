@@ -299,9 +299,10 @@ export default function Profile() {
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   return {
     props: {
+      locale: locale,
       ...await serverSideTranslations(locale, ['common', 'header', 'profile', 'tags']),
     },
     revalidate: 10,
