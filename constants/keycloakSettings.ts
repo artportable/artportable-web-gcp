@@ -1,7 +1,7 @@
 import { KeycloakConfig, KeycloakInitOptions } from 'keycloak-js';
 export const keycloakConfig: KeycloakConfig = {
   realm: process.env.NEXT_PUBLIC_KEYCLOAKREALM || "test",
-  url: process.env.NEXT_PUBLIC_KEYCLOAKURL || "https://artportable-idp.azurewebsites.net/auth",
+  url: process.env.NEXT_PUBLIC_KEYCLOAKURL || "https://idp.artportable.com/auth",
   clientId: process.env.NEXT_PUBLIC_KEYCLOAKCLIENTID || "artportable-web"
 }
 
