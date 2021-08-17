@@ -12,7 +12,7 @@ import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
-import { useInfiniteScroll2 } from "../app/hooks/useInfiniteScroll";
+import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
 import { useUser } from "../app/hooks/useUser";
 
 export default function DiscoverPage() {
@@ -29,29 +29,60 @@ export default function DiscoverPage() {
   const rowWidth = useMainWidth().wide
 
   const [activeTab, setActiveTab] = useState(discoverTab);
-  const [artists, setArtists] = useState();
   const [selectedTags, setSelectedTags] = useState(null);
-  const loadMoreElementRef = useRef(null);
-  const { data } = useInfiniteScroll2(loadMoreElementRef,
-    (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.next) { return null; }
+  const loadMoreArtworksElementRef = useRef(null);
+  const loadMoreArtistsElementRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState<string>();
+  const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
+  const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
+  const [trackedArtwork, setTrackedArtwork] = useState(null);
+  const [trackedArtist, setTrackedArtists] = useState(null);
 
-    if(pageIndex == 0){
-      const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
-      selectedTags.forEach(tag => {
-        url.searchParams.append('tag', tag);
-      });
-      url.searchParams.append('page', (pageIndex + 1).toString());
-      url.searchParams.append('pageSize', "20");
-      return url.href;
-    }
-    return previousPageData.next;
-  });
+  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
+    (pageIndex, previousPageData) => {
+      if (previousPageData && !previousPageData.next) {
+        setLoadMoreArtworks(false);
+        return null;
+      }
+
+      if (pageIndex == 0) {
+        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+        selectedTags.forEach(tag => {
+          url.searchParams.append('tag', tag);
+        });
+        url.searchParams.append('page', (pageIndex + 1).toString());
+        url.searchParams.append('pageSize', "20");
+        return url.href;
+      }
+      return previousPageData.next;
+    }, activeTab);
+  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+    (pageIndex, previousPageData) => {
+      if (previousPageData && !previousPageData.next) { 
+        setLoadMoreArtists(false);
+        return null; 
+      }
+
+      if (pageIndex == 0) {
+        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
+        if (searchQuery != null && searchQuery != '') {
+          url.searchParams.append('q', searchQuery);
+        }
+        if (username != null && username != '') {
+          url.searchParams.append('myUsername', username);
+        }
+        url.searchParams.append('page', (pageIndex + 1).toString());
+        url.searchParams.append('pageSize', "10");
+        return url.href;
+      }
+      return previousPageData.next;
+    }, activeTab);
+
 
   const useWideLayout = activeTab === 0;
 
   useEffect(() => {
-    search(null);
+    setSearchQuery(null);
     filter([]);
   }, []);
 
@@ -75,39 +106,15 @@ export default function DiscoverPage() {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-
-  function search(searchQuery) {
-    const url = new URL(`${apiBaseUrl}/api/discover/artists`);
-    url.searchParams.append('page', '1');
-    if (searchQuery != null && searchQuery != '') {
-      url.searchParams.append('q', searchQuery);
-    }
-    if (username != null && username != '') {
-      url.searchParams.append('myUsername', username);
-    }
-
-    fetch(url.href, {
-      method: 'GET',
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      setArtists(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   function follow(userToFollow) {
@@ -118,15 +125,15 @@ export default function DiscoverPage() {
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: 'POST',
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function a11yProps(index: any) {
@@ -147,17 +154,25 @@ export default function DiscoverPage() {
           <TabPanel value={activeTab} index={0}>
             {!tags?.isLoading && !tags?.isError && tags?.data &&
               <DiscoverArt
-                artworks={data}
+                artworks={artworks}
                 tags={tags?.data}
                 onFilter={filter}
                 onLike={like}
                 rowWidth={rowWidth}
-                loadMoreElementRef={loadMoreElementRef}
-              ></DiscoverArt>
+                loadMoreElementRef={loadMoreArtworksElementRef}
+                isLoading={isLoadingArtWorks}
+                loadMore={loadMoreArtworks}
+              />
             }
           </TabPanel>
           <TabPanel value={activeTab} index={1}>
-            <DiscoverArtists artists={artists} onFollowClick={follow} onSearch={search}></DiscoverArtists>
+            <DiscoverArtists
+              artists={artists}
+              onFollowClick={follow}
+              loadMoreElementRef={loadMoreArtistsElementRef}
+              isLoading={isLoadingArtists}
+              loadMore={loadMoreArtists}
+            ></DiscoverArtists>
           </TabPanel>
         </Box>
       </div>
@@ -166,7 +181,7 @@ export default function DiscoverPage() {
 }
 
 export async function getStaticProps({ locale }) {
-  return { 
+  return {
     props: {
       ...await serverSideTranslations(locale, ['header', 'common', 'discover', 'tags']),
     }

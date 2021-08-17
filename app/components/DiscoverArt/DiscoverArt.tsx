@@ -10,6 +10,7 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import { Artwork } from "../../models/Artwork";
 import { getImageAsRows } from "../../utils/layoutUtils";
 import Image from "../../models/Image";
+import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
 
 interface InputProps {
   artworks: Artwork[],
@@ -18,23 +19,55 @@ interface InputProps {
   onLike: any,
   rowWidth: number,
   loadMoreElementRef: any
+  isLoading: boolean;
+  loadMore: boolean;
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef }: InputProps) {
+export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const [imageRows, setImageRows] = useState([]);
+  const [skeletonRows, setSkeletonRows] = useState([])
   const [selectedTags, setSelectedTags] = useState([]);
 
   const theme: Theme = useTheme();
-  
+  const skeletonImages = [
+    {
+      Name: "Skeleton1",
+      Width: 16,
+      Height: 9
+    },
+    {
+      Name: "Skeleton2",
+      Width: 4,
+      Height: 3
+    },
+    {
+      Name: "Skeleton3",
+      Width: 9,
+      Height: 16
+    },
+    {
+      Name: "Skeleton4",
+      Width: 4,
+      Height: 3
+    },
+    {
+      Name: "Skeleton5",
+      Width: 16,
+      Height: 9
+    },
+  ]
+
   useEffect(() => {
     const primaryImages = artworks.map(a => a.PrimaryFile);
     const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
     setImageRows(rows);
+    const skeletonRows = getImageAsRows(skeletonImages, theme.spacing(2), rowWidth);
+    setSkeletonRows(skeletonRows);
   }, [artworks]);
 
   useEffect(() => {
@@ -53,8 +86,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           renderOption={(tag, { selected }) => (
             <React.Fragment>
               <Checkbox
-                icon={<CheckBoxOutlineBlankIcon/>}
-                checkedIcon={<CheckBoxIcon/>}
+                icon={<CheckBoxOutlineBlankIcon />}
+                checkedIcon={<CheckBoxIcon />}
                 style={{ marginRight: 8 }}
                 checked={selected}
               />
@@ -65,7 +98,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           renderInput={(params) => <TextField {...params} label={t('tags')} variant="outlined" />}
           onChange={(event, value, reason) => {
             setSelectedTags(value);
-            if(reason === 'remove-option') {
+            if (reason === 'remove-option') {
               onFilter(value);
             }
           }}
@@ -73,26 +106,40 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             onFilter(selectedTags);
           }}
         ></Autocomplete>
-
         {imageRows && imageRows.map((row: Image[], i) =>
           <div className={s.row} key={i}>
             {row.map(image => {
               let artwork = artworks.find(a => a.PrimaryFile.Name === image.Name);
               let index = artworks.indexOf(artwork);
-
+              
               if (artwork) {
                 return <ArtworkListItemDefined
-                  key={image.Name}
-                  width={image.Width}
-                  height={image.Height}
-                  artwork={artwork}
-                  onLikeClick={onLike} />
+                key={image.Name}
+                width={image.Width}
+                height={image.Height}
+                artwork={artwork}
+                onLikeClick={onLike} />
               }
             }
             )}
           </div>
         )}
-        <div ref={loadMoreElementRef}></div>
+        {!isLoading && loadMore && 
+          <div className={s.row} ref={loadMoreElementRef}>
+          {skeletonRows && skeletonRows.length > 0 &&
+            <div className={s.row}>
+              {skeletonRows[0].map(image => {
+                return <DiscoverArtSkeleton
+                  key={image.Name}
+                  width={image.Width}
+                  height={image.Height} />
+  
+              }
+              )}
+            </div>
+          }
+          </div>
+        }
       </Box>
     </>
   );
