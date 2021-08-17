@@ -28,7 +28,6 @@ export default function Home( props ) {
 
   return (
     <Main noHeaderPadding>
-      <FullWidthBlock>
         {/* <Carousel autoPlay={false} navButtonsAlwaysInvisible={true} indicators={false}>
           {i18nCarouselItems.map( (item, i) =>
             <CarouselItem
@@ -39,7 +38,6 @@ export default function Home( props ) {
           )}
         </Carousel> */}
         <IndexHero></IndexHero>
-      </FullWidthBlock>
 
       <Box className={s.artworkGrid}>
         <IndexArtworksGrid artworks={artworks} />

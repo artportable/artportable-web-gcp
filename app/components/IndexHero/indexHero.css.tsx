@@ -2,9 +2,18 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    background: {
+      position: 'absolute',
+      background: theme.palette.grey[200],
+      height: '760px',
+      width: '100vw',
+      [theme.breakpoints.up('md')]: {
+        height: '440px',
+      }
+    },
     container: {
-      background: theme.palette.grey[300],
-      paddingTop: '50px',
+      marginTop: theme.spacing(2),
+      padding: theme.spacing(5, 0),
       [theme.breakpoints.up('md')]: {
         paddingTop: 0
       }
@@ -16,38 +25,9 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'center',
       flexWrap: 'nowrap',
-
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.sm.wide}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.sm.wide}px)/2)`
-      },
-      [theme.breakpoints.up('smPlus')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.smPlus.wide}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.smPlus.wide}px)/2)`,
-      },
       [theme.breakpoints.up('md')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.md.wide}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.md.wide}px)/2)`,
-        flexDirection: 'row'
-      },
-      [theme.breakpoints.up('mdPlus')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.mdPlus.wide}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.mdPlus.wide}px)/2)`,
-      },
-      [theme.breakpoints.up('lg')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.lg.regular}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.lg.regular}px)/2)`,
-
-      },
-      [theme.breakpoints.up('lgPlus')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.lgPlus.regular}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.lgPlus.regular}px)/2)`,
-      },
-      [theme.breakpoints.up('xl')]: {
-        marginLeft: `calc((100vw - ${theme.breakpointMainWidths.xl.regular}px)/2)`,
-        marginRight: `calc((100vw - ${theme.breakpointMainWidths.xl.regular}px)/2)`,
-      },
-      
+        flexDirection: 'row',
+      }      
     },
     left: {
       flexBasis: '100%',
@@ -56,13 +36,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       alignContent: 'center',
       flexDirection: 'column',   
-      
-      [theme.breakpoints.up('md')]: {
-        flexBasis: '85%',       
-      },
-      [theme.breakpoints.up('lg')]: {
-        flexBasis: '100%',       
-      },  
+      gap: theme.spacing(1),
     },
     headline: {
       fontWeight: 400,
@@ -71,12 +45,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     description: {
       [theme.breakpoints.up('md')]: {
-        marginRight: '45%',
+        marginRight: '10%',
       },
     },
     right: {
       flexBasis: '100%',
-      flexShrink: 2,
       alignItems: 'flex-end',
       [theme.breakpoints.up('md')]: {
         marginTop: '40px',
@@ -88,18 +61,13 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignSelf: 'center',
       alignItems: 'flex-end',
-    },
-    outerFrame: {
-      border: '6px solid black',
-    },
-    innerFrame: {
-      border: '16px solid white',
+      gap: theme.spacing(1)
     },
     boosted: {
       display: 'block',
       objectFit: 'contain',
       maxHeight: '300px',
-      width: '100%'
+      
     },
     createdBy: {
       display: 'flex',
@@ -109,25 +77,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
     chipAvatar: {
       marginLeft: '2px',
-      borderRadius: '50%',
+      borderRadius: '50%'
     },
-    bgImage: {
-      width: '100%',
-      position: 'absolute',
-      bottom: 0,
+    chip: {
+      backgroundColor: theme.palette.common.white
     },
-    soffa: {
-      position: 'relative',
-      right: 0,
-      display: 'block',
-      marginLeft: 'auto',
-      width: '100%',
-
-      [theme.breakpoints.up('md')]: {
-        width: '55%',        
-      },
+    signupButtonContainer: {
+      marginTop: theme.spacing(1)
     },
-
-
+    buttonLabel: {
+      margin: theme.spacing(0, 2)
+    }
   })
 );
