@@ -27,6 +27,9 @@ import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItem
 import { Alert } from '@material-ui/lab'
 import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
+import { capitalizeFirst } from '../../app/utils/util'
+import Button from '../../app/components/Button/Button'
+import AddIcon from '@material-ui/icons/Add';
 
 function a11yProps(index: any) {
   return {
@@ -47,6 +50,7 @@ export default function Profile() {
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
   const [hasArtwork, setHasArtwork] = useState(false);
+  const [isFollowed, setFollow] = useState(false); // TODO: Fetch and initialize with FollowedByMe
 
   const profileUser = useGetProfileUser();
   const artworks = useGetArtworks(profileUser);
@@ -124,6 +128,25 @@ export default function Profile() {
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  function follow(userToFollow) {
+    if (username === null || username === undefined) {
+      return; // TODO: Display modal to sign up
+    }
+
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
+      method: 'POST',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   function handleTabChange(_, newValue) {
@@ -210,10 +233,29 @@ export default function Profile() {
           <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
         </div>
         <div className={s.editActions}>
-          {isMyProfile &&
+          {isMyProfile ?
             <EditProfileDialog
               userProfile={userProfile.data}
             />
+          :
+            <Button
+              className={s.followButton}
+              variant="contained"
+              color="primary"
+              disabled={isFollowed}
+              startIcon={!isFollowed ? <AddIcon/> : null}
+              disableElevation
+              rounded
+              onClick={() => {
+                follow(userProfile.data?.Username);
+                setFollow(true);
+              }}>
+              {capitalizeFirst(
+                !isFollowed ?
+                  t('common:words.follow') :
+                  t('common:words.following')
+              )}
+            </Button>
           }
         </div>
         <Divider className={s.divider}></Divider>

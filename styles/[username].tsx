@@ -22,6 +22,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gridArea: 'actions',
       justifySelf: 'flex-end',
     },
+    followButton: {
+      maxHeight: '30px'
+    },
     tabsContainer: {
       gridArea: 'tabs'
     },
