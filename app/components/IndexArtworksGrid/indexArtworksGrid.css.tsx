@@ -12,18 +12,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       gap: theme.spacing(2),
-      '&:nth-child(2)': {
-        paddingTop: '70px',
-      },
-      '&:nth-child(3)': {
-        paddingTop: '140px',
-      },
-      '&:nth-child(5)': {
-        paddingTop: '70px',
-      },
-      '&:nth-child(6)': {
-        paddingTop: '140px',
-      },
     }
   }),
 );
