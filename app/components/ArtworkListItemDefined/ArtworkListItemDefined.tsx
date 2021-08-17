@@ -6,13 +6,18 @@ import Paper from '@material-ui/core/Paper'
 import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useUser } from '../../hooks/useUser'
+import { useEffect } from 'react'
 
 export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
   const s = styles();
-  const [isLiked, setIsLiked] = useState(artwork.IsLikedByMe);
+  const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
   const { isSignedIn } = useUser();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+
+  useEffect(() => {
+    setIsLiked(artwork?.LikedByMe);
+  }, [artwork?.LikedByMe]);
 
   function toggleLike(event) {
     event.stopPropagation();

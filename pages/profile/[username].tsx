@@ -52,12 +52,12 @@ export default function Profile() {
   const [hasArtwork, setHasArtwork] = useState(false);
 
   const profileUser = useGetProfileUser();
-  const artworks = useGetArtworks(profileUser);
+  const { username, profilePicture } = useUser();
+  const artworks = useGetArtworks(profileUser, username);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const { username, profilePicture } = useUser();
   const userProfile = useGetUserProfile(profileUser, username);
   const [imageRows, setImageRows] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(undefined);
