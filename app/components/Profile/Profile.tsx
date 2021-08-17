@@ -147,14 +147,16 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
             {capitalizeFirst(t('words.following'))}
           </Typography>
         </Box>
-        <Box>
-          <Typography variant="body2" display="block">
-            {data?.Artworks}
-          </Typography>
-          <Typography variant="caption" display="block">
-            {capitalizeFirst(t('words.worksOfArt'))}
-          </Typography>
-        </Box>
+        {data?.Artworks > 0 &&
+          <Box>
+            <Typography variant="body2" display="block">
+              {data?.Artworks}
+            </Typography>
+            <Typography variant="caption" display="block">
+              {capitalizeFirst(t('words.worksOfArt'))}
+            </Typography>
+          </Box>
+        }
       </Box>
     </Box>
   );
