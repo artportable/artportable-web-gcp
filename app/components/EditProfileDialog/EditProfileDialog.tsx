@@ -15,6 +15,7 @@ import { EditSocials } from './EditSocials/EditSocials'
 
 import { v4 } from 'uuid'
 import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFetching/UserProfile';
+import { useGetToken } from '../../hooks/useGetToken';
 
 interface Profile {
   title: string;
@@ -60,6 +61,7 @@ export default function EditProfileDialog({ userProfile }) {
   const { t } = useTranslation('profile');
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const { username } = useUser();
+  const token = useGetToken();
 
   
   const [openEdit, setOpenEdit] = useState(false);
@@ -73,7 +75,8 @@ export default function EditProfileDialog({ userProfile }) {
       const result = await fetch(`${apiBaseUrl}/api/profile/${username}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(profile),
       });      

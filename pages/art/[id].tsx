@@ -16,6 +16,7 @@ import { useStore } from "react-redux";
 import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useGetToken } from "../../app/hooks/useGetToken";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -28,6 +29,7 @@ export default function ArtworkPage(props) {
   const { id } = router.query
   const { username } = useUser();
   const artwork = useGetArtwork(id as string, username);
+  const token = useGetToken();
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
@@ -52,6 +54,9 @@ export default function ArtworkPage(props) {
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: isFollow ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
     })
     .then((response) => {
       if (!response.ok) {
@@ -78,6 +83,9 @@ export default function ArtworkPage(props) {
 
     fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
     })
     .then((response) => {
       if (!response.ok) {

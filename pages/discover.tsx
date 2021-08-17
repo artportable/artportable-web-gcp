@@ -14,6 +14,7 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
 import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
 import { useUser } from "../app/hooks/useUser";
+import { useGetToken } from "../app/hooks/useGetToken";
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['common', 'discover']);
@@ -37,6 +38,7 @@ export default function DiscoverPage() {
   const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
   const [trackedArtwork, setTrackedArtwork] = useState(null);
   const [trackedArtist, setTrackedArtists] = useState(null);
+  const token = useGetToken();
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
@@ -105,6 +107,9 @@ export default function DiscoverPage() {
 
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
     })
       .then((response) => {
         if (!response.ok) {
@@ -124,6 +129,9 @@ export default function DiscoverPage() {
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: isFollow ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
     })
       .then((response) => {
         if (!response.ok) {

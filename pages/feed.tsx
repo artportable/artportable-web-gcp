@@ -18,30 +18,37 @@ import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
 import { useUser } from '../app/hooks/useUser';
 import { Membership } from '../app/models/Membership';
+import { useGetToken } from '../app/hooks/useGetToken';
 
 export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const { username, membership, profilePicture } = useUser();
+  const token = useGetToken();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const userProfile = useGetUserProfileSummary(username);
   const { suggestedUsers } = useFollowRecommendations(username);
 
   const loadMoreElement = useRef(null);
-  const pages = [];
-  const pageCount = useInfiniteScroll(loadMoreElement);
+  const [pages, setPages] = useState([]);
+  const pageCount = useInfiniteScroll(loadMoreElement); 
   const [fetchMorePosts, setFetchMorePosts] = useState(true);
   const [isNoPosts, setIsNoPosts] = useState(false);
   const [entriesCount, setEntriesCount] = useState(0);
 
-  if (username) {
-    for (let i = 0; i < pageCount; i++) {
-      pages.push(
-        <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} entriesCount={entriesCount} setEntriesCount={setEntriesCount} setFetchMorePosts={setFetchMorePosts}></Feed>
-      );
+
+  useEffect(() => {
+    if (username) {
+      var pageList = []
+      for (let i = 0; i < pageCount; i++) {
+        pageList.push(
+          <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} entriesCount={entriesCount} setEntriesCount={setEntriesCount} setFetchMorePosts={setFetchMorePosts}></Feed>
+        );
+      }
+      setPages(pageList);
     }
-  }
+  }, [username]);
 
   useEffect(() => {
     if (!fetchMorePosts && entriesCount <= 0) {
@@ -52,6 +59,9 @@ export default function FeedPage() {
   function follow(user, isFollow) {
     fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username}`, {
       method: isFollow ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     })
       .then((response) => {
         if (!response.ok) {
@@ -69,6 +79,9 @@ export default function FeedPage() {
   function likePost(contentId, isLike) {
     fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     })
       .then((response) => {
         if (!response.ok) {

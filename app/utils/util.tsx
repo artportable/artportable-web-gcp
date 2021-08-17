@@ -16,7 +16,7 @@ export const toCamelCase = (input: string) => {
     return input;
   }
 
-  return input.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+  return input.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
     return index === 0 ? word.toLowerCase() : word.toUpperCase();
   }).replace(/\s+/g, '');
 }
@@ -41,8 +41,26 @@ export const shuffleArray = (array) => {
   return array;
 }
 
-const fetcherJson = url => fetch(url).then(r => r.json());
-const fetcherText = url => fetch(url).then(r => r.text());
+const fetcherJson = (url, token = null) => {
+  if (!token) {
+    return fetch(url).then(r => r.json())
+  }
+  return fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then(r => r.json())
+};
+const fetcherText = (url, token = null) => {
+  if (!token) {
+    return fetch(url).then(r => r.json())
+  }
+  return fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then(r => r.json())
+};
 
 type ResponseValue = 'text' | 'json';
 
