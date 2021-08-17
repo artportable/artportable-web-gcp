@@ -30,6 +30,11 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const images = artist.Images.map(i => normalizeImageSize(i, 200));
   const isSignedIn = store.getState()?.user?.isSignedIn;
 
+  function toggleFollow() {
+    onFollowClick(artist.Username, !isFollowed);
+    setFollow(!isFollowed);
+  }
+
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -37,17 +42,13 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
         {isSignedIn &&
           <Button
             size="small"
-            variant="contained"
+            variant={!isFollowed ? "contained" : "outlined"}
             color="primary"
-            disabled={isFollowed}
             startIcon={!isFollowed ? <AddIcon/> : null}
             disableElevation
             rounded
             className={s.button}
-            onClick={() => {
-              onFollowClick(artist.Username);
-              setFollow(true);
-            }}>
+            onClick={toggleFollow}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :

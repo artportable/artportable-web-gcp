@@ -49,9 +49,9 @@ export default function FeedPage() {
     }
   }, [fetchMorePosts]);
 
-  function follow(user) {
+  function follow(user, isFollow) {
     fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username}`, {
-      method: 'POST',
+      method: isFollow ? 'POST' : 'DELETE',
     })
       .then((response) => {
         if (!response.ok) {

@@ -17,6 +17,11 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
+  function toggleFollow() {
+    onFollowClick(user.Username, !isFollowed);
+    setFollow(!isFollowed);
+  }
+
   return (
     <ListItem key={user.UserId} className={s.listItem}>
       <Link href={`/profile/@${user.Username}`}>
@@ -43,16 +48,12 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
       <ListItemSecondaryAction className={s.secondaryAction}>
         <Button
           size="small"
-          variant="contained"
+          variant={!isFollowed ? "contained" : "outlined"}
           color="primary"
-          disabled={isFollowed}
           startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
-          onClick={() => {
-            onFollowClick(user.Username);
-            setFollow(true);
-          }}>
+          onClick={toggleFollow}>
             {capitalizeFirst(
               !isFollowed ?
                 t('common:words.follow') :

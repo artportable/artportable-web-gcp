@@ -44,13 +44,13 @@ export default function ArtworkPage(props) {
     setIsLiked(artwork?.data?.LikedByMe);
   }, [artwork?.data]);
 
-  function follow(userToFollow) {
+  function follow(userToFollow, isFollow) {
     if (username === null || username === undefined) {
       return; // TODO: Display modal to sign up
     }
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
-      method: 'POST',
+      method: isFollow ? 'POST' : 'DELETE',
     })
     .then((response) => {
       if (!response.ok) {
@@ -61,6 +61,11 @@ export default function ArtworkPage(props) {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  function toggleFollow() {
+    follow(artwork.data.Owner.Username, !isFollowed);
+    setFollow(!isFollowed);
   }
 
   // Like a post (feed item)
@@ -96,16 +101,12 @@ export default function ArtworkPage(props) {
             <AvatarCard user={artwork.data.Owner}></AvatarCard>
             <Button
               className={s.followButton}
-              variant="contained"
+              variant={!isFollowed ? "contained" : "outlined"}
               color="primary"
-              disabled={isFollowed}
               startIcon={!isFollowed ? <AddIcon/> : null}
               disableElevation
               rounded
-              onClick={() => {
-                follow(artwork.data.Owner.Username);
-                setFollow(true);
-              }}>
+              onClick={toggleFollow}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :

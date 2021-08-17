@@ -134,13 +134,13 @@ export default function Profile() {
       })
   }
 
-  function follow(userToFollow) {
+  function follow(userToFollow, isFollow) {
     if (username === null || username === undefined) {
       return; // TODO: Display modal to sign up
     }
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
-      method: 'POST',
+      method: isFollow ? 'POST' : 'DELETE',
     })
     .then((response) => {
       if (!response.ok) {
@@ -151,6 +151,11 @@ export default function Profile() {
     .catch((error) => {
       console.log(error);
     });
+  }
+
+  function toggleFollow() {
+    follow(userProfile.data?.Username, !isFollowed);
+    setFollow(!isFollowed);
   }
 
   function handleTabChange(_, newValue) {
@@ -244,16 +249,12 @@ export default function Profile() {
           :
             <Button
               className={s.followButton}
-              variant="contained"
+              variant={!isFollowed ? "contained" : "outlined"}
               color="primary"
-              disabled={isFollowed}
               startIcon={!isFollowed ? <AddIcon/> : null}
               disableElevation
               rounded
-              onClick={() => {
-                follow(userProfile.data?.Username);
-                setFollow(true);
-              }}>
+              onClick={toggleFollow}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :

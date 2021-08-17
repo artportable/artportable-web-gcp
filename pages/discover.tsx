@@ -117,13 +117,13 @@ export default function DiscoverPage() {
       })
   }
 
-  function follow(userToFollow) {
+  function follow(userToFollow, isFollow) {
     if (username === null || username === undefined) {
       return; // TODO: Display modal to sign up
     }
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
-      method: 'POST',
+      method: isFollow ? 'POST' : 'DELETE',
     })
       .then((response) => {
         if (!response.ok) {
