@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -15,7 +15,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import { useStore } from "react-redux";
 import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
-import { useEffect } from "react";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -41,11 +40,14 @@ export default function ArtworkPage(props) {
     setFollow(artwork?.data?.Owner?.FollowedByMe);
   }, [artwork?.data?.Owner?.FollowedByMe]);
 
+  useEffect(() => {
+    setIsLiked(artwork?.data?.LikedByMe);
+  }, [artwork?.data]);
+
   function follow(userToFollow) {
     if (username === null || username === undefined) {
       return; // TODO: Display modal to sign up
     }
-
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: 'POST',
