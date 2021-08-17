@@ -4,7 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Main from "../../app/components/Main/Main";
 import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
-import { Box, Chip, Paper, Typography } from "@material-ui/core";
+import { Box, Chip, IconButton, Paper, Typography } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { styles } from "../../styles/art.css";
 import { capitalizeFirst } from "../../app/utils/util";
@@ -15,6 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import { useStore } from "react-redux";
 import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -80,6 +81,13 @@ export default function ArtworkPage(props) {
 
   return (
     <Main>
+      <div className={s.backBtnContainer}>
+        <IconButton
+          onClick={() => router.back()}>
+          <ArrowBackIcon/>
+        </IconButton>
+      </div>
+
       {artwork.isLoading && <div>loading...</div>}
       {artwork.isError && <div>error...</div>}
 

@@ -2,6 +2,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    backBtnContainer: {
+      display: 'flex',
+      alignItems: 'flex-start'
+    },
     container: {
       display: 'flex',
       flexDirection: 'column',
