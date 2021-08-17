@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { styles } from "./followSuggestion.css";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from '../../utils/util';
+import AddIcon from '@material-ui/icons/Add';
 
 
 export default function FollowSuggestionCard({ user, onFollowClick }) {
@@ -45,13 +46,18 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           variant="contained"
           color="primary"
           disabled={isFollowed}
+          startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
           onClick={() => {
             onFollowClick(user.Username);
             setFollow(true);
           }}>
-            {capitalizeFirst(t('common:words.follow'))}
+            {capitalizeFirst(
+              !isFollowed ?
+                t('common:words.follow') :
+                t('common:words.following')
+            )}
         </Button>
       </ListItemSecondaryAction>
     </ListItem>

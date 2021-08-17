@@ -50,20 +50,20 @@ export default function Profile() {
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
   const [hasArtwork, setHasArtwork] = useState(false);
-  const [isFollowed, setFollow] = useState(false); // TODO: Fetch and initialize with FollowedByMe
 
   const profileUser = useGetProfileUser();
   const artworks = useGetArtworks(profileUser);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
-  const userProfile = useGetUserProfile(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const { username, profilePicture } = useUser();
+  const userProfile = useGetUserProfile(profileUser, username);
   const [imageRows, setImageRows] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(undefined);
   const dispatch = useDispatch();
 
+  const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -75,6 +75,10 @@ export default function Profile() {
   useEffect(() => {
     setCoverPhoto(userProfile?.data?.CoverPhoto);
   }, [userProfile?.data?.CoverPhoto]);
+
+  useEffect(() => {
+    setFollow(userProfile?.data?.FollowedByMe);
+  }, [userProfile?.data?.FollowedByMe]);
 
   useEffect(() => {
     const handleRouteChangeStart = (url) => {

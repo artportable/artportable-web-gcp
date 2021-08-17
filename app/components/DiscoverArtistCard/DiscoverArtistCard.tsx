@@ -14,6 +14,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
 import { useStore } from "react-redux";
+import AddIcon from '@material-ui/icons/Add';
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
@@ -39,6 +40,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             variant="contained"
             color="primary"
             disabled={isFollowed}
+            startIcon={!isFollowed ? <AddIcon/> : null}
             disableElevation
             rounded
             className={s.button}
@@ -46,7 +48,11 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
               onFollowClick(artist.Username);
               setFollow(true);
             }}>
-              {capitalizeFirst(t('common:words.follow'))}
+              {capitalizeFirst(
+                !isFollowed ?
+                  t('common:words.follow') :
+                  t('common:words.following')
+              )}
           </Button>
         }
       </div>
