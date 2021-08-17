@@ -24,8 +24,8 @@ export function useGetArtworks(owner = null) {
   }
 }
 
-export function useGetArtwork(id: string) {
-  const url = new URL(`${apiBaseUrl}/api/artworks/${id}`);
+export function useGetArtwork(id: string, myUsername: string = null) {
+  const url = new URL(`${apiBaseUrl}/api/artworks/${id}?myUsername=${myUsername}`);
 
   const { data, error } = useSWR(
     url.href,

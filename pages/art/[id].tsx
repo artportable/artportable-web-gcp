@@ -15,6 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import { useStore } from "react-redux";
 import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
+import { useEffect } from "react";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -25,16 +26,20 @@ export default function ArtworkPage(props) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const { id } = router.query
-  const artwork = useGetArtwork(id as string);
   const { username } = useUser();
+  const artwork = useGetArtwork(id as string, username);
 
-  const [isFollowed, setFollow] = useState(false); // TODO: Fetch and initialize with FollowedByMe
+  const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
 
   const formatter = new Intl.NumberFormat(props.locale, {
     style: 'currency',
     currency: 'SEK',
   });
+
+  useEffect(() => {
+    setFollow(artwork?.data?.Owner?.FollowedByMe);
+  }, [artwork?.data?.Owner?.FollowedByMe]);
 
   function follow(userToFollow) {
     if (username === null || username === undefined) {
