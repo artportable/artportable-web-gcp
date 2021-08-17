@@ -2,11 +2,10 @@ import ArtworkStartItem from '../ArtworkStartItem/ArtworkStartItem'
 import { styles } from './indexArtworksGrid.css'
 import useGetColumns from '../../hooks/gridUtils/useGetColumns'
 import { shuffleArray } from '../../utils/util'
-import { useEffect } from 'react'
 
 const IndexArtworksGrid = ({ artworks }) => {
   const s = styles();
-  const { oldCols, colWidth } = useGetColumns('regular');
+  const { oldCols } = useGetColumns('regular');
   
   
   const columns = getRandomizedColumns(artworks.data, oldCols);
