@@ -117,30 +117,6 @@ export default function DiscoverPage() {
       })
   }
 
-  // function search(searchQuery) {
-  //   const url = new URL(`${apiBaseUrl}/api/discover/artists`);
-  //   url.searchParams.append('page', '1');
-  //   if (searchQuery != null && searchQuery != '') {
-  //     url.searchParams.append('q', searchQuery);
-  //   }
-  //   if (username != null && username != '') {
-  //     url.searchParams.append('myUsername', username);
-  //   }
-
-  //   fetch(url.href, {
-  //     method: 'GET',
-  //   })
-  //   .then(response => {
-  //     return response.json();
-  //   })
-  //   .then(data => {
-  //     setArtists(data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  // }
-
   function follow(userToFollow) {
     if (username === null || username === undefined) {
       return; // TODO: Display modal to sign up
@@ -196,7 +172,6 @@ export default function DiscoverPage() {
               loadMoreElementRef={loadMoreArtistsElementRef}
               isLoading={isLoadingArtists}
               loadMore={loadMoreArtists}
-            // onSearch={search}
             ></DiscoverArtists>
           </TabPanel>
         </Box>
