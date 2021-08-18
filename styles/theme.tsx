@@ -81,7 +81,7 @@ const breakpointMainWidths = {
   smPlus: { breakpoint: 'smPlus', regular: 460, wide: 660, },
   md: { breakpoint: 'md', regular: 669, wide: 860, },
   mdPlus: { breakpoint: 'mdPlus', regular: 869, wide: 1060, },
-  lg: { breakpoint: 'lg', regular: 1124, wide: 1300, },
+  lg: { breakpoint: 'lg', regular: 1144, wide: 1300, },
   lgPlus: { breakpoint: 'lgPlus', regular: 1424, wide: 1560, },
   xl: { breakpoint: 'xl', regular: 1624, wide: 1920, },
 }

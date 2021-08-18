@@ -15,11 +15,10 @@ export default function Main({ children, wide = false, noHeaderPadding = false, 
 
   return (
     <>
-    <Header
-  ></Header>
-    <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
-      {children}
-    </div>
+      <Header></Header>
+      <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
+        {children}
+      </div>
     </>
   );
 }

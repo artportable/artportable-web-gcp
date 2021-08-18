@@ -19,6 +19,7 @@ import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
 import { useUser } from '../app/hooks/useUser';
 import { Membership } from '../app/models/Membership';
 import { useGetToken } from '../app/hooks/useGetToken';
+import { useBreakpointDown } from '../app/hooks/useBreakpointDown'
 
 export default function FeedPage() {
   const s = styles();
@@ -29,6 +30,7 @@ export default function FeedPage() {
 
   const userProfile = useGetUserProfileSummary(username);
   const { suggestedUsers } = useFollowRecommendations(username);
+  const mdPlusScreenOrDown = useBreakpointDown('mdPlus');
 
   const loadMoreElement = useRef(null);
   const [pages, setPages] = useState([]);
@@ -101,26 +103,28 @@ export default function FeedPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main>
+      <Main wide={mdPlusScreenOrDown ? true : false}>
         <Box className={s.feedContainer}>
-          <div className={s.colLeft}>
-            <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
-            {membership === Membership.PortfolioPremium &&
-              <Link href="/upload">
-                <a>
-                  <Button
-                    className={s.uploadArtButton}
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    disableElevation>
-                    {t('uploadNewWorkOfArt')}
-                  </Button>
-                </a>
-              </Link>
-            }
-            {/* <NewsletterCard></NewsletterCard> */}
-          </div>
+          {!mdPlusScreenOrDown && 
+            <div className={s.colLeft}>
+              <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
+              {membership === Membership.PortfolioPremium &&
+                <Link href="/upload">
+                  <a>
+                    <Button
+                      className={s.uploadArtButton}
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      disableElevation>
+                      {t('uploadNewWorkOfArt')}
+                    </Button>
+                  </a>
+                </Link>
+              }
+              {/* <NewsletterCard></NewsletterCard> */}
+            </div>
+          }
           <div className={s.colFeed}>
             {(username && !isNoPosts) ? (
               <>
