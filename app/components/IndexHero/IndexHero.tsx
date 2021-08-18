@@ -62,13 +62,10 @@ export default function IndexHero() {
                   <img 
                     className={s.boosted} 
                     src="/images/art_landing_horses_painting.png" 
-                    alt={`${t("artworkFrom")} + ${promotedUser}`}
-                    title={`${t("artworkFrom")} + ${promotedUser}`}/>
+                    alt={`${t("artworkFrom")} ${promotedUser}`}
+                    title={`${t("artworkFrom")} ${promotedUser}`}/>
                 </Paper>
                 <div className={s.createdBy}>
-                  <span>
-                    {t('createdBy')}
-                  </span>
                   <Chip
                     classes={{
                       root: s.chip,

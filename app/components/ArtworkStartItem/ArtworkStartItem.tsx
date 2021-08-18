@@ -24,14 +24,18 @@ export default function ArtworkStartItem({ artwork }) {
     <Paper variant="outlined" className={s.paper}>
       <div className={s.container}>
         <div>
-          <img
-              className={clsx(!isLoaded && s.hidden)} 
-              src={`${bucketUrl}${artwork.Image.Name}`}
-              alt="Artwork"
-              width={imageWidth}
-              height={imageHeight}
-              onLoad={() => setIsLoaded(true)}
-              ></img>
+          <Link href={`/art/${artwork.ArtworkId}`}>
+            <a>
+              <img
+                  className={clsx(!isLoaded && s.hidden)}
+                  src={`${bucketUrl}${artwork.Image.Name}`}
+                  alt="Artwork"
+                  width={imageWidth}
+                  height={imageHeight}
+                  onLoad={() => setIsLoaded(true)}
+                ></img>
+              </a>
+            </Link>
             
             <Skeleton
               variant="rect"
