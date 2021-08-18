@@ -17,7 +17,7 @@ export function getImageAsRows(images: Image[], gapSpace: number, rowWidth: numb
     const newWidth = rowHeight * ratio;
     const normalizedImage = normalizeImageSize(image, undefined, newWidth);
 
-    if((widthSum + gapSum) > rowWidth) {
+    if((widthSum + gapSum) + normalizedImage.Width > rowWidth) {
       rows.push([]);
       rows[i] = setFinalRowDimensions(rows[i], (rowWidth - gapSum) / widthSum);
       i++;

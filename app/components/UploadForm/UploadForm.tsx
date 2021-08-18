@@ -53,6 +53,7 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setSele
         {Array.from(tags).map((tag: string) =>
           {
             return <TagChip
+              key={tag}
               title={tag}
               onChipClick={onChipClick}
               limitReached={selectedTags.length >= 5}>
