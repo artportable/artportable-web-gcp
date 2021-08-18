@@ -40,9 +40,13 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
           <Link href={`/art/${artwork.Id}`}>
             <a>
               <img
+               style={{
+                 width: width,
+                 height: height
+               }}
                 key={artwork?.PrimaryFile}
-                width={width}
-                height={height}
+                
+                
                 src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
               />
             </a>
