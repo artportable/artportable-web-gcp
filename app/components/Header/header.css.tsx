@@ -1,57 +1,134 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { NONAME } from 'node:dns';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      display: 'grid',
-      width: 'calc(100% + 10px)',
+    toolbar: {
       backgroundColor: theme.palette.background.default,
       boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+      width: 'calc(100% + 10px)',
+    },
+    container: {
+      display: 'flex',
+      width: '100%',
       height: 'var(--header-height, 70px)',
-      padding: '0 16px',
       gap: '0 16px',
       alignItems: 'center',
-      justifyItems: 'start',
-      gridTemplate: (
-      '\"logo navigation login language\" auto' +
-      '/ auto 1fr auto auto'
-      ),
     },
-    
+    logoContainer: {
+      gridArea: 'logo',
+      flexGrow: 1,
+
+      flexBasis: '100%',
+      position: 'relative',
+      '& a': {
+        position: 'absolute',
+        right: 'calc(50% - 42px)',
+        bottom: '-13px',
+      }
+    },
+    menuIcon: {
+      display: 'none'
+    },
     logo: {
-      gridArea: 'logo'
+      width: '135px',
+      paddingTop: theme.spacing(0.2)
+    },
+    navigation: {
+      display: 'none'
+    },
+
+    language: {
+      display: 'none',
+      gridArea: 'language',
+    },
+
+    login: {
+      display: 'none',
+    },
+
+    upload: {
+      display: 'none'
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      language: {
+        display: 'initial',
+      },
+      logoContainer: {
+        flexBasis: 'initial',
+        '& a': {
+          position: 'static'
+        }
+      }
     },
     
-    navigation: {
-      gridArea: 'navigation',
-      marginLeft: '20px',
+    [theme.breakpoints.up('smPlus')]:{
+      menuIcon: {
+        display: 'initial',
+      },
+      menuIconWithBadge: { 
+        display: 'none',
+      },
+      login: {
+        display: 'initial',
+        gridArea: 'login',
+        '& .MuiButton-root .MuiButton-label': {
+            margin: theme.spacing(0, 2)
+        },
+        '& > *': {
+          margin: theme.spacing(0, 1)
+        },
+        '& > .MuiIconButton-root': {
+          padding: theme.spacing(0.5)
+        }
+      },
+
+      language: {
+        display: 'initial'
+      },
     },
+
+    [theme.breakpoints.up('md')]: {
+      menuButton: {
+        display: 'none',
+      },
+      toolbar: {
+        backgroundColor: theme.palette.background.default,
+        boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+        width: 'calc(100% + 10px)',
+      },
+      container: {
+        display: 'grid',
+        width: '100%',
+        height: 'var(--header-height, 70px)',
+        gap: '0 16px',
+        alignItems: 'center',
+        justifyItems: 'start',
+        gridTemplate: (
+        '\"logo navigation login language\" auto' +
+        '/ auto 1fr auto auto'
+        ),
+      },
+      navigation: {
+        display: 'initial',
+        gridArea: 'navigation',
+        marginLeft: '20px',
+      },
+      upload: {
+        display: 'initial'
+      },
+      logo: {
+        width: '188px'
+      }
+    },
+    
     navButton: {
       textTransform: 'none'
     },
     text: {
       fontSize: '18px',
     },
-    login: {
-      gridArea: 'login',
-      '& .MuiButton-root .MuiButton-label': {
-          margin: theme.spacing(0, 2)
-      },
-      '& > *': {
-        margin: theme.spacing(0, 1)
-      },
-      '& > .MuiIconButton-root': {
-        padding: theme.spacing(0.5)
-      }
-    },
-    avatar: {
-      width: 33,
-      height: 33
-    },
-    language: {
-      gridArea: 'language'
-    },
+    
     iconButtons: {
       display: 'inline'
     }

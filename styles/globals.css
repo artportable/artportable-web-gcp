@@ -1,3 +1,7 @@
+html {
+  overflow: hidden auto;
+}
+
 html,
 body {
   padding: 0;
