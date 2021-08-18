@@ -91,6 +91,14 @@ export default function ArtworkPage(props) {
     })
   }
 
+  function toggleLike(event) {
+    event.stopPropagation();
+
+    likeArtwork(!isLiked);
+    setIsLiked(!isLiked);
+    !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
+  }
+
   return (
     <Main>
       <div className={s.backBtnContainer}>
@@ -134,10 +142,7 @@ export default function ArtworkPage(props) {
             <div className={s.actionBar}>
               <Button
                 startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
-                onClick={() => {
-                  likeArtwork(!isLiked);
-                  setIsLiked(!isLiked);
-                } }>
+                onClick={toggleLike}>
                 {capitalizeFirst(t('like'))}
               </Button>
               {/* <Button // TODO: Implement Share functionality
