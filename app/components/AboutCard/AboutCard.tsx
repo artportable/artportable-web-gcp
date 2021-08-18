@@ -16,8 +16,8 @@ export default function AboutCard({ data, userProfilePicture }) {
           <div>
             {userProfilePicture &&
               <img
-                src={`${bucketUrl}${userProfilePicture}`}
-                width={300}>
+                className={s.profilePicture}
+                src={`${bucketUrl}${userProfilePicture}`}>
               </img>
             }
           </div>

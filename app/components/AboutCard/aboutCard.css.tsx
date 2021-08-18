@@ -21,6 +21,9 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 500,
       fontFamily: "LyonDisplay",
       marginBottom: theme.spacing(1)
+    },
+    profilePicture: {
+      width: 'clamp(100px, 100%, 300px)'
     }
   }),
 );
