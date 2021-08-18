@@ -11,6 +11,7 @@ import { useKeycloak } from '@react-keycloak/ssr';
 import type { KeycloakInstance } from 'keycloak-js'
 import { useDispatch } from "react-redux";
 import { LOGIN_USER } from '../app/redux/actions/userActions'
+import { useGetToken } from '../app/hooks/useGetToken';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -19,6 +20,7 @@ export default function Plans({ priceData }) {
   const s = styles();
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const dispatch = useDispatch();
+  const token = useGetToken();
 
   useEffect(() => {
     if(initialized && keycloak.tokenParsed) {
@@ -34,7 +36,8 @@ export default function Plans({ priceData }) {
               Email: parsedToken.email,
             }),
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization' : `Bearer ${token}`
             }
           });
           const data = await response.json();

@@ -30,6 +30,7 @@ import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
 import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 import AddIcon from '@material-ui/icons/Add';
+import { useGetToken } from '../../app/hooks/useGetToken'
 
 function a11yProps(index: any) {
   return {
@@ -62,6 +63,7 @@ export default function Profile() {
   const [imageRows, setImageRows] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(undefined);
   const dispatch = useDispatch();
+  const token = useGetToken();
 
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
 
@@ -122,6 +124,9 @@ export default function Profile() {
   function onLikeClick(artworkId, isLike) {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
     })
       .then((response) => {
         if (!response.ok) {
@@ -180,7 +185,8 @@ export default function Profile() {
     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'image/jpeg'
+        'Content-Type': 'image/jpeg',
+        'Authorization' : `Bearer ${token}`
       },
       body: blob
     })
@@ -199,7 +205,8 @@ export default function Profile() {
         fetch(url, {
           method: 'PUT',
           headers: {
-            'Content-Type': 'image/jpeg'
+            'Content-Type': 'image/jpeg',
+            'Authorization' : `Bearer ${token}`
           },
         })
           .then((response) => {

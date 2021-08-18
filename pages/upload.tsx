@@ -17,6 +17,7 @@ import { CircularProgress, Paper, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useRouter } from 'next/router';
 import { useUser } from '../app/hooks/useUser'
+import { useGetToken } from '../app/hooks/useGetToken';
 
 
 export default function UploadArtworkPage() {
@@ -39,6 +40,7 @@ export default function UploadArtworkPage() {
   const [deletedFile, setDeletedFile] = useState(false);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadLoading, setUploadLoading] = useState(false);
+  const token = useGetToken();
 
   //Cropped images
   const [croppedPrimary, setCroppedPrimary] = useState(null);
@@ -71,7 +73,7 @@ export default function UploadArtworkPage() {
       TertiaryFile: nameTertiary
     }
     setUploadSnackbarOpen(true);
-    const res = usePostArtwork(artwork, username);
+    const res = usePostArtwork(artwork, username, token);
     router.push('/profile/@' + username);
   }
 
@@ -135,7 +137,8 @@ export default function UploadArtworkPage() {
     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'image/jpeg'
+        'Content-Type': 'image/jpeg',
+        'Authorization' : `Bearer ${token}`
       },
       body: blob
     })

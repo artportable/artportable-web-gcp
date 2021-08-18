@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { capitalizeFirst } from '../../utils/util';
 import Link from 'next/link';
 import router from 'next/router';
+import { useGetToken } from '../../hooks/useGetToken';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -16,6 +17,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const [processing, setProcessing] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [customerId, setCustomerId] = useState('');
+  const token = useGetToken();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -30,7 +32,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
       fetch(`${apiBaseUrl}/api/payments/customers`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'Authorization' : `Bearer ${token}`
           },
           body: JSON.stringify({email: email, fullName: fullName})
         })
@@ -108,6 +111,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
+          'Authorization' : `Bearer ${token}`
         },
         body: JSON.stringify({
           customerId: customerId,
