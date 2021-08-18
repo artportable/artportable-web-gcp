@@ -11,6 +11,7 @@ import { Artwork } from "../../models/Artwork";
 import { getImageAsRows } from "../../utils/layoutUtils";
 import Image from "../../models/Image";
 import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
+import { useBreakpointDown } from "../../hooks/useBreakpointDown";
 
 interface InputProps {
   artworks: Artwork[],
@@ -26,6 +27,7 @@ interface InputProps {
 export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
+  const smScreenOrSmaller = useBreakpointDown('sm');
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
@@ -96,13 +98,13 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           )}
           style={{ minHeight: "56px" }}
           renderInput={(params) => <TextField {...params} label={t('tags')} variant="outlined" />}
-          onChange={(event, value, reason) => {
+          onChange={(_, value, reason) => {
             setSelectedTags(value);
             if (reason === 'remove-option') {
               onFilter(value);
             }
           }}
-          onClose={(event) => {
+          onClose={(_) => {
             onFilter(selectedTags);
           }}
         ></Autocomplete>
@@ -110,13 +112,12 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           <div className={s.row} key={i}>
             {row.map(image => {
               let artwork = artworks.find(a => a.PrimaryFile.Name === image.Name);
-              let index = artworks.indexOf(artwork);
               
               if (artwork) {
                 return <ArtworkListItemDefined
                 key={image.Name}
-                width={image.Width}
-                height={image.Height}
+                width={smScreenOrSmaller ? '100%' : image.Width}
+                height={smScreenOrSmaller ? 'auto' : image.Height}
                 artwork={artwork}
                 onLikeClick={onLike} />
               }
