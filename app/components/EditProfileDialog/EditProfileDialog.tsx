@@ -68,7 +68,7 @@ export default function EditProfileDialog({ userProfile }) {
   const makeChanges = async (_) => {
     setOpenEdit(false);
     try {
-      mutate(getUserProfileUri(username), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
+      mutate(getUserProfileUri(username, null), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
             
       const result = await fetch(`${apiBaseUrl}/api/profile/${username}`, {
         method: 'PUT',

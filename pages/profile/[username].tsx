@@ -27,6 +27,9 @@ import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItem
 import { Alert } from '@material-ui/lab'
 import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
+import { capitalizeFirst } from '../../app/utils/util'
+import Button from '../../app/components/Button/Button'
+import AddIcon from '@material-ui/icons/Add';
 
 function a11yProps(index: any) {
   return {
@@ -49,17 +52,18 @@ export default function Profile() {
   const [hasArtwork, setHasArtwork] = useState(false);
 
   const profileUser = useGetProfileUser();
-  const artworks = useGetArtworks(profileUser);
+  const { username, profilePicture } = useUser();
+  const artworks = useGetArtworks(profileUser, username);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
-  const userProfile = useGetUserProfile(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const { username, profilePicture } = useUser();
+  const userProfile = useGetUserProfile(profileUser, username);
   const [imageRows, setImageRows] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(undefined);
   const dispatch = useDispatch();
 
+  const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -71,6 +75,10 @@ export default function Profile() {
   useEffect(() => {
     setCoverPhoto(userProfile?.data?.CoverPhoto);
   }, [userProfile?.data?.CoverPhoto]);
+
+  useEffect(() => {
+    setFollow(userProfile?.data?.FollowedByMe);
+  }, [userProfile?.data?.FollowedByMe]);
 
   useEffect(() => {
     const handleRouteChangeStart = (url) => {
@@ -124,6 +132,30 @@ export default function Profile() {
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  function follow(userToFollow, isFollow) {
+    if (username === null || username === undefined) {
+      return; // TODO: Display modal to sign up
+    }
+
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
+      method: isFollow ? 'POST' : 'DELETE',
+    })
+    .then((response) => {
+      if (!response.ok) {
+        console.log(response.statusText);
+        throw response;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  function toggleFollow() {
+    follow(userProfile.data?.Username, !isFollowed);
+    setFollow(!isFollowed);
   }
 
   function handleTabChange(_, newValue) {
@@ -210,10 +242,25 @@ export default function Profile() {
           <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
         </div>
         <div className={s.editActions}>
-          {isMyProfile &&
+          {isMyProfile ?
             <EditProfileDialog
               userProfile={userProfile.data}
             />
+          :
+            <Button
+              className={s.followButton}
+              variant={!isFollowed ? "contained" : "outlined"}
+              color="primary"
+              startIcon={!isFollowed ? <AddIcon/> : null}
+              disableElevation
+              rounded
+              onClick={toggleFollow}>
+              {capitalizeFirst(
+                !isFollowed ?
+                  t('common:words.follow') :
+                  t('common:words.following')
+              )}
+            </Button>
           }
         </div>
         <Divider className={s.divider}></Divider>

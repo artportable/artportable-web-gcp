@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { styles } from "./followSuggestion.css";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from '../../utils/util';
+import AddIcon from '@material-ui/icons/Add';
 
 
 export default function FollowSuggestionCard({ user, onFollowClick }) {
@@ -15,6 +16,11 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
   const [isFollowed, setFollow] = useState(false);
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+
+  function toggleFollow() {
+    onFollowClick(user.Username, !isFollowed);
+    setFollow(!isFollowed);
+  }
 
   return (
     <ListItem key={user.UserId} className={s.listItem}>
@@ -42,16 +48,17 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
       <ListItemSecondaryAction className={s.secondaryAction}>
         <Button
           size="small"
-          variant="contained"
+          variant={!isFollowed ? "contained" : "outlined"}
           color="primary"
-          disabled={isFollowed}
+          startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
-          onClick={() => {
-            onFollowClick(user.Username);
-            setFollow(true);
-          }}>
-            {capitalizeFirst(t('common:words.follow'))}
+          onClick={toggleFollow}>
+            {capitalizeFirst(
+              !isFollowed ?
+                t('common:words.follow') :
+                t('common:words.following')
+            )}
         </Button>
       </ListItemSecondaryAction>
     </ListItem>

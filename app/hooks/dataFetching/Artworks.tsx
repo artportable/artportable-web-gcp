@@ -4,8 +4,8 @@ import { ArtworkForCreation } from '../../models/Artwork';
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
-export function useGetArtworks(owner = null) {
-  const url = new URL(`${apiBaseUrl}/api/artworks`);
+export function useGetArtworks(owner = null, myUsername: string = null) {
+  const url = new URL(`${apiBaseUrl}/api/artworks?myUsername=${myUsername}`);
   if(owner !== null) {
     url.searchParams.append('owner', owner);
   }
@@ -24,8 +24,8 @@ export function useGetArtworks(owner = null) {
   }
 }
 
-export function useGetArtwork(id: string) {
-  const url = new URL(`${apiBaseUrl}/api/artworks/${id}`);
+export function useGetArtwork(id: string, myUsername: string = null) {
+  const url = new URL(`${apiBaseUrl}/api/artworks/${id}?myUsername=${myUsername}`);
 
   const { data, error } = useSWR(
     url.href,

@@ -20,10 +20,10 @@ export function useGetUserProfileSummary(user) {
   }
 }
 
-export const getUserProfileUri = (user: string) => `${apiBaseUrl}/api/profile/${user}`;
-export function useGetUserProfile(user) {
+export const getUserProfileUri = (user: string, myUsername: string) => `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
+export function useGetUserProfile(user, myUsername) {
   const { data, error } = useSWR(
-    getUserProfileUri(user),
+    getUserProfileUri(user, myUsername),
     getFetcher(user),
     {
       revalidateOnFocus: false,
