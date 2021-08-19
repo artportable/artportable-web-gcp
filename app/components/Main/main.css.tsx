@@ -4,7 +4,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'grid',
-      gridAutoRows: 'auto',
+      gridAutoRows: 'min-content',
       gridTemplateColumns: `${theme.spacing(2)}px 1fr ${theme.spacing(2)}px`,
       paddingTop: 'calc(35px + var(--header-height))',
       minHeight: '100vh',

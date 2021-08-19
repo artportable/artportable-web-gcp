@@ -4,15 +4,13 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Main from "../../app/components/Main/Main";
 import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
-import { Box, Chip, IconButton, Paper, Typography } from "@material-ui/core";
+import { Box, IconButton, Paper, Typography } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { styles } from "../../styles/art.css";
 import { capitalizeFirst } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import { useStore } from "react-redux";
 import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -22,7 +20,6 @@ export default function ArtworkPage(props) {
   const s = styles();
   const { t } = useTranslation(['art', 'common', 'tags']);
   const router = useRouter();
-  const store = useStore();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -108,19 +105,20 @@ export default function ArtworkPage(props) {
   }
 
   return (
-    <Main>
-      <div className={s.backBtnContainer}>
-        <IconButton
-          onClick={() => router.back()}>
-          <ArrowBackIcon/>
-        </IconButton>
-      </div>
+    <Main wide>
+      <div className={s.container}>
+        <div className={s.backBtnContainer}>
+          <IconButton
+            onClick={() => router.back()}>
+            <ArrowBackIcon/>
+          </IconButton>
+        </div>
 
-      {artwork.isLoading && <div>loading...</div>}
-      {artwork.isError && <div>error...</div>}
+        {artwork.isLoading && <div>loading...</div>}
+        {artwork.isError && <div>error...</div>}
 
-      {artwork && artwork.data &&
-        <div className={s.container}>
+        {artwork && artwork.data &&
+        <>
           <div className={s.avatar}>
             <AvatarCard user={artwork.data.Owner}></AvatarCard>
             <Button
@@ -138,13 +136,11 @@ export default function ArtworkPage(props) {
               )}
             </Button>
           </div>
-          <Paper className={s.card}>
+          <Paper classes={{ root: s.paper }}>
             <div className={s.imageContainer}>
               <img
                 src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
                 className={s.primaryImage}
-                width={artwork.data.PrimaryFile.Width > artwork.data.PrimaryFile.Height ? artwork.data.PrimaryFile.Width : null}
-                height={artwork.data.PrimaryFile.Height > artwork.data.PrimaryFile.Width ? artwork.data.PrimaryFile.Height : null}
               />
             </div>
             <div className={s.actionBar}>
@@ -153,15 +149,6 @@ export default function ArtworkPage(props) {
                 onClick={toggleLike}>
                 {capitalizeFirst(t('like'))}
               </Button>
-              {/* <Button // TODO: Implement Share functionality
-                variant="outlined"
-                size='small'
-                color="primary"
-                disableElevation
-                rounded
-                startIcon={<ShareIcon/>}>
-                  Share
-              </Button> */}
             </div>
             <div className={s.infoBar}>
               {artwork.data.Likes > 0 &&
@@ -214,8 +201,9 @@ export default function ArtworkPage(props) {
               )}
             </Box>
           </Paper>
-        </div>
-      }
+        </>
+        }
+      </div>
     </Main>
   );
 }

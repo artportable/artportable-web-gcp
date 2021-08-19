@@ -6,7 +6,6 @@ import { shuffleArray } from '../../utils/util'
 const IndexArtworksGrid = ({ artworks }) => {
   const s = styles();
   const { numberOfColumns, width } = useGetColumns('regular');
-  console.log(numberOfColumns, width);
   
   const columns = getRandomizedColumns(artworks.data, numberOfColumns);
 

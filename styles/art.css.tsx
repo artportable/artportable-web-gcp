@@ -3,15 +3,21 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     backBtnContainer: {
+      alignSelf: 'flex-start'
+    },
+    flexContainer: {
       display: 'flex',
-      alignItems: 'flex-start'
+      flexDirection: 'column',
+      alignItems: 'center'
     },
     container: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifySelf: 'center',
-      width: 'fit-content'
+    },
+    paper: {
+      maxWidth: '100%'
     },
     avatar: {
       marginBottom: '10px',
@@ -24,10 +30,6 @@ export const styles = makeStyles((theme: Theme) =>
     followButton: {
       maxHeight: '30px'
     },
-    card: {
-      marginBottom: '50px',
-      width: 'min-content'
-    },
     imageContainer: {
       position: 'relative',
       maxWidth: '100%',
@@ -36,22 +38,25 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: 'center',
     },
     primaryImage: {
-      maxWidth: '850px',
-      maxHeight: '850px'
+      minWidth: '100%',
+      width: '100%',
+      maxWidth: 'calc(100vw - 32px)',
+      maxHeight: 'calc(100vh - var(--header-plus-box-shadow-padding) - 16px)',
+      objectFit:  'contain'
     },
     infoBar: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginLeft: '5px',
-      marginRight: '5px',
+      marginLeft: theme.spacing(1.6),
+      marginRight: theme.spacing(1.6),
     },
     actionBar: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginLeft: '5px',
-      marginRight: '5px',
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
       alignItems: 'center'
     },
     text: {
@@ -63,15 +68,20 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexFlow: 'row wrap',
       justifyContent: 'space-around',
-      alignItems: 'center'
+      alignItems: 'center',
+      '& :not(:first-child)': {
+        marginLeft: theme.spacing(2),
+      }
     },
     extraImage: {
-      maxWidth: '400px',
-      maxHeight: '400px'
+      maxWidth: 'calc(100vw - 32px)',
+      maxHeight: '50vh',
+      width: '100%'
     },
     tagsContainer: {
       display: 'flex',
       flexDirection: 'row',
+      flexWrap: 'wrap',
       margin: '10px'
     },
     chip: {
