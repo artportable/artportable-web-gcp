@@ -3,21 +3,19 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      display: 'block',
+      display: 'grid',
+      gridAutoRows: 'auto',
+      gridTemplateColumns: `${theme.spacing(2)}px 1fr ${theme.spacing(2)}px`,
       paddingTop: 'calc(35px + var(--header-height))',
-      padding: theme.spacing(0, 2),
       minHeight: '100vh',
       paddingBottom: '2rem',
+      '& > *': {
+        gridColumn: '2/3'
+      },
     },
 
     [theme.breakpoints.up('sm')]: {
       container: {
-        display: 'grid',
-        gridAutoRows: 'auto',
-
-        '& > *': {
-          gridColumn: '2/3'
-        },
         gridTemplateColumns: `1fr ${theme.breakpointMainWidths.sm.regular}px 1fr`,
         [theme.breakpoints.up('smPlus')]: {
           gridTemplateColumns: `1fr ${theme.breakpointMainWidths.smPlus.regular}px 1fr`
