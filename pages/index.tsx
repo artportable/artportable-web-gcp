@@ -31,7 +31,7 @@ export default function Home( props ) {
 export async function getStaticProps({locale}) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header', 'index', 'tags', 'plans', 'common']),
+      ...await serverSideTranslations(locale, ['header', 'footer', 'index', 'tags', 'plans', 'common']),
     },
   }
 }

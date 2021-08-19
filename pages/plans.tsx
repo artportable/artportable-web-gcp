@@ -86,7 +86,7 @@ export async function getStaticProps({ locale }) {
   return { 
     props: {
       priceData,
-      ...await serverSideTranslations(locale, ['header', 'plans', 'common']),
+      ...await serverSideTranslations(locale, ['header', 'footer', 'plans', 'common']),
     } 
   };
 }

@@ -74,7 +74,7 @@ export default function Checkout() {
 export async function getStaticProps({context, locale}) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'checkout']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'checkout']),
     }
   }
 }

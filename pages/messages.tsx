@@ -77,7 +77,7 @@ export async function getStaticProps(props) {
   console.log('Slut')
   return {
     props: {
-      ...await serverSideTranslations(props.locale, ['header', 'upload', 'tags']),
+      ...await serverSideTranslations(props.locale, ['header', 'footer', 'upload', 'tags']),
     }
   };
 }
