@@ -3,9 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     backBtnContainer: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      width: '100%'
+      alignSelf: 'flex-start'
     },
     flexContainer: {
       display: 'flex',
@@ -17,6 +15,9 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'center',
       justifySelf: 'center',
+    },
+    paper: {
+      maxWidth: '100%'
     },
     avatar: {
       marginBottom: '10px',
@@ -67,11 +68,15 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexFlow: 'row wrap',
       justifyContent: 'space-around',
-      alignItems: 'center'
+      alignItems: 'center',
+      '& :not(:first-child)': {
+        marginLeft: theme.spacing(2),
+      }
     },
     extraImage: {
-      maxWidth: '400px',
-      maxHeight: '400px'
+      maxWidth: 'calc(100vw - 32px)',
+      maxHeight: '50vh',
+      width: '100%'
     },
     tagsContainer: {
       display: 'flex',

@@ -105,9 +105,8 @@ export default function ArtworkPage(props) {
   }
 
   return (
-    <Main>
-      <div className={s.flexContainer}>
-
+    <Main wide>
+      <div className={s.container}>
         <div className={s.backBtnContainer}>
           <IconButton
             onClick={() => router.back()}>
@@ -119,91 +118,90 @@ export default function ArtworkPage(props) {
         {artwork.isError && <div>error...</div>}
 
         {artwork && artwork.data &&
-        
-          <div className={s.container}>
-            <div className={s.avatar}>
-              <AvatarCard user={artwork.data.Owner}></AvatarCard>
+        <>
+          <div className={s.avatar}>
+            <AvatarCard user={artwork.data.Owner}></AvatarCard>
+            <Button
+              className={s.followButton}
+              variant={!isFollowed ? "contained" : "outlined"}
+              color="primary"
+              startIcon={!isFollowed ? <AddIcon/> : null}
+              disableElevation
+              rounded
+              onClick={toggleFollow}>
+              {capitalizeFirst(
+                !isFollowed ?
+                  t('common:words.follow') :
+                  t('common:words.following')
+              )}
+            </Button>
+          </div>
+          <Paper classes={{ root: s.paper }}>
+            <div className={s.imageContainer}>
+              <img
+                src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
+                className={s.primaryImage}
+              />
+            </div>
+            <div className={s.actionBar}>
               <Button
-                className={s.followButton}
-                variant={!isFollowed ? "contained" : "outlined"}
-                color="primary"
-                startIcon={!isFollowed ? <AddIcon/> : null}
-                disableElevation
-                rounded
-                onClick={toggleFollow}>
-                {capitalizeFirst(
-                  !isFollowed ?
-                    t('common:words.follow') :
-                    t('common:words.following')
-                )}
+                startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
+                onClick={toggleLike}>
+                {capitalizeFirst(t('like'))}
               </Button>
             </div>
-            <Paper>
-              <div className={s.imageContainer}>
-                <img
-                  src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
-                  className={s.primaryImage}
-                />
-              </div>
-              <div className={s.actionBar}>
-                <Button
-                  startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
-                  onClick={toggleLike}>
-                  {capitalizeFirst(t('like'))}
-                </Button>
-              </div>
-              <div className={s.infoBar}>
-                {artwork.data.Likes > 0 &&
-                  <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
+            <div className={s.infoBar}>
+              {artwork.data.Likes > 0 &&
+                <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
+              }
+              <p>{formatter.format(artwork.data.Price)} </p>
+            </div>
+            <Box textAlign="center" marginY={2} className={s.text}>
+              {artwork.data.Title &&
+                <Typography variant="h3" component="h2" id="artwork-modal-title">
+                  <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={2}>
+                    {artwork.data.Title}
+                  </Box>
+                </Typography>
+              }
+              {artwork.data.Description &&
+                <Typography variant="body1" id="artwork-modal-description">
+                  {artwork.data.Description}
+                </Typography>
+              }
+            </Box>
+            <Box className={s.extraImages}>
+              {artwork.data.SecondaryFile &&
+                <div className={s.imageContainer}>
+                  <img
+                    src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
+                    className={s.extraImage}
+                  />
+                </div>
+              }
+              {artwork.data.TertiaryFile &&
+                <div className={s.imageContainer}>
+                  <img
+                    src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
+                    className={s.extraImage}
+                  />
+                </div>
+              }
+            </Box>
+            <Box className={s.tagsContainer} marginBottom={2}>
+              {Array.from(artwork.data.Tags).map((tag: string) =>
+                {
+                  return <TagChip
+                    key={tag}
+                    title={tag}
+                    onChipClick={null}
+                    limitReached={true}>
+                  </TagChip>;
                 }
-                <p>{formatter.format(artwork.data.Price)} </p>
-              </div>
-              <Box textAlign="center" marginY={2} className={s.text}>
-                {artwork.data.Title &&
-                  <Typography variant="h3" component="h2" id="artwork-modal-title">
-                    <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={2}>
-                      {artwork.data.Title}
-                    </Box>
-                  </Typography>
-                }
-                {artwork.data.Description &&
-                  <Typography variant="body1" id="artwork-modal-description">
-                    {artwork.data.Description}
-                  </Typography>
-                }
-              </Box>
-              <Box className={s.extraImages}>
-                {artwork.data.SecondaryFile &&
-                  <div className={s.imageContainer}>
-                    <img
-                      src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
-                      className={s.extraImage}
-                    />
-                  </div>
-                }
-                {artwork.data.TertiaryFile &&
-                  <div className={s.imageContainer}>
-                    <img
-                      src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
-                      className={s.extraImage}
-                    />
-                  </div>
-                }
-              </Box>
-              <Box className={s.tagsContainer} marginBottom={2}>
-                {Array.from(artwork.data.Tags).map((tag: string) =>
-                  {
-                    return <TagChip
-                      key={tag}
-                      title={tag}
-                      onChipClick={null}
-                      limitReached={true}>
-                    </TagChip>;
-                  }
-                )}
-              </Box>
-            </Paper>
-          </div>
+              )}
+            </Box>
+          </Paper>
+        </>
         }
       </div>
     </Main>
