@@ -1,23 +1,18 @@
 import React, { useState } from 'react'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import Image from 'next/image'
 import { styles } from './artworkStartItem.css'
-import { Avatar, Paper, useTheme } from '@material-ui/core'
+import { Avatar, Paper } from '@material-ui/core'
 import Link from 'next/link'
 import Skeleton from '@material-ui/lab/Skeleton';
 import clsx from 'clsx'
 
-import { useMainWidth } from '../../hooks/useWidth'
 
-export default function ArtworkStartItem({ artwork }) {
+export default function ArtworkStartItem({ artwork, width }) {
   const s = styles();
-  const breakpoint = useMainWidth();
-  const theme = useTheme();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
-  const imageWidth = getArtworkWidth(breakpoint.regular, theme.spacing(2));
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const imageHeight = (artwork.Image.Height / artwork.Image.Width) * imageWidth;
+  const imageHeight = (artwork.Image.Height / artwork.Image.Width) * width;
   const skeletonHeight = imageHeight + 4;
 
   return (
@@ -30,8 +25,8 @@ export default function ArtworkStartItem({ artwork }) {
                   className={clsx(!isLoaded && s.hidden)}
                   src={`${bucketUrl}${artwork.Image.Name}`}
                   alt="Artwork"
-                  width={imageWidth}
-                  height={imageHeight}
+                  width={width === 0 ? "100%" : width}
+                  height={width === 0 ? "100%" : imageHeight}
                   onLoad={() => setIsLoaded(true)}
                 ></img>
               </a>
@@ -41,7 +36,7 @@ export default function ArtworkStartItem({ artwork }) {
               variant="rect"
               animation="wave"
               className={clsx(isLoaded && s.hidden)}
-              width={imageWidth} 
+              width={width} 
               height={skeletonHeight}>
             </Skeleton>
         </div>
@@ -68,23 +63,4 @@ export default function ArtworkStartItem({ artwork }) {
       </div>
     </Paper>
   );
-}
-
-function getArtworkWidth(
-  availableSpace: number, 
-  spacing: number,
-  minArtworkWidth: number = 200, 
-  maxColumns: number = 6)
-    : number {
-  const getTotalSpacing = (cols) => (cols - 1) * spacing;
-  const getAvailableArtworkSpace = 
-    (availableSpace, cols = maxColumns) => availableSpace - getTotalSpacing(cols);
-  const decimalColumns = getAvailableArtworkSpace(availableSpace) / minArtworkWidth;
-
-  if(decimalColumns > maxColumns) {
-    return getAvailableArtworkSpace(availableSpace) / maxColumns;    
-  }
-
-  const roundedDown = Math.floor(decimalColumns);
-  return getAvailableArtworkSpace(availableSpace, roundedDown) / roundedDown;
 }
