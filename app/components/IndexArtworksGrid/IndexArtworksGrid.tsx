@@ -5,16 +5,16 @@ import { shuffleArray } from '../../utils/util'
 
 const IndexArtworksGrid = ({ artworks }) => {
   const s = styles();
-  const { oldCols } = useGetColumns('regular');
+  const { numberOfColumns, width } = useGetColumns('regular');
+  console.log(numberOfColumns, width);
   
-  
-  const columns = getRandomizedColumns(artworks.data, oldCols);
+  const columns = getRandomizedColumns(artworks.data, numberOfColumns);
 
   return (
     <div className={s.artworks}>
       {columns && columns.map((column, i) =>
         <div key={i} className={s.column}>
-          {column.map(artwork => <ArtworkStartItem artwork={artwork} key={artwork.Image.Name} />)}
+          {column.map(artwork => <ArtworkStartItem artwork={artwork} width={width} key={artwork.Image.Name} />)}
         </div>
       )}
     </div>

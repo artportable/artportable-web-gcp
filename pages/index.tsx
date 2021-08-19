@@ -21,7 +21,6 @@ export default function Home( props ) {
   return (
     <Main noHeaderPadding>
       <IndexHero></IndexHero>
-
       <Box className={s.artworkGrid}>
         <IndexArtworksGrid artworks={artworks} />
       </Box>
