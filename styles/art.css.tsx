@@ -4,14 +4,19 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     backBtnContainer: {
       display: 'flex',
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
+      width: '100%'
+    },
+    flexContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
     },
     container: {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifySelf: 'center',
-      width: 'fit-content'
     },
     avatar: {
       marginBottom: '10px',
@@ -24,10 +29,6 @@ export const styles = makeStyles((theme: Theme) =>
     followButton: {
       maxHeight: '30px'
     },
-    card: {
-      marginBottom: '50px',
-      width: 'min-content'
-    },
     imageContainer: {
       position: 'relative',
       maxWidth: '100%',
@@ -36,22 +37,25 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: 'center',
     },
     primaryImage: {
-      maxWidth: '850px',
-      maxHeight: '850px'
+      minWidth: '100%',
+      width: '100%',
+      maxWidth: 'calc(100vw - 32px)',
+      maxHeight: 'calc(100vh - var(--header-plus-box-shadow-padding) - 16px)',
+      objectFit:  'contain'
     },
     infoBar: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginLeft: '5px',
-      marginRight: '5px',
+      marginLeft: theme.spacing(1.6),
+      marginRight: theme.spacing(1.6),
     },
     actionBar: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginLeft: '5px',
-      marginRight: '5px',
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
       alignItems: 'center'
     },
     text: {
@@ -72,6 +76,7 @@ export const styles = makeStyles((theme: Theme) =>
     tagsContainer: {
       display: 'flex',
       flexDirection: 'row',
+      flexWrap: 'wrap',
       margin: '10px'
     },
     chip: {
