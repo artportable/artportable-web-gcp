@@ -31,6 +31,7 @@ import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 import AddIcon from '@material-ui/icons/Add';
 import { useGetToken } from '../../app/hooks/useGetToken'
+import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 
 function a11yProps(index: any) {
   return {
@@ -45,6 +46,7 @@ export default function Profile() {
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
   const router = useRouter();
+  const smScreenOrSmaller = useBreakpointDown('sm');
 
   const [activeTab, setActiveTab] = useState(0);
   const [isMyProfile, setIsMyProfile] = useState(false);
@@ -289,8 +291,8 @@ export default function Profile() {
                         if (artwork) {
                           return <ArtworkListItemDefined
                             key={image.Name}
-                            width={image.Width}
-                            height={image.Height}
+                            width={smScreenOrSmaller ? '100%' : image.Width}
+                            height={smScreenOrSmaller ? 'auto' : image.Height}
                             artwork={artwork}
                             onLikeClick={onLikeClick} />
                         }

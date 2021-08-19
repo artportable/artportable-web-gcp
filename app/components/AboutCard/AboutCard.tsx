@@ -16,12 +16,12 @@ export default function AboutCard({ data, userProfilePicture }) {
           <div>
             {userProfilePicture &&
               <img
-                src={`${bucketUrl}${userProfilePicture}`}
-                width={300}>
+                className={s.profilePicture}
+                src={`${bucketUrl}${userProfilePicture}`}>
               </img>
             }
           </div>
-          <Box maxWidth='70%'>
+          <Box maxWidth='70%' flexBasis="100%">
             <Typography variant="h4">
               <Box fontWeight="500" fontFamily="LyonDisplay">
                 {`${data?.Name} ${data?.Surname}`}
