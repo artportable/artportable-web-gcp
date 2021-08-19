@@ -32,54 +32,56 @@ export default function IndexHero() {
       </FullWidthBlock>
       <div className={s.container}>
         <div className={s.flexContainer}>
-            <div className={s.left}>
-              <Typography variant="h1" className={s.headline}>
-                {t('header')}
-              </Typography> 
-              <Typography variant="body1" className={s.description}>
-                {t('subHeader')}
-              </Typography>
-              <div className={s.signupButtonContainer}>
-                <Button
-                  classes={{ 
-                    label: s.buttonLabel
-                  }}
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  rounded
-                  onClick={() => keycloak.register({ 
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref})}>
-                  {t('signUp')}
-                </Button>
-              </div>
+          <div className={s.left}>
+            <Typography variant="h1" className={s.headline}>
+              {t('header')}
+            </Typography> 
+            <Typography variant="body1" className={s.description}>
+              {t('subHeader')}
+            </Typography>
+            <div className={s.signupButtonContainer}>
+              <Button
+                classes={{ 
+                  label: s.buttonLabel
+                }}
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => keycloak.register({ 
+                  locale: router.locale,
+                  redirectUri: signUpRedirectHref})}>
+                {t('signUp')}
+              </Button>
             </div>
-            <div className={s.right}>
-              <div className={s.paintingContainer}>
-                <Paper elevation={5}>
-                  <img 
-                    className={s.boosted} 
-                    src="/images/art_landing_horses_painting.png" 
-                    alt={`${t("artworkFrom")} ${promotedUser}`}
-                    title={`${t("artworkFrom")} ${promotedUser}`}/>
-                </Paper>
-                <div className={s.createdBy}>
-                  <Chip
-                    classes={{
-                      root: s.chip,
-                    }}
-                    avatar={
-                      <div className={s.chipAvatar}>
-                        <ProfileAvatar size={25} profilePicture={undefined} />
-                      </div>
-                    }
-                    label={promotedUser}/>
-                </div>
+          </div>
+          <div className={s.right}>
+            <div className={s.paintingContainer}>
+              <Paper elevation={5}>
+                <img 
+                  className={s.boosted} 
+                  src="/images/art_landing_horses_painting.png" 
+                  alt={`${t("artworkFrom")} ${promotedUser}`}
+                  title={`${t("artworkFrom")} ${promotedUser}`}/>
+              </Paper>
+              <div className={s.createdBy}>
+                <Chip
+                  onClick={(_) => router.push(`@${promotedUser}`)}
+                  size="small"
+                  classes={{
+                    root: s.chip,
+                  }}
+                  avatar={
+                    <div className={s.chipAvatar}>
+                      <ProfileAvatar size={19} profilePicture={undefined} />
+                    </div>
+                  }
+                  label={promotedUser}/>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </>
   );

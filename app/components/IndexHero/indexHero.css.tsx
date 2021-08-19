@@ -4,6 +4,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     background: {
       position: 'absolute',
+      left: 0,
       background: theme.palette.grey[200],
       height: '760px',
       width: '100vw',
@@ -67,7 +68,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'block',
       objectFit: 'contain',
       maxHeight: '300px',
-      
+      maxWidth: '100%'
     },
     createdBy: {
       display: 'flex',
