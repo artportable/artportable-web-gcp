@@ -1,11 +1,15 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-export const styles = makeStyles(() =>
+export const styles = makeStyles((theme) =>
   createStyles({
     exhibition: {
       display: "flex",
-      flexDirection: "column",
       marginBottom: "10px"
+    },
+    textContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: theme.spacing(0)
     },
     datesRow: {
       display: "flex",
@@ -21,18 +25,19 @@ export const styles = makeStyles(() =>
       fontStyle: "italic",
       color: "grey"
     },
-    title: {
-      marginTop: "0px",
-      marginLeft: "29px"
-    },
     location: {
+      marginTop: theme.spacing(0.6),
+      marginLeft: theme.spacing(-0.2),
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      marginLeft: "27px"
     },
     locationText: {
-      fontStyle: "italic"
+      fontStyle: "italic",
+      marginBottom: '1px'
+    },
+    displayNone: {
+      display: 'none'
     }
   }),
 );

@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardContent, CardHeader } from '@material-ui/core'
 import PaletteIcon from '@material-ui/icons/Palette';
 import RoomIcon from '@material-ui/icons/Room';
+import clsx from 'clsx'
+import { isValid , parseISO, subYears } from 'date-fns'
 
 import { useTranslation } from 'react-i18next';
 import { styles } from './exhibitionsCard.css'
@@ -9,6 +11,15 @@ import { styles } from './exhibitionsCard.css'
 export default function CurrentExhibitionsCard({ exhibitions }) {
   const s = styles();
   const { t } = useTranslation('profile');
+
+  const hasInvalidDate = (exhibition): boolean => {
+    const parsedTo = parseISO(exhibition.To);
+    const parsedFrom = parseISO(exhibition.From);
+    const minimumYear = subYears(new Date(), 100).getFullYear();
+
+    return (!isValid(parsedTo) || parsedTo.getFullYear() < minimumYear)
+      || (!isValid(parsedFrom) || parsedFrom.getFullYear() < minimumYear);
+  }
 
   return (
     <Card elevation={2}>
@@ -19,14 +30,16 @@ export default function CurrentExhibitionsCard({ exhibitions }) {
       <CardContent>
       {exhibitions.map((e, i) =>
           <div key={i} className={s.exhibition}>
-            <div className={s.datesRow}>
-              <PaletteIcon color="primary" className={s.icon}></PaletteIcon>
-              <div className={s.dates}>{e.From.split('T')[0]} - {e.To.split('T')[0]}</div>
-            </div>
-            <div className={s.title}>{e.Name}</div>
-            <div className={s.location}>
-              <RoomIcon color="disabled" fontSize="inherit"></RoomIcon>
-              <div className={s.locationText}>{e.Place}</div>
+            <PaletteIcon color="primary" className={s.icon}></PaletteIcon>
+            <div className={s.textContainer}>
+              <div className={clsx(s.datesRow, hasInvalidDate(e) && s.displayNone)}>
+                <div className={s.dates}>{e.From.split('T')[0]} - {e.To.split('T')[0]}</div>
+              </div>
+              <div>{e.Name}</div>
+              <div className={clsx(s.location, e.Place === null && s.displayNone)}>
+                <RoomIcon color="disabled" fontSize="inherit"></RoomIcon>
+                <div className={s.locationText}>{e.Place}</div>
+              </div>
             </div>
           </div>)}
       </CardContent>
