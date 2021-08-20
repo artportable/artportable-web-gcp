@@ -2,19 +2,11 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    background: {
-      position: 'absolute',
-      left: 0,
-      background: theme.palette.grey[200],
-      height: '760px',
-      width: '100vw',
-      [theme.breakpoints.up('md')]: {
-        height: '440px',
-      }
-    },
     container: {
-      marginTop: theme.spacing(2),
-      padding: theme.spacing(5, 0),
+      gridColumn: '1/4',
+      marginTop: 0,
+      margin: theme.spacing(5, 0),
+      background: theme.palette.grey[200],
       [theme.breakpoints.up('md')]: {
         paddingTop: 0
       }
@@ -23,6 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'relative',
       display: 'flex',
       gap: theme.spacing(4),
+      margin: theme.spacing(2, 2, 0, 2),
       flexDirection: 'column',
       alignItems: 'center',
       flexWrap: 'nowrap',
@@ -38,11 +31,17 @@ export const styles = makeStyles((theme: Theme) =>
       alignContent: 'center',
       flexDirection: 'column',   
       gap: theme.spacing(1),
+
+      [theme.breakpoints.up('smPlus')]: {
+        margin: theme.spacing(0, 8),
+      },
+      [theme.breakpoints.up('md')]: {
+        margin: theme.spacing(0, 4),
+      }
     },
     headline: {
       fontWeight: 400,
-      fontFamily: 'LyonDisplay',
-      fontSize: '3.1rem'
+      fontFamily: 'Roboto',
     },
     description: {
       [theme.breakpoints.up('md')]: {
@@ -50,6 +49,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     right: {
+      display: 'flex',
+      flexDirection: 'column',
       flexBasis: '100%',
       alignItems: 'flex-end',
       [theme.breakpoints.up('md')]: {
@@ -58,6 +59,7 @@ export const styles = makeStyles((theme: Theme) =>
       
     },
     paintingContainer: {
+      width: '210px',
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
@@ -83,11 +85,54 @@ export const styles = makeStyles((theme: Theme) =>
     chip: {
       backgroundColor: theme.palette.common.white
     },
+    sofaImage: {
+      display: 'block',
+      width: '100%',
+    },
     signupButtonContainer: {
       marginTop: theme.spacing(1)
     },
     buttonLabel: {
       margin: theme.spacing(0, 2)
-    }
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      flexContainer: {
+        width: theme.breakpointMainWidths.sm.wide,
+        margin: `${theme.spacing(4)}px auto 0 auto`,
+      },
+      paintingContainer: {
+        width: '310px',
+      },
+    },
+    [theme.breakpoints.up('smPlus')]: {
+      flexContainer: {
+        width: theme.breakpointMainWidths.smPlus.wide,
+      },
+      paintingContainer: {
+        width: '410px',
+      },
+    },
+    [theme.breakpoints.up('md')]: {
+      flexContainer: {
+        width: theme.breakpointMainWidths.md.wide,
+      },
+      paintingContainer: {
+        width: '280px',
+      },
+    },
+    [theme.breakpoints.up('mdPlus')]: {
+      flexContainer: {
+        width: theme.breakpointMainWidths.mdPlus.wide,
+      }
+    },
+    [theme.breakpoints.up('lg')]: {
+      flexContainer: {
+        width: theme.breakpointMainWidths.lg.wide,
+      },
+      paintingContainer: {
+        width: '410px',
+      },
+    }    
   })
 );

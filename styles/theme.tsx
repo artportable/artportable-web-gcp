@@ -1,46 +1,15 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-const typography = {
-  h1: {
-    fontSize: '2.1rem',
-  },
-  h2: {
-    fontSize: '1.85rem',
-  },
-  h3: {
-    fontSize: '1.65rem',
-  },
-  h4: {
-    fontSize: '1.35rem',
-  },
-  h5: {
-    fontSize: '1.15rem'
-  },
-  h6: {
-    fontSize: '1.05rem'
-  },
-  body1: {
-    fontSize: '0.925rem',
-  },
-  body2: {
-    fontSize: '0.825rem',
-  },
-  fontFamily: [
-    'GT-America-Standard',
-    'LyonDisplay',
-  ].join(','),
+const breakpointMainWidths = {
+  xs: { breakpoint: 'xs', regular: 0, wide: 0, },
+  sm: { breakpoint: 'sm', regular: 430, wide: 450, },
+  smPlus: { breakpoint: 'smPlus', regular: 460, wide: 660, },
+  md: { breakpoint: 'md', regular: 669, wide: 860, },
+  mdPlus: { breakpoint: 'mdPlus', regular: 869, wide: 1060, },
+  lg: { breakpoint: 'lg', regular: 1144, wide: 1300, },
+  lgPlus: { breakpoint: 'lgPlus', regular: 1424, wide: 1560, },
+  xl: { breakpoint: 'xl', regular: 1624, wide: 1920, },
 }
-
-const palette = {
-  common: { white: '#ffffff', black: '#000000'},
-  background: { default: "#f4f4f4"},
-  primary: {
-    main: "#447EFF"
-  },
-  secondary: {
-    main: "#FF8383",
-  },
-};
 
 interface Breakpoint {
   breakpoint: string,
@@ -75,17 +44,6 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
-const breakpointMainWidths = {
-  xs: { breakpoint: 'xs', regular: 0, wide: 0, },
-  sm: { breakpoint: 'sm', regular: 430, wide: 450, },
-  smPlus: { breakpoint: 'smPlus', regular: 460, wide: 660, },
-  md: { breakpoint: 'md', regular: 669, wide: 860, },
-  mdPlus: { breakpoint: 'mdPlus', regular: 869, wide: 1060, },
-  lg: { breakpoint: 'lg', regular: 1144, wide: 1300, },
-  lgPlus: { breakpoint: 'lgPlus', regular: 1424, wide: 1560, },
-  xl: { breakpoint: 'xl', regular: 1624, wide: 1920, },
-}
-
 declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
     xs: true;
@@ -111,6 +69,61 @@ const breakpoints = {
     xl: 1980,
   }
 }
+
+
+const breakpointsTheme = createMuiTheme({
+  breakpointMainWidths,
+  breakpoints
+});
+
+const typography = {
+  h1: {
+    fontSize: '2.1rem',
+    [breakpointsTheme.breakpoints.up('md')]: {
+      fontSize: '2.9rem',
+    }
+  },
+  h2: {
+    fontSize: '1.85rem',
+  },
+  h3: {
+    fontSize: '1.65rem',
+  },
+  h4: {
+    fontSize: '1.35rem',
+  },
+  h5: {
+    fontSize: '1.15rem'
+  },
+  h6: {
+    fontSize: '1.05rem'
+  },
+  body1: {
+    fontSize: '0.825rem',
+    [breakpointsTheme.breakpoints.up('md')]: {
+      fontSize: '0.925rem',
+    }
+  },
+  body2: {
+    fontSize: '0.825rem',
+  },
+  fontFamily: [
+    'GT-America-Standard',
+    'LyonDisplay',
+  ].join(','),
+}
+
+const palette = {
+  common: { white: '#ffffff', black: '#000000'},
+  background: { default: "#f4f4f4"},
+  primary: {
+    main: "#447EFF"
+  },
+  secondary: {
+    main: "#FF8383",
+  },
+};
+
 
 export const theme = createMuiTheme({
   palette,
