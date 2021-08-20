@@ -62,14 +62,14 @@ export default function Footer() {
           <Typography variant="subtitle2" component="div" color="primary">
           {t('followUs')}
           </Typography>
-          <Link href="https://www.facebook.com/artportable/">
+          <Link href="https://www.instagram.com/artportableofficial/">
             <a>
               <Typography variant="body2" component="div">
                 Instagram
               </Typography>
             </a>
           </Link>
-          <Link href="https://www.instagram.com/artportableofficial/">
+          <Link href="https://www.facebook.com/artportable/">
             <a>
               <Typography variant="body2" component="div">
                 Facebook
