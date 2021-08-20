@@ -2,6 +2,13 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles(() =>
   createStyles({
+    container: {
+      display: 'flex'
+    },
+    textContainer: {
+      display: 'flex',
+      flexDirection: 'column'
+    },
     yearsRow: {
       display: "flex",
       flexDirection: "row",
@@ -16,9 +23,8 @@ export const styles = makeStyles(() =>
       fontStyle: "italic",
       color: "grey"
     },
-    title: {
-      marginTop: "0px",
-      marginLeft: "29px"
+    displayNone: {
+      display: 'none'
     }
   }),
 );
