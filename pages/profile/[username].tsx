@@ -359,7 +359,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['common', 'header', 'profile', 'tags']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags']),
     },
     revalidate: 10,
   }

@@ -2,6 +2,7 @@ import { styles } from './main.css'
 import clsx from 'clsx'
 import React from 'react';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 interface Props {
   children: any;
@@ -19,6 +20,7 @@ export default function Main({ children, wide = false, noHeaderPadding = false, 
       <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
         {children}
       </div>
+      <Footer></Footer>
     </>
   );
 }
