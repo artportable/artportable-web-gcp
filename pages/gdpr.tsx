@@ -55,7 +55,7 @@ export default function GdprPage(props) {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'gdpr']),
+      ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr']),
     }
   }
 }
