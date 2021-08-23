@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Checkbox, TextField, Theme, useTheme } from "@material-ui/core";
+import { Box, Checkbox, Chip, TextField, Theme, useTheme } from "@material-ui/core";
 import { styles } from "./discoverArt.css";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -12,6 +12,7 @@ import { getImageAsRows } from "../../utils/layoutUtils";
 import Image from "../../models/Image";
 import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
+import clsx from 'clsx'
 
 interface InputProps {
   artworks: Artwork[],
@@ -24,16 +25,34 @@ interface InputProps {
   loadMore: boolean;
 }
 
+
+
 export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const smScreenOrSmaller = useBreakpointDown('sm');
+
+  const initCategoryTags = [
+    { name: t('tags:oil'), selected: false, id: "oil" },
+    { name: t('tags:acrylic'), selected: false, id: "acrylic" },
+    { name: t('tags:aquarelle'), selected: false, id: "aquarelle" },
+    { name: t('tags:photography'), selected: false, id: "photography" },
+    { name: t('tags:sculpture'), selected: false, id: "sculpture" },
+    { name: t('tags:pastel'), selected: false, id: "pastel" },
+    { name: t('tags:ceramic'), selected: false, id: "ceramic" },
+    { name: t('tags:mixed-media'), selected: false, id: "mixed-media" },
+    { name: t('tags:digital'), selected: false, id: "digital" }
+  ];
+
+  //TODO: Move this to backend and distinguish the category tags above with a flag or similar
+  const filteredTags = tags.filter(t => !initCategoryTags.some(categoryTag => categoryTag.id === t));
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const [imageRows, setImageRows] = useState([]);
   const [skeletonRows, setSkeletonRows] = useState([])
   const [selectedTags, setSelectedTags] = useState([]);
+  const [categoryTags, setCategoryTags] = useState(initCategoryTags);
 
   const theme: Theme = useTheme();
   const skeletonImages = [
@@ -76,13 +95,29 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     onFilter([]);
   }, []);
 
+  const setCategoryTagSelected = (index) => {
+    const current = categoryTags;
+    current[index].selected = !current[index].selected;
+
+    setCategoryTags([...current]);
+    filterOnTags();
+  }
+
+  const filterOnTags = () => {
+    const selectedCategoryTags = categoryTags
+      .filter(t => t.selected)
+      .map(t => t.id);
+    
+    onFilter([...selectedTags, ...selectedCategoryTags]);
+  }
+
   return (
     <>
       <Box className={s.rowsContainer}>
         <Autocomplete
           multiple
           id="combo-box-demo"
-          options={tags}
+          options={filteredTags}
           getOptionLabel={(tag: string) => capitalizeFirst(t(`tags:${tag}`))}
           disableCloseOnSelect
           renderOption={(tag, { selected }) => (
@@ -101,13 +136,25 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           onChange={(_, value, reason) => {
             setSelectedTags(value);
             if (reason === 'remove-option') {
-              onFilter(value);
+              filterOnTags();
             }
           }}
           onClose={(_) => {
-            onFilter(selectedTags);
+            filterOnTags();
           }}
         ></Autocomplete>
+        <ul className={s.categoryTags}>
+          {categoryTags.map((tag, i) => 
+              <li className={clsx(tag.selected && s.selected)} key={tag.name}>
+                <Chip
+                  onClick={(_) => setCategoryTagSelected(i)}
+                  variant={tag.selected ? "default" : "outlined"}
+                  color="primary"
+                  label={tag.name}
+                  className={s.categoryTag} />
+              </li>
+          )}
+        </ul>
         {imageRows && imageRows.map((row: Image[], i) =>
           <div className={s.row} key={i}>
             {row.map(image => {
