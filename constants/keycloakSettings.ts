@@ -1,8 +1,8 @@
 import { KeycloakConfig, KeycloakInitOptions } from 'keycloak-js';
 export const keycloakConfig: KeycloakConfig = {
   realm: process.env.NEXT_PUBLIC_KEYCLOAKREALM || "test",
-  url: process.env.NEXT_PUBLIC_KEYCLOAKURL || "https://idp.artportable.com/auth",
-  clientId: process.env.NEXT_PUBLIC_KEYCLOAKCLIENTID || "artportable-web"
+  url: process.env.NEXT_PUBLIC_KEYCLOAK_URL || "https://idp.artportable.com/auth",
+  clientId: process.env.NEXT_PUBLIC_KEYCLOAK_CLIENTID || "artportable-web"
 }
 
 export const keycloakInitOptions: KeycloakInitOptions = {

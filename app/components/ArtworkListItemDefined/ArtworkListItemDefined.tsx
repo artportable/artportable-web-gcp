@@ -13,7 +13,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
   const { isSignedIn } = useUser();
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);

@@ -4,9 +4,9 @@ import { AttachmentType, ChannelType, CommandType, EventType, MessageType, React
 import { TokenContext } from '../contexts/token-context';
 
 export function useGetChatClient(username, profilePicture, isSignedIn, setUnreadCount = null) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const chatClientRef = useRef(StreamChat.getInstance<AttachmentType,
     ChannelType,
     CommandType,

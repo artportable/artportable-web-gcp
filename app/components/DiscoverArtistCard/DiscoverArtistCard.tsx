@@ -21,7 +21,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const mainWidth = useMainWidth().regular;
   const s = styles();
   const store = useStore();
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const scrollRef = useRef(null);
   const scrollBy = mainWidth / 1.5;

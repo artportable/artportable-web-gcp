@@ -12,7 +12,7 @@ import type { KeycloakInstance } from 'keycloak-js'
 import { useDispatch } from "react-redux";
 import { LOGIN_USER } from '../app/redux/actions/userActions'
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function Plans({ priceData }) {
   const { t } = useTranslation(['plans', 'common']);

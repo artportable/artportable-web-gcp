@@ -9,7 +9,7 @@ import Link from 'next/link';
 import router from 'next/router';
 import { TokenContext } from '../../contexts/token-context';
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function CheckoutForm({ email, fullName, plan }) {
   const [succeeded, setSucceeded] = useState(false);

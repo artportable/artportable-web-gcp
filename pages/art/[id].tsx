@@ -22,9 +22,8 @@ export default function ArtworkPage(props) {
   const s = styles();
   const { t } = useTranslation(['art', 'common', 'tags']);
   const router = useRouter();
-  const isDefaultLocale = router.locale === router.defaultLocale;
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const { id } = router.query
   const { username } = useUser();

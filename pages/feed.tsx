@@ -26,7 +26,7 @@ export default function FeedPage() {
   const { t } = useTranslation(['feed', 'common']);
   const { username, membership, profilePicture } = useUser();
   const token = useContext(TokenContext);
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const userProfile = useGetUserProfileSummary(username);
   const { suggestedUsers } = useFollowRecommendations(username);

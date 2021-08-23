@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import { ArtworkForCreation } from '../../models/Artwork';
 
 const fetcher = url => fetch(url).then(r => r.json().then(data => data))
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export function useGetArtworks(owner = null, myUsername: string = null) {
   const url = new URL(`${apiBaseUrl}/api/artworks?myUsername=${myUsername}`);

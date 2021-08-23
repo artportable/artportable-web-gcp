@@ -22,7 +22,7 @@ interface FeedCardProps {
 export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const [isLiked, setLike] = useState(content.LikedByMe);
   const router = useRouter();
   const isDefaultLocale = router.locale === router.defaultLocale;

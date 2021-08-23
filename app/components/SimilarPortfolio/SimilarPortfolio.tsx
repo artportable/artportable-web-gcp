@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function SimilarPortfolio({ data }) {
   const s = styles();
 
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   return (
     <Paper variant="outlined" className={s.card}>

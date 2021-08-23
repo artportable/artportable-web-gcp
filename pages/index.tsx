@@ -24,7 +24,7 @@ export default function DiscoverPage() {
   const token = useContext(TokenContext);
   const { username, isSignedIn, initialized } = useUser();
   const dispatch = useDispatch();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const discoverTab = store.getState()?.discover?.tab ?? 0;
 

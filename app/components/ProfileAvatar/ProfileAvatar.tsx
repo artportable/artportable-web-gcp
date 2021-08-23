@@ -4,7 +4,7 @@ import { styles } from './profileAvatar.css'
 
 const ProfileAvatar = ({ size, profilePicture }) => {
   const s = styles();
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const style = { width: size, height: size };
 
   // Adjust icon size to be about 0.209 larger than avatar size for them to take up the same space

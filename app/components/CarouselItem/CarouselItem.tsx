@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function CarouselItem({ src, text, user = null }) {
   const s = styles();
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   return (
     <div className={s.container}>

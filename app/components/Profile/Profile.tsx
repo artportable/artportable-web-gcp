@@ -18,7 +18,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const fileInput = useRef(null);
   const [followingOpen, setFollowingOpen] = useState(false);

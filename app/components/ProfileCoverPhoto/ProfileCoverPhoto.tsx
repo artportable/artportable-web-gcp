@@ -9,7 +9,7 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
   const s = styles();
   const { t } = useTranslation(['profile']);
 
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const coverFileInput = useRef(null);
 
   const handleFileUpload = event => {
