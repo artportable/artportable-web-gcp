@@ -33,7 +33,6 @@ export default function PlanSelector({ priceData, landingPageMode = false }) {
     currency: "sek",
     recurringInterval: "year"
   }];
-  console.log(priceDataWithPremium);
   
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
   plans.push("portfolioPremium");

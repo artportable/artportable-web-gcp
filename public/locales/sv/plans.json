@@ -1,7 +1,8 @@
 {
   "welcomeTo": "Välkommen till Sveriges största community för konst",
+  "artPortableDescription": "Din Artportable-portfolio är ett verktyg som hjälper dig att presentera ditt konstnärskap på ett professionellt sätt. Artportable är en mötesplats för konstnärer, konstköpare och konstentusiaster",
   "ourMemberships": "Våra olika medlemsskap",
-  "youCanAlwaysUpdateYourMembership": "Du kan alltid uppdatera ditt medlemspaket under mina sidor",
+  "youCanAlwaysUpdateYourMembership": "Du kan alltid uppdatera ditt medlemspaket",
   "yearlyPayment": "Årsvis",
   "monthlyPayment": "Månadsvis",
   "sek": "kr",
@@ -10,28 +11,29 @@
     "free": {
       "name": "Gratis",
       "listTexts": [
-        "Utforska konst",
-        "Läsa artiklar",
-        "Följa och interagera med konstnärer",
-        "Ta del av utställningar"
+        "Följ konstnärer",
+        "Hitta konstverk till ditt hem",
+        "Chatta och skicka förfrågan om konstverk",
+        "Läs artiklar och få uppdateringar om utställningar"
       ]
     },
     "portfolio": {
       "name": "Portfolio",
       "listTexts": [
-        "Allt från $t(plans.free.name)",
-        "Visa upp dig och din konst",
-        "Personlig service"
+        "Publicera dina verk",
+        "Chatta och få förfrågningar om dina konstverk",
+        "Följ och interagera med andra konstnärer",
+        "Läs artiklar och få uppdateringar om utställningar"
       ]
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
       "listTexts": [
-        "Allt från $t(plans.free.name) & $t(plans.portfolio.name)",
-        "Ytterligare 10 konstverk",
-        "Mer värde för pengarna",
-        "Saker du inte kan motstå"
+        "Personlig Konstkoordinator",
+        "Support",
+        "Allt från Portfolio"
       ]
     } 
-  }
+  },
+  "joinTheCommunity": "Gå med i gemenskapen"
 }
