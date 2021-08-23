@@ -8,6 +8,11 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    list: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
     root: {
       '& .MuiListItemIcon-root': {
         minWidth: 20,
@@ -23,22 +28,19 @@ const useStyles = makeStyles((theme: Theme) =>
         paddingTop: 2,
         paddingBottom: 2,
       }
-    },
-    list: {
-      marginBottom: '25px'
     }
   }),
 );
 
 
 export default function PlansInfoList({ texts, everythingFromPrevious = false}) {
-  const classes = useStyles();
+  const s = useStyles();
   const textsToRender = everythingFromPrevious ? texts.slice(1) : texts;
 
   return (
-    <List dense className={classes.list}>
+    <List dense className={s.list}>
       {everythingFromPrevious ? 
-      <ListItem className={classes.root}>
+      <ListItem className={s.root}>
         <ListItemIcon> 
           <ArrowBackIcon style={{ fontSize: 14 }} color="primary" />
         </ListItemIcon>
@@ -48,7 +50,7 @@ export default function PlansInfoList({ texts, everythingFromPrevious = false}) 
       </ListItem> : <></>}
       
       {textsToRender !== '' && textsToRender.map(text =>
-      <ListItem key={text} className={classes.root}>
+      <ListItem key={text} className={s.root}>
         <ListItemIcon>
           <CheckIcon style={{ fontSize: 14 }} color="primary" />
         </ListItemIcon>

@@ -9,8 +9,9 @@ import Button from "../Button/Button";
 import PaymentInfo from "../PaymentInfo/PaymentInfo";
 import PlansInfoList from "../PlansInfoList/PlansInfoList";
 import { styles } from "./planCard.css";
+import clsx from 'clsx';
 
-export default function PlanCard({ plan }) {
+export default function PlanCard({ plan, hideButtons }) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const s = styles();
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ export default function PlanCard({ plan }) {
   function getPriceText() {
     if (plan.product === 'free') {
       return '-';
+    } else if (plan.product === 'portfolioPremium') {
+      return 'premium';
     }
 
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
@@ -36,10 +39,10 @@ export default function PlanCard({ plan }) {
 
   return (
     <div className={s.container}>
-      <Card className={s.cardRoot}>
+      <Card className={clsx(s.cardRoot, plan.productKey === "portfolio" && s.primaryCard)}>
         <CardContent>
           <Typography variant="h3" component="h2">
-            <Box fontWeight="fontWeightMedium" textAlign="center">
+            <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
               {planName}
             </Box>
           </Typography>
@@ -47,25 +50,29 @@ export default function PlanCard({ plan }) {
           <PaymentInfo 
             priceText={getPriceText()}
             secondaryText={t('youCanAlwaysUpdateYourMembership')}
-          ></PaymentInfo>
-          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', {returnObjects: true})}></PlansInfoList>
+          />
+          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', {returnObjects: true})} />
 
-          <Link href={href}>
-            <a>
-              <Button 
-                size="small"
-                variant="contained"
-                color="primary"
-                disableElevation
-                rounded
-                onClick={(_) => onNavClick()}>
-                {plan.product === 'free' ?
-                  t('signUp') :
-                  `${capitalizeFirst(t('common:words.choose'))} ${planName}`
-                }
-              </Button>
-            </a>
-          </Link>
+          {!hideButtons &&
+            <div className={s.button}>
+              <Link href={href}>
+                <a>
+                  <Button 
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    disableElevation
+                    rounded
+                    onClick={(_) => onNavClick()}>
+                    {plan.product === 'free' ?
+                      t('signUp') :
+                      `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                    }
+                  </Button>
+                </a>
+              </Link>
+            </div>
+          }
         </CardContent>
       </Card>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from '../app/components/Main/Main'
+import Main, { FullWidthBlock } from '../app/components/Main/Main'
 import { styles } from '../styles/index.css';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -9,13 +9,14 @@ import IndexHero from '../app/components/IndexHero/IndexHero';
 import IndexArtworksGrid from '../app/components/IndexArtworksGrid/IndexArtworksGrid';
 import Box from '@material-ui/core/Box';
 import Price from '../app/models/Price';
+import PlanSelector from '../app/components/PlanSelector/PlanSelector';
+import { Typography } from '@material-ui/core';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
 export default function Home( props ) {
   const s = styles();
-  const { t } = useTranslation(['index', 'header']);
-  const temp = props.carouselItems;
+  const { t } = useTranslation(['index', 'header', 'plans']);
   const artworks = useGetArtworksForStartPage();
 
   return (
@@ -24,6 +25,16 @@ export default function Home( props ) {
       <Box className={s.artworkGrid}>
         <IndexArtworksGrid artworks={artworks} />
       </Box>
+
+      <div className={s.welcomeToTexts}>
+        <Typography className={s.header} variant="h2" component="h1">{t('plans:welcomeTo')}</Typography>
+        <Typography className={s.description} variant="body1">{t('plans:artPortableDescription')}</Typography>
+        <Typography className={s.ourMemberships} variant="subtitle1">{t('plans:ourMemberships')}</Typography>
+      </div>
+      <FullWidthBlock>
+        <PlanSelector priceData={props.priceData} landingPageMode></PlanSelector>
+      </FullWidthBlock>
+      
     </Main>
   );
 }
@@ -31,6 +42,7 @@ export default function Home( props ) {
 export async function getStaticProps({locale}) {
   return {
     props: {
+      priceData: await getPriceData(),
       ...await serverSideTranslations(locale, ['header', 'footer', 'index', 'tags', 'plans', 'common']),
     },
   }

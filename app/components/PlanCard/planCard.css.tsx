@@ -4,8 +4,11 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
-      maxWidth: '325px',
-      paddingTop: '32px'
+      paddingTop: 0,
+
+      [theme.breakpoints.up('md')]: {
+        paddingTop: theme.spacing(4),
+      }
     },
     cardRoot: {
       boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)',
@@ -22,7 +25,17 @@ export const styles = makeStyles((theme: Theme) =>
         '& .MuiButton-root': {
           minWidth: '155px'
         }
+      },
+      [theme.breakpoints.up('md')]: {
+        marginTop: theme.spacing(3),
       }
     },
+    primaryCard: {
+      margin: theme.spacing(0, 0),
+    },
+    button: {
+      margin: 'auto',
+      marginTop: theme.spacing(3)
+    }
   }),
 );
