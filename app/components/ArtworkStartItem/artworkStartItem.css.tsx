@@ -10,11 +10,18 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       marginBottom: '5px',
     },
+    imageContainer: {
+      borderRadius: '2px',
+      overflow: 'hidden',
+      '& img': {
+        display: 'block'
+      }
+    },
     footer: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      padding: theme.spacing(0.2, 0, 0, 0.4),
+      padding: theme.spacing(0.8, 0, 0, 0),
     },
     username: {
       marginLeft: '10px',

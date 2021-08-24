@@ -34,41 +34,39 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   if(width === null || height === null) return  <></>;
 
   return (
-    <>
-      <Paper title={artwork.Title} variant="outlined" className={s.container}>
-        <div className={s.imageContainer}>
-          <Link href={`/art/${artwork.Id}`}>
-            <a>
-              <img
-               style={{
-                 width: width,
-                 height: height
-               }}
-                key={artwork?.PrimaryFile}
-                
-                
-                src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-              />
-            </a>
-          </Link>
-        </div>
-        <div className={s.titleAndLike}>
-          <div className={s.title}>{artwork.Title}</div>
-          <div className={s.likeInline}>
-            <div className={s.likeContainer}>
+    <div title={artwork.Title} className={s.container}>
+      <div className={s.imageContainer}>
+        <Link href={`/art/${artwork.Id}`}>
+          <a>
+            <img
+              style={{
+                width: width,
+                height: height
+              }}
+              key={artwork?.PrimaryFile}
+              src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+            />
+          </a>
+        </Link>
+      </div>
+      <div className={s.titleAndLike}>
+        <div className={s.title}>{artwork.Title}</div>
+        <div className={s.likeInline}>
+          <div className={s.likeContainer}>
+            <div className={s.likeCounter}>
               {artwork.Likes > 0 ? artwork.Likes : ''}
-              <IconButton
-                className={s.likeButton}
-                disableRipple
-                disableFocusRipple
-                disabled={!isSignedIn}
-                onClick={toggleLike}>
-                  <FavoriteIcon color={likedColor}/>
-              </IconButton>
             </div>
+            <IconButton
+              className={s.likeButton}
+              disableRipple
+              disableFocusRipple
+              disabled={!isSignedIn}
+              onClick={toggleLike}>
+                <FavoriteIcon fontSize={'small'} color={likedColor}/>
+            </IconButton>
           </div>
         </div>
-      </Paper>
-    </>
+      </div>
+    </div>
   );
 }

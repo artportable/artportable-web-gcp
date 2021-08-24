@@ -7,13 +7,17 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'inline-block'
     },
     imageContainer: {
-      borderRadius: '4px',
+      borderRadius: '2px',
       overflow: 'hidden',
-      textAlign: 'center'
+      textAlign: 'center',
+      '& img': {
+        display: 'block'
+      }
     },
     titleAndLike: {
       display: 'flex',
       height:'30px',
+      marginTop: theme.spacing(0.4),
       justifyContent: 'space-between',
       alignItems: 'flex-start',
       fontWeight: theme.typography.fontWeightMedium,
@@ -34,14 +38,19 @@ export const styles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
+      fontSize: '0.95rem',
       width: 0,
-      padding: '3px 0 0 4px',
+      padding: theme.spacing(0.4, 0, 0, 0),
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden'
     },
+    likeCounter: {
+      padding: theme.spacing(0.3, 0, 0, 0)
+    },
     likeButton: {
-      padding: theme.spacing(0.2, 0.5, 0, 1),
+      padding: theme.spacing(0.4, 0, 0, 1),
+      fontSize: '0.5rem',
       '&:hover': {
         backgroundColor: 'transparent'
       }
