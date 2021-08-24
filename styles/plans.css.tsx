@@ -21,6 +21,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     planSelector: {
       gridArea: 'planSelector',
+      paddingBottom: theme.spacing(6)
     }
   }),
 );

@@ -21,24 +21,21 @@ import router from 'next/router'
 import { useUser } from '../../hooks/useUser'
 import { Membership } from '../../models/Membership'
 import clsx from 'clsx'
+import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 
 export default function Header() {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const { username, profilePicture, isSignedIn, membership } = useUser();
+  const signUpRedirectHref = useSignupRedirectHref();
 
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   const logoHref = "/";
-  const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [openMenu, setOpenMenu] = useState(false);
 
-  useEffect(() => {
-    const isDefaultLocale = router.locale == router.defaultLocale;
-    const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
-    setSignUpRedirectHref(redirectHref);
-  }, []);
+
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events

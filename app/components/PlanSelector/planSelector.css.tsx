@@ -11,12 +11,22 @@ export const styles = makeStyles((theme: Theme) =>
     planCards: {
       display: 'grid',
       gridAutoFlow: 'row',
-      gap: '16px',
+      margin: theme.spacing(4, 2, 0, 2),
+      gap: theme.spacing(4),
       justifyContent: 'center',
       alignItems: 'stretch',
-      [theme.breakpoints.up('smPlus')]: {
+      [theme.breakpoints.up('md')]: {
         gridAutoFlow: 'column',
       },
     },
+    joinCommunityButton: {
+      margin: theme.spacing(4),
+      display: 'flex',
+      justifyContent: 'center',
+      '& button': {
+        flexGrow: 1,
+        maxWidth: '280px',
+      }
+    }
   }),
 );

@@ -15,6 +15,22 @@ export const styles = makeStyles((theme: Theme) =>
     artworkGrid: {
       marginTop: '64px',
       marginBottom: '48px',
+    },
+    welcomeToTexts: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: theme.spacing(2),
+      textAlign: 'center',
+      alignItems: 'center'
+    },
+    header: {
+      maxWidth: '400px'
+    },
+    description: {
+      maxWidth: '400px'
+    },
+    ourMemberships: {
+      fontWeight: 500
     }
   }),
 );
