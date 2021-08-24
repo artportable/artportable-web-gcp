@@ -11,7 +11,7 @@ export function useGetFeedItems(user, page) {
   const token = useGetToken();
 
   return useSWR(
-    token || user ? [`${apiBaseUrl}/api/feed?page=${page}&myUsername=${user}`, token] : null,
+    token && user ? [`${apiBaseUrl}/api/feed?page=${page}&myUsername=${user}`, token] : null,
     fetcher,
     {
       revalidateOnFocus: false,

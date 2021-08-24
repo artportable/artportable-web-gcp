@@ -7,7 +7,7 @@ export function useFollowRecommendations(user) {
   const token = useGetToken();
 
   const { data, error } = useSWR(
-    token ? [`${apiBaseUrl}/api/connections?myUsername=${user}`, token] : null,
+    token && user ? [`${apiBaseUrl}/api/connections?myUsername=${user}`, token] : null,
     getFetcher(user),
     { 
       revalidateOnFocus: false,

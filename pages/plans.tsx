@@ -23,7 +23,7 @@ export default function Plans({ priceData }) {
   const token = useGetToken();
 
   useEffect(() => {
-    if(initialized && keycloak.tokenParsed) {
+    if(initialized && keycloak.token) {
       const parsedToken = keycloak.tokenParsed as any;
       const createUser = async () => {
         try {
@@ -56,7 +56,7 @@ export default function Plans({ priceData }) {
   
       createUser();
     }
-  }, [initialized]);
+  }, [initialized, keycloak.token]);
 
   return (
     <div className={s.plansRootContainer}>
