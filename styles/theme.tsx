@@ -80,6 +80,9 @@ const typography = {
   h1: {
     fontSize: '2.1rem',
     [breakpointsTheme.breakpoints.up('md')]: {
+      fontSize: '2.3rem',
+    },
+    [breakpointsTheme.breakpoints.up('lg')]: {
       fontSize: '2.9rem',
     }
   },

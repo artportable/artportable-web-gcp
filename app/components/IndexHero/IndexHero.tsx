@@ -28,28 +28,30 @@ export default function IndexHero() {
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
-        <div className={s.left}>
-          <Typography variant="h1" className={s.headline}>
-            {t('header')}
-          </Typography> 
-          <Typography variant="body1" className={s.description}>
-            {t('subHeader')}
-          </Typography>
-          <div className={s.signupButtonContainer}>
-            <Button
-              classes={{ 
-                label: s.buttonLabel
-              }}
-              size="small"
-              variant="contained"
-              color="primary"
-              disableElevation
-              rounded
-              onClick={() => keycloak.register({ 
-                locale: router.locale,
-                redirectUri: signUpRedirectHref})}>
-              {t('signUp')}
-            </Button>
+        <div>
+          <div className={s.left}>
+            <Typography variant="h1" className={s.headline}>
+              {t('header')}
+            </Typography>
+            <Typography variant="body1" className={s.description}>
+              {t('subHeader')}
+            </Typography>
+            <div className={s.signupButtonContainer}>
+              <Button
+                classes={{
+                  label: s.buttonLabel
+                }}
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => keycloak.register({
+                  locale: router.locale,
+                  redirectUri: signUpRedirectHref})}>
+                {t('signUp')}
+              </Button>
+            </div>
           </div>
         </div>
         <div className={s.right}>

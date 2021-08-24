@@ -1,47 +1,50 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { columnGap, rowGap } from '../../utils/styleUtils'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       gridColumn: '1/4',
-      marginTop: 0,
-      margin: theme.spacing(5, 0),
+      padding: theme.spacing(5, 1, 0, 1),
       background: theme.palette.grey[200],
-      [theme.breakpoints.up('md')]: {
-        paddingTop: 0
-      }
     },
     flexContainer: {
       position: 'relative',
       display: 'flex',
-      gap: theme.spacing(4),
-      margin: theme.spacing(2, 2, 0, 2),
       flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      ...columnGap(theme.spacing(4)),
       alignItems: 'center',
-      flexWrap: 'nowrap',
+      flexWrap: 'nowrap',      
+      
       [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
+        ...columnGap(0),
       }      
     },
     left: {
+      textAlign: 'center',
       flexBasis: '100%',
       flexGrow: 2,
       display: 'flex',
       justifyContent: 'center',
       alignContent: 'center',
-      flexDirection: 'column',   
-      gap: theme.spacing(1),
+      flexDirection: 'column',
+      ...columnGap(
+        theme.spacing(1),
+      ),
 
       [theme.breakpoints.up('smPlus')]: {
-        margin: theme.spacing(0, 8),
+        margin: theme.spacing(0, 8, 4, 8),
       },
       [theme.breakpoints.up('md')]: {
-        margin: theme.spacing(0, 4),
+        textAlign: 'initial',
+        margin: theme.spacing(0, 0, 4, 4),
       }
     },
     headline: {
-      fontWeight: 400,
-      fontFamily: 'Roboto',
+      fontWeight: 600
     },
     description: {
       [theme.breakpoints.up('md')]: {
@@ -59,7 +62,7 @@ export const styles = makeStyles((theme: Theme) =>
       
     },
     paintingContainer: {
-      width: '210px',
+      width: '190px',
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
@@ -98,11 +101,10 @@ export const styles = makeStyles((theme: Theme) =>
 
     [theme.breakpoints.up('sm')]: {
       flexContainer: {
-        width: theme.breakpointMainWidths.sm.wide,
-        margin: `${theme.spacing(4)}px auto 0 auto`,
+        width: theme.breakpointMainWidths.sm.wide
       },
       paintingContainer: {
-        width: '310px',
+        width: '250px',
       },
     },
     [theme.breakpoints.up('smPlus')]: {
@@ -110,7 +112,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: theme.breakpointMainWidths.smPlus.wide,
       },
       paintingContainer: {
-        width: '410px',
+        width: '380px',
       },
     },
     [theme.breakpoints.up('md')]: {
@@ -118,20 +120,23 @@ export const styles = makeStyles((theme: Theme) =>
         width: theme.breakpointMainWidths.md.wide,
       },
       paintingContainer: {
-        width: '280px',
+        width: '200px',
       },
     },
     [theme.breakpoints.up('mdPlus')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.mdPlus.wide,
-      }
+      },
+      paintingContainer: {
+        width: '260px',
+      },
     },
     [theme.breakpoints.up('lg')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.lg.wide,
       },
       paintingContainer: {
-        width: '410px',
+        width: '320px',
       },
     }    
   })
