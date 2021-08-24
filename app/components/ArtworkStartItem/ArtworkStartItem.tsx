@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import { styles } from './artworkStartItem.css'
-import { Avatar, Paper } from '@material-ui/core'
 import Link from 'next/link'
 import Skeleton from '@material-ui/lab/Skeleton';
 import clsx from 'clsx'
+import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 
 
 export default function ArtworkStartItem({ artwork, width }) {
@@ -14,11 +13,12 @@ export default function ArtworkStartItem({ artwork, width }) {
 
   const imageHeight = (artwork.Image.Height / artwork.Image.Width) * width;
   const skeletonHeight = imageHeight + 4;
+  console.log(`${bucketUrl}${artwork?.ProfilePicture}`);
 
   return (
-    <Paper variant="outlined" className={s.paper}>
+   
       <div className={s.container}>
-        <div>
+        <div className={s.imageContainer}>
           <Link href={`/art/${artwork.ArtworkId}`}>
             <a>
               <img
@@ -43,17 +43,7 @@ export default function ArtworkStartItem({ artwork, width }) {
         <Link href={`/profile/@${artwork.Username}`}>
           <a>
             <div className={s.footer}>
-              {artwork?.ProfilePicture ? (
-                <Avatar src={`${bucketUrl}${artwork?.ProfilePicture}`}
-                  alt="Profile picture"
-                  style={{ height: '24px', width: '24px' }}
-                />
-              ) : (
-                <AccountCircleIcon
-                  color="secondary"
-                  style={{fontSize: 28}}
-                />
-              )}
+              <ProfileAvatar size={25} profilePicture={artwork?.ProfilePicture}/>
               <div className={s.username}>
                 {artwork?.Username}
               </div>
@@ -61,6 +51,6 @@ export default function ArtworkStartItem({ artwork, width }) {
           </a>
         </Link>
       </div>
-    </Paper>
+    
   );
 }
