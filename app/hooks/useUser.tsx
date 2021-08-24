@@ -40,7 +40,7 @@ export function useUser(): User {
               type: LOGIN_USER,
               payload: anonymousUser
             });
-            router.push('/signup');
+            router.push('/plans');
             return;
           }
 
@@ -67,7 +67,7 @@ export function useUser(): User {
     }
     // User has logged in via keycloak but has not finished registering their profile
     if (initialized && keycloak.authenticated && user.isSignedIn && user.username === null) {
-      router.push('/signup');
+      router.push('/plans');
     }
   }, [initialized]);
 
