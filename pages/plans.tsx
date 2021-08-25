@@ -20,7 +20,6 @@ export default function Plans({ priceData }) {
   const s = styles();
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const dispatch = useDispatch();
-  const token = useGetToken();
 
   useEffect(() => {
     if(initialized && keycloak.token) {
@@ -37,7 +36,7 @@ export default function Plans({ priceData }) {
             }),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization' : `Bearer ${token}`
+              'Authorization' : `Bearer ${keycloak.token}`
             }
           });
           const data = await response.json();
