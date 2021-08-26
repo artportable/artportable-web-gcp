@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import MenuIcon from '@material-ui/icons/Menu'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 import MuiButton from '@material-ui/core/Button'
 import { LinearProgress } from "@material-ui/core";
 
@@ -13,8 +14,9 @@ import Button from '../Button/Button';
 import DrawerMenu from '../DrawerMenu/DrawerMenu';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
+import { useGetActivityToken } from '../../hooks/useGetActivityClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
@@ -23,6 +25,8 @@ import { useUser } from '../../hooks/useUser'
 import { Membership } from '../../models/Membership'
 import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
+import { FlatFeed, NotificationDropdown, StreamApp } from 'react-activity-feed'
+import 'react-activity-feed/dist/index.css';
 
 export default function Header({ loading = true }) {
   const { t } = useTranslation('header');
@@ -30,13 +34,13 @@ export default function Header({ loading = true }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const { username, profilePicture, isSignedIn, membership } = useUser();
   const signUpRedirectHref = useSignupRedirectHref();
+  const streamApp = useRef(null);
 
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
-
-
+  const { token: activityToken, isError, isLoading } = useGetActivityToken(username, isSignedIn);
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -62,10 +66,10 @@ export default function Header({ loading = true }) {
         <div className={s.container}>
           <div className={s.menuButton}>
             <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
-                <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
-                  <MenuIcon style={{ fontSize: '30px' }} />
-                </Badge>
-                <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
+              <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
+                <MenuIcon style={{ fontSize: '30px' }} />
+              </Badge>
+              <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
             </IconButton>
           </div>
           <div className={s.logoContainer}>
@@ -129,13 +133,40 @@ export default function Header({ loading = true }) {
                         color="primary"
                         disableElevation
                         rounded>
-                        {t('upload')}
+                          {t('upload')}
                       </Button>
                     </a>
                   </Link>    
                 </div>
               }
               <div className={s.iconButtons}>
+                <div className={s.notificationButton}>
+                  {activityToken && !isError && !isLoading ?
+                    <StreamApp apiKey='x595terv4p22' appId='1128230' token={activityToken}>
+                      <NotificationDropdown 
+                        notify 
+                        right 
+                        Icon={() => (
+                          <IconButton color="secondary" aria-label="account">
+                            <Badge badgeContent={0} max={99} color="primary">
+                              <NotificationsIcon 
+                                style={{ fontSize: '30px' }} 
+                              />
+                            </Badge>
+                          </IconButton>
+                        )}
+                      />
+                    </StreamApp>
+                    :
+                    <IconButton aria-label="account" disabled aria-disabled>
+                      <NotificationsIcon 
+                        classes={{ root: s.notificationIcon }}
+                        style={{ fontSize: '30px' }} 
+                        
+                      />
+                    </IconButton>
+                  }
+                </div>
                 <Link href="/messages">
                   <a>
                     <IconButton color="secondary" aria-label="account">

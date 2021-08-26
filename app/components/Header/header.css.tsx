@@ -50,6 +50,21 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none'
     },
 
+    notificationButton: {
+      width: '54px',
+      display: 'flex',
+      '& > *': {
+        margin: 'auto'
+      },
+
+      '& .raf-icon-badge svg': {
+        fill: theme.palette.secondary.main
+      },
+      '& .raf-icon-badge:hover svg': {
+        fill: theme.palette.secondary.main
+      }
+    },
+
     [theme.breakpoints.up('sm')]: {
       language: {
         display: 'initial',
@@ -70,7 +85,8 @@ export const styles = makeStyles((theme: Theme) =>
         display: 'none',
       },
       login: {
-        display: 'initial',
+        display: 'flex',
+        alignItems: 'center',
         gridArea: 'login',
         '& .MuiButton-root .MuiButton-label': {
             margin: theme.spacing(0, 2)
@@ -130,7 +146,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     
     iconButtons: {
-      display: 'inline'
+      display: 'flex',
+      alignItems: 'center'
     }
   }),
 );
