@@ -21,10 +21,11 @@ import {
 
 //keycloak 
 import type { IncomingMessage } from 'http';
-import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr';
+import { SSRKeycloakProvider } from '@react-keycloak/ssr';
 import cookie from 'cookie';
 import { keycloakConfig, keycloakInitOptions } from '../constants/keycloakSettings';
 import { AuthClientEvent, AuthClientError } from '@react-keycloak/core';
+import { CustomSSRCookies } from '../app/utils/customSSRCookies'
 
 
 library.add(
@@ -68,7 +69,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       </Head>
       <SSRKeycloakProvider
         keycloakConfig={keycloakConfig}
-        persistor={SSRCookies(cookies)}
+        persistor={CustomSSRCookies(cookies)}
         initOptions={keycloakInitOptions}
         onEvent={testEvent}
       >

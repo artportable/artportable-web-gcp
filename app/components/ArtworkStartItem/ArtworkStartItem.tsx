@@ -13,7 +13,6 @@ export default function ArtworkStartItem({ artwork, width }) {
 
   const imageHeight = (artwork.Image.Height / artwork.Image.Width) * width;
   const skeletonHeight = imageHeight + 4;
-  console.log(`${bucketUrl}${artwork?.ProfilePicture}`);
 
   return (
    
