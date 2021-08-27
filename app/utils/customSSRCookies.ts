@@ -17,7 +17,7 @@ export var CustomSSRCookies = function (cookies) {
       }
 
       if (tokens.refreshToken) {
-        var decodedRefreshToken = decodeToken(tokens.idToken);
+        var decodedRefreshToken = decodeToken(tokens.refreshToken);
         setCookie('kcRefreshToken', encode(tokens.refreshToken), decodedRefreshToken.exp)
       }
     },
