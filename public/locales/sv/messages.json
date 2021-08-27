@@ -1,0 +1,4 @@
+{
+  "pleaseTryAgain" : "Något gick fel när kanalen skulle öppnas, var vänlig försök igen senare",
+  "referToArtwork" : "Hej {{artwork.creator}}!\nJag såg ert verk [{{artwork.title}}]({{artwork.url}}) och ville skriva till er"
+}

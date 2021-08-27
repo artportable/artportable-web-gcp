@@ -36,7 +36,6 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
           src={`${bucketUrl}${coverPhoto}`}
           alt="Cover image"
           className={s.profileCoverPhoto}
-          style={{ transform: 'translate(0, -50%) scale(1)'}}
         />
       }
       

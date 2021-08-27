@@ -9,12 +9,13 @@ const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       position: 'absolute',
       top: 'var(--header-height)',
+      display: 'flex',
+      justifyContent: 'center'
     },
     profileCoverPhoto: {
-      position: 'relative',
       objectFit: 'cover',
-      maxWidth: '100vw',
-      width: '100%'
+      minHeight: '100%',
+      minWidth: '100%'
     },
     buttonContainer: {
       position: 'absolute',

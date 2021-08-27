@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChannelListTeamProps, useChatContext } from 'stream-chat-react';
+import { ChannelListTeamProps, useChannelContext, useChatContext } from 'stream-chat-react';
 
 import { SkeletonLoader } from './SkeletonLoader';
 
@@ -15,15 +15,17 @@ import type {
   UserType,
 } from '../MessagingTypes';
 import { ChatAvatar } from '../MessagingUtils';
+import { useEffect } from 'react';
+import { Channel } from 'stream-chat';
 
 type Props = ChannelListTeamProps & {
   onCreateChannel: () => void;
+  activeChannel: Channel;
 };
 
 const MessagingChannelList: React.FC<Props> = (props) => {
-  const { children, error = false, loading, onCreateChannel } = props;
-
-  const { client, setActiveChannel } = useChatContext<
+  const { children, error = false, loading, onCreateChannel, activeChannel } = props;
+  const { client, channel, setActiveChannel } = useChatContext<
     AttachmentType,
     ChannelType,
     CommandType,
@@ -33,6 +35,15 @@ const MessagingChannelList: React.FC<Props> = (props) => {
     UserType
   >();
 
+  useEffect(() => {
+    if (activeChannel) {
+      const setChannel = async () => {
+        setActiveChannel(activeChannel);
+      }
+      setChannel();
+    }
+  }, [activeChannel])
+
   const { id, image, name = 'Unknown User' } =
     client.user || {};
 
@@ -41,7 +52,7 @@ const MessagingChannelList: React.FC<Props> = (props) => {
     return (
       <div className='messaging__channel-list'>
         <div className='messaging__channel-list__header'>
-          <ChatAvatar image={image}/>
+          <ChatAvatar image={image} />
           <div className='messaging__channel-list__header__name'>{name || id}</div>
           <button className='messaging__channel-list__header__button' onClick={onCreateChannel}>
             <AddIcon />

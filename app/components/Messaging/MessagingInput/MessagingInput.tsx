@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { ImageDropzone } from 'react-file-utils';
 import { Attachment, logChatPromiseExecution, UserResponse } from 'stream-chat';
 import {
+  ChannelContextValue,
   ChatAutoComplete,
   EmojiPicker,
   MessageInputProps,
@@ -25,6 +26,8 @@ import type {
   ReactionType,
   UserType,
 } from '../MessagingTypes';
+import { useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const GiphyIcon = () => (
   <div className='giphy-icon__wrapper'>
@@ -32,7 +35,11 @@ const GiphyIcon = () => (
   </div>
 );
 
-const MessagingInput: React.FC<MessageInputProps> = (props) => {
+interface InputProps extends MessageInputProps {
+  artwork: any,
+}
+
+const MessagingInput: React.FC<InputProps> = (props) => {
   const { acceptedFiles, maxNumberOfFiles, multipleUploads, sendMessage } = useChannelContext<
     AttachmentType,
     ChannelType,
@@ -42,6 +49,8 @@ const MessagingInput: React.FC<MessageInputProps> = (props) => {
     ReactionType,
     UserType
   >();
+  const { artwork } = props;
+  const { t } = useTranslation(['messages']);
 
   const [giphyState, setGiphyState] = useState(false);
 
@@ -71,11 +80,11 @@ const MessagingInput: React.FC<MessageInputProps> = (props) => {
         ...newMessage,
         parent: parentMessage
           ? {
-              ...parentMessage,
-              created_at: parentMessage.created_at?.toString(),
-              pinned_at: parentMessage.pinned_at?.toString(),
-              updated_at: parentMessage.updated_at?.toString(),
-            }
+            ...parentMessage,
+            created_at: parentMessage.created_at?.toString(),
+            pinned_at: parentMessage.pinned_at?.toString(),
+            updated_at: parentMessage.updated_at?.toString(),
+          }
           : undefined,
       };
 
@@ -88,13 +97,20 @@ const MessagingInput: React.FC<MessageInputProps> = (props) => {
 
   const messageInput = useMessageInput({ ...props, overrideSubmitHandler });
 
+  useEffect(() => {
+    if (artwork) {
+      var inputMessage = t('referToArtwork', { artwork })
+      messageInput.insertText(inputMessage);
+    }
+  }, [artwork])
+
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       const { value } = event.target;
 
       const deletePressed =
         event.nativeEvent instanceof InputEvent &&
-        event.nativeEvent.inputType === 'deleteContentBackward'
+          event.nativeEvent.inputType === 'deleteContentBackward'
           ? true
           : false;
 

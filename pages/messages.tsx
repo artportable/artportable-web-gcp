@@ -12,11 +12,17 @@ import CustomMessage from '../app/components/Messaging/CustomMessage/CustomMessa
 import MessagingInput from '../app/components/Messaging/MessagingInput/MessagingInput';
 import { useGetChatClient } from '../app/hooks/useGetChatClient'
 import { useUser } from '../app/hooks/useUser';
+import { Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 
 
-export default function MessagesPage( props ) {
-  const { t } = useTranslation(['upload']);
+
+export default function MessagesPage(props) {
+  const { t } = useTranslation(['messages']);
+  const { referTo, artwork } = props;
   const { username, isSignedIn, profilePicture } = useUser();
+  const [referToChannel, setReferToChannel] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const theme = 'light';
   const sort: ChannelSort = {
     last_message_at: -1,
@@ -34,6 +40,36 @@ export default function MessagesPage( props ) {
     setIsCreating(Object.keys(chatClient.activeChannels).length === 0);
   }, [hasChannels]);
 
+  useEffect(() => {
+    async function setReferTo() {
+      if (referTo) {
+        try {
+
+          var channel = chatClient.channel('messaging', {
+            members: [referTo, username],
+          });
+          await channel.watch();
+          setReferToChannel(channel);
+          await channel.stopWatching();
+        }
+        catch (e) {
+          console.log(e);
+          setSnackbarOpen(true);
+        }
+      }
+    }
+
+    setReferTo();
+  }, [referTo]);
+
+  const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
+
   return (
     <Main noHeaderPadding>
       <div>
@@ -44,15 +80,15 @@ export default function MessagesPage( props ) {
               sort={sort}
               List={(props) => {
                 setIsLoading(props.loading);
-                return <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} />;
-                }
+                return <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />;
+              }
               }
               Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
-            />         
+            />
             {isCreating && !isLoading && (
               <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={null} />
             )}
-            {!isCreating && 
+            {!isCreating &&
               <Channel maxNumberOfFiles={10} multipleUploads={true}>
                 <Window>
                   <MessagingChannelHeader theme={theme} toggleMobile={null} />
@@ -61,23 +97,36 @@ export default function MessagesPage( props ) {
                     Message={CustomMessage}
                     TypingIndicator={() => null}
                   />
-                  <MessageInput focus Input={MessagingInput} />
+                  <MessageInput focus Input={(props) => <MessagingInput {...props} artwork={artwork}/>} />
                 </Window>
               </Channel>
             }
           </Chat>
         }
+        <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} variant="filled" severity="warning">
+            {t('messages:pleaseTryAgain')}
+          </Alert>
+        </Snackbar>
       </div>
     </Main>
   );
 }
 
-export async function getStaticProps(props) {
-  console.log(props)
-  console.log('Slut')
+export async function getServerSideProps({ locale, query }) {
+  // returns { id: episode.itunes.episode, title: episode.title}
+  var props = {
+    ...await serverSideTranslations(locale, ['header', 'footer', 'messages', 'tags']),
+  };
+  if (query.artwork) {
+    props['artwork'] = JSON.parse(atob(query.artwork))
+  }
+  if (query.referTo) {
+    props['referTo'] = query.referTo
+  }
+
+  //you can make DB queries using the data in context.query
   return {
-    props: {
-      ...await serverSideTranslations(props.locale, ['header', 'footer', 'upload', 'tags']),
-    }
+    props
   };
 }

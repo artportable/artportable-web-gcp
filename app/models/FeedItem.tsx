@@ -11,6 +11,7 @@ export interface FeedItem {
 
 interface Item {
   Id: string,
+  Title: string,
   PrimaryFile: File,
   SecondaryFile: File,
   TertiaryFile: File

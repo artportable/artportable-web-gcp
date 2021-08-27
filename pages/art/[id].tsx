@@ -15,11 +15,14 @@ import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useGetToken } from "../../app/hooks/useGetToken";
+import SendIcon from '@material-ui/icons/Send';
+import Link from "next/link";
 
 export default function ArtworkPage(props) {
   const s = styles();
   const { t } = useTranslation(['art', 'common', 'tags']);
   const router = useRouter();
+  const isDefaultLocale = router.locale === router.defaultLocale;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -52,18 +55,18 @@ export default function ArtworkPage(props) {
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
-        'Authorization' : `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       }
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function toggleFollow() {
@@ -81,19 +84,19 @@ export default function ArtworkPage(props) {
     fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
-        'Authorization' : `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       }
     })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
-      }
-    })
-    .catch((error) => {
-      setIsLiked(!isLiked)
-      console.log(error);
-    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        setIsLiked(!isLiked)
+        console.log(error);
+      })
   }
 
   function toggleLike(event) {
@@ -110,7 +113,7 @@ export default function ArtworkPage(props) {
         <div className={s.backBtnContainer}>
           <IconButton
             onClick={() => router.back()}>
-            <ArrowBackIcon/>
+            <ArrowBackIcon />
           </IconButton>
         </div>
 
@@ -118,79 +121,101 @@ export default function ArtworkPage(props) {
         {artwork.isError && <div>error...</div>}
 
         {artwork && artwork.data &&
-        <>
-          <div className={s.avatar}>
-            <AvatarCard user={artwork.data.Owner}></AvatarCard>
-            <Button
-              className={s.followButton}
-              variant={!isFollowed ? "contained" : "outlined"}
-              color="primary"
-              startIcon={!isFollowed ? <AddIcon/> : null}
-              disableElevation
-              rounded
-              onClick={toggleFollow}>
-              {capitalizeFirst(
-                !isFollowed ?
-                  t('common:words.follow') :
-                  t('common:words.following')
-              )}
-            </Button>
-          </div>
-          <Paper classes={{ root: s.paper }}>
-            <div className={s.imageContainer}>
-              <img
-                src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
-                className={s.primaryImage}
-              />
-            </div>
-            <div className={s.actionBar}>
+          <>
+            <div className={s.avatar}>
+              <AvatarCard user={artwork.data.Owner}></AvatarCard>
               <Button
-                startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
-                onClick={toggleLike}>
-                {capitalizeFirst(t('like'))}
+                className={s.followButton}
+                variant={!isFollowed ? "contained" : "outlined"}
+                color="primary"
+                startIcon={!isFollowed ? <AddIcon /> : null}
+                disableElevation
+                rounded
+                onClick={toggleFollow}>
+                {capitalizeFirst(
+                  !isFollowed ?
+                    t('common:words.follow') :
+                    t('common:words.following')
+                )}
               </Button>
             </div>
-            <div className={s.infoBar}>
-              {artwork.data.Likes > 0 &&
-                <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
-              }
-              <p>{formatter.format(artwork.data.Price)} </p>
-            </div>
-            <Box textAlign="center" marginY={2} className={s.text}>
-              {artwork.data.Title &&
-                <Typography variant="h3" component="h2" id="artwork-modal-title">
-                  <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={2}>
-                    {artwork.data.Title}
-                  </Box>
-                </Typography>
-              }
-              {artwork.data.Description &&
-                <Typography variant="body1" id="artwork-modal-description">
-                  {artwork.data.Description}
-                </Typography>
-              }
-            </Box>
-            <Box className={s.extraImages}>
-              {artwork.data.SecondaryFile &&
-                <div className={s.imageContainer}>
-                  <img
-                    src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
-                    className={s.extraImage}
-                  />
-                </div>
-              }
-              {artwork.data.TertiaryFile &&
-                <div className={s.imageContainer}>
-                  <img
-                    src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
-                    className={s.extraImage}
-                  />
-                </div>
-              }
-            </Box>
-            <Box className={s.tagsContainer} marginBottom={2}>
-              {Array.from(artwork.data.Tags).map((tag: string) =>
-                {
+            <Paper classes={{ root: s.paper }}>
+              <div className={s.imageContainer}>
+                <img
+                  src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
+                  className={s.primaryImage}
+                />
+              </div>
+              <div className={s.actionBar}>
+                <Button
+                  startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"} />}
+                  onClick={toggleLike}>
+                  {capitalizeFirst(t('common:like'))}
+                </Button>
+                {username !== artwork.data.Owner.Username &&
+                  <Link
+                    href={{
+                      pathname: "/messages",
+                      query: {
+                        artwork: btoa(JSON.stringify({
+                          title: artwork.data.Title,
+                          creator: artwork.data.Owner.Username,
+                          url: window.location.href
+                        })),
+                        referTo: artwork.data.Owner.Username
+                      }
+                    }}
+                    as={`/messages`}
+                  >
+                    <a>
+                      <Button
+                        startIcon={<SendIcon color={"inherit"} />}>
+                        {capitalizeFirst(t('common:message'))}
+                      </Button>
+                    </a>
+                  </Link>
+                }
+              </div>
+              <div className={s.infoBar}>
+                {artwork.data.Likes > 0 &&
+                  <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
+                }
+                <p>{formatter.format(artwork.data.Price)} </p>
+              </div>
+              <Box textAlign="center" marginY={2} className={s.text}>
+                {artwork.data.Title &&
+                  <Typography variant="h3" component="h2" id="artwork-modal-title">
+                    <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={2}>
+                      {artwork.data.Title}
+                    </Box>
+                  </Typography>
+                }
+                {artwork.data.Description &&
+                  <Typography variant="body1" id="artwork-modal-description">
+                    {artwork.data.Description}
+                  </Typography>
+                }
+              </Box>
+              <Box className={s.extraImages}>
+                {artwork.data.SecondaryFile &&
+                  <div className={s.imageContainer}>
+                    <img
+                      src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
+                      className={s.extraImage}
+                    />
+                  </div>
+                }
+                {artwork.data.TertiaryFile &&
+                  <div className={s.imageContainer}>
+                    <img
+                      src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
+                      className={s.extraImage}
+                    />
+                  </div>
+                }
+              </Box>
+              <Box className={s.tagsContainer} marginBottom={2}>
+                {Array.from(artwork.data.Tags).map((tag: string) => {
                   return <TagChip
                     key={tag}
                     title={tag}
@@ -198,10 +223,10 @@ export default function ArtworkPage(props) {
                     limitReached={true}>
                   </TagChip>;
                 }
-              )}
-            </Box>
-          </Paper>
-        </>
+                )}
+              </Box>
+            </Paper>
+          </>
         }
       </div>
     </Main>
@@ -209,7 +234,7 @@ export default function ArtworkPage(props) {
 }
 
 export async function getStaticProps({ locale }) {
-  return { 
+  return {
     props: {
       locale: locale,
       ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags']),
@@ -218,9 +243,9 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export const getStaticPaths = () => {  
+export const getStaticPaths = () => {
   return {
     paths: [], //indicates that no page needs be created at build time
     fallback: 'blocking' //indicates the type of fallback
- }
+  }
 }
