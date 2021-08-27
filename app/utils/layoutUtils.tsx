@@ -26,7 +26,7 @@ export function getImageAsRows(images: Image[], gapSpace: number, rowWidth: numb
     
 
     rows[i].push(normalizedImage);
-  });
+  }); 
 
   return rows;
 }
