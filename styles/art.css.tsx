@@ -54,7 +54,6 @@ export const styles = makeStyles((theme: Theme) =>
     actionBar: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
       alignItems: 'center'

@@ -1,18 +1,25 @@
-import { StreamChat } from 'stream-chat';
+import { ConnectionOpen, StreamChat } from 'stream-chat';
 import { useEffect, useRef } from 'react';
 import { isNullOrUndefined } from '../utils/util';
 import { useGetToken } from './useGetToken';
+import { AttachmentType, ChannelType, CommandType, EventType, MessageType, ReactionType, UserType } from '../components/Messaging/MessagingTypes';
 
 export function useGetChatClient(username, profilePicture, isSignedIn, setUnreadCount = null) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
-  const chatClientRef = useRef(StreamChat.getInstance(apiKey));
+  const chatClientRef = useRef(StreamChat.getInstance<AttachmentType,
+    ChannelType,
+    CommandType,
+    EventType,
+    MessageType,
+    ReactionType,
+    UserType>(apiKey));
   const token = useGetToken();
 
   useEffect(() => {
     const initChat = async () => {
-      
+
       const response = await fetch(`${apiBaseUrl}/api/messages/connect?username=${username}`, {
         method: 'GET',
         headers: {
@@ -27,10 +34,9 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
           id: username,
           name: username,
           image: `${bucketUrl}${profilePicture}`,
-        }, user.Token).catch(error => console.warn(error));
-
+        }, user.Token) as ConnectionOpen<ChannelType, CommandType, UserType>
         if (setUnreadCount !== null) {
-          setUnreadCount(chatClientRef.current.user.total_unread_count);
+          setUnreadCount(result.me.total_unread_count);
         }
 
       } catch (error) {

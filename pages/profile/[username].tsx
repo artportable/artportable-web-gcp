@@ -32,6 +32,8 @@ import Button from '../../app/components/Button/Button'
 import AddIcon from '@material-ui/icons/Add';
 import { useGetToken } from '../../app/hooks/useGetToken'
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
+import Link from 'next/link'
+import SendIcon from '@material-ui/icons/Send';
 
 function a11yProps(index: any) {
   return {
@@ -55,7 +57,7 @@ export default function Profile() {
   const [hasArtwork, setHasArtwork] = useState(false);
 
   const profileUser = useGetProfileUser();
-  const { username, profilePicture } = useUser();
+  const { username, profilePicture, isSignedIn } = useUser();
   const artworks = useGetArtworks(profileUser, username);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const tags = useGetUserProfileTags(profileUser);
@@ -127,7 +129,7 @@ export default function Profile() {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
-        'Authorization' : `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       }
     })
       .then((response) => {
@@ -148,16 +150,19 @@ export default function Profile() {
 
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
       method: isFollow ? 'POST' : 'DELETE',
-    })
-    .then((response) => {
-      if (!response.ok) {
-        console.log(response.statusText);
-        throw response;
+      headers: {
+        'Authorization': `Bearer ${token}`
       }
     })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   function toggleFollow() {
@@ -188,7 +193,7 @@ export default function Profile() {
       method: 'POST',
       headers: {
         'Content-Type': 'image/jpeg',
-        'Authorization' : `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       },
       body: blob
     })
@@ -208,7 +213,7 @@ export default function Profile() {
           method: 'PUT',
           headers: {
             'Content-Type': 'image/jpeg',
-            'Authorization' : `Bearer ${token}`
+            'Authorization': `Bearer ${token}`
           },
         })
           .then((response) => {
@@ -255,21 +260,50 @@ export default function Profile() {
             <EditProfileDialog
               userProfile={userProfile.data}
             />
-          :
-            <Button
-              className={s.followButton}
-              variant={!isFollowed ? "contained" : "outlined"}
-              color="primary"
-              startIcon={!isFollowed ? <AddIcon/> : null}
-              disableElevation
-              rounded
-              onClick={toggleFollow}>
-              {capitalizeFirst(
-                !isFollowed ?
-                  t('common:words.follow') :
-                  t('common:words.following')
-              )}
-            </Button>
+            :
+            <>
+              { 
+                <Link
+                  href={{
+                    pathname: "/messages",
+                    query: {
+                      referTo: userProfile.data?.Username
+                    }
+                  }}
+                  as={`/messages`}
+                >
+                  <a style={isSignedIn ? {} : {pointerEvents: 'none'} }>
+                    <Button
+                      className={s.followButton}
+                      size={smScreenOrSmaller ? 'small' : 'medium'}
+                      variant={"contained"}
+                      color="primary"
+                      startIcon={<SendIcon color={"inherit"} />}
+                      disableElevation
+                      rounded
+                      disabled={!isSignedIn}>
+                      {capitalizeFirst(t('common:message'))}
+                    </Button>
+                  </a>
+                </Link>
+              }
+              <Button
+                className={s.followButton}
+                size={smScreenOrSmaller ? 'small' : 'medium'}
+                variant={!isFollowed ? "contained" : "outlined"}
+                color="primary"
+                startIcon={!isFollowed ? <AddIcon /> : null}
+                disableElevation
+                rounded
+                disabled={!isSignedIn}
+                onClick={toggleFollow}>
+                {capitalizeFirst(
+                  !isFollowed ?
+                    t('common:words.follow') :
+                    t('common:words.following')
+                )}
+              </Button>
+            </>
           }
         </div>
         <Divider className={s.divider}></Divider>

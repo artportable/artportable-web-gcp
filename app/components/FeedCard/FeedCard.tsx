@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import Card from "@material-ui/core/Card";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import SendIcon from '@material-ui/icons/Send';
 import Button from '../Button/Button';
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,6 +12,7 @@ import { capitalizeFirst } from '../../utils/util';
 import { CardActions, CardHeader, CardMedia, Box, Avatar } from '@material-ui/core';
 import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
+import { useRouter } from 'next/router';
 
 interface FeedCardProps {
   content: FeedItem,
@@ -22,7 +24,8 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const { t } = useTranslation(['feed', 'common']);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
   const [isLiked, setLike] = useState(content.LikedByMe);
-
+  const router = useRouter();
+  const isDefaultLocale = router.locale === router.defaultLocale;
   const elapsedTime = getElapsedTime(content.Published);
 
   const mediaClasses = clsx({
@@ -30,7 +33,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
     [s.twoImages]: content.Item.SecondaryFile && !content.Item.TertiaryFile,
     [s.oneImage]: !content.Item.SecondaryFile && !content.Item.TertiaryFile
   },
-  [s.media]);
+    [s.media]);
 
   return (
     <Card>
@@ -47,7 +50,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
               ) : (
                 <AccountCircleIcon
                   color="secondary"
-                  style={{fontSize: 48}}
+                  style={{ fontSize: 48 }}
                 />
               )
             }
@@ -65,7 +68,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           <img
             className={s.image}
             src={`${bucketUrl}${content.Item.PrimaryFile.Name}`}
-            alt="Primary image"            
+            alt="Primary image"
           />
         </div>
         {content.Item.SecondaryFile &&
@@ -73,7 +76,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             <img
               className={s.image}
               src={`${bucketUrl}${content.Item.SecondaryFile.Name}`}
-              alt="Primary image"            
+              alt="Primary image"
             />
           </div>
         }
@@ -82,20 +85,41 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             <img
               className={s.image}
               src={`${bucketUrl}${content.Item.TertiaryFile.Name}`}
-              alt="Primary image"            
+              alt="Primary image"
             />
           </div>
         }
       </CardMedia>
       <CardActions className={s.cardActions}>
         <Button
-          startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"}/>}
+          startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"} />}
           onClick={() => {
             onLikeClick(content.Item.Id, !isLiked);
             setLike(!isLiked);
-          } }>
-          {capitalizeFirst(t('like'))}
+          }}>
+          {capitalizeFirst(t('common:like'))}
         </Button>
+        <Link
+          href={{
+            pathname: "/messages",
+            query: {
+              artwork: btoa(JSON.stringify({
+                title: content.Item.Title,
+                creator: content.User,
+                url: `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/art/${content.Item.Id}`
+              })),
+              referTo: content.User
+            }
+          }}
+          as={`/messages`}
+        >
+          <a>
+            <Button
+              startIcon={<SendIcon color={"inherit"} />}>
+              {capitalizeFirst(t('common:message'))}
+            </Button>
+          </a>
+        </Link>
       </CardActions>
     </Card>
   );
