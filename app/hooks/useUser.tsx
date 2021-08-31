@@ -7,7 +7,15 @@ import User from '../models/User'
 import { useRouter } from 'next/router';
 import { Membership } from '../models/Membership';
 
-export function useUser(): User {
+type UserInitialized = {
+  username: string,
+  profilePicture: string,
+  isSignedIn: boolean,
+  membership: Membership,
+  initialized: boolean,
+}
+
+export function useUser(): UserInitialized {
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const store = useStore();
   const dispatch = useDispatch();
@@ -41,7 +49,7 @@ export function useUser(): User {
               payload: anonymousUser
             });
             router.push('/plans');
-            return;
+            return { initialized };
           }
 
           if (response.status === 200) {
@@ -71,5 +79,5 @@ export function useUser(): User {
     }
   }, [initialized]);
 
-  return user;
+  return { ...user, initialized };
 }

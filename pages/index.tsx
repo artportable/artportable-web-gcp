@@ -3,7 +3,7 @@ import { styles } from '../styles/index.css';
 import React, { useEffect, useRef, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
-import { Box, Tab, Tabs } from "@material-ui/core";
+import { Box, CircularProgress, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
@@ -21,7 +21,8 @@ export default function DiscoverPage() {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
-  const { username, isSignedIn } = useUser();
+  const { username, isSignedIn, initialized } = useUser();
+  console.log(initialized);
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -41,6 +42,7 @@ export default function DiscoverPage() {
   const [trackedArtwork, setTrackedArtwork] = useState(null);
   const [trackedArtist, setTrackedArtists] = useState(null);
   const token = useGetToken();
+
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
@@ -159,18 +161,25 @@ export default function DiscoverPage() {
 
   return (
     <Main noHeaderPadding wide={useWideLayout}>
-      {!isSignedIn &&
-        <IndexHero></IndexHero>
-      }
-      <div className={s.discoverContainer}>
-        <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered>
-          <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
-          <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
-        </Tabs>
-        <Box paddingTop={4}>
-          <TabPanel value={activeTab} index={0}>
-            {!tags?.isLoading && !tags?.isError && tags?.data &&
-              <DiscoverArt
+      <div className={s.loadingContainer}>
+        {!initialized &&
+          <CircularProgress size={50} />
+        }
+      </div>
+      {initialized && 
+      <>
+        {!isSignedIn &&
+          <IndexHero></IndexHero>
+        }
+        <div className={s.discoverContainer}>
+          <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered>
+            <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+            <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+          </Tabs>
+          <Box paddingTop={4}>
+            <TabPanel value={activeTab} index={0}>
+              {!tags?.isLoading && !tags?.isError && tags?.data &&
+                <DiscoverArt
                 artworks={artworks}
                 tags={tags?.data}
                 onFilter={filter}
@@ -179,20 +188,22 @@ export default function DiscoverPage() {
                 loadMoreElementRef={loadMoreArtworksElementRef}
                 isLoading={isLoadingArtWorks}
                 loadMore={loadMoreArtworks}
-              />
-            }
-          </TabPanel>
-          <TabPanel value={activeTab} index={1}>
-            <DiscoverArtists
-              artists={artists}
-              onFollowClick={follow}
-              loadMoreElementRef={loadMoreArtistsElementRef}
-              isLoading={isLoadingArtists}
-              loadMore={loadMoreArtists}
-            ></DiscoverArtists>
-          </TabPanel>
-        </Box>
-      </div>
+                />
+              }
+            </TabPanel>
+            <TabPanel value={activeTab} index={1}>
+              <DiscoverArtists
+                artists={artists}
+                onFollowClick={follow}
+                loadMoreElementRef={loadMoreArtistsElementRef}
+                isLoading={isLoadingArtists}
+                loadMore={loadMoreArtists}
+                ></DiscoverArtists>
+            </TabPanel>
+          </Box>
+        </div>
+      </>
+      }
     </Main>
   );
 }

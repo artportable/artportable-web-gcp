@@ -36,7 +36,6 @@ const SearchField = ({ onFilter, tags }) => {
   const [moreSelectValue, setMoreSelectValue] = useState("");
 
   const filterDebounced = debounce(() =>  {
-    console.log("filter debounced");
     onFilter(selectedTag ? [selectedTag] : [], searchQuery)
   }, 500)
 
