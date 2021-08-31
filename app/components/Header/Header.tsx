@@ -6,6 +6,7 @@ import Badge from '@material-ui/core/Badge'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import MenuIcon from '@material-ui/icons/Menu'
 import MuiButton from '@material-ui/core/Button'
+import { LinearProgress } from "@material-ui/core";
 
 import { useTranslation } from 'next-i18next'
 import Button from '../Button/Button';
@@ -23,7 +24,7 @@ import { Membership } from '../../models/Membership'
 import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 
-export default function Header() {
+export default function Header({ loading = true }) {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -55,6 +56,7 @@ export default function Header() {
   }, [chatClient]);
 
   return (
+    <>
     <AppBar classes={{ root: s.toolbar }} elevation={0}>
       <Toolbar>
         <div className={s.container}>
@@ -155,5 +157,9 @@ export default function Header() {
         <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
       </Toolbar>
     </AppBar>
+    {loading &&
+      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw' }} />
+    }
+    </>
   );
 }

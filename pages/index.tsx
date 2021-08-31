@@ -22,7 +22,6 @@ export default function DiscoverPage() {
   const s = styles();
   const store = useStore();
   const { username, isSignedIn, initialized } = useUser();
-  console.log(initialized);
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -32,6 +31,7 @@ export default function DiscoverPage() {
   const rowWidth = useMainWidth().wide
 
   const [activeTab, setActiveTab] = useState(discoverTab);
+  const [loading, setLoading] = useState(true);
   const [selectedTags, setSelectedTags] = useState(null);
   const [searchQueryArt, setSearchQueryArt] = useState(null);
   const loadMoreArtworksElementRef = useRef(null);
@@ -42,6 +42,12 @@ export default function DiscoverPage() {
   const [trackedArtwork, setTrackedArtwork] = useState(null);
   const [trackedArtist, setTrackedArtists] = useState(null);
   const token = useGetToken();
+
+  useEffect(() => {
+    if(initialized){
+      setLoading(false);
+    }
+  }, [initialized]);
 
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
@@ -160,12 +166,7 @@ export default function DiscoverPage() {
   }
 
   return (
-    <Main noHeaderPadding wide={useWideLayout}>
-      <div className={s.loadingContainer}>
-        {!initialized &&
-          <CircularProgress size={50} />
-        }
-      </div>
+    <Main noHeaderPadding wide={useWideLayout} loading={loading}>
       {initialized && 
       <>
         {!isSignedIn &&
