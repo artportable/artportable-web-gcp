@@ -34,18 +34,10 @@ const SearchField = ({ onFilter, tags }) => {
   const [categoryTags, setCategoryTags] = useState([]);
   const [dropdownTags, setDropdownTags] = useState(tags);
   const [moreSelectValue, setMoreSelectValue] = useState("");
-  
-  // const filter = (tag) => {
-  //   if(tag) {
-  //     onFilter([tag], searchQuery);
-  //   } else {
-  //     onFilter([selectedTag], searchQuery);
-  //   }
-  // }
 
   const filterDebounced = debounce(() =>  {
     console.log("filter debounced");
-    onFilter(null, searchQuery)
+    onFilter(selectedTag ? [selectedTag] : [], searchQuery)
   }, 500)
 
   useEffect(() => {
@@ -77,10 +69,8 @@ const SearchField = ({ onFilter, tags }) => {
     const selectedCategoryTag = categoryTags[index];
     if (!selectedCategoryTag.selected) {
       setSelectedTag(selectedCategoryTag.id);
-      // filter(selectedCategoryTag.id);
     } else {
       setSelectedTag("");
-      // filter("");
     }
 
   }
@@ -89,12 +79,10 @@ const SearchField = ({ onFilter, tags }) => {
     resetCategoryTags();
     setMoreSelectValue((e as any).target.value);
     setSelectedTag(e.target.value);
-    // filter((e as any).target.value);
   }
   const deselectMore = (_) => {
     setMoreSelectValue("");
     setSelectedTag("");
-    // filter("");
   }
 
   const onSearchChanged = (event) => {
