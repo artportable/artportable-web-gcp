@@ -3,5 +3,8 @@
   "artists": "Konstnärer",
   "artistsWeThinkYouLike": "Konstnärer vi tror du gillar",
   "searchForArtist": "Sök efter konstnär",
-  "tags": "Taggar"
+  "tags": "Taggar",
+  "filter": "Filtrera",
+  "more": "Mer",
+  "searchForArt": "Filtrera på konstnärer"
 }

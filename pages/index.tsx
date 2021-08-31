@@ -1,88 +1,206 @@
-import React from 'react'
-import Main, { FullWidthBlock } from '../app/components/Main/Main'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/index.css';
+import React, { useEffect, useRef, useState } from "react";
+import Main from '../app/components/Main/Main'
+import { useTranslation } from "next-i18next";
+import { Box, Tab, Tabs } from "@material-ui/core";
+import TabPanel from '../app/components/TabPanel/TabPanel'
+import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
+import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
+import { useDispatch, useStore } from "react-redux";
+import { SET_TAB } from "../app/redux/actions/discoverActions";
+import { useGetTags } from "../app/hooks/dataFetching/Artworks";
+import { useMainWidth } from "../app/hooks/useWidth";
+import { isNullOrUndefined } from "../app/utils/util";
+import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
+import { useUser } from "../app/hooks/useUser";
+import { useGetToken } from "../app/hooks/useGetToken";
+import IndexHero from "../app/components/IndexHero/IndexHero";
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
-import { useGetArtworksForStartPage } from '../app/hooks/dataFetching/Artworks'
-import IndexHero from '../app/components/IndexHero/IndexHero';
-import IndexArtworksGrid from '../app/components/IndexArtworksGrid/IndexArtworksGrid';
-import Box from '@material-ui/core/Box';
-import Price from '../app/models/Price';
-import PlanSelector from '../app/components/PlanSelector/PlanSelector';
-import { Typography } from '@material-ui/core';
-
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-
-export default function Home( props ) {
+export default function DiscoverPage() {
+  const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
-  const { t } = useTranslation(['index', 'header', 'plans']);
-  const artworks = useGetArtworksForStartPage();
+  const store = useStore();
+  const { username, isSignedIn } = useUser();
+  const dispatch = useDispatch();
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+
+  const discoverTab = store.getState()?.discover?.tab ?? 0;
+
+  const tags = useGetTags();
+  const rowWidth = useMainWidth().wide
+
+  const [activeTab, setActiveTab] = useState(discoverTab);
+  const [selectedTags, setSelectedTags] = useState(null);
+  const [searchQueryArt, setSearchQueryArt] = useState(null);
+  const loadMoreArtworksElementRef = useRef(null);
+  const loadMoreArtistsElementRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState<string>();
+  const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
+  const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
+  const [trackedArtwork, setTrackedArtwork] = useState(null);
+  const [trackedArtist, setTrackedArtists] = useState(null);
+  const token = useGetToken();
+
+  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
+    (pageIndex, previousPageData) => {
+      if (previousPageData && !previousPageData.next) {
+        setLoadMoreArtworks(false);
+        return null;
+      }
+
+      if (pageIndex == 0) {
+        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+        selectedTags.forEach(tag => {
+          url.searchParams.append('tag', tag);
+        });
+        if(searchQueryArt) {
+          url.searchParams.append('q', searchQueryArt);
+        }
+        url.searchParams.append('page', (pageIndex + 1).toString());
+        url.searchParams.append('pageSize', "20");
+        return url.href;
+      }
+      return previousPageData.next;
+    }, activeTab);
+  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+    (pageIndex, previousPageData) => {
+      if (previousPageData && !previousPageData.next) { 
+        setLoadMoreArtists(false);
+        return null; 
+      }
+
+      if (pageIndex == 0) {
+        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
+        if (searchQuery != null && searchQuery != '') {
+          url.searchParams.append('q', searchQuery);
+        }
+        if (username != null && username != '') {
+          url.searchParams.append('myUsername', username);
+        }
+        url.searchParams.append('page', (pageIndex + 1).toString());
+        url.searchParams.append('pageSize', "10");
+        return url.href;
+      }
+      return previousPageData.next;
+    }, activeTab);
+
+
+  const useWideLayout = activeTab === 0;
+
+  useEffect(() => {
+    setSearchQuery(null);
+    filter([]);
+  }, []);
+
+  function setTab(value) {
+    setActiveTab(value);
+    dispatch({
+      type: SET_TAB,
+      payload: value
+    });
+  }
+
+  function filter(tags: string[], searchQuery = "") {
+    setSelectedTags(tags);
+    setSearchQueryArt(searchQuery);
+  }
+
+  function like(artworkId, isLike) {
+    if (isNullOrUndefined(username)) {
+      return;
+    }
+
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
+      method: isLike ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
+    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  function follow(userToFollow, isFollow) {
+    if (username === null || username === undefined) {
+      return; // TODO: Display modal to sign up
+    }
+
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
+      method: isFollow ? 'POST' : 'DELETE',
+      headers: {
+        'Authorization' : `Bearer ${token}`
+      }
+    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function a11yProps(index: any) {
+    return {
+      id: `nav-tab-${index}`,
+      'aria-controls': `nav-tabpanel-${index}`,
+    };
+  }
 
   return (
-    <Main noHeaderPadding>
-      <IndexHero></IndexHero>
-      <Box className={s.artworkGrid}>
-        <IndexArtworksGrid artworks={artworks} />
-      </Box>
-
-      <div className={s.welcomeToTexts}>
-        <Typography className={s.header} variant="h2" component="h1">{t('plans:welcomeTo')}</Typography>
-        <Typography className={s.description} variant="body1">{t('plans:artPortableDescription')}</Typography>
-        <Typography className={s.ourMemberships} variant="subtitle1">{t('plans:ourMemberships')}</Typography>
+    <Main noHeaderPadding wide={useWideLayout}>
+      {!isSignedIn &&
+        <IndexHero></IndexHero>
+      }
+      <div className={s.discoverContainer}>
+        <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered>
+          <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+          <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+        </Tabs>
+        <Box paddingTop={4}>
+          <TabPanel value={activeTab} index={0}>
+            {!tags?.isLoading && !tags?.isError && tags?.data &&
+              <DiscoverArt
+                artworks={artworks}
+                tags={tags?.data}
+                onFilter={filter}
+                onLike={like}
+                rowWidth={rowWidth}
+                loadMoreElementRef={loadMoreArtworksElementRef}
+                isLoading={isLoadingArtWorks}
+                loadMore={loadMoreArtworks}
+              />
+            }
+          </TabPanel>
+          <TabPanel value={activeTab} index={1}>
+            <DiscoverArtists
+              artists={artists}
+              onFollowClick={follow}
+              loadMoreElementRef={loadMoreArtistsElementRef}
+              isLoading={isLoadingArtists}
+              loadMore={loadMoreArtists}
+            ></DiscoverArtists>
+          </TabPanel>
+        </Box>
       </div>
-      <FullWidthBlock>
-        <PlanSelector priceData={props.priceData} landingPageMode></PlanSelector>
-      </FullWidthBlock>
-      
     </Main>
   );
 }
 
-export async function getStaticProps({locale}) {
+export async function getStaticProps({ locale }) {
   return {
     props: {
-      priceData: await getPriceData(),
-      ...await serverSideTranslations(locale, ['header', 'footer', 'index', 'tags', 'plans', 'common']),
-    },
-  }
-}
-
-// NOT USED ATM
-async function getPriceData() {
-  const freeYearPlan: Price =
-    {
-      amount: 0,
-      currency: 'sek',
-      id: 'free_month',
-      product: 'free',
-      productKey: 'free',
-      recurringInterval: 'month'
-    };
-    const freeMonthPlan: Price =
-    {
-      amount: 0,
-      currency: 'sek',
-      id: 'free_year',
-      product: 'free',
-      productKey: 'free',
-      recurringInterval: 'year'
-    };
-
-  try {
-    return (
-      fetch(`${apiBaseUrl}/api/payments/prices`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((result: Array<Price>) => {
-        result.push(freeYearPlan);
-        result.push(freeMonthPlan);
-
-        return result;
-      })
-    )
-  } catch(e) {
-    console.log('Could not fetch price info', e);
-  }
+      ...await serverSideTranslations(locale, ['header', 'footer', 'common', 'discover', 'tags', 'index', 'plans']),
+    }
+  };
 }

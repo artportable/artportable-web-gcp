@@ -3,5 +3,8 @@
   "artists": "Artists",
   "artistsWeThinkYouLike": "Artists we think you like",
   "searchForArtist": "Search for artist",
-  "tags": "Tags"
+  "tags": "Tags",
+  "filter": "Filter",
+  "more": "More",
+  "searchForArt": "Filter on artists"
 }
