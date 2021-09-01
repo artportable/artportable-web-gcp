@@ -5,11 +5,7 @@ import useSWR from 'swr'
 
 export function useGetActivityToken(username, isSignedIn) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  // const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
-  // const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
-  // const activityClientRef = useRef(StreamChat.getInstance(apiKey));
   const token = useGetToken();
-  // const [streamToken, setStreamToken] = useState('');
 
   const shouldFetch = username && isSignedIn && token;
 
