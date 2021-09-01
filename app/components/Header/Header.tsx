@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import MenuIcon from '@material-ui/icons/Menu'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 import MuiButton from '@material-ui/core/Button'
 import { LinearProgress } from "@material-ui/core";
 
@@ -15,6 +16,7 @@ import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
 import React, { useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
+import { useGetActivityToken } from '../../hooks/useGetActivityClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
@@ -23,6 +25,8 @@ import { useUser } from '../../hooks/useUser'
 import { Membership } from '../../models/Membership'
 import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
+import 'react-activity-feed/dist/index.css';
+import NotificationIconButton from '../NotificationIconButton/NotificationIconButton'
 
 export default function Header({ loading = true }) {
   const { t } = useTranslation('header');
@@ -35,7 +39,7 @@ export default function Header({ loading = true }) {
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
-
+  const { token: activityToken, isError, isLoading } = useGetActivityToken(username, isSignedIn);
 
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
@@ -62,10 +66,10 @@ export default function Header({ loading = true }) {
         <div className={s.container}>
           <div className={s.menuButton}>
             <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
-                <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
-                  <MenuIcon style={{ fontSize: '30px' }} />
-                </Badge>
-                <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
+              <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
+                <MenuIcon style={{ fontSize: '30px' }} />
+              </Badge>
+              <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
             </IconButton>
           </div>
           <div className={s.logoContainer}>
@@ -101,9 +105,10 @@ export default function Header({ loading = true }) {
                 color="primary"
                 disableElevation
                 rounded
-                onClick={() => keycloak.register({ 
+                onClick={() => keycloak.register({
                   locale: router.locale,
-                  redirectUri: signUpRedirectHref})}>
+                  redirectUri: signUpRedirectHref
+                })}>
                 {t('signUp')}
               </Button>
               <Button
@@ -112,7 +117,7 @@ export default function Header({ loading = true }) {
                 color="primary"
                 disableElevation
                 rounded
-                onClick={() => keycloak.login({ locale : router.locale })}>
+                onClick={() => keycloak.login({ locale: router.locale })}>
                 {t('login')}
               </Button>
             </div>
@@ -132,10 +137,23 @@ export default function Header({ loading = true }) {
                         {t('upload')}
                       </Button>
                     </a>
-                  </Link>    
+                  </Link>
                 </div>
               }
               <div className={s.iconButtons}>
+                <div className={s.notificationButton}>
+                  {activityToken && !isError && !isLoading ?
+                  <NotificationIconButton activityToken={activityToken} username={username}/>
+                    :
+                    <IconButton aria-label="account" disabled aria-disabled>
+                      <NotificationsIcon
+                        classes={{ root: s.notificationIcon }}
+                        style={{ fontSize: '30px' }}
+
+                      />
+                    </IconButton>
+                  }
+                </div>
                 <Link href="/messages">
                   <a>
                     <IconButton color="secondary" aria-label="account">
