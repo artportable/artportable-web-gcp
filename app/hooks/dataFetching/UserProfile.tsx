@@ -69,21 +69,21 @@ export function useGetUserProfileTags(user) {
   }
 }
 
-// export function useGetUserProfilePicture(user) {
-//   const { data, error } = useSWR(
-//     `${apiBaseUrl}/api/profile/${user}/profilepicture`,
-//     getFetcher(user, 'text'),
-//     {
-//       revalidateOnFocus: false,
-//       revalidateOnReconnect: false,
-//     });
+export function useGetUserProfilePicture(user) {
+  const { data, error } = useSWR(
+    `${apiBaseUrl}/api/profile/${user}/profilepicture`,
+    getFetcher(user, 'text'),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    });
 
-//   return {
-//     profilePicture: data,
-//     isLoading: !error && !data,
-//     isError: error
-//   }
-// }
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
 
 // export function useUpdateProfilePicture(filename: string, username: string) {
 //   fetch(`${apiBaseUrl}/api/artworks?myUsername=${username}`, {

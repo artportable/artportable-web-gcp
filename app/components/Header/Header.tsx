@@ -14,7 +14,7 @@ import Button from '../Button/Button';
 import DrawerMenu from '../DrawerMenu/DrawerMenu';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import { useGetActivityToken } from '../../hooks/useGetActivityClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
@@ -25,10 +25,8 @@ import { useUser } from '../../hooks/useUser'
 import { Membership } from '../../models/Membership'
 import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
-import { FlatFeed, NotificationDropdown, StreamApp } from 'react-activity-feed'
 import 'react-activity-feed/dist/index.css';
-import { connect } from 'getstream';
-import { useNotificationRemovedFromChannelListener } from 'stream-chat-react'
+import NotificationIconButton from '../NotificationIconButton/NotificationIconButton'
 
 export default function Header({ loading = true }) {
   const { t } = useTranslation('header');
@@ -36,42 +34,13 @@ export default function Header({ loading = true }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const { username, profilePicture, isSignedIn, membership } = useUser();
   const signUpRedirectHref = useSignupRedirectHref();
-  
+
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
-  const [unreadNotifications, setUnreadNotifications] = useState<number>(0);
-  // const unreadN = useRef(0);
-
   const { token: activityToken, isError, isLoading } = useGetActivityToken(username, isSignedIn);
-  
-  const unreadNotificationsIncrement = () => {
-    setUnreadNotifications((prevState) => prevState + 1);
-  }
 
-
-  useEffect(() => {
-    let userFeed;
-    const initFeeds = async () => {
-      const streamClient = connect('x595terv4p22', activityToken, '1128230');
-      userFeed = streamClient.feed('notification', username);
-      const notifications = await userFeed.get();
-
-      const unread = notifications.results.reduce((total, currentValue) => total + currentValue.activity_count, 0);
-      setUnreadNotifications(unread);
-      
-      const notificationSubscription = userFeed.subscribe((data) => {
-        unreadNotificationsIncrement();
-      });
-    }
-    if (username && activityToken) {  
-      initFeeds();
-    }
-    return () => {
-      userFeed?.unsubscribe();
-    }
-  }, [username, activityToken]);
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -136,9 +105,10 @@ export default function Header({ loading = true }) {
                 color="primary"
                 disableElevation
                 rounded
-                onClick={() => keycloak.register({ 
+                onClick={() => keycloak.register({
                   locale: router.locale,
-                  redirectUri: signUpRedirectHref})}>
+                  redirectUri: signUpRedirectHref
+                })}>
                 {t('signUp')}
               </Button>
               <Button
@@ -147,7 +117,7 @@ export default function Header({ loading = true }) {
                 color="primary"
                 disableElevation
                 rounded
-                onClick={() => keycloak.login({ locale : router.locale })}>
+                onClick={() => keycloak.login({ locale: router.locale })}>
                 {t('login')}
               </Button>
             </div>
@@ -164,44 +134,22 @@ export default function Header({ loading = true }) {
                         color="primary"
                         disableElevation
                         rounded>
-                          {t('upload')}
+                        {t('upload')}
                       </Button>
                     </a>
-                  </Link>    
+                  </Link>
                 </div>
               }
               <div className={s.iconButtons}>
                 <div className={s.notificationButton}>
                   {activityToken && !isError && !isLoading ?
-                    // <StreamApp apiKey='x595terv4p22' appId='1128230' token={activityToken}>
-                    //   <NotificationDropdown 
-                    //     notify 
-                    //     right 
-                    //     Icon={() => (
-                    //       <IconButton color="secondary" aria-label="account">
-                    //         <Badge badgeContent={0} max={99} color="primary">
-                    //           <NotificationsIcon 
-                    //             style={{ fontSize: '30px' }} 
-                    //           />
-                    //         </Badge>
-                    //       </IconButton>
-                    //     )}
-                    //   />
-                    // </StreamApp>
-
-                    <IconButton color="secondary" aria-label="account" onClick={() => unreadNotificationsIncrement()}>
-                      <Badge badgeContent={unreadNotifications} max={99} color="primary">
-                        <NotificationsIcon 
-                          style={{ fontSize: '30px' }} 
-                        />
-                      </Badge>
-                    </IconButton>
+                  <NotificationIconButton activityToken={activityToken} username={username}/>
                     :
                     <IconButton aria-label="account" disabled aria-disabled>
-                      <NotificationsIcon 
+                      <NotificationsIcon
                         classes={{ root: s.notificationIcon }}
-                        style={{ fontSize: '30px' }} 
-                        
+                        style={{ fontSize: '30px' }}
+
                       />
                     </IconButton>
                   }
