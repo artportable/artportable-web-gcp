@@ -11,7 +11,7 @@ import { debounce } from '@material-ui/core/utils';
 
 
 
-const SearchField = ({ onFilter, tags }) => {
+const SearchField = ({ onFilter, tags = null }) => {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const isBreakpointSmPlusDown = useBreakpointDown('smPlus');
@@ -26,7 +26,9 @@ const SearchField = ({ onFilter, tags }) => {
   ];
 
   useEffect(() => {
-    resetCategoryTags();
+    if(tags !== null) {
+      resetCategoryTags();
+    }
   }, [isBreakpointSmPlusDown]);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -93,52 +95,52 @@ const SearchField = ({ onFilter, tags }) => {
   }, 500)
   
   return (
-    <div className={s.inputContainer} tabIndex={0}>
+    <div className={clsx(s.inputContainer, tags === null && s.noTags)} tabIndex={0}>
       <SearchIcon classes={{ root: s.searchIcon }} style={{ fontSize: 30 }}></SearchIcon>
       <input onChange={onSearchChanged} placeholder={t('searchForArt')} className={s.input} ></input>
-      <div className={s.tagsContainer}> 
-        <ul className={s.categoryTags}>
-          {categoryTags.map((tag, i) => 
-              <li className={clsx(tag.selected && s.selected)} key={tag.name}>
+      {tags !== null &&
+        <div className={s.tagsContainer}> 
+          <ul className={s.categoryTags}>
+            {categoryTags.map((tag, i) => 
+                <li key={tag.name}>
+                  <Chip
+                    onClick={(_) => setCategoryTagSelected(i)}
+                    color={tag.selected ? "primary" : "default"}
+                    label={tag.name} />
+                </li>
+            )}
+            <li className={s.moreLiElement}>
+              {moreSelectValue === "" ? 
+                <>
+                  <Chip
+                    color={"default"}
+                    label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
+                    className={s.moreChip} />
+                  <FormControl className={s.selectFormControl}>
+                    <Select 
+                      label={t(isBreakpointSmPlusDown ? 'filter' : 'more')} 
+                      className={s.selectElement} 
+                      native 
+                      value={""}
+                      onChange={onSelectMoreChange}
+                    >
+                      <option aria-label={t('none')} value={""}></option>
+                      {dropdownTags.map((tag) => {
+                        return <option key={tag} aria-label={t(`tags:${tag}`)} value={tag}>{t(`tags:${tag}`)}</option>
+                      })}
+                    </Select>
+                  </FormControl>
+                </>
+              :
                 <Chip
-                  onClick={(_) => setCategoryTagSelected(i)}
-                  color={tag.selected ? "primary" : "default"}
-                  label={tag.name}
-                  className={s.categoryTag} />
-              </li>
-          )}
-          <li className={s.moreLiElement}>
-            {moreSelectValue === "" ? 
-              <>
-                <Chip
-                  color={"default"}
-                  label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
-                  className={clsx(s.categoryTag, s.moreChip)} />
-                <FormControl className={s.selectFormControl}>
-                  <Select 
-                    label={t(isBreakpointSmPlusDown ? 'filter' : 'more')} 
-                    className={s.selectElement} 
-                    native 
-                    value={""}
-                    onChange={onSelectMoreChange}
-                  >
-                    <option aria-label={t('none')} value={""}></option>
-                    {dropdownTags.map((tag) => {
-                      return <option key={tag} aria-label={t(`tags:${tag}`)} value={tag}>{t(`tags:${tag}`)}</option>
-                    })}
-                  </Select>
-                </FormControl>
-              </>
-            :
-              <Chip
-                color={"primary"}
-                label={t(`tags:${moreSelectValue}`)}
-                onDelete={deselectMore}
-                className={clsx(s.categoryTag)} />
-            }
-          </li>
-        </ul>
-      </div>
+                  color={"primary"}
+                  label={t(`tags:${moreSelectValue}`)}
+                  onDelete={deselectMore} />
+              }
+            </li>
+          </ul>
+        </div>
+      }
     </div>
   );
 }

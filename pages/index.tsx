@@ -114,6 +114,10 @@ export default function DiscoverPage() {
     setSearchQueryArt(searchQuery);
   }
 
+  function filterArtist(tags: string[], searchQuery = "") {
+    setSearchQuery(searchQuery);
+  }
+
   function like(artworkId, isLike) {
     if (isNullOrUndefined(username)) {
       return;
@@ -196,6 +200,7 @@ export default function DiscoverPage() {
               <DiscoverArtists
                 artists={artists}
                 onFollowClick={follow}
+                onFilter={filterArtist}
                 loadMoreElementRef={loadMoreArtistsElementRef}
                 isLoading={isLoadingArtists}
                 loadMore={loadMoreArtists}

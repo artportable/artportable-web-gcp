@@ -18,6 +18,9 @@ export const styles = makeStyles((theme: Theme) =>
         borderColor: theme.palette.primary.main
       }
     },
+    noTags: {
+      paddingRight: theme.spacing(2.4)
+    },
     searchIcon: {
       margin: theme.spacing(0,0,0,1)
     },
@@ -54,12 +57,6 @@ export const styles = makeStyles((theme: Theme) =>
       '&::-webkit-scrollbar': {
         display: 'none'
       }
-    },
-    categoryTag: {
-
-    },
-    selected: {
-
     },
     selectFormControl: {
       position: 'absolute',

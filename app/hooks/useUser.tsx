@@ -23,7 +23,7 @@ export function useUser(): UserInitialized {
   const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
-  const [_, setLocalUser] = useState(user);
+  const [localUser, setLocalUser] = useState(user);
 
   useEffect(() => {
     if (initialized && keycloak.authenticated && !user.isSignedIn) {
@@ -79,5 +79,5 @@ export function useUser(): UserInitialized {
     }
   }, [initialized]);
 
-  return { ...user, initialized };
+  return { ...user, initialized: (initialized && localUser)};
 }
