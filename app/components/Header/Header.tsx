@@ -88,7 +88,7 @@ export default function Header({ loading = true }) {
               </MuiButton>
             }
             <MuiButton classes={{ root: s.navButton }} color="default" size="large">
-              <Link href="/discover">
+              <Link href="/">
                 {t('discover')}
               </Link>
             </MuiButton>
