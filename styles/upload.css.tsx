@@ -6,7 +6,6 @@ const styles = makeStyles((theme: Theme) =>
   createStyles({
     mainGrid: {
       display: 'grid',
-      height: 'calc(100vh - var(--header-plus-box-shadow-padding))',
       gap: '16px',
       gridTemplate: (
       '\"upload   form\" minmax(0, 2fr)' +
