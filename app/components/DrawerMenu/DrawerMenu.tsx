@@ -10,6 +10,7 @@ import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from 'next/router'
 import { useUser } from '../../hooks/useUser'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
+import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation('header');
@@ -17,6 +18,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const { profilePicture, isSignedIn } = useUser();
+  const signUpRedirectHref = useSignupRedirectHref();
 
   const close = () => setOpen(false);
 
@@ -71,7 +73,9 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           :
           <List classes={{ root: s.authList }}>
             <ListItem button divider>
-              <ListItemText primary={t('signUp')} />
+              <ListItemText primary={t('signUp')} onClick={() => keycloak.register({ 
+                  locale: router.locale,
+                  redirectUri: signUpRedirectHref})} />
             </ListItem>
             <ListItem button onClick={() => keycloak.login({ locale : router.locale })}>
               <ListItemText primary={t('login')} />
