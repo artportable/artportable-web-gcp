@@ -171,7 +171,7 @@ export default function DiscoverPage() {
 
   return (
     <Main noHeaderPadding wide={useWideLayout} loading={loading}>
-      {initialized && 
+      {!loading && 
       <>
         {!isSignedIn &&
           <IndexHero></IndexHero>

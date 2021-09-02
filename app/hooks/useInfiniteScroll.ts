@@ -117,7 +117,7 @@ export const useInfiniteScrollWithKey = (
         }
       }
     }
-  }, [activeTab, data]);
+  }, [activeTab, data, loadMoreElement, loadMoreElement.current]);
 
   return {
     data: data ? [].concat(...data.map(({ data }) => data)) : [],
