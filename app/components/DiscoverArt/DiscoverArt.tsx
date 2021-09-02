@@ -13,6 +13,7 @@ import Image from "../../models/Image";
 import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
 import SearchField from "../SearchField/SearchField";
+import { debounce } from '@material-ui/core/utils';
 
 interface InputProps {
   artworks: Artwork[],
@@ -32,6 +33,11 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
 
   const [imageRows, setImageRows] = useState([]);
   const [skeletonRows, setSkeletonRows] = useState([]);
+  const [showFilterLoadingSkeleton, setShowFilterLoadingSkeleton] = useState(true);
+
+  const setShowFilterLoadingSkeletonDebounced = debounce((value: boolean) =>  {
+    setShowFilterLoadingSkeleton(value)
+  }, 900)
 
   const theme: Theme = useTheme();
   const skeletonImages = [
@@ -60,7 +66,21 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
       Width: 16,
       Height: 9
     },
-  ]
+    {
+      Name: "Skeleton6",
+      Width: 10,
+      Height: 5
+    },
+  ];
+
+  useEffect(() => {
+    if (!isLoading) {
+      setShowFilterLoadingSkeletonDebounced(isLoading);
+    } else {
+      setShowFilterLoadingSkeleton(isLoading);
+    }
+
+  }, [isLoading]);
 
   useEffect(() => {
     const primaryImages = artworks.map(a => a.PrimaryFile);
@@ -78,6 +98,34 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     <>
       <Box className={s.rowsContainer}>
         <SearchField onFilter={onFilter} tags={tags}></SearchField>
+        {showFilterLoadingSkeleton &&
+          <>
+            <div className={s.row}>
+              {skeletonRows && skeletonRows.length > 0 &&
+                <div className={s.row}>
+                  {skeletonRows[0].map(image => {
+                    return <DiscoverArtSkeleton
+                      key={image.Name}
+                      width={image.Width}
+                      height={image.Height} />
+                  })}
+                </div>
+              }
+              </div>
+              <div className={s.row}>
+              {skeletonRows && skeletonRows.length > 0 &&
+                <div className={s.row}>
+                  {skeletonRows[1].map(image => {
+                    return <DiscoverArtSkeleton
+                      key={image.Name}
+                      width={image.Width}
+                      height={image.Height} />
+                  })}
+                </div>
+              }
+            </div>
+          </>
+        }
         {imageRows && imageRows.map((row: Image[], i) =>
           <div className={s.row} key={i}>
             {row.map(image => {
