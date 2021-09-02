@@ -110,11 +110,13 @@ export default function DiscoverPage() {
   }
 
   function filter(tags: string[], searchQuery = "") {
+    setLoadMoreArtworks(true);
     setSelectedTags(tags);
     setSearchQueryArt(searchQuery);
   }
 
   function filterArtist(tags: string[], searchQuery = "") {
+    setLoadMoreArtists(true);
     setSearchQuery(searchQuery);
   }
 
@@ -185,14 +187,14 @@ export default function DiscoverPage() {
             <TabPanel value={activeTab} index={0}>
               {!tags?.isLoading && !tags?.isError && tags?.data &&
                 <DiscoverArt
-                artworks={artworks}
-                tags={tags?.data}
-                onFilter={filter}
-                onLike={like}
-                rowWidth={rowWidth}
-                loadMoreElementRef={loadMoreArtworksElementRef}
-                isLoading={isLoadingArtWorks}
-                loadMore={loadMoreArtworks}
+                  artworks={artworks}
+                  tags={tags?.data}
+                  onFilter={filter}
+                  onLike={like}
+                  rowWidth={rowWidth}
+                  loadMoreElementRef={loadMoreArtworksElementRef}
+                  isLoading={isLoadingArtWorks}
+                  loadMore={loadMoreArtworks}
                 />
               }
             </TabPanel>
