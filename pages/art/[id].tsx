@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
@@ -14,9 +14,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { useGetToken } from "../../app/hooks/useGetToken";
 import SendIcon from '@material-ui/icons/Send';
 import Link from "next/link";
+import { TokenContext } from "../../app/contexts/token-context";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -29,7 +29,7 @@ export default function ArtworkPage(props) {
   const { id } = router.query
   const { username } = useUser();
   const artwork = useGetArtwork(id as string, username);
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);

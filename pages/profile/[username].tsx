@@ -14,7 +14,7 @@ import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
 import { useGetArtworks } from '../../app/hooks/dataFetching/Artworks'
 import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary } from '../../app/hooks/dataFetching/UserProfile'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import TabPanel from '../../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
 import { useUser } from '../../app/hooks/useUser'
@@ -30,10 +30,10 @@ import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
 import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 import AddIcon from '@material-ui/icons/Add';
-import { useGetToken } from '../../app/hooks/useGetToken'
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
 import SendIcon from '@material-ui/icons/Send';
+import { TokenContext } from '../../app/contexts/token-context'
 
 function a11yProps(index: any) {
   return {
@@ -67,7 +67,7 @@ export default function Profile() {
   const [imageRows, setImageRows] = useState(null);
   const [coverPhoto, setCoverPhoto] = useState(undefined);
   const dispatch = useDispatch();
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
 

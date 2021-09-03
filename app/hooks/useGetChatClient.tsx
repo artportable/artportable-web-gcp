@@ -1,8 +1,7 @@
 import { ConnectionOpen, StreamChat } from 'stream-chat';
-import { useEffect, useRef } from 'react';
-import { isNullOrUndefined } from '../utils/util';
-import { useGetToken } from './useGetToken';
+import { useContext, useEffect, useRef } from 'react';
 import { AttachmentType, ChannelType, CommandType, EventType, MessageType, ReactionType, UserType } from '../components/Messaging/MessagingTypes';
+import { TokenContext } from '../contexts/token-context';
 
 export function useGetChatClient(username, profilePicture, isSignedIn, setUnreadCount = null) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
@@ -15,7 +14,8 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
     MessageType,
     ReactionType,
     UserType>(apiKey));
-  const token = useGetToken();
+    
+  const token = useContext(TokenContext);
 
   useEffect(() => {
     const initChat = async () => {

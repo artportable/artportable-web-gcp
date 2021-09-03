@@ -5,7 +5,7 @@ import '../styles/variables.css'
 import type { AppProps, AppContext } from 'next/app'
 import App from 'next/app';
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { theme } from '../styles/theme'
 import { Provider } from 'react-redux'
@@ -24,8 +24,9 @@ import type { IncomingMessage } from 'http';
 import { SSRKeycloakProvider } from '@react-keycloak/ssr';
 import cookie from 'cookie';
 import { keycloakConfig, keycloakInitOptions } from '../constants/keycloakSettings';
-import { AuthClientEvent, AuthClientError } from '@react-keycloak/core';
+import { AuthClientTokens } from '@react-keycloak/core';
 import { CustomSSRCookies } from '../app/utils/customSSRCookies'
+import ArtportableContexts from '../app/contexts/ArtportableContexts'
 
 
 library.add(
@@ -39,6 +40,12 @@ interface InitialProps {
 
 function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const store = useStore(pageProps.initialReduxState);
+
+  const [accessToken, setAccessToken] = useState<string>(null);
+
+  const onAuthRefresh = (tokens: AuthClientTokens) => {
+    setAccessToken(tokens.token);
+  }
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -71,22 +78,20 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         keycloakConfig={keycloakConfig}
         persistor={CustomSSRCookies(cookies)}
         initOptions={keycloakInitOptions}
-        onEvent={testEvent}
+        onTokens={onAuthRefresh}
       >
         <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
+          <ArtportableContexts accessToken={accessToken}>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </ThemeProvider>
+          </ArtportableContexts>
         </Provider>
       </SSRKeycloakProvider>
     </>
   )
 }
-
-function testEvent(event: AuthClientEvent, error?: AuthClientError | undefined) {
-  // console.log(event);
-};
 
 function parseCookies(req?: IncomingMessage) {
   if (!req || !req.headers) {

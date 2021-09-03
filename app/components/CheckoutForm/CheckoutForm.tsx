@@ -2,12 +2,12 @@ import { checkoutFormStyles } from './checkoutForm.css'
 import { Box } from "@material-ui/core";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from '../Button/Button';
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from 'next-i18next';
 import { capitalizeFirst } from '../../utils/util';
 import Link from 'next/link';
 import router from 'next/router';
-import { useGetToken } from '../../hooks/useGetToken';
+import { TokenContext } from '../../contexts/token-context';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
@@ -17,7 +17,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const [processing, setProcessing] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [customerId, setCustomerId] = useState('');
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   const stripe = useStripe();
   const elements = useElements();

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import { useGetToken } from './useGetToken'
+import { useContext } from 'react'
 import useSWR from 'swr'
+import { TokenContext } from '../contexts/token-context';
 
 
 export function useGetActivityToken(username, isSignedIn) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   const shouldFetch = username && isSignedIn && token;
 

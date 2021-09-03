@@ -11,7 +11,6 @@ import { useKeycloak } from '@react-keycloak/ssr';
 import type { KeycloakInstance } from 'keycloak-js'
 import { useDispatch } from "react-redux";
 import { LOGIN_USER } from '../app/redux/actions/userActions'
-import { useGetToken } from '../app/hooks/useGetToken';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 

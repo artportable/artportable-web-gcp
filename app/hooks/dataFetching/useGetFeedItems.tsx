@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import useSWR from 'swr'
-import { useGetToken } from '../useGetToken';
+import { TokenContext } from '../../contexts/token-context';
+
 const fetcher = (url, token) => fetch(url, {
   headers: {
     'Authorization': `Bearer ${token}`
@@ -8,7 +10,7 @@ const fetcher = (url, token) => fetch(url, {
 
 export function useGetFeedItems(user, page) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   return useSWR(
     token && user ? [`${apiBaseUrl}/api/feed?page=${page}&myUsername=${user}`, token] : null,

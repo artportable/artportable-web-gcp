@@ -121,8 +121,8 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
                   {unreadNotifications && unreadNotifications.length > 0 ?
                     <div>
                       <Typography className={s.newTitle}>New!</Typography>
-                      {unreadNotifications.map((notification) => {
-                        return <NotificationItem notificationActivity={notification} />
+                      {unreadNotifications.map((notification, i) => {
+                        return <NotificationItem key={i} notificationActivity={notification} />
                       })}
                     </div> :
                     <Typography>No new notifications</Typography>
@@ -130,8 +130,8 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
                   {readNotifications && readNotifications.length > 0 &&
                     <div>
                       <Typography className={s.oldTitle}>Earlier</Typography>
-                      {readNotifications.map((notification) => {
-                        return <NotificationItem notificationActivity={notification} />
+                      {readNotifications.map((notification, i) => {
+                        return <NotificationItem key={i} notificationActivity={notification} />
                       })}
                     </div>
                   }
