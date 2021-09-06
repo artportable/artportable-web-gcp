@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/index.css';
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, CircularProgress, Tab, Tabs } from "@material-ui/core";
@@ -14,13 +14,14 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
 import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
 import { useUser } from "../app/hooks/useUser";
-import { useGetToken } from "../app/hooks/useGetToken";
 import IndexHero from "../app/components/IndexHero/IndexHero";
+import { TokenContext } from "../app/contexts/token-context";
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
+  const token = useContext(TokenContext);
   const { username, isSignedIn, initialized } = useUser();
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
@@ -41,7 +42,6 @@ export default function DiscoverPage() {
   const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
   const [trackedArtwork, setTrackedArtwork] = useState(null);
   const [trackedArtist, setTrackedArtists] = useState(null);
-  const token = useGetToken();
 
   useEffect(() => {
     if(initialized){

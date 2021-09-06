@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Feed from '../app/components/Feed/Feed';
 import Head from 'next/head'
 import Link from 'next/link'
@@ -18,14 +18,14 @@ import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile'
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
 import { useUser } from '../app/hooks/useUser';
 import { Membership } from '../app/models/Membership';
-import { useGetToken } from '../app/hooks/useGetToken';
 import { useBreakpointDown } from '../app/hooks/useBreakpointDown'
+import { TokenContext } from '../app/contexts/token-context';
 
 export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const { username, membership, profilePicture } = useUser();
-  const token = useGetToken();
+  const token = useContext(TokenContext);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
 
   const userProfile = useGetUserProfileSummary(username);

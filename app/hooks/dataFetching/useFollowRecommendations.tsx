@@ -1,10 +1,12 @@
+import { useContext } from 'react';
 import useSWR from 'swr'
+import { TokenContext } from '../../contexts/token-context';
 import { getFetcher } from '../../utils/util'
-import { useGetToken } from '../useGetToken';
+
 
 export function useFollowRecommendations(user) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   const { data, error } = useSWR(
     token && user ? [`${apiBaseUrl}/api/connections?myUsername=${user}`, token] : null,

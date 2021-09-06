@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Typography } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
@@ -15,7 +15,7 @@ import { EditSocials } from './EditSocials/EditSocials'
 
 import { v4 } from 'uuid'
 import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFetching/UserProfile';
-import { useGetToken } from '../../hooks/useGetToken';
+import { TokenContext } from '../../contexts/token-context';
 
 interface Profile {
   title: string;
@@ -61,7 +61,7 @@ export default function EditProfileDialog({ userProfile }) {
   const { t } = useTranslation('profile');
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
   const { username } = useUser();
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   
   const [openEdit, setOpenEdit] = useState(false);

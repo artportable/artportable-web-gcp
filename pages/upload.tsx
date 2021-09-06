@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Main from '../app/components/Main/Main'
 import UploadForm from '../app/components/UploadForm/UploadForm';
@@ -8,16 +8,15 @@ import { DropzoneArea } from 'material-ui-dropzone'
 import ArtButton from '../app/components/Button/Button';
 import { useTranslation } from 'next-i18next';
 import { ArtworkForCreation } from '../app/models/Artwork';
-import { useStore } from 'react-redux';
 import { Cropper } from 'react-cropper';
 import clsx from 'clsx';
 import CropperOptions from '../app/components/CropperOptions/CropperOptions';
 import "cropperjs/dist/cropper.css";
-import { CircularProgress, Paper, Snackbar } from '@material-ui/core';
+import { Paper, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useRouter } from 'next/router';
 import { useUser } from '../app/hooks/useUser'
-import { useGetToken } from '../app/hooks/useGetToken';
+import { TokenContext } from '../app/contexts/token-context';
 
 
 export default function UploadArtworkPage() {
@@ -40,7 +39,7 @@ export default function UploadArtworkPage() {
   const [deletedFile, setDeletedFile] = useState(false);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadLoading, setUploadLoading] = useState(false);
-  const token = useGetToken();
+  const token = useContext(TokenContext);
 
   //Cropped images
   const [croppedPrimary, setCroppedPrimary] = useState(null);
