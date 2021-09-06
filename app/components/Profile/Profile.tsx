@@ -6,10 +6,13 @@ import { styles } from './profile.css'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RoomIcon from '@material-ui/icons/Room';
-import { Typography, Box } from '@material-ui/core';
+import { Typography, Box, Button } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import UserListDialog from '../UserListDialog/UserListDialog'
+import { useGetFollowers } from '../../hooks/dataFetching/useGetFollowers'
+import { useGetFollowing } from '../../hooks/dataFetching/useGetFollowing'
 
 export default function Profile({ userProfile, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
@@ -18,6 +21,10 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
 
   const fileInput = useRef(null);
+  const [followingOpen, setFollowingOpen] = useState(false);
+  const [followersOpen, setFollowersOpen] = useState(false);
+  const followersData = useGetFollowers(data?.Username, followersOpen);
+  const followingData = useGetFollowing(data?.Username, followingOpen);
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -25,10 +32,10 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
     }
 
     var fr = new FileReader;
-    fr.onload = function() {
+    fr.onload = function () {
       var img = new Image;
-      img.onload = function() {
-          onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
+      img.onload = function () {
+        onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
       };
 
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
@@ -51,12 +58,12 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        badgeContent= {
+        badgeContent={
           isMyProfile && !hideAddBtn &&
-            <AddCircleIcon
-              className={s.badgeIcon}
-              color="primary"
-              onClick={() => fileInput.current.click()} />
+          <AddCircleIcon
+            className={s.badgeIcon}
+            color="primary"
+            onClick={() => fileInput.current.click()} />
         }
       >
         {linkToProfile ?
@@ -77,7 +84,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
               </Avatar>
             </a>
           </Link>
-        :
+          :
           <Avatar className={s.avatar}>
             {userProfilePicture ? (
               <Avatar src={`${bucketUrl}${userProfilePicture}`}
@@ -102,7 +109,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
                 {data?.Username}
               </a>
             </Link>
-          :
+            :
             <span>
               {data?.Username}
             </span>
@@ -131,22 +138,34 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         <Divider></Divider>
       }
       <Box className={s.counterBox}>
-        <Box>
+        <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
           <Typography variant="body2" display="block">
             {data?.Followees}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.followers'))}
           </Typography>
-        </Box>
-        <Box>
+        </Button>
+        <UserListDialog
+          title={capitalizeFirst(t('words.followers'))}
+          users={followersData}
+          open={followersOpen}
+          onClose={() => setFollowersOpen(false)}
+        />
+        <Button onClick={() => setFollowingOpen(true)} className={s.followeesButton}>
           <Typography variant="body2" display="block">
             {data?.Followers}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.following'))}
           </Typography>
-        </Box>
+        </Button>
+        <UserListDialog
+          title={capitalizeFirst(t('words.following'))}
+          users={followingData}
+          open={followingOpen}
+          onClose={() => setFollowingOpen(false)}
+        />
         {data?.Artworks > 0 &&
           <Box>
             <Typography variant="body2" display="block">

@@ -1,5 +1,7 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
+
+
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     secondaryColor: {
@@ -33,6 +35,14 @@ export const styles = makeStyles((theme: Theme) =>
     noPictureIcon: {
       fontSize: '160px',
       backgroundColor: theme.palette.background.default,
+    },
+    followersButton: {
+      display: 'block',
+      padding: 0,
+    },
+    followeesButton: {
+      display: 'block',
+      padding: 0,
     }
   }),
 );
