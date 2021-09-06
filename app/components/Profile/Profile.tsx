@@ -6,18 +6,26 @@ import { styles } from './profile.css'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RoomIcon from '@material-ui/icons/Room';
-import { Typography, Box } from '@material-ui/core';
+import { Typography, Box, Button } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import UserListDialog from '../UserListDialog/UserListDialog'
+import { useGetFollowers } from '../../hooks/useGetFollowers'
+import { useGetFollowing } from '../../hooks/useGetFollowing'
 
 export default function Profile({ userProfile, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  console.log(data);
 
   const fileInput = useRef(null);
+  const [followingOpen, setFollowingOpen] = useState(false);
+  const [followersOpen, setFollowersOpen] = useState(false);
+  const followers = useGetFollowers(data?.Username);
+  const following = useGetFollowing(data?.Username);
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -131,22 +139,34 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         <Divider></Divider>
       }
       <Box className={s.counterBox}>
-        <Box>
+        <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
           <Typography variant="body2" display="block">
             {data?.Followees}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.followers'))}
           </Typography>
-        </Box>
-        <Box>
+        </Button>
+        <UserListDialog 
+          title={capitalizeFirst(t('words.followers'))} 
+          users={followers}
+          open={followersOpen}
+          onClose={() => setFollowersOpen(false)}
+        />
+        <Button onClick={() => setFollowingOpen(true)} className={s.followeesButton}>
           <Typography variant="body2" display="block">
             {data?.Followers}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.following'))}
           </Typography>
-        </Box>
+        </Button>
+        <UserListDialog 
+          title={capitalizeFirst(t('words.following'))} 
+          users={following}
+          open={followingOpen}
+          onClose={() => setFollowingOpen(false)}
+        />
         {data?.Artworks > 0 &&
           <Box>
             <Typography variant="body2" display="block">
