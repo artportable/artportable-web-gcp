@@ -11,21 +11,20 @@ import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
 import { useRef, useState } from 'react'
 import UserListDialog from '../UserListDialog/UserListDialog'
-import { useGetFollowers } from '../../hooks/useGetFollowers'
-import { useGetFollowing } from '../../hooks/useGetFollowing'
+import { useGetFollowers } from '../../hooks/dataFetching/useGetFollowers'
+import { useGetFollowing } from '../../hooks/dataFetching/useGetFollowing'
 
 export default function Profile({ userProfile, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation('common');
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
-  console.log(data);
 
   const fileInput = useRef(null);
   const [followingOpen, setFollowingOpen] = useState(false);
   const [followersOpen, setFollowersOpen] = useState(false);
-  const followers = useGetFollowers(data?.Username);
-  const following = useGetFollowing(data?.Username);
+  const followersData = useGetFollowers(data?.Username, followersOpen);
+  const followingData = useGetFollowing(data?.Username, followingOpen);
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -33,10 +32,10 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
     }
 
     var fr = new FileReader;
-    fr.onload = function() {
+    fr.onload = function () {
       var img = new Image;
-      img.onload = function() {
-          onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
+      img.onload = function () {
+        onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
       };
 
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
@@ -59,12 +58,12 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        badgeContent= {
+        badgeContent={
           isMyProfile && !hideAddBtn &&
-            <AddCircleIcon
-              className={s.badgeIcon}
-              color="primary"
-              onClick={() => fileInput.current.click()} />
+          <AddCircleIcon
+            className={s.badgeIcon}
+            color="primary"
+            onClick={() => fileInput.current.click()} />
         }
       >
         {linkToProfile ?
@@ -85,7 +84,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
               </Avatar>
             </a>
           </Link>
-        :
+          :
           <Avatar className={s.avatar}>
             {userProfilePicture ? (
               <Avatar src={`${bucketUrl}${userProfilePicture}`}
@@ -110,7 +109,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
                 {data?.Username}
               </a>
             </Link>
-          :
+            :
             <span>
               {data?.Username}
             </span>
@@ -147,9 +146,9 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
             {capitalizeFirst(t('words.followers'))}
           </Typography>
         </Button>
-        <UserListDialog 
-          title={capitalizeFirst(t('words.followers'))} 
-          users={followers}
+        <UserListDialog
+          title={capitalizeFirst(t('words.followers'))}
+          users={followersData}
           open={followersOpen}
           onClose={() => setFollowersOpen(false)}
         />
@@ -161,9 +160,9 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
             {capitalizeFirst(t('words.following'))}
           </Typography>
         </Button>
-        <UserListDialog 
-          title={capitalizeFirst(t('words.following'))} 
-          users={following}
+        <UserListDialog
+          title={capitalizeFirst(t('words.following'))}
+          users={followingData}
           open={followingOpen}
           onClose={() => setFollowingOpen(false)}
         />
