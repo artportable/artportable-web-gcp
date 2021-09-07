@@ -405,7 +405,7 @@ export default function Profile() {
                         if (artwork) {
                           return <ArtworkListItemDefined
                             onClickDeleteOpen={onClickDeleteOpen}
-                            isMyProfile={isMyProfile}
+                            showDeleteButton={isMyProfile}
                             key={image.Name}
                             width={smScreenOrSmaller ? '100%' : image.Width}
                             height={smScreenOrSmaller ? 'auto' : image.Height}
