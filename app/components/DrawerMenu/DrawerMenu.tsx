@@ -17,7 +17,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const { profilePicture, isSignedIn } = useUser();
+  const { profilePicture, username, isSignedIn } = useUser();
   const signUpRedirectHref = useSignupRedirectHref();
 
   const close = () => setOpen(false);
@@ -26,7 +26,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
     <Drawer classes={{ paper: s.container }} open={open} onClose={(_) => close()}>
       <div>
         <IconButton color="default" aria-label="close menu" onClick={(_) => close()}>
-              <CloseIcon style={{ fontSize: '30px' }} />
+          <CloseIcon style={{ fontSize: '30px' }} />
         </IconButton>
       </div>
       <div className={s.listsContainer}>
@@ -38,14 +38,14 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
               </ListItem>
             </Link>
           }
-          <Link href="/discover" passHref>
+          <Link href="/" passHref>
             <ListItem button>
               <ListItemText primary={t('discover')} />
             </ListItem>
           </Link>
         </List>
 
-        { isSignedIn ? 
+        {isSignedIn ?
           <List classes={{ root: s.authList }}>
             <Link href="/messages" passHref>
               <ListItem button divider>
@@ -57,15 +57,17 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
                 <ListItemText primary={t('messages')} />
               </ListItem>
             </Link>
-            <ListItem button divider>
-              <ListItemAvatar>
-                <ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>
-              </ListItemAvatar>
-              <ListItemText primary={t('profile')} />
-            </ListItem>
+            <Link href={`/profile/@${username}`} passHref>
+              <ListItem button divider>
+                <ListItemAvatar>
+                  <ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>
+                </ListItemAvatar>
+                <ListItemText primary={t('profile')} />
+              </ListItem>
+            </Link>
             <ListItem button onClick={() => keycloak.logout()}>
               <ListItemIcon>
-                <ExitToAppIcon style={{ fontSize: 30 }}  />
+                <ExitToAppIcon style={{ fontSize: 30 }} />
               </ListItemIcon>
               <ListItemText primary={t('logout')} />
             </ListItem>
@@ -73,11 +75,12 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           :
           <List classes={{ root: s.authList }}>
             <ListItem button divider>
-              <ListItemText primary={t('signUp')} onClick={() => keycloak.register({ 
-                  locale: router.locale,
-                  redirectUri: signUpRedirectHref})} />
+              <ListItemText primary={t('signUp')} onClick={() => keycloak.register({
+                locale: router.locale,
+                redirectUri: signUpRedirectHref
+              })} />
             </ListItem>
-            <ListItem button onClick={() => keycloak.login({ locale : router.locale })}>
+            <ListItem button onClick={() => keycloak.login({ locale: router.locale })}>
               <ListItemText primary={t('login')} />
             </ListItem>
           </List>
