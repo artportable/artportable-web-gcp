@@ -1,7 +1,7 @@
 import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
-import { Tabs, Tab, Snackbar } from '@material-ui/core'
+import { Tabs, Tab, Snackbar, Dialog, DialogTitle, DialogActions } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
@@ -36,6 +36,13 @@ import SendIcon from '@material-ui/icons/Send';
 import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
 
+interface DeleteArtworkDialog {
+  open: boolean;
+  title?: string;
+  id?: string;
+}
+
+
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -55,6 +62,7 @@ export default function Profile() {
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
+  const [deleteArtworkSnackbarOpen, setDeleteArtworkSnackbarOpen] = useState(false);
   const [hasArtwork, setHasArtwork] = useState(false);
   const [artworkPrices, setArtworkPrices] = useState<number[]>([]);
 
@@ -72,6 +80,8 @@ export default function Profile() {
   const token = useContext(TokenContext);
 
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
+  const [deleteArtworkDialog, setDeleteArtworkDialog] = useState<DeleteArtworkDialog>({ open: false });
+
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -102,6 +112,7 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
+    console.log('hello');
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
     if (imageRows === null) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
@@ -126,7 +137,7 @@ export default function Profile() {
         setImageRows(rows);
       }
     }
-  }, [rowWidth]);
+  }, [rowWidth, artworks.data]);
 
   function onLikeClick(artworkId, isLike) {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
@@ -190,6 +201,56 @@ export default function Profile() {
     }
     setUploadCoverSnackbarOpen(false);
   }
+  const handleDeleteArtworkSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setDeleteArtworkSnackbarOpen(false);
+  }
+
+  const onClickDeleteOpen = (id: string, title: string) => {
+    setDeleteArtworkDialog(
+      {
+        id: id,
+        title: title,
+        open: true
+      }
+    );
+  };
+
+  const onClickDeleteConfirm = (id: string) => {
+    setDeleteArtworkDialog({
+      id: null,
+      title: null,
+      open: false
+    })
+
+    if (username && id && id.trim().length > 0) {
+      fetch(`${apiBaseUrl}/api/artworks/${id}?myUsername=${username}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      }).then((response) => {
+        if (!response.ok) {
+          throw response;
+        }
+        setDeleteArtworkSnackbarOpen(true);
+        artworks.mutate(artworks.data, true);
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+  };
+
+  const onClickDeleteClose = () => {
+    setDeleteArtworkDialog({
+      id: null,
+      title: null,
+      open: false
+    });
+  };
 
   function updateImage(blob, width: number, height: number, type: string) {
     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
@@ -265,7 +326,7 @@ export default function Profile() {
             />
             :
             <>
-              { 
+              {
                 <Link
                   href={{
                     pathname: "/messages",
@@ -275,7 +336,7 @@ export default function Profile() {
                   }}
                   as={`/messages`}
                 >
-                  <a style={isSignedIn ? {} : {pointerEvents: 'none'} }>
+                  <a style={isSignedIn ? {} : { pointerEvents: 'none' }}>
                     <Button
                       className={s.followButton}
                       size={smScreenOrSmaller ? 'small' : 'medium'}
@@ -319,8 +380,24 @@ export default function Profile() {
             </Tabs>
             <Box paddingY={1}>
               <TabPanel value={activeTab} index={0}>
+                <Dialog
+                  open={deleteArtworkDialog.open}
+                  onClose={onClickDeleteClose}>
+                  <DialogTitle>{t("profile:deleteArtworkDialog", { title: deleteArtworkDialog.title })}</DialogTitle>
+                  <DialogActions>
+                    <Button
+                      onClick={() => onClickDeleteConfirm(deleteArtworkDialog.id)}
+                      color="primary">
+                      {t('Yes')}
+                    </Button>
+                    <Button
+                      onClick={onClickDeleteClose}
+                      color="primary">
+                      {t('Cancel')}
+                    </Button>
+                  </DialogActions>
+                </Dialog>
                 <div className={s.portfolioContainer}>
-
                   {imageRows && imageRows.map((row: Image[], i) =>
                     <div className={s.portfolioRow} key={i}>
                       {row.map(image => {
@@ -328,6 +405,8 @@ export default function Profile() {
 
                         if (artwork) {
                           return <ArtworkListItemDefined
+                            onClickDeleteOpen={onClickDeleteOpen}
+                            isMyProfile={isMyProfile}
                             key={image.Name}
                             width={smScreenOrSmaller ? '100%' : image.Width}
                             height={smScreenOrSmaller ? 'auto' : image.Height}
@@ -387,6 +466,11 @@ export default function Profile() {
       <Snackbar open={uploadCoverSnackbarOpen} autoHideDuration={6000} onClose={handleCoverSnackbarClose}>
         <Alert onClose={handleCoverSnackbarClose} variant="filled" severity="success">
           {t('profile:coverPhotoUpdated')}
+        </Alert>
+      </Snackbar>
+      <Snackbar open={deleteArtworkSnackbarOpen} autoHideDuration={6000} onClose={handleDeleteArtworkSnackbarClose}>
+        <Alert onClose={handleDeleteArtworkSnackbarClose} variant="filled" severity="success">
+          {t('profile:deleteArtworkSuccess')}
         </Alert>
       </Snackbar>
     </Main>

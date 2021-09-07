@@ -16,7 +16,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleAndLike: {
       display: 'flex',
-      height:'30px',
+      height: '30px',
       marginTop: theme.spacing(0.4),
       justifyContent: 'space-between',
       alignItems: 'flex-start',
@@ -54,6 +54,16 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: 'transparent'
       }
+    },
+    deleteGrid: {
+      position: "relative"
+    },
+    deleteButton: {
+      margin: theme.spacing(0.5),
+      padding: 0,
+      position: "absolute",
+      top: theme.spacing(1),
+      right: theme.spacing(1)
     }
   }),
 );

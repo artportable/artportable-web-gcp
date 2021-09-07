@@ -7,8 +7,12 @@ import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useUser } from '../../hooks/useUser'
 import { useEffect } from 'react'
+import CancelIcon from '@material-ui/icons/Cancel';
+import { Grid } from '@material-ui/core'
 
-export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
+
+
+export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width, onClickDeleteOpen, isMyProfile }) {
   const s = styles();
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
@@ -28,13 +32,24 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   }
 
   const likedColor = !isSignedIn ?
-    'disabled' : 
+    'disabled' :
     isLiked ? "secondary" : "inherit";
 
-  if(width === null || height === null) return  <></>;
+  if (width === null || height === null) return <></>;
 
   return (
     <div title={artwork.Title} className={s.container}>
+      {isMyProfile &&
+        <Grid className={s.deleteGrid}>
+          <IconButton
+            className={s.deleteButton}
+            color={'secondary'}
+            disableFocusRipple
+            onClick={() => onClickDeleteOpen(artwork.Id, artwork.Title)}>
+            <CancelIcon></CancelIcon>
+          </IconButton>
+        </Grid>
+      }
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
@@ -62,7 +77,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
               disableFocusRipple
               disabled={!isSignedIn}
               onClick={toggleLike}>
-                <FavoriteIcon fontSize={'small'} color={likedColor}/>
+              <FavoriteIcon fontSize={'small'} color={likedColor} />
             </IconButton>
           </div>
         </div>

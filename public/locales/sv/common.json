@@ -23,5 +23,7 @@
     "second": "s"
   },
   "like": "Gilla",
-  "message": "Chatta"
+  "message": "Chatta",
+  "Yes" : "Ja",
+  "Cancel" : "Avbryt"
 }

@@ -23,5 +23,7 @@
     "second": "s"
   },
   "like": "Like",
-  "message": "Message"
+  "message": "Message",
+  "Yes" : "Yes",
+  "Cancel" : "Cancel"
 }
