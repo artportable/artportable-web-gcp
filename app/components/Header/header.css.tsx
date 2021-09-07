@@ -96,6 +96,9 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.background.default,
         boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
         width: 'calc(100% + 10px)',
+        '&.MuiPaper-elevation0': {
+          boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+        }
       },
       container: {
         display: 'grid',
