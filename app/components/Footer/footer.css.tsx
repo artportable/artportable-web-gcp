@@ -18,7 +18,10 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     flexItem: {
-      padding: theme.spacing(2, 1)
+      padding: theme.spacing(2, 1),
+      '& .MuiTypography-root': {
+        marginBottom: '3px'
+      }
     },
     links: {
       display: 'flex',
@@ -27,7 +30,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     logo: {
       width: '180px',
-      alignSelf: 'flex-start'
+      alignSelf: 'flex-start',
+      marginBottom: theme.spacing(2)
     }
   }),
 );
