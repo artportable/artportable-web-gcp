@@ -12,7 +12,7 @@ import { Grid } from '@material-ui/core'
 
 
 
-export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width, onClickDeleteOpen, isMyProfile }) {
+export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width, onClickDeleteOpen = undefined, isMyProfile = undefined }) {
   const s = styles();
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
@@ -39,7 +39,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
 
   return (
     <div title={artwork.Title} className={s.container}>
-      {isMyProfile &&
+      {isMyProfile && onClickDeleteOpen &&
         <Grid className={s.deleteGrid}>
           <IconButton
             className={s.deleteButton}
