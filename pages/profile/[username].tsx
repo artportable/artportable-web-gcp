@@ -112,7 +112,6 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    console.log('hello');
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
     if (imageRows === null) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
@@ -237,7 +236,7 @@ export default function Profile() {
           throw response;
         }
         setDeleteArtworkSnackbarOpen(true);
-        artworks.mutate(artworks.data, true);
+        artworks.mutate();
       }).catch((error) => {
         console.log(error);
       })
