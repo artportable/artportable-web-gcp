@@ -10,6 +10,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
         '\"      .              .      profile     .              .\"       50px' +
         '\"      .              .      profile     .              actions\"       auto' +
         '\"   divider        divider   divider   divider       divider\"       auto' +
+        '\"      .         priceSpan  priceSpan  priceSpan        .\"       auto' +
         '\"     tabs           tabs      tabs     tabs           tabs\"       1fr' +
         '\"   divider2       divider2  divider2  divider2      divider2\"       auto' +
         '\"   portfolio      portfolio portfolio portfolio    portfolio\"       auto' +
