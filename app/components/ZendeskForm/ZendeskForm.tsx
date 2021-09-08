@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Paper, TextField, Typography } from '@material-ui/core'
+import { Paper, TextField, Typography, Snackbar } from '@material-ui/core'
+import Alert, { Color } from '@material-ui/lab/Alert'
 import Button from '../Button/Button'
 import { styles } from './zendeskForm.css'
 import { useTranslation } from 'next-i18next'
-import { useUser } from '../../hooks/useUser';
+import { useUser } from '../../hooks/useUser'
 
 const artportableZendeskApiUrl = 'https://artportable.zendesk.com/api/v2/requests.json'
 
@@ -18,7 +19,7 @@ interface FormValue {
   error: boolean
 }
 
-export default function Footer() {
+export default function ZendeskForm() {
   const s = styles();
   const { t } = useTranslation(['support']);
   const { username } = useUser();
@@ -30,6 +31,8 @@ export default function Footer() {
   });
   const [formHasErrors, setFormHasErrors] = useState(false);
   const [formUntouched, setFormUntouched] = useState(true);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
 
   useEffect(() => {
     if(Object.keys(formData).some(key => formData[key].error)) {
@@ -116,9 +119,11 @@ export default function Footer() {
     }
   }
 
-  const submit = () => {
+  const submit = async () => {
     if(validateAllFields()) {
-      postDataToZendesk();
+      const response = await postDataToZendesk();
+
+      handleResponse(response);
     }
   }
 
@@ -143,10 +148,47 @@ export default function Footer() {
         }),
       });
 
-      const json = await response.json();
+      return response;
     } catch (error) {
       console.log(error);
     }
+  }
+
+  const handleResponse = (response: Response) => {
+    if (response.status === 201) {
+      resetForm();
+      showSuccessMessage();
+    } else {
+      showErrorMessage();
+    }
+  }
+
+  const showSuccessMessage = () => {
+    setSnackbarSeverity("success");
+    setSnackbarOpen(true);
+  }
+
+  const showErrorMessage = () => {
+    setSnackbarSeverity("warning");
+    setSnackbarOpen(true);
+  }
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
+
+  const resetForm = () => {
+    setFormData({
+      subject: { value: '', error: false },
+      email: { value: '', error: false },
+      message: { value: '', error: false },
+    });
+    setFormUntouched(true);
+    setFormHasErrors(false);
   }
 
   return (
@@ -215,6 +257,11 @@ export default function Footer() {
           {t('send')}
         </Button>
       </form>
+      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+            {t(`${snackbarSeverity}Message`)}
+          </Alert>
+      </Snackbar>
     </Paper>
   );
 }

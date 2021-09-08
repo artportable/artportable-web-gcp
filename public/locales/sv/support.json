@@ -5,5 +5,7 @@
   "message": "Meddelande",
   "mustNotBeEmptyMessage": "Fältet får inte vara tomt",
   "emailErrorMessage": "Ogiltig e-postadress",
-  "send": "Skicka"
+  "send": "Skicka",
+  "successMessage": "Meddelande skickat. Vi återkommer på e-post så snart vi kan!",
+  "warningMessage": "Något gick fel, försök igen."
 }
