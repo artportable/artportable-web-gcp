@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import { getFetcher } from '../../utils/util'
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const getUserProfileSummaryUri = (user: string) => `${apiBaseUrl}/api/profile/${user}/summary`;
 export function useGetUserProfileSummary(user) {

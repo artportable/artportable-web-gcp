@@ -59,7 +59,7 @@ export interface Socials {
 export default function EditProfileDialog({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('profile');
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { username } = useUser();
   const token = useContext(TokenContext);
 

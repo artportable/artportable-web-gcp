@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "env-cmd -f ./config/.env.development next dev",
+    "build": "env-cmd -f ./config/.env.stage next build",
+    "build:stage": "env-cmd -f ./config/.env.stage next build",
+    "build:prod": "env-cmd -f ./config/.env.production next build",
     "start": "ENV=development next start"
   },
   "dependencies": {
@@ -23,6 +25,7 @@
     "@stripe/stripe-js": "^1.13.1",
     "cookie": "^0.4.1",
     "date-fns": "^2.23.0",
+    "env-cmd": "^10.1.0",
     "fg-loadcss": "^3.1.0",
     "getstream": "^7.2.10",
     "js-cookie": "^3.0.0",

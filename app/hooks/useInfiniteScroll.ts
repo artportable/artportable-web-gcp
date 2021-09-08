@@ -8,7 +8,7 @@ const defaultOptions = {
   threshold: 0
 }
 
-const apiBaseurl = process.env.NEXT_PUBLIC_API_BASEURL;
+const apiBaseurl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const useInfiniteScroll = (
   loadMoreElement: React.MutableRefObject<Element>,

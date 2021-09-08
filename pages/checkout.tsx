@@ -18,9 +18,11 @@ import { KeycloakInstance } from "keycloak-js";
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // loadStripe is initialized with your real test publishable API key.
-const promise = loadStripe("pk_test_51IRGljA3UXZjjLWxcvyxrdMZLfGL3VgavI4xiWcb1TmBWhZ13M8CIxwx9HMLzMtahX6RxxYZcUnJkOAxdfCwIjFE00VCslxaIc");
 
 export default function Checkout() {
+  const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
+  const promise = loadStripe(stripeKey);
+
   const store = useStore();
   const { t } = useTranslation(['checkout', 'common']);
   const styles = checkoutStyles();

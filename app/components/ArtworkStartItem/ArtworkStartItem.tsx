@@ -8,7 +8,7 @@ import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 
 export default function ArtworkStartItem({ artwork, width }) {
   const s = styles();
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const [isLoaded, setIsLoaded] = useState(false);
 
   const imageHeight = (artwork.Image.Height / artwork.Image.Width) * width;

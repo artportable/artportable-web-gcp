@@ -5,7 +5,7 @@ import { getFetcher } from '../../utils/util'
 
 
 export function useFollowRecommendations(user) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const token = useContext(TokenContext);
 
   const { data, error } = useSWR(

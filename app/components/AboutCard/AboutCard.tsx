@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 export default function AboutCard({ data, userProfilePicture }) {
   const s = styles();
   const { t } = useTranslation('profile');
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   return (
     <Card elevation={2} className={s.mainCard}>

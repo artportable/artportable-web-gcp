@@ -9,7 +9,7 @@ const fetcher = (url, token) => fetch(url, {
 }).then(r => r.json().then(data => data.map(mapToFeedItem)))
 
 export function useGetFeedItems(user, page) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const token = useContext(TokenContext);
 
   return useSWR(

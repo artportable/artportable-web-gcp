@@ -5,6 +5,10 @@
 resources:
 - repo: self
 
+variables:
+- name: env
+  value: stage
+
 stages:
 - stage: Build
   displayName: Build image
@@ -14,6 +18,8 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
+    - bash: echo '##vso[task.setvariable variable=env]prod'
+      condition: eq(variables['Build.SourceBranchName'], 'master')
     - task: Npm@1
       displayName: Install npm packages
       inputs:
@@ -24,13 +30,24 @@ stages:
         command: 'custom'
         customCommand: 'run build'
     - task: Docker@2
-      condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request 
-      displayName: Build an image
+      condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request
+      displayName: Build an image for $(env)
       inputs:
         containerRegistry: 'artportable-image-repository'
         repository: 'artportable-web'
-        command: 'buildAndPush'
+        command: 'build'
         Dockerfile: '**/Dockerfile'
+        tags: |
+          $(Build.BuildId)
+          $(Build.BuildId)-$(Build.SourceBranchName)
+        arguments: '--build-arg ENV=$(env)'
+    - task: Docker@2
+      condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request
+      displayName: Push image
+      inputs:
+        containerRegistry: 'artportable-image-repository'
+        repository: 'artportable-web'
+        command: 'push'
         tags: |
           $(Build.BuildId)
           $(Build.BuildId)-$(Build.SourceBranchName)

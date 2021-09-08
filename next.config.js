@@ -1,7 +1,7 @@
 const { i18n } = require('./next-i18next.config')
 module.exports = {
   images: {
-    domains: ['artportabletest.blob.core.windows.net'],
+    domains: ['artportabletest.blob.core.windows.net', 'artportableprod.blob.core.windows.net'],
   },
   i18n,
   async rewrites() {

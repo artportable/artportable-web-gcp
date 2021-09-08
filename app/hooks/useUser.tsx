@@ -21,7 +21,7 @@ export function useUser(): UserInitialized {
   const dispatch = useDispatch();
   const user = store.getState()?.user;
   const router = useRouter();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const [localUser, setLocalUser] = useState(user);
 

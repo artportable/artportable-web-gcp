@@ -24,7 +24,7 @@ export default function UploadArtworkPage() {
   const { t } = useTranslation(['upload']);
   const router = useRouter();
 
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const { username, isSignedIn } = useUser();
   const tags = useGetTags();
