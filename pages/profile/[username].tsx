@@ -34,6 +34,7 @@ import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
 import SendIcon from '@material-ui/icons/Send';
 import { TokenContext } from '../../app/contexts/token-context'
+import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
 
 function a11yProps(index: any) {
   return {
@@ -55,6 +56,7 @@ export default function Profile() {
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
   const [hasArtwork, setHasArtwork] = useState(false);
+  const [artworkPrices, setArtworkPrices] = useState<number[]>([]);
 
   const profileUser = useGetProfileUser();
   const { username, profilePicture, isSignedIn } = useUser();
@@ -108,8 +110,9 @@ export default function Profile() {
       }
     }
 
+    setArtworkPrices(artworks.data?.map(a => a.Price));
     setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
-  }, [artworks, imageRows]);
+  }, [artworks.data]);
 
   useEffect(() => {
     setIsMyProfile(username !== null && profileUser !== null && username == profileUser);
@@ -307,6 +310,7 @@ export default function Profile() {
           }
         </div>
         <Divider className={s.divider}></Divider>
+        <ArtistPriceSpan prices={artworkPrices} />
         {hasArtwork ?
           <div className={s.tabsContainer}>
             <Tabs value={activeTab} onChange={handleTabChange} centered >

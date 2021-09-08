@@ -1,0 +1,37 @@
+import { styles } from './artistPriceSpan.css'
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { Typography } from '@material-ui/core';
+import { useEffect, useState } from 'react';
+
+interface Props {
+  prices: number[];
+}
+
+export default function ArtistPriceSpan({ prices }: Props) {
+  const s = styles();
+
+  const [hasPrices, setHasPrices] = useState(false);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+
+  useEffect(() => {
+    if(prices) {
+      setHasPrices(prices.some(p => p > 0));
+      setMinPrice(Math.min(...prices));
+      setMaxPrice(Math.max(...prices));
+    }
+  }, [prices]);
+
+  return (
+    <>
+      {hasPrices &&
+        <div className={s.container}>
+          <AttachMoneyIcon color="secondary" /> 
+          <Typography variant="subtitle1" component="span">
+            {minPrice} - {maxPrice} SEK
+          </Typography>
+        </div>
+      }
+    </>
+  );
+}
