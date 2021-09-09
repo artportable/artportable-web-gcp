@@ -1,5 +1,5 @@
 import { styles } from './artistPriceSpan.css'
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import { Typography } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 
@@ -26,7 +26,9 @@ export default function ArtistPriceSpan({ prices }: Props) {
     <>
       {hasPrices &&
         <div className={s.container}>
-          <AttachMoneyIcon color="secondary" /> 
+          <div className={s.icon}>
+            <LocalOfferIcon color="secondary" /> 
+          </div>
           <Typography variant="subtitle1" component="span">
             {minPrice} - {maxPrice} SEK
           </Typography>
