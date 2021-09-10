@@ -7,6 +7,10 @@ export const styles = makeStyles((theme: Theme) =>
       justifySelf: 'center',
       display: 'flex',
       alignItems: 'center'
+    },
+    icon: {
+      display: 'flex',
+      paddingRight: theme.spacing(1),
     }
   }),
 );
