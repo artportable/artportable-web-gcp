@@ -1,18 +1,24 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useState } from 'react'
-import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
+import Button from '../Button/Button'
 import IconButton from '@material-ui/core/IconButton'
-import Paper from '@material-ui/core/Paper'
 import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useUser } from '../../hooks/useUser'
 import { useEffect } from 'react'
 import CancelIcon from '@material-ui/icons/Cancel';
-import { Grid } from '@material-ui/core'
 
 
 
-export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width, onClickDeleteOpen = undefined, showDeleteButton = false }) {
+
+
+export default function ArtworkListItemDefined({ 
+  artwork,
+  onLikeClick,
+  height,
+  width,
+  topActions = undefined
+}) {
   const s = styles();
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
@@ -39,17 +45,6 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
 
   return (
     <div title={artwork.Title} className={s.container}>
-      {showDeleteButton && onClickDeleteOpen &&
-        <Grid className={s.deleteGrid}>
-          <IconButton
-            className={s.deleteButton}
-            color={'secondary'}
-            disableFocusRipple
-            onClick={() => onClickDeleteOpen(artwork.Id, artwork.Title)}>
-            <CancelIcon></CancelIcon>
-          </IconButton>
-        </Grid>
-      }
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
@@ -63,6 +58,13 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
             />
           </a>
         </Link>
+        {topActions &&
+          <div className={s.editOverlay}>
+            <div className={s.topActions}>
+              {topActions}
+            </div>
+          </div>
+        }
       </div>
       <div className={s.titleAndLike}>
         <div className={s.title}>{artwork.Title}</div>

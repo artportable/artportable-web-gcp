@@ -9,6 +9,7 @@ import ArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/
 import Image from "../../app/models/Image"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
+import EditArtworkDialog from '../../app/components/EditArtworkDialog/EditArtworkDialog'
 
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
@@ -33,6 +34,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
 import SendIcon from '@material-ui/icons/Send';
+import EditIcon from '@material-ui/icons/Edit';
 import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
 
@@ -65,6 +67,8 @@ export default function Profile() {
   const [deleteArtworkSnackbarOpen, setDeleteArtworkSnackbarOpen] = useState(false);
   const [hasArtwork, setHasArtwork] = useState(false);
   const [artworkPrices, setArtworkPrices] = useState<number[]>([]);
+  const [editArtworkOpen, setEditArtworkOpen] = useState(false);
+  const [artworkToEdit, setArtworkToEdit] = useState(null);
 
   const profileUser = useGetProfileUser();
   const { username, profilePicture, isSignedIn } = useUser();
@@ -304,6 +308,11 @@ export default function Profile() {
       })
   }
 
+  const openEditArtworkDialog = (artwork) => {
+    setArtworkToEdit(artwork);
+    setEditArtworkOpen(true);
+  }
+
   return (
     <Main>
       <FullWidthBlock>
@@ -404,18 +413,35 @@ export default function Profile() {
 
                         if (artwork) {
                           return <ArtworkListItemDefined
-                            onClickDeleteOpen={onClickDeleteOpen}
-                            showDeleteButton={isMyProfile}
+                            // onClickDeleteOpen={onClickDeleteOpen}
+                            // showDeleteButton={isMyProfile}
                             key={image.Name}
                             width={smScreenOrSmaller ? '100%' : image.Width}
                             height={smScreenOrSmaller ? 'auto' : image.Height}
                             artwork={artwork}
+                            topActions={isMyProfile ?
+                              <>          
+                              <Button
+                                className={s.editButton}
+                                variant="contained"
+                                color="default"
+                                rounded
+                                onClick={() => openEditArtworkDialog(artwork)}
+                                startIcon={<EditIcon />}>
+                              </Button>
+                       
+                              </> : undefined
+                            }
                             onLikeClick={onLikeClick} />
                         }
                       }
                       )}
                     </div>
                   )}
+                  <EditArtworkDialog 
+                    artwork={artworkToEdit} 
+                    open={editArtworkOpen} 
+                    onClose={() => setEditArtworkOpen(false)} />
                   {artworks.isLoading &&
                     <>
                       <div className={s.portfolioRow}>
