@@ -1,7 +1,7 @@
 import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
-import { Tabs, Tab, Snackbar, Dialog, DialogTitle, DialogActions } from '@material-ui/core'
+import { Tabs, Tab, Snackbar } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
@@ -37,12 +37,7 @@ import SendIcon from '@material-ui/icons/Send';
 import EditIcon from '@material-ui/icons/Edit';
 import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
-
-interface DeleteArtworkDialog {
-  open: boolean;
-  title?: string;
-  id?: string;
-}
+import { LoadingContext } from '../../app/contexts/loading-context'
 
 
 function a11yProps(index: any) {
@@ -84,7 +79,9 @@ export default function Profile() {
   const token = useContext(TokenContext);
 
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
-  const [deleteArtworkDialog, setDeleteArtworkDialog] = useState<DeleteArtworkDialog>({ open: false });
+
+  const { loading, setLoading } = useContext(LoadingContext);
+
 
 
   const onUpdateProfilePicture = (profilePicture: any) => {
@@ -211,50 +208,6 @@ export default function Profile() {
     setDeleteArtworkSnackbarOpen(false);
   }
 
-  const onClickDeleteOpen = (id: string, title: string) => {
-    setDeleteArtworkDialog(
-      {
-        id: id,
-        title: title,
-        open: true
-      }
-    );
-  };
-
-  const onClickDeleteConfirm = (id: string) => {
-    setDeleteArtworkDialog({
-      id: null,
-      title: null,
-      open: false
-    })
-
-    if (username && id && id.trim().length > 0) {
-      fetch(`${apiBaseUrl}/api/artworks/${id}?myUsername=${username}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      }).then((response) => {
-        if (!response.ok) {
-          throw response;
-        }
-        setDeleteArtworkSnackbarOpen(true);
-        artworks.mutate();
-      }).catch((error) => {
-        console.log(error);
-      })
-    }
-  };
-
-  const onClickDeleteClose = () => {
-    setDeleteArtworkDialog({
-      id: null,
-      title: null,
-      open: false
-    });
-  };
-
   function updateImage(blob, width: number, height: number, type: string) {
     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
       method: 'POST',
@@ -311,6 +264,23 @@ export default function Profile() {
   const openEditArtworkDialog = (artwork) => {
     setArtworkToEdit(artwork);
     setEditArtworkOpen(true);
+  }
+
+  const onEditArtworkClose = async (promise) => {
+    if(promise) {
+      try {
+        setEditArtworkOpen(false);
+        setLoading(true);
+        await promise;
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+  
+      artworks.mutate();
+    } else {
+      setEditArtworkOpen(false);
+    }
   }
 
   return (
@@ -388,23 +358,6 @@ export default function Profile() {
             </Tabs>
             <Box paddingY={1}>
               <TabPanel value={activeTab} index={0}>
-                <Dialog
-                  open={deleteArtworkDialog.open}
-                  onClose={onClickDeleteClose}>
-                  <DialogTitle>{t("profile:deleteArtworkDialog", { title: deleteArtworkDialog.title })}</DialogTitle>
-                  <DialogActions>
-                    <Button
-                      onClick={() => onClickDeleteConfirm(deleteArtworkDialog.id)}
-                      color="primary">
-                      {t('Yes')}
-                    </Button>
-                    <Button
-                      onClick={onClickDeleteClose}
-                      color="primary">
-                      {t('Cancel')}
-                    </Button>
-                  </DialogActions>
-                </Dialog>
                 <div className={s.portfolioContainer}>
                   {imageRows && imageRows.map((row: Image[], i) =>
                     <div className={s.portfolioRow} key={i}>
@@ -413,8 +366,6 @@ export default function Profile() {
 
                         if (artwork) {
                           return <ArtworkListItemDefined
-                            // onClickDeleteOpen={onClickDeleteOpen}
-                            // showDeleteButton={isMyProfile}
                             key={image.Name}
                             width={smScreenOrSmaller ? '100%' : image.Width}
                             height={smScreenOrSmaller ? 'auto' : image.Height}
@@ -441,7 +392,7 @@ export default function Profile() {
                   <EditArtworkDialog 
                     artwork={artworkToEdit} 
                     open={editArtworkOpen} 
-                    onClose={() => setEditArtworkOpen(false)} />
+                    onClose={onEditArtworkClose} />
                   {artworks.isLoading &&
                     <>
                       <div className={s.portfolioRow}>
@@ -506,7 +457,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art']),
     },
     revalidate: 10,
   }

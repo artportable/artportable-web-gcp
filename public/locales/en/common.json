@@ -11,7 +11,10 @@
     "follow": "follow",
     "followers": "followers",
     "following": "following",
-    "worksOfArt": "works of art"
+    "worksOfArt": "works of art",
+    "cancel": "cancel",
+    "save": "save",
+    "confirm": "confirm"
   },
   "timeUnit": {
     "year": "y",

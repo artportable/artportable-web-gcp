@@ -14,7 +14,7 @@ import Button from '../Button/Button';
 import DrawerMenu from '../DrawerMenu/DrawerMenu';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import { useGetActivityToken } from '../../hooks/useGetActivityClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
@@ -27,8 +27,9 @@ import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 import 'react-activity-feed/dist/index.css';
 import NotificationIconButton from '../NotificationIconButton/NotificationIconButton'
+import { LoadingContext } from '../../contexts/loading-context'
 
-export default function Header({ loading = true }) {
+export default function Header({}) {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -39,8 +40,20 @@ export default function Header({ loading = true }) {
   const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
+  const [globalIsLoading, setglobalIsLoading] = useState(false);
   const { token: activityToken, isError, isLoading } = useGetActivityToken(username, isSignedIn);
 
+
+  const { loading: loadingFromContext } = useContext(LoadingContext);
+
+
+  useEffect(() => {
+    if (loadingFromContext) {
+      setglobalIsLoading(true);
+    } else {
+      setglobalIsLoading(false);
+    }
+  }, [loadingFromContext]);
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -175,8 +188,8 @@ export default function Header({ loading = true }) {
         <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
       </Toolbar>
     </AppBar>
-    {loading &&
-      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw' }} />
+    {globalIsLoading &&
+      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
     }
     </>
   );

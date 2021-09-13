@@ -79,5 +79,5 @@ export function useUser(): UserInitialized {
     }
   }, [initialized]);
 
-  return { ...user, initialized: (initialized && localUser)};
+  return { ...user, initialized };
 }

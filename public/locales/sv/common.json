@@ -11,7 +11,10 @@
     "follow": "följ",
     "followers": "följare",
     "following": "följer",
-    "worksOfArt": "Konstverk"
+    "worksOfArt": "Konstverk",
+    "cancel": "avbryt",
+    "save": "spara",
+    "confirm": "bekräfta"
   },
   "timeUnit": {
     "year": "år",
