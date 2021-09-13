@@ -2,23 +2,16 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      display: "flex",
-      flexDirection: "row"
+    form: {
+      marginBottom: theme.spacing(4),
+      '& > *': {
+        marginBottom: theme.spacing(2),
+      }
     },
-    avatar: {
-      backgroundColor: theme.palette.common.white,
-      width: "60px",
-      height: "60px",
-    },
-    text: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      marginLeft: "30px"
-    },
-    username: {
-      fontWeight: 600
+    deleteContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
     }
   }),
 );
