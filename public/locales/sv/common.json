@@ -11,7 +11,10 @@
     "follow": "följ",
     "followers": "följare",
     "following": "följer",
-    "worksOfArt": "Konstverk"
+    "worksOfArt": "Konstverk",
+    "cancel": "avbryt",
+    "save": "spara",
+    "confirm": "bekräfta"
   },
   "timeUnit": {
     "year": "år",
@@ -23,5 +26,7 @@
     "second": "s"
   },
   "like": "Gilla",
-  "message": "Chatta"
+  "message": "Chatta",
+  "Yes" : "Ja",
+  "Cancel" : "Avbryt"
 }

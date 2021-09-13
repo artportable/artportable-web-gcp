@@ -16,6 +16,7 @@ import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
 import { useUser } from "../app/hooks/useUser";
 import IndexHero from "../app/components/IndexHero/IndexHero";
 import { TokenContext } from "../app/contexts/token-context";
+import { LoadingContext } from "../app/contexts/loading-context";
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -32,7 +33,6 @@ export default function DiscoverPage() {
   const rowWidth = useMainWidth().wide
 
   const [activeTab, setActiveTab] = useState(discoverTab);
-  const [loading, setLoading] = useState(true);
   const [selectedTags, setSelectedTags] = useState(null);
   const [searchQueryArt, setSearchQueryArt] = useState(null);
   const loadMoreArtworksElementRef = useRef(null);
@@ -43,9 +43,13 @@ export default function DiscoverPage() {
   const [trackedArtwork, setTrackedArtwork] = useState(null);
   const [trackedArtist, setTrackedArtists] = useState(null);
 
+  const { loading, setLoading } = useContext(LoadingContext);
+
   useEffect(() => {
     if(initialized){
       setLoading(false);
+    } else {
+      setLoading(true);
     }
   }, [initialized]);
 
@@ -172,7 +176,7 @@ export default function DiscoverPage() {
   }
 
   return (
-    <Main noHeaderPadding wide={useWideLayout} loading={loading}>
+    <Main noHeaderPadding wide={useWideLayout}>
       {!loading && 
       <>
         {!isSignedIn &&

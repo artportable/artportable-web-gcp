@@ -1,14 +1,24 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useState } from 'react'
-import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
+import Button from '../Button/Button'
 import IconButton from '@material-ui/core/IconButton'
-import Paper from '@material-ui/core/Paper'
 import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useUser } from '../../hooks/useUser'
 import { useEffect } from 'react'
+import CancelIcon from '@material-ui/icons/Cancel';
 
-export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
+
+
+
+
+export default function ArtworkListItemDefined({ 
+  artwork,
+  onLikeClick,
+  height,
+  width,
+  topActions = undefined
+}) {
   const s = styles();
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
@@ -28,10 +38,10 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
   }
 
   const likedColor = !isSignedIn ?
-    'disabled' : 
+    'disabled' :
     isLiked ? "secondary" : "inherit";
 
-  if(width === null || height === null) return  <></>;
+  if (width === null || height === null) return <></>;
 
   return (
     <div title={artwork.Title} className={s.container}>
@@ -48,6 +58,13 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
             />
           </a>
         </Link>
+        {topActions &&
+          <div className={s.editOverlay}>
+            <div className={s.topActions}>
+              {topActions}
+            </div>
+          </div>
+        }
       </div>
       <div className={s.titleAndLike}>
         <div className={s.title}>{artwork.Title}</div>
@@ -62,7 +79,7 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
               disableFocusRipple
               disabled={!isSignedIn}
               onClick={toggleLike}>
-                <FavoriteIcon fontSize={'small'} color={likedColor}/>
+              <FavoriteIcon fontSize={'small'} color={likedColor} />
             </IconButton>
           </div>
         </div>

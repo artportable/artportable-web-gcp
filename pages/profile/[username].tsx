@@ -9,6 +9,7 @@ import ArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/
 import Image from "../../app/models/Image"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
+import EditArtworkDialog from '../../app/components/EditArtworkDialog/EditArtworkDialog'
 
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
@@ -33,8 +34,11 @@ import AddIcon from '@material-ui/icons/Add';
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
 import SendIcon from '@material-ui/icons/Send';
+import EditIcon from '@material-ui/icons/Edit';
 import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
+import { LoadingContext } from '../../app/contexts/loading-context'
+
 
 function a11yProps(index: any) {
   return {
@@ -55,8 +59,11 @@ export default function Profile() {
   const [isMyProfile, setIsMyProfile] = useState(false);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
+  const [deleteArtworkSnackbarOpen, setDeleteArtworkSnackbarOpen] = useState(false);
   const [hasArtwork, setHasArtwork] = useState(false);
   const [artworkPrices, setArtworkPrices] = useState<number[]>([]);
+  const [editArtworkOpen, setEditArtworkOpen] = useState(false);
+  const [artworkToEdit, setArtworkToEdit] = useState(null);
 
   const profileUser = useGetProfileUser();
   const { username, profilePicture, isSignedIn } = useUser();
@@ -72,6 +79,10 @@ export default function Profile() {
   const token = useContext(TokenContext);
 
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
+
+  const { loading, setLoading } = useContext(LoadingContext);
+
+
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -126,7 +137,7 @@ export default function Profile() {
         setImageRows(rows);
       }
     }
-  }, [rowWidth]);
+  }, [rowWidth, artworks.data]);
 
   function onLikeClick(artworkId, isLike) {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
@@ -190,6 +201,12 @@ export default function Profile() {
     }
     setUploadCoverSnackbarOpen(false);
   }
+  const handleDeleteArtworkSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setDeleteArtworkSnackbarOpen(false);
+  }
 
   function updateImage(blob, width: number, height: number, type: string) {
     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
@@ -244,6 +261,28 @@ export default function Profile() {
       })
   }
 
+  const openEditArtworkDialog = (artwork) => {
+    setArtworkToEdit(artwork);
+    setEditArtworkOpen(true);
+  }
+
+  const onEditArtworkClose = async (promise) => {
+    if(promise) {
+      try {
+        setEditArtworkOpen(false);
+        setLoading(true);
+        await promise;
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+  
+      artworks.mutate();
+    } else {
+      setEditArtworkOpen(false);
+    }
+  }
+
   return (
     <Main>
       <FullWidthBlock>
@@ -265,7 +304,7 @@ export default function Profile() {
             />
             :
             <>
-              { 
+              {
                 <Link
                   href={{
                     pathname: "/messages",
@@ -275,7 +314,7 @@ export default function Profile() {
                   }}
                   as={`/messages`}
                 >
-                  <a style={isSignedIn ? {} : {pointerEvents: 'none'} }>
+                  <a style={isSignedIn ? {} : { pointerEvents: 'none' }}>
                     <Button
                       className={s.followButton}
                       size={smScreenOrSmaller ? 'small' : 'medium'}
@@ -320,7 +359,6 @@ export default function Profile() {
             <Box paddingY={1}>
               <TabPanel value={activeTab} index={0}>
                 <div className={s.portfolioContainer}>
-
                   {imageRows && imageRows.map((row: Image[], i) =>
                     <div className={s.portfolioRow} key={i}>
                       {row.map(image => {
@@ -332,12 +370,29 @@ export default function Profile() {
                             width={smScreenOrSmaller ? '100%' : image.Width}
                             height={smScreenOrSmaller ? 'auto' : image.Height}
                             artwork={artwork}
+                            topActions={isMyProfile ?
+                              <>          
+                              <Button
+                                className={s.editButton}
+                                variant="contained"
+                                color="default"
+                                rounded
+                                onClick={() => openEditArtworkDialog(artwork)}
+                                startIcon={<EditIcon />}>
+                              </Button>
+                       
+                              </> : undefined
+                            }
                             onLikeClick={onLikeClick} />
                         }
                       }
                       )}
                     </div>
                   )}
+                  <EditArtworkDialog 
+                    artwork={artworkToEdit} 
+                    open={editArtworkOpen} 
+                    onClose={onEditArtworkClose} />
                   {artworks.isLoading &&
                     <>
                       <div className={s.portfolioRow}>
@@ -389,6 +444,11 @@ export default function Profile() {
           {t('profile:coverPhotoUpdated')}
         </Alert>
       </Snackbar>
+      <Snackbar open={deleteArtworkSnackbarOpen} autoHideDuration={6000} onClose={handleDeleteArtworkSnackbarClose}>
+        <Alert onClose={handleDeleteArtworkSnackbarClose} variant="filled" severity="success">
+          {t('profile:deleteArtworkSuccess')}
+        </Alert>
+      </Snackbar>
     </Main>
   );
 }
@@ -397,7 +457,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art']),
     },
     revalidate: 10,
   }

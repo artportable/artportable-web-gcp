@@ -6,10 +6,10 @@ const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export function useGetArtworks(owner = null, myUsername: string = null) {
   const url = new URL(`${apiBaseUrl}/api/artworks?myUsername=${myUsername}`);
-  if(owner !== null) {
+  if (owner !== null) {
     url.searchParams.append('owner', owner);
   }
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     url.toString(),
     fetcher,
     {
@@ -20,7 +20,8 @@ export function useGetArtworks(owner = null, myUsername: string = null) {
   return {
     data,
     isLoading: !error && !data,
-    isError: error
+    isError: error,
+    mutate: mutate
   }
 }
 

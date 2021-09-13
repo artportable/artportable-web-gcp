@@ -56,6 +56,13 @@ export const profileStyles = makeStyles((theme: Theme) =>
     similarPortfolios: {
       gridArea: 'portfolio',
       marginBottom: '100px'
-    }
+    },
+    editButton: {
+      width: '38px',
+      minWidth: '36px',
+      '& .MuiButton-startIcon': {
+        margin: '0 0',
+      }
+    },
   }),
 );
