@@ -12,7 +12,7 @@ import { TokenContext } from '../../contexts/token-context';
 export default function EditArtworkDialog({ artwork, open, onClose }) {
   const { t } = useTranslation(['art', 'common']);
   const s = styles();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const [artworkName, setArtworkName] = useState('');
   const [artworkDescription, setArtworkDescription] = useState('');

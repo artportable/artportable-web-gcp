@@ -80,7 +80,7 @@ export default function Profile() {
 
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
 
-  const { loading, setLoading } = useContext(LoadingContext);
+  const { setLoading } = useContext(LoadingContext);
 
 
 
