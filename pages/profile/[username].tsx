@@ -123,7 +123,7 @@ export default function Profile() {
 
     setArtworkPrices(artworks.data?.map(a => a.Price));
     setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
-  }, [artworks.data]);
+  }, [artworks]);
 
   useEffect(() => {
     setIsMyProfile(username !== null && profileUser !== null && username == profileUser);
