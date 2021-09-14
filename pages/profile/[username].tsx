@@ -123,7 +123,7 @@ export default function Profile() {
 
     setArtworkPrices(artworks.data?.map(a => a.Price));
     setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
-  }, [artworks]);
+  }, [artworks.data, imageRows]);
 
   useEffect(() => {
     setIsMyProfile(username !== null && profileUser !== null && username == profileUser);
@@ -137,7 +137,7 @@ export default function Profile() {
         setImageRows(rows);
       }
     }
-  }, [rowWidth, artworks.data]);
+  }, [rowWidth]);
 
   function onLikeClick(artworkId, isLike) {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
