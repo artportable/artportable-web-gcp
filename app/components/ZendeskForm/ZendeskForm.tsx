@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Paper, TextField, Typography, Snackbar } from '@material-ui/core'
 import Alert, { Color } from '@material-ui/lab/Alert'
 import Button from '../Button/Button'
 import { styles } from './zendeskForm.css'
 import { useTranslation } from 'next-i18next'
-import { useUser } from '../../hooks/useUser'
+import { UserContext } from '../../contexts/user-context';
 
 const artportableZendeskApiUrl = 'https://artportable.zendesk.com/api/v2/requests.json'
 
@@ -22,7 +22,7 @@ interface FormValue {
 export default function ZendeskForm() {
   const s = styles();
   const { t } = useTranslation(['support']);
-  const { username } = useUser();
+  const { username } = useContext(UserContext);
 
   const [formData, setFormData] = useState<ZendeskFormData>({
     subject: { value: '', error: false },
@@ -137,7 +137,7 @@ export default function ZendeskForm() {
         body: JSON.stringify({
           "request": {
             "requester": {
-              "name": username ?? 'Anonymous',
+              "name": username.value ?? 'Anonymous',
               "email": formData.email.value
             },
             "subject": formData.subject.value,

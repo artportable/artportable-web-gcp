@@ -53,13 +53,13 @@ const fetcherJson = (url, token = null) => {
 };
 const fetcherText = (url, token = null) => {
   if (!token) {
-    return fetch(url).then(r => r.json())
+    return fetch(url).then(r => r.text())
   }
   return fetch(url, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
-  }).then(r => r.json())
+  }).then(r => r.text())
 };
 
 type ResponseValue = 'text' | 'json';

@@ -11,12 +11,12 @@ import { capitalizeFirst } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { useUser } from "../../app/hooks/useUser";
 import TagChip from "../../app/components/TagChip/TagChip";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SendIcon from '@material-ui/icons/Send';
 import Link from "next/link";
 import { TokenContext } from "../../app/contexts/token-context";
+import { UserContext } from "../../app/contexts/user-context";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -26,8 +26,8 @@ export default function ArtworkPage(props) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const { id } = router.query
-  const { username } = useUser();
-  const artwork = useGetArtwork(id as string, username);
+  const { username } = useContext(UserContext);
+  const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
@@ -47,11 +47,11 @@ export default function ArtworkPage(props) {
   }, [artwork?.data]);
 
   function follow(userToFollow, isFollow) {
-    if (username === null || username === undefined) {
+    if (username.value === null || username.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -76,11 +76,11 @@ export default function ArtworkPage(props) {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likeArtwork(isLike) {
-    if (username === null || username === undefined) {
+    if (username.value === null || username.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -151,7 +151,7 @@ export default function ArtworkPage(props) {
                   onClick={toggleLike}>
                   {capitalizeFirst(t('common:like'))}
                 </Button>
-                {username !== artwork.data.Owner.Username &&
+                {username.value !== artwork.data.Owner.Username &&
                   <Link
                     href={{
                       pathname: "/messages",

@@ -1,12 +1,10 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import { useState } from 'react'
-import Button from '../Button/Button'
+import { useContext, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
-import { useUser } from '../../hooks/useUser'
 import { useEffect } from 'react'
-import CancelIcon from '@material-ui/icons/Cancel';
+import { UserContext } from '../../contexts/user-context'
 
 
 
@@ -22,7 +20,7 @@ export default function ArtworkListItemDefined({
   const s = styles();
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
-  const { isSignedIn } = useUser();
+  const { isSignedIn } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   useEffect(() => {
@@ -37,7 +35,7 @@ export default function ArtworkListItemDefined({
     onLikeClick(artwork.Id, !isLiked);
   }
 
-  const likedColor = !isSignedIn ?
+  const likedColor = !isSignedIn.value ?
     'disabled' :
     isLiked ? "secondary" : "inherit";
 
@@ -77,7 +75,7 @@ export default function ArtworkListItemDefined({
               className={s.likeButton}
               disableRipple
               disableFocusRipple
-              disabled={!isSignedIn}
+              disabled={!isSignedIn.value}
               onClick={toggleLike}>
               <FavoriteIcon fontSize={'small'} color={likedColor} />
             </IconButton>

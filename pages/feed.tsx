@@ -7,29 +7,30 @@ import Button from '../app/components/Button/Button'
 import Box from '@material-ui/core/Box'
 import ProfileCard from '../app/components/ProfileCard/ProfileCard'
 import FollowSuggestionCard from '../app/components/FollowSuggestionCard/FollowSuggestionCard'
-import NewsletterCard from '../app/components/NewsletterCard/NewsletterCard'
 import FeedCardSkeleton from '../app/components/FeedCardSkeleton/FeedCardSkeleton'
 
 import { styles } from '../styles/feed.css';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useFollowRecommendations } from '../app/hooks/dataFetching/useFollowRecommendations';
-import { useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
+import { useGetUserProfilePicture, useGetUserProfileSummary } from '../app/hooks/dataFetching/UserProfile';
 import { useInfiniteScroll } from '../app/hooks/useInfiniteScroll';
-import { useUser } from '../app/hooks/useUser';
+
 import { Membership } from '../app/models/Membership';
 import { useBreakpointDown } from '../app/hooks/useBreakpointDown'
 import { TokenContext } from '../app/contexts/token-context';
+import { UserContext } from '../app/contexts/user-context';
 
 export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const { username, membership, profilePicture } = useUser();
+  const { username, membership } = useContext(UserContext);
+  const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const token = useContext(TokenContext);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const userProfile = useGetUserProfileSummary(username);
-  const { suggestedUsers } = useFollowRecommendations(username);
+  const userProfile = useGetUserProfileSummary(username.value);
+  const { suggestedUsers } = useFollowRecommendations(username.value);
   const mdPlusScreenOrDown = useBreakpointDown('mdPlus');
 
   const loadMoreElement = useRef(null);
@@ -41,16 +42,25 @@ export default function FeedPage() {
 
 
   useEffect(() => {
-    if (username) {
+    if (username.value) {
       var pageList = []
       for (let i = 0; i < pageCount; i++) {
         pageList.push(
-          <Feed key={i} user={username} index={i} onLikeClick={likePost} fetchMorePosts={fetchMorePosts} entriesCount={entriesCount} setEntriesCount={setEntriesCount} setFetchMorePosts={setFetchMorePosts}></Feed>
+          <Feed 
+            key={i} 
+            user={username.value} 
+            index={i} 
+            onLikeClick={likePost} 
+            fetchMorePosts={fetchMorePosts} 
+            entriesCount={entriesCount} 
+            setEntriesCount={setEntriesCount} 
+            setFetchMorePosts={setFetchMorePosts}
+          />
         );
       }
       setPages(pageList);
     }
-  }, [username]);
+  }, [username.value]);
 
   useEffect(() => {
     if (!fetchMorePosts && entriesCount <= 0) {
@@ -59,7 +69,7 @@ export default function FeedPage() {
   }, [fetchMorePosts]);
 
   function follow(user, isFollow) {
-    fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -79,7 +89,7 @@ export default function FeedPage() {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -108,7 +118,7 @@ export default function FeedPage() {
           {!mdPlusScreenOrDown && 
             <div className={s.colLeft}>
               <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
-              {membership === Membership.PortfolioPremium &&
+              {membership.value === Membership.PortfolioPremium &&
                 <Link href="/upload">
                   <a>
                     <Button
@@ -126,7 +136,7 @@ export default function FeedPage() {
             </div>
           }
           <div className={s.colFeed}>
-            {(username && !isNoPosts) ? (
+            {(username.value && !isNoPosts) ? (
               <>
                 {pages}
                 {(fetchMorePosts) &&

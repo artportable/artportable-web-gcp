@@ -20,9 +20,10 @@ export function useGetUserProfileSummary(user) {
   }
 }
 
-export const getUserProfileUri = (user: string, myUsername: string) => `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
+export const getUserProfileUri = (user: string, myUsername: string) => 
+  !user || !myUsername ? null : `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
 export function useGetUserProfile(user, myUsername) {
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     getUserProfileUri(user, myUsername),
     getFetcher(user),
     {
@@ -33,7 +34,8 @@ export function useGetUserProfile(user, myUsername) {
   return {
     data: data,
     isLoading: !error && !data,
-    isError: error
+    isError: error,
+    mutate
   }
 }
 
@@ -71,7 +73,7 @@ export function useGetUserProfileTags(user) {
 
 export function useGetUserProfilePicture(user) {
   const { data, error } = useSWR(
-    `${apiBaseUrl}/api/profile/${user}/profilepicture`,
+    user !== null ? `${apiBaseUrl}/api/profile/${user}/profilepicture` : null,
     getFetcher(user, 'text'),
     {
       revalidateOnFocus: false,

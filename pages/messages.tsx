@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Main from '../app/components/Main/Main'
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -11,16 +11,18 @@ import CreateChannel from '../app/components/Messaging/CreateChannel/CreateChann
 import CustomMessage from '../app/components/Messaging/CustomMessage/CustomMessage';
 import MessagingInput from '../app/components/Messaging/MessagingInput/MessagingInput';
 import { useGetChatClient } from '../app/hooks/useGetChatClient'
-import { useUser } from '../app/hooks/useUser';
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { UserContext } from '../app/contexts/user-context';
+import { useGetUserProfilePicture } from '../app/hooks/dataFetching/UserProfile';
 
 
 
 export default function MessagesPage(props) {
   const { t } = useTranslation(['messages']);
   const { referTo, artwork } = props;
-  const { username, isSignedIn, profilePicture } = useUser();
+  const { username, isSignedIn } = useContext(UserContext);
+  const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const [referToChannel, setReferToChannel] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const theme = 'light';
@@ -30,11 +32,11 @@ export default function MessagesPage(props) {
     cid: 1,
   };
 
-  const chatClient = useGetChatClient(username, profilePicture, isSignedIn);
+  const chatClient = useGetChatClient(username.value, profilePicture, isSignedIn.value);
   const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
   const [hasChannels, setHasChannels] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const filter = { members: { $in: [username] } };
+  const filter = { members: { $in: [username.value] } };
 
   useEffect(() => {
     setIsCreating(Object.keys(chatClient.activeChannels).length === 0);
@@ -46,7 +48,7 @@ export default function MessagesPage(props) {
         try {
 
           var channel = chatClient.channel('messaging', {
-            members: [referTo, username],
+            members: [referTo, username.value],
           });
           await channel.watch();
           setReferToChannel(channel);

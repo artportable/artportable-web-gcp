@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Typography } from '@material-ui/core'
+import { Dialog, DialogContent, DialogTitle, DialogActions, TextField } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
 
-import { useUser } from '../../hooks/useUser'
 import { useTranslation } from 'react-i18next'
 import { mutate } from 'swr'
 import { styles } from './editProfileDialog.css'
@@ -16,6 +15,7 @@ import { EditSocials } from './EditSocials/EditSocials'
 import { v4 } from 'uuid'
 import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFetching/UserProfile';
 import { TokenContext } from '../../contexts/token-context';
+import { UserContext } from '../../contexts/user-context';
 
 interface Profile {
   title: string;
@@ -60,7 +60,7 @@ export default function EditProfileDialog({ userProfile }) {
   const s = styles();
   const { t } = useTranslation('profile');
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const { username } = useUser();
+  const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
 
   
@@ -70,9 +70,9 @@ export default function EditProfileDialog({ userProfile }) {
   const makeChanges = async (_) => {
     setOpenEdit(false);
     try {
-      mutate(getUserProfileUri(username, null), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
+      mutate(getUserProfileUri(username.value, null), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
             
-      const result = await fetch(`${apiBaseUrl}/api/profile/${username}`, {
+      await fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export default function EditProfileDialog({ userProfile }) {
         body: JSON.stringify(profile),
       });      
 
-      mutate(getUserProfileSummaryUri(username));
+      mutate(getUserProfileSummaryUri(username.value));
     } catch (error) {
       
     }
