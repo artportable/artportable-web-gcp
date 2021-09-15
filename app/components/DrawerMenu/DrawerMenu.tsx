@@ -8,16 +8,19 @@ import { styles } from './drawerMenu.css'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from 'next/router'
-import { useUser } from '../../hooks/useUser'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
+import { UserContext } from '../../contexts/user-context'
+import { useContext } from 'react'
+import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const { profilePicture, username, isSignedIn } = useUser();
+  const { username, isSignedIn } = useContext(UserContext);
+  const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
 
   const close = () => setOpen(false);
@@ -31,7 +34,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
       </div>
       <div className={s.listsContainer}>
         <List>
-          {(isSignedIn) &&
+          {(isSignedIn.value) &&
             <Link href="/feed" passHref>
               <ListItem button divider>
                 <ListItemText primary={t('myArtNetwork')} />
@@ -45,7 +48,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           </Link>
         </List>
 
-        {isSignedIn ?
+        {isSignedIn.value ?
           <List classes={{ root: s.authList }}>
             <Link href="/messages" passHref>
               <ListItem button divider>
@@ -57,7 +60,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
                 <ListItemText primary={t('messages')} />
               </ListItem>
             </Link>
-            <Link href={`/profile/@${username}`} passHref>
+            <Link href={`/profile/@${username.value}`} passHref>
               <ListItem button divider>
                 <ListItemAvatar>
                   <ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>

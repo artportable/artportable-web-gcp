@@ -44,7 +44,7 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
       }
     }
 
-    if (!chatClientRef.current.user && isSignedIn) {
+    if (!chatClientRef.current.user && isSignedIn && token !== null) {
       initChat();
     }
 
@@ -57,7 +57,7 @@ export function useGetChatClient(username, profilePicture, isSignedIn, setUnread
 
       }
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, token]);
 
   return chatClientRef.current;
 }

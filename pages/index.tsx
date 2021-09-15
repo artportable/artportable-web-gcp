@@ -13,17 +13,17 @@ import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
 import { isNullOrUndefined } from "../app/utils/util";
 import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
-import { useUser } from "../app/hooks/useUser";
 import IndexHero from "../app/components/IndexHero/IndexHero";
 import { TokenContext } from "../app/contexts/token-context";
 import { LoadingContext } from "../app/contexts/loading-context";
+import { UserContext } from "../app/contexts/user-context";
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
   const token = useContext(TokenContext);
-  const { username, isSignedIn, initialized } = useUser();
+  const { username, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -40,18 +40,16 @@ export default function DiscoverPage() {
   const [searchQuery, setSearchQuery] = useState<string>();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
   const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
-  const [trackedArtwork, setTrackedArtwork] = useState(null);
-  const [trackedArtist, setTrackedArtists] = useState(null);
 
   const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
-    if(initialized){
+    if(!isSignedIn.isPending){
       setLoading(false);
     } else {
       setLoading(true);
     }
-  }, [initialized]);
+  }, [isSignedIn]);
 
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
@@ -87,8 +85,8 @@ export default function DiscoverPage() {
         if (searchQuery != null && searchQuery != '') {
           url.searchParams.append('q', searchQuery);
         }
-        if (username != null && username != '') {
-          url.searchParams.append('myUsername', username);
+        if (username.value != null && username.value != '') {
+          url.searchParams.append('myUsername', username.value);
         }
         url.searchParams.append('page', (pageIndex + 1).toString());
         url.searchParams.append('pageSize', "10");
@@ -125,11 +123,11 @@ export default function DiscoverPage() {
   }
 
   function like(artworkId, isLike) {
-    if (isNullOrUndefined(username)) {
+    if (isNullOrUndefined(username.value)) {
       return;
     }
 
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization' : `Bearer ${token}`
@@ -147,11 +145,11 @@ export default function DiscoverPage() {
   }
 
   function follow(userToFollow, isFollow) {
-    if (username === null || username === undefined) {
+    if (username.value === null || username.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization' : `Bearer ${token}`
@@ -179,7 +177,7 @@ export default function DiscoverPage() {
     <Main noHeaderPadding wide={useWideLayout}>
       {!loading && 
       <>
-        {!isSignedIn &&
+        {!isSignedIn.value &&
           <IndexHero></IndexHero>
         }
         <div className={s.discoverContainer}>

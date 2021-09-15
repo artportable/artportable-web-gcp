@@ -6,8 +6,8 @@ import { styles } from "./editArtworkDialog.css";
 import { useTranslation } from "next-i18next";
 import { useContext, useEffect, useState } from 'react';
 import { capitalizeFirst } from '../../utils/util';
-import { useUser } from '../../hooks/useUser'
 import { TokenContext } from '../../contexts/token-context';
+import { UserContext } from '../../contexts/user-context';
 
 export default function EditArtworkDialog({ artwork, open, onClose }) {
   const { t } = useTranslation(['art', 'common']);
@@ -19,7 +19,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   const [artworkPrice, setArtworkPrice] = useState('');
   const [deleteAlertDialogOpen, setDeleteAlertDialogOpen] = useState(false);
 
-  const { username } = useUser();
+  const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
 
   useEffect(() => {
@@ -39,8 +39,8 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   }
 
   const onClickDeleteConfirm = (id: string) => {
-    if (username && id && id.trim().length > 0) {
-      onClose(fetch(`${apiBaseUrl}/api/artworks/${id}?myUsername=${username}`, {
+    if (username.value && id && id.trim().length > 0) {
+      onClose(fetch(`${apiBaseUrl}/api/artworks/${id}?myUsername=${username.value}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -51,8 +51,8 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   };
 
   const onConfirmClick = () => {
-    if (username && artwork.Id && artwork.Id.trim().length > 0) {
-      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?myUsername=${username}`, {
+    if (username.value && artwork.Id && artwork.Id.trim().length > 0) {
+      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?myUsername=${username.value}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

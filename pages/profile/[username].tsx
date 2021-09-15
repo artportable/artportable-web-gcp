@@ -14,11 +14,10 @@ import EditArtworkDialog from '../../app/components/EditArtworkDialog/EditArtwor
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
 import { useGetArtworks } from '../../app/hooks/dataFetching/Artworks'
-import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary } from '../../app/hooks/dataFetching/UserProfile'
+import { useGetSimilarPortfolios, useGetUserProfileTags, useGetUserProfile, useGetUserProfileSummary, useGetUserProfilePicture } from '../../app/hooks/dataFetching/UserProfile'
 import React, { useContext, useEffect, useState } from 'react'
 import TabPanel from '../../app/components/TabPanel/TabPanel'
 import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
-import { useUser } from '../../app/hooks/useUser'
 import SimilarPortfoliosSection from '../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
 import { useMainWidth } from '../../app/hooks/useWidth'
 import { getImageAsRows } from '../../app/utils/layoutUtils'
@@ -38,6 +37,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
 import { LoadingContext } from '../../app/contexts/loading-context'
+import { UserContext } from '../../app/contexts/user-context'
 
 
 function a11yProps(index: any) {
@@ -54,9 +54,11 @@ export default function Profile() {
   const theme: Theme = useTheme();
   const router = useRouter();
   const smScreenOrSmaller = useBreakpointDown('sm');
+  const { isSignedIn, username, membership } = useContext(UserContext);
+  const profileUser = useGetProfileUser();
+  const isMyProfile = profileUser === username.value;
 
   const [activeTab, setActiveTab] = useState(0);
-  const [isMyProfile, setIsMyProfile] = useState(false);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
   const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
   const [deleteArtworkSnackbarOpen, setDeleteArtworkSnackbarOpen] = useState(false);
@@ -64,25 +66,37 @@ export default function Profile() {
   const [artworkPrices, setArtworkPrices] = useState<number[]>([]);
   const [editArtworkOpen, setEditArtworkOpen] = useState(false);
   const [artworkToEdit, setArtworkToEdit] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
-  const profileUser = useGetProfileUser();
-  const { username, profilePicture, isSignedIn } = useUser();
-  const artworks = useGetArtworks(profileUser, username);
+  const { data: profilePicture } = useGetUserProfilePicture(username.value);
+  const artworks = useGetArtworks(profileUser, username.value);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const userProfile = useGetUserProfile(profileUser, username);
+  const userProfile = useGetUserProfile(profileUser, username.value);
+
   const [imageRows, setImageRows] = useState(null);
-  const [coverPhoto, setCoverPhoto] = useState(undefined);
   const dispatch = useDispatch();
   const token = useContext(TokenContext);
-
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
-
   const { setLoading } = useContext(LoadingContext);
+  
+  useEffect(() => {
+    if(!isReady) {
+      setLoading(true);
+    }
+    if (isReady) {
+      setLoading(false);
+    }
+  }, [isReady]);
 
-
+  useEffect(() => {
+    if(!isSignedIn.isPending && !userProfile.isLoading) {
+      setIsReady(true);
+    }
+  },
+  [isSignedIn, userProfile.isLoading]);
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -90,10 +104,6 @@ export default function Profile() {
       profilePicture: profilePicture
     });
   }
-
-  useEffect(() => {
-    setCoverPhoto(userProfile?.data?.CoverPhoto);
-  }, [userProfile?.data?.CoverPhoto]);
 
   useEffect(() => {
     setFollow(userProfile?.data?.FollowedByMe);
@@ -126,10 +136,6 @@ export default function Profile() {
   }, [artworks.data, imageRows]);
 
   useEffect(() => {
-    setIsMyProfile(username !== null && profileUser !== null && username == profileUser);
-  }, [username, profileUser]);
-
-  useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
     if (imageRows !== null) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
@@ -140,7 +146,7 @@ export default function Profile() {
   }, [rowWidth]);
 
   function onLikeClick(artworkId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -158,11 +164,11 @@ export default function Profile() {
   }
 
   function follow(userToFollow, isFollow) {
-    if (username === null || username === undefined) {
+    if (username.value === null || username.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -226,8 +232,8 @@ export default function Profile() {
       })
       .then((name) => {
         const url = type === 'profile' ?
-          `${apiBaseUrl}/api/profile/${username}/profilepicture?filename=${name}` :
-          `${apiBaseUrl}/api/profile/${username}/coverphoto?filename=${name}`;
+          `${apiBaseUrl}/api/profile/${username.value}/profilepicture?filename=${name}` :
+          `${apiBaseUrl}/api/profile/${username.value}/coverphoto?filename=${name}`;
 
         fetch(url, {
           method: 'PUT',
@@ -247,7 +253,7 @@ export default function Profile() {
                 setUploadSnackbarOpen(true)
                 break;
               default:
-                setCoverPhoto(name)
+                userProfile.mutate();
                 setUploadCoverSnackbarOpen(true);
                 break;
             }
@@ -285,170 +291,175 @@ export default function Profile() {
 
   return (
     <Main>
-      <FullWidthBlock>
-        {artworks.isLoading && <div>Loading...</div>}
-        {!artworks.isLoading && !artworks.isError && artworks &&
-          <ProfileCoverPhoto coverPhoto={coverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile} />
-        }
-        {artworks.isError && <div>error...</div>}
-      </FullWidthBlock>
-
-      <div className={s.profileGrid}>
-        <div className={s.profileSummary}>
-          <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
-        </div>
-        <div className={s.editActions}>
-          {isMyProfile ?
-            <EditProfileDialog
-              userProfile={userProfile.data}
-            />
-            :
-            <>
-              {
-                <Link
-                  href={{
-                    pathname: "/messages",
-                    query: {
-                      referTo: userProfile.data?.Username
-                    }
-                  }}
-                  as={`/messages`}
-                >
-                  <a style={isSignedIn ? {} : { pointerEvents: 'none' }}>
-                    <Button
-                      className={s.followButton}
-                      size={smScreenOrSmaller ? 'small' : 'medium'}
-                      variant={"contained"}
-                      color="primary"
-                      startIcon={<SendIcon color={"inherit"} />}
-                      disableElevation
-                      rounded
-                      disabled={!isSignedIn}>
-                      {capitalizeFirst(t('common:message'))}
-                    </Button>
-                  </a>
-                </Link>
-              }
-              <Button
-                className={s.followButton}
-                size={smScreenOrSmaller ? 'small' : 'medium'}
-                variant={!isFollowed ? "contained" : "outlined"}
-                color="primary"
-                startIcon={!isFollowed ? <AddIcon /> : null}
-                disableElevation
-                rounded
-                disabled={!isSignedIn}
-                onClick={toggleFollow}>
-                {capitalizeFirst(
-                  !isFollowed ?
-                    t('common:words.follow') :
-                    t('common:words.following')
-                )}
-              </Button>
-            </>
+      {isReady &&
+        <>
+        <FullWidthBlock>
+          {userProfile?.isLoading && <div>Loading...</div>}
+          {!userProfile?.isLoading && !userProfile?.isError &&
+            <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile} />
           }
-        </div>
-        <Divider className={s.divider}></Divider>
-        <ArtistPriceSpan prices={artworkPrices} />
-        {hasArtwork ?
-          <div className={s.tabsContainer}>
-            <Tabs value={activeTab} onChange={handleTabChange} centered >
-              <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
-              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-            </Tabs>
-            <Box paddingY={1}>
-              <TabPanel value={activeTab} index={0}>
-                <div className={s.portfolioContainer}>
-                  {imageRows && imageRows.map((row: Image[], i) =>
-                    <div className={s.portfolioRow} key={i}>
-                      {row.map(image => {
-                        let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
+          {userProfile?.isError && <div>error...</div>}
+        </FullWidthBlock>
 
-                        if (artwork) {
-                          return <ArtworkListItemDefined
-                            key={image.Name}
-                            width={smScreenOrSmaller ? '100%' : image.Width}
-                            height={smScreenOrSmaller ? 'auto' : image.Height}
-                            artwork={artwork}
-                            topActions={isMyProfile ?
-                              <>          
-                              <Button
-                                className={s.editButton}
-                                variant="contained"
-                                color="default"
-                                rounded
-                                onClick={() => openEditArtworkDialog(artwork)}
-                                startIcon={<EditIcon />}>
-                              </Button>
-                       
-                              </> : undefined
-                            }
-                            onLikeClick={onLikeClick} />
-                        }
+        <div className={s.profileGrid}>
+          <div className={s.profileSummary}>
+            <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
+          </div>
+          <div className={s.editActions}>
+            {isMyProfile ?
+              <EditProfileDialog
+                userProfile={userProfile.data}
+              />
+              :
+              <>
+                {
+                  <Link
+                    href={{
+                      pathname: "/messages",
+                      query: {
+                        referTo: userProfile.data?.Username
                       }
-                      )}
-                    </div>
+                    }}
+                    as={`/messages`}
+                  >
+                    <a style={isSignedIn ? {} : { pointerEvents: 'none' }}>
+                      <Button
+                        className={s.followButton}
+                        size={smScreenOrSmaller ? 'small' : 'medium'}
+                        variant={"contained"}
+                        color="primary"
+                        startIcon={<SendIcon color={"inherit"} />}
+                        disableElevation
+                        rounded
+                        disabled={!isSignedIn}>
+                        {capitalizeFirst(t('common:message'))}
+                      </Button>
+                    </a>
+                  </Link>
+                }
+                <Button
+                  className={s.followButton}
+                  size={smScreenOrSmaller ? 'small' : 'medium'}
+                  variant={!isFollowed ? "contained" : "outlined"}
+                  color="primary"
+                  startIcon={!isFollowed ? <AddIcon /> : null}
+                  disableElevation
+                  rounded
+                  disabled={!isSignedIn}
+                  onClick={toggleFollow}>
+                  {capitalizeFirst(
+                    !isFollowed ?
+                      t('common:words.follow') :
+                      t('common:words.following')
                   )}
-                  <EditArtworkDialog 
-                    artwork={artworkToEdit} 
-                    open={editArtworkOpen} 
-                    onClose={onEditArtworkClose} />
-                  {artworks.isLoading &&
-                    <>
-                      <div className={s.portfolioRow}>
-                        <ArtworkListItemDefinedSkeleton grow={1} />
-                        <ArtworkListItemDefinedSkeleton grow={3} />
-                        <ArtworkListItemDefinedSkeleton grow={2} />
-                        <ArtworkListItemDefinedSkeleton grow={1} />
+                </Button>
+              </>
+            }
+          </div>
+          <Divider className={s.divider}></Divider>
+          
+          <ArtistPriceSpan prices={artworkPrices} />
+          {hasArtwork ?
+            <div className={s.tabsContainer}>
+              <Tabs value={activeTab} onChange={handleTabChange} centered >
+                <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+                <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+              </Tabs>
+              <Box paddingY={1}>
+                <TabPanel value={activeTab} index={0}>
+                  <div className={s.portfolioContainer}>
+                    {imageRows && imageRows.map((row: Image[], i) =>
+                      <div className={s.portfolioRow} key={i}>
+                        {row.map(image => {
+                          let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
+
+                          if (artwork) {
+                            return <ArtworkListItemDefined
+                              key={image.Name}
+                              width={smScreenOrSmaller ? '100%' : image.Width}
+                              height={smScreenOrSmaller ? 'auto' : image.Height}
+                              artwork={artwork}
+                              topActions={isMyProfile ?
+                                <>          
+                                <Button
+                                  className={s.editButton}
+                                  variant="contained"
+                                  color="default"
+                                  rounded
+                                  onClick={() => openEditArtworkDialog(artwork)}
+                                  startIcon={<EditIcon />}>
+                                </Button>
+                        
+                                </> : undefined
+                              }
+                              onLikeClick={onLikeClick} />
+                          }
+                        }
+                        )}
                       </div>
-                      <div className={s.portfolioRow}>
-                        <ArtworkListItemDefinedSkeleton grow={2} />
-                        <ArtworkListItemDefinedSkeleton grow={4} />
-                        <ArtworkListItemDefinedSkeleton grow={3} />
-                      </div>
-                    </>
-                  }
-                </div>
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
-              </TabPanel>
-            </Box>
-          </div>
-          :
-          <div className={s.tabsContainer}>
-            <Tabs value={activeTab} centered >
-              <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-            </Tabs>
-            <Box paddingY={1}>
-              <TabPanel value={activeTab} index={0}>
-                <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
-              </TabPanel>
-            </Box>
-          </div>
-        }
-        {similarPortfolios?.data && !similarPortfolios?.isError && <>
-          <Divider className={s.secondDivider}></Divider>
-          <div className={s.similarPortfolios}>
-            <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
-          </div>
-        </>}
-      </div>
-      <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
-          {t('profile:profilePictureUpdated')}
-        </Alert>
-      </Snackbar>
-      <Snackbar open={uploadCoverSnackbarOpen} autoHideDuration={6000} onClose={handleCoverSnackbarClose}>
-        <Alert onClose={handleCoverSnackbarClose} variant="filled" severity="success">
-          {t('profile:coverPhotoUpdated')}
-        </Alert>
-      </Snackbar>
-      <Snackbar open={deleteArtworkSnackbarOpen} autoHideDuration={6000} onClose={handleDeleteArtworkSnackbarClose}>
-        <Alert onClose={handleDeleteArtworkSnackbarClose} variant="filled" severity="success">
-          {t('profile:deleteArtworkSuccess')}
-        </Alert>
-      </Snackbar>
+                    )}
+                    <EditArtworkDialog 
+                      artwork={artworkToEdit} 
+                      open={editArtworkOpen} 
+                      onClose={onEditArtworkClose} />
+                    {artworks.isLoading &&
+                      <>
+                        <div className={s.portfolioRow}>
+                          <ArtworkListItemDefinedSkeleton grow={1} />
+                          <ArtworkListItemDefinedSkeleton grow={3} />
+                          <ArtworkListItemDefinedSkeleton grow={2} />
+                          <ArtworkListItemDefinedSkeleton grow={1} />
+                        </div>
+                        <div className={s.portfolioRow}>
+                          <ArtworkListItemDefinedSkeleton grow={2} />
+                          <ArtworkListItemDefinedSkeleton grow={4} />
+                          <ArtworkListItemDefinedSkeleton grow={3} />
+                        </div>
+                      </>
+                    }
+                  </div>
+                </TabPanel>
+                <TabPanel value={activeTab} index={1}>
+                  <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                </TabPanel>
+              </Box>
+            </div>
+            :
+            <div className={s.tabsContainer}>
+              <Tabs value={activeTab} centered >
+                <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+              </Tabs>
+              <Box paddingY={1}>
+                <TabPanel value={activeTab} index={0}>
+                  <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                </TabPanel>
+              </Box>
+            </div>
+          }
+          {similarPortfolios?.data && !similarPortfolios?.isError && <>
+            <Divider className={s.secondDivider}></Divider>
+            <div className={s.similarPortfolios}>
+              <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
+            </div>
+          </>}
+        </div>
+        <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
+            {t('profile:profilePictureUpdated')}
+          </Alert>
+        </Snackbar>
+        <Snackbar open={uploadCoverSnackbarOpen} autoHideDuration={6000} onClose={handleCoverSnackbarClose}>
+          <Alert onClose={handleCoverSnackbarClose} variant="filled" severity="success">
+            {t('profile:coverPhotoUpdated')}
+          </Alert>
+        </Snackbar>
+        <Snackbar open={deleteArtworkSnackbarOpen} autoHideDuration={6000} onClose={handleDeleteArtworkSnackbarClose}>
+          <Alert onClose={handleDeleteArtworkSnackbarClose} variant="filled" severity="success">
+            {t('profile:deleteArtworkSuccess')}
+          </Alert>
+        </Snackbar>
+      </>
+    }
     </Main>
   );
 }
