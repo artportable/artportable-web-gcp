@@ -61,7 +61,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
         body: JSON.stringify({
           "Title": artworkName,
           "Description": artworkDescription,
-          "Price": artworkPrice,
+          "Price": parseInt(artworkPrice, 10),
           "PrimaryFile": artwork.PrimaryFile?.Name,
           "SecondaryFile": artwork.SecondaryFile?.Name,
           "TertiaryFile": artwork.TertiaryFile?.Name,
