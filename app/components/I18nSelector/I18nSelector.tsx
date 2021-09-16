@@ -43,6 +43,7 @@ export default function I18nSelector() {
       </Button>
       <Menu
         id="language-menu"
+        disableScrollLock
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',
