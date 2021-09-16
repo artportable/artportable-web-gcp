@@ -3,7 +3,7 @@ import { styles } from '../styles/index.css';
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
-import { Box, CircularProgress, Tab, Tabs } from "@material-ui/core";
+import { Box, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
