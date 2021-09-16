@@ -14,33 +14,48 @@ import Button from '../Button/Button';
 import DrawerMenu from '../DrawerMenu/DrawerMenu';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useGetChatClient } from '../../hooks/useGetChatClient'
 import { useGetActivityToken } from '../../hooks/useGetActivityClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
-import { useUser } from '../../hooks/useUser'
 import { Membership } from '../../models/Membership'
 import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 import 'react-activity-feed/dist/index.css';
 import NotificationIconButton from '../NotificationIconButton/NotificationIconButton'
+import { LoadingContext } from '../../contexts/loading-context'
+import { UserContext } from '../../contexts/user-context'
+import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 
-export default function Header({ loading = true }) {
+export default function Header({}) {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
-  const { username, profilePicture, isSignedIn, membership } = useUser();
+  const { username, isSignedIn, membership } = useContext(UserContext);
+  const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
 
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(username, profilePicture, isSignedIn, setUnreadChatMessages));
+  const [chatClient] = useState(useGetChatClient(username.value, profilePicture, isSignedIn.value, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
-  const { token: activityToken, isError, isLoading } = useGetActivityToken(username, isSignedIn);
+  const [globalIsLoading, setglobalIsLoading] = useState(false);
+  const { token: activityToken, isError, isLoading } = useGetActivityToken(username.value, isSignedIn.value);
 
+
+  const { loading: loadingFromContext } = useContext(LoadingContext);
+
+
+  useEffect(() => {
+    if (loadingFromContext) {
+      setglobalIsLoading(true);
+    } else {
+      setglobalIsLoading(false);
+    }
+  }, [loadingFromContext]);
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -84,7 +99,7 @@ export default function Header({ loading = true }) {
             </Link>
           </div>
           <nav className={s.navigation}>
-            {(isSignedIn) &&
+            {(isSignedIn.value) &&
               <MuiButton classes={{ root: s.navButton }} color="default" size="large">
                 <Link href="/feed">
                   {t('myArtNetwork')}
@@ -97,7 +112,7 @@ export default function Header({ loading = true }) {
               </Link>
             </MuiButton>
           </nav>
-          {(!isSignedIn) &&
+          {(!isSignedIn.value) &&
             <div className={s.login}>
               <Button
                 size="small"
@@ -122,9 +137,9 @@ export default function Header({ loading = true }) {
               </Button>
             </div>
           }
-          {(isSignedIn) &&
-            <div className={clsx(s.login, isSignedIn && 'signedIn')}>
-              {(membership === Membership.PortfolioPremium) &&
+          {(isSignedIn.value) &&
+            <div className={clsx(s.login, isSignedIn.value && 'signedIn')}>
+              {(membership.value === Membership.PortfolioPremium) &&
                 <div className={s.upload}>
                   <Link href="/upload">
                     <a>
@@ -143,7 +158,7 @@ export default function Header({ loading = true }) {
               <div className={s.iconButtons}>
                 <div className={s.notificationButton}>
                   {activityToken && !isError && !isLoading ?
-                  <NotificationIconButton activityToken={activityToken} username={username}/>
+                  <NotificationIconButton activityToken={activityToken} username={username.value}/>
                     :
                     <IconButton aria-label="account" disabled aria-disabled>
                       <NotificationsIcon
@@ -175,8 +190,8 @@ export default function Header({ loading = true }) {
         <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
       </Toolbar>
     </AppBar>
-    {loading &&
-      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw' }} />
+    {globalIsLoading &&
+      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
     }
     </>
   );

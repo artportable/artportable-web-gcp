@@ -1,18 +1,26 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import { useState } from 'react'
-import ShowArtworkModal from '../ShowArtworkModal/ShowArtworkModal'
+import { useContext, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
-import Paper from '@material-ui/core/Paper'
 import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
-import { useUser } from '../../hooks/useUser'
 import { useEffect } from 'react'
+import { UserContext } from '../../contexts/user-context'
 
-export default function ArtworkListItemDefined({ artwork, onLikeClick, height, width }) {
+
+
+
+
+export default function ArtworkListItemDefined({ 
+  artwork,
+  onLikeClick,
+  height,
+  width,
+  topActions = undefined
+}) {
   const s = styles();
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
-  const { isSignedIn } = useUser();
+  const { isSignedIn } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   useEffect(() => {
@@ -27,11 +35,11 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
     onLikeClick(artwork.Id, !isLiked);
   }
 
-  const likedColor = !isSignedIn ?
-    'disabled' : 
+  const likedColor = !isSignedIn.value ?
+    'disabled' :
     isLiked ? "secondary" : "inherit";
 
-  if(width === null || height === null) return  <></>;
+  if (width === null || height === null) return <></>;
 
   return (
     <div title={artwork.Title} className={s.container}>
@@ -48,6 +56,13 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
             />
           </a>
         </Link>
+        {topActions &&
+          <div className={s.editOverlay}>
+            <div className={s.topActions}>
+              {topActions}
+            </div>
+          </div>
+        }
       </div>
       <div className={s.titleAndLike}>
         <div className={s.title}>{artwork.Title}</div>
@@ -60,9 +75,9 @@ export default function ArtworkListItemDefined({ artwork, onLikeClick, height, w
               className={s.likeButton}
               disableRipple
               disableFocusRipple
-              disabled={!isSignedIn}
+              disabled={!isSignedIn.value}
               onClick={toggleLike}>
-                <FavoriteIcon fontSize={'small'} color={likedColor}/>
+              <FavoriteIcon fontSize={'small'} color={likedColor} />
             </IconButton>
           </div>
         </div>

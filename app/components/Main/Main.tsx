@@ -9,15 +9,14 @@ interface Props {
   wide?: boolean;
   noHeaderPadding?: boolean;
   fullWidth?: boolean;
-  loading?: boolean
 }
 
-export default function Main({ children, wide = false, noHeaderPadding = false, fullWidth = false, loading = false }: Props) {
+export default function Main({ children, wide = false, noHeaderPadding = false, fullWidth = false}: Props) {
   const s = styles();
 
   return (
     <>
-      <Header loading={loading}></Header>
+      <Header></Header>
       <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
         {children}
       </div>

@@ -24,7 +24,7 @@ import type { IncomingMessage } from 'http';
 import { SSRKeycloakProvider } from '@react-keycloak/ssr';
 import cookie from 'cookie';
 import { keycloakConfig, keycloakInitOptions } from '../constants/keycloakSettings';
-import { AuthClientTokens } from '@react-keycloak/core';
+import { AuthClientEvent, AuthClientTokens } from '@react-keycloak/core';
 import { CustomSSRCookies } from '../app/utils/customSSRCookies'
 import ArtportableContexts from '../app/contexts/ArtportableContexts'
 
@@ -42,9 +42,14 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const store = useStore(pageProps.initialReduxState);
 
   const [accessToken, setAccessToken] = useState<string>(null);
+  const [keycloakState, setKeycloakState] = useState<AuthClientEvent>()
 
   const onAuthRefresh = (tokens: AuthClientTokens) => {
     setAccessToken(tokens.token);
+  }
+
+  const onKeycloakEvent = (event) => {
+    setKeycloakState(event);
   }
 
   React.useEffect(() => {
@@ -79,9 +84,10 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         persistor={CustomSSRCookies(cookies)}
         initOptions={keycloakInitOptions}
         onTokens={onAuthRefresh}
+        onEvent={onKeycloakEvent}
       >
         <Provider store={store}>
-          <ArtportableContexts accessToken={accessToken}>
+          <ArtportableContexts accessToken={accessToken} keycloakState={keycloakState}>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <Component {...pageProps} />

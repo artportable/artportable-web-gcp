@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
       gridAutoRows: 'min-content',
       gridTemplateColumns: `${theme.spacing(2)}px calc(100% - ${theme.spacing(4)}px) ${theme.spacing(2)}px`,
       paddingTop: 'calc(35px + var(--header-height))',
-      minHeight: '100vh',
+      minHeight: 'calc(100vh - 141px)',
       paddingBottom: '2rem',
       '& > *': {
         gridColumn: '2/3'

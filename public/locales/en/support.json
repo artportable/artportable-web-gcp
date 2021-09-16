@@ -1,0 +1,11 @@
+{
+  "writeToUs": "Write to us and we will get back to you as soon as possible",
+  "subject": "Subject",
+  "email": "Email",
+  "message": "Message",
+  "mustNotBeEmptyMessage": "Field cannot be empty",
+  "emailErrorMessage": "Invalid email address",
+  "send": "Send",
+  "successMessage": "Message sent. We will get back to you by email as soon as possible.",
+  "warningMessage": "Something went wrong, try again."
+}

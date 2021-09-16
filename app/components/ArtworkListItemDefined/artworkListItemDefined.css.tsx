@@ -8,15 +8,35 @@ export const styles = makeStyles((theme: Theme) =>
     },
     imageContainer: {
       borderRadius: '2px',
+      position: 'relative',
       overflow: 'hidden',
       textAlign: 'center',
       '& img': {
         display: 'block'
+      },
+      '&:hover > div': {
+        visibility: 'visible'
       }
+    },
+    editOverlay: {
+      position: 'absolute',
+      top: 0,
+      visibility: 'hidden',
+      '@media (hover: none)': {
+        visibility: 'visible',
+      },
+      width: '100%',
+      boxShadow: `${theme.palette.common.black} 0px 0px 40px 25px`,
+    },
+    topActions: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      padding: theme.spacing(1),
     },
     titleAndLike: {
       display: 'flex',
-      height:'30px',
+      height: '30px',
       marginTop: theme.spacing(0.4),
       justifyContent: 'space-between',
       alignItems: 'flex-start',
@@ -54,6 +74,16 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: 'transparent'
       }
+    },
+    deleteGrid: {
+      position: "relative"
+    },
+    deleteButton: {
+      margin: theme.spacing(0.5),
+      padding: 0,
+      position: "absolute",
+      top: theme.spacing(1),
+      right: theme.spacing(1)
     }
   }),
 );

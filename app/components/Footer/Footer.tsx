@@ -20,34 +20,7 @@ export default function Footer() {
             />
           </a>
         </Link>
-      </div>
-      <div className={s.links}>
-        <div className={s.flexItem}>
-          <Typography variant="subtitle2" component="div" color="primary">
-          {t('technicalSupport')}
-          </Typography>
-          
-          <Link href="mailto:support@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-              support@artportable.com
-              </Typography>
-            </a>
-          </Link>
-            
-          
-        </div>
-        <div className={s.flexItem}>
-          <Typography variant="subtitle2" component="div" color="primary">
-            {t('contactUs')}
-          </Typography>
-          <Link href="mailto:sales@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-              sales@artportable.com
-              </Typography>
-            </a>
-          </Link>
+        <div>
           <Typography variant="body2" component="div">
             Åsögatan 176
           </Typography>
@@ -57,6 +30,34 @@ export default function Footer() {
           <Typography variant="body2" component="div">
             559113-1171
           </Typography>
+        </div>
+      </div>
+      <div className={s.links}>
+        <div className={s.flexItem}>
+          <Typography variant="subtitle2" component="div" color="primary">
+            {t('contactUs')}
+          </Typography>
+          <Link href="/support">
+            <a>
+              <Typography variant="body2" component="div">
+                {t('contactForm')}
+              </Typography>
+            </a>
+          </Link>
+          <Link href="mailto:sales@artportable.com">
+            <a>
+              <Typography variant="body2" component="div">
+                sales@artportable.com
+              </Typography>
+            </a>
+          </Link>
+          <Link href="mailto:support@artportable.com">
+            <a>
+              <Typography variant="body2" component="div">
+                support@artportable.com
+              </Typography>
+            </a>
+          </Link>
         </div>
         <div className={s.flexItem}>
           <Typography variant="subtitle2" component="div" color="primary">

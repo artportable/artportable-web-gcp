@@ -4,7 +4,7 @@ import { TokenContext } from '../contexts/token-context';
 
 
 export function useGetActivityToken(username, isSignedIn) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASEURL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const token = useContext(TokenContext);
 
   const shouldFetch = username && isSignedIn && token;

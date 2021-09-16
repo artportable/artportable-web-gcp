@@ -1,0 +1,11 @@
+{
+  "writeToUs" : "Skriv till oss så återkommer vi så fort vi kan",
+  "subject": "Ämne",
+  "email": "E-post",
+  "message": "Meddelande",
+  "mustNotBeEmptyMessage": "Fältet får inte vara tomt",
+  "emailErrorMessage": "Ogiltig e-postadress",
+  "send": "Skicka",
+  "successMessage": "Meddelande skickat. Vi återkommer på e-post så snart vi kan!",
+  "warningMessage": "Något gick fel, försök igen."
+}

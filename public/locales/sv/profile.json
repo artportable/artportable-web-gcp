@@ -29,5 +29,7 @@
   "behance": "Behance",
   "website": "Hemsida",
   "profilePictureUpdated": "Profilbild uppdaterad!",
-  "coverPhotoUpdated": "Omslagsbild updated!"
+  "coverPhotoUpdated": "Omslagsbild updated!",
+  "deleteArtworkDialog": "Är du säker på att du vill radera konstverket vid namn \"{{title}}\"?",
+  "deleteArtworkSuccess": "Konstverk raderat"
 }

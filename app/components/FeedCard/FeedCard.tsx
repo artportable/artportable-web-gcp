@@ -63,33 +63,37 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           />
         </a>
       </Link>
-      <CardMedia className={mediaClasses}>
-        <div className={s.primaryImage}>
-          <img
-            className={s.image}
-            src={`${bucketUrl}${content.Item.PrimaryFile.Name}`}
-            alt="Primary image"
-          />
-        </div>
-        {content.Item.SecondaryFile &&
-          <div className={s.secondaryImage}>
-            <img
-              className={s.image}
-              src={`${bucketUrl}${content.Item.SecondaryFile.Name}`}
-              alt="Primary image"
-            />
-          </div>
-        }
-        {content.Item.TertiaryFile &&
-          <div className={s.tertiaryImage}>
-            <img
-              className={s.image}
-              src={`${bucketUrl}${content.Item.TertiaryFile.Name}`}
-              alt="Primary image"
-            />
-          </div>
-        }
-      </CardMedia>
+      <CardMedia>
+        <Link href={`/art/${content.Item.Id}`}>
+          <a className={mediaClasses}>
+            <div className={s.primaryImage}>
+              <img
+                className={s.image}
+                src={`${bucketUrl}${content.Item.PrimaryFile.Name}`}
+                alt="Primary image"
+              />
+            </div>
+            {content.Item.SecondaryFile &&
+              <div className={s.secondaryImage}>
+                <img
+                  className={s.image}
+                  src={`${bucketUrl}${content.Item.SecondaryFile.Name}`}
+                  alt="Primary image"
+                />
+              </div>
+            }
+            {content.Item.TertiaryFile &&
+              <div className={s.tertiaryImage}>
+                <img
+                  className={s.image}
+                  src={`${bucketUrl}${content.Item.TertiaryFile.Name}`}
+                  alt="Primary image"
+                />
+              </div>
+            }
+          </a>
+        </Link>
+        </CardMedia>
       <CardActions className={s.cardActions}>
         <Button
           startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"} />}

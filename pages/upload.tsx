@@ -15,8 +15,8 @@ import "cropperjs/dist/cropper.css";
 import { Paper, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { useRouter } from 'next/router';
-import { useUser } from '../app/hooks/useUser'
 import { TokenContext } from '../app/contexts/token-context';
+import { UserContext } from '../app/contexts/user-context';
 
 
 export default function UploadArtworkPage() {
@@ -26,7 +26,7 @@ export default function UploadArtworkPage() {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { username, isSignedIn } = useUser();
+  const { username, isSignedIn } = useContext(UserContext);
   const tags = useGetTags();
 
   const [title, setTitle] = useState('');
@@ -52,7 +52,7 @@ export default function UploadArtworkPage() {
   const cropperRef = useRef(null);
 
   useEffect(() => {
-    if (!isSignedIn) {
+    if (!isSignedIn.value) {
       router.push('/');
     }
     
@@ -72,8 +72,8 @@ export default function UploadArtworkPage() {
       TertiaryFile: nameTertiary
     }
     setUploadSnackbarOpen(true);
-    const res = usePostArtwork(artwork, username, token);
-    router.push('/profile/@' + username);
+    const res = usePostArtwork(artwork, username.value, token);
+    router.push('/profile/@' + username.value);
   }
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {

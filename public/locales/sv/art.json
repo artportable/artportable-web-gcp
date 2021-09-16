@@ -1,3 +1,9 @@
 {
-  "peopleLikeThis": "gillar detta"
+  "peopleLikeThis": "gillar detta",
+  "artworkTitle": "Titel",
+  "artworkDescription": "Beskrivning",
+  "artworkPrice": "Pris",
+  "editArtwork": "Editera konstverk",
+  "deleteArtworkWarningTitle": "Är du säker på att du vill ta bort konstverket?",
+  "deleteArtworkWarningText": "Vänligen bekräfta att du vill ta bort konstverket."
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Link from 'next/link'
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
@@ -10,12 +10,12 @@ import { useTranslation } from 'next-i18next'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import styles from './profileIconButton.css'
-import { useUser } from '../../hooks/useUser'
+import { UserContext } from '../../contexts/user-context'
 
 const ProfileIconButton = ({profilePicture = null}) => {
   const s = styles();
   const { t } = useTranslation('header');
-  const user = useUser();
+  const { username } = useContext(UserContext);
   const { keycloak } = useKeycloak<KeycloakInstance>();
 
   const [popoverAnchorEl, setPopoverAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -42,7 +42,7 @@ const ProfileIconButton = ({profilePicture = null}) => {
           aria-label="Profile menu"
           size="large"
         >
-          <Link href={`/profile/@${user.username}`} passHref>
+          <Link href={`/profile/@${username.value}`} passHref>
             <Button
               className={'MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButtonGroup-grouped MuiButtonGroup-groupedVertical MuiButtonGroup-groupedOutlined MuiButtonGroup-groupedOutlinedVertical MuiButtonGroup-groupedOutlined MuiButton-outlinedSizeLarge MuiButton-sizeLarge'}
               href="/"
