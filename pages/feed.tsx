@@ -60,7 +60,7 @@ export default function FeedPage() {
       }
       setPages(pageList);
     }
-  }, [username.value]);
+  }, [username.value, pageCount]);
 
   useEffect(() => {
     if (!fetchMorePosts && entriesCount <= 0) {
