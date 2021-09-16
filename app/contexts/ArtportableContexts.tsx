@@ -36,6 +36,20 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
          }
         })
       );
+    } else if (keycloakState === 'onReady') {
+      if(!keycloak.authenticated) {
+        setUserContext((prevValue) => ({
+          ...prevValue,
+          isSignedIn: {
+            value: false,
+            isPending: false,
+          },
+          username: {
+            value: null,
+            isPending: false,
+          }
+        }));
+      }
     }
   }, [keycloakState, accessToken]);
 
