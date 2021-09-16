@@ -16,6 +16,7 @@ import { v4 } from 'uuid'
 import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFetching/UserProfile';
 import { TokenContext } from '../../contexts/token-context';
 import { UserContext } from '../../contexts/user-context';
+import { capitalizeFirst } from '../../utils/util';
 
 interface Profile {
   title: string;
@@ -58,7 +59,7 @@ export interface Socials {
 
 export default function EditProfileDialog({ userProfile }) {
   const s = styles();
-  const { t } = useTranslation('profile');
+  const { t } = useTranslation(['profile', 'common']);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
@@ -160,11 +161,23 @@ export default function EditProfileDialog({ userProfile }) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={makeChanges} color="primary">
-            Submit
+          <Button
+            variant="text" 
+            color="primary"
+            disableElevation 
+            rounded
+            onClick={cancel}
+          >
+            {capitalizeFirst(t('common:words.cancel'))}
           </Button>
-          <Button onClick={cancel} color="primary" autoFocus>
-            Cancel
+          <Button
+            variant="contained" 
+            color="primary"
+            disableElevation 
+            rounded
+            onClick={makeChanges}
+          >
+            {capitalizeFirst(t('common:words.save'))}
           </Button>
         </DialogActions>
       </Dialog>
