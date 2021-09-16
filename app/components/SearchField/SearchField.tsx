@@ -105,6 +105,7 @@ const SearchField = ({ onFilter, tags = null }) => {
                 <li key={tag.name}>
                   <Chip
                     onClick={(_) => setCategoryTagSelected(i)}
+                    variant={tag.selected ? "default" : "outlined"}
                     color={tag.selected ? "primary" : "default"}
                     label={tag.name} />
                 </li>
@@ -114,6 +115,7 @@ const SearchField = ({ onFilter, tags = null }) => {
                 <>
                   <Chip
                     color={"default"}
+                    variant="outlined"
                     label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
                     className={s.moreChip} />
                   <FormControl className={s.selectFormControl}>
