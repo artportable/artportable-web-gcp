@@ -31,7 +31,7 @@ stages:
         customCommand: 'run build'
     - task: Docker@2
       condition: ne(variables['Build.Reason'], 'PullRequest') #Skip step image build if Pull Request
-      displayName: Build an image for $(env)
+      displayName: Build an image
       inputs:
         containerRegistry: 'artportable-image-repository'
         repository: 'artportable-web'
