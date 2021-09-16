@@ -21,7 +21,7 @@ export function useGetUserProfileSummary(user) {
 }
 
 export const getUserProfileUri = (user: string, myUsername: string) => 
-  !user || !myUsername ? null : `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
+  !user ? null : `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
 export function useGetUserProfile(user, myUsername) {
   const { data, error, mutate } = useSWR(
     getUserProfileUri(user, myUsername),
