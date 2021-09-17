@@ -15,6 +15,7 @@ import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { UserContext } from '../app/contexts/user-context';
 import { useGetUserProfilePicture } from '../app/hooks/dataFetching/UserProfile';
+import clsx from 'clsx';
 
 
 
@@ -35,6 +36,7 @@ export default function MessagesPage(props) {
   const chatClient = useGetChatClient(username.value, profilePicture, isSignedIn.value);
   const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
   const [hasChannels, setHasChannels] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const filter = { members: { $in: [username.value] } };
 
@@ -64,6 +66,10 @@ export default function MessagesPage(props) {
     setReferTo();
   }, [referTo]);
 
+  const toggleNav = () => {
+    setNavOpen((prev) => !prev);
+  }
+
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -73,27 +79,29 @@ export default function MessagesPage(props) {
   }
 
   return (
-    <Main noHeaderPadding>
-      <div>
+    <Main noHeaderPadding wide>
+      <div className="messages__main-container">
         {(chatClient && chatClient.user) &&
-          <Chat client={chatClient} theme={`messaging ${theme}`}>
-            <ChannelList
-              filters={filter}
-              sort={sort}
-              List={(props) => {
-                setIsLoading(props.loading);
-                return <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />;
-              }
-              }
-              Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
-            />
+          <Chat client={chatClient} theme={`messaging ${theme}`} >
+            <div className={clsx('str-chat-mobile-nav', (navOpen && !isCreating) && 'str-chat-mobile-nav--show')} onClick={toggleNav}>
+              <ChannelList
+                filters={filter}
+                sort={sort}
+                List={(props) => {
+                  setIsLoading(props.loading);
+                  return <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />;
+                }
+                }
+                Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
+              />
+            </div>
             {isCreating && !isLoading && (
-              <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={null} />
+              <CreateChannel onClose={() => setIsCreating(false)} toggleMobile={toggleNav} />
             )}
             {!isCreating &&
               <Channel maxNumberOfFiles={10} multipleUploads={true}>
                 <Window>
-                  <MessagingChannelHeader theme={theme} toggleMobile={null} />
+                  <MessagingChannelHeader theme={theme} toggleMobile={toggleNav} />
                   <MessageList
                     messageActions={['delete', 'edit', 'flag', 'mute', 'react']}
                     Message={CustomMessage}

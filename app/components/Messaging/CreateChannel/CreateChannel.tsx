@@ -209,7 +209,7 @@ const CreateChannel: React.FC<Props> = (props) => {
                   />
                 </form>
               </div>
-              <div className='close-mobile-create' onClick={() => toggleMobile()}>
+              <div className='close-mobile-create' onClick={() => onClose()}>
                 <XButtonBackground />
               </div>
             </div>
