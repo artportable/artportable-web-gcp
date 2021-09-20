@@ -1,23 +1,26 @@
 import { checkoutFormStyles } from './checkoutForm.css'
-import { Box } from "@material-ui/core";
+import { Box, CircularProgress, Snackbar } from "@material-ui/core";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from '../Button/Button';
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from 'next-i18next';
 import { capitalizeFirst } from '../../utils/util';
-import Link from 'next/link';
 import router from 'next/router';
 import { TokenContext } from '../../contexts/token-context';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function CheckoutForm({ email, fullName, plan }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
+  const [errorOpen, setErrorOpen] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [customerId, setCustomerId] = useState('');
+  const [countdown, setCountdown] = useState(6);
   const token = useContext(TokenContext);
+  const countdownRef = useRef(null);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -76,6 +79,9 @@ export default function CheckoutForm({ email, fullName, plan }) {
     // Get a reference to a mounted CardElement. Elements knows how
     // to find your CardElement because there can only ever be one of
     // each type of element.
+
+    setProcessing(true);
+
     const cardElement = elements.getElement(CardElement);
 
     const billingName = fullName;
@@ -91,6 +97,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
       .then((result) => {
         if (result.error) {
           setError(result.error.message);
+          setProcessing(false);
+          setDisabled(true);
         } else {
           createSubscription({
             customerId: customerId,
@@ -98,7 +106,11 @@ export default function CheckoutForm({ email, fullName, plan }) {
             priceId: plan.id,
           })
           .then((result) => {
-            router.push('/');
+            setSucceeded(true);
+            setProcessing(false);
+          }).catch((error) => {
+            setError(result.error);
+            setErrorOpen(true);
           });
         }
       });
@@ -129,12 +141,30 @@ export default function CheckoutForm({ email, fullName, plan }) {
           throw result;
         }
         setSucceeded(true);
+        startCountdown();
         return result;
       })
       .catch((error) => {
         setError(error);
+        setErrorOpen(true);
+        throw error;
       })
     );
+  }
+
+  const startCountdown = () => {
+    countdownRef.current = setInterval(() => setCountdown((prev) => prev - 1), 1000);
+  }
+
+  useEffect(() => {
+    if(countdown === 0) {
+      clearInterval(countdownRef.current);
+      router.push('/');
+    }
+  }, [countdown]);
+  
+  const handleSuccessClose = () => {
+    router.push('/');
   }
 
   return (
@@ -148,39 +178,73 @@ export default function CheckoutForm({ email, fullName, plan }) {
       </div>
 
       <div className={styles.product}>
-            <Box fontSize="1rem">
-              {t('product')}
-            </Box>
-            <Box>
-              {plan?.product}
-            </Box>
-          </div>
-          <Box className={styles.subtotal}>
-            <Box fontSize="1rem" fontWeight="bold">
-              {t('total')}
-            </Box>
-            <Box>
-              {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
-            </Box>
-          </Box>
-          <Box className={styles.divider}></Box>
-          <Box display="flex" justifyContent="flex-end" marginTop="2rem">
-            <Link href="/">
-              <a onClick={(e) => {
-                   e.preventDefault();
-                   return false;}}>
-                <Button
-                  variant="contained" 
-                  color="primary"
-                  disableElevation 
-                  rounded
-                  onClick={createPaymentMethod}
-                  >
-                  {capitalizeFirst(t('common:words.pay'))}
-                </Button>
-              </a>
-            </Link>
-          </Box>
+        <Box fontSize="1rem">
+          {t('product')}
+        </Box>
+        <Box>
+          {plan?.product}
+        </Box>
+      </div>
+      <Box className={styles.subtotal}>
+        <Box fontSize="1rem" fontWeight="bold">
+          {t('total')}
+        </Box>
+        <Box>
+          {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
+        </Box>
+      </Box>
+      <Box className={styles.divider}></Box>
+      <Box display="flex" position="relative" justifyContent="flex-end" marginTop="2rem">
+        <Button
+          variant="contained" 
+          color="primary"
+          disableElevation 
+          rounded
+          onClick={createPaymentMethod}
+          disabled={processing || disabled || succeeded}
+          >
+          {capitalizeFirst(t('common:words.pay'))}
+          {processing && (
+            <CircularProgress
+              size={24}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                marginTop: '-12px',
+                marginLeft: '-12px',
+              }}
+            />
+          )}
+        </Button>
+      </Box>
+
+      <Snackbar 
+        open={succeeded} 
+        onClose={handleSuccessClose}>
+        <Alert  
+          severity="success" 
+          variant="filled"
+          action={<Button style={{ color: '#fff' }} onClick={() => startCountdown()}>{t('takeMeThereNow')}</Button>}
+        >
+          <AlertTitle>{t('paymentSuccessful')}</AlertTitle>
+          {t('redirectingIn')}: {countdown}...
+        </Alert>
+      </Snackbar>
+
+      <Snackbar 
+        open={errorOpen}
+        onClose={() => {setErrorOpen(false)}}
+      >
+        <Alert  
+          severity="error" 
+          variant="filled"
+          onClose={() => {setErrorOpen(false)}}
+        >
+          <AlertTitle>{t('paymentUnsuccessful')}</AlertTitle>
+          {t('tryAgain')}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
