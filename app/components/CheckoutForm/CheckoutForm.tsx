@@ -96,7 +96,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
       })
       .then((result) => {
         if (result.error) {
-          setError(result.error.message);
+          setErrorOpen(true);
           setProcessing(false);
           setDisabled(true);
         } else {
@@ -109,7 +109,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
             setSucceeded(true);
             setProcessing(false);
           }).catch((error) => {
-            setError(result.error);
             setErrorOpen(true);
           });
         }
@@ -135,9 +134,9 @@ export default function CheckoutForm({ email, fullName, plan }) {
         return response.json();
       })
       .then((result) => {
-        if (result.error) {
+        if (result.status === 500) {
           // If the card is declined, display an error to the user.
-          setError(result.error);
+          setErrorOpen(true);
           throw result;
         }
         setSucceeded(true);
@@ -145,8 +144,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
         return result;
       })
       .catch((error) => {
-        setError(error);
         setErrorOpen(true);
+        setProcessing(false);
         throw error;
       })
     );
