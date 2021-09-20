@@ -6,6 +6,11 @@
 /* miscellaneous */
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700,700i");
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@media screen and (max-width: 960px) {
+  div .messages__main-container {
+    grid-column: 1/4;
+}
+}
 .str-chat {
   box-sizing: border-box; }
   .str-chat *,
@@ -3060,12 +3065,25 @@
   .str-chat-channel-list.messaging, .str-chat-channel-list.team, .str-chat-channel-list.commerce {
     position: fixed;
     left: -380px;
-    top: 0;
+    top: var(--header-height-plus-box-shadow-padding);
     z-index: 1001;
     min-height: 100vh;
     overflow-y: auto;
     box-shadow: 7px 0 9px 0 rgba(0, 0, 0, 0.03), 1px 0 0 0 rgba(0, 0, 0, 0.03);
     transition: left 200ms ease-in-out; }
+  .str-chat-mobile-nav {
+    height: 0;
+    width: 0;
+    z-index: 1000;
+  }
+  .str-chat-mobile-nav.str-chat-mobile-nav--show {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+  }
+  .str-chat-mobile-nav--show .str-chat-channel-list {
+    left: 0px;
+  }
   .str-chat-channel-list--open.messaging, .str-chat-channel-list--open.team, .str-chat-channel-list--open.commerce {
     left: 0px; } }
 
@@ -6984,16 +7002,16 @@
     display: none;
   }
   
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 960px) {
     #mobile-nav-icon {
       display: block;
       padding-left: 5px;
     }
   
     #mobile-nav-icon.light svg path {
-      fill: darkslategrey;
+      /* fill: darkslategrey;
       stroke: darkslategrey;
-      fill-opacity: 60%;
+      fill-opacity: 60%; */
     }
   
     .messaging__channel-header__avatars {
@@ -7069,10 +7087,19 @@
   /* MessagingChannelList */
 
   .messaging__channel-list {
-    padding: 20px 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
+    margin-top: 20px;
     width: 330px;
-    height: 100%;
+    height: calc(100% - 20px);
     overflow-y: auto;
+  }
+
+  @media screen and (max-width: 960px) {
+    .messaging__channel-list {
+      width: unset;
+      height: calc(100% - var(--header-height));
+      margin-top: 0;
+    }
   }
   
   @media screen and (max-width: 640px) {
@@ -7609,7 +7636,7 @@
     display: none;
   }
   
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 960px) {
     .str-chat.dark .messaging-create-channel header {
       height: unset;
     }
@@ -7649,13 +7676,16 @@
       max-width: unset;
       flex: unset;
     }
-  
     .close-mobile-create {
       display: unset;
       margin-top: 20px;
       cursor: pointer;
       flex: 1;
     }
+  }
+
+  @media screen and (max-width: 960px) {
+   
   }
 
   

@@ -4,7 +4,8 @@ import { useChannelContext, useChatContext } from 'stream-chat-react';
 import { TypingIndicator } from '../TypingIndicator/TypingIndicator';
 import { ChatAvatar } from '../MessagingUtils';
 
-import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 import type { ChannelMemberResponse } from 'stream-chat';
 
@@ -63,7 +64,9 @@ const MessagingChannelHeader: React.FC<Props> = (props) => {
   return (
     <div className='messaging__channel-header'>
       <div id='mobile-nav-icon' className={`${theme}`} onClick={() => toggleMobile()}>
-        <MenuIcon />
+        <IconButton>
+          <PeopleAltIcon />
+        </IconButton>
       </div>
       <ChatAvatar image={member?.user?.image}/>
       <div className='channel-header__name'>{channelName || title}</div>

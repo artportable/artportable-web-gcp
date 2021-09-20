@@ -1,12 +1,20 @@
 import { Avatar } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styles from "./messagingUtils.css";
 
 export const ChatAvatar = ({ image }: {image: string }) => {
   const s = styles();
 
-  if (image) {
+  const [hasImage, setHasImage] = useState(null);
+
+  useEffect(() => {
+    const imageValue = image.split('/images/');
+    
+    setHasImage((imageValue[1] !== null && imageValue[1] !== undefined));
+  }, [image]);
+
+  if (hasImage) {
     return <Avatar src={`${image}`}
       alt="Profile picture"
       className={s.avatar}
