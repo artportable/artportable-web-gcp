@@ -11,5 +11,10 @@
   "toPayToday": "Betalas idag",
   "checkoutTermsFooter": "Artportable får informera mig med anpassade e-postmeddelanden om produkter och tjänster. Mer information finns i vår Sekretesspolicy. Du kan när som helst avbryta prenumerationen.",
   "backButton": "Tillbaka",
-  "finishButton": "Slutför"
+  "finishButton": "Slutför",
+  "paymentSuccessful": "Betalning lyckades",
+  "paymentUnsuccessful": "Payment unsuccessful",
+  "redirectingIn": "Omdirigerar om",
+  "takeMeThereNow": "Klicka för gå vidare",
+  "tryAgain": "Försök igen"
 }
