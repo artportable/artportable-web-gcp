@@ -15,14 +15,13 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
     },
     logoContainer: {
-      gridArea: 'logo',
       flexGrow: 1,
 
       flexBasis: '100%',
       position: 'relative',
       '& a': {
         position: 'absolute',
-        right: 'calc(50% - 42px)',
+        right: 'calc(50% - 70px)',
         bottom: '-13px',
       }
     },
@@ -82,6 +81,9 @@ export const styles = makeStyles((theme: Theme) =>
         display: 'initial',
       },
       menuIconWithBadge: { 
+        display: 'none',
+      },
+      singleNotificationButton: {
         display: 'none',
       },
       login: {

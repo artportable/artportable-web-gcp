@@ -138,50 +138,65 @@ export default function Header({}) {
             </div>
           }
           {(isSignedIn.value) &&
-            <div className={clsx(s.login, isSignedIn.value && 'signedIn')}>
-              {(membership.value === Membership.PortfolioPremium) &&
-                <div className={s.upload}>
-                  <Link href="/upload">
+            <>
+              <div className={s.singleNotificationButton}>
+                {activityToken && !isError && !isLoading ?
+                  <NotificationIconButton activityToken={activityToken} username={username.value}/>
+                  :
+                  <IconButton aria-label="account" disabled aria-disabled>
+                    <NotificationsIcon
+                      classes={{ root: s.notificationIcon }}
+                      style={{ fontSize: '30px' }}
+
+                    />
+                  </IconButton>
+                }
+              </div>
+              <div className={s.login}>
+                {(membership.value === Membership.PortfolioPremium) &&
+                  <div className={s.upload}>
+                    <Link href="/upload">
+                      <a>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          color="primary"
+                          disableElevation
+                          rounded>
+                          {t('upload')}
+                        </Button>
+                      </a>
+                    </Link>
+                  </div>
+                }
+                <div className={s.iconButtons}>
+                  <div className={s.notificationButton}>
+                    {activityToken && !isError && !isLoading ?
+                    <NotificationIconButton activityToken={activityToken} username={username.value}/>
+                      :
+                      <IconButton aria-label="account" disabled aria-disabled>
+                        <NotificationsIcon
+                          classes={{ root: s.notificationIcon }}
+                          style={{ fontSize: '30px' }}
+
+                        />
+                      </IconButton>
+                    }
+                  </div>
+                  <Link href="/messages">
                     <a>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        color="primary"
-                        disableElevation
-                        rounded>
-                        {t('upload')}
-                      </Button>
+                      <IconButton color="secondary" aria-label="account">
+                        <Badge badgeContent={unreadChatMessages} max={99} color="primary">
+                          <ChatBubbleIcon style={{ fontSize: '30px' }} />
+                        </Badge>
+                      </IconButton>
                     </a>
                   </Link>
-                </div>
-              }
-              <div className={s.iconButtons}>
-                <div className={s.notificationButton}>
-                  {activityToken && !isError && !isLoading ?
-                  <NotificationIconButton activityToken={activityToken} username={username.value}/>
-                    :
-                    <IconButton aria-label="account" disabled aria-disabled>
-                      <NotificationsIcon
-                        classes={{ root: s.notificationIcon }}
-                        style={{ fontSize: '30px' }}
 
-                      />
-                    </IconButton>
-                  }
+                  <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
                 </div>
-                <Link href="/messages">
-                  <a>
-                    <IconButton color="secondary" aria-label="account">
-                      <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                        <ChatBubbleIcon style={{ fontSize: '30px' }} />
-                      </Badge>
-                    </IconButton>
-                  </a>
-                </Link>
-
-                <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
               </div>
-            </div>
+            </>
           }
           <div className={s.language}>
             <I18nSelector></I18nSelector>
