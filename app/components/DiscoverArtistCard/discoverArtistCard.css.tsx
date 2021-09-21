@@ -54,14 +54,24 @@ export const styles = makeStyles((theme: Theme) =>
       color: theme.palette.common.white
     },
     leftButton: {
+      display: 'none',
       position: 'absolute',
       left: '-30px',
       top: '74px'
     },
     rightButton: {
+      display: 'none',
       position: 'absolute',
       right: '-30px',
       top: '74px'
+    },
+    [theme.breakpoints.up('md')]: {
+      leftButton: {
+        display: 'initial',
+      },
+      rightButton: {
+        display: 'initial',
+      }
     }
   }),
 );
