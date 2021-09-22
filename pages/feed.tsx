@@ -20,6 +20,8 @@ import { Membership } from '../app/models/Membership';
 import { useBreakpointDown } from '../app/hooks/useBreakpointDown'
 import { TokenContext } from '../app/contexts/token-context';
 import { UserContext } from '../app/contexts/user-context';
+import { useRouter } from 'next/router';
+import { LoadingContext } from '../app/contexts/loading-context';
 
 export default function FeedPage() {
   const s = styles();
@@ -39,6 +41,25 @@ export default function FeedPage() {
   const [fetchMorePosts, setFetchMorePosts] = useState(true);
   const [isNoPosts, setIsNoPosts] = useState(false);
   const [entriesCount, setEntriesCount] = useState(0);
+
+  const router = useRouter();
+  const { isSignedIn } = useContext(UserContext);
+  const { loading, setLoading } = useContext(LoadingContext);
+
+  useEffect(() => {
+    setLoading(true);
+
+    const checkSignedInAsync = async () => {
+      if (!isSignedIn.isPending) {
+        if (!isSignedIn.value) {
+          await router.push('/');
+        }
+        setLoading(false);
+      }
+    }
+
+    checkSignedInAsync();
+  }, [isSignedIn]);
 
 
   useEffect(() => {
@@ -114,46 +135,48 @@ export default function FeedPage() {
       </Head>
 
       <Main wide={mdPlusScreenOrDown ? true : false}>
-        <Box className={s.feedContainer}>
-          {!mdPlusScreenOrDown && 
-            <div className={s.colLeft}>
-              <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
-              {membership.value === Membership.PortfolioPremium &&
-                <Link href="/upload">
-                  <a>
-                    <Button
-                      className={s.uploadArtButton}
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      disableElevation>
-                      {t('uploadNewWorkOfArt')}
-                    </Button>
-                  </a>
-                </Link>
-              }
-              {/* <NewsletterCard></NewsletterCard> */}
-            </div>
-          }
-          <div className={s.colFeed}>
-            {(username.value && !isNoPosts) ? (
-              <>
-                {pages}
-                {(fetchMorePosts) &&
-                  <>
-                    <div ref={loadMoreElement}>
-                      <FeedCardSkeleton></FeedCardSkeleton>
-                    </div>
-                  </>
+        {!loading &&
+          <Box className={s.feedContainer}>
+            {!mdPlusScreenOrDown && 
+              <div className={s.colLeft}>
+                <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
+                {membership.value === Membership.PortfolioPremium &&
+                  <Link href="/upload">
+                    <a>
+                      <Button
+                        className={s.uploadArtButton}
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        disableElevation>
+                        {t('uploadNewWorkOfArt')}
+                      </Button>
+                    </a>
+                  </Link>
                 }
-              </>
-            ) : (<p>{t('noPosts')}</p>)}
+                {/* <NewsletterCard></NewsletterCard> */}
+              </div>
+            }
+            <div className={s.colFeed}>
+              {(username.value && !isNoPosts) ? (
+                <>
+                  {pages}
+                  {(fetchMorePosts) &&
+                    <>
+                      <div ref={loadMoreElement}>
+                        <FeedCardSkeleton></FeedCardSkeleton>
+                      </div>
+                    </>
+                  }
+                </>
+              ) : (<p>{t('noPosts')}</p>)}
 
-          </div>
-          <div className={s.colRight}>
-            <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
-          </div>
-        </Box>
+            </div>
+            <div className={s.colRight}>
+              <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
+            </div>
+          </Box>
+        }
       </Main>
     </>
   );
