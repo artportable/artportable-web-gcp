@@ -47,6 +47,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600
     },
     description: {
+      margin: theme.spacing(1, 0,),
       [theme.breakpoints.up('md')]: {
         marginRight: '10%',
       },
