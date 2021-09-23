@@ -10,6 +10,7 @@
   "plans": {
     "free": {
       "name": "Gratis",
+      "subtitle": "Konstintresserad – skaffa ett gratiskonto idag och hitta originalkonst till hemmet.",
       "listTexts": [
         "Följ konstnärer",
         "Hitta konstverk till ditt hem",
@@ -19,6 +20,7 @@
     },
     "portfolio": {
       "name": "Portfolio",
+      "subtitle": "Konstnär – kickstarta och få förfrågningar med en Portfolio.",
       "listTexts": [
         "Publicera dina verk",
         "Chatta och få förfrågningar om dina konstverk",
@@ -28,6 +30,7 @@
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
+      "subtitle": "Konstnär – kom igång med din egen konstkoordinator och bli prioriterad i flödet.",
       "listTexts": [
         "Personlig Konstkoordinator",
         "Support",

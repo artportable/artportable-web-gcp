@@ -1,33 +1,6 @@
 {
-  "forYouWhoSwimIn": "För dig som badar i",
-  "forYouWhoEat": "För dig som äter",
-  "forYouWhoBreath": "För dig som andas",
-  "forYouWhoHungerFor": "För dig som längtar till",
-  "welcomeToTitle": "Sovrum",
-  "subheaderCarouselOne": "Konst direkt från konstnärer du följer",
-  "chooseMembership": "Välj medlemsskap",
-  "portfolioExplanation": "Din Artportable-portfolio är ett verktyg som hjälper dig att presentera ditt konstnärskap på ett professionellt sätt. Artportable är en mötesplats för konstnärer, konstköpare och konstentusiaster.",
-  "memberExplanation": "Ett medlemsskap är perfekt för att leta runt bland konstnärer och konstverk från hela världen. Gå med och bli inspirerad av tusentals vackra konstverk.",
-  "carouselItems": [
-    {
-      "header": "Bara på Artportable",
-      "subheader": "Vacker originalkonst från konstnärer du följer"
-    },
-    {
-      "header": "Hitta unik konst att älska",
-      "subheader": "Dekorera ditt vardagsrum med konst från konstnärer världen över"
-    },
-    {
-      "header": "Avslappnande minimalism",
-      "subheader": "Hitta och ta kontakt med konstnärer som väcker ditt intresse"
-    },
-    {
-      "header": "Från jord till bord",
-      "subheader": "Upptäck dina handgjorda favoriter"
-    }
-  ],
-  "header": "Möt konstnärer och konstälskare världen över.",
-  "subHeader": "Gör det enkelt att inreda ditt hem med originalkonst. Skapa ditt konto idag och hitta konst som får ditt hjärta att sjunga.",
+  "header": "Hitta originalkonst",
+  "subHeader": "Massor av konst och kreationer. Här hittar du snabbt och enkelt originalkonst till hemmet och kontoret. Få tillgång till en unik mötesplats för konstintresserade och konstnärer. Skapa ditt gratiskonto idag.",
   "artworkFrom": "Konstverk av",
   "signUp": "Bli medlem",
   "artworkBy": "Konstverk av"

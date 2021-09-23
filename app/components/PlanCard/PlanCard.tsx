@@ -18,6 +18,7 @@ export default function PlanCard({ plan, hideButtons }) {
   const href = plan.product === 'free' ? 'feed' : '/checkout';
 
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
+  const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
 
   function getPriceText() {
     if (plan.product === 'free') {
@@ -44,6 +45,12 @@ export default function PlanCard({ plan, hideButtons }) {
           <Typography variant="h3" component="h2">
             <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
               {planName}
+            </Box>
+          </Typography>
+
+          <Typography variant="subtitle1" component="h3">
+            <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
+              {planSubtitle}
             </Box>
           </Typography>
 
