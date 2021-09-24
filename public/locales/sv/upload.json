@@ -6,5 +6,7 @@
   "upload": "Ladda upp",
   "dragandDropOrClick": "Dra och släpp en bild här eller klicka",
   "artworkUploadedSuccessfully": "Konstverk uppladdat!",
-  "information": "Hörrö Lars-Åke, du lägger väl inte upp något olämligt innehåll. Det är du som bär ansvaret."
+  "informationOne": "Du bär det fulla ansvaret för det användarinnehåll som du laddar upp.",
+  "informationTwo": "Du bekräftar att du är ensam upphovsman till användarinnehållet alternativt innehar alla erforderliga rättigheter för att tillgängliggöra användarinnehållet.",
+  "informationThree": "Du intygar vidare att användarinnehållet inte är obscent, trakasserande eller på annat sätt olagligt."
 }

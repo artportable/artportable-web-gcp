@@ -11,7 +11,11 @@ export default function Button(props) {
   return (
     <div className={s.information}>
       <ErrorOutlineIcon className={s.errorOutlineIcon} color="primary" style={{ fontSize: 24 }}></ErrorOutlineIcon>
-      <Typography className={s.informationText}>{t('information')}</Typography>
+      <div>
+      <Typography className={s.informationText}>{t('informationOne')}</Typography>
+      <Typography className={s.informationText}>{t('informationTwo')}</Typography>
+      <Typography className={s.informationText}>{t('informationThree')}</Typography>
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ const styles = makeStyles((theme: Theme) =>
       borderRadius: "10px",
       display: 'flex',
       margin: theme.spacing(2, 0),
-      alignItems: 'center',
+
       // backgroundColor: 'var(--ion-color-primary-contrast)',
     },
     errorOutlineIcon: {
