@@ -1,31 +1,46 @@
 {
-  "title": "Privacy Policy",
-  "privacyPartOne": "<strong>This policy describes how we at Artportable AB collect, use and protect personal data.</strong><br/><br/>We may collect information that helps us provide a service to you, which may include:",
-  "privacyList": [
-    "Email",
-    "Name",
-    "Contact Information",
-    "IP Number",
-    "Pictures"
-  ],
-  "privacyTexts": [
-    "The information is used to provide you with information, payment information and statistics in line with our overall policy. We do not collect more information than we need to provide our services to you.",
-    "We have accounting requirements which means that we need to keep some of your information. When we no longer need it, it will be deleted. Information that we use for newsletter distribution will be retained until the time when you yourself choose to unsubscribe from it.",
-    "Your personal information may be handled by personnel in Sweden, no third party has access to your personal information and we will never sell or share such information as long as the law does not require it.",
-    "The information we have is stored in data centers within the European Union. For technical reasons, our subcontractors may need to move information to other countries outside the EU. If this happens, use appropriate protection measures and standardized data protection regulations approved by the European Commission.",
-    "We have procedures in place to ensure that your personal data is handled safely and securely in accordance with applicable law. You can get more information by contacting us by e-mail.",
-    "<strong>Embedded content from other sites</strong>",
-    "Articles on this site may contain embedded content (such as videos, images, articles, etc.). Embedded content from other websites behaves in exactly the same way as if the visitor had visited the other website.",
-    "These websites may collect information about you, use cookies, embed additional third-party tracking and monitor your interaction with said embedded content, including tracking your interaction with this embedded content if you have an account and are logged in to the website in question.",
-    "<strong>You are entitled to the following as a user of this platform:</strong>",
-    "<strong>Right to information:</strong> You can request a copy of the personal information we have about you.<br/><strong>Right to correction:</strong> We want to ensure that your information is up to date and correct. You can request that your information be corrected or deleted if you believe it is incorrect.<br/><strong>Right to delete:</strong> You can request that we delete your personal information. We may not delete information that the law requires us to retain.",
-    "<strong>Data portability:</strong> You can ask us to move your personal data from our IT environment to someone else, either another company or to you. This does not apply to information that the law requires us to retain",
-    "<strong>Withdraw consent:</strong> You can withdraw your consent to share your information or to receive marketing / mailings at any time. Either by unsubscribing from the message or contacting us by email.",
-    "<strong>Complaints:</strong> You may be able to submit a complaint to the Data Inspectorate if you believe that we process your personal data in violation of the Data Protection Ordinance.",
-    "<strong>Here's how to use your rights:</strong><br/>If you wish to exercise any of your rights, please contact us via email at the bottom of this policy. If you want to submit a complaint to the Data Inspectorate, you need to contact them.",
-    "<strong>Updates to this policy:</strong><br/>We may update this policy and will then publish them on this website. This policy was last updated on Aug 19, 2021.",
-    "<strong>How to contact us:</strong><br/>If you have any questions regarding this policy or how we use your information, or your rights, you can contact us at the following address:",
-    "Artportable AB<br/>Åsögatan 176<br/>116 32 Stockholm",
-    "In the letter, we want you to state your name, address, e-mail, telephone number and social security number in addition to your case. Also enclose a copy of your ID. Replies will be sent to your most recently registered population registration address."
-  ]
+
+  "gdpr": {
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: September 22, 2021",
+      "texts": [
+        "This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.",
+        "We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy."
+      ]
+    },
+    "sections": [
+      {
+        "title": "Interpretation and Definitions",
+        "interpretation": {
+          "title": "Interpretation",
+          "description": "The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural."
+        },
+        "definitions": {
+          "title": "Definitions",
+          "description": "For the purposes of this Privacy Policy:",
+          "list": [
+            "<strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.",
+            "<strong>Company</strong>  (referred to as either \"the Company\", \"We\", \"Us\" or \"Our\" in this Agreement) refers to Artportable AB, Åsögatan 176, Stockholm, Sweden",
+            "<strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.",
+            "<strong>Country</strong> refers to: Sweden.",
+            "<strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.",
+            "<strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.",
+            "<strong>Service</strong> refers to the Website.",
+            "<strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.",
+            "<strong>Third-party Social Media Service</strong> refers to any website or any social network website through which a User can log in or create an account to use the Service.",
+            "<strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).",
+            "<strong>Website</strong> refers to Artportable, accessible from https://artportable.com",
+            "<strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable."
+          ]
+        }
+      },
+      {
+        "title": "Collecting and Using Your Personal Data",
+        "typesOfData": {
+          
+        }
+      }
+    ]
+  }
 }
