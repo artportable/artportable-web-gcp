@@ -14,7 +14,7 @@ const styles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
     },
     informationText: {
-      margin: theme.spacing(1, 0),
+      margin: theme.spacing(1, 1, 1, 0),
     },
   }),
 );
