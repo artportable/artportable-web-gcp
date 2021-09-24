@@ -28,5 +28,6 @@
   "like": "Like",
   "message": "Message",
   "Yes" : "Yes",
-  "Cancel" : "Cancel"
+  "Cancel" : "Cancel",
+  "purchaseRequest": "Purchase request"
 }
