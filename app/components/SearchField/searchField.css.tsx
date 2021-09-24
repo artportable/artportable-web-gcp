@@ -28,6 +28,7 @@ export const styles = makeStyles((theme: Theme) =>
       height: '100%',
       width: '100%',
       fontSize: '21px',
+      fontWeight: theme.typography.fontWeightMedium,
       fontFamily: 'GT-America-Standard',
       border: 'none',
       '&:focus': {
@@ -52,6 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       gap: theme.spacing(1),
       paddingInlineStart: 0,
+      fontWeight: theme.typography.fontWeightMedium,
       listStyleType: 'none',
       overflow: 'auto',
       '&::-webkit-scrollbar': {
