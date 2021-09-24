@@ -58,6 +58,13 @@ export default function Footer() {
               </Typography>
             </a>
           </Link>
+          <Link href="mailto:report@artportable.com">
+            <a>
+              <Typography variant="body2" component="div">
+                report@artportable.com
+              </Typography>
+            </a>
+          </Link>
         </div>
         <div className={s.flexItem}>
           <Typography variant="subtitle2" component="div" color="primary">
