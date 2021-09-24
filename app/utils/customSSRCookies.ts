@@ -71,7 +71,7 @@ function decodeToken(token: string): KeycloakTokenParsed {
   token = token.replace(/-/g, '+');
   token = token.replace(/_/g, '/');
 
-  token = decodeURIComponent(escape(atob(token)));
+  token = decodeURIComponent(escape(Buffer.from(token, 'base64').toString()));
 
   var parsedToken = JSON.parse(token) as KeycloakTokenParsed;
 
