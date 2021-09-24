@@ -120,7 +120,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           <a>
             <Button
               startIcon={<SendIcon color={"inherit"} />}>
-              {capitalizeFirst(t('common:message'))}
+              {capitalizeFirst(t('common:purchaseRequest'))}
             </Button>
           </a>
         </Link>

@@ -169,7 +169,7 @@ export default function ArtworkPage(props) {
                     <a>
                       <Button
                         startIcon={<SendIcon color={"inherit"} />}>
-                        {capitalizeFirst(t('purchaseRequest'))}
+                        {capitalizeFirst(t('common:purchaseRequest'))}
                       </Button>
                     </a>
                   </Link>

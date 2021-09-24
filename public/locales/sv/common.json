@@ -28,5 +28,7 @@
   "like": "Gilla",
   "message": "Meddelande",
   "Yes" : "Ja",
-  "Cancel" : "Avbryt"
+  "Cancel" : "Avbryt",
+  "purchaseRequest": "Köpförfrågan"
+  
 }
