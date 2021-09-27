@@ -11,6 +11,10 @@ export interface ContextUser {
   isSignedIn: AsyncValue<boolean>;
   profilePicture: AsyncValue<string>;
   username: AsyncValue<string>;
+  family_name: AsyncValue<string>;
+  given_name: AsyncValue<string>;
+  user_type: AsyncValue<string>;
+  phone: AsyncValue<string>;
   membership: AsyncValue<Membership>;
 }
 
@@ -30,7 +34,23 @@ export const defaultContextUser = {
   membership: {
     value: null,
     isPending: false,
-  }
+  },
+  family_name: {
+    value: null,
+    isPending: true,
+  },
+  given_name: {
+    value: null,
+    isPending: true,
+  },
+  user_type: {
+    value: null,
+    isPending: false,
+  },
+  phone: {
+    value: null,
+    isPending: false,
+  },
 }
 
 export const UserContext = React.createContext<ContextUser>(defaultContextUser);
