@@ -40,28 +40,7 @@ export default function Footer() {
             {t('contactUs')}
           </Typography>
             </a>
-          </Link>
-          <Link href="mailto:sales@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-                sales@artportable.com
-              </Typography>
-            </a>
-          </Link>
-          <Link href="mailto:support@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-                support@artportable.com
-              </Typography>
-            </a>
-          </Link>
-          <Link href="mailto:report@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-                report@artportable.com
-              </Typography>
-            </a>
-          </Link>
+          </Link>          
         </div>
         <div className={s.flexItem}>
           <Typography variant="subtitle2" component="div" color="primary">
