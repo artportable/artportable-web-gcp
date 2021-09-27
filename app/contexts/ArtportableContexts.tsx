@@ -43,11 +43,11 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
           isPending: false,
         },
         user_type: {
-          value: tokenParsed.preferred_username,
+          value: tokenParsed.user_type,
           isPending: false,
         },
          phone: {
-          value: tokenParsed.preferred_username,
+          value: tokenParsed.phone,
           isPending: false,
         },
         })
