@@ -5,12 +5,11 @@ import { useTranslation } from 'next-i18next'
 import { capitalizeFirst } from '../../utils/util';
 import { styles } from './premiumApply.css';
 import Link from 'next/link'
-import Button from '../Button/Button';
+import Button from '../Button/Button'; 
+import { UserContext } from '../../contexts/user-context'
 
-// import { UserContext } from '../../contexts/user-context'
 
-
-const artportableZapierApiUrl = `https://hooks.zapier.com/hooks/catch/6936905/b6pdog7`
+const artportableZapierApiUrl = `https://hooks.zapier.com/hooks/catch/6936905/b6pk0xl/n`
 
 export default function PremiumApply() {
   const s = styles();
@@ -18,10 +17,9 @@ export default function PremiumApply() {
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
-  // const { email, family_name, given_name } = useContext(UserContext);
+  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
    
   const submit = async () => {
-    console.log("submit")
       const response = await postDataToZapier();
       handleResponse (response);
     }
@@ -31,15 +29,14 @@ export default function PremiumApply() {
       const FormRequest = JSON.stringify({
       "request": {
       "requester": {
-        // "artistArtEnthusiast": '',
-        // "name": {value: given_name.value + ' ' + family_name.value} ?? '',
-        // "phoneNumber": '',
-        // "email": {value: email.value},
-        // "url":  window.location.href
+        "artistArtEnthusiast": {value: user_type.value} ?? '',
+        "name": {value: given_name.value + ' ' + family_name.value} ?? '',
+        "phoneNumber": {value:phone.value} ?? '',
+        "email": {value: email.value} ?? '',
+        "url":  window.location.href
           },
         }
       });
-      console.log(FormRequest);
       const response = await fetch(artportableZapierApiUrl, {
         method: 'POST',
         body: FormRequest
