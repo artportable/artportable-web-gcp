@@ -10,7 +10,7 @@ import Button from '../Button/Button';
 // import { UserContext } from '../../contexts/user-context'
 
 
-const artportableZapierApiUrl = `https://hooks.zapier.com/hooks/catch/6936905/b6qrvec/`
+const artportableZapierApiUrl = `https://hooks.zapier.com/hooks/catch/6936905/b6pdog7`
 
 export default function PremiumApply() {
   const s = styles();
@@ -106,7 +106,7 @@ export default function PremiumApply() {
                           variant="contained" 
                           color="primary" 
                           onClick={submit}>
-                          Skicka
+                          {capitalizeFirst(t('common:send'))}
                         </Button>
                       </a>
                     </Link>
