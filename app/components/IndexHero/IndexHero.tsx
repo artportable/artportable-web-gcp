@@ -15,7 +15,7 @@ export default function IndexHero() {
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const promotedUser = "Dace Strausa";
+  const promotedUser = "dacestrausa";
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
@@ -65,21 +65,21 @@ export default function IndexHero() {
             </Paper>
             <div className={s.createdBy}>
               <Chip
-                onClick={(_) => router.push(`@${promotedUser}`)}
+                onClick={(_) => router.push(`/profile/@${promotedUser}`)}
                 size="small"
                 classes={{
                   root: s.chip,
                 }}
                 avatar={
                   <div className={s.chipAvatar}>
-                    <ProfileAvatar size={19} profilePicture={undefined} />
+                    <ProfileAvatar size={19} profilePicture="SAM7988-m.jpg" />
                   </div>
                 }
                 label={promotedUser}/>
             </div>
           </div>
           <div>
-            <img className={s.sofaImage} src="/images/soffa-cropped-landing-hero.png"></img>
+            {/* <img className={s.sofaImage} src="/images/soffa-cropped-landing-hero.png"></img> */}
           </div>
         </div>
       </div>

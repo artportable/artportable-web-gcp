@@ -14,7 +14,8 @@
     "worksOfArt": "works of art",
     "cancel": "cancel",
     "save": "save",
-    "confirm": "confirm"
+    "confirm": "confirm",
+    "send": "Send"
   },
   "timeUnit": {
     "year": "y",
@@ -28,5 +29,6 @@
   "like": "Like",
   "message": "Message",
   "Yes" : "Yes",
-  "Cancel" : "Cancel"
+  "Cancel" : "Cancel",
+  "purchaseRequest": "Purchase request"
 }

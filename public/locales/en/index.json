@@ -1,32 +1,6 @@
 {
-  "forYouWhoSwimIn": "For you who swim in",
-  "forYouWhoEat": "For you who eats",
-  "forYouWhoBreath": "For you who breath",
-  "forYouWhoHungerFor": "For you who hunger for",
-  "welcomeToTitle": "Art ",
-  "chooseMembership": "Select membership",
-  "portfolioExplanation": "Your Artportable portfolio is a tool that helps you present your artistship in a profssional way. Artportable is a meeting point for artists, art buyers and art enthusiasts.",
-  "memberExplanation": "A membership is perfect for browsing artists and artwork from all around the world. Join and get inspired by thousands of beautiful art pieces.",
-  "carouselItems": [
-    {
-      "header": "Bara på Artportable",
-      "subheader": "Vacker originalkonst från konstnärer du följer"
-    },
-    {
-      "header": "Hitta unik konst att älska",
-      "subheader": "Dekorera ditt vardagsrum konst från konstnärer världen över"
-    },
-    {
-      "header": "Avslappnande minimalism",
-      "subheader": "Hitta och ta kontakt med konstnärer som väcker ditt intresse"
-    },
-    {
-      "header": "Från jord till bord",
-      "subheader": "Upptäck dina handgjorda favoriter"
-    }
-  ],
-  "header": "Meet artists and art lovers worldwide.",
-  "subHeader": "Make it simple to decorate your home with unique artwork. Create your account today and find art that makes your heart sing.",
+  "header": "Discover unique artwork",
+  "subHeader": "Plenty of creative artwork and inspiration. An easy way to find unique artwork for the home and office. Get access to a unique meeting place for art lovers and artists. Create your free account today.",
   "artworkFrom": "Artwork from",
   "signUp": "Sign up",
   "artworkBy": "Artwork by"

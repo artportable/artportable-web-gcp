@@ -17,6 +17,7 @@ import { Alert } from '@material-ui/lab';
 import { useRouter } from 'next/router';
 import { TokenContext } from '../app/contexts/token-context';
 import { UserContext } from '../app/contexts/user-context';
+import WarningMessage from '../app/components/WarningMessage/WarningMessage';
 
 
 export default function UploadArtworkPage() {
@@ -237,7 +238,7 @@ export default function UploadArtworkPage() {
               onClick={uploadArtwork}>
                 {t('upload')}
             </ArtButton>
-
+            <WarningMessage />
           </div>
           <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
             <Alert onClose={handleSnackbarClose} variant="filled" severity="success">

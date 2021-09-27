@@ -1,7 +1,7 @@
+import React, { useState, useEffect } from "react";
 import { Box, Card, CardContent, Typography } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import React from "react";
 import { useDispatch } from "react-redux";
 import { ADD_PRICE } from "../../redux/actions/signupActions";
 import { capitalizeFirst, toCamelCase } from "../../utils/util";
@@ -10,15 +10,35 @@ import PaymentInfo from "../PaymentInfo/PaymentInfo";
 import PlansInfoList from "../PlansInfoList/PlansInfoList";
 import { styles } from "./planCard.css";
 import clsx from 'clsx';
+// import PremiumSignupDialog from '../PremiumSignupDialog/PremiumSignupDialog';
+import PremiumApply from "../PremiumApply/PremiumApply";
+import { PriceData } from "../PlanSelector/PlanSelector";
+import Dialog from '@material-ui/core/Dialog';
 
-export default function PlanCard({ plan, hideButtons }) {
+interface Props {
+  plan: PriceData;
+  hideButtons?: boolean;
+}
+
+export default function PlanCard({ plan, hideButtons }: Props) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const s = styles();
   const dispatch = useDispatch();
   const href = plan.product === 'free' ? 'feed' : '/checkout';
 
-  const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
+  const [ isHref, setIsHref ] = useState(true);
 
+  const [ isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
+ 
+  const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
+  const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
+
+  useEffect(() => {
+    if (plan.product === "portfolioPremium") {
+      setIsHref(false)
+    }
+  }, [plan]);
+  
   function getPriceText() {
     if (plan.product === 'free') {
       return '-';
@@ -26,7 +46,7 @@ export default function PlanCard({ plan, hideButtons }) {
       return 'premium';
     }
 
-    return `${plan.amount} ${plan.currency.toUpperCase()}` +
+    return `${plan.amount} ${plan.currency.toUpperCase()}` + 
       ` / ${t(`common:words.${plan.recurringInterval}`)} (+${t('common:words.vat')})`;
   }
 
@@ -47,6 +67,12 @@ export default function PlanCard({ plan, hideButtons }) {
             </Box>
           </Typography>
 
+          <Typography variant="subtitle1" component="h3">
+            <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
+              {planSubtitle}
+            </Box>
+          </Typography>
+
           <PaymentInfo 
             priceText={getPriceText()}
             secondaryText={t('youCanAlwaysUpdateYourMembership')}
@@ -55,26 +81,51 @@ export default function PlanCard({ plan, hideButtons }) {
 
           {!hideButtons &&
             <div className={s.button}>
-              <Link href={href}>
-                <a>
-                  <Button 
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    disableElevation
-                    rounded
-                    onClick={(_) => onNavClick()}>
-                    {plan.product === 'free' ?
-                      t('signUp') :
-                      `${capitalizeFirst(t('common:words.choose'))} ${planName}`
-                    }
-                  </Button>
-                </a>
-              </Link>
+              {isHref ? 
+               <Link passHref href={href}>
+               <a>
+                 <Button 
+                   size="small"
+                   variant="contained"
+                   color="primary"
+                   disableElevation
+                   rounded
+                   onClick={(_) => onNavClick()}>
+                   {plan.product === 'free' ?
+                     t('signUp') :
+                     `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                   }
+                 </Button>
+               </a>
+             </Link>
+
+             : 
+             
+             <Button 
+                size="small"
+                variant="contained"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => setIsPremiumSignupDialogOpen(true)}>
+                {plan.product === 'free' ?
+                  t('signUp') :
+                  `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                }
+              </Button>
+            }
             </div>
           }
+          
         </CardContent>
       </Card>
+      <Dialog 
+        fullWidth
+        maxWidth="md" 
+        open={isPremiumSignupDialogOpen} onClose={() => setIsPremiumSignupDialogOpen(false)}>
+          <PremiumApply />
+      </Dialog>
     </div>
   )
 }
+

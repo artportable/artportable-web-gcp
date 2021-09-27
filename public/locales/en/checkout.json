@@ -9,5 +9,10 @@
   "toPayToday": "To pay today",
   "checkoutTermsFooter": "Artportable may contact me about products and services. More information can be found in our Privacy policy. You can whenever you want cancel the subscription.",
   "backButton": "Back",
-  "finishButton": "Finish"
+  "finishButton": "Finish",
+  "paymentSuccessful": "Payment successful",
+  "paymentUnsuccessful": "Payment unsuccessful",
+  "redirectingIn": "Redirecting in",
+  "takeMeThereNow": "Click to enter",
+  "tryAgain": "Try again"
 }

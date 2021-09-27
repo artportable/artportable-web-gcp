@@ -5,5 +5,8 @@
   "tags": "Tags",
   "upload": "Upload",
   "dragandDropOrClick": "Drag and drop an image here or click",
-  "artworkUploadedSuccessfully": "Artwork uploaded successfully!"
+  "artworkUploadedSuccessfully": "Artwork uploaded successfully!",
+  "informationOne": "You are fully responsible for the user content that you upload.",
+  "informationTwo": "You confirm that you are the creator of the user content or have all the necessary rights to make the user content available.",
+  "informationThree": "You further certify that the user content is not obscene, harassing or otherwise illegal."
 }

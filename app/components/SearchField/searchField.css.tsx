@@ -22,12 +22,13 @@ export const styles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(2.4)
     },
     searchIcon: {
-      margin: theme.spacing(0,0,0,1)
+      margin: theme.spacing(0,0.4,0,1)
     },
     input: {
       height: '100%',
       width: '100%',
-      fontSize: '24px',
+      fontSize: '21px',
+      fontWeight: theme.typography.fontWeightMedium,
       fontFamily: 'GT-America-Standard',
       border: 'none',
       '&:focus': {
@@ -52,10 +53,14 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       gap: theme.spacing(1),
       paddingInlineStart: 0,
+      fontWeight: theme.typography.fontWeightMedium,
       listStyleType: 'none',
       overflow: 'auto',
       '&::-webkit-scrollbar': {
         display: 'none'
+      },
+      '& .MuiChip-colorPrimary': {
+        border: `1px solid ${theme.palette.primary.main}`
       }
     },
     selectFormControl: {
@@ -67,7 +72,7 @@ export const styles = makeStyles((theme: Theme) =>
     selectElement: {
       position: 'absolute',
       width: '100%',
-      top: '1px',
+      top: 0,
       right: 0,
       '&.MuiInputBase-root:hover::before': {
         border: 'none'

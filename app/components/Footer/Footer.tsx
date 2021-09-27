@@ -34,30 +34,13 @@ export default function Footer() {
       </div>
       <div className={s.links}>
         <div className={s.flexItem}>
+        <Link href="/support">
+            <a>
           <Typography variant="subtitle2" component="div" color="primary">
             {t('contactUs')}
           </Typography>
-          <Link href="/support">
-            <a>
-              <Typography variant="body2" component="div">
-                {t('contactForm')}
-              </Typography>
             </a>
-          </Link>
-          <Link href="mailto:sales@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-                sales@artportable.com
-              </Typography>
-            </a>
-          </Link>
-          <Link href="mailto:support@artportable.com">
-            <a>
-              <Typography variant="body2" component="div">
-                support@artportable.com
-              </Typography>
-            </a>
-          </Link>
+          </Link>          
         </div>
         <div className={s.flexItem}>
           <Typography variant="subtitle2" component="div" color="primary">
