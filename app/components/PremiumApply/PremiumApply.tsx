@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import { UserContext } from '../../contexts/user-context'
 
 
-const artportableZapierApiUrl = `https://hooks.zapier.com/hooks/catch/6936905/b6pk0xl/n`
+const artportableZapierApiUrl = `https://hooks.zapier.com/hooks/catch/6936905/b6pk0xl/`
 
 export default function PremiumApply() {
   const s = styles();
