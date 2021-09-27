@@ -33,7 +33,27 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
          username: {
            value: tokenParsed.preferred_username,
            isPending: false,
-         }
+         },
+         family_name: {
+          value: tokenParsed.family_name,
+          isPending: false,
+        },
+        given_name: {
+          value: tokenParsed.given_name,
+          isPending: false,
+        },
+        user_type: {
+          value: tokenParsed.user_type,
+          isPending: false,
+        },
+         phone: {
+          value: tokenParsed.phone,
+          isPending: false,
+        },
+        email: {
+          value: tokenParsed.email,
+          isPending: false,
+        },
         })
       );
     } else if (keycloakState === 'onReady') {
@@ -47,7 +67,27 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
           username: {
             value: null,
             isPending: false,
-          }
+          },
+          family_name: {
+            value: null,
+            isPending: false,
+          },
+          given_name: {
+            value: null,
+            isPending: false,
+          },
+          user_type: {
+            value: null,
+            isPending: false,
+          },
+          phone: {
+            value: null,
+            isPending: false,
+          },
+          email: {
+            value: null,
+            isPending: false,
+          },
         }));
       }
     }
@@ -57,7 +97,17 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
     if (userContext.username.value && 
       !userContext.username.isPending && 
       !userContext.membership.value && 
-      !userContext.membership.isPending) {
+      !userContext.membership.isPending &&
+      !userContext.family_name.value &&
+      !userContext.family_name.isPending &&
+      !userContext.given_name.value &&
+      !userContext.given_name.isPending &&
+      !userContext.user_type.value &&
+      !userContext.user_type.isPending &&
+      !userContext.phone.value &&
+      !userContext.phone.isPending &&
+      !userContext.email.value &&
+      !userContext.email.isPending ) {
       const tokenParsed = keycloak.tokenParsed as any;
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
