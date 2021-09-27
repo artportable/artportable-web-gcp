@@ -179,7 +179,9 @@ export default function ArtworkPage(props) {
                 {artwork.data.Likes > 0 &&
                   <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
                 }
-                <p>{formatter.format(artwork.data.Price)} </p>
+                {artwork.data.Price &&
+                  <p>{formatter.format(artwork.data.Price)} </p>
+                }
               </div>
               <Box textAlign="center" marginY={2} className={s.text}>
                 {artwork.data.Title &&

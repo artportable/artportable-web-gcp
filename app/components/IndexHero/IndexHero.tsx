@@ -15,7 +15,7 @@ export default function IndexHero() {
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const promotedUser = "jimpa";
+  const promotedUser = "dacestrausa";
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
@@ -72,7 +72,7 @@ export default function IndexHero() {
                 }}
                 avatar={
                   <div className={s.chipAvatar}>
-                    <ProfileAvatar size={19} profilePicture={undefined} />
+                    <ProfileAvatar size={19} profilePicture="SAM7988-m.jpg" />
                   </div>
                 }
                 label={promotedUser}/>
