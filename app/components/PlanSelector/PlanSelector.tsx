@@ -11,7 +11,21 @@ import { useRouter } from 'next/router'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
 import clsx from 'clsx';
 
-export default function PlanSelector({ priceData, landingPageMode = false }) {
+export interface PriceData {
+  id: string;
+  product: "portfolioPremium" | "portfolio" | "free";
+  productKey: string;
+  currency: string;
+  recurringInterval: string;
+  amount?: number;
+}
+
+interface Props {
+  priceData: PriceData[];
+  landingPageMode?: boolean;
+}
+
+export default function PlanSelector({ priceData, landingPageMode = false }: Props ) {
   const { t } = useTranslation(['plans', 'common']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -20,7 +34,7 @@ export default function PlanSelector({ priceData, landingPageMode = false }) {
 
   const [paymentInterval, setPaymentInterval] = useState('year');
 
-  const priceDataWithPremium = [...priceData, {
+  const priceDataWithPremium: PriceData[] = [...priceData, {
     id: "premium",
     product: "portfolioPremium",
     productKey: "portfolioPremium",
