@@ -10,6 +10,7 @@ interface AsyncValue<T> {
 export interface ContextUser {
   isSignedIn: AsyncValue<boolean>;
   profilePicture: AsyncValue<string>;
+  email: AsyncValue<string>;
   username: AsyncValue<string>;
   family_name: AsyncValue<string>;
   given_name: AsyncValue<string>;
@@ -48,6 +49,10 @@ export const defaultContextUser = {
     isPending: false,
   },
   phone: {
+    value: null,
+    isPending: false,
+  },
+  email: {
     value: null,
     isPending: false,
   },

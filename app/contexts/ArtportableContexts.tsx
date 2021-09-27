@@ -50,6 +50,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
           value: tokenParsed.phone,
           isPending: false,
         },
+        email: {
+          value: tokenParsed.email,
+          isPending: false,
+        },
         })
       );
     } else if (keycloakState === 'onReady') {
@@ -80,6 +84,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
             value: null,
             isPending: false,
           },
+          email: {
+            value: null,
+            isPending: false,
+          },
         }));
       }
     }
@@ -97,7 +105,9 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
       !userContext.user_type.value &&
       !userContext.user_type.isPending &&
       !userContext.phone.value &&
-      !userContext.phone.isPending ) {
+      !userContext.phone.isPending &&
+      !userContext.email.value &&
+      !userContext.email.isPending ) {
       const tokenParsed = keycloak.tokenParsed as any;
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
