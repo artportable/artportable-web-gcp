@@ -23,7 +23,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
   
   useEffect(() => {
     const tokenParsed = keycloak.tokenParsed as any;
-    
+
     if(keycloakState === 'onAuthSuccess') {
       setUserContext((prevValue) => ({ 
         ...prevValue,
@@ -120,13 +120,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
         }
       }).then(res => {
         if (res.status === 204) {
-          // const anonymousUser = { username: null, profilePicture: null, isSignedIn: true, membership: Membership.Base }
-
-          // dispatch({
-          //   type: LOGIN_USER,
-          //   payload: anonymousUser
-          // });
-          // router.push('/plans');
           
         } else if (res.status === 200) {
           res.json().then(json => {
