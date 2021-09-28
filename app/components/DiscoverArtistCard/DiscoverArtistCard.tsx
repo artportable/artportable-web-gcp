@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import Link from 'next/link'
 import { styles } from "./discoverArtistCard.css";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
 import { capitalizeFirst } from "../../utils/util";
-import Image from 'next/image';
 import AvatarCard from "../AvatarCard/AvatarCard";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx'
@@ -27,7 +27,11 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const scrollBy = mainWidth / 1.5;
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
-  const images = artist.Images.map(i => normalizeImageSize(i, 200));
+  const images = artist.Artworks.map(a => ({
+    ...normalizeImageSize(a.PrimaryFile, 200),
+    id: a.Id,
+    title: a.Title
+  }));
   const isSignedIn = store.getState()?.user?.isSignedIn;
 
   function toggleFollow() {
@@ -59,14 +63,18 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
       </div>
       <div className={s.scrollContainer}>
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
-          {images.map((image, i) =>
+          {images.map((image, i) => 
             <div className={clsx(s.rowFlex)} key={i}>
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <img src={`${bucketUrl}${image.Name}`}
-                  alt="Portfolio image"
-                  width={image.Width}
-                  height={image.Height}
-                />
+                <Link href={`/art/${image.id}`}>
+                  <a>
+                    <img src={`${bucketUrl}${image.Name}`}
+                      alt={image.title}
+                      width={image.Width}
+                      height={image.Height}
+                    />
+                  </a>
+                </Link>
               </Paper>
             </div>
           )}

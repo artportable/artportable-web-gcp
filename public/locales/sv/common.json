@@ -14,7 +14,8 @@
     "worksOfArt": "Konstverk",
     "cancel": "avbryt",
     "save": "spara",
-    "confirm": "bekräfta"
+    "confirm": "bekräfta",
+    "send": "Skicka"
   },
   "timeUnit": {
     "year": "år",
@@ -26,7 +27,9 @@
     "second": "s"
   },
   "like": "Gilla",
-  "message": "Chatta",
+  "message": "Meddelande",
   "Yes" : "Ja",
-  "Cancel" : "Avbryt"
+  "Cancel" : "Avbryt",
+  "purchaseRequest": "Köpförfrågan"
+  
 }

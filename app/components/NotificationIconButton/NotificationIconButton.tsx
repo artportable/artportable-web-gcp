@@ -27,7 +27,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
 
   useEffect(() => {
     const initFeeds = async () => {
-      const streamClient = connect('x595terv4p22', activityToken, '1128230');
+      const streamClient = connect(process.env.NEXT_PUBLIC_STREAM_KEY, activityToken, process.env.NEXT_PUBLIC_STREAM_APP_ID);
       userFeed.current = streamClient.feed('notification', username) as StreamFeed;
       const notificationsResponse = await userFeed.current.get({ limit: 3 }) as FeedAPIResponse;
       handleNotificationResponse(notificationsResponse);

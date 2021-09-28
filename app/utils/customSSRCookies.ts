@@ -59,10 +59,10 @@ function removeCookie(name: string) {
   Cookie.remove(name);
 }
 function encode(value: string) {
-  return btoa(value);
+  return Buffer.from(value).toString('base64');
 }
 function decode(value: string) {
-  return atob(value);
+  return Buffer.from(value, 'base64').toString();
 }
 
 function decodeToken(token: string): KeycloakTokenParsed {
@@ -71,7 +71,7 @@ function decodeToken(token: string): KeycloakTokenParsed {
   token = token.replace(/-/g, '+');
   token = token.replace(/_/g, '/');
 
-  token = decodeURIComponent(escape(atob(token)));
+  token = decodeURIComponent(escape(Buffer.from(token, 'base64').toString()));
 
   var parsedToken = JSON.parse(token) as KeycloakTokenParsed;
 

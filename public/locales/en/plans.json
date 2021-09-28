@@ -1,5 +1,5 @@
 {
-  "welcomeTo": "Welcome to Swedens largest community for art",
+  "welcomeTo": "Welcome to largest art community in the Nordics",
   "artPortableDescription": "Your Artportable portfolio is a tool that helps you present your art in a professional way. Artportable is a meeting point for artists, art buyers and art enthusiasts.",
   "ourMemberships": "Our memberships",
   "youCanAlwaysUpdateYourMembership": "You can always update your membership package",
@@ -10,6 +10,7 @@
   "plans": {
     "free": {
       "name": "Free",
+      "subtitle": "Art lover - get a free account today and find original artwork.",
       "listTexts": [
         "Follow artists",
         "Find art for your home",
@@ -19,6 +20,7 @@
     },
     "portfolio": {
       "name": "Portfolio",
+      "subtitle": "Artist - boost your art career and get inquiries using Portfolio.",
       "listTexts": [
         "Upload your artwork",
         "Chat and get inquiries about your artwork",
@@ -28,6 +30,7 @@
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
+      "subtitle": "Artist - get your own art coordinator and be prioritized in the feed.",
       "listTexts": [
         "Personal Art coordinator",
         "Support",
