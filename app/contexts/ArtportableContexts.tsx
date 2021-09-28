@@ -22,11 +22,8 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
 
   
   useEffect(() => {
-    console.log('KeycloakState: ', keycloakState);
-    console.log('accessToken: ', accessToken);
     const tokenParsed = keycloak.tokenParsed as any;
 
-    console.log('tokenParsed: ', tokenParsed)
     if(keycloakState === 'onAuthSuccess') {
       setUserContext((prevValue) => ({ 
         ...prevValue,
@@ -98,21 +95,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
   }, [keycloakState, accessToken]);
 
   useEffect(() => {
-    console.log('USER CONTEXT Use Effect.. UserContext: ', userContext);
     if (userContext.username.value && 
       !userContext.username.isPending && 
       !userContext.membership.value && 
-      !userContext.membership.isPending &&
-      !userContext.family_name.value &&
-      !userContext.family_name.isPending &&
-      !userContext.given_name.value &&
-      !userContext.given_name.isPending &&
-      !userContext.user_type.value &&
-      !userContext.user_type.isPending &&
-      !userContext.phone.value &&
-      !userContext.phone.isPending &&
-      !userContext.email.value &&
-      !userContext.email.isPending ) {
+      !userContext.membership.isPending) {
       const tokenParsed = keycloak.tokenParsed as any;
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
@@ -134,13 +120,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
         }
       }).then(res => {
         if (res.status === 204) {
-          // const anonymousUser = { username: null, profilePicture: null, isSignedIn: true, membership: Membership.Base }
-
-          // dispatch({
-          //   type: LOGIN_USER,
-          //   payload: anonymousUser
-          // });
-          // router.push('/plans');
           
         } else if (res.status === 200) {
           res.json().then(json => {
