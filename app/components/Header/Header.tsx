@@ -153,7 +153,7 @@ export default function Header({}) {
                 }
               </div>
               <div className={s.login}>
-                {(membership.value === Membership.PortfolioPremium) &&
+                {(membership.value > Membership.Base) &&
                   <div className={s.upload}>
                     <Link href="/upload">
                       <a>
