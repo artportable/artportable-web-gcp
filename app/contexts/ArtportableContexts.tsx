@@ -22,11 +22,8 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
 
   
   useEffect(() => {
-    console.log('KeycloakState: ', keycloakState);
-    console.log('accessToken: ', accessToken);
     const tokenParsed = keycloak.tokenParsed as any;
-
-    console.log('tokenParsed: ', tokenParsed)
+    
     if(keycloakState === 'onAuthSuccess') {
       setUserContext((prevValue) => ({ 
         ...prevValue,
@@ -98,7 +95,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
   }, [keycloakState, accessToken]);
 
   useEffect(() => {
-    console.log('USER CONTEXT Use Effect.. UserContext: ', userContext);
     if (userContext.username.value && 
       !userContext.username.isPending && 
       !userContext.membership.value && 
