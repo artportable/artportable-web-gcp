@@ -37,147 +37,115 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
   useEffect(() => {
     const tokenParsed = keycloak.tokenParsed as any;
 
-    setUserContext((prevValue) => ({
-      ...prevValue,
-      isSignedIn: {
-        value: false,
-        isPending: false,
-      },
-      username: {
-        value: null,
-        isPending: false,
-      },
-      family_name: {
-        value: null,
-        isPending: false,
-      },
-      given_name: {
-        value: null,
-        isPending: false,
-      },
-      user_type: {
-        value: null,
-        isPending: false,
-      },
-      phone: {
-        value: null,
-        isPending: false,
-      },
-      email: {
-        value: null,
-        isPending: false,
-      },
-    }));
+    if(keycloakState === 'onAuthSuccess') {
+      setUserContext((prevValue) => ({ 
+        ...prevValue,
+         isSignedIn: {
+          value: true,
+          isPending: false,
+         },
+         username: {
+           value: tokenParsed.preferred_username,
+           isPending: false,
+         },
+         family_name: {
+          value: tokenParsed.family_name,
+          isPending: false,
+        },
+        given_name: {
+          value: tokenParsed.given_name,
+          isPending: false,
+        },
+        user_type: {
+          value: tokenParsed.user_type,
+          isPending: false,
+        },
+         phone: {
+          value: tokenParsed.phone,
+          isPending: false,
+        },
+        email: {
+          value: tokenParsed.email,
+          isPending: false,
+        },
+        })
+      );
+    } else if (keycloakState === 'onReady') {
+      if(!keycloak.authenticated) {
+        setUserContext((prevValue) => ({
+          ...prevValue,
+          isSignedIn: {
+            value: false,
+            isPending: false,
+          },
+          username: {
+            value: null,
+            isPending: false,
+          },
+          family_name: {
+            value: null,
+            isPending: false,
+          },
+          given_name: {
+            value: null,
+            isPending: false,
+          },
+          user_type: {
+            value: null,
+            isPending: false,
+          },
+          phone: {
+            value: null,
+            isPending: false,
+          },
+          email: {
+            value: null,
+            isPending: false,
+          },
+        }));
+      }
+    }
+    else if (keycloakState === 'onInitError') {
+      if(!keycloak.authenticated) {
+        setSnackbar({ 
+          open: true,
+          message: t('couldNotContactLoginServerTryAgain'),
+          severity: 'error'
+        });
 
-    // if(keycloakState === 'onAuthSuccess') {
-    //   setUserContext((prevValue) => ({ 
-    //     ...prevValue,
-    //      isSignedIn: {
-    //       value: true,
-    //       isPending: false,
-    //      },
-    //      username: {
-    //        value: tokenParsed.preferred_username,
-    //        isPending: false,
-    //      },
-    //      family_name: {
-    //       value: tokenParsed.family_name,
-    //       isPending: false,
-    //     },
-    //     given_name: {
-    //       value: tokenParsed.given_name,
-    //       isPending: false,
-    //     },
-    //     user_type: {
-    //       value: tokenParsed.user_type,
-    //       isPending: false,
-    //     },
-    //      phone: {
-    //       value: tokenParsed.phone,
-    //       isPending: false,
-    //     },
-    //     email: {
-    //       value: tokenParsed.email,
-    //       isPending: false,
-    //     },
-    //     })
-    //   );
-    // } else if (keycloakState === 'onReady') {
-    //   if(!keycloak.authenticated) {
-    //     setUserContext((prevValue) => ({
-    //       ...prevValue,
-    //       isSignedIn: {
-    //         value: false,
-    //         isPending: false,
-    //       },
-    //       username: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       family_name: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       given_name: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       user_type: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       phone: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       email: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //     }));
-    //   }
-    // }
-    // else if (keycloakState === 'onInitError') {
-    //   if(!keycloak.authenticated) {
-    //     setSnackbar({ 
-    //       open: true,
-    //       message: t('couldNotContactLoginServerTryAgain'),
-    //       severity: 'error'
-    //     });
-
-    //     setUserContext((prevValue) => ({
-    //       ...prevValue,
-    //       isSignedIn: {
-    //         value: false,
-    //         isPending: false,
-    //       },
-    //       username: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       family_name: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       given_name: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       user_type: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       phone: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //       email: {
-    //         value: null,
-    //         isPending: false,
-    //       },
-    //     }));
-    //   }
-    // }
+        setUserContext((prevValue) => ({
+          ...prevValue,
+          isSignedIn: {
+            value: false,
+            isPending: false,
+          },
+          username: {
+            value: null,
+            isPending: false,
+          },
+          family_name: {
+            value: null,
+            isPending: false,
+          },
+          given_name: {
+            value: null,
+            isPending: false,
+          },
+          user_type: {
+            value: null,
+            isPending: false,
+          },
+          phone: {
+            value: null,
+            isPending: false,
+          },
+          email: {
+            value: null,
+            isPending: false,
+          },
+        }));
+      }
+    }
   }, [keycloakState, accessToken]);
 
   useEffect(() => {
