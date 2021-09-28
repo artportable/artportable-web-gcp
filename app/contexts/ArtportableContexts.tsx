@@ -102,17 +102,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
     if (userContext.username.value && 
       !userContext.username.isPending && 
       !userContext.membership.value && 
-      !userContext.membership.isPending &&
-      !userContext.family_name.value &&
-      !userContext.family_name.isPending &&
-      !userContext.given_name.value &&
-      !userContext.given_name.isPending &&
-      !userContext.user_type.value &&
-      !userContext.user_type.isPending &&
-      !userContext.phone.value &&
-      !userContext.phone.isPending &&
-      !userContext.email.value &&
-      !userContext.email.isPending ) {
+      !userContext.membership.isPending) {
       const tokenParsed = keycloak.tokenParsed as any;
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
