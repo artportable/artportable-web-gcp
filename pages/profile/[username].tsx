@@ -38,6 +38,7 @@ import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
 import { LoadingContext } from '../../app/contexts/loading-context'
 import { UserContext } from '../../app/contexts/user-context'
+import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 
 
 function a11yProps(index: any) {
@@ -57,6 +58,7 @@ export default function Profile() {
   const { isSignedIn, username, membership } = useContext(UserContext);
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -146,6 +148,7 @@ export default function Profile() {
   }, [rowWidth]);
 
   function onLikeClick(artworkId, isLike) {
+    redirectIfNotLoggedIn();
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
@@ -186,6 +189,7 @@ export default function Profile() {
   }
 
   function toggleFollow() {
+    redirectIfNotLoggedIn();
     follow(userProfile.data?.Username, !isFollowed);
     setFollow(!isFollowed);
   }
@@ -324,6 +328,7 @@ export default function Profile() {
                   >
                     <a style={isSignedIn ? {} : { pointerEvents: 'none' }}>
                       <Button
+                        onClick={() => redirectIfNotLoggedIn()}
                         className={s.followButton}
                         size={smScreenOrSmaller ? 'small' : 'medium'}
                         variant={"contained"}
