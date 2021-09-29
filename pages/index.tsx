@@ -17,6 +17,8 @@ import IndexHero from "../app/components/IndexHero/IndexHero";
 import { TokenContext } from "../app/contexts/token-context";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
+import { useRedirectToLoginOnClick } from "../app/hooks/useRedirectToLoginOnClick";
+
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -24,6 +26,7 @@ export default function DiscoverPage() {
   const store = useStore();
   const token = useContext(TokenContext);
   const { username, isSignedIn } = useContext(UserContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginOnClick();
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -123,9 +126,7 @@ export default function DiscoverPage() {
   }
 
   function like(artworkId, isLike) {
-    if (isNullOrUndefined(username.value)) {
-      return;
-    }
+    redirectIfNotLoggedIn();
 
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',

@@ -30,8 +30,10 @@ export default function ArtworkListItemDefined({
   function toggleLike(event) {
     event.stopPropagation();
 
-    setIsLiked(!isLiked);
-    !isLiked ? artwork.Likes++ : artwork.Likes--;
+    if(isSignedIn.value) {
+      setIsLiked(!isLiked);
+      !isLiked ? artwork.Likes++ : artwork.Likes--;
+    }
     onLikeClick(artwork.Id, !isLiked);
   }
 
@@ -75,7 +77,7 @@ export default function ArtworkListItemDefined({
               className={s.likeButton}
               disableRipple
               disableFocusRipple
-              disabled={!isSignedIn.value}
+              // disabled={!isSignedIn.value}
               onClick={toggleLike}>
               <FavoriteIcon fontSize={'small'} color={likedColor} />
             </IconButton>
