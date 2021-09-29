@@ -26,25 +26,25 @@ export default function SocialNetworksCard({ data }) {
       </CardHeader>
       <CardContent classes={{ root: s.cardContent }}>
         {data.Instagram && <Box>
-          <a href={'//' + data.Instagram} className={s.row}>
+          <a href={data.Instagram} className={s.row}>
             <div className={s.icon}><InstagramIcon color="primary"></InstagramIcon></div>
             Instagram
           </a>
         </Box>}
         {data.Facebook && <Box>
-          <a href={'//' + data.Facebook} className={s.row}>
+          <a href={data.Facebook} className={s.row}>
             <div className={s.icon}><FacebookIcon color="primary"></FacebookIcon></div>
             Facebook
           </a>
         </Box>}
         {data.LinkedIn && <Box>
-          <a href={'//' + data.LinkedIn} className={s.row}>
+          <a href={data.LinkedIn} className={s.row}>
             <div className={s.icon}><LinkedInIcon color="primary"></LinkedInIcon></div>
             LinkedIn
           </a>
         </Box>}
         {data.Dribble && <Box>
-          <a href={'//' + data.Dribble} className={s.row}>
+          <a href={data.Dribble} className={s.row}>
             <div className={s.icon}>
               <Icon color="primary" className="fab fa-dribbble"></Icon>
             </div>
@@ -52,7 +52,7 @@ export default function SocialNetworksCard({ data }) {
           </a>
         </Box>}
         {data.Behance && <Box>
-          <a href={'//' + data.Behance} className={s.row}>
+          <a href={data.Behance} className={s.row}>
             <div className={s.icon}>
               <Icon color="primary" className="fab fa-behance-square"></Icon>
             </div>
@@ -60,7 +60,7 @@ export default function SocialNetworksCard({ data }) {
           </a>
         </Box>}
         {data.Website && <Box>
-          <a href={'//' + data.Website} className={s.row}>
+          <a href={data.Website} className={s.row}>
             <div className={s.icon}>
               <LanguageIcon color="primary"></LanguageIcon>
               </div>
