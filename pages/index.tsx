@@ -17,7 +17,7 @@ import IndexHero from "../app/components/IndexHero/IndexHero";
 import { TokenContext } from "../app/contexts/token-context";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
-import { useRedirectToLoginOnClick } from "../app/hooks/useRedirectToLoginOnClick";
+import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 
 
 export default function DiscoverPage() {
@@ -26,7 +26,7 @@ export default function DiscoverPage() {
   const store = useStore();
   const token = useContext(TokenContext);
   const { username, isSignedIn } = useContext(UserContext);
-  const redirectIfNotLoggedIn = useRedirectToLoginOnClick();
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 

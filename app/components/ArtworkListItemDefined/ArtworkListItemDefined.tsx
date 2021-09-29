@@ -77,7 +77,6 @@ export default function ArtworkListItemDefined({
               className={s.likeButton}
               disableRipple
               disableFocusRipple
-              // disabled={!isSignedIn.value}
               onClick={toggleLike}>
               <FavoriteIcon fontSize={'small'} color={likedColor} />
             </IconButton>

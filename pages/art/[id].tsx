@@ -17,6 +17,7 @@ import SendIcon from '@material-ui/icons/Send';
 import Link from "next/link";
 import { TokenContext } from "../../app/contexts/token-context";
 import { UserContext } from "../../app/contexts/user-context";
+import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -29,6 +30,7 @@ export default function ArtworkPage(props) {
   const { username } = useContext(UserContext);
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
@@ -69,6 +71,7 @@ export default function ArtworkPage(props) {
   }
 
   function toggleFollow() {
+    redirectIfNotLoggedIn();
     follow(artwork.data.Owner.Username, !isFollowed);
     setFollow(!isFollowed);
   }
@@ -76,9 +79,7 @@ export default function ArtworkPage(props) {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likeArtwork(isLike) {
-    if (username.value === null || username.value === undefined) {
-      return; // TODO: Display modal to sign up
-    }
+    redirectIfNotLoggedIn();
 
     fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username.value}`, {
       method: isLike ? 'POST' : 'DELETE',
@@ -168,6 +169,7 @@ export default function ArtworkPage(props) {
                   >
                     <a>
                       <Button
+                        onClick={() => redirectIfNotLoggedIn()}
                         startIcon={<SendIcon color={"inherit"} />}>
                         {capitalizeFirst(t('common:purchaseRequest'))}
                       </Button>

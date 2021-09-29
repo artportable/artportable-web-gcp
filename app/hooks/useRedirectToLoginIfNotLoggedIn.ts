@@ -4,7 +4,7 @@ import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from 'next/router'
 
-export const useRedirectToLoginOnClick = () => {
+export const useRedirectToLoginIfNotLoggedIn = () => {
   const { isSignedIn } = useContext(UserContext);
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
