@@ -21,7 +21,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'relative',
       '& a': {
         position: 'absolute',
-        right: 'calc(50% - 70px)',
+        right: 'calc(50% - 72px)',
         bottom: '-13px',
       }
     },
@@ -47,6 +47,9 @@ export const styles = makeStyles((theme: Theme) =>
 
     upload: {
       display: 'none'
+    },
+    singleNotificationButton: {
+      minWidth: '54px'
     },
 
     notificationButton: {
@@ -85,6 +88,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       singleNotificationButton: {
         display: 'none',
+      
       },
       login: {
         display: 'flex',
