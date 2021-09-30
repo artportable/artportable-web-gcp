@@ -23,10 +23,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
       paddingTop: theme.spacing(0.5),
       gridArea: 'actions',
       display: 'flex', 
-      [theme.breakpoints.down('sm')]: {
-        flexDirection : 'column'
-      },
-      gap: theme.spacing(1),
+      flexDirection : 'column',
+      gap: theme.spacing(2),
       justifySelf: 'flex-end',
     },
     followButton: {
@@ -48,7 +46,20 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gap: theme.spacing(2),
       justifyContent: 'flex-start',
       overflow: 'hidden'
-
+    },
+    upload: {
+      display: 'flex,',
+      alignItems: 'center',
+    },
+    uploadButton: {
+      width: '130px',
+      display: 'flex',
+      alignItems: 'center',
+    },
+    uploadIcon: {
+      alignItems: 'center',
+      maxWidth: '1rem',
+      maxHeight: '1rem',
     },
     secondDivider: {
       gridArea: 'divider2'
@@ -64,5 +75,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
         margin: '0 0',
       }
     },
+    [theme.breakpoints.up('md')]: {
+      uploadButton: {
+        display: 'initial',
+      },
+    }
   }),
 );
