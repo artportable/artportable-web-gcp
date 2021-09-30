@@ -137,10 +137,10 @@ export default function Header({}) {
               </Button>
             </div>
           }
-          {(isSignedIn.value) &&
-            <>
-              <div className={s.singleNotificationButton}>
-                {activityToken && !isError && !isLoading ?
+            <div className={s.singleNotificationButton}>
+            {(isSignedIn.value) &&
+               <> 
+               {activityToken && !isError && !isLoading ?
                   <NotificationIconButton activityToken={activityToken} username={username.value}/>
                   :
                   <IconButton aria-label="account" disabled aria-disabled>
@@ -151,7 +151,12 @@ export default function Header({}) {
                     />
                   </IconButton>
                 }
+                </>
+              }
               </div>
+          {(isSignedIn.value) &&
+            <>
+            
               <div className={s.login}>
                 {(membership.value > Membership.Base) &&
                   <div className={s.upload}>
