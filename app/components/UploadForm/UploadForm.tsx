@@ -28,7 +28,6 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setSele
           id="title"
           label={t('title')}
           onChange={(event) => setTitle(event.target.value)}
-          required
           fullWidth/>
         <TextField
           id="description"
