@@ -48,6 +48,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
            value: tokenParsed.preferred_username,
            isPending: false,
          },
+         user_id: {
+           value: tokenParsed.sub,
+           isPending: false,
+         },
          family_name: {
           value: tokenParsed.family_name,
           isPending: false,
@@ -79,6 +83,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
             isPending: false,
           },
           username: {
+            value: null,
+            isPending: false,
+          },
+          user_id: {
             value: null,
             isPending: false,
           },
@@ -120,6 +128,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
             isPending: false,
           },
           username: {
+            value: null,
+            isPending: false,
+          },
+          user_id: {
             value: null,
             isPending: false,
           },
