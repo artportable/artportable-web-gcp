@@ -48,19 +48,15 @@ export const profileStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden'
     },
     upload: {
-      display: 'flex,',
-      alignItems: 'center',
-    },
+      uploadIcon: {
+      
+    }
+  },
     uploadButton: {
       width: '130px',
-      display: 'flex',
-      alignItems: 'center',
+      display: 'none',
     },
-    uploadIcon: {
-      alignItems: 'center',
-      maxWidth: '1rem',
-      maxHeight: '1rem',
-    },
+
     secondDivider: {
       gridArea: 'divider2'
     },
@@ -77,7 +73,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('md')]: {
       uploadButton: {
-        display: 'initial',
+        display: 'flex',
       },
     }
   }),

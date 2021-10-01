@@ -7,9 +7,17 @@ export const styles = makeStyles((theme: Theme) =>
       gap: theme.spacing(1),
       flexWrap: 'wrap'
     },
-  
     buttonPosition: {
       marginTop: theme.spacing(1),
+    },
+    editProfileButton: {
+    },
+    editButtonText: {
+      display: 'none',
+    },
+    editProfileIcon: {
+      position: 'relative',
+      right: '-5px'
     },
     form: {
       display: 'flex',
@@ -25,6 +33,17 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       width: 'clamp(10px, 100vw - 88px, 660px)',
       gap: theme.spacing(2)
+    },
+    [theme.breakpoints.up('sm')]: {
+      editProfileButton: {
+        width: '130px',
+      },
+      editButtonText: {
+        display: 'flex',
+      },
+      editProfileIcon: {
+        right: '0px',
+      },
     }
   }),
 );

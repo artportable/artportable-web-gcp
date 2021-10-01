@@ -23,7 +23,15 @@ const styles = makeStyles((theme: Theme) =>
       justifyContent: 'flex-end',
       width: '100%',
       bottom: 0,
-      marginBottom: theme.spacing(1)
+      marginBottom: theme.spacing(1),
+      right: '15px'
+    },
+    editCoverPhotoText: {
+      display: 'none'
+    },
+    cameraIcon: {
+      position: 'relative',
+      right: '-5px'
     },
     buttonPosition: {
       position: 'relative',
@@ -48,7 +56,13 @@ const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('xl')]: {
         right: `calc((100vw - ${theme.breakpointMainWidths.xl.regular}px) / 2)`
       },
+    },
+    [theme.breakpoints.up('sm')]: {
+      editCoverPhotoText: {
+        display: 'flex'
+      },
     }
+
   }),
 );
 

@@ -30,6 +30,7 @@ import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
 import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
+
 import AddIcon from '@material-ui/icons/Add';
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
