@@ -10,8 +10,6 @@ export const styles = makeStyles((theme: Theme) =>
     buttonPosition: {
       marginTop: theme.spacing(1),
     },
-    editProfileButton: {
-    },
     editButtonText: {
       display: 'none',
     },

@@ -47,11 +47,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       justifyContent: 'flex-start',
       overflow: 'hidden'
     },
-    upload: {
-      uploadIcon: {
-      
-    }
-  },
     uploadButton: {
       width: '130px',
       display: 'none',

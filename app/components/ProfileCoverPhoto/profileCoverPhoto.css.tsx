@@ -59,7 +59,7 @@ const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('sm')]: {
       editCoverPhotoText: {
-        display: 'flex'
+        display: 'initial'
       },
     }
 
