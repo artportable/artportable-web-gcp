@@ -22,7 +22,7 @@ export function useGetChatClient(profilePicture, setUnreadCount = null) {
   useEffect(() => {
     const initChat = async () => {
 
-      const response = await fetch(`${apiBaseUrl}/api/messages/connect?username=${user_id.value}`, {
+      const response = await fetch(`${apiBaseUrl}/api/messages/connect?userId=${user_id.value}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`

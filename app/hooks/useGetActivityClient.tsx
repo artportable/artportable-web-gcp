@@ -19,7 +19,7 @@ export function useGetActivityToken() {
     }).then(r => r.json().then(data => data))
 
   const { data, error } = useSWR(
-    shouldFetch ? `${apiBaseUrl}/api/activity/connect?username=${user_id.value}` : null,
+    shouldFetch ? `${apiBaseUrl}/api/activity/connect?userId=${user_id.value}` : null,
     fetcher,
     {
       revalidateOnFocus: false,
