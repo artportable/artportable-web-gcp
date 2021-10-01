@@ -1,13 +1,15 @@
 import { useContext } from 'react'
 import useSWR from 'swr'
 import { TokenContext } from '../contexts/token-context';
+import { UserContext } from '../contexts/user-context';
 
 
-export function useGetActivityToken(username, isSignedIn) {
+export function useGetActivityToken() {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const token = useContext(TokenContext);
+  const { user_id, username, isSignedIn } = useContext(UserContext);
 
-  const shouldFetch = username && isSignedIn && token;
+  const shouldFetch = username.value && isSignedIn.value && token;
 
   const fetcher = url => fetch(url, {
       method: 'GET',
@@ -17,7 +19,7 @@ export function useGetActivityToken(username, isSignedIn) {
     }).then(r => r.json().then(data => data))
 
   const { data, error } = useSWR(
-    shouldFetch ? `${apiBaseUrl}/api/activity/connect?username=${username}` : null,
+    shouldFetch ? `${apiBaseUrl}/api/activity/connect?username=${user_id.value}` : null,
     fetcher,
     {
       revalidateOnFocus: false,

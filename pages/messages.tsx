@@ -33,7 +33,7 @@ export default function MessagesPage(props) {
     cid: 1,
   };
 
-  const chatClient = useGetChatClient(username.value, profilePicture, isSignedIn.value);
+  const chatClient = useGetChatClient(profilePicture);
   const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
   const [hasChannels, setHasChannels] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
