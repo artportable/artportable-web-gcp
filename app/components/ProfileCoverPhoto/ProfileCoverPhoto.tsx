@@ -50,13 +50,14 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
               multiple={false}
             />
             <Button
+              className={s.cameraButton}
               size="small"
               variant="contained"
               color="default"
               rounded
               onClick={() => coverFileInput.current.click()}
-              startIcon={<CameraAltIcon />}>
-                {t('edit')}
+              startIcon={<CameraAltIcon className={s.cameraIcon} />}>
+                <div className={s.editCoverPhotoText}>{t('edit')}</div>
             </Button>
           </div>
         </div>

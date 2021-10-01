@@ -100,13 +100,14 @@ export default function EditProfileDialog({ userProfile }) {
     <>
       <div className={s.buttonPosition}>
         <Button
+          className={s.editProfileButton}
           size="small"
           variant="contained"
           color="default"
           rounded
-          startIcon={<EditIcon />}
+          startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}>
-            {t('editProfile')}
+           <div className={s.editButtonText}> {t('editProfile')}</div>
         </Button>
       </div>
       

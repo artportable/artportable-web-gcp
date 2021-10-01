@@ -10,6 +10,7 @@ import Image from "../../app/models/Image"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
 import EditArtworkDialog from '../../app/components/EditArtworkDialog/EditArtworkDialog'
+import UploadIcon from '@material-ui/icons/Publish'
 
 import { useTranslation } from "next-i18next"
 import { profileStyles } from '../../styles/[username]'
@@ -29,6 +30,7 @@ import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
 import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
+
 import AddIcon from '@material-ui/icons/Add';
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
@@ -49,7 +51,7 @@ function a11yProps(index: any) {
 }
 
 export default function Profile() {
-  const { t } = useTranslation(['common', 'profile']);
+  const { t } = useTranslation(['common', 'profile', 'upload']);
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
@@ -309,15 +311,34 @@ export default function Profile() {
           <div className={s.profileSummary}>
             <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
           </div>
-          <div className={s.editActions}>
-            {isMyProfile ?
+        
+          <div className={s.editActions}>   
+            {isMyProfile ?      
+            <>     
               <EditProfileDialog
                 userProfile={userProfile.data}
               />
+              <div className={s.upload}>
+                    <Link href="/upload">
+                      <a>
+                        <Button
+                          className={s.uploadButton}
+                          size="small"
+                          variant="contained"
+                          color="primary"
+                          maxWidth
+                          startIcon={<UploadIcon className={s.uploadIcon} />}
+                          rounded>
+                          {t('upload:upload')}
+                        </Button>
+                      </a>
+                    </Link>
+                  </div>
+              </>
               :
               <>
                 {
-                  <Link
+                 <Link
                     href={{
                       pathname: "/messages",
                       query: {
@@ -360,6 +381,7 @@ export default function Profile() {
                 </Button>
               </>
             }
+            
           </div>
           <Divider className={s.divider}></Divider>
           
@@ -473,7 +495,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload']),
     },
     revalidate: 10,
   }
