@@ -34,16 +34,16 @@ export default function Header({}) {
   const { t } = useTranslation('header');
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
-  const { username, isSignedIn, membership } = useContext(UserContext);
+  const { user_id, username, isSignedIn, membership } = useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
 
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(username.value, profilePicture, isSignedIn.value, setUnreadChatMessages));
+  const [chatClient] = useState(useGetChatClient(profilePicture, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
   const [globalIsLoading, setglobalIsLoading] = useState(false);
-  const { token: activityToken, isError, isLoading } = useGetActivityToken(username.value, isSignedIn.value);
+  const { token: activityToken, isError, isLoading } = useGetActivityToken();
 
 
   const { loading: loadingFromContext } = useContext(LoadingContext);
@@ -141,7 +141,7 @@ export default function Header({}) {
             {(isSignedIn.value) &&
                <> 
                {activityToken && !isError && !isLoading ?
-                  <NotificationIconButton activityToken={activityToken} username={username.value}/>
+                  <NotificationIconButton activityToken={activityToken} username={user_id.value}/>
                   :
                   <IconButton aria-label="account" disabled aria-disabled>
                     <NotificationsIcon
@@ -177,7 +177,7 @@ export default function Header({}) {
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?
-                    <NotificationIconButton activityToken={activityToken} username={username.value}/>
+                    <NotificationIconButton activityToken={activityToken} username={user_id.value}/>
                       :
                       <IconButton aria-label="account" disabled aria-disabled>
                         <NotificationsIcon
