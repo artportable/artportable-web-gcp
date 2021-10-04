@@ -41,6 +41,7 @@ import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpa
 import { LoadingContext } from '../../app/contexts/loading-context'
 import { UserContext } from '../../app/contexts/user-context'
 import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
+import { Membership } from '../../app/models/Membership'
 
 
 function a11yProps(index: any) {
@@ -318,6 +319,7 @@ export default function Profile() {
               <EditProfileDialog
                 userProfile={userProfile.data}
               />
+               {(membership.value > Membership.Base) &&
               <div className={s.upload}>
                     <Link href="/upload">
                       <a>
@@ -334,6 +336,7 @@ export default function Profile() {
                       </a>
                     </Link>
                   </div>
+                }
               </>
               :
               <>
