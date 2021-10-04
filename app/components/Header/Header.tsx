@@ -29,6 +29,7 @@ import NotificationIconButton from '../NotificationIconButton/NotificationIconBu
 import { LoadingContext } from '../../contexts/loading-context'
 import { UserContext } from '../../contexts/user-context'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
+import DialogConstruction from '../DialogConstruction/DialogConstruction'
 
 export default function Header({}) {
   const { t } = useTranslation('header');
@@ -174,6 +175,7 @@ export default function Header({}) {
                     </Link>
                   </div>
                 }
+                <DialogConstruction />
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?
