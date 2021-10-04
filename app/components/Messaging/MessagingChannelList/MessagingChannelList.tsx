@@ -20,11 +20,12 @@ import { Channel } from 'stream-chat';
 
 type Props = ChannelListTeamProps & {
   onCreateChannel: () => void;
+  setIsLoading: (value: boolean) => void;
   activeChannel: Channel;
 };
 
 const MessagingChannelList: React.FC<Props> = (props) => {
-  const { children, error = false, loading, onCreateChannel, activeChannel } = props;
+  const { children, error = false, loading, onCreateChannel, activeChannel, setIsLoading } = props;
   const { client, channel, setActiveChannel } = useChatContext<
     AttachmentType,
     ChannelType,
@@ -34,6 +35,10 @@ const MessagingChannelList: React.FC<Props> = (props) => {
     ReactionType,
     UserType
   >();
+
+  useEffect(() => {
+    setIsLoading(loading);
+  }, [loading]);
 
   useEffect(() => {
     if (activeChannel) {
