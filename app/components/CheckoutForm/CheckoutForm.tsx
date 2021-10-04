@@ -134,14 +134,36 @@ export default function CheckoutForm({ email, fullName, plan }) {
         return response.json();
       })
       .then((result) => {
-        if (result.status === 500) {
+        if (result.status === 500 || result.error) {
           // If the card is declined, display an error to the user.
           setErrorOpen(true);
           throw result;
         }
-        setSucceeded(true);
-        startCountdown();
-        return result;
+        else if (result.Status === 'succeeded')
+        {
+          setSucceeded(true);
+          startCountdown();
+          return result;
+        }
+        else if (result.Status === 'requires_action')
+        {
+          return stripe.confirmCardPayment(result.Id, { payment_method: paymentMethodId })
+            .then((resultConfirm) => {
+              if (resultConfirm.error) { // If 3D Secure is declined, display an error to the user.
+                setErrorOpen(true);
+                throw resultConfirm;
+              } else {
+                if (resultConfirm.paymentIntent.status === 'succeeded') {
+                  setSucceeded(true);
+                  startCountdown();
+                  return resultConfirm;
+                }
+              }
+            })
+            .catch((error) => {
+              throw error;
+            });
+        }
       })
       .catch((error) => {
         setErrorOpen(true);
