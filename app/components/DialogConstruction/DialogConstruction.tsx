@@ -3,6 +3,7 @@ import Cookie from "js-cookie";
 import { parseCookies } from "../../utils/parseCookie"
 
 const DialogContruction = ({ initialRememberValue = true }) => {
+  console.log("value: ", initialRememberValue )
   const [rememberMe, setRememberMe] = useState(() =>
     JSON.parse(initialRememberValue)
   );
