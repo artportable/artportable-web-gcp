@@ -42,6 +42,7 @@ import { LoadingContext } from '../../app/contexts/loading-context'
 import { UserContext } from '../../app/contexts/user-context'
 import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 import { Membership } from '../../app/models/Membership'
+import DialogContruction from '../../app/components/DialogConstruction/DialogConstruction'
 
 
 function a11yProps(index: any) {
@@ -319,6 +320,7 @@ export default function Profile() {
               <EditProfileDialog
                 userProfile={userProfile.data}
               />
+              <DialogContruction />
                {(membership.value > Membership.Base) &&
               <div className={s.upload}>
                     <Link href="/upload">
