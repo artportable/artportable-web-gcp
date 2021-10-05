@@ -36,9 +36,6 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
-    feed: {
-      display: 'none',
-    },
     discover: {
       display: 'none',
     },
@@ -139,11 +136,7 @@ export const styles = makeStyles((theme: Theme) =>
         '/ auto auto 1fr auto auto'
         ),
       },
-      feed: {
-        display: 'initial',
-        
-        marginLeft: '20px',
-      },
+      
       upload: {
         display: 'initial'
       },
@@ -163,9 +156,10 @@ export const styles = makeStyles((theme: Theme) =>
       menuButton: {
         display: 'none',
       },
-      feed: {
+      navigation: {
         display: 'initial',
         gridArea: 'navigation',
+        marginLeft: '20px',
       },
     },
   }),
