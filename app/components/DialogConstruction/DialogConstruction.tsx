@@ -26,9 +26,11 @@ export default function DialogConstruction() {
 
   return (
     <div>
-      <Button className={s.technicalButton} rounded size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
+      <div className={s.technicalDiv}>
+      <Button rounded size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
       {t('header:technicalButton')}
       </Button>
+      </div>
       <Dialog
         open={open}
         onClose={handleClose}

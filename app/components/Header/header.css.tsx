@@ -36,9 +36,6 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
-    feed: {
-      display: 'none'
-    },
     discover: {
       display: 'none',
     },
@@ -51,10 +48,11 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none',
     },
     upload: {
-      display: 'none'
+      display: 'none',
+      whiteSpace: 'nowrap',
     },
     uploadButton: {
-      width: '130px'
+      whiteSpace: 'nowrap'
     },
     singleNotificationButton: {
       minWidth: '54px'
@@ -135,14 +133,10 @@ export const styles = makeStyles((theme: Theme) =>
         justifyItems: 'start',
         gridTemplate: (
         '\"menu logo navigation login language\" auto' +
-        '/ auto 1fr auto auto'
+        '/ auto auto 1fr auto auto'
         ),
       },
-      navigation: {
-        display: 'initial',
-        gridArea: 'navigation',
-        marginLeft: '20px',
-      },
+      
       upload: {
         display: 'initial'
       },
@@ -150,7 +144,6 @@ export const styles = makeStyles((theme: Theme) =>
         width: '188px'
       }
     },
-
     text: {
       fontSize: '18px',
     },
@@ -163,8 +156,10 @@ export const styles = makeStyles((theme: Theme) =>
       menuButton: {
         display: 'none',
       },
-      feed: {
-        display: 'initial'
+      navigation: {
+        display: 'initial',
+        gridArea: 'navigation',
+        marginLeft: '20px',
       },
     },
   }),
