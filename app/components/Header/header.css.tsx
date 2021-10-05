@@ -26,13 +26,17 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     menuIcon: {
-      display: 'none'
+      display: 'none',
+      gridArea: 'menu'
     },
     logo: {
       width: '135px',
       paddingTop: theme.spacing(0.2)
     },
     navigation: {
+      display: 'none'
+    },
+    feed: {
       display: 'none'
     },
     discover: {
@@ -46,9 +50,11 @@ export const styles = makeStyles((theme: Theme) =>
     login: {
       display: 'none',
     },
-
     upload: {
       display: 'none'
+    },
+    uploadButton: {
+      width: '130px'
     },
     singleNotificationButton: {
       minWidth: '54px'
@@ -106,16 +112,12 @@ export const styles = makeStyles((theme: Theme) =>
           padding: theme.spacing(0.5)
         }
       },
-
       language: {
         display: 'initial'
       },
     },
 
     [theme.breakpoints.up('md')]: {
-      menuButton: {
-        display: 'none',
-      },
       toolbar: {
         backgroundColor: theme.palette.background.default,
         boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
@@ -132,7 +134,7 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-        '\"logo navigation login language\" auto' +
+        '\"menu logo navigation login language\" auto' +
         '/ auto 1fr auto auto'
         ),
       },
@@ -148,10 +150,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: '188px'
       }
     },
-    
-    navButton: {
-      textTransform: 'none'
-    },
+
     text: {
       fontSize: '18px',
     },
@@ -159,6 +158,14 @@ export const styles = makeStyles((theme: Theme) =>
     iconButtons: {
       display: 'flex',
       alignItems: 'center'
-    }
+    },
+    [theme.breakpoints.up('mdPlus')]: {
+      menuButton: {
+        display: 'none',
+      },
+      feed: {
+        display: 'initial'
+      },
+    },
   }),
 );

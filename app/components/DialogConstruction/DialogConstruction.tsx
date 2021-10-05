@@ -11,8 +11,8 @@ import { useTranslation } from 'next-i18next'
 import { styles } from './dialogConstruction.css'
 
 export default function DialogConstruction() {
-  // const s = styles();
-  const { t } = useTranslation('header');
+  const s = styles();
+  const { t } = useTranslation(['header', 'common']);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -26,7 +26,7 @@ export default function DialogConstruction() {
 
   return (
     <div>
-      <Button rounded size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button className={s.technicalButton} rounded size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
       {t('header:technicalButton')}
       </Button>
       <Dialog
@@ -43,7 +43,7 @@ export default function DialogConstruction() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Okej
+          {t('common:words:close')}
           </Button>
         </DialogActions>
       </Dialog>

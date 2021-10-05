@@ -15,7 +15,8 @@
     "cancel": "cancel",
     "save": "save",
     "confirm": "confirm",
-    "send": "Send"
+    "send": "Send",
+    "close": "Close"
   },
   "timeUnit": {
     "year": "y",

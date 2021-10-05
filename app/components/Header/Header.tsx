@@ -101,7 +101,7 @@ export default function Header({}) {
           </div>
           <nav className={s.navigation}>
             {(isSignedIn.value) &&
-              <MuiButton classes={{ root: s.navButton }} color="default" size="large">
+              <MuiButton classes={{ root: s.feed }} color="default" size="large">
                 <Link href="/feed">
                   {t('myArtNetwork')}
                 </Link>
@@ -148,7 +148,6 @@ export default function Header({}) {
                     <NotificationsIcon
                       classes={{ root: s.notificationIcon }}
                       style={{ fontSize: '30px' }}
-
                     />
                   </IconButton>
                 }
@@ -156,14 +155,14 @@ export default function Header({}) {
               }
               </div>
           {(isSignedIn.value) &&
-            <>
-            
+            <>        
               <div className={s.login}>
                 {(membership.value > Membership.Base) &&
                   <div className={s.upload}>
                     <Link href="/upload">
                       <a>
                         <Button
+                          className={s.uploadButton}
                           size="small"
                           variant="outlined"
                           color="primary"
@@ -185,7 +184,6 @@ export default function Header({}) {
                         <NotificationsIcon
                           classes={{ root: s.notificationIcon }}
                           style={{ fontSize: '30px' }}
-
                         />
                       </IconButton>
                     }

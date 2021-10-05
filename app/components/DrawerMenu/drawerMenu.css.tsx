@@ -8,6 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     listsContainer: {
       display: 'flex',
+      height: '100vh',
       flexDirection: 'column',
       justifyContent: 'space-between'
     },
@@ -16,7 +17,7 @@ export const styles = makeStyles((theme: Theme) =>
       paddingBottom: theme.spacing(2)
     },
 
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('smPlus')]: {
       authList: {
         display: 'none',
       }
