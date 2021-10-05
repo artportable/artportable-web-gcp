@@ -28,6 +28,7 @@ import { LoadingContext } from '../../contexts/loading-context'
 import { UserContext } from '../../contexts/user-context'
 import { ChatClientContext } from '../../contexts/chat-context'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
+import DialogConstruction from '../DialogConstruction/DialogConstruction'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 
@@ -103,13 +104,13 @@ export default function Header({}) {
           </div>
           <nav className={s.navigation}>
             {(isSignedIn.value) &&
-              <MuiButton classes={{ root: s.navButton }} color="default" size="large">
+              <MuiButton classes={{ root: s.feed }} color="default" size="large">
                 <Link href="/feed">
                   {t('myArtNetwork')}
                 </Link>
               </MuiButton>
             }
-            <MuiButton classes={{ root: s.navButton }} color="default" size="large">
+            <MuiButton classes={{ root: s.discover }} color="default" size="large">
               <Link href="/">
                 {t('discover')}
               </Link>
@@ -150,7 +151,6 @@ export default function Header({}) {
                     <NotificationsIcon
                       classes={{ root: s.notificationIcon }}
                       style={{ fontSize: '30px' }}
-
                     />
                   </IconButton>
                 }
@@ -158,14 +158,14 @@ export default function Header({}) {
               }
               </div>
           {(isSignedIn.value) &&
-            <>
-            
+            <>        
               <div className={s.login}>
                 {(membership.value > Membership.Base) &&
                   <div className={s.upload}>
                     <Link href="/upload">
                       <a>
                         <Button
+                          className={s.uploadButton}
                           size="small"
                           variant="outlined"
                           color="primary"
@@ -177,6 +177,7 @@ export default function Header({}) {
                     </Link>
                   </div>
                 }
+                <DialogConstruction />
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?
@@ -186,7 +187,6 @@ export default function Header({}) {
                         <NotificationsIcon
                           classes={{ root: s.notificationIcon }}
                           style={{ fontSize: '30px' }}
-
                         />
                       </IconButton>
                     }

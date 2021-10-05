@@ -15,7 +15,7 @@ import { useContext } from 'react'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
-  const { t } = useTranslation('header');
+  const { t } = useTranslation(['header', 'common']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();

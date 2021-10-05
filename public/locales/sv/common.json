@@ -15,7 +15,8 @@
     "cancel": "avbryt",
     "save": "spara",
     "confirm": "bekräfta",
-    "send": "Skicka"
+    "send": "Skicka",
+    "close": "Stäng"
   },
   "timeUnit": {
     "year": "år",
