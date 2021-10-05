@@ -6,11 +6,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { useTranslation } from 'next-i18next'
 
 import { styles } from './dialogConstruction.css'
 
 export default function DialogConstruction() {
   // const s = styles();
+  const { t } = useTranslation('header');
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -25,7 +27,7 @@ export default function DialogConstruction() {
   return (
     <div>
       <Button rounded size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
-        Tekniska problem?
+      {t('header:technicalButton')}
       </Button>
       <Dialog
         open={open}
@@ -33,13 +35,10 @@ export default function DialogConstruction() {
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"
       >
-        <DialogTitle id="dialog-title">{"Ny plattform"}</DialogTitle>
+        <DialogTitle id="dialog-title">{t('header:technicalHeading')}</DialogTitle>
         <DialogContent>
           <DialogContentText id="dialog-description">
-            Vi har nyligen lanserat vår nya plattform. Tyvärr så fungerar inte allt som det är tänkt nu i början, men vi jobbar ständigt med förbättringar, med så väl som uppdateringar av profil, möjlighet att byta användarnamn och förbättrad sökfunktion.
-          </DialogContentText>
-          <DialogContentText id="dialog-description">
-            Vi tar tacksamt emot feedback och frågor på emailadressen: support@artportable.com 
+          {t('header:technicalText')}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
