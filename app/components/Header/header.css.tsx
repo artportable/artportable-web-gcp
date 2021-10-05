@@ -37,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none'
     },
     feed: {
-      display: 'none'
+      display: 'none',
     },
     discover: {
       display: 'none',
@@ -54,7 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none'
     },
     uploadButton: {
-      width: '130px'
+      whiteSpace: 'nowrap'
     },
     singleNotificationButton: {
       minWidth: '54px'
@@ -135,12 +135,12 @@ export const styles = makeStyles((theme: Theme) =>
         justifyItems: 'start',
         gridTemplate: (
         '\"menu logo navigation login language\" auto' +
-        '/ auto 1fr auto auto'
+        '/ auto auto 1fr auto auto'
         ),
       },
-      navigation: {
+      feed: {
         display: 'initial',
-        gridArea: 'navigation',
+        
         marginLeft: '20px',
       },
       upload: {
@@ -150,7 +150,6 @@ export const styles = makeStyles((theme: Theme) =>
         width: '188px'
       }
     },
-
     text: {
       fontSize: '18px',
     },
@@ -159,12 +158,13 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center'
     },
-    [theme.breakpoints.up('mdPlus')]: {
+    [theme.breakpoints.up('md')]: {
       menuButton: {
         display: 'none',
       },
       feed: {
-        display: 'initial'
+        display: 'initial',
+        gridArea: 'navigation',
       },
     },
   }),
