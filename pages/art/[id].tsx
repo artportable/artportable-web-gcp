@@ -159,10 +159,10 @@ export default function ArtworkPage(props) {
                       query: {
                         artwork: btoa(JSON.stringify({
                           title: artwork.data.Title,
-                          creator: artwork.data.Owner.KeycloakId,
+                          creator: artwork.data.Owner.Username,
                           url: window.location.href
                         })),
-                        referTo: artwork.data.Owner.Username
+                        referTo: artwork.data.Owner.KeycloakId
                       }
                     }}
                     as={`/messages`}
