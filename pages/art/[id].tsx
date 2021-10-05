@@ -159,7 +159,7 @@ export default function ArtworkPage(props) {
                       query: {
                         artwork: btoa(JSON.stringify({
                           title: artwork.data.Title,
-                          creator: artwork.data.Owner.Username,
+                          creator: artwork.data.Owner.KeycloakId,
                           url: window.location.href
                         })),
                         referTo: artwork.data.Owner.Username

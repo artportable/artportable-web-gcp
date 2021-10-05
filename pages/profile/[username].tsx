@@ -344,7 +344,7 @@ export default function Profile() {
                     href={{
                       pathname: "/messages",
                       query: {
-                        referTo: userProfile.data?.Username
+                        referTo: userProfileSummary.data?.KeycloakId
                       }
                     }}
                     as={`/messages`}
