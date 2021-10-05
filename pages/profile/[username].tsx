@@ -315,12 +315,12 @@ export default function Profile() {
         
           <div className={s.editActions}>   
             {isMyProfile ?      
-            <>     
-              <EditProfileDialog
-                userProfile={userProfile.data}
-              />
-               {(membership.value > Membership.Base) &&
-              <div className={s.upload}>
+              <>     
+                <EditProfileDialog
+                  userProfile={userProfile.data}
+                />
+                {(membership.value > Membership.Base) &&
+                  <div className={s.upload}>
                     <Link href="/upload">
                       <a>
                         <Button
@@ -328,7 +328,6 @@ export default function Profile() {
                           size="small"
                           variant="contained"
                           color="primary"
-                          maxWidth
                           startIcon={<UploadIcon className={s.uploadIcon} />}
                           rounded>
                           {t('upload:upload')}
@@ -338,7 +337,7 @@ export default function Profile() {
                   </div>
                 }
               </>
-              :
+            :
               <>
                 {
                  <Link

@@ -15,21 +15,22 @@ import DrawerMenu from '../DrawerMenu/DrawerMenu';
 import I18nSelector from '../I18nSelector/I18nSelector'
 import { styles } from './header.css'
 import React, { useContext, useEffect, useState } from 'react'
-import { useGetChatClient } from '../../hooks/useGetChatClient'
 import { useGetActivityToken } from '../../hooks/useGetActivityClient'
 import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import router from 'next/router'
 import { Membership } from '../../models/Membership'
-import clsx from 'clsx'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 import 'react-activity-feed/dist/index.css';
 import NotificationIconButton from '../NotificationIconButton/NotificationIconButton'
 import { LoadingContext } from '../../contexts/loading-context'
 import { UserContext } from '../../contexts/user-context'
+import { ChatClientContext } from '../../contexts/chat-context'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import DialogConstruction from '../DialogConstruction/DialogConstruction'
+import { OwnUserResponse } from 'stream-chat'
+import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 
 export default function Header({}) {
   const { t } = useTranslation('header');
@@ -40,13 +41,12 @@ export default function Header({}) {
   const signUpRedirectHref = useSignupRedirectHref();
 
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
-  const [chatClient] = useState(useGetChatClient(profilePicture, setUnreadChatMessages));
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
   const [globalIsLoading, setglobalIsLoading] = useState(false);
-  const { token: activityToken, isError, isLoading } = useGetActivityToken();
-
-
+  const { token: activityToken, isError, isLoading } = useGetActivityToken(username.value, user_id.value, isSignedIn.value);
+  
+  const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
 
 
@@ -63,6 +63,7 @@ export default function Header({}) {
 
   useEffect(() => {
     if (chatClient) {
+      setUnreadChatMessages((chatClient.user as OwnUserResponse<ChannelType, CommandType, UserType>).total_unread_count);
       chatClient.on((event) => {
         if (event.total_unread_count !== undefined) {
           setUnreadChatMessages(event.total_unread_count);
@@ -71,7 +72,9 @@ export default function Header({}) {
     }
 
     return () => {
-      chatClient.off((_) => { });
+      if(chatClient) {
+        chatClient.off((_) => { });
+      }
     }
   }, [chatClient]);
 
