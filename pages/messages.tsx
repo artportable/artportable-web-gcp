@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Main from '../app/components/Main/Main'
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { ChannelSort, StreamChat } from 'stream-chat';
+import { ChannelSort } from 'stream-chat';
 import { Channel, ChannelList, Chat, MessageInput, MessageList, Window } from 'stream-chat-react'
 import MessagingChannelHeader from '../app/components/Messaging/MessagingChannelHeader/MessagingChannelHeader';
 import MessagingChannelList from '../app/components/Messaging/MessagingChannelList/MessagingChannelList';
@@ -10,20 +10,16 @@ import MessagingChannelPreview from '../app/components/Messaging/MessagingChanne
 import CreateChannel from '../app/components/Messaging/CreateChannel/CreateChannel';
 import CustomMessage from '../app/components/Messaging/CustomMessage/CustomMessage';
 import MessagingInput from '../app/components/Messaging/MessagingInput/MessagingInput';
-import { useGetChatClient } from '../app/hooks/useGetChatClient'
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { UserContext } from '../app/contexts/user-context';
-import { useGetUserProfilePicture } from '../app/hooks/dataFetching/UserProfile';
 import clsx from 'clsx';
-
-
+import { ChatClientContext } from '../app/contexts/chat-context';
 
 export default function MessagesPage(props) {
   const { t } = useTranslation(['messages']);
   const { referTo, artwork } = props;
-  const { username, isSignedIn } = useContext(UserContext);
-  const { data: profilePicture } = useGetUserProfilePicture(username.value);
+  const { username, user_id } = useContext(UserContext);
   const [referToChannel, setReferToChannel] = useState(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const theme = 'light';
@@ -33,16 +29,18 @@ export default function MessagesPage(props) {
     cid: 1,
   };
 
-  const chatClient = useGetChatClient(profilePicture);
-  const [isCreating, setIsCreating] = useState(Object.keys(chatClient.activeChannels).length === 0);
+  const chatClient = useContext(ChatClientContext);
+  const [isCreating, setIsCreating] = useState(false);
   const [hasChannels, setHasChannels] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const filter = { members: { $in: [username.value] } };
+  const filter = { members: { $in: [user_id.value] } };
 
   useEffect(() => {
-    setIsCreating(Object.keys(chatClient.activeChannels).length === 0);
-  }, [hasChannels]);
+    if(chatClient) {
+      setIsCreating(Object.keys(chatClient.activeChannels).length === 0);
+    }
+  }, [chatClient, hasChannels]);
 
   useEffect(() => {
     async function setReferTo() {
@@ -87,10 +85,8 @@ export default function MessagesPage(props) {
               <ChannelList
                 filters={filter}
                 sort={sort}
-                List={(props) => {
-                  setIsLoading(props.loading);
-                  return <MessagingChannelList {...props} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />;
-                }
+                List={(props) => 
+                  <MessagingChannelList {...props} setIsLoading={setIsLoading} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />
                 }
                 Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
               />
@@ -124,10 +120,10 @@ export default function MessagesPage(props) {
 }
 
 export async function getServerSideProps({ locale, query }) {
-  // returns { id: episode.itunes.episode, title: episode.title}
   var props = {
     ...await serverSideTranslations(locale, ['header', 'footer', 'messages', 'tags']),
   };
+  
   if (query.artwork) {
     props['artwork'] = JSON.parse(atob(query.artwork))
   }

@@ -1,15 +1,18 @@
 import { TokenContext } from './token-context'
 import { LoadingContext } from './loading-context'
 import { UserContext, ContextUser, defaultContextUser } from './user-context';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AuthClientEvent } from '@react-keycloak/core';
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import { Snackbar } from '@material-ui/core'
 import { Alert, AlertProps } from '@material-ui/lab';
 import { useTranslation } from "next-i18next";
+import { ChatClientContext } from './chat-context';
 
-
+import { ConnectionOpen, StreamChat } from 'stream-chat';
+import { AttachmentType, ChannelType, CommandType, EventType, MessageType, ReactionType, UserType } from '../components/Messaging/MessagingTypes';
+import { useGetUserProfilePicture } from '../hooks/dataFetching/UserProfile';
 
 interface Props {
   children: any;
@@ -26,12 +29,73 @@ interface Snackbar {
 export const ArtportableContexts = ({ children, accessToken, keycloakState }: Props) => {
   const { t } = useTranslation(['snackbar']);
 
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const apiKey = process.env.NEXT_PUBLIC_STREAM_KEY;
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userContext, setUserContext] = useState<ContextUser>(defaultContextUser);
   const [snackbar, setSnackbar] = useState<Snackbar>({ open: false, message: '', severity: 'warning' });
+  const { data: profilePicture } = useGetUserProfilePicture(userContext.username.value);
+  const chatClientRef = useRef<StreamChat<
+    AttachmentType,
+    ChannelType,
+    CommandType,
+    EventType,
+    MessageType,
+    ReactionType,
+    UserType>>(null);
+  const [chatClient, setChatClient] = useState<StreamChat<
+    AttachmentType,
+    ChannelType,
+    CommandType,
+    EventType,
+    MessageType,
+    ReactionType,
+    UserType>>();
   const { keycloak } = useKeycloak<KeycloakInstance>();
 
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  useEffect(() => {
+    if(chatClientRef.current === null && accessToken !== null) {
+      if(userContext.isSignedIn.value && !userContext.isSignedIn.isPending) {
+        if(profilePicture !== undefined) {
+          const initChat = async () => {
+            chatClientRef.current = StreamChat.getInstance<
+              AttachmentType,
+              ChannelType,
+              CommandType,
+              EventType,
+              MessageType,
+              ReactionType,
+              UserType>(apiKey);
+
+            const response = await fetch(`${apiBaseUrl}/api/messages/connect?userId=${userContext.user_id.value}`, {
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${accessToken}`
+              },
+            });
+      
+            const user = await response.json();
+      
+            try {
+              await chatClientRef.current.connectUser({
+                id: userContext.user_id.value,
+                name: userContext.username.value,
+                image: `${bucketUrl}${profilePicture}`,
+              }, user.Token) as ConnectionOpen<ChannelType, CommandType, UserType>
+
+              setChatClient(chatClientRef.current);
+            } catch (error) {
+              console.warn(error)
+            }
+          }
+          
+          initChat();
+        }
+      }
+    }
+  }, [userContext]);
 
   
   useEffect(() => {
@@ -218,6 +282,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
     <TokenContext.Provider value={accessToken}>
       <UserContext.Provider value={userContext}>
         <LoadingContext.Provider value={{ loading: isLoading, setLoading: setIsLoading}}>
+          <ChatClientContext.Provider value={chatClient}>
           <>
             {children}
             <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
@@ -226,6 +291,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
               </Alert>
             </Snackbar>
           </>
+          </ChatClientContext.Provider>
         </LoadingContext.Provider>
       </UserContext.Provider>
     </TokenContext.Provider>
