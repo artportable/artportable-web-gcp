@@ -21,6 +21,7 @@ export default function MessagesPage(props) {
   const { referTo, artwork } = props;
   const { username, user_id } = useContext(UserContext);
   const [referToChannel, setReferToChannel] = useState(null);
+  const [artworkMessage, setArtworkMessage] = useState(artwork);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const theme = 'light';
   const sort: ChannelSort = {
@@ -75,6 +76,11 @@ export default function MessagesPage(props) {
     setSnackbarOpen(false);
   }
 
+  const resetReferTo = () => {
+    setReferToChannel(null);
+    setArtworkMessage(null);
+  }
+
   return (
     <Main noHeaderPadding wide>
       <div className="messages__main-container">
@@ -92,7 +98,7 @@ export default function MessagesPage(props) {
                     activeChannel={referToChannel}
                   />
                 }
-                Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} resetReferTo={() => setReferToChannel(null)} />}
+                Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} resetReferTo={() => resetReferTo()} />}
               />
             </div>
             {isCreating && !isLoading && (
@@ -107,7 +113,7 @@ export default function MessagesPage(props) {
                     Message={CustomMessage}
                     TypingIndicator={() => null}
                   />
-                  <MessageInput focus Input={(props) => <MessagingInput {...props} artwork={artwork}/>} />
+                  <MessageInput focus Input={(props) => <MessagingInput {...props} artwork={artworkMessage}/>} />
                 </Window>
               </Channel>
             }
