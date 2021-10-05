@@ -51,7 +51,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none',
     },
     upload: {
-      display: 'none'
+      display: 'none',
+      whiteSpace: 'nowrap',
     },
     uploadButton: {
       whiteSpace: 'nowrap'
@@ -158,7 +159,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center'
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('mdPlus')]: {
       menuButton: {
         display: 'none',
       },
