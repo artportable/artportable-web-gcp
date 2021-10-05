@@ -22,10 +22,11 @@ type Props = ChannelListTeamProps & {
   onCreateChannel: () => void;
   setIsLoading: (value: boolean) => void;
   activeChannel: Channel;
+  resetReferTo: () => void;
 };
 
 const MessagingChannelList: React.FC<Props> = (props) => {
-  const { children, error = false, loading, onCreateChannel, activeChannel, setIsLoading } = props;
+  const { children, error = false, loading, onCreateChannel, activeChannel, setIsLoading, resetReferTo } = props;
   const { client, channel, setActiveChannel } = useChatContext<
     AttachmentType,
     ChannelType,
@@ -42,12 +43,10 @@ const MessagingChannelList: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (activeChannel) {
-      const setChannel = async () => {
-        setActiveChannel(activeChannel);
-      }
-      setChannel();
+      setActiveChannel(activeChannel);
+      resetReferTo();
     }
-  }, [activeChannel])
+  }, [])
 
   const { id, image, name = 'Unknown User' } =
     client.user || {};

@@ -48,7 +48,7 @@ export default function MessagesPage(props) {
         try {
 
           var channel = chatClient.channel('messaging', {
-            members: [referTo, username.value],
+            members: [referTo, user_id.value],
           });
           await channel.watch();
           setReferToChannel(channel);
@@ -85,8 +85,14 @@ export default function MessagesPage(props) {
               <ChannelList
                 filters={filter}
                 sort={sort}
+                customActiveChannel={referToChannel}
                 List={(props) => 
-                  <MessagingChannelList {...props} setIsLoading={setIsLoading} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />
+                  <MessagingChannelList {...props}
+                    setIsLoading={setIsLoading} 
+                    onCreateChannel={() => setIsCreating(!isCreating)}
+                    activeChannel={referToChannel}
+                    resetReferTo={() => setReferToChannel(null)}
+                  />
                 }
                 Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
               />
