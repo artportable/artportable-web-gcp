@@ -233,6 +233,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
       loginUrl.searchParams.append('email', tokenParsed.email);
+      loginUrl.searchParams.append('keycloakId', userContext.user_id.value);
 
       setUserContext((prevValue) => ({ 
         ...prevValue,
