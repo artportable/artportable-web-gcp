@@ -233,6 +233,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
       loginUrl.searchParams.append('email', tokenParsed.email);
+      loginUrl.searchParams.append('keycloakId', userContext.user_id.value);
 
       setUserContext((prevValue) => ({ 
         ...prevValue,
@@ -283,14 +284,14 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
       <UserContext.Provider value={userContext}>
         <LoadingContext.Provider value={{ loading: isLoading, setLoading: setIsLoading}}>
           <ChatClientContext.Provider value={chatClient}>
-          <>
-            {children}
-            <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
-              <Alert onClose={handleSnackbarClose} variant="filled" severity={snackbar.severity}>
-                {snackbar.message}
-              </Alert>
-            </Snackbar>
-          </>
+            <>
+              {children}
+              <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                <Alert onClose={handleSnackbarClose} variant="filled" severity={snackbar.severity}>
+                  {snackbar.message}
+                </Alert>
+              </Snackbar>
+            </>
           </ChatClientContext.Provider>
         </LoadingContext.Provider>
       </UserContext.Provider>

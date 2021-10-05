@@ -42,12 +42,9 @@ const MessagingChannelList: React.FC<Props> = (props) => {
 
   useEffect(() => {
     if (activeChannel) {
-      const setChannel = async () => {
-        setActiveChannel(activeChannel);
-      }
-      setChannel();
+      setActiveChannel(activeChannel);
     }
-  }, [activeChannel])
+  }, [])
 
   const { id, image, name = 'Unknown User' } =
     client.user || {};

@@ -21,6 +21,7 @@ export default function MessagesPage(props) {
   const { referTo, artwork } = props;
   const { username, user_id } = useContext(UserContext);
   const [referToChannel, setReferToChannel] = useState(null);
+  const [artworkMessage, setArtworkMessage] = useState(artwork);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const theme = 'light';
   const sort: ChannelSort = {
@@ -46,9 +47,8 @@ export default function MessagesPage(props) {
     async function setReferTo() {
       if (referTo) {
         try {
-
           var channel = chatClient.channel('messaging', {
-            members: [referTo, username.value],
+            members: [referTo, user_id.value],
           });
           await channel.watch();
           setReferToChannel(channel);
@@ -76,6 +76,11 @@ export default function MessagesPage(props) {
     setSnackbarOpen(false);
   }
 
+  const resetReferTo = () => {
+    setReferToChannel(null);
+    setArtworkMessage(null);
+  }
+
   return (
     <Main noHeaderPadding wide>
       <div className="messages__main-container">
@@ -85,10 +90,15 @@ export default function MessagesPage(props) {
               <ChannelList
                 filters={filter}
                 sort={sort}
+                customActiveChannel={referToChannel}
                 List={(props) => 
-                  <MessagingChannelList {...props} setIsLoading={setIsLoading} onCreateChannel={() => setIsCreating(!isCreating)} activeChannel={referToChannel} />
+                  <MessagingChannelList {...props}
+                    setIsLoading={setIsLoading} 
+                    onCreateChannel={() => setIsCreating(!isCreating)}
+                    activeChannel={referToChannel}
+                  />
                 }
-                Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} />}
+                Preview={(props) => <MessagingChannelPreview {...props} {...{ setIsCreating, setHasChannels }} resetReferTo={() => resetReferTo()} />}
               />
             </div>
             {isCreating && !isLoading && (
@@ -103,7 +113,7 @@ export default function MessagesPage(props) {
                     Message={CustomMessage}
                     TypingIndicator={() => null}
                   />
-                  <MessageInput focus Input={(props) => <MessagingInput {...props} artwork={artwork}/>} />
+                  <MessageInput focus Input={(props) => <MessagingInput {...props} artwork={artworkMessage}/>} />
                 </Window>
               </Channel>
             }

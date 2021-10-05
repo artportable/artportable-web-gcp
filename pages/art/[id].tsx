@@ -162,7 +162,7 @@ export default function ArtworkPage(props) {
                           creator: artwork.data.Owner.Username,
                           url: window.location.href
                         })),
-                        referTo: artwork.data.Owner.Username
+                        referTo: artwork.data.Owner.KeycloakId
                       }
                     }}
                     as={`/messages`}

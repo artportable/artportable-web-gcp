@@ -41,11 +41,12 @@ type Props = ChannelPreviewUIComponentProps & {
   setHasChannels: React.Dispatch<React.SetStateAction<boolean>>;
   latestMessage?: string;
   setActiveChannel?: ChatContextValue['setActiveChannel'];
+  resetReferTo: () => void;
 };
 
 const MessagingChannelPreview: React.FC<Props> = (props: Props) => {
   const s = styles();
-  const { channel, latestMessage, setActiveChannel, setIsCreating, setHasChannels, unread } = props;
+  const { channel, latestMessage, setActiveChannel, setIsCreating, setHasChannels, unread, resetReferTo } = props;
 
   const { channel: activeChannel, client } = useChatContext<
     AttachmentType,
@@ -73,6 +74,7 @@ const MessagingChannelPreview: React.FC<Props> = (props: Props) => {
       }
       onClick={() => {
         setIsCreating(false);
+        resetReferTo();
         setActiveChannel?.(channel);
       }}
     >
