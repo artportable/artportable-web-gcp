@@ -3,14 +3,13 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      minWidth: '240px',
-      height: 'initial',
+      minWidth: '240px'
     },
     listsContainer: {
       display: 'flex',
-      height: '100vh',
       flexDirection: 'column',
-      justifyContent: 'space-between'
+      flexBasis: '100%',
+
     },
     authList: {
       display: 'initial',

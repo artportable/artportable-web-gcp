@@ -42,7 +42,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             </Link>
           }
           <Link href="/" passHref>
-            <ListItem button>
+            <ListItem button divider>
               <ListItemText primary={t('discover')} />
             </ListItem>
           </Link>
