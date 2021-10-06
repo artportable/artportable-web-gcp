@@ -18,7 +18,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   function toggleFollow() {
-    onFollowClick(user.Username, !isFollowed);
+    onFollowClick(user.SocialId, !isFollowed);
     setFollow(!isFollowed);
   }
 

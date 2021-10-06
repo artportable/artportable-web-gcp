@@ -145,7 +145,7 @@ export default function Header({}) {
             {(isSignedIn.value) &&
                <> 
                {activityToken && !isError && !isLoading ?
-                  <NotificationIconButton activityToken={activityToken} username={socialId.value}/>
+                  <NotificationIconButton activityToken={activityToken} socialId={socialId.value}/>
                   :
                   <IconButton aria-label="account" disabled aria-disabled>
                     <NotificationsIcon
@@ -181,7 +181,7 @@ export default function Header({}) {
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?
-                    <NotificationIconButton activityToken={activityToken} username={socialId.value}/>
+                    <NotificationIconButton activityToken={activityToken} socialId={socialId.value}/>
                       :
                       <IconButton aria-label="account" disabled aria-disabled>
                         <NotificationsIcon
