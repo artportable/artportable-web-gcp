@@ -3,10 +3,10 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     technicalDiv: {
-      whitespace: 'nowrap'
+      whiteSpace: 'nowrap'
     },
     technicalButton: {
-      whitespace: 'nowrap'
+      whiteSpace: 'nowrap'
     },
   }),
 );

@@ -5,21 +5,5 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       minWidth: '240px'
     },
-    listsContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexBasis: '100%',
-
-    },
-    authList: {
-      display: 'initial',
-      paddingBottom: theme.spacing(2)
-    },
-
-    [theme.breakpoints.up('smPlus')]: {
-      authList: {
-        display: 'none',
-      }
-    },
   }),
 );
