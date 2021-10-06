@@ -2,6 +2,8 @@ import { TokenPersistor } from "@react-keycloak/ssr/lib/persistors/types";
 import type { AuthClientTokens } from '@react-keycloak/core';
 import Cookie from 'js-cookie';
 import { KeycloakTokenParsed } from "keycloak-js";
+import jwtDecode from "jwt-decode";
+
 
 export var CustomSSRCookies = function (cookies) {
   return ({
@@ -67,13 +69,15 @@ function decode(value: string) {
 
 function decodeToken(token: string): KeycloakTokenParsed {
   token = token.split('.')[1];
-
   token = token.replace(/-/g, '+');
   token = token.replace(/_/g, '/');
 
-  token = decodeURIComponent(escape(Buffer.from(token, 'base64').toString()));
-
-  var parsedToken = JSON.parse(token) as KeycloakTokenParsed;
-
-  return parsedToken;
+  const decoded = Buffer.from(token, 'base64').toString()
+  try {
+    const escaped = escape(decoded)
+    token = decodeURIComponent(escaped);
+    return JSON.parse(token) as KeycloakTokenParsed;
+  } catch (error) {
+    return JSON.parse(decoded) as KeycloakTokenParsed;
+  }
 }
