@@ -32,24 +32,23 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           <CloseIcon style={{ fontSize: '30px' }} />
         </IconButton>
       </div>
-      <div className={s.listsContainer}>
-        <List>
-          {(isSignedIn.value) &&
-            <Link href="/feed" passHref>
-              <ListItem button divider>
-                <ListItemText primary={t('myArtNetwork')} />
-              </ListItem>
-            </Link>
-          }
-          <Link href="/" passHref>
-            <ListItem button>
-              <ListItemText primary={t('discover')} />
+      <List>
+        {(isSignedIn.value) &&
+          <Link href="/feed" passHref>
+            <ListItem button divider>
+              <ListItemText primary={t('myArtNetwork')} />
             </ListItem>
           </Link>
-        </List>
+        }
+        <Link href="/" passHref>
+          <ListItem button divider>
+            <ListItemText primary={t('discover')} />
+          </ListItem>
+        </Link>
+
 
         {isSignedIn.value ?
-          <List classes={{ root: s.authList }}>
+          <>
             <Link href="/messages" passHref>
               <ListItem button divider>
                 <ListItemIcon>
@@ -74,9 +73,9 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
               </ListItemIcon>
               <ListItemText primary={t('logout')} />
             </ListItem>
-          </List>
+          </>
           :
-          <List classes={{ root: s.authList }}>
+          <>
             <ListItem button divider>
               <ListItemText primary={t('signUp')} onClick={() => keycloak.register({
                 locale: router.locale,
@@ -86,9 +85,9 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <ListItem button onClick={() => keycloak.login({ locale: router.locale })}>
               <ListItemText primary={t('login')} />
             </ListItem>
-          </List>
+          </>
         }
-      </div>
+      </List>
     </Drawer>
   );
 }
