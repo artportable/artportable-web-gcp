@@ -12,7 +12,7 @@ export interface ContextUser {
   profilePicture: AsyncValue<string>;
   email: AsyncValue<string>;
   username: AsyncValue<string>;
-  user_id: AsyncValue<string>;
+  socialId: AsyncValue<string>;
   family_name: AsyncValue<string>;
   given_name: AsyncValue<string>;
   user_type: AsyncValue<string>;
@@ -33,7 +33,7 @@ export const defaultContextUser = {
     value: null,
     isPending: true,
   },
-  user_id: {
+  socialId: {
     value: null,
     isPending: true,
   },
