@@ -69,7 +69,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
               ReactionType,
               UserType>(apiKey);
 
-            const response = await fetch(`${apiBaseUrl}/api/messages/connect?userId=${userContext.user_id.value}`, {
+            const response = await fetch(`${apiBaseUrl}/api/messages/connect?userId=${userContext.socialId.value}`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -80,7 +80,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
       
             try {
               await chatClientRef.current.connectUser({
-                id: userContext.user_id.value,
+                id: userContext.socialId.value,
                 name: userContext.username.value,
                 image: `${bucketUrl}${profilePicture}`,
               }, user.Token) as ConnectionOpen<ChannelType, CommandType, UserType>
@@ -110,10 +110,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
          },
          username: {
            value: tokenParsed.preferred_username,
-           isPending: false,
-         },
-         user_id: {
-           value: tokenParsed.sub,
            isPending: false,
          },
          family_name: {
@@ -147,10 +143,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
             isPending: false,
           },
           username: {
-            value: null,
-            isPending: false,
-          },
-          user_id: {
             value: null,
             isPending: false,
           },
@@ -195,7 +187,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
             value: null,
             isPending: false,
           },
-          user_id: {
+          socialId: {
             value: null,
             isPending: false,
           },
@@ -233,7 +225,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
 
       const loginUrl = new URL(`${apiBaseUrl}/api/user/login`);
       loginUrl.searchParams.append('email', tokenParsed.email);
-      loginUrl.searchParams.append('keycloakId', userContext.user_id.value);
 
       setUserContext((prevValue) => ({ 
         ...prevValue,
@@ -258,6 +249,10 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
               ...prevValue,
                 membership: {
                   value: json.Product,
+                  isPending: false,
+                },
+                socialId: {
+                  value: json.SocialId,
                   isPending: false,
                 }
               })

@@ -29,7 +29,6 @@ export default function Plans({ priceData }) {
             method: 'POST',
             body: JSON.stringify({
               Username: parsedToken.preferred_username,
-              KeycloakId: parsedToken.user_id,
               Name: parsedToken.given_name,
               Surname: parsedToken.family_name,
               Email: parsedToken.email,

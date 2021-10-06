@@ -19,7 +19,7 @@ import { ChatClientContext } from '../app/contexts/chat-context';
 export default function MessagesPage(props) {
   const { t } = useTranslation(['messages']);
   const { referTo, artwork } = props;
-  const { username, user_id } = useContext(UserContext);
+  const { username, socialId } = useContext(UserContext);
   const [referToChannel, setReferToChannel] = useState(null);
   const [artworkMessage, setArtworkMessage] = useState(artwork);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function MessagesPage(props) {
   const [hasChannels, setHasChannels] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const filter = { members: { $in: [user_id.value] } };
+  const filter = { members: { $in: [socialId.value] } };
 
   useEffect(() => {
     if(chatClient) {
@@ -48,7 +48,7 @@ export default function MessagesPage(props) {
       if (referTo) {
         try {
           var channel = chatClient.channel('messaging', {
-            members: [referTo, user_id.value],
+            members: [referTo, socialId.value],
           });
           await channel.watch();
           setReferToChannel(channel);
