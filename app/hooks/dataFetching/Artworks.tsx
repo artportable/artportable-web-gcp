@@ -61,7 +61,7 @@ export function useGetTags() {
 
 export function usePostArtwork(artwork: ArtworkForCreation, username: string, token: string) {
 
-  fetch(`${apiBaseUrl}/api/artworks?myUsername=${username}`, {
+  fetch(`${apiBaseUrl}/api/artworks?mySocialId=${username}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

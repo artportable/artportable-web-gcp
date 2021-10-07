@@ -19,7 +19,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   const [artworkPrice, setArtworkPrice] = useState('');
   const [deleteAlertDialogOpen, setDeleteAlertDialogOpen] = useState(false);
 
-  const { username } = useContext(UserContext);
+  const { username, socialId } = useContext(UserContext);
   const token = useContext(TokenContext);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
 
   const onConfirmClick = () => {
     if (username.value && artwork.Id && artwork.Id.trim().length > 0) {
-      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?myUsername=${username.value}`, {
+      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySoicalId=${socialId.value}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
