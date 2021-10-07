@@ -27,7 +27,7 @@ export default function UploadArtworkPage() {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { username, isSignedIn } = useContext(UserContext);
+  const { username, socialId, isSignedIn } = useContext(UserContext);
   const tags = useGetTags();
 
   const [title, setTitle] = useState('');
@@ -73,7 +73,7 @@ export default function UploadArtworkPage() {
       TertiaryFile: nameTertiary
     }
     setUploadSnackbarOpen(true);
-    const res = usePostArtwork(artwork, username.value, token);
+    const res = usePostArtwork(artwork, socialId.value, token);
     router.push('/profile/@' + username.value);
   }
 
