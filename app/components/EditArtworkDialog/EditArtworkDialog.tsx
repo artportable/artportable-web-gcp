@@ -52,7 +52,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
 
   const onConfirmClick = () => {
     if (username.value && artwork.Id && artwork.Id.trim().length > 0) {
-      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySoicalId=${socialId.value}`, {
+      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySocialId=${socialId.value}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
