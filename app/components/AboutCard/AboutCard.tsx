@@ -13,7 +13,7 @@ export default function AboutCard({ data, userProfilePicture }) {
   return (
     <Card elevation={2} className={s.mainCard}>
         <CardContent className={s.mainCardContent}>
-          <div>
+          <div className={s.profilePictureDiv}>
             {userProfilePicture &&
               <img
                 className={s.profilePicture}
@@ -21,8 +21,8 @@ export default function AboutCard({ data, userProfilePicture }) {
               </img>
             }
           </div>
-          <Box maxWidth='70%' flexBasis="100%">
-            <Typography variant="h4">
+          <Box className={s.textContent} maxWidth='70%' flexBasis="100%">
+            <Typography variant="h4" className={s.name}>
               <Box fontWeight="500" fontFamily="LyonDisplay">
                 {`${data?.Name} ${data?.Surname}`}
               </Box>
@@ -39,7 +39,7 @@ export default function AboutCard({ data, userProfilePicture }) {
               </Typography>
             }
             <Box paddingTop={1}>
-              <Typography variant="body1">
+              <Typography className={s.about} variant="body1">
                 {data?.About}
               </Typography>
             </Box>

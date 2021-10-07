@@ -7,7 +7,17 @@ export const styles = makeStyles((theme: Theme) =>
     },
     mainCardContent: {
       display: 'flex',
+      flexDirection: 'column',
       gap: theme.spacing(2),
+    },
+    profilePictureDiv: {
+     alignSelf: 'center',
+    },
+    textContent: {
+      maxWidth: '100%',
+    },
+    name: {
+      textAlign: 'center',
     },
     location: {
       display: 'flex',
@@ -15,15 +25,46 @@ export const styles = makeStyles((theme: Theme) =>
       left: '-4px',
       alignItems: "center",
       fontWeight: 500,
-      fontFamily: "LyonDisplay" 
+      fontFamily: "LyonDisplay",
+      justifyContent: 'center'
     },
     artistTitle: {
+      textAlign: 'center',
       fontWeight: 500,
       fontFamily: "LyonDisplay",
       marginBottom: theme.spacing(1)
     },
     profilePicture: {
-      width: 'clamp(100px, 100%, 300px)'
-    }
+      width: 'clamp(100px, 100%, 300px)',
+    },
+
+    [theme.breakpoints.up('sm')]: {
+      about: {
+      margin: '0 10px',
+    },
+    },
+    [theme.breakpoints.up('mdPlus')]: {
+      mainCardContent: {
+        flexDirection: 'row',
+      },
+      textContent: {
+        maxWidth: '70%',
+      },
+      profilePictureDiv: {
+      alignSelf: 'initial',
+      },
+      name: {
+        textAlign: 'initial',
+      },
+      artistTitle: {
+      textAlign: 'initial',
+      },
+      location: {
+        justifyContent: 'initial'
+      },
+      about: {
+      margin: '0',
+    },
+    },
   }),
 );
