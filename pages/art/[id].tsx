@@ -27,7 +27,7 @@ export default function ArtworkPage(props) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const { id } = router.query
-  const { username } = useContext(UserContext);
+  const { username, socialId } = useContext(UserContext);
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -49,11 +49,11 @@ export default function ArtworkPage(props) {
   }, [artwork?.data]);
 
   function follow(userToFollow, isFollow) {
-    if (username.value === null || username.value === undefined) {
+    if (socialId.value === null || socialId.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -72,7 +72,7 @@ export default function ArtworkPage(props) {
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
-    follow(artwork.data.Owner.Username, !isFollowed);
+    follow(artwork.data.Owner.SocialId, !isFollowed);
     setFollow(!isFollowed);
   }
 
@@ -81,7 +81,7 @@ export default function ArtworkPage(props) {
   function likeArtwork(isLike) {
     redirectIfNotLoggedIn();
 
-    fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?mySocialId=${socialId.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`

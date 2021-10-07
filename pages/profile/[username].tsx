@@ -58,7 +58,7 @@ export default function Profile() {
   const theme: Theme = useTheme();
   const router = useRouter();
   const smScreenOrSmaller = useBreakpointDown('sm');
-  const { isSignedIn, username, membership } = useContext(UserContext);
+  const { isSignedIn, username, socialId, membership } = useContext(UserContext);
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -152,7 +152,7 @@ export default function Profile() {
 
   function onLikeClick(artworkId, isLike) {
     redirectIfNotLoggedIn();
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?mySocialId=${socialId.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -170,11 +170,11 @@ export default function Profile() {
   }
 
   function follow(userToFollow, isFollow) {
-    if (username.value === null || username.value === undefined) {
+    if (socialId.value === null || socialId.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -193,7 +193,7 @@ export default function Profile() {
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
-    follow(userProfile.data?.Username, !isFollowed);
+    follow(userProfileSummary.data?.SocialId, !isFollowed);
     setFollow(!isFollowed);
   }
 

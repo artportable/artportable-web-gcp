@@ -25,7 +25,7 @@ export default function DiscoverPage() {
   const s = styles();
   const store = useStore();
   const token = useContext(TokenContext);
-  const { username, isSignedIn } = useContext(UserContext);
+  const { username, socialId, isSignedIn } = useContext(UserContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -128,7 +128,7 @@ export default function DiscoverPage() {
   function like(artworkId, isLike) {
     redirectIfNotLoggedIn();
 
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?mySocialId=${socialId.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization' : `Bearer ${token}`
@@ -146,11 +146,11 @@ export default function DiscoverPage() {
   }
 
   function follow(userToFollow, isFollow) {
-    if (username.value === null || username.value === undefined) {
+    if (socialId.value === null || socialId.value === undefined) {
       return; // TODO: Display modal to sign up
     }
 
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization' : `Bearer ${token}`

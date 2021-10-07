@@ -26,7 +26,7 @@ import { LoadingContext } from '../app/contexts/loading-context';
 export default function FeedPage() {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
-  const { username, membership } = useContext(UserContext);
+  const { username, socialId, membership } = useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const token = useContext(TokenContext);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -89,8 +89,8 @@ export default function FeedPage() {
     }
   }, [fetchMorePosts]);
 
-  function follow(user, isFollow) {
-    fetch(`${apiBaseUrl}/api/connections/${user}?myUsername=${username.value}`, {
+  function follow(userSocialId, isFollow) {
+    fetch(`${apiBaseUrl}/api/connections/${userSocialId}?mySocialId=${socialId.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -110,7 +110,7 @@ export default function FeedPage() {
   // Like a post (feed item)
   // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?myUsername=${username.value}`, {
+    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?mySocialId=${socialId.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`

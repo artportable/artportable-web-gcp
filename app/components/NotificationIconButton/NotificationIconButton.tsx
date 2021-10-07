@@ -9,11 +9,11 @@ import { styles } from './notificationIconButton.css'
 
 type NotificationIconButtonProps = {
   activityToken: any;
-  username: string;
+  socialId: string;
 };
 
 const NotificationIconButton = (props: NotificationIconButtonProps) => {
-  const { activityToken, username } = props;
+  const { activityToken, socialId } = props;
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState<number>(0);
   const [unreadNotifications, setUnreadNotifications] = useState<NotificationActivity[]>([]);
   const [readNotifications, setReadNotifications] = useState<NotificationActivity[]>([])
@@ -28,14 +28,14 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
   useEffect(() => {
     const initFeeds = async () => {
       const streamClient = connect(process.env.NEXT_PUBLIC_STREAM_KEY, activityToken, process.env.NEXT_PUBLIC_STREAM_APP_ID);
-      userFeed.current = streamClient.feed('notification', username) as StreamFeed;
+      userFeed.current = streamClient.feed('notification', socialId) as StreamFeed;
       const notificationsResponse = await userFeed.current.get({ limit: 3 }) as FeedAPIResponse;
       handleNotificationResponse(notificationsResponse);
 
       userFeed.current.subscribe(subscriptionDebounce);
 
     }
-    if (username && activityToken) {
+    if (socialId && activityToken) {
       initFeeds();
     }
     return () => {
@@ -43,7 +43,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
         userFeed.current.unsubscribe();
       }
     }
-  }, [username, activityToken]);
+  }, [socialId, activityToken]);
 
   const onLoadMore = async () => {
     if (readNotifications.length > 0 || unreadNotifications.length > 0) {
