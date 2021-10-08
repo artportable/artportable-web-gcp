@@ -44,6 +44,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const [accessToken, setAccessToken] = useState<string>(null);
   const [keycloakState, setKeycloakState] = useState<AuthClientEvent>()
 
+  
   const onAuthRefresh = (tokens: AuthClientTokens) => {
     setAccessToken(tokens.token);
   }
