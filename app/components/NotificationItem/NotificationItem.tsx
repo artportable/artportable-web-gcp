@@ -1,13 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import IconButton from '@material-ui/core/IconButton'
-import Popover from '@material-ui/core/Popover'
-import { Activity, NotificationActivity, connect, FeedAPIResponse, RealTimeMessage, StreamFeed, UR } from 'getstream'
-import { Badge, Button, Collapse, debounce, List, ListItem, Typography } from '@material-ui/core'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+import React from 'react'
+import { Activity, NotificationActivity, UR } from 'getstream'
+import { Button } from '@material-ui/core'
 import Link from 'next/link'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
-import { profile } from 'node:console'
+import { useGetUsernameFromSocialId } from '../../hooks/dataFetching/useGetUsernameFromSocialId'
 
 type NotificationItemProps = {
   notificationActivity: NotificationActivity;
@@ -24,18 +21,19 @@ type Artwork = {
 
 const NotificationItem = (props: NotificationItemProps) => {
   const { notificationActivity } = props;
-  const profilePictue = useGetUserProfilePicture(notificationActivity.activities[0].actor);
+  const { data: username } = useGetUsernameFromSocialId(notificationActivity.activities[0].actor);
+  const profilePictue = useGetUserProfilePicture(username);
 
   switch (notificationActivity.verb) {
     case ('follow'):
       return (
         <>
-          <Link href={`/profile/@${notificationActivity.activities[0].actor}`}>
+          <Link href={`/profile/@${username}`}>
             <a>
               <Button
                 color={notificationActivity.is_seen ? 'secondary' : undefined}
                 startIcon={<ProfileAvatar profilePicture={(!profilePictue.isLoading && profilePictue.data && !profilePictue.isError) ? profilePictue.data : null} size={30}></ProfileAvatar>}>
-                {notificationActivity.activities[0].actor} started following you
+                {username} started following you
               </Button>
             </a>
           </Link>
@@ -50,7 +48,7 @@ const NotificationItem = (props: NotificationItemProps) => {
               <Button
                 color={notificationActivity.is_seen ? 'secondary' : undefined}
                 startIcon={<ProfileAvatar profilePicture={(!profilePictue.isLoading && profilePictue.data && !profilePictue.isError) ? profilePictue.data : null} size={30}></ProfileAvatar>}>
-                {notificationActivity.activities[0].actor} {notificationActivity.actor_count > 1 ? `and ${notificationActivity.actor_count - 1} others like` : 'likes' } your artwork
+                {username} {notificationActivity.actor_count > 1 ? `and ${notificationActivity.actor_count - 1} others like` : 'likes' } your artwork
               </Button>
             </a>
           </Link>
