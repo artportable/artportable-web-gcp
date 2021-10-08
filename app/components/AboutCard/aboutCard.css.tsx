@@ -35,7 +35,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(1)
     },
     profilePicture: {
-      width: 'clamp(100px, 100%, 300px)',
+      maxWidth: 'clamp(100px, 100%, 594px)',
     },
 
     [theme.breakpoints.up('sm')]: {
@@ -43,7 +43,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: '0 10px',
     },
     },
-    [theme.breakpoints.up('mdPlus')]: {
+    [theme.breakpoints.up('lg')]: {
       mainCardContent: {
         flexDirection: 'row',
       },
