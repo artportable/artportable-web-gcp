@@ -11,10 +11,12 @@ export const styles = makeStyles((theme: Theme) =>
       gap: theme.spacing(2),
     },
     profilePictureDiv: {
-     alignSelf: 'center',
+     display: 'flex',
+     justifyContent: 'center'
     },
     textContent: {
       maxWidth: '100%',
+      flexBasis: 'auto',
     },
     name: {
       textAlign: 'center',
@@ -35,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(1)
     },
     profilePicture: {
-      maxWidth: 'clamp(100px, 100%, 594px)',
+      width: 'clamp(150px, 100%, 300px)',
     },
 
     [theme.breakpoints.up('sm')]: {
@@ -43,7 +45,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: '0 10px',
     },
     },
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('mdPlus')]: {
       mainCardContent: {
         flexDirection: 'row',
       },
@@ -52,6 +54,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
       profilePictureDiv: {
       alignSelf: 'initial',
+          flexGrow: 1,
+          display: 'initial'
       },
       name: {
         textAlign: 'initial',
