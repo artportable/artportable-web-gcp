@@ -37,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(1)
     },
     profilePicture: {
-      width: 'clamp(150px, 100%, 300px)',
+      width: 'clamp(100px, 100%, 300px)',
     },
 
     [theme.breakpoints.up('sm')]: {
@@ -53,7 +53,6 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: '70%',
       },
       profilePictureDiv: {
-      alignSelf: 'initial',
           flexGrow: 1,
           display: 'initial'
       },
