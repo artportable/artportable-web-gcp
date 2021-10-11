@@ -1,4 +1,5 @@
 import Main, { FullWidthBlock } from '../../app/components/Main/Main'
+import Head from 'next/head';
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
 import { Tabs, Tab, Snackbar } from '@material-ui/core'
@@ -51,7 +52,7 @@ function a11yProps(index: any) {
   };
 }
 
-export default function Profile() {
+export default function Profile(props) {
   const { t } = useTranslation(['common', 'profile', 'upload']);
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
@@ -62,6 +63,10 @@ export default function Profile() {
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const staticUserProfile = props.profile;
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -78,7 +83,6 @@ export default function Profile() {
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const userProfile = useGetUserProfile(profileUser, username.value);
 
   const [imageRows, setImageRows] = useState(null);
@@ -298,6 +302,13 @@ export default function Profile() {
 
   return (
     <Main>
+      <Head>
+        <meta property="og:title" content={staticUserProfile?.Username} />
+        <meta property="og:description" content={staticUserProfile?.Headline} />
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content={`${publicUrl}/art/@${staticUserProfile?.Username}`} />
+        <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
+      </Head>
       {isReady &&
         <>
         <FullWidthBlock>
@@ -493,7 +504,26 @@ export default function Profile() {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale, params }) {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const url = new URL(`${apiBaseUrl}/api/artworks/${params.username}`);
+
+  try {
+    const profileResponse = await fetch(url.href);
+    const profile = await profileResponse.json();
+    
+    return {
+      props: {
+        profile,
+        locale: locale,
+        ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload']),
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.log(error);
+  } 
+
   return {
     props: {
       locale: locale,
