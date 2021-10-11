@@ -506,7 +506,9 @@ export default function Profile(props) {
 
 export async function getStaticProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const url = new URL(`${apiBaseUrl}/api/artworks/${params.username}`);
+  const split = params.username.split('@');
+  const username = split.length > 1 ? split[1] : null;
+  const url = new URL(`${apiBaseUrl}/api/profile/${username}`);
 
   try {
     const profileResponse = await fetch(url.href);
