@@ -24,8 +24,10 @@ export default function ArtworkPage(props) {
   const s = styles();
   const { t } = useTranslation(['art', 'common', 'tags']);
   const router = useRouter();
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const staticArtwork = props.artwork;
 
   const { id } = router.query
   const { username, socialId } = useContext(UserContext);
@@ -111,9 +113,9 @@ export default function ArtworkPage(props) {
   return (
     <Main wide>
       <Head>
-        <meta property="og:title" content={artwork.data?.Title} />
-        <meta property="og:url" content={`${apiBaseUrl}/art/${artwork.data?.Id}`} />
-        <meta property="og:image" content={`${bucketUrl}${artwork.data?.PrimaryFile.Name}`} />
+        <meta property="og:title" content={staticArtwork?.Title} />
+        <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
+        <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
       </Head>
       <div className={s.container}>
         <div className={s.backBtnContainer}>
@@ -242,9 +244,29 @@ export default function ArtworkPage(props) {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale, params }) {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const url = new URL(`${apiBaseUrl}/api/artworks/${params.id}`);
+
+  try {
+    const artworkResponse = await fetch(url.href);
+    const artwork = await artworkResponse.json();
+    
+    return {
+      props: {
+        artwork,
+        locale: locale,
+        ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags']),
+      },
+      revalidate: 10
+    };
+  } catch (error) {
+    console.log(error);
+  } 
+
   return {
     props: {
+      artwork: { Id: params.id },
       locale: locale,
       ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags']),
     },
