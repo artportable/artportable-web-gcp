@@ -111,9 +111,9 @@ export default function ArtworkPage(props) {
   return (
     <Main wide>
       <Head>
-        <meta property="og:title" content={artwork.data.Title} />
-        <meta property="og:url" content={`${apiBaseUrl}/art/${artwork.data.Id}`} />
-        <meta property="og:image" content={`${bucketUrl}${artwork.data.PrimaryFile.Name}`} />
+        <meta property="og:title" content={artwork.data?.Title} />
+        <meta property="og:url" content={`${apiBaseUrl}/art/${artwork.data?.Id}`} />
+        <meta property="og:image" content={`${bucketUrl}${artwork.data?.PrimaryFile.Name}`} />
       </Head>
       <div className={s.container}>
         <div className={s.backBtnContainer}>
