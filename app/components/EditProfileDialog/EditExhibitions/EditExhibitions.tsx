@@ -79,7 +79,6 @@ export const EditExhibitions = ({ profile, setProfile }) => {
                 variant="inline"
                 label={t('from')}
                 format="dd/MM/yyyy"
-                minDate={new Date()}
                 value={e.from}
                 InputAdornmentProps={{position: 'start'}}
                 onChange={date => setFrom(e, date)}

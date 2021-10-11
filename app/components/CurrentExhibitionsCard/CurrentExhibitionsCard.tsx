@@ -24,7 +24,7 @@ export default function CurrentExhibitionsCard({ exhibitions }) {
   return (
     <Card elevation={2}>
       <CardHeader 
-        title={t('currentExhibitions')} 
+        title={t('exhibitions')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
