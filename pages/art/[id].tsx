@@ -157,12 +157,12 @@ export default function ArtworkPage(props) {
                     href={{
                       pathname: "/messages",
                       query: {
-                        artwork: btoa(JSON.stringify({
+                        artwork: encodeURIComponent(JSON.stringify({
                           title: artwork.data.Title,
                           creator: artwork.data.Owner.Username,
                           url: window.location.href
                         })),
-                        referTo: artwork.data.Owner.KeycloakId
+                        referTo: artwork.data.Owner.SocialId
                       }
                     }}
                     as={`/messages`}

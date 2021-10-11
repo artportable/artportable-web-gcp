@@ -133,9 +133,9 @@ export async function getServerSideProps({ locale, query }) {
   var props = {
     ...await serverSideTranslations(locale, ['header', 'footer', 'messages', 'tags']),
   };
-  
+
   if (query.artwork) {
-    props['artwork'] = JSON.parse(atob(query.artwork))
+    props['artwork'] = JSON.parse(decodeURIComponent(query.artwork));
   }
   if (query.referTo) {
     props['referTo'] = query.referTo
