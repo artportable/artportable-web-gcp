@@ -11,10 +11,12 @@ export const styles = makeStyles((theme: Theme) =>
       gap: theme.spacing(2),
     },
     profilePictureDiv: {
-     alignSelf: 'center',
+     display: 'flex',
+     justifyContent: 'center'
     },
     textContent: {
       maxWidth: '100%',
+      flexBasis: 'auto',
     },
     name: {
       textAlign: 'center',
@@ -51,7 +53,8 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: '70%',
       },
       profilePictureDiv: {
-      alignSelf: 'initial',
+          flexGrow: 1,
+          display: 'initial'
       },
       name: {
         textAlign: 'initial',
