@@ -114,6 +114,8 @@ export default function ArtworkPage(props) {
     <Main wide>
       <Head>
         <meta property="og:title" content={staticArtwork?.Title} />
+        <meta property="og:description" content={staticArtwork?.Description} />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
       </Head>
