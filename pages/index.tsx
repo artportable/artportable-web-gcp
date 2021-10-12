@@ -18,6 +18,7 @@ import { TokenContext } from "../app/contexts/token-context";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
+import DiscoverMonthlyArtists from "../app/components/DiscoverMonthlyArtists/DiscoverMonthlyArtists";
 
 
 export default function DiscoverPage() {
@@ -95,9 +96,20 @@ export default function DiscoverPage() {
         url.searchParams.append('pageSize', "10");
         return url.href;
       }
+      if (pageIndex == 0) {
+        const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
+        if (searchQuery != null && searchQuery != '') {
+          url.searchParams.append('q', searchQuery);
+        }
+        if (username.value != null && username.value != '') {
+          url.searchParams.append('myUsername', username.value);
+        }
+        url.searchParams.append('page', (pageIndex + 1).toString());
+        url.searchParams.append('pageSize', "10");
+        return url.href;
+      }
       return previousPageData.next;
     }, activeTab);
-
 
   const useWideLayout = activeTab === 0;
 
@@ -185,6 +197,7 @@ export default function DiscoverPage() {
           <Tabs value={activeTab} onChange={(_, newValue) => setTab(newValue)} centered>
             <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
             <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+            <Tab label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
           </Tabs>
           <Box paddingTop={4}>
             <TabPanel value={activeTab} index={0}>
@@ -210,6 +223,16 @@ export default function DiscoverPage() {
                 isLoading={isLoadingArtists}
                 loadMore={loadMoreArtists}
                 ></DiscoverArtists>
+            </TabPanel>
+            <TabPanel value={activeTab} index={2}>
+              <DiscoverMonthlyArtists
+                artists={artists}
+                onFollowClick={follow}
+                onFilter={filterArtist}
+                loadMoreElementRef={loadMoreArtistsElementRef}
+                isLoading={isLoadingArtists}
+                loadMore={loadMoreArtists}
+                ></DiscoverMonthlyArtists>
             </TabPanel>
           </Box>
         </div>
