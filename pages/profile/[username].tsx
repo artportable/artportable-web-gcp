@@ -508,7 +508,7 @@ export async function getStaticProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const split = params.username.split('@');
   const username = split.length > 1 ? split[1] : null;
-  const url = new URL(`${apiBaseUrl}/api/profile/${username}`);
+  const url = new URL(`${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`);
 
   try {
     const profileResponse = await fetch(url.href);

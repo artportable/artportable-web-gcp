@@ -248,7 +248,7 @@ export default function ArtworkPage(props) {
 
 export async function getStaticProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const url = new URL(`${apiBaseUrl}/api/artworks/${params.id}`);
+  const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
 
   try {
     const artworkResponse = await fetch(url.href);
