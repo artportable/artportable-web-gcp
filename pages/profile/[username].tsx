@@ -306,7 +306,7 @@ export default function Profile(props) {
         <meta property="og:title" content={staticUserProfile?.Username} />
         <meta property="og:description" content={staticUserProfile?.Headline} />
         <meta property="og:type" content="profile" />
-        <meta property="og:url" content={`${publicUrl}/art/@${staticUserProfile?.Username}`} />
+        <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
         <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
       </Head>
       {isReady &&
