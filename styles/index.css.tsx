@@ -9,5 +9,9 @@ export const styles = makeStyles((theme: Theme) =>
     discoverContainer: {
       paddingTop: theme.spacing(4)
     },
+    tabs: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
   }),
 );

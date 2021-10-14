@@ -10,7 +10,6 @@ import { capitalizeFirst } from "../../utils/util";
 export default function AvatarCard({ user }) {
   const { t } = useTranslation(['tags']);
   const s = styles();
-
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   return (
@@ -34,6 +33,15 @@ export default function AvatarCard({ user }) {
               <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>
             }
           </div>
+          {user.MonthlyArtist &&
+            <div>
+              <img
+                src="/Artportable_Emblem_Gold.svg"
+                alt="Logo Artportable"
+                className={s.emblem}
+              />
+            </div>
+          }
         </div>
       </a>
     </Link>

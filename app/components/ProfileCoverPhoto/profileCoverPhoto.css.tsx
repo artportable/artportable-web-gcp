@@ -35,33 +35,11 @@ const styles = makeStyles((theme: Theme) =>
     },
     buttonPosition: {
       position: 'relative',
-      [theme.breakpoints.up('sm')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.sm.regular}px) / 2)`
-      },
-      [theme.breakpoints.up('smPlus')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.smPlus.regular}px) / 2)`
-      },
-      [theme.breakpoints.up('md')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.md.regular}px) / 2)`
-      },
-      [theme.breakpoints.up('mdPlus')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.mdPlus.regular}px) / 2)`
-      },
-      [theme.breakpoints.up('lg')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.lg.regular}px) / 2)`
-      },
-      [theme.breakpoints.up('lgPlus')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.lgPlus.regular}px) / 2)`
-      },
-      [theme.breakpoints.up('xl')]: {
-        right: `calc((100vw - ${theme.breakpointMainWidths.xl.regular}px) / 2)`
-      },
+
+
     },
-    [theme.breakpoints.up('sm')]: {
-      editCoverPhotoText: {
-        display: 'initial'
-      },
-    }
+
+
 
   }),
 );

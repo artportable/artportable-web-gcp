@@ -11,6 +11,10 @@ export const styles = makeStyles((theme: Theme) =>
       width: "60px",
       height: "60px",
     },
+    emblem: {
+      margin: '0 10px',
+      width: '45px',
+    },
     text: {
       display: "flex",
       flexDirection: "column",
@@ -19,6 +23,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     username: {
       fontWeight: 600
-    }
+    },
+    [theme.breakpoints.up('sm')]: {
+      emblem: {
+        margin: '0 20px',
+        width: '60px'
+      },
+    },
   }),
 );

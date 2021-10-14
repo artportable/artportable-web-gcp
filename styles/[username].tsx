@@ -24,14 +24,38 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gridArea: 'actions',
       display: 'flex', 
       flexDirection : 'column',
-      gap: theme.spacing(2),
+      gap: theme.spacing(1),
       justifySelf: 'flex-end',
     },
     followButton: {
-      maxHeight: '30px'
+      marginTop: '10px',
+      maxHeight: '27px',
+      '& .MuiButton-startIcon': {
+        margin: '0 0',
+      },
+    },
+    messageA: {
+      textAlign: 'right'
+    },
+    messageButtonText: {
+      display: 'none'
     },
     tabsContainer: {
       gridArea: 'tabs'
+    },
+    catalogued: {
+      gridRow: '3/4',
+      gridColumn: '4/5',
+      display: 'flex',
+      justifyContent: 'center',
+      margin: '50px 0 0 0',
+    },
+    emblem: {
+      width: '60px',
+      height: '60px',
+      color: '#FFD700',
+      marginLeft: '20px',
+      marginTop: '50px',
     },
     divider: {
       gridArea: 'divider'
@@ -51,7 +75,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       width: '130px',
       display: 'none',
     },
-
     secondDivider: {
       gridArea: 'divider2'
     },
@@ -64,12 +87,50 @@ export const profileStyles = makeStyles((theme: Theme) =>
       minWidth: '36px',
       '& .MuiButton-startIcon': {
         margin: '0 0',
-      }
+      },
+    },
+    [theme.breakpoints.up('sm')]: {
+      emblem: {
+        width: '80px',
+        height: '80px',
+        marginLeft: '45px',
+        marginTop: '50px',
+      },
+      followButton: {
+        maxHeight: '27px',
+        '& .MuiButton-startIcon': {
+          margin: '0 8px 0 -4px',
+        },
+      },
+      messageButtonText: {
+        display: 'initial'
+      },
+    },
+    [theme.breakpoints.up('smPlus')]: {
+      emblem: {
+        width: '80px',
+      },
     },
     [theme.breakpoints.up('md')]: {
       uploadButton: {
         display: 'flex',
       },
-    }
+      catalogued: {
+        gridRow: '3/4',
+        gridColumn: '6/7',
+        marginTop: '10px',
+      },
+      emblem: {
+        marginLeft: '0',
+        marginRight: '30px',
+        marginTop: '0',
+
+      },
+    },
+    [theme.breakpoints.up('mdPlus')]: {
+      emblem: {
+        
+      },
+    },
   }),
 );

@@ -33,9 +33,10 @@ import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 
 import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from 'next/link'
-import SendIcon from '@material-ui/icons/Send';
+import ChatIcon from '@material-ui/icons/Chat';
 import EditIcon from '@material-ui/icons/Edit';
 import { TokenContext } from '../../app/contexts/token-context'
 import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
@@ -84,6 +85,7 @@ export default function Profile(props) {
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
+  console.log(userProfile.data)
 
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
@@ -318,12 +320,10 @@ export default function Profile(props) {
           }
           {userProfile?.isError && <div>error...</div>}
         </FullWidthBlock>
-
         <div className={s.profileGrid}>
           <div className={s.profileSummary}>
             <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
           </div>
-        
           <div className={s.editActions}>   
             {isMyProfile ?      
               <>     
@@ -360,18 +360,18 @@ export default function Profile(props) {
                     }}
                     as={`/messages`}
                   >
-                    <a style={isSignedIn ? {} : { pointerEvents: 'none' }}>
+                    <a className={s.messageA} style={isSignedIn ? {} : { pointerEvents: 'none' }}>
                       <Button
                         onClick={() => redirectIfNotLoggedIn()}
                         className={s.followButton}
                         size={smScreenOrSmaller ? 'small' : 'medium'}
                         variant={"contained"}
                         color="primary"
-                        startIcon={<SendIcon color={"inherit"} />}
+                        startIcon={<ChatIcon className={s.chatIcon} color={"inherit"} />}
                         disableElevation
                         rounded
-                        disabled={!isSignedIn}>
-                        {capitalizeFirst(t('common:message'))}
+                        disabled={!isSignedIn}>   
+                        <div className={s.messageButtonText}> {capitalizeFirst(t('common:message'))}</div>
                       </Button>
                     </a>
                   </Link>
@@ -394,8 +394,16 @@ export default function Profile(props) {
                 </Button>
               </>
             }
-            
           </div>
+          {userProfile.data?.MonthlyArtist &&
+            <div className={s.catalogued}>
+              <img
+                src="/Artportable_Emblem_Gold.svg"
+                alt="Logo Artportable"
+                className={s.emblem}
+              />
+            </div>
+          }
           <Divider className={s.divider}></Divider>
           
           <ArtistPriceSpan prices={artworkPrices} />
