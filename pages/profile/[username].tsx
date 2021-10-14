@@ -85,7 +85,6 @@ export default function Profile(props) {
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
-  console.log(userProfile.data)
 
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
