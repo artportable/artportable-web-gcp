@@ -10,8 +10,10 @@ export const styles = makeStyles((theme: Theme) =>
       paddingTop: theme.spacing(4)
     },
     tabs: {
-      display: 'flex',
-      justifyContent: 'center'
+      '& .MuiTabs-scroller': {
+        display: 'flex',
+        justifyContent: 'center'
+      }
     },
   }),
 );

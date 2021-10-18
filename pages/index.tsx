@@ -204,10 +204,9 @@ export default function DiscoverPage() {
         }
         <div className={s.discoverContainer}>
           <Tabs 
-            classes={{scroller: s.tabs}}
+            classes={{root: s.tabs}}
             value={activeTab} 
             onChange={(_, newValue) => setTab(newValue)} 
-       
             variant="scrollable"
             scrollButtons="auto"
           >
