@@ -35,12 +35,7 @@ const styles = makeStyles((theme: Theme) =>
     },
     buttonPosition: {
       position: 'relative',
-
-
     },
-
-
-
   }),
 );
 

@@ -50,7 +50,6 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
               multiple={false}
             />
             <Button
-              className={s.cameraButton}
               size="small"
               variant="contained"
               color="default"
