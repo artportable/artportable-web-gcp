@@ -5,14 +5,16 @@ import { relative } from 'node:path';
 const styles = makeStyles((theme: Theme) =>
   createStyles({
     mainGrid: {
-      display: 'grid',
-      gap: '16px',
-      gridTemplate: (
-      '\"upload   form\" minmax(0, 2fr)' +
-      '\"options   form\" auto' +
-      '\"previews form\" minmax(0, 1fr)' +
-      '/  3fr      1fr'),
-      alignItems: 'stretch'
+      [theme.breakpoints.up('mdPlus')]: {
+        display: 'grid',
+        gap: '16px',
+        gridTemplate: (
+        '\"upload   form\" minmax(0, 2fr)' +
+        '\"options   form\" auto' +
+        '\"previews form\" minmax(0, 1fr)' +
+        '/  3fr      1fr'),
+        alignItems: 'stretch'
+      }
     },
     uploadBox: {
       gridArea: 'upload',
@@ -41,9 +43,6 @@ const styles = makeStyles((theme: Theme) =>
     previewsContainer: {
       gridArea: 'previews',
       display: 'flex',
-
-      // gridAutoFlow: 'column',
-      // gridTemplate: "1fr / repeat(3, minmax(0, 1fr))",
       gap: theme.spacing(2),
       paddingBottom: theme.spacing(4),
     },
@@ -60,6 +59,23 @@ const styles = makeStyles((theme: Theme) =>
         height: '100%',
         objectFit: 'contain',
       }
+    },
+    mobilePreview: {
+      maxWidth: '100%',
+      height: '400px',
+      objectFit: 'contain'
+    },
+    noImgPreview: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      background: theme.palette.common.white,
+      border: 'dashed',
+      borderColor: theme.palette.grey[400],
+      borderRadius: '4px',
+    },
+    mobileUploadResetButton: {
+      marginTop: theme.spacing(1)
     },
     form: {
       gridArea: 'form'

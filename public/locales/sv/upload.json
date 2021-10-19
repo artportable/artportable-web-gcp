@@ -4,6 +4,8 @@
   "price": "Pris",
   "tags": "Taggar",
   "upload": "Ladda upp",
+  "previewText": "Välj en bild för att förhandsgranska",
+  "selectImage": "Välj bild",
   "dragandDropOrClick": "Dra och släpp en bild här eller klicka",
   "artworkUploadedSuccessfully": "Konstverk uppladdat!",
   "informationOne": "Du bär det fulla ansvaret för det användarinnehåll som du laddar upp.",
