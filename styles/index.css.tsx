@@ -13,6 +13,9 @@ export const styles = makeStyles((theme: Theme) =>
       '& .MuiTabs-scroller': {
         display: 'flex',
         justifyContent: 'center'
+      },
+      '& .MuiTab-root': {
+        minWidth: '54px'
       }
     },
   }),
