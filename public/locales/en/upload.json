@@ -4,6 +4,8 @@
   "price": "Price",
   "tags": "Tags",
   "upload": "Upload",
+  "previewText": "Select an image to preview",
+  "selectImage": "Select image",
   "dragandDropOrClick": "Drag and drop an image here or click",
   "artworkUploadedSuccessfully": "Artwork uploaded successfully!",
   "informationOne": "You are fully responsible for the user content that you upload.",

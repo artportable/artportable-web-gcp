@@ -3,6 +3,7 @@ import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, Ico
 import CloseIcon from '@material-ui/icons/Close'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
 import { useTranslation } from 'next-i18next'
 import { styles } from './drawerMenu.css'
 import { useKeycloak } from '@react-keycloak/ssr'
@@ -49,6 +50,14 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
 
         {isSignedIn.value ?
           <>
+            <Link href="/upload" passHref>
+              <ListItem button divider>
+                <ListItemIcon>
+                  <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
+                </ListItemIcon>
+                <ListItemText primary={t('upload')} />
+              </ListItem>
+            </Link>
             <Link href="/messages" passHref>
               <ListItem button divider>
                 <ListItemIcon>

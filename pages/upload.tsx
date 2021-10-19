@@ -14,16 +14,22 @@ import CropperOptions from '../app/components/CropperOptions/CropperOptions';
 import "cropperjs/dist/cropper.css";
 import { Paper, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { useRouter } from 'next/router';
 import { TokenContext } from '../app/contexts/token-context';
 import { UserContext } from '../app/contexts/user-context';
 import WarningMessage from '../app/components/WarningMessage/WarningMessage';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { isNullOrUndefined } from '../app/utils/util';
 
 
 export default function UploadArtworkPage() {
   const s = styles();
   const { t } = useTranslation(['upload']);
   const router = useRouter();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -49,6 +55,10 @@ export default function UploadArtworkPage() {
   const [nameSecondary, setNameSecondary] = useState(null);
   const [croppedTertiary, setCroppedTertiary] = useState(null);
   const [nameTertiary, setNameTertiary] = useState(null);
+
+  const [mobileImg, setMobileImg] = useState('');
+  const [mobileImgBlob, setMobileImgBlob] = useState(null);
+  const mobilePreviewImageRef = useRef(null);
   
   const cropperRef = useRef(null);
 
@@ -62,19 +72,41 @@ export default function UploadArtworkPage() {
     }
   });
 
-  const uploadArtwork = () => {
-    const artwork: ArtworkForCreation = {
-      Title: title,
-      Description: description,
-      Price: price,
-      Tags: selectedTags,
-      PrimaryFile: namePrimary,
-      SecondaryFile: nameSecondary,
-      TertiaryFile: nameTertiary
+  const uploadArtwork = async () => {
+    if(isDesktop) {
+      const artwork: ArtworkForCreation = {
+        Title: title,
+        Description: description,
+        Price: price,
+        Tags: selectedTags,
+        PrimaryFile: namePrimary,
+        SecondaryFile: nameSecondary,
+        TertiaryFile: nameTertiary
+      }
+      setUploadSnackbarOpen(true);
+      const res = usePostArtwork(artwork, socialId.value, token);
+      router.push('/profile/@' + username.value);
+    } else {
+      const name = await uploadImage(
+        mobileImgBlob, 
+        mobilePreviewImageRef.current.naturalWidth, 
+        mobilePreviewImageRef.current.naturalHeight);
+      
+      if(name !== null) {
+        const artwork: ArtworkForCreation = {
+          Title: title,
+          Description: description,
+          Price: price,
+          Tags: selectedTags,
+          PrimaryFile: name as any,
+          SecondaryFile: nameSecondary,
+          TertiaryFile: nameTertiary
+        }
+        setUploadSnackbarOpen(true);
+        usePostArtwork(artwork, socialId.value, token);
+        router.push('/profile/@' + username.value);
+      }
     }
-    setUploadSnackbarOpen(true);
-    const res = usePostArtwork(artwork, socialId.value, token);
-    router.push('/profile/@' + username.value);
   }
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
@@ -133,8 +165,8 @@ export default function UploadArtworkPage() {
     setDeletedFile(true);
   }
 
-  const uploadImage = (blob, width: number, height: number) => {
-    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+  const uploadImage = async (blob, width: number, height: number) => {
+    return fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'image/jpeg',
@@ -157,25 +189,42 @@ export default function UploadArtworkPage() {
       } else if (nameTertiary == null) {
         setNameTertiary(name);
       }
+      return name;
     })
     .catch((error) => {
       console.log(error);
     })
   }
 
+
+  const onMobileUpload = event => {
+    if (isNullOrUndefined(event?.target?.files[0])) {
+      return;
+    }
+
+    setMobileImgBlob(new Blob(event?.target?.files))
+    const fr = new FileReader;
+    fr.onload = function() {
+      setMobileImg(fr.result.toString());
+    };
+    fr.readAsDataURL(event.target.files[0]);
+  };
+
   return (
     <Main>
       <div className={s.mainGrid}>
+         
+      {isDesktop ? <>
         <div className={s.uploadBox}>
-          <DropzoneArea
-            classes={{root: `${s.dropzone} ${cropperActive ? s.hide : ''}`}}
-            acceptedFiles={['image/*']}
-            dropzoneText={t('dragandDropOrClick')}
-            onChange={onFilesChanged}
-            showPreviews={false}
-            showPreviewsInDropzone={true}
-            filesLimit={3}
-            maxFileSize={2000000000} />
+            <DropzoneArea
+              classes={{root: `${s.dropzone} ${cropperActive ? s.hide : ''}`}}
+              acceptedFiles={['image/*']}
+              dropzoneText={t('dragandDropOrClick')}
+              onChange={onFilesChanged}
+              showPreviews={false}
+              showPreviewsInDropzone={true}
+              filesLimit={3}
+              maxFileSize={2000000000} />
         </div>
 
         <div className={s.cropperBox}>
@@ -187,10 +236,39 @@ export default function UploadArtworkPage() {
             autoCropArea={1}
             preview={`.${s.cropperPreview}`}
             ref={cropperRef}
-          />
+            />
         </div>
-
         <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
+      </>
+      :
+        <div>
+          <div>
+            {mobileImg === '' ?
+              <div className={clsx(s.mobilePreview, s.noImgPreview)}>
+                <span>{t('previewText')}</span>
+              </div>
+            :
+              <img className={s.mobilePreview} src={mobileImg} ref={mobilePreviewImageRef}></img>
+            }
+          </div>
+          <input accept="image/*" style={{ display: 'none' }} id="icon-button-file" type="file" onChange={onMobileUpload} />
+          <label htmlFor="icon-button-file">
+            <ArtButton
+              className={s.mobileUploadResetButton}
+              size="small"
+              variant="contained"
+              color="primary"
+              startIcon={<AddPhotoAlternateIcon />}
+              rounded
+              aria-label="upload picture"
+              component="span"
+            >
+              {t('selectImage')}
+            </ArtButton>
+          </label>
+        </div>
+      }
+
 
         <div className={s.previewsContainer}>
         {croppedPrimary && 
@@ -232,7 +310,7 @@ export default function UploadArtworkPage() {
               color="primary"
               variant="contained"
               className={s.uploadButton}
-              disabled={!croppedPrimary}
+              disabled={!croppedPrimary && mobileImg === ''}
               disableElevation
               rounded
               onClick={uploadArtwork}>

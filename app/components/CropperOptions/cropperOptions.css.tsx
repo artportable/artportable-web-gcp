@@ -5,7 +5,8 @@ export const styles = makeStyles((theme: Theme) =>
     cropperOptions: {
       gridArea: 'options',
       display: 'flex',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      flexWrap: 'wrap'
     },
     startIcon: {
       margin: theme.spacing(0.25, 0),
