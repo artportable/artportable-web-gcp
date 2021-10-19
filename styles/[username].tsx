@@ -116,8 +116,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
         display: 'flex',
       },
       catalogued: {
+        position: 'relative',
+        left: '120px',
+        justifySelf: 'flex-end',
         gridRow: '3/4',
-        gridColumn: '6/7',
+        gridColumn: '5/6',
         marginTop: '10px',
       },
       emblem: {

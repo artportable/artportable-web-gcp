@@ -107,11 +107,11 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           href={{
             pathname: "/messages",
             query: {
-              artwork: btoa(JSON.stringify({
+              artwork: Buffer.from(JSON.stringify({
                 title: content.Item.Title,
                 creator: content.User,
                 url: `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/art/${content.Item.Id}`
-              })),
+              })).toString('base64'),
               referTo: content.User
             }
           }}
