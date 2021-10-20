@@ -22,6 +22,7 @@ import WarningMessage from '../app/components/WarningMessage/WarningMessage';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { isNullOrUndefined } from '../app/utils/util';
+import { Membership } from '../app/models/Membership';
 
 
 export default function UploadArtworkPage() {
@@ -33,7 +34,7 @@ export default function UploadArtworkPage() {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { username, socialId, isSignedIn } = useContext(UserContext);
+  const { username, socialId, isSignedIn, membership } = useContext(UserContext);
   const tags = useGetTags();
 
   const [title, setTitle] = useState('');
@@ -63,7 +64,7 @@ export default function UploadArtworkPage() {
   const cropperRef = useRef(null);
 
   useEffect(() => {
-    if (!isSignedIn.value) {
+    if (!isSignedIn.value || membership.value < Membership.Portfolio) {
       router.push('/');
     }
     
