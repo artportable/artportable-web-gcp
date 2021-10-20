@@ -14,13 +14,14 @@ import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 import { UserContext } from '../../contexts/user-context'
 import { useContext } from 'react'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
+import { Membership } from '../../models/Membership'
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation(['header', 'common']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const { username, isSignedIn } = useContext(UserContext);
+  const { username, isSignedIn, membership } = useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
 
@@ -50,14 +51,17 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
 
         {isSignedIn.value ?
           <>
-            <Link href="/upload" passHref>
-              <ListItem button divider>
-                <ListItemIcon>
-                  <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
-                </ListItemIcon>
-                <ListItemText primary={t('upload')} />
-              </ListItem>
-            </Link>
+            {(membership.value > Membership.Base) &&
+              <Link href="/upload" passHref>
+                <ListItem button divider>
+                  <ListItemIcon>
+                    <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
+                  </ListItemIcon>
+                  <ListItemText primary={t('upload')} />
+                </ListItem>
+              </Link>
+            }
+            
             <Link href="/messages" passHref>
               <ListItem button divider>
                 <ListItemIcon>
