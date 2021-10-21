@@ -354,7 +354,7 @@ export default function Profile(props) {
                     href={{
                       pathname: "/messages",
                       query: {
-                        referTo: userProfileSummary.data?.KeycloakId
+                        referTo: userProfileSummary.data?.SocialId
                       }
                     }}
                     as={`/messages`}
