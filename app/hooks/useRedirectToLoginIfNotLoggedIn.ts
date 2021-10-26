@@ -11,13 +11,14 @@ export const useRedirectToLoginIfNotLoggedIn = () => {
   const router = useRouter();
 
   return (originalRedirect?: UrlObject | string) => {
-    if(!isSignedIn.isPending && !isSignedIn.value) {
+    if(!isSignedIn.value) {
       history.pushState(window.location.href, "Artportable");
       keycloak.login({ locale: router.locale });
+    } else {
+      if(originalRedirect !== undefined) {
+        router.push(originalRedirect);
+      }
     }
 
-    if(originalRedirect !== undefined) {
-      router.push(originalRedirect);
-    }
   }
 }
