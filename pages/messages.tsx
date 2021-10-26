@@ -15,8 +15,12 @@ import { Alert } from '@material-ui/lab';
 import { UserContext } from '../app/contexts/user-context';
 import clsx from 'clsx';
 import { ChatClientContext } from '../app/contexts/chat-context';
+import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 
 export default function MessagesPage(props) {
+  const redirect = useRedirectToLoginIfNotLoggedIn();
+  useEffect(() => {redirect()}, []);
+  
   const { t } = useTranslation(['messages']);
   const { referTo, artwork } = props;
   const { username, socialId } = useContext(UserContext);
