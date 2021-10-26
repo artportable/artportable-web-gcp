@@ -10,7 +10,7 @@ export const useRedirectToLoginIfNotLoggedIn = () => {
   const router = useRouter();
 
   return () => {
-    if(!isSignedIn.value) {
+    if(!isSignedIn.isPending && !isSignedIn.value) {
       history.pushState(window.location.href, "Artportable");
       keycloak.login({ locale: router.locale });
     }
