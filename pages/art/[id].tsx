@@ -163,29 +163,24 @@ export default function ArtworkPage(props) {
                   {capitalizeFirst(t('common:like'))}
                 </Button>
                 {username.value !== artwork.data.Owner.Username &&
-                  <Link
-                    href={{
-                      pathname: "/messages",
-                      query: {
-                        artwork: encodeURIComponent(JSON.stringify({
-                          title: artwork.data.Title,
-                          creator: artwork.data.Owner.Username,
-                          url: window.location.href
-                        })),
-                        referTo: artwork.data.Owner.SocialId
-                      }
+                  <Button
+                    onClick={() => {
+                      redirectIfNotLoggedIn({
+                        pathname: "/messages",
+                        query: {
+                          artwork: encodeURIComponent(JSON.stringify({
+                            title: artwork.data.Title,
+                            creator: artwork.data.Owner.Username,
+                            url: window.location.href
+                          })),
+                          referTo: artwork.data.Owner.SocialId
+                        }
+                      });
                     }}
-                    as={`/messages`}
-                  >
-                    <a>
-                      <Button
-                        onClick={() => redirectIfNotLoggedIn()}
-                        startIcon={<SendIcon color={"inherit"} />}>
-                        {capitalizeFirst(t('common:purchaseRequest'))}
-                      </Button>
-                    </a>
-                  </Link>
-                }
+                    startIcon={<SendIcon color={"inherit"} />}>
+                    {capitalizeFirst(t('common:purchaseRequest'))}
+                  </Button>
+                } 
               </div>
               <div className={s.infoBar}>
                 {artwork.data.Likes > 0 &&
