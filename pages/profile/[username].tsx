@@ -350,30 +350,23 @@ export default function Profile(props) {
             :
               <>
                 {
-                 <Link
-                    href={{
+                  <Button
+                    onClick={() => redirectIfNotLoggedIn({
                       pathname: "/messages",
                       query: {
                         referTo: userProfileSummary.data?.SocialId
                       }
-                    }}
-                    as={`/messages`}
-                  >
-                    <a className={s.messageA} style={isSignedIn ? {} : { pointerEvents: 'none' }}>
-                      <Button
-                        onClick={() => redirectIfNotLoggedIn()}
-                        className={s.followButton}
-                        size={smScreenOrSmaller ? 'small' : 'medium'}
-                        variant={"contained"}
-                        color="primary"
-                        startIcon={<ChatIcon className={s.chatIcon} color={"inherit"} />}
-                        disableElevation
-                        rounded
-                        disabled={!isSignedIn}>   
-                        <div className={s.messageButtonText}> {capitalizeFirst(t('common:message'))}</div>
-                      </Button>
-                    </a>
-                  </Link>
+                    })}
+                    className={s.followButton}
+                    size={smScreenOrSmaller ? 'small' : 'medium'}
+                    variant={"contained"}
+                    color="primary"
+                    startIcon={<ChatIcon className={s.chatIcon} color={"inherit"} />}
+                    disableElevation
+                    rounded
+                    disabled={!isSignedIn}>   
+                    <div className={s.messageButtonText}> {capitalizeFirst(t('common:message'))}</div>
+                  </Button>
                 }
                 <Button
                   className={s.followButton}

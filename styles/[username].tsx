@@ -34,9 +34,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
         margin: '0 0',
       },
     },
-    messageA: {
-      textAlign: 'right'
-    },
+
     messageButtonText: {
       display: 'none'
     },
