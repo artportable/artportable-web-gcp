@@ -96,7 +96,8 @@ export const EditEducation = ({ profile, setProfile }) => {
           <TextField 
             label={t('education')}
             defaultValue={e.name}
-            onChange={(event) => setName(e, event.target.value)} />     
+            onChange={(event) => setName(e, event.target.value)} 
+            inputProps={{ maxLength: 140 }}/>     
         </div>
       </Badge>
       )}
