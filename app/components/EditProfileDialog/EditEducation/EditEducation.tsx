@@ -97,7 +97,9 @@ export const EditEducation = ({ profile, setProfile }) => {
             label={t('education')}
             defaultValue={e.name}
             onChange={(event) => setName(e, event.target.value)} 
-            inputProps={{ maxLength: 140 }}/>     
+            inputProps={{ maxLength: 140 }}
+            helperText={t('maxLength')}
+            />     
         </div>
       </Badge>
       )}
