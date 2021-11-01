@@ -30,5 +30,6 @@
   "profilePictureUpdated": "Profile picture updated!",
   "coverPhotoUpdated": "Cover photo updated!",
   "deleteArtworkDialog" : "Are you sure that you want to delete the artwork titled \"{{title}}\"?",
-  "deleteArtworkSuccess" : "Artwork successfully deleted"
+  "deleteArtworkSuccess" : "Artwork successfully deleted",
+  "maxLength": "Maximum 140 characters"
 }

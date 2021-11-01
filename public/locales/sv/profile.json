@@ -30,5 +30,6 @@
   "profilePictureUpdated": "Profilbild uppdaterad!",
   "coverPhotoUpdated": "Omslagsbild updated!",
   "deleteArtworkDialog": "Är du säker på att du vill radera konstverket vid namn \"{{title}}\"?",
-  "deleteArtworkSuccess": "Konstverk raderat"
+  "deleteArtworkSuccess": "Konstverk raderat",
+  "maxLength": "Maximalt 140 tecken"
 }

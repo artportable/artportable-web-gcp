@@ -150,9 +150,9 @@ export default function EditProfileDialog({ userProfile }) {
             <div>
               <EditInspiredBy profile={profile} setProfile={setProfile}></EditInspiredBy>
             </div>
-            {/* <div>
+            <div>
               <EditEducation profile={profile} setProfile={setProfile}></EditEducation>
-            </div> */}
+            </div>
             <div>
               <EditExhibitions profile={profile} setProfile={setProfile}></EditExhibitions>
             </div>
