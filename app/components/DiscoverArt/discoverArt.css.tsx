@@ -6,17 +6,17 @@ export const styles = makeStyles((theme: Theme) =>
     rowsContainer: {
       display: 'flex',
       flexDirection: 'column',
-      gridGap:(16),
+      ...columnGap(16),
     },
     row: {
       display: 'flex',
-      gridGap:(16),
+      ...rowGap(16),
       justifyContent: 'flex-start',
       overflow: 'hidden'
     },
     categoryTags: {
       display: 'flex',
-      gridGap:(8),
+      ...rowGap(8),
       paddingInlineStart: 0,
       listStyleType: 'none',
       overflow: 'auto',
