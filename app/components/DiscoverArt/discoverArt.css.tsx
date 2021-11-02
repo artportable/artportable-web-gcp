@@ -1,21 +1,22 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     rowsContainer: {
       display: 'flex',
       flexDirection: 'column',
-      gap: theme.spacing(2)
+      ...columnGap(16),
     },
     row: {
       display: 'flex',
-      gap: theme.spacing(2),
+      ...rowGap(16),
       justifyContent: 'flex-start',
       overflow: 'hidden'
     },
     categoryTags: {
       display: 'flex',
-      gap: theme.spacing(1),
+      ...rowGap(8),
       paddingInlineStart: 0,
       listStyleType: 'none',
       overflow: 'auto',
