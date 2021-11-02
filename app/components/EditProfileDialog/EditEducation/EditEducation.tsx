@@ -86,7 +86,7 @@ export const EditEducation = ({ profile, setProfile }) => {
                   views={["year"]}
                   value={new Date(e.to, 0, 1)}
                   minDate={new Date(e.from, 0, 1)}
-                  maxDate={new Date()}
+                  maxDate={subYears(new Date(), -10)}
                   InputAdornmentProps={{position: 'start'}}
                   onChange={date => setTo(e, date)}
                 />
