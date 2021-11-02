@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap } from '../app/utils/styleUtils';
 
 export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -65,7 +66,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     portfolioRow: {
       display: 'flex',
-      gap: theme.spacing(2),
+      ...rowGap(16),
       justifyContent: 'flex-start',
       overflow: 'hidden'
     },
