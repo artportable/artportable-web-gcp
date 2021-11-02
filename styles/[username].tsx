@@ -66,7 +66,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     portfolioRow: {
       display: 'flex',
-      ...rowGap(16),
+      gridGap:(16),
       justifyContent: 'flex-start',
       overflow: 'hidden'
     },
