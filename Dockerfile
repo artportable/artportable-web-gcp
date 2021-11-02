@@ -1,12 +1,12 @@
 # Install dependencies only when needed
-FROM node:alpine AS deps
+FROM node:16.13-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
 # Rebuild the source code only when needed
-FROM node:alpine AS builder
+FROM node:16.13-alpine AS builder
 WORKDIR /app
 ARG ENV
 COPY . .
@@ -14,7 +14,7 @@ COPY --from=deps /app/node_modules ./node_modules
 RUN npm run build:$ENV && npm install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
-FROM node:alpine AS runner
+FROM node:16.13-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
