@@ -18,5 +18,13 @@ export const styles = makeStyles((theme: Theme) =>
         minWidth: '54px'
       }
     },
+    text: {
+      fontSize: '0.785rem',
+    },
+    [theme.breakpoints.up('sm')]: {
+      text: {
+        fontSize: 'initial',
+      },
+    },
   }),
 );
