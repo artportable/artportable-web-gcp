@@ -19,11 +19,11 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     text: {
-      fontSize: '0.785rem',
+      fontSize: '0.785rem !important',
     },
     [theme.breakpoints.up('sm')]: {
       text: {
-        fontSize: 'initial',
+        fontSize: 'initial !important',
       },
     },
   }),
