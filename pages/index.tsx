@@ -210,9 +210,9 @@ export default function DiscoverPage() {
             variant="scrollable"
             scrollButtons="auto"
           >
-            <Tab label={t('discover:art')} {...a11yProps(t('discover:art'))} />
-            <Tab label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
-            <Tab label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
+            <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+            <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+            <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
           </Tabs>
           <Box paddingTop={4}>
             <TabPanel value={activeTab} index={0}>
