@@ -31,6 +31,7 @@ import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import DialogConstruction from '../DialogConstruction/DialogConstruction'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
+import * as gtag from '../../../lib/gtag'
 
 export default function Header({}) {
   const { t } = useTranslation('header');
@@ -48,6 +49,16 @@ export default function Header({}) {
   
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
+
+  const uploadHeader = () => {
+    gtag.event({
+      action: "upload_header",
+      category: "update",
+      label: "",
+      value: ""
+    })
+
+  }
 
 
   useEffect(() => {
@@ -165,6 +176,7 @@ export default function Header({}) {
                     <Link href="/upload">
                       <a>
                         <Button
+                          onClick={() => uploadHeader()}
                           className={s.uploadButton}
                           size="small"
                           variant="outlined"

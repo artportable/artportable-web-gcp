@@ -13,6 +13,7 @@ import { CardActions, CardHeader, CardMedia, Box, Avatar } from '@material-ui/co
 import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 import { useRouter } from 'next/router';
+import * as gtag from '../../../lib/gtag'
 
 interface FeedCardProps {
   content: FeedItem,
@@ -34,6 +35,16 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
     [s.oneImage]: !content.Item.SecondaryFile && !content.Item.TertiaryFile
   },
     [s.media]);
+
+  const purchaseRequest = () => {
+    gtag.event({
+      action: "purchase_request",
+      category: "buy",
+      label: "",
+      value: ""
+    })
+
+  }
 
   return (
     <Card>
@@ -118,8 +129,9 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           as={`/messages`}
         >
           <a>
-            <Button
-              startIcon={<SendIcon color={"inherit"} />}>
+            <Button 
+              startIcon={<SendIcon color={"inherit"} />}
+              onClick={() => purchaseRequest()}>
               {capitalizeFirst(t('common:purchaseRequest'))}
             </Button>
           </a>

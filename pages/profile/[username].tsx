@@ -44,6 +44,7 @@ import { LoadingContext } from '../../app/contexts/loading-context'
 import { UserContext } from '../../app/contexts/user-context'
 import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 import { Membership } from '../../app/models/Membership'
+import * as gtag from '../../lib/gtag'
 
 
 function a11yProps(index: any) {
@@ -300,6 +301,14 @@ export default function Profile(props) {
       setEditArtworkOpen(false);
     }
   }
+  const uploadProfile = () => {
+    gtag.event({
+      action: "upload_profile",
+      category: "update",
+      label: "",
+      value: ""
+    })
+  }
 
   return (
     <Main>
@@ -335,6 +344,7 @@ export default function Profile(props) {
                       <a>
                         <Button
                           className={s.uploadButton}
+                          onClick={() => uploadProfile()}
                           size="small"
                           variant="contained"
                           color="primary"

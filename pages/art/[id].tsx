@@ -19,6 +19,7 @@ import Link from "next/link";
 import { TokenContext } from "../../app/contexts/token-context";
 import { UserContext } from "../../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
+import * as gtag from '../../lib/gtag'
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -109,6 +110,14 @@ export default function ArtworkPage(props) {
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
   }
+  const purchaseRequest = () => {
+    gtag.event({
+      action: "purchase_request",
+      category: "buy",
+      label: "",
+      value: ""
+    })
+  }
 
   return (
     <Main wide>
@@ -176,6 +185,7 @@ export default function ArtworkPage(props) {
                           referTo: artwork.data.Owner.SocialId
                         }
                       });
+                      purchaseRequest();
                     }}
                     startIcon={<SendIcon color={"inherit"} />}>
                     {capitalizeFirst(t('common:purchaseRequest'))}

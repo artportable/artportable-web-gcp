@@ -23,6 +23,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { isNullOrUndefined } from '../app/utils/util';
 import { Membership } from '../app/models/Membership';
+import * as gtag from '../lib/gtag'
 
 
 export default function UploadArtworkPage() {
@@ -210,6 +211,14 @@ export default function UploadArtworkPage() {
     };
     fr.readAsDataURL(event.target.files[0]);
   };
+  const uploadConfirm = () => {
+    gtag.event({
+      action: "upload_confirm",
+      category: "update",
+      label: "",
+      value: ""
+    })
+  }
 
   return (
     <Main>
@@ -314,7 +323,7 @@ export default function UploadArtworkPage() {
               disabled={!croppedPrimary && mobileImg === ''}
               disableElevation
               rounded
-              onClick={uploadArtwork}>
+              onClick={() => { uploadArtwork(); uploadConfirm();}}>
                 {t('upload')}
             </ArtButton>
             <WarningMessage />
