@@ -112,7 +112,7 @@ export default function ArtworkPage(props) {
   }
   const purchaseRequest = () => {
     gtag.event({
-      action: "purchase_request",
+      action: "purchase_portfolie",
       category: "buy",
       label: "",
       value: ""

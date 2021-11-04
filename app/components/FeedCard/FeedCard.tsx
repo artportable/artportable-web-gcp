@@ -38,7 +38,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
 
   const purchaseRequest = () => {
     gtag.event({
-      action: "purchase_request",
+      action: "purchase_mitt_konstnätverk",
       category: "buy",
       label: "",
       value: ""

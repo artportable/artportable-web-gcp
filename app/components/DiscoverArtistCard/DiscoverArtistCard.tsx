@@ -15,6 +15,7 @@ import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
 import { useStore } from "react-redux";
 import AddIcon from '@material-ui/icons/Add';
+import * as gtag from '../../../lib/gtag'
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
@@ -39,6 +40,14 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     setFollow(!isFollowed);
   }
 
+  const followButton = () => {
+    gtag.event({
+      action: "follow_mitt_konstnätverk",
+      category: "buy",
+      label: "",
+      value: ""
+    })
+  }
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -52,7 +61,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             disableElevation
             rounded
             className={s.button}
-            onClick={toggleFollow}>
+            onClick={() => { toggleFollow(); followButton();}}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :
