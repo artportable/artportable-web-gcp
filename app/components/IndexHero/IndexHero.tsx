@@ -72,7 +72,7 @@ export default function IndexHero() {
                 }}
                 avatar={
                   <div className={s.chipAvatar}>
-                    <ProfileAvatar size={19} profilePicture="SAM7988-m.jpg" />
+                    <ProfileAvatar size={19} profilePicture="1624177845876blob" />
                   </div>
                 }
                 label={promotedUser}/>
