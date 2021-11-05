@@ -7,6 +7,7 @@ import { styles } from "./followSuggestion.css";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from '../../utils/util';
 import AddIcon from '@material-ui/icons/Add';
+import * as gtag from '../../../lib/gtag'
 
 
 export default function FollowSuggestionCard({ user, onFollowClick }) {
@@ -20,6 +21,14 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
   function toggleFollow() {
     onFollowClick(user.SocialId, !isFollowed);
     setFollow(!isFollowed);
+  }
+  const followButton = () => {
+    gtag.event({
+      action: "follow_förslag",
+      category: "buy",
+      label: "",
+      value: ""
+    })
   }
 
   return (
@@ -53,7 +62,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
-          onClick={toggleFollow}>
+          onClick={() => { toggleFollow(); followButton();}}>
             {capitalizeFirst(
               !isFollowed ?
                 t('common:words.follow') :
