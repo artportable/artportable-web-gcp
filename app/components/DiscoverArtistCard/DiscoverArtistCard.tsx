@@ -15,6 +15,7 @@ import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
 import { useStore } from "react-redux";
 import AddIcon from '@material-ui/icons/Add';
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
@@ -52,7 +53,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             disableElevation
             rounded
             className={s.button}
-            onClick={toggleFollow}>
+            onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FÖLJ_UPPTÄCK, CategoryType.INTERACTIVE);}}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :

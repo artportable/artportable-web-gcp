@@ -31,6 +31,7 @@ import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import DialogConstruction from '../DialogConstruction/DialogConstruction'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function Header({}) {
   const { t } = useTranslation('header');
@@ -48,7 +49,6 @@ export default function Header({}) {
   
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
-
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -165,6 +165,7 @@ export default function Header({}) {
                     <Link href="/upload">
                       <a>
                         <Button
+                          onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_HEADER, CategoryType.INTERACTIVE)}
                           className={s.uploadButton}
                           size="small"
                           variant="outlined"

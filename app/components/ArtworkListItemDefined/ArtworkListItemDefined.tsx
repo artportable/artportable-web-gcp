@@ -5,10 +5,7 @@ import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
-
-
-
-
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function ArtworkListItemDefined({ 
   artwork,
@@ -33,6 +30,7 @@ export default function ArtworkListItemDefined({
     if(isSignedIn.value) {
       setIsLiked(!isLiked);
       !isLiked ? artwork.Likes++ : artwork.Likes--;
+      !isLiked ? trackGoogleAnalytics(ActionType.GILLA_PORTOFOLIE_UPPTÄCK, CategoryType.INTERACTIVE) : null
     }
     onLikeClick(artwork.Id, !isLiked);
   }
@@ -78,7 +76,7 @@ export default function ArtworkListItemDefined({
               disableRipple
               disableFocusRipple
               onClick={toggleLike}>
-              <FavoriteIcon fontSize={'small'} color={likedColor} />
+              <FavoriteIcon fontSize={'small'} color={likedColor}/>
             </IconButton>
           </div>
         </div>

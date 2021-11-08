@@ -5,14 +5,15 @@ import '../styles/variables.css'
 import type { AppProps, AppContext } from 'next/app'
 import App from 'next/app';
 import Head from 'next/head'
-import React, { useState } from 'react'
+import { useRouter } from 'next/router'
+import React, { useState, useEffect } from 'react'
 import { CssBaseline, ThemeProvider } from '@material-ui/core'
 import { theme } from '../styles/theme'
 import { Provider } from 'react-redux'
 import { useStore } from '../app/redux/store'
 import { appWithTranslation } from 'next-i18next'
 import { loadCSS } from 'fg-loadcss';
-
+import * as gtag from '../lib/gtag'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faDribbble,
@@ -52,6 +53,17 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const onKeycloakEvent = (event) => {
     setKeycloakState(event);
   }
+
+  const router = useRouter()
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url)
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.

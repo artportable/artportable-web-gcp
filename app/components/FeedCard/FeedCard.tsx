@@ -13,6 +13,7 @@ import { CardActions, CardHeader, CardMedia, Box, Avatar } from '@material-ui/co
 import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 import { useRouter } from 'next/router';
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 interface FeedCardProps {
   content: FeedItem,
@@ -118,8 +119,9 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           as={`/messages`}
         >
           <a>
-            <Button
-              startIcon={<SendIcon color={"inherit"} />}>
+            <Button 
+              startIcon={<SendIcon color={"inherit"} />}
+              onClick={() => trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_MITT_KONSTNÄTVERK, CategoryType.BUY)}>
               {capitalizeFirst(t('common:purchaseRequest'))}
             </Button>
           </a>

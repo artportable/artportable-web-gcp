@@ -23,6 +23,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { isNullOrUndefined } from '../app/utils/util';
 import { Membership } from '../app/models/Membership';
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
 
 
 export default function UploadArtworkPage() {
@@ -314,7 +315,7 @@ export default function UploadArtworkPage() {
               disabled={!croppedPrimary && mobileImg === ''}
               disableElevation
               rounded
-              onClick={uploadArtwork}>
+              onClick={() => { uploadArtwork(); trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_BEKRÄFTA, CategoryType.INTERACTIVE)}}>
                 {t('upload')}
             </ArtButton>
             <WarningMessage />
