@@ -214,7 +214,7 @@ export default function UploadArtworkPage() {
   const uploadConfirmGa = () => {
     gtag.event({
       action: "ladda_upp_bild_bekräfta",
-      category: "update",
+      category: "interactive",
       label: "",
       value: ""
     })

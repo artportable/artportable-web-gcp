@@ -25,7 +25,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
   const followButton = () => {
     gtag.event({
       action: "follow_förslag",
-      category: "buy",
+      category: "interactive",
       label: "",
       value: ""
     })
