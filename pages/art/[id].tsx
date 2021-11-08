@@ -19,7 +19,7 @@ import Link from "next/link";
 import { TokenContext } from "../../app/contexts/token-context";
 import { UserContext } from "../../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
-import * as gtag from '../../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -111,37 +111,13 @@ export default function ArtworkPage(props) {
     likeArtwork(!isLiked);
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
-    !isLiked ? likeGa() : null
+    !isLiked ? trackGoogleAnalytics(ActionType.GILLA_KONSTKORT, CategoryType.INTERACTIVE) : null
   }
-  const purchaseRequestGa = () => {
-    gtag.event({
-      action: "köpförfrågan_portfolie",
-      category: "buy",
-      label: "",
-      value: ""
-    })
-  }
-  const followGa = () => {
-    gtag.event({
-      action: "följ_konstkort",
-      category: "interactvie",
-      label: "",
-      value: ""
-    })
-  }
+
   const likedColor = !isSignedIn.value ?
   'disabled' :
   isLiked ? "secondary" : "inherit";
-
-
-  const likeGa = () => {
-    gtag.event({
-      action: "gilla_konstkort",
-      category: "interactvie",
-      label: "",
-      value: ""
-    })
-  }
+  
   return (
     <Main wide>
       <Head>
@@ -173,7 +149,7 @@ export default function ArtworkPage(props) {
                 startIcon={!isFollowed ? <AddIcon /> : null}
                 disableElevation
                 rounded
-                onClick={() => { toggleFollow(); !isFollowed ? followGa() : null}}>
+                onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FÖLJ_KONSTKORT, CategoryType.INTERACTIVE) : null}}>
                 {capitalizeFirst(
                   !isFollowed ?
                     t('common:words.follow') :
@@ -210,7 +186,7 @@ export default function ArtworkPage(props) {
                           referTo: artwork.data.Owner.SocialId
                         }
                       });
-                      purchaseRequestGa();
+                      trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
                     }}
                     startIcon={<SendIcon color={"inherit"} />}>
                     {capitalizeFirst(t('common:purchaseRequest'))}

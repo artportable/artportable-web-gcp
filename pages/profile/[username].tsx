@@ -44,7 +44,7 @@ import { LoadingContext } from '../../app/contexts/loading-context'
 import { UserContext } from '../../app/contexts/user-context'
 import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 import { Membership } from '../../app/models/Membership'
-import * as gtag from '../../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
 
 
 function a11yProps(index: any) {
@@ -301,22 +301,6 @@ export default function Profile(props) {
       setEditArtworkOpen(false);
     }
   }
-  const uploadGa = () => {
-    gtag.event({
-      action: "ladda_upp_bild_profil",
-      category: "interactive",
-      label: "",
-      value: ""
-    })
-  }
-  const followGa = () => {
-    gtag.event({
-      action: "följ_profil",
-      category: "interactive",
-      label: "",
-      value: ""
-    })
-  }
 
   return (
     <Main>
@@ -352,7 +336,7 @@ export default function Profile(props) {
                       <a>
                         <Button
                           className={s.uploadButton}
-                          onClick={() => uploadGa()}
+                          onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_PROFIL, CategoryType.INTERACTIVE)}
                           size="small"
                           variant="contained"
                           color="primary"
@@ -395,7 +379,7 @@ export default function Profile(props) {
                   disableElevation
                   rounded
                   disabled={!isSignedIn}
-                  onClick={() => { toggleFollow(); !isFollowed ? followGa() : null}}>
+                  onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FÖLJ_PROFIL, CategoryType.INTERACTIVE) : null}}>
                   {capitalizeFirst(
                     !isFollowed ?
                       t('common:words.follow') :

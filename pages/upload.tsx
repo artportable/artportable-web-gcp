@@ -23,7 +23,7 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { isNullOrUndefined } from '../app/utils/util';
 import { Membership } from '../app/models/Membership';
-import * as gtag from '../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
 
 
 export default function UploadArtworkPage() {
@@ -211,14 +211,6 @@ export default function UploadArtworkPage() {
     };
     fr.readAsDataURL(event.target.files[0]);
   };
-  const uploadConfirmGa = () => {
-    gtag.event({
-      action: "ladda_upp_bild_bekräfta",
-      category: "interactive",
-      label: "",
-      value: ""
-    })
-  }
 
   return (
     <Main>
@@ -323,7 +315,7 @@ export default function UploadArtworkPage() {
               disabled={!croppedPrimary && mobileImg === ''}
               disableElevation
               rounded
-              onClick={() => { uploadArtwork(); uploadConfirmGa();}}>
+              onClick={() => { uploadArtwork(); trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_BEKRÄFTA, CategoryType.INTERACTIVE)}}>
                 {t('upload')}
             </ArtButton>
             <WarningMessage />

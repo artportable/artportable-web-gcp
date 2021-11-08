@@ -31,7 +31,7 @@ import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import DialogConstruction from '../DialogConstruction/DialogConstruction'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
-import * as gtag from '../../../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function Header({}) {
   const { t } = useTranslation('header');
@@ -49,17 +49,6 @@ export default function Header({}) {
   
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
-
-  const uploadGa = () => {
-    gtag.event({
-      action: "ladda_upp_bild_header",
-      category: "interactive",
-      label: "",
-      value: ""
-    })
-
-  }
-
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -176,7 +165,7 @@ export default function Header({}) {
                     <Link href="/upload">
                       <a>
                         <Button
-                          onClick={() => uploadGa()}
+                          onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_HEADER, CategoryType.INTERACTIVE)}
                           className={s.uploadButton}
                           size="small"
                           variant="outlined"

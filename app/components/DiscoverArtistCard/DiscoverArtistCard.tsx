@@ -15,7 +15,7 @@ import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
 import { useStore } from "react-redux";
 import AddIcon from '@material-ui/icons/Add';
-import * as gtag from '../../../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
@@ -40,14 +40,6 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     setFollow(!isFollowed);
   }
 
-  const followGa= () => {
-    gtag.event({
-      action: "följförslag_mitt_konstnätverk",
-      category: "interactvie",
-      label: "",
-      value: ""
-    })
-  }
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -61,7 +53,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             disableElevation
             rounded
             className={s.button}
-            onClick={() => { toggleFollow(); followGa();}}>
+            onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FÖLJ_UPPTÄCK, CategoryType.INTERACTIVE);}}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :

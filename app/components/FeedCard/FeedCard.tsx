@@ -13,7 +13,7 @@ import { CardActions, CardHeader, CardMedia, Box, Avatar } from '@material-ui/co
 import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 import { useRouter } from 'next/router';
-import * as gtag from '../../../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 interface FeedCardProps {
   content: FeedItem,
@@ -35,15 +35,6 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
     [s.oneImage]: !content.Item.SecondaryFile && !content.Item.TertiaryFile
   },
     [s.media]);
-
-  const purchaseRequestGa = () => {
-    gtag.event({
-      action: "köpförfrågan_mitt_konstnätverk",
-      category: "buy",
-      label: "",
-      value: ""
-    })
-  }
 
   return (
     <Card>
@@ -130,7 +121,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           <a>
             <Button 
               startIcon={<SendIcon color={"inherit"} />}
-              onClick={() => purchaseRequestGa()}>
+              onClick={() => trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_MITT_KONSTNÄTVERK, CategoryType.BUY)}>
               {capitalizeFirst(t('common:purchaseRequest'))}
             </Button>
           </a>
