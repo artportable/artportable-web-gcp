@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
-import * as gtag from '../../../lib/gtag'
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function ArtworkListItemDefined({ 
   artwork,
@@ -30,7 +30,7 @@ export default function ArtworkListItemDefined({
     if(isSignedIn.value) {
       setIsLiked(!isLiked);
       !isLiked ? artwork.Likes++ : artwork.Likes--;
-      !isLiked ? likeGa() : null
+      !isLiked ? trackGoogleAnalytics(ActionType.GILLA_PORTOFOLIE_UPPTÄCK, CategoryType.INTERACTIVE) : null
     }
     onLikeClick(artwork.Id, !isLiked);
   }
@@ -40,15 +40,6 @@ export default function ArtworkListItemDefined({
     isLiked ? "secondary" : "inherit";
 
   if (width === null || height === null) return <></>;
-
-  const likeGa = () => {
-    gtag.event({
-      action: "gilla_portfolie_upptäck",
-      category: "interactvie",
-      label: "",
-      value: ""
-    })
-  }
 
   return (
     <div title={artwork.Title} className={s.container}>
