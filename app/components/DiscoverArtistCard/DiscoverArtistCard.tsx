@@ -40,10 +40,10 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     setFollow(!isFollowed);
   }
 
-  const followButton = () => {
+  const followGa= () => {
     gtag.event({
-      action: "follow_mitt_konstnätverk",
-      category: "buy",
+      action: "följförslag_mitt_konstnätverk",
+      category: "interactvie",
       label: "",
       value: ""
     })
@@ -61,7 +61,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             disableElevation
             rounded
             className={s.button}
-            onClick={() => { toggleFollow(); followButton();}}>
+            onClick={() => { toggleFollow(); followGa();}}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :

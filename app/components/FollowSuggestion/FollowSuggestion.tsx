@@ -62,7 +62,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
-          onClick={() => { toggleFollow(); followButton();}}>
+          onClick={() => { toggleFollow(); !isFollowed ? followButton() : null}}>
             {capitalizeFirst(
               !isFollowed ?
                 t('common:words.follow') :

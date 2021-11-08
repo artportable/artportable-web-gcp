@@ -301,10 +301,18 @@ export default function Profile(props) {
       setEditArtworkOpen(false);
     }
   }
-  const uploadProfile = () => {
+  const uploadGa = () => {
     gtag.event({
-      action: "upload_profile",
-      category: "update",
+      action: "ladda_upp_bild_profil",
+      category: "interactive",
+      label: "",
+      value: ""
+    })
+  }
+  const followGa = () => {
+    gtag.event({
+      action: "följ_profil",
+      category: "interactive",
       label: "",
       value: ""
     })
@@ -344,7 +352,7 @@ export default function Profile(props) {
                       <a>
                         <Button
                           className={s.uploadButton}
-                          onClick={() => uploadProfile()}
+                          onClick={() => uploadGa()}
                           size="small"
                           variant="contained"
                           color="primary"
@@ -387,7 +395,7 @@ export default function Profile(props) {
                   disableElevation
                   rounded
                   disabled={!isSignedIn}
-                  onClick={toggleFollow}>
+                  onClick={() => { toggleFollow(); !isFollowed ? followGa() : null}}>
                   {capitalizeFirst(
                     !isFollowed ?
                       t('common:words.follow') :

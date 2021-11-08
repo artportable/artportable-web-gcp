@@ -39,6 +39,8 @@ export default function ArtworkPage(props) {
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
 
+  const { isSignedIn } = useContext(UserContext);
+
   const formatter = new Intl.NumberFormat(props.locale, {
     style: 'currency',
     currency: 'SEK',
@@ -109,16 +111,37 @@ export default function ArtworkPage(props) {
     likeArtwork(!isLiked);
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
+    !isLiked ? likeGa() : null
   }
-  const purchaseRequest = () => {
+  const purchaseRequestGa = () => {
     gtag.event({
-      action: "purchase_portfolie",
+      action: "köpförfrågan_portfolie",
       category: "buy",
       label: "",
       value: ""
     })
   }
+  const followGa = () => {
+    gtag.event({
+      action: "följ_konstkort",
+      category: "interactvie",
+      label: "",
+      value: ""
+    })
+  }
+  const likedColor = !isSignedIn.value ?
+  'disabled' :
+  isLiked ? "secondary" : "inherit";
 
+
+  const likeGa = () => {
+    gtag.event({
+      action: "gilla_konstkort",
+      category: "interactvie",
+      label: "",
+      value: ""
+    })
+  }
   return (
     <Main wide>
       <Head>
@@ -150,7 +173,7 @@ export default function ArtworkPage(props) {
                 startIcon={!isFollowed ? <AddIcon /> : null}
                 disableElevation
                 rounded
-                onClick={toggleFollow}>
+                onClick={() => { toggleFollow(); !isFollowed ? followGa() : null}}>
                 {capitalizeFirst(
                   !isFollowed ?
                     t('common:words.follow') :
@@ -167,8 +190,10 @@ export default function ArtworkPage(props) {
               </div>
               <div className={s.actionBar}>
                 <Button
-                  startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"} />}
-                  onClick={toggleLike}>
+                //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
+                 onClick={toggleLike}
+                  startIcon={<FavoriteIcon color={likedColor} />}
+                 >
                   {capitalizeFirst(t('common:like'))}
                 </Button>
                 {username.value !== artwork.data.Owner.Username &&
@@ -185,7 +210,7 @@ export default function ArtworkPage(props) {
                           referTo: artwork.data.Owner.SocialId
                         }
                       });
-                      purchaseRequest();
+                      purchaseRequestGa();
                     }}
                     startIcon={<SendIcon color={"inherit"} />}>
                     {capitalizeFirst(t('common:purchaseRequest'))}

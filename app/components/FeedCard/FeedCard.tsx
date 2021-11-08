@@ -36,14 +36,13 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   },
     [s.media]);
 
-  const purchaseRequest = () => {
+  const purchaseRequestGa = () => {
     gtag.event({
-      action: "purchase_mitt_konstnätverk",
+      action: "köpförfrågan_mitt_konstnätverk",
       category: "buy",
       label: "",
       value: ""
     })
-
   }
 
   return (
@@ -131,7 +130,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           <a>
             <Button 
               startIcon={<SendIcon color={"inherit"} />}
-              onClick={() => purchaseRequest()}>
+              onClick={() => purchaseRequestGa()}>
               {capitalizeFirst(t('common:purchaseRequest'))}
             </Button>
           </a>

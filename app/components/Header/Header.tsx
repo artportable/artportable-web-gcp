@@ -50,10 +50,10 @@ export default function Header({}) {
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
 
-  const uploadHeader = () => {
+  const uploadGa = () => {
     gtag.event({
-      action: "upload_header",
-      category: "update",
+      action: "ladda_upp_bild_header",
+      category: "interactive",
       label: "",
       value: ""
     })
@@ -176,7 +176,7 @@ export default function Header({}) {
                     <Link href="/upload">
                       <a>
                         <Button
-                          onClick={() => uploadHeader()}
+                          onClick={() => uploadGa()}
                           className={s.uploadButton}
                           size="small"
                           variant="outlined"

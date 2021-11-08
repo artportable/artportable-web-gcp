@@ -211,9 +211,9 @@ export default function UploadArtworkPage() {
     };
     fr.readAsDataURL(event.target.files[0]);
   };
-  const uploadConfirm = () => {
+  const uploadConfirmGa = () => {
     gtag.event({
-      action: "upload_confirm",
+      action: "ladda_upp_bild_bekräfta",
       category: "update",
       label: "",
       value: ""
@@ -323,7 +323,7 @@ export default function UploadArtworkPage() {
               disabled={!croppedPrimary && mobileImg === ''}
               disableElevation
               rounded
-              onClick={() => { uploadArtwork(); uploadConfirm();}}>
+              onClick={() => { uploadArtwork(); uploadConfirmGa();}}>
                 {t('upload')}
             </ArtButton>
             <WarningMessage />
