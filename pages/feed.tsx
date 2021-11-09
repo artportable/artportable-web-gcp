@@ -22,6 +22,8 @@ import { TokenContext } from '../app/contexts/token-context';
 import { UserContext } from '../app/contexts/user-context';
 import { useRouter } from 'next/router';
 import { LoadingContext } from '../app/contexts/loading-context';
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
+
 
 export default function FeedPage() {
   const s = styles();
@@ -148,6 +150,7 @@ export default function FeedPage() {
                         size="small"
                         variant="contained"
                         color="primary"
+                        onClick={trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_MITT_KONSTNÄTVERK, CategoryType.INTERACTIVE)}
                         disableElevation>
                         {t('uploadNewWorkOfArt')}
                       </Button>

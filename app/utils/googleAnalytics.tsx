@@ -4,6 +4,7 @@ export enum ActionType {
   LADDA_UPP_BILD_BEKRÄFTA = 'ladda_upp_bild_bekräfta', 
   LADDA_UPP_BILD_HEADER = 'ladda_upp_bild_header',
   LADDA_UPP_BILD_PROFIL = 'ladda_upp_bild_profil',
+  LADDA_UPP_BILD_MITT_KONSTNÄTVERK = 'ladda_upp_bild_mitt_konstnätverk',
   FÖLJFÖRSLAG_MITT_KONSTNÄTVERK = 'följförslag_mitt_konstnätverk',
   FÖLJ_UPPTÄCK = 'följ_upptäck',
   FÖLJ_KONSTKORT = 'följ_konstkort',
