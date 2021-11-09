@@ -33,11 +33,11 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
 
   const [imageRows, setImageRows] = useState([]);
   const [skeletonRows, setSkeletonRows] = useState([]);
-  const [showFilterLoadingSkeleton, setShowFilterLoadingSkeleton] = useState(true);
+  const [showFilterLoadingSkeleton, setShowFilterLoadingSkeleton] = useState(true && !!!artworks);
 
   const setShowFilterLoadingSkeletonDebounced = debounce((value: boolean) =>  {
     setShowFilterLoadingSkeleton(value)
-  }, 900)
+  }, 200)
 
   const theme: Theme = useTheme();
   const skeletonImages = [

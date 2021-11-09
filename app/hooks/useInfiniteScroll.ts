@@ -1,6 +1,6 @@
 import { debounce } from '@material-ui/core/utils';
 import { useEffect, useState } from 'react'
-import { useSWRInfinite } from 'swr'
+import useSWRInfinite from 'swr/infinite'
 
 const defaultOptions = {
   root: null,
@@ -118,7 +118,6 @@ export const useInfiniteScrollWithKey = (
       }
     }
   }, [activeTab, data, loadMoreElement, loadMoreElement.current]);
-
   return {
     data: data ? [].concat(...data.map(({ data }) => data)) : [],
     size, setSize,
