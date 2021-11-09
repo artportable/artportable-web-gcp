@@ -7,6 +7,10 @@ export const isNullOrUndefined = (input: any) => {
   return input === null || input === undefined;
 }
 
+export const isNullOrUndefinedOrEmpty = (input: any) => {
+  return input === null || input === undefined || input === '';
+}
+
 export const getDistinct = (input: Array<Object>, selector?: any) => {
   return Array.from(new Set(input.map((item: any) => selector ? selector(item) : item)))
 }
