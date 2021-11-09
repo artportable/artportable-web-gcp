@@ -56,6 +56,7 @@ export default function DiscoverPage() {
 
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
+    loading ? null :
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtworks(false);
@@ -63,7 +64,7 @@ export default function DiscoverPage() {
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+        const url = new URL(`${apiBaseUrl}` + (!isSignedIn.isPending && !isSignedIn.value ? `/api/discover/artworks` : `/api/Discover/artworks/top`));
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
@@ -77,6 +78,7 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
   const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+    loading ? null :
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) { 
         setLoadMoreArtists(false);
@@ -84,7 +86,7 @@ export default function DiscoverPage() {
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
+        const url = new URL(`${apiBaseUrl}` + (!isSignedIn.isPending && !isSignedIn.value ? `/api/discover/artists` : `/api/Discover/artists/top`));
         if (searchQuery != null && searchQuery != '') {
           url.searchParams.append('q', searchQuery);
         }
