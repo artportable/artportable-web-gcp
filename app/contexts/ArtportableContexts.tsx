@@ -13,6 +13,7 @@ import { ChatClientContext } from './chat-context';
 import { ConnectionOpen, StreamChat } from 'stream-chat';
 import { AttachmentType, ChannelType, CommandType, EventType, MessageType, ReactionType, UserType } from '../components/Messaging/MessagingTypes';
 import { useGetUserProfilePicture } from '../hooks/dataFetching/UserProfile';
+import { isNullOrUndefinedOrEmpty } from '../utils/util';
 
 interface Props {
   children: any;
@@ -36,7 +37,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userContext, setUserContext] = useState<ContextUser>(defaultContextUser);
   const [snackbar, setSnackbar] = useState<Snackbar>({ open: false, message: '', severity: 'warning' });
-  const { data: profilePicture } = useGetUserProfilePicture(userContext.username.value);
+  const { data: profilePicture, isLoading : isProfilePictureLoading } = useGetUserProfilePicture(userContext.username.value);
   const chatClientRef = useRef<StreamChat<
     AttachmentType,
     ChannelType,
@@ -57,8 +58,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
 
   useEffect(() => {
     if(chatClientRef.current === null && accessToken !== null) {
-      if(userContext.isSignedIn.value && !userContext.isSignedIn.isPending) {
-        if(profilePicture !== undefined) {
+      if(!userContext.socialId.isPending && !userContext.username.isPending && !isProfilePictureLoading) {
           const initChat = async () => {
             chatClientRef.current = StreamChat.getInstance<
               AttachmentType,
@@ -77,12 +77,11 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
             });
       
             const user = await response.json();
-      
             try {
               await chatClientRef.current.connectUser({
                 id: userContext.socialId.value,
                 name: userContext.username.value,
-                image: `${bucketUrl}${profilePicture}`,
+                image: !isNullOrUndefinedOrEmpty(profilePicture) ? `${bucketUrl}${profilePicture}` : null,
               }, user.Token) as ConnectionOpen<ChannelType, CommandType, UserType>
 
               setChatClient(chatClientRef.current);
@@ -92,10 +91,9 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
           }
           
           initChat();
-        }
       }
     }
-  }, [userContext]);
+  }, [userContext, isProfilePictureLoading]);
 
   
   useEffect(() => {

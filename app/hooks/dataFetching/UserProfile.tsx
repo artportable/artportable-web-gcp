@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { getFetcher } from '../../utils/util'
+import { getFetcher, isNullOrUndefined } from '../../utils/util'
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -79,10 +79,9 @@ export function useGetUserProfilePicture(user) {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
     });
-
   return {
     data: data,
-    isLoading: !error && !data,
+    isLoading: !error && isNullOrUndefined(data),
     isError: error
   }
 }
