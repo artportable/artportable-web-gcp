@@ -82,7 +82,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
               await chatClientRef.current.connectUser({
                 id: userContext.socialId.value,
                 name: userContext.username.value,
-                image: `${bucketUrl}${profilePicture}`,
+                image: {profilePicture} ? `${bucketUrl}${profilePicture}` : undefined,
               }, user.Token) as ConnectionOpen<ChannelType, CommandType, UserType>
 
               setChatClient(chatClientRef.current);
