@@ -64,7 +64,7 @@ export default function DiscoverPage() {
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}` + (!isSignedIn.isPending && !isSignedIn.value ? `/api/discover/artworks` : `/api/Discover/artworks/top`));
+        const url = new URL(`${apiBaseUrl}` + (isSignedIn.value ? `/api/discover/artworks` : `/api/Discover/artworks/top`));
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
@@ -86,7 +86,7 @@ export default function DiscoverPage() {
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}` + (!isSignedIn.isPending && !isSignedIn.value ? `/api/discover/artists` : `/api/Discover/artists/top`));
+        const url = new URL(`${apiBaseUrl}` + ( isSignedIn.value ? `/api/discover/artists` : `/api/Discover/artists/top`));
         if (searchQuery != null && searchQuery != '') {
           url.searchParams.append('q', searchQuery);
         }
