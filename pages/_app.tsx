@@ -89,6 +89,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <meta name="google-site-verification" content="B9E_ukZ1WdJdKTaGYuinQ8eZZdSGH3tuC4mBVIogcwc" />
         <link rel="icon" href="/favicon.ico" />
         <title>Artportable</title>
       </Head>
