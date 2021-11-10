@@ -14,6 +14,7 @@ import clsx from 'clsx';
 import PremiumApply from "../PremiumApply/PremiumApply";
 import { PriceData } from "../PlanSelector/PlanSelector";
 import Dialog from '@material-ui/core/Dialog';
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 
 interface Props {
   plan: PriceData;
@@ -26,10 +27,10 @@ export default function PlanCard({ plan, hideButtons }: Props) {
   const dispatch = useDispatch();
   const href = plan.product === 'free' ? 'feed' : '/checkout';
 
-  const [ isHref, setIsHref ] = useState(true);
+  const [isHref, setIsHref] = useState(true);
 
-  const [ isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
- 
+  const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
+
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
   const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
 
@@ -38,7 +39,7 @@ export default function PlanCard({ plan, hideButtons }: Props) {
       setIsHref(false)
     }
   }, [plan]);
-  
+
   function getPriceText() {
     if (plan.product === 'free') {
       return '-';
@@ -46,15 +47,21 @@ export default function PlanCard({ plan, hideButtons }: Props) {
       return 'premium';
     }
 
-    return `${plan.amount} ${plan.currency.toUpperCase()}` + 
+    return `${plan.amount} ${plan.currency.toUpperCase()}` +
       ` / ${t(`common:words.${plan.recurringInterval}`)} (+${t('common:words.vat')})`;
   }
 
   const onNavClick = () => {
     dispatch({
       type: ADD_PRICE,
-      payload: {...plan}
+      payload: { ...plan }
     });
+    if (plan.product.toLowerCase() === 'free') {
+      trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
+    } else if (plan.product.toLowerCase() === 'portfolio') {
+      trackGoogleAnalytics(ActionType.SIGN_UP_PORTFOLIE, CategoryType.BUY);
+    }
+    return true;
   }
 
   return (
@@ -73,57 +80,57 @@ export default function PlanCard({ plan, hideButtons }: Props) {
             </Box>
           </Typography>
 
-          <PaymentInfo 
+          <PaymentInfo
             priceText={getPriceText()}
             secondaryText={t('youCanAlwaysUpdateYourMembership')}
           />
-          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', {returnObjects: true})} />
+          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', { returnObjects: true })} />
 
           {!hideButtons &&
             <div className={s.button}>
-              {isHref ? 
-               <Link passHref href={href}>
-               <a>
-                 <Button 
-                   size="small"
-                   variant="contained"
-                   color="primary"
-                   disableElevation
-                   rounded
-                   onClick={(_) => onNavClick()}>
-                   {plan.product === 'free' ?
-                     t('signUp') :
-                     `${capitalizeFirst(t('common:words.choose'))} ${planName}`
-                   }
-                 </Button>
-               </a>
-             </Link>
+              {isHref ?
+                <Link passHref href={href}>
+                  <a>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      disableElevation
+                      rounded
+                      onClick={() => onNavClick()}>
+                      {plan.product === 'free' ?
+                        t('signUp') :
+                        `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                      }
+                    </Button>
+                  </a>
+                </Link>
 
-             : 
-             
-             <Button 
-                size="small"
-                variant="contained"
-                color="primary"
-                disableElevation
-                rounded
-                onClick={() => setIsPremiumSignupDialogOpen(true)}>
-                {plan.product === 'free' ?
-                  t('signUp') :
-                  `${capitalizeFirst(t('common:words.choose'))} ${planName}`
-                }
-              </Button>
-            }
+                :
+
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                  rounded
+                  onClick={() => { setIsPremiumSignupDialogOpen(true); trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM, CategoryType.BUY) }}>
+                  {plan.product === 'free' ?
+                    t('signUp') :
+                    `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                  }
+                </Button>
+              }
             </div>
           }
-          
+
         </CardContent>
       </Card>
-      <Dialog 
+      <Dialog
         fullWidth
-        maxWidth="md" 
+        maxWidth="md"
         open={isPremiumSignupDialogOpen} onClose={() => setIsPremiumSignupDialogOpen(false)}>
-          <PremiumApply />
+        <PremiumApply />
       </Dialog>
     </div>
   )
