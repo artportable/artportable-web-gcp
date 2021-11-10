@@ -1,6 +1,6 @@
 import { debounce } from '@material-ui/core/utils';
 import { useEffect, useState } from 'react'
-import useSWRInfinite from 'swr/infinite'
+import { useSWRInfinite } from 'swr'
 
 const defaultOptions = {
   root: null,
