@@ -12,7 +12,10 @@ export enum ActionType {
   KÖPFÖRFRÅGAN_MITT_KONSTNÄTVERK = 'köpförfrågan_mitt_konstnätverk',
   KÖPFÖRFRÅGAN_PORTFOLIE = 'köpförfrågan_heportfolie',
   GILLA_KONSTKORT = 'gilla_konstkort',
-  GILLA_PORTOFOLIE_UPPTÄCK = 'gilla_portfolie_upptäck'
+  GILLA_PORTOFOLIE_UPPTÄCK = 'gilla_portfolie_upptäck',
+  SIGN_UP_FREE = 'sign_up_free',
+  SIGN_UP_PORTFOLIE = 'sign_up_portfolio',
+  SIGN_UP_PREMIUM = 'sign_up_premium'
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 
