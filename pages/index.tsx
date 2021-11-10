@@ -56,7 +56,6 @@ export default function DiscoverPage() {
 
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
-    loading ? null :
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtworks(false);
@@ -78,7 +77,6 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
   const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
-    loading ? null :
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) { 
         setLoadMoreArtists(false);
