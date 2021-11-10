@@ -11,12 +11,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     tabs: {
       '& .MuiTabs-scroller': {
-        display: 'flex',
-        justifyContent: 'center'
+        flexGrow: "0"
       },
-      '& .MuiTab-root': {
-        minWidth: '54px'
-      }
+      justifyContent: "center",
+      minWidth: '54px',
+      width: '100%'
     },
     text: {
       fontSize: '0.785rem !important',

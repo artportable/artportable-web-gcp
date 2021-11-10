@@ -1,6 +1,8 @@
 {
   "art": "Konst",
+  "topArt" : "Topplista",
   "artists": "Konstnärer",
+  "mostFollowed" : "Mest följda",
   "monthlyArtist": "Månadens konstnär",
   "artistsWeThinkYouLike": "Konstnärer vi tror du gillar",
   "searchForArtist": "Sök",
