@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge } from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Dialog, DialogTitle, DialogContent } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
@@ -12,12 +12,14 @@ import { useRouter } from 'next/router'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 import { UserContext } from '../../contexts/user-context'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { Membership } from '../../models/Membership'
+import ZendeskForm2 from '../ZendeskFormMenu/ZendeskFormMenu'
+
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
-  const { t } = useTranslation(['header', 'common']);
+  const { t } = useTranslation(['header', 'common', 'support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
@@ -26,6 +28,16 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const signUpRedirectHref = useSignupRedirectHref();
 
   const close = () => setOpen(false);
+
+  const [openContact, setOpenContact] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenContact(true);
+  };
+
+  const handleClose = () => {
+    setOpenContact(false);
+  };
 
   return (
     <Drawer classes={{ paper: s.container }} open={open} onClose={(_) => close()}>
@@ -47,11 +59,26 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <ListItemText primary={t('discover')} />
           </ListItem>
         </Link>
-        <Link href="/support">
-          <ListItem button divider>
+          <ListItem button divider onClick={handleClickOpen} >
             <ListItemText primary={t('contactUs')} />
-          </ListItem>
-        </Link>
+            </ListItem>
+            <Dialog
+              open={openContact}
+              onClose={handleClose}
+              aria-labelledby="dialog-title"
+              aria-describedby="dialog-description"
+              >
+              <div className={s.closeDiv}>
+                <button onClick={handleClose} className={s.closeButton}>
+                x
+                </button>
+              </div>
+                <DialogContent>
+                  <ZendeskForm2 />
+                </DialogContent>
+            </Dialog>
+         
+
 
         {isSignedIn.value ?
           <>

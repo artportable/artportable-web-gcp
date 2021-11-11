@@ -188,7 +188,7 @@ export default function FeedPage() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'feed']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'feed', 'support']),
     }
   }
 }
