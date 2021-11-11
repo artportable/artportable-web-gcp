@@ -12,7 +12,7 @@ export default function NotFound() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header', 'footer', 'support']),
+      ...await serverSideTranslations(locale, ['header', 'footer']),
     }
   };
 }
