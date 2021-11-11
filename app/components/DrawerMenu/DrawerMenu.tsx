@@ -47,6 +47,11 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <ListItemText primary={t('discover')} />
           </ListItem>
         </Link>
+        <Link href="/support">
+          <ListItem button divider>
+            <ListItemText primary={t('contactUs')} />
+          </ListItem>
+        </Link>
 
 
         {isSignedIn.value ?
@@ -99,6 +104,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
               <ListItemText primary={t('login')} />
             </ListItem>
           </>
+          
         }
       </List>
     </Drawer>
