@@ -28,7 +28,6 @@ import { LoadingContext } from '../../contexts/loading-context'
 import { UserContext } from '../../contexts/user-context'
 import { ChatClientContext } from '../../contexts/chat-context'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
-import DialogConstruction2 from '../DialogConstruction/DialogConstruction'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
@@ -178,7 +177,6 @@ export default function Header({}) {
                     </Link>
                   </div>
                 }
-                <DialogConstruction2 />
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?
