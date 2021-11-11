@@ -278,7 +278,7 @@ export default function DiscoverPage() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar']),
+      ...await serverSideTranslations(locale, ['header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar', 'support']),
     }
   };
 }

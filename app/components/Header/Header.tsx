@@ -28,13 +28,12 @@ import { LoadingContext } from '../../contexts/loading-context'
 import { UserContext } from '../../contexts/user-context'
 import { ChatClientContext } from '../../contexts/chat-context'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
-import DialogConstruction from '../DialogConstruction/DialogConstruction'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 
 export default function Header({}) {
-  const { t } = useTranslation('header');
+  const { t } = useTranslation(['header','support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const { socialId, username, isSignedIn, membership } = useContext(UserContext);
@@ -178,7 +177,6 @@ export default function Header({}) {
                     </Link>
                   </div>
                 }
-                <DialogConstruction />
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?

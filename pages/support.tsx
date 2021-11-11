@@ -18,7 +18,7 @@ export default function Support() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header', 'support', 'footer']),
+      ...await serverSideTranslations(locale, ['header', 'support', 'footer', 'support']),
     }
   };
 }

@@ -154,7 +154,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('mdPlus')]: {
       menuButton: {
-        display: 'none',
+        // display: 'none',
       },
       navigation: {
         display: 'initial',

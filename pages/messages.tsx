@@ -131,7 +131,7 @@ export default function MessagesPage(props) {
 
 export async function getServerSideProps({ locale, query }) {
   var props = {
-    ...await serverSideTranslations(locale, ['header', 'footer', 'messages', 'tags']),
+    ...await serverSideTranslations(locale, ['header', 'footer', 'messages', 'tags', 'support']),
   };
 
   if (query.artwork) {

@@ -5,5 +5,17 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       minWidth: '240px'
     },
+    closeDiv: {
+      display: 'flex',
+      justifyContent: 'right',
+      marginRight: theme.spacing(1),
+      marginTop: theme.spacing(1)
+
+    },
+    closeButton: {
+      border: 'none',
+      backgroundColor: 'transparent',
+      fontSize: '18px'
+    },
   }),
 );
