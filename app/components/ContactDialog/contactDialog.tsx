@@ -17,9 +17,6 @@ export default function DialogConstruction(props:Props) {
 
   return (
     <div>
-      <div className={s.technicalDiv}>
-      </div>
-     
       <Dialog
         open={props.openContact}
         onClose={props.handleClose}
