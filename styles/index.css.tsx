@@ -21,20 +21,16 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: 0,
     },
 
-    [theme.breakpoints.up('smPlus')]: {
-        tabs: {
-          '& .MuiTabScrollButton-root': {
-            display: 'none',
-        },
-      },
-    },
-
     [theme.breakpoints.up('md')]: {
       text: {
-        marginRight: theme.spacing(2),
-        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(1),
       },
-
+      tabs: {
+        '& .MuiTabScrollButton-root': {
+          display: 'none',
+      },
+    },
     },
   }),
 );
