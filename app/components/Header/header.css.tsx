@@ -153,9 +153,6 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center'
     },
     [theme.breakpoints.up('mdPlus')]: {
-      menuButton: {
-        display: 'none',
-      },
       navigation: {
         display: 'initial',
         gridArea: 'navigation',
