@@ -15,7 +15,7 @@ import { UserContext } from '../../contexts/user-context'
 import { useContext, useState } from 'react'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { Membership } from '../../models/Membership'
-import ZendeskForm2 from '../ZendeskFormMenu/ZendeskFormMenu'
+import DialogConstruction from '../ContactDialog/contactDialog'
 
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
@@ -61,19 +61,12 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
         </Link>
           <ListItem button divider onClick={handleClickOpen} >
             <ListItemText primary={t('contactUs')} />
-            </ListItem>
-            <Dialog
-              open={openContact}
-              onClose={handleClose}
-              aria-labelledby="dialog-title"
-              aria-describedby="dialog-description"
-              >
-                <DialogContent>
-                  <ZendeskForm2 />
-                </DialogContent>
-            </Dialog>
-         
-
+          </ListItem>
+            <DialogContent>
+            <DialogConstruction 
+            openContact={openContact}
+            handleClose={handleClose} />
+            </DialogContent>
 
         {isSignedIn.value ?
           <>

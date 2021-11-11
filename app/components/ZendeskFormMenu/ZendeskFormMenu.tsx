@@ -212,10 +212,6 @@ export default function ZendeskForm() {
 
   return (
     <div>
-      <Typography variant="h3" component="h1">
-        {t('writeToUs')}
-      </Typography>
-      
       <form className={s.form}>
         <TextField
           classes={{

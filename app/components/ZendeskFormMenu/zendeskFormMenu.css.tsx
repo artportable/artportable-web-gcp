@@ -8,7 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: 'auto'
     },
     form: {
-      paddingTop: theme.spacing(6),
+      paddingTop: theme.spacing(2),
       '& > *': {
         marginBottom: theme.spacing(2.5)
       }
