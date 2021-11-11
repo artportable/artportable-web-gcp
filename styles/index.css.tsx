@@ -19,13 +19,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     text: {
       minWidth: 0,
+      marginRight: theme.spacing(0),
+      marginLeft: theme.spacing(0),
     },
 
-    [theme.breakpoints.up('md')]: {
-      text: {
-        marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(1),
-      },
+    [theme.breakpoints.up('mdPlus')]: {
       tabs: {
         '& .MuiTabScrollButton-root': {
           display: 'none',
