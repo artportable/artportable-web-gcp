@@ -68,11 +68,6 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
               aria-labelledby="dialog-title"
               aria-describedby="dialog-description"
               >
-              <div className={s.closeDiv}>
-                <button onClick={handleClose} className={s.closeButton}>
-                x
-                </button>
-              </div>
                 <DialogContent>
                   <ZendeskForm2 />
                 </DialogContent>
