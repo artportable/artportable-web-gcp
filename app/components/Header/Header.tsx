@@ -178,7 +178,6 @@ export default function Header({}) {
                     </Link>
                   </div>
                 }
-                <DialogConstruction />
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?

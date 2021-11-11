@@ -53,7 +53,6 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           </ListItem>
         </Link>
 
-
         {isSignedIn.value ?
           <>
             {(membership.value > Membership.Base) &&
