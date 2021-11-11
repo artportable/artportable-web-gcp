@@ -35,7 +35,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   const [skeletonRows, setSkeletonRows] = useState([]);
   const [showFilterLoadingSkeleton, setShowFilterLoadingSkeleton] = useState(true && !!!artworks);
 
-  const setShowFilterLoadingSkeletonDebounced = debounce((value: boolean) =>  {
+  const setShowFilterLoadingSkeletonDebounced = debounce((value: boolean) => {
     setShowFilterLoadingSkeleton(value)
   }, 200)
 
@@ -97,7 +97,9 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   return (
     <>
       <Box className={s.rowsContainer}>
-        <SearchField onFilter={onFilter} tags={tags}></SearchField>
+        <div>
+          <SearchField onFilter={onFilter} tags={tags}></SearchField>
+        </div>
         {showFilterLoadingSkeleton &&
           <>
             <div className={s.row}>
@@ -111,8 +113,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
                   })}
                 </div>
               }
-              </div>
-              <div className={s.row}>
+            </div>
+            <div className={s.row}>
               {skeletonRows && skeletonRows.length > 0 &&
                 <div className={s.row}>
                   {skeletonRows[1].map(image => {
@@ -130,31 +132,31 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           <div className={s.row} key={i}>
             {row.map(image => {
               let artwork = artworks.find(a => a.PrimaryFile.Name === image.Name);
-              
+
               if (artwork) {
                 return <ArtworkListItemDefined
-                key={image.Name}
-                width={smScreenOrSmaller ? '100%' : image.Width}
-                height={smScreenOrSmaller ? 'auto' : image.Height}
-                artwork={artwork}
-                onLikeClick={onLike} />
+                  key={image.Name}
+                  width={smScreenOrSmaller ? '100%' : image.Width}
+                  height={smScreenOrSmaller ? 'auto' : image.Height}
+                  artwork={artwork}
+                  onLikeClick={onLike} />
               }
             }
             )}
           </div>
         )}
-        {!isLoading && loadMore && 
+        {!isLoading && loadMore &&
           <div className={s.row} ref={loadMoreElementRef}>
-          {skeletonRows && skeletonRows.length > 0 &&
-            <div className={s.row}>
-              {skeletonRows[0].map(image => {
-                return <DiscoverArtSkeleton
-                  key={image.Name}
-                  width={image.Width}
-                  height={image.Height} />
-              })}
-            </div>
-          }
+            {skeletonRows && skeletonRows.length > 0 &&
+              <div className={s.row}>
+                {skeletonRows[0].map(image => {
+                  return <DiscoverArtSkeleton
+                    key={image.Name}
+                    width={image.Width}
+                    height={image.Height} />
+                })}
+              </div>
+            }
           </div>
         }
       </Box>

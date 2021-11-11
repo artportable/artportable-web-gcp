@@ -86,10 +86,10 @@ export interface PageData {
 export const useInfiniteScrollWithKey = (
   loadMoreElement: React.MutableRefObject<Element>,
   getKey: (pageIndex: number, previousPageData: PageData) => string = _getKey,
-  activeTab : any,
+  load? : any,
   options: IntersectionObserverInit = defaultOptions,
 ) => {
-  const { data, size, setSize } = useSWRInfinite(getKey, fetcher, { initialSize: 1, revalidateOnFocus: false });
+  const { data, size, setSize } = useSWRInfinite(getKey, fetcher, { initialSize: 1, revalidateOnFocus: false  });
   const [ currentRef, setCurrentRef ] = useState(null);
 
   const callback = debounce((entries) => {
@@ -117,7 +117,8 @@ export const useInfiniteScrollWithKey = (
         }
       }
     }
-  }, [activeTab, data, loadMoreElement, loadMoreElement.current]);
+  }, [load, data, loadMoreElement, loadMoreElement.current]);
+
   return {
     data: data ? [].concat(...data.map(({ data }) => data)) : [],
     size, setSize,

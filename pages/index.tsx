@@ -18,6 +18,8 @@ import { TokenContext } from "../app/contexts/token-context";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
+import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
+import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
 
 
 export default function DiscoverPage() {
@@ -47,7 +49,7 @@ export default function DiscoverPage() {
   const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
-    if(!isSignedIn.isPending){
+    if (!isSignedIn.isPending) {
       setLoading(false);
     } else {
       setLoading(true);
@@ -67,7 +69,7 @@ export default function DiscoverPage() {
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
-        if(searchQueryArt) {
+        if (searchQueryArt) {
           url.searchParams.append('q', searchQueryArt);
         }
         url.searchParams.append('page', (pageIndex + 1).toString());
@@ -76,15 +78,16 @@ export default function DiscoverPage() {
       }
       return previousPageData.next;
     }, activeTab);
+
   const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
     (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) { 
+      if (previousPageData && !previousPageData.next) {
         setLoadMoreArtists(false);
-        return null; 
+        return null;
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}` + ( isSignedIn.value ? `/api/discover/artists` : `/api/Discover/artists/top`));
+        const url = new URL(`${apiBaseUrl}` + (isSignedIn.value ? `/api/discover/artists` : `/api/Discover/artists/top`));
         if (searchQuery != null && searchQuery != '') {
           url.searchParams.append('q', searchQuery);
         }
@@ -98,29 +101,29 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-    const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists} = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
-      (pageIndex, previousPageData) => {
-        if (previousPageData && !previousPageData.next) { 
-          setLoadMoreArtists(false);
-          return null; 
-        }
-  
-        if (pageIndex == 0) {
-          const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
-          if (searchQuery != null && searchQuery != '') {
-            url.searchParams.append('q', searchQuery);
-          }
-          if (username.value != null && username.value != '') {
-            url.searchParams.append('myUsername', username.value);
-          }
-          url.searchParams.append('page', (pageIndex + 1).toString());
-          url.searchParams.append('pageSize', "10");
-          return url.href;
-        }
-        return previousPageData.next;
-      }, activeTab);
+  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+    (pageIndex, previousPageData) => {
+      if (previousPageData && !previousPageData.next) {
+        setLoadMoreArtists(false);
+        return null;
+      }
 
-  const useWideLayout = activeTab === 0;
+      if (pageIndex == 0) {
+        const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
+        if (searchQuery != null && searchQuery != '') {
+          url.searchParams.append('q', searchQuery);
+        }
+        if (username.value != null && username.value != '') {
+          url.searchParams.append('myUsername', username.value);
+        }
+        url.searchParams.append('page', (pageIndex + 1).toString());
+        url.searchParams.append('pageSize', "10");
+        return url.href;
+      }
+      return previousPageData.next;
+    }, activeTab);
+
+  const useWideLayout = activeTab === 0 || activeTab === 3;
 
   useEffect(() => {
     setSearchQuery(null);
@@ -152,7 +155,7 @@ export default function DiscoverPage() {
     fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?mySocialId=${socialId.value}`, {
       method: isLike ? 'POST' : 'DELETE',
       headers: {
-        'Authorization' : `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       }
     })
       .then((response) => {
@@ -174,7 +177,7 @@ export default function DiscoverPage() {
     fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
       method: isFollow ? 'POST' : 'DELETE',
       headers: {
-        'Authorization' : `Bearer ${token}`
+        'Authorization': `Bearer ${token}`
       }
     })
       .then((response) => {
@@ -197,62 +200,76 @@ export default function DiscoverPage() {
 
   return (
     <Main noHeaderPadding wide={useWideLayout}>
-      {!loading && 
-      <>
-        {!isSignedIn.value &&
-          <IndexHero></IndexHero>
-        }
-        <div className={s.discoverContainer}>
-          <Tabs 
-            classes={{root: s.tabs}}
-            value={activeTab} 
-            onChange={(_, newValue) => setTab(newValue)} 
-            variant="scrollable"
-            scrollButtons="auto"
-          >
-            <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
-            <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
-            <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
-          </Tabs>
-          <Box paddingTop={4}>
-            <TabPanel value={activeTab} index={0}>
-              {!tags?.isLoading && !tags?.isError && tags?.data &&
-                <DiscoverArt
-                  artworks={artworks}
-                  tags={tags?.data}
-                  onFilter={filter}
-                  onLike={like}
+      {!loading &&
+        <>
+          {!isSignedIn.value &&
+            <IndexHero></IndexHero>
+          }
+          <div className={s.discoverContainer}>
+            <Tabs
+              className={s.tabs}
+              value={activeTab}
+              onChange={(_, newValue) => setTab(newValue)}
+              variant={"scrollable"}
+              scrollButtons={"on"}
+            >
+              <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+              <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+              <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
+              <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
+              <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
+            </Tabs>
+            <Box paddingTop={4}>
+              <TabPanel value={activeTab} index={0}>
+                {!tags?.isLoading && !tags?.isError && tags?.data &&
+                  <DiscoverArt
+                    artworks={artworks}
+                    tags={tags?.data}
+                    onFilter={filter}
+                    onLike={like}
+                    rowWidth={rowWidth}
+                    loadMoreElementRef={loadMoreArtworksElementRef}
+                    isLoading={isLoadingArtWorks}
+                    loadMore={loadMoreArtworks}
+                  />
+                }
+              </TabPanel>
+              <TabPanel value={activeTab} index={1}>
+                <DiscoverArtists
+                  artists={artists}
+                  onFollowClick={follow}
+                  onFilter={filterArtist}
+                  loadMoreElementRef={loadMoreArtistsElementRef}
+                  isLoading={isLoadingArtists}
+                  loadMore={loadMoreArtists}
+                ></DiscoverArtists>
+              </TabPanel>
+              <TabPanel value={activeTab} index={2}>
+                <DiscoverArtists
+                  artists={monthlyArtists}
+                  onFollowClick={follow}
+                  onFilter={filterArtist}
+                  loadMoreElementRef={loadMoreArtistsElementRef}
+                  isLoading={isLoadingMonthlyArtists}
+                  loadMore={loadMoreArtists}
+                ></DiscoverArtists>
+              </TabPanel>
+              <TabPanel value={activeTab} index={3}>
+                <DiscoverTopArtTab
+                  username={username.value}
+                  socialId={socialId.value}
                   rowWidth={rowWidth}
-                  loadMoreElementRef={loadMoreArtworksElementRef}
-                  isLoading={isLoadingArtWorks}
-                  loadMore={loadMoreArtworks}
                 />
-              }
-            </TabPanel>
-            <TabPanel value={activeTab} index={1}>
-              <DiscoverArtists
-                artists={artists}
-                onFollowClick={follow}
-                onFilter={filterArtist}
-                loadMoreElementRef={loadMoreArtistsElementRef}
-                isLoading={isLoadingArtists}
-                loadMore={loadMoreArtists}
-                ></DiscoverArtists>
-            </TabPanel>
-            <TabPanel value={activeTab} index={2}>
-              <DiscoverArtists
-                artists={monthlyArtists}
-                onFollowClick={follow}
-                onFilter={filterArtist}
-                loadMoreElementRef={loadMoreArtistsElementRef}
-                isLoading={isLoadingMonthlyArtists}
-                loadMore={loadMoreArtists}
-                ></DiscoverArtists>
-            </TabPanel>
-
-          </Box>
-        </div>
-      </>
+              </TabPanel>
+              <TabPanel value={activeTab} index={4}>
+                <DiscoverTopArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              </TabPanel>
+            </Box>
+          </div>
+        </>
       }
     </Main>
   );
@@ -264,4 +281,4 @@ export async function getStaticProps({ locale }) {
       ...await serverSideTranslations(locale, ['header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar', 'support']),
     }
   };
- }
+}
