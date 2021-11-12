@@ -264,7 +264,7 @@ export async function getStaticProps({ locale, params }) {
       props: {
         artwork,
         locale: locale,
-        ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags']),
+        ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'suuport']),
       },
       revalidate: 10
     };
@@ -276,7 +276,7 @@ export async function getStaticProps({ locale, params }) {
     props: {
       artwork: { Id: params.id },
       locale: locale,
-      ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags']),
+      ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support']),
     },
     revalidate: 10
   };

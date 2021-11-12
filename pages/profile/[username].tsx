@@ -531,7 +531,7 @@ export async function getStaticProps({ locale, params }) {
   return {
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support']),
     },
     revalidate: 10,
   }
