@@ -35,8 +35,11 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(1)
     },
     profilePicture: {
-      width: 'clamp(150px, 100%, 300px)',
+      width: '300px',
     },
+    about: {
+        whiteSpace: "pre-wrap"
+      },
 
     [theme.breakpoints.up('sm')]: {
       about: {
