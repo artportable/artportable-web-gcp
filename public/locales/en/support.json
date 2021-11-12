@@ -8,5 +8,9 @@
   "emailErrorMessage": "Invalid email address",
   "send": "Send",
   "successMessage": "Message sent. We will get back to you by email as soon as possible.",
-  "warningMessage": "Something went wrong, try again."
+  "warningMessage": "Something went wrong, try again.",
+  "support": "Support",
+  "economy": "Economy",
+  "production": "Production",
+  "report": "Report"
 }

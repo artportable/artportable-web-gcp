@@ -8,5 +8,10 @@
   "emailErrorMessage": "Ogiltig e-postadress",
   "send": "Skicka",
   "successMessage": "Meddelande skickat. Vi återkommer på e-post så snart vi kan!",
-  "warningMessage": "Något gick fel, försök igen."
+  "warningMessage": "Något gick fel, försök igen.",
+  "support": "Support",
+  "economy": "Ekonomi",
+  "production": "Produktion",
+  "report": "Anmäl"
+
 }
