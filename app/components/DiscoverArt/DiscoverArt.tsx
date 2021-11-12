@@ -145,8 +145,20 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             )}
           </div>
         )}
-        
-        
+         {!isLoading && loadMore &&
+          <div className={s.row} ref={loadMoreElementRef}>
+            {skeletonRows && skeletonRows.length > 0 &&
+              <div className={s.row}>
+                {skeletonRows[0].map(image => {
+                  return <DiscoverArtSkeleton
+                    key={image.Name}
+                    width={image.Width}
+                    height={image.Height} />
+                })}
+              </div>
+            }
+          </div>
+        }
       </Box>
     </>
   );
