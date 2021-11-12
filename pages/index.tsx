@@ -33,11 +33,12 @@ export default function DiscoverPage() {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const discoverTab = store.getState()?.discover?.tab ?? 0;
+  const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 3;
 
   const tags = useGetTags();
   const rowWidth = useMainWidth().wide
 
-  const [activeTab, setActiveTab] = useState(discoverTab);
+  const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const [selectedTags, setSelectedTags] = useState(null);
   const [searchQueryArt, setSearchQueryArt] = useState(null);
   const loadMoreArtworksElementRef = useRef(null);
@@ -54,8 +55,12 @@ export default function DiscoverPage() {
     } else {
       setLoading(true);
     }
+    if(isSignedIn.value) {
+      setActiveTab(discoverTab);
+    }
   }, [isSignedIn]);
 
+  
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
