@@ -82,6 +82,19 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
     };
   }, []);
 
+  useEffect(() => {
+    import('react-facebook-pixel')
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init ('${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
+        console.log(ReactPixel.init)
+
+        router.events.on('routeChangeComplete', () => {
+          ReactPixel.pageView()
+        })
+      })
+  }, [router.events])
+
   return (
     <>
       <Head>
