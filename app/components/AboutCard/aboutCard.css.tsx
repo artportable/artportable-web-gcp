@@ -37,6 +37,9 @@ export const styles = makeStyles((theme: Theme) =>
     profilePicture: {
       width: 'clamp(150px, 100%, 300px)',
     },
+    about: {
+        whiteSpace: "pre-wrap"
+      },
 
     [theme.breakpoints.up('sm')]: {
       about: {
