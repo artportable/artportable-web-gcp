@@ -62,11 +62,9 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           <ListItem button divider onClick={handleClickOpen} >
             <ListItemText primary={t('contactUs')} />
           </ListItem>
-            <DialogContent>
             <DialogConstruction 
             openContact={openContact}
             handleClose={handleClose} />
-            </DialogContent>
 
         {isSignedIn.value ?
           <>
