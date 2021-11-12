@@ -2,7 +2,7 @@
   "writeToUs": "Write to us and we will get back to you as soon as possible",
   "subject": "Subject",
   "subjectPlaceholder": "Subject",
-  "email": "Email",
+  "email": "Your email",
   "message": "Message",
   "mustNotBeEmptyMessage": "Field cannot be empty",
   "emailErrorMessage": "Invalid email address",
