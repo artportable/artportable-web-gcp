@@ -35,21 +35,22 @@ export default function ZendeskForm() {
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
 
   const subjectOptions = [
+
     {
       value: 'support@artportable.com',
-      label: 'Support',
+      label: t('support'),
     },
     {
       value: 'invoice@artportable.com',
-      label: 'Ekonomi',
+      label: t('economy')
     },
     {
       value: 'production@artportable.com',
-      label: 'Produktion',
+      label: t('production')
     },
     {
       value: 'report@artportable',
-      label: 'Anmäl',
+      label: t('report')
     },
   ];
 
