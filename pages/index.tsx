@@ -32,8 +32,8 @@ export default function DiscoverPage() {
   const dispatch = useDispatch();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const discoverTab = store.getState()?.discover?.tab ?? 0;
-  const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 3;
+  const discoverTab = store.getState()?.discover?.tab ?? 1;
+  const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
 
   const tags = useGetTags();
   const rowWidth = useMainWidth().wide
@@ -218,14 +218,21 @@ export default function DiscoverPage() {
               variant={"scrollable"}
               scrollButtons={"on"}
             >
-              <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
-              <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
-              <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
               <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
+              <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
               <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
+              <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
+              <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
             </Tabs>
             <Box paddingTop={4}>
-              <TabPanel value={activeTab} index={0}>
+            <TabPanel value={activeTab} index={0}>
+                <DiscoverTopArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={1}>
                 {!tags?.isLoading && !tags?.isError && tags?.data &&
                   <DiscoverArt
                     artworks={artworks}
@@ -239,17 +246,13 @@ export default function DiscoverPage() {
                   />
                 }
               </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <DiscoverArtists
-                  artists={artists}
-                  onFollowClick={follow}
-                  onFilter={filterArtist}
-                  loadMoreElementRef={loadMoreArtistsElementRef}
-                  isLoading={isLoadingArtists}
-                  loadMore={loadMoreArtists}
-                ></DiscoverArtists>
-              </TabPanel>
               <TabPanel value={activeTab} index={2}>
+                <DiscoverTopArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverArtists
                   artists={monthlyArtists}
                   onFollowClick={follow}
@@ -259,18 +262,15 @@ export default function DiscoverPage() {
                   loadMore={loadMoreArtists}
                 ></DiscoverArtists>
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
-                <DiscoverTopArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                />
-              </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                <DiscoverTopArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
+                <DiscoverArtists
+                  artists={artists}
+                  onFollowClick={follow}
+                  onFilter={filterArtist}
+                  loadMoreElementRef={loadMoreArtistsElementRef}
+                  isLoading={isLoadingArtists}
+                  loadMore={loadMoreArtists}
+                ></DiscoverArtists>
               </TabPanel>
             </Box>
           </div>
