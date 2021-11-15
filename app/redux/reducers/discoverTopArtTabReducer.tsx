@@ -1,11 +1,11 @@
 
 import { SET_TAB } from '../actions/discoverActions';
 
-const discoverTopArtTabState = {
+const initialDiscoverTopArtTabState = {
   tab: 0
 };
 
-const discoverTopArtTabReducer = (state = discoverTopArtTabState, action) => {
+const discoverTopArtTabReducer = (state = initialDiscoverTopArtTabState, action) => {
   switch (action.type) {
     case SET_TAB:
       return {...state, tab: action.payload};
