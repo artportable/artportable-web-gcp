@@ -5,6 +5,9 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       minWidth: '240px'
     },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
     [theme.breakpoints.up('mdPlus')]: {
       articleLink: {
         display: 'none',

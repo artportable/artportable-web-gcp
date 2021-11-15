@@ -1,9 +1,11 @@
 import Link from 'next/link'
-import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Dialog, DialogTitle, DialogContent } from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useTranslation } from 'next-i18next'
 import { styles } from './drawerMenu.css'
 import { useKeycloak } from '@react-keycloak/ssr'
@@ -18,6 +20,10 @@ import { Membership } from '../../models/Membership'
 import DialogConstruction from '../ContactDialog/contactDialog'
 
 
+import { Locales, DisplayLocales } from '../../models/i18n/locales'
+
+
+
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation(['header', 'common', 'support']);
   const s = styles();
@@ -26,10 +32,16 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { username, isSignedIn, membership } = useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
+  const [openLanguage, setOpenopenLanguage] = useState(false);
+
 
   const close = () => setOpen(false);
 
   const [openContact, setOpenContact] = useState(false);
+
+  const handleClickLanguage = () => {
+    setOpenopenLanguage(!openLanguage);
+  };
 
   const handleClickOpen = () => {
     setOpenContact(true);
@@ -39,10 +51,24 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
     setOpenContact(false);
   };
 
+  const [anchorElement, setAnchorElement] = useState(null);
+  
+  function handleClick2(event) {
+    setAnchorElement(event.currentTarget);
+    event.stopPropagation();
+  }
+
+  function handleClose2(_, locale?: Locales) {
+    setAnchorElement(null);
+    if(locale !== undefined) {
+      router.push(router.asPath, null, { locale: locale });
+    }
+  } 
+
   return (
-    <Drawer classes={{ paper: s.container }} open={open} onClose={(_) => close()}>
+    <Drawer classes={{ paper: s.container }} open={open} onClose={() => close()}>
       <div>
-        <IconButton color="default" aria-label="close menu" onClick={(_) => close()}>
+        <IconButton color="default" aria-label="close menu" onClick={() => close()}>
           <CloseIcon style={{ fontSize: '30px' }} />
         </IconButton>
       </div>
@@ -70,6 +96,27 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <DialogConstruction 
             openContact={openContact}
             handleClose={handleClose} />
+          
+          
+          
+
+          
+          <ListItem button onClick={() => { handleClickLanguage(); handleClick2;}}>
+            <ListItemText primary={t('language')} />
+              {openLanguage ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openLanguage} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem button className={s.nested} onClick={(_) => handleClose2(_, Locales.en)}>
+                <ListItemText primary="Engelska" />
+              </ListItem>
+              <ListItem button className={s.nested} onClick={(_) => handleClose2(_, Locales.sv)}>
+                <ListItemText primary="Svenska" />
+              </ListItem>
+            </List>
+          </Collapse>
+
+
 
         {isSignedIn.value ?
           <>
