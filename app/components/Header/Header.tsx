@@ -109,7 +109,7 @@ export default function Header({}) {
                 </Link>
               </MuiButton>
             }
-            <MuiButton classes={{ root: s.stories }} color="default" size="large">
+            <MuiButton color="default" size="large">
               <a href="https://old.artportable.com/stories/" target="blank">
                 {t('stories')}
               </a>
