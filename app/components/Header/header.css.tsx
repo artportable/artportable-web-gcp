@@ -36,9 +36,9 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
-    discover: {
-      display: 'none',
-    },
+    // discover: {
+    //   display: 'none',
+    // },
     language: {
       display: 'none',
       gridArea: 'language',

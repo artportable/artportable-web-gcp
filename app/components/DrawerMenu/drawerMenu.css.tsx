@@ -5,5 +5,10 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       minWidth: '240px'
     },
+    [theme.breakpoints.up('mdPlus')]: {
+      articleLink: {
+        display: 'none',
+      },
+    },
   }),
 );
