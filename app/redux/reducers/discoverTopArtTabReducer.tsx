@@ -2,7 +2,7 @@
 import { SET_TAB } from '../actions/discoverActions';
 
 const discoverTopArtTabState = {
-  tab: 3
+  tab: 0
 };
 
 const discoverTopArtTabReducer = (state = discoverTopArtTabState, action) => {
