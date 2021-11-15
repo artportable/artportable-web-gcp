@@ -109,10 +109,10 @@ export default function Header({}) {
                 </Link>
               </MuiButton>
             }
-            <MuiButton classes={{ root: s.discover }} color="default" size="large">
-              <Link href="/">
-                {t('discover')}
-              </Link>
+            <MuiButton color="default" size="large">
+              <a href="https://old.artportable.com/stories/" target="blank">
+                {t('stories')}
+              </a>
             </MuiButton>
           </nav>
           {(!isSignedIn.value) &&
