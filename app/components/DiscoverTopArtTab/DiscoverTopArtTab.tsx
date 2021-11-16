@@ -4,6 +4,7 @@ import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { useMainWidth } from "../../hooks/useWidth";
+import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 
 interface DiscoverTopArtTabProps {
@@ -49,7 +50,7 @@ const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
       })
   }
 
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
+  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtworks(false);

@@ -1,6 +1,7 @@
 import React, { memo, useContext, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
+import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
 
 interface DiscoverTopArtistsTabProps {
@@ -43,7 +44,7 @@ const DiscoverTopArtistsTab = memo((props: DiscoverTopArtistsTabProps) => {
       });
   }
 
-  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtists(false);

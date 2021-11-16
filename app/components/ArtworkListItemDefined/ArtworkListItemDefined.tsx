@@ -29,6 +29,7 @@ export default function ArtworkListItemDefined({
 
     if(isSignedIn.value) {
       setIsLiked(!isLiked);
+      artwork.LikedByMe = !isLiked;
       !isLiked ? artwork.Likes++ : artwork.Likes--;
       !isLiked ? trackGoogleAnalytics(ActionType.GILLA_PORTOFOLIE_UPPTÄCK, CategoryType.INTERACTIVE) : null
     }

@@ -1,6 +1,7 @@
 import { debounce } from '@material-ui/core/utils';
 import { useEffect, useState } from 'react'
 import { useSWRInfinite } from 'swr'
+import { MutatorCallback } from 'swr/dist/types';
 
 const defaultOptions = {
   root: null,
@@ -75,22 +76,36 @@ const fetcher = url => fetch(url).then(res => {
   });
 });
 
-
-export interface PageData {
-  data?: any;
+export type Page = {
   first?: string;
   next?: string;
   previous?: string;
 }
+export type PageData<T> = {
+  data?: T;
+} & Page
 
-export const useInfiniteScrollWithKey = (
+export interface useInfiniteScrollWithKeyResponse<T> {
+  data: T[]
+  isLoading: boolean,
+  mutate: (data?: PageData<T>[] | Promise<PageData<T>[]> | MutatorCallback<PageData<T>[]>, shouldRevalidate?: boolean) => Promise<PageData<T>[]>,
+}
+
+export type useInfiniteScrollWithKeyProps = <T>(
   loadMoreElement: React.MutableRefObject<Element>,
-  getKey: (pageIndex: number, previousPageData: PageData) => string = _getKey,
-  load? : any,
+  getKey: (pageIndex: number, previousPageData: PageData<T>) => string,
+  load?: any,
+  options?: IntersectionObserverInit) => useInfiniteScrollWithKeyResponse<T>
+
+
+export const useInfiniteScrollWithKey: useInfiniteScrollWithKeyProps = <T>(
+  loadMoreElement: React.MutableRefObject<Element>,
+  getKey: (pageIndex: number, previousPageData: PageData<T>) => string = _getKey,
+  load?: any,
   options: IntersectionObserverInit = defaultOptions,
 ) => {
-  const { data, size, setSize } = useSWRInfinite(getKey, fetcher, { initialSize: 1, revalidateOnFocus: false  });
-  const [ currentRef, setCurrentRef ] = useState(null);
+  const { data, size, setSize, mutate } = useSWRInfinite<PageData<T>, Error>(getKey, fetcher, { initialSize: 1, revalidateOnFocus: false });
+  const [currentRef, setCurrentRef] = useState(null);
 
   const callback = debounce((entries) => {
     const [entry] = entries;
@@ -108,7 +123,7 @@ export const useInfiniteScrollWithKey = (
       const observer = new IntersectionObserver(callback, options);
       if (loadMoreElement.current) {
         observer.observe(loadMoreElement.current);
-        setCurrentRef(loadMoreElement.current); 
+        setCurrentRef(loadMoreElement.current);
       }
 
       return () => {
@@ -121,7 +136,7 @@ export const useInfiniteScrollWithKey = (
 
   return {
     data: data ? [].concat(...data.map(({ data }) => data)) : [],
-    size, setSize,
-    isLoading: !data
+    isLoading: !data,
+    mutate: mutate,
   };
 }
