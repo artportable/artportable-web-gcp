@@ -80,10 +80,10 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <ListItemText primary={t('stories')} />
           </ListItem>
         </a>
-        <div className={s.languageElement}>
           <ListItem button divider onClick={handleClickContact} >
             <ListItemText primary={t('contactUs')} />
           </ListItem >
+          <div className={s.languageElement}>
             <DialogConstruction 
             openContact={openContact}
             handleClose={handleCloseContact} />
