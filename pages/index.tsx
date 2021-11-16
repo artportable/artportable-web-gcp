@@ -128,7 +128,7 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1;
+    const useWideLayout = activeTab === 0 || activeTab === 1;
 
   useEffect(() => {
     setSearchQuery(null);
