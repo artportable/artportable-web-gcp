@@ -1,9 +1,11 @@
 import Link from 'next/link'
-import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Dialog, DialogTitle, DialogContent } from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse, Divider} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import { useTranslation } from 'next-i18next'
 import { styles } from './drawerMenu.css'
 import { useKeycloak } from '@react-keycloak/ssr'
@@ -16,7 +18,7 @@ import { useContext, useState } from 'react'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { Membership } from '../../models/Membership'
 import DialogConstruction from '../ContactDialog/contactDialog'
-
+import { Locales, DisplayLocales } from '../../models/i18n/locales'
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation(['header', 'common', 'support']);
@@ -26,23 +28,37 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { username, isSignedIn, membership } = useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
+  const [openLanguage, setOpenopenLanguage] = useState(false);
+  const displayLocale = router.locale === Locales.sv ?
+  DisplayLocales.sv : DisplayLocales.en;
 
   const close = () => setOpen(false);
 
   const [openContact, setOpenContact] = useState(false);
 
-  const handleClickOpen = () => {
+  function handleClickLanguage(event) {
+    setOpenopenLanguage(!openLanguage);
+    event.stopPropagation();
+  };
+
+  function handleCloseLanguage(_, locale?: Locales) {
+    if(locale !== undefined) {
+      router.push(router.asPath, null, { locale: locale });
+    }
+  } 
+
+  const handleClickContact = () => {
     setOpenContact(true);
   };
 
-  const handleClose = () => {
+  const handleCloseContact= () => {
     setOpenContact(false);
   };
 
   return (
-    <Drawer classes={{ paper: s.container }} open={open} onClose={(_) => close()}>
+    <Drawer classes={{ paper: s.container }} open={open} onClose={() => close()}>
       <div>
-        <IconButton color="default" aria-label="close menu" onClick={(_) => close()}>
+        <IconButton color="default" aria-label="close menu" onClick={() => close()}>
           <CloseIcon style={{ fontSize: '30px' }} />
         </IconButton>
       </div>
@@ -64,12 +80,29 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <ListItemText primary={t('stories')} />
           </ListItem>
         </a>
-          <ListItem button divider onClick={handleClickOpen} >
+        <div className={s.languageElement}>
+          <ListItem button divider onClick={handleClickContact} >
             <ListItemText primary={t('contactUs')} />
-          </ListItem>
+          </ListItem >
             <DialogConstruction 
             openContact={openContact}
-            handleClose={handleClose} />
+            handleClose={handleCloseContact} />
+          <ListItem button onClick={handleClickLanguage}>
+            <ListItemText primary={displayLocale} />
+              {openLanguage ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openLanguage} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding >
+            <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.sv)}>
+                <ListItemText primary={t('swedish')} />
+              </ListItem>
+              <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.en)}>
+                <ListItemText primary={t('english')} />
+              </ListItem>
+            </List>
+          </Collapse>
+          <Divider />
+          </div>
 
         {isSignedIn.value ?
           <>
