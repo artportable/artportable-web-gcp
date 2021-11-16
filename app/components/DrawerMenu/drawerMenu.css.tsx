@@ -8,6 +8,11 @@ export const styles = makeStyles((theme: Theme) =>
     nested: {
       paddingLeft: theme.spacing(4),
     },
+    [theme.breakpoints.up('sm')]: {
+      languageElement: {
+        display: 'none',
+      },
+    },
     [theme.breakpoints.up('mdPlus')]: {
       articleLink: {
         display: 'none',
