@@ -20,6 +20,8 @@ import { UserContext } from "../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
+import { Artwork } from "../app/models/Artwork";
+import Artist from "../app/models/Artist";
 
 
 export default function DiscoverPage() {
@@ -55,25 +57,27 @@ export default function DiscoverPage() {
     } else {
       setLoading(true);
     }
-    if(isSignedIn.value) {
+    if (isSignedIn.value) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
 
-  
 
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey(loadMoreArtworksElementRef,
+
+  const { data: artworks, isLoading: isLoadingArtWorks} = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtworks(false);
         return null;
       }
-
       if (pageIndex == 0) {
-      const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
+        if (username.value != null && username.value != '') {
+          url.searchParams.append('myUsername', username.value);
+        }
         if (searchQueryArt) {
           url.searchParams.append('q', searchQueryArt);
         }
@@ -84,7 +88,7 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtists(false);
@@ -106,7 +110,7 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey(loadMoreArtistsElementRef,
+  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtists(false);
@@ -133,6 +137,7 @@ export default function DiscoverPage() {
   useEffect(() => {
     setSearchQuery(null);
     filter([]);
+    console.log('hello')
   }, []);
 
   function setTab(value) {
@@ -225,7 +230,7 @@ export default function DiscoverPage() {
               <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
             </Tabs>
             <Box paddingTop={4}>
-            <TabPanel value={activeTab} index={0}>
+              <TabPanel value={activeTab} index={0}>
                 <DiscoverTopArtTab
                   username={username.value}
                   socialId={socialId.value}
