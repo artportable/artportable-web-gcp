@@ -137,7 +137,6 @@ export default function DiscoverPage() {
   useEffect(() => {
     setSearchQuery(null);
     filter([]);
-    console.log('hello')
   }, []);
 
   function setTab(value) {
