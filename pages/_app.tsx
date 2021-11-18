@@ -86,7 +86,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
     import('react-facebook-pixel')
       .then((x) => x.default)
       .then((ReactPixel) => {
-        ReactPixel.init ('${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}')
+        ReactPixel.init ('${process.env.NEXT_PUBLIC_FACEBOOK_PIXEL}')
         console.log(ReactPixel.init)
 
         router.events.on('routeChangeComplete', () => {
