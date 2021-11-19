@@ -15,7 +15,7 @@ export default function IndexHero() {
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const promotedUser = "atle.reilo";
+  const promotedUser = getUser;
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
@@ -24,6 +24,51 @@ export default function IndexHero() {
     const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
     setSignUpRedirectHref(redirectHref);
   }, []);
+
+  const images = {
+    Persona: 'https://i.guim.co.uk/img/media/7f260701ee8a82171fc468598ec46fdcb555c195/0_429_4770_2861/master/4770.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=eda98f47962e9ae7e414bcfe511b8d7a',
+    Bibi: 'https://www.svtstatic.se/image/wide/480/21891198/1555316603?format=auto',
+    Bibbi: 'https://www2.bfi.org.uk/sites/bfi.org.uk/files/styles/full/public/image/persona-1966-003-bibi-andersson-sunglasses.jpg?itok=YqcT6ldS',
+};
+
+const imagesArray = Object.entries(images).map(image => {
+    return { name: image[0], random: image[1] }
+  
+})
+
+
+// let countries = {
+//   USA: 'https://www.countryflags.io/US/shiny/64.png',
+//   Australia: 'https://www.countryflags.io/AU/shiny/64.png',
+//   'Puerto Rico': 'https://www.countryflags.io/PR/shiny/64.png',
+// };
+
+// //I changed the object to array for better data manipulation.
+// const countriesArray = Object.entries(countries).map(country => {
+//   return { name: country[0], flag: country[1] }
+// })
+
+// //Getting random country index by its length
+// const randomCountryIndex = Math.floor(Math.random() * countriesArray.length);
+
+// console.log("Set the current country: ", countriesArray[randomCountryIndex])
+// console.log("Set the random flag: ", countriesArray[randomCountryIndex].flag)
+
+
+//Getting random image index by its length
+const randomImageIndex = Math.floor(Math.random() * imagesArray.length);
+console.log("Set the current name: ", imagesArray[randomImageIndex])
+
+function getUser(name) {
+  if (imagesArray === {name: Persona}) {
+    return "atle.reilo";
+  } else if (imagesArray === {name: Bibi}) {
+    return 'premium';
+  }else if (imagesArray === {name: Bibbi}) {
+    return 'staxx';
+  }
+
+}
 
   return (
     <div className={s.container}>
@@ -59,7 +104,7 @@ export default function IndexHero() {
             <Paper elevation={5}>
               <img 
                 className={s.boosted} 
-                src="/images/frame_atle.png" 
+                src={imagesArray[randomImageIndex].random} 
                 alt={`${t("artworkFrom")} ${promotedUser}`}
                 title={`${t("artworkFrom")} ${promotedUser}`}/>
             </Paper>
