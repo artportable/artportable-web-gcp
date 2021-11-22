@@ -41,7 +41,7 @@ function getUserName() {
     return "erikart";
   } else if (images[randomImageIndex].name === 'Bibbi') {
     return 'charlottewennerberg';
-  }else if (images[randomImageIndex].name === 'Bibi') {
+  } else if (images[randomImageIndex].name === 'Bibi') {
     return 'berg';
   }
  
