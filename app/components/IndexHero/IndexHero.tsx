@@ -17,7 +17,6 @@ export default function IndexHero() {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
 
-
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [randomImage, setRandomImage] = useState(null)
   const [randomUser, setRandomUser] = useState('')
