@@ -15,7 +15,7 @@ export default function IndexHero() {
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const promotedUser = getUser;
+
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
@@ -25,50 +25,40 @@ export default function IndexHero() {
     setSignUpRedirectHref(redirectHref);
   }, []);
 
-  const images = {
-    Persona: 'https://i.guim.co.uk/img/media/7f260701ee8a82171fc468598ec46fdcb555c195/0_429_4770_2861/master/4770.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=eda98f47962e9ae7e414bcfe511b8d7a',
-    Bibi: 'https://www.svtstatic.se/image/wide/480/21891198/1555316603?format=auto',
-    Bibbi: 'https://www2.bfi.org.uk/sites/bfi.org.uk/files/styles/full/public/image/persona-1966-003-bibi-andersson-sunglasses.jpg?itok=YqcT6ldS',
-};
+  const images = [
+    { name: "Persona", image: '/images/frame_atle.png'},
+    { name: "Bibi", image: '/images/jason.jpg'},
+    { name: "Bibbi", image: '/images/art_landing_horses_painting.png'},
+  ];
 
-const imagesArray = Object.entries(images).map(image => {
-    return { name: image[0], random: image[1] }
-  
-})
+const randomImageIndex = Math.floor(Math.random() * images.length);
 
+console.log(images[randomImageIndex])
+console.log(images[randomImageIndex].image)
 
-// let countries = {
-//   USA: 'https://www.countryflags.io/US/shiny/64.png',
-//   Australia: 'https://www.countryflags.io/AU/shiny/64.png',
-//   'Puerto Rico': 'https://www.countryflags.io/PR/shiny/64.png',
-// };
-
-// //I changed the object to array for better data manipulation.
-// const countriesArray = Object.entries(countries).map(country => {
-//   return { name: country[0], flag: country[1] }
-// })
-
-// //Getting random country index by its length
-// const randomCountryIndex = Math.floor(Math.random() * countriesArray.length);
-
-// console.log("Set the current country: ", countriesArray[randomCountryIndex])
-// console.log("Set the random flag: ", countriesArray[randomCountryIndex].flag)
-
-
-//Getting random image index by its length
-const randomImageIndex = Math.floor(Math.random() * imagesArray.length);
-console.log("Set the current name: ", imagesArray[randomImageIndex])
-
-function getUser(name) {
-  if (imagesArray === {name: Persona}) {
-    return "atle.reilo";
-  } else if (imagesArray === {name: Bibi}) {
-    return 'premium';
-  }else if (imagesArray === {name: Bibbi}) {
-    return 'staxx';
+function getUserName() {
+  if (images[randomImageIndex].name === 'Persona') {
+    return "erikart";
+  } else if (images[randomImageIndex].name === 'Bibbi') {
+    return 'charlottewennerberg';
+  }else if (images[randomImageIndex].name === 'Bibi') {
+    return 'berg';
+  }
+ 
+}
+function getUserProfilImage() {
+  if (images[randomImageIndex].name === 'Persona') {
+    return "4f5e8324-b2ef-4af5-a42f-21af6e79778b.jpg";
+  } else if (images[randomImageIndex].name === 'Bibbi') {
+    return 'b7e6c0e6-2ca7-4368-9a06-d21b67e2f6c8.jpg';
+  }else if (images[randomImageIndex].name === 'Bibi') {
+    return 'c81096a9-d0e8-467f-9cd7-ea72f00c4b3e.jpg';
   }
 
 }
+
+
+const promotedUser = getUserName();
 
   return (
     <div className={s.container}>
@@ -104,7 +94,7 @@ function getUser(name) {
             <Paper elevation={5}>
               <img 
                 className={s.boosted} 
-                src={imagesArray[randomImageIndex].random} 
+                src={images[randomImageIndex].image} 
                 alt={`${t("artworkFrom")} ${promotedUser}`}
                 title={`${t("artworkFrom")} ${promotedUser}`}/>
             </Paper>
@@ -117,7 +107,7 @@ function getUser(name) {
                 }}
                 avatar={
                   <div className={s.chipAvatar}>
-                    <ProfileAvatar size={19} profilePicture="1624177845876blob.jpg" />
+                    <ProfileAvatar size={19} profilePicture={getUserProfilImage()} />
                   </div>
                 }
                 label={promotedUser}/>
