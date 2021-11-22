@@ -15,7 +15,7 @@ export default function IndexHero() {
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
-  const promotedUser = "atle.reilo";
+  const promotedUser = "jasonandersson";
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
@@ -59,7 +59,7 @@ export default function IndexHero() {
             <Paper elevation={5}>
               <img 
                 className={s.boosted} 
-                src="/images/frame_atle.png" 
+                src="/images/jason.jpg" 
                 alt={`${t("artworkFrom")} ${promotedUser}`}
                 title={`${t("artworkFrom")} ${promotedUser}`}/>
             </Paper>
@@ -72,7 +72,7 @@ export default function IndexHero() {
                 }}
                 avatar={
                   <div className={s.chipAvatar}>
-                    <ProfileAvatar size={19} profilePicture="1624177845876blob.jpg" />
+                    <ProfileAvatar size={19} profilePicture="image0-14-2.jpg" />
                   </div>
                 }
                 label={promotedUser}/>
