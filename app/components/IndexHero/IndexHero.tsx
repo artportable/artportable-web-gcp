@@ -28,7 +28,7 @@ export default function IndexHero() {
 
   //List with current artists
   const images = [
-    { name: "jasonandersson", image: '/images/jason.jpg', profileImage: '4f5e8324-b2ef-4af5-a42f-21af6e79778b.jpg'},
+    { name: "jasonandersson", image: '/images/jason.jpg', profileImage: 'image0-14-2.jpg'},
   ];
 
   useEffect (() => {
