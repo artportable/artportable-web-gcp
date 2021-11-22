@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
 import { FullWidthBlock } from '../Main/Main'
+import { useGetArtwork } from '../../hooks/dataFetching/Artworks';
 
 export default function IndexHero() {
   const s = styles();
@@ -18,6 +19,8 @@ export default function IndexHero() {
 
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
+  const [randomImage, setRandomImage] = useState(null)
+  const [randomUser, setRandomUser] = useState('')
 
   useEffect(() => {
     const isDefaultLocale = router.locale == router.defaultLocale;
@@ -26,39 +29,37 @@ export default function IndexHero() {
   }, []);
 
   const images = [
-    { name: "Persona", image: '/images/frame_atle.png'},
-    { name: "Bibi", image: '/images/jason.jpg'},
-    { name: "Bibbi", image: '/images/art_landing_horses_painting.png'},
+    { name: "jasonandersson", image: '/images/jason.jpg'},
+    // { name: "erikart", image: '/images/frame_atle.png'},
+    // { name: "charlottewennerberg", image: '/images/jason.jpg'},
+    // { name: "berg", image: '/images/art_landing_horses_painting.png'},
   ];
 
-const randomImageIndex = Math.floor(Math.random() * images.length);
+  const user1 = 'image0-14-2.jpg'
+  // const user2 = '4f5e8324-b2ef-4af5-a42f-21af6e79778b.jpg';
+  // const user3 = 'b7e6c0e6-2ca7-4368-9a06-d21b67e2f6c8.jpg';
+  // const user4 = 'c81096a9-d0e8-467f-9cd7-ea72f00c4b3e.jpg';
 
-console.log(images[randomImageIndex])
-console.log(images[randomImageIndex].image)
+  const randomImageIndex = Math.floor(Math.random() * images.length);
 
-function getUserName() {
-  if (images[randomImageIndex].name === 'Persona') {
-    return "erikart";
-  } else if (images[randomImageIndex].name === 'Bibbi') {
-    return 'charlottewennerberg';
-  } else if (images[randomImageIndex].name === 'Bibi') {
-    return 'berg';
+  useEffect (() => {
+    setRandomImage((images[randomImageIndex].image));
+    setRandomUser((images[randomImageIndex].name))
+  }, [])
+
+  function getUserProfilImage() {
+    if (randomUser === 'jasonandersson') {
+      return user1;
+    // } else if (randomUser === 'erikart') {
+    //   return user2;
+    // }else if (randomUser === 'charlottewennerberg') {
+    //   return user3;
+    // }else if (randomUser === 'berg') {
+    //   return user4;
+    }
   }
- 
-}
-function getUserProfilImage() {
-  if (images[randomImageIndex].name === 'Persona') {
-    return "4f5e8324-b2ef-4af5-a42f-21af6e79778b.jpg";
-  } else if (images[randomImageIndex].name === 'Bibbi') {
-    return 'b7e6c0e6-2ca7-4368-9a06-d21b67e2f6c8.jpg';
-  }else if (images[randomImageIndex].name === 'Bibi') {
-    return 'c81096a9-d0e8-467f-9cd7-ea72f00c4b3e.jpg';
-  }
 
-}
-
-
-const promotedUser = getUserName();
+  const promotedUser = randomUser;
 
   return (
     <div className={s.container}>
@@ -94,13 +95,13 @@ const promotedUser = getUserName();
             <Paper elevation={5}>
               <img 
                 className={s.boosted} 
-                src={images[randomImageIndex].image} 
+                src={(randomImage)} 
                 alt={`${t("artworkFrom")} ${promotedUser}`}
                 title={`${t("artworkFrom")} ${promotedUser}`}/>
             </Paper>
             <div className={s.createdBy}>
               <Chip
-                onClick={(_) => router.push(`/profile/@${promotedUser}`)}
+                onClick={(_) => router.push(`/profile/@${randomUser}`)}
                 size="small"
                 classes={{
                   root: s.chip,
