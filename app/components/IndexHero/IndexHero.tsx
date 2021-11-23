@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useContext } from 'react'
+import { useEffect, useState} from 'react'
 import { Typography, Chip, Paper } from '@material-ui/core';
 import { styles } from './indexHero.css'
 import { useTranslation } from "next-i18next";
