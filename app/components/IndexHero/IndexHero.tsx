@@ -16,7 +16,7 @@ interface RandomImageProps {
   profileImage: string;
 }
 
-export default function IndexHero(Props:RandomImageProps) {
+export default function IndexHero() {
   const s = styles();
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
