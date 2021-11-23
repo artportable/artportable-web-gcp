@@ -10,21 +10,29 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
 
-export default function IndexHero() {
+interface RandomImageProps {
+  artwork: string;
+  username: string;
+  profileImage: string;
+}
+
+
+
+export default function IndexHero(Props:RandomImageProps) {
   const s = styles();
   const { t } = useTranslation('index');
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
-  const [randomImage, setRandomImage] = useState({ artwork: '', username: '', profileImage: ''})
+  const [randomImage, setRandomImage] = useState<RandomImageProps | undefined>()
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (randomImage === { artwork: '', username: '', profileImage: ''}){
       setLoading(true)
     } else {
-      setLoading(true)
+      setLoading(false)
     }
     
     const isDefaultLocale = router.locale == router.defaultLocale;
@@ -32,7 +40,7 @@ export default function IndexHero() {
     setSignUpRedirectHref(redirectHref);
   }, []);
 
-  //List with current artists
+  //List with current promoted artists
   const images = [
     { name: "jasonandersson", image: '/images/jason.jpg', profileImage: 'image0-14-2.jpg'},
   ];
@@ -45,7 +53,6 @@ export default function IndexHero() {
       profileImage: (images[randomImageIndex].profileImage)}));
   }, [])
 
-  const promotedUser = randomImage.username;
 
   return (
     <div className={s.container}>
@@ -78,19 +85,19 @@ export default function IndexHero() {
         </div>
         <div className={s.right}>
           <div className={s.paintingContainer}>
-          {loading ? <Skeleton variant="rect" width={210} height={118} /> 
+          {!randomImage ? <Skeleton variant="rect" width={400} height={400} /> 
           :
           <>
             <Paper elevation={5}>
               <img 
                 className={s.boosted} 
                 src={(randomImage.artwork)} 
-                alt={`${t("artworkFrom")} ${promotedUser}`}
-                title={`${t("artworkFrom")} ${promotedUser}`}/>
+                alt={`${t("artworkFrom")} ${randomImage.username}`}
+                title={`${t("artworkFrom")} ${randomImage.username}`}/>
             </Paper>
             <div className={s.createdBy}>
               <Chip
-                onClick={(_) => router.push(`/profile/@${promotedUser}`)}
+                onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
                 size="small"
                 classes={{
                   root: s.chip,
@@ -100,7 +107,7 @@ export default function IndexHero() {
                     <ProfileAvatar size={19} profilePicture={randomImage.profileImage} />
                   </div>
                 }
-                label={promotedUser}/>
+                label={randomImage.username}/>
             </div>
             </>
             }
