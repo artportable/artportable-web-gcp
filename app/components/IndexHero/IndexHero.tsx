@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useContext } from 'react'
 import { Typography, Chip, Paper } from '@material-ui/core';
 import { styles } from './indexHero.css'
 import { useTranslation } from "next-i18next";
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from "next/router";
+import Skeleton from '@material-ui/lab/Skeleton'
 
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
-import { FullWidthBlock } from '../Main/Main'
-import { useGetArtwork } from '../../hooks/dataFetching/Artworks';
 
 export default function IndexHero() {
   const s = styles();
@@ -19,8 +18,15 @@ export default function IndexHero() {
 
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [randomImage, setRandomImage] = useState({ artwork: '', username: '', profileImage: ''})
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (randomImage === { artwork: '', username: '', profileImage: ''}){
+      setLoading(true)
+    } else {
+      setLoading(true)
+    }
+    
     const isDefaultLocale = router.locale == router.defaultLocale;
     const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
     setSignUpRedirectHref(redirectHref);
@@ -72,6 +78,9 @@ export default function IndexHero() {
         </div>
         <div className={s.right}>
           <div className={s.paintingContainer}>
+          {loading ? <Skeleton variant="rect" width={210} height={118} /> 
+          :
+          <>
             <Paper elevation={5}>
               <img 
                 className={s.boosted} 
@@ -93,6 +102,8 @@ export default function IndexHero() {
                 }
                 label={promotedUser}/>
             </div>
+            </>
+            }
           </div>
           <div>
             {/* <img className={s.sofaImage} src="/images/soffa-cropped-landing-hero.png"></img> */}
