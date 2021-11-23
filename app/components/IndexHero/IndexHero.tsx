@@ -16,8 +16,6 @@ interface RandomImageProps {
   profileImage: string;
 }
 
-
-
 export default function IndexHero(Props:RandomImageProps) {
   const s = styles();
   const { t } = useTranslation('index');
@@ -85,7 +83,7 @@ export default function IndexHero(Props:RandomImageProps) {
         </div>
         <div className={s.right}>
           <div className={s.paintingContainer}>
-          {!randomImage ? <Skeleton variant="rect" width={400} height={400} /> 
+          {!randomImage ? <Skeleton variant="rect" width={320} height={320} /> 
           :
           <>
             <Paper elevation={5}>
