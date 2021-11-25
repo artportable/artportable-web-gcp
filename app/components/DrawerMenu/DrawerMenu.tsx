@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse, Divider, Dialog, DialogContent, Typography, Box} from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse, Divider} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
@@ -14,17 +14,12 @@ import { useRouter } from 'next/router'
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 import { UserContext } from '../../contexts/user-context'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { Membership } from '../../models/Membership'
 import DialogConstruction from '../ContactDialog/contactDialog'
 import { Locales, DisplayLocales } from '../../models/i18n/locales'
-import PlanSelector, { PriceData } from "../PlanSelector/PlanSelector"
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
 import Upgrade from './Upgrade'
-
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation(['header', 'common', 'support']);
