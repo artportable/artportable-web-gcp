@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
 import clsx from 'clsx';
 
+
 export interface PriceData {
   id: string;
   product: "portfolioPremium" | "portfolio" | "free";
@@ -18,14 +19,16 @@ export interface PriceData {
   currency: string;
   recurringInterval: string;
   amount?: number;
+  
 }
 
 interface Props {
   priceData: PriceData[];
   landingPageMode?: boolean;
+  showAll: boolean;
 }
 
-export default function PlanSelector({ priceData, landingPageMode = false }: Props ) {
+export default function PlanSelector({ priceData, landingPageMode, showAll = false }: Props ) {
   const { t } = useTranslation(['plans', 'common']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -49,6 +52,7 @@ export default function PlanSelector({ priceData, landingPageMode = false }: Pro
   }];
   
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
+  console.log(plans)
   plans.push("portfolioPremium");
 
   function compareAmounts(a, b) {
@@ -77,12 +81,13 @@ export default function PlanSelector({ priceData, landingPageMode = false }: Pro
         </div>
       }
       <div className={s.planCards}>
-        {plans.map(plan =>
+        {plans.filter ((plan) => {
+          return showAll ||(!showAll && plan === 'Portfolio') 
+          }).map(plan =>
           {
             const p = priceDataWithPremium.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
-            return <PlanCard hideButtons={landingPageMode} plan={p} key={p.id}></PlanCard>
-          }
-        )}
+              return <PlanCard hideButtons={landingPageMode} plan={p} key={p.id}></PlanCard>
+          })}
       </div>
       {landingPageMode &&
         <div className={s.joinCommunityButton}>

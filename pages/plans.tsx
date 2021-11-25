@@ -69,7 +69,7 @@ export default function Plans({ priceData }) {
         <Typography align="center" component="div">
           <Box fontWeight="fontWeightBold" marginBottom="15px"> {t('ourMemberships')}</Box>
         </Typography>
-        <PlanSelector priceData={priceData}></PlanSelector>
+        <PlanSelector showAll={true} priceData={priceData}></PlanSelector>
       </div>
     </div>
   );
@@ -89,7 +89,7 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-async function getPriceData() {
+export async function getPriceData() {
   const freeYearPlan: Price =
     {
       amount: 0,
@@ -108,6 +108,7 @@ async function getPriceData() {
       productKey: 'free',
       recurringInterval: 'year'
     };
+    
 
   try {
     return (

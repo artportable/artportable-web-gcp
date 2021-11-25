@@ -45,7 +45,7 @@ import { UserContext } from '../../app/contexts/user-context'
 import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 import { Membership } from '../../app/models/Membership'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
-
+import UpgradePortfolio from '../../app/components/UpgradePortfolio/UpgradPortfolio'
 
 function a11yProps(index: any) {
   return {
@@ -55,7 +55,7 @@ function a11yProps(index: any) {
 }
 
 export default function Profile(props) {
-  const { t } = useTranslation(['common', 'profile', 'upload']);
+  const { t } = useTranslation(['common', 'profile', 'upload', 'header']);
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
@@ -348,6 +348,10 @@ export default function Profile(props) {
                     </Link>
                   </div>
                 }
+                
+                {(membership.value < Membership.Portfolio) && 
+                <UpgradePortfolio />
+              }
               </>
             :
               <>
@@ -520,7 +524,7 @@ export async function getStaticProps({ locale, params }) {
       props: {
         profile,
         locale: locale,
-        ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support']),
+        ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
       },
       revalidate: 10,
     };
@@ -531,7 +535,7 @@ export async function getStaticProps({ locale, params }) {
   return {
     props: {
       locale: locale,
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support']),
+      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
     },
     revalidate: 10,
   }

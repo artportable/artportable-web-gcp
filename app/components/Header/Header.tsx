@@ -31,8 +31,9 @@ import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
 
-export default function Header({}) {
+export default function Header() {
   const { t } = useTranslation(['header','support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -48,6 +49,7 @@ export default function Header({}) {
   
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
+
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -177,6 +179,9 @@ export default function Header({}) {
                     </Link>
                   </div>
                 }
+                {(membership.value < Membership.Portfolio) && 
+                <UpgradePortfolio />
+              }
                 <div className={s.iconButtons}>
                   <div className={s.notificationButton}>
                     {activityToken && !isError && !isLoading ?
