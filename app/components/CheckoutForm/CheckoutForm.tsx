@@ -54,13 +54,14 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   const cardStyle = {
     style: {
+      width: '100%',
       base: {
         color: "#32325d",
         fontFamily: 'Arial, sans-serif',
         fontSmoothing: "antialiased",
         fontSize: "16px",
         "::placeholder": {
-          color: "#32325d"
+          color: "#32325d",
         },
         fontStyle: 'italic',
       },

@@ -20,6 +20,7 @@ import { Membership } from '../../models/Membership'
 import DialogConstruction from '../ContactDialog/contactDialog'
 import { Locales, DisplayLocales } from '../../models/i18n/locales'
 import Upgrade from './Upgrade'
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation(['header', 'common', 'support']);
@@ -101,7 +102,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           <>
           {(membership.value < Membership.Portfolio) &&       
             <div>
-            <ListItem button divider onClick={handleClickUpgrade} >
+            <ListItem button divider onClick={() => { handleClickUpgrade(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
               <ListItemText primary={t('upgrade')} />
               </ListItem > 
               <Upgrade

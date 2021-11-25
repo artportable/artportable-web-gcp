@@ -7,6 +7,7 @@ import { styles } from './upgradPortfolio.css'
 import PlanSelector, { PriceData } from "../PlanSelector/PlanSelector"
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -45,7 +46,7 @@ export default function DialogConstruction() {
   return (
     <div>
       <div className={s.upgradeDesktopDiv}>
-      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="primary" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
       {t('header:upgradeButton')}
       </Button>
       </div>
