@@ -334,7 +334,7 @@ export default function UploadArtworkPage() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['header', 'footer', 'upload', 'tags', 'support']),
+      ...await serverSideTranslations(locale, ['header', 'footer', 'upload', 'tags', 'support', 'common', 'plans']),
     }
   };
 }

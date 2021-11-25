@@ -1,5 +1,16 @@
 const { i18n } = require('./next-i18next.config')
 module.exports = {
+    // Fix to reload page after upgrade account
+    async redirects() {
+      return [
+        {
+          source: '/success',
+          destination: '/',
+          permanent: true,
+        },
+      ]
+    },
+
   images: {
     domains: ['artportabletest.blob.core.windows.net', 'artportableprod.blob.core.windows.net'],
   },

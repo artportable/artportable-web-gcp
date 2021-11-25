@@ -8,6 +8,8 @@ import { capitalizeFirst } from '../../utils/util';
 import router from 'next/router';
 import { TokenContext } from '../../contexts/token-context';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -180,12 +182,15 @@ export default function CheckoutForm({ email, fullName, plan }) {
   useEffect(() => {
     if(countdown === 0) {
       clearInterval(countdownRef.current);
-      router.push('/');
+      router.push("/success")
+
+
     }
   }, [countdown]);
   
   const handleSuccessClose = () => {
-    router.push('/');
+    router.push("/success")
+    
   }
 
   return (

@@ -1,8 +1,8 @@
 export default interface Price {
-  amount: number,
+  amount?: number,
   currency: string,
   id: string,
-  product: string,
+  product: "portfolioPremium" | "portfolio" | "free",
   productKey: string,
   recurringInterval: string,
 }

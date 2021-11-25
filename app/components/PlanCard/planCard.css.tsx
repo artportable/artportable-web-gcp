@@ -4,11 +4,6 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
-      paddingTop: 0,
-
-      [theme.breakpoints.up('md')]: {
-        paddingTop: theme.spacing(4),
-      }
     },
     cardRoot: {
       boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)',
