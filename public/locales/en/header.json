@@ -9,10 +9,11 @@
   "upload": "Upload",
   "profile": "Profile",
   "messages": "Messages",
-  "upgradeButton": "Artist?",
-  "upgradeHeading": "Upgrade your account",
+  "upgradeButton": "Upgrade",
+  "upgradeHeading": "Upgrade to artist account",
   "contactUs": "Contact us",
   "stories": "Stories",
   "english": "English",
-  "swedish": "Svenska"
+  "swedish": "Svenska",
+  "upgrade": "Upgrade account"
 }
