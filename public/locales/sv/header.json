@@ -9,10 +9,11 @@
   "upload": "Ladda upp",
   "profile": "Profil",
   "messages": "Meddelanden",
-  "upgradeButton": "Konstnär?",
-  "upgradeHeading": "Uppgradera ditt konto",
+  "upgradeButton": "Uppgradera",
+  "upgradeHeading": "Uppgradera till konstnärskonto",
   "contactUs": "Kontakta oss",
   "stories": "Artiklar",
   "english": "English",
-  "swedish": "Svenska"
+  "swedish": "Svenska",
+  "upgrade": "Uppgradera konto"
 }

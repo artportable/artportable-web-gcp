@@ -19,6 +19,7 @@ import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
 import { Membership } from '../../models/Membership'
 import DialogConstruction from '../ContactDialog/contactDialog'
 import { Locales, DisplayLocales } from '../../models/i18n/locales'
+import Upgrade from './Upgrade'
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const { t } = useTranslation(['header', 'common', 'support']);
@@ -35,6 +36,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const close = () => setOpen(false);
 
   const [openContact, setOpenContact] = useState(false);
+  const [openUpgrade, setOpenUpgrade] = useState(false);
 
   function handleClickLanguage(event) {
     setOpenopenLanguage(!openLanguage);
@@ -46,7 +48,6 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
       router.push(router.asPath, null, { locale: locale });
     }
   } 
-
   const handleClickContact = () => {
     setOpenContact(true);
   };
@@ -54,6 +55,14 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const handleCloseContact= () => {
     setOpenContact(false);
   };
+
+  const handleClickUpgrade = () => {
+    setOpenUpgrade(true);
+  };
+
+  const handleCloseUpgrade = () => {
+    setOpenUpgrade(false);
+  }; 
 
   return (
     <Drawer classes={{ paper: s.container }} open={open} onClose={() => close()}>
@@ -70,6 +79,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             </ListItem>
           </Link>
         }
+        
         <Link href="/" passHref>
           <ListItem button divider>
             <ListItemText primary={t('discover')} />
@@ -83,29 +93,23 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
           <ListItem button divider onClick={handleClickContact} >
             <ListItemText primary={t('contactUs')} />
           </ListItem >
-          <div className={s.languageElement}>
-            <DialogConstruction 
+          <DialogConstruction 
             openContact={openContact}
             handleClose={handleCloseContact} />
-          <ListItem button onClick={handleClickLanguage}>
-            <ListItemText primary={displayLocale} />
-              {openLanguage ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={openLanguage} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding >
-            <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.sv)}>
-                <ListItemText primary={t('swedish')} />
-              </ListItem>
-              <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.en)}>
-                <ListItemText primary={t('english')} />
-              </ListItem>
-            </List>
-          </Collapse>
-          <Divider />
-          </div>
-
+          
         {isSignedIn.value ?
           <>
+          {(membership.value < Membership.Portfolio) &&       
+            <div>
+            <ListItem button divider onClick={handleClickUpgrade} >
+              <ListItemText primary={t('upgrade')} />
+              </ListItem > 
+              <Upgrade
+                openUpgrade={openUpgrade}
+                handleCloseUpgrade={handleCloseUpgrade} />
+              
+              </div>    
+            }      
             {(membership.value > Membership.Base) &&
               <Link href="/upload" passHref>
                 <ListItem button divider>
@@ -135,12 +139,13 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
                 <ListItemText primary={t('profile')} />
               </ListItem>
             </Link>
-            <ListItem button onClick={() => keycloak.logout()}>
+            <ListItem button divider onClick={() => keycloak.logout()}>
               <ListItemIcon>
                 <ExitToAppIcon style={{ fontSize: 30 }} />
               </ListItemIcon>
               <ListItemText primary={t('logout')} />
             </ListItem>
+
           </>
           :
           <>
@@ -150,12 +155,29 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
                 redirectUri: signUpRedirectHref
               })} />
             </ListItem>
-            <ListItem button onClick={() => keycloak.login({ locale: router.locale })}>
+            <ListItem button divider onClick={() => keycloak.login({ locale: router.locale })}>
               <ListItemText primary={t('login')} />
             </ListItem>
           </>
           
         }
+        <div className={s.languageElement}>
+          <ListItem button onClick={handleClickLanguage}>
+            <ListItemText primary={displayLocale} />
+              {openLanguage ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openLanguage} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding >
+            <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.sv)}>
+                <ListItemText primary={t('swedish')} />
+              </ListItem>
+              <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.en)}>
+                <ListItemText primary={t('english')} />
+              </ListItem>
+            </List>
+          </Collapse>
+          <Divider />
+          </div>
       </List>
     </Drawer>
   );
