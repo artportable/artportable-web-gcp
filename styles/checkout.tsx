@@ -17,14 +17,18 @@ export const checkoutStyles = makeStyles((theme: Theme) =>
       
     },
     card: {
+      width: '20rem',
       gridArea: 'payment-card',
       boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)',
-      [theme.breakpoints.up('md')]: {
-        width: '40rem',
+      [theme.breakpoints.up('sm')]: {
+        width: '28rem',
       },
       '& .MuiCardContent-root > *:not(:last-child)': {
         marginBottom: '8px',
-      }
+      },
+      [theme.breakpoints.up('md')]: {
+        width: '40rem',
+      },
     },
     subtotal: {
       display: 'flex',
