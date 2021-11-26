@@ -40,7 +40,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "jasonandersson", image: '/images/jason.jpg', profileImage: 'image0-14-2.jpg'},
+    { name: "ceciliasetterdahl", image: '/images/cecilia_setterdahl.jpg', profileImage: 'PROFILE-PICTURE15.jpg'},
+    { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg'},
+    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: 'e8a1fbf5-7237-46e3-96a0-cc95ffd82c585.jpg'},
   ];
 
   useEffect (() => {
