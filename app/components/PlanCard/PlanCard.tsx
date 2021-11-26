@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Card, CardContent, Typography } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
@@ -15,24 +15,25 @@ import PremiumApply from "../PremiumApply/PremiumApply";
 import { PriceData } from "../PlanSelector/PlanSelector";
 import Dialog from '@material-ui/core/Dialog';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
+import { UserContext } from "../../contexts/user-context";
+import { Lead, zapierLead } from "../../utils/zapierLead" 
 
 interface Props {
   plan: PriceData;
   hideButtons?: boolean;
+  lead?: Lead;
 }
 
-export default function PlanCard({ plan, hideButtons }: Props) {
+export default function PlanCard({ plan, hideButtons, lead }: Props) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const s = styles();
   const dispatch = useDispatch();
   const href = plan.product === 'free' ? 'feed' : '/checkout';
-
   const [isHref, setIsHref] = useState(true);
-
   const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
-
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
   const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
+  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
 
   useEffect(() => {
     if (plan.product === "portfolioPremium") {
@@ -58,8 +59,22 @@ export default function PlanCard({ plan, hideButtons }: Props) {
     });
     if (plan.product.toLowerCase() === 'free') {
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
+      zapierLead(lead={
+        name: {value: given_name.value + ' ' + family_name.value} ?? '',
+        phoneNumber: {value:phone.value} ?? '',
+        email: {value: email.value} ?? '',
+        product: "free",
+        type: {value: user_type.value} ?? ''
+      });
     } else if (plan.product.toLowerCase() === 'portfolio') {
       trackGoogleAnalytics(ActionType.SIGN_UP_PORTFOLIE, CategoryType.BUY);
+      zapierLead(lead={
+        name: {value: given_name.value + ' ' + family_name.value} ?? '',
+        phoneNumber: {value:phone.value} ?? '',
+        email: {value: email.value} ?? '',
+        product: "portfolio",
+        type: {value: user_type.value} ?? ''
+      });
     }
     return true;
   }
