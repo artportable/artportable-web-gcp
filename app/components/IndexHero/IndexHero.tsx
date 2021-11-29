@@ -42,7 +42,7 @@ export default function IndexHero() {
   const images = [
     { name: "ceciliasetterdahl", image: '/images/cecilia_setterdahl.jpg', profileImage: 'PROFILE-PICTURE15.jpg'},
     { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg'},
-    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: 'e8a1fbf5-7237-46e3-96a0-cc95ffd82c585.jpg'},
+    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg'},
   ];
 
   useEffect (() => {
