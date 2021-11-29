@@ -59,7 +59,8 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     });
     if (plan.product.toLowerCase() === 'free') {
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
-      zapierLead(lead={
+     if (user_type.value === "artist")
+      return zapierLead(lead={
         name: {value: given_name.value + ' ' + family_name.value} ?? '',
         phoneNumber: {value:phone.value} ?? '',
         email: {value: email.value} ?? '',
