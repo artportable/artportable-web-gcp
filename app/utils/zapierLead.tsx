@@ -1,5 +1,5 @@
-const zapierFreemiumApiUrl = process.env.NEXT_PUBLIC_ZAPIER_LEADS
-const zapierBasicApiUrl = process.env.NEXT_PUBLIC_ZAPIER_LEADS
+const zapierFreemiumApiUrl = process.env.NEXT_PUBLIC_ZAPIER_FREEMIUM
+const zapierBasicApiUrl = process.env.NEXT_PUBLIC_ZAPIER_BASIC
 
 export interface Lead {
   name: any;
