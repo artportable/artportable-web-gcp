@@ -1,4 +1,5 @@
-const zapierApiUrl = process.env.NEXT_PUBLIC_ZAPIER_LEADS
+const zapierFreemiumApiUrl = process.env.NEXT_PUBLIC_ZAPIER_LEADS
+const zapierBasicApiUrl = process.env.NEXT_PUBLIC_ZAPIER_LEADS
 
 export interface Lead {
   name: any;
@@ -8,7 +9,7 @@ export interface Lead {
   product: "portfolioPremium" | "portfolio" | "free"
 } 
 
-export const zapierLead = async (lead: Lead): Promise<Response> => {
+export const zapierLeadFreemium  = async (lead: Lead): Promise<Response> => {
 
   try {
     const FormRequest = JSON.stringify({
@@ -18,7 +19,27 @@ export const zapierLead = async (lead: Lead): Promise<Response> => {
         },
       }
     });
-    const response = await fetch(zapierApiUrl, {
+    const response = await fetch(zapierFreemiumApiUrl, {
+      method: 'POST',
+      body: FormRequest
+    });
+
+    return response;
+  } catch (error) {
+  }
+}
+
+export const zapierLeadBasic  = async (lead: Lead): Promise<Response> => {
+
+  try {
+    const FormRequest = JSON.stringify({
+      "request": {
+        "requester": {
+         ...lead
+        },
+      }
+    });
+    const response = await fetch(zapierBasicApiUrl, {
       method: 'POST',
       body: FormRequest
     });
