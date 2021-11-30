@@ -14,6 +14,7 @@ import { ConnectionOpen, StreamChat } from 'stream-chat';
 import { AttachmentType, ChannelType, CommandType, EventType, MessageType, ReactionType, UserType } from '../components/Messaging/MessagingTypes';
 import { useGetUserProfilePicture } from '../hooks/dataFetching/UserProfile';
 import { isNullOrUndefinedOrEmpty } from '../utils/util';
+import router from 'next/router';
 
 interface Props {
   children: any;
@@ -240,7 +241,7 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
         }
       }).then(res => {
         if (res.status === 204) {
-          
+          router.push("/plans");
         } else if (res.status === 200) {
           res.json().then(json => {
             setUserContext((prevValue) => ({ 
@@ -255,7 +256,6 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
                 }
               })
             );
-
           });
         }
       }).catch(err => {
