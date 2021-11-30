@@ -16,7 +16,7 @@ import { PriceData } from "../PlanSelector/PlanSelector";
 import Dialog from '@material-ui/core/Dialog';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import { Lead, zapierLead } from "../../utils/zapierLead" 
+import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead" 
 
 interface Props {
   plan: PriceData;
@@ -60,7 +60,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     if (plan.product.toLowerCase() === 'free') {
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
      if (user_type.value === "artist")
-      return zapierLead(lead={
+      return zapierLeadFreemium(lead={
         name: {value: given_name.value + ' ' + family_name.value} ?? '',
         phoneNumber: {value:phone.value} ?? '',
         email: {value: email.value} ?? '',
@@ -69,7 +69,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
       });
     } else if (plan.product.toLowerCase() === 'portfolio') {
       trackGoogleAnalytics(ActionType.SIGN_UP_PORTFOLIE, CategoryType.BUY);
-      zapierLead(lead={
+      zapierLeadBasic(lead={
         name: {value: given_name.value + ' ' + family_name.value} ?? '',
         phoneNumber: {value:phone.value} ?? '',
         email: {value: email.value} ?? '',
