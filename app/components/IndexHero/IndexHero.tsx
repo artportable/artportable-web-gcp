@@ -6,6 +6,7 @@ import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from "next/router";
 import Skeleton from '@material-ui/lab/Skeleton'
+import Link from 'next/link'
 
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
@@ -14,6 +15,7 @@ interface RandomImageProps {
   artwork: string;
   username: string;
   profileImage: string;
+  imageLink: string;
 }
 
 export default function IndexHero() {
@@ -27,7 +29,7 @@ export default function IndexHero() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (randomImage === { artwork: '', username: '', profileImage: ''}){
+    if (randomImage === { artwork: '', username: '', profileImage: '', imageLink: ''}){
       setLoading(true)
     } else {
       setLoading(false)
@@ -40,9 +42,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "ceciliasetterdahl", image: '/images/cecilia_setterdahl.jpg', profileImage: 'PROFILE-PICTURE15.jpg'},
-    { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg'},
-    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg'},
+    { name: "ceciliasetterdahl", image: '/images/cecilia_setterdahl.jpg', profileImage: 'PROFILE-PICTURE15.jpg', imageLink: "9899aa73-d1ed-41ac-bdf9-4bbe24ffb53f"},
+    { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg', imageLink: "3293112f-8f5d-49ff-814f-42b067359b2e"},
+    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg', imageLink: "0899b50c-73a7-4a8c-a3d3-7d2f87b54fcf"},
   ];
 
   useEffect (() => {
@@ -50,7 +52,8 @@ export default function IndexHero() {
     setRandomImage(({
       artwork: (images[randomImageIndex].image), 
       username: (images[randomImageIndex].name), 
-      profileImage: (images[randomImageIndex].profileImage)}));
+      profileImage: (images[randomImageIndex].profileImage),
+      imageLink: (images[randomImageIndex].imageLink)}));
   }, [])
 
 
@@ -89,11 +92,16 @@ export default function IndexHero() {
           :
           <>
             <Paper elevation={5}>
-              <img 
-                className={s.boosted} 
-                src={(randomImage.artwork)} 
-                alt={`${t("artworkFrom")} ${randomImage.username}`}
-                title={`${t("artworkFrom")} ${randomImage.username}`}/>
+            <Link href={`/art/${randomImage.imageLink}`}>
+              <a>
+                <img 
+                  className={s.boosted} 
+                  src={(randomImage.artwork)} 
+                  alt={`${t("artworkFrom")} ${randomImage.username}`}
+                  title={`${t("artworkFrom")} ${randomImage.username}`}/>
+              </a>
+            </Link>
+              
             </Paper>
             <div className={s.createdBy}>
               <Chip
