@@ -68,7 +68,7 @@ export default function IndexHero() {
             <Typography variant="body1" className={s.description}>
               {t('subHeader')}
             </Typography>
-            <div className={s.signupButtonContainer}>
+            {/* <div className={s.signupButtonContainer}>
               <Button
                 classes={{
                   label: s.buttonLabel
@@ -83,7 +83,7 @@ export default function IndexHero() {
                   redirectUri: signUpRedirectHref})}>
                 {t('signUp')}
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={s.right}>
@@ -91,7 +91,6 @@ export default function IndexHero() {
           {!randomImage ? <Skeleton variant="rect" width={320} height={320} /> 
           :
           <>
-            <Paper elevation={5}>
             <Link href={`/art/${randomImage.imageLink}`}>
               <a>
                 <img 
@@ -101,8 +100,6 @@ export default function IndexHero() {
                   title={`${t("artworkFrom")} ${randomImage.username}`}/>
               </a>
             </Link>
-              
-            </Paper>
             <div className={s.createdBy}>
               <Chip
                 onClick={(_) => router.push(`/profile/@${randomImage.username}`)}

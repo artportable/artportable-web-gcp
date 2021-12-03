@@ -22,6 +22,7 @@ import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopAr
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
 import { Artwork } from "../app/models/Artwork";
 import Artist from "../app/models/Artist";
+import PlansLandingPage from "../app/components/PlansLandingPage/PlandLandingPage";
 
 
 export default function DiscoverPage() {
@@ -212,7 +213,10 @@ export default function DiscoverPage() {
       {!loading &&
         <>
           {!isSignedIn.value &&
-            <IndexHero></IndexHero>
+            <IndexHero></IndexHero> 
+          }
+          {!isSignedIn.value &&
+            <PlansLandingPage></PlansLandingPage>
           }
           <div className={s.discoverContainer}>
             <Tabs

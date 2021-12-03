@@ -108,9 +108,10 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                 <Link passHref href={href}>
                   <a>
                     <Button
+                      className={s.buttonLabel}
                       size="small"
                       variant="contained"
-                      color="primary"
+                      color="secondary"
                       disableElevation
                       rounded
                       onClick={() => onNavClick()}>
@@ -125,9 +126,10 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                 :
 
                 <Button
+                className={s.buttonLabel}
                   size="small"
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   disableElevation
                   rounded
                   onClick={() => { setIsPremiumSignupDialogOpen(true); trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM, CategoryType.BUY) }}>
