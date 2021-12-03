@@ -46,7 +46,7 @@ export default function DialogConstruction() {
   return (
     <div>
       <div className={s.upgradeDesktopDiv}>
-      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="primary" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
+      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="secondary" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
       {t('header:upgradeButton')}
       </Button>
       </div>

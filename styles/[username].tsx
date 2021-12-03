@@ -73,6 +73,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     uploadButton: {
       width: '130px',
       display: 'none',
+      color: 'white'
     },
     secondDivider: {
       gridArea: 'divider2'

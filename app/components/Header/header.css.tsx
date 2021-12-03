@@ -44,6 +44,9 @@ export const styles = makeStyles((theme: Theme) =>
     login: {
       display: 'none',
     },
+    signUp: {
+      color: 'white'
+    },
     upload: {
       display: 'none',
       whiteSpace: 'nowrap',

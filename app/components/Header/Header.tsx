@@ -120,9 +120,10 @@ export default function Header() {
           {(!isSignedIn.value) &&
             <div className={s.login}>
               <Button
-                size="small"
+                className={s.signUp}
+                size="medium"
                 variant="contained"
-                color="primary"
+                color="secondary"
                 disableElevation
                 rounded
                 onClick={() => keycloak.register({
@@ -134,7 +135,7 @@ export default function Header() {
               <Button
                 size="small"
                 variant="outlined"
-                color="primary"
+                color="secondary"
                 disableElevation
                 rounded
                 onClick={() => keycloak.login({ locale: router.locale })}>
@@ -170,7 +171,7 @@ export default function Header() {
                           className={s.uploadButton}
                           size="small"
                           variant="outlined"
-                          color="primary"
+                          color="secondary"
                           disableElevation
                           rounded>
                           {t('upload')}
