@@ -102,8 +102,8 @@ export default function EditProfileDialog({ userProfile }) {
         <Button
           className={s.editProfileButton}
           size="small"
-          variant="outlined"
-          color="secondary"
+          variant="contained"
+          color="default"
           rounded
           startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}>

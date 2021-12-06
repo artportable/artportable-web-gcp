@@ -32,8 +32,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     uploadArtButton: {
       width: '100%',
-      height: '3rem',
-      color: 'white'
+      height: '3rem'
     },
 
     [theme.breakpoints.up('md')]: {
