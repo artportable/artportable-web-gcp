@@ -5,10 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     plansRootContainer: {
       height: '100vh',
       paddingTop: 'var(--header-plus-box-shadow-padding)',
-      backgroundImage: 'url(/images/artp.jpg)',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
+      backgroundColor: 'var(--background-color)',
       display: 'grid',
       gap: '16px 0',
       gridTemplate: (
@@ -21,9 +18,6 @@ export const styles = makeStyles((theme: Theme) =>
     header: {
       gridArea: 'header',
       marginBottom: '3rem'
-    },
-    backgroundImage: {
-      url: '(/images/rene.jpg)'
     },
     planSelector: {
       gridArea: 'planSelector',

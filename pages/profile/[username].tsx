@@ -339,7 +339,7 @@ export default function Profile(props) {
                           onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_PROFIL, CategoryType.INTERACTIVE)}
                           size="small"
                           variant="contained"
-                          color="secondary"
+                          color="primary"
                           startIcon={<UploadIcon className={s.uploadIcon} />}
                           rounded>
                           {t('upload:upload')}

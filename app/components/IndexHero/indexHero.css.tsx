@@ -63,7 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
       
     },
     paintingContainer: {
-      width: '300px',
+      width: '190px',
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
@@ -74,8 +74,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'block',
       objectFit: 'contain',
       maxHeight: '300px',
-      maxWidth: '100%',
-      filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
+      maxWidth: '100%'
     },
     createdBy: {
       display: 'flex',
@@ -106,7 +105,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: theme.breakpointMainWidths.sm.wide
       },
       paintingContainer: {
-        width: '350px',
+        width: '250px',
       },
     },
     [theme.breakpoints.up('smPlus')]: {

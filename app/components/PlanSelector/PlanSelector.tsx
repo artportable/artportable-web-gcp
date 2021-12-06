@@ -45,10 +45,9 @@ export default function PlanSelector({ priceData, landingPageMode, showAll = fal
     recurringInterval: "month"
   }, {
     id: "premium",
-    amount: 1500,
-    currency: "sek",
     product: "portfolioPremium",
     productKey: "portfolioPremium",
+    currency: "sek",
     recurringInterval: "year"
   }];
   

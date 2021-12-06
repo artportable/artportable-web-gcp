@@ -149,7 +149,7 @@ export default function FeedPage() {
                         className={s.uploadArtButton}
                         size="small"
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         onClick={trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_MITT_KONSTNÄTVERK, CategoryType.INTERACTIVE)}
                         disableElevation>
                         {t('uploadNewWorkOfArt')}

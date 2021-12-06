@@ -5,11 +5,8 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
     },
-    buttonLabel: {
-      color: 'white'
-    },
     cardRoot: {
-      border: '3px solid #FB7A83',
+      boxShadow: '0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)',
       '& .MuiCardContent-root': {
         height: '100%',
         display: 'flex',
@@ -34,6 +31,6 @@ export const styles = makeStyles((theme: Theme) =>
     button: {
       margin: 'auto',
       marginTop: theme.spacing(3)
-    },
+    }
   }),
 );
