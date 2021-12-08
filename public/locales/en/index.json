@@ -1,7 +1,18 @@
 {
   "header": "Discover unique artwork",
-  "subHeader": "Plenty of creative artwork and inspiration. An easy way to find unique artwork for the home and office. Get access to a meeting place for art lovers and artists. Create your free account today.",
+  "subHeader": "Here you will find original art for the home and office.",
+  "subHeader2": "Follow artists and send purchase requests.",
   "artworkFrom": "Artwork from",
   "signUp": "Sign up",
-  "artworkBy": "Artwork by"
+  "artworkBy": "Artwork by",
+  "artlover": "Art lover",
+  "artist": "Artist",
+  "artloverButton": "Create your free account here",
+  "artistButton": "Create portfolio here",
+  "artLoverHeader": "Art lover",
+  "artistHeader": "Artist from",
+  "artistPrice": " 139 ",
+  "artloverPrice": " 0 ",
+  "artloverSek": "SEK",
+  "artistSek": "SEK/month"
 }
