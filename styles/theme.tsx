@@ -120,10 +120,11 @@ const palette = {
   common: { white: '#ffffff', black: '#000000'},
   background: { default: "#f4f4f4"},
   primary: {
-    main: "#447EFF"
+    main: "#FF8383",
+    contrastText  : '#FFFFFF'
   },
   secondary: {
-    main: "#FF8383",
+    main: "#447EFF",
   },
 };
 
@@ -187,3 +188,4 @@ theme.overrides = {
     }
   }
 }
+

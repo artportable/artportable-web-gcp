@@ -24,9 +24,10 @@ export const styles = makeStyles((theme: Theme) =>
       }      
     },
     left: {
-      textAlign: 'center',
+      textAlign: 'left',
       flexBasis: '100%',
       flexGrow: 2,
+      width: '90&',
       display: 'flex',
       justifyContent: 'center',
       alignContent: 'center',
@@ -34,23 +35,37 @@ export const styles = makeStyles((theme: Theme) =>
       ...columnGap(
         theme.spacing(1),
       ),
+      marginRight: '16px',
+      marginLeft: '16px',
 
       [theme.breakpoints.up('smPlus')]: {
-        margin: theme.spacing(0, 8, 4, 8),
+        margin: theme.spacing(0, 0, 4, 4),
+        width: '567px',
       },
       [theme.breakpoints.up('md')]: {
         textAlign: 'initial',
-        margin: theme.spacing(0, 0, 4, 4),
+        // margin: theme.spacing(0, 0, 4, 4),
       }
     },
     headline: {
       fontWeight: 600
     },
+    subHeadline: {
+      '& span': {
+        fontSize: '1.3rem',
+      },
+      fontWeight: 600,
+      margin: theme.spacing(0, 2, 0, 1),
+      textAlign: 'left',
+      fontSize: '1rem',
+      [theme.breakpoints.up('smPlus')]: {
+        margin: theme.spacing(0, 2, 1, 1),
+      },
+    },
+    
     description: {
       margin: theme.spacing(1, 0,),
-      [theme.breakpoints.up('md')]: {
-        marginRight: '10%',
-      },
+      marginBottom: '30px',
     },
     right: {
       display: 'flex',
@@ -58,23 +73,58 @@ export const styles = makeStyles((theme: Theme) =>
       flexBasis: '100%',
       alignItems: 'flex-end',
       [theme.breakpoints.up('md')]: {
-        marginTop: '40px',
+        marginTop: '20px',
       },
       
     },
+    flexheaderButton: {
+      display: 'flex',
+      ...rowGap(
+        theme.spacing(3)),
+      flexDirection: 'column',
+      marginTop: '-20px',
+      
+      [theme.breakpoints.up('smPlus')]: {
+        flexDirection: 'row',
+        marginTop: '0',
+      },
+      
+      
+    },
+    headerButtonArtlover: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'left',
+    },
+    headerButtonArtist: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'left',
+      marginTop: '10px',
+      [theme.breakpoints.up('smPlus')]: {
+        marginTop: '0',
+      },
+    },
+    
     paintingContainer: {
-      width: '190px',
+      width: '300px',
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
       alignItems: 'flex-end',
-      gap: theme.spacing(1)
+      gap: theme.spacing(1),
+      [theme.breakpoints.up('sm')]: {
+        width: '300px',
+      },
+      [theme.breakpoints.up('smPlus')]: {
+        width: '300px'
+      },
     },
     boosted: {
       display: 'block',
       objectFit: 'contain',
-      maxHeight: '300px',
-      maxWidth: '100%'
+      maxHeight: '800px',
+      maxWidth: '100%',
     },
     createdBy: {
       display: 'flex',
@@ -97,7 +147,16 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(1)
     },
     buttonLabel: {
-      margin: theme.spacing(0, 2)
+      margin: theme.spacing(0, 2),
+      fontSize: '1rem',
+
+      [theme.breakpoints.up('smPlus')]: {
+
+      },
+    },
+    outlinedButtonLabel: {
+      padding: '2px 9px',
+      border: '2px solid rgba(255, 131, 131)'
     },
 
     [theme.breakpoints.up('sm')]: {
@@ -139,6 +198,6 @@ export const styles = makeStyles((theme: Theme) =>
       paintingContainer: {
         width: '320px',
       },
-    }    
+    }, 
   })
 );

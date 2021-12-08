@@ -65,11 +65,15 @@ export default function IndexHero() {
             <Typography variant="h1" className={s.headline}>
               {t('header')}
             </Typography>
-            <Typography variant="body1" className={s.description}>
-              {t('subHeader')}
+            <Typography variant="h4" className={s.description}>
+              {t('subHeader')}<br></br>{t('subHeader2')}
             </Typography>
-            <div className={s.signupButtonContainer}>
-              <Button
+            <div className={s.flexheaderButton}>
+              <div className={s.headerButtonArtlover}>     
+            <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
+            {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
+            </Typography> 
+            <Button
                 classes={{
                   label: s.buttonLabel
                 }}
@@ -81,8 +85,29 @@ export default function IndexHero() {
                 onClick={() => keycloak.register({
                   locale: router.locale,
                   redirectUri: signUpRedirectHref})}>
-                {t('signUp')}
+                {t('artloverButton')}
               </Button>
+            </div>   
+            <div className={s.headerButtonArtist}>
+            <Typography variant="subtitle1" component="h2"className={s.subHeadline} >
+            {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
+            </Typography>
+              <Button
+                classes={{
+                  label: s.buttonLabel
+                }}
+                className={s.outlinedButtonLabel}
+                size="small"
+                variant="outlined"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => keycloak.register({
+                  locale: router.locale,
+                  redirectUri: signUpRedirectHref})}>
+                {t('artistButton')}
+              </Button>
+              </div>
             </div>
           </div>
         </div>

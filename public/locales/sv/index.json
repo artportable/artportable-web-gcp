@@ -1,7 +1,18 @@
 {
   "header": "Hitta originalkonst",
-  "subHeader": "Massor av konst och kreationer. Här hittar du snabbt och enkelt originalkonst till hemmet och kontoret. Få tillgång till en unik mötesplats för konstintresserade och konstnärer. Skapa ditt gratiskonto idag.",
+  "subHeader": "Här hittar du originalkonst till hemmet och kontoret.",
+  "subHeader2": "Följ konstnärer och skicka köpförfrågan.",
   "artworkFrom": "Konstverk av",
   "signUp": "Bli medlem",
-  "artworkBy": "Konstverk av"
+  "artworkBy": "Konstverk av",
+  "artlover": "Konstintresserad",
+  "artist": "Konstnär",
+  "artloverButton": "Skapa gratiskonto här",
+  "artistButton": "Skapa portfolio här",
+  "artLoverHeader": "Konstintresserad",
+  "artistHeader": "Konstnär från",
+  "artistPrice": " 139 ",
+  "artloverPrice": " 0 ",
+  "artloverSek": "kr",
+  "artistSek": "kr/månad"
 }
