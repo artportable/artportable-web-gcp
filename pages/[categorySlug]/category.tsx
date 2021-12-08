@@ -47,15 +47,16 @@ export async function getStaticProps({ params }) {
       let res = await fetch(`${process.env.STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`)
       var swedishArticles: Article[] = await res.json();
       if (swedishArticles && swedishArticles.length > 0) {
-        var swedishArticles = swedishArticles.filter(article => !article.localizations.some(locale => locale.)
-        }
+        var swedishArticles = swedishArticles.filter(article => !article.localizations.some(locale => locale.locale == Locales.en));
+        category.articles.push(...swedishArticles);
+      }
     }
   }
 
 
   return {
     props: {
-      posts,
+      category: category,
       ...await serverSideTranslations(params.locale, []),
     },
     // Next.js will attempt to re-generate the page:
