@@ -154,11 +154,6 @@ export const styles = makeStyles((theme: Theme) =>
 
       },
     },
-    outlinedButtonLabel: {
-      padding: '2px 9px',
-      border: '2px solid rgba(255, 131, 131)'
-    },
-
     [theme.breakpoints.up('sm')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.sm.wide
