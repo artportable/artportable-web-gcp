@@ -96,7 +96,6 @@ export default function IndexHero() {
                 classes={{
                   label: s.buttonLabel
                 }}
-                className={s.outlinedButtonLabel}
                 size="small"
                 variant="outlined"
                 color="primary"
