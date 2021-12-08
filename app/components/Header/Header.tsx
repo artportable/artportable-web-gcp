@@ -218,7 +218,7 @@ export default function Header() {
       </Toolbar>
     </AppBar>
     {globalIsLoading &&
-      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
+      <LinearProgress color="secondary" style={{position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
     }
     </>
   );
