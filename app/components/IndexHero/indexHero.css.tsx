@@ -48,8 +48,12 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     headline: {
-      fontWeight: 600
+      fontWeight: 600,
+      fontSize: '1.9rem',
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '2.9rem',
     },
+  },
     subHeadline: {
       '& span': {
         fontSize: '1.3rem',
@@ -58,7 +62,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: theme.spacing(0, 2, 0, 1),
       textAlign: 'left',
       fontSize: '1rem',
-      [theme.breakpoints.up('smPlus')]: {
+      [theme.breakpoints.up('sm')]: {
         margin: theme.spacing(0, 2, 1, 1),
         fontWeight: 600,
       },
@@ -68,7 +72,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1, 0,),
       marginBottom: '30px',
       fontSize: '0.8rem',
-      [theme.breakpoints.up('smPlus')]: {
+      [theme.breakpoints.up('sm')]: {
         fontSize: '1.3rem',
       },
     },
