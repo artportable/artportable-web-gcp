@@ -54,18 +54,23 @@ export const styles = makeStyles((theme: Theme) =>
       '& span': {
         fontSize: '1.3rem',
       },
-      fontWeight: 600,
+      fontWeight: 500,
       margin: theme.spacing(0, 2, 0, 1),
       textAlign: 'left',
       fontSize: '1rem',
       [theme.breakpoints.up('smPlus')]: {
         margin: theme.spacing(0, 2, 1, 1),
+        fontWeight: 600,
       },
     },
     
     description: {
       margin: theme.spacing(1, 0,),
       marginBottom: '30px',
+      fontSize: '0.8rem',
+      [theme.breakpoints.up('smPlus')]: {
+        fontSize: '1.3rem',
+      },
     },
     right: {
       display: 'flex',
