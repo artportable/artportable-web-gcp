@@ -42,9 +42,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "ceciliasetterdahl", image: '/images/cecilia_setterdahl.jpg', profileImage: 'PROFILE-PICTURE15.jpg', imageLink: "9899aa73-d1ed-41ac-bdf9-4bbe24ffb53f"},
-    { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg', imageLink: "3293112f-8f5d-49ff-814f-42b067359b2e"},
-    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg', imageLink: "0899b50c-73a7-4a8c-a3d3-7d2f87b54fcf"},
+    { name: "orjan.satre", image: '/images/orjan.satre.jpg', profileImage: 'om.png', imageLink: "9fb0971e-ad33-4a57-b13f-9399aa708352"},
+    // { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg', imageLink: "3293112f-8f5d-49ff-814f-42b067359b2e"},
+    // { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg', imageLink: "0899b50c-73a7-4a8c-a3d3-7d2f87b54fcf"},
   ];
 
   useEffect (() => {
