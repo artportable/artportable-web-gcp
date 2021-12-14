@@ -1,8 +1,9 @@
+import { Box } from "@material-ui/core";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 import PaymentPremium from "../app/components/Payments/PaymentPremium";
-import { styles } from "../styles/gdpr.css";
+import { styles } from '../styles/payment.css';
 
 export default function Payment(props) {
 
@@ -11,9 +12,9 @@ export default function Payment(props) {
 
 
   return (
-    <>
+    <Box className={s.root}>
     <PaymentPremium />
-    </>
+    </Box>
   );
 }
 

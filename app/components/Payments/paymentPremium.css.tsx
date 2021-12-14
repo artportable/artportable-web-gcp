@@ -4,32 +4,27 @@ import { columnGap, rowGap } from '../../utils/styleUtils'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    paperDiv: {
-      marginTop: '90px',
-      height: '90vh',
+    header: {
+      marginTop: '7rem',
+      marginBottom: '3rem'
     },
     flexContainer: {
       display: 'flex',
-      justifyContent: 'space-between',
-
+      justifyContent: 'center',
     },
     left: {
-      width: '500px',
+      width: '400px',
     },
     right: {
       backgroundColor: '#F5F5F6',
       width: '900px',
       display: 'flex',
       justifyContent: 'center',
-      borderRadius: '800px 0px 0px 800px',
     },
     input: {
       display: 'flex',
-      justifyContent: 'center',
       flexDirection: 'column',
-      width: '500px',
-      marginTop: '20px',
-      height: '90vh',
+      width: '600px',
     },
     helperText: {
       fontSize: '1.2rem',
@@ -38,7 +33,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     inputField: {
       backgroundColor: 'white',
-      width: '500px',
+      width: '600px',
       fontSize: '1.5rem'
     },
     container: {
@@ -66,47 +61,46 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex'
 
     },
-    swishNumber: {
-      marginBottom: '15px',
-      transition: 'width 10s, height 10s',
+    swish: {
+      margin: '0 0 15px 15px',
+
     },
     swishLogo: {
       marginLeft: '25px',
       position: 'relative',
       top: '5px'
     },
+    swishNumer: {
+      letterSpacing: '3px',
+      position: 'relative',
+      left: '28px',
+    },
     phoneNumber: {
       backgroundColor: 'white',
       width: '300px',
       fontSize: '1.2rem',
-      transition: 'width 10s, height 10s',
     },
-    stripeFlex: {
-      
+    gap: {
+      ...columnGap(theme.spacing(4)),
     },
-    s: {
-      marginTop: '5px'
+    qrCode: {
+      marginTop: '15px',
     },
-    thirdDiv: {
-      display: 'flex',
-      height: '90vh',
-      backgroundColor: '#F5F5F6',
-      borderRadius: '800px 0px 0px 800px',
-      justifyContent: 'left'
-      
-
+    stripe: {
+      margin: '0 0 15px 15px',
     },
-    thirdText: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      ...columnGap(theme.spacing(2)),
-      marginLeft: '100px'
-      
+    premiumText: {
+      ...columnGap(theme.spacing(1)),
+      marginLeft: '15px',
     },
-    swishPhone: {
-      alignSelf: 'center',
+    textIncluded: {
+      marginTop: '15px',
     },
+    textLastLine: {
+      marginBottom: '15px',
+    },
+    logoArtportable: {
+      marginTop: '15px',
+    }
   }),
 );

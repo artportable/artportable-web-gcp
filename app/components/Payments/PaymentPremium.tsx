@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Paper, TextField, FormControl, Input, FormHelperText, OutlinedInput, InputLabel, Typography, Accordion, AccordionDetails, AccordionSummary, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core'
+import { Step, Stepper, StepLabel, StepContent, Paper, Box, TextField, FormControl, Input, FormHelperText, OutlinedInput, InputLabel, Typography, Accordion, AccordionDetails, AccordionSummary, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTranslation } from 'next-i18next' 
+import { useTranslation } from 'next-i18next'
 import { styles } from './paymentPremium.css'
 import Header from '../Header/Header';
 import { SendPaymentInfo, paymentRequest } from './Request';
 import Button from '../Button/Button'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import clsx from "clsx";
-
+import StripeCard from '../Stripe/StripeCard'
 
 const useStyles = makeStyles((theme) => ({
   accordion: {
@@ -21,35 +21,16 @@ const useStyles = makeStyles((theme) => ({
     flexShrink: 0,
     fontSize: '1.5rem',
   },
-  animatedItem: {
-    width: '2000px',
-    animation: `$myEffect 3000ms ${theme.transitions.easing.easeInOut}`,
+  button: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
-  animatedItemExiting: {
-    animation: `$myEffectExit 3000ms ${theme.transitions.easing.easeInOut}`,
-    opacity: 1,
-    transform: "translateX(40%)"
+  actionsContainer: {
+    marginBottom: theme.spacing(2),
   },
-  "@keyframes myEffect": {
-    "0%": {
-      opacity: 1,
-      transform: "translateX(30%)"
-    },
-    "100%": {
-      opacity: 1,
-      transform: "translateX(0)"
-    }
+  resetContainer: {
+    padding: theme.spacing(3),
   },
-  "@keyframes myEffectExit": {
-    "0%": {
-      opacity: 1,
-      transform: "translateX(0)"
-    },
-    "100%": {
-      opacity: 1,
-      transform: "translate(40%)"
-    }
-  }
 }));
 
 export default function PaymentPremium() {
@@ -60,11 +41,8 @@ export default function PaymentPremium() {
   const [values, setValues] = useState({
     name: '',
     phoneNumber: '',
+    email: '',
   });
-  
-  const [exit, setExit] = useState(true);
-  const [step, setStep] = useState('step1')
-  const [step2, setStep2] = useState(false)
   const [valueRadio, setValueRadio] = useState('');
   const handleChangesegfeg = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -76,186 +54,374 @@ export default function PaymentPremium() {
   const handleChangeRadio = (event) => {
     setValueRadio(event.target.value);
   };
+
+  const [activeStep, setActiveStep] = useState(0);
+  const steps = getSteps();
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+  function getSteps() {
+    return ['Fyll i dina personuppgifter', 'Välj betalmedel', 'Create an ad'];
+  }
   
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <div className={s.right}>
+          <div className={s.input}>
+            <form >
+
+              <div className={s.gap}>
+                <Paper>
+                  <FormControl fullWidth variant="outlined">
+                    <OutlinedInput
+                      color="secondary"
+                      className={s.inputField}
+                      id="standard-required-name"
+                      value={values.name}
+                      onChange={handleChangesegfeg('name')}
+                      aria-describedby="standard-name-helper-text"
+                      placeholder="För- och efternamn"
+                      inputProps={{
+                        'aria-label': 'Name',
+                      }}
+                    />
+                  </FormControl>
+                </Paper>
+                <Paper>
+                  <FormControl fullWidth variant="outlined">
+                    <FormHelperText id="standard-name-helper-text" className={s.helperText}>För- och efternamn</FormHelperText>
+                    <OutlinedInput
+                      color="secondary"
+                      className={s.inputField}
+                      id="standard-required-email"
+                      value={values.email}
+                      onChange={handleChangesegfeg('email')}
+                      aria-describedby="standard-email-helper-text"
+                      placeholder="E-post"
+                      inputProps={{
+                        'aria-label': 'Email',
+                      }}
+                    />
+                    <FormHelperText id="standard-name-helper-text" className={s.helperText}>Emailadress</FormHelperText>
+                  </FormControl>
+                </Paper>
+              </div>
+            </form>
+            </div>
+            </div>
+        );
+      case 1:
+        return (
+          <div className={s.container}>
+
+              <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                >
+                  <Typography className={classes.heading}>Betalningsalternativ</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <FormControl component="fieldset">
+                    <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
+                      <div className={s.swishFlex}>
+                        <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>Swish</Typography>} />
+                        <img
+                          className={s.swishLogo}
+                          width={100}
+                          src="/Images/swishlogo.svg"
+                          alt="swishlogo"
+                          title="swish" />
+                      </div>
+                      {(valueRadio === "swish") &&
+                        <div className={s.swish}>
+                          <Typography variant="subtitle1" component="h4">Scanna QR-koden med din Swish-app</Typography>
+                          <Typography variant="subtitle1" component="h4">eller använd numret nedanför.</Typography>
+                          <div className={s.qrCode}>
+                            <img
+                              width={200}
+                              src="/Images/swishqr.svg"
+                              alt="swishqr"
+                              title="lotwinther" />
+                            <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
+                          </div>
+                        </div>
+                      }
+                      <div className={s.swishFlex}>
+                        <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>Betalkort</Typography>} />
+                        <img
+                          className={s.s}
+                          width={100}
+                          src="/Images/3_Card_color_horizontal.svg"
+                          alt="swishlogo"
+                          title="swish" />
+                      </div>
+                      {(valueRadio === "betalkort") &&
+                        <div className={s.swish}>
+                          <OutlinedInput
+                            color="secondary"
+                            className={s.phoneNumber}
+                            id="standard-required-name"
+                            value={values.name}
+                            onChange={handleChangesegfeg('name')}
+                            aria-describedby="standard-name-helper-text"
+                            placeholder="Stripebetalning"
+                            inputProps={{
+                              'aria-label': 'Name',
+                            }}
+                          />
+                          <FormHelperText id="standard-name-card-info-text" className={s.helperText}>Telefonnummer mobil</FormHelperText>
+                        </div>
+                      }
+                    </RadioGroup>
+                  </FormControl>
+                </AccordionDetails>
+              </Accordion>
+              {(valueRadio === "swish" && expanded === 'panel1') &&
+                <Button
+                  onClick={() => { }}
+                  size="large"
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  disableElevation
+                  rounded>Bekräfta genomförd betalning
+                </Button>
+              }
+            </div>
+        );
+      case 2:
+        return `Try out different ad text to see what brings in the most customers,
+                and learn how to enhance your ads using features like ad extensions.
+                If you run into any problems with your ads, find out how to tell if
+                they're running and how to resolve approval issues.`;
+      default:
+        return 'Unknown step';
+    }
+  }
+
 
   return (
     <>
-    <Header />
-    <Paper elevation={1} className={s.paperDiv}>
-    <h1>Betala Portfolio Premium</h1>
-      <div className={s.flexContainer}>
+      <Header />
+      <div className={s.header}>
+        <Typography variant="h2" component="h1" align="center">
+          <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
+            Portfolio Premium
+          </Box>
+        </Typography>
+      </div>
 
-      <div className={s.left}>
-      
-      <img width={320}
-        
-        src="/Images/lotwinther1.jpg"
-        alt="artwork"
-        title="lotwinther"/>
-        <div>
-      
-      <img width={320}
-        src="/Images/Artportable_Logotyp_Black.jpg"
-        alt="hej"
-        title="Premium"/>
-      <Typography variant="h2" component="h2">Premium</Typography>
-      <Typography variant="h4" component="h2">12 månader</Typography>
-      <Typography variant="subtitle1" component="h2">Bli prioriterad i flödet</Typography>
-      <Typography variant="subtitle1" component="h2">Personlig Konstkoordinator</Typography>
-      <Typography variant="subtitle1" component="h2">Support</Typography>
-      <Typography variant="subtitle1" component="h2">Publicera dina verk</Typography>
-      <Typography variant="subtitle1" component="h2">Chatta och få förfrågningar om dina konstverk</Typography>
-      <Typography variant="subtitle1" component="h2">Följ och interagera med andra konstnärer</Typography>
-      <Typography variant="subtitle1" component="h2">Läs artiklar och få uppdateringar om utställningar</Typography>
-      </div>
-      </div>
-      {step === 'step1' ?
-      <div className={s.right}>
-      <div className={s.input}>
-        <form >
-          <Paper>
-        <FormControl fullWidth variant="outlined">
-          <OutlinedInput
-            color="secondary"
-            className={s.inputField}
-              id="standard-required-name"
-              value={values.name}
-              onChange={handleChangesegfeg('name')}
-              aria-describedby="standard-name-helper-text"
-              placeholder="För- och efternamn"
-              inputProps={{
-                'aria-label': 'Name',
-              }}
-            />
-            <FormHelperText id="standard-name-helper-text" className={s.helperText}>För- och efternamn</FormHelperText>
-          </FormControl>
-          </Paper>
-        </form>
-       
-          <div className={s.container}>
-          <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
-            >
-              <Typography className={classes.heading}>Betalningsalternativ</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-            <FormControl component="fieldset">
-                <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
-                  <div className={s.swishFlex}>
-                    <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>Swish</Typography>} />
-                    <img 
-                      className={s.swishLogo}
-                      width={100}
-                      src="/Images/swishlogo.svg"
-                      alt="swishlogo"
-                        title="swish"/>
-                  </div>
-              {(valueRadio === "swish") && 
-               <div className={s.swishNumber}>
-               <OutlinedInput
-                 color="secondary"
-                 required
-                 className={s.phoneNumber}
-                 id="standard-required-name"
-                 value={values.phoneNumber}
-                 onChange={handleChangesegfeg('phoneNumber')}
-                 aria-describedby="standard-phonenumber-helper-text"
-                 placeholder="Telefonnummer mobil"
-                 inputProps={{
-                   'aria-label': 'phoneNumber',
-                 }}
-               />
-               <FormHelperText id="standard-phonenumber-helper-text" className={s.helperText}>Telefonnummer</FormHelperText>
-               </div>
-              }
-              <div className={s.swishFlex}>
-                <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>Betalkort</Typography>} />
-                <img 
-                  className={s.s}
-                  width={100}
-                  src="/Images/3_Card_color_horizontal.svg"
-                  alt="swishlogo"
-                    title="swish"/>
+      <div className={s.flexContainer}>
+        <Paper elevation={2}>
+          <div className={s.left}>
+            <img
+              width={400}
+              src="/Images/lotwinther1.jpg"
+              alt="artwork"
+              title="lotwinther" />
+            <div>
+              <div className={s.premiumText}>
+                <img
+                  width={320}
+                  className={s.logoArtportable}
+                  src="/Artportable_Logotyp_Black.svg"
+                  alt="hej"
+                  title="Premium" />
+                <Typography variant="h2" component="h2">Portfolio Premium</Typography>
+                <Typography variant="h2" component="h2">4500 kr</Typography>
+                <Typography variant="h4" component="h2">12 månader</Typography>
+                <Typography variant="h6" component="h2" className={s.textIncluded}>I Portfolio Premium ingår bland annat:</Typography>
+                <Typography variant="subtitle1" component="h2">Personlig Konstkoordinator</Typography>
+                <Typography variant="subtitle1" component="h2">Support</Typography>
+                <Typography variant="subtitle1" component="h2">Publicera dina verk</Typography>
+                <Typography variant="subtitle1" component="h2">Chatta och få förfrågningar om dina konstverk</Typography>
+                <Typography variant="subtitle1" component="h2">Följ och interagera med andra konstnärer</Typography>
+                <Typography variant="subtitle1" component="h2" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography>
               </div>
-              {(valueRadio === "betalkort") && 
-               <div className={s.swishNumber}>
-               <OutlinedInput
-                 color="secondary"
-                 className={s.phoneNumber}
-                 id="standard-required-name"
-                 value={values.name}
-                 onChange={handleChangesegfeg('name')}
-                 aria-describedby="standard-name-helper-text"
-                 placeholder="Stripebetalning"
-                 inputProps={{
-                   'aria-label': 'Name',
-                 }}
-               />
-                <FormHelperText id="standard-name-card-info-text" className={s.helperText}>Telefonnummer mobil</FormHelperText>
-               </div>
-              }
-            </RadioGroup>
-        </FormControl>
-        </AccordionDetails>
-      </Accordion>
-      {(valueRadio === "swish" && expanded === 'panel1') && 
-        <Button
-        onClick={() =>  { setExit(false); setStep2(true); setStep('step2') }}
-        size="large"
-        fullWidth
-        variant="contained"
-        color="secondary"
-        disableElevation
-        rounded>Betala
-        </Button>
-            }
-      </div>
-    
-       </div> 
-       </div>
-       
-       : null}
-        
-      
-      {step === 'step2' ?
-      <div
-        className={clsx(classes.animatedItem, {
-          [classes.animatedItemExiting]: exit
-        })}>
-      <div className={s.thirdDiv}>
-        <div className={s.thirdText}>
-          
-      <Typography variant="h4">Öppna Swish på telefonen</Typography>
-          <ArrowDownwardIcon color='secondary' />
-          <Typography variant="h4">Genomför betalningen</Typography>
-          <ArrowDownwardIcon color='secondary'/>
-          <Typography variant="h4">Klart</Typography>
-          <Button
-            onClick={() => setExit(true)}
-            size="large"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            disableElevation
-            rounded>Klar
-          </Button>
+            </div>
           </div>
-          <img
-          className={s.swishPhone}
-            width={400}
-            height={450}
-            src="/Images/swishphone.png"
-            alt="swishlogo"
-            title="swish"/>
-        </div>
-        </div>
-            : null}
-       
-       </div>
-    </Paper>
-    </>
+        </Paper>
+        <div>
+      <Stepper activeStep={activeStep} orientation="vertical">
+        {steps.map((label, index) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+            <StepContent>
+              <Typography>{getStepContent(index)}</Typography>
+              <div className={classes.actionsContainer}>
+                <div>
+                  <Button
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    className={classes.button}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
+                </div>
+              </div>
+            </StepContent>
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length && (
+        <Paper square elevation={0} className={classes.resetContainer}>
+          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Button onClick={handleReset} className={classes.button}>
+            Reset
+          </Button>
+        </Paper>
+      )}
+      </div>
+      </div>
+      </>
   );
 }
+
+
+    {/* </div>
+        <div className={s.right}>
+          <div className={s.input}>
+            <form >
+
+              <div className={s.gap}>
+                <Paper>
+                  <FormControl fullWidth variant="outlined">
+                    <OutlinedInput
+                      color="secondary"
+                      className={s.inputField}
+                      id="standard-required-name"
+                      value={values.name}
+                      onChange={handleChangesegfeg('name')}
+                      aria-describedby="standard-name-helper-text"
+                      placeholder="För- och efternamn"
+                      inputProps={{
+                        'aria-label': 'Name',
+                      }}
+                    />
+                  </FormControl>
+                </Paper>
+                <Paper>
+                  <FormControl fullWidth variant="outlined">
+                    <FormHelperText id="standard-name-helper-text" className={s.helperText}>För- och efternamn</FormHelperText>
+                    <OutlinedInput
+                      color="secondary"
+                      className={s.inputField}
+                      id="standard-required-email"
+                      value={values.email}
+                      onChange={handleChangesegfeg('email')}
+                      aria-describedby="standard-email-helper-text"
+                      placeholder="E-post"
+                      inputProps={{
+                        'aria-label': 'Email',
+                      }}
+                    />
+                    <FormHelperText id="standard-name-helper-text" className={s.helperText}>Emailadress</FormHelperText>
+                  </FormControl>
+                </Paper>
+              </div>
+            </form>
+
+            <div className={s.container}>
+
+              <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1bh-content"
+                  id="panel1bh-header"
+                >
+                  <Typography className={classes.heading}>Betalningsalternativ</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <FormControl component="fieldset">
+                    <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
+                      <div className={s.swishFlex}>
+                        <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>Swish</Typography>} />
+                        <img
+                          className={s.swishLogo}
+                          width={100}
+                          src="/Images/swishlogo.svg"
+                          alt="swishlogo"
+                          title="swish" />
+                      </div>
+                      {(valueRadio === "swish") &&
+                        <div className={s.swish}>
+                          <Typography variant="subtitle1" component="h4">Scanna QR-koden med din Swish-app</Typography>
+                          <Typography variant="subtitle1" component="h4">eller använd numret nedanför.</Typography>
+                          <div className={s.qrCode}>
+                            <img
+                              width={200}
+                              src="/Images/swishqr.svg"
+                              alt="swishqr"
+                              title="lotwinther" />
+                            <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
+                          </div>
+                        </div>
+                      }
+                      <div className={s.swishFlex}>
+                        <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>Betalkort</Typography>} />
+                        <img
+                          className={s.s}
+                          width={100}
+                          src="/Images/3_Card_color_horizontal.svg"
+                          alt="swishlogo"
+                          title="swish" />
+                      </div>
+                      {(valueRadio === "betalkort") &&
+                        <div className={s.swish}>
+                          <OutlinedInput
+                            color="secondary"
+                            className={s.phoneNumber}
+                            id="standard-required-name"
+                            value={values.name}
+                            onChange={handleChangesegfeg('name')}
+                            aria-describedby="standard-name-helper-text"
+                            placeholder="Stripebetalning"
+                            inputProps={{
+                              'aria-label': 'Name',
+                            }}
+                          />
+                          <FormHelperText id="standard-name-card-info-text" className={s.helperText}>Telefonnummer mobil</FormHelperText>
+                        </div>
+                      }
+                    </RadioGroup>
+                  </FormControl>
+                </AccordionDetails>
+              </Accordion>
+              {(valueRadio === "swish" && expanded === 'panel1') &&
+                <Button
+                  onClick={() => { }}
+                  size="large"
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  disableElevation
+                  rounded>Bekräfta genomförd betalning
+                </Button>
+              }
+            </div>
+
+          </div>
+        </div> */}
+
+
+      {/* </div> */}
