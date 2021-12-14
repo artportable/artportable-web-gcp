@@ -2,35 +2,55 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Main from '../../app/components/Main/Main'
 import { Category } from '../../app/models/Category';
 import { Locales } from '../../app/models/i18n/locales';
-import router from 'next/router'
 import { Article } from '../../app/models/Article';
+import { useRouter } from 'next/router';
+import { Localization } from '../../app/models/Localization';
+import { Typography } from '@material-ui/core';
 
-export default function Category() {
+export default function CategoryPage({ category }: { category: Category }) {
+
+  const router = useRouter()
 
   return (
     <Main>
+      {router.isFallback &&
+        //implement good skeleton here
+        <div>Loading...</div>
+      }
+      {!router.isFallback &&
+        <>
+          <Typography variant={'h1'}>
+            {category.name}
+          </Typography>
+          {category.articles.map((article) => {
+            return (
+              <Typography variant={'subtitle1'}>
+                {article.title}
+              </Typography>
+            )
+          })}
+        </>
+      }
     </Main>
   );
 }
 
-
-export async function getStaticProps({ params }) {
-  var category = params.category as Category;
-  if (!category) {
-    let res = await fetch(`${process.env.STRAPI_URL}/categories/slug/${params.categorySlug}`)
-    category = await res.json()
-    if (category == null) {
-      return {
-        redirect: {
-          destination: '/404',
-          permanent: false,
-        },
-      }
+export async function getStaticProps({ params, locale }) {
+  let res = await fetch(`${process.env.STRAPI_URL}/categories/slug/${params.categorySlug}`)
+  if (!res.ok) {
+    return {
+      notFound: true,
     }
   }
-  if (router.locale != category.locale) {
-    var newLocale = category.localizations.find(locale => locale.locale == router.locale);
-    let res = await fetch(`${process.env.STRAPI_URL}/categories/slug/${params.categorySlug}`)
+  var category = await res.json()
+  if (locale != category.locale) {
+    var newLocale = category.localizations.find((categoryLocale: Localization) => categoryLocale.locale == locale);
+    if (newLocale == null) {
+      return {
+        notFound: true,
+      }
+    }
+    let res = await fetch(`${process.env.STRAPI_URL}/categories/${newLocale.id}`)
     category = await res.json();
     return {
       redirect: {
@@ -43,7 +63,6 @@ export async function getStaticProps({ params }) {
   if (category.locale != Locales.sv) {
     var swedishCategoryLocale = category.localizations.find(locale => locale.locale == Locales.sv);
     if (swedishCategoryLocale) {
-
       let res = await fetch(`${process.env.STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`)
       var swedishArticles: Article[] = await res.json();
       if (swedishArticles && swedishArticles.length > 0) {
@@ -57,11 +76,11 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       category: category,
-      ...await serverSideTranslations(params.locale, []),
+      ...await serverSideTranslations(locale, []),
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
-    // - At most once every 10 seconds
+    // - At most once every 60 seconds
     revalidate: 60, // In seconds
   }
 }
@@ -70,16 +89,16 @@ export async function getStaticProps({ params }) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.STRAPI_URL}/categories?_locale=all`)
+  const res = await fetch(`${process.env.STRAPI_URL}/categories`)
   const categories = await res.json()
 
   // Get the paths we want to pre-render based on posts
   const paths = categories.map((category: Category) => ({
-    params: { categorySlug: category.slug, category: category }, locale: category.locale
+    params: { categorySlug: category.slug }, locale: category.locale
   }))
 
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: true }
 }

@@ -2,22 +2,22 @@ const { i18n } = require('./next-i18next.config')
 
 const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
 module.exports = {
-    // Fix to reload page after upgrade account
-    async redirects() {
-      return [
-        {
-          source: '/success',
-          destination: '/',
-          permanent: true,
-        },
-        {
-          source: '/register',
-          destination: signUpRedirect,
-          permanent: true,
-        },
-          
-      ]
-    },
+  // Fix to reload page after upgrade account
+  async redirects() {
+    return [
+      {
+        source: '/success',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/register',
+        destination: signUpRedirect,
+        permanent: true,
+      },
+
+    ]
+  },
 
   images: {
     domains: ['artportabletest.blob.core.windows.net', 'artportableprod.blob.core.windows.net'],
@@ -32,6 +32,11 @@ module.exports = {
         source: '/profile/:username([^@]{1,}$)',
         destination: '/404', // Matched parameters can be used in the destination /[^@]{1,}$/
       },
+      {
+        source : '/sv/:path*',
+        destination : '/:path*',
+        locale : false
+      }
     ]
   },
 }
