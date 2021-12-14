@@ -5,21 +5,28 @@ import { columnGap, rowGap } from '../../utils/styleUtils'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     paperDiv: {
-      marginTop: '30px',
+      marginTop: '90px',
       height: '90vh',
     },
     flexContainer: {
       display: 'flex',
-      justifyContent: 'space-around'
+      justifyContent: 'space-between',
+
+    },
+    left: {
+      width: '500px',
     },
     right: {
       backgroundColor: '#F5F5F6',
-      width: '600px',
+      width: '900px',
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      borderRadius: '800px 0px 0px 800px',
     },
     input: {
-      // backgroundColor: 'white',
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
       width: '500px',
       marginTop: '20px',
       height: '90vh',
@@ -82,10 +89,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     thirdDiv: {
       display: 'flex',
-      width: '900px',
+      height: '90vh',
       backgroundColor: '#F5F5F6',
       borderRadius: '800px 0px 0px 800px',
-      justifyContent: 'center',
+      justifyContent: 'left'
+      
 
     },
     thirdText: {
@@ -94,6 +102,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'center',
       ...columnGap(theme.spacing(2)),
+      marginLeft: '100px'
       
     },
     swishPhone: {
