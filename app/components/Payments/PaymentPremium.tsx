@@ -11,6 +11,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import clsx from "clsx";
 import StripeCard from '../Stripe/StripeCard'
 
+
 const useStyles = makeStyles((theme) => ({
   accordion: {
     width: '100%',
@@ -69,7 +70,7 @@ export default function PaymentPremium() {
     setActiveStep(0);
   };
   function getSteps() {
-    return ['Fyll i dina personuppgifter', 'Välj betalmedel', 'Create an ad'];
+    return ['Fyll i dina personuppgifter', 'Välj betalmedel', 'Bekräfta eventuellt genomförd Swishbetalning'];
   }
   
   function getStepContent(step) {
@@ -84,6 +85,7 @@ export default function PaymentPremium() {
                 <Paper>
                   <FormControl fullWidth variant="outlined">
                     <OutlinedInput
+                      required
                       color="secondary"
                       className={s.inputField}
                       id="standard-required-name"
@@ -253,7 +255,8 @@ export default function PaymentPremium() {
             </div>
           </div>
         </Paper>
-        <div>
+        <div className={s.stepperContainer}>
+          <Paper>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
           <Step key={label}>
@@ -283,9 +286,10 @@ export default function PaymentPremium() {
           </Step>
         ))}
       </Stepper>
+      </Paper>
       {activeStep === steps.length && (
         <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography>Din betalning är genomförd</Typography>
           <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>

@@ -16,10 +16,9 @@ export const styles = makeStyles((theme: Theme) =>
       width: '400px',
     },
     right: {
-      backgroundColor: '#F5F5F6',
       width: '900px',
       display: 'flex',
-      justifyContent: 'center',
+
     },
     input: {
       display: 'flex',
@@ -101,6 +100,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     logoArtportable: {
       marginTop: '15px',
+    },
+    stepperContainer: {
+      marginLeft: '15px',
+      width: '700px'
     }
   }),
 );
