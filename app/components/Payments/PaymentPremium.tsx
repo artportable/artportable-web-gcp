@@ -7,10 +7,12 @@ import { styles } from './paymentPremium.css'
 import Header from '../Header/Header';
 import { SendPaymentInfo, paymentRequest } from './Request';
 import Button from '../Button/Button'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import clsx from "clsx";
-import StripeCard from '../Stripe/StripeCard'
 import Alert, { Color } from '@material-ui/lab/Alert'
+import OneTimeStripeCheckoutForm from '../OneTimeStripeCheckoutForm/OneTimeStripeCheckoutForm';
+import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/OneTimeStripeCheckoutForm';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 const artportablePurchase = 'zapier'
 
@@ -29,10 +31,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: '1.3rem',
     flexBasis: '33.33%',
     flexShrink: 0,
-    fontSize: '1.5rem',
   },
   actionsContainer: {
     marginBottom: theme.spacing(2),
@@ -47,6 +48,8 @@ export default function PaymentPremium() {
   const s = styles();
   const { t } = useTranslation(['support']);
   const [expanded, setExpanded] = useState(false);
+  const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
+  const promise = loadStripe(stripeKey);
 
   const [formData, setFormData] = useState<PurchaseFormData>({
     fullName: { value: '', error: false },
@@ -285,7 +288,7 @@ export default function PaymentPremium() {
                     variant="contained"
                     color="secondary"
                     onClick={handleNext}
-                    className={classes.button}
+                    className={s.buttonNext}
                   >
                     Nästa
                   </Button>
@@ -343,18 +346,10 @@ export default function PaymentPremium() {
                     </div>
                     {(valueRadio === "betalkort") &&
                       <div className={s.swish}>
-                        <OutlinedInput
-                          color="secondary"
-                          className={s.phoneNumber}
-                          id="standard-required-name"
-                          value={"betalkort"}
-                          onChange={handleChangesegfeg('name')}
-                          aria-describedby="standard-name-helper-text"
-                          placeholder="Stripebetalning"
-                          inputProps={{
-                            'aria-label': 'Name',
-                          }}
-                        />
+                        <Elements stripe={promise}>
+                        <OneTimeStripeCheckoutForm email={formData.email.value} fullName={formData.fullName.value} products={[{amount: 350, currency: 'SEK', id: 'price_1K6AKDA3UXZjjLWxjpN3BDym', name: 'Portfolio Premium'}]} 
+                        onSuccess={ () => console.log('Hello World')} />
+                        </Elements>
                       </div>
                     }
                   </RadioGroup>
@@ -362,36 +357,50 @@ export default function PaymentPremium() {
               </AccordionDetails>
             </Accordion>
             {(valueRadio === "swish" && expanded === 'panel1') &&
-              <Button
-                onClick={() => { }}
-                size="large"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                disableElevation
-                rounded>Bekräfta genomförd betalning
-              </Button>
+               <div className={s.buttonFlex}>
+               <Button
+               fullWidth
+               variant="outlined"
+               color="secondary"
+                 onClick={handleBack}
+                 className={s.buttonBack}
+               >
+                 Back
+               </Button>
+               <Button
+               fullWidth
+                 variant="contained"
+                 color="secondary"
+                 onClick={handleNext}
+                 className={s.buttonNext}
+               >
+                 Nästa
+               </Button>
+               </div>
             }
-            <div className={s.buttonFlex}>
-            <Button
-            fullWidth
-            variant="outlined"
-            color="secondary"
-              onClick={handleBack}
-              className={s.buttonBack}
-            >
-              Back
-            </Button>
-            <Button
-            fullWidth
-              variant="contained"
-              color="secondary"
-              onClick={handleNext}
-              className={s.buttonNext}
-            >
-              Nästa
-            </Button>
-            </div>
+            {(valueRadio === "betalkort" && expanded === 'panel1') &&
+               <div className={s.buttonFlex}>
+               <Button
+               fullWidth
+               variant="outlined"
+               color="secondary"
+                 onClick={handleBack}
+                 className={s.buttonBack}
+               >
+                 Back
+               </Button>
+               <Button
+               fullWidth
+                 variant="contained"
+                 color="secondary"
+                 onClick={handleNext}
+                 className={s.buttonNext}
+               >
+                 Nästa
+               </Button>
+               </div>
+            }
+           
           </div>
         );
       case 2:
@@ -401,7 +410,7 @@ export default function PaymentPremium() {
           they're running and how to resolve approval issues</p>
           <Button
             onClick={handleBack}
-            className={classes.button}
+            className={s.buttonBack}
           >
             Back
           </Button>
@@ -409,7 +418,7 @@ export default function PaymentPremium() {
             variant="contained"
             color="secondary"
             onClick={handleNext}
-            className={classes.button}
+            className={s.buttonNext}
           >
             Nästa
           </Button>
@@ -491,7 +500,7 @@ export default function PaymentPremium() {
               >
                 {t('send')}
               </Button>
-              <Button onClick={handleReset} className={classes.button}>
+              <Button onClick={handleReset} className={s.buttonBack}>
                 Reset
               </Button>
               <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
@@ -506,132 +515,3 @@ export default function PaymentPremium() {
     </>
   );
 }
-
-
-{/* </div>
-        <div className={s.right}>
-          <div className={s.input}>
-            <form >
-
-              <div className={s.gap}>
-                <Paper>
-                  <FormControl fullWidth variant="outlined">
-                    <OutlinedInput
-                      color="secondary"
-                      className={s.inputField}
-                      id="standard-required-name"
-                      value={values.name}
-                      onChange={handleChangesegfeg('name')}
-                      aria-describedby="standard-name-helper-text"
-                      placeholder="För- och efternamn"
-                      inputProps={{
-                        'aria-label': 'Name',
-                      }}
-                    />
-                  </FormControl>
-                </Paper>
-                <Paper>
-                  <FormControl fullWidth variant="outlined">
-                    <FormHelperText id="standard-name-helper-text" className={s.helperText}>För- och efternamn</FormHelperText>
-                    <OutlinedInput
-                      color="secondary"
-                      className={s.inputField}
-                      id="standard-required-email"
-                      value={values.email}
-                      onChange={handleChangesegfeg('email')}
-                      aria-describedby="standard-email-helper-text"
-                      placeholder="E-post"
-                      inputProps={{
-                        'aria-label': 'Email',
-                      }}
-                    />
-                    <FormHelperText id="standard-name-helper-text" className={s.helperText}>Emailadress</FormHelperText>
-                  </FormControl>
-                </Paper>
-              </div>
-            </form>
-
-            <div className={s.container}>
-
-              <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1bh-content"
-                  id="panel1bh-header"
-                >
-                  <Typography className={classes.heading}>Betalningsalternativ</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <FormControl component="fieldset">
-                    <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
-                      <div className={s.swishFlex}>
-                        <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>Swish</Typography>} />
-                        <img
-                          className={s.swishLogo}
-                          width={100}
-                          src="/Images/swishlogo.svg"
-                          alt="swishlogo"
-                          title="swish" />
-                      </div>
-                      {(valueRadio === "swish") &&
-                        <div className={s.swish}>
-                          <Typography variant="subtitle1" component="h4">Scanna QR-koden med din Swish-app</Typography>
-                          <Typography variant="subtitle1" component="h4">eller använd numret nedanför.</Typography>
-                          <div className={s.qrCode}>
-                            <img
-                              width={200}
-                              src="/Images/swishqr.svg"
-                              alt="swishqr"
-                              title="lotwinther" />
-                            <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
-                          </div>
-                        </div>
-                      }
-                      <div className={s.swishFlex}>
-                        <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>Betalkort</Typography>} />
-                        <img
-                          className={s.s}
-                          width={100}
-                          src="/Images/3_Card_color_horizontal.svg"
-                          alt="swishlogo"
-                          title="swish" />
-                      </div>
-                      {(valueRadio === "betalkort") &&
-                        <div className={s.swish}>
-                          <OutlinedInput
-                            color="secondary"
-                            className={s.phoneNumber}
-                            id="standard-required-name"
-                            value={values.name}
-                            onChange={handleChangesegfeg('name')}
-                            aria-describedby="standard-name-helper-text"
-                            placeholder="Stripebetalning"
-                            inputProps={{
-                              'aria-label': 'Name',
-                            }}
-                          />
-                          <FormHelperText id="standard-name-card-info-text" className={s.helperText}>Telefonnummer mobil</FormHelperText>
-                        </div>
-                      }
-                    </RadioGroup>
-                  </FormControl>
-                </AccordionDetails>
-              </Accordion>
-              {(valueRadio === "swish" && expanded === 'panel1') &&
-                <Button
-                  onClick={() => { }}
-                  size="large"
-                  fullWidth
-                  variant="contained"
-                  color="secondary"
-                  disableElevation
-                  rounded>Bekräfta genomförd betalning
-                </Button>
-              }
-            </div>
-
-          </div>
-        </div> */}
-
-
-{/* </div> */ }
