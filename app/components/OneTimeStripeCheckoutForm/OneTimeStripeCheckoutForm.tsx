@@ -142,7 +142,7 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
             showSuccessMessage();
             return result;
           }
-          else if (result.Status === 'requires_action') {
+          else if (result.Status === 'requires_action' || result.Status === "requires_confirmation") {
             return stripe.confirmCardPayment(result.Id, { payment_method: paymentMethodId })
               .then((resultConfirm) => {
                 if (resultConfirm.error) { // If 3D Secure is declined, display an error to the user.
