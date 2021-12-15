@@ -355,7 +355,6 @@ export default function PaymentPremium() {
                             'aria-label': 'Name',
                           }}
                         />
-                        <FormHelperText id="standard-name-card-info-text" className={s.helperText}>Telefonnummer mobil</FormHelperText>
                       </div>
                     }
                   </RadioGroup>

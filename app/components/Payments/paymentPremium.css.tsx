@@ -27,7 +27,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     helperText: {
       position: 'relative',
-      top: '-10px',
+      top: '-5px',
       marginLeft: '0',
       color: 'red'
     },
@@ -80,6 +80,9 @@ export const styles = makeStyles((theme: Theme) =>
       width: '300px',
       fontSize: '1.2rem',
     },
+    gap: {
+      ...columnGap(theme.spacing(2)),
+    },
     qrCode: {
       marginTop: '15px',
     },
@@ -101,8 +104,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     stepperContainer: {
       marginLeft: '15px',
-      width: '700px',
-      ...columnGap(theme.spacing(8)),
+      width: '700px'
     },
     buttonFlex: {
       display: 'flex',
