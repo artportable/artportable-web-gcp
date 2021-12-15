@@ -26,9 +26,10 @@ export const styles = makeStyles((theme: Theme) =>
       width: '600px',
     },
     helperText: {
-      fontSize: '1.2rem',
+      position: 'relative',
+      top: '-10px',
       marginLeft: '0',
-      display: 'none'
+      color: 'red'
     },
     inputField: {
       backgroundColor: 'white',
@@ -79,9 +80,6 @@ export const styles = makeStyles((theme: Theme) =>
       width: '300px',
       fontSize: '1.2rem',
     },
-    gap: {
-      ...columnGap(theme.spacing(4)),
-    },
     qrCode: {
       marginTop: '15px',
     },
@@ -103,7 +101,18 @@ export const styles = makeStyles((theme: Theme) =>
     },
     stepperContainer: {
       marginLeft: '15px',
-      width: '700px'
-    }
+      width: '700px',
+      ...columnGap(theme.spacing(8)),
+    },
+    buttonFlex: {
+      display: 'flex',
+      width: '610px',
+    },
+    buttonBack: {
+      margin: '8px 8px 0 0',
+    },
+    buttonNext: {
+      marginTop: '8px',
+    },
   }),
 );
