@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Step, Stepper, StepLabel, StepContent, Paper, Box, TextField, FormControl, Input, FormHelperText, OutlinedInput, InputLabel, Typography, Accordion, AccordionDetails, AccordionSummary, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core'
+import { Snackbar, Step, Stepper, StepLabel, StepContent, Paper, Box, TextField, FormControl, Input, FormHelperText, OutlinedInput, InputLabel, Typography, Accordion, AccordionDetails, AccordionSummary, FormLabel, FormControlLabel, RadioGroup, Radio } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'next-i18next'
@@ -10,7 +10,19 @@ import Button from '../Button/Button'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import clsx from "clsx";
 import StripeCard from '../Stripe/StripeCard'
+import Alert, { Color } from '@material-ui/lab/Alert'
 
+const artportablePurchase = 'zapier'
+
+interface PurchaseFormData {
+  fullName: FormValue;
+  email: FormValue;
+}
+
+interface FormValue {
+  value: string;
+  error: boolean
+}
 
 const useStyles = makeStyles((theme) => ({
   accordion: {
@@ -39,17 +51,163 @@ export default function PaymentPremium() {
   const s = styles();
   const { t } = useTranslation(['support']);
   const [expanded, setExpanded] = useState(false);
-  const [values, setValues] = useState({
-    name: '',
-    phoneNumber: '',
-    email: '',
+
+  const [formData, setFormData] = useState<PurchaseFormData>({
+    fullName: { value: '', error: false },
+    email: { value: '', error: false },
   });
+  const [formHasErrors, setFormHasErrors] = useState(false);
+  const [formUntouched, setFormUntouched] = useState(true);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
+
+  useEffect(() => {
+    if(Object.keys(formData).some(key => formData[key].error)) {
+      setFormHasErrors(true);
+    } else {
+      setFormHasErrors(false);
+    }
+  }, [formData]);
+
+  const handleChange = (event, key: keyof PurchaseFormData) => {
+    const newValue: FormValue = {
+      value: event.target.value,
+      error: false,
+    }
+
+    setFormData(prevValue => ({
+      ...prevValue,
+      [key]: newValue
+    }));
+  }
+  const validateFormValue = (value, key: keyof PurchaseFormData) => {
+    if(formUntouched) {
+      setFormUntouched(false);
+    }
+
+    const isInvalid = checkIsInvalid(value, key);
+
+    const newFormValue: FormValue = {
+      value: value,
+      error: isInvalid
+    }
+
+    setFormData(prevValue => ({
+      ...prevValue,
+      [key]: newFormValue
+    }));
+  }
+
+  const validateEmail = (newValue: string): boolean => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newValue)) {
+      return false;
+    }
+    return true;
+  }
+
+  const checkIsInvalid = (newValue: string, key: keyof PurchaseFormData): boolean => {
+    switch (key) {
+      case 'email':
+        return validateEmail(newValue);
+      case 'fullName':
+    }
+  }
+  const validateAllFields = () => {
+    const emailError = checkIsInvalid(formData.email.value, 'email');
+    const fullNameError = checkIsInvalid(formData.fullName.value, 'fullName');
+
+
+    const emailFormValue = { 
+      email: { 
+        ...formData.email,
+        error: emailError
+      },
+      fullName: {
+        ...formData.fullName,
+        error: fullNameError
+      },
+    }
+    setFormData(emailFormValue);
+
+    if (emailError || fullNameError) {
+      setFormHasErrors(true);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  const submit = async () => {
+    if(validateAllFields()) {
+      const response = await postDataToZendesk();
+
+      handleResponse(response);
+    }
+  }
+
+  const postDataToZendesk = async () => {
+    try {
+      const response = await fetch(artportablePurchase, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "request": {
+            "requester": {
+              "fullName": formData.fullName.value,
+              "email": formData.email.value
+            }
+          }
+        }),
+      });
+
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const handleResponse = (response: Response) => {
+    if (response.status === 201) {
+      resetForm();
+      showSuccessMessage();
+    } else {
+      showErrorMessage();
+    }
+  }
+
+  const showSuccessMessage = () => {
+    setSnackbarSeverity("success");
+    setSnackbarOpen(true);
+  }
+
+  const showErrorMessage = () => {
+    setSnackbarSeverity("warning");
+    setSnackbarOpen(true);
+  }
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  }
+
+  const resetForm = () => {
+    setFormData({
+      fullName: { value: '', error: false },
+      email: { value: '', error: false },
+    });
+    setFormUntouched(true);
+    setFormHasErrors(false);
+  }
   const [valueRadio, setValueRadio] = useState('');
   const handleChangesegfeg = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChangeAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   const handleChangeRadio = (event) => {
@@ -84,13 +242,17 @@ export default function PaymentPremium() {
               <div className={s.gap}>
                 <Paper>
                   <FormControl fullWidth variant="outlined">
-                    <OutlinedInput
+                    <TextField
                       required
                       color="secondary"
                       className={s.inputField}
+                      variant="outlined"
                       id="standard-required-name"
-                      value={values.name}
-                      onChange={handleChangesegfeg('name')}
+                      value={formData.fullName.value}
+                      error={formData.fullName.error}
+                      onChange={(e) => handleChange(e, 'fullName')}
+                      onBlur={(e) => validateFormValue(e.target.value, 'fullName')}
+                      helperText={formData.fullName.error ? t('mustNotBeEmptyMessage') : ''}
                       aria-describedby="standard-name-helper-text"
                       placeholder="För- och efternamn"
                       inputProps={{
@@ -102,12 +264,16 @@ export default function PaymentPremium() {
                 <Paper>
                   <FormControl fullWidth variant="outlined">
                     <FormHelperText id="standard-name-helper-text" className={s.helperText}>För- och efternamn</FormHelperText>
-                    <OutlinedInput
+                    <TextField
                       color="secondary"
                       className={s.inputField}
+                      variant="outlined"
                       id="standard-required-email"
-                      value={values.email}
-                      onChange={handleChangesegfeg('email')}
+                      value={formData.email.value}
+                      error={formData.email.error}
+                      onChange={(e) => handleChange(e, 'email')}
+                      onBlur={(e) => validateFormValue(e.target.value, 'email')}
+                      helperText={formData.email.error ? t('emailErrorMessage') : ''}
                       aria-describedby="standard-email-helper-text"
                       placeholder="E-post"
                       inputProps={{
@@ -126,7 +292,7 @@ export default function PaymentPremium() {
         return (
           <div className={s.container}>
 
-              <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+              <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChangeAccordion('panel1')}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1bh-content"
@@ -175,7 +341,7 @@ export default function PaymentPremium() {
                             color="secondary"
                             className={s.phoneNumber}
                             id="standard-required-name"
-                            value={values.name}
+                            value={"betalkort"}
                             onChange={handleChangesegfeg('name')}
                             aria-describedby="standard-name-helper-text"
                             placeholder="Stripebetalning"
@@ -290,9 +456,24 @@ export default function PaymentPremium() {
       {activeStep === steps.length && (
         <Paper square elevation={0} className={classes.resetContainer}>
           <Typography>Din betalning är genomförd</Typography>
+          <Button
+          variant="contained" 
+          color="primary"
+          disableElevation 
+          rounded
+          onClick={() => submit()}
+          disabled={formHasErrors || formUntouched}
+          >
+          {t('send')}
+        </Button>
           <Button onClick={handleReset} className={classes.button}>
             Reset
           </Button>
+          <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+            {t(`${snackbarSeverity}Message`)}
+          </Alert>
+      </Snackbar>
         </Paper>
       )}
       </div>
