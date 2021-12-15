@@ -283,6 +283,14 @@ export default function PaymentPremium() {
                     <FormHelperText id="standard-name-helper-text" className={s.helperText}>Emailadress</FormHelperText>
                   </FormControl>
                 </Paper>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    Nästa
+                  </Button>
               </div>
             </form>
             </div>
@@ -367,13 +375,30 @@ export default function PaymentPremium() {
                   rounded>Bekräfta genomförd betalning
                 </Button>
               }
+              <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    Nästa
+                  </Button>
             </div>
         );
       case 2:
-        return `Try out different ad text to see what brings in the most customers,
+        return <div><p>Try out different ad text to see what brings in the most customers,
                 and learn how to enhance your ads using features like ad extensions.
                 If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`;
+                they're running and how to resolve approval issues</p>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    Nästa
+                  </Button>
+                  </div>
       default:
         return 'Unknown step';
     }
@@ -438,14 +463,7 @@ export default function PaymentPremium() {
                   >
                     Back
                   </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
+                
                 </div>
               </div>
             </StepContent>
@@ -458,7 +476,7 @@ export default function PaymentPremium() {
           <Typography>Din betalning är genomförd</Typography>
           <Button
           variant="contained" 
-          color="primary"
+          color="secondary"
           disableElevation 
           rounded
           onClick={() => submit()}
