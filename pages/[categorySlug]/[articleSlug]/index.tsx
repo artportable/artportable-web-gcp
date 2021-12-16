@@ -18,10 +18,15 @@ export default function ArticlePage({ article }: { article: Article }) {
       }
       {!router.isFallback &&
         <>
+          {router.isPreview &&
+            <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
+          }
           <Typography variant={'h1'}>
             {article.title}
           </Typography>
-          <img src={article.coverImage.url} />
+          {article.coverImage &&
+            <img src={article.coverImage.url} />
+          }
           <Typography variant={'subtitle1'}>
             {article.description}
           </Typography>
@@ -32,8 +37,9 @@ export default function ArticlePage({ article }: { article: Article }) {
   );
 }
 
-export async function getStaticProps({ params, locale }) {
-  let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.categorySlug}`)
+export async function getStaticProps(context) {
+  const { locale, params, preview } = context;
+  let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.categorySlug}${preview ? '&_publicationState=preview' : ''}`)
   var articles = await res.json()
   var article: Article = articles.find((article: Article) => article.locale == locale);
   if (article == null) {
@@ -44,7 +50,7 @@ export async function getStaticProps({ params, locale }) {
       }
     }
     var currentCategory = await categoryRes.json()
-    let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}`)
+    let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}${preview ? '&_publicationState=preview' : ''}`)
     if (!res.ok) {
       return {
         notFound: true,
