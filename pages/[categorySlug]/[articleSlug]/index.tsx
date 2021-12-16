@@ -21,7 +21,7 @@ export default function ArticlePage({ article }: { article: Article }) {
           <Typography variant={'h1'}>
             {article.title}
           </Typography>
-          <img src={article.coverImage.url}/>
+          <img src={article.coverImage.url} />
           <Typography variant={'subtitle1'}>
             {article.description}
           </Typography>
@@ -33,7 +33,7 @@ export default function ArticlePage({ article }: { article: Article }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&publishCategory.slug=${params.categorySlug}`)
+  let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.categorySlug}`)
   var articles = await res.json()
   var article: Article = articles.find((article: Article) => article.locale == locale);
   if (article == null) {
@@ -43,24 +43,36 @@ export async function getStaticProps({ params, locale }) {
         notFound: true,
       }
     }
-    var category: Category = await categoryRes.json()
-    let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?publishCategory_in=${category.id}&publishCategory_in=${category.localizations[0].id}`)
+    var currentCategory = await categoryRes.json()
+    let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}`)
     if (!res.ok) {
       return {
         notFound: true,
       }
     }
     article = await res.json()
+    categoryRes = await fetch(`${process.env.STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`)
+    var newLocaleCategories = await categoryRes.json();
+    var newLocaleCategory: Category = newLocaleCategories.find((category: Category) => category.locale == locale);
+    if (newLocaleCategory && newLocaleCategory.id !== currentCategory.id && locale !== article.locale) {
+      return {
+        redirect: {
+          destination: `/${newLocaleCategory.slug}/${article.slug}`,
+          permanent: true,
+        },
+      }
+    }
   }
 
-  if (locale != article.locale) {
+  if (article.publishCategory.slug !== params.categorySlug && locale === article.locale) {
     return {
       redirect: {
-        destination: `/${article.locale}/${article.publishCategory.slug}/${article.slug}`,
-        permanent: false,
+        destination: `/${article.publishCategory.slug}/${article.slug}`,
+        permanent: true,
       },
     }
   }
+
   return {
     props: {
       article: article,

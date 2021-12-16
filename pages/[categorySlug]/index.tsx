@@ -6,6 +6,7 @@ import { Article } from '../../app/models/Article';
 import { useRouter } from 'next/router';
 import { Localization } from '../../app/models/Localization';
 import { Typography } from '@material-ui/core';
+import { route } from 'next/dist/next-server/server/router';
 
 export default function CategoryPage({ category }: { category: Category }) {
 
@@ -25,7 +26,17 @@ export default function CategoryPage({ category }: { category: Category }) {
           {category.articles.map((article) => {
             return (
               <Typography variant={'subtitle1'}>
-                {article.title}
+                {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                <img src={article.coverImage.formats.small.url} />
+                <Typography variant={'subtitle2'}>{article.description}</Typography>
+                {article.authors.map(author => {
+                  return (
+                    <>
+                      <Typography>Author/Författare :{author.name}</Typography>
+                      <img src={author.picture.formats.thumbnail.url} />
+                    </>
+                  )
+                })}
               </Typography>
             )
           })}
@@ -36,7 +47,7 @@ export default function CategoryPage({ category }: { category: Category }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  let res = await fetch(`${process.env.STRAPI_URL}/categories/slug/${params.categorySlug}`)
+  let res = await fetch(`${process.env.STRAPI_URL}/categories/slug/${params.categorySlug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`)
   if (!res.ok) {
     return {
       notFound: true,
@@ -50,7 +61,7 @@ export async function getStaticProps({ params, locale }) {
         notFound: true,
       }
     }
-    let res = await fetch(`${process.env.STRAPI_URL}/categories/${newLocale.id}`)
+    let res = await fetch(`${process.env.STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`)
     category = await res.json();
     return {
       redirect: {
