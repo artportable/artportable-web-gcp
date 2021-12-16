@@ -14,8 +14,11 @@ import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/One
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
+import Footer from '../Footer/Footer';
 
 const artportablePurchase = 'zapier'
+const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE;
+
 
 interface PurchaseFormData {
   fullName: FormValue;
@@ -32,15 +35,19 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   heading: {
-    fontSize: '1.3rem',
+    fontSize: '1rem',
     flexBasis: '33.33%',
     flexShrink: 0,
+    [theme.breakpoints.up('smPlus')]: {
+      fontSize: '1.3rem'
+    },
   },
   actionsContainer: {
     marginBottom: theme.spacing(2),
   },
   resetContainer: {
-    padding: '0 24px 24px 24px' ,
+    padding: '0 24px 6px 24px',
+    borderRadius: '4px'
   },
 }));
 
@@ -204,15 +211,12 @@ export default function PaymentPremium() {
     setFormHasErrors(false);
   }
   const [valueRadio, setValueRadio] = useState('');
-  const handleChangesegfeg = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+  const handleChangeRadio = (event) => {
+    setValueRadio(event.target.value);
   };
 
   const handleChangeAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-  };
-  const handleChangeRadio = (event) => {
-    setValueRadio(event.target.value);
   };
 
   const [activeStep, setActiveStep] = useState(0);
@@ -238,7 +242,7 @@ export default function PaymentPremium() {
         return (
           <div className={s.right}>
             <div className={s.input}>
-              <form >
+              <form>
                 <Paper className={s.inputPaper}>
                   <FormControl fullWidth variant="outlined">
                     <TextField
@@ -299,7 +303,7 @@ export default function PaymentPremium() {
         return (
           <div className={s.container}>
 
-            <Accordion className={s.accordion} expanded={expanded === 'panel1'} onChange={handleChangeAccordion('panel1')}>
+            <Accordion className={s.accordion} onChange={handleChangeAccordion('panel1')}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
@@ -321,8 +325,7 @@ export default function PaymentPremium() {
                     </div>
                     {(valueRadio === "swish") &&
                       <div className={s.swish}>
-                        <Typography variant="subtitle1" component="h4">Scanna QR-koden med din Swish-app</Typography>
-                        <Typography variant="subtitle1" component="h4">eller använd numret nedanför.</Typography>
+                        <Typography variant="subtitle1" component="h4">Scanna QR-koden med din Swish-app eller använd numret nedanför.</Typography>
                         <div className={s.qrCode}>
                           <img
                             width={200}
@@ -336,19 +339,19 @@ export default function PaymentPremium() {
                     <div className={s.swishFlex}>
                       <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>Betalkort</Typography>} />
                       <img
-                        className={s.s}
+                        className={s.paymentCards}
                         width={100}
                         src="/Images/3_Card_color_horizontal.svg"
                         alt="swishlogo"
                         title="swish" />
                     </div>
                     {(valueRadio === "betalkort") &&
-                      <div className={s.swish}>
+                      <div>
                         <Elements stripe={promise}>
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 350, currency: 'SEK', id: 'price_1K6AKDA3UXZjjLWxjpN3BDym', name: 'Portfolio Premium' }]}
+                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'Portfolio Premium' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
@@ -367,7 +370,7 @@ export default function PaymentPremium() {
               >
                 Back
               </Button>
-              {(valueRadio === "betalkort" && expanded === 'panel1') &&
+              {(valueRadio === "betalkort") &&
                 <Button
                   disabled
                   fullWidth
@@ -379,7 +382,7 @@ export default function PaymentPremium() {
                   Nästa
                 </Button>
               }
-              {(valueRadio === "swish" && expanded === 'panel1') &&
+              {(valueRadio === "swish") &&
                 <Button
                   fullWidth
                   variant="contained"
@@ -419,65 +422,65 @@ export default function PaymentPremium() {
             </Button>
           </div>
         </div>
-        case 3:
-          return <div>
-            <Paper square elevation={0} className={s.successHeading}>
+      case 3:
+        return <div>
+          <Paper square elevation={0} className={s.successHeading}>
+            {(valueRadio === "swish") &&
+              <div className={s.successDiv}>
+                <CheckIcon
+                  className={s.confirmIcon} />
+                <Typography className={s.successHeading}>Din konstkoordinator bekräftar betalningen.</Typography>
+              </div>
+            }
+            {(valueRadio === "betalkort") &&
+              <div className={s.successDiv}>
+                <CheckIcon
+                  className={s.confirmIcon} />
+                <Typography className={s.successHeading}>Din betalning är genomförd!</Typography>
+              </div>
+            }
+            <div className={s.buttonFlex}>
               {(valueRadio === "swish") &&
-                <div className={s.successDiv}>
-                  <CheckIcon
-                    className={s.confirmIcon} />
-                  <Typography className={s.successHeading}>Din konstkoordinator kommer nu se att betalnignen kommit in.</Typography>
-                </div>
+                <Button
+
+                  fullWidth
+                  onClick={handleBack}
+                  className={s.buttonBackStep2}
+                  variant="outlined"
+                  color="secondary"
+                >
+                  Back
+                </Button>
               }
               {(valueRadio === "betalkort") &&
-                <div className={s.successDiv}>
-                  <CheckIcon
-                    className={s.confirmIcon} />
-                  <Typography className={s.successHeading}>Din betalning är genomförd!</Typography>
-                </div>
+                <Button
+                  disabled
+                  fullWidth
+                  onClick={handleBack}
+                  className={s.buttonBackStep2}
+                  variant="outlined"
+                  color="secondary"
+                >
+                  Back
+                </Button>
               }
-              <div className={s.buttonFlex}>
-              {(valueRadio === "swish") && 
-            <Button
-    
-            fullWidth
-            onClick={handleBack}
-            className={s.buttonBackStep2}
-            variant="outlined"
-            color="secondary"
-          >
-            Back
-          </Button>
-            }
-            {(valueRadio === "betalkort") && 
-            <Button
-            disabled
-            fullWidth
-            onClick={handleBack}
-            className={s.buttonBackStep2}
-            variant="outlined"
-            color="secondary"
-          >
-            Back
-          </Button>
-            }
-            <Button
-              fullwidth
-              variant="contained"
-              color="secondary"
-              onClick={handleNext}
-              className={s.buttonNextStep2}
-            >
-              Klar
-            </Button>
-          </div>
-              <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-                <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
-                  {t(`${snackbarSeverity}Message`)}
-                </Alert>
-              </Snackbar>
-            </Paper>
-          </div>
+              <Button
+                fullwidth
+                variant="contained"
+                color="secondary"
+                onClick={handleNext}
+                className={s.buttonNextStep2}
+              >
+                Klar
+              </Button>
+            </div>
+            <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+              <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+                {t(`${snackbarSeverity}Message`)}
+              </Alert>
+            </Snackbar>
+          </Paper>
+        </div>
       default:
         return 'Unknown step';
     }
@@ -485,70 +488,65 @@ export default function PaymentPremium() {
 
 
   return (
-    <>
+    <div>
       <Header />
-      <div className={s.header}>
-        <Typography variant="h2" component="h1" align="center">
-          <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
-            Portfolio Premium
-          </Box>
-        </Typography>
-      </div>
 
       <div className={s.flexContainer}>
         <Paper elevation={2}>
           <div className={s.left}>
             <img
-              width={400}
+            className={s.productImage}
               src="/Images/lotwinther1.jpg"
               alt="artwork"
               title="lotwinther" />
             <div>
               <div className={s.premiumText}>
                 <img
-                  width={320}
                   className={s.logoArtportable}
                   src="/Artportable_Logotyp_Black.svg"
                   alt="hej"
                   title="Premium" />
+                
                 <Typography variant="h2" component="h2">Portfolio Premium</Typography>
                 <Typography variant="h2" component="h2">4500 kr</Typography>
                 <Typography variant="h4" component="h2">12 månader</Typography>
-                <Typography variant="h6" component="h2" className={s.textIncluded}>I Portfolio Premium ingår bland annat:</Typography>
-                <Typography variant="subtitle1" component="p">Personlig Konstkoordinator</Typography>
-                <Typography variant="subtitle1" component="p">Support</Typography>
-                <Typography variant="subtitle1" component="p">Publicera dina verk</Typography>
-                <Typography variant="subtitle1" component="p">Chatta och få förfrågningar om dina konstverk</Typography>
-                <Typography variant="subtitle1" component="p">Följ och interagera med andra konstnärer</Typography>
-                <Typography variant="subtitle1" component="p" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography>
-              </div>
-            </div>
-          </div>
-        </Paper>
-        <div className={s.stepperContainer}>
-          <Paper>
-            <Stepper activeStep={activeStep} orientation="vertical">
-              {steps.map((label, index) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                  <StepContent>
-                    <Typography>{getStepContent(index)}</Typography>
-                    <div className={classes.actionsContainer}>
-                      <div>
-                      </div>
-                    </div>
-                  </StepContent>
-                </Step>
-              ))}
-            </Stepper>
-          </Paper>
-          {activeStep === steps.length && (
-            <Paper square elevation={0} className={classes.resetContainer}>
-                <div className={s.successDiv}>
-                  <Typography className={s.successHeading}>Välkommen till Artportable! Du kan nu stänga detta fönster.</Typography>
+                <Typography variant="h6" component="h2" className={s.textIncluded}>I Portfolio Premium ingår bland annat: </Typography>
+                <ul>
+                <li><Typography variant="subtitle1" component="p">Personlig konstkoordinator</Typography></li>
+                <li><Typography variant="subtitle1" component="p">Support</Typography></li>
+                <li><Typography variant="subtitle1" component="p">Publicera dina verk</Typography></li>
+                <li><Typography variant="subtitle1" component="p">Chatta och få förfrågningar om dina konstverk</Typography></li>
+                <li><Typography variant="subtitle1" component="p">Följ och interagera med andra konstnärer</Typography></li>
+                <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography></li>
+                </ul>
                 </div>
+                </div>
+              </div>
+            </Paper>
+            <div className={s.stepperContainer}>
+              <Paper elevation={2} >
+                <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
+                  {steps.map((label, index) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                      <StepContent>
+                        <Typography>{getStepContent(index)}</Typography>
+                        <div className={classes.actionsContainer}>
+                          <div>
+                          </div>
+                        </div>
+                      </StepContent>
+                    </Step>
+                  ))}
+                </Stepper>
+              </Paper>
+              {activeStep === steps.length && (
+                <Paper square elevation={2} className={classes.resetContainer}>
+                  <div className={s.doneDiv}>
+                    <Typography className={s.successHeading}>Välkommen till Artportable! Du kan nu stänga detta fönster.</Typography>
+                  </div>
 
-              {/* <Button
+                  {/* <Button
                 onClick={handleReset}
                 className={s.buttonBackStep2}
                 variant="outlined"
@@ -567,15 +565,18 @@ export default function PaymentPremium() {
               >
                 Klar
               </Button> */}
-              <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-                <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
-                  {t(`${snackbarSeverity}Message`)}
-                </Alert>
-              </Snackbar>
-            </Paper>
-          )}
+                  <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                    <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+                      {t(`${snackbarSeverity}Message`)}
+                    </Alert>
+                  </Snackbar>
+                </Paper>
+              )}
+            </div>
+          </div>
+
+          <Footer />
+
         </div>
-      </div>
-    </>
-  );
+        );
 }

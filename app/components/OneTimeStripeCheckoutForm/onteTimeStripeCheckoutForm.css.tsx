@@ -7,7 +7,16 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
     },
     container: {
       border: `3px solid var(--ion-color-primary)`,
-      borderRadius: '10px'
+      borderRadius: '10px',
+      backgroundColor: 'white',
+      width: '265px',
+      marginTop: '3px',
+
+         
+      [theme.breakpoints.up('smPlus')]: {
+        width: 'initial',
+
+      },
     },
     heading: {
       margin: "10px 0 0 10px"
@@ -22,7 +31,11 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
       height: '20px',
       color: 'var(--ion-color-danger)',
       margin: '0 10px',
-      fontSize: '1rem'
+      fontSize: '0.8rem',
+      [theme.breakpoints.up('smPlus')]: {
+        width: 'initial',
+        fontSize: '1rem',
+      },
     },
     subtotal: {
       display: 'flex',
@@ -47,9 +60,6 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
     },
     payButton: {
       margin: '0px 10px 10px 10px'
-    },
-    confirmIcon: {
-      color: 'green'
     },
   }),
 );

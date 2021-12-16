@@ -141,7 +141,7 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
           }
           else if (result.Status === 'succeeded') {
             onSuccess();
-            showSuccessMessage();
+            // showSuccessMessage();
             
             return result;
           }
@@ -154,7 +154,7 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
                 } else {
                   if (resultConfirm.paymentIntent.status === 'succeeded') {
                     onSuccess();
-                    showSuccessMessage();
+                    // showSuccessMessage();
                 
                     return resultConfirm;
                   }
