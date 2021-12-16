@@ -12,7 +12,7 @@ export default function Payment(props) {
 
 
   return (
-    <Box className={s.root}>
+    <Box>
     <PaymentPremium />
     </Box>
   );
