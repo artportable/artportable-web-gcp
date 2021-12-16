@@ -340,8 +340,8 @@ export default function PaymentPremium() {
                         className={s.paymentCards}
                         width={100}
                         src="/Images/3_Card_color_horizontal.svg"
-                        alt="swishlogo"
-                        title="swish" />
+                        alt="paymentCards"
+                        title="paymentCards" />
                     </div>
                     {(valueRadio === "betalkort") &&
                       <div>
