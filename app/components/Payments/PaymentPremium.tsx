@@ -360,7 +360,7 @@ export default function PaymentPremium() {
             </Accordion>
             <div className={s.buttonFlex}>
               <Button
-                fullWidth
+    
                 variant="outlined"
                 color="secondary"
                 onClick={handleBack}
@@ -441,7 +441,6 @@ export default function PaymentPremium() {
               {(valueRadio === "swish") &&
                 <Button
 
-                  fullWidth
                   onClick={handleBack}
                   className={s.buttonBackStep2}
                   variant="outlined"
