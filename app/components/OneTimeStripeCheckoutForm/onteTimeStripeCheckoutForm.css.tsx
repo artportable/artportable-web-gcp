@@ -9,13 +9,10 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
       border: `3px solid var(--ion-color-primary)`,
       borderRadius: '10px',
       backgroundColor: 'white',
-      width: '265px',
-      marginTop: '3px',
-
-         
+      width: '255px',
+      marginTop: '3px',   
       [theme.breakpoints.up('smPlus')]: {
         width: 'initial',
-
       },
     },
     heading: {
