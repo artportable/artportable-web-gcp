@@ -12,11 +12,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       flexDirection: 'column',
-      margin: '90px 10px 30px 10px',
+      margin: '0 0 30px 0',
 
       [theme.breakpoints.up('smPlus')]: {
         flexDirection: 'row',
-        marginTop: '120px',
         marginBottom: '3rem'
       },
     },

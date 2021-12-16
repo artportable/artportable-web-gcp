@@ -4,7 +4,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'next-i18next'
 import { styles } from './paymentPremium.css'
-import Header from '../Header/Header';
 import { SendPaymentInfo, paymentRequest } from './Request';
 import Button from '../Button/Button'
 import clsx from "clsx";
@@ -14,7 +13,6 @@ import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/One
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
-import Footer from '../Footer/Footer';
 
 const artportablePurchase = 'zapier'
 const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE;
@@ -489,13 +487,11 @@ export default function PaymentPremium() {
 
   return (
     <div>
-      <Header />
-
       <div className={s.flexContainer}>
         <Paper elevation={2}>
           <div className={s.left}>
             <img
-            className={s.productImage}
+              className={s.productImage}
               src="/Images/lotwinther1.jpg"
               alt="artwork"
               title="lotwinther" />
@@ -506,47 +502,47 @@ export default function PaymentPremium() {
                   src="/Artportable_Logotyp_Black.svg"
                   alt="hej"
                   title="Premium" />
-                
+
                 <Typography variant="h2" component="h2">Portfolio Premium</Typography>
                 <Typography variant="h2" component="h2">4500 kr</Typography>
                 <Typography variant="h4" component="h2">12 månader</Typography>
                 <Typography variant="h6" component="h2" className={s.textIncluded}>I Portfolio Premium ingår bland annat: </Typography>
                 <ul>
-                <li><Typography variant="subtitle1" component="p">Personlig konstkoordinator</Typography></li>
-                <li><Typography variant="subtitle1" component="p">Support</Typography></li>
-                <li><Typography variant="subtitle1" component="p">Publicera dina verk</Typography></li>
-                <li><Typography variant="subtitle1" component="p">Chatta och få förfrågningar om dina konstverk</Typography></li>
-                <li><Typography variant="subtitle1" component="p">Följ och interagera med andra konstnärer</Typography></li>
-                <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">Personlig konstkoordinator</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">Support</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">Publicera dina verk</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">Chatta och få förfrågningar om dina konstverk</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">Följ och interagera med andra konstnärer</Typography></li>
+                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography></li>
                 </ul>
-                </div>
-                </div>
               </div>
-            </Paper>
-            <div className={s.stepperContainer}>
-              <Paper elevation={2} >
-                <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
-                  {steps.map((label, index) => (
-                    <Step key={label}>
-                      <StepLabel>{label}</StepLabel>
-                      <StepContent>
-                        <Typography>{getStepContent(index)}</Typography>
-                        <div className={classes.actionsContainer}>
-                          <div>
-                          </div>
-                        </div>
-                      </StepContent>
-                    </Step>
-                  ))}
-                </Stepper>
-              </Paper>
-              {activeStep === steps.length && (
-                <Paper square elevation={2} className={classes.resetContainer}>
-                  <div className={s.doneDiv}>
-                    <Typography className={s.successHeading}>Välkommen till Artportable! Du kan nu stänga detta fönster.</Typography>
-                  </div>
+            </div>
+          </div>
+        </Paper>
+        <div className={s.stepperContainer}>
+          <Paper elevation={2} >
+            <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
+              {steps.map((label, index) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                  <StepContent>
+                    <Typography>{getStepContent(index)}</Typography>
+                    <div className={classes.actionsContainer}>
+                      <div>
+                      </div>
+                    </div>
+                  </StepContent>
+                </Step>
+              ))}
+            </Stepper>
+          </Paper>
+          {activeStep === steps.length && (
+            <Paper square elevation={2} className={classes.resetContainer}>
+              <div className={s.doneDiv}>
+                <Typography className={s.successHeading}>Välkommen till Artportable! Du kan nu stänga detta fönster.</Typography>
+              </div>
 
-                  {/* <Button
+              {/* <Button
                 onClick={handleReset}
                 className={s.buttonBackStep2}
                 variant="outlined"
@@ -565,18 +561,15 @@ export default function PaymentPremium() {
               >
                 Klar
               </Button> */}
-                  <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-                    <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
-                      {t(`${snackbarSeverity}Message`)}
-                    </Alert>
-                  </Snackbar>
-                </Paper>
-              )}
-            </div>
-          </div>
-
-          <Footer />
-
+              <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+                  {t(`${snackbarSeverity}Message`)}
+                </Alert>
+              </Snackbar>
+            </Paper>
+          )}
         </div>
-        );
+      </div>
+    </div>
+  );
 }
