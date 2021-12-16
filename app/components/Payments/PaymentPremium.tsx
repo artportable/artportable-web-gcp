@@ -371,7 +371,7 @@ export default function PaymentPremium() {
               {(valueRadio === "betalkort") &&
                 <Button
                   disabled
-                  fullWidth
+                 
                   variant="contained"
                   color="secondary"
                   onClick={handleNext}
@@ -382,7 +382,7 @@ export default function PaymentPremium() {
               }
               {(valueRadio === "swish") &&
                 <Button
-                  fullWidth
+
                   variant="contained"
                   color="secondary"
                   onClick={handleNext}
@@ -401,7 +401,7 @@ export default function PaymentPremium() {
           </Typography>
           <div className={s.buttonFlex}>
             <Button
-              fullWidth
+
               onClick={handleBack}
               className={s.buttonBackStep2}
               variant="outlined"
@@ -410,7 +410,7 @@ export default function PaymentPremium() {
               Back
             </Button>
             <Button
-              fullwidth
+
               variant="contained"
               color="secondary"
               onClick={handleNext}
@@ -453,7 +453,6 @@ export default function PaymentPremium() {
               {(valueRadio === "betalkort") &&
                 <Button
                   disabled
-                  fullWidth
                   onClick={handleBack}
                   className={s.buttonBackStep2}
                   variant="outlined"
@@ -463,7 +462,6 @@ export default function PaymentPremium() {
                 </Button>
               }
               <Button
-                fullwidth
                 variant="contained"
                 color="secondary"
                 onClick={handleNext}
