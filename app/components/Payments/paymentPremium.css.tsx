@@ -29,12 +29,12 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'relative',
       top: '-5px',
       marginLeft: '0',
-      color: 'red'
+      color: 'var()'
     },
     inputField: {
       backgroundColor: 'white',
       width: '600px',
-      fontSize: '1.5rem'
+      fontSize: '1.5rem',
     },
     container: {
       width: '100%',
@@ -43,7 +43,9 @@ export const styles = makeStyles((theme: Theme) =>
     accordion: {
       fontSize: '1.5rem',
       border: `1px solid #cfcfcf`,
-
+    },
+    paymentOptions: {
+      width: '550px'
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
@@ -109,12 +111,44 @@ export const styles = makeStyles((theme: Theme) =>
     buttonFlex: {
       display: 'flex',
       width: '610px',
+      marginTop: '16px',
     },
     buttonBack: {
       margin: '8px 8px 0 0',
     },
     buttonNext: {
       marginTop: '8px',
+    },
+    buttonNextStep1: {
+      marginTop: '16px',
+    },
+    buttonNextStep2: {
+      marginTop: '0',
+      width: '301.08px'
+    },
+    buttonBackStep2: {
+      margin: '0px 8px 0 0',
+      width: '301.08px'
+    },
+    inputPaper: {
+      marginTop: '16px',
+    },
+    successDiv: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: '15px'
+    },
+    confirmIcon: {
+      color: 'var(--ion-color-success)',
+      fontSize: '3rem',
+    },
+    successHeading: {
+      fontSize: '1.2rem',
+
+    },
+    successHeading2: {
+      fontSize: '1.2rem',
+      marginLeft: '40px',
     },
   }),
 );

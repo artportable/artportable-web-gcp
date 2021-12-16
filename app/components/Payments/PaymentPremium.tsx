@@ -13,6 +13,7 @@ import OneTimeStripeCheckoutForm from '../OneTimeStripeCheckoutForm/OneTimeStrip
 import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/OneTimeStripeCheckoutForm';
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import CheckIcon from '@material-ui/icons/Check'
 
 const artportablePurchase = 'zapier'
 
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   resetContainer: {
-    padding: theme.spacing(3),
+    padding: '0 24px 24px 24px' ,
   },
 }));
 
@@ -228,7 +229,7 @@ export default function PaymentPremium() {
     setActiveStep(0);
   };
   function getSteps() {
-    return ['Fyll i dina personuppgifter', 'Välj betalmedel', 'Bekräfta eventuellt genomförd Swishbetalning'];
+    return ['Fyll i dina personuppgifter', 'Välj betalmedel', 'Bekräfta eventuell Swishbetalning', 'Bekräftelse'];
   }
 
   function getStepContent(step) {
@@ -238,61 +239,58 @@ export default function PaymentPremium() {
           <div className={s.right}>
             <div className={s.input}>
               <form >
+                <Paper className={s.inputPaper}>
+                  <FormControl fullWidth variant="outlined">
+                    <TextField
+                      required
+                      color="secondary"
+                      className={s.inputField}
+                      variant="outlined"
+                      id="standard-required-name"
+                      value={formData.fullName.value}
+                      error={formData.fullName.error}
+                      onChange={(e) => handleChange(e, 'fullName')}
+                      onBlur={(e) => validateFormValue(e.target.value, 'fullName')}
+                      aria-describedby="standard-name-helper-text"
+                      placeholder="För- och efternamn"
+                      inputProps={{
+                        'aria-label': 'Name',
+                      }}
+                    />
+                  </FormControl>
+                </Paper>
+                <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.fullName.error ? t('mustNotBeEmptyMessage') : ''}</FormHelperText>
+                <Paper className={s.inputPaper}>
+                  <FormControl fullWidth variant="outlined">
+                    <TextField
+                      color="secondary"
+                      className={s.inputField}
+                      variant="outlined"
+                      id="standard-required-email"
+                      value={formData.email.value}
+                      error={formData.email.error}
+                      onChange={(e) => handleChange(e, 'email')}
+                      onBlur={(e) => validateFormValue(e.target.value, 'email')}
+                      aria-describedby="standard-email-helper-text"
+                      placeholder="E-post"
+                      inputProps={{
+                        'aria-label': 'Email',
+                      }}
+                    />
 
-                <div className={s.gap}>
-                  <Paper>
-                    <FormControl fullWidth variant="outlined">
-                      <TextField
-                        required
-                        color="secondary"
-                        className={s.inputField}
-                        variant="outlined"
-                        id="standard-required-name"
-                        value={formData.fullName.value}
-                        error={formData.fullName.error}
-                        onChange={(e) => handleChange(e, 'fullName')}
-                        onBlur={(e) => validateFormValue(e.target.value, 'fullName')}
-                        aria-describedby="standard-name-helper-text"
-                        placeholder="För- och efternamn"
-                        inputProps={{
-                          'aria-label': 'Name',
-                        }}
-                      />
-                    </FormControl>
-                  </Paper>
-                  <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.fullName.error ? t('mustNotBeEmptyMessage') : ''}</FormHelperText>
-                  <Paper>
-                    <FormControl fullWidth variant="outlined">
-                      <TextField
-                        color="secondary"
-                        className={s.inputField}
-                        variant="outlined"
-                        id="standard-required-email"
-                        value={formData.email.value}
-                        error={formData.email.error}
-                        onChange={(e) => handleChange(e, 'email')}
-                        onBlur={(e) => validateFormValue(e.target.value, 'email')}
-                        aria-describedby="standard-email-helper-text"
-                        placeholder="E-post"
-                        inputProps={{
-                          'aria-label': 'Email',
-                        }}
-                      />
-
-                    </FormControl>
-                  </Paper>
-                  <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.email.error ? t('emailErrorMessage') : ''}</FormHelperText>
-                  <Button
-                    fullWidth
-                    disabled={formHasErrors || formUntouched}
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleNext}
-                    className={s.buttonNext}
-                  >
-                    Nästa
-                  </Button>
-                </div>
+                  </FormControl>
+                </Paper>
+                <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.email.error ? t('emailErrorMessage') : ''}</FormHelperText>
+                <Button
+                  fullWidth
+                  disabled={formHasErrors || formUntouched}
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleNext}
+                  className={s.buttonNextStep1}
+                >
+                  Nästa
+                </Button>
               </form>
             </div>
           </div>
@@ -309,8 +307,8 @@ export default function PaymentPremium() {
               >
                 <Typography className={classes.heading}>Betalningsalternativ</Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                <FormControl component="fieldset">
+              <AccordionDetails className={s.paymentOptions}>
+                <FormControl component="fieldset" className={s.paymentOptions}>
                   <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
                     <div className={s.swishFlex}>
                       <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>Swish</Typography>} />
@@ -347,8 +345,11 @@ export default function PaymentPremium() {
                     {(valueRadio === "betalkort") &&
                       <div className={s.swish}>
                         <Elements stripe={promise}>
-                        <OneTimeStripeCheckoutForm email={formData.email.value} fullName={formData.fullName.value} products={[{amount: 350, currency: 'SEK', id: 'price_1K6AKDA3UXZjjLWxjpN3BDym', name: 'Portfolio Premium'}]} 
-                        onSuccess={ () => console.log('Hello World')} />
+                          <OneTimeStripeCheckoutForm
+                            email={formData.email.value}
+                            fullName={formData.fullName.value}
+                            products={[{ amount: 350, currency: 'SEK', id: 'price_1K6AKDA3UXZjjLWxjpN3BDym', name: 'Portfolio Premium' }]}
+                            onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
                     }
@@ -356,73 +357,127 @@ export default function PaymentPremium() {
                 </FormControl>
               </AccordionDetails>
             </Accordion>
-            {(valueRadio === "swish" && expanded === 'panel1') &&
-               <div className={s.buttonFlex}>
-               <Button
-               fullWidth
-               variant="outlined"
-               color="secondary"
-                 onClick={handleBack}
-                 className={s.buttonBack}
-               >
-                 Back
-               </Button>
-               <Button
-               fullWidth
-                 variant="contained"
-                 color="secondary"
-                 onClick={handleNext}
-                 className={s.buttonNext}
-               >
-                 Nästa
-               </Button>
-               </div>
-            }
-            {(valueRadio === "betalkort" && expanded === 'panel1') &&
-               <div className={s.buttonFlex}>
-               <Button
-               fullWidth
-               variant="outlined"
-               color="secondary"
-                 onClick={handleBack}
-                 className={s.buttonBack}
-               >
-                 Back
-               </Button>
-               <Button
-               fullWidth
-                 variant="contained"
-                 color="secondary"
-                 onClick={handleNext}
-                 className={s.buttonNext}
-               >
-                 Nästa
-               </Button>
-               </div>
-            }
-           
+            <div className={s.buttonFlex}>
+              <Button
+                fullWidth
+                variant="outlined"
+                color="secondary"
+                onClick={handleBack}
+                className={s.buttonBackStep2}
+              >
+                Back
+              </Button>
+              {(valueRadio === "betalkort" && expanded === 'panel1') &&
+                <Button
+                  disabled
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleNext}
+                  className={s.buttonNextStep2}
+                >
+                  Nästa
+                </Button>
+              }
+              {(valueRadio === "swish" && expanded === 'panel1') &&
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleNext}
+                  className={s.buttonNextStep2}
+                >
+                  Nästa
+                </Button>
+              }
+            </div>
           </div>
         );
       case 2:
-        return <div><p>Try out different ad text to see what brings in the most customers,
-          and learn how to enhance your ads using features like ad extensions.
-          If you run into any problems with your ads, find out how to tell if
-          they're running and how to resolve approval issues</p>
-          <Button
+        return <div>
+          <Typography className={s.successHeading}>
+            När du genomfört betalningen i din Swish-app, klicka på "Nästa".
+          </Typography>
+          <div className={s.buttonFlex}>
+            <Button
+              fullWidth
+              onClick={handleBack}
+              className={s.buttonBackStep2}
+              variant="outlined"
+              color="secondary"
+            >
+              Back
+            </Button>
+            <Button
+              fullwidth
+              variant="contained"
+              color="secondary"
+              onClick={handleNext}
+              className={s.buttonNextStep2}
+            >
+              Nästa
+            </Button>
+          </div>
+        </div>
+        case 3:
+          return <div>
+            <Paper square elevation={0} className={s.successHeading}>
+              {(valueRadio === "swish") &&
+                <div className={s.successDiv}>
+                  <CheckIcon
+                    className={s.confirmIcon} />
+                  <Typography className={s.successHeading}>Din konstkoordinator kommer nu se att betalnignen kommit in.</Typography>
+                </div>
+              }
+              {(valueRadio === "betalkort") &&
+                <div className={s.successDiv}>
+                  <CheckIcon
+                    className={s.confirmIcon} />
+                  <Typography className={s.successHeading}>Din betalning är genomförd!</Typography>
+                </div>
+              }
+              <div className={s.buttonFlex}>
+              {(valueRadio === "swish") && 
+            <Button
+    
+            fullWidth
             onClick={handleBack}
-            className={s.buttonBack}
+            className={s.buttonBackStep2}
+            variant="outlined"
+            color="secondary"
           >
             Back
           </Button>
-          <Button
-            variant="contained"
+            }
+            {(valueRadio === "betalkort") && 
+            <Button
+            disabled
+            fullWidth
+            onClick={handleBack}
+            className={s.buttonBackStep2}
+            variant="outlined"
             color="secondary"
-            onClick={handleNext}
-            className={s.buttonNext}
           >
-            Nästa
+            Back
           </Button>
-        </div>
+            }
+            <Button
+              fullwidth
+              variant="contained"
+              color="secondary"
+              onClick={handleNext}
+              className={s.buttonNextStep2}
+            >
+              Klar
+            </Button>
+          </div>
+              <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+                  {t(`${snackbarSeverity}Message`)}
+                </Alert>
+              </Snackbar>
+            </Paper>
+          </div>
       default:
         return 'Unknown step';
     }
@@ -460,12 +515,12 @@ export default function PaymentPremium() {
                 <Typography variant="h2" component="h2">4500 kr</Typography>
                 <Typography variant="h4" component="h2">12 månader</Typography>
                 <Typography variant="h6" component="h2" className={s.textIncluded}>I Portfolio Premium ingår bland annat:</Typography>
-                <Typography variant="subtitle1" component="h2">Personlig Konstkoordinator</Typography>
-                <Typography variant="subtitle1" component="h2">Support</Typography>
-                <Typography variant="subtitle1" component="h2">Publicera dina verk</Typography>
-                <Typography variant="subtitle1" component="h2">Chatta och få förfrågningar om dina konstverk</Typography>
-                <Typography variant="subtitle1" component="h2">Följ och interagera med andra konstnärer</Typography>
-                <Typography variant="subtitle1" component="h2" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography>
+                <Typography variant="subtitle1" component="p">Personlig Konstkoordinator</Typography>
+                <Typography variant="subtitle1" component="p">Support</Typography>
+                <Typography variant="subtitle1" component="p">Publicera dina verk</Typography>
+                <Typography variant="subtitle1" component="p">Chatta och få förfrågningar om dina konstverk</Typography>
+                <Typography variant="subtitle1" component="p">Följ och interagera med andra konstnärer</Typography>
+                <Typography variant="subtitle1" component="p" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography>
               </div>
             </div>
           </div>
@@ -489,20 +544,29 @@ export default function PaymentPremium() {
           </Paper>
           {activeStep === steps.length && (
             <Paper square elevation={0} className={classes.resetContainer}>
-              <Typography>Din betalning är genomförd</Typography>
+                <div className={s.successDiv}>
+                  <Typography className={s.successHeading}>Välkommen till Artportable! Du kan nu stänga detta fönster.</Typography>
+                </div>
+
+              {/* <Button
+                onClick={handleReset}
+                className={s.buttonBackStep2}
+                variant="outlined"
+                color="secondary"
+              >
+                Börja om
+              </Button>
               <Button
+                className={s.buttonNextStep2}
+                fullwidth
                 variant="contained"
                 color="secondary"
                 disableElevation
-                rounded
                 onClick={() => submit()}
                 disabled={formHasErrors || formUntouched}
               >
-                {t('send')}
-              </Button>
-              <Button onClick={handleReset} className={s.buttonBack}>
-                Reset
-              </Button>
+                Klar
+              </Button> */}
               <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
                 <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
                   {t(`${snackbarSeverity}Message`)}

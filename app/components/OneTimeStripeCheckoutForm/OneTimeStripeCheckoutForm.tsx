@@ -1,5 +1,5 @@
 import { checkoutFormStyles } from './onteTimeStripeCheckoutForm.css'
-import { Box, CircularProgress, Snackbar, Typography } from "@material-ui/core";
+import { Box, CircularProgress, Snackbar, Typography, Paper } from "@material-ui/core";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Button from '../Button/Button';
 import React, { useState } from "react";
@@ -103,7 +103,8 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
             prices: products.map(product => product.id)
           })
             .then((result) => {
-              showSuccessMessage();
+              // showSuccessMessage();
+              onSuccess();
               setProcessing(false);
             }).catch((error) => {
               showErrorMessage();
@@ -139,7 +140,9 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
             throw result;
           }
           else if (result.Status === 'succeeded') {
+            onSuccess();
             showSuccessMessage();
+            
             return result;
           }
           else if (result.Status === 'requires_action' || result.Status === "requires_confirmation") {
@@ -150,8 +153,9 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
                   throw resultConfirm;
                 } else {
                   if (resultConfirm.paymentIntent.status === 'succeeded') {
+                    onSuccess();
                     showSuccessMessage();
-                    onSuccess()
+                
                     return resultConfirm;
                   }
                 }
@@ -171,58 +175,69 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
 
   return (
     <>
-      <div className={styles.cardElementContainer}>
-        <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-      </div>
-      {/* Show any error that happens when processing the payment */}
-      <div className={styles.cardErrorContainer} role="alert">
-        {error}
-      </div>
 
-      <div className={styles.productsRow}>
-        <Box fontSize="1rem">
-          {products.length > 1 ? t('products') : t('product')}
+      <div className={styles.container}>
+        <div>
+          <Typography variant="h6" component="h2" className={styles.heading}>Fyll i dina kortuppgifter</Typography>
+        </div>
+
+        <div className={styles.cardElementContainer}>
+          <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+        </div>
+
+        {/* Show any error that happens when processing the payment */}
+        <div className={styles.cardErrorContainer} role="alert">
+          {error}
+        </div>
+
+        <div className={styles.productsRow}>
+          <Box fontSize="1rem">
+            {products.length > 1 ? t('products') : t('product')}
+          </Box>
+          <Box className={styles.products}>
+            {products.map((product) => {
+              return <Typography key={product.id}>{product.name}</Typography>
+            })
+            }
+          </Box>
+        </div>
+        <Box className={styles.subtotal}>
+          <Box fontSize="1rem" fontWeight="bold">
+            {t('total')}
+          </Box>
+          <Box>
+            {`${products.reduce((accum, product) => accum + product.amount, 0)} ${products[0].currency.toUpperCase()}`}
+          </Box>
         </Box>
-        <Box className={styles.products}>
-          {products.map((product) => {
-            return <Typography key={product.id}>{product.name}</Typography>
-          })
-          }
+        <Box className={styles.divider}></Box>
+        <Box display="flex" position="relative" justifyContent="flex-end" marginTop="2rem">
+          <Button
+            className={styles.payButton}
+            variant="contained"
+            color="secondary"
+            disableElevation
+            rounded
+            onClick={createPaymentMethod}
+            disabled={processing || disabled}
+          >
+            {capitalizeFirst(t('common:words.pay'))}
+            {processing && (
+              <CircularProgress
+                color="secondary"
+                size={24}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  marginTop: '-12px',
+                  marginLeft: '-12px',
+                }}
+              />
+            )}
+          </Button>
         </Box>
+
       </div>
-      <Box className={styles.subtotal}>
-        <Box fontSize="1rem" fontWeight="bold">
-          {t('total')}
-        </Box>
-        <Box>
-          {`${products.reduce((accum, product) => accum + product.amount, 0)} ${products[0].currency.toUpperCase()}`}
-        </Box>
-      </Box>
-      <Box className={styles.divider}></Box>
-      <Box display="flex" position="relative" justifyContent="flex-end" marginTop="2rem">
-        <Button
-          variant="contained"
-          color="primary"
-          disableElevation
-          rounded
-          onClick={createPaymentMethod}
-          disabled={processing || disabled}
-        >
-          {capitalizeFirst(t('common:words.pay'))}
-          {processing && (
-            <CircularProgress
-              size={24}
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                marginTop: '-12px',
-                marginLeft: '-12px',
-              }}
-            />
-          )}
-        </Button>
-      </Box>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}
@@ -237,6 +252,7 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
           {snackbarSeverity !== 'success' && t('tryAgain')}
         </Alert>
       </Snackbar>
+
     </>
   );
 }
