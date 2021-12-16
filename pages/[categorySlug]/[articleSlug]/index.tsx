@@ -18,7 +18,7 @@ export default function ArticlePage({ article }: { article: Article }) {
       }
       {!router.isFallback &&
         <>
-          {!!!article.published_at && //No publish date means article is in draft mode
+          {!!!article.published_at && //No publish date means article is in draft
             <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
           }
           <Typography variant={'h1'}>
