@@ -317,7 +317,7 @@ export default function PaymentPremium() {
                       <img
                         className={s.swishLogo}
                         width={100}
-                        src="/Images/swishlogo.svg"
+                        src="/images/swishlogo.svg"
                         alt="swishlogo"
                         title="swish" />
                     </div>
@@ -327,7 +327,7 @@ export default function PaymentPremium() {
                         <div className={s.qrCode}>
                           <img
                             width={200}
-                            src="/Images/swishqr.svg"
+                            src="/images/swishqr.svg"
                             alt="swishqr"
                             title="lotwinther" />
                           <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
@@ -339,7 +339,7 @@ export default function PaymentPremium() {
                       <img
                         className={s.paymentCards}
                         width={100}
-                        src="/Images/3_Card_color_horizontal.svg"
+                        src="/images/3_Card_color_horizontal.svg"
                         alt="paymentCards"
                         title="paymentCards" />
                     </div>
@@ -492,7 +492,7 @@ export default function PaymentPremium() {
           <div className={s.left}>
             <img
               className={s.productImage}
-              src="/Images/lotwinther1.jpg"
+              src="/images/lotwinther1.jpg"
               alt="artwork"
               title="lotwinther" />
             <div>
