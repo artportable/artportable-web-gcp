@@ -53,10 +53,11 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   }
 
   const onKeycloakEvent = (event: AuthClientEvent, error?: AuthClientError) => {
-    if (event === "onAuthRefreshError") {
+    if (event === "onAuthRefreshError" || event === "onAuthLogout") {
       !!error && console.log(error)
       Router.reload()
     }
+    console.log(event)
     setKeycloakState(event);
   }
 
