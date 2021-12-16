@@ -94,17 +94,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     swishLogo: {
-      marginLeft: '15px',
+      marginLeft: '12px',
       position: 'relative',
       top: '5px',
       [theme.breakpoints.up('smPlus')]: {
-        marginLeft: '25px',
+        marginLeft: '50px',
       },
     },
       paymentCards: {
         marginLeft: '-5px',
         position: 'relative',
-        top: '5px',
         [theme.breakpoints.up('smPlus')]: {
           marginLeft: '25px',
         },
