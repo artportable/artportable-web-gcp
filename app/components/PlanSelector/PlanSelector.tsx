@@ -42,13 +42,14 @@ export default function PlanSelector({ priceData, landingPageMode, showAll = fal
     product: "portfolioPremium",
     productKey: "portfolioPremium",
     currency: "sek",
-    recurringInterval: "month"
+    recurringInterval: "month",
   }, {
     id: "premium",
     product: "portfolioPremium",
     productKey: "portfolioPremium",
     currency: "sek",
-    recurringInterval: "year"
+    recurringInterval: "year",
+    amount: 4500,
   }];
   
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
