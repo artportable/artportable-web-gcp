@@ -44,7 +44,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
   function getPriceText() {
     if (plan.product === 'free') {
       return '-';
-    } else if (plan.product === 'portfolioPremium') {
+    } else if (plan.product === 'portfolioPremium' && plan.amount === undefined) {
       return 'premium';
     }
 
