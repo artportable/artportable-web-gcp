@@ -195,7 +195,7 @@ export const styles = makeStyles((theme: Theme) =>
     doneDiv: {
       display: 'flex',
       alignItems: 'center',
-      margin: '15px 0',
+      margin: '8px 0',
     },
     confirmIcon: {
       display: 'none',
