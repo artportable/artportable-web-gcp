@@ -49,7 +49,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     }
 
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
-      ` / ${t(`common:words.${plan.recurringInterval}`)} (+${t('common:words.vat')})`;
+      ` / ${t(`common:words.${plan.recurringInterval}`)} (${t('common:words.vat')})`;
   }
 
   const onNavClick = () => {
