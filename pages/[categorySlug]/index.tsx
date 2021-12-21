@@ -5,12 +5,17 @@ import { Locales } from '../../app/models/i18n/locales';
 import { Article } from '../../app/models/Article';
 import { useRouter } from 'next/router';
 import { Localization } from '../../app/models/Localization';
-import { Typography } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { route } from 'next/dist/next-server/server/router';
+import { styles } from './index.css';
+import Link from "next/link";
 
 export default function CategoryPage({ category }: { category: Category }) {
-
+  const s = styles();
   const router = useRouter()
+
+  const dateString = category.created_at;
+  const trimmedDate = dateString.slice(0, -14);
 
   return (
     <Main>
@@ -20,29 +25,65 @@ export default function CategoryPage({ category }: { category: Category }) {
       }
       {!router.isFallback &&
         <>
-          <Typography variant={'h1'}>
-            {category.name}
-          </Typography>
-          {category.articles.map((article) => {
-            return (
-              <Typography variant={'subtitle1'}>
-                {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                <img src={article.coverImage.formats.small.url} />
-                <Typography variant={'subtitle2'}>{article.description}</Typography>
-                {article.authors.map(author => {
-                  return (
-                    <>
-                      <Typography>Author/Författare :{author.name}</Typography>
-                      <img src={author.picture.formats.thumbnail.url} />
-                    </>
-                  )
-                })}
-              </Typography>
-            )
-          })}
+
+          <div>
+            <>
+              {category.name === 'Artiklar' ?
+                <Typography variant={'h1'}>
+                  Senast
+                </Typography>
+                :
+                <Typography variant={'h1'}>
+                  {category.name}
+                </Typography>
+              }
+            </>
+
+          </div>
+          <div className={s.wrapper}>
+            {category.articles.map((article) => {
+              return (
+                <div>
+                  <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
+                    <a>
+                  <div>
+                    <div>
+                    
+                      <img className={s.coverImage} src={article.coverImage.formats.small.url} />
+                      <div className={s.ap}>
+                      <div className={s.datediv}>
+                        {trimmedDate}
+                      </div>
+                    </div>
+
+                    <Typography variant={'h2'}>
+                      <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                        {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                      </Box>
+                    </Typography>
+                    
+                    <Typography variant={'subtitle2'}>{article.description}</Typography>
+                    {article.authors.map(author => {
+                      return (
+                        <>
+                         
+                          {/* <Typography>Author/Författare :{author.name}</Typography> */}
+                          {/* <img src={author.picture.formats.thumbnail.url} /> */}
+                        </>
+                      )
+                    })}
+                </div>
+                  </div>
+                  <div className={s.line}></div>
+                  </a>
+                </Link>
+                  </div>
+          )
+            })}
+        </div>
         </>
       }
-    </Main>
+    </Main >
   );
 }
 

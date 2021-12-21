@@ -6,8 +6,8 @@ export interface Category {
   name: string;
   slug: string;
   locale: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: any;
+  updated_at: any;
   localizations: Localization[];
   articles: Article[];
 }
