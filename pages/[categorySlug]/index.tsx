@@ -40,47 +40,44 @@ export default function CategoryPage({ category }: { category: Category }) {
             </>
 
           </div>
-          <div className={s.wrapper}>
+          <div className={s.flex}>
             {category.articles.map((article) => {
               return (
-                <div>
+                <div >
                   <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
                     <a>
-                  <div>
-                    <div>
-                    
-                      <img className={s.coverImage} src={article.coverImage.formats.small.url} />
-                      <div className={s.ap}>
-                      <div className={s.datediv}>
-                        {trimmedDate}
-                      </div>
-                    </div>
+                      <div className={s.wrapper}>
+                        <img className={s.coverImage} src={article.coverImage.formats.small.url} />
+                        <div className={s.ap}>
+                          <div>
+                            {trimmedDate}
+                          </div>
+                          
+                          <Typography variant={'h2'}>
+                            <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                              {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                            </Box>
+                          </Typography>
 
-                    <Typography variant={'h2'}>
-                      <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                        {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                      </Box>
-                    </Typography>
-                    
-                    <Typography variant={'subtitle2'}>{article.description}</Typography>
-                    {article.authors.map(author => {
-                      return (
-                        <>
-                         
-                          {/* <Typography>Author/Författare :{author.name}</Typography> */}
-                          {/* <img src={author.picture.formats.thumbnail.url} /> */}
-                        </>
-                      )
-                    })}
+                          <Typography variant={'subtitle2'}>{article.description}</Typography>
+                          {/* {article.authors.map(author => {
+                            return (
+                              <>
+
+                                <Typography>Author/Författare :{author.name}</Typography>
+                                <img src={author.picture.formats.thumbnail.url} />
+                              </>
+                            )
+                          })} */}
+                        </div>
+                        <div className={s.line}></div>
+                      </div>
+                    </a>
+                  </Link>
                 </div>
-                  </div>
-                  <div className={s.line}></div>
-                  </a>
-                </Link>
-                  </div>
-          )
+              )
             })}
-        </div>
+          </div>
         </>
       }
     </Main >
@@ -150,7 +147,7 @@ export async function getStaticPaths() {
   }))
 
   // We'll pre-render only these paths at build time.
-  // { fallback: blocking } will server-render pages
+  // {fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
   return { paths, fallback: true }
 }

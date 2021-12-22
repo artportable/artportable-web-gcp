@@ -2,18 +2,30 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    wrapper: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gridTemplateRows: 'repeat(3, 1fr)',
-      gap: '20px'
-    },
     // wrapper: {
-    //   display: 'flex',
-    //   flexWrap: 'wrap',
-    //   width: '400px',
-    //   flexDirection: 'row',
+    //   display: 'grid',
+    //   gridTemplateColumns: 'repeat(3, 1fr)',
+    //   gridTemplateRows: 'repeat(3, 1fr)',
+    //   gap: '20px'
     // },
+    flex: {
+      alignItems: 'flex-start',
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'row',
+      gap: '20px',
+      flexWrap: 'wrap',
+
+    },
+    wrapper: {
+      width: '300px',
+      backgroundColor: 'white',
+      [theme.breakpoints.up('sm')]: {
+        width: '500px',
+      },   
+      // maxHeight: '600px'
+      
+    },
     editorial: {
       marginBottom: theme.spacing(1)
     },
@@ -23,10 +35,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     coverImage: {
       width: '100%',
-      borderRadius: '5px',
+
+      borderRadius: '5px 5px 0 0',
     },
     dateSpan: {
-      textAlign: 'left',
+      textAlign: 'right',
       marginTop: '8px',
       color: '#999999',
     },
@@ -39,6 +52,12 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'inline-block',
       width: 'fit-content',
     blockSize: 'fit-content',
+    },
+    hittad: {
+      width: '1200px',
+    },
+    flezare: {
+      display: 'flex'
     }
   }),
 );

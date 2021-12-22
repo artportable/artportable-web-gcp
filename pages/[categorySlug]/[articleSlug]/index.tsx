@@ -3,12 +3,18 @@ import { useRouter } from 'next/router';
 import Main from '../../../app/components/Main/Main'
 import { Article } from '../../../app/models/Article';
 import { Category } from '../../../app/models/Category';
-import { Typography } from '@material-ui/core';
+import { Typography, Paper } from '@material-ui/core';
+import { styles } from './index.css';
 
 
 export default function ArticlePage({ article }: { article: Article }) {
-
+  const s = styles();
   const router = useRouter()
+
+  const cate = article.categories;
+  const listItems = cate.map((cats) =>
+    <li>{cats}</li>
+  );
 
   return (
     <Main>
@@ -18,19 +24,36 @@ export default function ArticlePage({ article }: { article: Article }) {
       }
       {!router.isFallback &&
         <>
-          {!!!article.published_at && //No publish date means article is in draft
-            <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
-          }
-          <Typography variant={'h1'}>
-            {article.title}
-          </Typography>
-          {article.coverImage &&
-            <img src={article.coverImage.url} />
-          }
-          <Typography variant={'subtitle1'}>
-            {article.description}
-          </Typography>
-          <div dangerouslySetInnerHTML={{ __html: article.content }} />
+          <div className={s.container}>
+            <Paper className={s.paper}>
+              {!!!article.published_at && //No publish date means article is in draft
+                <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
+              }
+              <Typography variant={'h1'}>
+                {article.created_at}
+              </Typography>
+               <Typography variant={'subtitle2'}>{article.description}</Typography>
+              {/* {article.authors.map(author => {
+                return (
+                  <>
+                    <Typography>Author/Författare :{author.name}</Typography>
+                    <img src={author.picture.formats.thumbnail.url} />
+                  </>
+                )
+              })} */}
+              <Typography variant={'h1'}>
+                {article}
+              </Typography>
+              <Typography variant={'h1'}>
+                {article.title}
+              </Typography>
+
+              <Typography variant={'subtitle1'}>
+                {article.description}
+              </Typography>
+              <div dangerouslySetInnerHTML={{ __html: article.content }} />
+            </Paper>
+          </div>
         </>
       }
     </Main>
