@@ -42,9 +42,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "orjan.satre", image: '/images/orjan.satre.jpg', profileImage: 'om.png', imageLink: "9fb0971e-ad33-4a57-b13f-9399aa708352"},
-    // { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg', imageLink: "3293112f-8f5d-49ff-814f-42b067359b2e"},
-    // { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg', imageLink: "0899b50c-73a7-4a8c-a3d3-7d2f87b54fcf"},
+    { name: "inger.dillan.antonsen", image: '/images/IngerDillan.png', profileImage: 'Inger-i-New-York-2016-1-2.jpg', imageLink: "8dc0324a-a10e-4b0b-967b-d50d79610b41"},
+    { name: "janka-dimitrova", image: '/images/Ianka.png', profileImage: 'PROFILE-PICTURE20-30.jpg', imageLink: "eac03d57-dd99-4b32-8b24-e256fbf65a25"},
+    { name: "malte.johansson", image: '/images/Malte.png', profileImage: '58a9fe9f-e327-46e1-94ae-52de5fdfb6e2.jpg', imageLink: "84dd1002-e602-4bcc-a916-ab43eff44d01"},
   ];
 
   useEffect (() => {
