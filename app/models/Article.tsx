@@ -12,7 +12,7 @@ export interface Article {
   publishCategory: PublishCategory;
   locale: string;
   published_at: Date;
-  created_at: Date;
+  created_at: any;
   updated_at: Date;
   coverImage: CoverImage;
   authors?: Author[];

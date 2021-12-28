@@ -3,18 +3,20 @@ import { useRouter } from 'next/router';
 import Main from '../../../app/components/Main/Main'
 import { Article } from '../../../app/models/Article';
 import { Category } from '../../../app/models/Category';
-import { Typography, Paper } from '@material-ui/core';
+import { Avatar, Typography, Paper } from '@material-ui/core';
 import { styles } from './index.css';
+import Button from '../../../app/components/Button/Button';
+import Link from "next/link";
+
 
 
 export default function ArticlePage({ article }: { article: Article }) {
-  const s = styles();
-  const router = useRouter()
 
-  const cate = article.categories;
-  const listItems = cate.map((cats) =>
-    <li>{cats}</li>
-  );
+  const router = useRouter()
+  const s = styles();
+
+  const dateString = article.published_at;
+  const trimmedDate = dateString.slice(0, -14);
 
   return (
     <Main>
@@ -24,36 +26,58 @@ export default function ArticlePage({ article }: { article: Article }) {
       }
       {!router.isFallback &&
         <>
-          <div className={s.container}>
-            <Paper className={s.paper}>
-              {!!!article.published_at && //No publish date means article is in draft
-                <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
-              }
-              <Typography variant={'h1'}>
-                {article.created_at}
-              </Typography>
-               <Typography variant={'subtitle2'}>{article.description}</Typography>
-              {/* {article.authors.map(author => {
-                return (
-                  <>
-                    <Typography>Author/Författare :{author.name}</Typography>
-                    <img src={author.picture.formats.thumbnail.url} />
-                  </>
-                )
-              })} */}
-              <Typography variant={'h1'}>
-                {article}
-              </Typography>
-              <Typography variant={'h1'}>
+          {!!!article.published_at && //No publish date means article is in draft
+            <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
+          }
+          <Paper className={s.paper}>
+            <div className={s.headingDiv}>
+              <Typography variant={'h1'} className={s.headingText}>
                 {article.title}
               </Typography>
-
-              <Typography variant={'subtitle1'}>
-                {article.description}
+              <Typography>
+                {trimmedDate}
               </Typography>
-              <div dangerouslySetInnerHTML={{ __html: article.content }} />
-            </Paper>
-          </div>
+            </div>
+            <div className={s.line}></div>
+            <Typography >
+              {article.description}
+            </Typography>
+
+            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.imagar} />
+
+            {article.authors.map(author => {
+
+              return (
+                <div className={s.authorDiv}>
+                  <Avatar src={author.picture.formats.thumbnail.url} className={s.authorAvatar} />
+                  <Typography className={s.authorText}>{author.name}</Typography>
+                </div>
+              )
+
+            })}
+
+            <div className={s.line}></div>
+            <div className={s.tagDiv} >
+              {article.categories.map(category => {
+                return (
+                  <>
+                    <Link as={`/${category.slug}`} href={category.name}>
+                      <a>
+                        <Button rounded variant="contained" color="primary" disableElevation>
+                          <Typography>
+                            {category.name}
+                          </Typography>
+                        </Button>
+                      </a>
+                    </Link>
+                  </>
+                )
+
+              })}
+            </div>
+
+
+          </Paper>
         </>
       }
     </Main>

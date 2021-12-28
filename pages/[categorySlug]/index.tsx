@@ -9,12 +9,13 @@ import { Typography, Box } from '@material-ui/core';
 import { route } from 'next/dist/next-server/server/router';
 import { styles } from './index.css';
 import Link from "next/link";
+import { useEffect } from 'react';
 
 export default function CategoryPage({ category }: { category: Category }) {
   const s = styles();
   const router = useRouter()
 
-  const dateString = category.created_at;
+  const dateString = category.created_at.slice(0, -14);
   const trimmedDate = dateString.slice(0, -14);
 
   return (
@@ -41,7 +42,7 @@ export default function CategoryPage({ category }: { category: Category }) {
 
           </div>
           <div className={s.flex}>
-            {category.articles.map((article) => {
+            {category.articles.reverse().map((article) => {
               return (
                 <div >
                   <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
@@ -50,25 +51,23 @@ export default function CategoryPage({ category }: { category: Category }) {
                         <img className={s.coverImage} src={article.coverImage.formats.small.url} />
                         <div className={s.ap}>
                           <div>
-                            {trimmedDate}
+                            {article.created_at.slice(0, -14)}
                           </div>
-                          
+
                           <Typography variant={'h2'}>
                             <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
                               {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
                             </Box>
                           </Typography>
-
-                          <Typography variant={'subtitle2'}>{article.description}</Typography>
-                          {/* {article.authors.map(author => {
+                          {article.authors.map(author => {
                             return (
                               <>
-
                                 <Typography>Author/Författare :{author.name}</Typography>
-                                <img src={author.picture.formats.thumbnail.url} />
+                                {/* <img src={author.picture.formats.thumbnail.url} /> */}
                               </>
                             )
-                          })} */}
+                          })}
+                          <Typography variant={'subtitle2'}>{article.description}</Typography>
                         </div>
                         <div className={s.line}></div>
                       </div>
