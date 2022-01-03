@@ -3,7 +3,7 @@ import { Localization } from "./Localization";
 
 export interface Category {
   id: number;
-  name: string;
+  name: any;
   slug: string;
   locale: string;
   created_at: any;

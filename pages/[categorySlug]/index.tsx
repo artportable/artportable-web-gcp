@@ -5,18 +5,21 @@ import { Locales } from '../../app/models/i18n/locales';
 import { Article } from '../../app/models/Article';
 import { useRouter } from 'next/router';
 import { Localization } from '../../app/models/Localization';
-import { Typography, Box } from '@material-ui/core';
+import { Typography, Box, Tab, Tabs } from '@material-ui/core';
 import { route } from 'next/dist/next-server/server/router';
 import { styles } from './index.css';
 import Link from "next/link";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { arrayIncludes } from '@material-ui/pickers/_helpers/utils';
+import { useTranslation } from 'next-i18next'
+import { ar } from 'date-fns/locale';
 
 export default function CategoryPage({ category }: { category: Category }) {
   const s = styles();
   const router = useRouter()
+  const { t } = useTranslation(['articles']);
 
-  const dateString = category.created_at.slice(0, -14);
-  const trimmedDate = dateString.slice(0, -14);
+  var newCategoryArray = category.articles.slice().reverse();
 
   return (
     <Main>
@@ -29,52 +32,55 @@ export default function CategoryPage({ category }: { category: Category }) {
 
           <div>
             <>
-              {category.name === 'Artiklar' ?
-                <Typography variant={'h1'}>
-                  Senast
-                </Typography>
-                :
-                <Typography variant={'h1'}>
-                  {category.name}
-                </Typography>
-              }
-            </>
+              <div className={s.categories}>
+                {category.name === 'Artiklar' ?
+                  <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
+                    {t('latest')}
+                  </Typography>
+                  :
+                  <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
+                    {category.name}
+                  </Typography>
+                }
 
+
+                <Typography className={s.categoryHeadingSecondary} component="h1" variant={'h3'}>
+                  <a href="https://old.artportable.com/stories/" target="blank">
+                    {t('earlierArticles')}
+                  </a>
+                </Typography>
+
+
+              </div>
+            </>
           </div>
           <div className={s.flex}>
-            {category.articles.reverse().map((article) => {
-              return (
-                <div >
-                  <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
-                    <a>
-                      <div className={s.wrapper}>
-                        <img className={s.coverImage} src={article.coverImage.formats.small.url} />
-                        <div className={s.ap}>
-                          <div>
-                            {article.created_at.slice(0, -14)}
-                          </div>
+            {newCategoryArray.map((article) => {
+              if (article.published_at)
+                return (
+                  <div key={article.id}>
+                    <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
+                      <a>
+                        <div className={s.wrapper}>
+                          <img className={s.coverImage} src={article.coverImage.formats.small.url} />
+                          <div className={s.textContent}>
+                            <div>
+                              {article.created_at.slice(0, -14)}
+                            </div>
 
-                          <Typography variant={'h2'}>
-                            <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                              {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                            </Box>
-                          </Typography>
-                          {article.authors.map(author => {
-                            return (
-                              <>
-                                <Typography>Author/Författare :{author.name}</Typography>
-                                {/* <img src={author.picture.formats.thumbnail.url} /> */}
-                              </>
-                            )
-                          })}
-                          <Typography variant={'subtitle2'}>{article.description}</Typography>
+                            <Typography component="h2" variant={'h2'}>
+                              <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                              </Box>
+                            </Typography>
+                            <Typography variant={'subtitle1'}>{article.description}</Typography>
+                          </div>
+                          <div className={s.line}></div>
                         </div>
-                        <div className={s.line}></div>
-                      </div>
-                    </a>
-                  </Link>
-                </div>
-              )
+                      </a>
+                    </Link>
+                  </div>
+                )
             })}
           </div>
         </>

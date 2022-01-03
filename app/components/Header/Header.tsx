@@ -34,7 +34,7 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/goog
 import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
 
 export default function Header() {
-  const { t } = useTranslation(['header','support']);
+  const { t } = useTranslation(['header', 'support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const { socialId, username, isSignedIn, membership } = useContext(UserContext);
@@ -46,7 +46,7 @@ export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
   const [globalIsLoading, setglobalIsLoading] = useState(false);
   const { token: activityToken, isError, isLoading } = useGetActivityToken(username.value, socialId.value, isSignedIn.value);
-  
+
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
 
@@ -73,7 +73,7 @@ export default function Header() {
     }
 
     return () => {
-      if(chatClient) {
+      if (chatClient) {
         chatClient.off((_) => { });
       }
     }
@@ -81,145 +81,152 @@ export default function Header() {
 
   return (
     <>
-    <AppBar classes={{ root: s.toolbar }} elevation={0}>
-      <Toolbar>
-        <div className={s.container}>
-          <div className={s.menuButton}>
-            <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
-              <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
-                <MenuIcon style={{ fontSize: '30px' }} />
-              </Badge>
-              <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
-            </IconButton>
-          </div>
-          <div className={s.logoContainer}>
-            <Link href={logoHref}>
-              <a>
-                <img
-                  className={s.logo}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="Logo Artportable"
-                />
-              </a>
-            </Link>
-          </div>
-          <nav className={s.navigation}>
-            {(isSignedIn.value) &&
-              <MuiButton classes={{ root: s.feed }} color="default" size="large">
-                <Link href="/feed">
-                  {t('myArtNetwork')}
-                </Link>
-              </MuiButton>
-            }
-            <MuiButton color="default" size="large">
-              <a href="https://old.artportable.com/stories/" target="blank">
-                {t('stories')}
-              </a>
-            </MuiButton>
-          </nav>
-          {(!isSignedIn.value) &&
-            <div className={s.login}>
-              <Button
-                size="small"
-                variant="contained"
-                color="primary"
-                disableElevation
-                rounded
-                onClick={() => keycloak.register({
-                  locale: router.locale,
-                  redirectUri: signUpRedirectHref
-                })}>
-                {t('signUp')}
-              </Button>
-              <Button
-                size="small"
-                variant="outlined"
-                color="primary"
-                disableElevation
-                rounded
-                onClick={() => keycloak.login({ locale: router.locale })}>
-                {t('login')}
-              </Button>
+      <AppBar classes={{ root: s.toolbar }} elevation={0}>
+        <Toolbar>
+          <div className={s.container}>
+            <div className={s.menuButton}>
+              <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
+                <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
+                  <MenuIcon style={{ fontSize: '30px' }} />
+                </Badge>
+                <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
+              </IconButton>
             </div>
-          }
+            <div className={s.logoContainer}>
+              <Link href={logoHref}>
+                <a>
+                  <img
+                    className={s.logo}
+                    src="/Artportable_Logotyp_Black.svg"
+                    alt="Logo Artportable"
+                  />
+                </a>
+              </Link>
+            </div>
+            <nav className={s.navigation}>
+              {(isSignedIn.value) &&
+                <MuiButton classes={{ root: s.feed }} color="default" size="large">
+                  <Link href="/feed">
+                    {t('myArtNetwork')}
+                  </Link>
+                </MuiButton>
+              }
+              {/* <Link href="/artiklar" passHref>
+                <a>
+                  <MuiButton color="default" size="large">
+                    {t('stories')}
+                  </MuiButton>
+                </a>
+              </Link> */}
+              <MuiButton color="default" size="large">
+                <a href="https://old.artportable.com/stories/" target="blank">
+                  {t('stories')}
+                </a>
+              </MuiButton>
+            </nav>
+            {(!isSignedIn.value) &&
+              <div className={s.login}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                  rounded
+                  onClick={() => keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref
+                  })}>
+                  {t('signUp')}
+                </Button>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  color="primary"
+                  disableElevation
+                  rounded
+                  onClick={() => keycloak.login({ locale: router.locale })}>
+                  {t('login')}
+                </Button>
+              </div>
+            }
             <div className={s.singleNotificationButton}>
-            {(isSignedIn.value) &&
-               <> 
-               {activityToken && !isError && !isLoading ?
-                  <NotificationIconButton activityToken={activityToken} socialId={socialId.value}/>
-                  :
-                  <IconButton aria-label="account" disabled aria-disabled>
-                    <NotificationsIcon
-                      classes={{ root: s.notificationIcon }}
-                      style={{ fontSize: '30px' }}
-                    />
-                  </IconButton>
-                }
+              {(isSignedIn.value) &&
+                <>
+                  {activityToken && !isError && !isLoading ?
+                    <NotificationIconButton activityToken={activityToken} socialId={socialId.value} />
+                    :
+                    <IconButton aria-label="account" disabled aria-disabled>
+                      <NotificationsIcon
+                        classes={{ root: s.notificationIcon }}
+                        style={{ fontSize: '30px' }}
+                      />
+                    </IconButton>
+                  }
                 </>
               }
-              </div>
-          {(isSignedIn.value) &&
-            <>        
-              <div className={s.login}>
-                {(membership.value > Membership.Base) &&
-                  <div className={s.upload}>
-                    <Link href="/upload">
+            </div>
+            {(isSignedIn.value) &&
+              <>
+                <div className={s.login}>
+                  {(membership.value > Membership.Base) &&
+                    <div className={s.upload}>
+                      <Link href="/upload">
+                        <a>
+                          <Button
+                            onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_HEADER, CategoryType.INTERACTIVE)}
+                            className={s.uploadButton}
+                            size="small"
+                            variant="outlined"
+                            color="primary"
+                            disableElevation
+                            rounded>
+                            {t('upload')}
+                          </Button>
+                        </a>
+                      </Link>
+                    </div>
+                  }
+                  {(membership.value < Membership.Portfolio) &&
+                    <UpgradePortfolio />
+                  }
+                  <div className={s.iconButtons}>
+                    <div className={s.notificationButton}>
+                      {activityToken && !isError && !isLoading ?
+                        <NotificationIconButton activityToken={activityToken} socialId={socialId.value} />
+                        :
+                        <IconButton aria-label="account" disabled aria-disabled>
+                          <NotificationsIcon
+                            classes={{ root: s.notificationIcon }}
+                            style={{ fontSize: '30px' }}
+                          />
+                        </IconButton>
+                      }
+                    </div>
+                    <Link href="/messages">
                       <a>
-                        <Button
-                          onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_HEADER, CategoryType.INTERACTIVE)}
-                          className={s.uploadButton}
-                          size="small"
-                          variant="outlined"
-                          color="primary"
-                          disableElevation
-                          rounded>
-                          {t('upload')}
-                        </Button>
+                        <IconButton color="secondary" aria-label="account">
+                          <Badge badgeContent={unreadChatMessages} max={99} color="primary">
+                            <ChatBubbleIcon style={{ fontSize: '30px' }} />
+                          </Badge>
+                        </IconButton>
                       </a>
                     </Link>
-                  </div>
-                }
-                {(membership.value < Membership.Portfolio) && 
-                <UpgradePortfolio />
-              }
-                <div className={s.iconButtons}>
-                  <div className={s.notificationButton}>
-                    {activityToken && !isError && !isLoading ?
-                    <NotificationIconButton activityToken={activityToken} socialId={socialId.value}/>
-                      :
-                      <IconButton aria-label="account" disabled aria-disabled>
-                        <NotificationsIcon
-                          classes={{ root: s.notificationIcon }}
-                          style={{ fontSize: '30px' }}
-                        />
-                      </IconButton>
-                    }
-                  </div>
-                  <Link href="/messages">
-                    <a>
-                      <IconButton color="secondary" aria-label="account">
-                        <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                          <ChatBubbleIcon style={{ fontSize: '30px' }} />
-                        </Badge>
-                      </IconButton>
-                    </a>
-                  </Link>
 
-                  <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
+                    <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
+                  </div>
                 </div>
-              </div>
-            </>
-          }
-          <div className={s.language}>
-            <I18nSelector></I18nSelector>
+              </>
+            }
+            <div className={s.language}>
+              <I18nSelector></I18nSelector>
+            </div>
           </div>
-        </div>
-        <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
-      </Toolbar>
-    </AppBar>
-    {globalIsLoading &&
-      <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
-    }
+          <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
+        </Toolbar>
+      </AppBar>
+      {globalIsLoading &&
+        <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
+      }
     </>
   );
 }

@@ -7,6 +7,7 @@ import { Avatar, Typography, Paper } from '@material-ui/core';
 import { styles } from './index.css';
 import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
+import { getPriceData } from '../../plans';
 
 
 
@@ -17,6 +18,8 @@ export default function ArticlePage({ article }: { article: Article }) {
 
   const dateString = article.published_at;
   const trimmedDate = dateString.slice(0, -14);
+
+
 
   return (
     <Main>
@@ -29,6 +32,8 @@ export default function ArticlePage({ article }: { article: Article }) {
           {!!!article.published_at && //No publish date means article is in draft
             <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
           }
+          <img className={s.background} src={article.coverImage.formats.medium.url} />
+
           <Paper className={s.paper}>
             <div className={s.headingDiv}>
               <Typography variant={'h1'} className={s.headingText}>
@@ -43,7 +48,7 @@ export default function ArticlePage({ article }: { article: Article }) {
               {article.description}
             </Typography>
 
-            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.imagar} />
+            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages} />
 
             {article.authors.map(author => {
 
@@ -72,11 +77,8 @@ export default function ArticlePage({ article }: { article: Article }) {
                     </Link>
                   </>
                 )
-
               })}
             </div>
-
-
           </Paper>
         </>
       }

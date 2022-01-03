@@ -1,13 +1,8 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap } from '../../app/utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    // wrapper: {
-    //   display: 'grid',
-    //   gridTemplateColumns: 'repeat(3, 1fr)',
-    //   gridTemplateRows: 'repeat(3, 1fr)',
-    //   gap: '20px'
-    // },
     flex: {
       alignItems: 'flex-start',
       display: 'flex',
@@ -18,16 +13,36 @@ export const styles = makeStyles((theme: Theme) =>
 
     },
     wrapper: {
-      width: '300px',
       backgroundColor: 'white',
-      [theme.breakpoints.up('sm')]: {
-        width: '500px',
-      },   
-      // maxHeight: '600px'
-      
+      display: 'flex',
+      flexDirection: 'column',
+      [theme.breakpoints.up('mdPlus')]: {
+        flexDirection: 'row',
+      },
     },
-    editorial: {
-      marginBottom: theme.spacing(1)
+    categories: {
+      display: 'flex',
+      ...rowGap(32),
+    },
+    categoryHeading: {
+      fontWeight: 500,
+      marginBottom: '25px',
+      textDecoration: 'underline',
+      textDecorationColor: 'var(--ion-color-tertiary)',
+      textDecorationThickness: '3px',
+      fontSize: '1rem',
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '1.45rem',
+        marginBottom: '50px',
+        textDecorationThickness: '6px',
+      },   
+    },
+    categoryHeadingSecondary: {
+      fontWeight: 400,
+      fontSize: '1rem',
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '1.45rem',
+      },
     },
     headline: {
       textDecoration: 'underline',
@@ -35,8 +50,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     coverImage: {
       width: '100%',
-
       borderRadius: '5px 5px 0 0',
+      [theme.breakpoints.up('md')]: {
+        flexDirection: 'row',
+        borderRadius: '5px 0 0 5px',
+      },   
     },
     dateSpan: {
       textAlign: 'right',
@@ -48,16 +66,11 @@ export const styles = makeStyles((theme: Theme) =>
       height: '4px',
       backgroundColor: 'var(--ion-color-primary)'
     },
-    ap: {
+    textContent: {
+      padding: '20px',
       display: 'inline-block',
-      width: 'fit-content',
-    blockSize: 'fit-content',
+      width: '100%',
+      blockSize: 'fit-content',
     },
-    hittad: {
-      width: '1200px',
-    },
-    flezare: {
-      display: 'flex'
-    }
   }),
 );

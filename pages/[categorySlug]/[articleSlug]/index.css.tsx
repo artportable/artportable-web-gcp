@@ -3,37 +3,23 @@ import { rowGap, columnGap } from '../../../app/utils/styleUtils'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      // display: 'grid',
-      // gridTemplateColumns: '[first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end]',
-      // gridTemplateRows: '[row1-start] 25% [row1-end] 100px [third-line] auto [last-line]',
-      // gap: '20px'
-    },
-    // container: {
-    //   position: 'relative',
-    // },
-    coverImage: {
-      // gridColumnStart: 'col-start 1',
-      // width: '100%',
-
-    },
     paper: {
-      padding: '100px'
-      // '*': {
-      //   magrginLeft: '10px'
-      // }
-      // gridColumnStart: 'col-start 1',
-      // width: '90%',
+      padding: '20px',
+      zIndex: 1,
+      [theme.breakpoints.up('md')]: {
+        padding: '100px',
+        marginTop: '100px',
+      },
     },
     line: {
       height: '2px',
       backgroundColor: 'var(--ion-color-primary)',
       margin: '32px 0',
     },
-    imagar: {
+    articleImages: {
       '& img': {
-        width: '50%',
-        innerHeight: '50%',
+        width: '100%',
+        height: '100%',
       },
       width: 'fit-content',
     },
@@ -67,5 +53,11 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       ...rowGap(16),
     },
+    background: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+    }
   }),
 );

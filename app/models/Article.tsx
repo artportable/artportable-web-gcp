@@ -11,7 +11,7 @@ export interface Article {
   slug: string;
   publishCategory: PublishCategory;
   locale: string;
-  published_at: Date;
+  published_at: any;
   created_at: any;
   updated_at: Date;
   coverImage: CoverImage;
