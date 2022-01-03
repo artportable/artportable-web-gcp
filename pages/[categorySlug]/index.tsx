@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { Localization } from '../../app/models/Localization';
 import { Typography, Box, Tab, Tabs } from '@material-ui/core';
 import { route } from 'next/dist/next-server/server/router';
-import { styles } from './index.css';
+import { styles } from '../../styles/[categorySlug].css';
 import Link from "next/link";
 import { useEffect, useState } from 'react';
 import { arrayIncludes } from '@material-ui/pickers/_helpers/utils';

@@ -4,12 +4,9 @@ import Main from '../../../app/components/Main/Main'
 import { Article } from '../../../app/models/Article';
 import { Category } from '../../../app/models/Category';
 import { Avatar, Typography, Paper } from '@material-ui/core';
-import { styles } from './index.css';
+import { styles } from '../../../styles/[articleSlug].css';
 import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
-import { getPriceData } from '../../plans';
-
-
 
 export default function ArticlePage({ article }: { article: Article }) {
 
@@ -18,8 +15,6 @@ export default function ArticlePage({ article }: { article: Article }) {
 
   const dateString = article.published_at;
   const trimmedDate = dateString.slice(0, -14);
-
-
 
   return (
     <Main>
@@ -48,12 +43,12 @@ export default function ArticlePage({ article }: { article: Article }) {
               {article.description}
             </Typography>
 
-            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages} />
+            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages}/>
 
             {article.authors.map(author => {
 
               return (
-                <div className={s.authorDiv}>
+                <div className={s.authorDiv} key={author.id}>
                   <Avatar src={author.picture.formats.thumbnail.url} className={s.authorAvatar} />
                   <Typography className={s.authorText}>{author.name}</Typography>
                 </div>
