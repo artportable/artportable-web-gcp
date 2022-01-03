@@ -13,9 +13,6 @@ export default function ArticlePage({ article }: { article: Article }) {
   const router = useRouter()
   const s = styles();
 
-  const dateString = article.published_at;
-  const trimmedDate = dateString.slice(0, -14);
-
   return (
     <Main>
       {router.isFallback &&
@@ -35,7 +32,7 @@ export default function ArticlePage({ article }: { article: Article }) {
                 {article.title}
               </Typography>
               <Typography>
-                {trimmedDate}
+              {article.published_at.slice(0, -14)}
               </Typography>
             </div>
             <div className={s.line}></div>
