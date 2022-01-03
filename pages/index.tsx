@@ -45,9 +45,12 @@ export default function DiscoverPage() {
   const [searchQueryArt, setSearchQueryArt] = useState(null);
   const loadMoreArtworksElementRef = useRef(null);
   const loadMoreArtistsElementRef = useRef(null);
+  const loadMoreMontlyArtistsElementRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState<string>();
+  const [searchQueryMontly, setSearchQueryMontly] = useState<string>();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
   const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
+  const [loadMoreMontlyArtists, setLoadMoreMontlyArtists] = useState<boolean>(true);
 
   const { loading, setLoading } = useContext(LoadingContext);
 
@@ -64,7 +67,7 @@ export default function DiscoverPage() {
 
 
 
-  const { data: artworks, isLoading: isLoadingArtWorks} = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
+  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         setLoadMoreArtworks(false);
@@ -94,7 +97,6 @@ export default function DiscoverPage() {
         setLoadMoreArtists(false);
         return null;
       }
-
       if (pageIndex == 0) {
         const url = new URL(`${apiBaseUrl}/api/discover/artists`);
         if (searchQuery != null && searchQuery != '') {
@@ -110,17 +112,17 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
+  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreMontlyArtistsElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtists(false);
+        setLoadMoreMontlyArtists(false);
         return null;
       }
 
       if (pageIndex == 0) {
         const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
-        if (searchQuery != null && searchQuery != '') {
-          url.searchParams.append('q', searchQuery);
+        if (searchQueryMontly != null && searchQueryMontly != '') {
+          url.searchParams.append('q', searchQueryMontly);
         }
         if (username.value != null && username.value != '') {
           url.searchParams.append('myUsername', username.value);
@@ -132,7 +134,7 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-    const useWideLayout = activeTab === 0 || activeTab === 1;
+  const useWideLayout = activeTab === 0 || activeTab === 1;
 
   useEffect(() => {
     setSearchQuery(null);
@@ -156,6 +158,11 @@ export default function DiscoverPage() {
   function filterArtist(tags: string[], searchQuery = "") {
     setLoadMoreArtists(true);
     setSearchQuery(searchQuery);
+  }
+
+  function filterMontlyArtist(tags: string[], searchQuery = "") {
+    setLoadMoreMontlyArtists(true);
+    setSearchQueryMontly(searchQuery);
   }
 
   function like(artworkId, isLike) {
@@ -260,10 +267,10 @@ export default function DiscoverPage() {
                 <DiscoverArtists
                   artists={monthlyArtists}
                   onFollowClick={follow}
-                  onFilter={filterArtist}
-                  loadMoreElementRef={loadMoreArtistsElementRef}
+                  onFilter={filterMontlyArtist}
+                  loadMoreElementRef={loadMoreMontlyArtistsElementRef}
                   isLoading={isLoadingMonthlyArtists}
-                  loadMore={loadMoreArtists}
+                  loadMore={loadMoreMontlyArtists}
                 ></DiscoverArtists>
               </TabPanel>
               <TabPanel value={activeTab} index={4}>

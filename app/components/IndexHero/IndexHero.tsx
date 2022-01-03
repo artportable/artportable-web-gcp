@@ -42,9 +42,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "ceciliasetterdahl", image: '/images/cecilia_setterdahl.jpg', profileImage: 'PROFILE-PICTURE15.jpg', imageLink: "9899aa73-d1ed-41ac-bdf9-4bbe24ffb53f"},
-    { name: "rene.jacobsen", image: '/images/rene.jpg', profileImage: '98eb5478-868a-4aac-a90c-2445f1f73a94.jpg', imageLink: "3293112f-8f5d-49ff-814f-42b067359b2e"},
-    { name: "ruben.madsen", image: '/images/ruben.jpg', profileImage: '9f9a60f1-f16f-42d0-b1be-a823a8e743f1.jpg', imageLink: "0899b50c-73a7-4a8c-a3d3-7d2f87b54fcf"},
+    { name: "inger.dillan.antonsen", image: '/images/IngerDillan.png', profileImage: 'Inger-i-New-York-2016-1-2.jpg', imageLink: "8dc0324a-a10e-4b0b-967b-d50d79610b41"},
+    { name: "janka-dimitrova", image: '/images/Ianka.png', profileImage: 'PROFILE-PICTURE20-30.jpg', imageLink: "eac03d57-dd99-4b32-8b24-e256fbf65a25"},
+    { name: "malte.johansson", image: '/images/Malte.png', profileImage: '58a9fe9f-e327-46e1-94ae-52de5fdfb6e2.jpg', imageLink: "84dd1002-e602-4bcc-a916-ab43eff44d01"},
   ];
 
   useEffect (() => {
@@ -65,11 +65,15 @@ export default function IndexHero() {
             <Typography variant="h1" className={s.headline}>
               {t('header')}
             </Typography>
-            <Typography variant="body1" className={s.description}>
-              {t('subHeader')}
+            <Typography variant="h4" className={s.description}>
+              {t('subHeader')}<br></br>{t('subHeader2')}
             </Typography>
-            <div className={s.signupButtonContainer}>
-              <Button
+            <div className={s.flexheaderButton}>
+              <div className={s.headerButtonArtlover}>     
+            <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
+            {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
+            </Typography> 
+            <Button
                 classes={{
                   label: s.buttonLabel
                 }}
@@ -81,8 +85,28 @@ export default function IndexHero() {
                 onClick={() => keycloak.register({
                   locale: router.locale,
                   redirectUri: signUpRedirectHref})}>
-                {t('signUp')}
+                {t('artloverButton')}
               </Button>
+            </div>   
+            <div className={s.headerButtonArtist}>
+            <Typography variant="subtitle1" component="h2"className={s.subHeadline} >
+            {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
+            </Typography>
+              <Button
+                classes={{
+                  label: s.buttonLabel
+                }}
+                size="small"
+                variant="outlined"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => keycloak.register({
+                  locale: router.locale,
+                  redirectUri: signUpRedirectHref})}>
+                {t('artistButton')}
+              </Button>
+              </div>
             </div>
           </div>
         </div>

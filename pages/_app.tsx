@@ -25,9 +25,11 @@ import type { IncomingMessage } from 'http';
 import { SSRKeycloakProvider } from '@react-keycloak/ssr';
 import cookie from 'cookie';
 import { keycloakConfig, keycloakInitOptions } from '../constants/keycloakSettings';
-import { AuthClientEvent, AuthClientTokens } from '@react-keycloak/core';
+import { AuthClientError, AuthClientEvent, AuthClientTokens } from '@react-keycloak/core';
 import { CustomSSRCookies } from '../app/utils/customSSRCookies'
 import ArtportableContexts from '../app/contexts/ArtportableContexts'
+import Router from 'next/router'
+
 
 
 library.add(
@@ -45,12 +47,17 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const [accessToken, setAccessToken] = useState<string>(null);
   const [keycloakState, setKeycloakState] = useState<AuthClientEvent>()
 
-  
+
   const onAuthRefresh = (tokens: AuthClientTokens) => {
     setAccessToken(tokens.token);
   }
 
-  const onKeycloakEvent = (event) => {
+  const onKeycloakEvent = (event: AuthClientEvent, error?: AuthClientError) => {
+    if (event === "onAuthRefreshError" || event === "onAuthLogout") {
+      !!error && console.log(error)
+      Router.reload()
+    }
+    console.log(event)
     setKeycloakState(event);
   }
 
@@ -86,7 +93,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
     import('react-facebook-pixel')
       .then((x) => x.default)
       .then((ReactPixel) => {
-        ReactPixel.init ('331292174363133')
+        ReactPixel.init('331292174363133')
         router.events.on('routeChangeComplete', () => {
           ReactPixel.pageView()
         })
@@ -113,10 +120,10 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       >
         <Provider store={store}>
           <ArtportableContexts accessToken={accessToken} keycloakState={keycloakState}>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Component {...pageProps} />
-              </ThemeProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ThemeProvider>
           </ArtportableContexts>
         </Provider>
       </SSRKeycloakProvider>
