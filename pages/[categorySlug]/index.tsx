@@ -19,7 +19,7 @@ export default function CategoryPage({ category }: { category: Category }) {
   const router = useRouter()
   const { t } = useTranslation(['articles']);
 
-  var newCategoryArray = category.articles.slice().reverse();
+  // var newCategoryArray = category.articles.slice().reverse();
 
   return (
     <Main>
@@ -55,7 +55,7 @@ export default function CategoryPage({ category }: { category: Category }) {
             </>
           </div>
           <div className={s.flex}>
-            {newCategoryArray.map((article) => {
+            {category.articles.slice().reverse().map((article) => {
               if (article.published_at)
                 return (
                   <div key={article.id}>
