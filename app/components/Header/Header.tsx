@@ -221,13 +221,12 @@ export default function Header() {
               <I18nSelector></I18nSelector>
             </div>
           </div>
-        </div>
-        <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
-      </Toolbar>
-    </AppBar>
-    {globalIsLoading &&
-      <LinearProgress color="secondary" style={{position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
-    }
+          <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
+        </Toolbar>
+      </AppBar>
+      {globalIsLoading &&
+        <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
+      }
     </>
   );
 }
