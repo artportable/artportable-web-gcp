@@ -80,25 +80,25 @@ export default function ArticlePage({ article }: { article: Article }) {
 
 export async function getStaticProps(context) {
   const { locale, params, preview } = context;
-  let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.categorySlug}${preview ? '&_publicationState=preview' : ''}`)
+  let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.categorySlug}${preview ? '&_publicationState=preview' : ''}`)
   var articles = await res.json()
   var article: Article = articles.find((article: Article) => article.locale == locale);
   if (article == null) {
-    let categoryRes = await fetch(`${process.env.STRAPI_URL}/categories/slug/${params.categorySlug}`)
+    let categoryRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.categorySlug}`)
     if (!categoryRes.ok) {
       return {
         notFound: true,
       }
     }
     var currentCategory = await categoryRes.json()
-    let res = await fetch(`${process.env.STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}${preview ? '&_publicationState=preview' : ''}`)
+    let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}${preview ? '&_publicationState=preview' : ''}`)
     if (!res.ok) {
       return {
         notFound: true,
       }
     }
     article = await res.json()
-    categoryRes = await fetch(`${process.env.STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`)
+    categoryRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`)
     var newLocaleCategories = await categoryRes.json();
     var newLocaleCategory: Category = newLocaleCategories.find((category: Category) => category.locale == locale);
     if (newLocaleCategory && newLocaleCategory.id !== currentCategory.id && locale !== article.locale) {
@@ -137,7 +137,7 @@ export async function getStaticProps(context) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.STRAPI_URL}/articles?_locale=all`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?_locale=all`)
   const articles = await res.json()
 
   // Get the paths we want to pre-render based on posts
