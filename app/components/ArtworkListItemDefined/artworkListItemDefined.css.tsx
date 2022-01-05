@@ -36,7 +36,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleAndLike: {
       display: 'flex',
-      height: '30px',
+      height: '50px',
       marginTop: theme.spacing(0.4),
       justifyContent: 'space-between',
       alignItems: 'flex-start',
@@ -56,14 +56,27 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary
     },
-    title: {
+    info: {
       flexGrow: 1,
-      fontSize: '0.95rem',
       width: 0,
       padding: theme.spacing(0.4, 0, 0, 0),
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden'
+    },
+    title: {
+      fontSize: '0.95rem',
+      height: '1.3rem',
+    },
+    price: {
+      fontSize: '0.8rem',
+      lineHeight: '0.8rem',
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    size: {
+      fontSize: '0.8rem',
+      lineHeight: '0.8rem',
+      fontWeight: theme.typography.fontWeightRegular,
     },
     likeCounter: {
       padding: theme.spacing(0.3, 0, 0, 0)
