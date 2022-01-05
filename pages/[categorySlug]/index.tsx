@@ -55,14 +55,14 @@ export default function CategoryPage({ category }: { category: Category }) {
             </>
           </div>
           <div className={s.flex}>
-            {category.articles.slice().reverse().map((article) => {
+            {category?.articles?.slice().reverse().map((article) => {
               if (article.published_at)
                 return (
                   <div key={article.id}>
                     <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
                       <a>
                         <div className={s.wrapper}>
-                          <img className={s.coverImage} src={article.coverImage.formats.small.url} />
+                          <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
                           <div className={s.textContent}>
                             <div>
                               {article.created_at.slice(0, -14)}

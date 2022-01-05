@@ -24,7 +24,7 @@ export default function ArticlePage({ article }: { article: Article }) {
           {!!!article.published_at && //No publish date means article is in draft
             <Typography color={'primary'} variant={'h1'}>Preview Mode</Typography>
           }
-          <img className={s.background} src={article.coverImage.formats.medium.url} />
+          <img className={s.background} src={article?.coverImage?.formats?.medium?.url} />
 
           <Paper className={s.paper}>
             <div className={s.headingDiv}>
@@ -42,11 +42,11 @@ export default function ArticlePage({ article }: { article: Article }) {
 
             <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages}/>
 
-            {article.authors.map(author => {
+            {article?.authors?.map(author => {
 
               return (
                 <div className={s.authorDiv} key={author.id}>
-                  <Avatar src={author.picture.formats.thumbnail.url} className={s.authorAvatar} />
+                  <Avatar src={author?.picture?.formats?.thumbnail?.url} className={s.authorAvatar} />
                   <Typography className={s.authorText}>{author.name}</Typography>
                 </div>
               )
@@ -55,7 +55,7 @@ export default function ArticlePage({ article }: { article: Article }) {
 
             <div className={s.line}></div>
             <div className={s.tagDiv} >
-              {article.categories.map(category => {
+              {article?.categories?.map(category => {
                 return (
                   <>
                     <Link as={`/${category.slug}`} href={category.name}>
