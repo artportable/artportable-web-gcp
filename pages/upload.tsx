@@ -41,6 +41,9 @@ export default function UploadArtworkPage() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [depth, setDepth] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
   const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
@@ -80,6 +83,9 @@ export default function UploadArtworkPage() {
         Title: title,
         Description: description,
         Price: price,
+        Width: width,
+        Height: height,
+        Depth: depth,
         Tags: selectedTags,
         PrimaryFile: namePrimary,
         SecondaryFile: nameSecondary,
@@ -99,6 +105,9 @@ export default function UploadArtworkPage() {
           Title: title,
           Description: description,
           Price: price,
+          Width: width,
+          Height: height,
+          Depth: depth,
           Tags: selectedTags,
           PrimaryFile: name as any,
           SecondaryFile: nameSecondary,
@@ -302,6 +311,9 @@ export default function UploadArtworkPage() {
               setTitle={setTitle}
               setDescription={setDescription}
               setPrice={setPrice}
+              setWidth={setWidth}
+              setHeight={setHeight}
+              setDepth={setDepth}
               setSelectedTags={setSelectedTags}
               selectedTags={selectedTags}
               tags={tags.data}
