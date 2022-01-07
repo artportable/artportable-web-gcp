@@ -55,7 +55,7 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setWidt
               }}
               style={{display: 'flex'}}/>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={4}>
             <TextField
               id="height"
               label={t('height')}
@@ -65,7 +65,7 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setWidt
               }}
               style={{display: 'flex'}}/>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} md={4}>
             <TextField
               id="depth"
               label={t('depth')}

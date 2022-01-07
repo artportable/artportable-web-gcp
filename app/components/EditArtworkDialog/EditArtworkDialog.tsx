@@ -140,7 +140,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                 }}
                 style={{display: 'flex'}}/>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 label={t('artworkHeight')}
                 placeholder={t('artworkHeight')}
@@ -152,7 +152,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                 }}
                 style={{display: 'flex'}}/>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 label={t('artworkDepth')}
                 placeholder={t('artworkDepth')}
