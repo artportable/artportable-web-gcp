@@ -3,6 +3,9 @@
   "artworkTitle": "Title",
   "artworkDescription": "Description",
   "artworkPrice": "Price",
+  "artworkWidth": "Width",
+  "artworkHeight": "Height",
+  "artworkDepth": "Depth",
   "editArtwork": "Edit artwork",
   "deleteArtworkWarningTitle": "Are you sure that you want to delete the artwork?",
   "deleteArtworkWarningText": "Please confirm the deletion of the artwork."
