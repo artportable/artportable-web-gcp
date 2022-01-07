@@ -44,6 +44,8 @@ export default function ArtworkPage(props) {
   const formatter = new Intl.NumberFormat(props.locale, {
     style: 'currency',
     currency: 'SEK',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
 
   useEffect(() => {
@@ -195,12 +197,23 @@ export default function ArtworkPage(props) {
               </div>
               <div className={s.infoBar}>
                 {artwork.data.Likes > 0 &&
-                  <p>{artwork.data.Likes} {t('peopleLikeThis')}</p>
+                  <span>{artwork.data.Likes} {t('peopleLikeThis')}</span>
                 }
-                {artwork.data.Price &&
-                  <p>{formatter.format(artwork.data.Price)} </p>
-                }
+                <Box>
+                  <Box> 
+                    {artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
+                      artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
+                      artwork.data.Width && artwork.data.Height ? 
+                        artwork.data.Width + 'x' + artwork.data.Height + 'cm': 
+                        null
+                    }
+                  </Box>
+                  {artwork.data.Price &&
+                    <span>{formatter.format(artwork.data.Price)} </span>
+                  }
+                </Box>
               </div>
+
               <Box textAlign="center" marginY={2} className={s.text}>
                 {artwork.data.Title &&
                   <Typography variant="h3" component="h2" id="artwork-modal-title">
