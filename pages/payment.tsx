@@ -8,7 +8,6 @@ import Main from "../app/components/Main/Main";
 
 export default function Payment(props) {
 
-  const { t } = useTranslation(['gdpr']);
   const s = styles();
 
 
@@ -22,7 +21,7 @@ export default function Payment(props) {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans']),
+      ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans', 'payment']),
     }
   }
 }

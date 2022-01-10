@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PaymentPremium() {
   const classes = useStyles();
   const s = styles();
-  const { t } = useTranslation(['support']);
+  const { t } = useTranslation(['payment']);
   const [expanded, setExpanded] = useState(false);
   const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
   const promise = loadStripe(stripeKey);
@@ -231,7 +231,7 @@ export default function PaymentPremium() {
     setActiveStep(0);
   };
   function getSteps() {
-    return ['Fyll i dina personuppgifter', 'Välj betalmedel', 'Bekräfta eventuell Swishbetalning', 'Bekräftelse'];
+    return [t('personalData'), t('paymentMethod'), t('confirmEventualSwish'), t('confirmation')];
   }
 
   function getStepContent(step) {
@@ -254,7 +254,7 @@ export default function PaymentPremium() {
                       onChange={(e) => handleChange(e, 'fullName')}
                       onBlur={(e) => validateFormValue(e.target.value, 'fullName')}
                       aria-describedby="standard-name-helper-text"
-                      placeholder="För- och efternamn"
+                      placeholder={t('name')}
                       inputProps={{
                         'aria-label': 'Name',
                       }}
@@ -274,7 +274,7 @@ export default function PaymentPremium() {
                       onChange={(e) => handleChange(e, 'email')}
                       onBlur={(e) => validateFormValue(e.target.value, 'email')}
                       aria-describedby="standard-email-helper-text"
-                      placeholder="E-post"
+                      placeholder={t('yourEmail')}
                       inputProps={{
                         'aria-label': 'Email',
                       }}
@@ -291,7 +291,7 @@ export default function PaymentPremium() {
                   onClick={handleNext}
                   className={s.buttonNextStep1}
                 >
-                  Nästa
+                 {t('next')}
                 </Button>
               </form>
             </div>
@@ -307,35 +307,13 @@ export default function PaymentPremium() {
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >
-                <Typography className={classes.heading}>Betalningsalternativ</Typography>
+                <Typography className={classes.heading}>{t('paymentOptions')}</Typography>
               </AccordionSummary>
               <AccordionDetails className={s.paymentOptions}>
                 <FormControl component="fieldset" className={s.paymentOptions}>
                   <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
                     <div className={s.swishFlex}>
-                      <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>Swish</Typography>} />
-                      <img
-                        className={s.swishLogo}
-                        width={100}
-                        src="/images/swishlogo.svg"
-                        alt="swishlogo"
-                        title="swish" />
-                    </div>
-                    {(valueRadio === "swish") &&
-                      <div className={s.swish}>
-                        <Typography variant="subtitle1" component="h4">Scanna QR-koden med din Swish-app eller använd numret nedanför.</Typography>
-                        <div className={s.qrCode}>
-                          <img
-                            width={200}
-                            src="/images/swishqr.svg"
-                            alt="swishqr"
-                            title="lotwinther" />
-                          <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
-                        </div>
-                      </div>
-                    }
-                    <div className={s.swishFlex}>
-                      <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>Betalkort</Typography>} />
+                    <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>{t('card')}</Typography>} />
                       <img
                         className={s.paymentCards}
                         width={100}
@@ -354,6 +332,28 @@ export default function PaymentPremium() {
                         </Elements>
                       </div>
                     }
+                    <div className={s.swishFlex}>                     
+                     <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>{t('swish')}</Typography>} />
+                      <img
+                        className={s.swishLogo}
+                        width={100}
+                        src="/images/swishlogo.svg"
+                        alt="swishlogo"
+                        title="swish" />
+                    </div>
+                    {(valueRadio === "swish") &&
+                      <div className={s.swish}>
+                        <Typography variant="subtitle1" component="h4">{t('scanQr')}</Typography>
+                        <div className={s.qrCode}>
+                          <img
+                            width={200}
+                            src="/images/swishqr.svg"
+                            alt="swishqr"
+                            title="lotwinther" />
+                          <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
+                        </div>
+                      </div>
+                    }
                   </RadioGroup>
                 </FormControl>
               </AccordionDetails>
@@ -366,7 +366,7 @@ export default function PaymentPremium() {
                 onClick={handleBack}
                 className={s.buttonBackStep2}
               >
-                Back
+                {t('back')}
               </Button>
               {(valueRadio === "betalkort") &&
                 <Button
@@ -377,7 +377,7 @@ export default function PaymentPremium() {
                   onClick={handleNext}
                   className={s.buttonNextStep2}
                 >
-                  Nästa
+                  {t('next')}
                 </Button>
               }
               {(valueRadio === "swish") &&
@@ -388,7 +388,7 @@ export default function PaymentPremium() {
                   onClick={handleNext}
                   className={s.buttonNextStep2}
                 >
-                  Nästa
+                  {t('next')}
                 </Button>
               }
             </div>
@@ -397,7 +397,7 @@ export default function PaymentPremium() {
       case 2:
         return <div>
           <Typography className={s.successHeading}>
-            När du genomfört betalningen i din Swish-app, klicka på "Nästa".
+          {t('whenConfirmed')}
           </Typography>
           <div className={s.buttonFlex}>
             <Button
@@ -407,7 +407,7 @@ export default function PaymentPremium() {
               variant="outlined"
               color="secondary"
             >
-              Back
+             {t('back')}
             </Button>
             <Button
 
@@ -416,7 +416,7 @@ export default function PaymentPremium() {
               onClick={handleNext}
               className={s.buttonNextStep2}
             >
-              Nästa
+             {t('next')}
             </Button>
           </div>
         </div>
@@ -427,14 +427,14 @@ export default function PaymentPremium() {
               <div className={s.successDiv}>
                 <CheckIcon
                   className={s.confirmIcon} />
-                <Typography className={s.successHeading}>Din konstkoordinator bekräftar betalningen.</Typography>
+                <Typography className={s.successHeading}>{t('artCoordinator')}</Typography>
               </div>
             }
             {(valueRadio === "betalkort") &&
               <div className={s.successDiv}>
                 <CheckIcon
                   className={s.confirmIcon} />
-                <Typography className={s.successHeading}>Din betalning är genomförd!</Typography>
+                <Typography className={s.successHeading}>{t('paymentConfirmed')}</Typography>
               </div>
             }
             <div className={s.buttonFlex}>
@@ -446,7 +446,7 @@ export default function PaymentPremium() {
                   variant="outlined"
                   color="secondary"
                 >
-                  Back
+                  {t('back')}
                 </Button>
               }
               {(valueRadio === "betalkort") &&
@@ -457,7 +457,7 @@ export default function PaymentPremium() {
                   variant="outlined"
                   color="secondary"
                 >
-                  Back
+                  {t('back')}
                 </Button>
               }
               <Button
@@ -466,7 +466,7 @@ export default function PaymentPremium() {
                 onClick={handleNext}
                 className={s.buttonNextStep2}
               >
-                Klar
+                {t('done')}
               </Button>
             </div>
             <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
@@ -500,17 +500,17 @@ export default function PaymentPremium() {
                   alt="hej"
                   title="Premium" />
 
-                <Typography variant="h2" component="h2">Portfolio Premium</Typography>
-                <Typography variant="h2" component="h2">4500 kr</Typography>
-                <Typography variant="h4" component="h2">12 månader</Typography>
-                <Typography variant="h6" component="h2" className={s.textIncluded}>I Portfolio Premium ingår bland annat: </Typography>
+                <Typography variant="h2" component="h2">{t('portfolioPremium')}</Typography>
+                <Typography variant="h2" component="h2">{t('price')}</Typography>
+                <Typography variant="h4" component="h2">{t('length')}</Typography>
+                <Typography variant="h6" component="h2" className={s.textIncluded}>{t('premiumIncludes')}</Typography>
                 <ul>
-                  <li><Typography variant="subtitle1" component="p">Personlig konstkoordinator</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">Support</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">Publicera dina verk</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">Chatta och få förfrågningar om dina konstverk</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">Följ och interagera med andra konstnärer</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>Läs artiklar och få uppdateringar om utställningar</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('personalArtCoordinator')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('publish')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('follow')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('readArticles')}</Typography></li>
                 </ul>
               </div>
             </div>
@@ -536,7 +536,7 @@ export default function PaymentPremium() {
           {activeStep === steps.length && (
             <Paper square elevation={2} className={classes.resetContainer}>
               <div className={s.doneDiv}>
-                <Typography className={s.successHeading}>Välkommen till Artportable! Du kan nu stänga detta fönster.</Typography>
+                <Typography className={s.successHeading}>{t('welcome')}</Typography>
               </div>
 
               {/* <Button
