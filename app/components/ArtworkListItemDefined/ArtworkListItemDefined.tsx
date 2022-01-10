@@ -2,6 +2,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useContext, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
@@ -19,6 +20,14 @@ export default function ArtworkListItemDefined({
 
   const { isSignedIn } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+
+  const router = useRouter();
+  const formatter = new Intl.NumberFormat(router.locale, {
+    style: 'currency',
+    currency: 'SEK',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);
@@ -66,7 +75,19 @@ export default function ArtworkListItemDefined({
         }
       </div>
       <div className={s.titleAndLike}>
-        <div className={s.title}>{artwork.Title}</div>
+        <div className={s.info}>
+          <div className={s.title}>{artwork.Title}</div>
+          <div className={s.price}>
+            {formatter.format(artwork.Price)}
+          </div>
+          <div className={s.size}>
+            {artwork.Width && artwork.Height && artwork.Depth ? 
+              artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm' : 
+              artwork.Width && artwork.Height ? 
+                artwork.Width + 'x' + artwork.Height + 'cm': 
+                null}
+          </div>
+        </div>
         <div className={s.likeInline}>
           <div className={s.likeContainer}>
             <div className={s.likeCounter}>

@@ -1,4 +1,4 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Typography, IconButton } from '@material-ui/core'
+import { Dialog, DialogTitle, DialogContent, DialogActions, Grid, InputAdornment, TextField, Typography, IconButton } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '../Button/Button'
 import DeleteArtworkWarningDialog from '../DeleteArtworkWarningDialog/DeleteArtworkWarningDialog';
@@ -17,6 +17,9 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   const [artworkName, setArtworkName] = useState('');
   const [artworkDescription, setArtworkDescription] = useState('');
   const [artworkPrice, setArtworkPrice] = useState('');
+  const [artworkWidth, setArtworkWidth] = useState('');
+  const [artworkHeight, setArtworkHeight] = useState('');
+  const [artworkDepth, setArtworkDepth] = useState('');
   const [deleteAlertDialogOpen, setDeleteAlertDialogOpen] = useState(false);
 
   const { username, socialId } = useContext(UserContext);
@@ -27,6 +30,9 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
       setArtworkName(artwork.Title);
       setArtworkDescription(artwork.Description);
       setArtworkPrice(artwork.Price);
+      setArtworkWidth(artwork.Width);
+      setArtworkHeight(artwork.Height);
+      setArtworkDepth(artwork.Depth);
     }
   }, [artwork]);
 
@@ -51,7 +57,11 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   };
 
   const onConfirmClick = () => {
-    if (username.value && artwork.Id && artwork.Id.trim().length > 0) {
+    if (username.value && artwork.Id && artwork.Id.trim().length > 0 
+      && artworkName 
+      && artworkWidth && artworkWidth !== '0'
+      && artworkHeight && artworkHeight !== '0'
+    ) {
       onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySocialId=${socialId.value}`, {
         method: 'PUT',
         headers: {
@@ -62,6 +72,9 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
           "Title": artworkName,
           "Description": artworkDescription,
           "Price": parseInt(artworkPrice, 10),
+          "Width": parseInt(artworkWidth, 10),
+          "Height": parseInt(artworkHeight, 10),
+          "Depth": parseInt(artworkDepth, 10),
           "PrimaryFile": artwork.PrimaryFile?.Name,
           "SecondaryFile": artwork.SecondaryFile?.Name,
           "TertiaryFile": artwork.TertiaryFile?.Name,
@@ -76,6 +89,9 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
     setArtworkName(artwork.Title);
     setArtworkDescription(artwork.Description);
     setArtworkPrice(artwork.Price);
+    setArtworkWidth(artwork.Width);
+    setArtworkHeight(artwork.Height);
+    setArtworkDepth(artwork.Depth);
   }
   return (
     <Dialog open={open} onClose={onClose}>
@@ -84,7 +100,9 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
         <form className={s.form}>
           <TextField
             fullWidth
+            error = {artworkName ? false : true} 
             label={t('artworkTitle')}
+            required
             placeholder={t('artworkTitle')}
             value={artworkName}
             onChange={(e) => setArtworkName(e.target.value)}
@@ -107,6 +125,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
             value={artworkPrice}
             type="number"
             InputProps={{
+              endAdornment: <InputAdornment position="end">SEK</InputAdornment>,
               inputProps: {
                 step: 100
               }
@@ -114,6 +133,48 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
             onChange={(e) => setArtworkPrice(e.target.value)}
           >
           </TextField>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
+              <TextField
+                label={t('artworkWidth')}
+                placeholder={t('artworkWidth')}
+                error = {artworkWidth && artworkWidth !== '0' ? false : true} 
+                required
+                value={artworkWidth}
+                type="number"
+                onChange={(e) => setArtworkWidth(e.target.value)}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                }}
+                style={{display: 'flex'}}/>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                label={t('artworkHeight')}
+                placeholder={t('artworkHeight')}
+                error = {artworkHeight && artworkHeight !== '0' ? false : true} 
+                required
+                value={artworkHeight}
+                type="number"
+                onChange={(e) => setArtworkHeight(e.target.value)}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                }}
+                style={{display: 'flex'}}/>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                label={t('artworkDepth')}
+                placeholder={t('artworkDepth')}
+                value={artworkDepth}
+                type="number"
+                onChange={(e) => setArtworkDepth(e.target.value)}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                }}
+                style={{display: 'flex'}}/>
+            </Grid>
+          </Grid>
         </form>
         <div className={s.deleteContainer}>
           <Typography>

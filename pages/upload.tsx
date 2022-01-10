@@ -41,6 +41,9 @@ export default function UploadArtworkPage() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [depth, setDepth] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
   const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
@@ -76,29 +79,37 @@ export default function UploadArtworkPage() {
 
   const uploadArtwork = async () => {
     if(isDesktop) {
-      const artwork: ArtworkForCreation = {
-        Title: title,
-        Description: description,
-        Price: price,
-        Tags: selectedTags,
-        PrimaryFile: namePrimary,
-        SecondaryFile: nameSecondary,
-        TertiaryFile: nameTertiary
+      if(title && width && height ) {
+        const artwork: ArtworkForCreation = {
+          Title: title,
+          Description: description,
+          Price: price,
+          Width: width,
+          Height: height,
+          Depth: depth,
+          Tags: selectedTags,
+          PrimaryFile: namePrimary,
+          SecondaryFile: nameSecondary,
+          TertiaryFile: nameTertiary
+        }
+        setUploadSnackbarOpen(true);
+        const res = usePostArtwork(artwork, socialId.value, token);
+        router.push('/profile/@' + username.value);
       }
-      setUploadSnackbarOpen(true);
-      const res = usePostArtwork(artwork, socialId.value, token);
-      router.push('/profile/@' + username.value);
     } else {
       const name = await uploadImage(
         mobileImgBlob, 
         mobilePreviewImageRef.current.naturalWidth, 
         mobilePreviewImageRef.current.naturalHeight);
       
-      if(name !== null) {
+      if(name !== null && title && width && height) {
         const artwork: ArtworkForCreation = {
           Title: title,
           Description: description,
           Price: price,
+          Width: width,
+          Height: height,
+          Depth: depth,
           Tags: selectedTags,
           PrimaryFile: name as any,
           SecondaryFile: nameSecondary,
@@ -299,9 +310,15 @@ export default function UploadArtworkPage() {
           {tags.isError && <div>error...</div>}
           {tags.data && !tags.isLoading && !tags.isError &&
             <UploadForm
+              title = {title}
               setTitle={setTitle}
               setDescription={setDescription}
               setPrice={setPrice}
+              width = {width}
+              setWidth={setWidth}
+              height = {height}
+              setHeight={setHeight}
+              setDepth={setDepth}
               setSelectedTags={setSelectedTags}
               selectedTags={selectedTags}
               tags={tags.data}

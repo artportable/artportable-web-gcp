@@ -8,6 +8,9 @@ export interface Artwork {
   Description: string,
   Published: Date,
   Price: number,
+  Width: number,
+  Height: number,
+  Depth: number,
   PrimaryFile: Image,
   SecondaryFile: Image,
   TertiaryFile: Image
@@ -20,6 +23,9 @@ export interface ArtworkForCreation {
   Title: string,
   Description: string,
   Price: number,
+  Width: number,
+  Height: number,
+  Depth: number,
   PrimaryFile: Image,
   SecondaryFile: Image,
   TertiaryFile: Image
