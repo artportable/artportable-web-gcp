@@ -18,7 +18,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     articleImages: {
       '& img': {
-        width: '100%',
+        maxWidth: '100%',
         height: '100%',
       },
       width: 'fit-content',
