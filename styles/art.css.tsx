@@ -52,11 +52,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1.6),
     },
     sizeBar: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginLeft: theme.spacing(1.6),
-      marginRight: theme.spacing(1.6),
+      fontStyle: 'italic',
     },
     actionBar: {
       display: 'flex',
