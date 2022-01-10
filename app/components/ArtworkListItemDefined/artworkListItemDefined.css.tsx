@@ -77,6 +77,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '0.8rem',
       lineHeight: '0.8rem',
       fontWeight: theme.typography.fontWeightRegular,
+      fontStyle: "italic",
     },
     likeCounter: {
       padding: theme.spacing(0.3, 0, 0, 0)

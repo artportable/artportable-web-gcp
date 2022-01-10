@@ -77,12 +77,16 @@ export default function ArtworkListItemDefined({
       <div className={s.titleAndLike}>
         <div className={s.info}>
           <div className={s.title}>{artwork.Title}</div>
-          <div className={s.price}>{artwork.Width && artwork.Height && artwork.Depth ? 
-            artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm, ' : 
-            artwork.Width && artwork.Height ? 
-              artwork.Width + 'x' + artwork.Height + 'cm, ': 
-              null}
-           {formatter.format(artwork.Price)}</div>
+          <div className={s.price}>
+            {formatter.format(artwork.Price)}
+          </div>
+          <div className={s.size}>
+            {artwork.Width && artwork.Height && artwork.Depth ? 
+              artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm' : 
+              artwork.Width && artwork.Height ? 
+                artwork.Width + 'x' + artwork.Height + 'cm': 
+                null}
+          </div>
         </div>
         <div className={s.likeInline}>
           <div className={s.likeContainer}>

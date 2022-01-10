@@ -200,17 +200,17 @@ export default function ArtworkPage(props) {
                   <span>{artwork.data.Likes} {t('peopleLikeThis')}</span>
                 }
                 <Box>
-                  <Box> 
-                    {artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
-                      artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
-                      artwork.data.Width && artwork.data.Height ? 
-                        artwork.data.Width + 'x' + artwork.data.Height + 'cm': 
-                        null
-                    }
-                  </Box>
                   {artwork.data.Price &&
                     <span>{formatter.format(artwork.data.Price)} </span>
                   }
+                  <div className={s.sizeBar}> 
+                  {artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
+                    artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
+                    artwork.data.Width && artwork.data.Height ? 
+                      artwork.data.Width + 'x' + artwork.data.Height + 'cm': 
+                      null
+                  }
+                </div>
                 </Box>
               </div>
 
