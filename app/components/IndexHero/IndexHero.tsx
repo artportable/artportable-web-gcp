@@ -42,9 +42,10 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "inger.dillan.antonsen", image: '/images/IngerDillan.png', profileImage: 'Inger-i-New-York-2016-1-2.jpg', imageLink: "8dc0324a-a10e-4b0b-967b-d50d79610b41"},
-    { name: "janka-dimitrova", image: '/images/Ianka.png', profileImage: 'PROFILE-PICTURE20-30.jpg', imageLink: "eac03d57-dd99-4b32-8b24-e256fbf65a25"},
-    { name: "malte.johansson", image: '/images/Malte.png', profileImage: '58a9fe9f-e327-46e1-94ae-52de5fdfb6e2.jpg', imageLink: "84dd1002-e602-4bcc-a916-ab43eff44d01"},
+    { name: "solveig.christina.rosendal", image: '/images/solveig.jpg', profileImage: '27535714-c936-4035-b44f-ad0e26a2818c.jpg', imageLink: "15a2b5c2-b538-42e6-a029-c4606ce72371"},
+    { name: "gunilla.svard", image: '/images/gunilla_svard.jpg', profileImage: '7d441716-f2ce-4d01-be44-ce8af4e3d0a9.jpg', imageLink: "3216b830-a1c5-423c-a73e-3f52995648f4"},
+    { name: "johanna.elbe", image: '/images/johanna_elbe.jpg', profileImage: '77a92f68-70fd-4d91-8063-922cb3c9f047.jpg', imageLink: "ee6ef346-d44f-40e2-b9e3-d0f1af1d9336"},
+    { name: "viveca.berg", image: '/images/viveca.jpg', profileImage: '333a35cc-19eb-4329-8568-35c5cb19690e.jpg', imageLink: "d682e87a-f79e-4a36-a5de-ff45fa40f855"},
   ];
 
   useEffect (() => {
