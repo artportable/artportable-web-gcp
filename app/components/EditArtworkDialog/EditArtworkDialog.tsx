@@ -57,7 +57,11 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   };
 
   const onConfirmClick = () => {
-    if (username.value && artwork.Id && artwork.Id.trim().length > 0) {
+    if (username.value && artwork.Id && artwork.Id.trim().length > 0 
+      && artworkName 
+      && artworkWidth && artworkWidth !== '0'
+      && artworkHeight && artworkHeight !== '0'
+    ) {
       onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySocialId=${socialId.value}`, {
         method: 'PUT',
         headers: {
@@ -96,7 +100,9 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
         <form className={s.form}>
           <TextField
             fullWidth
+            error = {artworkName ? false : true} 
             label={t('artworkTitle')}
+            required
             placeholder={t('artworkTitle')}
             value={artworkName}
             onChange={(e) => setArtworkName(e.target.value)}
@@ -132,6 +138,8 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
               <TextField
                 label={t('artworkWidth')}
                 placeholder={t('artworkWidth')}
+                error = {artworkWidth && artworkWidth !== '0' ? false : true} 
+                required
                 value={artworkWidth}
                 type="number"
                 onChange={(e) => setArtworkWidth(e.target.value)}
@@ -144,6 +152,8 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
               <TextField
                 label={t('artworkHeight')}
                 placeholder={t('artworkHeight')}
+                error = {artworkHeight && artworkHeight !== '0' ? false : true} 
+                required
                 value={artworkHeight}
                 type="number"
                 onChange={(e) => setArtworkHeight(e.target.value)}

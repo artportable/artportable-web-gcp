@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Grid, InputAdornment, TextField, Typography } from '@material-ui/core';
 import TagChip from '../TagChip/TagChip';
 
-export default function UploadForm({ setTitle, setDescription, setPrice, setWidth, setHeight, setDepth, setSelectedTags, selectedTags, tags }) {
+export default function UploadForm({ title, setTitle, setDescription, setPrice, width, setWidth, height, setHeight, setDepth, setSelectedTags, selectedTags, tags }) {
   const s = styles();
   const { t } = useTranslation('upload');
 
@@ -27,6 +27,8 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setWidt
         <TextField
           id="title"
           label={t('title')}
+          required
+          error = {title ? false : true} 
           onChange={(event) => setTitle(event.target.value)}
           fullWidth/>
         <TextField
@@ -49,6 +51,8 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setWidt
             <TextField
               id="width"
               label={t('width')}
+              required
+              error = {width ? false : true}
               onChange={(event) => setWidth(parseInt(event.target.value))}
               InputProps={{
                 endAdornment: <InputAdornment position="end">cm</InputAdornment>,
@@ -59,6 +63,8 @@ export default function UploadForm({ setTitle, setDescription, setPrice, setWidt
             <TextField
               id="height"
               label={t('height')}
+              required
+              error = {height ? false : true}
               onChange={(event) => setHeight(parseInt(event.target.value))}
               InputProps={{
                 endAdornment: <InputAdornment position="end">cm</InputAdornment>,
