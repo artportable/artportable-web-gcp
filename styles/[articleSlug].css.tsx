@@ -4,7 +4,9 @@ import { rowGap, columnGap } from '../app/utils/styleUtils'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
+      maxWidth: '1000px',
       padding: '20px',
+      justifySelf: 'center',
       zIndex: 1,
       [theme.breakpoints.up('md')]: {
         padding: '100px',
