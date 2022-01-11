@@ -32,11 +32,11 @@ export default function ArticlePage({ article }: { article: Article }) {
                 {article.title}
               </Typography>
               <Typography>
-              {article.published_at.slice(0, -14)}
+              {article.published_at?.slice(0, -14)}
               </Typography>
             </div>
             <div className={s.line}></div>
-            <Typography >
+            <Typography className={s.description}>
               {article.description}
             </Typography>
 

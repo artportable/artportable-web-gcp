@@ -111,18 +111,18 @@ export default function Header() {
                   </Link>
                 </MuiButton>
               }
-              {/* <Link href="/artiklar" passHref>
+              <Link href="/artiklar" passHref>
                 <a>
                   <MuiButton color="default" size="large">
                     {t('stories')}
                   </MuiButton>
                 </a>
-              </Link> */}
-              <MuiButton color="default" size="large">
+              </Link>
+              {/* <MuiButton color="default" size="large">
                 <a href="https://old.artportable.com/stories/" target="blank">
                   {t('stories')}
                 </a>
-              </MuiButton>
+              </MuiButton> */}
             </nav>
             {(!isSignedIn.value) &&
               <div className={s.login}>
