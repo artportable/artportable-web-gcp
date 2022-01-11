@@ -8,5 +8,6 @@
   "artworkDepth": "Djup",
   "editArtwork": "Editera konstverk",
   "deleteArtworkWarningTitle": "Är du säker på att du vill ta bort konstverket?",
-  "deleteArtworkWarningText": "Vänligen bekräfta att du vill ta bort konstverket."
+  "deleteArtworkWarningText": "Vänligen bekräfta att du vill ta bort konstverket.",
+  "priceOnRequest": "Pris på begäran"
 }
