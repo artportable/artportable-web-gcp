@@ -18,10 +18,18 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: 'var(--ion-color-primary)',
       margin: '32px 0',
     },
+    description: {
+      fontSize: '1.1rem',
+      fontWeight: 500,
+      lineHeight: '1.4rem'
+    },
     articleImages: {
       '& img': {
         maxWidth: '100%',
         height: '100%',
+      },
+      '& p': {
+        fontSize: '1rem',
       },
       width: 'fit-content',
     },
