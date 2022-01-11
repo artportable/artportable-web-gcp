@@ -200,8 +200,9 @@ export default function ArtworkPage(props) {
                   <span>{artwork.data.Likes} {t('peopleLikeThis')}</span>
                 }
                 <Box>
-                  {artwork.data.Price &&
-                    <span>{formatter.format(artwork.data.Price)} </span>
+                  {artwork.data.Price ?
+                    <span>{formatter.format(artwork.data.Price)} </span> :
+                    <span>{t('priceOnRequest')}</span>
                   }
                   <div className={s.sizeBar}> 
                   {artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 

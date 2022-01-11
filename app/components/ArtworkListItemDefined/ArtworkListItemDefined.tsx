@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from "next-i18next"
 import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
@@ -16,6 +17,7 @@ export default function ArtworkListItemDefined({
   topActions = undefined
 }) {
   const s = styles();
+  const { t } = useTranslation(['art']);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
   const { isSignedIn } = useContext(UserContext);
@@ -78,7 +80,7 @@ export default function ArtworkListItemDefined({
         <div className={s.info}>
           <div className={s.title}>{artwork.Title}</div>
           <div className={s.price}>
-            {formatter.format(artwork.Price)}
+            {artwork.Price==0 ? t('priceOnRequest') : formatter.format(artwork.Price)}
           </div>
           <div className={s.size}>
             {artwork.Width && artwork.Height && artwork.Depth ? 
