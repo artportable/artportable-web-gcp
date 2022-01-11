@@ -16,7 +16,7 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: 'white',
       display: 'flex',
       flexDirection: 'column',
-      [theme.breakpoints.up('mdPlus')]: {
+      [theme.breakpoints.up('lg')]: {
         flexDirection: 'row',
       },
     },
@@ -51,7 +51,7 @@ export const styles = makeStyles((theme: Theme) =>
     coverImage: {
       width: '100%',
       borderRadius: '5px 5px 0 0',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         flexDirection: 'row',
         borderRadius: '5px 0 0 5px',
       },   

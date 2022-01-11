@@ -86,16 +86,16 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             <ListItemText primary={t('discover')} />
           </ListItem>
         </Link>
-        {/* <Link href="/artiklar" passHref>
+        <Link href="/artiklar" passHref>
           <ListItem button divider>
             <ListItemText primary={t('stories')} />
           </ListItem>
-        </Link> */}
-        <a href="https://old.artportable.com/stories/" target="blank" className={s.articleLink}>
+        </Link>
+        {/* <a href="https://old.artportable.com/stories/" target="blank" className={s.articleLink}>
           <ListItem button divider>
             <ListItemText primary={t('stories')} />
           </ListItem>
-        </a>
+        </a> */}
           <ListItem button divider onClick={handleClickContact} >
             <ListItemText primary={t('contactUs')} />
           </ListItem >
