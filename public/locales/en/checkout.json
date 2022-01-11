@@ -15,5 +15,6 @@
   "paymentUnsuccessful": "Payment unsuccessful",
   "redirectingIn": "Redirecting in",
   "takeMeThereNow": "Click to enter",
-  "tryAgain": "Try again"
+  "tryAgain": "Try again",
+  "cardDetails": "Fill in your card details"
 }
