@@ -16,7 +16,8 @@
     "save": "save",
     "confirm": "confirm",
     "send": "Send",
-    "close": "Close"
+    "close": "Close",
+    "untitled": "Untitled"
   },
   "timeUnit": {
     "year": "y",

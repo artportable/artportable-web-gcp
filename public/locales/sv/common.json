@@ -16,7 +16,8 @@
     "save": "spara",
     "confirm": "bekräfta",
     "send": "Skicka",
-    "close": "Stäng"
+    "close": "Stäng",
+    "untitled": "Utan titel"
   },
   "timeUnit": {
     "year": "år",

@@ -78,7 +78,7 @@ export default function ArtworkListItemDefined({
       </div>
       <div className={s.titleAndLike}>
         <div className={s.info}>
-          <div className={s.title}>{artwork.Title}</div>
+          <div className={s.title}>{artwork.Title ? artwork.Title : t('untitled')}</div>
           <div className={s.price}>
             {artwork.Price && artwork.Price != "0" ? formatter.format(artwork.Price) : t('priceOnRequest')}
           </div>
