@@ -20,7 +20,9 @@
     "untitled": "Untitled",
     "sold": "Sold",
     "soldOut": "Sold",
-    "multipleSizes": "Multiple Sizes"
+    "multipleSizes": "Multiple Sizes",
+    "or": "or",
+    "email": "email"
   },
   "timeUnit": {
     "year": "y",
@@ -35,5 +37,6 @@
   "message": "Message",
   "Yes" : "Yes",
   "Cancel" : "Cancel",
-  "purchaseRequest": "Purchase request"
+  "purchaseRequest": "Purchase request",
+  "messageOptional": "Message (optional)"
 }

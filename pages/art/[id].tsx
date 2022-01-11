@@ -20,6 +20,8 @@ import { TokenContext } from "../../app/contexts/token-context";
 import { UserContext } from "../../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
+import { UrlObject } from "url";
+import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -40,6 +42,8 @@ export default function ArtworkPage(props) {
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
 
   const { isSignedIn } = useContext(UserContext);
+
+  const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
 
   const formatter = new Intl.NumberFormat(props.locale, {
     style: 'currency',
@@ -76,6 +80,20 @@ export default function ArtworkPage(props) {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  function togglePurchaseRequestDialog(){
+    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
+  }
+
+  function purchaseRequest(originalRedirect?: UrlObject | string) {
+    if(isSignedIn.value) {
+      if(originalRedirect !== undefined) {
+        router.push(originalRedirect);
+      }
+    }else{
+      togglePurchaseRequestDialog();
+    }
   }
 
   function toggleFollow() {
@@ -175,24 +193,37 @@ export default function ArtworkPage(props) {
                   {capitalizeFirst(t('common:like'))}
                 </Button>
                 {username.value !== artwork.data.Owner.Username &&
-                  <Button
-                    onClick={() => {
-                      redirectIfNotLoggedIn({
+                  <>
+                    <Button
+                      onClick={() => {
+                        purchaseRequest({
+                          pathname: "/messages",
+                          query: {
+                            artwork: encodeURIComponent(JSON.stringify({
+                              title: artwork.data.Title,
+                              creator: artwork.data.Owner.Username,
+                              url: window.location.href
+                            })),
+                            referTo: artwork.data.Owner.SocialId
+                          }
+                        });
+                        trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
+                      }}
+                      startIcon={<SendIcon color={"inherit"} />}>
+                      {capitalizeFirst(t('common:purchaseRequest'))}
+                    </Button>
+                    <PurchaseRequestDialog 
+                      open={purchaseRequestDialogOpen} 
+                      onClose={togglePurchaseRequestDialog} 
+                      props={{
                         pathname: "/messages",
-                        query: {
-                          artwork: encodeURIComponent(JSON.stringify({
-                            title: artwork.data.Title,
-                            creator: artwork.data.Owner.Username,
-                            url: window.location.href
-                          })),
-                          referTo: artwork.data.Owner.SocialId
-                        }
-                      });
-                      trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
-                    }}
-                    startIcon={<SendIcon color={"inherit"} />}>
-                    {capitalizeFirst(t('common:purchaseRequest'))}
-                  </Button>
+                        title: artwork.data.Title,
+                        creator: artwork.data.Owner.Username,
+                        url: window.location.href,
+                        referTo: artwork.data.Owner.SocialId
+                      }}
+                      />
+                  </>
                 } 
               </div>
               <div className={s.infoBar}>

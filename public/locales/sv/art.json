@@ -9,5 +9,14 @@
   "editArtwork": "Editera konstverk",
   "deleteArtworkWarningTitle": "Är du säker på att du vill ta bort konstverket?",
   "deleteArtworkWarningText": "Vänligen bekräfta att du vill ta bort konstverket.",
-  "priceOnRequest": "Pris på begäran"
+  "priceOnRequest": "Pris på begäran",
+  "createAccountToChat": "Skapa ett gratiskonto för att chatta",
+  "getEmailFromArtist": "få ett mail av konstnären",
+  "emailPlaceholder": "Ange den mailadress du vill bli kontaktad på",
+  "messagePlaceholder": "Skriv här om du vill skicka med ett meddelande till konstnären.",
+  "SendPurchaseRequest": "Skicka köpförfrågan",
+  "thanksForInterestTitle": "Tack för visat intresse!",
+  "thanksForInterestText": "Konstnären kontaktar dig inom kort. Kom ihåg att du kan skapa ett gratiskonto och chatta direkt med konstnärerna för en snabbare dialog.",
+  "somethingWentWrongTitle": "Något gick fel.",
+  "somethinWentWrongText": "Vänligen försök igen. Om problemet kvarstår får du gärna kontakta oss så hjälper vi dig."
 }
