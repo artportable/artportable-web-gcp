@@ -200,7 +200,7 @@ export default function ArtworkPage(props) {
                   <span>{artwork.data.Likes} {t('peopleLikeThis')}</span>
                 }
                 <Box>
-                  {artwork.data.Price ?
+                  {artwork.data.Price && artwork.data.Price != "0" ?
                     <span>{formatter.format(artwork.data.Price)} </span> :
                     <span>{t('priceOnRequest')}</span>
                   }
