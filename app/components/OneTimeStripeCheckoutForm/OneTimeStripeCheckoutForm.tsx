@@ -178,7 +178,7 @@ export default function OneTimeStripeCheckoutForm({ email, fullName, products, o
 
       <div className={styles.container}>
         <div>
-          <Typography variant="h6" component="h2" className={styles.heading}>Fyll i dina kortuppgifter</Typography>
+          <Typography variant="h6" component="h2" className={styles.heading}>{t('cardDetails')}</Typography>
         </div>
 
         <div className={styles.cardElementContainer}>
