@@ -36,7 +36,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleAndLike: {
       display: 'flex',
-      height: '50px',
+      height: '60px',
       marginTop: theme.spacing(0.4),
       justifyContent: 'space-between',
       alignItems: 'flex-start',
