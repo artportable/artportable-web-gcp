@@ -506,11 +506,11 @@ export default function PaymentPremium() {
                 <Typography variant="h6" component="h2" className={s.textIncluded}>{t('premiumIncludes')}</Typography>
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('personalArtCoordinator')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('prioritized')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('publish')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('follow')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('readArticles')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
               </div>
             </div>

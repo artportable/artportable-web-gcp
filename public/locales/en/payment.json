@@ -27,5 +27,6 @@
   "readArticles": "Read articles and get updates about exhibitions",
   "mustNotBeEmptyMessage": "Field cannot be empty",
   "emailErrorMessage": "Invalid email address",
-  "support": "Support"
+  "support": "Support",
+  "prioritized": "Prioritized in search results"
 }
