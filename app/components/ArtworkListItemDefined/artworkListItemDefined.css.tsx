@@ -52,6 +52,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       marginLeft: '10px',
+      marginBottom: '5px',
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary
@@ -80,10 +81,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontStyle: "italic",
     },
     likeCounter: {
+      marginLeft: "auto",
+      marginRight: "0",
       padding: theme.spacing(0.3, 0, 0, 0)
     },
     likeButton: {
-      padding: theme.spacing(0.4, 0, 0, 1),
+      padding: theme.spacing(0.4, 0, 0.4, 0.5),
       fontSize: '0.5rem',
       '&:hover': {
         backgroundColor: 'transparent'

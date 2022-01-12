@@ -8,10 +8,14 @@ import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import Button from "../Button/Button";
+import { capitalizeFirst } from "../../../app/utils/util";
+import SendIcon from '@material-ui/icons/Send';
 
 export default function ArtworkListItemDefined({ 
   artwork,
   onLikeClick,
+  onPurchaseRequestClick,
   height,
   width,
   topActions = undefined
@@ -106,7 +110,23 @@ export default function ArtworkListItemDefined({
               onClick={toggleLike}>
               <FavoriteIcon fontSize={'small'} color={likedColor}/>
             </IconButton>
+            
           </div>
+          <Button
+            onClick={() => {
+              onPurchaseRequestClick(
+                  artwork.Title,
+                  artwork.Owner.Username,
+                  artwork.Id,
+                  artwork.Owner.SocialId
+              );
+              trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
+            }}
+            variant="outlined" 
+            color="primary"
+            startIcon={<SendIcon color={"inherit"} />}>
+            {capitalizeFirst(t('common:purchaseRequest'))}
+          </Button>
         </div>
       </div>
     </div>
