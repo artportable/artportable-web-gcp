@@ -157,8 +157,8 @@ export default function UploadArtworkPage() {
 
   const onCrop = () => {
     // Upload image and set image name
-    const width = Math.round(cropper.getData().width);
-    const height = Math.round(cropper.getData().height);
+    const width = Math.round(cropper?.getData()?.width);
+    const height = Math.round(cropper?.getData()?.height);
     cropper.getCroppedCanvas().toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
     // Show preview
