@@ -26,5 +26,6 @@
   "follow": "Follow and interact with other artists",
   "readArticles": "Read articles and get updates about exhibitions",
   "mustNotBeEmptyMessage": "Field cannot be empty",
-  "emailErrorMessage": "Invalid email address"
+  "emailErrorMessage": "Invalid email address",
+  "support": "Support"
 }

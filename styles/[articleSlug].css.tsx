@@ -24,6 +24,9 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: '1.4rem'
     },
     articleImages: {
+      '& figure': {
+        textAlign: 'center',
+      },
       '& img': {
         maxWidth: '100%',
         height: '100%',
