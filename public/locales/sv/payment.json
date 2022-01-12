@@ -27,5 +27,6 @@
 "readArticles": "Läs artiklar och få uppdateringar om utställningar",
 "support": "Support",
 "mustNotBeEmptyMessage": "Fältet får inte vara tomt",
-"emailErrorMessage": "Ogiltig e-postadress"
+"emailErrorMessage": "Ogiltig e-postadress",
+"prioritized": "Prioriterad i sökresultat"
 }
