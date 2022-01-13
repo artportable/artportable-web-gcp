@@ -48,7 +48,7 @@ export default function UploadForm({ title, setTitle, setDescription, setPrice, 
           fullWidth/>
           <FormControlLabel
             control={<Checkbox checked={soldOutChecked} onChange={(event) => setSoldOutChecked(event.target.checked)} />}
-            label="Sold Out"
+            label={t('common:words.soldOut')}
           />
         {!multipleSizesChecked ?
           <Grid container spacing={2}>
@@ -91,7 +91,7 @@ export default function UploadForm({ title, setTitle, setDescription, setPrice, 
           <Grid>
           <FormControlLabel
               control={<Checkbox checked={multipleSizesChecked} onChange={(event) => setMultipleSizesChecked(event.target.checked)} />}
-              label="Multiple Sizes"
+              label={t('common:words.multipleSizes')}
             />
           </Grid>
       </Box>

@@ -143,7 +143,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
           </TextField>
           <FormControlLabel
             control={<Checkbox checked={soldOutChecked} onChange={(event) => setSoldOutChecked(event.target.checked)} />}
-            label="Sold Out"
+            label={t('common:words.soldOut')}
           />
           {!multipleSizesChecked ?
             <Grid container spacing={2}>
@@ -192,7 +192,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
           <Grid>
             <FormControlLabel
                 control={<Checkbox checked={multipleSizesChecked} onChange={(event) => setMultipleSizesChecked(event.target.checked)} />}
-                label="Multiple Sizes"
+                label={t('common:words.multipleSizes')}
               />
           </Grid>
         </form>

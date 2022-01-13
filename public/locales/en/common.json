@@ -17,7 +17,10 @@
     "confirm": "confirm",
     "send": "Send",
     "close": "Close",
-    "untitled": "Untitled"
+    "untitled": "Untitled",
+    "sold": "Sold",
+    "soldOut": "Sold",
+    "multipleSizes": "Multiple Sizes"
   },
   "timeUnit": {
     "year": "y",

@@ -201,14 +201,14 @@ export default function ArtworkPage(props) {
                 }
                 <Box>
                   {artwork.data.SoldOut ? 
-                    <span>{t('sold')}</span> : 
+                    <span>{t('common:words.sold')}</span> : 
                     artwork.data.Price && artwork.data.Price != "0" ?
                       <span>{formatter.format(artwork.data.Price)} </span> :
                       <span>{t('priceOnRequest')}</span>
                   }
                   <div className={s.sizeBar}> 
                   {artwork.data.MultipleSizes ? 
-                    t('multipleSizes') : 
+                    t('common:words.multipleSizes') : 
                     artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
                       artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
                       artwork.data.Width && artwork.data.Height ? 
