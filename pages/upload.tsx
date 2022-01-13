@@ -41,6 +41,8 @@ export default function UploadArtworkPage() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
+  const [soldOutChecked, setSoldOutChecked] = useState(false);
+  const [multipleSizesChecked, setMultipleSizesChecked] = useState(false);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const [depth, setDepth] = useState(0);
@@ -78,12 +80,14 @@ export default function UploadArtworkPage() {
   });
 
   const uploadArtwork = async () => {
-    if(isDesktop) {
-      if(title && width && height ) {
+    if (isDesktop) {
+      if (title && ((width && height) || multipleSizesChecked)) {
         const artwork: ArtworkForCreation = {
           Title: title,
           Description: description,
           Price: price,
+          SoldOut: soldOutChecked, 
+          MultipleSizes: multipleSizesChecked,
           Width: width,
           Height: height,
           Depth: depth,
@@ -101,12 +105,14 @@ export default function UploadArtworkPage() {
         mobileImgBlob, 
         mobilePreviewImageRef.current.naturalWidth, 
         mobilePreviewImageRef.current.naturalHeight);
-      
-      if(name !== null && title && width && height) {
+
+      if (name !== null && title && ((width && height) || multipleSizesChecked)) {
         const artwork: ArtworkForCreation = {
           Title: title,
           Description: description,
           Price: price,
+          SoldOut: soldOutChecked, 
+          MultipleSizes: multipleSizesChecked,
           Width: width,
           Height: height,
           Depth: depth,
@@ -151,8 +157,8 @@ export default function UploadArtworkPage() {
 
   const onCrop = () => {
     // Upload image and set image name
-    const width = Math.round(cropper.getData().width);
-    const height = Math.round(cropper.getData().height);
+    const width = Math.round(cropper?.getData()?.width);
+    const height = Math.round(cropper?.getData()?.height);
     cropper.getCroppedCanvas().toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
     // Show preview
@@ -314,7 +320,11 @@ export default function UploadArtworkPage() {
               setTitle={setTitle}
               setDescription={setDescription}
               setPrice={setPrice}
-              width = {width}
+              soldOutChecked = {soldOutChecked}
+              setSoldOutChecked={setSoldOutChecked}
+              multipleSizesChecked={multipleSizesChecked}
+              setMultipleSizesChecked={setMultipleSizesChecked}
+              width={width}
               setWidth={setWidth}
               height = {height}
               setHeight={setHeight}

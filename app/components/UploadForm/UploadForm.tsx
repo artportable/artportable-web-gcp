@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 
 import { styles } from './uploadForm.css'
 import { useTranslation } from 'react-i18next';
-import { Grid, InputAdornment, TextField, Typography } from '@material-ui/core';
+import { Checkbox, FormControlLabel, Grid, InputAdornment, TextField, Typography } from '@material-ui/core';
 import TagChip from '../TagChip/TagChip';
 
-export default function UploadForm({ title, setTitle, setDescription, setPrice, width, setWidth, height, setHeight, setDepth, setSelectedTags, selectedTags, tags }) {
+export default function UploadForm({ title, setTitle, setDescription, setPrice, soldOutChecked, setSoldOutChecked, multipleSizesChecked, setMultipleSizesChecked, width, setWidth, height, setHeight, setDepth, setSelectedTags, selectedTags, tags }) {
   const s = styles();
   const { t } = useTranslation('upload');
 
@@ -46,42 +46,54 @@ export default function UploadForm({ title, setTitle, setDescription, setPrice, 
             endAdornment: <InputAdornment position="end">SEK</InputAdornment>,
           }}
           fullWidth/>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <TextField
-              id="width"
-              label={t('width')}
-              required
-              error = {width ? false : true}
-              onChange={(event) => setWidth(parseInt(event.target.value))}
-              InputProps={{
-                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
-              }}
-              style={{display: 'flex'}}/>
+          <FormControlLabel
+            control={<Checkbox checked={soldOutChecked} onChange={(event) => setSoldOutChecked(event.target.checked)} />}
+            label={t('common:words.soldOut')}
+          />
+        {!multipleSizesChecked ?
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={4}>
+              <TextField
+                id="width"
+                label={t('width')}
+                required
+                error = {width ? false : true}
+                onChange={(event) => setWidth(parseInt(event.target.value))}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                }}
+                style={{display: 'flex'}}/>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                id="height"
+                label={t('height')}
+                required
+                error = {height ? false : true}
+                onChange={(event) => setHeight(parseInt(event.target.value))}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                }}
+                style={{display: 'flex'}}/>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <TextField
+                id="depth"
+                label={t('depth')}
+                onChange={(event) => setDepth(parseInt(event.target.value))}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                }}
+                style={{display: 'flex'}}/>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <TextField
-              id="height"
-              label={t('height')}
-              required
-              error = {height ? false : true}
-              onChange={(event) => setHeight(parseInt(event.target.value))}
-              InputProps={{
-                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
-              }}
-              style={{display: 'flex'}}/>
+          : <></>}
+          <Grid>
+          <FormControlLabel
+              control={<Checkbox checked={multipleSizesChecked} onChange={(event) => setMultipleSizesChecked(event.target.checked)} />}
+              label={t('common:words.multipleSizes')}
+            />
           </Grid>
-          <Grid item xs={12} md={4}>
-            <TextField
-              id="depth"
-              label={t('depth')}
-              onChange={(event) => setDepth(parseInt(event.target.value))}
-              InputProps={{
-                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
-              }}
-              style={{display: 'flex'}}/>
-          </Grid>
-        </Grid>
       </Box>
       <Box className={s.tags}>
         <Typography variant="h4" className={s.tagTitle}>

@@ -17,7 +17,7 @@ export default function ArtworkListItemDefined({
   topActions = undefined
 }) {
   const s = styles();
-  const { t } = useTranslation(['art']);
+  const { t } = useTranslation(['art','common']);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
   const { isSignedIn } = useContext(UserContext);
@@ -80,14 +80,18 @@ export default function ArtworkListItemDefined({
         <div className={s.info}>
           <div className={s.title}>{artwork.Title ? artwork.Title : t('untitled')}</div>
           <div className={s.price}>
-            {artwork.Price && artwork.Price != "0" ? formatter.format(artwork.Price) : t('priceOnRequest')}
+            {artwork.SoldOut ? t('common:words.sold') : 
+              artwork.Price && artwork.Price != "0" ? 
+                formatter.format(artwork.Price) : 
+                t('priceOnRequest')}
           </div>
           <div className={s.size}>
-            {artwork.Width && artwork.Height && artwork.Depth ? 
-              artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm' : 
-              artwork.Width && artwork.Height ? 
-                artwork.Width + 'x' + artwork.Height + 'cm': 
-                null}
+            {artwork.MultipleSizes ? t('common:words.multipleSizes') : 
+              artwork.Width && artwork.Height && artwork.Depth ? 
+                artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm' : 
+                artwork.Width && artwork.Height ? 
+                  artwork.Width + 'x' + artwork.Height + 'cm': 
+                  null}
           </div>
         </div>
         <div className={s.likeInline}>
