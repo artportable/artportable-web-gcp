@@ -1,3 +1,4 @@
+import { red } from '@material-ui/core/colors';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
@@ -36,11 +37,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleAndLike: {
       display: 'flex',
-      height: '60px',
       marginTop: theme.spacing(0.4),
       justifyContent: 'space-between',
       alignItems: 'flex-start',
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.h6.fontSize
     },
     likeInline: {
@@ -66,19 +66,19 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden'
     },
     title: {
+      color: theme.palette.text.secondary,
       fontSize: '0.95rem',
       height: '1.3rem',
     },
     price: {
-      fontSize: '0.8rem',
+      fontSize: '0.95rem',
       lineHeight: '1rem',
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: theme.typography.fontWeightMedium,
     },
     size: {
       fontSize: '0.8rem',
       lineHeight: '1rem',
       fontWeight: theme.typography.fontWeightRegular,
-      fontStyle: "italic",
     },
     likeCounter: {
       marginLeft: "auto",
@@ -91,6 +91,13 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: 'transparent'
       }
+    },
+    purchaseRequestButton: {
+      padding: theme.spacing(0, 0, 0, 0),
+      fontWeight: theme.typography.fontWeightRegular,
+      '&.MuiButton-root .MuiButton-startIcon ': {
+        margin: theme.spacing(0, 0.4, 0 ,0)
+      },
     },
     deleteGrid: {
       position: "relative"

@@ -82,20 +82,21 @@ export default function ArtworkListItemDefined({
       </div>
       <div className={s.titleAndLike}>
         <div className={s.info}>
-          <div className={s.title}>{artwork.Title ? artwork.Title : t('untitled')}</div>
+          <div className={s.title}>
+              {artwork.Title ? artwork.Title : t('untitled')}
+              <span className={s.size}>
+                {artwork.Width && artwork.Height && artwork.Depth ? 
+                " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' : 
+                artwork.Width && artwork.Height ? 
+                  " (" + artwork.Width + 'x' + artwork.Height + 'cm)': 
+                  null}
+              </span>
+          </div>
           <div className={s.price}>
             {artwork.SoldOut ? t('common:words.sold') : 
               artwork.Price && artwork.Price != "0" ? 
                 formatter.format(artwork.Price) : 
                 t('priceOnRequest')}
-          </div>
-          <div className={s.size}>
-            {artwork.MultipleSizes ? t('common:words.multipleSizes') : 
-              artwork.Width && artwork.Height && artwork.Depth ? 
-                artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm' : 
-                artwork.Width && artwork.Height ? 
-                  artwork.Width + 'x' + artwork.Height + 'cm': 
-                  null}
           </div>
         </div>
         <div className={s.likeInline}>
@@ -110,9 +111,11 @@ export default function ArtworkListItemDefined({
               onClick={toggleLike}>
               <FavoriteIcon fontSize={'small'} color={likedColor}/>
             </IconButton>
-            
           </div>
-          <Button
+        </div>
+      </div>
+      <Button
+            className={s.purchaseRequestButton}
             onClick={() => {
               onPurchaseRequestClick(
                   artwork.Title,
@@ -122,13 +125,10 @@ export default function ArtworkListItemDefined({
               );
               trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
             }}
-            variant="outlined" 
-            color="primary"
-            startIcon={<SendIcon color={"inherit"} />}>
+            variant="text"
+            startIcon={<SendIcon color={"inherit"}/>}>
             {capitalizeFirst(t('common:purchaseRequest'))}
           </Button>
-        </div>
-      </div>
     </div>
   );
 }
