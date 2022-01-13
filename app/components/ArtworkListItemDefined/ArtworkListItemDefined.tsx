@@ -85,11 +85,13 @@ export default function ArtworkListItemDefined({
           <div className={s.title}>
               {artwork.Title ? artwork.Title : t('untitled')}
               <span className={s.size}>
-                {artwork.Width && artwork.Height && artwork.Depth ? 
-                " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' : 
-                artwork.Width && artwork.Height ? 
-                  " (" + artwork.Width + 'x' + artwork.Height + 'cm)': 
-                  null}
+                {artwork.MultipleSizes ? 
+                  " (" + t('common:words.multipleSizes').toLowerCase() + ")" : 
+                    artwork.Width && artwork.Height && artwork.Depth ? 
+                      " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' : 
+                      artwork.Width && artwork.Height ? 
+                        " (" + artwork.Width + 'x' + artwork.Height + 'cm)': 
+                        null}
               </span>
           </div>
           <div className={s.price}>

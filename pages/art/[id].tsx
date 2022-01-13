@@ -191,7 +191,7 @@ export default function ArtworkPage(props) {
                         <span>{artwork.data.Title}</span>
                       }
                       {artwork.data.MultipleSizes ? 
-                        t('common:words.multipleSizes') :
+                        ' (' + t('common:words.multipleSizes').toLowerCase() + ')':
                         artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
                           ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm)' : 
                           artwork.data.Width && artwork.data.Height ? 
