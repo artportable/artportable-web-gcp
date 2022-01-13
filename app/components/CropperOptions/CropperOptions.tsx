@@ -138,7 +138,8 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
         <Button 
           classes={{ startIcon: s.startIcon }}
           startIcon={<DoneIcon />}
-          onClick={onCrop}>
+          onClick={onCrop}
+          color="secondary">
         </Button>
       </ButtonGroup>
     </div>
