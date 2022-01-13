@@ -200,16 +200,20 @@ export default function ArtworkPage(props) {
                   <span>{artwork.data.Likes} {t('peopleLikeThis')}</span>
                 }
                 <Box>
-                  {artwork.data.Price && artwork.data.Price != "0" ?
-                    <span>{formatter.format(artwork.data.Price)} </span> :
-                    <span>{t('priceOnRequest')}</span>
+                  {artwork.data.SoldOut ? 
+                    <span>{t('sold')}</span> : 
+                    artwork.data.Price && artwork.data.Price != "0" ?
+                      <span>{formatter.format(artwork.data.Price)} </span> :
+                      <span>{t('priceOnRequest')}</span>
                   }
                   <div className={s.sizeBar}> 
-                  {artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
-                    artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
-                    artwork.data.Width && artwork.data.Height ? 
-                      artwork.data.Width + 'x' + artwork.data.Height + 'cm': 
-                      null
+                  {artwork.data.MultipleSizes ? 
+                    t('multipleSizes') : 
+                    artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
+                      artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
+                      artwork.data.Width && artwork.data.Height ? 
+                        artwork.data.Width + 'x' + artwork.data.Height + 'cm': 
+                        null
                   }
                 </div>
                 </Box>
