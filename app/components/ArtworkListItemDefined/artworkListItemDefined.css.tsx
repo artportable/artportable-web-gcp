@@ -75,7 +75,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     size: {
       fontSize: '0.8rem',
-      lineHeight: '0.8rem',
+      lineHeight: '1rem',
       fontWeight: theme.typography.fontWeightRegular,
       fontStyle: "italic",
     },
