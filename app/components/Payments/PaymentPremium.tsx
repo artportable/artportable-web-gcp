@@ -350,7 +350,7 @@ export default function PaymentPremium() {
                             src="/images/qrswish.svg"
                             alt="swishqr"
                             title="qr code" />
-                          <Typography variant="h4" component="h2" className={s.swishNumer}>1232894590</Typography>
+                          <Typography variant="h4" component="h2" className={s.swishNumer}>1234461489</Typography>
                         </div>
                       </div>
                     }
