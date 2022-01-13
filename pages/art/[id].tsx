@@ -184,73 +184,83 @@ export default function ArtworkPage(props) {
                   className={s.primaryImage}
                 />
               </div>
-              <div className={s.actionBar}>
-                <Button
-                //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
-                 onClick={toggleLike}
-                  startIcon={<FavoriteIcon color={likedColor} />}
-                 >
-                  {capitalizeFirst(t('common:like'))}
-                </Button>
-                {username.value !== artwork.data.Owner.Username &&
-                  <>
-                    <Button
-                      onClick={() => {
-                        purchaseRequest({
-                          pathname: "/messages",
-                          query: {
-                            artwork: encodeURIComponent(JSON.stringify({
-                              title: artwork.data.Title,
-                              creator: artwork.data.Owner.Username,
-                              url: window.location.href
-                            })),
-                            referTo: artwork.data.Owner.SocialId
-                          }
-                        });
-                        trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
-                      }}
-                      startIcon={<SendIcon color={"inherit"} />}>
-                      {capitalizeFirst(t('common:purchaseRequest'))}
-                    </Button>
-                    <PurchaseRequestDialog 
-                      open={purchaseRequestDialogOpen} 
-                      onClose={togglePurchaseRequestDialog} 
-                      props={{
-                        pathname: "/messages",
-                        title: artwork.data.Title,
-                        creator: artwork.data.Owner.Username,
-                        url: window.location.href,
-                        referTo: artwork.data.Owner.SocialId
-                      }}
-                      />
-                  </>
-                } 
-              </div>
               <div className={s.infoBar}>
-                {artwork.data.Likes > 0 &&
-                  <span>{artwork.data.Likes} {t('peopleLikeThis')}</span>
-                }
-                <Box>
-                  {artwork.data.SoldOut ? 
-                    <span>{t('common:words.sold')}</span> : 
-                    artwork.data.Price && artwork.data.Price != "0" ?
-                      <span>{formatter.format(artwork.data.Price)} </span> :
-                      <span>{t('priceOnRequest')}</span>
-                  }
-                  <div className={s.sizeBar}> 
-                  {artwork.data.MultipleSizes ? 
-                    t('common:words.multipleSizes') : 
-                    artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
-                      artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm' : 
-                      artwork.data.Width && artwork.data.Height ? 
-                        artwork.data.Width + 'x' + artwork.data.Height + 'cm': 
-                        null
-                  }
-                </div>
-                </Box>
+                  <div className={s.infoContainer}>
+                    <div className={s.titleAndSizeContainer}>
+                      {artwork.data.Title &&
+                        <span>{artwork.data.Title}</span>
+                      }
+                      {artwork.data.MultipleSizes ? 
+                        t('common:words.multipleSizes') :
+                        artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
+                          ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm)' : 
+                          artwork.data.Width && artwork.data.Height ? 
+                            ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'cm)': 
+                            null
+                      }
+                    </div>
+                    <div className={s.priceContainer}>
+                      {artwork.data.SoldOut ? 
+                        <span>{t('common:words.sold')}</span> : 
+                        artwork.data.Price && artwork.data.Price != "0" ?
+                          <span>{formatter.format(artwork.data.Price)} </span> :
+                          <span>{t('priceOnRequest')}</span>
+                      }
+                    </div>
+                    {username.value !== artwork.data.Owner.Username &&
+                      <Box>
+                        <Button
+                          className={s.purchaseRequestButton}
+                          variant="contained"
+                          color="primary"
+                          rounded
+                          disableElevation
+                          onClick={() => {
+                            purchaseRequest({
+                              pathname: "/messages",
+                              query: {
+                                artwork: encodeURIComponent(JSON.stringify({
+                                  title: artwork.data.Title,
+                                  creator: artwork.data.Owner.Username,
+                                  url: window.location.href
+                                })),
+                                referTo: artwork.data.Owner.SocialId
+                              }
+                            });
+                            trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
+                          }}
+                          startIcon={<SendIcon color={"inherit"} />}>
+                          {capitalizeFirst(t('common:purchaseRequest'))}
+                        </Button>
+                        <PurchaseRequestDialog 
+                          open={purchaseRequestDialogOpen} 
+                          onClose={togglePurchaseRequestDialog} 
+                          props={{
+                            pathname: "/messages",
+                            title: artwork.data.Title,
+                            creator: artwork.data.Owner.Username,
+                            url: window.location.href,
+                            referTo: artwork.data.Owner.SocialId
+                          }}
+                          />
+                      </Box>
+                    }
+                  </div>
+                  <div className={s.likeContainer}>
+                    <Button
+                      //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
+                      onClick={toggleLike}
+                        startIcon={<FavoriteIcon color={likedColor} />}
+                      >
+                        {capitalizeFirst(t('common:like'))}
+                    </Button>
+                    {artwork.data.Likes > 0 &&
+                      <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
+                    }
+                  </div>
               </div>
 
-              <Box textAlign="center" marginY={2} className={s.text}>
+              <Box textAlign="center" marginY={4} className={s.text}>
                 {artwork.data.Title &&
                   <Typography variant="h3" component="h2" id="artwork-modal-title">
                     <Box fontWeight="500" fontFamily="LyonDisplay" marginBottom={2}>
@@ -288,7 +298,8 @@ export default function ArtworkPage(props) {
                     key={tag}
                     title={tag}
                     onChipClick={null}
-                    limitReached={true}>
+                    limitReached={true}
+                    variant="outlined">
                   </TagChip>;
                 }
                 )}

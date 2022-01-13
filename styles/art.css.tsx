@@ -48,19 +48,36 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
+      alignItems: 'flex-start',
       marginLeft: theme.spacing(1.6),
       marginRight: theme.spacing(1.6),
     },
-    sizeBar: {
-      fontStyle: 'italic',
+    infoContainer: {
+      fontSize: '0.95rem',
+      overflow: 'hidden',
+      flexGrow: 1,
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
     },
-    actionBar: {
-      display: 'flex',
-      flexDirection: 'row',
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      alignItems: 'center'
+    titleAndSizeContainer: {
+      margin: theme.spacing(0, 0, 0, 0.4),
+      padding: theme.spacing(0.75, 0, 0, 0)
     },
+    priceContainer: {
+      margin: theme.spacing(0, 0, 0, 0.4),
+      fontWeight: theme.typography.fontWeightMedium,
+      paddingBottom: theme.spacing(1)
+    },
+    purchaseRequestButton: {
+      '&.MuiButton-root .MuiButton-startIcon ': {
+        margin: theme.spacing(0, 0.4, 0 ,0)
+      }
+    },
+    likeContainer: {
+      float: 'right',
+      display: 'inline-block'
+    },
+    
     text: {
       marginLeft: '10px',
       marginRight: '10px',
