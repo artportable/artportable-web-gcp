@@ -117,7 +117,7 @@ export default function ArtworkListItemDefined({
         </div>
       </div>
       {
-      username.value != artwork.Owner.Username ?
+      username.value != artwork.Owner.Username && !artwork.SoldOut &&
         <Button
           className={s.purchaseRequestButton}
           onClick={() => {
@@ -133,8 +133,6 @@ export default function ArtworkListItemDefined({
           startIcon={<SendIcon color={"inherit"}/>}>
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
-        :
-        <></>
       }
     </div>
   );

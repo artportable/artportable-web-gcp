@@ -207,7 +207,7 @@ export default function ArtworkPage(props) {
                           <span>{t('priceOnRequest')}</span>
                       }
                     </div>
-                    {username.value !== artwork.data.Owner.Username &&
+                    {username.value !== artwork.data.Owner.Username && !artwork.data.SoldOut &&
                       <Box>
                         <Button
                           className={s.purchaseRequestButton}
