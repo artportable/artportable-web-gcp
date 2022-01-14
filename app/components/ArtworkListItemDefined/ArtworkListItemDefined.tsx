@@ -24,7 +24,7 @@ export default function ArtworkListItemDefined({
   const { t } = useTranslation(['art','common']);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
-  const { isSignedIn } = useContext(UserContext);
+  const { isSignedIn, username } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const router = useRouter();
@@ -116,21 +116,26 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
-      <Button
-            className={s.purchaseRequestButton}
-            onClick={() => {
-              onPurchaseRequestClick(
-                  artwork.Title,
-                  artwork.Owner.Username,
-                  artwork.Id,
-                  artwork.Owner.SocialId
-              );
-              trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
-            }}
-            variant="text"
-            startIcon={<SendIcon color={"inherit"}/>}>
-            {capitalizeFirst(t('common:purchaseRequest'))}
-          </Button>
+      {
+      username.value != artwork.Owner.Username ?
+        <Button
+          className={s.purchaseRequestButton}
+          onClick={() => {
+            onPurchaseRequestClick(
+                artwork.Title,
+                artwork.Owner.Username,
+                artwork.Id,
+                artwork.Owner.SocialId
+            );
+            trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
+          }}
+          variant="text"
+          startIcon={<SendIcon color={"inherit"}/>}>
+          {capitalizeFirst(t('common:purchaseRequest'))}
+        </Button>
+        :
+        <></>
+      }
     </div>
   );
 }
