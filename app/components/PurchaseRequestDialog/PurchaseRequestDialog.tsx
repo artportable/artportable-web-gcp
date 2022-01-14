@@ -50,7 +50,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
     
 
     return (
-        <Dialog open={open} onClose={onClose}>
+        <Dialog open={open} onClose={onCloseClick}>
             {messageResponse
             ?
                 <DialogContent>
