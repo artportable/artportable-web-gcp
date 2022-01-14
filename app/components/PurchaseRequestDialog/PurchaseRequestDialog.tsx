@@ -124,7 +124,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                         <TextField
                             fullWidth
                             multiline
-                            label={t('messageOptional')}
+                            label={t('common:messageOptional')}
                             placeholder={t('messagePlaceholder')}
                             onChange={(e) => setCustomMessage(e.target.value)}
                         >
