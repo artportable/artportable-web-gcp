@@ -227,7 +227,7 @@ export default function ArtworkPage(props) {
                                 referTo: artwork.data.Owner.SocialId
                               }
                             });
-                            trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
+                            trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_KONSTKORT, CategoryType.BUY);
                           }}
                           startIcon={<SendIcon color={"inherit"} />}>
                           {capitalizeFirst(t('common:purchaseRequest'))}

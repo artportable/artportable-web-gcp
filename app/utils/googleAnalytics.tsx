@@ -9,13 +9,21 @@ export enum ActionType {
   FÖLJ_UPPTÄCK = 'följ_upptäck',
   FÖLJ_KONSTKORT = 'följ_konstkort',
   FÖLJ_PROFIL = 'följ_profil',
+  KÖPFÖRFRÅGAN_DIALOG_STÄNG = "köpförfrågan_dialog_stäng",
+  KÖPFÖRFRÅGAN_KONSTKORT = "köpförfrågan_konstkort",
+  KÖPFÖRFRÅGAN_LISTNING = "köpförfrågan_listning",
+  KÖPFÖRFRÅGAN_LISTNING_PROFIL = 'köpförfrågan_listning_profil',
+  KÖPFÖRFRÅGAN_LISTNING_UPPTÄCK = 'köpförfrågan_listning_upptäck',
   KÖPFÖRFRÅGAN_MITT_KONSTNÄTVERK = 'köpförfrågan_mitt_konstnätverk',
-  KÖPFÖRFRÅGAN_PORTFOLIE = 'köpförfrågan_heportfolie',
+  KÖPFÖRFRÅGAN_SKICKA_UTLOGGAD = 'köpförfrågan_skicka_utloggad',
   GILLA_KONSTKORT = 'gilla_konstkort',
   GILLA_PORTOFOLIE_UPPTÄCK = 'gilla_portfolie_upptäck',
   SIGN_UP_FREE = 'sign_up_free',
   SIGN_UP_PORTFOLIE = 'sign_up_portfolio',
   SIGN_UP_PREMIUM = 'sign_up_premium',
+  SIGN_UP_KÖPFÖRFRÅGAN_FÖRE = 'sign_up_köpförfrågan_före',
+  SIGN_UP_KÖPFÖRFRÅGAN_EFTER = 'sign_up_köpförfrågan_efter',
+  SKICKA_MEDDELANDE = 'skicka_meddelande_profil',
   UPGRADE = 'upgrade_to_portfolio'
  }
  export enum CategoryType { 

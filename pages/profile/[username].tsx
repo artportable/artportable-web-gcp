@@ -398,12 +398,13 @@ export default function Profile(props) {
               <>
                 {
                   <Button
-                    onClick={() => redirectIfNotLoggedIn({
+                    onClick={() => {redirectIfNotLoggedIn({
                       pathname: "/messages",
                       query: {
                         referTo: userProfileSummary.data?.SocialId
                       }
-                    })}
+                    });
+                    trackGoogleAnalytics(ActionType.SKICKA_MEDDELANDE, CategoryType.INTERACTIVE)}}
                     className={s.followButton}
                     size={smScreenOrSmaller ? 'small' : 'medium'}
                     variant={"contained"}
@@ -480,6 +481,7 @@ export default function Profile(props) {
                                 </> : undefined
                               }
                               onPurchaseRequestClick={onPurchaseRequestClick}
+                              purchaseRequestAction={ActionType.KÖPFÖRFRÅGAN_LISTNING_PROFIL}
                               onLikeClick={onLikeClick} />
                           }
                         }

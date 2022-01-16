@@ -17,6 +17,7 @@ import { debounce } from '@material-ui/core/utils';
 import { UserContext } from '../../../app/contexts/user-context';
 import { useRouter } from 'next/router';
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
+import { ActionType } from "../../utils/googleAnalytics";
 
 interface InputProps {
   artworks: Artwork[],
@@ -183,6 +184,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
                   height={smScreenOrSmaller ? 'auto' : image.Height}
                   artwork={artwork}
                   onPurchaseRequestClick={onPurchaseRequestClick}
+                  purchaseRequestAction={ActionType.KÖPFÖRFRÅGAN_LISTNING_UPPTÄCK}
                   onLikeClick={onLike} />
               }
             }

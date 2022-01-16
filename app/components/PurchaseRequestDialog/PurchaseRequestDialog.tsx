@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import { useKeycloak } from '@react-keycloak/ssr';
 import type { KeycloakInstance } from 'keycloak-js';
 import { useRouter } from "next/router";
+import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics';
 
 export default function PurchaseRequestDialog({open, onClose, props}) {
     const { t } = useTranslation(['art', 'common']);
@@ -31,6 +32,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
 
     const onCloseClick = () => {
         onClose();
+        trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_DIALOG_STÄNG, CategoryType.INTERACTIVE)
         setMessageResponse('');
     }
 
@@ -82,9 +84,12 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                             color="primary"
                             disableElevation    
                             rounded
-                            onClick={() => keycloak.register({
-                                locale: router.locale,
-                                redirectUri: signUpRedirectHref})}
+                            onClick={() => {
+                                keycloak.register({
+                                    locale: router.locale,
+                                    redirectUri: signUpRedirectHref});
+                                trackGoogleAnalytics(ActionType.SIGN_UP_KÖPFÖRFRÅGAN_EFTER, CategoryType.BUY);
+                            }}
                         >
                             {t('createAccountToChat')}
                         </Button>
@@ -98,9 +103,12 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                             color="primary"
                             disableElevation    
                             rounded
-                            onClick={() => keycloak.register({
-                                locale: router.locale,
-                                redirectUri: signUpRedirectHref})}
+                            onClick={() => {
+                                keycloak.register({
+                                    locale: router.locale,
+                                    redirectUri: signUpRedirectHref});
+                                trackGoogleAnalytics(ActionType.SIGN_UP_KÖPFÖRFRÅGAN_FÖRE, CategoryType.BUY);
+                            }}
                         >
                             {t('createAccountToChat')}
                         </Button>
@@ -136,7 +144,10 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                                 disableElevation 
                                 rounded
                                 className={s.messageButton}
-                                onClick={onPurchaseRequestClick}
+                                onClick={() => {
+                                    onPurchaseRequestClick();
+                                    trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_SKICKA_UTLOGGAD, CategoryType.BUY)
+                                }}
                             >
                                 {t('SendPurchaseRequest')}
                             </Button>

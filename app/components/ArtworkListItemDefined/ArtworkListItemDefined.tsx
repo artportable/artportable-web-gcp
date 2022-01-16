@@ -16,6 +16,7 @@ export default function ArtworkListItemDefined({
   artwork,
   onLikeClick,
   onPurchaseRequestClick,
+  purchaseRequestAction,
   height,
   width,
   topActions = undefined
@@ -127,7 +128,7 @@ export default function ArtworkListItemDefined({
                 artwork.Id,
                 artwork.Owner.SocialId
             );
-            trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_PORTFOLIE, CategoryType.BUY);
+            trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.KÖPFÖRFRÅGAN_LISTNING, CategoryType.BUY);
           }}
           variant="text"
           startIcon={<SendIcon color={"inherit"}/>}>
