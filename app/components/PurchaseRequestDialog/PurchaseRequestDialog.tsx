@@ -32,7 +32,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
 
     const onCloseClick = () => {
         onClose();
-        trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_DIALOG_STÄNG, CategoryType.INTERACTIVE)
+        trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_DIALOG_CLOSE, CategoryType.INTERACTIVE)
         setMessageResponse('');
     }
 
@@ -88,7 +88,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                                 keycloak.register({
                                     locale: router.locale,
                                     redirectUri: signUpRedirectHref});
-                                trackGoogleAnalytics(ActionType.SIGN_UP_KÖPFÖRFRÅGAN_EFTER, CategoryType.BUY);
+                                trackGoogleAnalytics(ActionType.SIGN_UP_PURCHASE_REQUEST_AFTER, CategoryType.BUY);
                             }}
                         >
                             {t('createAccountToChat')}
@@ -107,7 +107,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                                 keycloak.register({
                                     locale: router.locale,
                                     redirectUri: signUpRedirectHref});
-                                trackGoogleAnalytics(ActionType.SIGN_UP_KÖPFÖRFRÅGAN_FÖRE, CategoryType.BUY);
+                                trackGoogleAnalytics(ActionType.SIGN_UP_PURCHASE_REQUEST_BEFORE, CategoryType.BUY);
                             }}
                         >
                             {t('createAccountToChat')}
@@ -146,7 +146,7 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                                 className={s.messageButton}
                                 onClick={() => {
                                     onPurchaseRequestClick();
-                                    trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_SKICKA_UTLOGGAD, CategoryType.BUY)
+                                    trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_SEND_SIGNED_OUT, CategoryType.BUY)
                                 }}
                             >
                                 {t('SendPurchaseRequest')}

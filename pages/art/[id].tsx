@@ -131,7 +131,7 @@ export default function ArtworkPage(props) {
     likeArtwork(!isLiked);
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
-    !isLiked ? trackGoogleAnalytics(ActionType.GILLA_KONSTKORT, CategoryType.INTERACTIVE) : null
+    !isLiked ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE) : null
   }
 
   const likedColor = !isSignedIn.value ?
@@ -169,7 +169,7 @@ export default function ArtworkPage(props) {
                 startIcon={!isFollowed ? <AddIcon /> : null}
                 disableElevation
                 rounded
-                onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FÖLJ_KONSTKORT, CategoryType.INTERACTIVE) : null}}>
+                onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_ARTWORK, CategoryType.INTERACTIVE) : null}}>
                 {capitalizeFirst(
                   !isFollowed ?
                     t('common:words.follow') :
@@ -227,7 +227,7 @@ export default function ArtworkPage(props) {
                                 referTo: artwork.data.Owner.SocialId
                               }
                             });
-                            trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_KONSTKORT, CategoryType.BUY);
+                            trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_ARTWORK, CategoryType.BUY);
                           }}
                           startIcon={<SendIcon color={"inherit"} />}>
                           {capitalizeFirst(t('common:purchaseRequest'))}

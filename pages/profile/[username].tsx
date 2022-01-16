@@ -377,7 +377,7 @@ export default function Profile(props) {
                       <a>
                         <Button
                           className={s.uploadButton}
-                          onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_PROFIL, CategoryType.INTERACTIVE)}
+                          onClick={() => trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_PROFILE, CategoryType.INTERACTIVE)}
                           size="small"
                           variant="contained"
                           color="primary"
@@ -404,7 +404,7 @@ export default function Profile(props) {
                         referTo: userProfileSummary.data?.SocialId
                       }
                     });
-                    trackGoogleAnalytics(ActionType.SKICKA_MEDDELANDE, CategoryType.INTERACTIVE)}}
+                    trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)}}
                     className={s.followButton}
                     size={smScreenOrSmaller ? 'small' : 'medium'}
                     variant={"contained"}
@@ -425,7 +425,7 @@ export default function Profile(props) {
                   disableElevation
                   rounded
                   disabled={!isSignedIn}
-                  onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FÖLJ_PROFIL, CategoryType.INTERACTIVE) : null}}>
+                  onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_PROFILE, CategoryType.INTERACTIVE) : null}}>
                   {capitalizeFirst(
                     !isFollowed ?
                       t('common:words.follow') :
@@ -481,7 +481,7 @@ export default function Profile(props) {
                                 </> : undefined
                               }
                               onPurchaseRequestClick={onPurchaseRequestClick}
-                              purchaseRequestAction={ActionType.KÖPFÖRFRÅGAN_LISTNING_PROFIL}
+                              purchaseRequestAction={ActionType.PURCHASE_REQUEST_LIST_PROFILE}
                               onLikeClick={onLikeClick} />
                           }
                         }

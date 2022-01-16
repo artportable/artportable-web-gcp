@@ -184,7 +184,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
                   height={smScreenOrSmaller ? 'auto' : image.Height}
                   artwork={artwork}
                   onPurchaseRequestClick={onPurchaseRequestClick}
-                  purchaseRequestAction={ActionType.KÖPFÖRFRÅGAN_LISTNING_UPPTÄCK}
+                  purchaseRequestAction={ActionType.PURCHASE_REQUEST_LIST_DISCOVER}
                   onLikeClick={onLike} />
               }
             }

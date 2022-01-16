@@ -47,7 +47,7 @@ export default function ArtworkListItemDefined({
       setIsLiked(!isLiked);
       artwork.LikedByMe = !isLiked;
       !isLiked ? artwork.Likes++ : artwork.Likes--;
-      !isLiked ? trackGoogleAnalytics(ActionType.GILLA_PORTOFOLIE_UPPTÄCK, CategoryType.INTERACTIVE) : null
+      !isLiked ? trackGoogleAnalytics(ActionType.LIKE_PORTFOLIO_DISCOVER, CategoryType.INTERACTIVE) : null
     }
     onLikeClick(artwork.Id, !isLiked);
   }
@@ -128,7 +128,7 @@ export default function ArtworkListItemDefined({
                 artwork.Id,
                 artwork.Owner.SocialId
             );
-            trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.KÖPFÖRFRÅGAN_LISTNING, CategoryType.BUY);
+            trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
           }}
           variant="text"
           startIcon={<SendIcon color={"inherit"}/>}>

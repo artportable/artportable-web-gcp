@@ -53,7 +53,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             disableElevation
             rounded
             className={s.button}
-            onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FÖLJ_UPPTÄCK, CategoryType.INTERACTIVE);}}>
+            onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FOLLOW_DISCOVER, CategoryType.INTERACTIVE);}}>
               {capitalizeFirst(
                 !isFollowed ?
                   t('common:words.follow') :
