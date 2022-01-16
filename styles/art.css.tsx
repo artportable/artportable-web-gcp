@@ -75,7 +75,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeContainer: {
       float: 'right',
-      display: 'inline-block'
+      display: 'inline-block',
+      '& button' : {
+        paddingBottom: 0,
+      }
     },
     
     text: {
