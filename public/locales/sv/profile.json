@@ -31,5 +31,11 @@
   "coverPhotoUpdated": "Omslagsbild updated!",
   "deleteArtworkDialog": "Är du säker på att du vill radera konstverket vid namn \"{{title}}\"?",
   "deleteArtworkSuccess": "Konstverk raderat",
-  "maxLength": "Maximalt 140 tecken"
+  "maxLength": "Maximalt 140 tecken",
+  "instagramUrl": "Ange hela adressen, exempelvis: https://instagram.com/artportableofficial/",
+  "facebookUrl": "Ange hela adressen, exempelvis: https://www.facebook.com/artportable/",
+  "linkedinUrl": "Ange hela adressen, exempelvis: https://www.linkedin.com/company/artportable/",
+  "dribbleUrl": "Ange hela adressen, exempelvis: https://dribbble.com/artportable",
+  "behanceUrl": "Ange hela adressen, exempelvis: https://www.behance.net/artportable",
+  "websiteUrl": "Ange hela adressen, exempelvis: https://artportable.com/"
 }

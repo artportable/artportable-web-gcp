@@ -31,5 +31,11 @@
   "coverPhotoUpdated": "Cover photo updated!",
   "deleteArtworkDialog" : "Are you sure that you want to delete the artwork titled \"{{title}}\"?",
   "deleteArtworkSuccess" : "Artwork successfully deleted",
-  "maxLength": "Maximum 140 characters"
+  "maxLength": "Maximum 140 characters",
+  "instagramUrl": "Enter the full url, for instance: https://instagram.com/artportableofficial/",
+  "facebookUrl": "Enter the full url, for instance: https://www.facebook.com/artportable/",
+  "linkedinUrl": "Enter the full url, for instance: https://www.linkedin.com/company/artportable/",
+  "dribbleUrl": "Enter the full url, for instance: https://dribbble.com/artportable",
+  "behanceUrl": "Enter the full url, for instance: https://www.behance.net/artportable",
+  "websiteUrl": "Enter the full url, for instance: https://artportable.com/"
 }
