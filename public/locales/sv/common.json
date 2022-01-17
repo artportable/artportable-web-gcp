@@ -20,7 +20,9 @@
     "untitled": "Utan titel",
     "sold": "Såld",
     "soldOut": "Såld",
-    "multipleSizes": "Flera Storlekar"
+    "multipleSizes": "Flera Storlekar",
+    "or": "eller",
+    "email": "epost"
   },
   "timeUnit": {
     "year": "år",
@@ -35,6 +37,7 @@
   "message": "Meddelande",
   "Yes" : "Ja",
   "Cancel" : "Avbryt",
-  "purchaseRequest": "Köpförfrågan"
+  "purchaseRequest": "Köpförfrågan",
+  "messageOptional": "Meddelande (valfritt)"
   
 }

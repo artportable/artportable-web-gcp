@@ -150,7 +150,7 @@ export default function FeedPage() {
                         size="small"
                         variant="contained"
                         color="primary"
-                        onClick={trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_MITT_KONSTNÄTVERK, CategoryType.INTERACTIVE)}
+                        onClick={trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_FEED, CategoryType.INTERACTIVE)}
                         disableElevation>
                         {t('uploadNewWorkOfArt')}
                       </Button>

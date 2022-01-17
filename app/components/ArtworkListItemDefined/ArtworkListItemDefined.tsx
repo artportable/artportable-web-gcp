@@ -8,10 +8,15 @@ import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import Button from "../Button/Button";
+import { capitalizeFirst } from "../../../app/utils/util";
+import SendIcon from '@material-ui/icons/Send';
 
 export default function ArtworkListItemDefined({ 
   artwork,
   onLikeClick,
+  onPurchaseRequestClick,
+  purchaseRequestAction,
   height,
   width,
   topActions = undefined
@@ -20,7 +25,7 @@ export default function ArtworkListItemDefined({
   const { t } = useTranslation(['art','common']);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
-  const { isSignedIn } = useContext(UserContext);
+  const { isSignedIn, username } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const router = useRouter();
@@ -42,7 +47,7 @@ export default function ArtworkListItemDefined({
       setIsLiked(!isLiked);
       artwork.LikedByMe = !isLiked;
       !isLiked ? artwork.Likes++ : artwork.Likes--;
-      !isLiked ? trackGoogleAnalytics(ActionType.GILLA_PORTOFOLIE_UPPTÄCK, CategoryType.INTERACTIVE) : null
+      !isLiked ? trackGoogleAnalytics(ActionType.LIKE_PORTFOLIO_DISCOVER, CategoryType.INTERACTIVE) : null
     }
     onLikeClick(artwork.Id, !isLiked);
   }
@@ -78,20 +83,23 @@ export default function ArtworkListItemDefined({
       </div>
       <div className={s.titleAndLike}>
         <div className={s.info}>
-          <div className={s.title}>{artwork.Title ? artwork.Title : t('untitled')}</div>
+          <div className={s.title}>
+              {artwork.Title ? artwork.Title : t('untitled')}
+              <span className={s.size}>
+                {artwork.MultipleSizes ? 
+                  " (" + t('common:words.multipleSizes').toLowerCase() + ")" : 
+                    artwork.Width && artwork.Height && artwork.Depth ? 
+                      " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' : 
+                      artwork.Width && artwork.Height ? 
+                        " (" + artwork.Width + 'x' + artwork.Height + 'cm)': 
+                        null}
+              </span>
+          </div>
           <div className={s.price}>
             {artwork.SoldOut ? t('common:words.sold') : 
               artwork.Price && artwork.Price != "0" ? 
                 formatter.format(artwork.Price) : 
                 t('priceOnRequest')}
-          </div>
-          <div className={s.size}>
-            {artwork.MultipleSizes ? t('common:words.multipleSizes') : 
-              artwork.Width && artwork.Height && artwork.Depth ? 
-                artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm' : 
-                artwork.Width && artwork.Height ? 
-                  artwork.Width + 'x' + artwork.Height + 'cm': 
-                  null}
           </div>
         </div>
         <div className={s.likeInline}>
@@ -109,6 +117,24 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
+      {
+      username.value != artwork.Owner.Username && !artwork.SoldOut &&
+        <Button
+          className={s.purchaseRequestButton}
+          onClick={() => {
+            onPurchaseRequestClick(
+                artwork.Title,
+                artwork.Owner.Username,
+                artwork.Id,
+                artwork.Owner.SocialId
+            );
+            trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
+          }}
+          variant="text"
+          startIcon={<SendIcon color={"inherit"}/>}>
+          {capitalizeFirst(t('common:purchaseRequest'))}
+        </Button>
+      }
     </div>
   );
 }

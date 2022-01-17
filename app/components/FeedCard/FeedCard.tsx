@@ -121,7 +121,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           <a>
             <Button 
               startIcon={<SendIcon color={"inherit"} />}
-              onClick={() => trackGoogleAnalytics(ActionType.KÖPFÖRFRÅGAN_MITT_KONSTNÄTVERK, CategoryType.BUY)}>
+              onClick={() => trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_FEED, CategoryType.BUY)}>
               {capitalizeFirst(t('common:purchaseRequest'))}
             </Button>
           </a>

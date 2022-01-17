@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Checkbox, Chip, TextField, Theme, useTheme } from "@material-ui/core";
 import { styles } from "./discoverArt.css";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
@@ -14,6 +14,10 @@ import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton"
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
 import SearchField from "../SearchField/SearchField";
 import { debounce } from '@material-ui/core/utils';
+import { UserContext } from '../../../app/contexts/user-context';
+import { useRouter } from 'next/router';
+import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
+import { ActionType } from "../../utils/googleAnalytics";
 
 interface InputProps {
   artworks: Artwork[],
@@ -38,6 +42,17 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   const setShowFilterLoadingSkeletonDebounced = debounce((value: boolean) => {
     setShowFilterLoadingSkeleton(value)
   }, 200)
+
+  const router = useRouter();
+  const { isSignedIn } = useContext(UserContext);
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
+  const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
+    title: '',
+    creator: '',
+    url: '',
+    referTo: ''
+  });
 
   const theme: Theme = useTheme();
   const skeletonImages = [
@@ -94,6 +109,36 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     onFilter([]);
   }, []);
 
+  function togglePurchaseRequestDialog(){
+    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
+  }
+
+  function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string) {
+    const url = publicUrl + "/art/" + artworkId;
+    if(isSignedIn.value) {
+      const originalRedirect = {
+        pathname: "/messages",
+        query: {
+          artwork: encodeURIComponent(JSON.stringify({
+            title: title,
+            creator: creator,
+            url: url
+          })),
+          referTo: referTo
+        }
+      }
+        router.push(originalRedirect);
+    }else{
+      setPurchaseRequestDialogData({
+        title: title,
+        creator: creator,
+        url: url,
+        referTo: referTo
+      })
+      togglePurchaseRequestDialog();
+    }
+  }
+
   return (
     <>
       <Box className={s.rowsContainer}>
@@ -132,13 +177,14 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           <div className={s.row} key={i}>
             {row.map(image => {
               let artwork = artworks.find(a => a.PrimaryFile.Name === image.Name);
-
               if (artwork) {
                 return <ArtworkListItemDefined
                   key={image.Name}
                   width={smScreenOrSmaller ? '100%' : image.Width}
                   height={smScreenOrSmaller ? 'auto' : image.Height}
                   artwork={artwork}
+                  onPurchaseRequestClick={onPurchaseRequestClick}
+                  purchaseRequestAction={ActionType.PURCHASE_REQUEST_LIST_DISCOVER}
                   onLikeClick={onLike} />
               }
             }
@@ -159,6 +205,17 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             }
           </div>
         }
+        <PurchaseRequestDialog 
+          open={purchaseRequestDialogOpen} 
+          onClose={togglePurchaseRequestDialog} 
+          props={{
+            pathname: "/messages",
+            title: purchaseRequestDialogData.title,
+            creator: purchaseRequestDialogData.creator,
+            url: purchaseRequestDialogData.url,
+            referTo: purchaseRequestDialogData.referTo
+          }}
+        />
       </Box>
     </>
   );

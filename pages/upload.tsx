@@ -342,7 +342,7 @@ export default function UploadArtworkPage() {
               disabled={!croppedPrimary && mobileImg === ''}
               disableElevation
               rounded
-              onClick={() => { uploadArtwork(); trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_BEKRÄFTA, CategoryType.INTERACTIVE)}}>
+              onClick={() => { uploadArtwork(); trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_CONFIRM, CategoryType.INTERACTIVE)}}>
                 {t('upload')}
             </ArtButton>
             <WarningMessage />

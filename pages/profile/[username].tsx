@@ -46,6 +46,8 @@ import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLo
 import { Membership } from '../../app/models/Membership'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
 import UpgradePortfolio from '../../app/components/UpgradePortfolio/UpgradPortfolio'
+import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
+import { UrlObject } from 'url';
 
 function a11yProps(index: any) {
   return {
@@ -92,6 +94,14 @@ export default function Profile(props) {
   const token = useContext(TokenContext);
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
   const { setLoading } = useContext(LoadingContext);
+
+  const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
+  const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
+    title: '',
+    creator: '',
+    url: '',
+    referTo: ''
+  });
   
   useEffect(() => {
     if(!isReady) {
@@ -302,6 +312,37 @@ export default function Profile(props) {
     }
   }
 
+  function togglePurchaseRequestDialog(){
+    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
+  }
+
+  function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string) {
+    const url = publicUrl + "/art/" + artworkId;
+    referTo = userProfileSummary.data.SocialId;
+    if(isSignedIn.value) {
+      const originalRedirect = {
+        pathname: "/messages",
+        query: {
+          artwork: encodeURIComponent(JSON.stringify({
+            title: title,
+            creator: creator,
+            url: url
+          })),
+          referTo: referTo
+        }
+      }
+        router.push(originalRedirect);
+    }else{
+      setPurchaseRequestDialogData({
+        title: title,
+        creator: creator,
+        url: url,
+        referTo: referTo
+      })
+      togglePurchaseRequestDialog();
+    }
+  }
+
   return (
     <Main>
       <Head>
@@ -336,7 +377,7 @@ export default function Profile(props) {
                       <a>
                         <Button
                           className={s.uploadButton}
-                          onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_PROFIL, CategoryType.INTERACTIVE)}
+                          onClick={() => trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_PROFILE, CategoryType.INTERACTIVE)}
                           size="small"
                           variant="contained"
                           color="primary"
@@ -357,12 +398,13 @@ export default function Profile(props) {
               <>
                 {
                   <Button
-                    onClick={() => redirectIfNotLoggedIn({
+                    onClick={() => {redirectIfNotLoggedIn({
                       pathname: "/messages",
                       query: {
                         referTo: userProfileSummary.data?.SocialId
                       }
-                    })}
+                    });
+                    trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)}}
                     className={s.followButton}
                     size={smScreenOrSmaller ? 'small' : 'medium'}
                     variant={"contained"}
@@ -383,7 +425,7 @@ export default function Profile(props) {
                   disableElevation
                   rounded
                   disabled={!isSignedIn}
-                  onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FÖLJ_PROFIL, CategoryType.INTERACTIVE) : null}}>
+                  onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_PROFILE, CategoryType.INTERACTIVE) : null}}>
                   {capitalizeFirst(
                     !isFollowed ?
                       t('common:words.follow') :
@@ -438,12 +480,25 @@ export default function Profile(props) {
                         
                                 </> : undefined
                               }
+                              onPurchaseRequestClick={onPurchaseRequestClick}
+                              purchaseRequestAction={ActionType.PURCHASE_REQUEST_LIST_PROFILE}
                               onLikeClick={onLikeClick} />
                           }
                         }
                         )}
                       </div>
                     )}
+                    <PurchaseRequestDialog 
+                      open={purchaseRequestDialogOpen} 
+                      onClose={togglePurchaseRequestDialog} 
+                      props={{
+                        pathname: "/messages",
+                        title: purchaseRequestDialogData.title,
+                        creator: purchaseRequestDialogData.creator,
+                        url: purchaseRequestDialogData.url,
+                        referTo: purchaseRequestDialogData.referTo
+                      }}
+                    />
                     <EditArtworkDialog 
                       artwork={artworkToEdit} 
                       open={editArtworkOpen} 

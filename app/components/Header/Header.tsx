@@ -173,7 +173,7 @@ export default function Header() {
                       <Link href="/upload">
                         <a>
                           <Button
-                            onClick={() => trackGoogleAnalytics(ActionType.LADDA_UPP_BILD_HEADER, CategoryType.INTERACTIVE)}
+                            onClick={() => trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_HEADER, CategoryType.INTERACTIVE)}
                             className={s.uploadButton}
                             size="small"
                             variant="outlined"

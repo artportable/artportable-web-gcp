@@ -54,7 +54,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
           startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
-          onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FÖLJFÖRSLAG_MITT_KONSTNÄTVERK, CategoryType.INTERACTIVE) : null}}>
+          onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOWING_SUGGESTION, CategoryType.INTERACTIVE) : null}}>
             {capitalizeFirst(
               !isFollowed ?
                 t('common:words.follow') :
