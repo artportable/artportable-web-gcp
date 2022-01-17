@@ -33,6 +33,8 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
     const onCloseClick = () => {
         onClose();
         trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_DIALOG_CLOSE, CategoryType.INTERACTIVE)
+        setCustomMessage('');
+        setSignUpRedirectHref('');
         setMessageResponse('');
     }
 
