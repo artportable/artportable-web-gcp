@@ -52,7 +52,13 @@ export const EditSocials = ({ profile, setProfile }) => {
               </IconButton>
             </InputAdornment>
           )
-        }}  />
+        }}
+        helperText={profile.socialMedia.instagram && 
+          profile.socialMedia.instagram != '' && 
+          !profile?.socialMedia.instagram.match(/(?:(?:http|https):\/\/)?(?:www.)?(?:instagram.com|instagr.am|instagr.com)\/(\w+)/igm) ? 
+            t('instagramUrl') : 
+            ''
+        }/>
 
       <TextField
         label={t('facebook')} 
@@ -65,7 +71,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>),
           endAdornment: (<ResetAdornment socialMedia='facebook'></ResetAdornment>)
         }}
-      />
+        helperText={profile.socialMedia.facebook && 
+          profile.socialMedia.facebook!='' && 
+          !profile?.socialMedia?.facebook?.match(/(?:http|https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*?(\/)?([\w\-\.]{5,})/ig) ? 
+            t('facebookUrl') : 
+            ''
+        }/>
 
       <TextField 
         label={t('linkedIn')} 
@@ -82,7 +93,13 @@ export const EditSocials = ({ profile, setProfile }) => {
               </IconButton>
             </InputAdornment>
           )
-        }} />
+        }}
+        helperText={profile.socialMedia.linkedIn && 
+          profile.socialMedia.linkedIn != '' && 
+          !profile?.socialMedia?.linkedIn?.match(/(?:http|https?:\/\/)?([\w]+\.)?linkedin\.com\/(pub|in|profile|company)/gm) ? 
+            t('linkedinUrl') : 
+            ''
+        }/>
 
       <TextField 
         label={t('dribbble')} 
@@ -99,7 +116,13 @@ export const EditSocials = ({ profile, setProfile }) => {
               </IconButton>
             </InputAdornment>
           )
-        }}  />
+        }}
+        helperText={profile.socialMedia.dribble && 
+          profile.socialMedia.dribble != '' && 
+          !profile?.socialMedia?.dribble?.match(/(?:http|https?:\/\/)?([\w]+\.)?behance\.com\//gm) ? 
+            t('dribbleUrl') : 
+            ''
+        }/>
 
       <TextField 
         label={t('behance')} 
@@ -116,7 +139,13 @@ export const EditSocials = ({ profile, setProfile }) => {
               </IconButton>
             </InputAdornment>
           )
-        }} />
+        }}
+        helperText={profile.socialMedia.behance && 
+          profile.socialMedia.behance != '' && 
+          !profile?.socialMedia?.behance?.match(/(?:http|https?:\/\/)?([\w]+\.)?behance\.com\//gm) ? 
+            t('behanceUrl') : 
+            ''
+        }/>
 
       <TextField 
         label={t('website')} 
@@ -133,7 +162,13 @@ export const EditSocials = ({ profile, setProfile }) => {
               </IconButton>
             </InputAdornment>
           )
-        }} />
+        }} 
+        helperText={profile.socialMedia.website && 
+          profile.socialMedia.website != '' && 
+          !profile?.socialMedia?.website?.match(/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[.\!\/\\w]*))?)/ig) ? 
+            t('websiteUrl') : 
+            ''
+        }/>
 
     </EditDialogSection>
   );
