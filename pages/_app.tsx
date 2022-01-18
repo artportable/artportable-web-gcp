@@ -4,6 +4,7 @@ import '../styles/theme.css'
 import '../styles/variables.css'
 import type { AppProps, AppContext } from 'next/app'
 import App from 'next/app';
+import CookieConsentBar from '../app/components/CookieConsentBar/CookieConsentBar';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
@@ -123,6 +124,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Component {...pageProps} />
+              <CookieConsentBar />
             </ThemeProvider>
           </ArtportableContexts>
         </Provider>
