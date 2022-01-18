@@ -79,7 +79,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
                 variant="inline"
                 label={t('from')}
                 format="dd/MM/yyyy"
-                value={e.from}
+                value={e.from ? e.from : null}
                 InputAdornmentProps={{position: 'start'}}
                 onChange={date => setFrom(e, date)}
               />
@@ -90,7 +90,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
                 variant="inline"
                 label={t('to')}
                 format="dd/MM/yyyy"
-                value={e.to}
+                value={e.to ? e.to : null}
                 minDate={e.from}
                 InputAdornmentProps={{position: 'start'}}
                 onChange={date => setTo(e, date)}

@@ -71,6 +71,7 @@ export default function EditProfileDialog({ userProfile }) {
   const makeChanges = async (_) => {
     setOpenEdit(false);
     try {
+      validate(profile);
       mutate(getUserProfileUri(username.value, null), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
             
       await fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
@@ -87,6 +88,27 @@ export default function EditProfileDialog({ userProfile }) {
       
     }
   }
+
+  const validate = (p) => {
+    profile?.educations?.map((e) => {
+      if(!e.from){
+        e.from = null;
+      }
+      if(!e.to){
+        e.to = null;
+      }
+    });
+
+    profile?.exhibitions?.map((e) => {
+      if(!e.from){
+        e.from = null;
+      }
+      if(!e.to){
+        e.to = null;
+      }
+    });
+  };
+
   const cancel = (_) => {
     setProfile(populateProfileObject(userProfile));
     setOpenEdit(false);
@@ -195,15 +217,15 @@ const populateProfileObject = (userProfile): Profile => {
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
     educations: userProfile?.Educations?.map(e => ({
-      from: e.From,
-      to: e.To,
+      from: e.From ? e.From : false,
+      to: e.To ? e.To : false,
       name: e.Name,
       key: v4()
     })),
     exhibitions: userProfile?.Exhibitions?.map(e => ({
       key: v4(),
-      from: e.From,
-      to: e.To,
+      from: e.From ? e.From : false,
+      to: e.To ? e.To : false,
       name: e.Name,
       place: e.Place
     })),
@@ -227,13 +249,13 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,
     Educations: userProfile?.educations?.map(e => ({ 
-      From: e.from,
-      To: e.to,
+      From: e.from ? e.from : false,
+      To: e.to ? e.to : false,
       Name: e.name,
     })),
     Exhibitions: userProfile?.exhibitions?.map(e => ({ 
-      From: e.from,
-      To: e.to,
+      From: e.from ? e.from : false,
+      To: e.to ? e.to : false,
       Name: e.name,
       Place: e.place
     })),

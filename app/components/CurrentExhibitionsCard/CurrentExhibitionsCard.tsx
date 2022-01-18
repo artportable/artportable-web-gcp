@@ -17,8 +17,8 @@ export default function CurrentExhibitionsCard({ exhibitions }) {
     const parsedFrom = parseISO(exhibition.From);
     const minimumYear = subYears(new Date(), 100).getFullYear();
 
-    return (!isValid(parsedTo) || parsedTo.getFullYear() < minimumYear)
-      || (!isValid(parsedFrom) || parsedFrom.getFullYear() < minimumYear);
+    return (exhibition.To && (!isValid(parsedTo) || parsedTo.getFullYear() < minimumYear))
+      || (exhibition.From && (!isValid(parsedFrom) || parsedFrom.getFullYear() < minimumYear));
   }
 
   return (
@@ -33,7 +33,7 @@ export default function CurrentExhibitionsCard({ exhibitions }) {
             <PaletteIcon color="primary" className={s.icon}></PaletteIcon>
             <div className={s.textContainer}>
               <div className={clsx(s.datesRow, hasInvalidDate(e) && s.displayNone)}>
-                <div className={s.dates}>{e.From.split('T')[0]} - {e.To.split('T')[0]}</div>
+                <div className={s.dates}>{e.From ? e.To ? e.From.split('T')[0] + " - " + e.To.split('T')[0] : e.From.split('T')[0] : e.To ? e.To.split('T')[0] : ' '}</div>
               </div>
               <div>{e.Name}</div>
               <div className={clsx(s.location, e.Place === null && s.displayNone)}>
