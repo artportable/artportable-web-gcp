@@ -22,7 +22,7 @@ export default function EducationCard({ educations }) {
             <SchoolIcon color="primary" className={s.icon}></SchoolIcon>
             <div className={s.textContainer}>
               <div className={clsx(s.yearsRow, (e.From === 0 || e.To === 0) && s.displayNone)}>
-                <div className={s.years}>{e.From} - {e.To}</div>
+                <div className={s.years}>{e.From ? e.To ? e.From + " - " + e.To : e.From : e.To ? e.To : ' '}</div>
               </div>
               <div>
                 {e.Name}
