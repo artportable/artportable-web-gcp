@@ -109,5 +109,8 @@ export const styles = makeStyles((theme: Theme) =>
     chip: {
       marginRight: '5px'
     },
+    sold: {
+      color: "#DDAA52",
+    },
   }),
 );

@@ -201,7 +201,7 @@ export default function ArtworkPage(props) {
                     </div>
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? 
-                        <span>{t('common:words.sold')}</span> : 
+                        <span className={s.sold}>{t('common:words.sold')}</span> : 
                         artwork.data.Price && artwork.data.Price != "0" ?
                           <span>{formatter.format(artwork.data.Price)} </span> :
                           <span>{t('priceOnRequest')}</span>

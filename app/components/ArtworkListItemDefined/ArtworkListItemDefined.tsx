@@ -96,7 +96,7 @@ export default function ArtworkListItemDefined({
               </span>
           </div>
           <div className={s.price}>
-            {artwork.SoldOut ? t('common:words.sold') : 
+            {artwork.SoldOut ? <span className={s.sold}>{t('common:words.sold')}</span> : 
               artwork.Price && artwork.Price != "0" ? 
                 formatter.format(artwork.Price) : 
                 t('priceOnRequest')}
