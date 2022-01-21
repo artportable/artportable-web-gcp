@@ -75,6 +75,9 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: '1rem',
       fontWeight: theme.typography.fontWeightMedium,
     },
+    sold: {
+      color: "#DDAA52",
+    },
     size: {
       fontSize: '0.8rem',
       lineHeight: '1rem',
