@@ -7,14 +7,36 @@ import { Avatar, Typography, Paper } from '@material-ui/core';
 import { styles } from '../../../styles/[articleSlug].css';
 import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
+import Head from 'next/head'
+import { Description } from '@material-ui/icons';
 
 export default function ArticlePage({ article }: { article: Article }) {
 
   const router = useRouter()
   const s = styles();
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
 
   return (
     <Main>
+      <Head>
+        <title />
+        <meta name="description" content={article?.description} />
+        <meta property="og:title" content={article?.title} />
+        <meta property="og:description" content={article?.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${publicUrl}/${article?.publishCategory.name.toLowerCase()}/${article?.slug}`} />
+        <meta property="og:image" content={article?.coverImage?.formats?.medium?.url} />
+        <meta property="og:datePublished" content={article?.published_at} />
+        <meta property="og:dateModified" content={article?.updated_at} />
+        {article?.authors?.map(author => {
+        return (
+          <>
+        <meta property="og:author" content={author.name} />
+        <meta name="author" content={author.name} />
+        </>
+        )
+        })}
+      </Head>
       {router.isFallback &&
         //implement good skeleton here
         <div>Loading...</div>
