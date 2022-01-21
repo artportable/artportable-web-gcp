@@ -12,7 +12,7 @@ import { styles } from "./planCard.css";
 import clsx from 'clsx';
 // import PremiumSignupDialog from '../PremiumSignupDialog/PremiumSignupDialog';
 import PremiumApply from "../PremiumApply/PremiumApply";
-import { PriceData } from "../PlanSelector/PlanSelector";
+import { PriceData } from "../../../pages/plans";
 import Dialog from '@material-ui/core/Dialog';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";

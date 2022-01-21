@@ -10,17 +10,7 @@ import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from 'next/router'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
 import clsx from 'clsx';
-
-
-export interface PriceData {
-  id: string;
-  product: "portfolioPremium" | "portfolio" | "free";
-  productKey: string;
-  currency: string;
-  recurringInterval: string;
-  amount?: number;
-  
-}
+import { PriceData } from "../../../pages/plans";
 
 interface Props {
   priceData: PriceData[];
@@ -28,7 +18,7 @@ interface Props {
   showAll: boolean;
 }
 
-export default function PlanSelector({ priceData, landingPageMode, showAll = false }: Props ) {
+export default function PlanSelector({ priceData, landingPageMode, showAll = false }: Props) {
   const { t } = useTranslation(['plans', 'common']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -51,16 +41,15 @@ export default function PlanSelector({ priceData, landingPageMode, showAll = fal
     recurringInterval: "year",
     amount: 4500,
   }];
-  
+
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
-  console.log(plans)
   plans.push("portfolioPremium");
 
   function compareAmounts(a, b) {
-    if (a.amount < b.amount){
+    if (a.amount < b.amount) {
       return -1;
     }
-    if (a.amount > b.amount){
+    if (a.amount > b.amount) {
       return 1;
     }
     return 0;
@@ -68,27 +57,26 @@ export default function PlanSelector({ priceData, landingPageMode, showAll = fal
 
   return (
     <div>
-      {!landingPageMode && 
+      {!landingPageMode &&
         <div className={s.paymentOptions}>
           <Tabs
             value={paymentInterval}
             indicatorColor="primary"
             textColor="primary"
             onChange={(_, val) => setPaymentInterval(val)}
-            >
+          >
             <Tab value="month" label={t('monthlyPayment')} />
             <Tab value="year" label={t('yearlyPayment')} />
           </Tabs>
         </div>
       }
       <div className={s.planCards}>
-        {plans.filter ((plan) => {
-          return showAll ||(!showAll && plan === 'Portfolio') 
-          }).map(plan =>
-          {
-            const p = priceDataWithPremium.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
-              return <PlanCard hideButtons={landingPageMode} plan={p} key={p.id}></PlanCard>
-          })}
+        {plans.filter((plan) => {
+          return showAll || (!showAll && plan === 'Portfolio')
+        }).map(plan => {
+          const p = priceDataWithPremium.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
+          return <PlanCard hideButtons={landingPageMode} plan={p} key={p.id}></PlanCard>
+        })}
       </div>
       {landingPageMode &&
         <div className={s.joinCommunityButton}>
@@ -99,7 +87,8 @@ export default function PlanSelector({ priceData, landingPageMode, showAll = fal
             rounded
             onClick={() => keycloak.register({
               locale: router.locale,
-              redirectUri: signUpRedirectHref})}>
+              redirectUri: signUpRedirectHref
+            })}>
             {t('joinTheCommunity')}
           </Button>
         </div>
