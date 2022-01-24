@@ -7,7 +7,8 @@ import { Avatar, Typography, Paper } from '@material-ui/core';
 import { styles } from '../../../styles/[articleSlug].css';
 import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
-import Head from 'next/head'
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next'
 import { Description } from '@material-ui/icons';
 
 export default function ArticlePage({ article }: { article: Article }) {
@@ -15,6 +16,7 @@ export default function ArticlePage({ article }: { article: Article }) {
   const router = useRouter()
   const s = styles();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const { t } = useTranslation(['articles']);
 
   return (
     <Main>
@@ -67,7 +69,7 @@ export default function ArticlePage({ article }: { article: Article }) {
                 <div className={s.authorDiv} key={author.id}>
                   <Avatar src={author?.picture?.formats?.thumbnail?.url} className={s.authorAvatar} />
                   <Typography className={s.authorText}>{author.name}</Typography>
-                  <Typography className={s.authorText}>Skribent</Typography>
+                  <Typography>{t('writer')}</Typography>
                 </div>
               )
 
@@ -76,7 +78,7 @@ export default function ArticlePage({ article }: { article: Article }) {
             <div className={s.line}></div>
             <div className={s.findArt}>
             <Typography>
-            Hitta din originalkonst på
+            {t('tagLine')}
             </Typography>
             <Link href={`/`}>
               <a>
