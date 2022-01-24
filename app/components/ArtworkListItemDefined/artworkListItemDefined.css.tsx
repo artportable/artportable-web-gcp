@@ -78,6 +78,13 @@ export const styles = makeStyles((theme: Theme) =>
     sold: {
       color: "#DDAA52",
     },
+    soldMark: {
+      background: "red",
+      borderRadius: "50%",
+      width: "100px",
+      height: "100px",
+
+    },
     size: {
       fontSize: '0.8rem',
       lineHeight: '1rem',
