@@ -112,7 +112,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: '5px'
     },
     soldMark: {
-      background: "red",
+      background: "#C67777",
       borderRadius: "50%",
       width: "15px",
       height: "15px",
