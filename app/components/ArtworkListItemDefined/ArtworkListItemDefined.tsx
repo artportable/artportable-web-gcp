@@ -132,8 +132,8 @@ export default function ArtworkListItemDefined({
             trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
           }}
           variant="outlined"
-          color="primary"
           rounded
+          color="3DDAA52"
           startIcon={<SendIcon color={"inherit"}/>}>
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
