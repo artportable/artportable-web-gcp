@@ -7,7 +7,8 @@ import { Avatar, Typography, Paper } from '@material-ui/core';
 import { styles } from '../../../styles/[articleSlug].css';
 import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
-import Head from 'next/head'
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next'
 import { Description } from '@material-ui/icons';
 
 export default function ArticlePage({ article }: { article: Article }) {
@@ -15,6 +16,7 @@ export default function ArticlePage({ article }: { article: Article }) {
   const router = useRouter()
   const s = styles();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const { t } = useTranslation(['articles']);
 
   return (
     <Main>
@@ -29,12 +31,12 @@ export default function ArticlePage({ article }: { article: Article }) {
         <meta property="og:datePublished" content={article?.published_at} />
         <meta property="og:dateModified" content={article?.updated_at} />
         {article?.authors?.map(author => {
-        return (
-          <>
-        <meta property="og:author" content={author.name} />
-        <meta name="author" content={author.name} />
-        </>
-        )
+          return (
+            <>
+              <meta property="og:author" content={author.name} />
+              <meta name="author" content={author.name} />
+            </>
+          )
         })}
       </Head>
       {router.isFallback &&
@@ -50,19 +52,16 @@ export default function ArticlePage({ article }: { article: Article }) {
 
           <Paper className={s.paper}>
             <div className={s.headingDiv}>
-              <Typography variant={'h1'} className={s.headingText}>
+              <Typography variant={'h1'}>
                 {article.title}
               </Typography>
               <Typography>
-              {article.published_at?.slice(0, -14)}
+                {article.published_at?.slice(0, -14)}
               </Typography>
             </div>
             <div className={s.line}></div>
-            <Typography className={s.description}>
-              {article.description}
-            </Typography>
 
-            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages}/>
+            <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages} />
 
             {article?.authors?.map(author => {
 
@@ -70,19 +69,40 @@ export default function ArticlePage({ article }: { article: Article }) {
                 <div className={s.authorDiv} key={author.id}>
                   <Avatar src={author?.picture?.formats?.thumbnail?.url} className={s.authorAvatar} />
                   <Typography className={s.authorText}>{author.name}</Typography>
+                  {(author.name === "Redaktion" || author.name === "Editorial") ?
+                    null
+                    :
+                    <div>
+                      <Typography>{t('writer')}</Typography>
+                    </div>
+                  }
                 </div>
               )
-
             })}
 
             <div className={s.line}></div>
+            <div className={s.findArt}>
+              <Typography>
+                {t('tagLine')}
+              </Typography>
+              <Link href={`/`}>
+                <a>
+                  <img
+                    height={20}
+                    className={s.artportable_logo}
+                    src={'/images/Artportable_Logotyp_Black.jpg'}
+                    alt="link to artportable"
+                    title="artportable_logo" />
+                </a>
+              </Link>
+            </div>
             <div className={s.tagDiv} >
               {article?.categories?.map(category => {
                 return (
                   <>
                     <Link as={`/${category.slug}`} href={category.name}>
                       <a>
-                        <Button rounded variant="contained" color="primary" disableElevation>
+                        <Button rounded variant="outlined" color="primary" disableElevation>
                           <Typography>
                             {category.name}
                           </Typography>
