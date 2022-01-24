@@ -74,9 +74,15 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '0.95rem',
       lineHeight: '1rem',
       fontWeight: theme.typography.fontWeightMedium,
+      display: 'flex',
     },
-    sold: {
-      color: "#DDAA52",
+
+    soldMark: {
+      background: "red",
+      borderRadius: "50%",
+      width: "15px",
+      height: "15px",
+      marginRight: '5px',
     },
     size: {
       fontSize: '0.8rem',
@@ -96,8 +102,9 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     purchaseRequestButton: {
-      padding: theme.spacing(0, 0, 0, 0),
-      fontWeight: theme.typography.fontWeightRegular,
+      marginTop: '5px',
+      padding: theme.spacing(0, 2, 0, 2),
+      fontWeight: theme.typography.fontWeightMedium,
       '&.MuiButton-root .MuiButton-startIcon ': {
         margin: theme.spacing(0, 0.4, 0 ,0)
       },

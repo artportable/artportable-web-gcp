@@ -66,7 +66,9 @@ export const styles = makeStyles((theme: Theme) =>
     priceContainer: {
       margin: theme.spacing(0, 0, 0, 0.4),
       fontWeight: theme.typography.fontWeightMedium,
-      paddingBottom: theme.spacing(1)
+      paddingBottom: theme.spacing(1),
+      display: 'flex',
+      alignItems: "center"
     },
     purchaseRequestButton: {
       '&.MuiButton-root .MuiButton-startIcon ': {
@@ -109,8 +111,12 @@ export const styles = makeStyles((theme: Theme) =>
     chip: {
       marginRight: '5px'
     },
-    sold: {
-      color: "#DDAA52",
+    soldMark: {
+      background: "red",
+      borderRadius: "50%",
+      width: "15px",
+      height: "15px",
+      marginRight: '5px',
     },
   }),
 );
