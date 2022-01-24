@@ -105,6 +105,8 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: '5px',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,
+      border: "1px solid #DDAA52",
+      color: "#DDAA52",
       '&.MuiButton-root .MuiButton-startIcon ': {
         margin: theme.spacing(0, 0.4, 0 ,0)
       },
