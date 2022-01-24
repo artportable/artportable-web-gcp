@@ -117,6 +117,7 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
+
       {
       username.value != artwork.Owner.Username && !artwork.SoldOut &&
         <Button
@@ -130,11 +131,14 @@ export default function ArtworkListItemDefined({
             );
             trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
           }}
-          variant="text"
+          variant="outlined"
+          color="primary"
+          rounded
           startIcon={<SendIcon color={"inherit"}/>}>
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
       }
+
     </div>
   );
 }

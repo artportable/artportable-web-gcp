@@ -102,8 +102,9 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     purchaseRequestButton: {
-      padding: theme.spacing(0, 0, 0, 0),
-      fontWeight: theme.typography.fontWeightRegular,
+      marginTop: '5px',
+      padding: theme.spacing(0, 2, 0, 2),
+      fontWeight: theme.typography.fontWeightMedium,
       '&.MuiButton-root .MuiButton-startIcon ': {
         margin: theme.spacing(0, 0.4, 0 ,0)
       },
