@@ -50,7 +50,7 @@ export default function ArticlePage({ article }: { article: Article }) {
 
           <Paper className={s.paper}>
             <div className={s.headingDiv}>
-              <Typography variant={'h1'} className={s.headingText}>
+              <Typography variant={'h1'}>
                 {article.title}
               </Typography>
               <Typography>
@@ -58,9 +58,6 @@ export default function ArticlePage({ article }: { article: Article }) {
               </Typography>
             </div>
             <div className={s.line}></div>
-            <Typography className={s.description}>
-              {article.description}
-            </Typography>
 
             <div dangerouslySetInnerHTML={{ __html: article.content }} className={s.articleImages}/>
 
@@ -70,19 +67,35 @@ export default function ArticlePage({ article }: { article: Article }) {
                 <div className={s.authorDiv} key={author.id}>
                   <Avatar src={author?.picture?.formats?.thumbnail?.url} className={s.authorAvatar} />
                   <Typography className={s.authorText}>{author.name}</Typography>
+                  <Typography className={s.authorText}>Skribent</Typography>
                 </div>
               )
 
             })}
 
             <div className={s.line}></div>
+            <div className={s.findArt}>
+            <Typography>
+            Hitta din originalkonst på
+            </Typography>
+            <Link href={`/`}>
+              <a>
+                <img 
+                  height={20}
+                  className={s.artportable_logo} 
+                  src={'/images/Artportable_Logotyp_Black.jpg'} 
+                  alt="link to artportable"
+                  title="artportable_logo"/>
+              </a>
+            </Link>
+            </div>
             <div className={s.tagDiv} >
               {article?.categories?.map(category => {
                 return (
                   <>
                     <Link as={`/${category.slug}`} href={category.name}>
                       <a>
-                        <Button rounded variant="contained" color="primary" disableElevation>
+                        <Button rounded variant="outlined" color="primary" disableElevation>
                           <Typography>
                             {category.name}
                           </Typography>

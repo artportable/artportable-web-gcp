@@ -43,10 +43,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       ...columnGap(16),
     },
-    headingText: {
-      textDecoration: 'underline',
-      textDecorationThickness: '3px',
-    },
+
     authorDiv: {
       display: 'flex',
       flexDirection: 'column',
@@ -60,6 +57,15 @@ export const styles = makeStyles((theme: Theme) =>
     },
     authorText: {
       fontWeight: 500,
+    },
+    findArt: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: '30px',
+    justifyContent: 'center'
+    },
+    artportable_logo: {
+      marginLeft: '10px'
     },
     tagDiv: {
       display: 'flex',
