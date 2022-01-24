@@ -61,7 +61,7 @@ export const styles = makeStyles((theme: Theme) =>
     findArt: {
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: '30px',
+    marginBottom: '27px',
     alignItems: "center",
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row',
@@ -69,9 +69,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     },
     artportable_logo: {
-      margin: '10px 0 0 0',
+      margin: '8px 0 0 0',
       [theme.breakpoints.up('sm')]: {
-        marginLeft: '10px',
+        margin: '2px 0 0 10px',
       },
     },
     tagDiv: {
