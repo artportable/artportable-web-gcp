@@ -74,16 +74,16 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '0.95rem',
       lineHeight: '1rem',
       fontWeight: theme.typography.fontWeightMedium,
+      display: 'flex',
+
     },
-    sold: {
-      color: "#DDAA52",
-    },
+
     soldMark: {
       background: "red",
       borderRadius: "50%",
-      width: "100px",
-      height: "100px",
-
+      width: "15px",
+      height: "15px",
+      marginRight: '5px',
     },
     size: {
       fontSize: '0.8rem',
