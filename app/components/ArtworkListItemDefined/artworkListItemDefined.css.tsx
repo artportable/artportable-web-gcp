@@ -78,7 +78,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     soldMark: {
-      background: "red",
+      background: "#C67777",
       borderRadius: "50%",
       width: "15px",
       height: "15px",
@@ -105,8 +105,8 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: '5px',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,
-      border: "1px solid #DDAA52",
-      color: "#DDAA52",
+      border: "1px solid #48423D",
+      color: "#48423D",
       '&.MuiButton-root .MuiButton-startIcon ': {
         margin: theme.spacing(0, 0.4, 0 ,0)
       },
