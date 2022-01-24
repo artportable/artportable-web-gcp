@@ -75,7 +75,6 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: '1rem',
       fontWeight: theme.typography.fontWeightMedium,
       display: 'flex',
-
     },
 
     soldMark: {
