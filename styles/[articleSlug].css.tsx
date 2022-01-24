@@ -60,12 +60,19 @@ export const styles = makeStyles((theme: Theme) =>
     },
     findArt: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     marginBottom: '30px',
-    justifyContent: 'center'
+    alignItems: "center",
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+    },
     },
     artportable_logo: {
-      marginLeft: '10px'
+      margin: '10px 0 0 0',
+      [theme.breakpoints.up('sm')]: {
+        marginLeft: '10px',
+      },
     },
     tagDiv: {
       display: 'flex',
