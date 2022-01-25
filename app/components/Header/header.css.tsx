@@ -3,8 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: theme.palette.background.default,
-      boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+      backgroundColor: 'var(--header-color)',
       width: 'calc(100% + 10px)',
     },
     container: {
@@ -114,12 +113,8 @@ export const styles = makeStyles((theme: Theme) =>
 
     [theme.breakpoints.up('md')]: {
       toolbar: {
-        backgroundColor: theme.palette.background.default,
-        boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-        width: 'calc(100% + 10px)',
-        '&.MuiPaper-elevation0': {
-          boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-        }
+        backgroundColor: 'var(--header-color)',
+
       },
       container: {
         display: 'grid',

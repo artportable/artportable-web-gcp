@@ -7,6 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
       gridColumn: '1/4',
       padding: theme.spacing(5, 1, 0, 1),
       background: theme.palette.grey[200],
+      backgroundColor: 'var(--background-color-darker)'
     },
     flexContainer: {
       position: 'relative',
@@ -134,7 +135,7 @@ export const styles = makeStyles((theme: Theme) =>
       objectFit: 'contain',
       maxHeight: '800px',
       maxWidth: '100%',
-      filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
+      // filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
     },
     createdBy: {
       display: 'flex',
