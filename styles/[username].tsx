@@ -62,7 +62,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     portfolioContainer: {
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(2)
+      ...columnGap(16)
     },
     portfolioRow: {
       display: 'flex',
