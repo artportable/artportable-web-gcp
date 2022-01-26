@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { columnGap, rowGap } from '../../utils/styleUtils'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -8,19 +9,61 @@ export const styles = makeStyles((theme: Theme) =>
       margin: 'auto'
     },
     form: {
-      paddingTop: theme.spacing(2),
       '& > *': {
         marginBottom: theme.spacing(2.5)
-      }
+      },
+      display: 'flex',
+      justifyContent: 'center',
     },
     textField: {
-      minHeight: '76px'
+      minHeight: '76px',
+      color: '#fff',
+
+     '& label.Mui-focused': {
+      color: 'black',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'black',
+      },
+      // '&:hover fieldset': {
+      //   borderColor: 'white',
+      // },
+      '&.Mui-focused fieldset': {
+        borderColor: 'black',
+      },
+    },
     },
     textFieldMultiline: {
-      minHeight: '133px'
+      minHeight: '133px',
+
+      '& .MuiInput-underline:after': {
+        borderBottomColor: 'yellow',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'black',
+        },
+        // '&:hover fieldset': {
+        //   borderColor: 'white',
+        // },
+        '&.Mui-focused fieldset': {
+          borderColor: 'black',
+        },
+      },
+    },
+    textFieldFlex: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+
     },
     sendButton: {
-      float: 'right'
-    }
+      marginTop: theme.spacing(1),
+      alignSelf: 'flex-end',
+      maxWidth: '90px'
+
+    },
   }),
 );

@@ -214,6 +214,7 @@ export default function ZendeskForm() {
   return (
     <div>
       <form className={s.form}>
+        <div className={s.textFieldFlex}>
         <TextField
           classes={{
             root: s.textField
@@ -221,7 +222,6 @@ export default function ZendeskForm() {
           fullWidth
           select
           label={t('subject')}
-          placeholder={t('subjectPlaceholder')}
           required
           variant="outlined"
           value={formData.subject.value}
@@ -241,7 +241,7 @@ export default function ZendeskForm() {
             root: s.textField
           }}
           fullWidth
-          label={t('email')}
+          placeholder={t('email')}
           required
           variant="outlined"
           value={formData.email.value}
@@ -256,7 +256,7 @@ export default function ZendeskForm() {
             root: s.textFieldMultiline
           }}
           fullWidth 
-          label={t('message')} 
+          placeholder={t('message')} 
           multiline 
           rows={5}
           required
@@ -268,7 +268,7 @@ export default function ZendeskForm() {
           helperText={formData.message.error ? t('mustNotBeEmptyMessage') : ''}
           >
         </TextField>
-
+        
         <Button
           className={s.sendButton}
           variant="contained" 
@@ -280,6 +280,7 @@ export default function ZendeskForm() {
           >
           {t('send')}
         </Button>
+        </div>
       </form>
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
           <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
