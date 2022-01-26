@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import { Typography, Chip, Paper } from '@material-ui/core';
 import { styles } from './indexHero.css'
 import { useTranslation } from "next-i18next";
@@ -29,12 +29,12 @@ export default function IndexHero() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (randomImage === { artwork: '', username: '', profileImage: '', imageLink: ''}){
+    if (randomImage === { artwork: '', username: '', profileImage: '', imageLink: '' }) {
       setLoading(true)
     } else {
       setLoading(false)
     }
-    
+
     const isDefaultLocale = router.locale == router.defaultLocale;
     const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
     setSignUpRedirectHref(redirectHref);
@@ -49,13 +49,14 @@ export default function IndexHero() {
     { name: "malin.ekstrom", image: '/images/malin.jpg', profileImage: '5654a156-d902-4b4c-9ec5-d9faa79a8bcd.jpg', imageLink: "fe4a6e67-fef2-4420-94d7-1738dce27f43"},
   ];
 
-  useEffect (() => {
+  useEffect(() => {
     const randomImageIndex = Math.floor(Math.random() * images.length);
     setRandomImage(({
-      artwork: (images[randomImageIndex].image), 
-      username: (images[randomImageIndex].name), 
+      artwork: (images[randomImageIndex].image),
+      username: (images[randomImageIndex].name),
       profileImage: (images[randomImageIndex].profileImage),
-      imageLink: (images[randomImageIndex].imageLink)}));
+      imageLink: (images[randomImageIndex].imageLink)
+    }));
   }, [])
 
 
@@ -68,82 +69,84 @@ export default function IndexHero() {
               {t('header')}
             </Typography>
             <Typography variant="h4" className={s.description}>
-              {t('subHeader')}<br></br>{t('subHeader2')}
+              {t('subHeader')}
             </Typography>
             <div className={s.flexheaderButton}>
-              <div className={s.headerButtonArtlover}>     
-            <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
-            {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
-            </Typography> 
-            <Button
-                classes={{
-                  label: s.buttonLabel
-                }}
-                size="small"
-                variant="contained"
-                color="primary"
-                disableElevation
-                rounded
-                onClick={() => keycloak.register({
-                  locale: router.locale,
-                  redirectUri: signUpRedirectHref})}>
-                {t('artloverButton')}
-              </Button>
-            </div>   
-            <div className={s.headerButtonArtist}>
-            <Typography variant="subtitle1" component="h2"className={s.subHeadline} >
-            {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
-            </Typography>
-              <Button
-                classes={{
-                  label: s.buttonLabel
-                }}
-                size="small"
-                variant="outlined"
-                color="primary"
-                disableElevation
-                rounded
-                onClick={() => keycloak.register({
-                  locale: router.locale,
-                  redirectUri: signUpRedirectHref})}>
-                {t('artistButton')}
-              </Button>
+              <div className={s.headerButtonArtlover}>
+                {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
+                  {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
+                </Typography> */}
+                <Button
+                  classes={{
+                    label: s.buttonLabel
+                  }}
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                  rounded
+                  onClick={() => keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref
+                  })}>
+                  {t('signUp')}
+                </Button>
               </div>
+              {/* <div className={s.headerButtonArtist}>
+                <Typography variant="subtitle1" component="h2" className={s.subHeadline} >
+                  {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
+                </Typography> */}
+                {/* <Button
+                  classes={{
+                    label: s.buttonLabel
+                  }}
+                  size="small"
+                  variant="outlined"
+                  color="primary"
+                  disableElevation
+                  rounded
+                  onClick={() => keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref
+                  })}>
+                  {t('artistButton')}
+                </Button> */}
+              {/* </div> */}
             </div>
           </div>
         </div>
         <div className={s.right}>
           <div className={s.paintingContainer}>
-          {!randomImage ? <Skeleton variant="rect" width={320} height={320} /> 
-          :
-          <>
-            <Paper elevation={5}>
-            <Link href={`/art/${randomImage.imageLink}`}>
-              <a>
-                <img 
-                  className={s.boosted} 
-                  src={(randomImage.artwork)} 
-                  alt={`${t("artworkFrom")} ${randomImage.username}`}
-                  title={`${t("artworkFrom")} ${randomImage.username}`}/>
-              </a>
-            </Link>
-              
-            </Paper>
-            <div className={s.createdBy}>
-              <Chip
-                onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
-                size="small"
-                classes={{
-                  root: s.chip,
-                }}
-                avatar={
-                  <div className={s.chipAvatar}>
-                    <ProfileAvatar size={19} profilePicture={randomImage.profileImage} />
-                  </div>
-                }
-                label={randomImage.username}/>
-            </div>
-            </>
+            {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
+              :
+              <>
+                {/* <Paper elevation={5}> */}
+                  <Link href={`/art/${randomImage.imageLink}`}>
+                    <a>
+                      <img
+                        className={s.boosted}
+                        src={(randomImage.artwork)}
+                        alt={`${t("artworkFrom")} ${randomImage.username}`}
+                        title={`${t("artworkFrom")} ${randomImage.username}`} />
+                    </a>
+                  </Link>
+
+                {/* </Paper> */}
+                <div className={s.createdBy}>
+                  <Chip
+                    onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
+                    size="small"
+                    classes={{
+                      root: s.chip,
+                    }}
+                    // avatar={
+                    //   <div className={s.chipAvatar}>
+                    //     <ProfileAvatar size={19} profilePicture={randomImage.profileImage} />
+                    //   </div>
+                    // }
+                    label={randomImage.username} />
+                </div>
+              </>
             }
           </div>
           <div>
