@@ -35,7 +35,7 @@ export default function CategoryPage({ category }: { category: Category }) {
           <div>
             <>
               <div className={s.categories}>
-                {category.name === 'Artiklar' ?
+                {category.name === 'Artiklar' || category.name === 'Stories' ?
                   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
                     {t('latest')}
                   </Typography>
