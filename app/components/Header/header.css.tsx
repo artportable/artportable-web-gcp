@@ -124,7 +124,7 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-        '\"menu logo navigation login language\" auto' +
+        '\"logo navigation login menu\" auto' +
         '/ auto auto 1fr auto auto'
         ),
       },

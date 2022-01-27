@@ -84,14 +84,6 @@ export default function Header() {
       <AppBar classes={{ root: s.toolbar }} elevation={0}>
         <Toolbar>
           <div className={s.container}>
-            <div className={s.menuButton}>
-              <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
-                <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
-                  <MenuIcon style={{ fontSize: '30px' }} />
-                </Badge>
-                <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
-              </IconButton>
-            </div>
             <div className={s.logoContainer}>
               <Link href={logoHref}>
                 <a>
@@ -105,24 +97,21 @@ export default function Header() {
             </div>
             <nav className={s.navigation}>
               {(isSignedIn.value) &&
-                <MuiButton classes={{ root: s.feed }} color="default" size="large">
+                <MuiButton classes={{ root: s.feed }} color="secondary" size="large">
                   <Link href="/feed">
-                    {t('myArtNetwork')}
+                    MITT KONSTNÄTVERK
+                    {/* {t('myArtNetwork')} */}
                   </Link>
                 </MuiButton>
               }
               <Link href="/artiklar" passHref>
                 <a>
-                  <MuiButton color="default" size="large">
-                    {t('stories')}
+                  <MuiButton color="secondary" size="large">
+                   ARTIKLAR
+                    {/* {t('stories')} */}
                   </MuiButton>
                 </a>
               </Link>
-              {/* <MuiButton color="default" size="large">
-                <a href="https://old.artportable.com/stories/" target="blank">
-                  {t('stories')}
-                </a>
-              </MuiButton> */}
             </nav>
             {(!isSignedIn.value) &&
               <div className={s.login}>
@@ -217,9 +206,17 @@ export default function Header() {
                 </div>
               </>
             }
-            <div className={s.language}>
-              <I18nSelector></I18nSelector>
+            <div className={s.menuButton}>
+              <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
+                <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
+                  <MenuIcon style={{ fontSize: '30px' }} />
+                </Badge>
+                <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
+              </IconButton>
             </div>
+            {/* <div className={s.language}>
+              <I18nSelector></I18nSelector>
+            </div> */}
           </div>
           <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
         </Toolbar>

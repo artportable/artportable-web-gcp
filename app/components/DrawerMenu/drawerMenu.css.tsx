@@ -3,7 +3,11 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      minWidth: '240px'
+      minWidth: '240px',
+      backgroundColor: 'var(--header-color)',
+      [theme.breakpoints.up('md')]: {
+        minWidth: '300px',
+      },
     },
     nested: {
       paddingLeft: theme.spacing(4),
@@ -13,9 +17,11 @@ export const styles = makeStyles((theme: Theme) =>
       width: '130px',
 
   },
+  closeButtonFlex: {
+    display: 'flex',
+    justifyContent: 'right',
+  },
     closeButton: {
-      position: 'absolute',
-      right: theme.spacing(1),
       top: theme.spacing(1),
       color: theme.palette.grey[500],
     },
@@ -26,11 +32,11 @@ export const styles = makeStyles((theme: Theme) =>
     spacingBottom: {
       paddingBottom: theme.spacing(5),
      },
-    [theme.breakpoints.up('sm')]: {
-      languageElement: {
-        display: 'none',
-      },
-    },
+    // [theme.breakpoints.up('sm')]: {
+    //   languageElement: {
+    //     display: 'none',
+    //   },
+    // },
     [theme.breakpoints.up('mdPlus')]: {
       articleLink: {
         display: 'none',
