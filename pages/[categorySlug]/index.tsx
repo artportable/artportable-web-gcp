@@ -41,36 +41,36 @@ export default function CategoryPage({ category }: { category: Category }) {
                   </Typography>
                   :
                   <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
-                    {category.name}
+                    {category.name}<span className={s.underline}></span>
                   </Typography>
                 }
               </div>
               <div className={s.menuFlex}>                
                 <Link href="/artiklar">
                   <a>
-                  <MuiButton color="default" size="large" className={s.muiButton}>
-                   SENASTE
+                  <MuiButton color="default" size="large">
+                  {t('latestMenu')}
                   </MuiButton>
                   </a>
                 </Link>
                 <Link href="/redaktionellt">
                   <a>
-                  <MuiButton color="default" size="large" className={s.muiButton}>
-                    REDAKTIONELLT
+                  <MuiButton color="default" size="large">
+                  {t('editorial')}
                     </MuiButton>
                   </a>
                 </Link>
                 <Link href="/konstnaersportraett">
                   <a>
-                  <MuiButton color="default" size="large" className={s.muiButton}>
-                  KONSTNÄRSPORTRÄTT
+                  <MuiButton color="default" size="large">
+                  {t('artistPortrait')}
                   </MuiButton>
                   </a>
                 </Link>
                 {/* <Typography className={s.categoryHeadingSecondary} component="h1" variant={'h3'}> */}
                 
                   <a href="https://old.artportable.com/stories/" target="blank">
-                  <MuiButton color="default" size="large" className={s.muiButton}>
+                  <MuiButton color="default" size="large">
                     {t('earlierArticles')}
                     </MuiButton>
                   </a>
