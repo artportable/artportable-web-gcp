@@ -1,5 +1,5 @@
-import {Checkbox, Dialog, DialogContent, FormGroup, FormControlLabel, TextField, Typography} from '@material-ui/core';
-import { useContext, useEffect, useState} from 'react';
+import { Checkbox, Dialog, DialogContent, FormGroup, FormControlLabel, TextField, Typography } from '@material-ui/core';
+import { useContext, useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import { styles } from "./purchaseRequestDialog.css";
 import { useTranslation } from "next-i18next";
@@ -8,7 +8,7 @@ import type { KeycloakInstance } from 'keycloak-js';
 import { useRouter } from "next/router";
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics';
 
-export default function PurchaseRequestDialog({open, onClose, props}) {
+export default function PurchaseRequestDialog({ open, onClose, props }) {
     const { t } = useTranslation(['art', 'common']);
     const s = styles();
     const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -21,12 +21,12 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
     const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
     const onPurchaseRequestClick = async () => {
-        if(userEmail){
+        if (userEmail) {
             // api anrop för att maila/skicka meddelande
             const response = await fetch(`${apiBaseUrl}/api/messages/purchaserequest?email=${userEmail}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}`, {
                 method: 'GET',
-              });
-              setMessageResponse(response.status.toString())
+            });
+            setMessageResponse(response.status.toString())
         }
     }
 
@@ -39,57 +39,58 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
     }
 
     useEffect(() => {
-        if(props){
+        if (props) {
             const isDefaultLocale = router.locale == router.defaultLocale;
             const artwork = encodeURIComponent(JSON.stringify({
-                  title: props.title,
-                  creator: props.creator,
-                  url: props.url
-                }));
+                title: props.title,
+                creator: props.creator,
+                url: props.url
+            }));
             const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/${props.pathname}?artwork=${artwork}`
             setSignUpRedirectHref(redirectHref);
         }
     }, []);
 
-    
+
 
     return (
         <Dialog open={open} onClose={onCloseClick}>
             {messageResponse
-            ?
+                ?
                 <DialogContent>
-                     <Typography variant="h3">
-                        {messageResponse=='200' ?
+                    <Typography variant="h3">
+                        {messageResponse == '200' ?
                             t('thanksForInterestTitle')
-                        :
+                            :
                             t('somethingWentWrongTitle')
                         }
                     </Typography>
 
-                    {messageResponse=='200' ?
+                    {messageResponse == '200' ?
                         t('thanksForInterestText')
-                    :
+                        :
                         t('somethinWentWrongText')
                     }
                     <div className={s.buttonContainer}>
                         <Button
-                            variant="outlined" 
+                            variant="outlined"
                             color="primary"
-                            disableElevation 
+                            disableElevation
                             rounded
                             onClick={onCloseClick}
                         >
                             {t('common:words.close')}
                         </Button>
                         <Button
-                            variant="contained" 
+                            variant="contained"
                             color="primary"
-                            disableElevation    
+                            disableElevation
                             rounded
                             onClick={() => {
                                 keycloak.register({
                                     locale: router.locale,
-                                    redirectUri: signUpRedirectHref});
+                                    redirectUri: signUpRedirectHref
+                                });
                                 trackGoogleAnalytics(ActionType.SIGN_UP_PURCHASE_REQUEST_AFTER, CategoryType.BUY);
                             }}
                         >
@@ -97,10 +98,13 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                         </Button>
                     </div>
                 </DialogContent>
-            :
-                <DialogContent>
-                    <div className={s.createAccount}>
-                        <Button
+                :
+                <DialogContent>                     
+                     <div className={s.createAccount}>
+                     <Typography className={s.decorated}>
+                           {t('logIntoSendChatMessages')}
+                    </Typography>
+                       {/* <Button
                             variant="outlined" 
                             color="primary"
                             disableElevation    
@@ -113,8 +117,8 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                             }}
                         >
                             {t('createAccountToChat')}
-                        </Button>
-                    </div>
+                        </Button>*/}
+                     </div>
                     <Typography className={s.decorated}>
                         <span>
                             {t('common:words.or')}
@@ -122,11 +126,13 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                     </Typography>
                     <form className={s.form}>
                         <Typography>
-                            {t('getEmailFromArtist')}
+                            {t('sendEmailToArtist')}
+                            {/* {t('getEmailFromArtist')} */}
                         </Typography>
                         <TextField
                             fullWidth
-                            label={t('common:words.email')}
+                            // label={t('common:words.email')}
+                            label={t('yourEmail')}
                             placeholder={t('emailPlaceholder')}
                             onChange={(e) => setUserEmail(e.target.value)}
                         >
@@ -141,9 +147,9 @@ export default function PurchaseRequestDialog({open, onClose, props}) {
                         </TextField>
                         <FormGroup>
                             <Button
-                                variant="contained" 
+                                variant="contained"
                                 color="primary"
-                                disableElevation 
+                                disableElevation
                                 rounded
                                 className={s.messageButton}
                                 onClick={() => {
