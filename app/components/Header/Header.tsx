@@ -206,7 +206,7 @@ export default function Header() {
                 </div>
               </>
             }
-            <div className={s.menuButton}>
+            <div className={s.menuDrawer}>
               <IconButton color="default" aria-label="menu" onClick={(_) => setOpenMenu(true)}>
                 <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
                   <MenuIcon style={{ fontSize: '30px' }} />

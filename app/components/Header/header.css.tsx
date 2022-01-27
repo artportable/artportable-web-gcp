@@ -3,8 +3,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: 'var(--header-color)',
-      width: 'calc(100% + 10px)',
+      backgroundColor: theme.palette.background.default,
+      // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+      // width: 'calc(100% + 10px)',
     },
     container: {
       display: 'flex',
@@ -35,9 +36,9 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
-    language: {
-      display: 'none',
-      gridArea: 'language',
+    menuDrawer: {
+
+      gridArea: 'menuDrawer',
     },
 
     login: {
@@ -70,7 +71,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     [theme.breakpoints.up('sm')]: {
-      language: {
+      menuDrawer: {
         display: 'initial',
       },
       logoContainer: {
@@ -106,15 +107,19 @@ export const styles = makeStyles((theme: Theme) =>
           padding: theme.spacing(0.5)
         }
       },
-      language: {
+      menuDrawer: {
         display: 'initial'
       },
     },
 
     [theme.breakpoints.up('md')]: {
       toolbar: {
-        backgroundColor: 'var(--header-color)',
-
+        backgroundColor: theme.palette.background.default,
+        // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+        // width: 'calc(100% + 10px)',
+        // '&.MuiPaper-elevation0': {
+        //   boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+        // }
       },
       container: {
         display: 'grid',
@@ -124,7 +129,7 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-        '\"logo navigation login menu\" auto' +
+        '\"menu logo navigation login menuDrawer\" auto' +
         '/ auto auto 1fr auto auto'
         ),
       },
