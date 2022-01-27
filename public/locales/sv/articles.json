@@ -1,6 +1,9 @@
 {
   "latest": "Senaste",
-  "earlierArticles": "Tidigare Artiklar",
+  "latestMenu": "SENASTE",
+  "earlierArticles": "ARTIKLAR PÅ GAMLA ARTPORTABLE",
+  "editorial": "REDAKTIONELLT",
+  "artistPortrait": "KONSTNÄRSPORTRÄTT",
   "writer": "Skribent",
   "tagLine": "Hitta din originalkonst på"
 }

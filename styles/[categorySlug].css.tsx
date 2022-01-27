@@ -22,20 +22,23 @@ export const styles = makeStyles((theme: Theme) =>
     },
     categories: {
       display: 'flex',
-      ...rowGap(32),
+      // ...rowGap(16),
     },
     categoryHeading: {
       fontWeight: 500,
       marginBottom: '25px',
-      textDecoration: 'underline',
-      textDecorationColor: 'var(--ion-color-tertiary)',
-      textDecorationThickness: '3px',
+      paddingBottom: '10px',
+      borderBottom: '5px solid var(--ion-color-tertiary)',
+      lineHeight: '10px',
       fontSize: '1rem',
       [theme.breakpoints.up('sm')]: {
         fontSize: '1.45rem',
-        marginBottom: '50px',
-        textDecorationThickness: '6px',
+        marginTop: theme.spacing(2),
       },   
+    },
+    underline: {
+      backgroundColor: 'pink',
+      height: '3px',
     },
     categoryHeadingSecondary: {
       fontWeight: 400,
@@ -72,5 +75,15 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       blockSize: 'fit-content',
     },
+    menuFlex: {
+      display: 'none',
+      [theme.breakpoints.up('smPlus')]: {
+        display: 'flex',
+        flexDirection: 'row',
+        ...rowGap(5),
+        flexWrap: 'wrap',
+        marginBottom: '20px',
+      },   
+    }
   }),
 );

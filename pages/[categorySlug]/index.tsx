@@ -13,6 +13,8 @@ import { useEffect, useState } from 'react';
 import { arrayIncludes } from '@material-ui/pickers/_helpers/utils';
 import { useTranslation } from 'next-i18next'
 import { ar } from 'date-fns/locale';
+import Button from '../../app/components/Button/Button'
+import MuiButton from '@material-ui/core/Button'
 
 export default function CategoryPage({ category }: { category: Category }) {
   const s = styles();
@@ -39,16 +41,40 @@ export default function CategoryPage({ category }: { category: Category }) {
                   </Typography>
                   :
                   <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
-                    {category.name}
+                    {category.name}<span className={s.underline}></span>
                   </Typography>
                 }
-
-
-                <Typography className={s.categoryHeadingSecondary} component="h1" variant={'h3'}>
-                  <a href="https://old.artportable.com/stories/" target="blank">
-                    {t('earlierArticles')}
+              </div>
+              <div className={s.menuFlex}>                
+                <Link href="/artiklar">
+                  <a>
+                  <MuiButton color="default" size="large">
+                  {t('latestMenu')}
+                  </MuiButton>
                   </a>
-                </Typography>
+                </Link>
+                <Link href="/redaktionellt">
+                  <a>
+                  <MuiButton color="default" size="large">
+                  {t('editorial')}
+                    </MuiButton>
+                  </a>
+                </Link>
+                <Link href="/konstnaersportraett">
+                  <a>
+                  <MuiButton color="default" size="large">
+                  {t('artistPortrait')}
+                  </MuiButton>
+                  </a>
+                </Link>
+                {/* <Typography className={s.categoryHeadingSecondary} component="h1" variant={'h3'}> */}
+                
+                  <a href="https://old.artportable.com/stories/" target="blank">
+                  <MuiButton color="default" size="large">
+                    {t('earlierArticles')}
+                    </MuiButton>
+                  </a>
+                  
 
 
               </div>

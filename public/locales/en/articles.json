@@ -1,6 +1,9 @@
 {
   "latest": "Latest",
-  "earlierArticles": "Earlier Articles",
+  "latestMenu": "LATEST",
+  "earlierArticles": "ARTICLES ON OLD ARTPORTABLE",
+  "editorial": "EDITORIAL",
+  "artistPortrait": "ARTIST PORTRAIT",
   "writer": "Writer",
   "tagLine": "Buy original artwork at"
 }
