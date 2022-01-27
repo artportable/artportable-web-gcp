@@ -22,7 +22,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     categories: {
       display: 'flex',
-      ...rowGap(32),
+      // ...rowGap(16),
     },
     categoryHeading: {
       fontWeight: 500,
@@ -33,7 +33,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '1rem',
       [theme.breakpoints.up('sm')]: {
         fontSize: '1.45rem',
-        marginBottom: '50px',
+        // marginBottom: '50px',
         textDecorationThickness: '6px',
       },   
     },
@@ -72,5 +72,15 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       blockSize: 'fit-content',
     },
+    menuFlex: {
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+        flexDirection: 'row',
+        ...rowGap(5),
+        flexWrap: 'wrap',
+        marginBottom: '20px',
+      },   
+    }
   }),
 );
