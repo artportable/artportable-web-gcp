@@ -16,7 +16,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     logoContainer: {
       flexGrow: 1,
-
+      order: 2,
+      [theme.breakpoints.up('sm')]: {
+        order: 'initial'
+      },
       flexBasis: '100%',
       position: 'relative',
       '& a': {
@@ -37,8 +40,11 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none'
     },
     menuDrawer: {
-
+      order: 3,
       gridArea: 'menuDrawer',
+      [theme.breakpoints.up('sm')]: {
+        order: 'initial'
+      },
     },
 
     login: {
@@ -58,6 +64,10 @@ export const styles = makeStyles((theme: Theme) =>
     notificationButton: {
       width: '54px',
       display: 'flex',
+      order: 1,
+      [theme.breakpoints.up('sm')]: {
+        order: 'initial'
+      },
       '& > *': {
         margin: 'auto'
       },
@@ -69,7 +79,6 @@ export const styles = makeStyles((theme: Theme) =>
         fill: theme.palette.secondary.main
       }
     },
-
     [theme.breakpoints.up('sm')]: {
       menuDrawer: {
         display: 'initial',
