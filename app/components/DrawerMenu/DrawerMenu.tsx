@@ -68,7 +68,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   return (
     <Drawer classes={{ paper: s.container }} anchor="right" open={open} onClose={() => close()}>
       <div className={s.closeButtonFlex}>
-        <IconButton color="default" aria-label="close menu" onClick={() => close()}>
+        <IconButton aria-label="close menu" onClick={() => close()} className={s.closeButton}>
           <CloseIcon style={{ fontSize: '30px' }} />
         </IconButton>
       </div>

@@ -23,7 +23,8 @@ export const styles = makeStyles((theme: Theme) =>
   },
     closeButton: {
       top: theme.spacing(1),
-      color: theme.palette.grey[500],
+      color: '#000',
+
     },
     spacing: {
      paddingTop: theme.spacing(8),

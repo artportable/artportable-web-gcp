@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: theme.palette.background.default,
+      backgroundColor: 'var(--header-color)',
       // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
       // width: 'calc(100% + 10px)',
     },
@@ -128,7 +128,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     [theme.breakpoints.up('md')]: {
       toolbar: {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: 'var(--header-color)',
         // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
         // width: 'calc(100% + 10px)',
         // '&.MuiPaper-elevation0': {
@@ -169,6 +169,9 @@ export const styles = makeStyles((theme: Theme) =>
         gridArea: 'navigation',
         marginLeft: '20px',
       },
+      iconMenuColor: {
+        color: '#000',
+      }
     },
   }),
 );
