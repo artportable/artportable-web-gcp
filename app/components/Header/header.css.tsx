@@ -17,8 +17,13 @@ export const styles = makeStyles((theme: Theme) =>
     logoContainer: {
       flexGrow: 1,
       order: 2,
-      [theme.breakpoints.up('sm')]: {
-        order: 'initial'
+      textAlign: 'center',
+      [theme.breakpoints.up('smPlus')]: {
+        order: 'initial',
+        textAlign: 'left'
+      },
+      [theme.breakpoints.up('md')]: {
+        textAlign: 'left'
       },
       flexBasis: '100%',
       position: 'relative',
@@ -42,7 +47,7 @@ export const styles = makeStyles((theme: Theme) =>
     menuDrawer: {
       order: 3,
       gridArea: 'menuDrawer',
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('smPlus')]: {
         order: 'initial'
       },
     },
@@ -65,7 +70,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: '54px',
       display: 'flex',
       order: 1,
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('smPlus')]: {
         order: 'initial'
       },
       '& > *': {
