@@ -111,8 +111,7 @@ export default function IndexHero() {
                     locale: router.locale,
                     redirectUri: signUpRedirectHref
                   })}>
-                    Logga in
-                  {/* {t('artistButton')} */}
+                  {t('logIn')}
                 </Button>
               </div>
             {/* </div> */}
