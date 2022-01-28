@@ -17,9 +17,11 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: 'auto',
       ...columnGap(theme.spacing(4)),
       alignItems: 'center',
-      flexWrap: 'nowrap',      
+      flexWrap: 'nowrap',
+      padding: '0, 5px',
       
       [theme.breakpoints.up('md')]: {
+        padding: '0',
         flexDirection: 'row',
         ...columnGap(0),
       }      
@@ -77,11 +79,14 @@ export const styles = makeStyles((theme: Theme) =>
     
     description: {
       margin: theme.spacing(1, 0,),
-      marginBottom: '30px',
+      marginBottom: theme.spacing(2),
       fontSize: '0.8rem',
       [theme.breakpoints.up('sm')]: {
         fontSize: '1.3rem',
       },
+      [theme.breakpoints.up('md')]: {
+        marginBottom: theme.spacing(3),
+      }
     },
     right: {
       display: 'flex',
@@ -104,14 +109,17 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'row',
         marginTop: '0',
       },
-      
-      
     },
     headerButtonArtlover: {
       display: 'flex',
       alignContent: 'flex-start',
       alignItems: 'left',
-      marginBottom: theme.spacing(2),
+
+      marginBottom: theme.spacing(6),
+      [theme.breakpoints.up('md')]: {
+
+        marginBottom: theme.spacing(2)
+      },
     },
     headerButtonArtist: {
       display: 'flex',
@@ -168,13 +176,25 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(1)
     },
     buttonLabel: {
-      margin: theme.spacing(0, 2),
-      fontSize: '1rem',
-
+      fontSize: '0.9rem',
+      // margin: theme.spacing(0, 1),
+      [theme.breakpoints.up('sm')]: {
+        fontSize: 'initial',
+        margin: theme.spacing(0, 1),
+      },
       [theme.breakpoints.up('smPlus')]: {
-
+        fontSize: 'initial',
+        margin: theme.spacing(0, 2),
       },
     },
+    becomeMemberButton: {
+      marginRight: theme.spacing(1),
+      [theme.breakpoints.up('sm')]: {
+        marginRight: theme.spacing(2),
+      },
+    },
+    
+
     [theme.breakpoints.up('sm')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.sm.wide

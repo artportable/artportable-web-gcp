@@ -63,7 +63,7 @@ export default function IndexHero() {
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
-        <div>
+
           <div className={s.left}>
             <Typography variant="h1" className={s.headline}>
               {t('header')}
@@ -71,15 +71,17 @@ export default function IndexHero() {
             <Typography variant="h4" className={s.description}>
               {t('subHeader')}
             </Typography>
-            <div className={s.flexheaderButton}>
+            {/* <div className={s.flexheaderButton}> */}
               <div className={s.headerButtonArtlover}>
                 {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
                   {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
                 </Typography> */}
                 <Button
+                // {clsx(s.mobile, s.flexItem)}
                   classes={{
                     label: s.buttonLabel
                   }}
+                  className={s.becomeMemberButton}
                   size="small"
                   variant="contained"
                   color="primary"
@@ -91,30 +93,31 @@ export default function IndexHero() {
                   })}>
                   {t('signUp')}
                 </Button>
-              </div>
-              {/* <div className={s.headerButtonArtist}>
-                <Typography variant="subtitle1" component="h2" className={s.subHeadline} >
+              {/* </div> */}
+               {/* <div className={s.headerButtonArtist}> */}
+               {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline} >
                   {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
                 </Typography> */}
-                {/* <Button
+                <Button
                   classes={{
                     label: s.buttonLabel
                   }}
                   size="small"
                   variant="outlined"
-                  color="primary"
+                  color="black"
                   disableElevation
                   rounded
                   onClick={() => keycloak.register({
                     locale: router.locale,
                     redirectUri: signUpRedirectHref
                   })}>
-                  {t('artistButton')}
-                </Button> */}
-              {/* </div> */}
-            </div>
+                    Logga in
+                  {/* {t('artistButton')} */}
+                </Button>
+              </div>
+            {/* </div> */}
           </div>
-        </div>
+        
         <div className={s.right}>
           <div className={s.paintingContainer}>
             {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
