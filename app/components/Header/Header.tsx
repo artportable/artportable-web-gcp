@@ -130,7 +130,7 @@ export default function Header() {
                 <Button
                   size="small"
                   variant="outlined"
-                  color="primary"
+                  color="black"
                   disableElevation
                   rounded
                   onClick={() => keycloak.login({ locale: router.locale })}>
@@ -166,7 +166,7 @@ export default function Header() {
                             className={s.uploadButton}
                             size="small"
                             variant="outlined"
-                            color="primary"
+                            color="black"
                             disableElevation
                             rounded>
                             {t('upload')}

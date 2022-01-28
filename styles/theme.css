@@ -1,5 +1,7 @@
 :root {
   /* Variables */
+  --primary-color: #C67777;
+  --secondary-color: #A35D5D;
   --header-color: #FAF3EE;
   --background-color: #FDF9F7;
   --background-color-rgb: 253, 249, 247;

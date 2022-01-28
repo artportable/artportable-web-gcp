@@ -150,7 +150,7 @@ export const styles = makeStyles((theme: Theme) =>
       objectFit: 'contain',
       maxHeight: '800px',
       maxWidth: '100%',
-      // filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
+      filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
     },
     createdBy: {
       display: 'flex',
