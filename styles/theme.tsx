@@ -111,8 +111,8 @@ const typography = {
     fontSize: '0.825rem',
   },
   fontFamily: [
-    'GT-America-Standard',
-    'LyonDisplay',
+    // 'GT-America-Standard',
+    // 'LyonDisplay',
     'Gotham',
   ].join(','),
 }

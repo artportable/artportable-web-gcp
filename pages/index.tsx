@@ -215,7 +215,7 @@ export default function DiscoverPage() {
   }
 
   return (
-    <Main noHeaderPadding wide={useWideLayout}>
+    <Main noHeaderPadding wide={useWideLayout} isShow={false}>
       {!loading &&
         <>
           {!isSignedIn.value &&

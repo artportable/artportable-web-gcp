@@ -17,38 +17,29 @@ export const styles = makeStyles((theme: Theme) =>
     },
     textField: {
       minHeight: '76px',
-      color: '#fff',
-
-     '& label.Mui-focused': {
-      color: 'black',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'black',
+      '& label.Mui-focused': {
+        color: 'black',
       },
-      // '&:hover fieldset': {
-      //   borderColor: 'white',
-      // },
-      '&.Mui-focused fieldset': {
-        borderColor: 'black',
+      '& .MuiOutlinedInput-root': {
+        '&.Mui-focused & fieldset': {
+          // borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+          border: '1px solid black',
+        },
       },
-    },
     },
     textFieldMultiline: {
       minHeight: '133px',
-
-      '& .MuiInput-underline:after': {
-        borderBottomColor: 'yellow',
+      '& label.Mui-focused': {
+        color: 'black',
       },
       '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'black',
+        '&.Mui-focused & fieldset': {
+          // borderColor: 'black',
         },
-        // '&:hover fieldset': {
-        //   borderColor: 'white',
-        // },
         '&.Mui-focused fieldset': {
-          borderColor: 'black',
+          border: '1px solid black',
         },
       },
     },

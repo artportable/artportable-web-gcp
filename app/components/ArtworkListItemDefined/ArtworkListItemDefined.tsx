@@ -135,7 +135,8 @@ export default function ArtworkListItemDefined({
           variant="outlined"
           rounded
           color="3DDAA52"
-          startIcon={<SendIcon color={"inherit"}/>}>
+          // startIcon={<SendIcon color={"inherit"}/>}
+          >
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
       }

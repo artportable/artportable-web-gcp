@@ -57,7 +57,7 @@ export default function IndexHero() {
       profileImage: (images[randomImageIndex].profileImage),
       imageLink: (images[randomImageIndex].imageLink)
     }));
-  }, [])
+  }, [])   
 
 
   return (

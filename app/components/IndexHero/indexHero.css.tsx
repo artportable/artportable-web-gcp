@@ -138,6 +138,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignSelf: 'center',
       alignItems: 'flex-end',
       gap: theme.spacing(1),
+      margin: '0 20px',
       [theme.breakpoints.up('sm')]: {
 
       },

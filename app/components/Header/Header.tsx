@@ -107,7 +107,7 @@ export default function Header() {
               <Link href="/artiklar" passHref>
                 <a>
                   <MuiButton color="secondary" size="large">
-                   ARTIKLAR
+                    ARTIKLAR
                     {/* {t('stories')} */}
                   </MuiButton>
                 </a>
@@ -125,7 +125,8 @@ export default function Header() {
                     locale: router.locale,
                     redirectUri: signUpRedirectHref
                   })}>
-                  {t('signUp')}
+                  {t('createPortfolio')}
+
                 </Button>
                 <Button
                   size="small"

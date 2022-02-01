@@ -43,8 +43,5 @@ export const styles = makeStyles((theme: Theme) =>
         display: 'none',
       },
     },
-    color: {
-      color: 'black',
-    },
   }),
 );
