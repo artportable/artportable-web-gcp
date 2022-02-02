@@ -135,7 +135,6 @@ export default function Plans({ priceData }) {
             }
           });
           const status = await response.status;
-          setLoading(false);
 
           //If User is Created
           if (status == 201) {
@@ -158,7 +157,9 @@ export default function Plans({ priceData }) {
             const p = priceDataWithPremium.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
             redirectCreatedUser(p,isArtist)
 
-          }
+          }else{
+            setLoading(false);
+          }   
 
         } catch (error) {
           setLoading(false);
