@@ -111,20 +111,21 @@ const typography = {
     fontSize: '0.825rem',
   },
   fontFamily: [
-    'GT-America-Standard',
-    'LyonDisplay',
+    // 'GT-America-Standard',
+    // 'LyonDisplay',
+    'Gotham',
   ].join(','),
 }
 
 const palette = {
   common: { white: '#ffffff', black: '#000000'},
-  background: { default: "#f4f4f4"},
+  background: { default: "#FDF9F7"},
   primary: {
-    main: "#FF8383",
+    main: "#C67777",
     contrastText  : '#FFFFFF'
   },
   secondary: {
-    main: "#447EFF",
+    main: "#A35D5D",
   },
 };
 

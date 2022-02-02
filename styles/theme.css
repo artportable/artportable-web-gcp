@@ -1,9 +1,15 @@
 :root {
   /* Variables */
-  --header-color: #F4F4F4;
-  --background-color: #F4F4F4;
-  --background-color-rgb: 244,244,244;
-
+  --primary-color: #C67777;
+  --secondary-color: #A35D5D;
+  --header-color: #FAF3EE;
+  --background-color: #FDF9F7;
+  --background-color-rgb: 253, 249, 247;
+  --background-color-darker: #FAF3EE;
+  --background-color-darker-rgb: 250, 243, 238;
+  --background-color-brighter: #FDF9F7;
+  --background-color-brighter-rgb: 253, 249, 247;
+  --footer-color: #3E3E3E;
   --text-color: #292929;
   --text-color-accent: #ff8383;
 

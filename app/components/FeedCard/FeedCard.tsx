@@ -14,6 +14,7 @@ import { FeedItem } from '../../models/FeedItem';
 import clsx from 'clsx'
 import { useRouter } from 'next/router';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 interface FeedCardProps {
   content: FeedItem,
@@ -97,7 +98,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </CardMedia>
       <CardActions className={s.cardActions}>
         <Button
-          startIcon={<FavoriteIcon color={isLiked ? "secondary" : "inherit"} />}
+          startIcon={isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />}
           onClick={() => {
             onLikeClick(content.Item.Id, !isLiked);
             setLike(!isLiked);

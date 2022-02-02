@@ -3,9 +3,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: theme.palette.background.default,
-      boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-      width: 'calc(100% + 10px)',
+      backgroundColor: 'var(--header-color)',
+      // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+      // width: 'calc(100% + 10px)',
     },
     container: {
       display: 'flex',
@@ -14,9 +14,18 @@ export const styles = makeStyles((theme: Theme) =>
       gap: '0 16px',
       alignItems: 'center',
     },
+
     logoContainer: {
       flexGrow: 1,
-
+      order: 2,
+      textAlign: 'center',
+      [theme.breakpoints.up('smPlus')]: {
+        order: 'initial',
+        textAlign: 'left'
+      },
+      [theme.breakpoints.up('md')]: {
+        textAlign: 'left'
+      },
       flexBasis: '100%',
       position: 'relative',
       '& a': {
@@ -36,9 +45,12 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
-    language: {
-      display: 'none',
-      gridArea: 'language',
+    menuDrawer: {
+      order: 3,
+      gridArea: 'menuDrawer',
+      [theme.breakpoints.up('smPlus')]: {
+        order: 'initial'
+      },
     },
 
     login: {
@@ -54,10 +66,20 @@ export const styles = makeStyles((theme: Theme) =>
     singleNotificationButton: {
       minWidth: '54px'
     },
+    signUp: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex'
+      }
+    },
 
     notificationButton: {
       width: '54px',
       display: 'flex',
+      order: 1,
+      [theme.breakpoints.up('smPlus')]: {
+        order: 'initial'
+      },
       '& > *': {
         margin: 'auto'
       },
@@ -69,9 +91,8 @@ export const styles = makeStyles((theme: Theme) =>
         fill: theme.palette.secondary.main
       }
     },
-
     [theme.breakpoints.up('sm')]: {
-      language: {
+      menuDrawer: {
         display: 'initial',
       },
       logoContainer: {
@@ -81,24 +102,24 @@ export const styles = makeStyles((theme: Theme) =>
         }
       }
     },
-    
-    [theme.breakpoints.up('smPlus')]:{
+
+    [theme.breakpoints.up('smPlus')]: {
       menuIcon: {
         display: 'initial',
       },
-      menuIconWithBadge: { 
+      menuIconWithBadge: {
         display: 'none',
       },
       singleNotificationButton: {
         display: 'none',
-      
+
       },
       login: {
         display: 'flex',
         alignItems: 'center',
         gridArea: 'login',
         '& .MuiButton-root .MuiButton-label': {
-            margin: theme.spacing(0, 2)
+          margin: theme.spacing(0, 2)
         },
         '& > *': {
           margin: theme.spacing(0, 1)
@@ -107,19 +128,19 @@ export const styles = makeStyles((theme: Theme) =>
           padding: theme.spacing(0.5)
         }
       },
-      language: {
+      menuDrawer: {
         display: 'initial'
       },
     },
 
     [theme.breakpoints.up('md')]: {
       toolbar: {
-        backgroundColor: theme.palette.background.default,
-        boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-        width: 'calc(100% + 10px)',
-        '&.MuiPaper-elevation0': {
-          boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-        }
+        backgroundColor: 'var(--header-color)',
+        // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+        // width: 'calc(100% + 10px)',
+        // '&.MuiPaper-elevation0': {
+        //   boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
+        // }
       },
       container: {
         display: 'grid',
@@ -129,11 +150,11 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-        '\"menu logo navigation login language\" auto' +
-        '/ auto auto 1fr auto auto'
+          '\"menu logo navigation login menuDrawer\" auto' +
+          '/ auto auto 1fr auto auto'
         ),
       },
-      
+
       upload: {
         display: 'initial'
       },
@@ -144,7 +165,7 @@ export const styles = makeStyles((theme: Theme) =>
     text: {
       fontSize: '18px',
     },
-    
+
     iconButtons: {
       display: 'flex',
       alignItems: 'center'
@@ -154,6 +175,9 @@ export const styles = makeStyles((theme: Theme) =>
         display: 'initial',
         gridArea: 'navigation',
         marginLeft: '20px',
+      },
+      iconMenuColor: {
+        color: '#000',
       },
     },
   }),

@@ -11,6 +11,7 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/goog
 import Button from "../Button/Button";
 import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 export default function ArtworkListItemDefined({ 
   artwork,
@@ -52,9 +53,9 @@ export default function ArtworkListItemDefined({
     onLikeClick(artwork.Id, !isLiked);
   }
 
-  const likedColor = !isSignedIn.value ?
-    'disabled' :
-    isLiked ? "secondary" : "inherit";
+  const likedFilled = !isSignedIn.value ?
+  <FavoriteBorderOutlinedIcon color="primary" /> :
+    isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
 
   if (width === null || height === null) return <></>;
 
@@ -112,7 +113,7 @@ export default function ArtworkListItemDefined({
               disableRipple
               disableFocusRipple
               onClick={toggleLike}>
-              <FavoriteIcon fontSize={'small'} color={likedColor}/>
+              {likedFilled}
             </IconButton>
           </div>
         </div>

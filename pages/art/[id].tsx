@@ -22,6 +22,7 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLo
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
 import { UrlObject } from "url";
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -134,9 +135,9 @@ export default function ArtworkPage(props) {
     !isLiked ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE) : null
   }
 
-  const likedColor = !isSignedIn.value ?
-  'disabled' :
-  isLiked ? "secondary" : "inherit";
+  const likedFilled = !isSignedIn.value ?
+  <FavoriteBorderOutlinedIcon color="primary" /> :
+    isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
   
   return (
     <Main wide>
@@ -250,7 +251,7 @@ export default function ArtworkPage(props) {
                     <Button
                       //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
                       onClick={toggleLike}
-                        startIcon={<FavoriteIcon color={likedColor} />}
+                        startIcon={likedFilled}
                       >
                         {capitalizeFirst(t('common:like'))}
                     </Button>

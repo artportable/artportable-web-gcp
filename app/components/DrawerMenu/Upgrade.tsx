@@ -4,7 +4,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { styles } from './upgrade.css'
 import CloseIcon from '@material-ui/icons/Close'
-import PlanSelector, { PriceData } from "../PlanSelector/PlanSelector"
+import PlanSelector from "../PlanSelector/PlanSelector"
+import { PriceData } from "../../../pages/plans";
 import { useTranslation } from 'next-i18next'
 
 interface Props {

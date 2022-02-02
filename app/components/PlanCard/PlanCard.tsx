@@ -12,7 +12,7 @@ import { styles } from "./planCard.css";
 import clsx from 'clsx';
 // import PremiumSignupDialog from '../PremiumSignupDialog/PremiumSignupDialog';
 import PremiumApply from "../PremiumApply/PremiumApply";
-import { PriceData } from "../PlanSelector/PlanSelector";
+import { PriceData } from "../../../pages/plans";
 import Dialog from '@material-ui/core/Dialog';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
@@ -59,7 +59,8 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     });
     if (plan.product.toLowerCase() === 'free') {
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
-     if (user_type.value === "artist")
+      var [userType, interval] = user_type.value.split('-');
+     if (userType === "artist")
       return zapierLeadFreemium(lead={
         name: {value: given_name.value + ' ' + family_name.value} ?? '',
         phoneNumber: {value:phone.value} ?? '',

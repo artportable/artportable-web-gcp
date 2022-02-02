@@ -124,22 +124,25 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           startIcon={<SwapVertIcon />}>
         </Button>
       </ButtonGroup>
-      <ButtonGroup disableElevation variant="contained" color="primary">
+      <ButtonGroup disableElevation color="primary">
         <Button
           classes={{ startIcon: s.startIcon }}
           startIcon={<LoopIcon />}
           onClick={() => { cropper.reset() }}>
         </Button>
         <Button
-          classes={{ startIcon: s.startIcon, root: s.deleteIconButton }}
+          classes={{ startIcon: s.startIcon}}
+          // classes={{ startIcon: s.startIcon, root: s.deleteIconButton }}
           startIcon={<DeleteIcon />}
-          onClick={onDiscard}>
+          onClick={onDiscard}
+            variant="outlined">
         </Button>
         <Button 
           classes={{ startIcon: s.startIcon }}
           startIcon={<DoneIcon />}
           onClick={onCrop}
-          color="secondary">
+          color="primary"
+          variant="contained">
         </Button>
       </ButtonGroup>
     </div>

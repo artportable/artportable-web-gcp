@@ -11,12 +11,12 @@ export const styles = makeStyles((theme: Theme) =>
     startIcon: {
       margin: theme.spacing(0.25, 0),
     },
-    deleteIconButton: {
-      backgroundColor: theme.palette.error.main,
-      '&:hover': {
-        backgroundColor: theme.palette.error.light,
-      }
-    },
+    // deleteIconButton: {
+    //   backgroundColor: theme.palette.error.main,
+    //   '&:hover': {
+    //     backgroundColor: theme.palette.error.light,
+    //   }
+    // },
     hide: {
       visibility: 'hidden',
     }

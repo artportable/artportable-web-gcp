@@ -4,7 +4,8 @@ import { Dialog, DialogActions, DialogContent, IconButton, Typography, Box } fro
 import CloseIcon from '@material-ui/icons/Close'
 import { useTranslation } from 'next-i18next'
 import { styles } from './upgradPortfolio.css'
-import PlanSelector, { PriceData } from "../PlanSelector/PlanSelector"
+import PlanSelector from "../PlanSelector/PlanSelector"
+import { PriceData } from "../../../pages/plans";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
@@ -46,7 +47,7 @@ export default function DialogConstruction() {
   return (
     <div>
       <div className={s.upgradeDesktopDiv}>
-      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="primary" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
+      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="black" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
       {t('header:upgradeButton')}
       </Button>
       </div>

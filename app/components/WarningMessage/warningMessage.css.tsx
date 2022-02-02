@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 const styles = makeStyles((theme: Theme) =>
   createStyles({
     information: {
-      border: "0.5px solid var(--ion-color-primary)",
+      border: "0.5px solid var(--primary-color)",
       borderRadius: "10px",
       display: 'flex',
       margin: theme.spacing(2, 0),

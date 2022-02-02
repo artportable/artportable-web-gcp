@@ -1,6 +1,6 @@
 import { styles } from './main.css'
 import clsx from 'clsx'
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
@@ -9,10 +9,13 @@ interface Props {
   wide?: boolean;
   noHeaderPadding?: boolean;
   fullWidth?: boolean;
+  isShow?: boolean;
 }
 
-export default function Main({ children, wide = false, noHeaderPadding = false, fullWidth = false}: Props) {
+
+export default function Main({ children, wide = false, noHeaderPadding = false, fullWidth = false, isShow = true,}: Props) {
   const s = styles();
+  isShow ? <Footer /> : null;
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function Main({ children, wide = false, noHeaderPadding = false, 
       <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
         {children}
       </div>
-      <Footer></Footer>
+      {isShow ? <Footer /> : null}
     </>
   );
 }

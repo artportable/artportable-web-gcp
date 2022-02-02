@@ -3,61 +3,147 @@ import { Typography } from '@material-ui/core'
 import { styles } from './footer.css'
 import clsx from 'clsx'
 import { useTranslation } from 'next-i18next'
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
+import { useRouter } from 'next/router'
+import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
 
 export default function Footer() {
   const s = styles();
   const { t } = useTranslation('footer');
+  const { keycloak } = useKeycloak<KeycloakInstance>();
+  const router = useRouter();
+  const signUpRedirectHref = useSignupRedirectHref();
 
   return (
     <footer className={s.footer}>
-      <div className={clsx(s.flexItem, s.logo)}>
-        <Link href={"/"}>
-          <a>
-            <img
-              className={s.logo}
-              src="/Artportable_Logotyp_Black.svg"
-              alt="Logo Artportable"
-            />
-          </a>
-        </Link>
+      <div className={s.sunneby}>
         <div>
-          <Typography variant="body2" component="div">
-            Åsögatan 176
-          </Typography>
-          <Typography variant="body2" component="div">
-            116 32 Stockholm
-          </Typography>
-          <Typography variant="body2" component="div">
-            559113-1171
-          </Typography>
-        </div>
-      </div>
-      <div className={s.links}>
-        <div className={s.flexItem}>
-        <Link href="/support">
+          <Link href={"/"}>
             <a>
-          <Typography variant="subtitle2" component="div" color="primary">
-            {t('contactUs')}
-          </Typography>
+              <img
+                className={s.logo}
+                src="/Artportable_Logotyp_White.svg"
+                alt="Logo Artportable"
+              />
             </a>
-          </Link>          
+          </Link>
         </div>
-        <div className={s.flexItem}>
-          <Typography variant="subtitle2" component="div" color="primary">
-          {t('followUs')}
-          </Typography>
+        <div className={s.socialMediaFlex}>
           <Link href="https://www.instagram.com/artportableofficial/">
             <a>
-              <Typography variant="body2" component="div">
-                Instagram
-              </Typography>
+              <img
+                className={s.socialmediaImage}
+                src={'/images/instagram.svg'}
+                alt="Link to artportables instagram"
+                title="instagram logo" />
+              {/* <Typography variant="body2" component="div">
+              Instagram
+            </Typography> */}
             </a>
           </Link>
           <Link href="https://www.facebook.com/artportable/">
             <a>
-              <Typography variant="body2" component="div">
-                Facebook
-              </Typography>
+              <img
+                className={s.socialmediaImage}
+                src={'/images/facebook.svg'}
+                alt="Link to artportables facebook"
+                title="facebook logo" />
+              {/* <Typography variant="body2" component="div">
+              Facebook
+            </Typography> */}
+            </a>
+          </Link>
+          <Link href="https://www.tiktok.com/@artportable">
+            <a>
+              <img
+                className={s.tiktok}
+                src={'/images/TIK-TOK.svg'}
+                alt="Link to artportables tiktok"
+                title="tiktok logo" />
+              {/* <Typography variant="body2" component="div">
+              TikTok
+            </Typography> */}
+            </a>
+          </Link>
+        </div>
+      </div>
+      <div className={clsx(s.becomeAPart, s.flexItem)}>
+        <Typography variant="subtitle2" component="div" className={s.links}>
+          {t('becomeAPart')}
+        </Typography>
+        <Typography variant="body2" component="div" onClick={() => keycloak.login({ locale: router.locale })} className={s.idpLink}>
+          {t('logIn')}
+        </Typography>
+        <Typography variant="body2" component="div" onClick={() => keycloak.register({
+          locale: router.locale,
+          redirectUri: signUpRedirectHref
+        })} className={s.idpLink}>
+          {t('register')}
+        </Typography>
+      </div>
+
+      <div className={s.flexItem}>
+        <Typography variant="subtitle2" component="div" className={clsx(s.hereWeAreLink, s.links)}>
+          {t('hereWeAre')}
+        </Typography>
+        <Typography variant="body2" component="div">
+          Åsögatan 176
+        </Typography>
+        <Typography variant="body2" component="div">
+          116 32 Stockholm
+        </Typography>
+      </div>
+
+      <div className={clsx(s.getInTouch, s.flexItem)}>
+        <Typography variant="subtitle2" component="div" className={s.links}>
+          {t('getInTouch')}
+        </Typography>
+        <Link href="/support">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('contactUs')}
+            </Typography>
+          </a>
+        </Link>
+      </div>
+      <div className={clsx(s.mobile, s.flexItem)}>
+        <Typography variant="subtitle2" component="div" className={s.links}>
+          {t('followUs')}
+        </Typography>
+        <div className={s.flexSocialMedia}>
+          <Link href="https://www.instagram.com/artportableofficial/">
+            <a>
+              <img
+                src={'/images/instagram.svg'}
+                alt="Link to artportables instagram"
+                title="instagram logo" />
+              {/* <Typography variant="body2" component="div">
+              Instagram
+            </Typography> */}
+            </a>
+          </Link>
+          <Link href="https://www.facebook.com/artportable/">
+            <a>
+              <img
+                src={'/images/facebook.svg'}
+                alt="Link to artportables facebook"
+                title="facebook logo" />
+              {/* <Typography variant="body2" component="div">
+              Facebook
+            </Typography> */}
+            </a>
+          </Link>
+          <Link href="https://www.tiktok.com/@artportable">
+            <a>
+              <img
+                className={s.tiktok}
+                src={'/images/TIK-TOK.svg'}
+                alt="Link to artportables tiktok"
+                title="tiktok logo" />
+              {/* <Typography variant="body2" component="div">
+              TikTok
+            </Typography> */}
             </a>
           </Link>
         </div>
