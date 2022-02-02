@@ -107,10 +107,7 @@ export default function IndexHero() {
                   color="black"
                   disableElevation
                   rounded
-                  onClick={() => keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref
-                  })}>
+                  onClick={() => keycloak.login({ locale: router.locale })}>
                   {t('logIn')}
                 </Button>
               </div>
