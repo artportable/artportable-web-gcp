@@ -14,6 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
       gap: '0 16px',
       alignItems: 'center',
     },
+
     logoContainer: {
       flexGrow: 1,
       order: 2,
@@ -65,6 +66,12 @@ export const styles = makeStyles((theme: Theme) =>
     singleNotificationButton: {
       minWidth: '54px'
     },
+    signUp: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex'
+      }
+    },
 
     notificationButton: {
       width: '54px',
@@ -95,24 +102,24 @@ export const styles = makeStyles((theme: Theme) =>
         }
       }
     },
-    
-    [theme.breakpoints.up('smPlus')]:{
+
+    [theme.breakpoints.up('smPlus')]: {
       menuIcon: {
         display: 'initial',
       },
-      menuIconWithBadge: { 
+      menuIconWithBadge: {
         display: 'none',
       },
       singleNotificationButton: {
         display: 'none',
-      
+
       },
       login: {
         display: 'flex',
         alignItems: 'center',
         gridArea: 'login',
         '& .MuiButton-root .MuiButton-label': {
-            margin: theme.spacing(0, 2)
+          margin: theme.spacing(0, 2)
         },
         '& > *': {
           margin: theme.spacing(0, 1)
@@ -143,11 +150,11 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-        '\"menu logo navigation login menuDrawer\" auto' +
-        '/ auto auto 1fr auto auto'
+          '\"menu logo navigation login menuDrawer\" auto' +
+          '/ auto auto 1fr auto auto'
         ),
       },
-      
+
       upload: {
         display: 'initial'
       },
@@ -158,7 +165,7 @@ export const styles = makeStyles((theme: Theme) =>
     text: {
       fontSize: '18px',
     },
-    
+
     iconButtons: {
       display: 'flex',
       alignItems: 'center'
@@ -171,7 +178,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       iconMenuColor: {
         color: '#000',
-      }
+      },
     },
   }),
 );

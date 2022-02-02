@@ -126,7 +126,19 @@ export default function Header() {
                     redirectUri: signUpRedirectHref
                   })}>
                   {t('createPortfolio')}
-
+                </Button>
+                <Button
+                className={s.signUp}
+                  size="small"
+                  variant="outlined"
+                  color="black"
+                  disableElevation
+                  rounded
+                  onClick={() => keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref
+                  })}>
+                  {t('signUp')}
                 </Button>
                 <Button
                   size="small"
