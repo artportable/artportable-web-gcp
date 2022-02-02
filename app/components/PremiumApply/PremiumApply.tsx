@@ -29,7 +29,7 @@ export default function PremiumApply() {
       const FormRequest = JSON.stringify({
       "request": {
       "requester": {
-        "artistArtEnthusiast": {value: user_type.value} ?? '',
+        "artistArtEnthusiast": "artist",
         "name": {value: given_name.value + ' ' + family_name.value} ?? '',
         "phoneNumber": {value:phone.value} ?? '',
         "email": {value: email.value} ?? '',

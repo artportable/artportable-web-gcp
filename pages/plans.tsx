@@ -72,7 +72,7 @@ export default function Plans({ priceData }) {
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
   plans.push("portfolioPremium");
 
-  function redirectCreatedUser(plan) {
+  function redirectCreatedUser(plan, isArtist) {
     dispatch({
       type: ADD_PRICE,
       payload: { ...plan }
@@ -81,13 +81,13 @@ export default function Plans({ priceData }) {
     switch (plan.product.toLowerCase()) {
       case 'free':
         trackGoogleAnalytics(ActionType.SIGN_UP_FREE_COMPLETED, CategoryType.BUY);
-        if (user_type.value === "artist")
+        if (isArtist)
           return zapierLeadFreemium({
             name: { value: given_name.value + ' ' + family_name.value } ?? '',
             phoneNumber: { value: phone.value } ?? '',
             email: { value: email.value } ?? '',
             product: "free",
-            type: { value: user_type.value } ?? ''
+            type: "artist"
           });
         router.push('/feed')
         break
@@ -98,14 +98,14 @@ export default function Plans({ priceData }) {
           phoneNumber: { value: phone.value } ?? '',
           email: { value: email.value } ?? '',
           product: "portfolio",
-          type: { value: user_type.value } ?? ''
+          type: "artist"
         });
         router.push('/checkout')
         break
       case 'portfoliopremium':
         trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM_COMPLETED, CategoryType.BUY);
         zapierLeadPremium({
-          artistArtEnthusiast: { value: user_type.value } ?? '',
+          artistArtEnthusiast: "artist",
           name: { value: given_name.value + ' ' + family_name.value } ?? '',
           phoneNumber: { value: phone.value } ?? '',
           email: { value: email.value } ?? '',
@@ -156,7 +156,7 @@ export default function Plans({ priceData }) {
               isArtist = true;
             }
             const p = priceDataWithPremium.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
-            redirectCreatedUser(p)
+            redirectCreatedUser(p,isArtist)
 
           }
 
