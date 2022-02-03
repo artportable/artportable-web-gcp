@@ -100,7 +100,7 @@ export default function ArticlePage({ article }: { article: Article }) {
               {article?.categories?.map(category => {
                 return (
                   <>
-                    <Link as={`/${category.slug}`} href={category.name}>
+                    <Link href={`/${category.slug}`}>
                       <a>
                         <Button rounded variant="outlined" color="primary" disableElevation>
                           <Typography>

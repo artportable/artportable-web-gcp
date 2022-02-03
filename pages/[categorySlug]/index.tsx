@@ -45,36 +45,36 @@ export default function CategoryPage({ category }: { category: Category }) {
                   </Typography>
                 }
               </div>
-              <div className={s.menuFlex}>                
+              <div className={s.menuFlex}>
                 <Link href="/artiklar">
                   <a>
-                  <MuiButton color="default" size="large">
-                  {t('latestMenu')}
-                  </MuiButton>
+                    <MuiButton color="default" size="large">
+                      {t('latestMenu')}
+                    </MuiButton>
                   </a>
                 </Link>
                 <Link href="/redaktionellt">
                   <a>
-                  <MuiButton color="default" size="large">
-                  {t('editorial')}
+                    <MuiButton color="default" size="large">
+                      {t('editorial')}
                     </MuiButton>
                   </a>
                 </Link>
                 <Link href="/konstnaersportraett">
                   <a>
-                  <MuiButton color="default" size="large">
-                  {t('artistPortrait')}
-                  </MuiButton>
+                    <MuiButton color="default" size="large">
+                      {t('artistPortrait')}
+                    </MuiButton>
                   </a>
                 </Link>
                 {/* <Typography className={s.categoryHeadingSecondary} component="h1" variant={'h3'}> */}
-                
-                  <a href="https://old.artportable.com/stories/" target="blank">
+
+                <a href="https://old.artportable.com/stories/" target="blank">
                   <MuiButton color="default" size="large">
                     {t('earlierArticles')}
-                    </MuiButton>
-                  </a>
-                  
+                  </MuiButton>
+                </a>
+
 
 
               </div>
@@ -85,7 +85,7 @@ export default function CategoryPage({ category }: { category: Category }) {
               if (article.published_at)
                 return (
                   <div key={article.id}>
-                    <Link as={`/${category.name.toLowerCase()}/${article.slug}`} href="/article/[id]">
+                    <Link href={`/${category.name.toLowerCase()}/${article.slug}`}>
                       <a>
                         <div className={s.wrapper}>
                           <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
