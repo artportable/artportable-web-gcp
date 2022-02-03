@@ -381,6 +381,7 @@ export default function Profile(props) {
                           size="small"
                           variant="contained"
                           color="primary"
+                          disableElevation="true"
                           startIcon={<UploadIcon className={s.uploadIcon} />}
                           rounded>
                           {t('upload:upload')}

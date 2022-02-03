@@ -71,7 +71,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden'
     },
     uploadButton: {
-      width: '130px',
+      width: '137px',
       display: 'none',
     },
     secondDivider: {

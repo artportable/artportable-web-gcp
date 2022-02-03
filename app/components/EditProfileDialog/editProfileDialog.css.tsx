@@ -34,7 +34,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('sm')]: {
       editProfileButton: {
-        width: '131px',
+        width: '137px',
         marginBottom: '3px'
       },
       editButtonText: {
