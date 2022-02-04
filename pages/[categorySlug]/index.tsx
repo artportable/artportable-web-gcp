@@ -81,7 +81,7 @@ export default function CategoryPage({ category }: { category: Category }) {
             </>
           </div>
           <div className={s.flex}>
-            {category?.articles?.slice().reverse().map((article) => {
+            {category?.articles?.slice().sort((a,b) => a.published_at < b.published_at ? 1 : -1 ).map((article) => {
               if (article.published_at)
                 return (
                   <div key={article.id}>
@@ -91,7 +91,7 @@ export default function CategoryPage({ category }: { category: Category }) {
                           <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
                           <div className={s.textContent}>
                             <div>
-                              {article.created_at.slice(0, -14)}
+                              {article.published_at.slice(0, -14)}
                             </div>
 
                             <Typography component="h2" variant={'h2'}>
