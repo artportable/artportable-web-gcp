@@ -85,7 +85,7 @@ export default function CategoryPage({ category }: { category: Category }) {
               if (article.published_at)
                 return (
                   <div key={article.id}>
-                    <Link href={`/${category.name.toLowerCase()}/${article.slug}`}>
+                    <Link href={`/${category.name.toLowerCase().replace('konstnärsporträtt','konstnaersportraett')}/${article.slug}`}>
                       <a>
                         <div className={s.wrapper}>
                           <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
