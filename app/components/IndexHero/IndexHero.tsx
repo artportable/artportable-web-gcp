@@ -103,7 +103,6 @@ export default function IndexHero() {
                   }}
                   size="small"
                   variant="outlined"
-                  color="black"
                   disableElevation
                   rounded
                   onClick={() => keycloak.login({ locale: router.locale })}>
