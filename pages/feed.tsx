@@ -23,6 +23,7 @@ import { UserContext } from '../app/contexts/user-context';
 import { useRouter } from 'next/router';
 import { LoadingContext } from '../app/contexts/loading-context';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
+import usePostLike from '../app/hooks/dataFetching/usePostLike';
 
 
 export default function FeedPage() {
@@ -47,6 +48,8 @@ export default function FeedPage() {
   const router = useRouter();
   const { isSignedIn } = useContext(UserContext);
   const { loading, setLoading } = useContext(LoadingContext);
+
+  const { like } = usePostLike();
 
   useEffect(() => {
     setLoading(true);
@@ -109,24 +112,8 @@ export default function FeedPage() {
       });
   }
 
-  // Like a post (feed item)
-  // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?mySocialId=${socialId.value}`, {
-      method: isLike ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    like(contentId, isLike, socialId.value, token)
   }
 
   return (

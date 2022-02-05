@@ -23,6 +23,7 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/
 import { UrlObject } from "url";
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -38,6 +39,8 @@ export default function ArtworkPage(props) {
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+
+  const { like } = usePostLike();
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
@@ -83,16 +86,16 @@ export default function ArtworkPage(props) {
       });
   }
 
-  function togglePurchaseRequestDialog(){
+  function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
   }
 
   function purchaseRequest(originalRedirect?: UrlObject | string) {
-    if(isSignedIn.value) {
-      if(originalRedirect !== undefined) {
+    if (isSignedIn.value) {
+      if (originalRedirect !== undefined) {
         router.push(originalRedirect);
       }
-    }else{
+    } else {
       togglePurchaseRequestDialog();
     }
   }
@@ -103,27 +106,9 @@ export default function ArtworkPage(props) {
     setFollow(!isFollowed);
   }
 
-  // Like a post (feed item)
-  // `isLike` states whether it's a like or an unlike
   function likeArtwork(isLike) {
     redirectIfNotLoggedIn();
-
-    fetch(`${apiBaseUrl}/api/artworks/${artwork.data.Id}/like?mySocialId=${socialId.value}`, {
-      method: isLike ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        setIsLiked(!isLiked)
-        console.log(error);
-      })
+    like(artwork.data.Id, isLike, socialId.value, token);
   }
 
   function toggleLike(event) {
@@ -136,9 +121,9 @@ export default function ArtworkPage(props) {
   }
 
   const likedFilled = !isSignedIn.value ?
-  <FavoriteBorderOutlinedIcon color="primary" /> :
+    <FavoriteBorderOutlinedIcon color="primary" /> :
     isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
-  
+
   return (
     <Main wide>
       <Head>
@@ -170,7 +155,7 @@ export default function ArtworkPage(props) {
                 startIcon={!isFollowed ? <AddIcon /> : null}
                 disableElevation
                 rounded
-                onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_ARTWORK, CategoryType.INTERACTIVE) : null}}>
+                onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_ARTWORK, CategoryType.INTERACTIVE) : null }}>
                 {capitalizeFirst(
                   !isFollowed ?
                     t('common:words.follow') :
@@ -186,80 +171,80 @@ export default function ArtworkPage(props) {
                 />
               </div>
               <div className={s.infoBar}>
-                  <div className={s.infoContainer}>
-                    <div className={s.titleAndSizeContainer}>
-                      {artwork.data.Title &&
-                        <span>{artwork.data.Title}</span>
-                      }
-                      {artwork.data.MultipleSizes ? 
-                        ' (' + t('common:words.multipleSizes').toLowerCase() + ')':
-                        artwork.data.Width && artwork.data.Height && artwork.data.Depth ? 
-                          ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm)' : 
-                          artwork.data.Width && artwork.data.Height ? 
-                            ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'cm)': 
-                            null
-                      }
-                    </div>
-                    <div className={s.priceContainer}>
-                      {artwork.data.SoldOut ? 
-                        <><div className={s.soldMark}/>{t('common:words.sold')} </>:  
-                        artwork.data.Price && artwork.data.Price != "0" ?
-                          <span>{formatter.format(artwork.data.Price)} </span> :
-                          <span>{t('priceOnRequest')}</span>
-                      }
-                    </div>
-                    {username.value !== artwork.data.Owner.Username && !artwork.data.SoldOut &&
-                      <Box>
-                        <Button
-                          className={s.purchaseRequestButton}
-                          variant="contained"
-                          color="primary"
-                          rounded
-                          disableElevation
-                          onClick={() => {
-                            purchaseRequest({
-                              pathname: "/messages",
-                              query: {
-                                artwork: encodeURIComponent(JSON.stringify({
-                                  title: artwork.data.Title,
-                                  creator: artwork.data.Owner.Username,
-                                  url: window.location.href
-                                })),
-                                referTo: artwork.data.Owner.SocialId
-                              }
-                            });
-                            trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_ARTWORK, CategoryType.BUY);
-                          }}
-                          startIcon={<SendIcon color={"inherit"} />}>
-                          {capitalizeFirst(t('common:purchaseRequest'))}
-                        </Button>
-                        <PurchaseRequestDialog 
-                          open={purchaseRequestDialogOpen} 
-                          onClose={togglePurchaseRequestDialog} 
-                          props={{
+                <div className={s.infoContainer}>
+                  <div className={s.titleAndSizeContainer}>
+                    {artwork.data.Title &&
+                      <span>{artwork.data.Title}</span>
+                    }
+                    {artwork.data.MultipleSizes ?
+                      ' (' + t('common:words.multipleSizes').toLowerCase() + ')' :
+                      artwork.data.Width && artwork.data.Height && artwork.data.Depth ?
+                        ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'x' + artwork.data.Depth + 'cm)' :
+                        artwork.data.Width && artwork.data.Height ?
+                          ' (' + artwork.data.Width + 'x' + artwork.data.Height + 'cm)' :
+                          null
+                    }
+                  </div>
+                  <div className={s.priceContainer}>
+                    {artwork.data.SoldOut ?
+                      <><div className={s.soldMark} />{t('common:words.sold')} </> :
+                      artwork.data.Price && artwork.data.Price != "0" ?
+                        <span>{formatter.format(artwork.data.Price)} </span> :
+                        <span>{t('priceOnRequest')}</span>
+                    }
+                  </div>
+                  {username.value !== artwork.data.Owner.Username && !artwork.data.SoldOut &&
+                    <Box>
+                      <Button
+                        className={s.purchaseRequestButton}
+                        variant="contained"
+                        color="primary"
+                        rounded
+                        disableElevation
+                        onClick={() => {
+                          purchaseRequest({
                             pathname: "/messages",
-                            title: artwork.data.Title,
-                            creator: artwork.data.Owner.Username,
-                            url: window.location.href,
-                            referTo: artwork.data.Owner.SocialId,
-                            imageUrl: bucketUrl + artwork.data.PrimaryFile.Name
-                          }}
-                          />
-                      </Box>
-                    }
-                  </div>
-                  <div className={s.likeContainer}>
-                    <Button
-                      //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
-                      onClick={toggleLike}
-                        startIcon={likedFilled}
-                      >
-                        {capitalizeFirst(t('common:like'))}
-                    </Button>
-                    {artwork.data.Likes > 0 &&
-                      <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
-                    }
-                  </div>
+                            query: {
+                              artwork: encodeURIComponent(JSON.stringify({
+                                title: artwork.data.Title,
+                                creator: artwork.data.Owner.Username,
+                                url: window.location.href
+                              })),
+                              referTo: artwork.data.Owner.SocialId
+                            }
+                          });
+                          trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_ARTWORK, CategoryType.BUY);
+                        }}
+                        startIcon={<SendIcon color={"inherit"} />}>
+                        {capitalizeFirst(t('common:purchaseRequest'))}
+                      </Button>
+                      <PurchaseRequestDialog
+                        open={purchaseRequestDialogOpen}
+                        onClose={togglePurchaseRequestDialog}
+                        props={{
+                          pathname: "/messages",
+                          title: artwork.data.Title,
+                          creator: artwork.data.Owner.Username,
+                          url: window.location.href,
+                          referTo: artwork.data.Owner.SocialId,
+                          imageUrl: bucketUrl + artwork.data.PrimaryFile.Name
+                        }}
+                      />
+                    </Box>
+                  }
+                </div>
+                <div className={s.likeContainer}>
+                  <Button
+                    //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
+                    onClick={toggleLike}
+                    startIcon={likedFilled}
+                  >
+                    {capitalizeFirst(t('common:like'))}
+                  </Button>
+                  {artwork.data.Likes > 0 &&
+                    <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
+                  }
+                </div>
               </div>
 
               <Box textAlign="center" marginY={4} className={s.text}>
@@ -321,7 +306,7 @@ export async function getStaticProps({ locale, params }) {
   try {
     const artworkResponse = await fetch(url.href);
     const artwork = await artworkResponse.json();
-    
+
     return {
       props: {
         artwork,
@@ -332,7 +317,7 @@ export async function getStaticProps({ locale, params }) {
     };
   } catch (error) {
     console.log(error);
-  } 
+  }
 
   return {
     props: {

@@ -1,6 +1,7 @@
 import React, { memo, useContext, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
+import usePostLike from "../../hooks/dataFetching/usePostLike";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { useMainWidth } from "../../hooks/useWidth";
@@ -23,6 +24,7 @@ const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
   const tags = useGetTags();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
+  const {like} = usePostLike();
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -30,24 +32,9 @@ const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
     setSearchQuery(searchQuery);
   }
 
-  function like(artworkId, isLike) {
+  function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
-
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?mySocialId=${socialId}`, {
-      method: isLike ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    like(artworkId, isLike, socialId, token);
   }
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
@@ -82,7 +69,7 @@ const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
           artworks={artworks}
           tags={tags?.data}
           onFilter={filter}
-          onLike={like}
+          onLike={likeArtwork}
           rowWidth={rowWidth}
           loadMoreElementRef={loadMoreArtworksElementRef}
           isLoading={isLoadingArtWorks}
