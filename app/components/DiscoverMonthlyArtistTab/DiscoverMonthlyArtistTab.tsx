@@ -1,6 +1,8 @@
 import { memo, useContext, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
+import usePostFollow from "../../hooks/dataFetching/usePostFollow";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
+import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
 
@@ -16,32 +18,17 @@ const DiscoverMonthlyArtistsTab = memo((props: DiscoverMonthlyArtistsTabProps) =
   const [loadMoreMontlyArtists, setLoadMoreMontlyArtists] = useState<boolean>(true);
   const loadMoreMontlyArtistsElementRef = useRef(null);
   const token = useContext(TokenContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+  const {follow} = usePostFollow();
 
   function filterMontlyArtist(tags: string[], searchQuery = "") {
     setLoadMoreMontlyArtists(true);
     setSearchQueryMontly(searchQuery);
   }
 
-  function follow(userToFollow, isFollow) {
-    if (socialId === null || socialId === undefined) {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  function followArtist(userToFollow, isFollow) {
+    redirectIfNotLoggedIn();
+    follow(userToFollow, isFollow, socialId, token);
   }
 
   const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreMontlyArtistsElementRef,
@@ -69,7 +56,7 @@ const DiscoverMonthlyArtistsTab = memo((props: DiscoverMonthlyArtistsTabProps) =
   return(
       <DiscoverArtists
                   artists={monthlyArtists}
-                  onFollowClick={follow}
+                  onFollowClick={followArtist}
                   onFilter={filterMontlyArtist}
                   loadMoreElementRef={loadMoreMontlyArtistsElementRef}
                   isLoading={isLoadingMonthlyArtists}

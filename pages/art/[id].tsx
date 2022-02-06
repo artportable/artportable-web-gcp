@@ -24,6 +24,7 @@ import { UrlObject } from "url";
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";
+import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -41,6 +42,7 @@ export default function ArtworkPage(props) {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   const { like } = usePostLike();
+  const { follow } = usePostFollow();
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
@@ -64,29 +66,7 @@ export default function ArtworkPage(props) {
     setIsLiked(artwork?.data?.LikedByMe);
   }, [artwork?.data]);
 
-  function follow(userToFollow, isFollow) {
-    if (socialId.value === null || socialId.value === undefined) {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  function togglePurchaseRequestDialog() {
+  function togglePurchaseRequestDialog(){
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
   }
 
@@ -102,7 +82,7 @@ export default function ArtworkPage(props) {
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
-    follow(artwork.data.Owner.SocialId, !isFollowed);
+    follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token);
     setFollow(!isFollowed);
   }
 

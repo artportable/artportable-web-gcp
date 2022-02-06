@@ -48,6 +48,7 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/
 import UpgradePortfolio from '../../app/components/UpgradePortfolio/UpgradPortfolio'
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
 import usePostLike from '../../app/hooks/dataFetching/usePostLike';
+import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
 
 function a11yProps(index: any) {
   return {
@@ -95,7 +96,8 @@ export default function Profile(props) {
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
   const { setLoading } = useContext(LoadingContext);
 
-  const { like } = usePostLike();
+  const { like } = usePostLike();  
+  const { follow } = usePostFollow();
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
@@ -174,31 +176,9 @@ export default function Profile(props) {
     like(artworkId, isLike, socialId.value, token);
   }
 
-  function follow(userToFollow, isFollow) {
-    if (socialId.value === null || socialId.value === undefined) {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
   function toggleFollow() {
     redirectIfNotLoggedIn();
-    follow(userProfileSummary.data?.SocialId, !isFollowed);
+    follow(userProfileSummary.data?.SocialId, !isFollowed, socialId.value, token);
     setFollow(!isFollowed);
   }
 
