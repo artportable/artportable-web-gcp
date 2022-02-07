@@ -14,7 +14,6 @@ import Button from '../Button/Button'
 interface RandomImageProps {
   artwork: string;
   username: string;
-  profileImage: string;
   imageLink: string;
 }
 
@@ -29,7 +28,7 @@ export default function IndexHero() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (randomImage === { artwork: '', username: '', profileImage: '', imageLink: '' }) {
+    if (randomImage === { artwork: '', username: '', imageLink: '' }) {
       setLoading(true)
     } else {
       setLoading(false)
@@ -42,9 +41,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "janka-dimitrova", image: '/images/Ianka.png', profileImage: 'PROFILE-PICTURE20-30.jpg', imageLink: "eac03d57-dd99-4b32-8b24-e256fbf65a25"},
-    { name: "kathrin.gorczak", image: '/images/kathrin.jpg', profileImage: 'f1dfdac8-caf6-49a1-8eb6-af305dc34771.jpg', imageLink: "1bd04126-2077-43a8-902c-9fbba7593265"},
-    { name: "katarina.storalm", image: '/images/katarina.jpg', profileImage: 'fb76286c-2fdf-4964-8a86-5d0f8aea6135.jpg', imageLink: "82d47d82-a866-45d2-8768-4a42898de6da"},
+    { name: "anders.malm", image: '/images/anders_malm.jpg', imageLink: "f08c9683-db20-44eb-bc83-e216e30af62f"},
+    { name: "Gunilla.Iversen", image: '/images/gunilla_iversen.jpg', imageLink: "e63ed3be-25ea-4c73-ace3-5ff81ca66c77"},
+    { name: "hevius.rosalie", image: '/images/rosalie_hevius.jpg', imageLink: "29cb96df-fb4c-42ff-aad1-7e4237697239"},
     { name: "ajohansson193", image: '/images/annamaria.jpg', profileImage: 'PROFILE-PICTURE16-72.jpg', imageLink: "88ae6dd6-04b0-49c8-a194-eb1fee7b82b4"},
     { name: "malin.ekstrom", image: '/images/malin.jpg', profileImage: '5654a156-d902-4b4c-9ec5-d9faa79a8bcd.jpg', imageLink: "fe4a6e67-fef2-4420-94d7-1738dce27f43"},
   ];
@@ -54,7 +53,6 @@ export default function IndexHero() {
     setRandomImage(({
       artwork: (images[randomImageIndex].image),
       username: (images[randomImageIndex].name),
-      profileImage: (images[randomImageIndex].profileImage),
       imageLink: (images[randomImageIndex].imageLink)
     }));
   }, [])   
