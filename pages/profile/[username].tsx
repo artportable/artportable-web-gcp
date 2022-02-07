@@ -48,6 +48,7 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/
 import UpgradePortfolio from '../../app/components/UpgradePortfolio/UpgradPortfolio'
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
 import usePostLike from '../../app/hooks/dataFetching/usePostLike';
+import useRefreshToken from '../../app/hooks/useRefreshToken';
 import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
 
 function a11yProps(index: any) {
@@ -96,8 +97,9 @@ export default function Profile(props) {
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
   const { setLoading } = useContext(LoadingContext);
 
-  const { like } = usePostLike();  
+  const { like } = usePostLike();
   const { follow } = usePostFollow();
+  const { refreshToken } = useRefreshToken();
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
@@ -207,14 +209,15 @@ export default function Profile(props) {
   }
 
   function updateImage(blob, width: number, height: number, type: string) {
-    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'image/jpeg',
-        'Authorization': `Bearer ${token}`
-      },
-      body: blob
-    })
+    refreshToken().then(() =>
+      fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'image/jpeg',
+          'Authorization': `Bearer ${token}`
+        },
+        body: blob
+      }))
       .then((response) => {
         if (!response.ok) {
           console.log(response.statusText);
