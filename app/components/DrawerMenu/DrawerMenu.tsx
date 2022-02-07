@@ -75,19 +75,19 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
       <List>
         {(isSignedIn.value) &&
           <Link href="/feed" passHref>
-            <ListItem button divider>
+            <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('myArtNetwork')} />
             </ListItem>
           </Link>
         }
         
         <Link href="/" passHref>
-          <ListItem button divider>
+          <ListItem button divider onClick={() => close()}>
             <ListItemText primary={t('discover')} />
           </ListItem>
         </Link>
         <Link href="/artiklar" passHref>
-          <ListItem button divider>
+          <ListItem button divider onClick={() => close()}>
             <ListItemText primary={t('stories')} />
           </ListItem>
         </Link>
@@ -118,7 +118,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             }      
             {(membership.value > Membership.Base) &&
               <Link href="/upload" passHref>
-                <ListItem button divider>
+                <ListItem button divider onClick={() => close()}>
                   <ListItemIcon>
                     <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
                   </ListItemIcon>
@@ -128,7 +128,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             }
             
             <Link href="/messages" passHref>
-              <ListItem button divider>
+              <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
                   <Badge badgeContent={unreadChatMessages} max={99} color="primary">
                     <ChatBubbleIcon color="secondary" style={{ fontSize: 30 }} />
@@ -138,7 +138,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
               </ListItem>
             </Link>
             <Link href={`/profile/@${username.value}`} passHref>
-              <ListItem button divider>
+              <ListItem button divider onClick={() => close()}>
                 <ListItemAvatar>
                   <ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>
                 </ListItemAvatar>
