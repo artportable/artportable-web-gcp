@@ -8,6 +8,15 @@ import type { KeycloakInstance } from 'keycloak-js';
 import { useRouter } from "next/router";
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics';
 
+interface EmailData {
+    email: EmailValue;
+  }
+  
+  interface EmailValue {
+    value: string;
+    error: boolean
+  }
+
 export default function PurchaseRequestDialog({ open, onClose, props }) {
     const { t } = useTranslation(['art', 'common']);
     const s = styles();
@@ -20,10 +29,89 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
     const [customMessage, setCustomMessage] = useState('');
     const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
+    const [usersEmail, setUsersEmail] = useState<EmailData>({
+        email: { value: '', error: false },
+      });
+      const [formHasErrors, setFormHasErrors] = useState(false);
+      const [formUntouched, setFormUntouched] = useState(true);
+
+      useEffect(() => {
+        if(Object.keys(usersEmail).some(key => usersEmail[key].error)) {
+          setFormHasErrors(true);
+        } else {
+          setFormHasErrors(false);
+        }
+      }, [usersEmail]);
+    
+      const handleChange = (event, key: keyof EmailData) => {
+        const newValue: EmailValue = {
+          value: event.target.value,
+          error: false,
+        }
+    
+        setUsersEmail(prevValue => ({
+          ...prevValue,
+          [key]: newValue
+        }));
+      }
+    
+      const validateFormValue = (value, key: keyof EmailData) => {
+        if(formUntouched) {
+          setFormUntouched(false);
+        }
+    
+        const isInvalid = checkIsInvalid(value, key);
+    
+        const newFormValue: EmailValue = {
+          value: value,
+          error: isInvalid
+        }
+    
+        setUsersEmail(prevValue => ({
+          ...prevValue,
+          [key]: newFormValue
+        }));
+      }
+    
+      const validateEmail = (newValue: string): boolean => {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newValue)) {
+          return false;
+        }
+        return true;
+      }
+    
+      const checkIsInvalid = (newValue: string, key: keyof EmailData): boolean => {
+        switch (key) {
+          case 'email':
+            return validateEmail(newValue);
+        }
+      }
+    
+      const validateAllFields = () => {
+        const emailError = checkIsInvalid(usersEmail.email.value, 'email');
+    
+        const emailFormValue = { 
+          email: { 
+            ...usersEmail.email,
+            error: emailError
+          },
+        }
+    
+        setUsersEmail(emailFormValue);
+    
+        if (emailError) {
+          setFormHasErrors(true);
+          return false;
+        } else {
+          return true;
+        }
+      }
+    
+
     const onPurchaseRequestClick = async () => {
-        if (userEmail) {
+        if (usersEmail) {
             // api anrop för att maila/skicka meddelande
-            const response = await fetch(`${apiBaseUrl}/api/messages/purchaserequest?email=${userEmail}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}`, {
+            const response = await fetch(`${apiBaseUrl}/api/messages/purchaserequest?email=${usersEmail.email.value}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}`, {
                 method: 'GET',
             });
             setMessageResponse(response.status.toString())
@@ -134,7 +222,11 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             // label={t('common:words.email')}
                             label={t('yourEmail')}
                             placeholder={t('emailPlaceholder')}
-                            onChange={(e) => setUserEmail(e.target.value)}
+                            value={usersEmail.email.value}
+                            error={usersEmail.email.error}
+                            onChange={(e) => handleChange(e, 'email')}
+                            onBlur={(e) => validateFormValue(e.target.value, 'email')}
+                            helperText={usersEmail.email.error ? t('emailErrorMessage') : ''}
                         >
                         </TextField>
                         <TextField
@@ -156,6 +248,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                                     onPurchaseRequestClick();
                                     trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_SEND_SIGNED_OUT, CategoryType.BUY)
                                 }}
+                                disabled={formHasErrors || formUntouched}
                             >
                                 {t('SendPurchaseRequest')}
                             </Button>
