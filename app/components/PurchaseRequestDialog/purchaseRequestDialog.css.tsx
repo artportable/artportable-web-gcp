@@ -25,6 +25,35 @@ export const styles = makeStyles((theme: Theme) =>
         textAlign: 'center',
         paddingTop: '2rem',
     },
+    textField: {
+      minHeight: '76px',
+      marginBottom: '5px',
+      '& label.Mui-focused': {
+        color: 'black',
+      },
+      '& .MuiOutlinedInput-root': {
+        '&.Mui-focused & fieldset': {
+          // borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+          border: '1px solid black',
+        },
+      },
+    },
+    textFieldMultiline: {
+      minHeight: '133px',
+      '& label.Mui-focused': {
+        color: 'black',
+      },
+      '& .MuiOutlinedInput-root': {
+        '&.Mui-focused & fieldset': {
+          // borderColor: 'black',
+        },
+        '&.Mui-focused fieldset': {
+          border: '1px solid black',
+        },
+      },
+    },
     decorated: {
         overflow: 'hidden',
         textAlign: 'center',

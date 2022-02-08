@@ -87,7 +87,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
         }
       }
     
-      const validateAllFields = () => {
+      const validateField = () => {
         const emailError = checkIsInvalid(usersEmail.email.value, 'email');
     
         const emailFormValue = { 
@@ -109,7 +109,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
     
 
     const onPurchaseRequestClick = async () => {
-        if (usersEmail) {
+       if (validateField()){
             // api anrop för att maila/skicka meddelande
             const response = await fetch(`${apiBaseUrl}/api/messages/purchaserequest?email=${usersEmail.email.value}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}`, {
                 method: 'GET',
@@ -218,6 +218,9 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             {/* {t('getEmailFromArtist')} */}
                         </Typography>
                         <TextField
+                        classes={{
+                            root: s.textField
+                          }}
                             fullWidth
                             // label={t('common:words.email')}
                             label={t('yourEmail')}
@@ -227,14 +230,20 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             onChange={(e) => handleChange(e, 'email')}
                             onBlur={(e) => validateFormValue(e.target.value, 'email')}
                             helperText={usersEmail.email.error ? t('emailErrorMessage') : ''}
+                            variant="outlined"
                         >
                         </TextField>
                         <TextField
+                        classes={{
+                            root: s.textFieldMultiline
+                          }}
                             fullWidth
                             multiline
+                            rows={5}
                             label={t('common:messageOptional')}
                             placeholder={t('messagePlaceholder')}
                             onChange={(e) => setCustomMessage(e.target.value)}
+                            variant="outlined"
                         >
                         </TextField>
                         <FormGroup>
