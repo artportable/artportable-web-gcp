@@ -218,9 +218,15 @@ export default function DiscoverPage() {
   return (
     <Main noHeaderPadding wide={useWideLayout} isShow={false}>
       <Head>
-        <meta name="title" content="Artportable" />
+        <meta name="title" content={t('index:title')} />
         <meta name="description" content={t('index:description')} />
         <meta name="url" content="https://artportable.com/" />
+
+        <meta property="og:title" content=""/>
+        <meta property="og:description" content={t('index:description')} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://artportable.com/" />
+        <meta property="og:image" content="/images/artportable_tv_commercial.png"/>
       </Head>
       {!loading &&
         <>
