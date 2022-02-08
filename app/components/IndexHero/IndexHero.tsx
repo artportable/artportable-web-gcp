@@ -44,8 +44,9 @@ export default function IndexHero() {
     { name: "anders.malm", image: '/images/anders_malm.jpg', imageLink: "f08c9683-db20-44eb-bc83-e216e30af62f"},
     { name: "Gunilla.Iversen", image: '/images/gunilla_iversen.jpg', imageLink: "e63ed3be-25ea-4c73-ace3-5ff81ca66c77"},
     { name: "hevius.rosalie", image: '/images/rosalie_hevius.jpg', imageLink: "29cb96df-fb4c-42ff-aad1-7e4237697239"},
-    { name: "ajohansson193", image: '/images/annamaria.jpg', profileImage: 'PROFILE-PICTURE16-72.jpg', imageLink: "88ae6dd6-04b0-49c8-a194-eb1fee7b82b4"},
-    { name: "malin.ekstrom", image: '/images/malin.jpg', profileImage: '5654a156-d902-4b4c-9ec5-d9faa79a8bcd.jpg', imageLink: "fe4a6e67-fef2-4420-94d7-1738dce27f43"},
+    { name: "ajohansson193", image: '/images/annamaria.jpg', imageLink: "88ae6dd6-04b0-49c8-a194-eb1fee7b82b4"},
+    { name: "elsmarie.rannemalm", image: '/images/elsmarie.png', imageLink: "87eaeb65-98ff-4b30-9b22-632bc18fc1aa"},
+    { name: "malin.ekstrom", image: '/images/malin.jpg', imageLink: "fe4a6e67-fef2-4420-94d7-1738dce27f43"},
   ];
 
   useEffect(() => {
