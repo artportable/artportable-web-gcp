@@ -22,6 +22,7 @@ import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopAr
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
 import { Artwork } from "../app/models/Artwork";
 import Artist from "../app/models/Artist";
+import Head from 'next/head';
 
 
 export default function DiscoverPage() {
@@ -216,6 +217,11 @@ export default function DiscoverPage() {
 
   return (
     <Main noHeaderPadding wide={useWideLayout} isShow={false}>
+      <Head>
+        <meta name="title" content="Artportable" />
+        <meta name="description" content={t('index:description')} />
+        <meta name="url" content="https://artportable.com/" />
+      </Head>
       {!loading &&
         <>
           {!isSignedIn.value &&
@@ -294,7 +300,7 @@ export default function DiscoverPage() {
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['art','header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar', 'support', 'articles']),
+      ...await serverSideTranslations(locale, ['art', 'header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar', 'support', 'articles']),
     }
   };
 }
