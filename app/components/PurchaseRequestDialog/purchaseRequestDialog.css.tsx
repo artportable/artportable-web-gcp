@@ -22,7 +22,6 @@ export const styles = makeStyles((theme: Theme) =>
         fontWeight: 'normal',
     },
     form: {
-        textAlign: 'center',
         paddingTop: '2rem',
     },
     textField: {
@@ -86,7 +85,7 @@ export const styles = makeStyles((theme: Theme) =>
         margin: '2rem 0',
     },
     sendMailTypo: {
-        marginBottom: theme.spacing(2),
+        marginBottom: theme.spacing(3),
         fontWeight: 500
     },
     thanksTypo: {
@@ -94,6 +93,12 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: theme.spacing(2),
         fontWeight: 600,
         textAlign: 'center'
-    }
+    },
+    contactYouTypo: {
+
+    },
+    stepTwo: {
+        // height: theme.spacing(40)
+    },
   }),
 );

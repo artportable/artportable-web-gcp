@@ -241,7 +241,8 @@ export default function ArtworkPage(props) {
                             title: artwork.data.Title,
                             creator: artwork.data.Owner.Username,
                             url: window.location.href,
-                            referTo: artwork.data.Owner.SocialId
+                            referTo: artwork.data.Owner.SocialId,
+                            imageUrl: bucketUrl + artwork.data.PrimaryFile.Name
                           }}
                           />
                       </Box>

@@ -38,5 +38,6 @@
   "Yes" : "Yes",
   "Cancel" : "Cancel",
   "purchaseRequest": "Purchase request",
-  "messageOptional": "Message (optional)"
+  "messageOptional": "Message (optional)",
+  "emailErrorMessage": "Invalid email address"
 }

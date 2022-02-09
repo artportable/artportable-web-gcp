@@ -25,7 +25,6 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     const [messageResponse, setMessageResponse] = useState('');
-    const [userEmail, setUserEmail] = useState('');
     const [customMessage, setCustomMessage] = useState('');
     const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
 
@@ -106,12 +105,18 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
           return true;
         }
       }
-    
+      const resetForm = () => {
+        setUsersEmail({
+          email: { value: '', error: false },
+        });
+        setFormUntouched(true);
+        setFormHasErrors(false);
+      }
 
-    const onPurchaseRequestClick = async () => {
+    const onPurchaseRequestClick = async () => { console.log("heheh " + props.imageUrl)
        if (validateField()){
             // api anrop för att maila/skicka meddelande
-            const response = await fetch(`${apiBaseUrl}/api/messages/purchaserequest?email=${usersEmail.email.value}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}`, {
+            const response = await fetch(`${apiBaseUrl}/api/messages/purchaserequest?email=${usersEmail.email.value}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}&artworkImageUrl=${props.imageUrl}`, {
                 method: 'GET',
             });
             setMessageResponse(response.status.toString())
@@ -145,7 +150,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
         <Dialog open={open} onClose={onCloseClick}>
             {messageResponse
                 ?
-                <DialogContent>
+                <DialogContent className={s.stepTwo}>
                     <Typography variant="h3" className={s.thanksTypo}>
                         {messageResponse == '200' ?
                             t('thanksForInterestTitle')
@@ -155,7 +160,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                     </Typography>
 
                     {messageResponse == '200' ?
-                    <Typography>
+                    <Typography className={s.contactYouTypo}>
                         {t('thanksForInterestText')}
                         </Typography>
                         :
@@ -171,67 +176,25 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                         >
                             {t('common:words.close')}
                         </Button>
-                        {/* <Button
-                            variant="contained"
-                            color="primary"
-                            disableElevation
-                            rounded
-                            onClick={() => {
-                                keycloak.register({
-                                    locale: router.locale,
-                                    redirectUri: signUpRedirectHref
-                                });
-                                trackGoogleAnalytics(ActionType.SIGN_UP_PURCHASE_REQUEST_AFTER, CategoryType.BUY);
-                            }}
-                        >
-                            {t('createAccountToChat')}
-                        </Button> */}
                     </div>
                 </DialogContent>
                 :
                 <DialogContent>                     
-                     <div className={s.createAccount}>
-                     <Typography className={s.decorated}>
-                           {t('logIntoSendChatMessages')}
-                    </Typography>
-                       {/* <Button
-                            variant="outlined" 
-                            color="primary"
-                            disableElevation    
-                            rounded
-                            onClick={() => {
-                                keycloak.register({
-                                    locale: router.locale,
-                                    redirectUri: signUpRedirectHref});
-                                trackGoogleAnalytics(ActionType.SIGN_UP_PURCHASE_REQUEST_BEFORE, CategoryType.BUY);
-                            }}
-                        >
-                            {t('createAccountToChat')}
-                        </Button>*/}
-                     </div>
-                    <Typography className={s.decorated}>
-                        <span>
-                            {t('common:words.or')}
-                        </span>
-                    </Typography>
                     <form className={s.form}>
-                        <Typography className={s.sendMailTypo}>
+                        <Typography variant="h5" component="h2" className={s.sendMailTypo}>
                             {t('sendEmailToArtist')}
-                            {/* {t('getEmailFromArtist')} */}
                         </Typography>
                         <TextField
                         classes={{
                             root: s.textField
                           }}
                             fullWidth
-                            // label={t('common:words.email')}
-                            // label={t('yourEmail')}
                             placeholder={t('yourEmail')}
                             value={usersEmail.email.value}
                             error={usersEmail.email.error}
                             onChange={(e) => handleChange(e, 'email')}
                             onBlur={(e) => validateFormValue(e.target.value, 'email')}
-                            helperText={usersEmail.email.error ? t('emailErrorMessage') : ''}
+                            helperText={usersEmail.email.error ? t('common:emailErrorMessage') : ''}
                             variant="outlined"
                         >
                         </TextField>
@@ -242,7 +205,6 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             fullWidth
                             multiline
                             rows={5}
-                            // label={t('common:messageOptional')}
                             placeholder={t('common:messageOptional')}
                             onChange={(e) => setCustomMessage(e.target.value)}
                             variant="outlined"
@@ -257,6 +219,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                                 className={s.messageButton}
                                 onClick={() => {
                                     onPurchaseRequestClick();
+                                    resetForm();
                                     trackGoogleAnalytics(ActionType.PURCHASE_REQUEST_SEND_SIGNED_OUT, CategoryType.BUY)
                                 }}
                                 disabled={formHasErrors || formUntouched}

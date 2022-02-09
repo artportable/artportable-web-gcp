@@ -38,6 +38,6 @@
   "Yes" : "Ja",
   "Cancel" : "Avbryt",
   "purchaseRequest": "Köpförfrågan",
-  "messageOptional": "Meddelande (valfritt)"
-  
+  "messageOptional": "Meddelande (valfritt)",
+  "emailErrorMessage": "Ogiltig e-postadress"
 }
