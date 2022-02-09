@@ -20,6 +20,7 @@ import { UserContext } from "../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
+import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
 import { Artwork } from "../app/models/Artwork";
 import Artist from "../app/models/Artist";
 import Head from 'next/head';
@@ -45,12 +46,11 @@ export default function DiscoverPage() {
   const [selectedTags, setSelectedTags] = useState(null);
   const [searchQueryArt, setSearchQueryArt] = useState(null);
   const loadMoreArtworksElementRef = useRef(null);
-  const loadMoreArtistsElementRef = useRef(null);
+  
   const loadMoreMontlyArtistsElementRef = useRef(null);
-  const [searchQuery, setSearchQuery] = useState<string>();
   const [searchQueryMontly, setSearchQueryMontly] = useState<string>();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
-  const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
+  
   const [loadMoreMontlyArtists, setLoadMoreMontlyArtists] = useState<boolean>(true);
 
   const { loading, setLoading } = useContext(LoadingContext);
@@ -92,27 +92,6 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtists(false);
-        return null;
-      }
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
-        if (searchQuery != null && searchQuery != '') {
-          url.searchParams.append('q', searchQuery);
-        }
-        if (username.value != null && username.value != '') {
-          url.searchParams.append('myUsername', username.value);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "10");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, activeTab);
-
   const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreMontlyArtistsElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
@@ -138,7 +117,6 @@ export default function DiscoverPage() {
   const useWideLayout = activeTab === 0 || activeTab === 1;
 
   useEffect(() => {
-    setSearchQuery(null);
     filter([]);
   }, []);
 
@@ -154,11 +132,6 @@ export default function DiscoverPage() {
     setLoadMoreArtworks(true);
     setSelectedTags(tags);
     setSearchQueryArt(searchQuery);
-  }
-
-  function filterArtist(tags: string[], searchQuery = "") {
-    setLoadMoreArtists(true);
-    setSearchQuery(searchQuery);
   }
 
   function filterMontlyArtist(tags: string[], searchQuery = "") {
@@ -286,14 +259,10 @@ export default function DiscoverPage() {
                 ></DiscoverArtists>
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                <DiscoverArtists
-                  artists={artists}
-                  onFollowClick={follow}
-                  onFilter={filterArtist}
-                  loadMoreElementRef={loadMoreArtistsElementRef}
-                  isLoading={isLoadingArtists}
-                  loadMore={loadMoreArtists}
-                ></DiscoverArtists>
+                <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
               </TabPanel>
             </Box>
           </div>
