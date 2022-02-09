@@ -205,6 +205,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             fullWidth
                             multiline
                             rows={5}
+                            inputProps={{ maxLength: 500 }}
                             placeholder={t('common:messageOptional')}
                             onChange={(e) => setCustomMessage(e.target.value)}
                             variant="outlined"
