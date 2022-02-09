@@ -6,7 +6,6 @@ import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
-import DiscoverArtists from "../app/components/DiscoverArtists/DiscoverArtists";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
@@ -20,9 +19,10 @@ import { UserContext } from "../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
+import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
 import { Artwork } from "../app/models/Artwork";
-import Artist from "../app/models/Artist";
 import Head from 'next/head';
+import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 
 
 export default function DiscoverPage() {
@@ -45,14 +45,8 @@ export default function DiscoverPage() {
   const [selectedTags, setSelectedTags] = useState(null);
   const [searchQueryArt, setSearchQueryArt] = useState(null);
   const loadMoreArtworksElementRef = useRef(null);
-  const loadMoreArtistsElementRef = useRef(null);
-  const loadMoreMontlyArtistsElementRef = useRef(null);
-  const [searchQuery, setSearchQuery] = useState<string>();
-  const [searchQueryMontly, setSearchQueryMontly] = useState<string>();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
-  const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
-  const [loadMoreMontlyArtists, setLoadMoreMontlyArtists] = useState<boolean>(true);
-
+  
   const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
@@ -92,53 +86,9 @@ export default function DiscoverPage() {
       return previousPageData.next;
     }, activeTab);
 
-  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtists(false);
-        return null;
-      }
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
-        if (searchQuery != null && searchQuery != '') {
-          url.searchParams.append('q', searchQuery);
-        }
-        if (username.value != null && username.value != '') {
-          url.searchParams.append('myUsername', username.value);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "10");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, activeTab);
-
-  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreMontlyArtistsElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreMontlyArtists(false);
-        return null;
-      }
-
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
-        if (searchQueryMontly != null && searchQueryMontly != '') {
-          url.searchParams.append('q', searchQueryMontly);
-        }
-        if (username.value != null && username.value != '') {
-          url.searchParams.append('myUsername', username.value);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "10");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, activeTab);
-
   const useWideLayout = activeTab === 0 || activeTab === 1;
 
   useEffect(() => {
-    setSearchQuery(null);
     filter([]);
   }, []);
 
@@ -154,16 +104,6 @@ export default function DiscoverPage() {
     setLoadMoreArtworks(true);
     setSelectedTags(tags);
     setSearchQueryArt(searchQuery);
-  }
-
-  function filterArtist(tags: string[], searchQuery = "") {
-    setLoadMoreArtists(true);
-    setSearchQuery(searchQuery);
-  }
-
-  function filterMontlyArtist(tags: string[], searchQuery = "") {
-    setLoadMoreMontlyArtists(true);
-    setSearchQueryMontly(searchQuery);
   }
 
   function like(artworkId, isLike) {
@@ -184,28 +124,6 @@ export default function DiscoverPage() {
       .catch((error) => {
         console.log(error);
       })
-  }
-
-  function follow(userToFollow, isFollow) {
-    if (socialId.value === null || socialId.value === undefined) {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   function a11yProps(index: any) {
@@ -276,24 +194,16 @@ export default function DiscoverPage() {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
-                <DiscoverArtists
-                  artists={monthlyArtists}
-                  onFollowClick={follow}
-                  onFilter={filterMontlyArtist}
-                  loadMoreElementRef={loadMoreMontlyArtistsElementRef}
-                  isLoading={isLoadingMonthlyArtists}
-                  loadMore={loadMoreMontlyArtists}
-                ></DiscoverArtists>
+                <DiscoverMonthlyArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                <DiscoverArtists
-                  artists={artists}
-                  onFollowClick={follow}
-                  onFilter={filterArtist}
-                  loadMoreElementRef={loadMoreArtistsElementRef}
-                  isLoading={isLoadingArtists}
-                  loadMore={loadMoreArtists}
-                ></DiscoverArtists>
+                <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
               </TabPanel>
             </Box>
           </div>
