@@ -146,7 +146,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
             {messageResponse
                 ?
                 <DialogContent>
-                    <Typography variant="h3">
+                    <Typography variant="h3" className={s.thanksTypo}>
                         {messageResponse == '200' ?
                             t('thanksForInterestTitle')
                             :
@@ -155,7 +155,9 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                     </Typography>
 
                     {messageResponse == '200' ?
-                        t('thanksForInterestText')
+                    <Typography>
+                        {t('thanksForInterestText')}
+                        </Typography>
                         :
                         t('somethinWentWrongText')
                     }
@@ -169,7 +171,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                         >
                             {t('common:words.close')}
                         </Button>
-                        <Button
+                        {/* <Button
                             variant="contained"
                             color="primary"
                             disableElevation
@@ -183,7 +185,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             }}
                         >
                             {t('createAccountToChat')}
-                        </Button>
+                        </Button> */}
                     </div>
                 </DialogContent>
                 :
@@ -213,7 +215,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                         </span>
                     </Typography>
                     <form className={s.form}>
-                        <Typography>
+                        <Typography className={s.sendMailTypo}>
                             {t('sendEmailToArtist')}
                             {/* {t('getEmailFromArtist')} */}
                         </Typography>
@@ -223,8 +225,8 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                           }}
                             fullWidth
                             // label={t('common:words.email')}
-                            label={t('yourEmail')}
-                            placeholder={t('emailPlaceholder')}
+                            // label={t('yourEmail')}
+                            placeholder={t('yourEmail')}
                             value={usersEmail.email.value}
                             error={usersEmail.email.error}
                             onChange={(e) => handleChange(e, 'email')}
@@ -240,8 +242,8 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                             fullWidth
                             multiline
                             rows={5}
-                            label={t('common:messageOptional')}
-                            placeholder={t('messagePlaceholder')}
+                            // label={t('common:messageOptional')}
+                            placeholder={t('common:messageOptional')}
                             onChange={(e) => setCustomMessage(e.target.value)}
                             variant="outlined"
                         >

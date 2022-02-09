@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     buttonContainer: {
         textAlign: 'center',
         marginTop: '2rem',
-        marginBottom: '2rem',
+        marginBottom: '1rem',
         '& > button': {
           margin: theme.spacing(0.5)
         }
@@ -84,6 +84,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
     messageButton: {
         margin: '2rem 0',
+    },
+    sendMailTypo: {
+        marginBottom: theme.spacing(2),
+        fontWeight: 500
+    },
+    thanksTypo: {
+        marginBottom: theme.spacing(2),
+        marginTop: theme.spacing(2),
+        fontWeight: 600,
+        textAlign: 'center'
     }
   }),
 );
