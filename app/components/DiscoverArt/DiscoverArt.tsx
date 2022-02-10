@@ -51,7 +51,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     title: '',
     creator: '',
     url: '',
-    referTo: ''
+    referTo: '',
+    imageurl: ''
   });
 
   const theme: Theme = useTheme();
@@ -113,7 +114,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
   }
 
-  function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string) {
+  function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
     if(isSignedIn.value) {
       const originalRedirect = {
@@ -122,9 +123,9 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           artwork: encodeURIComponent(JSON.stringify({
             title: title,
             creator: creator,
-            url: url
+            url: url,
           })),
-          referTo: referTo
+          referTo: referTo,
         }
       }
         router.push(originalRedirect);
@@ -133,7 +134,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
         title: title,
         creator: creator,
         url: url,
-        referTo: referTo
+        referTo: referTo,
+        imageurl: imageurl
       })
       togglePurchaseRequestDialog();
     }
@@ -213,7 +215,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             title: purchaseRequestDialogData.title,
             creator: purchaseRequestDialogData.creator,
             url: purchaseRequestDialogData.url,
-            referTo: purchaseRequestDialogData.referTo
+            referTo: purchaseRequestDialogData.referTo,
+            imageUrl: purchaseRequestDialogData.imageurl
           }}
         />
       </Box>

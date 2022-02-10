@@ -128,7 +128,8 @@ export default function ArtworkListItemDefined({
                 artwork.Title,
                 artwork.Owner.Username,
                 artwork.Id,
-                artwork.Owner.SocialId
+                artwork.Owner.SocialId,
+                bucketUrl + artwork.PrimaryFile.Name
             );
             trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
           }}
