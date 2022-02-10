@@ -131,7 +131,6 @@ export default function ArtworkListItemDefined({
                 artwork.Owner.SocialId,
                 bucketUrl + artwork.PrimaryFile.Name
             );
-            console.log(bucketUrl + artwork.PrimaryFile.Name)
             trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
           }}
           variant="outlined"
