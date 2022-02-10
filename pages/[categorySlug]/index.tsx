@@ -15,6 +15,7 @@ import { useTranslation } from 'next-i18next'
 import { ar } from 'date-fns/locale';
 import Button from '../../app/components/Button/Button'
 import MuiButton from '@material-ui/core/Button'
+import Head from 'next/head';
 
 export default function CategoryPage({ category }: { category: Category }) {
   const s = styles();
@@ -25,6 +26,11 @@ export default function CategoryPage({ category }: { category: Category }) {
 
   return (
     <Main>
+      <Head>
+        <meta name="title" content={t('title')} />
+        <meta name="description" content={t('description')} />
+        <meta name="url" content="https://artportable.com/artiklar" />
+      </Head>
       {router.isFallback &&
         //implement good skeleton here
         <div>Loading...</div>
