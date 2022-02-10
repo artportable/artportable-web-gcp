@@ -1,6 +1,8 @@
 import React, { memo, useContext, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
+import usePostFollow from "../../hooks/dataFetching/usePostFollow";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
+import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
 
@@ -16,32 +18,17 @@ const DiscoverTopArtistsTab = memo((props: DiscoverTopArtistsTabProps) => {
   const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
   const loadMoreArtistsElementRef = useRef(null);
   const token = useContext(TokenContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+  const {follow} = usePostFollow();
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtists(true);
     setSearchQuery(searchQuery);
   }
 
-  function follow(userToFollow, isFollow) {
-    if (!socialId) {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  function followArtist(userToFollow, isFollow) {
+    redirectIfNotLoggedIn();
+    follow(userToFollow, isFollow, socialId, token);
   }
 
   const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
@@ -70,7 +57,7 @@ const DiscoverTopArtistsTab = memo((props: DiscoverTopArtistsTabProps) => {
     <>
       <DiscoverArtists
         artists={artists}
-        onFollowClick={follow}
+        onFollowClick={followArtist}
         onFilter={filter}
         loadMoreElementRef={loadMoreArtistsElementRef}
         isLoading={isLoadingArtists}

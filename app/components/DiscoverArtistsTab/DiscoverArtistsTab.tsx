@@ -1,6 +1,8 @@
 import { memo, useContext, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
+import usePostFollow from "../../hooks/dataFetching/usePostFollow";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
+import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
 
@@ -17,34 +19,18 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
   const [loadMoreArtists, setLoadMoreArtists] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>();
   const token = useContext(TokenContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+  const { follow } = usePostFollow();
 
   function filterArtist(tags: string[], searchQuery = "") {
     setLoadMoreArtists(true);
     setSearchQuery(searchQuery);
   }
 
-  function follow(userToFollow, isFollow) {
-    if (socialId === null || socialId === undefined || socialId!= '') {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  function followArtist(userToFollow, isFollow) {
+    redirectIfNotLoggedIn();
+    follow(userToFollow, isFollow, socialId, token);
   }
-
 
   const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
     (pageIndex, previousPageData) => {
@@ -70,7 +56,7 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
   return (
     <DiscoverArtists
       artists={artists}
-      onFollowClick={follow}
+      onFollowClick={followArtist}
       onFilter={filterArtist}
       loadMoreElementRef={loadMoreArtistsElementRef}
       isLoading={isLoadingArtists}

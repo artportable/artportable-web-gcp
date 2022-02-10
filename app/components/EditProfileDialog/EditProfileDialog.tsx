@@ -17,6 +17,7 @@ import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFet
 import { TokenContext } from '../../contexts/token-context';
 import { UserContext } from '../../contexts/user-context';
 import { capitalizeFirst } from '../../utils/util';
+import useRefreshToken from '../../hooks/useRefreshToken';
 
 interface Profile {
   title: string;
@@ -63,8 +64,9 @@ export default function EditProfileDialog({ userProfile }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
+  const { refreshToken } = useRefreshToken();
 
-  
+
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(populateProfileObject(userProfile));
 
@@ -72,38 +74,40 @@ export default function EditProfileDialog({ userProfile }) {
     setOpenEdit(false);
     try {
       validate(profile);
-      mutate(getUserProfileUri(username.value, null), { ...userProfile, ...createOriginalProfileObject(profile)}, false);
-            
-      await fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(profile),
-      });      
+      mutate(getUserProfileUri(username.value, null), { ...userProfile, ...createOriginalProfileObject(profile) }, false);
+
+      await refreshToken()
+        .then(() =>
+          fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(profile),
+          }));
 
       mutate(getUserProfileSummaryUri(username.value));
     } catch (error) {
-      
+
     }
   }
 
   const validate = (p) => {
     profile?.educations?.map((e) => {
-      if(!e.from){
+      if (!e.from) {
         e.from = null;
       }
-      if(!e.to){
+      if (!e.to) {
         e.to = null;
       }
     });
 
     profile?.exhibitions?.map((e) => {
-      if(!e.from){
+      if (!e.from) {
         e.from = null;
       }
-      if(!e.to){
+      if (!e.to) {
         e.to = null;
       }
     });
@@ -129,39 +133,39 @@ export default function EditProfileDialog({ userProfile }) {
           rounded
           startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}>
-           <div className={s.editButtonText}> {t('editProfile')}</div>
+          <div className={s.editButtonText}> {t('editProfile')}</div>
         </Button>
       </div>
-      
+
       <Dialog
-       open={openEdit}
-       onClose={cancel}
-       maxWidth="md"
-       aria-labelledby="artwork-modal-title"
-       aria-describedby="artwork-modal-description"
-       >
+        open={openEdit}
+        onClose={cancel}
+        maxWidth="md"
+        aria-labelledby="artwork-modal-title"
+        aria-describedby="artwork-modal-description"
+      >
         <DialogTitle>{t('editProfile')}</DialogTitle>
         <DialogContent>
           <form className={s.form}>
             <div className={s.flexColumn}>
-              <TextField 
-                label={t('title')} 
-                defaultValue={profile.title} 
+              <TextField
+                label={t('title')}
+                defaultValue={profile.title}
                 onChange={(event) => setProfile({ ...profile, title: event.target.value })} />
 
-              <TextField 
-                label={t('headline')} 
+              <TextField
+                label={t('headline')}
                 defaultValue={profile.headline}
                 multiline
                 onChange={(event) => setProfile({ ...profile, headline: event.target.value })} />
 
-              <TextField 
-                label={t('location')} 
-                defaultValue={profile.location} 
+              <TextField
+                label={t('location')}
+                defaultValue={profile.location}
                 onChange={(event) => setProfile({ ...profile, location: event.target.value })} />
 
-              <TextField 
-                label={t('aboutMe')} 
+              <TextField
+                label={t('aboutMe')}
                 defaultValue={profile.about}
                 multiline
                 onChange={(event) => setProfile({ ...profile, about: event.target.value })} />
@@ -185,18 +189,18 @@ export default function EditProfileDialog({ userProfile }) {
         </DialogContent>
         <DialogActions>
           <Button
-            variant="text" 
+            variant="text"
             color="primary"
-            disableElevation 
+            disableElevation
             rounded
             onClick={cancel}
           >
             {capitalizeFirst(t('common:words.cancel'))}
           </Button>
           <Button
-            variant="contained" 
+            variant="contained"
             color="primary"
-            disableElevation 
+            disableElevation
             rounded
             onClick={makeChanges}
           >
@@ -204,7 +208,7 @@ export default function EditProfileDialog({ userProfile }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </>  
+    </>
   );
 }
 
@@ -248,12 +252,12 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     About: userProfile?.about,
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,
-    Educations: userProfile?.educations?.map(e => ({ 
+    Educations: userProfile?.educations?.map(e => ({
       From: e.from ? e.from : false,
       To: e.to ? e.to : false,
       Name: e.name,
     })),
-    Exhibitions: userProfile?.exhibitions?.map(e => ({ 
+    Exhibitions: userProfile?.exhibitions?.map(e => ({
       From: e.from ? e.from : false,
       To: e.to ? e.to : false,
       Name: e.name,

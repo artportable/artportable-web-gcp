@@ -23,6 +23,7 @@ import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArt
 import { Artwork } from "../app/models/Artwork";
 import Head from 'next/head';
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
+import usePostLike from "../app/hooks/dataFetching/usePostLike";
 
 
 export default function DiscoverPage() {
@@ -40,6 +41,8 @@ export default function DiscoverPage() {
 
   const tags = useGetTags();
   const rowWidth = useMainWidth().wide
+
+  const {like} = usePostLike();
 
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const [selectedTags, setSelectedTags] = useState(null);
@@ -106,24 +109,9 @@ export default function DiscoverPage() {
     setSearchQueryArt(searchQuery);
   }
 
-  function like(artworkId, isLike) {
+function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
-
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?mySocialId=${socialId.value}`, {
-      method: isLike ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    like(artworkId, isLike, socialId.value, token);
   }
 
   function a11yProps(index: any) {
@@ -179,7 +167,7 @@ export default function DiscoverPage() {
                     artworks={artworks}
                     tags={tags?.data}
                     onFilter={filter}
-                    onLike={like}
+                    onLike={likeArtwork}
                     rowWidth={rowWidth}
                     loadMoreElementRef={loadMoreArtworksElementRef}
                     isLoading={isLoadingArtWorks}
