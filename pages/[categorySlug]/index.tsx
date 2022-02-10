@@ -69,11 +69,11 @@ export default function CategoryPage({ category }: { category: Category }) {
                 </Link>
                 {/* <Typography className={s.categoryHeadingSecondary} component="h1" variant={'h3'}> */}
 
-                <a href="https://old.artportable.com/stories/" target="blank">
+                {/* <a href="https://old.artportable.com/stories/" target="blank">
                   <MuiButton color="default" size="large">
                     {t('earlierArticles')}
                   </MuiButton>
-                </a>
+                </a> */}
 
 
 
