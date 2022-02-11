@@ -1,40 +1,31 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from '../styles/index.css';
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
 import { Box, Tab, Tabs } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
-import DiscoverArt from "../app/components/DiscoverArt/DiscoverArt";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
-import { isNullOrUndefined } from "../app/utils/util";
-import { useInfiniteScrollWithKey } from "../app/hooks/useInfiniteScroll";
 import IndexHero from "../app/components/IndexHero/IndexHero";
-import { TokenContext } from "../app/contexts/token-context";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
-import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
 import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
-import { Artwork } from "../app/models/Artwork";
 import Head from 'next/head';
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
-import usePostLike from "../app/hooks/dataFetching/usePostLike";
+import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 
 
 export default function DiscoverPage() {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
-  const token = useContext(TokenContext);
   const { username, socialId, isSignedIn } = useContext(UserContext);
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const dispatch = useDispatch();
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const discoverTab = store.getState()?.discover?.tab ?? 1;
   const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
@@ -42,14 +33,8 @@ export default function DiscoverPage() {
   const tags = useGetTags();
   const rowWidth = useMainWidth().wide
 
-  const {like} = usePostLike();
-
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
-  const [selectedTags, setSelectedTags] = useState(null);
-  const [searchQueryArt, setSearchQueryArt] = useState(null);
-  const loadMoreArtworksElementRef = useRef(null);
-  const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
-  
+
   const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
@@ -63,37 +48,7 @@ export default function DiscoverPage() {
     }
   }, [isSignedIn]);
 
-
-
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtworks(false);
-        return null;
-      }
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
-        selectedTags.forEach(tag => {
-          url.searchParams.append('tag', tag);
-        });
-        if (username.value != null && username.value != '') {
-          url.searchParams.append('myUsername', username.value);
-        }
-        if (searchQueryArt) {
-          url.searchParams.append('q', searchQueryArt);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "20");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, activeTab);
-
   const useWideLayout = activeTab === 0 || activeTab === 1;
-
-  useEffect(() => {
-    filter([]);
-  }, []);
 
   function setTab(value) {
     setActiveTab(value);
@@ -101,17 +56,6 @@ export default function DiscoverPage() {
       type: SET_TAB,
       payload: value
     });
-  }
-
-  function filter(tags: string[], searchQuery = "") {
-    setLoadMoreArtworks(true);
-    setSelectedTags(tags);
-    setSearchQueryArt(searchQuery);
-  }
-
-function likeArtwork(artworkId, isLike) {
-    redirectIfNotLoggedIn();
-    like(artworkId, isLike, socialId.value, token);
   }
 
   function a11yProps(index: any) {
@@ -128,11 +72,11 @@ function likeArtwork(artworkId, isLike) {
         <meta name="description" content={t('index:description')} />
         <meta name="url" content="https://artportable.com/" />
 
-        <meta property="og:title" content=""/>
+        <meta property="og:title" content="" />
         <meta property="og:description" content={t('index:description')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
-        <meta property="og:image" content="/images/artportable_tv_commercial.png"/>
+        <meta property="og:image" content="/images/artportable_tv_commercial.png" />
       </Head>
       {!loading &&
         <>
@@ -162,18 +106,11 @@ function likeArtwork(artworkId, isLike) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                {!tags?.isLoading && !tags?.isError && tags?.data &&
-                  <DiscoverArt
-                    artworks={artworks}
-                    tags={tags?.data}
-                    onFilter={filter}
-                    onLike={likeArtwork}
-                    rowWidth={rowWidth}
-                    loadMoreElementRef={loadMoreArtworksElementRef}
-                    isLoading={isLoadingArtWorks}
-                    loadMore={loadMoreArtworks}
-                  />
-                }
+                <DiscoverArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
                 <DiscoverTopArtistsTab
