@@ -10,6 +10,14 @@ import { TokenContext } from '../../contexts/token-context';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
+import { Lead, zapierLeadBasicConfirmed } from "../../utils/zapierLead" 
+import { UserContext } from "../../contexts/user-context";
+const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
+import { PriceData } from "../../../pages/plans";
+
+interface Props {
+  lead?: Lead;
+}
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -193,6 +201,19 @@ export default function CheckoutForm({ email, fullName, plan }) {
     
   }
 
+  const basicConfirmedZapier = () => {
+    
+  if (plan.product.toLowerCase() === 'portfolio') {
+    zapierLeadBasicConfirmed(lead={
+      name: {value: given_name.value + ' ' + family_name.value} ?? '',
+      phoneNumber: {value:phone.value} ?? '',
+      email: {value: email.value} ?? '',
+      product: 'portfolio',
+      type: {value: user_type.value} ?? ''
+    });
+  }
+  else return null;
+  }
   return (
     <>
       <div className={styles.cardElementContainer}>
