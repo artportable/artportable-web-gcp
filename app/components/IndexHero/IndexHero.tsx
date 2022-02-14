@@ -43,11 +43,12 @@ export default function IndexHero() {
   const images = [
     { name: "anders.malm", image: '/images/anders_malm.jpg', imageLink: "f08c9683-db20-44eb-bc83-e216e30af62f"},
     { name: "Gunilla.Iversen", image: '/images/gunilla_iversen.jpg', imageLink: "e63ed3be-25ea-4c73-ace3-5ff81ca66c77"},
-    { name: "hevius.rosalie", image: '/images/rosalie_hevius.jpg', imageLink: "29cb96df-fb4c-42ff-aad1-7e4237697239"},
-    { name: "ajohansson193", image: '/images/annamaria.jpg', imageLink: "88ae6dd6-04b0-49c8-a194-eb1fee7b82b4"},
+    { name: "Susanne", image: '/images/susanne_strandhall.jpg', imageLink: "06606dbe-5c60-445b-8187-743a9f589ff3"},
+    { name: "cecilia_bedoyaa", image: '/images/cecilia.jpg', imageLink: "5bd8753a-1a7b-4b8b-9ae1-c83c0f900844"},
     { name: "elsmarie.rannemalm", image: '/images/elsmarie_skymning.png', imageLink: "87eaeb65-98ff-4b30-9b22-632bc18fc1aa"},
-    { name: "malin.ekstrom", image: '/images/malin.jpg', imageLink: "fe4a6e67-fef2-4420-94d7-1738dce27f43"},
-  ];
+    { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
+    { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
+  ]
 
   useEffect(() => {
     const randomImageIndex = Math.floor(Math.random() * images.length);
@@ -62,7 +63,6 @@ export default function IndexHero() {
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
-
           <div className={s.left}>
             <Typography variant="h1" className={s.headline}>
               {t('header')}
@@ -70,13 +70,8 @@ export default function IndexHero() {
             <Typography variant="h4" className={s.description}>
               {t('subHeader')}
             </Typography>
-            {/* <div className={s.flexheaderButton}> */}
               <div className={s.headerButtonArtlover}>
-                {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
-                  {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
-                </Typography> */}
                 <Button
-                // {clsx(s.mobile, s.flexItem)}
                   classes={{
                     label: s.buttonLabel
                   }}
@@ -92,11 +87,6 @@ export default function IndexHero() {
                   })}>
                   {t('signUp')}
                 </Button>
-              {/* </div> */}
-               {/* <div className={s.headerButtonArtist}> */}
-               {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline} >
-                  {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
-                </Typography> */}
                 <Button
                   classes={{
                     label: s.buttonLabel
@@ -109,7 +99,6 @@ export default function IndexHero() {
                   {t('logIn')}
                 </Button>
               </div>
-            {/* </div> */}
           </div>
         
         <div className={s.right}>
@@ -117,7 +106,6 @@ export default function IndexHero() {
             {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
               :
               <>
-                {/* <Paper elevation={5}> */}
                   <Link href={`/art/${randomImage.imageLink}`}>
                     <a>
                       <img
@@ -127,8 +115,6 @@ export default function IndexHero() {
                         title={`${t("artworkFrom")} ${randomImage.username}`} />
                     </a>
                   </Link>
-
-                {/* </Paper> */}
                 <div className={s.createdBy}>
                   <Chip
                     onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
@@ -136,18 +122,12 @@ export default function IndexHero() {
                     classes={{
                       root: s.chip,
                     }}
-                    // avatar={
-                    //   <div className={s.chipAvatar}>
-                    //     <ProfileAvatar size={19} profilePicture={randomImage.profileImage} />
-                    //   </div>
-                    // }
                     label={randomImage.username} />
                 </div>
               </>
             }
           </div>
           <div>
-            {/* <img className={s.sofaImage} src="/images/soffa-cropped-landing-hero.png"></img> */}
           </div>
         </div>
       </div>
