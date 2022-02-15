@@ -2,7 +2,7 @@
 import { SET_TAB } from '../actions/discoverActions';
 
 const initialDiscoverState = {
-  tab: 1
+  tab: 0
 };
 
 
