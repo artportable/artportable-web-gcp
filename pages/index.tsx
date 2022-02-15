@@ -18,6 +18,7 @@ import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArt
 import Head from 'next/head';
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
+import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
 
 
 export default function DiscoverPage() {
@@ -48,7 +49,7 @@ export default function DiscoverPage() {
     }
   }, [isSignedIn]);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1;
+  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2;
 
   function setTab(value) {
     setActiveTab(value);
@@ -91,6 +92,7 @@ export default function DiscoverPage() {
               variant={"scrollable"}
               scrollButtons={"on"}
             >
+              <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))}/>
               <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
               <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
               <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
@@ -99,32 +101,39 @@ export default function DiscoverPage() {
             </Tabs>
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
-                <DiscoverTopArtTab
+                <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <DiscoverArtTab
+                <DiscoverTopArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
+                <DiscoverArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverTopArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={4}>
                 <DiscoverMonthlyArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
