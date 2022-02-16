@@ -8,7 +8,7 @@ export interface Lead {
   phoneNumber: any;
   email: any;
   type: any;
-  product: "portfolioPremium" | "portfolio" | "free"
+  product: any
 } 
 
 export interface PremiumLead {
