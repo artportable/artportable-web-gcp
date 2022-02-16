@@ -89,7 +89,7 @@ export default function Plans({ priceData }) {
             product: "free",
             type: "artist"
           });
-        router.push('/feed')
+        router.push('/')
         break
       case 'portfolio':
         trackGoogleAnalytics(ActionType.SIGN_UP_PORTFOLIE_COMPLETED, CategoryType.BUY);
@@ -111,7 +111,7 @@ export default function Plans({ priceData }) {
           email: { value: email.value } ?? '',
           url: window.location.href
         });
-        router.push('/feed')
+        router.push('/')
         break
     }
   }
