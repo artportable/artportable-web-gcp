@@ -9,7 +9,6 @@ import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next'
-import { Description } from '@material-ui/icons';
 
 export default function ArticlePage({ article }: { article: Article }) {
 
@@ -122,11 +121,11 @@ export default function ArticlePage({ article }: { article: Article }) {
 
 export async function getStaticProps(context) {
   const { locale, params, preview } = context;
-  let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.categorySlug}${preview ? '&_publicationState=preview' : ''}`)
+  let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.slug}${preview ? '&_publicationState=preview' : ''}`)
   var articles = await res.json()
   var article: Article = articles.find((article: Article) => article.locale == locale);
   if (article == null) {
-    let categoryRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.categorySlug}`)
+    let categoryRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}`)
     if (!categoryRes.ok) {
       return {
         notFound: true,
@@ -153,7 +152,7 @@ export async function getStaticProps(context) {
     }
   }
 
-  if (article.publishCategory.slug !== params.categorySlug && locale === article.locale) {
+  if (article.publishCategory.slug !== params.slug && locale === article.locale) {
     return {
       redirect: {
         destination: `/${article.publishCategory.slug}/${article.slug}`,
@@ -184,7 +183,7 @@ export async function getStaticPaths() {
 
   // Get the paths we want to pre-render based on posts
   const paths = articles.map((article: Article) => ({
-    params: { categorySlug: article.publishCategory.slug, articleSlug: article.slug }, locale: article.locale
+    params: { slug: article.publishCategory.slug, articleSlug: article.slug }, locale: article.locale
   }))
 
   // We'll pre-render only these paths at build time.

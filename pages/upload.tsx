@@ -25,9 +25,10 @@ import { isNullOrUndefined } from '../app/utils/util';
 import { Membership } from '../app/models/Membership';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
 import useRefreshToken from '../app/hooks/useRefreshToken';
+import { getNavBarItems } from '../app/utils/getNavBarItems';
 
 
-export default function UploadArtworkPage() {
+export default function UploadArtworkPage({navBarItems}) {
   const s = styles();
   const { t } = useTranslation(['upload']);
   const router = useRouter();
@@ -234,7 +235,7 @@ export default function UploadArtworkPage() {
   };
 
   return (
-    <Main>
+    <Main navBarItems={navBarItems}>
       <div className={s.mainGrid}>
 
         {isDesktop ? <>
@@ -363,9 +364,12 @@ export default function UploadArtworkPage() {
 }
 
 export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
+      navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['header', 'footer', 'upload', 'tags', 'support', 'common', 'plans']),
-    }
+    },
+    revalidate: 60,
   };
 }

@@ -19,9 +19,10 @@ import Head from 'next/head';
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
+import {getNavBarItems } from "../app/utils/getNavBarItems";
 
 
-export default function DiscoverPage() {
+export default function DiscoverPage({navBarItems}) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
@@ -31,7 +32,6 @@ export default function DiscoverPage() {
   const discoverTab = store.getState()?.discover?.tab ?? 1;
   const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
 
-  const tags = useGetTags();
   const rowWidth = useMainWidth().wide
 
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
@@ -67,7 +67,7 @@ export default function DiscoverPage() {
   }
 
   return (
-    <Main noHeaderPadding wide={useWideLayout} isShow={false}>
+    <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
       <Head>
         <meta name="title" content={t('index:title')} />
         <meta name="description" content={t('index:description')} />
@@ -148,9 +148,12 @@ export default function DiscoverPage() {
 }
 
 export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
+      navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['art', 'header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar', 'support', 'articles']),
-    }
+    },
+    revalidate: 60,
   };
 }

@@ -25,6 +25,7 @@ import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/Pu
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
+import { getNavBarItems } from "../../app/utils/getNavBarItems";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -34,6 +35,7 @@ export default function ArtworkPage(props) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const staticArtwork = props.artwork;
+  const navBarItems = props.navBarItems;
 
   const { id } = router.query
   const { username, socialId } = useContext(UserContext);
@@ -105,7 +107,7 @@ export default function ArtworkPage(props) {
     isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
 
   return (
-    <Main wide>
+    <Main wide navBarItems={navBarItems}>
       <Head>
         <meta property="og:title" content={staticArtwork?.Title} />
         <meta property="og:description" content={staticArtwork?.Description} />
@@ -282,6 +284,7 @@ export default function ArtworkPage(props) {
 export async function getStaticProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
+  const navBarItems = await getNavBarItems(); 
 
   try {
     const artworkResponse = await fetch(url.href);
@@ -289,6 +292,7 @@ export async function getStaticProps({ locale, params }) {
 
     return {
       props: {
+        navBarItems: navBarItems,
         artwork,
         locale: locale,
         ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
@@ -301,6 +305,7 @@ export async function getStaticProps({ locale, params }) {
 
   return {
     props: {
+      navBarItems: navBarItems,
       artwork: { Id: params.id },
       locale: locale,
       ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
