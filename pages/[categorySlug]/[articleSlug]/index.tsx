@@ -21,7 +21,7 @@ export default function ArticlePage({ article }: { article: Article }) {
   return (
     <Main>
       <Head>
-        <title />
+        <meta name="title" content={article?.title} />
         <meta name="description" content={article?.description} />
         <meta property="og:title" content={article?.title} />
         <meta property="og:description" content={article?.description} />
