@@ -1,7 +1,7 @@
 import { Localization } from "./Localization";
 
 export interface NavBarItem {
-  title: string;
+  menuTitle: string;
   slug: string;
   locale: string;
 }

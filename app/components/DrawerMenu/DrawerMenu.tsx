@@ -108,7 +108,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
                       <Link href={'/' + item.slug} passHref key={index}>
                         <a>
                           <ListItem button className={s.nested} onClick={() => close()}>
-                            <ListItemText primary={item.title} />
+                            <ListItemText primary={item.menuTitle} />
                           </ListItem>
                         </a>
                       </Link>

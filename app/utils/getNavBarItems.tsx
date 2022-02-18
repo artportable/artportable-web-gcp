@@ -6,7 +6,7 @@ export const getNavBarItems = async () => {
   if (productlists)
     return productlists.map((productList) => ({
       slug: productList.slug,
-      title: productList.title,
+      menuTitle: productList.menuTitle,
       locale: productList.locale
     }))
 
