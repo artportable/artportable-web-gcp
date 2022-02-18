@@ -99,16 +99,14 @@ export default function Header() {
               {(isSignedIn.value) &&
                 <MuiButton classes={{ root: s.feed }} color="secondary" size="large">
                   <Link href="/feed">
-                    MITT KONSTNÄTVERK
-                    {/* {t('myArtNetwork')} */}
+                    {t('myArtNetwork')}
                   </Link>
                 </MuiButton>
               }
               <Link href="/artiklar" passHref>
                 <a>
                   <MuiButton color="secondary" size="large">
-                    ARTIKLAR
-                    {/* {t('stories')} */}
+                    {t('stories')}
                   </MuiButton>
                 </a>
               </Link>
