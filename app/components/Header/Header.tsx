@@ -33,7 +33,7 @@ import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
 
-export default function Header() {
+export default function Header({navBarItems}) {
   const { t } = useTranslation(['header', 'support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -129,7 +129,6 @@ export default function Header() {
                 className={s.signUp}
                   size="small"
                   variant="outlined"
-                  color="black"
                   disableElevation
                   rounded
                   onClick={() => keycloak.register({
@@ -141,7 +140,6 @@ export default function Header() {
                 <Button
                   size="small"
                   variant="outlined"
-                  color="black"
                   disableElevation
                   rounded
                   onClick={() => keycloak.login({ locale: router.locale })}>
@@ -177,7 +175,6 @@ export default function Header() {
                             className={s.uploadButton}
                             size="small"
                             variant="outlined"
-                            color="black"
                             disableElevation
                             rounded>
                             {t('upload')}
@@ -229,7 +226,7 @@ export default function Header() {
               <I18nSelector></I18nSelector>
             </div> */}
           </div>
-          <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages}></DrawerMenu>
+          <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages} navBarItems={navBarItems}></DrawerMenu>
         </Toolbar>
       </AppBar>
       {globalIsLoading &&

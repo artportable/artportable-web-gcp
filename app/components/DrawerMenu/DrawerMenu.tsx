@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse, Divider} from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse, Divider } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
@@ -22,7 +22,7 @@ import { Locales, DisplayLocales } from '../../models/i18n/locales'
 import Upgrade from './Upgrade'
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 
-export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
+export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarItems }) {
   const { t } = useTranslation(['header', 'common', 'support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -32,12 +32,18 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   const signUpRedirectHref = useSignupRedirectHref();
   const [openLanguage, setOpenopenLanguage] = useState(false);
   const displayLocale = router.locale === Locales.sv ?
-  DisplayLocales.sv : DisplayLocales.en;
+    DisplayLocales.sv : DisplayLocales.en;
 
   const close = () => setOpen(false);
 
   const [openContact, setOpenContact] = useState(false);
   const [openUpgrade, setOpenUpgrade] = useState(false);
+  const [openListingPages, setOpenListingPages] = useState(false);
+
+  function handleClickListingPages(event) {
+    setOpenListingPages(!openListingPages);
+    event.stopPropagation();
+  }
 
   function handleClickLanguage(event) {
     setOpenopenLanguage(!openLanguage);
@@ -45,15 +51,15 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
   };
 
   function handleCloseLanguage(_, locale?: Locales) {
-    if(locale !== undefined) {
+    if (locale !== undefined) {
       router.push(router.asPath, null, { locale: locale });
     }
-  } 
+  }
   const handleClickContact = () => {
     setOpenContact(true);
   };
 
-  const handleCloseContact= () => {
+  const handleCloseContact = () => {
     setOpenContact(false);
   };
 
@@ -63,10 +69,10 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
 
   const handleCloseUpgrade = () => {
     setOpenUpgrade(false);
-  }; 
+  };
 
   return (
-    <Drawer classes={{ paper: s.container }} anchor="right" open={open} onClose={() => close()}>
+    <Drawer classes={{ paper: s.container }} anchor="right" open={open} onClose={() => close()} ModalProps={{ keepMounted: true, }}>
       <div className={s.closeButtonFlex}>
         <IconButton aria-label="close menu" onClick={() => close()} className={s.closeButton}>
           <CloseIcon style={{ fontSize: '30px' }} />
@@ -80,42 +86,71 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             </ListItem>
           </Link>
         }
-        
+
         <Link href="/" passHref>
-          <ListItem button divider onClick={() => close()}>
-            <ListItemText primary={t('discover')} />
-          </ListItem>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('discover')} />
+            </ListItem>
+          </a>
         </Link>
+        {navBarItems && navBarItems.length > 0 &&
+          <div>
+            <ListItem button onClick={handleClickListingPages}>
+              <ListItemText primary={t('productLists')} />
+              {openListingPages ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+            <Collapse in={openListingPages} timeout="auto">
+              <List component="div" disablePadding >
+                {navBarItems.map((item, index) => {
+                  if (item.locale == router.locale)
+                    return (
+                      <Link href={'/' + item.slug} passHref key={index}>
+                        <a>
+                          <ListItem button className={s.nested} onClick={() => close()}>
+                            <ListItemText primary={item.title} />
+                          </ListItem>
+                        </a>
+                      </Link>
+                    )
+                })}
+              </List>
+            </Collapse>
+            <Divider />
+          </div>
+        }
         <Link href="/artiklar" passHref>
-          <ListItem button divider onClick={() => close()}>
-            <ListItemText primary={t('stories')} />
-          </ListItem>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('stories')} />
+            </ListItem>
+          </a>
         </Link>
         {/* <a href="https://old.artportable.com/stories/" target="blank" className={s.articleLink}>
           <ListItem button divider>
             <ListItemText primary={t('stories')} />
           </ListItem>
         </a> */}
-          <ListItem button divider onClick={handleClickContact} >
-            <ListItemText primary={t('contactUs')} />
-          </ListItem >
-          <DialogConstruction 
-            openContact={openContact}
-            handleClose={handleCloseContact} />
-          
+        <ListItem button divider onClick={handleClickContact} >
+          <ListItemText primary={t('contactUs')} />
+        </ListItem >
+        <DialogConstruction
+          openContact={openContact}
+          handleClose={handleCloseContact} />
+
         {isSignedIn.value ?
           <>
-          {(membership.value < Membership.Portfolio) &&       
-            <div>
-            <ListItem button divider onClick={() => { handleClickUpgrade(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
-              <ListItemText primary={t('upgrade')} />
-              </ListItem > 
-              <Upgrade
-                openUpgrade={openUpgrade}
-                handleCloseUpgrade={handleCloseUpgrade} />
-              
-              </div>    
-            }      
+            {(membership.value < Membership.Portfolio) &&
+              <div>
+                <ListItem button divider onClick={() => { handleClickUpgrade(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
+                  <ListItemText primary={t('upgrade')} />
+                </ListItem >
+                <Upgrade
+                  openUpgrade={openUpgrade}
+                  handleCloseUpgrade={handleCloseUpgrade} />
+
+              </div>
+            }
             {(membership.value > Membership.Base) &&
               <Link href="/upload" passHref>
                 <ListItem button divider onClick={() => close()}>
@@ -126,7 +161,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
                 </ListItem>
               </Link>
             }
-            
+
             <Link href="/messages" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
@@ -165,16 +200,16 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
               <ListItemText primary={t('login')} />
             </ListItem>
           </>
-          
+
         }
         <div className={s.languageElement}>
           <ListItem button onClick={handleClickLanguage}>
             <ListItemText primary={displayLocale} />
-              {openLanguage ? <ExpandLess /> : <ExpandMore />}
+            {openLanguage ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={openLanguage} timeout="auto" unmountOnExit>
+          <Collapse in={openLanguage} timeout="auto">
             <List component="div" disablePadding >
-            <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.sv)}>
+              <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.sv)}>
                 <ListItemText primary={t('swedish')} />
               </ListItem>
               <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.en)}>
@@ -183,7 +218,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages }) {
             </List>
           </Collapse>
           <Divider />
-          </div>
+        </div>
       </List>
     </Drawer>
   );

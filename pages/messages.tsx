@@ -15,10 +15,11 @@ import { Alert } from '@material-ui/lab';
 import { UserContext } from '../app/contexts/user-context';
 import clsx from 'clsx';
 import { ChatClientContext } from '../app/contexts/chat-context';
+import { getNavBarItems } from '../app/utils/getNavBarItems';
 
 export default function MessagesPage(props) { 
   const { t } = useTranslation(['messages']);
-  const { referTo, artwork } = props;
+  const { referTo, artwork, navBarItems } = props;
   const { username, socialId } = useContext(UserContext);
   const [referToChannel, setReferToChannel] = useState(null);
   const [artworkMessage, setArtworkMessage] = useState(artwork);
@@ -82,7 +83,7 @@ export default function MessagesPage(props) {
   }
 
   return (
-    <Main noHeaderPadding wide>
+    <Main noHeaderPadding wide navBarItems={navBarItems}>
       <div className="messages__main-container">
         {(chatClient && chatClient.user) &&
           <Chat client={chatClient} theme={`messaging ${theme}`} >
@@ -130,7 +131,9 @@ export default function MessagesPage(props) {
 }
 
 export async function getServerSideProps({ locale, query }) {
+  const navBarItems = await getNavBarItems(); 
   var props = {
+    navBarItems: navBarItems,
     ...await serverSideTranslations(locale, ['header', 'footer', 'messages', 'tags', 'support', 'plans']),
   };
 
@@ -143,6 +146,7 @@ export async function getServerSideProps({ locale, query }) {
 
   //you can make DB queries using the data in context.query
   return {
-    props
+    props,
+    revalidate: 60,
   };
 }

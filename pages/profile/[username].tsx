@@ -50,6 +50,7 @@ import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/Pu
 import usePostLike from '../../app/hooks/dataFetching/usePostLike';
 import useRefreshToken from '../../app/hooks/useRefreshToken';
 import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
+import { getNavBarItems } from '../../app/utils/getNavBarItems';
 
 function a11yProps(index: any) {
   return {
@@ -72,7 +73,7 @@ export default function Profile(props) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const staticUserProfile = props.profile;
+  const {navBarItems, profile: staticUserProfile} = props;
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -318,9 +319,12 @@ export default function Profile(props) {
   }
 
   return (
-    <Main>
+    <Main navBarItems={navBarItems}>
       <Head>
-        <meta property="og:title" content={staticUserProfile?.Username} />
+        <meta name="title" content={staticUserProfile?.Name + ' ' + staticUserProfile?.Surname} />
+        <meta name="description" content={staticUserProfile?.Headline} />
+
+        <meta property="og:title" content={staticUserProfile?.Name + ' ' + staticUserProfile?.Surname} />
         <meta property="og:description" content={staticUserProfile?.Headline} />
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
@@ -552,10 +556,11 @@ export async function getStaticProps({ locale, params }) {
   try {
     const profileResponse = await fetch(url.href);
     const profile = await profileResponse.json();
-
+    const navBarItems = await getNavBarItems(); 
     return {
       props: {
-        profile,
+        navBarItems: navBarItems,
+        profile: profile,
         locale: locale,
         ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
       },

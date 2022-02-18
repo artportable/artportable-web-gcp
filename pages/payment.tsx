@@ -5,23 +5,27 @@ import React from "react";
 import PaymentPremium from "../app/components/Payments/PaymentPremium";
 import { styles } from '../styles/payment.css';
 import Main from "../app/components/Main/Main";
+import { getNavBarItems } from "../app/utils/getNavBarItems";
 
-export default function Payment(props) {
+export default function Payment(navBarItems) {
 
   const s = styles();
 
 
   return (
-    <Main>
+    <Main navBarItems={navBarItems}>
     <PaymentPremium />
     </Main>
   );
 }
 
 export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
+      navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans', 'payment', 'checkout']),
-    }
+    },
+    revalidate: 60,
   }
 }

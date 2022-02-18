@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { rowGap, columnGap } from '../app/utils/styleUtils';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({

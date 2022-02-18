@@ -18,6 +18,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     name: {
       textAlign: 'center',
+      fontWeight: 500, 
+      fontFamily: 'LyonDisplay',
+      fontSize: '1.35rem',
+      lineHeight: '1.235'
     },
     location: {
       display: 'flex',
