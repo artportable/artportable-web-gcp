@@ -99,14 +99,14 @@ export default function Header({navBarItems}) {
               {(isSignedIn.value) &&
                 <MuiButton classes={{ root: s.feed }} color="secondary" size="large">
                   <Link href="/feed">
-                    {t('myArtNetwork')}
+                    {t('myArtNetwork').toUpperCase()}
                   </Link>
                 </MuiButton>
               }
               <Link href="/artiklar" passHref>
                 <a>
                   <MuiButton color="secondary" size="large">
-                    {t('stories')}
+                    {t('stories').toUpperCase()}
                   </MuiButton>
                 </a>
               </Link>
