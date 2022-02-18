@@ -65,7 +65,7 @@ export const zapierLeadBasicConfirmed  = async (lead: Lead): Promise<Response> =
     const FormRequest = JSON.stringify({
       "request": {
         "requester": {
-         
+          ...lead
         },
       }
     });

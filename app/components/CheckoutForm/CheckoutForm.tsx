@@ -11,7 +11,7 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
 import { UserContext } from "../../contexts/user-context";
-
+import { zapierLeadBasicConfirmed } from '../../utils/zapierLead';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 const zapierBasicConfirmedApiUrl = process.env.NEXT_PUBLIC_ZAPIER_BASIC_CONFIRMED
@@ -73,30 +73,16 @@ export default function CheckoutForm({ email, fullName, plan }) {
       }
     }
   };
-  const zapierLeadBasicConfirmed = async () => {
 
-    try {
-      const FormRequest = JSON.stringify({
-        "request": {
-          "requester": {
-            name: 'putte tommy',
-            phoneNumber: 'söderberg',
-            email: 'mailadress',
-            product: 'portfolio',
-            type: 'art'
-          },
-        }
-      });
-      const response = await fetch(zapierBasicConfirmedApiUrl, {
-        method: 'POST',
-        body: FormRequest
-      });
-
-      return response;
-    } catch (error) {
-    }
-  }
-
+const confirmedPortfolio = () => {
+  zapierLeadBasicConfirmed({
+    name: { value: given_name.value + ' ' + family_name.value } ?? '',
+    phoneNumber: { value: phone.value } ?? '',
+    email: { email } ?? '',
+    product: 'portfolio',
+    type: { value: user_type.value } ?? ''
+  });
+}
   const handleChange = async (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
@@ -206,7 +192,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   useEffect(() => {
     if (countdown === 0) {
       clearInterval(countdownRef.current);
-      zapierLeadBasicConfirmed();
+      confirmedPortfolio();
       router.push("/success")
 
 
@@ -214,7 +200,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   }, [countdown]);
 
   const handleSuccessClose = () => {
-    zapierLeadBasicConfirmed();
+    confirmedPortfolio();
     router.push("/success")
 
   }
