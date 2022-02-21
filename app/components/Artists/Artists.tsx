@@ -11,16 +11,38 @@ const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P
 export default function artists() {
   const s = styles();
   const [data, setData] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [letters, setLetters] = useState([]);
 
   const fetchData = async () => {
     const resposne = await fetch(`${apiBaseUrl}/api/Artists`);
     const newData = await resposne.json();
-    setData(newData);
+    
     newData.sort((a, b) => {
-      if (a.Username < b.Username) return -1;
-      if( a.Username > b.Username) return +1;
+      if (a.Surname.toUpperCase() < b.Surname.toUpperCase()) return -1;
+      if( a.Surname.toUpperCase() > b.Surname.toUpperCase()) return +1;
     });
-    console.log(newData);
+    
+    var currentChar = '';
+    var sameLetterArtists = []
+    var a = []
+    var l = [] 
+    newData.map((user, i) => {
+      
+      if(user.Surname.slice(0,1).toUpperCase() != currentChar){
+        if(currentChar != ''){
+          a.push({currentChar, sameLetterArtists});
+          sameLetterArtists = []
+        }
+        currentChar = user.Surname.slice(0,1).toUpperCase();
+        l.push(currentChar)
+      }
+      sameLetterArtists.push(user);
+      if(i + 1 == newData.length)
+        a.push({currentChar, sameLetterArtists})
+    })
+    setLetters(l);
+    setArtists(a);
   }
 
   const handleClick = (id) => {
@@ -38,7 +60,38 @@ export default function artists() {
     return id;
   }
 
+  const listArtists = () => {
+    return artists.map(a => {
+      return (
+        <div id={a.currentChar}>
+            <Typography>
+              {a.currentChar}
+            </Typography>
+            {a.sameLetterArtists.map(artist => {
+              return(
+                <Link href={`/profile/@${artist.username}`} passHref>
+                  <a> 
+                    <Typography>
+                    {artist.Name + " " + artist.Surname}
+                    </Typography>
+                  </a>
+                </Link>
+              )
+            })}
+        </div>
+      )
+    })
+  }
 
+  const listLetters = () => {
+    return letters.map(l => {
+      return(
+        <a href={`#${l}`}>
+          {l}
+        </a>
+      )
+    })
+  }
 
   // const sort_storeName_alpha = ( a, b ) => {
   //   if(a.Username < b.Username) return -1
@@ -77,37 +130,14 @@ export default function artists() {
 
   return (
     <div>
-     <a href='#a' onClick={() => handleClick}>   a</a>
-     <a href='#b' onClick={() => handleClick}>   b</a>
-     <a href='#c' onClick={() => handleClick}>   c</a>
-     <a href='#d' onClick={() => handleClick}>   d</a>
-     <a href='#e' onClick={() => handleClick}>   e</a>
-     <a href='#f' onClick={() => handleClick}>   f</a>
-     <a href='#g' onClick={() => handleClick}>   g</a>
-     <a href='#h' onClick={() => handleClick}>   h</a>
-     <a href='#i' onClick={() => handleClick}>   i</a>
-     <a href='#j' onClick={() => handleClick}>   j</a>
-     <a href='#k' onClick={() => handleClick}>   k</a>
-     <a href='#l' onClick={() => handleClick}>   l</a>
-     <a href='#m' onClick={() => handleClick}>   m</a>
-     <a href='#n' onClick={() => handleClick}>   n</a>
-     <a href='#o' onClick={() => handleClick}>   o</a>
-     <a href='#p' onClick={() => handleClick}>   p</a>
-     <a href='#q' onClick={() => handleClick}>   q</a>
-     <a href='#r' onClick={() => handleClick}>   r</a>
-     <a href='#s' onClick={() => handleClick}>   s</a>
-     <a href='#t' onClick={() => handleClick}>   t</a>
-     <a href='#u' onClick={() => handleClick}>   u</a>
-     <a href='#v' onClick={() => handleClick}>   v</a>
-     <a href='#w' onClick={() => handleClick}>   w</a>
-     <a href='#x' onClick={() => handleClick}>   x</a>
-     <a href='#y' onClick={() => handleClick}>   y</a>
-     <a href='#z' onClick={() => handleClick}>   z</a>
-     <a href='#å' onClick={() => handleClick}>   å</a>
-     <a href='#ä' onClick={() => handleClick}>   ä</a>
-     <a href='#ö' onClick={() => handleClick}>   ö</a>
+      {
+        listLetters()
+      }
 
-     {data.map((user, index) => {
+      {
+        listArtists()
+      }
+     {/*data.map((user, index) => {
              const {Username, Surname, Name} = user;
      
              return ( 
@@ -124,7 +154,7 @@ export default function artists() {
                   <p>{Name} {Surname}</p>
                 </div>
               </article>
-            )})}
+             )})*/}
     </div>
   );
 }
