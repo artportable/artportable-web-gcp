@@ -11,19 +11,23 @@ import { useRouter } from 'next/router'
 import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
 import clsx from 'clsx';
 import { PriceData } from "../../../pages/plans";
+import PhoneInput from "../PhoneInput/PhoneInput";
 
 interface Props {
   priceData: PriceData[];
   landingPageMode?: boolean;
   showAll: boolean;
+  requirePhone: boolean; 
 }
 
-export default function PlanSelector({ priceData, landingPageMode, showAll = false }: Props) {
+export default function PlanSelector({ priceData, landingPageMode, showAll, requirePhone = false }: Props) {
   const { t } = useTranslation(['plans', 'common']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const signUpRedirectHref = useSignupRedirectHref();
+
+  requirePhone ? <PhoneInput /> : null
 
   const [paymentInterval, setPaymentInterval] = useState('year');
 
