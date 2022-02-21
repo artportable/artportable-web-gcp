@@ -19,8 +19,8 @@ export default function artists() {
     const newData = await resposne.json();
     
     newData.sort((a, b) => {
-      if (a.Surname.toUpperCase() < b.Surname.toUpperCase()) return -1;
-      if( a.Surname.toUpperCase() > b.Surname.toUpperCase()) return +1;
+      if (a.Name.toUpperCase() < b.Name.toUpperCase()) return -1;
+      if( a.Name.toUpperCase() > b.Name.toUpperCase()) return +1;
     });
     
     var currentChar = '';
@@ -29,12 +29,12 @@ export default function artists() {
     var l = [] 
     newData.map((user, i) => {
       
-      if(user.Surname.slice(0,1).toUpperCase() != currentChar){
+      if(user.Name.slice(0,1).toUpperCase() != currentChar){
         if(currentChar != ''){
           a.push({currentChar, sameLetterArtists});
           sameLetterArtists = []
         }
-        currentChar = user.Surname.slice(0,1).toUpperCase();
+        currentChar = user.Name.slice(0,1).toUpperCase();
         l.push(currentChar)
       }
       sameLetterArtists.push(user);
@@ -45,40 +45,25 @@ export default function artists() {
     setArtists(a);
   }
 
-  const handleClick = (id) => {
-    if (id == 's') {
-      id.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })}
-    if (id == 't') {
-      id = alphabet[19];
-      id.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })}
-    return id;
-  }
-
   const listArtists = () => {
     return artists.map(a => {
       return (
-        <div id={a.currentChar}>
-            <Typography>
-              {a.currentChar}
-            </Typography>
-            {a.sameLetterArtists.map(artist => {
-              return(
-                <Link href={`/profile/@${artist.username}`} passHref>
-                  <a> 
-                    <Typography>
-                    {artist.Name + " " + artist.Surname}
-                    </Typography>
-                  </a>
-                </Link>
-              )
-            })}
-        </div>
+          <div id={a.currentChar}>
+              <Typography className={s.letter}>
+                {a.currentChar}
+              </Typography>
+              {a.sameLetterArtists.map(artist => {
+                return(
+                  <Link href={`/profile/@${artist.Username}`} passHref>
+                    <a> 
+                      <Typography>
+                      {artist.Name + " " + artist.Surname}
+                      </Typography>
+                    </a>
+                  </Link>
+                )
+              })}
+          </div>
       )
     })
   }
@@ -86,75 +71,31 @@ export default function artists() {
   const listLetters = () => {
     return letters.map(l => {
       return(
-        <a href={`#${l}`}>
+        <a href={`#${l}`} className={s.letterList}>
           {l}
         </a>
       )
     })
   }
 
-  // const sort_storeName_alpha = ( a, b ) => {
-  //   if(a.Username < b.Username) return -1
-  //   if(b.Username < a.Username) return 1
-  //   return 0
-  // }
-  
-
-  
-
- // group the stores by initial letter
-    // produces a list of { initialLetter: 'A', stores: [ store1, store2, store3 ] }
-  //   let prevInitialLetter = null
-  //   let alphabeticList = data
-  //   .sort(sort_storeName_alpha)
-  //   .reduce(( groups, data ) => {
-  //       let myInitialLetter = data.Username
-  //       let belongsInNewGroup = myInitialLetter !== prevInitialLetter
-        
-  //       if(belongsInNewGroup) {
-  //           // create a new group and add this store as its first member
-  //           groups.push({ initialLetter: myInitialLetter, stores: [ data ] })
-  //       } else {
-  //           // add this store to the previous group
-  //           groups[groups.length - 1].stores.push(data)
-  //       }
-        
-  //       return groups
-  //  }, [])
-
-      
-
   useEffect(() => {
     fetchData();
   }, [])
 
   return (
-    <div>
-      {
-        listLetters()
-      }
-
-      {
-        listArtists()
-      }
-     {/*data.map((user, index) => {
-             const {Username, Surname, Name} = user;
-     
-             return ( 
-              <article key={Username} id='t'>
-      
-                <Link href={`/profile/@${Username}`}>
-                  <a>
-                    <Typography>
-                      <h2>{Username}</h2>
-                    </Typography>
-                  </a>
-                </Link>
-                <div>
-                  <p>{Name} {Surname}</p>
-                </div>
-              </article>
-             )})*/}
+    <div className={s.pagecontainer}>
+    
+      <div className={s.container}>
+        <div className={s.groupDiv}>
+          <div>
+            {listArtists()}
+          </div>
+        </div>
+      </div>
+        <div className={s.alphabetcontainer}>
+        {listLetters()}
+      </div>
+  
     </div>
   );
 }
