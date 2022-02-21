@@ -2,7 +2,7 @@ import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import Head from 'next/head';
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
-import { Tabs, Tab, Snackbar } from '@material-ui/core'
+import { Tabs, Tab, Snackbar, Typography } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
@@ -73,7 +73,7 @@ export default function Profile(props) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const {navBarItems, profile: staticUserProfile} = props;
+  const { articles, navBarItems, profile: staticUserProfile } = props;
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -427,8 +427,33 @@ export default function Profile(props) {
               </div>
             }
             <Divider className={s.divider}></Divider>
-
             <ArtistPriceSpan prices={artworkPrices} />
+
+            {articles &&
+              <div className={s.articles}>
+                {articles.map((article, key) => {
+                  return (
+                    <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
+                      <div>
+                        <img src={article?.coverImage?.formats?.small?.url} />
+                        <div>
+                          <div>
+                            {article.published_at.slice(0, -14)}
+                          </div>
+                          <Typography component="h2" variant={'h2'}>
+                            <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
+                              {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                            </Box>
+                          </Typography>
+                          <Typography variant={'subtitle1'}>{article.description}</Typography>
+                        </div>
+                      </div>
+
+                    </Link>
+                  )
+                })}
+              </div>
+            }
             {hasArtwork ?
               <div className={s.tabsContainer}>
                 <Tabs value={activeTab} onChange={handleTabChange} centered >
@@ -554,12 +579,18 @@ export async function getStaticProps({ locale, params }) {
   const username = split.length > 1 ? split[1] : null;
   const url = new URL(`${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`);
 
+  var articles = [];
+  let articleResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?artist_contains=${username}&_locale=${locale}`)
+  if (articleResponse.status === 200) {
+    articles = await articleResponse.json();
+  }
   try {
     const profileResponse = await fetch(url.href);
     const profile = await profileResponse.json();
-    const navBarItems = await getNavBarItems(); 
+    const navBarItems = await getNavBarItems();
     return {
       props: {
+        articles: articles,
         navBarItems: navBarItems,
         profile: profile,
         locale: locale,
@@ -573,6 +604,7 @@ export async function getStaticProps({ locale, params }) {
 
   return {
     props: {
+      articles: articles,
       locale: locale,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
     },

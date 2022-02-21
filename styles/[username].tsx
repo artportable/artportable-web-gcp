@@ -12,6 +12,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
         '\"      .              .      profile     .              actions\"       auto' +
         '\"   divider        divider   divider   divider       divider\"       auto' +
         '\"      .         priceSpan  priceSpan  priceSpan        .\"       auto' +
+        '\"     articles    articles   articles articles      articles\"       auto' +
         '\"     tabs           tabs      tabs     tabs           tabs\"       1fr' +
         '\"   divider2       divider2  divider2  divider2      divider2\"       auto' +
         '\"   portfolio      portfolio portfolio portfolio    portfolio\"       auto' +
@@ -35,7 +36,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
         margin: '0 0',
       },
     },
-
+    articles: {
+      gridArea: 'articles'
+    },
     messageButtonText: {
       display: 'none'
     },
