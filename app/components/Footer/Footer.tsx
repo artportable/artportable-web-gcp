@@ -107,6 +107,25 @@ export default function Footer() {
           </a>
         </Link>
       </div>
+
+
+      <div className={clsx(s.getInTouch, s.flexItem)}>
+        <Typography variant="subtitle2" component="div" className={s.links}>
+          {t('getInTouch')}
+        </Typography>
+        <Link href="/artists">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('artists')}
+            </Typography>
+          </a>
+        </Link>
+      </div>
+
+
+
+
+
       <div className={clsx(s.mobile, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
           {t('followUs')}

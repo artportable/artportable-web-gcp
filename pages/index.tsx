@@ -22,6 +22,7 @@ import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopAr
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
 import { Artwork } from "../app/models/Artwork";
 import Artist from "../app/models/Artist";
+import { id } from "date-fns/locale";
 
 
 export default function DiscoverPage() {
