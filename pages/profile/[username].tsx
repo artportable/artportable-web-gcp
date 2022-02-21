@@ -321,6 +321,7 @@ export default function Profile(props) {
   return (
     <Main navBarItems={navBarItems}>
       <Head>
+        <title>{staticUserProfile?.Name + ' ' + staticUserProfile?.Surname}</title>
         <meta name="title" content={staticUserProfile?.Name + ' ' + staticUserProfile?.Surname} />
         <meta name="description" content={staticUserProfile?.Headline} />
 
