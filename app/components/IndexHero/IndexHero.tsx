@@ -41,11 +41,12 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "anders.malm", image: '/images/anders_malm.jpg', imageLink: "f08c9683-db20-44eb-bc83-e216e30af62f"},
-    { name: "Gunilla.Iversen", image: '/images/gunilla_iversen.jpg', imageLink: "e63ed3be-25ea-4c73-ace3-5ff81ca66c77"},
-    { name: "Susanne", image: '/images/susanne_strandhall.jpg', imageLink: "06606dbe-5c60-445b-8187-743a9f589ff3"},
-    { name: "cecilia_bedoyaa", image: '/images/cecilia.jpg', imageLink: "5bd8753a-1a7b-4b8b-9ae1-c83c0f900844"},
-    { name: "elsmarie.rannemalm", image: '/images/elsmarie_skymning.png', imageLink: "87eaeb65-98ff-4b30-9b22-632bc18fc1aa"},
+    { name: "lagerzz", image: '/images/carl_lagercrantz.jpg', imageLink: "f928b439-841b-44a4-be72-033828016068"},
+    { name: "mike.eriksson", image: '/images/mike_eriksson.jpg', imageLink: "de2a5833-9bb9-431d-810c-7909894dd0d6"},
+    { name: "olle.brandqvist", image: '/images/olle_brandqvist.jpg', imageLink: "fccc1122-5a85-4caf-968a-9cfd239a5337"},
+    { name: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "b52807f2-8497-4722-b535-ad9a2cdfcf89"},
+    { name: "gunilla.svard", image: '/images/gunilla_svard_house.jpg', imageLink: "3b0b0caf-510f-4d91-a1f4-597866abca5f"},
+    { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
     { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
     { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
   ]
