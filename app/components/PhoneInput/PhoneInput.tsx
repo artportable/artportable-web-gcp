@@ -3,6 +3,8 @@ import Button from '../Button/Button'
 import { TextField } from "@material-ui/core";
 import { styles } from './phoneInput.css'
 import { useTranslation } from 'next-i18next'
+import { UserContext } from "../../contexts/user-context";
+
 
 interface PhoneNumber {
   phone: FormValue;
@@ -14,6 +16,7 @@ interface FormValue {
 export default function DialogConstruction() {
   const s = styles();
   const { t } = useTranslation(['header', 'common']);
+  const { phone } = useContext(UserContext);
 
   const [formData, setFormData] = useState<PhoneNumber>({
     phone: { value: '', error: false }
@@ -100,7 +103,9 @@ export default function DialogConstruction() {
 
   return (
     <div>
-        <TextField
+      {(phone.value === null) ?
+    <>
+    <TextField
           classes={{
             root: s.textField
           }}
@@ -123,6 +128,11 @@ export default function DialogConstruction() {
           disabled={formHasErrors || formUntouched}
           >
           {t('send')}</Button>
+          </>
+  :
+      null
+    }
+        
     </div>
   );
 }

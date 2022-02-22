@@ -17,7 +17,7 @@ interface Props {
   priceData: PriceData[];
   landingPageMode?: boolean;
   showAll: boolean;
-  requirePhone: boolean; 
+  requirePhone?: boolean; 
 }
 
 export default function PlanSelector({ priceData, landingPageMode, showAll, requirePhone = false }: Props) {

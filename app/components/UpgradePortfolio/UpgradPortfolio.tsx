@@ -83,7 +83,7 @@ export default function DialogConstruction() {
           // helperText={formData.email.error ? t('emailErrorMessage') : ''}
           />
       :
-          <PlanSelector showAll={false} priceData={priceData}></PlanSelector>
+          <PlanSelector showAll={false} priceData={priceData} requirePhone={true}></PlanSelector>
         }
         </DialogContent>
       </Dialog>
