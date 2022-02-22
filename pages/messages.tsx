@@ -146,7 +146,6 @@ export async function getServerSideProps({ locale, query }) {
 
   //you can make DB queries using the data in context.query
   return {
-    props,
-    revalidate: 60,
+    props
   };
 }
