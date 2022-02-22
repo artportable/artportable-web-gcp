@@ -18,4 +18,5 @@ export interface Article {
   authors?: Author[];
   categories?: Category[];
   localizations: Localization[];
+  artist?: string;
 }
