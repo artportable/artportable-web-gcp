@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
-import {Typography} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Main from '../Main/Main';
 import { styles } from "./artists.css";
 import { userInfo } from 'node:os';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Å","Ä","Ö"];
+const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Å", "Ä", "Ö"];
 
 export default function artists() {
   const s = styles();
@@ -17,29 +17,29 @@ export default function artists() {
   const fetchData = async () => {
     const resposne = await fetch(`${apiBaseUrl}/api/Artists`);
     const newData = await resposne.json();
-    
+
     newData.sort((a, b) => {
       if (a.Name.toUpperCase() < b.Name.toUpperCase()) return -1;
-      if( a.Name.toUpperCase() > b.Name.toUpperCase()) return +1;
+      if (a.Name.toUpperCase() > b.Name.toUpperCase()) return +1;
     });
-    
+
     var currentChar = '';
     var sameLetterArtists = []
     var a = []
-    var l = [] 
+    var l = []
     newData.map((user, i) => {
-      
-      if(user.Name.slice(0,1).toUpperCase() != currentChar){
-        if(currentChar != ''){
-          a.push({currentChar, sameLetterArtists});
+
+      if (user.Name.slice(0, 1).toUpperCase() != currentChar) {
+        if (currentChar != '') {
+          a.push({ currentChar, sameLetterArtists });
           sameLetterArtists = []
         }
-        currentChar = user.Name.slice(0,1).toUpperCase();
+        currentChar = user.Name.slice(0, 1).toUpperCase();
         l.push(currentChar)
       }
       sameLetterArtists.push(user);
-      if(i + 1 == newData.length)
-        a.push({currentChar, sameLetterArtists})
+      if (i + 1 == newData.length)
+        a.push({ currentChar, sameLetterArtists })
     })
     setLetters(l);
     setArtists(a);
@@ -48,29 +48,29 @@ export default function artists() {
   const listArtists = () => {
     return artists.map(a => {
       return (
-          <div id={a.currentChar}>
-              <Typography className={s.letter}>
-                {a.currentChar}
-              </Typography>
-              {a.sameLetterArtists.map(artist => {
-                return(
-                  <Link href={`/profile/@${artist.Username}`} passHref>
-                    <a> 
-                      <Typography>
-                      {artist.Name + " " + artist.Surname}
-                      </Typography>
-                    </a>
-                  </Link>
-                )
-              })}
-          </div>
+        <div id={a.currentChar}>
+          <Typography className={s.letter}>
+            {a.currentChar}
+          </Typography>
+          {a.sameLetterArtists.map(artist => {
+            return (
+              <Link href={`/profile/@${artist.Username}`} passHref>
+                <a>
+                  <Typography>
+                    {artist.Name + " " + artist.Surname}
+                  </Typography>
+                </a>
+              </Link>
+            )
+          })}
+        </div>
       )
     })
   }
 
   const listLetters = () => {
     return letters.map(l => {
-      return(
+      return (
         <a href={`#${l}`} className={s.letterList}>
           {l}
         </a>
@@ -84,7 +84,6 @@ export default function artists() {
 
   return (
     <div className={s.pagecontainer}>
-    
       <div className={s.container}>
         <div className={s.groupDiv}>
           <div>
@@ -92,16 +91,17 @@ export default function artists() {
           </div>
         </div>
       </div>
-        <div className={s.alphabetcontainer}>
+      <div className={s.alphabetcontainer}>
+        {/* <Typography className={s.alphabeticTypo}> */}
         {listLetters()}
+        {/* </Typography> */}
       </div>
-  
     </div>
   );
 }
 
 
-    {/* <h1>Artists</h1>
+{/* <h1>Artists</h1>
     // <nav>
     // <a href='#a' onClick={() => handleClick}>   a</a>
     // <a href='#b' onClick={() => handleClick}>   b</a>
