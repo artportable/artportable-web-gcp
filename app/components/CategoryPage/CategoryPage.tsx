@@ -41,17 +41,17 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                 }
               </div>
               <div className={s.menuFlex}>
-                <Link href="/artiklar">
+                <Link className={s.link} href="/artiklar">
                   <MuiButton color="default" size="large">
                     {t('latestMenu')}
                   </MuiButton>
                 </Link>
-                <Link href="/redaktionellt">
+                <Link className={s.link} href="/redaktionellt">
                   <MuiButton color="default" size="large">
                     {t('editorial')}
                   </MuiButton>
                 </Link>
-                <Link href="/konstnaersportraett">
+                <Link className={s.link} href="/konstnaersportraett">
                   <MuiButton color="default" size="large">
                     {t('artistPortrait')}
                   </MuiButton>
@@ -64,7 +64,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
               if (article.published_at)
                 return (
                   <div key={article.id}>
-                    <Link href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
+                    <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
                       <div className={s.wrapper}>
                         <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
                         <div className={s.textContent}>
