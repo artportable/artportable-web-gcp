@@ -28,6 +28,7 @@ export default function DiscoverPage({navBarItems}) {
   const store = useStore();
   const { username, socialId, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
 
   const discoverTab = store.getState()?.discover?.tab ?? 1;
   const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
@@ -78,6 +79,8 @@ export default function DiscoverPage({navBarItems}) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
         <meta property="og:image" content="/images/artportable_tv_commercial.png" />
+
+        <link rel="canonical" href={publicUrl} />
       </Head>
       {!loading &&
         <>
