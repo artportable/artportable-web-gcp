@@ -16,6 +16,7 @@ export default function ArticlePage({ article }: { article: Article }) {
   const s = styles();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(['articles']);
+  const canonicalURL = publicUrl + router.asPath
 
   return (
     <Main>
@@ -38,6 +39,7 @@ export default function ArticlePage({ article }: { article: Article }) {
             </>
           )
         })}
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {router.isFallback &&
         //implement good skeleton here

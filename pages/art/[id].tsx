@@ -36,6 +36,7 @@ export default function ArtworkPage(props) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const staticArtwork = props.artwork;
   const navBarItems = props.navBarItems;
+  const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query
   const { username, socialId } = useContext(UserContext);
@@ -109,11 +110,16 @@ export default function ArtworkPage(props) {
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
+        <title>{staticArtwork?.Title}</title>
+        <meta name="title" content={staticArtwork?.Title} />
+        <meta name="description" content={staticArtwork?.Description} />
         <meta property="og:title" content={staticArtwork?.Title} />
         <meta property="og:description" content={staticArtwork?.Description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
+
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       <div className={s.container}>
         <div className={s.backBtnContainer}>

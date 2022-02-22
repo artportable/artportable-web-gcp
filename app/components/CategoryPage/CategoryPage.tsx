@@ -12,6 +12,8 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const s = styles();
   const router = useRouter()
   const { t } = useTranslation(['articles']);
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const canonicalURL = publicUrl + router.asPath;
 
   return (
     <Main navBarItems={navBarItems}>
@@ -19,6 +21,8 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
         <meta name="title" content={t('title')} />
         <meta name="description" content={t('description')} />
         <meta name="url" content="https://artportable.com/artiklar" />
+
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {router.isFallback &&
         //implement good skeleton here

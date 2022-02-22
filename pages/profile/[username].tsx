@@ -74,6 +74,7 @@ export default function Profile(props) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const {navBarItems, profile: staticUserProfile} = props;
+  const canonicalURL = publicUrl + router.asPath;
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -330,6 +331,8 @@ export default function Profile(props) {
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
         <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
+        
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {isReady &&
         <>

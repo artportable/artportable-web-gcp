@@ -15,7 +15,7 @@ import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import Main from "../Main/Main";
 
 export default function ProductListPage({ productList, navBarItems }: { productList: ProductList, navBarItems: NavBarItem[] }) {
-  const router = useRouter()
+  const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const BaseUrl = process.env.NEXT_PUBLIC_URL;
   const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
@@ -24,14 +24,13 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   const { like } = usePostLike();
   const token = useContext(TokenContext);
   const { socialId } = useContext(UserContext);
-  const rowWidth = useMainWidth().wide
+  const rowWidth = useMainWidth().wide;
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const canonicalURL = publicUrl + router.asPath;
 
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
     like(artworkId, isLike, socialId, token);
-  }
-  function filter(tags: string[], searchQuery = "") {
-
   }
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
@@ -62,6 +61,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <meta property="og:url" content={BaseUrl+"/"+productList?.slug} />
         <meta property="og:image" content={productList?.ogImage?.formats?.medium?.url} />
 
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {router.isFallback &&
         //implement good skeleton here
