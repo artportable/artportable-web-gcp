@@ -151,18 +151,21 @@ export default function EditProfileDialog({ userProfile }) {
               <TextField
                 label={t('title')}
                 defaultValue={profile.title}
-                onChange={(event) => setProfile({ ...profile, title: event.target.value })} />
+                onChange={(event) => setProfile({ ...profile, title: event.target.value })}
+                inputProps={{ maxLength: 140 }} />
 
               <TextField
                 label={t('headline')}
                 defaultValue={profile.headline}
                 multiline
-                onChange={(event) => setProfile({ ...profile, headline: event.target.value })} />
+                onChange={(event) => setProfile({ ...profile, headline: event.target.value })}
+                inputProps={{ maxLength: 140 }} />
 
               <TextField
                 label={t('location')}
                 defaultValue={profile.location}
-                onChange={(event) => setProfile({ ...profile, location: event.target.value })} />
+                onChange={(event) => setProfile({ ...profile, location: event.target.value })}
+                inputProps={{ maxLength: 280 }} />
 
               <TextField
                 label={t('aboutMe')}

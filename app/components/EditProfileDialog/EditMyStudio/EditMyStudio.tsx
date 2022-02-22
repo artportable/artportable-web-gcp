@@ -60,12 +60,14 @@ export const EditMyStudio = ({ profile, setProfile }) => {
           <TextField 
             label={t('name')}
             defaultValue={profile?.myStudio?.Text}
-            onChange={(event) => setStudioName(event.target.value)} />
+            onChange={(event) => setStudioName(event.target.value)}
+            inputProps={{ maxLength: 140 }} />
 
           <TextField 
             label={t('place')}
             defaultValue={profile?.myStudio?.Location}
-            onChange={(event) => setStudioLocation(event.target.value)} />
+            onChange={(event) => setStudioLocation(event.target.value)}
+            inputProps={{ maxLength: 140 }} />
         </div>
       }
     </>
