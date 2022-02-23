@@ -78,9 +78,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     menuFlex: {
       display: 'none',
-      '&:hover': {
-        textDecoration: 'none',
-        },
       [theme.breakpoints.up('smPlus')]: {
         display: 'flex',
         flexDirection: 'row',
