@@ -51,12 +51,12 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   return (
     <Main wide={true} navBarItems={navBarItems}>
       <Head>
-        <title>{productList?.metaTitle}</title>
-        <meta name="title" content={productList?.metaTitle} />
-        <meta name="description" content={productList?.metaDescription} />
+        <title>{productList?.metaTitle ?? "Artportable"}</title>
+        <meta name="title" content={productList?.metaTitle ?? "Artportable"} />
+        <meta name="description" content={productList?.metaDescription ?? ""} />
 
-        <meta property="og:title" content={productList?.metaTitle} />
-        <meta property="og:description" content={productList?.metaDescription} />
+        <meta property="og:title" content={productList?.metaTitle ?? "Artportable"} />
+        <meta property="og:description" content={productList?.metaDescription ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={BaseUrl+"/"+productList?.slug} />
         <meta property="og:image" content={productList?.ogImage?.formats?.medium?.url} />

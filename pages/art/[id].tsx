@@ -110,11 +110,11 @@ export default function ArtworkPage(props) {
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
-        <title>{staticArtwork?.Title}</title>
-        <meta name="title" content={staticArtwork?.Title} />
-        <meta name="description" content={staticArtwork?.Description} />
-        <meta property="og:title" content={staticArtwork?.Title} />
-        <meta property="og:description" content={staticArtwork?.Description} />
+        <title>{staticArtwork?.Title ?? "Artportable"}</title>
+        <meta name="title" content={staticArtwork?.Title ?? "Artportable"} />
+        <meta name="description" content={staticArtwork?.Description ?? ""} />
+        <meta property="og:title" content={staticArtwork?.Title ?? "Artportable"} />
+        <meta property="og:description" content={staticArtwork?.Description ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />

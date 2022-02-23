@@ -12,7 +12,7 @@ export default function AvatarCard({ user }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   return (
-    <Link href={`/profile/@${user.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
+    <a href={`/profile/@${user.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
       <div className={s.container}>
         {user?.ProfilePicture ? (
           <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
@@ -41,6 +41,6 @@ export default function AvatarCard({ user }) {
           </div>
         }
       </div>
-    </Link>
+    </a>
   );
 }

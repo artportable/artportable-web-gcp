@@ -7,7 +7,7 @@ import AvatarCard from "../AvatarCard/AvatarCard";
 import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx'
 import { useRef } from "react";
-import { IconButton, Theme, useTheme, Link } from "@material-ui/core";
+import { IconButton, Theme, useTheme } from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { normalizeImageSize } from "../../utils/layoutUtils";
@@ -66,13 +66,13 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
           {images.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <Link href={`/art/${image.id}`}>
+                <a href={`/art/${image.id}`}>
                   <img src={`${bucketUrl}${image.Name}`}
                     alt={image.title}
                     width={image.Width}
                     height={image.Height}
                   />
-                </Link>
+                </a>
               </Paper>
             </div>
           )}

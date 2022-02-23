@@ -21,11 +21,11 @@ export default function ArticlePage({ article }: { article: Article }) {
   return (
     <Main>
       <Head>
-        <title>{article?.title}</title>
-        <meta name="title" content={article?.title} />
-        <meta name="description" content={article?.description} />
-        <meta property="og:title" content={article?.title} />
-        <meta property="og:description" content={article?.description} />
+        <title>{article?.title ?? "Artportable"}</title>
+        <meta name="title" content={article?.title ?? "Artportable"} />
+        <meta name="description" content={article?.description ?? ""} />
+        <meta property="og:title" content={article?.title ?? "Artportable"} />
+        <meta property="og:description" content={article?.description ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/${article?.publishCategory.name.toLowerCase()}/${article?.slug}`} />
         <meta property="og:image" content={article?.coverImage?.formats?.medium?.url} />
