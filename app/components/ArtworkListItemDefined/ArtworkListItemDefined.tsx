@@ -1,7 +1,6 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useContext, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
-import { Link } from "@material-ui/core";
 import { useRouter } from 'next/router'
 import { useTranslation } from "next-i18next"
 import { styles } from './artworkListItemDefined.css'
@@ -62,7 +61,7 @@ export default function ArtworkListItemDefined({
   return (
     <div title={artwork.Title} className={s.container}>
       <div className={s.imageContainer}>
-        <Link href={`/art/${artwork.Id}`}>
+        <a href={`/art/${artwork.Id}`}>
           <img
             style={{
               width: width,
@@ -71,7 +70,7 @@ export default function ArtworkListItemDefined({
             key={artwork?.PrimaryFile}
             src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
           />
-        </Link>
+        </a>
         {topActions &&
           <div className={s.editOverlay}>
             <div className={s.topActions}>
