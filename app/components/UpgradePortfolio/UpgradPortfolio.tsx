@@ -1,6 +1,6 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Button from '../Button/Button'
-import { Dialog, DialogActions, DialogContent, IconButton, Typography, Box, TextField } from "@material-ui/core";
+import { Dialog, DialogActions, DialogContent, IconButton, Typography, Box } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close'
 import { useTranslation } from 'next-i18next'
 import { styles } from './upgradPortfolio.css'
@@ -9,7 +9,6 @@ import { PriceData } from "../../../pages/plans";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
-import { UserContext } from '../../contexts/user-context';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -18,7 +17,6 @@ export default function DialogConstruction() {
   const s = styles();
   const { t } = useTranslation(['header', 'common']);
   const [open, setOpen] = useState(false);
-  const { phone } = useContext(UserContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,17 +24,17 @@ export default function DialogConstruction() {
 
   const handleClose = () => {
     setOpen(false);
-  };
+  }; 
   const [priceData, setPriceData] = useState<PriceData[]>(null)
 
   useEffect(() => {
     async function getPriceData() {
       try {
-        var response = await fetch(`${apiBaseUrl}/api/payments/prices`)
-        if (response.ok)
+          var response = await fetch(`${apiBaseUrl}/api/payments/prices`)
+          if (response.ok)
           (setPriceData(await response.json()))
-
-      } catch (e) {
+          
+      } catch(e) {
         console.log('Could not fetch price info', e);
       }
     }
@@ -49,9 +47,9 @@ export default function DialogConstruction() {
   return (
     <div>
       <div className={s.upgradeDesktopDiv}>
-        <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="black" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
-          {t('header:upgradeButton')}
-        </Button>
+      <Button className={s.upgradeButton} rounded size="small" variant="outlined" color="black" onClick={() => { handleClickOpen(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
+      {t('header:upgradeButton')}
+      </Button>
       </div>
       <Dialog
         open={open}
@@ -62,29 +60,11 @@ export default function DialogConstruction() {
         </IconButton>
         <Typography className={s.spacing} aria-label="close" variant="h2" align="center">
           <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
-            {t('header:upgradeHeading')}
+          {t('header:upgradeHeading')}
           </Box>
         </Typography>
         <DialogContent className={s.spacingBottom}>
-        {(phone.value === null) ?
-    
-        <TextField
-          classes={{
-            root: s.textField
-          }}
-          fullWidth
-          placeholder={t('email')}
-          required
-          variant="outlined"
-          // value={formData.email.value}
-          // error={formData.email.error}
-          // onChange={(e) => handleChange(e, 'email')}
-          // onBlur={(e) => validateFormValue(e.target.value, 'email')}
-          // helperText={formData.email.error ? t('emailErrorMessage') : ''}
-          />
-      :
-          <PlanSelector showAll={false} priceData={priceData} requirePhone={true}></PlanSelector>
-        }
+        <PlanSelector showAll={false} priceData={priceData}></PlanSelector>
         </DialogContent>
       </Dialog>
     </div>

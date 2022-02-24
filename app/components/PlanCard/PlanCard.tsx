@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Card, CardContent, Typography } from "@material-ui/core";
+import { Box, Card, CardContent, Typography, TextField } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,8 @@ import { PriceData } from "../../../pages/plans";
 import Dialog from '@material-ui/core/Dialog';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead" 
+import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead"
+import PhoneInput from "../PhoneInput/PhoneInput";
 
 interface Props {
   plan: PriceData;
@@ -51,6 +52,37 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
       ` / ${t(`common:words.${plan.recurringInterval}`)} (${t('common:words.vat')})`;
   }
+  const onClick = () => {
+    if (!phone.value === null) {
+      return (
+          <>
+          <TextField
+            //  classes={{
+            //    root: s.textField
+            //  }}
+            fullWidth
+            placeholder={t('email')}
+            required
+            variant="outlined"
+          //  value={formData.phone.value}
+          //  error={formData.phone.error}
+          //  onChange={(e) => handleChange(e, 'phone')}
+          //  onBlur={(e) => validateFormValue(e.target.value, 'phone')}
+          //  helperText={formData.phone.error ? t('phoneErrorMessage') : ''}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            rounded
+            onClick={() => onClick()}
+          //  disabled={formHasErrors || formUntouched}
+          >
+            {t('send')}</Button>
+        </>
+      )
+    } return onNavClick
+  }
 
   const onNavClick = () => {
     dispatch({
@@ -58,24 +90,26 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
       payload: { ...plan }
     });
     if (plan.product.toLowerCase() === 'free') {
+      onClick();
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
       var [userType, interval] = user_type.value.split('-');
-     if (userType === "artist")
-      return zapierLeadFreemium(lead={
-        name: {value: given_name.value + ' ' + family_name.value} ?? '',
-        phoneNumber: {value:phone.value} ?? '',
-        email: {value: email.value} ?? '',
+      if (userType === "artist")
+        onClick();
+      return zapierLeadFreemium(lead = {
+        name: { value: given_name.value + ' ' + family_name.value } ?? '',
+        phoneNumber: { value: phone.value } ?? '',
+        email: { value: email.value } ?? '',
         product: "free",
-        type: {value: user_type.value} ?? ''
+        type: { value: user_type.value } ?? ''
       });
     } else if (plan.product.toLowerCase() === 'portfolio') {
       trackGoogleAnalytics(ActionType.SIGN_UP_PORTFOLIE, CategoryType.BUY);
-      zapierLeadBasic(lead={
-        name: {value: given_name.value + ' ' + family_name.value} ?? '',
-        phoneNumber: {value:phone.value} ?? '',
-        email: {value: email.value} ?? '',
+      zapierLeadBasic(lead = {
+        name: { value: given_name.value + ' ' + family_name.value } ?? '',
+        phoneNumber: { value: phone.value } ?? '',
+        email: { value: email.value } ?? '',
         product: "portfolio",
-        type: {value: user_type.value} ?? ''
+        type: { value: user_type.value } ?? ''
       });
     }
     return true;
@@ -114,7 +148,8 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                       color="primary"
                       disableElevation
                       rounded
-                      onClick={() => onNavClick()}>
+                    // onClick={() => onClick()}
+                    >
                       {plan.product === 'free' ?
                         t('signUp') :
                         `${capitalizeFirst(t('common:words.choose'))} ${planName}`
