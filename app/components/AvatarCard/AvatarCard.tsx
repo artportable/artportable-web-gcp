@@ -1,5 +1,6 @@
 import React from "react";
-import { Avatar, Link } from "@material-ui/core";
+import Link from 'next/link'
+import { Avatar } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { styles } from "./avatarCard.css";
 import { useTranslation } from "next-i18next";
@@ -12,7 +13,8 @@ export default function AvatarCard({ user }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   return (
-    <a href={`/profile/@${user.Username}`} style={{ textDecoration: 'none', color: 'black' }}>
+    <Link href={`/profile/@${user.Username}`}>
+    <a style={{ textDecoration: 'none', color: 'black' }}>
       <div className={s.container}>
         {user?.ProfilePicture ? (
           <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
@@ -42,5 +44,6 @@ export default function AvatarCard({ user }) {
         }
       </div>
     </a>
+  </Link>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from 'next/link'
 import { styles } from "./discoverArtistCard.css";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
@@ -66,13 +67,15 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
           {images.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <a href={`/art/${image.id}`}>
-                  <img src={`${bucketUrl}${image.Name}`}
-                    alt={image.title}
-                    width={image.Width}
-                    height={image.Height}
-                  />
-                </a>
+                <Link href={`/art/${image.id}`}>
+                  <a>
+                    <img src={`${bucketUrl}${image.Name}`}
+                      alt={image.title}
+                      width={image.Width}
+                      height={image.Height}
+                    />
+                  </a>
+                </Link>
               </Paper>
             </div>
           )}
