@@ -8,7 +8,7 @@ import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
 import { Box, IconButton, Paper, Typography } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { styles } from "../../styles/art.css";
-import { capitalizeFirst, fetchWithTimeout } from "../../app/utils/util";
+import { capitalizeFirst } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -293,7 +293,7 @@ export async function getStaticProps({ locale, params }) {
   const navBarItems = await getNavBarItems(); 
 
   try {
-    const artworkResponse = await fetchWithTimeout(url.href);
+    const artworkResponse = await fetch(url.href);
     const artwork = await artworkResponse.json();
 
     return {
