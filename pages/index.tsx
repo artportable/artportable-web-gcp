@@ -98,6 +98,9 @@ export default function DiscoverPage({navBarItems}) {
               <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))}/>
               <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
               <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+              <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
+              <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
+              <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
             </Tabs>
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
@@ -119,6 +122,24 @@ export default function DiscoverPage({navBarItems}) {
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={3}>
+                <DiscoverTopArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={4}>
+                <DiscoverMonthlyArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={5}>
+                <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
                 />
               </TabPanel>
             </Box>
