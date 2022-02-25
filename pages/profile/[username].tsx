@@ -29,7 +29,7 @@ import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItem
 import { Alert } from '@material-ui/lab'
 import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
-import { capitalizeFirst } from '../../app/utils/util'
+import { capitalizeFirst, fetchWithTimeout } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 
 import AddIcon from '@material-ui/icons/Add';
@@ -558,7 +558,9 @@ export async function getStaticProps({ locale, params }) {
   const url = new URL(`${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`);
 
   try {
-    const profileResponse = await fetch(url.href);
+    const profileResponse = await fetchWithTimeout(url.href, {
+      timeout: 12000
+    });
     const profile = await profileResponse.json();
     const navBarItems = await getNavBarItems(); 
     return {
