@@ -551,7 +551,7 @@ export default function Profile(props) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const split = params.username.split('@');
   const username = split.length > 1 ? split[1] : null;
@@ -568,7 +568,6 @@ export async function getStaticProps({ locale, params }) {
         locale: locale,
         ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
       },
-      revalidate: 10,
     };
   } catch (error) {
     console.log(error);
@@ -578,14 +577,6 @@ export async function getStaticProps({ locale, params }) {
     props: {
       locale: locale,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
-    },
-    revalidate: 10,
+    }
   }
 }
-
-export const getStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-};
