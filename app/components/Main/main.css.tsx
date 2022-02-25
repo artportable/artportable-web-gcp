@@ -66,7 +66,12 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     noHeaderPadding: {
-      paddingTop: 'var(--header-height)',
+      paddingTop: 'calc(72px + var(--header-height))',
+    },
+    [theme.breakpoints.up('smPlus')]: {
+      noHeaderPadding: {
+        paddingTop: 'calc(40px + var(--header-height))',
+      },
     },
     fullWidthBlock: {
       gridColumn: '1/4'
