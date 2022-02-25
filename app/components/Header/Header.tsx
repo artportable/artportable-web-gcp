@@ -32,7 +32,6 @@ import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
-import Alert from '../Alert/Alert'
 
 export default function Header({navBarItems}) {
   const { t } = useTranslation(['header', 'support']);
@@ -229,12 +228,10 @@ export default function Header({navBarItems}) {
           </div>
           <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages} navBarItems={navBarItems}></DrawerMenu>
         </Toolbar>
-        <Alert/>
       </AppBar>
       {globalIsLoading &&
         <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
       }
-     
     </>
   );
 }
