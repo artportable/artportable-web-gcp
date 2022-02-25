@@ -287,7 +287,7 @@ export default function ArtworkPage(props) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
   const navBarItems = await getNavBarItems(); 
@@ -302,8 +302,7 @@ export async function getStaticProps({ locale, params }) {
         artwork,
         locale: locale,
         ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
-      },
-      revalidate: 10
+      }
     };
   } catch (error) {
     console.log(error);
@@ -315,14 +314,6 @@ export async function getStaticProps({ locale, params }) {
       artwork: { Id: params.id },
       locale: locale,
       ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
-    },
-    revalidate: 10
+    }
   };
-}
-
-export const getStaticPaths = () => {
-  return {
-    paths: [], //indicates that no page needs be created at build time
-    fallback: 'blocking' //indicates the type of fallback
-  }
 }
