@@ -21,7 +21,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600
     },
     letterList: {
-      margin: '2%',
+      // margin: '2%',
       fontWeight: 600
     },
     container: {
@@ -49,8 +49,7 @@ export const styles = makeStyles((theme: Theme) =>
       alphabetcontainer: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
-        justifyItems: 'center',
+        justifyContent: 'space-around',
         position: 'fixed',
         width: '100%',
         backgroundColor: '#FDF9F7',
