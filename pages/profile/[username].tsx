@@ -47,7 +47,10 @@ import { Membership } from '../../app/models/Membership'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../app/utils/googleAnalytics';
 import UpgradePortfolio from '../../app/components/UpgradePortfolio/UpgradPortfolio'
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog';
-import { UrlObject } from 'url';
+import usePostLike from '../../app/hooks/dataFetching/usePostLike';
+import useRefreshToken from '../../app/hooks/useRefreshToken';
+import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
+import { getNavBarItems } from '../../app/utils/getNavBarItems';
 
 function a11yProps(index: any) {
   return {
@@ -70,7 +73,8 @@ export default function Profile(props) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const staticUserProfile = props.profile;
+  const {navBarItems, profile: staticUserProfile} = props;
+  const canonicalURL = publicUrl + router.asPath;
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -95,16 +99,21 @@ export default function Profile(props) {
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
   const { setLoading } = useContext(LoadingContext);
 
+  const { like } = usePostLike();
+  const { follow } = usePostFollow();
+  const { refreshToken } = useRefreshToken();
+
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
     title: '',
     creator: '',
     url: '',
-    referTo: ''
+    referTo: '',
+    imageurl: ''
   });
-  
+
   useEffect(() => {
-    if(!isReady) {
+    if (!isReady) {
       setLoading(true);
     }
     if (isReady) {
@@ -113,11 +122,11 @@ export default function Profile(props) {
   }, [isReady]);
 
   useEffect(() => {
-    if(!isSignedIn.isPending && !userProfile.isLoading) {
+    if (!isSignedIn.isPending && !userProfile.isLoading) {
       setIsReady(true);
     }
   },
-  [isSignedIn, userProfile.isLoading]);
+    [isSignedIn, userProfile.isLoading]);
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -168,48 +177,12 @@ export default function Profile(props) {
 
   function onLikeClick(artworkId, isLike) {
     redirectIfNotLoggedIn();
-    fetch(`${apiBaseUrl}/api/artworks/${artworkId}/like?mySocialId=${socialId.value}`, {
-      method: isLike ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
-  function follow(userToFollow, isFollow) {
-    if (socialId.value === null || socialId.value === undefined) {
-      return; // TODO: Display modal to sign up
-    }
-
-    fetch(`${apiBaseUrl}/api/connections/${userToFollow}?mySocialId=${socialId.value}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    like(artworkId, isLike, socialId.value, token);
   }
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
-    follow(userProfileSummary.data?.SocialId, !isFollowed);
+    follow(userProfileSummary.data?.SocialId, !isFollowed, socialId.value, token);
     setFollow(!isFollowed);
   }
 
@@ -238,14 +211,15 @@ export default function Profile(props) {
   }
 
   function updateImage(blob, width: number, height: number, type: string) {
-    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'image/jpeg',
-        'Authorization': `Bearer ${token}`
-      },
-      body: blob
-    })
+    refreshToken().then(() =>
+      fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'image/jpeg',
+          'Authorization': `Bearer ${token}`
+        },
+        body: blob
+      }))
       .then((response) => {
         if (!response.ok) {
           console.log(response.statusText);
@@ -296,7 +270,7 @@ export default function Profile(props) {
   }
 
   const onEditArtworkClose = async (promise) => {
-    if(promise) {
+    if (promise) {
       try {
         setEditArtworkOpen(false);
         setLoading(true);
@@ -305,268 +279,279 @@ export default function Profile(props) {
       } catch (error) {
         console.log(error);
       }
-  
+
       artworks.mutate();
     } else {
       setEditArtworkOpen(false);
     }
   }
 
-  function togglePurchaseRequestDialog(){
+  function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
   }
 
-  function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string) {
+  function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
     referTo = userProfileSummary.data.SocialId;
-    if(isSignedIn.value) {
+    if (isSignedIn.value) {
       const originalRedirect = {
         pathname: "/messages",
         query: {
           artwork: encodeURIComponent(JSON.stringify({
             title: title,
             creator: creator,
-            url: url
+            url: url,
+            imageurl: imageurl
           })),
           referTo: referTo
         }
       }
-        router.push(originalRedirect);
-    }else{
+      router.push(originalRedirect);
+    } else {
       setPurchaseRequestDialogData({
         title: title,
         creator: creator,
         url: url,
-        referTo: referTo
+        referTo: referTo,
+        imageurl: imageurl
       })
       togglePurchaseRequestDialog();
     }
   }
 
   return (
-    <Main>
+    <Main navBarItems={navBarItems}>
       <Head>
-        <meta property="og:title" content={staticUserProfile?.Username} />
-        <meta property="og:description" content={staticUserProfile?.Headline} />
+        <title>{staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"}</title>
+        <meta name="title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
+        <meta name="description" content={staticUserProfile?.Headline ?? ""} />
+
+        <meta property="og:title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
+        <meta property="og:description" content={staticUserProfile?.Headline ?? ""} />
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
         <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
+        
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {isReady &&
         <>
-        <FullWidthBlock>
-          {userProfile?.isLoading && <div>Loading...</div>}
-          {!userProfile?.isLoading && !userProfile?.isError &&
-            <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile} />
-          }
-          {userProfile?.isError && <div>error...</div>}
-        </FullWidthBlock>
-        <div className={s.profileGrid}>
-          <div className={s.profileSummary}>
-            <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
-          </div>
-          <div className={s.editActions}>   
-            {isMyProfile ?      
-              <>     
-                <EditProfileDialog
-                  userProfile={userProfile.data}
-                />
-                {(membership.value > Membership.Base) &&
-                  <div className={s.upload}>
-                    <Link href="/upload">
-                      <a>
-                        <Button
-                          className={s.uploadButton}
-                          onClick={() => trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_PROFILE, CategoryType.INTERACTIVE)}
-                          size="small"
-                          variant="contained"
-                          color="primary"
-                          disableElevation="true"
-                          startIcon={<UploadIcon className={s.uploadIcon} />}
-                          rounded>
-                          {t('upload:upload')}
-                        </Button>
-                      </a>
-                    </Link>
-                  </div>
-                }
-                
-                {(membership.value < Membership.Portfolio) && 
-                <UpgradePortfolio />
-              }
-              </>
-            :
-              <>
-                {
+          <FullWidthBlock>
+            {userProfile?.isLoading && <div>Loading...</div>}
+            {!userProfile?.isLoading && !userProfile?.isError &&
+              <ProfileCoverPhoto coverPhoto={userProfile?.data?.CoverPhoto} onUpdateCoverPhoto={updateImage} isMyProfile={isMyProfile} />
+            }
+            {userProfile?.isError && <div>error...</div>}
+          </FullWidthBlock>
+          <div className={s.profileGrid}>
+            <div className={s.profileSummary}>
+              <ProfileComponent userProfile={userProfileSummary} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} onUpdateProfilePicture={updateImage} isMyProfile={isMyProfile} linkToProfile={false}></ProfileComponent>
+            </div>
+            <div className={s.editActions}>
+              {isMyProfile ?
+                <>
+                  <EditProfileDialog
+                    userProfile={userProfile.data}
+                  />
+                  {(membership.value > Membership.Base) &&
+                    <div className={s.upload}>
+                      <Link href="/upload">
+                        <a>
+                          <Button
+                            className={s.uploadButton}
+                            onClick={() => trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_PROFILE, CategoryType.INTERACTIVE)}
+                            size="small"
+                            variant="contained"
+                            color="primary"
+                            disableElevation="true"
+                            startIcon={<UploadIcon className={s.uploadIcon} />}
+                            rounded>
+                            {t('upload:upload')}
+                          </Button>
+                        </a>
+                      </Link>
+                    </div>
+                  }
+
+                  {(membership.value < Membership.Portfolio) &&
+                    <UpgradePortfolio />
+                  }
+                </>
+                :
+                <>
+                  {
+                    <Button
+                      onClick={() => {
+                        redirectIfNotLoggedIn({
+                          pathname: "/messages",
+                          query: {
+                            referTo: userProfileSummary.data?.SocialId
+                          }
+                        });
+                        trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
+                      }}
+                      className={s.followButton}
+                      size={smScreenOrSmaller ? 'small' : 'medium'}
+                      variant={"contained"}
+                      color="primary"
+                      startIcon={<ChatIcon className={s.chatIcon} color={"inherit"} />}
+                      disableElevation
+                      rounded
+                      disabled={!isSignedIn}>
+                      <div className={s.messageButtonText}> {capitalizeFirst(t('common:message'))}</div>
+                    </Button>
+                  }
                   <Button
-                    onClick={() => {redirectIfNotLoggedIn({
-                      pathname: "/messages",
-                      query: {
-                        referTo: userProfileSummary.data?.SocialId
-                      }
-                    });
-                    trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)}}
                     className={s.followButton}
                     size={smScreenOrSmaller ? 'small' : 'medium'}
-                    variant={"contained"}
+                    variant={!isFollowed ? "contained" : "outlined"}
                     color="primary"
-                    startIcon={<ChatIcon className={s.chatIcon} color={"inherit"} />}
+                    startIcon={!isFollowed ? <AddIcon /> : null}
                     disableElevation
                     rounded
-                    disabled={!isSignedIn}>   
-                    <div className={s.messageButtonText}> {capitalizeFirst(t('common:message'))}</div>
-                  </Button>
-                }
-                <Button
-                  className={s.followButton}
-                  size={smScreenOrSmaller ? 'small' : 'medium'}
-                  variant={!isFollowed ? "contained" : "outlined"}
-                  color="primary"
-                  startIcon={!isFollowed ? <AddIcon /> : null}
-                  disableElevation
-                  rounded
-                  disabled={!isSignedIn}
-                  onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_PROFILE, CategoryType.INTERACTIVE) : null}}>
-                  {capitalizeFirst(
-                    !isFollowed ?
-                      t('common:words.follow') :
-                      t('common:words.following')
-                  )}
-                </Button>
-              </>
-            }
-          </div>
-          {userProfile.data?.MonthlyArtist &&
-            <div className={s.catalogued}>
-              <img
-                src="/Artportable_Emblem_Gold.svg"
-                alt="Logo Artportable"
-                className={s.emblem}
-              />
-            </div>
-          }
-          <Divider className={s.divider}></Divider>
-          
-          <ArtistPriceSpan prices={artworkPrices} />
-          {hasArtwork ?
-            <div className={s.tabsContainer}>
-              <Tabs value={activeTab} onChange={handleTabChange} centered >
-                <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
-                <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-              </Tabs>
-              <Box paddingY={1}>
-                <TabPanel value={activeTab} index={0}>
-                  <div className={s.portfolioContainer}>
-                    {imageRows && imageRows.map((row: Image[], i) =>
-                      <div className={s.portfolioRow} key={i}>
-                        {row.map(image => {
-                          let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
-
-                          if (artwork) {
-                            return <ArtworkListItemDefined
-                              key={image.Name}
-                              width={smScreenOrSmaller ? '100%' : image.Width}
-                              height={smScreenOrSmaller ? 'auto' : image.Height}
-                              artwork={artwork}
-                              topActions={isMyProfile ?
-                                <>          
-                                <Button
-                                  className={s.editButton}
-                                  variant="contained"
-                                  color="default"
-                                  rounded
-                                  onClick={() => openEditArtworkDialog(artwork)}
-                                  startIcon={<EditIcon />}>
-                                </Button>
-                        
-                                </> : undefined
-                              }
-                              onPurchaseRequestClick={onPurchaseRequestClick}
-                              purchaseRequestAction={ActionType.PURCHASE_REQUEST_LIST_PROFILE}
-                              onLikeClick={onLikeClick} />
-                          }
-                        }
-                        )}
-                      </div>
+                    disabled={!isSignedIn}
+                    onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOW_PROFILE, CategoryType.INTERACTIVE) : null }}>
+                    {capitalizeFirst(
+                      !isFollowed ?
+                        t('common:words.follow') :
+                        t('common:words.following')
                     )}
-                    <PurchaseRequestDialog 
-                      open={purchaseRequestDialogOpen} 
-                      onClose={togglePurchaseRequestDialog} 
-                      props={{
-                        pathname: "/messages",
-                        title: purchaseRequestDialogData.title,
-                        creator: purchaseRequestDialogData.creator,
-                        url: purchaseRequestDialogData.url,
-                        referTo: purchaseRequestDialogData.referTo
-                      }}
-                    />
-                    <EditArtworkDialog 
-                      artwork={artworkToEdit} 
-                      open={editArtworkOpen} 
-                      onClose={onEditArtworkClose} />
-                    {artworks.isLoading &&
-                      <>
-                        <div className={s.portfolioRow}>
-                          <ArtworkListItemDefinedSkeleton grow={1} />
-                          <ArtworkListItemDefinedSkeleton grow={3} />
-                          <ArtworkListItemDefinedSkeleton grow={2} />
-                          <ArtworkListItemDefinedSkeleton grow={1} />
+                  </Button>
+                </>
+              }
+            </div>
+            {userProfile.data?.MonthlyArtist &&
+              <div className={s.catalogued}>
+                <img
+                  src="/Artportable_Emblem_Gold.svg"
+                  alt="Logo Artportable"
+                  className={s.emblem}
+                />
+              </div>
+            }
+            <Divider className={s.divider}></Divider>
+
+            <ArtistPriceSpan prices={artworkPrices} />
+            {hasArtwork ?
+              <div className={s.tabsContainer}>
+                <Tabs value={activeTab} onChange={handleTabChange} centered >
+                  <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
+                  <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+                </Tabs>
+                <Box paddingY={1}>
+                  <TabPanel value={activeTab} index={0}>
+                    <div className={s.portfolioContainer}>
+                      {imageRows && imageRows.map((row: Image[], i) =>
+                        <div className={s.portfolioRow} key={i}>
+                          {row.map(image => {
+                            let artwork = artworks.data?.find(a => a.PrimaryFile.Name === image.Name);
+
+                            if (artwork) {
+                              return <ArtworkListItemDefined
+                                key={image.Name}
+                                width={smScreenOrSmaller ? '100%' : image.Width}
+                                height={smScreenOrSmaller ? 'auto' : image.Height}
+                                artwork={artwork}
+                                topActions={isMyProfile ?
+                                  <>
+                                    <Button
+                                      className={s.editButton}
+                                      variant="contained"
+                                      color="default"
+                                      rounded
+                                      onClick={() => openEditArtworkDialog(artwork)}
+                                      startIcon={<EditIcon />}>
+                                    </Button>
+
+                                  </> : undefined
+                                }
+                                onPurchaseRequestClick={onPurchaseRequestClick}
+                                purchaseRequestAction={ActionType.PURCHASE_REQUEST_LIST_PROFILE}
+                                onLikeClick={onLikeClick} />
+                            }
+                          }
+                          )}
                         </div>
-                        <div className={s.portfolioRow}>
-                          <ArtworkListItemDefinedSkeleton grow={2} />
-                          <ArtworkListItemDefinedSkeleton grow={4} />
-                          <ArtworkListItemDefinedSkeleton grow={3} />
-                        </div>
-                      </>
-                    }
-                  </div>
-                </TabPanel>
-                <TabPanel value={activeTab} index={1}>
-                  <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
-                </TabPanel>
-              </Box>
-            </div>
-            :
-            <div className={s.tabsContainer}>
-              <Tabs value={activeTab} centered >
-                <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
-              </Tabs>
-              <Box paddingY={1}>
-                <TabPanel value={activeTab} index={0}>
-                  <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
-                </TabPanel>
-              </Box>
-            </div>
-          }
-          {similarPortfolios?.data && !similarPortfolios?.isError && <>
-            <Divider className={s.secondDivider}></Divider>
-            <div className={s.similarPortfolios}>
-              <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
-            </div>
-          </>}
-        </div>
-        <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-          <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
-            {t('profile:profilePictureUpdated')}
-          </Alert>
-        </Snackbar>
-        <Snackbar open={uploadCoverSnackbarOpen} autoHideDuration={6000} onClose={handleCoverSnackbarClose}>
-          <Alert onClose={handleCoverSnackbarClose} variant="filled" severity="success">
-            {t('profile:coverPhotoUpdated')}
-          </Alert>
-        </Snackbar>
-        <Snackbar open={deleteArtworkSnackbarOpen} autoHideDuration={6000} onClose={handleDeleteArtworkSnackbarClose}>
-          <Alert onClose={handleDeleteArtworkSnackbarClose} variant="filled" severity="success">
-            {t('profile:deleteArtworkSuccess')}
-          </Alert>
-        </Snackbar>
-      </>
-    }
+                      )}
+                      <PurchaseRequestDialog
+                        open={purchaseRequestDialogOpen}
+                        onClose={togglePurchaseRequestDialog}
+                        props={{
+                          pathname: "/messages",
+                          title: purchaseRequestDialogData.title,
+                          creator: purchaseRequestDialogData.creator,
+                          url: purchaseRequestDialogData.url,
+                          referTo: purchaseRequestDialogData.referTo,
+                          imageUrl: purchaseRequestDialogData.imageurl
+                        }}
+                      />
+                      <EditArtworkDialog
+                        artwork={artworkToEdit}
+                        open={editArtworkOpen}
+                        onClose={onEditArtworkClose} />
+                      {artworks.isLoading &&
+                        <>
+                          <div className={s.portfolioRow}>
+                            <ArtworkListItemDefinedSkeleton grow={1} />
+                            <ArtworkListItemDefinedSkeleton grow={3} />
+                            <ArtworkListItemDefinedSkeleton grow={2} />
+                            <ArtworkListItemDefinedSkeleton grow={1} />
+                          </div>
+                          <div className={s.portfolioRow}>
+                            <ArtworkListItemDefinedSkeleton grow={2} />
+                            <ArtworkListItemDefinedSkeleton grow={4} />
+                            <ArtworkListItemDefinedSkeleton grow={3} />
+                          </div>
+                        </>
+                      }
+                    </div>
+                  </TabPanel>
+                  <TabPanel value={activeTab} index={1}>
+                    <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                  </TabPanel>
+                </Box>
+              </div>
+              :
+              <div className={s.tabsContainer}>
+                <Tabs value={activeTab} centered >
+                  <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+                </Tabs>
+                <Box paddingY={1}>
+                  <TabPanel value={activeTab} index={0}>
+                    <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                  </TabPanel>
+                </Box>
+              </div>
+            }
+            {similarPortfolios?.data && !similarPortfolios?.isError && <>
+              <Divider className={s.secondDivider}></Divider>
+              <div className={s.similarPortfolios}>
+                <SimilarPortfoliosSection portfolios={similarPortfolios.data}></SimilarPortfoliosSection>
+              </div>
+            </>}
+          </div>
+          <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+            <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
+              {t('profile:profilePictureUpdated')}
+            </Alert>
+          </Snackbar>
+          <Snackbar open={uploadCoverSnackbarOpen} autoHideDuration={6000} onClose={handleCoverSnackbarClose}>
+            <Alert onClose={handleCoverSnackbarClose} variant="filled" severity="success">
+              {t('profile:coverPhotoUpdated')}
+            </Alert>
+          </Snackbar>
+          <Snackbar open={deleteArtworkSnackbarOpen} autoHideDuration={6000} onClose={handleDeleteArtworkSnackbarClose}>
+            <Alert onClose={handleDeleteArtworkSnackbarClose} variant="filled" severity="success">
+              {t('profile:deleteArtworkSuccess')}
+            </Alert>
+          </Snackbar>
+        </>
+      }
     </Main>
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const split = params.username.split('@');
   const username = split.length > 1 ? split[1] : null;
@@ -575,31 +560,23 @@ export async function getStaticProps({ locale, params }) {
   try {
     const profileResponse = await fetch(url.href);
     const profile = await profileResponse.json();
-    
+    const navBarItems = await getNavBarItems(); 
     return {
       props: {
-        profile,
+        navBarItems: navBarItems,
+        profile: profile,
         locale: locale,
         ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
       },
-      revalidate: 10,
     };
   } catch (error) {
     console.log(error);
-  } 
+  }
 
   return {
     props: {
       locale: locale,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
-    },
-    revalidate: 10,
+    }
   }
 }
-
-export const getStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-};

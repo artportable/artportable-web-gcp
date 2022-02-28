@@ -50,20 +50,20 @@ const fetcherJson = (url, token = null) => {
     return fetch(url).then(r => r.json())
   }
   return fetch(url, {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  }).then(r => r.json())
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(r => r.json())
 };
 const fetcherText = (url, token = null) => {
   if (!token) {
     return fetch(url).then(r => r.text())
   }
   return fetch(url, {
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
-  }).then(r => r.text())
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(r => r.text())
 };
 
 type ResponseValue = 'text' | 'json';

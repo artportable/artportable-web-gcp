@@ -1,5 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { rowGap, columnGap } from '../app/utils/styleUtils';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,7 +49,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       textDecoration: 'underline',
-      marginBottom: theme.spacing(1)
+      marginBottom: theme.spacing(1),
     },
     coverImage: {
       width: '100%',
@@ -67,13 +67,14 @@ export const styles = makeStyles((theme: Theme) =>
     line: {
       marginTop: theme.spacing(1),
       height: '4px',
-      backgroundColor: 'var(--ion-color-primary)'
+      backgroundColor: 'var(--primary-color)'
     },
     textContent: {
       padding: '20px',
       display: 'inline-block',
       width: '100%',
       blockSize: 'fit-content',
+      color: 'var(--text-color)',
     },
     menuFlex: {
       display: 'none',
@@ -84,6 +85,11 @@ export const styles = makeStyles((theme: Theme) =>
         flexWrap: 'wrap',
         marginBottom: '20px',
       },   
+    },
+    link: {
+      '&:hover': {
+      textDecoration: 'none',
+      }
     }
   }),
 );

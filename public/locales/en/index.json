@@ -1,6 +1,6 @@
 {
-  "header": "Discover unique artwork",
-  "subHeader": "Here you will find original art for the home and office.",
+  "header": "Discover unique artworks",
+  "subHeader": "Take a look at the gallery with over 26,000 works of art. Find your favorite piece and buy it directly from the artist.",
   "subHeader2": "Follow artists and send purchase requests.",
   "artworkFrom": "Artwork from",
   "signUp": "Sign up",
@@ -15,5 +15,7 @@
   "artloverPrice": " 0 ",
   "artloverSek": "SEK",
   "artistSek": "SEK/month",
-  "logIn": "Log in"
+  "logIn": "Log in",
+  "title": "Artportable - Discover and buy art directly from artists",
+  "description": "A digital gallery where artists can exhibit their art and sell it directly to buyers"
 }

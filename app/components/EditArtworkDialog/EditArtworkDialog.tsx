@@ -8,11 +8,13 @@ import { useContext, useEffect, useState } from 'react';
 import { capitalizeFirst } from '../../utils/util';
 import { TokenContext } from '../../contexts/token-context';
 import { UserContext } from '../../contexts/user-context';
+import useRefreshToken from '../../hooks/useRefreshToken';
 
 export default function EditArtworkDialog({ artwork, open, onClose }) {
   const { t } = useTranslation(['art', 'common']);
   const s = styles();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const { refreshToken } = useRefreshToken();
 
   const [artworkName, setArtworkName] = useState('');
   const [artworkDescription, setArtworkDescription] = useState('');
@@ -41,7 +43,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   }, [artwork]);
 
   const onDeleteAlertDialogClose = (confirmedDelete: boolean) => {
-    if(confirmedDelete) {
+    if (confirmedDelete) {
       onClickDeleteConfirm(artwork.Id);
     }
 
@@ -50,43 +52,47 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
 
   const onClickDeleteConfirm = (id: string) => {
     if (username.value && id && id.trim().length > 0) {
-      onClose(fetch(`${apiBaseUrl}/api/artworks/${id}?myUsername=${username.value}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      }))
+      onClose(refreshToken()
+        .then(() =>
+          fetch(`${apiBaseUrl}/api/artworks/${id}?myUsername=${username.value}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })))
     }
   };
 
   const onConfirmClick = () => {
-    if (username.value && artwork.Id && artwork.Id.trim().length > 0 
-      && artworkName 
+    if (username.value && artwork.Id && artwork.Id.trim().length > 0
+      && artworkName
       && ((artworkWidth && artworkWidth !== '0'
-      && artworkHeight && artworkHeight !== '0') || multipleSizesChecked)
+        && artworkHeight && artworkHeight !== '0') || multipleSizesChecked)
     ) {
-      onClose(fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySocialId=${socialId.value}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          "Title": artworkName,
-          "Description": artworkDescription,
-          "Price": parseInt(artworkPrice, 10),
-          "SoldOut": soldOutChecked,
-          "MultipleSizes": multipleSizesChecked,
-          "Width": parseInt(artworkWidth, 10),
-          "Height": parseInt(artworkHeight, 10),
-          "Depth": parseInt(artworkDepth, 10),
-          "PrimaryFile": artwork.PrimaryFile?.Name,
-          "SecondaryFile": artwork.SecondaryFile?.Name,
-          "TertiaryFile": artwork.TertiaryFile?.Name,
-          "Tags": artwork.Tags
-        })
-      }));
+      onClose(refreshToken()
+        .then(() =>
+          fetch(`${apiBaseUrl}/api/artworks/${artwork.Id}?mySocialId=${socialId.value}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              "Title": artworkName,
+              "Description": artworkDescription,
+              "Price": parseInt(artworkPrice, 10),
+              "SoldOut": soldOutChecked,
+              "MultipleSizes": multipleSizesChecked,
+              "Width": parseInt(artworkWidth, 10),
+              "Height": parseInt(artworkHeight, 10),
+              "Depth": parseInt(artworkDepth, 10),
+              "PrimaryFile": artwork.PrimaryFile?.Name,
+              "SecondaryFile": artwork.SecondaryFile?.Name,
+              "TertiaryFile": artwork.TertiaryFile?.Name,
+              "Tags": artwork.Tags
+            })
+          })));
     }
   }
 
@@ -108,7 +114,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
         <form className={s.form}>
           <TextField
             fullWidth
-            error = {artworkName ? false : true} 
+            error={artworkName ? false : true}
             label={t('artworkTitle')}
             required
             placeholder={t('artworkTitle')}
@@ -151,7 +157,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                 <TextField
                   label={t('artworkWidth')}
                   placeholder={t('artworkWidth')}
-                  error = {artworkWidth && artworkWidth !== '0' ? false : true} 
+                  error={artworkWidth && artworkWidth !== '0' ? false : true}
                   required
                   value={artworkWidth}
                   type="number"
@@ -159,13 +165,13 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                   InputProps={{
                     endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                   }}
-                  style={{display: 'flex'}}/>
+                  style={{ display: 'flex' }} />
               </Grid>
               <Grid item xs={12} md={4}>
                 <TextField
                   label={t('artworkHeight')}
                   placeholder={t('artworkHeight')}
-                  error = {artworkHeight && artworkHeight !== '0' ? false : true} 
+                  error={artworkHeight && artworkHeight !== '0' ? false : true}
                   required
                   value={artworkHeight}
                   type="number"
@@ -173,7 +179,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                   InputProps={{
                     endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                   }}
-                  style={{display: 'flex'}}/>
+                  style={{ display: 'flex' }} />
               </Grid>
               <Grid item xs={12} md={4}>
                 <TextField
@@ -185,15 +191,15 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                   InputProps={{
                     endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                   }}
-                  style={{display: 'flex'}}/>
+                  style={{ display: 'flex' }} />
               </Grid>
             </Grid>
-          : <></>}
+            : <></>}
           <Grid>
             <FormControlLabel
-                control={<Checkbox checked={multipleSizesChecked} onChange={(event) => setMultipleSizesChecked(event.target.checked)} />}
-                label={t('common:words.multipleSizes')}
-              />
+              control={<Checkbox checked={multipleSizesChecked} onChange={(event) => setMultipleSizesChecked(event.target.checked)} />}
+              label={t('common:words.multipleSizes')}
+            />
           </Grid>
         </form>
         <div className={s.deleteContainer}>
@@ -207,18 +213,18 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
       </DialogContent>
       <DialogActions>
         <Button
-          variant="text" 
+          variant="text"
           color="primary"
-          disableElevation 
+          disableElevation
           rounded
           onClick={onCancel}
         >
           {capitalizeFirst(t('common:words.cancel'))}
         </Button>
         <Button
-          variant="contained" 
+          variant="contained"
           color="primary"
-          disableElevation 
+          disableElevation
           rounded
           onClick={onConfirmClick}
         >

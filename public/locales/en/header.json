@@ -12,10 +12,11 @@
   "upgradeButton": "Upgrade",
   "upgradeHeading": "Upgrade to artist account",
   "contactUs": "Contact us",
-  "stories": "Stories",
+  "stories": "Articles",
   "english": "English",
   "swedish": "Svenska",
   "upgrade": "Upgrade account",
   "createPortfolio": "Create portfolio",
-  "artists": "Artists"
+  "artists": "Artists",
+  "productLists": "Categories"
 }

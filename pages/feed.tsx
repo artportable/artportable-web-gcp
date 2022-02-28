@@ -23,9 +23,12 @@ import { UserContext } from '../app/contexts/user-context';
 import { useRouter } from 'next/router';
 import { LoadingContext } from '../app/contexts/loading-context';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
+import usePostLike from '../app/hooks/dataFetching/usePostLike';
+import usePostFollow from '../app/hooks/dataFetching/usePostFollow';
+import { getNavBarItems } from '../app/utils/getNavBarItems';
 
 
-export default function FeedPage() {
+export default function FeedPage({navBarItems}) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const { username, socialId, membership } = useContext(UserContext);
@@ -47,6 +50,9 @@ export default function FeedPage() {
   const router = useRouter();
   const { isSignedIn } = useContext(UserContext);
   const { loading, setLoading } = useContext(LoadingContext);
+
+  const { like } = usePostLike();
+  const { follow } = usePostFollow();
 
   useEffect(() => {
     setLoading(true);
@@ -91,42 +97,12 @@ export default function FeedPage() {
     }
   }, [fetchMorePosts]);
 
-  function follow(userSocialId, isFollow) {
-    fetch(`${apiBaseUrl}/api/connections/${userSocialId}?mySocialId=${socialId.value}`, {
-      method: isFollow ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  function followUser(userSocialId, isFollow) {
+    follow(userSocialId, isFollow, socialId.value, token);
   }
 
-  // Like a post (feed item)
-  // `isLike` states whether it's a like or an unlike
   function likePost(contentId, isLike) {
-    fetch(`${apiBaseUrl}/api/artworks/${contentId}/like?mySocialId=${socialId.value}`, {
-      method: isLike ? 'POST' : 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    like(contentId, isLike, socialId.value, token)
   }
 
   return (
@@ -136,7 +112,7 @@ export default function FeedPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main wide={mdPlusScreenOrDown ? true : false}>
+      <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
         {!loading &&
           <Box className={s.feedContainer}>
             {!mdPlusScreenOrDown && 
@@ -176,7 +152,7 @@ export default function FeedPage() {
 
             </div>
             <div className={s.colRight}>
-              <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={follow}></FollowSuggestionCard>
+              <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={followUser}></FollowSuggestionCard>
             </div>
           </Box>
         }
@@ -186,9 +162,12 @@ export default function FeedPage() {
 }
 
 export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
+      navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'feed', 'support', 'plans']),
-    }
+    },
+    revalidate: 60,
   }
 }
