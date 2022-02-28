@@ -52,36 +52,32 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
       ` / ${t(`common:words.${plan.recurringInterval}`)} (${t('common:words.vat')})`;
   }
-  const onClick = () => {
-    if (!phone.value === null) {
+  const onClick = (event) => {
+    if (!phone.value || phone.value === null) {
+      event.stopPropagation();
+      event.preventDefault();
+      console.log(phone.value)
+      // variable istället
       return (
-          <>
+        <>
           <TextField
-            //  classes={{
-            //    root: s.textField
-            //  }}
             fullWidth
             placeholder={t('email')}
             required
             variant="outlined"
-          //  value={formData.phone.value}
-          //  error={formData.phone.error}
-          //  onChange={(e) => handleChange(e, 'phone')}
-          //  onBlur={(e) => validateFormValue(e.target.value, 'phone')}
-          //  helperText={formData.phone.error ? t('phoneErrorMessage') : ''}
           />
+          //Link
           <Button
             variant="contained"
             color="primary"
             disableElevation
             rounded
-            onClick={() => onClick()}
-          //  disabled={formHasErrors || formUntouched}
-          >
-            {t('send')}</Button>
+            onClick={(e) => onClick(e)} >
+            {t('send')}
+          </Button>
         </>
       )
-    } return onNavClick
+    } 
   }
 
   const onNavClick = () => {
@@ -90,11 +86,11 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
       payload: { ...plan }
     });
     if (plan.product.toLowerCase() === 'free') {
-      onClick();
+      onClick(event);
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
       var [userType, interval] = user_type.value.split('-');
       if (userType === "artist")
-        onClick();
+        onClick(event);
       return zapierLeadFreemium(lead = {
         name: { value: given_name.value + ' ' + family_name.value } ?? '',
         phoneNumber: { value: phone.value } ?? '',
@@ -148,7 +144,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                       color="primary"
                       disableElevation
                       rounded
-                    // onClick={() => onClick()}
+                    onClick={(event) => onClick(event)}
                     >
                       {plan.product === 'free' ?
                         t('signUp') :
@@ -166,6 +162,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                   color="primary"
                   disableElevation
                   rounded
+                  
                   onClick={() => { setIsPremiumSignupDialogOpen(true); trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM, CategoryType.BUY) }}>
                   {plan.product === 'free' ?
                     t('signUp') :
