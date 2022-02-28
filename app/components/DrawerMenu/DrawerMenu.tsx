@@ -127,10 +127,12 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
           </a>
         </Link>
         <Link href="/artists" passHref>
-          <ListItem button divider onClick={() => close()}>
-            <ListItemText primary={t('artists')} />
-          </ListItem>
-        </a> */}
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('artists')} />
+            </ListItem>
+          </a> 
+        </Link>
         <ListItem button divider onClick={handleClickContact} >
           <ListItemText primary={t('contactUs')} />
         </ListItem >
