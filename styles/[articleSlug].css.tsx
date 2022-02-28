@@ -34,7 +34,7 @@ export const styles = makeStyles((theme: Theme) =>
       '& p': {
         fontSize: '1rem',
       },
-      width: 'fit-content',
+      // width: 'fit-content',
     },
 
     headingDiv: {
