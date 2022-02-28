@@ -1,11 +1,21 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Main from '../app/components/Main/Main';
 import Artists from '../app/components/Artists/Artists';
+import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 
 export default function artists() {
+
+  const { t } = useTranslation(['header']); 
+
   return <>
     <Main>
-      <Artists />
+      <Head>
+        <title>
+          {t("artists")}
+        </title>
+      </Head>
+        <Artists />
     </Main>
 </>
   
