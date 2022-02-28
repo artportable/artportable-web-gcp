@@ -43,7 +43,7 @@ export default function IndexHero() {
   const images = [
     { name: "lagerzz", image: '/images/carl_lagercrantz_second.jpg', imageLink: "art/b30a5786-5f44-4231-bb05-b11ef079b2f6"},
     { name: "mike.eriksson", image: '/images/mike_eriksson.jpg', imageLink: "art/de2a5833-9bb9-431d-810c-7909894dd0d6"},
-    { name: "olle.brandqvist", image: '/images/olle_brandqvist_ny.jpg', imageLink: "profile/@olle.brandqvist"},
+    { name: "olle.brandqvist", image: '/images/Olle_Brandqvist_ny.jpg', imageLink: "profile/@olle.brandqvist"},
     { name: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "art/b52807f2-8497-4722-b535-ad9a2cdfcf89"},
     { name: "gunilla.svard", image: '/images/gunilla_svard_house.jpg', imageLink: "art/3b0b0caf-510f-4d91-a1f4-597866abca5f"},
     // { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
