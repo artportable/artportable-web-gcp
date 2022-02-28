@@ -41,14 +41,14 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "lagerzz", image: '/images/carl_lagercrantz_second.jpg', imageLink: "b30a5786-5f44-4231-bb05-b11ef079b2f6"},
-    { name: "mike.eriksson", image: '/images/mike_eriksson.jpg', imageLink: "de2a5833-9bb9-431d-810c-7909894dd0d6"},
-    { name: "olle.brandqvist", image: '/images/olle_brandqvist.jpg', imageLink: "fccc1122-5a85-4caf-968a-9cfd239a5337"},
-    { name: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "b52807f2-8497-4722-b535-ad9a2cdfcf89"},
-    { name: "gunilla.svard", image: '/images/gunilla_svard_house.jpg', imageLink: "3b0b0caf-510f-4d91-a1f4-597866abca5f"},
-    { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
-    { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
-    { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
+    { name: "lagerzz", image: '/images/carl_lagercrantz_second.jpg', imageLink: "art/b30a5786-5f44-4231-bb05-b11ef079b2f6"},
+    { name: "mike.eriksson", image: '/images/mike_eriksson.jpg', imageLink: "art/de2a5833-9bb9-431d-810c-7909894dd0d6"},
+    { name: "olle.brandqvist", image: '/images/olle_brandqvist_ny.jpg', imageLink: "profile/@olle.brandqvist"},
+    { name: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "art/b52807f2-8497-4722-b535-ad9a2cdfcf89"},
+    { name: "gunilla.svard", image: '/images/gunilla_svard_house.jpg', imageLink: "art/3b0b0caf-510f-4d91-a1f4-597866abca5f"},
+    // { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
+    // { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
+    // { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
   ]
 
   useEffect(() => {
@@ -107,7 +107,7 @@ export default function IndexHero() {
             {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
               :
               <>
-                  <Link href={`/art/${randomImage.imageLink}`}>
+                  <Link href={`/${randomImage.imageLink}`}>
                     <a>
                       <img
                         className={s.boosted}
