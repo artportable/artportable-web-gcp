@@ -15,6 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       right: 8,
       height: '85vh',
+      paddingBottom: '135px',
       alignItems: 'center'
     },
     letter: {
@@ -23,7 +24,6 @@ export const styles = makeStyles((theme: Theme) =>
       alignContent: 'space-around'
     },
     letterList: {
-      // margin: '2%',
       fontWeight: 600
     },
     container: {
