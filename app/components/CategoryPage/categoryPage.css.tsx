@@ -34,7 +34,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('sm')]: {
         fontSize: '1.45rem',
         marginTop: theme.spacing(2),
-      },   
+      },
     },
     underline: {
       backgroundColor: 'pink',
@@ -51,13 +51,13 @@ export const styles = makeStyles((theme: Theme) =>
       textDecoration: 'underline',
       marginBottom: theme.spacing(1),
     },
-    coverImage: {
+    coverImage: {
       width: '100%',
       borderRadius: '5px 5px 0 0',
       [theme.breakpoints.up('lg')]: {
         flexDirection: 'row',
         borderRadius: '5px 0 0 5px',
-      },   
+      },
     },
     dateSpan: {
       textAlign: 'right',
@@ -77,19 +77,16 @@ export const styles = makeStyles((theme: Theme) =>
       color: 'var(--text-color)',
     },
     menuFlex: {
-      display: 'none',
-      [theme.breakpoints.up('smPlus')]: {
-        display: 'flex',
-        flexDirection: 'row',
-        ...rowGap(5),
-        flexWrap: 'wrap',
-        marginBottom: '20px',
-      },   
+      display: 'flex',
+      flexDirection: 'row',
+      ...rowGap(5),
+      flexWrap: 'wrap',
+      marginBottom: '20px',
     },
     link: {
       '&:hover': {
-      textDecoration: 'none',
-      }
+        textDecoration: 'none',
+      },
     }
   }),
 );
