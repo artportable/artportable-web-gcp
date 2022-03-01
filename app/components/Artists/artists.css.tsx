@@ -12,13 +12,15 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       position: 'fixed',
-      right: 0,
-      top: '26%',
+      justifyContent: 'space-between',
+      right: 8,
+      height: '85vh',
       alignItems: 'center'
     },
     letter: {
       fontSize: '300%',
-      fontWeight: 600
+      fontWeight: 800,
+      alignContent: 'space-around'
     },
     letterList: {
       // margin: '2%',
@@ -33,6 +35,9 @@ export const styles = makeStyles((theme: Theme) =>
     groupDiv: {
       columns: '1 auto',
       width: '50%'
+    },
+    artistName: {
+      fontSize: '0.925rem',
     },
     [theme.breakpoints.up('smPlus')]: {
       groupDiv: {
