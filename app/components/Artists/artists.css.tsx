@@ -14,8 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'fixed',
       justifyContent: 'space-between',
       right: 8,
-      height: '85vh',
-      paddingBottom: '135px',
+      height: '73vh',
       alignItems: 'center'
     },
     letter: {
