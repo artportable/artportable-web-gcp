@@ -57,9 +57,10 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     if (phone.value || phone.value === null) {
       event.stopPropagation();
       event.preventDefault();
-      <PhoneInput />
       setNumberExists(false)
       console.log(phone.value)
+      // return (
+      //   <PhoneInput />)
       // variable istället
     } else {
       return onNavClick();
@@ -164,7 +165,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                 <a>
                   <TextField
                     fullWidth
-                    placeholder={t('email')}
+                    placeholder={t('pphone')}
                     required
                     variant="outlined"
                   />
