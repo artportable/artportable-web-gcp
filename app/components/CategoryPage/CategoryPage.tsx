@@ -60,6 +60,11 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('artistPortrait')}
                   </MuiButton>
                 </Link>
+                <Link className={s.link} href="/fler-artiklar">
+                  <MuiButton color="default" size="large">
+                    {t('moreArticles')}
+                  </MuiButton>
+                </Link>
               </div>
             </>
           </div>
