@@ -46,18 +46,23 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
               </div>
               <div className={s.menuFlex}>
                 <Link className={s.link} href="/artiklar">
-                  <MuiButton color="default" size="large">
+                  <MuiButton color="default" size="small">
                     {t('latestMenu')}
                   </MuiButton>
                 </Link>
                 <Link className={s.link} href="/redaktionellt">
-                  <MuiButton color="default" size="large">
+                  <MuiButton color="default" size="small">
                     {t('editorial')}
                   </MuiButton>
                 </Link>
                 <Link className={s.link} href="/konstnaersportraett">
-                  <MuiButton color="default" size="large">
+                  <MuiButton color="default" size="small">
                     {t('artistPortrait')}
+                  </MuiButton>
+                </Link>
+                <Link className={s.link} href="/fler-artiklar">
+                  <MuiButton color="default" size="small">
+                    {t('moreArticles')}
                   </MuiButton>
                 </Link>
               </div>
