@@ -35,6 +35,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
   const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
   const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
+  const [numberExists, setNumberExists] = useState(true)
 
   useEffect(() => {
     if (plan.product === "portfolioPremium") {
@@ -52,32 +53,17 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
       ` / ${t(`common:words.${plan.recurringInterval}`)} (${t('common:words.vat')})`;
   }
-  const onClick = (event) => {
-    if (!phone.value || phone.value === null) {
+  const uppgradeWithPhone = (event) => {
+    if (phone.value || phone.value === null) {
       event.stopPropagation();
       event.preventDefault();
+      <PhoneInput />
+      setNumberExists(false)
       console.log(phone.value)
       // variable istället
-      return (
-        <>
-          <TextField
-            fullWidth
-            placeholder={t('email')}
-            required
-            variant="outlined"
-          />
-          //Link
-          <Button
-            variant="contained"
-            color="primary"
-            disableElevation
-            rounded
-            onClick={(e) => onClick(e)} >
-            {t('send')}
-          </Button>
-        </>
-      )
-    } 
+    } else {
+      return onNavClick();
+    }
   }
 
   const onNavClick = () => {
@@ -86,11 +72,11 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
       payload: { ...plan }
     });
     if (plan.product.toLowerCase() === 'free') {
-      onClick(event);
+      uppgradeWithPhone(event);
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
       var [userType, interval] = user_type.value.split('-');
       if (userType === "artist")
-        onClick(event);
+        uppgradeWithPhone(event);
       return zapierLeadFreemium(lead = {
         name: { value: given_name.value + ' ' + family_name.value } ?? '',
         phoneNumber: { value: phone.value } ?? '',
@@ -144,7 +130,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                       color="primary"
                       disableElevation
                       rounded
-                    onClick={(event) => onClick(event)}
+                      onClick={(event) => uppgradeWithPhone(event)}
                     >
                       {plan.product === 'free' ?
                         t('signUp') :
@@ -162,7 +148,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
                   color="primary"
                   disableElevation
                   rounded
-                  
+
                   onClick={() => { setIsPremiumSignupDialogOpen(true); trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM, CategoryType.BUY) }}>
                   {plan.product === 'free' ?
                     t('signUp') :
@@ -172,7 +158,28 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
               }
             </div>
           }
-
+          {(numberExists === true) &&
+            <>
+              <Link passHref href={href}>
+                <a>
+                  <TextField
+                    fullWidth
+                    placeholder={t('email')}
+                    required
+                    variant="outlined"
+                  />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    disableElevation
+                    rounded
+                    onClick={(e) => uppgradeWithPhone(e)} >
+                    {t('send')}
+                  </Button>
+                </a>
+              </Link>
+            </>
+          }
         </CardContent>
       </Card>
       <Dialog
