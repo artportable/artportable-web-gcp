@@ -39,5 +39,7 @@
   "Cancel" : "Avbryt",
   "purchaseRequest": "Köpförfrågan",
   "messageOptional": "Meddelande (valfritt)",
-  "emailErrorMessage": "Ogiltig e-postadress"
+  "emailErrorMessage": "Ogiltig e-postadress",
+  "readMore": "Läs mer",
+  "readLess": "Läs mindre"
 }
