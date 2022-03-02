@@ -13,6 +13,14 @@ import { NavBarItem } from "../../models/NavBarItem";
 import { ProductList } from "../../models/ProductList";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import Main from "../Main/Main";
+import { styles } from './productListPage.css'
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import Button from "../Button/Button";
+import { useTranslation } from "next-i18next";
 
 export default function ProductListPage({ productList, navBarItems }: { productList: ProductList, navBarItems: NavBarItem[] }) {
   const router = useRouter();
@@ -27,6 +35,9 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   const rowWidth = useMainWidth().wide;
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
+  const s = styles();
+  const [toggleButton, setToggleButton] = useState(false);
+  const { t } = useTranslation(['common']);
 
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
@@ -68,9 +79,45 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <div>Loading...</div>
       }
       {!router.isFallback &&
-        <>
-          <Typography variant="h1">{productList?.title}</Typography>
-          <div dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
+      <>
+      <div className={s.container}>
+        <Accordion 
+          className={s.accordion} 
+          elevation={0} 
+          onClick={() => setToggleButton(!toggleButton)}>
+        <AccordionSummary className={s.accordionSummary}>
+        <div>
+          <Typography className={s.header} variant="h1">{productList?.title}</Typography>
+          
+          <div className={s.topDescription} dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
+          
+            {toggleButton ? 
+              <Button 
+                className={s.button} 
+                size="small" 
+                onClick={() => setToggleButton(!toggleButton)} 
+                variant="outlined" 
+                rounded 
+                startIcon={<KeyboardArrowUpIcon />}>
+                  {t('readLess')}
+              </Button> 
+            : 
+              <Button 
+                className={s.button} 
+                size="small" 
+                onClick={() => setToggleButton(!toggleButton)} 
+                variant="outlined" 
+                rounded 
+                startIcon={<KeyboardArrowDownIcon />}>
+                  {t('readMore')}
+              </Button>}
+        </div>
+          </AccordionSummary>
+          <AccordionDetails>
+          <div className={s.description} dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
+          </AccordionDetails>
+          </Accordion>
+      </div>
           <DiscoverArt
             artworks={artworks}
             tags={null}
@@ -80,7 +127,6 @@ export default function ProductListPage({ productList, navBarItems }: { productL
             isLoading={isLoadingArtWorks}
             loadMore={loadMoreArtworks}
           />
-          <div dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
         </>
       }
     </Main>
