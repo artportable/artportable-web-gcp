@@ -15,6 +15,16 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
 
+  {category.name === 'Artiklar' || category.name === 'Stories' ?
+  <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
+    {t('latest')}
+  </Typography>
+  :
+  <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
+    {category.name}<span className={s.underline}></span>
+  </Typography>
+}
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -39,6 +49,11 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('latest')}
                   </Typography>
                   :
+                  category.name === 'flerartiklar' || category.name === 'Morearticles' ?
+                  <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
+                    {t('moreArticles')}
+                  </Typography>
+                  :
                   <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
                     {category.name}<span className={s.underline}></span>
                   </Typography>
@@ -60,9 +75,9 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('artistPortrait')}
                   </MuiButton>
                 </Link>
-                <Link className={s.link} href="/fler-artiklar">
+                <Link className={s.link} href="/flerartiklar">
                   <MuiButton color="default" size="small">
-                    {t('moreArticles')}
+                    {t('moreArticlesMenu')}
                   </MuiButton>
                 </Link>
               </div>
