@@ -49,7 +49,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('latest')}
                   </Typography>
                   :
-                  category.name === 'flerartiklar' || category.name === 'Morearticles' ?
+                  category.name === 'Flerartiklar' || category.name === 'Morearticles' ?
                   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
                     {t('moreArticles')}
                   </Typography>
