@@ -66,10 +66,10 @@ export default function IndexHero() {
       <div className={s.flexContainer}>
           <div className={s.left}>
             <Typography variant="h1" className={s.headline}>
-              {t('header')}
+              {t('Hitta originalkonst')}
             </Typography>
             <Typography variant="h4" className={s.description}>
-              {t('subHeader')}
+              {t('Ta en titt i galleriet med över 27000 konstverk')}
             </Typography>
               <div className={s.headerButtonArtlover}>
                 <Button
