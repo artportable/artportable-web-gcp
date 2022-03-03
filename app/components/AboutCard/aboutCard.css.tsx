@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -8,7 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
     mainCardContent: {
       display: 'flex',
       flexDirection: 'column',
-      gap: theme.spacing(2),
+      ...columnGap(16),
     },
     profilePictureDiv: {
      alignSelf: 'center',
@@ -53,6 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
     [theme.breakpoints.up('lg')]: {
       mainCardContent: {
         flexDirection: 'row',
+        ...rowGap(16),
       },
       textContent: {
         maxWidth: '70%',

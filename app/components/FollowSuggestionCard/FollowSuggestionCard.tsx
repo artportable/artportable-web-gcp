@@ -30,6 +30,7 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
                   <AvatarSkeleton></AvatarSkeleton>
                   <AvatarSkeleton></AvatarSkeleton>
                   <AvatarSkeleton></AvatarSkeleton>
+                  <AvatarSkeleton></AvatarSkeleton>
                 </div>
                 ) : (
                   suggestedUsers.length !== 0 && suggestedUsers.length > 0 ?
