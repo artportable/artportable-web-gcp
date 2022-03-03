@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Card, CardContent, Typography, TextField } from "@material-ui/core";
+import { Box, Card, CardContent, Typography, TextField, Tabs } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -17,7 +17,6 @@ import Dialog from '@material-ui/core/Dialog';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
 import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead"
-import PhoneInput from "../PhoneInput/PhoneInput";
 
 interface Props {
   plan: PriceData;
@@ -34,8 +33,12 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
   const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
   const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
-  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
+  const { email, family_name, given_name, phone, user_type, isTyping } = useContext(UserContext);
   const [numberExists, setNumberExists] = useState(true)
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isTypingNumber, setIsTypingNumber] = useState(false);
+  
+
 
   useEffect(() => {
     if (plan.product === "portfolioPremium") {
@@ -53,16 +56,19 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
     return `${plan.amount} ${plan.currency.toUpperCase()}` +
       ` / ${t(`common:words.${plan.recurringInterval}`)} (${t('common:words.vat')})`;
   }
+
+  const handleChange = (e) => {
+    setIsTypingNumber(true);
+    isTyping.value = isTypingNumber;
+    setPhoneNumber(e.target.value);
+    phone.value = phoneNumber;
+  }
+
   const uppgradeWithPhone = (event) => {
-    if (phone.value || phone.value === null) {
+    if (!phone.value || phone.value === null) {
       event.stopPropagation();
       event.preventDefault();
       setNumberExists(false)
-      console.log(phone.value)
-      // return (
-      //   <PhoneInput />)
-      // variable istället
-    } else {
       return onNavClick();
     }
   }
@@ -100,95 +106,100 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
 
   return (
     <div className={s.container}>
-      <Card className={clsx(s.cardRoot, plan.productKey === "portfolio" && s.primaryCard)}>
-        <CardContent>
-          <Typography variant="h3" component="h2">
-            <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
-              {planName}
-            </Box>
-          </Typography>
-
-          <Typography variant="subtitle1" component="h3">
-            <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
-              {planSubtitle}
-            </Box>
-          </Typography>
-
-          <PaymentInfo
-            priceText={getPriceText()}
-            secondaryText={t('youCanAlwaysUpdateYourMembership')}
+      {!numberExists ? 
+        <div>
+          <TextField
+            fullWidth
+            placeholder={t('pphone')}
+            value={phoneNumber}
+            required
+            variant="outlined"
+            onChange={handleChange}
           />
-          <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', { returnObjects: true })} />
+          <Link passHref href={href}>
+            <a>
+              <Button
+                variant="contained"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => setNumberExists(false)}
+               >
+                {t('send')}
+              </Button>
+            </a>
+          </Link>
+        </div>
+              : 
+        <Card className={clsx(s.cardRoot, plan.productKey === "portfolio" && s.primaryCard)}>
+          <CardContent>
+            <Typography variant="h3" component="h2">
+              <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
+                {planName}
+              </Box>
+            </Typography>
 
-          {!hideButtons &&
-            <div className={s.button}>
-              {isHref ?
-                <Link passHref href={href}>
-                  <a>
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      disableElevation
-                      rounded
-                      onClick={(event) => uppgradeWithPhone(event)}
-                    >
-                      {plan.product === 'free' ?
-                        t('signUp') :
-                        `${capitalizeFirst(t('common:words.choose'))} ${planName}`
-                      }
-                    </Button>
-                  </a>
-                </Link>
+            <Typography variant="subtitle1" component="h3">
+              <Box fontWeight="fontWeightMedium" textAlign="center" fontFamily="LyonDisplay">
+                {planSubtitle}
+              </Box>
+            </Typography>
 
-                :
+            <PaymentInfo
+              priceText={getPriceText()}
+              secondaryText={t('youCanAlwaysUpdateYourMembership')}
+            />
+            <PlansInfoList texts={t(`plans.${plan.productKey}.listTexts`, '', { returnObjects: true })} />
 
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  rounded
 
-                  onClick={() => { setIsPremiumSignupDialogOpen(true); trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM, CategoryType.BUY) }}>
-                  {plan.product === 'free' ?
-                    t('signUp') :
-                    `${capitalizeFirst(t('common:words.choose'))} ${planName}`
-                  }
-                </Button>
-              }
-            </div>
-          }
-          {(numberExists === true) &&
-            <>
-              <Link passHref href={href}>
-                <a>
-                  <TextField
-                    fullWidth
-                    placeholder={t('pphone')}
-                    required
-                    variant="outlined"
-                  />
+            {/* // "VÄLJ PORTFOLIO-KNAPP" */}
+            {!hideButtons &&
+              <div className={s.button}>
+                {isHref ?
+                  <Link passHref href={href}>
+                    <a>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        color="primary"
+                        disableElevation
+                        rounded
+                        onClick={(event) => uppgradeWithPhone(event)}
+                      >
+                        {plan.product === 'free' ?
+                          t('signUp') :
+                          `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                        }
+                      </Button>
+                    </a>
+                  </Link>
+                  :
                   <Button
+                    size="small"
                     variant="contained"
                     color="primary"
                     disableElevation
                     rounded
-                    onClick={(e) => uppgradeWithPhone(e)} >
-                    {t('send')}
+
+                    onClick={() => { setIsPremiumSignupDialogOpen(true); trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM, CategoryType.BUY) }}>
+                    {plan.product === 'free' ?
+                      t('signUp') :
+                      `${capitalizeFirst(t('common:words.choose'))} ${planName}`
+                    }
                   </Button>
-                </a>
-              </Link>
-            </>
-          }
-        </CardContent>
-      </Card>
+                }
+              </div>
+            }
+          </CardContent>
+        </Card>
+      }
       <Dialog
         fullWidth
         maxWidth="md"
         open={isPremiumSignupDialogOpen} onClose={() => setIsPremiumSignupDialogOpen(false)}>
         <PremiumApply />
       </Dialog>
+      
     </div>
   )
 }

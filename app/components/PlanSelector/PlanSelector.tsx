@@ -1,6 +1,6 @@
 import { Tab, Tabs } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { getDistinct } from "../../utils/util";
 import PlanCard from "../PlanCard/PlanCard";
 import Button from '../Button/Button';
@@ -12,12 +12,14 @@ import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
 import clsx from 'clsx';
 import { PriceData } from "../../../pages/plans";
 import PhoneInput from "../PhoneInput/PhoneInput";
+import { UserContext } from "../../contexts/user-context";
 
 interface Props {
   priceData: PriceData[];
   landingPageMode?: boolean;
   showAll: boolean;
   requirePhone?: boolean; 
+  // showTab: boolean;
 }
 
 export default function PlanSelector({ priceData, landingPageMode, showAll, requirePhone = false }: Props) {
@@ -26,8 +28,9 @@ export default function PlanSelector({ priceData, landingPageMode, showAll, requ
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const signUpRedirectHref = useSignupRedirectHref();
+  const { isTyping } = useContext(UserContext);
 
-  requirePhone ? <PhoneInput /> : null
+  // requirePhone ? <PhoneInput /> : null
 
   const [paymentInterval, setPaymentInterval] = useState('year');
 
@@ -61,18 +64,24 @@ export default function PlanSelector({ priceData, landingPageMode, showAll, requ
 
   return (
     <div>
-      {!landingPageMode &&
-        <div className={s.paymentOptions}>
-          <Tabs
-            value={paymentInterval}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={(_, val) => setPaymentInterval(val)}
-          >
-            <Tab value="month" label={t('monthlyPayment')} />
-            <Tab value="year" label={t('yearlyPayment')} />
-          </Tabs>
-        </div>
+      {!isTyping ? 
+      <div>
+        {!landingPageMode &&
+          <div className={s.paymentOptions}>
+            <Tabs
+              value={paymentInterval}
+              indicatorColor="primary"
+              textColor="primary"
+              onChange={(_, val) => setPaymentInterval(val)}
+            >
+              <Tab value="month" label={t('monthlyPayment')} />
+              <Tab value="year" label={t('yearlyPayment')} />
+            </Tabs>
+          </div>
+        }
+      </div>
+      :
+      null
       }
       <div className={s.planCards}>
         {plans.filter((plan) => {

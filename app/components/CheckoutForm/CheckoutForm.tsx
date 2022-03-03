@@ -35,6 +35,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
+    console.log(phone.value);
     if (email !== null && fullName !== null && plan !== null) {
       // Create a Stripe customer as soon as the page loads
       fetch(`${apiBaseUrl}/api/payments/customers`, {
@@ -86,6 +87,7 @@ const confirmedPortfolio = () => {
   const handleChange = async (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
+      console.log(phone.value);
   };
 
   // Create payment method towards Stripe
