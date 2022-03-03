@@ -9,8 +9,8 @@ import Paper from "@material-ui/core/Paper";
 import clsx from 'clsx'
 import { useRef } from "react";
 import { IconButton, Theme, useTheme } from "@material-ui/core";
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftOutlinedIcon from '@material-ui/icons/ChevronLeftOutlined';
+import ChevronRightOutlinedIcon from '@material-ui/icons/ChevronRightOutlined';
 import { normalizeImageSize } from "../../utils/layoutUtils";
 import { useMainWidth } from "../../hooks/useWidth";
 import { useStore } from "react-redux";
@@ -29,7 +29,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
   const images = artist.Artworks.map(a => ({
-    ...normalizeImageSize(a.PrimaryFile, 200),
+    ...normalizeImageSize(a.PrimaryFile),
     id: a.Id,
     title: a.Title
   }));
@@ -69,7 +69,8 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
                 <Link href={`/art/${image.id}`}>
                   <a>
-                    <img src={`${bucketUrl}${image.Name}`}
+                    <img className={s.image} src={`${bucketUrl}${image.Name}`}
+                      loading="lazy"
                       alt={image.title}
                       width={image.Width}
                       height={image.Height}
@@ -83,12 +84,12 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
         <IconButton className={s.leftButton} color="primary" onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: -scrollBy, behavior: 'smooth' });
         }}>
-          <ChevronLeftIcon className={s.chevron}></ChevronLeftIcon>
+          <ChevronLeftOutlinedIcon className={s.chevron}></ChevronLeftOutlinedIcon>
         </IconButton>
         <IconButton className={s.rightButton} color="primary" onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: scrollBy, behavior: 'smooth' });
         }}>
-          <ChevronRightIcon className={s.chevron}></ChevronRightIcon>
+          <ChevronRightOutlinedIcon className={s.chevron}></ChevronRightOutlinedIcon>
         </IconButton>
       </div>
     </div>

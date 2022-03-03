@@ -4,7 +4,7 @@ import { relative } from 'node:path';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      marginBottom: "15px"
+      marginBottom: "30px"
     },
     header: {
       display: "flex",
@@ -38,6 +38,8 @@ export const styles = makeStyles((theme: Theme) =>
     scroll: {
       overflow: 'auto',
       scrollSnapType: 'x mandatory',
+      scrollbarColor: 'transparent transparent',
+      scrollbarWidth: 'none',
       '&::-webkit-scrollbar': {
         display: 'none',
       }
@@ -48,23 +50,39 @@ export const styles = makeStyles((theme: Theme) =>
       scrollSnapAlign: 'end',
     },
     chevron: {
-      fontSize: '2rem',
+      fontSize: '3rem',
       borderRadius: '50%',
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.common.white
+      backgroundColor: 'var( --background-color)',
+      color: theme.palette.common.black,
+      border: 'solid #c0bbb7 1px',
+      
     },
     leftButton: {
       display: 'none',
       position: 'absolute',
-      left: '-30px',
-      top: '74px'
+      left: '-44px',
+      top: '168px'
     },
     rightButton: {
       display: 'none',
       position: 'absolute',
-      right: '-30px',
-      top: '74px'
+      right: '-44px',
+      top: '168px'
     },
+    image:{
+      height: '220px'
+    },
+    [theme.breakpoints.up('smPlus')]: {
+      row:{
+        height: '420px'
+      },
+      imagePaper:{
+        height: '400px'
+      },
+      image:{
+        height: '400px'
+      }
+      },
     [theme.breakpoints.up('md')]: {
       leftButton: {
         display: 'initial',
