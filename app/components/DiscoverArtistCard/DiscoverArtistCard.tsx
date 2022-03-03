@@ -70,7 +70,6 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                 <Link href={`/art/${image.id}`}>
                   <a>
                     <img className={s.image} src={`${bucketUrl}${image.Name}`}
-                      loading="lazy"
                       alt={image.title}
                       width={image.Width}
                       height={image.Height}
