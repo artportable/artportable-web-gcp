@@ -51,7 +51,7 @@ export const styles = makeStyles((theme: Theme) =>
       scrollSnapAlign: 'end',
     },
     chevron: {
-      fontSize: '3rem',
+      fontSize: '2.5rem',
       borderRadius: '50%',
       backgroundColor: 'var( --background-color)',
       color: theme.palette.common.black,
@@ -61,13 +61,13 @@ export const styles = makeStyles((theme: Theme) =>
     leftButton: {
       display: 'none',
       position: 'absolute',
-      left: '-44px',
+      left: '-68px',
       top: '120px'
     },
     rightButton: {
       display: 'none',
       position: 'absolute',
-      right: '-44px',
+      right: '-68px',
       top: '120px'
     },
     image:{
