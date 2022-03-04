@@ -61,26 +61,26 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none',
       position: 'absolute',
       left: '-44px',
-      top: '168px'
+      top: '120px'
     },
     rightButton: {
       display: 'none',
       position: 'absolute',
       right: '-44px',
-      top: '168px'
+      top: '120px'
     },
     image:{
       height: '220px'
     },
     [theme.breakpoints.up('smPlus')]: {
       row:{
-        height: '420px'
+        height: '320px'
       },
       imagePaper:{
-        height: '400px'
+        height: '300px'
       },
       image:{
-        height: '400px'
+        height: '300px'
       }
       },
     [theme.breakpoints.up('md')]: {
