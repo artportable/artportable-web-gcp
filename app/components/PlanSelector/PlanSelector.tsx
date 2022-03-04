@@ -19,7 +19,6 @@ interface Props {
   landingPageMode?: boolean;
   showAll: boolean;
   requirePhone?: boolean; 
-  // showTab: boolean;
 }
 
 export default function PlanSelector({ priceData, landingPageMode, showAll, requirePhone = false }: Props) {
@@ -28,7 +27,7 @@ export default function PlanSelector({ priceData, landingPageMode, showAll, requ
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const signUpRedirectHref = useSignupRedirectHref();
-  const { isTyping } = useContext(UserContext);
+  const [hideTabs, setHideTabs] = useState(false);
 
   // requirePhone ? <PhoneInput /> : null
 
@@ -64,9 +63,8 @@ export default function PlanSelector({ priceData, landingPageMode, showAll, requ
 
   return (
     <div>
-      {!isTyping ? 
       <div>
-        {!landingPageMode &&
+        {hideTabs === false &&
           <div className={s.paymentOptions}>
             <Tabs
               value={paymentInterval}
@@ -80,15 +78,12 @@ export default function PlanSelector({ priceData, landingPageMode, showAll, requ
           </div>
         }
       </div>
-      :
-      null
-      }
       <div className={s.planCards}>
         {plans.filter((plan) => {
           return showAll || (!showAll && plan === 'Portfolio')
         }).map(plan => {
           const p = priceDataWithPremium.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
-          return <PlanCard hideButtons={landingPageMode} plan={p} key={p.id}></PlanCard>
+          return <PlanCard plan={p} key={p.id} setHideTabs={setHideTabs}></PlanCard>
         })}
       </div>
       {landingPageMode &&

@@ -22,9 +22,10 @@ interface Props {
   plan: PriceData;
   hideButtons?: boolean;
   lead?: Lead;
+  setHideTabs: any;
 }
 
-export default function PlanCard({ plan, hideButtons, lead }: Props) {
+export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props) {
   const { t } = useTranslation(['plans', 'common', 'checkout']);
   const s = styles();
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
   const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
   const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
-  const { email, family_name, given_name, phone, user_type, isTyping } = useContext(UserContext);
+  const { email, family_name, given_name, phone, user_type} = useContext(UserContext);
   const [numberExists, setNumberExists] = useState(true)
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isTypingNumber, setIsTypingNumber] = useState(false);
@@ -59,13 +60,14 @@ export default function PlanCard({ plan, hideButtons, lead }: Props) {
 
   const handleChange = (e) => {
     setIsTypingNumber(true);
-    isTyping.value = isTypingNumber;
+    // isTyping.value = isTypingNumber;
     setPhoneNumber(e.target.value);
     phone.value = phoneNumber;
   }
 
   const uppgradeWithPhone = (event) => {
     if (!phone.value || phone.value === null) {
+      setHideTabs(true)
       event.stopPropagation();
       event.preventDefault();
       setNumberExists(false)
