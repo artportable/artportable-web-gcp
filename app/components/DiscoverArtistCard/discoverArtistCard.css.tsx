@@ -1,5 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { relative } from 'node:path';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,7 +27,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     rowFlex: {
       display: 'flex',
-      gap: theme.spacing(2),
+      ...rowGap(8),
       '& *': {
         flexShrink: '0'
       },
