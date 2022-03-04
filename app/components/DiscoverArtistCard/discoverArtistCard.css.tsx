@@ -1,5 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { relative } from 'node:path';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,7 +27,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     rowFlex: {
       display: 'flex',
-      gap: theme.spacing(2),
+      ...rowGap(8),
       '& *': {
         flexShrink: '0'
       },
@@ -61,26 +62,26 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'none',
       position: 'absolute',
       left: '-44px',
-      top: '168px'
+      top: '120px'
     },
     rightButton: {
       display: 'none',
       position: 'absolute',
       right: '-44px',
-      top: '168px'
+      top: '120px'
     },
     image:{
       height: '220px'
     },
     [theme.breakpoints.up('smPlus')]: {
       row:{
-        height: '420px'
+        height: '320px'
       },
       imagePaper:{
-        height: '400px'
+        height: '300px'
       },
       image:{
-        height: '400px'
+        height: '300px'
       }
       },
     [theme.breakpoints.up('md')]: {
