@@ -38,7 +38,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     scroll: {
       overflow: 'auto',
-      scrollSnapType: 'x mandatory',
+      scrollSnapType: 'none',
       scrollbarColor: 'transparent transparent',
       scrollbarWidth: 'none',
       '&::-webkit-scrollbar': {
