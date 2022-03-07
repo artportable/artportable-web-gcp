@@ -16,7 +16,6 @@
     "save": "spara",
     "confirm": "bekräfta",
     "send": "Skicka",
-    "add": "Lägg till",
     "close": "Stäng",
     "untitled": "Utan titel",
     "sold": "Såld",
@@ -36,9 +35,11 @@
   },
   "like": "Gilla",
   "message": "Meddelande",
-  "Yes": "Ja",
-  "Cancel": "Avbryt",
+  "Yes" : "Ja",
+  "Cancel" : "Avbryt",
   "purchaseRequest": "Köpförfrågan",
   "messageOptional": "Meddelande (valfritt)",
-  "emailErrorMessage": "Ogiltig e-postadress"
+  "emailErrorMessage": "Ogiltig e-postadress",
+  "readMore": "Läs mer",
+  "readLess": "Läs mindre"
 }
