@@ -41,11 +41,11 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "lagerzz", image: '/images/carl_lagercrantz_second.jpg', imageLink: "art/b30a5786-5f44-4231-bb05-b11ef079b2f6"},
-    { name: "mike.eriksson", image: '/images/mike_eriksson.jpg', imageLink: "art/de2a5833-9bb9-431d-810c-7909894dd0d6"},
-    { name: "olle.brandqvist", image: '/images/Olle_Brandqvist_ny.jpg', imageLink: "profile/@olle.brandqvist"},
-    { name: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "art/b52807f2-8497-4722-b535-ad9a2cdfcf89"},
-    { name: "gunilla.svard", image: '/images/gunilla_svard_house.jpg', imageLink: "art/3b0b0caf-510f-4d91-a1f4-597866abca5f"},
+    { name: "marit.stjernberg", image: '/images/Marit_Stjernberg.jpg', imageLink: "art/ac380033-88a0-43d0-8090-f019f7ae5c45"},
+    { name: "atle.reilo", image: '/images/Atle_Reilo.jpg', imageLink: "art/442555ed-5673-4356-98a3-7e9abec67454"},
+    { name: "pia.britton", image: '/images/Pia_Britton.jpg', imageLink: "art/eb2655e2-ea20-4517-8f6b-89bf2b4df8e3"},
+    { name: "veslemoy.vangsnes", image: '/images/Vanja_Antonsen.jpg', imageLink: "art/cd7c9a38-fafd-4037-bac7-1312f9ad9177"},
+    { name: "vanja.antonsson", image: '/images/Vanja_Antonsen.jpg', imageLink: "art/ef617c82-66cd-4e7a-ad5c-4d3a1407ca2b"},
     // { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
     // { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
     // { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
