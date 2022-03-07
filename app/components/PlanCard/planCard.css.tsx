@@ -54,7 +54,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       textAlign: "center",
-
       minHeight: "76px",
     },
   })

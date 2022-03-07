@@ -22,10 +22,8 @@ export default function AboutCard({ data, userProfilePicture }) {
             }
           </div>
           <Box className={s.textContent} maxWidth='70%' flexBasis="100%">
-            <Typography variant="h4" className={s.name}>
-              <Box fontWeight="500" fontFamily="LyonDisplay">
+            <Typography variant="h1" className={s.name}>
                 {`${data?.Name} ${data?.Surname}`}
-              </Box>
             </Typography>
             {data?.Title &&
               <Typography className={s.artistTitle}>

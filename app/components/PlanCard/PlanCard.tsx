@@ -154,7 +154,6 @@ export default function PlanCard({
               value={phoneNumber}
               required
               variant="outlined"
-              // onChange={handleChange}
             />
             <Link passHref href={href}>
               <a>

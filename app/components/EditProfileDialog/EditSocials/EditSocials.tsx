@@ -41,6 +41,7 @@ export const EditSocials = ({ profile, setProfile }) => {
         label={t('instagram')} 
         value={profile?.socialMedia.instagram}
         onChange={(event) => setSocialMediaProp(event.target.value, 'instagram')}
+        inputProps={{ maxLength: 280 }}
         InputProps={{ startAdornment: (
           <InputAdornment position="start">
             <InstagramIcon />
@@ -63,7 +64,8 @@ export const EditSocials = ({ profile, setProfile }) => {
       <TextField
         label={t('facebook')} 
         value={profile?.socialMedia.facebook}
-        onChange={(event) => setSocialMediaProp(event.target.value, 'facebook')} 
+        onChange={(event) => setSocialMediaProp(event.target.value, 'facebook')}
+        inputProps={{ maxLength: 280 }} 
         InputProps={{ 
           startAdornment: (
             <InputAdornment position="start">
@@ -82,6 +84,7 @@ export const EditSocials = ({ profile, setProfile }) => {
         label={t('linkedIn')} 
         value={profile?.socialMedia.linkedIn}
         onChange={(event) => setSocialMediaProp(event.target.value, 'linkedIn')}
+        inputProps={{ maxLength: 280 }}
         InputProps={{ startAdornment: (
           <InputAdornment position="start">
             <LinkedInIcon />
@@ -105,6 +108,7 @@ export const EditSocials = ({ profile, setProfile }) => {
         label={t('dribbble')} 
         value={profile?.socialMedia.dribbble}
         onChange={(event) => setSocialMediaProp(event.target.value, 'dribbble')}
+        inputProps={{ maxLength: 280 }}
         InputProps={{ startAdornment: (
           <InputAdornment position="start">
             <Icon className="fab fa-dribbble" />
@@ -128,6 +132,7 @@ export const EditSocials = ({ profile, setProfile }) => {
         label={t('behance')} 
         value={profile?.socialMedia.behance}
         onChange={(event) => setSocialMediaProp(event.target.value, 'behance')}
+        inputProps={{ maxLength: 280 }}
         InputProps={{ startAdornment: (
           <InputAdornment position="start">
             <Icon className="fab fa-behance-square" />
@@ -151,6 +156,7 @@ export const EditSocials = ({ profile, setProfile }) => {
         label={t('website')} 
         value={profile?.socialMedia.website}
         onChange={(event) => setSocialMediaProp(event.target.value, 'website')}
+        inputProps={{ maxLength: 280 }}
         InputProps={{ startAdornment: (
           <InputAdornment position="start">
             <LanguageIcon />

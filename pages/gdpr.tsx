@@ -4,9 +4,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React from "react";
 import Main from "../app/components/Main/Main";
 import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
+import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { styles } from "../styles/gdpr.css";
 
-export default function GdprPage(props) {
+export default function GdprPage({navBarItems}) {
   const mdPlusScreenOrDown = useBreakpointDown('mdPlus');
   const { t } = useTranslation(['gdpr']);
   const s = styles();
@@ -17,7 +18,7 @@ export default function GdprPage(props) {
 
   return (
     <>
-      <Main wide={mdPlusScreenOrDown ? true : false}>
+      <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
         <Paper title={t('title')} className={s.gdprContainer}>
           {/* <Box>
             {Object.entries(gdpr).map(([key, value]) =>   
@@ -287,9 +288,12 @@ export default function GdprPage(props) {
 }
 
 export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
+      navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans']),
-    }
+    },
+    revalidate: 60,
   }
 }
