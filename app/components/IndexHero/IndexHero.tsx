@@ -44,7 +44,7 @@ export default function IndexHero() {
     { name: "marit.stjernberg", image: '/images/Marit_Stjernberg.jpg', imageLink: "art/ac380033-88a0-43d0-8090-f019f7ae5c45"},
     { name: "atle.reilo", image: '/images/Atle_Reilo.jpg', imageLink: "art/442555ed-5673-4356-98a3-7e9abec67454"},
     { name: "pia.britton", image: '/images/Pia_Britton.jpg', imageLink: "art/eb2655e2-ea20-4517-8f6b-89bf2b4df8e3"},
-    { name: "veslemoy.vangsnes", image: '/images/Vanja_Antonsen.jpg', imageLink: "art/cd7c9a38-fafd-4037-bac7-1312f9ad9177"},
+    { name: "veslemoy.vangsnes", image: '/images/Veslemøy_Vangsnes.jpg', imageLink: "art/cd7c9a38-fafd-4037-bac7-1312f9ad9177"},
     { name: "vanja.antonsson", image: '/images/Vanja_Antonsen.jpg', imageLink: "art/ef617c82-66cd-4e7a-ad5c-4d3a1407ca2b"},
     // { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
     // { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
