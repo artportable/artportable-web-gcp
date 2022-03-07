@@ -17,7 +17,6 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/goo
 import { Lead, PremiumLead, zapierLeadFreemium, zapierLeadBasic, zapierLeadPremium } from '../app/utils/zapierLead';
 import { UserContext } from '../app/contexts/user-context';
 import router from 'next/router';
-import { inputValueFromEvent } from 'react-activity-feed/dist/utils';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -70,13 +69,6 @@ export default function Plans({ priceData }) {
     amount: 4500,
   }];
 
-  
-const noPhonenumber = () => {
-  if (email.value == '')
-  return (
-    <input></input>
-  )
-}
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
   plans.push("portfolioPremium");
 
