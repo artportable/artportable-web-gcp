@@ -16,6 +16,7 @@
     "save": "save",
     "confirm": "confirm",
     "send": "Send",
+    "add": "Add",
     "close": "Close",
     "untitled": "Untitled",
     "sold": "Sold",
@@ -35,8 +36,8 @@
   },
   "like": "Like",
   "message": "Message",
-  "Yes" : "Yes",
-  "Cancel" : "Cancel",
+  "Yes": "Yes",
+  "Cancel": "Cancel",
   "purchaseRequest": "Purchase request",
   "messageOptional": "Message (optional)",
   "emailErrorMessage": "Invalid email address"
