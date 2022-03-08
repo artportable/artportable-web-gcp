@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from '../Button/Button'
 import { Dialog, DialogActions, DialogContent, IconButton, Typography, Box } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close'
@@ -9,6 +9,7 @@ import { PriceData } from "../../../pages/plans";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
+import { UserContext } from "../../contexts/user-context";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -17,6 +18,9 @@ export default function DialogConstruction() {
   const s = styles();
   const { t } = useTranslation(['header', 'common']);
   const [open, setOpen] = useState(false);
+  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
+  const [numberExists, setNumberExists] = useState(true)
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleClickOpen = () => {
     setOpen(true);

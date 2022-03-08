@@ -10,8 +10,11 @@ import { TokenContext } from '../../contexts/token-context';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useKeycloak } from '@react-keycloak/ssr'
 import type { KeycloakInstance } from 'keycloak-js'
+import { UserContext } from "../../contexts/user-context";
+import { zapierLeadBasicConfirmed } from '../../utils/zapierLead';
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+const zapierBasicConfirmedApiUrl = process.env.NEXT_PUBLIC_ZAPIER_BASIC_CONFIRMED
 
 export default function CheckoutForm({ email, fullName, plan }) {
   const [succeeded, setSucceeded] = useState(false);
@@ -23,7 +26,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const [countdown, setCountdown] = useState(6);
   const token = useContext(TokenContext);
   const countdownRef = useRef(null);
-
+  const { family_name, given_name, phone, user_type } = useContext(UserContext);
   const stripe = useStripe();
   const elements = useElements();
   const styles = checkoutFormStyles();
@@ -32,16 +35,17 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
+    console.log(phone.value);
     if (email !== null && fullName !== null && plan !== null) {
       // Create a Stripe customer as soon as the page loads
       fetch(`${apiBaseUrl}/api/payments/customers`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            'Authorization' : `Bearer ${token}`
-          },
-          body: JSON.stringify({email: email, fullName: fullName})
-        })
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ email: email, fullName: fullName })
+      })
         .then(res => {
           return res.json();
         })
@@ -49,7 +53,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
           setCustomerId(data?.id);
         })
         .catch(e => console.log(e));
-      }
+    }
   }, [email, fullName, plan]);
 
   const cardStyle = {
@@ -71,9 +75,19 @@ export default function CheckoutForm({ email, fullName, plan }) {
     }
   };
 
+const confirmedPortfolio = () => {
+  zapierLeadBasicConfirmed({
+    name: { value: given_name.value + ' ' + family_name.value } ?? '',
+    phoneNumber: { value: phone.value } ?? '',
+    email: { email } ?? '',
+    product: 'portfolio',
+    type: { value: user_type.value } ?? ''
+  });
+}
   const handleChange = async (event) => {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
+      console.log(phone.value);
   };
 
   // Create payment method towards Stripe
@@ -107,12 +121,12 @@ export default function CheckoutForm({ email, fullName, plan }) {
             paymentMethodId: result.paymentMethod.id,
             priceId: plan.id,
           })
-          .then((result) => {
-            setSucceeded(true);
-            setProcessing(false);
-          }).catch((error) => {
-            setErrorOpen(true);
-          });
+            .then((result) => {
+              setSucceeded(true);
+              setProcessing(false);
+            }).catch((error) => {
+              setErrorOpen(true);
+            });
         }
       });
   };
@@ -124,7 +138,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
-          'Authorization' : `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           customerId: customerId,
@@ -132,46 +146,44 @@ export default function CheckoutForm({ email, fullName, plan }) {
           priceId: priceId,
         }),
       })
-      .then((response) => {
-        return response.json();
-      })
-      .then((result) => {
-        if (result.status === 500 || result.error) {
-          // If the card is declined, display an error to the user.
-          setErrorOpen(true);
-          throw result;
-        }
-        else if (result.Status === 'succeeded')
-        {
-          setSucceeded(true);
-          startCountdown();
-          return result;
-        }
-        else if (result.Status === 'requires_action')
-        {
-          return stripe.confirmCardPayment(result.Id, { payment_method: paymentMethodId })
-            .then((resultConfirm) => {
-              if (resultConfirm.error) { // If 3D Secure is declined, display an error to the user.
-                setErrorOpen(true);
-                throw resultConfirm;
-              } else {
-                if (resultConfirm.paymentIntent.status === 'succeeded') {
-                  setSucceeded(true);
-                  startCountdown();
-                  return resultConfirm;
+        .then((response) => {
+          return response.json();
+        })
+        .then((result) => {
+          if (result.status === 500 || result.error) {
+            // If the card is declined, display an error to the user.
+            setErrorOpen(true);
+            throw result;
+          }
+          else if (result.Status === 'succeeded') {
+            setSucceeded(true);
+            startCountdown();
+            return result;
+          }
+          else if (result.Status === 'requires_action') {
+            return stripe.confirmCardPayment(result.Id, { payment_method: paymentMethodId })
+              .then((resultConfirm) => {
+                if (resultConfirm.error) { // If 3D Secure is declined, display an error to the user.
+                  setErrorOpen(true);
+                  throw resultConfirm;
+                } else {
+                  if (resultConfirm.paymentIntent.status === 'succeeded') {
+                    setSucceeded(true);
+                    startCountdown();
+                    return resultConfirm;
+                  }
                 }
-              }
-            })
-            .catch((error) => {
-              throw error;
-            });
-        }
-      })
-      .catch((error) => {
-        setErrorOpen(true);
-        setProcessing(false);
-        throw error;
-      })
+              })
+              .catch((error) => {
+                throw error;
+              });
+          }
+        })
+        .catch((error) => {
+          setErrorOpen(true);
+          setProcessing(false);
+          throw error;
+        })
     );
   }
 
@@ -180,23 +192,25 @@ export default function CheckoutForm({ email, fullName, plan }) {
   }
 
   useEffect(() => {
-    if(countdown === 0) {
+    if (countdown === 0) {
       clearInterval(countdownRef.current);
+      confirmedPortfolio();
       router.push("/success")
 
 
     }
   }, [countdown]);
-  
+
   const handleSuccessClose = () => {
+    confirmedPortfolio();
     router.push("/success")
-    
+
   }
 
   return (
     <>
       <div className={styles.cardElementContainer}>
-        <CardElement id="card-element" options={cardStyle} onChange={handleChange}/>
+        <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
       </div>
       {/* Show any error that happens when processing the payment */}
       <div className={styles.cardErrorContainer} role="alert">
@@ -222,13 +236,13 @@ export default function CheckoutForm({ email, fullName, plan }) {
       <Box className={styles.divider}></Box>
       <Box display="flex" position="relative" justifyContent="flex-end" marginTop="2rem">
         <Button
-          variant="contained" 
+          variant="contained"
           color="primary"
-          disableElevation 
+          disableElevation
           rounded
           onClick={createPaymentMethod}
           disabled={processing || disabled || succeeded}
-          >
+        >
           {capitalizeFirst(t('common:words.pay'))}
           {processing && (
             <CircularProgress
@@ -245,11 +259,11 @@ export default function CheckoutForm({ email, fullName, plan }) {
         </Button>
       </Box>
 
-      <Snackbar 
-        open={succeeded} 
+      <Snackbar
+        open={succeeded}
         onClose={handleSuccessClose}>
-        <Alert  
-          severity="success" 
+        <Alert
+          severity="success"
           variant="filled"
           action={<Button style={{ color: '#fff' }} onClick={() => startCountdown()}>{t('takeMeThereNow')}</Button>}
         >
@@ -258,14 +272,14 @@ export default function CheckoutForm({ email, fullName, plan }) {
         </Alert>
       </Snackbar>
 
-      <Snackbar 
+      <Snackbar
         open={errorOpen}
-        onClose={() => {setErrorOpen(false)}}
+        onClose={() => { setErrorOpen(false) }}
       >
-        <Alert  
-          severity="error" 
+        <Alert
+          severity="error"
           variant="filled"
-          onClose={() => {setErrorOpen(false)}}
+          onClose={() => { setErrorOpen(false) }}
         >
           <AlertTitle>{t('paymentUnsuccessful')}</AlertTitle>
           {t('tryAgain')}

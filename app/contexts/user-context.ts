@@ -18,6 +18,7 @@ export interface ContextUser {
   user_type: AsyncValue<string>;
   phone: AsyncValue<string>;
   membership: AsyncValue<Membership>;
+  isTyping: AsyncValue<boolean>;
 }
 
 export const defaultContextUser = {
@@ -61,6 +62,10 @@ export const defaultContextUser = {
     value: null,
     isPending: false,
   },
+  isTyping: {
+    value: false,
+    isPending: true,
+  }
 }
 
 export const UserContext = React.createContext<ContextUser>(defaultContextUser);
