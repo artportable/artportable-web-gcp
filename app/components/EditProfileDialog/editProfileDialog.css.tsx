@@ -1,10 +1,11 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { columnGap, rowGap } from '../../utils/styleUtils'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     tagsContainer: {
       display: 'flex',
-      gap: theme.spacing(1),
+      ...rowGap(8),
       flexWrap: 'wrap'
     },
     buttonPosition: {
@@ -21,7 +22,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       width: 'clamp(10px, 100vw - 88px, 660px)',
-      gap: theme.spacing(2),
+      ...columnGap(16),
       '& > :last-child': {
         marginBottom: theme.spacing(2)
       }
@@ -30,7 +31,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       width: 'clamp(10px, 100vw - 88px, 660px)',
-      gap: theme.spacing(2)
+      ...columnGap(16),
     },
     [theme.breakpoints.up('sm')]: {
       editProfileButton: {

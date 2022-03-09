@@ -41,13 +41,15 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "anders.malm", image: '/images/anders_malm.jpg', imageLink: "f08c9683-db20-44eb-bc83-e216e30af62f"},
-    { name: "Gunilla.Iversen", image: '/images/gunilla_iversen.jpg', imageLink: "e63ed3be-25ea-4c73-ace3-5ff81ca66c77"},
-    { name: "hevius.rosalie", image: '/images/rosalie_hevius.jpg', imageLink: "29cb96df-fb4c-42ff-aad1-7e4237697239"},
-    { name: "ajohansson193", image: '/images/annamaria.jpg', imageLink: "88ae6dd6-04b0-49c8-a194-eb1fee7b82b4"},
-    { name: "elsmarie.rannemalm", image: '/images/elsmarie_skymning.png', imageLink: "87eaeb65-98ff-4b30-9b22-632bc18fc1aa"},
-    { name: "malin.ekstrom", image: '/images/malin.jpg', imageLink: "fe4a6e67-fef2-4420-94d7-1738dce27f43"},
-  ];
+    { name: "marit.stjernberg", image: '/images/Marit_Stjernberg.jpg', imageLink: "art/ac380033-88a0-43d0-8090-f019f7ae5c45"},
+    { name: "atle.reilo", image: '/images/Atle_Reilo.jpg', imageLink: "art/442555ed-5673-4356-98a3-7e9abec67454"},
+    { name: "pia.britton", image: '/images/Pia_Britton.jpg', imageLink: "art/eb2655e2-ea20-4517-8f6b-89bf2b4df8e3"},
+    { name: "veslemoy.vangsnes", image: '/images/Veslemøy_Vangsnes.jpg', imageLink: "art/cd7c9a38-fafd-4037-bac7-1312f9ad9177"},
+    { name: "vanja.antonsson", image: '/images/Vanja_Antonsen.jpg', imageLink: "art/ef617c82-66cd-4e7a-ad5c-4d3a1407ca2b"},
+    // { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
+    // { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
+    // { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
+  ]
 
   useEffect(() => {
     const randomImageIndex = Math.floor(Math.random() * images.length);
@@ -62,21 +64,15 @@ export default function IndexHero() {
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
-
           <div className={s.left}>
             <Typography variant="h1" className={s.headline}>
-              {t('header')}
+              {t('Hitta originalkonst')}
             </Typography>
             <Typography variant="h4" className={s.description}>
-              {t('subHeader')}
+              {t('Ta en titt i galleriet med över 27000 konstverk')}
             </Typography>
-            {/* <div className={s.flexheaderButton}> */}
               <div className={s.headerButtonArtlover}>
-                {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline}>
-                  {t('artLoverHeader')}<span className='bigger'>{t('artloverPrice')}</span>{t('artloverSek')}
-                </Typography> */}
                 <Button
-                // {clsx(s.mobile, s.flexItem)}
                   classes={{
                     label: s.buttonLabel
                   }}
@@ -92,11 +88,6 @@ export default function IndexHero() {
                   })}>
                   {t('signUp')}
                 </Button>
-              {/* </div> */}
-               {/* <div className={s.headerButtonArtist}> */}
-               {/* <Typography variant="subtitle1" component="h2" className={s.subHeadline} >
-                  {t('artistHeader')}<span className='bigger'>{t('artistPrice')}</span>{t('artistSek')}
-                </Typography> */}
                 <Button
                   classes={{
                     label: s.buttonLabel
@@ -109,7 +100,6 @@ export default function IndexHero() {
                   {t('logIn')}
                 </Button>
               </div>
-            {/* </div> */}
           </div>
         
         <div className={s.right}>
@@ -117,8 +107,7 @@ export default function IndexHero() {
             {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
               :
               <>
-                {/* <Paper elevation={5}> */}
-                  <Link href={`/art/${randomImage.imageLink}`}>
+                  <Link href={`/${randomImage.imageLink}`}>
                     <a>
                       <img
                         className={s.boosted}
@@ -127,8 +116,6 @@ export default function IndexHero() {
                         title={`${t("artworkFrom")} ${randomImage.username}`} />
                     </a>
                   </Link>
-
-                {/* </Paper> */}
                 <div className={s.createdBy}>
                   <Chip
                     onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
@@ -136,18 +123,12 @@ export default function IndexHero() {
                     classes={{
                       root: s.chip,
                     }}
-                    // avatar={
-                    //   <div className={s.chipAvatar}>
-                    //     <ProfileAvatar size={19} profilePicture={randomImage.profileImage} />
-                    //   </div>
-                    // }
                     label={randomImage.username} />
                 </div>
               </>
             }
           </div>
           <div>
-            {/* <img className={s.sofaImage} src="/images/soffa-cropped-landing-hero.png"></img> */}
           </div>
         </div>
       </div>

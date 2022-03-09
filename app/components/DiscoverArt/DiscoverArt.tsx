@@ -22,7 +22,7 @@ import { ActionType } from "../../utils/googleAnalytics";
 interface InputProps {
   artworks: Artwork[],
   tags: string[],
-  onFilter: any,
+  onFilter?: any,
   onLike: any,
   rowWidth: number,
   loadMoreElementRef: any
@@ -30,7 +30,7 @@ interface InputProps {
   loadMore: boolean;
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
+export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const smScreenOrSmaller = useBreakpointDown('sm');
@@ -107,16 +107,17 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   }, [artworks]);
 
   useEffect(() => {
-    onFilter([]);
+    if (onFilter)
+      onFilter([]);
   }, []);
 
-  function togglePurchaseRequestDialog(){
+  function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
   }
 
   function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
-    if(isSignedIn.value) {
+    if (isSignedIn.value) {
       const originalRedirect = {
         pathname: "/messages",
         query: {
@@ -128,8 +129,8 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
           referTo: referTo,
         }
       }
-        router.push(originalRedirect);
-    }else{
+      router.push(originalRedirect);
+    } else {
       setPurchaseRequestDialogData({
         title: title,
         creator: creator,
@@ -144,9 +145,11 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
   return (
     <>
       <Box className={s.rowsContainer}>
-        <div>
-          <SearchField onFilter={onFilter} tags={tags}></SearchField>
-        </div>
+        {onFilter &&
+          <div>
+            <SearchField onFilter={onFilter} tags={tags}></SearchField>
+          </div>
+        }
         {showFilterLoadingSkeleton &&
           <>
             <div className={s.row}>
@@ -193,7 +196,7 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             )}
           </div>
         )}
-         {!isLoading && loadMore &&
+        {!isLoading && loadMore &&
           <div className={s.row} ref={loadMoreElementRef}>
             {skeletonRows && skeletonRows.length > 0 &&
               <div className={s.row}>
@@ -207,9 +210,9 @@ export default function DiscoverArt({ artworks, tags, onFilter, onLike, rowWidth
             }
           </div>
         }
-        <PurchaseRequestDialog 
-          open={purchaseRequestDialogOpen} 
-          onClose={togglePurchaseRequestDialog} 
+        <PurchaseRequestDialog
+          open={purchaseRequestDialogOpen}
+          onClose={togglePurchaseRequestDialog}
           props={{
             pathname: "/messages",
             title: purchaseRequestDialogData.title,
