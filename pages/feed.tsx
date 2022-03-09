@@ -25,9 +25,10 @@ import { LoadingContext } from '../app/contexts/loading-context';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
 import usePostLike from '../app/hooks/dataFetching/usePostLike';
 import usePostFollow from '../app/hooks/dataFetching/usePostFollow';
+import { getNavBarItems } from '../app/utils/getNavBarItems';
 
 
-export default function FeedPage() {
+export default function FeedPage({navBarItems}) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
   const { username, socialId, membership } = useContext(UserContext);
@@ -111,7 +112,7 @@ export default function FeedPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main wide={mdPlusScreenOrDown ? true : false}>
+      <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
         {!loading &&
           <Box className={s.feedContainer}>
             {!mdPlusScreenOrDown && 
@@ -161,9 +162,12 @@ export default function FeedPage() {
 }
 
 export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
+      navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'feed', 'support', 'plans']),
-    }
+    },
+    revalidate: 60,
   }
 }

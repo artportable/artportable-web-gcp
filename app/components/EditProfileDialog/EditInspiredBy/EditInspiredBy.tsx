@@ -16,6 +16,7 @@ export const EditInspiredBy = ({ profile, setProfile }) => {
       <TextField 
         label={t('inspiredBy')} 
         defaultValue={profile?.inspiredBy}
+        multiline
         onChange={(event) => setInspiredBy(event.target.value)} />
     </EditDialogSection>
   );

@@ -1,8 +1,8 @@
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { useContext, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useTranslation } from "next-i18next"
 import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
@@ -13,7 +13,7 @@ import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
-export default function ArtworkListItemDefined({ 
+export default function ArtworkListItemDefined({
   artwork,
   onLikeClick,
   onPurchaseRequestClick,
@@ -23,7 +23,7 @@ export default function ArtworkListItemDefined({
   topActions = undefined
 }) {
   const s = styles();
-  const { t } = useTranslation(['art','common']);
+  const { t } = useTranslation(['art', 'common']);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
 
   const { isSignedIn, username } = useContext(UserContext);
@@ -44,7 +44,7 @@ export default function ArtworkListItemDefined({
   function toggleLike(event) {
     event.stopPropagation();
 
-    if(isSignedIn.value) {
+    if (isSignedIn.value) {
       setIsLiked(!isLiked);
       artwork.LikedByMe = !isLiked;
       !isLiked ? artwork.Likes++ : artwork.Likes--;
@@ -54,7 +54,7 @@ export default function ArtworkListItemDefined({
   }
 
   const likedFilled = !isSignedIn.value ?
-  <FavoriteBorderOutlinedIcon color="primary" /> :
+    <FavoriteBorderOutlinedIcon color="primary" /> :
     isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
 
   if (width === null || height === null) return <></>;
@@ -62,7 +62,7 @@ export default function ArtworkListItemDefined({
   return (
     <div title={artwork.Title} className={s.container}>
       <div className={s.imageContainer}>
-        <Link href={`/art/${artwork.Id}`}>
+      <Link href={`/art/${artwork.Id}`}>
           <a>
             <img
               style={{
@@ -85,21 +85,21 @@ export default function ArtworkListItemDefined({
       <div className={s.titleAndLike}>
         <div className={s.info}>
           <div className={s.title}>
-              {artwork.Title ? artwork.Title : t('untitled')}
-              <span className={s.size}>
-                {artwork.MultipleSizes ? 
-                  " (" + t('common:words.multipleSizes').toLowerCase() + ")" : 
-                    artwork.Width && artwork.Height && artwork.Depth ? 
-                      " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' : 
-                      artwork.Width && artwork.Height ? 
-                        " (" + artwork.Width + 'x' + artwork.Height + 'cm)': 
-                        null}
-              </span>
+            {artwork.Title ? artwork.Title : t('untitled')}
+            <span className={s.size}>
+              {artwork.MultipleSizes ?
+                " (" + t('common:words.multipleSizes').toLowerCase() + ")" :
+                artwork.Width && artwork.Height && artwork.Depth ?
+                  " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' :
+                  artwork.Width && artwork.Height ?
+                    " (" + artwork.Width + 'x' + artwork.Height + 'cm)' :
+                    null}
+            </span>
           </div>
           <div className={s.price}>
-            {artwork.SoldOut ? <><div className={s.soldMark}/>{t('common:words.sold')} </>: 
-              artwork.Price && artwork.Price != "0" ? 
-                formatter.format(artwork.Price) : 
+            {artwork.SoldOut ? <><div className={s.soldMark} />{t('common:words.sold')} </> :
+              artwork.Price && artwork.Price != "0" ?
+                formatter.format(artwork.Price) :
                 t('priceOnRequest')}
           </div>
         </div>
@@ -120,22 +120,22 @@ export default function ArtworkListItemDefined({
       </div>
 
       {
-      username.value != artwork.Owner.Username && !artwork.SoldOut &&
+        username.value != artwork.Owner.Username && !artwork.SoldOut &&
         <Button
           className={s.purchaseRequestButton}
           onClick={() => {
             onPurchaseRequestClick(
-                artwork.Title,
-                artwork.Owner.Username,
-                artwork.Id,
-                artwork.Owner.SocialId,
-                bucketUrl + artwork.PrimaryFile.Name
+              artwork.Title,
+              artwork.Owner.Username,
+              artwork.Id,
+              artwork.Owner.SocialId,
+              bucketUrl + artwork.PrimaryFile.Name
             );
             trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
           }}
           variant="outlined"
           rounded
-          startIcon={<SendIcon color={"inherit"}/>}>
+          startIcon={<SendIcon color={"inherit"} />}>
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
       }

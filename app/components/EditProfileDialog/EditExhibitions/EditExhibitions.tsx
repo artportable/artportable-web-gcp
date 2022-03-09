@@ -101,12 +101,14 @@ export const EditExhibitions = ({ profile, setProfile }) => {
           <TextField 
             label={t('name')} 
             defaultValue={e.name}
-            onChange={(event) => setName(e, event.target.value)} />
+            onChange={(event) => setName(e, event.target.value)}
+            inputProps={{ maxLength: 140 }} />
           
           <TextField 
             label={t('place')} 
             defaultValue={e.place}
-            onChange={(event) => setPlace(e, event.target.value)} />
+            onChange={(event) => setPlace(e, event.target.value)}
+            inputProps={{ maxLength: 140 }} />
         </div>
       </Badge>
       )}
