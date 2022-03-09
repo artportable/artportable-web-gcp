@@ -44,7 +44,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     <div className={s.container}>
       <div className={s.header}>
         <AvatarCard user={artist}></AvatarCard>
-        {isSignedIn &&
+        
           <Button
             size="small"
             variant={!isFollowed ? "contained" : "outlined"}
@@ -60,7 +60,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                 t('common:words.following')
             )}
           </Button>
-        }
+        
       </div>
       <div className={s.scrollContainer}>
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
