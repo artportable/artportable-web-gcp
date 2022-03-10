@@ -117,12 +117,6 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         </Typography>
       </Box>
 
-        {/* <Box>
-        <Typography variant="caption" className={s.username}>
-          @{data?.Username}
-        </Typography>
-        </Box> */}
-        
       <Box marginTop={1}>
         <Typography variant="h6" className={s.title}>
           {data?.Title}

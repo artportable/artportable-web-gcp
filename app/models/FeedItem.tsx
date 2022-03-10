@@ -2,6 +2,8 @@ export interface FeedItem {
   Type: FeedItemType,
   User: string,
   ProfilePicture: string,
+  Name: string,
+  Surname: string,
   Location: string,
   Published: Date,
   Likes: number,
