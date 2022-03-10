@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TextField,
-  Tabs,
-} from "@material-ui/core";
+import {Box, Card, CardContent, Typography, TextField, Tabs } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -21,17 +14,9 @@ import clsx from "clsx";
 import PremiumApply from "../PremiumApply/PremiumApply";
 import { PriceData } from "../../../pages/plans";
 import Dialog from "@material-ui/core/Dialog";
-import {
-  ActionType,
-  CategoryType,
-  trackGoogleAnalytics,
-} from "../../utils/googleAnalytics";
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import {
-  Lead,
-  zapierLeadFreemium,
-  zapierLeadBasic,
-} from "../../utils/zapierLead";
+import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead";
 
 interface Props {
   plan: PriceData;
@@ -39,30 +24,25 @@ interface Props {
   lead?: Lead;
   setHideTabs: any;
 }
+interface ZendeskFormData {
+  email: FormValue;
+}
+interface FormValue {
+  value: string;
+  error: boolean
+}
 
-export default function PlanCard({
-  plan,
-  hideButtons,
-  lead,
-  setHideTabs,
-}: Props) {
+export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props) {
   const { t } = useTranslation(["plans", "common", "checkout"]);
   const s = styles();
   const dispatch = useDispatch();
   const href = plan.product === "free" ? "feed" : "/checkout";
   const [isHref, setIsHref] = useState(true);
-  const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] =
-    useState(false);
-  const planName = t(
-    `plans.${plan.productKey}.name`,
-    `${capitalizeFirst(plan.product)}`
-  );
-  const planSubtitle = t(
-    `plans.${plan.productKey}.subtitle`,
-    `${capitalizeFirst(plan.product)}`
-  );
-  const { email, family_name, given_name, phone, user_type } =
-    useContext(UserContext);
+  const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
+  
+  const planName = t(`plans.${plan.productKey}.name`,`${capitalizeFirst(plan.product)}`);
+  const planSubtitle = t(`plans.${plan.productKey}.subtitle`,`${capitalizeFirst(plan.product)}`);
+  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
   const [numberExists, setNumberExists] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
 
@@ -231,8 +211,8 @@ export default function PlanCard({
                         {plan.product === "free"
                           ? t("signUp")
                           : `${capitalizeFirst(
-                              t("common:words.choose")
-                            )} ${planName}`}
+                            t("common:words.choose")
+                          )} ${planName}`}
                       </Button>
                     </a>
                   </Link>
@@ -254,8 +234,8 @@ export default function PlanCard({
                     {plan.product === "free"
                       ? t("signUp")
                       : `${capitalizeFirst(
-                          t("common:words.choose")
-                        )} ${planName}`}
+                        t("common:words.choose")
+                      )} ${planName}`}
                   </Button>
                 )}
               </div>
