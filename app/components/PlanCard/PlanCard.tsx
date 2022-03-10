@@ -149,10 +149,10 @@ export default function PlanCard({
       {!numberExists ? (
         <div>
           <div className={s.h3}>
-            <h3>
+            <Typography>
               För att gå vidare med din uppgradering behöver du ange ditt
               telefonnummer
-            </h3>
+            </Typography>
           </div>
           <div>
             <TextField
@@ -188,21 +188,18 @@ export default function PlanCard({
           )}
         >
           <CardContent>
-            <Typography variant="h3" component="h2">
+            <Typography variant="h6" component="h2">
               <Box
-                fontWeight="fontWeightMedium"
+                className={s.header}
                 textAlign="center"
-                fontFamily="LyonDisplay"
               >
                 {planName}
               </Box>
             </Typography>
 
-            <Typography variant="subtitle1" component="h3">
+            <Typography variant="body1">
               <Box
-                fontWeight="fontWeightMedium"
                 textAlign="center"
-                fontFamily="LyonDisplay"
               >
                 {planSubtitle}
               </Box>

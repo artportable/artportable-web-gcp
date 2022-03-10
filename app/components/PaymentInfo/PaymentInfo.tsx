@@ -8,7 +8,11 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     hidden: {
       display: 'none',
-    }
+      color: '#fff'
+    },
+    priceText: {
+      color: 'var(--primary-color)'
+    },
   }),
 );
 
@@ -16,7 +20,7 @@ export const styles = makeStyles((theme: Theme) =>
 export default function PaymentInfo({priceText, secondaryText}) {
   const s = styles();
   return (
-    <Box textAlign="center" marginY={2}>
+    <Box textAlign="center" marginY={2} className={s.priceText}>
       <Typography className={clsx((priceText === "premium" || priceText === "-") && s.hidden)} variant="body2">
         {priceText}
       </Typography>

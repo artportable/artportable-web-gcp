@@ -55,6 +55,7 @@ export default function DialogConstruction() {
       {t('header:upgradeButton')}
       </Button>
       </div>
+      <div className={s.dialogHeight}>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -62,8 +63,8 @@ export default function DialogConstruction() {
         <IconButton aria-label="close" className={s.closeButton} onClick={handleClose}>
           <CloseIcon />
         </IconButton>
-        <Typography className={s.spacing} aria-label="close" variant="h2" align="center">
-          <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
+        <Typography className={s.header} aria-label="close" variant="h2" align="center">
+          <Box>
           {t('header:upgradeHeading')}
           </Box>
         </Typography>
@@ -71,6 +72,7 @@ export default function DialogConstruction() {
         <PlanSelector showAll={false} priceData={priceData}></PlanSelector>
         </DialogContent>
       </Dialog>
+      </div>
     </div>
   );
 }
