@@ -77,11 +77,14 @@ export const styles = makeStyles((theme: Theme) =>
       color: 'var(--text-color)',
     },
     menuFlex: {
+      display: 'none',
+      [theme.breakpoints.up('smPlus')]: {
       display: 'flex',
       flexDirection: 'row',
       ...rowGap(5),
       flexWrap: 'wrap',
       marginBottom: '20px',
+      },
     },
     link: {
       '&:hover': {

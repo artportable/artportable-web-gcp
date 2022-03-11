@@ -56,7 +56,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
                 />
               )
             }
-            title={content.User}
+            title={`${content.Name} ${content.Surname}`}
             subheader={
               <Box>
                 <span>{content.Location}</span>

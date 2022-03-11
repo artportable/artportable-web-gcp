@@ -59,6 +59,7 @@ export const styles = makeStyles((theme: Theme) =>
     h3: {
       textAlign: "left",
       marginBottom: "-20px",
+
       minHeight: "76px",
     },
   })

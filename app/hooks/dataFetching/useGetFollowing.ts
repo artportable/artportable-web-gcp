@@ -19,7 +19,9 @@ export const useGetFollowing = (username: string, doFetch: boolean = true): Fetc
   return {
     data: data?.map(u => ({
       username: u.Username,
-      profilePicture: u.ProfilePicture
+      profilePicture: u.ProfilePicture,
+      name: u.Name,
+      surname: u.Surname
     })),
     loading: !error && !data,
     error: error

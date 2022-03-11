@@ -27,7 +27,7 @@ export default function AvatarCard({ user }) {
           </Avatar>
         )}
         <div className={s.text}>
-          <span className={s.username}>{user.Username}</span>
+          <span className={s.username}>{`${user.Name} ${user.Surname}`}</span>
           <span>{user.Location}</span>
           {user?.Tags &&
             <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>

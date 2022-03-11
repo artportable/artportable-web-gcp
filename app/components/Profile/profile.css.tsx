@@ -29,7 +29,14 @@ export const styles = makeStyles((theme: Theme) =>
         width: '33.3%'
       }
     },
+    fullName: {
+      fontWeight: 600
+    },
     title: {
+      lineHeight: 1.5,
+      fontWeight: 400
+    },
+    username: {
       lineHeight: 1.5,
     },
     noPictureIcon: {
