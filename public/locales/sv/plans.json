@@ -40,5 +40,8 @@
       ]
     } 
   },
-  "joinTheCommunity": "Gå med i gemenskapen"
+  "joinTheCommunity": "Gå med i gemenskapen",
+  "Endast siffror": "Endast siffror",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer",
+  "Telefonnummer": "Telefonnummer"
 }

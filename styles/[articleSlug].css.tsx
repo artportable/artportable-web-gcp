@@ -34,6 +34,12 @@ export const styles = makeStyles((theme: Theme) =>
       '& p': {
         fontSize: '1rem',
       },
+      '& h3': {
+        fontWeight: 500,
+      },
+      '& a': {
+        textDecoration: 'underline',
+      },
       width: 'fit-content',
     },
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Card, CardContent, Typography, TextField, Tabs, FormGroup } from "@material-ui/core";
+import { Box, Card, CardContent, Typography, TextField, Tabs } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -62,8 +62,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   }, [formData]);
 
   const handleChange = (event, key: keyof ZendeskFormData) => {
-    formHasErrors;
-    formUntouched;
+    validateFormValue(event.target.value, 'phone');
     const newValue: FormValue = {
       value: event.target.value,
       error: false,
@@ -219,24 +218,22 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
         <div>
           <div className={s.h3}>
             <Typography>
-              För att gå vidare med din uppgradering behöver du ange ditt
-              telefonnummer
+              {t("För att gå vidare med din uppgradering behöver du ange ditt telefonnummer")}
             </Typography>
           </div>
           <div>
             <TextField
               className={s.textField}
               fullWidth
-              placeholder={t("Telefonnummer...")}
+              placeholder={t("Telefonnummer")}
               value={formData.phone.value}
               required
               variant="outlined"
               error={formData.phone.error}
-              onChange={(e) => handleChange(e, 'phone')}
+              onChange={(e) => handleChange(e, 'phone') }
               onBlur={(e) => validateFormValue(e.target.value, 'phone')}
-              helperText={formData.phone.error ? t('emailErrorMessage') : ''}
+              helperText={formData.phone.error ? t('Endast siffror') : ''}
             />
-            <FormGroup>
             <Link passHref href={href}>
               <a>
                 <Button
@@ -252,7 +249,6 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
                 </Button>
               </a>
             </Link>
-            </FormGroup>
           </div>
         </div>
       ) : (
