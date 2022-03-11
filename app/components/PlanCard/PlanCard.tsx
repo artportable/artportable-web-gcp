@@ -1,12 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TextField,
-  Tabs,
-} from "@material-ui/core";
+import { Box, Card, CardContent, Typography, TextField, Tabs } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -21,17 +14,9 @@ import clsx from "clsx";
 import PremiumApply from "../PremiumApply/PremiumApply";
 import { PriceData } from "../../../pages/plans";
 import Dialog from "@material-ui/core/Dialog";
-import {
-  ActionType,
-  CategoryType,
-  trackGoogleAnalytics,
-} from "../../utils/googleAnalytics";
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import {
-  Lead,
-  zapierLeadFreemium,
-  zapierLeadBasic,
-} from "../../utils/zapierLead";
+import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead";
 
 interface Props {
   plan: PriceData;
@@ -39,32 +24,112 @@ interface Props {
   lead?: Lead;
   setHideTabs: any;
 }
+interface ZendeskFormData {
+  phone: FormValue;
+}
 
-export default function PlanCard({
-  plan,
-  hideButtons,
-  lead,
-  setHideTabs,
-}: Props) {
+interface FormValue {
+  value: string;
+  error: boolean
+}
+
+export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props) {
   const { t } = useTranslation(["plans", "common", "checkout"]);
   const s = styles();
   const dispatch = useDispatch();
   const href = plan.product === "free" ? "feed" : "/checkout";
   const [isHref, setIsHref] = useState(true);
-  const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] =
-    useState(false);
-  const planName = t(
-    `plans.${plan.productKey}.name`,
-    `${capitalizeFirst(plan.product)}`
-  );
-  const planSubtitle = t(
-    `plans.${plan.productKey}.subtitle`,
-    `${capitalizeFirst(plan.product)}`
-  );
-  const { email, family_name, given_name, phone, user_type } =
-    useContext(UserContext);
+  const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
+
+  const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
+  const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
+  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
   const [numberExists, setNumberExists] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [formData, setFormData] = useState<ZendeskFormData>({
+    phone: { value: '', error: false },
+  });
+  const [formHasErrors, setFormHasErrors] = useState(false);
+  const [formUntouched, setFormUntouched] = useState(true);
+
+  useEffect(() => {
+    if (Object.keys(formData).some(key => formData[key].error)) {
+      setFormHasErrors(true);
+    } else {
+      setFormHasErrors(false);
+    }
+  }, [formData]);
+
+  const handleChange = (event, key: keyof ZendeskFormData) => {
+    validateFormValue(event.target.value, 'phone');
+    const newValue: FormValue = {
+      value: event.target.value,
+      error: false,
+    }
+
+    setFormData(prevValue => ({
+      ...prevValue,
+      [key]: newValue
+    }));
+  }
+
+  const validateFormValue = (value, key: keyof ZendeskFormData) => {
+    if (formUntouched) {
+      setFormUntouched(false);
+    }
+
+    const isInvalid = checkIsInvalid(value, key);
+
+    const newFormValue: FormValue = {
+      value: value,
+      error: isInvalid
+    }
+
+    setFormData(prevValue => ({
+      ...prevValue,
+      [key]: newFormValue
+    }));
+  }
+
+  const validatePhone = (newValue: string): boolean => {
+    if (/^[0-9]*$/.test(newValue)) {
+      return false;
+    }
+    return true;
+  }
+
+  const checkIsInvalid = (newValue: string, key: keyof ZendeskFormData): boolean => {
+    switch (key) {
+      case 'phone':
+        return validatePhone(newValue);
+    }
+  }
+
+  const validateAllFields = () => {
+    const phoneError = checkIsInvalid(formData.phone.value, 'phone');
+
+    const phoneFormValue = {
+      phone: {
+        ...formData.phone,
+        error: phoneError
+      }
+    }
+
+    setFormData(phoneFormValue);
+
+    if (phoneError) {
+      setFormHasErrors(true);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  const submit = async () => {
+    if (validateAllFields()) {
+    }
+  }
 
   useEffect(() => {
     if (plan.product === "portfolioPremium") {
@@ -72,7 +137,7 @@ export default function PlanCard({
     }
   }, [plan]);
 
-  const handleChange = (e) => {
+  const handleChange2 = (e) => {
     setPhoneNumber(e.target.value);
   };
 
@@ -94,9 +159,12 @@ export default function PlanCard({
     );
   }
 
-  const addNumber = () => {
+  const addNumber = async () => {
+    if(validateAllFields()) {
     setNumberExists(false);
-    phone.value = phoneNumber;
+    phone.value = formData.phone.value;
+    console.log(formData.phone.value)
+    }
   };
 
   const uppgradeWithPhone = (event) => {
@@ -149,20 +217,22 @@ export default function PlanCard({
       {!numberExists ? (
         <div>
           <div className={s.h3}>
-            <h3>
-              För att gå vidare med din uppgradering behöver du ange ditt
-              telefonnummer
-            </h3>
+            <Typography>
+              {t("För att gå vidare med din uppgradering behöver du ange ditt telefonnummer")}
+            </Typography>
           </div>
           <div>
             <TextField
               className={s.textField}
               fullWidth
-              placeholder={t("Telefonnummer...")}
-              value={phoneNumber}
+              placeholder={t("Telefonnummer")}
+              value={formData.phone.value}
               required
               variant="outlined"
-              onChange={handleChange}
+              error={formData.phone.error}
+              onChange={(e) => handleChange(e, 'phone') }
+              onBlur={(e) => validateFormValue(e.target.value, 'phone')}
+              helperText={formData.phone.error ? t('Endast siffror') : ''}
             />
             <Link passHref href={href}>
               <a>
@@ -173,6 +243,7 @@ export default function PlanCard({
                   disableElevation
                   rounded
                   onClick={addNumber}
+                  disabled={formHasErrors || formUntouched}
                 >
                   {t("common:words.add")}
                 </Button>
@@ -188,21 +259,18 @@ export default function PlanCard({
           )}
         >
           <CardContent>
-            <Typography variant="h3" component="h2">
+            <Typography variant="h6" component="h2">
               <Box
-                fontWeight="fontWeightMedium"
+                className={s.header}
                 textAlign="center"
-                fontFamily="LyonDisplay"
               >
                 {planName}
               </Box>
             </Typography>
 
-            <Typography variant="subtitle1" component="h3">
+            <Typography variant="body1">
               <Box
-                fontWeight="fontWeightMedium"
                 textAlign="center"
-                fontFamily="LyonDisplay"
               >
                 {planSubtitle}
               </Box>
@@ -234,8 +302,8 @@ export default function PlanCard({
                         {plan.product === "free"
                           ? t("signUp")
                           : `${capitalizeFirst(
-                              t("common:words.choose")
-                            )} ${planName}`}
+                            t("common:words.choose")
+                          )} ${planName}`}
                       </Button>
                     </a>
                   </Link>
@@ -257,8 +325,8 @@ export default function PlanCard({
                     {plan.product === "free"
                       ? t("signUp")
                       : `${capitalizeFirst(
-                          t("common:words.choose")
-                        )} ${planName}`}
+                        t("common:words.choose")
+                      )} ${planName}`}
                   </Button>
                 )}
               </div>

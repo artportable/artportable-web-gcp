@@ -10,7 +10,7 @@
   "plans": {
     "free": {
       "name": "Gratis",
-      "subtitle": "Konstintresserad – skaffa ett gratiskonto idag och hitta originalkonst till hemmet.",
+      "subtitle": "För dig som är konstintresserad och vill hitta konstverk.",
       "listTexts": [
         "Följ konstnärer",
         "Hitta konstverk till ditt hem",
@@ -20,26 +20,28 @@
     },
     "portfolio": {
       "name": "Portfolio",
-      "subtitle": "Konstnär – ladda upp bilder och få förfrågningar med en Portfolio.",
+      "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk.",
       "listTexts": [
         "Publicera dina verk",
         "Chatta och få förfrågningar om dina konstverk",
         "Betala 0 % i provision på sålda verk",
-        "Följ och interagera med andra konstnärer",
-        "Läs artiklar och få uppdateringar om utställningar"
+        "Följ och interagera med andra konstnärer"
       ]
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
-      "subtitle": "Konstnär – kom igång med din egen konstkoordinator och bli prioriterad i flödet.",
+      "subtitle": "För dig som är konstnär och vill bli prioriterad samt få tillgång till fler förmåner.",
       "listTexts": [
+        "Allt från Portfolio",
         "Bli prioriterad i flödet",
-        "Personlig Konstkoordinator",
         "Betala 0 % i provision på sålda verk",
-        "Support",
-        "Allt från Portfolio"
+        "Personlig konstkoordinator",
+        "Hjälp att skapa en professionell portfolio"
       ]
     } 
   },
-  "joinTheCommunity": "Gå med i gemenskapen"
+  "joinTheCommunity": "Gå med i gemenskapen",
+  "Endast siffror": "Endast siffror",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer",
+  "Telefonnummer": "Telefonnummer"
 }
