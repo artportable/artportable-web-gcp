@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import {Box, Card, CardContent, Typography, TextField, Tabs } from "@material-ui/core";
+import { Box, Card, CardContent, Typography, TextField, Tabs, FormGroup } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -25,8 +25,9 @@ interface Props {
   setHideTabs: any;
 }
 interface ZendeskFormData {
-  email: FormValue;
+  phone: FormValue;
 }
+
 interface FormValue {
   value: string;
   error: boolean
@@ -39,12 +40,97 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   const href = plan.product === "free" ? "feed" : "/checkout";
   const [isHref, setIsHref] = useState(true);
   const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
-  
-  const planName = t(`plans.${plan.productKey}.name`,`${capitalizeFirst(plan.product)}`);
-  const planSubtitle = t(`plans.${plan.productKey}.subtitle`,`${capitalizeFirst(plan.product)}`);
+
+  const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
+  const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
   const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
   const [numberExists, setNumberExists] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const [formData, setFormData] = useState<ZendeskFormData>({
+    phone: { value: '', error: false },
+  });
+  const [formHasErrors, setFormHasErrors] = useState(false);
+  const [formUntouched, setFormUntouched] = useState(true);
+
+  useEffect(() => {
+    if (Object.keys(formData).some(key => formData[key].error)) {
+      setFormHasErrors(true);
+    } else {
+      setFormHasErrors(false);
+    }
+  }, [formData]);
+
+  const handleChange = (event, key: keyof ZendeskFormData) => {
+    formHasErrors;
+    formUntouched;
+    const newValue: FormValue = {
+      value: event.target.value,
+      error: false,
+    }
+
+    setFormData(prevValue => ({
+      ...prevValue,
+      [key]: newValue
+    }));
+  }
+
+  const validateFormValue = (value, key: keyof ZendeskFormData) => {
+    if (formUntouched) {
+      setFormUntouched(false);
+    }
+
+    const isInvalid = checkIsInvalid(value, key);
+
+    const newFormValue: FormValue = {
+      value: value,
+      error: isInvalid
+    }
+
+    setFormData(prevValue => ({
+      ...prevValue,
+      [key]: newFormValue
+    }));
+  }
+
+  const validatePhone = (newValue: string): boolean => {
+    if (/^[0-9]*$/.test(newValue)) {
+      return false;
+    }
+    return true;
+  }
+
+  const checkIsInvalid = (newValue: string, key: keyof ZendeskFormData): boolean => {
+    switch (key) {
+      case 'phone':
+        return validatePhone(newValue);
+    }
+  }
+
+  const validateAllFields = () => {
+    const phoneError = checkIsInvalid(formData.phone.value, 'phone');
+
+    const phoneFormValue = {
+      phone: {
+        ...formData.phone,
+        error: phoneError
+      }
+    }
+
+    setFormData(phoneFormValue);
+
+    if (phoneError) {
+      setFormHasErrors(true);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  const submit = async () => {
+    if (validateAllFields()) {
+    }
+  }
 
   useEffect(() => {
     if (plan.product === "portfolioPremium") {
@@ -52,7 +138,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
     }
   }, [plan]);
 
-  const handleChange = (e) => {
+  const handleChange2 = (e) => {
     setPhoneNumber(e.target.value);
   };
 
@@ -74,9 +160,12 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
     );
   }
 
-  const addNumber = () => {
+  const addNumber = async () => {
+    if(validateAllFields()) {
     setNumberExists(false);
-    phone.value = phoneNumber;
+    phone.value = formData.phone.value;
+    console.log(formData.phone.value)
+    }
   };
 
   const uppgradeWithPhone = (event) => {
@@ -139,11 +228,15 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
               className={s.textField}
               fullWidth
               placeholder={t("Telefonnummer...")}
-              value={phoneNumber}
+              value={formData.phone.value}
               required
               variant="outlined"
-              onChange={handleChange}
+              error={formData.phone.error}
+              onChange={(e) => handleChange(e, 'phone')}
+              onBlur={(e) => validateFormValue(e.target.value, 'phone')}
+              helperText={formData.phone.error ? t('emailErrorMessage') : ''}
             />
+            <FormGroup>
             <Link passHref href={href}>
               <a>
                 <Button
@@ -153,11 +246,13 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
                   disableElevation
                   rounded
                   onClick={addNumber}
+                  disabled={formHasErrors || formUntouched}
                 >
                   {t("common:words.add")}
                 </Button>
               </a>
             </Link>
+            </FormGroup>
           </div>
         </div>
       ) : (
