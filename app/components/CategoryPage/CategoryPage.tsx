@@ -44,7 +44,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
           <div>
             <>
               <div className={s.categories}>
-                {category.name === 'Artiklar' || category.name === 'Stories' ?
+                {/* {category.name === 'Artiklar' || category.name === 'Stories' ?
                   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
                     {t('latest')}
                   </Typography>
@@ -53,13 +53,13 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
                     {t('moreArticles')}
                   </Typography>
-                  :
+                  : */}
                   <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
                     {category.name}<span className={s.underline}></span>
                   </Typography>
-                }
+                {/* } */}
               </div>
-              <div className={s.menuFlex}>
+              {/* <div className={s.menuFlex}>
                 <Link className={s.link} href="/artiklar">
                   <MuiButton color="default" size="small">
                     {t('latestMenu')}
@@ -80,7 +80,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('moreArticlesMenu')}
                   </MuiButton>
                 </Link>
-              </div>
+              </div> */}
             </>
           </div>
           <div className={s.flex}>
