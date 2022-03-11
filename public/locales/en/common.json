@@ -40,5 +40,7 @@
   "Cancel": "Cancel",
   "purchaseRequest": "Purchase request",
   "messageOptional": "Message (optional)",
-  "emailErrorMessage": "Invalid email address"
+  "emailErrorMessage": "Invalid email address",
+  "readMore": "Read more",
+  "readLess": "Read less"
 }

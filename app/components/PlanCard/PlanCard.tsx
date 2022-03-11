@@ -72,6 +72,10 @@ export default function PlanCard({
     }
   }, [plan]);
 
+  const handleChange = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+
   function getPriceText() {
     if (plan.product === "free") {
       return "-";
@@ -90,9 +94,13 @@ export default function PlanCard({
     );
   }
 
+  const addNumber = () => {
+    setNumberExists(false);
+    phone.value = phoneNumber;
+  };
+
   const uppgradeWithPhone = (event) => {
     setPhoneNumber(event.target.value);
-    phone.value = phoneNumber;
     setHideTabs(true);
     event.stopPropagation();
     event.preventDefault();
@@ -154,6 +162,7 @@ export default function PlanCard({
               value={phoneNumber}
               required
               variant="outlined"
+              onChange={handleChange}
             />
             <Link passHref href={href}>
               <a>
@@ -163,7 +172,7 @@ export default function PlanCard({
                   color="primary"
                   disableElevation
                   rounded
-                  onClick={() => setNumberExists(false)}
+                  onClick={addNumber}
                 >
                   {t("common:words.add")}
                 </Button>
@@ -209,7 +218,6 @@ export default function PlanCard({
               })}
             />
 
-            {/* // "VÄLJ PORTFOLIO-KNAPP" */}
             {!hideButtons && (
               <div className={s.button}>
                 {isHref ? (
