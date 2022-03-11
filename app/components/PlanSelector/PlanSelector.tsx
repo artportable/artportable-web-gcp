@@ -75,12 +75,9 @@ export default function PlanSelector({
         {hideTabs === false && (
           <div className={s.paymentOptions}>
             <Tabs
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "#000"
-               }
-              }}
               value={paymentInterval}
+              indicatorColor="primary"
+              textColor="primary"
               onChange={(_, val) => setPaymentInterval(val)}
             >
               <Tab value="month" label={t("monthlyPayment")} />

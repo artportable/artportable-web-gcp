@@ -5,31 +5,27 @@ export const styles = makeStyles((theme: Theme) =>
     upgradeDesktopDiv: {
       whiteSpace: 'nowrap'
     },
-    dialogHeight: {
-      '&.MuiDialog-paperScrollPaper': {
-      height: '1000px'
-      },
-    },
     upgradeButton: {
       display: 'none'
-    },
+
+  },
     closeButton: {
       position: 'absolute',
       right: theme.spacing(1),
       top: theme.spacing(1),
       color: theme.palette.grey[500],
     },
-    header: {
-      fontWeight: 600,
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(1)
+    spacing: {
+     paddingTop: theme.spacing(8),
+     paddingBottom: theme.spacing(1)
     },
     spacingBottom: {
       paddingBottom: theme.spacing(5),
-    },
-    [theme.breakpoints.up('sm')]: {
+     },
+     [theme.breakpoints.up('sm')]: {
       upgradeButton: {
         whiteSpace: 'nowrap',
+        width: '130px',
         display: 'initial'
       },
     },
