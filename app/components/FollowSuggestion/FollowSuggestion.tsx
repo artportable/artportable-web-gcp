@@ -43,7 +43,7 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
       </Link>
       <Link href={`/profile/@${user.Username}`}>
         <a>
-          <ListItemText className={s.listItemText} primary={user.Username} secondary={user.Location} />
+          <ListItemText className={s.listItemText} primary= {`${user.Name} ${user.Surname}`} secondary={user?.Location} />
         </a>
       </Link>
       <ListItemSecondaryAction className={s.secondaryAction}>
