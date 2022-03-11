@@ -6,12 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
       gridArea: 'paymentOptions',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-      MuiTabs: {
-        indicator: {
-          backgroundColor: '#fff'
-        }
-      },
+      alignItems: 'center'
     },
     planCards: {
       display: 'grid',
@@ -31,11 +26,6 @@ export const styles = makeStyles((theme: Theme) =>
       '& button': {
         flexGrow: 1,
         maxWidth: '280px',
-      },
-      tabs: {
-        '& .PrivateTabIndicator': {
-          backgroundColor: '#fff'
-        }
       }
     }
   }),

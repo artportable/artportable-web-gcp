@@ -8,7 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "auto",
     },
     cardRoot: {
-      border: '1px solid #000',
+      boxShadow: "0px 0px 11px 0px rgba(var(--ion-color-primary-rgb),0.75)",
       "& .MuiCardContent-root": {
         height: "100%",
         display: "flex",
@@ -26,12 +26,6 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         marginTop: theme.spacing(3),
       },
-    },
-    header: {
-      fontWeight: 500,
-    },
-    planPrice: {
-      color: 'var(--primary-color)',
     },
     primaryCard: {
       margin: theme.spacing(0, 0),
@@ -54,12 +48,12 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       margin: "auto",
       marginTop: theme.spacing(3),
-      float: 'right'
+      justifyContent: "center",
     },
     h3: {
-      textAlign: "left",
-      marginBottom: "-20px",
-
+      display: "flex",
+      justifyContent: "center",
+      textAlign: "center",
       minHeight: "76px",
     },
   })
