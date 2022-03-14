@@ -42,11 +42,12 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "Marit Stjernberg", username: "marit.stjernberg", image: '/images/Marit_Stjernberg.jpg', imageLink: "ac380033-88a0-43d0-8090-f019f7ae5c45"},
+    { name: "Marit Stjernberg", username: "marit.stjernberg", image: '/images/Marit.jpg', imageLink: "c4f7d8a0-0686-4443-8836-d9b0d08f336d"},
     { name: "Atle Reilo", username: "atle.reilo", image: '/images/Atle_Reilo.jpg', imageLink: "442555ed-5673-4356-98a3-7e9abec67454"},
     { name: "Pia Britton", username: "pia.britton", image: '/images/Pia_Britton.jpg', imageLink: "eb2655e2-ea20-4517-8f6b-89bf2b4df8e3"},
-    { name: "Veslemøy Vangsnes", username: "veslemoy.vangsnes", image: '/images/Veslemøy_Vangsnes.jpg', imageLink: "cd7c9a38-fafd-4037-bac7-1312f9ad9177"},
+    { name: "Veslemøy Vangsnes", username: "veslemoy.vangsnes", image: '/images/Vesle.jpg', imageLink: "f2375c7b-6c54-4b51-85f4-84a7fee2c6a9"},
     { name: "Vanja Antonsson", username: "vanja.antonsson", image: '/images/Vanja_Antonsen.jpg', imageLink: "ef617c82-66cd-4e7a-ad5c-4d3a1407ca2b"},
+    { name: "Coila Coats Matton", username: "coila.matton", image: '/images/Coila_Mattsson.jpg', imageLink: "e0a139f1-1fe7-4a49-85f0-9830636e0b5f"},
   ]
 
   useEffect(() => {
