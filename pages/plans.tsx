@@ -185,8 +185,8 @@ const noPhonenumber = () => {
         <></>
         :
         <div className={s.plansRootContainer}>
-          <div className={s.header}>
-            <Typography variant="h1" align="center">
+          <div className={s.headerDiv}>
+            <Typography className={s.header} variant="h1" align="center">
               <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
                 {t('welcomeTo')}
               </Box>
