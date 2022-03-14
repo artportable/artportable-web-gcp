@@ -41,5 +41,8 @@
       ]
     } 
   },
-  "joinTheCommunity": "Join the community"
+  "joinTheCommunity": "Join the community",
+  "Endast siffror": "Only numbers",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "To proceed with your upgrade, you need to enter your phone number",
+  "Telefonnummer": "Phone number"
 }

@@ -33,31 +33,31 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function PlansInfoList({ texts, everythingFromPrevious = false}) {
+export default function PlansInfoList({ texts, everythingFromPrevious = false }) {
   const s = useStyles();
   const textsToRender = everythingFromPrevious ? texts.slice(1) : texts;
 
   return (
     <List dense className={s.list}>
-      {everythingFromPrevious ? 
-      <ListItem className={s.root}>
-        <ListItemIcon> 
-          <ArrowBackIcon style={{ fontSize: 14 }} color="primary" />
-        </ListItemIcon>
-        <ListItemText
-          primary={texts[0]}
-        />
-      </ListItem> : <></>}
-      
+      {everythingFromPrevious ?
+        <ListItem className={s.root}>
+          <ListItemIcon>
+            <ArrowBackIcon style={{ fontSize: 14 }} color="primary" />
+          </ListItemIcon>
+          <ListItemText
+            primary={texts[0]}
+          />
+        </ListItem> : <></>}
+
       {textsToRender !== '' && textsToRender.map(text =>
-      <ListItem key={text} className={s.root}>
-        <ListItemIcon>
-          <CheckIcon style={{ fontSize: 14 }} color="primary" />
-        </ListItemIcon>
-        <ListItemText
-          primary={text}
-        />
-      </ListItem>
+        <ListItem key={text} className={s.root}>
+          <ListItemIcon>
+            -
+          </ListItemIcon>
+          <ListItemText
+            primary={text}
+          />
+        </ListItem>
       )}
     </List>
   );

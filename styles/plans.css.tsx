@@ -15,9 +15,12 @@ export const styles = makeStyles((theme: Theme) =>
       '\". . .\" 2fr' +
       '/ 1fr auto 1fr')
     },
-    header: {
+    headerDiv: {
       gridArea: 'header',
       marginBottom: '3rem'
+    },
+    header: {
+      fontWeight: 600,
     },
     planSelector: {
       gridArea: 'planSelector',
