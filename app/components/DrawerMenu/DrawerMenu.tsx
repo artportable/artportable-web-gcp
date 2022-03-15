@@ -45,8 +45,6 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
     if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
   });
 
-  console.log(navBarItems);
-
   function handleClickListingPages(event) {
     setOpenListingPages(!openListingPages);
     event.stopPropagation();
