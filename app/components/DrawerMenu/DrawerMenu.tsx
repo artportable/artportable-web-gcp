@@ -40,6 +40,13 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
   const [openUpgrade, setOpenUpgrade] = useState(false);
   const [openListingPages, setOpenListingPages] = useState(false);
 
+  navBarItems.sort((a, b) => {
+    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase()) return -1;
+    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
+  });
+
+  console.log(navBarItems);
+
   function handleClickListingPages(event) {
     setOpenListingPages(!openListingPages);
     event.stopPropagation();
@@ -131,7 +138,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('artists')} />
             </ListItem>
-          </a> 
+          </a>
         </Link>
         <ListItem button divider onClick={handleClickContact} >
           <ListItemText primary={t('contactUs')} />
