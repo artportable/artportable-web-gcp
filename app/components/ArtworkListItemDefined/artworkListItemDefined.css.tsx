@@ -66,7 +66,7 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden'
     },
     name: {
-      fontWeight: 500
+      fontWeight: 400
     },
     title: {
       color: theme.palette.text.secondary,
