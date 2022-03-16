@@ -551,7 +551,7 @@ export default function Profile(props) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const split = params.username.split('@');
   const username = split.length > 1 ? split[1] : null;
@@ -580,9 +580,3 @@ export async function getStaticProps({ locale, params }) {
     }
   }
 }
-export const getStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: 'true',
-  };
-};
