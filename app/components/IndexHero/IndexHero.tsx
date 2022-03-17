@@ -69,7 +69,7 @@ export default function IndexHero() {
               {t('Hitta originalkonst')}
             </Typography>
             <Typography variant="h4" className={s.description}>
-              {t('Ta en titt i galleriet med över 27500 konstverk')}
+              {t('Ta en titt i galleriet med över 28000 konstverk')}
             </Typography>
               <div className={s.headerButtonArtlover}>
                 <Button
