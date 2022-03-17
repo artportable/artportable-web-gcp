@@ -307,7 +307,7 @@ export async function getServerSideProps({ locale, params }) {
       }
     };
   } catch (error) {
-    console.log(error.name === 'AbortError');
+    console.log(error);
   }
 
   return {
