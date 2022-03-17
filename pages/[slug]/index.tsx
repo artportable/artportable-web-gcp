@@ -8,6 +8,7 @@ import ProductListPage from '../../app/components/ProductListPage/ProductListPag
 import { ProductList } from '../../app/models/ProductList';
 import { NavBarItem } from '../../app/models/NavBarItem';
 import { getNavBarItems } from '../../app/utils/getNavBarItems';
+import { fetchWithTimeout } from '../../app/utils/util';
 
 export default function slugPage({ category = null, productList = null, navBarItems = [] }: { category: Category, productList: ProductList, navBarItems: NavBarItem[] }) {
   const page = () => {
@@ -26,11 +27,11 @@ export default function slugPage({ category = null, productList = null, navBarIt
 export async function getStaticProps({ params, locale }) {
   let pageType;
 
-  let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`)
+  let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`)
   if (res.ok) {
     pageType = 'articleCategory';
   } else {
-    res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/slug/${params.slug}`)
+    res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/slug/${params.slug}`)
     if (res.ok) {
       pageType = 'productList';
     } else {
@@ -52,7 +53,7 @@ export async function getStaticProps({ params, locale }) {
             notFound: true,
           }
         }
-        let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`)
+        let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`)
         category = await res.json();
         return {
           redirect: {
@@ -65,7 +66,7 @@ export async function getStaticProps({ params, locale }) {
       if (category.locale != Locales.sv) {
         var swedishCategoryLocale = category.localizations.find(locale => locale.locale == Locales.sv);
         if (swedishCategoryLocale) {
-          let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`)
+          let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`)
           var swedishArticles: Article[] = await res.json();
           if (swedishArticles && swedishArticles.length > 0) {
             var swedishArticles = swedishArticles.filter(article => !article.localizations.some(locale => locale.locale == Locales.en));
@@ -97,7 +98,7 @@ export async function getStaticProps({ params, locale }) {
             notFound: true,
           }
         }
-        let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/${newLocale.id}`);
+        let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/${newLocale.id}`);
         productList = await res.json();
         return {
           redirect: {
@@ -132,10 +133,10 @@ export async function getStaticProps({ params, locale }) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories`)
+  const res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories`)
   const categories = await res.json()
 
-  const result = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists`)
+  const result = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists`)
   const productlists = await result.json()
 
   var categoriesPaths = [];
