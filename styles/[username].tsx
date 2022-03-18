@@ -23,13 +23,13 @@ export const profileStyles = makeStyles((theme: Theme) =>
     editActions: {
       paddingTop: theme.spacing(0.5),
       gridArea: 'actions',
-      display: 'flex', 
-      flexDirection : 'column',
+      display: 'flex',
+      flexDirection: 'column',
       gap: theme.spacing(1),
       justifySelf: 'flex-end',
     },
     followButton: {
-      marginTop: '10px',
+      marginTop: '8px',
       maxHeight: '27px',
       '& .MuiButton-startIcon': {
         margin: '0 0',
@@ -101,9 +101,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
           margin: '0 8px 0 -4px',
         },
       },
-      messageButtonText: {
-        display: 'initial'
-      },
     },
     [theme.breakpoints.up('smPlus')]: {
       emblem: {
@@ -126,12 +123,14 @@ export const profileStyles = makeStyles((theme: Theme) =>
         marginLeft: '0',
         marginRight: '30px',
         marginTop: '0',
-
+      },
+      messageButtonText: {
+        display: 'initial'
       },
     },
     [theme.breakpoints.up('mdPlus')]: {
       emblem: {
-        
+
       },
     },
   }),
