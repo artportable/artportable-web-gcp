@@ -73,7 +73,7 @@ export default function Profile(props) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const {navBarItems, profile: staticUserProfile} = props;
+  const { navBarItems, profile: staticUserProfile } = props;
   const canonicalURL = publicUrl + router.asPath;
 
   const [activeTab, setActiveTab] = useState(0);
@@ -331,7 +331,7 @@ export default function Profile(props) {
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
         <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
-        
+
         <link rel="canonical" href={canonicalURL} />
       </Head>
       {isReady &&
@@ -560,7 +560,7 @@ export async function getServerSideProps({ locale, params }) {
   try {
     const profileResponse = await fetchWithTimeout(url.href);
     const profile = await profileResponse.json();
-    const navBarItems = await getNavBarItems(); 
+    const navBarItems = await getNavBarItems();
     return {
       props: {
         navBarItems: navBarItems,

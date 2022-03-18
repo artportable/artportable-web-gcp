@@ -121,7 +121,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         <Typography variant="h6" className={s.title}>
           {data?.Title}
         </Typography>
-        </Box>
+      </Box>
 
       <Box marginTop={1}>
         <Typography>
@@ -137,7 +137,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
           </Typography>
         </Box>
       }
-      { divider &&
+      {divider &&
         <Divider></Divider>
       }
       <Box className={s.counterBox}>
