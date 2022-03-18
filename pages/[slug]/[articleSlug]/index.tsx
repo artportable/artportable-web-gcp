@@ -80,16 +80,6 @@ export default function ArticlePage({ article, artist }: { article: Article, art
                 </div>
               )
             })}
-
-            {artist && artist.length > 0 &&
-              <>
-                <div className={s.line}></div>
-                {artist.map(a => {
-                  return <DiscoverArtistCard artist={a} onFollowClick={null}></DiscoverArtistCard>
-                })
-                }
-              </>
-            }
             <div className={s.line}></div>
             <div className={s.findArt}>
               <Typography>
@@ -124,6 +114,15 @@ export default function ArticlePage({ article, artist }: { article: Article, art
               })}
             </div>
           </Paper>
+          {artist && artist.length > 0 &&
+            <>
+              <div className={s.line}></div>
+              {artist.map(a => {
+                return <DiscoverArtistCard artist={a} onFollowClick={null}></DiscoverArtistCard>
+              })
+              }
+            </>
+          }
         </>
       }
     </Main>
