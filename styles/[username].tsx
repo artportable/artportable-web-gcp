@@ -29,7 +29,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       justifySelf: 'flex-end',
     },
     followButton: {
-      marginTop: '8px',
+      marginTop: '-1px',
       maxHeight: '27px',
       '& .MuiButton-startIcon': {
         margin: '0 0',
@@ -96,6 +96,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
         marginTop: '50px',
       },
       followButton: {
+        marginTop: '8px',
         maxHeight: '27px',
         '& .MuiButton-startIcon': {
           margin: '0 8px 0 -4px',
