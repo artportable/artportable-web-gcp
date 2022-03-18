@@ -40,11 +40,6 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
   const [openUpgrade, setOpenUpgrade] = useState(false);
   const [openListingPages, setOpenListingPages] = useState(false);
 
-  navBarItems.sort((a, b) => {
-    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase()) return -1;
-    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
-  });
-
   function handleClickListingPages(event) {
     setOpenListingPages(!openListingPages);
     event.stopPropagation();
@@ -108,6 +103,10 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             <Collapse in={openListingPages} timeout="auto">
               <List component="div" disablePadding >
                 {navBarItems.map((item, index) => {
+                  navBarItems.sort((a, b) => {
+                    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase()) return -1;
+                    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
+                  });
                   if (item.locale == router.locale)
                     return (
                       <Link href={'/' + item.slug} passHref key={index}>
