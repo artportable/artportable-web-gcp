@@ -3,6 +3,48 @@ import { rowGap, columnGap } from '../app/utils/styleUtils';
 
 export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
+    flex: {
+      alignItems: 'flex-start',
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'row',
+      ...columnGap(20),
+      flexWrap: 'wrap',
+
+    },
+    wrapper: {
+      backgroundColor: 'white',
+      display: 'flex',
+      flexDirection: 'column',
+      [theme.breakpoints.up('lg')]: {
+        flexDirection: 'row',
+      },
+    },
+    headline: {
+      textDecoration: 'underline',
+      marginBottom: theme.spacing(1),
+    },
+    coverImage: {
+      width: '100%',
+      borderRadius: '5px 5px 0 0',
+      [theme.breakpoints.up('lg')]: {
+        flexDirection: 'row',
+        borderRadius: '5px 0 0 5px',
+      },
+    },
+    line: {
+      marginTop: theme.spacing(1),
+      height: '4px',
+      backgroundColor: 'var(--primary-color)'
+    },
+    textContent: {
+      padding: '20px',
+      display: 'inline-block',
+      width: '100%',
+      blockSize: 'fit-content',
+      color: 'var(--text-color)',
+    },
+
     profileGrid: {
       display: 'grid',
       gap: '16px',

@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'flex-start',
       display: 'flex',
       width: '100%',
-      flexDirection: 'row',
+      flexDirection: 'column',
       ...columnGap(20),
       flexWrap: 'wrap',
 
@@ -15,8 +15,8 @@ export const styles = makeStyles((theme: Theme) =>
     wrapper: {
       backgroundColor: 'white',
       display: 'flex',
-      flexDirection: 'column',
-      [theme.breakpoints.up('lg')]: {
+      flexDirection: 'row',
+      [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
       },
     },
@@ -79,11 +79,11 @@ export const styles = makeStyles((theme: Theme) =>
     menuFlex: {
       display: 'none',
       [theme.breakpoints.up('smPlus')]: {
-      display: 'flex',
-      flexDirection: 'row',
-      ...rowGap(5),
-      flexWrap: 'wrap',
-      marginBottom: '20px',
+        display: 'flex',
+        flexDirection: 'row',
+        ...rowGap(5),
+        flexWrap: 'wrap',
+        marginBottom: '20px',
       },
     },
     link: {

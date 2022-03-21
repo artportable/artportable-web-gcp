@@ -33,7 +33,7 @@ import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
 
-export default function Header({navBarItems}) {
+export default function Header({ navBarItems }) {
   const { t } = useTranslation(['header', 'support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -126,7 +126,7 @@ export default function Header({navBarItems}) {
                   {t('createPortfolio')}
                 </Button>
                 <Button
-                className={s.signUp}
+                  className={s.signUp}
                   size="small"
                   variant="outlined"
                   disableElevation

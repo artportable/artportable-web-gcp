@@ -433,28 +433,33 @@ export default function Profile(props) {
             <ArtistPriceSpan prices={artworkPrices} />
 
             {articles &&
+              // Grid i första div sen flexbox i nästa
               <div className={s.articles}>
-                {articles.map((article, key) => {
-                  return (
-                    <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
-                      <div>
-                        <img src={article?.coverImage?.formats?.small?.url} />
-                        <div>
-                          <div>
-                            {article.published_at.slice(0, -14)}
-                          </div>
-                          <Typography component="h2" variant={'h2'}>
-                            <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium">
-                              {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                            </Box>
-                          </Typography>
-                          <Typography variant={'subtitle1'}>{article.description}</Typography>
-                        </div>
-                      </div>
+                <div className={s.flex}>
+                  {articles.map((article, key) => {
+                    return (
+                      <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
+                        <div className={s.wrapper}>
+                          <img src={article?.coverImage?.formats?.small?.url} />
+                          <div className={s.textContent}>
+                            <div>
+                              {article.published_at.slice(0, -14)}
+                            </div>
 
-                    </Link>
-                  )
-                })}
+                            <Typography component="h2" variant={'h2'}>
+                              <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                              </Box>
+                            </Typography>
+                            <Typography variant={'subtitle1'}>{article.description}</Typography>
+                          </div>
+                          <div className={s.line}></div>
+                        </div>
+
+                      </Link>
+                    )
+                  })}
+                </div>
               </div>
             }
             {hasArtwork ?

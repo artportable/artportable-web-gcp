@@ -23,6 +23,20 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 500,
       lineHeight: '1.4rem'
     },
+    div: {
+      maxWidth: '1000px',
+      padding: '20px',
+      justifySelf: 'center',
+      zIndex: 1,
+      [theme.breakpoints.up('md')]: {
+        padding: '100px',
+        marginTop: '100px',
+      },
+    },
+    div2: {
+
+      maxWidth: '1000px',
+    },
     articleImages: {
       '& figure': {
         textAlign: 'center',
@@ -57,22 +71,22 @@ export const styles = makeStyles((theme: Theme) =>
       paddingTop: '32px',
     },
     authorAvatar: {
-    width: '70px',
-    height: '70px',
-    marginBottom: '15px'
+      width: '70px',
+      height: '70px',
+      marginBottom: '15px'
     },
     authorText: {
       fontWeight: 500,
     },
     findArt: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: '27px',
-    alignItems: "center",
-    [theme.breakpoints.up('sm')]: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-    },
+      display: 'flex',
+      flexDirection: 'column',
+      marginBottom: '27px',
+      alignItems: "center",
+      [theme.breakpoints.up('sm')]: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+      },
     },
     artportable_logo: {
       margin: '8px 0 0 0',

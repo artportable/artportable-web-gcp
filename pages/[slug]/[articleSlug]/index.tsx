@@ -116,15 +116,16 @@ export default function ArticlePage({ article, artist }: { article: Article, art
               })}
             </div>
           </Paper>
-          {artist && artist.length > 0 &&
-            <>
-              <div className={s.line}></div>
-              {artist.map(a => {
-                return <DiscoverArtistCard artist={a} onFollowClick={null}></DiscoverArtistCard>
-              })
-              }
-            </>
-          }
+          <div className={s.div}>
+            {artist && artist.length > 0 &&
+              <div className={s.div2}>
+                {artist.map(a => {
+                  return <DiscoverArtistCard artist={a} onFollowClick={null}></DiscoverArtistCard>
+                })
+                }
+              </div>
+            }
+          </div>
         </>
       }
     </Main>
