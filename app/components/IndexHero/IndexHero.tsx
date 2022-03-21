@@ -45,7 +45,7 @@ export default function IndexHero() {
     { name: "Viggo Carlsen", username: "Viggo.Carlsen", image: '/images/Viggo_Carlsen.jpg', imageLink: "8b505381-7319-4589-933c-a5e0c10aba52" },
     { name: "Örjan Sätre", username: "orjan.satre", image: '/images/Orjan_Satre.jpg', imageLink: "0e3d73bd-2b4f-4ef4-97bf-02d2b35b21a3" },
     { name: "Felicia Adérian", username: "feliciaaderian", image: '/images/felicia_adrén.jpg', imageLink: "853261f1-a9be-4607-a74d-895f897f92ca" },
-    { name: "Gunilla Svärd", username: "gunilla.svard", image: 'images/gunilla_svard', imageLink: "3216b830-a1c5-423c-a73e-3f52995648f4" },
+    { name: "Gunilla Svärd", username: "gunilla.svard", image: 'images/gunilla_svard.jpg', imageLink: "3216b830-a1c5-423c-a73e-3f52995648f4" },
     { name: "Coila Coats Matton", username: "coila.matton", image: '/images/Coila_Mattsson.jpg', imageLink: "e0a139f1-1fe7-4a49-85f0-9830636e0b5f" },
   ]
 
