@@ -20,19 +20,22 @@ export default function DialogUpgrade(props:Props) {
   const { t } = useTranslation(['header', 'common', 'support']);
 
   useEffect(() => {
-    
-  async function getPriceData() {
-    try {
-        var response = await fetch(`${apiBaseUrl}/api/payments/prices`)
-        if (response.ok)
-        (setPriceData(await response.json()))
-        
-    } catch(e) {
-      console.log('Could not fetch price info', e);
-    }
-  }
-  getPriceData()
-}, [])
+    const abortCont = new AbortController();
+   async function getPriceData() {
+     try {
+         var response = await fetch(`${apiBaseUrl}/api/payments/prices`, {signal: abortCont.signal })
+         if (response.ok)
+         (setPriceData(await response.json()))
+     } catch(e) {
+       if (e.name == 'AbortError') {
+         console.log('fetch aborted')
+       }
+       console.log('Could not fetch price info', e);
+     }
+   }
+   getPriceData()
+   return () => abortCont.abort();
+ }, [])
 
 const [priceData, setPriceData] = useState<PriceData[]>(null)
 
