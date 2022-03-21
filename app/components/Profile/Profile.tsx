@@ -102,25 +102,28 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
       </Badge>
 
       <Box fontWeight="fontWeightBold" marginTop={1}>
-        <Typography variant="subtitle1">
+        <Typography variant="h5" className={s.fullName}>
           {linkToProfile ?
             <Link href={`/profile/@${data?.Username}`}>
               <a>
-                {data?.Username}
+                {`${data?.Name} ${data?.Surname}`}
               </a>
             </Link>
             :
             <span>
-              {data?.Username}
+              {`${data?.Name} ${data?.Surname}`}
             </span>
           }
         </Typography>
-        <Typography variant="caption" className="title">
+      </Box>
+
+      <Box marginTop={1}>
+        <Typography variant="h6" className={s.title}>
           {data?.Title}
         </Typography>
       </Box>
 
-      <Box marginTop={2}>
+      <Box marginTop={1}>
         <Typography>
           {data?.Headline}
         </Typography>
@@ -134,7 +137,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
           </Typography>
         </Box>
       }
-      { divider &&
+      {divider &&
         <Divider></Divider>
       }
       <Box className={s.counterBox}>

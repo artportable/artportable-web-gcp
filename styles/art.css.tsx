@@ -15,6 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'center',
       justifySelf: 'center',
+      maxWidth: '100%',
     },
     paper: {
       maxWidth: '100%'
@@ -60,6 +61,8 @@ export const styles = makeStyles((theme: Theme) =>
       textOverflow: 'ellipsis',
     },
     titleAndSizeContainer: {
+      display: 'flex',
+      flexDirection: 'column',
       margin: theme.spacing(0, 0, 0, 0.4),
       padding: theme.spacing(0.75, 0, 0, 0)
     },
@@ -117,6 +120,11 @@ export const styles = makeStyles((theme: Theme) =>
       width: "15px",
       height: "15px",
       marginRight: '5px',
+    },
+    [theme.breakpoints.up('smPlus')]: {
+      titleAndSizeContainer: {
+        flexDirection: 'row'
+      },
     },
   }),
 );

@@ -36,6 +36,7 @@ export default function ArtworkPage(props) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const staticArtwork = props.artwork;
   const navBarItems = props.navBarItems;
+  const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query
   const { username, socialId } = useContext(UserContext);
@@ -109,11 +110,16 @@ export default function ArtworkPage(props) {
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
-        <meta property="og:title" content={staticArtwork?.Title} />
-        <meta property="og:description" content={staticArtwork?.Description} />
+        <title>{staticArtwork?.Title ?? "Artportable"}</title>
+        <meta name="title" content={staticArtwork?.Title ?? "Artportable"} />
+        <meta name="description" content={staticArtwork?.Description ?? ""} />
+        <meta property="og:title" content={staticArtwork?.Title ?? "Artportable"} />
+        <meta property="og:description" content={staticArtwork?.Description ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
+
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       <div className={s.container}>
         <div className={s.backBtnContainer}>
@@ -281,23 +287,24 @@ export default function ArtworkPage(props) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
   const navBarItems = await getNavBarItems(); 
 
   try {
-    const artworkResponse = await fetch(url.href);
-    const artwork = await artworkResponse.json();
+    const artworkResponse = await fetch(url.href, {
 
+    });
+    const artwork = await artworkResponse.json();
+ 
     return {
       props: {
         navBarItems: navBarItems,
         artwork,
         locale: locale,
         ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
-      },
-      revalidate: 10
+      }
     };
   } catch (error) {
     console.log(error);
@@ -309,14 +316,6 @@ export async function getStaticProps({ locale, params }) {
       artwork: { Id: params.id },
       locale: locale,
       ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
-    },
-    revalidate: 10
+    }
   };
-}
-
-export const getStaticPaths = () => {
-  return {
-    paths: [], //indicates that no page needs be created at build time
-    fallback: 'blocking' //indicates the type of fallback
-  }
 }

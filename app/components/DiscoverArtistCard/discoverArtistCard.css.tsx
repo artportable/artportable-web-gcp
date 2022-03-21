@@ -1,10 +1,11 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { relative } from 'node:path';
+import { rowGap, columnGap } from '../../utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      marginBottom: "15px"
+      marginBottom: "30px"
     },
     header: {
       display: "flex",
@@ -26,7 +27,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     rowFlex: {
       display: 'flex',
-      gap: theme.spacing(2),
+      ...rowGap(8),
       '& *': {
         flexShrink: '0'
       },
@@ -37,7 +38,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     scroll: {
       overflow: 'auto',
-      scrollSnapType: 'x mandatory',
+      scrollSnapType: 'none',
+      scrollbarColor: 'transparent transparent',
+      scrollbarWidth: 'none',
       '&::-webkit-scrollbar': {
         display: 'none',
       }
@@ -48,23 +51,39 @@ export const styles = makeStyles((theme: Theme) =>
       scrollSnapAlign: 'end',
     },
     chevron: {
-      fontSize: '2rem',
+      fontSize: '2.5rem',
       borderRadius: '50%',
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.common.white
+      backgroundColor: 'var( --background-color)',
+      color: theme.palette.common.black,
+      border: 'solid #c0bbb7 1px',
+      
     },
     leftButton: {
       display: 'none',
       position: 'absolute',
-      left: '-30px',
-      top: '74px'
+      left: '-68px',
+      top: '120px'
     },
     rightButton: {
       display: 'none',
       position: 'absolute',
-      right: '-30px',
-      top: '74px'
+      right: '-68px',
+      top: '120px'
     },
+    image:{
+      height: '220px'
+    },
+    [theme.breakpoints.up('smPlus')]: {
+      row:{
+        height: '320px'
+      },
+      imagePaper:{
+        height: '300px'
+      },
+      image:{
+        height: '300px'
+      }
+      },
     [theme.breakpoints.up('md')]: {
       leftButton: {
         display: 'initial',

@@ -13,9 +13,17 @@ import { NavBarItem } from "../../models/NavBarItem";
 import { ProductList } from "../../models/ProductList";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import Main from "../Main/Main";
+import { styles } from './productListPage.css'
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import Button from "../Button/Button";
+import { useTranslation } from "next-i18next";
 
 export default function ProductListPage({ productList, navBarItems }: { productList: ProductList, navBarItems: NavBarItem[] }) {
-  const router = useRouter()
+  const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const BaseUrl = process.env.NEXT_PUBLIC_URL;
   const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
@@ -24,14 +32,16 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   const { like } = usePostLike();
   const token = useContext(TokenContext);
   const { socialId } = useContext(UserContext);
-  const rowWidth = useMainWidth().wide
+  const rowWidth = useMainWidth().wide;
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const canonicalURL = publicUrl + router.asPath;
+  const s = styles();
+  const [toggleButton, setToggleButton] = useState(false);
+  const { t } = useTranslation(['common']);
 
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
     like(artworkId, isLike, socialId, token);
-  }
-  function filter(tags: string[], searchQuery = "") {
-
   }
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
@@ -52,25 +62,62 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   return (
     <Main wide={true} navBarItems={navBarItems}>
       <Head>
-        <title>{productList?.metaTitle}</title>
-        <meta name="title" content={productList?.metaTitle} />
-        <meta name="description" content={productList?.metaDescription} />
+        <title>{productList?.metaTitle ?? "Artportable"}</title>
+        <meta name="title" content={productList?.metaTitle ?? "Artportable"} />
+        <meta name="description" content={productList?.metaDescription ?? ""} />
 
-        <meta property="og:title" content={productList?.metaTitle} />
-        <meta property="og:description" content={productList?.metaDescription} />
+        <meta property="og:title" content={productList?.metaTitle ?? "Artportable"} />
+        <meta property="og:description" content={productList?.metaDescription ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={BaseUrl+"/"+productList?.slug} />
         <meta property="og:image" content={productList?.ogImage?.formats?.medium?.url} />
 
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {router.isFallback &&
         //implement good skeleton here
         <div>Loading...</div>
       }
       {!router.isFallback &&
-        <>
-          <Typography variant="h1">{productList?.title}</Typography>
-          <div dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
+      <>
+      <div className={s.container}>
+        <Accordion 
+          className={s.accordion} 
+          elevation={0} 
+          onClick={() => setToggleButton(!toggleButton)}>
+        <AccordionSummary className={s.accordionSummary}>
+        <div>
+          <Typography className={s.header} variant="h1">{productList?.title}</Typography>
+          
+          <div className={s.topDescription} dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
+          
+            {toggleButton ? 
+              <Button 
+                className={s.button} 
+                size="small" 
+                onClick={() => setToggleButton(!toggleButton)} 
+                variant="outlined" 
+                rounded 
+                startIcon={<KeyboardArrowUpIcon />}>
+                  {t('readLess')}
+              </Button> 
+            : 
+              <Button 
+                className={s.button} 
+                size="small" 
+                onClick={() => setToggleButton(!toggleButton)} 
+                variant="outlined" 
+                rounded 
+                startIcon={<KeyboardArrowDownIcon />}>
+                  {t('readMore')}
+              </Button>}
+        </div>
+          </AccordionSummary>
+          <AccordionDetails>
+          <div className={s.description} dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
+          </AccordionDetails>
+          </Accordion>
+      </div>
           <DiscoverArt
             artworks={artworks}
             tags={null}
@@ -80,7 +127,6 @@ export default function ProductListPage({ productList, navBarItems }: { productL
             isLoading={isLoadingArtWorks}
             loadMore={loadMoreArtworks}
           />
-          <div dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
         </>
       }
     </Main>

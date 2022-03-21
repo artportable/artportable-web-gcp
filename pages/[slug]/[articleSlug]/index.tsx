@@ -17,15 +17,16 @@ export default function ArticlePage({ article, artist }: { article: Article, art
   const s = styles();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(['articles']);
+  const canonicalURL = publicUrl + router.asPath
 
   return (
     <Main>
       <Head>
-        <title>{article?.title}</title>
-        <meta name="title" content={article?.title} />
-        <meta name="description" content={article?.description} />
-        <meta property="og:title" content={article?.title} />
-        <meta property="og:description" content={article?.description} />
+        <title>{article?.title ?? "Artportable"}</title>
+        <meta name="title" content={article?.title ?? "Artportable"} />
+        <meta name="description" content={article?.description ?? ""} />
+        <meta property="og:title" content={article?.title ?? "Artportable"} />
+        <meta property="og:description" content={article?.description ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/${article?.publishCategory.name.toLowerCase()}/${article?.slug}`} />
         <meta property="og:image" content={article?.coverImage?.formats?.medium?.url} />
@@ -39,6 +40,7 @@ export default function ArticlePage({ article, artist }: { article: Article, art
             </>
           )
         })}
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {router.isFallback &&
         //implement good skeleton here

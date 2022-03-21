@@ -65,10 +65,15 @@ export const styles = makeStyles((theme: Theme) =>
       textOverflow: 'ellipsis',
       overflow: 'hidden'
     },
+    name: {
+      fontWeight: 400
+    },
     title: {
       color: theme.palette.text.secondary,
+      fontStyle: 'italic',
       fontSize: '0.95rem',
       height: '1.3rem',
+      marginBottom: '5px'
     },
     price: {
       fontSize: '0.95rem',

@@ -103,6 +103,10 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             <Collapse in={openListingPages} timeout="auto">
               <List component="div" disablePadding >
                 {navBarItems.map((item, index) => {
+                  navBarItems.sort((a, b) => {
+                    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase()) return -1;
+                    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
+                  });
                   if (item.locale == router.locale)
                     return (
                       <Link href={'/' + item.slug} passHref key={index}>
@@ -126,18 +130,19 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             </ListItem>
           </a>
         </Link>
-        {/* <a href="https://old.artportable.com/stories/" target="blank" className={s.articleLink}>
-          <ListItem button divider>
-            <ListItemText primary={t('stories')} />
-          </ListItem>
-        </a> */}
+        <Link href="/artists" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('artists')} />
+            </ListItem>
+          </a>
+        </Link>
         <ListItem button divider onClick={handleClickContact} >
           <ListItemText primary={t('contactUs')} />
         </ListItem >
         <DialogConstruction
           openContact={openContact}
           handleClose={handleCloseContact} />
-
         {isSignedIn.value ?
           <>
             {(membership.value < Membership.Portfolio) &&

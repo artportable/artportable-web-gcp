@@ -74,6 +74,7 @@ export default function Profile(props) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { articles, navBarItems, profile: staticUserProfile } = props;
+  const canonicalURL = publicUrl + router.asPath;
 
   const [activeTab, setActiveTab] = useState(0);
   const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
@@ -321,15 +322,17 @@ export default function Profile(props) {
   return (
     <Main navBarItems={navBarItems}>
       <Head>
-        <title>{staticUserProfile?.Name + ' ' + staticUserProfile?.Surname}</title>
-        <meta name="title" content={staticUserProfile?.Name + ' ' + staticUserProfile?.Surname} />
-        <meta name="description" content={staticUserProfile?.Headline} />
+        <title>{staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"}</title>
+        <meta name="title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
+        <meta name="description" content={staticUserProfile?.Headline ?? ""} />
 
-        <meta property="og:title" content={staticUserProfile?.Name + ' ' + staticUserProfile?.Surname} />
-        <meta property="og:description" content={staticUserProfile?.Headline} />
+        <meta property="og:title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
+        <meta property="og:description" content={staticUserProfile?.Headline ?? ""} />
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
         <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
+
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {isReady &&
         <>
@@ -573,7 +576,7 @@ export default function Profile(props) {
   );
 }
 
-export async function getStaticProps({ locale, params }) {
+export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const split = params.username.split('@');
   const username = split.length > 1 ? split[1] : null;
@@ -596,7 +599,6 @@ export async function getStaticProps({ locale, params }) {
         locale: locale,
         ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
       },
-      revalidate: 10,
     };
   } catch (error) {
     console.log(error);
@@ -607,14 +609,6 @@ export async function getStaticProps({ locale, params }) {
       articles: articles,
       locale: locale,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
-    },
-    revalidate: 10,
+    }
   }
 }
-
-export const getStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  };
-};

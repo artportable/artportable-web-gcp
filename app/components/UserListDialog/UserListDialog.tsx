@@ -33,7 +33,7 @@ const UserListDialog = ({ title, users, open, onClose }: Props) => {
                     <ListItemAvatar>
                       <ProfileAvatar size={38} profilePicture={user.profilePicture}></ProfileAvatar>
                     </ListItemAvatar>
-                    <ListItemText primary={user.username} />
+                    <ListItemText primary= {`${user.name} ${user.surname}`} />
                   </ListItem>
                 </a>
               </Link>

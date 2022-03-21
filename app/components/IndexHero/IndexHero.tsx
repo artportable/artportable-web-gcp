@@ -15,6 +15,7 @@ interface RandomImageProps {
   artwork: string;
   username: string;
   imageLink: string;
+  name: string;
 }
 
 export default function IndexHero() {
@@ -28,7 +29,7 @@ export default function IndexHero() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (randomImage === { artwork: '', username: '', imageLink: '' }) {
+    if (randomImage === { artwork: '', username: '', imageLink: '', name: '' }) {
       setLoading(true)
     } else {
       setLoading(false)
@@ -41,81 +42,79 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "lagerzz", image: '/images/carl_lagercrantz_second.jpg', imageLink: "b30a5786-5f44-4231-bb05-b11ef079b2f6"},
-    { name: "mike.eriksson", image: '/images/mike_eriksson.jpg', imageLink: "de2a5833-9bb9-431d-810c-7909894dd0d6"},
-    { name: "olle.brandqvist", image: '/images/olle_brandqvist.jpg', imageLink: "fccc1122-5a85-4caf-968a-9cfd239a5337"},
-    { name: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "b52807f2-8497-4722-b535-ad9a2cdfcf89"},
-    { name: "gunilla.svard", image: '/images/gunilla_svard_house.jpg', imageLink: "3b0b0caf-510f-4d91-a1f4-597866abca5f"},
-    { name: "margareta.karlsson", image: '/images/margareta.jpg', imageLink: "93a9d756-7708-48b1-a65d-54903714ec58"},
-    { name: "erik.mofjell", image: '/images/erik_mofjell.jpg', imageLink: "53e65a8d-a108-4894-81c2-3e7d10a3a9dd"},
-    { name: "karinjohansson30", image: '/images/karin.jpg', imageLink: "76eccea3-a6c5-4036-a419-443678b1237b"},
+    { name: "Viggo Carlsen", username: "Viggo.Carlsen", image: '/images/Viggo_Carlsen.jpg', imageLink: "8b505381-7319-4589-933c-a5e0c10aba52" },
+    { name: "Örjan Sätre", username: "orjan.satre", image: '/images/Orjan_Satre.jpg', imageLink: "0e3d73bd-2b4f-4ef4-97bf-02d2b35b21a3" },
+    { name: "Felicia Adérian", username: "feliciaaderian", image: '/images/felicia_adrén.jpg', imageLink: "853261f1-a9be-4607-a74d-895f897f92ca" },
+    { name: "Gunilla Svärd", username: "gunilla.svard", image: 'images/gunilla_svard.jpg', imageLink: "3216b830-a1c5-423c-a73e-3f52995648f4" },
+    { name: "Coila Coats Matton", username: "coila.matton", image: '/images/Coila_Mattsson.jpg', imageLink: "e0a139f1-1fe7-4a49-85f0-9830636e0b5f" },
   ]
 
   useEffect(() => {
     const randomImageIndex = Math.floor(Math.random() * images.length);
     setRandomImage(({
       artwork: (images[randomImageIndex].image),
-      username: (images[randomImageIndex].name),
-      imageLink: (images[randomImageIndex].imageLink)
+      username: (images[randomImageIndex].username),
+      imageLink: (images[randomImageIndex].imageLink),
+      name: (images[randomImageIndex].name)
     }));
-  }, [])   
+  }, [])
 
 
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
-          <div className={s.left}>
-            <Typography variant="h1" className={s.headline}>
-              {t('header')}
-            </Typography>
-            <Typography variant="h4" className={s.description}>
-              {t('subHeader')}
-            </Typography>
-              <div className={s.headerButtonArtlover}>
-                <Button
-                  classes={{
-                    label: s.buttonLabel
-                  }}
-                  className={s.becomeMemberButton}
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  rounded
-                  onClick={() => keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref
-                  })}>
-                  {t('signUp')}
-                </Button>
-                <Button
-                  classes={{
-                    label: s.buttonLabel
-                  }}
-                  size="small"
-                  variant="outlined"
-                  disableElevation
-                  rounded
-                  onClick={() => keycloak.login({ locale: router.locale })}>
-                  {t('logIn')}
-                </Button>
-              </div>
+        <div className={s.left}>
+          <Typography variant="h1" className={s.headline}>
+            {t('Hitta originalkonst')}
+          </Typography>
+          <Typography variant="h4" className={s.description}>
+            {t('Ta en titt i galleriet med över 28000 konstverk')}
+          </Typography>
+          <div className={s.headerButtonArtlover}>
+            <Button
+              classes={{
+                label: s.buttonLabel
+              }}
+              className={s.becomeMemberButton}
+              size="small"
+              variant="contained"
+              color="primary"
+              disableElevation
+              rounded
+              onClick={() => keycloak.register({
+                locale: router.locale,
+                redirectUri: signUpRedirectHref
+              })}>
+              {t('signUp')}
+            </Button>
+            <Button
+              classes={{
+                label: s.buttonLabel
+              }}
+              size="small"
+              variant="outlined"
+              disableElevation
+              rounded
+              onClick={() => keycloak.login({ locale: router.locale })}>
+              {t('logIn')}
+            </Button>
           </div>
-        
+        </div>
+
         <div className={s.right}>
           <div className={s.paintingContainer}>
             {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
               :
               <>
-                  <Link href={`/art/${randomImage.imageLink}`}>
-                    <a>
-                      <img
-                        className={s.boosted}
-                        src={(randomImage.artwork)}
-                        alt={`${t("artworkFrom")} ${randomImage.username}`}
-                        title={`${t("artworkFrom")} ${randomImage.username}`} />
-                    </a>
-                  </Link>
+                <Link href={`/art/${randomImage.imageLink}`}>
+                  <a>
+                    <img
+                      className={s.boosted}
+                      src={(randomImage.artwork)}
+                      alt={`${t("artworkFrom")} ${randomImage.username}`}
+                      title={`${t("artworkFrom")} ${randomImage.username}`} />
+                  </a>
+                </Link>
                 <div className={s.createdBy}>
                   <Chip
                     onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
@@ -123,7 +122,7 @@ export default function IndexHero() {
                     classes={{
                       root: s.chip,
                     }}
-                    label={randomImage.username} />
+                    label={randomImage.name} />
                 </div>
               </>
             }

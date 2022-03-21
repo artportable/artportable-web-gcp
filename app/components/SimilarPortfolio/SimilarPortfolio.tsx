@@ -78,7 +78,7 @@ export default function SimilarPortfolio({ data }) {
           <Typography variant="subtitle1">
             <Link href={`/profile/@${data?.Username}`}>
               <a style={{ textDecoration: 'none', color: 'black' }}>
-                {data?.Username}
+                {`${data?.Name} ${data?.Surname}`}
               </a>
             </Link>
           </Typography>

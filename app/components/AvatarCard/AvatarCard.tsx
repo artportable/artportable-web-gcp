@@ -14,36 +14,36 @@ export default function AvatarCard({ user }) {
 
   return (
     <Link href={`/profile/@${user.Username}`}>
-      <a style={{ textDecoration: 'none', color: 'black' }}>
-        <div className={s.container}>
-          {user?.ProfilePicture ? (
-            <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
-              alt="Profile picture"
-              className={s.avatar}
-            />
-          ) : (
-            <Avatar className={s.avatar}>
-              <AccountCircleIcon style={{ fontSize: 72 }} color="secondary"></AccountCircleIcon>
-            </Avatar>
-          )}
-          <div className={s.text}>
-            <span className={s.username}>{user.Username}</span>
-            <span>{user.Location}</span>
-            {user?.Tags &&
-              <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>
-            }
-          </div>
-          {user.MonthlyArtist &&
-            <div>
-              <img
-                src="/Artportable_Emblem_Gold.svg"
-                alt="Logo Artportable"
-                className={s.emblem}
-              />
-            </div>
+    <a style={{ textDecoration: 'none', color: 'black' }}>
+      <div className={s.container}>
+        {user?.ProfilePicture ? (
+          <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
+            alt="Profile picture"
+            className={s.avatar}
+          />
+        ) : (
+          <Avatar className={s.avatar}>
+            <AccountCircleIcon style={{ fontSize: 72 }} color="secondary"></AccountCircleIcon>
+          </Avatar>
+        )}
+        <div className={s.text}>
+          <span className={s.username}>{`${user.Name} ${user.Surname}`}</span>
+          <span>{user.Location}</span>
+          {user?.Tags &&
+            <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>
           }
         </div>
-      </a>
-    </Link>
+        {user.MonthlyArtist &&
+          <div>
+            <img
+              src="/Artportable_Emblem_Gold.svg"
+              alt="Logo Artportable"
+              className={s.emblem}
+            />
+          </div>
+        }
+      </div>
+    </a>
+  </Link>
   );
 }

@@ -2,10 +2,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Category } from '../../app/models/Category';
 import { Locales } from '../../app/models/i18n/locales';
 import { Article } from '../../app/models/Article';
-import { useRouter } from 'next/router';
 import { Localization } from '../../app/models/Localization';
-import { styles } from '../../app/components/CategoryPage/categoryPage.css';
-import { useTranslation } from 'next-i18next'
 import CategoryPage from '../../app/components/CategoryPage/CategoryPage';
 import ProductListPage from '../../app/components/ProductListPage/ProductListPage';
 import { ProductList } from '../../app/models/ProductList';
@@ -13,10 +10,6 @@ import { NavBarItem } from '../../app/models/NavBarItem';
 import { getNavBarItems } from '../../app/utils/getNavBarItems';
 
 export default function slugPage({ category = null, productList = null, navBarItems = [] }: { category: Category, productList: ProductList, navBarItems: NavBarItem[] }) {
-  const s = styles();
-  const router = useRouter()
-  const { t } = useTranslation(['articles']);
-
   const page = () => {
     if (category)
       return <CategoryPage category={category} navBarItems={navBarItems} />

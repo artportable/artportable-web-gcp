@@ -14,6 +14,9 @@ import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
 import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
+import { Artwork } from "../app/models/Artwork";
+import Artist from "../app/models/Artist";
+import { id } from "date-fns/locale";
 import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
 import Head from 'next/head';
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
@@ -21,13 +24,13 @@ import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
 import {getNavBarItems } from "../app/utils/getNavBarItems";
 
-
 export default function DiscoverPage({navBarItems}) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
   const { username, socialId, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
 
   const discoverTab = store.getState()?.discover?.tab ?? 1;
   const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
@@ -78,6 +81,8 @@ export default function DiscoverPage({navBarItems}) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
         <meta property="og:image" content="/images/artportable_tv_commercial.png" />
+
+        <link rel="canonical" href={publicUrl} />
       </Head>
       {!loading &&
         <>

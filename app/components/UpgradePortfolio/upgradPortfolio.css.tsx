@@ -5,9 +5,13 @@ export const styles = makeStyles((theme: Theme) =>
     upgradeDesktopDiv: {
       whiteSpace: 'nowrap'
     },
+    dialogHeight: {
+      '&.MuiDialog-paperScrollPaper': {
+      height: '1000px'
+      },
+    },
     upgradeButton: {
       display: 'none'
-
   },
     closeButton: {
       position: 'absolute',
@@ -15,9 +19,10 @@ export const styles = makeStyles((theme: Theme) =>
       top: theme.spacing(1),
       color: theme.palette.grey[500],
     },
-    spacing: {
-     paddingTop: theme.spacing(8),
-     paddingBottom: theme.spacing(1)
+    header: {
+      fontWeight: 600,
+      paddingTop: theme.spacing(8),
+      paddingBottom: theme.spacing(1)
     },
     spacingBottom: {
       paddingBottom: theme.spacing(5),
@@ -25,7 +30,6 @@ export const styles = makeStyles((theme: Theme) =>
      [theme.breakpoints.up('sm')]: {
       upgradeButton: {
         whiteSpace: 'nowrap',
-        width: '130px',
         display: 'initial'
       },
     },
