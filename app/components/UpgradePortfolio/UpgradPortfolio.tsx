@@ -32,17 +32,21 @@ export default function DialogConstruction() {
   const [priceData, setPriceData] = useState<PriceData[]>(null)
 
   useEffect(() => {
+    const abortCont = new AbortController();
     async function getPriceData() {
       try {
-          var response = await fetch(`${apiBaseUrl}/api/payments/prices`)
+          var response = await fetch(`${apiBaseUrl}/api/payments/prices`, {signal: abortCont.signal })
           if (response.ok)
           (setPriceData(await response.json()))
-          
       } catch(e) {
+        if (e.name == 'AbortError') {
+          console.log('fetch aborted')
+        }
         console.log('Could not fetch price info', e);
       }
     }
     getPriceData()
+    return () => abortCont.abort();
   }, [])
 
   const theme = useTheme();
