@@ -9,8 +9,9 @@ import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next'
+import DiscoverArtistCard from '../../../app/components/DiscoverArtistCard/DiscoverArtistCard';
 
-export default function ArticlePage({ article }: { article: Article }) {
+export default function ArticlePage({ article, artist }: { article: Article, artist }) {
 
   const router = useRouter()
   const s = styles();
@@ -81,7 +82,6 @@ export default function ArticlePage({ article }: { article: Article }) {
                 </div>
               )
             })}
-
             <div className={s.line}></div>
             <div className={s.findArt}>
               <Typography>
@@ -116,6 +116,16 @@ export default function ArticlePage({ article }: { article: Article }) {
               })}
             </div>
           </Paper>
+          <div className={s.div}>
+            {artist && artist.length > 0 &&
+              <div className={s.div2}>
+                {artist.map(a => {
+                  return <DiscoverArtistCard artist={a} onFollowClick={null}></DiscoverArtistCard>
+                })
+                }
+              </div>
+            }
+          </div>
         </>
       }
     </Main>
@@ -164,8 +174,21 @@ export async function getStaticProps(context) {
     }
   }
 
+  var artist = null
+  if (article.artist) {
+    const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Discover/artists/top`);
+    url.searchParams.append('q', article.artist);
+    var artistResult = await fetch(url.href);
+    var artist = null
+    if (artistResult && artistResult.status === 200) {
+      artist = await artistResult.json();
+    }
+  }
+
+
   return {
     props: {
+      artist: artist,
       article: article,
       ...await serverSideTranslations(locale, []),
     },

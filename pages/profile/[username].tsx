@@ -2,7 +2,7 @@ import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import Head from 'next/head';
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
-import { Tabs, Tab, Snackbar } from '@material-ui/core'
+import { Tabs, Tab, Snackbar, Typography } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
@@ -73,7 +73,7 @@ export default function Profile(props) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const { navBarItems, profile: staticUserProfile } = props;
+  const { articles, navBarItems, profile: staticUserProfile } = props;
   const canonicalURL = publicUrl + router.asPath;
 
   const [activeTab, setActiveTab] = useState(0);
@@ -430,8 +430,8 @@ export default function Profile(props) {
               </div>
             }
             <Divider className={s.divider}></Divider>
-
             <ArtistPriceSpan prices={artworkPrices} />
+
             {hasArtwork ?
               <div className={s.tabsContainer}>
                 <Tabs value={activeTab} onChange={handleTabChange} centered >
@@ -508,6 +508,37 @@ export default function Profile(props) {
                   </TabPanel>
                   <TabPanel value={activeTab} index={1}>
                     <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                    {articles &&
+                      // Grid i första div sen flexbox i nästa
+                      <div className={s.articles}>
+                        <div className={s.flex}>
+                          {articles.map((article, key) => {
+                            return (
+                              <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
+                                <div className={s.wrapper}>
+                                  <div>
+                                    <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
+                                  </div>
+                                  <div className={s.textContent}>
+                                    <div>
+                                      {article.published_at.slice(0, -14)}
+                                    </div>
+
+                                    <Typography component="h2" variant={'h2'}>
+                                      <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                        {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                                      </Box>
+                                    </Typography>
+                                    <Typography variant={'subtitle1'}>{article.description}</Typography>
+                                  </div>
+                                  <div className={s.line}></div>
+                                </div>
+                              </Link>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    }
                   </TabPanel>
                 </Box>
               </div>
@@ -557,12 +588,18 @@ export async function getServerSideProps({ locale, params }) {
   const username = split.length > 1 ? split[1] : null;
   const url = new URL(`${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`);
 
+  var articles = [];
+  let articleResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?artist_contains=${username}&_locale=${locale}`)
+  if (articleResponse.status === 200) {
+    articles = await articleResponse.json();
+  }
   try {
     const profileResponse = await fetch(url.href);
     const profile = await profileResponse.json();
     const navBarItems = await getNavBarItems();
     return {
       props: {
+        articles: articles,
         navBarItems: navBarItems,
         profile: profile,
         locale: locale,
@@ -575,6 +612,7 @@ export async function getServerSideProps({ locale, params }) {
 
   return {
     props: {
+      articles: articles,
       locale: locale,
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'profile', 'tags', 'art', 'upload', 'support', 'plans']),
     }

@@ -3,6 +3,50 @@ import { rowGap, columnGap } from '../app/utils/styleUtils';
 
 export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
+    flex: {
+      alignItems: 'center',
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+    wrapper: {
+      backgroundColor: 'white',
+      display: 'flex',
+      flexDirection: 'column',
+      marginTop: theme.spacing(2),
+      [theme.breakpoints.up('md')]: {
+        flexDirection: 'row',
+      },
+    },
+    headline: {
+      textDecoration: 'underline',
+      marginBottom: theme.spacing(1),
+    },
+    imageDiv: {
+      width: '100%'
+    },
+    coverImage: {
+      width: '100%',
+      borderRadius: '5px 5px 0 0',
+      [theme.breakpoints.up('md')]: {
+        flexDirection: 'row',
+        borderRadius: '5px 0 0 5px',
+      },
+    },
+    line: {
+      marginTop: theme.spacing(1),
+      height: '4px',
+      backgroundColor: 'var(--primary-color)'
+    },
+    textContent: {
+      padding: '20px',
+      display: 'inline-block',
+      width: '100%',
+      blockSize: 'fit-content',
+      color: 'var(--text-color)',
+    },
+
     profileGrid: {
       display: 'grid',
       gap: '16px',
@@ -12,6 +56,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
         '\"      .              .      profile     .              actions\"       auto' +
         '\"   divider        divider   divider   divider       divider\"       auto' +
         '\"      .         priceSpan  priceSpan  priceSpan        .\"       auto' +
+        '\"     articles    articles   articles articles      articles\"       auto' +
         '\"     tabs           tabs      tabs     tabs           tabs\"       1fr' +
         '\"   divider2       divider2  divider2  divider2      divider2\"       auto' +
         '\"   portfolio      portfolio portfolio portfolio    portfolio\"       auto' +
@@ -35,7 +80,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
         margin: '0 0',
       },
     },
-
+    articles: {
+      gridArea: 'articles',
+      cursor: 'pointer'
+    },
     messageButtonText: {
       display: 'none'
     },
