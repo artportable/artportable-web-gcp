@@ -69,9 +69,9 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
-      router.events.off('routChangeComplete', handleRouteChange)
+      router.events.off('routeChangeComplete', handleRouteChange)
     }
-  }, [router.events])
+  }, [router])
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
