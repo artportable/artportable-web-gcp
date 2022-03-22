@@ -26,7 +26,7 @@ export const styles = makeStyles((theme: Theme) =>
     div: {
       maxWidth: '100%',
       justifySelf: 'center',
-      marginTop: '7%'
+      marginTop: theme.spacing(8),
     },
     div2: {
       maxWidth: '100%',

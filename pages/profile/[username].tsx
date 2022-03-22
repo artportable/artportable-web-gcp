@@ -516,8 +516,8 @@ export default function Profile(props) {
                             return (
                               <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
                                 <div className={s.wrapper}>
-                                  <div className={s.imageDiv}>
-                                    <img src={article?.coverImage?.formats?.small?.url} />
+                                  <div>
+                                    <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
                                   </div>
                                   <div className={s.textContent}>
                                     <div>

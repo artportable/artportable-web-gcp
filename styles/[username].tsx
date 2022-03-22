@@ -8,14 +8,13 @@ export const profileStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       width: '100%',
       flexDirection: 'row',
-      ...columnGap(20),
       flexWrap: 'wrap',
-
     },
     wrapper: {
       backgroundColor: 'white',
       display: 'flex',
       flexDirection: 'column',
+      marginTop: theme.spacing(2),
       [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
       },
@@ -82,7 +81,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
       },
     },
     articles: {
-      gridArea: 'articles'
+      gridArea: 'articles',
+      cursor: 'pointer'
     },
     messageButtonText: {
       display: 'none'
