@@ -432,36 +432,6 @@ export default function Profile(props) {
             <Divider className={s.divider}></Divider>
             <ArtistPriceSpan prices={artworkPrices} />
 
-            {articles &&
-              // Grid i första div sen flexbox i nästa
-              <div className={s.articles}>
-                <div className={s.flex}>
-                  {articles.map((article, key) => {
-                    return (
-                      <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
-                        <div className={s.wrapper}>
-                          <img src={article?.coverImage?.formats?.small?.url} />
-                          <div className={s.textContent}>
-                            <div>
-                              {article.published_at.slice(0, -14)}
-                            </div>
-
-                            <Typography component="h2" variant={'h2'}>
-                              <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                                {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                              </Box>
-                            </Typography>
-                            <Typography variant={'subtitle1'}>{article.description}</Typography>
-                          </div>
-                          <div className={s.line}></div>
-                        </div>
-
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-            }
             {hasArtwork ?
               <div className={s.tabsContainer}>
                 <Tabs value={activeTab} onChange={handleTabChange} centered >
@@ -538,6 +508,37 @@ export default function Profile(props) {
                   </TabPanel>
                   <TabPanel value={activeTab} index={1}>
                     <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                    {articles &&
+                      // Grid i första div sen flexbox i nästa
+                      <div className={s.articles}>
+                        <div className={s.flex}>
+                          {articles.map((article, key) => {
+                            return (
+                              <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
+                                <div className={s.wrapper}>
+                                  <div className={s.imageDiv}>
+                                    <img src={article?.coverImage?.formats?.small?.url} />
+                                  </div>
+                                  <div className={s.textContent}>
+                                    <div>
+                                      {article.published_at.slice(0, -14)}
+                                    </div>
+
+                                    <Typography component="h2" variant={'h2'}>
+                                      <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                        {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                                      </Box>
+                                    </Typography>
+                                    <Typography variant={'subtitle1'}>{article.description}</Typography>
+                                  </div>
+                                  <div className={s.line}></div>
+                                </div>
+                              </Link>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    }
                   </TabPanel>
                 </Box>
               </div>

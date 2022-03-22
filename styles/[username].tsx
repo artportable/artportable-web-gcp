@@ -4,7 +4,7 @@ import { rowGap, columnGap } from '../app/utils/styleUtils';
 export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
     flex: {
-      alignItems: 'flex-start',
+      alignItems: 'center',
       display: 'flex',
       width: '100%',
       flexDirection: 'row',
@@ -16,7 +16,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       backgroundColor: 'white',
       display: 'flex',
       flexDirection: 'column',
-      [theme.breakpoints.up('lg')]: {
+      [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
       },
     },
@@ -24,10 +24,13 @@ export const profileStyles = makeStyles((theme: Theme) =>
       textDecoration: 'underline',
       marginBottom: theme.spacing(1),
     },
+    imageDiv: {
+      width: '100%'
+    },
     coverImage: {
       width: '100%',
       borderRadius: '5px 5px 0 0',
-      [theme.breakpoints.up('lg')]: {
+      [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
         borderRadius: '5px 0 0 5px',
       },

@@ -24,18 +24,12 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: '1.4rem'
     },
     div: {
-      maxWidth: '1000px',
-      padding: '20px',
+      maxWidth: '100%',
       justifySelf: 'center',
-      zIndex: 1,
-      [theme.breakpoints.up('md')]: {
-        padding: '100px',
-        marginTop: '100px',
-      },
+      marginTop: '7%'
     },
     div2: {
-
-      maxWidth: '1000px',
+      maxWidth: '100%',
     },
     articleImages: {
       '& figure': {
