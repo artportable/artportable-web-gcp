@@ -22,7 +22,8 @@ const SearchField = ({ onFilter, tags = null }) => {
     { name: t('tags:aquarelle'), selected: false, id: "aquarelle" },
     { name: t('tags:photography'), selected: false, id: "photography" },
     { name: t('tags:sculpture'), selected: false, id: "sculpture" },
-    { name: t('tags:pastel'), selected: false, id: "pastel" }
+    { name: t('tags:NFT'), selected: false, id: "NFT" },
+    { name: t('tags:nude'), selected: false, id: "nude" }
   ];
 
   useEffect(() => {
