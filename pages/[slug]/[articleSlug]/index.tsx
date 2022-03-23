@@ -116,7 +116,7 @@ export default function ArticlePage({ article, artist }: { article: Article, art
               })}
             </div>
           </Paper>
-          <div className={s.div}>
+          {/* <div className={s.div}>
             {artist && artist.length > 0 &&
               <div className={s.div2}>
                 {artist.map(a => {
@@ -125,7 +125,7 @@ export default function ArticlePage({ article, artist }: { article: Article, art
                 }
               </div>
             }
-          </div>
+          </div> */}
         </>
       }
     </Main>
