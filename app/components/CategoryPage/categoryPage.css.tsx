@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'flex-start',
       display: 'flex',
       width: '100%',
-      flexDirection: 'column',
+      flexDirection: 'row',
       ...columnGap(20),
       flexWrap: 'wrap',
 
@@ -15,7 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
     wrapper: {
       backgroundColor: 'white',
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'column',
       [theme.breakpoints.up('md')]: {
         flexDirection: 'row',
       },
