@@ -19,10 +19,10 @@ const SearchField = ({ onFilter, tags = null }) => {
   const initCategoryTags = [
     { name: t('tags:oil'), selected: false, id: "oil" },
     { name: t('tags:acrylic'), selected: false, id: "acrylic" },
+    { name: t('tags:NFT'), selected: false, id: "NFT" },
     { name: t('tags:aquarelle'), selected: false, id: "aquarelle" },
     { name: t('tags:photography'), selected: false, id: "photography" },
     { name: t('tags:sculpture'), selected: false, id: "sculpture" },
-    { name: t('tags:NFT'), selected: false, id: "NFT" },
     { name: t('tags:nude'), selected: false, id: "nude" }
   ];
 
