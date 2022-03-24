@@ -1,10 +1,11 @@
 import { Typography } from "@material-ui/core";
 import { Trans, useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import FreeTrial from "../app/components/FreeTrial/FreeTrial";
 import Main from "../app/components/Main/Main";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { styles } from "../styles/gdpr.css";
-import FreeTrial from "../app/components/FreeTrial/freeTrial";
+
 
 export default function FourteenDays({navBarItems}) {
   const { t } = useTranslation(['trial']);
