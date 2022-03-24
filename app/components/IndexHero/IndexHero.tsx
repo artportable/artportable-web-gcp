@@ -14,7 +14,7 @@ import Button from '../Button/Button'
 interface RandomImageProps {
   artwork: string;
   username: string;
-  imageLink: string;
+  imageLink: string; 
   name: string;
 }
 
