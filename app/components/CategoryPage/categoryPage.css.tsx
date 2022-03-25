@@ -54,14 +54,14 @@ export const styles = makeStyles((theme: Theme) =>
       textDecoration: 'underline',
       marginBottom: theme.spacing(1),
     },
-    // coverImage: {
-    //   width: '100%',
-    //   borderRadius: '5px 5px 0 0',
-    //   [theme.breakpoints.up('lg')]: {
-    //     flexDirection: 'row',
-    //     borderRadius: '5px 0 0 5px',
-    //   },
-    // },
+    coverImage: {
+      width: '100%',
+      borderRadius: '5px 5px 0 0',
+      [theme.breakpoints.up('lg')]: {
+        flexDirection: 'row',
+        borderRadius: '5px 0 0 5px',
+      },
+    },
     dateSpan: {
       textAlign: 'right',
       marginTop: '8px',
