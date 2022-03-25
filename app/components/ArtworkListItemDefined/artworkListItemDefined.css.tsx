@@ -66,10 +66,10 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden'
     },
     name: {
+      fontSize: '0.95rem',
       fontWeight: 400
     },
     title: {
-      color: theme.palette.text.secondary,
       fontStyle: 'italic',
       fontSize: '0.95rem',
       height: '1.3rem',
