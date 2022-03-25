@@ -28,11 +28,13 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: '20px',
     },
     textThird: {
-      marginBottom: '10px',
+      marginBottom: '5px',
+    },
+    textFourth: {
       fontStyle: 'italic',
       fontSize: '0.8rem'
     },
-    textFourth: {
+    textFifth: {
       marginTop: '20px'
     },
     buttonDiv: {

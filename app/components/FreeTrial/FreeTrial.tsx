@@ -101,7 +101,7 @@ export default function FreeTrial() {
   }
 
 
-  const submit = async () => { 
+  const submit = async () => {
     console.log(formData.email.value)
     if (validateAllFields()) {
       zapierFreeTrial({
@@ -111,78 +111,81 @@ export default function FreeTrial() {
     }
   }
 
-    return (
-      <article className={s.articleContainer}>
-        <div className={s.imageDiv}>
-          <img src='images/art_free_trial.jpeg' className={s.image} />
-        </div>
-        {!sentEmail ?
-          <div className={s.contentDiv}>
-            <Typography variant="h1" className={s.header}>{t('headline')}</Typography>
+  return (
+    <article className={s.articleContainer}>
+      <div className={s.imageDiv}>
+        <img src='images/jason.jpg' className={s.image} />
+      </div>
+      {!sentEmail ?
+        <div className={s.contentDiv}>
+          <Typography variant="h1" className={s.header}>{t('headline')}</Typography>
 
-            {/* <Typography className={s.textFirst}>
+          {/* <Typography className={s.textFirst}>
               {t('uploadtext')}
             </Typography> */}
 
-            {/* <Typography className={s.textSecond}></Typography> */}
-            <Typography >
+          {/* <Typography className={s.textSecond}></Typography> */}
+          <Typography >
             {t('uploadArtwork')}
-            </Typography>
-            <Typography >
+          </Typography>
+          <Typography >
             {t('audience')}
-            </Typography>
-            <Typography >
+          </Typography>
+          <Typography >
             {t('price')}
-            </Typography>
-            <Typography className={s.textSecond}>
-              {t('tryFree')}
-            </Typography>
-            <Typography className={s.textThird}>
-            {t('readArtportable')}<a href="/villkor"> Allmänna villkor</a>
-            </Typography>
-            <form onSubmit={submit}>
-              <div className={s.textFieldDiv}>
-                <TextField
-                  classes={{
-                    root: s.textField
-                  }}
-                  fullWidth
-                  label="Email"
-                  required
-                  variant="outlined"
-                  value={formData.email.value}
-                  error={formData.email.error}
-                  onChange={(e) => handleChange(e, 'email')}
-                  onBlur={(e) => validateFormValue(e.target.value, 'email')}
-                  helperText={formData.email.error ? t('mustNotBeEmptyMessage') : ''}
-                  inputProps={{ maxLength: 50 }}
+          </Typography>
+          <Typography className={s.textSecond}>
+            {t('tryFree')}
+          </Typography>
+          <Typography className={s.textThird}>
+          {t('fillEmail')}
+          </Typography>
+          <form onSubmit={submit}>
+            <div className={s.textFieldDiv}>
+              <TextField
+                classes={{
+                  root: s.textField
+                }}
+                fullWidth
+                label="Email"
+                required
+                variant="outlined"
+                value={formData.email.value}
+                error={formData.email.error}
+                onChange={(e) => handleChange(e, 'email')}
+                onBlur={(e) => validateFormValue(e.target.value, 'email')}
+                helperText={formData.email.error ? t('mustNotBeEmptyMessage') : ''}
+                inputProps={{ maxLength: 50 }}
+              >
+              </TextField>
+              <Typography className={s.textFourth}>
+                {t('readArtportable')}<a href="/villkor"> Allmänna villkor</a>
+              </Typography>
+              <div className={s.buttonDiv}>
+                <Button
+                  className={s.sendButton}
+                  variant="contained"
+                  color="primary"
+                  disableElevation
+                  rounded
+                  onClick={() => submit()}
+                  disabled={formHasErrors || formUntouched}
                 >
-                </TextField>
-                <div className={s.buttonDiv}>
-                  <Button
-                    className={s.sendButton}
-                    variant="contained"
-                    color="primary"
-                    disableElevation
-                    rounded
-                    onClick={() => submit()}
-                    disabled={formHasErrors || formUntouched}
-                  >
-                    {t('send')}
-                  </Button>
-                </div>
-
+                  {t('send')}
+                </Button>
               </div>
-            </form>
-          </div>
-          :
-          <div className={s.contentDiv}>
-            <Typography variant="h1" className={s.header}>{t('welcome')}</Typography>
-            <Typography className={s.textFourth}>
-              {t('welcomeText')}
-            </Typography>
-          </div>
-        }
-      </article >
-    );
-  }
+
+            </div>
+          </form>
+        </div>
+        :
+        <div className={s.contentDiv}>
+          <Typography variant="h1" className={s.header}>{t('welcome')}</Typography>
+          <Typography className={s.textFifth}>
+            {t('welcomeText')}
+          </Typography>
+        </div>
+      }
+    </article >
+  );
+}
