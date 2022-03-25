@@ -82,6 +82,11 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('moreArticlesMenu')}
                   </MuiButton>
                 </Link>
+                <Link className={s.link} href="/material">
+                  <MuiButton color="default" size="small">
+                    {t('material')}
+                  </MuiButton>
+                </Link>
               </div>
             </>
           </div>
