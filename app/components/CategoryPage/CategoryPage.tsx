@@ -15,15 +15,16 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
 
-  {category.name === 'Artiklar' || category.name === 'Stories' ?
-  <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
-    {t('latest')}
-  </Typography>
-  :
-  <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
-    {category.name}<span className={s.underline}></span>
-  </Typography>
-}
+  {
+    category.name === 'Artiklar' || category.name === 'Stories' ?
+    <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
+      {t('latest')}
+    </Typography>
+    :
+    <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
+      {category.name}<span className={s.underline}></span>
+    </Typography>
+  }
 
   return (
     <Main navBarItems={navBarItems}>
@@ -44,25 +45,26 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
           <div>
             <>
               <div className={s.categories}>
-                {/* {category.name === 'Artiklar' || category.name === 'Stories' ?
-                  <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
-                    {t('latest')}
-                  </Typography>
-                  :
+                {
+                // category.name === 'Artiklar' || category.name === 'Stories' ?
+                //   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
+                //     {t('latest')}
+                //   </Typography>
+                //   :
                   category.name === 'Flerartiklar' || category.name === 'Morearticles' ?
                   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
                     {t('moreArticles')}
                   </Typography>
-                  : */}
-                  <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
-                    {category.name}<span className={s.underline}></span>
-                  </Typography>
-                {/* } */}
+                  :
+                <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
+                  {category.name}<span className={s.underline}></span>
+                </Typography>
+                }
               </div>
-              {/* <div className={s.menuFlex}>
+              <div className={s.menuFlex}>
                 <Link className={s.link} href="/artiklar">
                   <MuiButton color="default" size="small">
-                    {t('latestMenu')}
+                    {t('articles')}
                   </MuiButton>
                 </Link>
                 <Link className={s.link} href="/redaktionellt">
@@ -80,32 +82,34 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('moreArticlesMenu')}
                   </MuiButton>
                 </Link>
-              </div> */}
+              </div>
             </>
           </div>
           <div className={s.flex}>
             {category?.articles?.slice().sort((a, b) => a.published_at < b.published_at ? 1 : -1).map((article) => {
               if (article.published_at)
                 return (
-                  <div key={article.id}>
-                    <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
-                      <div className={s.wrapper}>
-                        <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
-                        <div className={s.textContent}>
-                          <div>
-                            {article.published_at.slice(0, -14)}
-                          </div>
+                  <div key={article.id} className={s.container}>
+                        <div className={s.wrapper}>
+                          {/* <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} /> */}
+                          <div className={s.textContent}>
+                            <div>
+                              {article.published_at.slice(0, -14)}
+                            </div>
 
-                          <Typography component="h2" variant={'h2'}>
-                            <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                              {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                            </Box>
-                          </Typography>
-                          <Typography variant={'subtitle1'}>{article.description}</Typography>
-                        </div>
-                        <div className={s.line}></div>
-                      </div>
+                    <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
+                      <a className={s.link}>
+                            <Typography component="h2" variant={'h2'}>
+                              <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                              </Box>
+                            </Typography>
+                            <Typography variant={'subtitle1'}>{article.description}</Typography>
+                      </a>
                     </Link>
+                          </div>
+                          <div className={s.line}></div>
+                        </div>
                   </div>
                 )
             })}
