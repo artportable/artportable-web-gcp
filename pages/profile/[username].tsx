@@ -2,7 +2,7 @@ import Main, { FullWidthBlock } from '../../app/components/Main/Main'
 import Head from 'next/head';
 import AboutMe from '../../app/components/AboutMe/AboutMe'
 import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
-import { Tabs, Tab, Snackbar, Typography } from '@material-ui/core'
+import { Tabs, Tab, Snackbar, Typography, Paper } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
@@ -434,9 +434,14 @@ export default function Profile(props) {
 
             {hasArtwork ?
               <div className={s.tabsContainer}>
-                <Tabs value={activeTab} onChange={handleTabChange} centered >
+                <Tabs className={s.tabs} value={activeTab} onChange={handleTabChange} centered>
                   <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
                   <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
+                  {articles && articles.length > 0 &&
+                        <Tab label={t('profile:articles')} {...a11yProps(t('profile:articles'))} />
+                        
+                      // Grid i första div sen flexbox i nästa
+                    }
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -508,14 +513,14 @@ export default function Profile(props) {
                   </TabPanel>
                   <TabPanel value={activeTab} index={1}>
                     <AboutMe userProfile={userProfile} userProfilePicture={isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture} tags={tags.data}></AboutMe>
+                  </TabPanel>
+                  <TabPanel value={activeTab} index={2}>
                     {articles &&
-                      // Grid i första div sen flexbox i nästa
-                      <div className={s.articles}>
                         <div className={s.flex}>
                           {articles.map((article, key) => {
                             return (
                               <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
-                                <div className={s.wrapper}>
+                                <Paper className={s.wrapper}>
                                   <div>
                                     <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
                                   </div>
@@ -532,13 +537,14 @@ export default function Profile(props) {
                                     <Typography variant={'subtitle1'}>{article.description}</Typography>
                                   </div>
                                   <div className={s.line}></div>
-                                </div>
+                                </Paper>
                               </Link>
                             )
                           })}
                         </div>
-                      </div>
+                      // Grid i första div sen flexbox i nästa
                     }
+    
                   </TabPanel>
                 </Box>
               </div>

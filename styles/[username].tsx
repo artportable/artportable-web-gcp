@@ -4,18 +4,19 @@ import { rowGap, columnGap } from '../app/utils/styleUtils';
 export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
     flex: {
-      alignItems: 'center',
       display: 'flex',
       width: '100%',
       flexDirection: 'row',
       flexWrap: 'wrap',
+      gridArea: 'articles',
+      cursor: 'pointer',
+      marginBottom: '15px'
     },
     wrapper: {
       backgroundColor: 'white',
       display: 'flex',
       flexDirection: 'column',
-      marginTop: theme.spacing(2),
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         flexDirection: 'row',
       },
     },
@@ -29,9 +30,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
     coverImage: {
       width: '100%',
       borderRadius: '5px 5px 0 0',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         flexDirection: 'row',
         borderRadius: '5px 0 0 5px',
+        width: 'unset',
+        height: '100%'
       },
     },
     line: {
@@ -80,15 +83,26 @@ export const profileStyles = makeStyles((theme: Theme) =>
         margin: '0 0',
       },
     },
-    articles: {
-      gridArea: 'articles',
-      cursor: 'pointer'
-    },
     messageButtonText: {
       display: 'none'
     },
     tabsContainer: {
       gridArea: 'tabs'
+    },
+    tabs: {
+      '& .MuiTab-root': {
+        minWidth: '0px',
+      },
+      [theme.breakpoints.up('md')]: {
+        '& .MuiTab-root': {
+          minWidth: '172px',
+        },
+    },
+    justifyContent: "center",
+    width: '100%',
+    },
+    text: {
+      minWidth: 0,
     },
     catalogued: {
       gridRow: '3/4',
