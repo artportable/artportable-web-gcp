@@ -57,6 +57,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
         '\"      .              .         .        .              .\"       185px' +
         '\"      .              .      profile     .              .\"       50px' +
         '\"      .              .      profile     .              actions\"       auto' +
+        '\"      .              .      hej          .               .\"       auto' +
         '\"   divider        divider   divider   divider       divider\"       auto' +
         '\"      .         priceSpan  priceSpan  priceSpan        .\"       auto' +
         '\"     articles    articles   articles articles      articles\"       auto' +
@@ -82,6 +83,30 @@ export const profileStyles = makeStyles((theme: Theme) =>
       '& .MuiButton-startIcon': {
         margin: '0 0',
       },
+    },
+    hovs: {
+      '& :hover': {
+        backgroundColor: '#000',
+      },
+      gridArea: 'hej'
+    },
+    monthlyArtistButton: {
+      marginTop: '4px',
+      height: '100px',
+      width: '137px',
+      backgroundColor: '#E0AC08',
+      color: '#fff',
+      borderRadius: '15px',
+      border: 'none',
+
+    },
+    headerButton: {
+      fontFamily: 'Gotham',
+      fontWeight: 500,
+    },
+    pButton: {
+      fontFamily: 'Gotham',
+
     },
     messageButtonText: {
       display: 'none'

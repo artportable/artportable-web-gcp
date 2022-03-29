@@ -419,7 +419,33 @@ export default function Profile(props) {
                   </Button>
                 </>
               }
+              {/* {(membership.value > Membership.Portfolio) &&
+              <div className={s.hovs}>
+                <button
+                className={s.monthlyArtistButton}>
+                  <Typography className={s.headerButton}>
+                  BLI MÅNADENS KONSTNÄR
+                  </Typography>
+                  <Typography className={s.pButton}>
+                  Ansök här
+                  </Typography>
+                </button>
+              </div>
+              } */}
             </div>
+            {(membership.value > Membership.Portfolio) &&
+              <div className={s.hovs}>
+                <button
+                className={s.monthlyArtistButton}>
+                  <Typography className={s.headerButton}>
+                  BLI MÅNADENS KONSTNÄR
+                  </Typography>
+                  <Typography className={s.pButton}>
+                  Ansök här
+                  </Typography>
+                </button>
+              </div>
+              }
             {userProfile.data?.MonthlyArtist &&
               <div className={s.catalogued}>
                 <img
@@ -438,10 +464,10 @@ export default function Profile(props) {
                   <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
                   <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
                   {articles && articles.length > 0 &&
-                        <Tab label={t('profile:articles')} {...a11yProps(t('profile:articles'))} />
-                        
-                      // Grid i första div sen flexbox i nästa
-                    }
+                    <Tab label={t('profile:articles')} {...a11yProps(t('profile:articles'))} />
+
+                    // Grid i första div sen flexbox i nästa
+                  }
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -516,35 +542,35 @@ export default function Profile(props) {
                   </TabPanel>
                   <TabPanel value={activeTab} index={2}>
                     {articles &&
-                        <div className={s.flex}>
-                          {articles.map((article, key) => {
-                            return (
-                              <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
-                                <Paper className={s.wrapper}>
+                      <div className={s.flex}>
+                        {articles.map((article, key) => {
+                          return (
+                            <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
+                              <Paper className={s.wrapper}>
+                                <div>
+                                  <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
+                                </div>
+                                <div className={s.textContent}>
                                   <div>
-                                    <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
+                                    {article.published_at.slice(0, -14)}
                                   </div>
-                                  <div className={s.textContent}>
-                                    <div>
-                                      {article.published_at.slice(0, -14)}
-                                    </div>
 
-                                    <Typography component="h2" variant={'h2'}>
-                                      <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                                        {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                                      </Box>
-                                    </Typography>
-                                    <Typography variant={'subtitle1'}>{article.description}</Typography>
-                                  </div>
-                                  <div className={s.line}></div>
-                                </Paper>
-                              </Link>
-                            )
-                          })}
-                        </div>
+                                  <Typography component="h2" variant={'h2'}>
+                                    <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                      {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                                    </Box>
+                                  </Typography>
+                                  <Typography variant={'subtitle1'}>{article.description}</Typography>
+                                </div>
+                                <div className={s.line}></div>
+                              </Paper>
+                            </Link>
+                          )
+                        })}
+                      </div>
                       // Grid i första div sen flexbox i nästa
                     }
-    
+
                   </TabPanel>
                 </Box>
               </div>
