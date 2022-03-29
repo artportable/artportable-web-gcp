@@ -81,5 +81,16 @@ export const getFetcher = (condition, responseValue: ResponseValue = 'json') => 
     default:
       return async (_) => null;
   }
-
 }
+export async function fetchWithTimeout(resource, options, _Timeout = {}) {
+  const { timeout = 12000 } = options;
+
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  const response = await fetch(resource, {
+    ...options,
+    signal: controller.signal  
+  });
+  clearTimeout(id);
+  return response;
+}  
