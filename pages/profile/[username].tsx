@@ -51,6 +51,7 @@ import usePostLike from '../../app/hooks/dataFetching/usePostLike';
 import useRefreshToken from '../../app/hooks/useRefreshToken';
 import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
 import { getNavBarItems } from '../../app/utils/getNavBarItems';
+import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 
 function a11yProps(index: any) {
   return {
@@ -318,6 +319,24 @@ export default function Profile(props) {
       togglePurchaseRequestDialog();
     }
   }
+  const [openMonthlyDialog, setOpenMonthlyDialog] = useState(false);
+
+  const handleClickMonthlyDialog = () => {
+    setOpenMonthlyDialog(true);
+  };
+
+  const handleCloseMonthlyDialog = () => {
+    setOpenMonthlyDialog(false);
+  };
+  const [sentInterest, setSentInterest] = useState(false);
+
+    const submitInterest = () => {
+      setSentInterest(true);
+  };
+
+ const closeInterest = () => {
+      setSentInterest(false);
+  };
 
   return (
     <Main navBarItems={navBarItems}>
@@ -433,19 +452,21 @@ export default function Profile(props) {
               </div>
               } */}
             </div>
-            {(membership.value > Membership.Portfolio) &&
+            {(isMyProfile && membership.value > Membership.Portfolio && userProfile.data?.MonthlyArtist) &&
               <div className={s.hovs}>
                 <button
-                className={s.monthlyArtistButton}>
+                  className={s.monthlyArtistButton}
+                  onClick={handleClickMonthlyDialog}>
                   <Typography className={s.headerButton}>
-                  BLI MÅNADENS KONSTNÄR
+                    BLI MÅNADENS KONSTNÄR
                   </Typography>
                   <Typography className={s.pButton}>
-                  Ansök här
+                    Ansök här
                   </Typography>
                 </button>
               </div>
-              }
+
+            }
             {userProfile.data?.MonthlyArtist &&
               <div className={s.catalogued}>
                 <img
@@ -455,6 +476,13 @@ export default function Profile(props) {
                 />
               </div>
             }
+            <DialogMonthlyUser
+              openContact={openMonthlyDialog}
+              handleClose={handleCloseMonthlyDialog}
+              submitInterest={submitInterest}
+              sentInterest={sentInterest}
+              closeInterest={closeInterest} />
+
             <Divider className={s.divider}></Divider>
             <ArtistPriceSpan prices={artworkPrices} />
 
