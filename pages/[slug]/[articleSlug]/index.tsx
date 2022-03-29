@@ -9,6 +9,7 @@ import Button from '../../../app/components/Button/Button';
 import Link from "next/link";
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next'
+import { fetchWithTimeout } from '../../../app/utils/util';
 import DiscoverArtistCard from '../../../app/components/DiscoverArtistCard/DiscoverArtistCard';
 
 export default function ArticlePage({ article, artist }: { article: Article, artist }) {
@@ -134,25 +135,33 @@ export default function ArticlePage({ article, artist }: { article: Article, art
 
 export async function getStaticProps(context) {
   const { locale, params, preview } = context;
-  let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.slug}${preview ? '&_publicationState=preview' : ''}`)
+  let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?_locale=${locale}&categories.slug=${params.slug}${preview ? '&_publicationState=preview' : ''}`, {
+    timeout: 11000
+  })
   var articles = await res.json()
   var article: Article = articles.find((article: Article) => article.locale == locale);
   if (article == null) {
-    let categoryRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}`)
+    let categoryRes = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}`, {
+      timeout: 11000
+    })
     if (!categoryRes.ok) {
       return {
         notFound: true,
       }
     }
     var currentCategory = await categoryRes.json()
-    let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}${preview ? '&_publicationState=preview' : ''}`)
+    let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${params.articleSlug}?categories_in=${currentCategory.id}&categories_in=${currentCategory.localizations[0]?.id}${preview ? '&_publicationState=preview' : ''}`, {
+      timeout: 11000
+    })
     if (!res.ok) {
       return {
         notFound: true,
       }
     }
     article = await res.json()
-    categoryRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`)
+    categoryRes = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`, {
+      timeout: 11000
+    })
     var newLocaleCategories = await categoryRes.json();
     var newLocaleCategory: Category = newLocaleCategories.find((category: Category) => category.locale == locale);
     if (newLocaleCategory && newLocaleCategory.id !== currentCategory.id && locale !== article.locale) {

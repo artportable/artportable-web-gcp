@@ -8,7 +8,7 @@ import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
 import { Box, IconButton, Paper, Typography } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { styles } from "../../styles/art.css";
-import { capitalizeFirst } from "../../app/utils/util";
+import { capitalizeFirst, fetchWithTimeout } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import AvatarCard from "../../app/components/AvatarCard/AvatarCard";
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -121,6 +121,8 @@ export default function ArtworkPage(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
+      {/* // if den prop, visa kompontent, annars visa det andra */}
+
       <div className={s.container}>
         <div className={s.backBtnContainer}>
           <IconButton
@@ -293,13 +295,16 @@ export async function getServerSideProps({ locale, params }) {
   const navBarItems = await getNavBarItems(); 
 
   try {
-    const artworkResponse = await fetch(url.href, {
+    const artworkResponse = await fetchWithTimeout(url.href, {
+      timeout: 11000
+      //fail return prop som sätts till true
 
     });
     const artwork = await artworkResponse.json();
  
     return {
       props: {
+        // fetch timeout
         navBarItems: navBarItems,
         artwork,
         locale: locale,
@@ -312,6 +317,7 @@ export async function getServerSideProps({ locale, params }) {
 
   return {
     props: {
+      // fetch timeout
       navBarItems: navBarItems,
       artwork: { Id: params.id },
       locale: locale,

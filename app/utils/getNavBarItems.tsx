@@ -1,6 +1,10 @@
-export const getNavBarItems = async () => {
+import { fetchWithTimeout } from './util'
 
-  const result = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}productlists`)
+export const getNavBarItems = async () => {
+ try {
+  const result = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}productlists`, {
+    timeout: 11000
+  })
   const productlists = await result.json()
 
   if (productlists)
@@ -8,7 +12,13 @@ export const getNavBarItems = async () => {
       slug: productList.slug,
       menuTitle: productList.menuTitle,
       locale: productList.locale
-    }))
+    })
+    )}
+    catch (error) {
+    // Timeouts if the request takes
+    // longer than 6 seconds
+    console.log(error.name === 'AbortError');
+  }
 
   return [];
 }
