@@ -319,14 +319,19 @@ export default function Profile(props) {
       togglePurchaseRequestDialog();
     }
   }
-  const [openMonthlyDialog, setOpenMonthlyDialog] = useState(false);
+  const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
+
+  function toggleMonthlyDialog() {
+    setOpenMonthlyDialogOpen(!openMonthlyDialogOpen);
+  }
+
 
   const handleClickMonthlyDialog = () => {
-    setOpenMonthlyDialog(true);
+    setOpenMonthlyDialogOpen(true);
   };
 
   const handleCloseMonthlyDialog = () => {
-    setOpenMonthlyDialog(false);
+    setOpenMonthlyDialogOpen(false);
   };
   const [sentInterest, setSentInterest] = useState(false);
 
@@ -477,11 +482,9 @@ export default function Profile(props) {
               </div>
             }
             <DialogMonthlyUser
-              openContact={openMonthlyDialog}
-              handleClose={handleCloseMonthlyDialog}
-              submitInterest={submitInterest}
-              sentInterest={sentInterest}
-              closeInterest={closeInterest} />
+              open={openMonthlyDialogOpen}
+              onClose={toggleMonthlyDialog}
+ />
 
             <Divider className={s.divider}></Divider>
             <ArtistPriceSpan prices={artworkPrices} />
