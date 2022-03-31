@@ -459,16 +459,14 @@ export default function Profile(props) {
             </div>
             {(isMyProfile && membership.value > Membership.Portfolio && userProfile.data?.MonthlyArtist) &&
               <div className={s.hovs}>
-                <button
+                <Button
+                rounded
                   className={s.monthlyArtistButton}
                   onClick={handleClickMonthlyDialog}>
                   <Typography className={s.headerButton}>
                     BLI MÅNADENS KONSTNÄR
                   </Typography>
-                  <Typography className={s.pButton}>
-                    Ansök här
-                  </Typography>
-                </button>
+                </Button>
               </div>
 
             }

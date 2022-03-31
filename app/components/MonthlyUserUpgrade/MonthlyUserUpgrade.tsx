@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Dialog, DialogContent, DialogTitle, IconButton } from "@material-ui/core";
+import { useState, useContext } from "react";
+import { Dialog, DialogContent, DialogTitle, IconButton, Typography } from "@material-ui/core";
 import { useTranslation } from 'next-i18next'
 import ZendeskFormMenu from "../ZendeskFormMenu/ZendeskFormMenu";
 import CloseIcon from '@material-ui/icons/Close';
+import { UserContext } from "../../contexts/user-context";
 
 import { styles } from './monthlyUserUpgrade.css'
 import Button from "../Button/Button";
@@ -17,9 +18,14 @@ export default function DialogMonthlyUser(props: Props) {
   const s = styles();
   const { t } = useTranslation(['header', 'common', 'support']);
   const [sentInterest, setSentInterest] = useState('');
+  const { email, family_name, given_name } = useContext(UserContext);
 
   const submit = () => {
     setSentInterest('hej')
+    console.log(
+      given_name.value + " " + family_name.value,
+      email.value)
+
   }
 
   const onCloseClick = () => {
@@ -32,6 +38,7 @@ export default function DialogMonthlyUser(props: Props) {
       <Dialog
         open={props.open}
         onClose={onCloseClick}
+        className={s.dialog}
       // aria-labelledby="dialog-title"
       // aria-describedby="dialog-description"
       >
@@ -41,11 +48,28 @@ export default function DialogMonthlyUser(props: Props) {
               <CloseIcon />
             </IconButton>
             <DialogTitle id="dialog-title" className={s.title}>
-              {t('support:writeToUs')}
+              Tack!
             </DialogTitle>
             <DialogContent>
-              <div>
-                Tackar
+              <div className={s.dialogContent}>
+                <Typography>
+                  Intresseförfrågan har gått iväg. 
+                  Din konstkoordinator kommer kontakta dig inom kort för att berätta mer.
+                </Typography>
+                <div className={s.imgDivSecondView}>
+                <img
+                  src="/Artportable_Emblem_Gold.svg"
+                  alt="Logo Artportable"
+                  className={s.emblem}
+                />
+              </div>
+                <Button
+                  className={s.button}
+                  variant="contained"
+                  color="primary"
+                  onClick={submit}>
+                  Stäng
+                </Button>
               </div>
             </DialogContent>
           </>
@@ -55,13 +79,23 @@ export default function DialogMonthlyUser(props: Props) {
               <CloseIcon />
             </IconButton>
             <DialogTitle id="dialog-title" className={s.title}>
-              {t('support:writeToUs')}
+              Bli månadens konstnär
             </DialogTitle>
             <DialogContent>
-              <div>
-                Information om produkten.
-                Klicka här för att bli kontaktad av din konstkoordinator
+              <div className={s.dialogContent}>
+                <Typography>
+                  Som månadens konstnär blir du disponerad på startsidan under fliken månandes konstnär.
+                  Är du intresserad att synliggöra ditt konstnärskap mer, klicka dig vidare så kontaktar din konstkoordinator dig inom kort.
+                </Typography>
+                <div className={s.imgDiv}>
+                <img
+                  src="/Artportable_Emblem_Gold.svg"
+                  alt="Logo Artportable"
+                  className={s.emblem}
+                />
+              </div>
                 <Button
+                  className={s.button}
                   variant="contained"
                   color="primary"
                   onClick={submit}>

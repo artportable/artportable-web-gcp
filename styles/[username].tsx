@@ -94,12 +94,12 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     monthlyArtistButton: {
       marginTop: '4px',
-      height: '70px',
+      // height: '70px',
       width: '300px',
       backgroundColor: '#E0AC08',
       color: '#fff',
-      borderRadius: '15px',
-      border: 'none',
+      // borderRadius: '15px',
+      // border: 'none',
 
     },
     headerButton: {
