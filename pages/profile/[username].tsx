@@ -335,12 +335,12 @@ export default function Profile(props) {
   };
   const [sentInterest, setSentInterest] = useState(false);
 
-    const submitInterest = () => {
-      setSentInterest(true);
+  const submitInterest = () => {
+    setSentInterest(true);
   };
 
- const closeInterest = () => {
-      setSentInterest(false);
+  const closeInterest = () => {
+    setSentInterest(false);
   };
 
   return (
@@ -453,23 +453,10 @@ export default function Profile(props) {
                   <Typography className={s.pButton}>
                   Ansök här
                   </Typography>
-                </button>
-              </div>
-              } */}
+                  </button>
+                  </div>
+                } */}
             </div>
-            {(isMyProfile && membership.value > Membership.Portfolio && userProfile.data?.MonthlyArtist) &&
-              <div className={s.hovs}>
-                <Button
-                rounded
-                  className={s.monthlyArtistButton}
-                  onClick={handleClickMonthlyDialog}>
-                  <Typography className={s.headerButton}>
-                    BLI MÅNADENS KONSTNÄR
-                  </Typography>
-                </Button>
-              </div>
-
-            }
             {userProfile.data?.MonthlyArtist &&
               <div className={s.catalogued}>
                 <img
@@ -479,10 +466,36 @@ export default function Profile(props) {
                 />
               </div>
             }
+            {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&
+              <div className={s.hovs}>
+                <Button
+                  rounded
+                  className={s.monthlyArtistButton}
+                  onClick={() => { handleClickMonthlyDialog(); trackGoogleAnalytics(ActionType.BECOME_MONTHLY_ARTIST, CategoryType.INTERACTIVE) }}>
+                  <Typography className={s.headerButton}>
+                    {t('profile:becomeMonthlyArtist')}
+                  </Typography>
+                </Button>
+              </div>
+
+            }
+            {(isMyProfile && membership.value === Membership.Portfolio) &&
+              <div className={s.hovs}>
+                <Button
+                  rounded
+                  className={s.monthlyArtistButton}
+                  onClick={() => { handleClickMonthlyDialog(); }}>
+                  <Typography className={s.headerButton}>
+                    PORTFOLIO PREMIUM
+                  </Typography>
+                </Button>
+              </div>
+
+            }
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
- />
+            />
 
             <Divider className={s.divider}></Divider>
             <ArtistPriceSpan prices={artworkPrices} />

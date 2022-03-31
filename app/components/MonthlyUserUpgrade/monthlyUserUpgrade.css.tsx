@@ -15,6 +15,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     title: {
+      '& h2': {
+        fontWeight: 600,
+        fontSize: '1.6rem',
+      },
+      textAlign: 'center',
       alignSelf: 'center',
       marginTop: theme.spacing(6),
       fontWeight: 600,
@@ -22,6 +27,9 @@ export const styles = makeStyles((theme: Theme) =>
     dialogContent: {
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
+      justifyContent: 'space-between',
+      textAlign: 'center',
     },
     imgDiv: {
       alignSelf: 'center'
@@ -30,6 +38,14 @@ export const styles = makeStyles((theme: Theme) =>
       alignSelf: 'center',
       marginTop: '25px'
     },
+    text: {
+      fontSize: '1.14rem',
+    },
+    textSendPurchase: {
+      // fontStyle: 'italic',
+      fontWeight: 500,
+      fontSize: '1.14rem',
+    },
     emblem: {
       width: '150px',
       height: '150px',
@@ -37,7 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     button: {
       alignSelf: 'flex-end',
-      marginTop: '50px',
+      marginBottom: '20px'
     },
     [theme.breakpoints.up('sm')]: {
       dialog: {

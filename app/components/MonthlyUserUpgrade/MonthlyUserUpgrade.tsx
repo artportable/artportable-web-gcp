@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next'
 import ZendeskFormMenu from "../ZendeskFormMenu/ZendeskFormMenu";
 import CloseIcon from '@material-ui/icons/Close';
 import { UserContext } from "../../contexts/user-context";
+import { zapierMonthlyInterest } from "../../utils/zapierLead";
 
 import { styles } from './monthlyUserUpgrade.css'
 import Button from "../Button/Button";
@@ -16,21 +17,22 @@ interface Props {
 
 export default function DialogMonthlyUser(props: Props) {
   const s = styles();
-  const { t } = useTranslation(['header', 'common', 'support']);
-  const [sentInterest, setSentInterest] = useState('');
+  const { t } = useTranslation(['profile']);
+  const [sentInterest, setSentInterest] = useState(false);
   const { email, family_name, given_name } = useContext(UserContext);
 
   const submit = () => {
-    setSentInterest('hej')
-    console.log(
-      given_name.value + " " + family_name.value,
-      email.value)
+    setSentInterest(true)
+    zapierMonthlyInterest({
+      "email":  email.value,
+      "name": given_name.value + " " + family_name.value
 
+    })
   }
 
   const onCloseClick = () => {
     props.onClose();
-    setSentInterest('')
+    setSentInterest(false)
   }
 
   return (
@@ -42,19 +44,18 @@ export default function DialogMonthlyUser(props: Props) {
       // aria-labelledby="dialog-title"
       // aria-describedby="dialog-description"
       >
-        {sentInterest === 'hej' ?
+        {sentInterest ?
           <>
             <IconButton aria-label="close" className={s.closeButton} onClick={onCloseClick}>
               <CloseIcon />
             </IconButton>
             <DialogTitle id="dialog-title" className={s.title}>
-              Tack!
+              {t('thanks')}
             </DialogTitle>
             <DialogContent>
               <div className={s.dialogContent}>
-                <Typography>
-                  Intresseförfrågan har gått iväg. 
-                  Din konstkoordinator kommer kontakta dig inom kort för att berätta mer.
+                <Typography className={s.text}>
+                {t('inShort')}
                 </Typography>
                 <div className={s.imgDivSecondView}>
                 <img
@@ -67,8 +68,8 @@ export default function DialogMonthlyUser(props: Props) {
                   className={s.button}
                   variant="contained"
                   color="primary"
-                  onClick={submit}>
-                  Stäng
+                  onClick={onCloseClick}>
+                  {t('close')}
                 </Button>
               </div>
             </DialogContent>
@@ -79,13 +80,15 @@ export default function DialogMonthlyUser(props: Props) {
               <CloseIcon />
             </IconButton>
             <DialogTitle id="dialog-title" className={s.title}>
-              Bli månadens konstnär
+              {t('becomeMonthly')}
             </DialogTitle>
             <DialogContent>
               <div className={s.dialogContent}>
-                <Typography>
-                  Som månadens konstnär blir du disponerad på startsidan under fliken månandes konstnär.
-                  Är du intresserad att synliggöra ditt konstnärskap mer, klicka dig vidare så kontaktar din konstkoordinator dig inom kort.
+                <Typography className={s.textSendPurchase}>
+                {t('sendPurchase')}
+                </Typography>
+                <Typography className={s.text}>
+                {t('asMonthlyArtist')}
                 </Typography>
                 <div className={s.imgDiv}>
                 <img
@@ -99,7 +102,7 @@ export default function DialogMonthlyUser(props: Props) {
                   variant="contained"
                   color="primary"
                   onClick={submit}>
-                  Fortsätt
+                  {t('send')}
                 </Button>
               </div>
             </DialogContent>
