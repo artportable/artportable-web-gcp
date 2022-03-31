@@ -443,19 +443,6 @@ export default function Profile(props) {
                   </Button>
                 </>
               }
-              {/* {(membership.value > Membership.Portfolio) &&
-              <div className={s.hovs}>
-                <button
-                className={s.monthlyArtistButton}>
-                  <Typography className={s.headerButton}>
-                  BLI MÅNADENS KONSTNÄR
-                  </Typography>
-                  <Typography className={s.pButton}>
-                  Ansök här
-                  </Typography>
-                  </button>
-                  </div>
-                } */}
             </div>
             {userProfile.data?.MonthlyArtist &&
               <div className={s.catalogued}>
@@ -479,7 +466,7 @@ export default function Profile(props) {
               </div>
 
             }
-            {(isMyProfile && membership.value === Membership.Portfolio) &&
+            {/* {(isMyProfile && membership.value === Membership.Portfolio) &&
               <div className={s.hovs}>
                 <Button
                   rounded
@@ -491,7 +478,7 @@ export default function Profile(props) {
                 </Button>
               </div>
 
-            }
+            } */}
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
