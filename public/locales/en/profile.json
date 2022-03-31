@@ -38,5 +38,13 @@
   "linkedinUrl": "Enter the full url, for instance: https://www.linkedin.com/company/artportable/",
   "dribbleUrl": "Enter the full url, for instance: https://dribbble.com/artportable",
   "behanceUrl": "Enter the full url, for instance: https://www.behance.net/artportable",
-  "websiteUrl": "Enter the full url, for instance: https://artportable.com/"
+  "websiteUrl": "Enter the full url, for instance: https://artportable.com/",
+  "thanks": "Thanks!",
+  "inShort": "Inom kort kommer du bli kontaktad av en våra konstkoordinatorer.",
+  "close": "Close",
+  "becomeMonthly": "Become artist of the month",
+  "becomeMonthlyArtist": "BECOME ARTIST OF THE MONTH",
+  "asMonthlyArtist": "As artist of the month, your works are listed for more eyes.",
+  "sendPurchase": "Send purchase",
+  "send": "Send"
 }
