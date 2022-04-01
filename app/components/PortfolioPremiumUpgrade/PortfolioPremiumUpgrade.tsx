@@ -12,7 +12,7 @@ import Button from "../Button/Button";
 interface Props {
   open: any;
   onClose(): any;
-  numberExits: any;
+  numberExists: any;
 
 }
 
@@ -21,23 +21,25 @@ export default function DialogPortfolioPremium(props: Props) {
   const { t } = useTranslation(['profile']);
   const [sentInterest, setSentInterest] = useState(false);
   const { email, family_name, given_name, phone } = useContext(UserContext);
-  const [numberExists, setNumberExists] = useState(true);
+  const [phoneNumber, setPhonenNumber] = useState('')
 
   const submit = () => {
     setSentInterest(true)
+    prune();
     zapierPortfolioPremiumInterest({
       "email": email.value + " " + given_name.value + " " + family_name.value + " " + phone.value + " " + "portfolioPremiumInterest",
     });
+  }
+  const prune = () => {
+    if (!phone.value || phone.value == undefined) {
+      phone.value = phoneNumber
+    }
   }
 
   const onCloseClick = () => {
     props.onClose();
     setSentInterest(false)
-  }
-  const addNumber = () => {
-    if (!phone.value) {
-      setNumberExists(false)
-    }
+
   }
 
   return (
@@ -95,7 +97,7 @@ export default function DialogPortfolioPremium(props: Props) {
               className={s.logo}
             />
             <DialogTitle id="dialog-title" className={s.title}>
-              Portfolio Premium
+            {t('portfolioPremium')}
             </DialogTitle>
             <DialogContent>
               <div className={s.dialogContent}>
@@ -104,20 +106,23 @@ export default function DialogPortfolioPremium(props: Props) {
                     {t('sendPurchase')}
                   </Typography>
                   <Typography className={s.text}>
-                    Få ut mer av ditt konstnärskap.
+                  {t('getOutMore')}
                   </Typography>
                 </div>
                 <div className={s.imgDiv}>
-                  {(numberExists) &&
+                  {(!props.numberExists) &&
                     <div className={s.textFieldDiv}>
+                      <Typography className={s.textTexfield}>
+                      {t('yourPhoneNumber')}
+                      </Typography>
                       <TextField
                         className={s.textField}
                         fullWidth
-                        placeholder={t("Telefonnummer")}
-                        value={phone.value}
+                        placeholder={t("phoneNumber")}
+                        value={phoneNumber}
                         required
                         variant="outlined"
-                        // onChange={(e) => handleChange(e, 'phone')}
+                        onChange={(e) => setPhonenNumber(e.target.value)}
                       />
                     </div>
                   }

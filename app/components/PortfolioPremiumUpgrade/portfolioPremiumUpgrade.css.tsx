@@ -60,6 +60,9 @@ export const styles = makeStyles((theme: Theme) =>
       alignSelf: 'flex-end',
       marginBottom: '20px'
     },
+    textTexfield: {
+      marginBottom: '5px'
+    },
     textFieldDiv: {
       width: '300px'
     },

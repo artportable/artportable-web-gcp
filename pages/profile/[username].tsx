@@ -345,8 +345,9 @@ export default function Profile(props) {
   const [numberExists, setNumberExists] = useState(true);
 
   const addNumber = () => {
-    if (!phone.value) {
+    if (!phone.value || phone.value == undefined) {
       setNumberExists(false)
+      console.log(phone.value)
     }
   }
 
@@ -477,9 +478,9 @@ export default function Profile(props) {
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
-                  onClick={() => { handleClickMonthlyDialog(); }}>
+                  onClick={() => { handleClickPortfolioPremiumDialog(); addNumber(); trackGoogleAnalytics(ActionType.GET_PORTFOLIO_PREMIUM, CategoryType.INTERACTIVE)}}>
                   <Typography className={s.headerButton}>
-                    PORTFOLIO PREMIUM
+                  {t('profile:getPortfolioPremium')}
                   </Typography>
                 </Button>
               </div>
