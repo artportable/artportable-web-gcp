@@ -29,7 +29,7 @@ import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItem
 import { Alert } from '@material-ui/lab'
 import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
-import { capitalizeFirst, fetchWithTimeout } from '../../app/utils/util'
+import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 
 import AddIcon from '@material-ui/icons/Add';
@@ -51,6 +51,7 @@ import usePostLike from '../../app/hooks/dataFetching/usePostLike';
 import useRefreshToken from '../../app/hooks/useRefreshToken';
 import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
 import { getNavBarItems } from '../../app/utils/getNavBarItems';
+import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 
 function a11yProps(index: any) {
   return {
@@ -318,6 +319,29 @@ export default function Profile(props) {
       togglePurchaseRequestDialog();
     }
   }
+  const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
+
+  function toggleMonthlyDialog() {
+    setOpenMonthlyDialogOpen(!openMonthlyDialogOpen);
+  }
+
+
+  const handleClickMonthlyDialog = () => {
+    setOpenMonthlyDialogOpen(true);
+  };
+
+  const handleCloseMonthlyDialog = () => {
+    setOpenMonthlyDialogOpen(false);
+  };
+  const [sentInterest, setSentInterest] = useState(false);
+
+  const submitInterest = () => {
+    setSentInterest(true);
+  };
+
+  const closeInterest = () => {
+    setSentInterest(false);
+  };
 
   return (
     <Main navBarItems={navBarItems}>
@@ -429,6 +453,24 @@ export default function Profile(props) {
                 />
               </div>
             }
+            {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&
+              <div className={s.hovs}>
+                <Button
+                  rounded
+                  className={s.monthlyArtistButton}
+                  onClick={() => { handleClickMonthlyDialog(); trackGoogleAnalytics(ActionType.BECOME_MONTHLY_ARTIST, CategoryType.INTERACTIVE) }}>
+                  <Typography className={s.headerButton}>
+                    {t('profile:becomeMonthlyArtist')}
+                  </Typography>
+                </Button>
+              </div>
+
+            }
+            <DialogMonthlyUser
+              open={openMonthlyDialogOpen}
+              onClose={toggleMonthlyDialog}
+            />
+
             <Divider className={s.divider}></Divider>
             <ArtistPriceSpan prices={artworkPrices} />
 
@@ -438,10 +480,10 @@ export default function Profile(props) {
                   <Tab label={t('profile:portfolio')} {...a11yProps(t('profile:portfolio'))} />
                   <Tab label={t('profile:aboutMe')} {...a11yProps(t('profile:aboutMe'))} />
                   {articles && articles.length > 0 &&
-                        <Tab label={t('profile:articles')} {...a11yProps(t('profile:articles'))} />
-                        
-                      // Grid i första div sen flexbox i nästa
-                    }
+                    <Tab label={t('profile:articles')} {...a11yProps(t('profile:articles'))} />
+
+                    // Grid i första div sen flexbox i nästa
+                  }
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -516,35 +558,35 @@ export default function Profile(props) {
                   </TabPanel>
                   <TabPanel value={activeTab} index={2}>
                     {articles &&
-                        <div className={s.flex}>
-                          {articles.map((article, key) => {
-                            return (
-                              <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
-                                <Paper className={s.wrapper}>
+                      <div className={s.flex}>
+                        {articles.map((article, key) => {
+                          return (
+                            <Link href={`/${article.publishCategory.slug.replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`} key={key}>
+                              <Paper className={s.wrapper}>
+                                <div>
+                                  <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
+                                </div>
+                                <div className={s.textContent}>
                                   <div>
-                                    <img src={article?.coverImage?.formats?.small?.url} className={s.coverImage} />
+                                    {article.published_at.slice(0, -14)}
                                   </div>
-                                  <div className={s.textContent}>
-                                    <div>
-                                      {article.published_at.slice(0, -14)}
-                                    </div>
 
-                                    <Typography component="h2" variant={'h2'}>
-                                      <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                                        {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
-                                      </Box>
-                                    </Typography>
-                                    <Typography variant={'subtitle1'}>{article.description}</Typography>
-                                  </div>
-                                  <div className={s.line}></div>
-                                </Paper>
-                              </Link>
-                            )
-                          })}
-                        </div>
+                                  <Typography component="h2" variant={'h2'}>
+                                    <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                      {article.title} {router.locale !== article.locale ? '(In Swedish)' : ''}
+                                    </Box>
+                                  </Typography>
+                                  <Typography variant={'subtitle1'}>{article.description}</Typography>
+                                </div>
+                                <div className={s.line}></div>
+                              </Paper>
+                            </Link>
+                          )
+                        })}
+                      </div>
                       // Grid i första div sen flexbox i nästa
                     }
-    
+
                   </TabPanel>
                 </Box>
               </div>
@@ -600,9 +642,7 @@ export async function getServerSideProps({ locale, params }) {
     articles = await articleResponse.json();
   }
   try {
-    const profileResponse = await fetchWithTimeout(url.href, {
-      timeout: 11000
-    });
+    const profileResponse = await fetch(url.href);
     const profile = await profileResponse.json();
     const navBarItems = await getNavBarItems();
     return {

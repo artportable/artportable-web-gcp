@@ -38,5 +38,13 @@
   "linkedinUrl": "Ange hela adressen, exempelvis: https://www.linkedin.com/company/artportable/",
   "dribbleUrl": "Ange hela adressen, exempelvis: https://dribbble.com/artportable",
   "behanceUrl": "Ange hela adressen, exempelvis: https://www.behance.net/artportable",
-  "websiteUrl": "Ange hela adressen, exempelvis: https://artportable.com/"
+  "websiteUrl": "Ange hela adressen, exempelvis: https://artportable.com/",
+  "thanks": "Tack!",
+  "inShort": "Inom kort kommer du bli kontaktad av en våra konstkoordinatorer.",
+  "close": "Stäng",
+  "becomeMonthly": "Bli månadens konstnär",
+  "becomeMonthlyArtist": "BLI MÅNADENS KONSTNÄR",
+  "asMonthlyArtist": "Som månadens konstnär listas dina verk för fler ögon.",
+  "sendPurchase": "Skicka förfrågan",
+  "send": "Skicka"
 }
