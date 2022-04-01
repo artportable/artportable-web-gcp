@@ -27,7 +27,6 @@ export default function DialogMonthlyUser(props: Props) {
       "email":  email.value + " " + given_name.value + " " + family_name.value + " " + 'monthly artist interest',
       // "name": given_name.value + " " + family_name.value,
       // "product": 'monthly artist interest'
-
     })
   }
 
@@ -113,3 +112,4 @@ export default function DialogMonthlyUser(props: Props) {
     </div>
   );
 }
+
