@@ -12,7 +12,7 @@ import Button from "../Button/Button";
 interface Props {
   open: any;
   onClose(): any;
-  numberExits: boolean;
+  numberExits: any;
 
 }
 
