@@ -1,8 +1,12 @@
+import { AnyMxRecord } from "dns"
+
 const zapierFreemiumApiUrl = process.env.NEXT_PUBLIC_ZAPIER_FREEMIUM
 const zapierBasicApiUrl = process.env.NEXT_PUBLIC_ZAPIER_BASIC
 const zapierBasicConfirmedApiUrl = process.env.NEXT_PUBLIC_ZAPIER_BASIC_CONFIRMED
 const zapierPremiumApiUrl = process.env.NEXT_PUBLIC_ZAPIER_PREMIUM
 const zapierFreeTrialApiUrl = process.env.NEXT_PUBLIC_ZAPIER_FREE_TRIAL
+const zapierMonthlyInterestApiUrl = process.env.NEXT_PUBLIC_ZAPIER_MONTHLY_INTEREST
+const zapierPortfolioPremiumInterestApiUrl = process.env.NEXT_PUBLIC_ZAPIER_PORTFOLIO_PREMIUM_INTEREST
 
 export interface Lead {
   name: any;
@@ -21,6 +25,15 @@ export interface PremiumLead {
 }
 export interface FreeTrial {
   email: any,
+}
+export interface MonthlyInterest {
+  email: any,
+  // name: any,
+  // product: any
+}
+export interface PortfolioPremiumInterest {
+  email: any,
+  name: any,
 }
 
 export const zapierLeadFreemium  = async (lead: Lead): Promise<Response> => {
@@ -120,4 +133,24 @@ export const zapierFreeTrial = async (freeTrial: FreeTrial): Promise<Response> =
     return response;
   } catch (error) {
   }
+}
+export const zapierMonthlyInterest = async (monthlyInterest: MonthlyInterest): Promise<Response> => {
+
+  try {
+    const FormRequest = JSON.stringify({
+      "request": {
+        "requester": {
+          ...monthlyInterest
+        },
+      }
+    });
+    const response = await fetch(zapierMonthlyInterestApiUrl, {
+      method: 'POST',
+      body: FormRequest
+    });
+
+    return response;
+  } catch (error) {
+  }
+
 }

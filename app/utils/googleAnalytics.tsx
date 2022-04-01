@@ -27,7 +27,8 @@ export enum ActionType {
   SIGN_UP_PURCHASE_REQUEST_BEFORE = 'sign_up_köpförfrågan_före',
   SIGN_UP_PURCHASE_REQUEST_AFTER= 'sign_up_köpförfrågan_efter',
   SEND_MESSAGE = 'skicka_meddelande_profil',
-  UPGRADE = 'upgrade_to_portfolio'
+  UPGRADE = 'upgrade_to_portfolio',
+  BECOME_MONTHLY_ARTIST = "bli-månadens-konstnär"
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 
