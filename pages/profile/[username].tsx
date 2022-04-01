@@ -52,6 +52,7 @@ import useRefreshToken from '../../app/hooks/useRefreshToken';
 import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
 import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
+import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
 
 function a11yProps(index: any) {
   return {
@@ -67,7 +68,7 @@ export default function Profile(props) {
   const theme: Theme = useTheme();
   const router = useRouter();
   const smScreenOrSmaller = useBreakpointDown('sm');
-  const { isSignedIn, username, socialId, membership } = useContext(UserContext);
+  const { isSignedIn, username, socialId, membership, phone } = useContext(UserContext);
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -330,18 +331,24 @@ export default function Profile(props) {
     setOpenMonthlyDialogOpen(true);
   };
 
-  const handleCloseMonthlyDialog = () => {
-    setOpenMonthlyDialogOpen(false);
-  };
-  const [sentInterest, setSentInterest] = useState(false);
+  const [openPortfolioPremium, setOpenPortfolioPremium] = useState(false);
 
-  const submitInterest = () => {
-    setSentInterest(true);
+  function togglePortfolioPremiumDialog() {
+    setOpenPortfolioPremium(!openPortfolioPremium);
+  }
+
+
+  const handleClickPortfolioPremiumDialog = () => {
+    setOpenPortfolioPremium(true);
   };
 
-  const closeInterest = () => {
-    setSentInterest(false);
-  };
+  const [numberExists, setNumberExists] = useState(true);
+
+  const addNumber = () => {
+    if (!phone.value) {
+      setNumberExists(false)
+    }
+  }
 
   return (
     <Main navBarItems={navBarItems}>
@@ -464,11 +471,29 @@ export default function Profile(props) {
                   </Typography>
                 </Button>
               </div>
+            }
+            {(isMyProfile && membership.value === Membership.Portfolio) &&
+              <div className={s.hovs}>
+                <Button
+                  rounded
+                  className={s.monthlyArtistButton}
+                  onClick={() => { handleClickMonthlyDialog(); }}>
+                  <Typography className={s.headerButton}>
+                    PORTFOLIO PREMIUM
+                  </Typography>
+                </Button>
+              </div>
 
+              
             }
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
+            />
+            <DialogPortfolioPremium
+              open={openPortfolioPremium}
+              onClose={togglePortfolioPremiumDialog}
+              numberExists={numberExists}
             />
 
             <Divider className={s.divider}></Divider>
