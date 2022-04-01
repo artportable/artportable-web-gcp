@@ -7,6 +7,7 @@ import Main from '../Main/Main';
 import { styles } from './categoryPage.css';
 import MuiButton from '@material-ui/core/Button'
 import { NavBarItem } from '../../models/NavBarItem';
+import { useState } from 'react';
 
 export default function CategoryPage({ category, navBarItems }: { category: Category, navBarItems: NavBarItem[] }) {
   const s = styles();
@@ -14,6 +15,11 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const { t } = useTranslation(['articles']);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
+
+  // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
+  const [array, setArray] = useState(category?.articles);
+  array.sort((x, y) => +new Date(x.published_at) - +new Date(y.published_at));
+  array.sort((a, b) => 0 - (a.published_at > b.published_at ? 1 : -1));
 
   {
     category.name === 'Artiklar' || category.name === 'Stories' ?
@@ -91,7 +97,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
             </>
           </div>
           <div className={s.flex}>
-            {category?.articles?.map((article) => {
+            {array.map((article) => {
               if (article.published_at)
                 return (
                   <div key={article.id}>
