@@ -24,9 +24,9 @@ export default function DialogMonthlyUser(props: Props) {
   const submit = () => {
     setSentInterest(true)
     zapierMonthlyInterest({
-      "email":  email.value,
-      "name": given_name.value + " " + family_name.value
-
+      "email":  email.value + " " + given_name.value + " " + family_name.value + " " + 'monthly artist interest',
+      // "name": given_name.value + " " + family_name.value,
+      // "product": 'monthly artist interest'
     })
   }
 
@@ -112,3 +112,4 @@ export default function DialogMonthlyUser(props: Props) {
     </div>
   );
 }
+

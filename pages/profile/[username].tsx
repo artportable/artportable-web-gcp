@@ -29,7 +29,7 @@ import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItem
 import { Alert } from '@material-ui/lab'
 import { useDispatch } from 'react-redux'
 import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
-import { capitalizeFirst, fetchWithTimeout } from '../../app/utils/util'
+import { capitalizeFirst } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
 
 import AddIcon from '@material-ui/icons/Add';
@@ -466,20 +466,6 @@ export default function Profile(props) {
               </div>
 
             }
-            {/* {(isMyProfile && membership.value === Membership.Portfolio) &&
-              <div className={s.hovs}>
-                <Button
-                  rounded
-                  className={s.monthlyArtistButton}
-                  onClick={() => { handleClickMonthlyDialog(); }}>
-                  <Typography className={s.headerButton}>
-                    PORTFOLIO PREMIUM
-                  </Typography>
-                </Button>
-              </div>
-
-              
-            } */}
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
@@ -656,9 +642,7 @@ export async function getServerSideProps({ locale, params }) {
     articles = await articleResponse.json();
   }
   try {
-    const profileResponse = await fetchWithTimeout(url.href, {
-      timeout: 11000
-    });
+    const profileResponse = await fetch(url.href);
     const profile = await profileResponse.json();
     const navBarItems = await getNavBarItems();
     return {
