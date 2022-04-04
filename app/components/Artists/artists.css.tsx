@@ -37,6 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     artistName: {
       fontSize: '0.925rem',
+      marginBottom: "10%"
     },
     [theme.breakpoints.up('smPlus')]: {
       groupDiv: {
@@ -62,6 +63,10 @@ export const styles = makeStyles((theme: Theme) =>
       },
       alphabeticTypo: {
         fontweight: 600
+      },
+      artistName: {
+        fontSize: '0.925rem',
+        marginBottom: "0%"
       },
       [theme.breakpoints.up('md')]: {
         groupDiv: {
