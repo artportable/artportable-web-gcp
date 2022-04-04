@@ -15,6 +15,10 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     title: {
+      textAlign: 'center',
+      marginTop: '20px',
+    },
+    thanksText: {
       '& h2': {
         fontWeight: 600,
         fontSize: '1.6rem',
@@ -40,12 +44,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     text: {
       fontSize: '1.14rem',
-      marginTop: '30px',
+      margin: '30px 0 10px 0',
     },
-    textSendPurchase: {
+    textPortfolioPremium: {
       // fontStyle: 'italic',
-      fontWeight: 500,
-      fontSize: '1.14rem',
+      fontWeight: 600,
+      fontSize: '1.6rem',
     },
     logo: {
       alignSelf: 'center',
@@ -60,6 +64,9 @@ export const styles = makeStyles((theme: Theme) =>
     button: {
       alignSelf: 'flex-end',
       marginBottom: '20px'
+    },
+    listItem: {
+      marginTop: '5px',
     },
     textTextfield: {
       marginBottom: '5px',
