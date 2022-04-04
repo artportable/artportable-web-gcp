@@ -33,7 +33,6 @@ export interface MonthlyInterest {
 }
 export interface PortfolioPremiumInterest {
   email: any,
-  name: any,
 }
 
 export const zapierLeadFreemium  = async (lead: Lead): Promise<Response> => {
@@ -152,5 +151,23 @@ export const zapierMonthlyInterest = async (monthlyInterest: MonthlyInterest): P
     return response;
   } catch (error) {
   }
+}
+export const zapierPortfolioPremiumInterest = async (portfolioPremiumInterest: PortfolioPremiumInterest): Promise<Response> => {
 
+  try {
+    const FormRequest = JSON.stringify({
+      "request": {
+        "requester": {
+          ...portfolioPremiumInterest
+        },
+      }
+    });
+    const response = await fetch(zapierPortfolioPremiumInterestApiUrl, {
+      method: 'POST',
+      body: FormRequest
+    });
+
+    return response;
+  } catch (error) {
+  }
 }
