@@ -23,7 +23,6 @@ export default function artists() {
     var sameLetterArtists = []
     var a = []
     var l = []
-    console.log(newData)
     newData.map((user, i) => {
       if (user.Name.slice(0, 1).toUpperCase() != currentChar) {
         if (currentChar != '') {
