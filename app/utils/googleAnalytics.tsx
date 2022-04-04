@@ -28,8 +28,9 @@ export enum ActionType {
   SIGN_UP_PURCHASE_REQUEST_AFTER= 'sign_up_köpförfrågan_efter',
   SEND_MESSAGE = 'skicka_meddelande_profil',
   UPGRADE = 'upgrade_to_portfolio',
-  BECOME_MONTHLY_ARTIST = "bli-månadens-konstnär",
-  GET_PORTFOLIO_PREMIUM = "skaffa månadens konstnär"
+  BECOME_MONTHLY_ARTIST = "bli_månadens_konstnär",
+  GET_PORTFOLIO_PREMIUM = "skaffa_månadens_konstnär",
+  UPGRADE_ACCOUNT_GOLD_BOTTOM = "uppgradera_konto_profil_guldknapp"
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 

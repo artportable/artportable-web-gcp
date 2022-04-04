@@ -53,6 +53,7 @@ import usePostFollow from '../../app/hooks/dataFetching/usePostFollow';
 import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
+import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
 
 function a11yProps(index: any) {
   return {
@@ -478,15 +479,22 @@ export default function Profile(props) {
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
-                  onClick={() => { handleClickPortfolioPremiumDialog(); addNumber(); trackGoogleAnalytics(ActionType.GET_PORTFOLIO_PREMIUM, CategoryType.INTERACTIVE)}}>
+                  onClick={() => { handleClickPortfolioPremiumDialog(); addNumber(); trackGoogleAnalytics(ActionType.GET_PORTFOLIO_PREMIUM, CategoryType.INTERACTIVE) }}>
                   <Typography className={s.headerButton}>
-                  {t('profile:getPortfolioPremium')}
+                    {t('profile:getPortfolioPremium')}
                   </Typography>
                 </Button>
               </div>
-
-              
             }
+            {(isMyProfile && membership.value === Membership.Base) &&
+              <div className={s.upgradeGoldDiv}>
+                <UpgradePortfolioProfile />
+              </div>
+            }
+
+
+
+
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}

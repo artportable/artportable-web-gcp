@@ -54,6 +54,7 @@
   "getPortfolioPremium": "GET PORTFOLIO PREMIUM",
   "artCoordinator": "Get access to an art advisor",
   "priceWork": "Help to set price on your art",
-  "service": "Service in 24h"
+  "service": "Service in 24h",
+  "upgradeButton": "Upgrade account"
 }
 

@@ -92,6 +92,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center'
     },
+    upgradeGoldDiv: {
+      gridArea: 'hej',
+      display: 'flex',
+      justifyContent: 'center'
+    },
     monthlyArtistButton: {
       marginTop: '4px',
       // height: '70px',
