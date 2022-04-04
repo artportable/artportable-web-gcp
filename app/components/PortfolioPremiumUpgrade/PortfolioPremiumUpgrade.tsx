@@ -61,7 +61,7 @@ export default function DialogPortfolioPremium(props: Props) {
               alt="Logo Artportable"
               className={s.logo}
             />
-            <DialogTitle id="dialog-title" className={s.title}>
+            <DialogTitle id="dialog-title" className={s.thanksText}>
               {t('thanks')}
             </DialogTitle>
             <DialogContent>
@@ -97,36 +97,33 @@ export default function DialogPortfolioPremium(props: Props) {
               className={s.logo}
             />
             <DialogTitle id="dialog-title" className={s.title}>
-            {t('portfolioPremium')}
+            {t('sendPurchase')}
             </DialogTitle>
             <DialogContent>
               <div className={s.dialogContent}>
                 <div>
-                  <Typography className={s.textSendPurchase}>
-                    {t('sendPurchase')}
+                  <Typography variant="h2" className={s.textPortfolioPremium}>
+                    {t('portfolioPremium')}
                   </Typography>
                   <Typography className={s.text}>
-                  {t('getOutMore')}
+                    {t('getOutMore')}
                   </Typography>
-                  <Typography>
-                  <List>
-                        <ListItem>
-                        • {t('artCoordinator')}
-                        </ListItem>
-                        <ListItem>
-                        • {t('priceWork')}
-                        </ListItem>
-                        <ListItem>
-                        • {t('service')}
-                        </ListItem>
-                    </List>
-                    </Typography>
+                  <Typography className={s.listItem}>
+                    • {t('artCoordinator')}
+                  </Typography>
+                  <Typography className={s.listItem}>
+                    • {t('priceWork')}
+                  </Typography>
+                  <Typography className={s.listItem}>
+                    • {t('service')}
+                  </Typography>
+
                 </div>
                 <div className={s.phoneDiv}>
                   {(!props.numberExists) &&
                     <div className={s.textFieldDiv}>
                       <Typography className={s.textTextfield}>
-                      {t('yourPhoneNumber')}
+                        {t('yourPhoneNumber')}
                       </Typography>
                       <TextField
                         className={s.textField}
