@@ -23,8 +23,8 @@ export default function artists() {
     var sameLetterArtists = []
     var a = []
     var l = []
+    console.log(newData)
     newData.map((user, i) => {
-
       if (user.Name.slice(0, 1).toUpperCase() != currentChar) {
         if (currentChar != '') {
           a.push({ currentChar, sameLetterArtists });
@@ -53,7 +53,8 @@ export default function artists() {
               <Link href={`/profile/@${artist.Username}`} passHref>
                 <a>
                   <Typography className={s.artistName}>
-                    {artist.Name + " " + artist.Surname}
+                    {artist.Name}
+                    {artist.Surname && artist.Surname}
                   </Typography>
                 </a>
               </Link>
