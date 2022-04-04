@@ -48,9 +48,12 @@
   "sendPurchase": "Send purchase",
   "send": "Send",
   "portfolioPremium": "Portfolio Premium",
-  "getOutMore": "Get more out of your art.",
-  "yourPhoneNumber": "Enter your phone number",
+  "getOutMore": "Get more out of your art",
+  "yourPhoneNumber": "Please enter your phone number",
   "phoneNumber": "Phone number",
-  "getPortfolioPremium": "GET PORTFOLIO PREMIUM"
+  "getPortfolioPremium": "GET PORTFOLIO PREMIUM",
+  "artCoordinator": "Get access to an art advisor",
+  "priceWork": "Help to set price on your art",
+  "service": "Service in 24h"
 }
 

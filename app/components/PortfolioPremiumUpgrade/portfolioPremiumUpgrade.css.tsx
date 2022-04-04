@@ -11,7 +11,7 @@ export const styles = makeStyles((theme: Theme) =>
     dialog: {
       '& .MuiDialog-paper': {
         width: '600%',
-        height: '550px'
+        height: '580px'
       },
     },
     title: {
@@ -31,8 +31,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       textAlign: 'center',
     },
-    imgDiv: {
-      alignSelf: 'center'
+    phoneDiv: {
+      marginTop: '30px'
     },
     imgDivSecondView: {
       alignSelf: 'center',
@@ -40,6 +40,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     text: {
       fontSize: '1.14rem',
+      marginTop: '30px',
     },
     textSendPurchase: {
       // fontStyle: 'italic',
@@ -60,11 +61,11 @@ export const styles = makeStyles((theme: Theme) =>
       alignSelf: 'flex-end',
       marginBottom: '20px'
     },
-    textTexfield: {
-      marginBottom: '5px'
+    textTextfield: {
+      marginBottom: '5px',
+      textAlign: 'left'
     },
     textFieldDiv: {
-      width: '300px'
     },
     textField: {
       minHeight: "76px",
@@ -83,7 +84,7 @@ export const styles = makeStyles((theme: Theme) =>
     [theme.breakpoints.up('sm')]: {
       dialog: {
         '& .MuiDialog-paper': {
-          height: '500px'
+          height: '570px'
         },
       },
     },

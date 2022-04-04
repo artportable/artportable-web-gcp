@@ -48,8 +48,11 @@
   "sendPurchase": "Skicka förfrågan",
   "send": "Skicka",
   "portfolioPremium": "Portfolio Premium",
-  "getOutMore": "Få ut mer av ditt konstnärskap.",
-  "yourPhoneNumber": "Uppge ditt telefonnummer",
+  "getOutMore": "Få ut mer av ditt konstnärskap",
+  "yourPhoneNumber": "Vänligen uppge ditt telefonnummer",
   "phoneNumber": "Telefonnummer",
-  "getPortfolioPremium": "SKAFFA PORTFOLIO PREMIUM"
+  "getPortfolioPremium": "SKAFFA PORTFOLIO PREMIUM",
+  "artCoordinator": "Få tillgång till en konstrådgivare",
+  "priceWork": "Hjälp med att prissätta dina verk",
+  "service": "Service inom 24h"
 }

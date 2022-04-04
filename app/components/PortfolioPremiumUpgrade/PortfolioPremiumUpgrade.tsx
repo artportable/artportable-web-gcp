@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Dialog, DialogContent, DialogTitle, IconButton, TextField, Typography } from "@material-ui/core";
+import { Dialog, DialogContent, DialogTitle, IconButton, List, ListItem, TextField, Typography } from "@material-ui/core";
 import { useTranslation } from 'next-i18next'
 import ZendeskFormMenu from "../ZendeskFormMenu/ZendeskFormMenu";
 import CloseIcon from '@material-ui/icons/Close';
@@ -108,11 +108,24 @@ export default function DialogPortfolioPremium(props: Props) {
                   <Typography className={s.text}>
                   {t('getOutMore')}
                   </Typography>
+                  <Typography>
+                  <List>
+                        <ListItem>
+                        • {t('artCoordinator')}
+                        </ListItem>
+                        <ListItem>
+                        • {t('priceWork')}
+                        </ListItem>
+                        <ListItem>
+                        • {t('service')}
+                        </ListItem>
+                    </List>
+                    </Typography>
                 </div>
-                <div className={s.imgDiv}>
+                <div className={s.phoneDiv}>
                   {(!props.numberExists) &&
                     <div className={s.textFieldDiv}>
-                      <Typography className={s.textTexfield}>
+                      <Typography className={s.textTextfield}>
                       {t('yourPhoneNumber')}
                       </Typography>
                       <TextField

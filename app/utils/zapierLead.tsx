@@ -162,7 +162,7 @@ export const zapierPortfolioPremiumInterest = async (portfolioPremiumInterest: P
         },
       }
     });
-    const response = await fetch(zapierMonthlyInterestApiUrl, {
+    const response = await fetch(zapierPortfolioPremiumInterestApiUrl, {
       method: 'POST',
       body: FormRequest
     });
