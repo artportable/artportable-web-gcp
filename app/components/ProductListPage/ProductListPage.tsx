@@ -69,7 +69,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <meta property="og:title" content={productList?.metaTitle ?? "Artportable"} />
         <meta property="og:description" content={productList?.metaDescription ?? ""} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={BaseUrl+"/"+productList?.slug} />
+        <meta property="og:url" content={BaseUrl + "/" + productList?.slug} />
         <meta property="og:image" content={productList?.ogImage?.formats?.medium?.url} />
 
         <link rel="canonical" href={canonicalURL} />
@@ -79,45 +79,52 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <div>Loading...</div>
       }
       {!router.isFallback &&
-      <>
-      <div className={s.container}>
-        <Accordion 
-          className={s.accordion} 
-          elevation={0} 
-          onClick={() => setToggleButton(!toggleButton)}>
-        <AccordionSummary className={s.accordionSummary}>
-        <div>
-          <Typography className={s.header} variant="h1">{productList?.title}</Typography>
-          
-          <div className={s.topDescription} dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
-          
-            {toggleButton ? 
-              <Button 
-                className={s.button} 
-                size="small" 
-                onClick={() => setToggleButton(!toggleButton)} 
-                variant="outlined" 
-                rounded 
-                startIcon={<KeyboardArrowUpIcon />}>
-                  {t('readLess')}
-              </Button> 
-            : 
-              <Button 
-                className={s.button} 
-                size="small" 
-                onClick={() => setToggleButton(!toggleButton)} 
-                variant="outlined" 
-                rounded 
-                startIcon={<KeyboardArrowDownIcon />}>
-                  {t('readMore')}
-              </Button>}
-        </div>
-          </AccordionSummary>
-          <AccordionDetails>
-          <div className={s.description} dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
-          </AccordionDetails>
-          </Accordion>
-      </div>
+        <>
+          <div className={s.container}>
+            <div className={s.imageDiv}>
+              <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+            </div>
+            <div className={s.accordionDiv}>
+              <Accordion
+                className={s.accordion}
+                elevation={0}
+                onClick={() => setToggleButton(!toggleButton)}>
+                <AccordionSummary className={s.accordionSummary}>
+                  <div>
+                    <div className={s.textDiv}>
+                      <Typography className={s.header} variant="h1">{productList?.title}</Typography>
+                    </div>
+                    <div className={s.topDescription} dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
+                    <div className={s.buttonDiv}>
+                      {toggleButton ?
+                        <Button
+                          className={s.button}
+                          size="small"
+                          onClick={() => setToggleButton(!toggleButton)}
+                          variant="outlined"
+                          rounded
+                          startIcon={<KeyboardArrowUpIcon />}>
+                          {t('readLess')}
+                        </Button>
+                        :
+                        <Button
+                          className={s.button}
+                          size="small"
+                          onClick={() => setToggleButton(!toggleButton)}
+                          variant="outlined"
+                          rounded
+                          startIcon={<KeyboardArrowDownIcon />}>
+                          {t('readMore')}
+                        </Button>}
+                    </div>
+                  </div>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <div className={s.description} dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
+                </AccordionDetails>
+              </Accordion>
+            </div>
+          </div>
           <DiscoverArt
             artworks={artworks}
             tags={null}
