@@ -1,4 +1,4 @@
-import React, { memo, useContext, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -10,11 +10,11 @@ import DiscoverArt from "../DiscoverArt/DiscoverArt";
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
-  socialId? : string;
-  rowWidth : number;
+  socialId?: string;
+  rowWidth: number;
 }
 
-const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
+const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -24,7 +24,8 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
   const tags = useGetTags();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
-  const {like} = usePostLike();
+  const { like } = usePostLike();
+  const [sold, setSold] = useState("");
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -37,6 +38,16 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
+  // const filterSold = () => {
+  //   artworks.filter(x => x.SoldOut === true)
+  //   return artworks;
+  // }
+
+  // useEffect(() => {
+  //   filterSold();
+  //   sold;
+  // }, [])
+
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
@@ -45,7 +56,19 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        let url;
+        console.log(artworks);
+        if (sold === "Sold") {
+          // filterSold();
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        }
+        else if (sold === "Unsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending/unsold`);
+        }
+        else {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending/unsold`);
+        }
+        // const url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
@@ -64,6 +87,9 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
 
   return (
     <>
+      <button onClick={() => setSold("Sold")}>Sold</button>
+      <button onClick={() => setSold("Unsold")}>UnSold</button>
+      <button>All</button>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
         <DiscoverArt
           artworks={artworks}
