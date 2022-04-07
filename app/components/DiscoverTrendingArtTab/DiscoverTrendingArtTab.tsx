@@ -1,3 +1,4 @@
+import { LaptopWindowsTwoTone, TrendingUpRounded } from "@material-ui/icons";
 import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
@@ -38,40 +39,67 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
-  // const filterSold = () => {
-  //   artworks.filter(x => x.SoldOut === true)
-  //   return artworks;
-  // }
+  useEffect(() => {
+    sold;
+  }, [])
 
-  // useEffect(() => {
-  //   filterSold();
-  //   sold;
-  // }, [])
+
 
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtworks(false);
-        return null;
-      }
 
+      // console.log(loadMoreArtworksElementRef);
+      // if (previousPageData && !previousPageData.next) {
+      //   console.log(previousPageData.next, ".next")
+      //   setLoadMoreArtworks(false);
+      //   return null;
+      // }
+      if (sold === "Sold") {
+        console.log(artworks);
+      }
       if (pageIndex == 0) {
         let url;
-        console.log(artworks);
+
         if (sold === "Sold") {
-          // filterSold();
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+          if (previousPageData && !previousPageData.next) {
+            console.log(previousPageData.next, ".next")
+            console.log(previousPageData.data);
+            // När man scrollar längst ner
+            setLoadMoreArtworks(false);
+            return null;
+          }
+          // if (previousPageData === null) {
+          // {
+          //   !artworks
+          //   setLoadMoreArtworks(false)
+          // }
+          //   setLoadMoreArtworks(false);
+          // }
+
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
+          selectedTags.forEach(tag => {
+            url.searchParams.append('tag', tag);
+          });
         }
         else if (sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending/unsold`);
+          if (previousPageData && !previousPageData.next) {
+            console.log(previousPageData.next, ".next")
+            setLoadMoreArtworks(true);
+            return null;
+          }
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
+          selectedTags.forEach(tag => {
+            url.searchParams.append('tag', tag);
+          });
         }
         else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending/unsold`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+          selectedTags.forEach(tag => {
+            url.searchParams.append('tag', tag);
+          });
         }
         // const url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
-        selectedTags.forEach(tag => {
-          url.searchParams.append('tag', tag);
-        });
+
         if (searchQuery) {
           url.searchParams.append('q', searchQuery);
         }
@@ -85,8 +113,18 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       return previousPageData.next;
     }, username);
 
+  const About = () => {
+    window.location.href = "www.google.com";
+  };
+
   return (
     <>
+      <div>
+        <button onClick={About}>About</button>
+
+        <h1>This page is not available</h1>
+        <p>You are redirecting to google.com/about</p>
+      </div>
       <button onClick={() => setSold("Sold")}>Sold</button>
       <button onClick={() => setSold("Unsold")}>UnSold</button>
       <button>All</button>

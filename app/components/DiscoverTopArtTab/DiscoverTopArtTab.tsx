@@ -10,11 +10,11 @@ import DiscoverArt from "../DiscoverArt/DiscoverArt";
 
 interface DiscoverTopArtTabProps {
   username?: string;
-  socialId? : string;
-  rowWidth : number;
+  socialId?: string;
+  rowWidth: number;
 }
 
-const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
+const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -24,7 +24,7 @@ const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
   const tags = useGetTags();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
-  const {like} = usePostLike();
+  const { like } = usePostLike();
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -45,7 +45,7 @@ const DiscoverTopArtTab = memo((props : DiscoverTopArtTabProps) => {
       }
 
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
+        const url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
