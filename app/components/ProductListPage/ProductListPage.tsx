@@ -108,6 +108,11 @@ export default function ProductListPage({ productList, navBarItems }: { productL
                   </a>
                 </div>
               }
+              {!productList.externalLink && !productList.imageLink &&
+                <div>
+                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+                </div>
+              }
 
             </div>
             <div className={s.accordionDiv}>
