@@ -13,4 +13,8 @@ export interface ProductList {
   locale: string;
   ogImage: any;
   localizations: Localization[];
+  user: string;
+  username: string;
+  imageLink: string;
+  externalLink: string;
 }

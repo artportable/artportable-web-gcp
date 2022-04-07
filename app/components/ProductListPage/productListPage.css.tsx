@@ -15,7 +15,6 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: '10px',
       display: 'flex',
       flexDirection: 'column',
-      // justifyContent: 'space-around',
       backgroundColor: 'var(--header-color)',
       gridColumn: '1/4',
       paddingRight: theme.spacing(2),
@@ -24,14 +23,24 @@ export const styles = makeStyles((theme: Theme) =>
     },
     imageDiv: {
       display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
+      textAlign: 'center',
       marginBottom: '10px',
+      flexDirection: 'column',
+      alignItems: 'flex-end',
+      placeSelf: 'center',
+      margin: '0 16px 0 16px'
     },
     image: {
-      maxWidth: '90%',
-      maxHeight: '400px',
+     maxWidth: '100%',
       filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
+    },
+    createdBy: {
+      display: 'flex',
+      alignItems: 'center',
+      marginTop: '10px',
+    },
+    chip: {
+      backgroundColor: theme.palette.common.white
     },
     textDiv: {
       display: 'flex',
@@ -102,11 +111,16 @@ export const styles = makeStyles((theme: Theme) =>
         justifyContent: 'center',
       },
       imageDiv: {
-        alignSelf: 'unset',
+        alignSelf: 'flex-start',
+        margin: '0'
       },
       image: {
         maxWidth: '500px',
         maxHeight: 'unset'
+      },
+      createdBy: {
+        marginRight: '0',
+        maxWidth: 'unset',
       },
       text: {
         paddingRight: '50px'
