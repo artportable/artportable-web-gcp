@@ -106,42 +106,6 @@ const SearchField = ({ onFilter, tags = null }) => {
 
   return (
     <div className={clsx(s.inputContainer, tags === null && s.noTags)} tabIndex={0}>
-
-
-      <div>
-        <ListItem button onClick={handleClickListingPages}>
-          <ListItemText primary={t('productLists')} />
-          {openListingPages ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={openListingPages} timeout="auto">
-          <button onClick={() => setSold("Sold")}>Sold</button>
-          <button onClick={() => setSold("Unsold")}>UnSold</button>
-          <button>All</button>
-
-          {/* <List component="div" disablePadding >
-            {navBarItems.map((item, index) => {
-              navBarItems.sort((a, b) => {
-                if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase()) return -1;
-                if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
-              });
-              if (item.locale == router.locale)
-                return (
-                  <Link href={'/' + item.slug} passHref key={index}>
-                    <a>
-                      <ListItem button className={s.nested} onClick={() => close()}>
-                        <ListItemText primary={item.menuTitle} />
-                      </ListItem>
-                    </a>
-                  </Link>
-                )
-            })}
-          </List> */}
-        </Collapse>
-        <Divider />
-      </div>
-
-
-
       <SearchIcon classes={{ root: s.searchIcon }} style={{ fontSize: 30 }}></SearchIcon>
       <input onChange={onSearchChanged} placeholder={t('searchForArt')} className={s.input} ></input>
       {tags !== null &&
