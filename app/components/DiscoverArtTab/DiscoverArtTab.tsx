@@ -24,6 +24,7 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
   const { like } = usePostLike();
   const token = useContext(TokenContext);
   const tags = useGetTags();
+  const [sold, setSold] = useState("");
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -43,7 +44,19 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
         return null;
       }
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+        let url;
+        if (sold === "Unsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
+        }
+        else if (sold === "Sold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
+        }
+        else if (sold === "All") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        }
+        else {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        }
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
@@ -62,6 +75,9 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
 
   return (
     <>
+      <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
+      <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
+      <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
         <DiscoverArt
           artworks={artworks}

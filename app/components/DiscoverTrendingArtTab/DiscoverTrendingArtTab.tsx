@@ -1,4 +1,6 @@
-import { LaptopWindowsTwoTone, TrendingUpRounded } from "@material-ui/icons";
+import { Collapse, Divider, ListItem, ListItemText } from "@material-ui/core";
+import { ExpandLess, ExpandMore, LaptopWindowsTwoTone, TrendingUpRounded } from "@material-ui/icons";
+import { useTranslation } from "next-i18next";
 import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
@@ -16,6 +18,7 @@ interface DiscoverTrendingArtTabProps {
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
+  const { t } = useTranslation(['header', 'common', 'support']);
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -48,7 +51,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       }
       if (pageIndex == 0) {
         let url;
-
         if (sold === "Unsold") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
         }
@@ -61,7 +63,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         else {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
         }
-
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
@@ -77,9 +78,29 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       }
       return previousPageData.next;
     }, username);
+  const [openListingPages, setOpenListingPages] = useState(false);
+  function handleClickListingPages(event) {
+    setOpenListingPages(!openListingPages);
+    event.stopPropagation();
+  }
+
 
   return (
     <>
+      <div>
+        <ListItem button onClick={handleClickListingPages} style={{ borderRadius: "5px", width: "10%" }}>
+          <ListItemText primary={t('productLists')} />
+          {openListingPages ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openListingPages} timeout="auto" style={{ display: "flex", flexDirection: "row" }}>
+
+          <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
+          <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
+          <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
+
+        </Collapse>
+        <Divider />
+      </div>
       <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
       <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
       <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
