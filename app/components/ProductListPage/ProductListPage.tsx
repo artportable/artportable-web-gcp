@@ -84,7 +84,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
             <div className={s.imageDiv}>
               {productList.imageLink &&
 
-                <Link href={`/art/${productList.imageLink}`}>
+                <Link href={`/${productList.imageLink}`}>
                   <a>
                     <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
                   </a>
