@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Chip, Link, Typography } from "@material-ui/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useRef, useState } from "react";
@@ -82,7 +82,38 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <>
           <div className={s.container}>
             <div className={s.imageDiv}>
-              <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+              {productList.imageLink &&
+
+                <Link href={`/art/${productList.imageLink}`}>
+                  <a>
+                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+                  </a>
+                </Link>
+              }
+              {productList.username &&
+                <div className={s.createdBy}>
+                  <Chip
+                    onClick={(_) => router.push(`/profile/@${productList?.username}`)}
+                    size="small"
+                    classes={{
+                      root: s.chip,
+                    }}
+                    label={productList?.user} />
+                </div>
+              }
+              {productList.externalLink &&
+                <div>
+                  <a href={productList.externalLink} target="_blank">
+                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+                  </a>
+                </div>
+              }
+              {!productList.externalLink && !productList.imageLink &&
+                <div>
+                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+                </div>
+              }
+
             </div>
             <div className={s.accordionDiv}>
               <Accordion
