@@ -1,4 +1,4 @@
-import { Collapse, Divider, ListItem, ListItemText } from "@material-ui/core";
+import { Collapse, Divider, ListItem, ListItemText, MenuItem, TextField } from "@material-ui/core";
 import { ExpandLess, ExpandMore, LaptopWindowsTwoTone, TrendingUpRounded } from "@material-ui/icons";
 import { useTranslation } from "next-i18next";
 import React, { memo, useContext, useEffect, useRef, useState } from "react";
@@ -10,6 +10,8 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
+import { styles } from "./discoverTrendingArtTab.css";
+
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
@@ -18,6 +20,7 @@ interface DiscoverTrendingArtTabProps {
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
+  const s = styles();
   const { t } = useTranslation(['header', 'common', 'support']);
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -29,7 +32,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
   const { like } = usePostLike();
-  const [sold, setSold] = useState("");
+  const [sold, setSold] = useState("All");
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -83,27 +86,51 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setOpenListingPages(!openListingPages);
     event.stopPropagation();
   }
+  const [openContact, setOpenContact] = useState(false);
+  const handleClickContact = () => {
+    setOpenContact(true);
+  };
 
+  const [listStatus, setListStatus] = useState("Sortera på...");
+
+  const subjectOptions = [
+    {
+      value: 'All',
+      label: "All"
+    },
+    {
+      value: 'Sold',
+      label: "Sold"
+    },
+    {
+      value: 'Unsold',
+      label: "UnSold"
+    },
+  ];
 
   return (
     <>
-      <div>
-        <ListItem button onClick={handleClickListingPages} style={{ borderRadius: "5px", width: "10%" }}>
-          <ListItemText primary={t('productLists')} />
-          {openListingPages ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={openListingPages} timeout="auto" style={{ display: "flex", flexDirection: "row" }}>
-
-          <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
-          <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
-          <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
-
-        </Collapse>
-        <Divider />
-      </div>
-      <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
-      <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
-      <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
+      <form className={s.form}>
+        <div className={s.textFieldFlex}>
+          <TextField
+            // classes={{
+            //   root: s.textField
+            // }}
+            className={s.textFieldTwo}
+            fullWidth
+            select
+            required
+            variant="outlined"
+            value={sold}
+          >
+            {subjectOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value} onClick={() => setSold(option.value)}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
+      </form>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
         <DiscoverArt
           artworks={artworks}
