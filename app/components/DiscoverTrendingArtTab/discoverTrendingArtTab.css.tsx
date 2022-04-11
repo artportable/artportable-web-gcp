@@ -12,9 +12,6 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: "20px"
 
     },
-    textFieldTwo: {
-      width: "105px",
-    },
     textField: {
 
       '&.MuiSelect-select:focus': {

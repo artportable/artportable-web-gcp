@@ -17,6 +17,10 @@ export const styles = makeStyles((theme: Theme) =>
       '& .MuiTab-root': {
         minWidth: 0,
       },
+      '& .MuiTabScrollButton-root': {
+        width: 'unset',
+        opacity: '0.8',
+      },
       justifyContent: "center",
       width: '100%',
     },
@@ -28,12 +32,12 @@ export const styles = makeStyles((theme: Theme) =>
       tabs: {
         '& .MuiTabScrollButton-root': {
           display: 'none',
+        },
+        text: {
+          marginRight: theme.spacing(2),
+          marginLeft: theme.spacing(2),
+        },
       },
-      text: {
-        marginRight: theme.spacing(2),
-        marginLeft: theme.spacing(2),
-      },
-    },
     },
   }),
 );

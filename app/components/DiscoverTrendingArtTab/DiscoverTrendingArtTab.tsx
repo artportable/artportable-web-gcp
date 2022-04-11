@@ -113,10 +113,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       <form className={s.form}>
         <div className={s.textFieldFlex}>
           <TextField
-            // classes={{
-            //   root: s.textField
-            // }}
-            className={s.textFieldTwo}
+            classes={{
+              root: s.textField
+            }}
             fullWidth
             select
             required
