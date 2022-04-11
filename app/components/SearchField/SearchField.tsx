@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import { styles } from './searchField.css'
 import { useBreakpointDown } from '../../hooks/useBreakpointDown';
 import { debounce } from '@material-ui/core/utils';
-import { Collapse, Divider, ListItem, ListItemText } from '@material-ui/core';
+import { Collapse, Divider, ListItem, ListItemText, MenuItem, TextField } from '@material-ui/core';
 import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 
@@ -122,7 +122,7 @@ const SearchField = ({ onFilter, tags = null }) => {
             )}
             <li className={s.moreLiElement}>
               {moreSelectValue === "" ?
-                <>
+                <> 
                   <Chip
                     color={"default"}
                     variant="outlined"
@@ -142,6 +142,24 @@ const SearchField = ({ onFilter, tags = null }) => {
                       })}
                     </Select>
                   </FormControl>
+                  {/* <div className={s.textFieldFlex}>
+                <TextField
+                  classes={{
+                    root: s.textField
+                  }}
+                  fullWidth
+                  select
+                  required
+                  variant="outlined"
+                  value={sold}
+                >
+                  {dropdownTags.map((tag) => (
+                    <MenuItem key={tag} value={tag}>
+                      {tag}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </div> */}
                 </>
                 :
                 <Chip

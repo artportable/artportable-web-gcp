@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     form: {
       '& > *': {
-        marginBottom: theme.spacing(2.5)
+        marginBottom: theme.spacing(1.25)
       },
       display: 'flex',
       justifyContent: 'center',
