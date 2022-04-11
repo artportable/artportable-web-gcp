@@ -9,19 +9,19 @@ export const styles = makeStyles((theme: Theme) =>
       },
       display: 'flex',
       justifyContent: 'center',
-      marginBottom: "20px"
-
     },
     textField: {
+      width: '100px',
 
-      '&.MuiSelect-select:focus': {
-        backgroundColor: "black"
+      '& .MuiSelect-select:focus': {
+        backgroundColor: "var(--background-color)",
       },
       '& label.Mui-focused': {
         color: 'black',
       },
       '& .MuiOutlinedInput-root': {
         height: "35px",
+        borderRadius: '16px',
 
         '&.Mui-focused fieldset': {
           border: '1px solid black',
