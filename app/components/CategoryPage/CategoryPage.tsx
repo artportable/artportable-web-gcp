@@ -83,9 +83,9 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('artistPortrait')}
                   </MuiButton>
                 </Link>
-                <Link className={s.link} href="/erbjudande">
+                <Link className={s.link} href="/erbjudanden">
                   <MuiButton color="default" size="small">
-                    {t('offer')}
+                    {t('offers')}
                   </MuiButton>
                 </Link>
                 <Link className={s.link} href="/flerartiklar">
