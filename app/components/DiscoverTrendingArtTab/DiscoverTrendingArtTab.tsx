@@ -10,17 +10,16 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
-import { styles } from "./discoverTrendingArtTab.css";
 
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
   socialId?: string;
   rowWidth: number;
+  sold: string
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
-  const s = styles();
   const { t } = useTranslation(['header', 'common', 'support']);
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -32,7 +31,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
   const { like } = usePostLike();
-  const [sold, setSold] = useState("All");
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -54,13 +52,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       }
       if (pageIndex == 0) {
         let url;
-        if (sold === "Unsold") {
+        if (props.sold === "Unsold") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
         }
-        else if (sold === "Sold") {
+        else if (props.sold === "Sold") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
         }
-        else if (sold === "All") {
+        else if (props.sold === "All") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
         }
         else {
@@ -93,43 +91,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   const [listStatus, setListStatus] = useState("Sortera på...");
 
-  const subjectOptions = [
-    {
-      value: 'All',
-      label: "All"
-    },
-    {
-      value: 'Sold',
-      label: "Sold"
-    },
-    {
-      value: 'Unsold',
-      label: "UnSold"
-    },
-  ];
 
   return (
     <>
-      <form className={s.form}>
-        <div className={s.textFieldFlex}>
-          <TextField
-            classes={{
-              root: s.textField
-            }}
-            fullWidth
-            select
-            required
-            variant="outlined"
-            value={sold}
-          >
-            {subjectOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value} onClick={() => setSold(option.value)}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-      </form>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
         <DiscoverArt
           artworks={artworks}

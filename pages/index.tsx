@@ -3,7 +3,7 @@ import { styles } from '../styles/index.css';
 import React, { useContext, useEffect, useState } from "react";
 import Main from '../app/components/Main/Main'
 import { useTranslation } from "next-i18next";
-import { Box, Tab, Tabs } from "@material-ui/core";
+import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
 import TabPanel from '../app/components/TabPanel/TabPanel'
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
@@ -22,9 +22,9 @@ import Head from 'next/head';
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
-import {getNavBarItems } from "../app/utils/getNavBarItems";
+import { getNavBarItems } from "../app/utils/getNavBarItems";
 
-export default function DiscoverPage({navBarItems}) {
+export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
@@ -69,6 +69,23 @@ export default function DiscoverPage({navBarItems}) {
     };
   }
 
+  const [sold, setSold] = useState("All");
+
+  const subjectOptions = [
+    {
+      value: 'All',
+      label: "All"
+    },
+    {
+      value: 'Sold',
+      label: "Sold"
+    },
+    {
+      value: 'Unsold',
+      label: "UnSold"
+    },
+  ];
+
   return (
     <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
       <Head>
@@ -90,6 +107,28 @@ export default function DiscoverPage({navBarItems}) {
             <IndexHero></IndexHero>
           }
           <div className={s.discoverContainer}>
+            <div className={s.flexare}>
+            <form className={s.form}>
+              <div className={s.textFieldFlex}>
+                <TextField
+                  classes={{
+                    root: s.textField
+                  }}
+                  fullWidth
+                  select
+                  required
+                  variant="outlined"
+                  value={sold}
+                >
+                  {subjectOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value} onClick={() => setSold(option.value)}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </div>
+            </form>
+
             <Tabs
               className={s.tabs}
               value={activeTab}
@@ -97,19 +136,21 @@ export default function DiscoverPage({navBarItems}) {
               variant={"scrollable"}
               scrollButtons={"on"}
             >
-              <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))}/>
+              <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))} />
               <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
               <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
               <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
               <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
               <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
             </Tabs>
+            </div>
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
                 <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
+                  sold={sold}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
@@ -144,6 +185,7 @@ export default function DiscoverPage({navBarItems}) {
                   socialId={socialId.value}
                 />
               </TabPanel>
+          
             </Box>
           </div>
         </>
@@ -153,7 +195,7 @@ export default function DiscoverPage({navBarItems}) {
 }
 
 export async function getStaticProps({ locale }) {
-  const navBarItems = await getNavBarItems(); 
+  const navBarItems = await getNavBarItems();
   return {
     props: {
       navBarItems: navBarItems,
