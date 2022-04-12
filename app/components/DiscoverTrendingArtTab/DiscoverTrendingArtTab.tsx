@@ -1,4 +1,7 @@
-import React, { memo, useContext, useRef, useState } from "react";
+import { Collapse, Divider, ListItem, ListItemText, MenuItem, TextField } from "@material-ui/core";
+import { ExpandLess, ExpandMore, LaptopWindowsTwoTone, TrendingUpRounded } from "@material-ui/icons";
+import { useTranslation } from "next-i18next";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -8,13 +11,16 @@ import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 
+
 interface DiscoverTrendingArtTabProps {
   username?: string;
-  socialId? : string;
-  rowWidth : number;
+  socialId?: string;
+  rowWidth: number;
+  sold: string
 }
 
-const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
+const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
+  const { t } = useTranslation(['header', 'common', 'support']);
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -24,7 +30,7 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
   const tags = useGetTags();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
-  const {like} = usePostLike();
+  const { like } = usePostLike();
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -40,12 +46,24 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
+        console.log(previousPageData.next, ".next")
         setLoadMoreArtworks(false);
         return null;
       }
-
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        let url;
+        if (props.sold === "Unsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
+        }
+        else if (props.sold === "Sold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
+        }
+        else if (props.sold === "All") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        }
+        else {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        }
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });
@@ -61,6 +79,18 @@ const DiscoverTrendingArtTab = memo((props : DiscoverTrendingArtTabProps) => {
       }
       return previousPageData.next;
     }, username);
+  const [openListingPages, setOpenListingPages] = useState(false);
+  function handleClickListingPages(event) {
+    setOpenListingPages(!openListingPages);
+    event.stopPropagation();
+  }
+  const [openContact, setOpenContact] = useState(false);
+  const handleClickContact = () => {
+    setOpenContact(true);
+  };
+
+  const [listStatus, setListStatus] = useState("Sortera på...");
+
 
   return (
     <>

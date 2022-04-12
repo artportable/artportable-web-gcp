@@ -8,7 +8,40 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(4)
     },
     discoverContainer: {
-      paddingTop: theme.spacing(4)
+      paddingTop: theme.spacing(4),
+    },
+    flexare: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    form: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    textField: {
+      width: '100px',
+      height: "35px",
+      marginBottom: '10px',
+      '& .MuiSelect-select:focus': {
+        backgroundColor: "var(--background-color)",
+      },
+      '& label.Mui-focused': {
+        color: 'black',
+      },
+      '& .MuiOutlinedInput-root': {
+        height: "35px",
+        borderRadius: '16px',
+
+        '&.Mui-focused fieldset': {
+          border: '1px solid black',
+        },
+      },
+    },
+    textFieldFlex: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      width: '100%',
     },
     tabs: {
       '& .MuiTabs-scroller': {
@@ -16,6 +49,10 @@ export const styles = makeStyles((theme: Theme) =>
       },
       '& .MuiTab-root': {
         minWidth: 0,
+      },
+      '& .MuiTabScrollButton-root': {
+        width: 'unset',
+        opacity: '0.8',
       },
       justifyContent: "center",
       width: '100%',
@@ -25,15 +62,25 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     [theme.breakpoints.up('mdPlus')]: {
+      flexare: {
+        flexDirection: 'row',
+      },
+      form: {
+        marginTop: '14px',
+        alignSelf: 'center',
+      },
+      textField: {
+        marginBottom: '0',
+      },
       tabs: {
         '& .MuiTabScrollButton-root': {
           display: 'none',
+        },
+        text: {
+          marginRight: theme.spacing(2),
+          marginLeft: theme.spacing(2),
+        },
       },
-      text: {
-        marginRight: theme.spacing(2),
-        marginLeft: theme.spacing(2),
-      },
-    },
     },
   }),
 );

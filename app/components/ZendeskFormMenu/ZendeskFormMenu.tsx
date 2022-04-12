@@ -55,7 +55,7 @@ export default function ZendeskForm() {
   ];
 
   useEffect(() => {
-    if(Object.keys(formData).some(key => formData[key].error)) {
+    if (Object.keys(formData).some(key => formData[key].error)) {
       setFormHasErrors(true);
     } else {
       setFormHasErrors(false);
@@ -75,7 +75,7 @@ export default function ZendeskForm() {
   }
 
   const validateFormValue = (value, key: keyof ZendeskFormData) => {
-    if(formUntouched) {
+    if (formUntouched) {
       setFormUntouched(false);
     }
 
@@ -114,8 +114,8 @@ export default function ZendeskForm() {
     const subjectError = checkIsInvalid(formData.subject.value, 'subject');
     const messageError = checkIsInvalid(formData.message.value, 'message');
 
-    const emailFormValue = { 
-      email: { 
+    const emailFormValue = {
+      email: {
         ...formData.email,
         error: emailError
       },
@@ -140,7 +140,7 @@ export default function ZendeskForm() {
   }
 
   const submit = async () => {
-    if(validateAllFields()) {
+    if (validateAllFields()) {
       const response = await postDataToZendesk();
 
       handleResponse(response);
@@ -215,78 +215,78 @@ export default function ZendeskForm() {
     <div>
       <form className={s.form}>
         <div className={s.textFieldFlex}>
-        <TextField
-          classes={{
-            root: s.textField
-          }}
-          fullWidth
-          select
-          label={t('subject')}
-          required
-          variant="outlined"
-          value={formData.subject.value}
-          error={formData.subject.error}
-          onChange={(e) => handleChange(e, 'subject')}
-          onBlur={(e) => validateFormValue(e.target.value, 'subject')}
-          helperText={formData.subject.error ? t('mustNotBeEmptyMessage') : ''}
+          <TextField
+            classes={{
+              root: s.textField
+            }}
+            fullWidth
+            select
+            label={t('subject')}
+            required
+            variant="outlined"
+            value={formData.subject.value}
+            error={formData.subject.error}
+            onChange={(e) => handleChange(e, 'subject')}
+            onBlur={(e) => validateFormValue(e.target.value, 'subject')}
+            helperText={formData.subject.error ? t('mustNotBeEmptyMessage') : ''}
           >
             {subjectOptions.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
-        </TextField>
-        <TextField
-          classes={{
-            root: s.textField
-          }}
-          fullWidth
-          placeholder={t('email')}
-          required
-          variant="outlined"
-          value={formData.email.value}
-          error={formData.email.error}
-          onChange={(e) => handleChange(e, 'email')}
-          onBlur={(e) => validateFormValue(e.target.value, 'email')}
-          helperText={formData.email.error ? t('emailErrorMessage') : ''}
+          </TextField>
+          <TextField
+            classes={{
+              root: s.textField
+            }}
+            fullWidth
+            placeholder={t('email')}
+            required
+            variant="outlined"
+            value={formData.email.value}
+            error={formData.email.error}
+            onChange={(e) => handleChange(e, 'email')}
+            onBlur={(e) => validateFormValue(e.target.value, 'email')}
+            helperText={formData.email.error ? t('emailErrorMessage') : ''}
           >
-        </TextField>
-        <TextField
-          classes={{
-            root: s.textFieldMultiline
-          }}
-          fullWidth 
-          placeholder={t('message')} 
-          multiline 
-          rows={5}
-          required
-          variant="outlined"
-          value={formData.message.value}
-          error={formData.message.error}
-          onChange={(e) => handleChange(e, 'message')}
-          onBlur={(e) => validateFormValue(e.target.value, 'message')}
-          helperText={formData.message.error ? t('mustNotBeEmptyMessage') : ''}
+          </TextField>
+          <TextField
+            classes={{
+              root: s.textFieldMultiline
+            }}
+            fullWidth
+            placeholder={t('message')}
+            multiline
+            rows={5}
+            required
+            variant="outlined"
+            value={formData.message.value}
+            error={formData.message.error}
+            onChange={(e) => handleChange(e, 'message')}
+            onBlur={(e) => validateFormValue(e.target.value, 'message')}
+            helperText={formData.message.error ? t('mustNotBeEmptyMessage') : ''}
           >
-        </TextField>
-        
-        <Button
-          className={s.sendButton}
-          variant="contained" 
-          color="primary"
-          disableElevation 
-          rounded
-          onClick={() => submit()}
-          disabled={formHasErrors || formUntouched}
+          </TextField>
+
+          <Button
+            className={s.sendButton}
+            variant="contained"
+            color="primary"
+            disableElevation
+            rounded
+            onClick={() => submit()}
+            disabled={formHasErrors || formUntouched}
           >
-          {t('send')}
-        </Button>
+            {t('send')}
+          </Button>
         </div>
       </form>
       <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-          <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
-            {t(`${snackbarSeverity}Message`)}
-          </Alert>
+        <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
+          {t(`${snackbarSeverity}Message`)}
+        </Alert>
       </Snackbar>
-</div>
+    </div>
   );
 }
