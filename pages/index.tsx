@@ -28,17 +28,14 @@ export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
   const s = styles();
   const store = useStore();
+  const [sold, setSold] = useState("All");
   const { username, socialId, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
-
   const discoverTab = store.getState()?.discover?.tab ?? 1;
   const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
-
   const rowWidth = useMainWidth().wide
-
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
-
   const { loading, setLoading } = useContext(LoadingContext);
 
   useEffect(() => {
@@ -69,20 +66,18 @@ export default function DiscoverPage({ navBarItems }) {
     };
   }
 
-  const [sold, setSold] = useState("All");
-
   const subjectOptions = [
     {
       value: 'All',
-      label: "All"
-    },
-    {
-      value: 'Sold',
-      label: "Sold"
+      label: t('index:all')
     },
     {
       value: 'Unsold',
-      label: "UnSold"
+      label: t('index:unsold')
+    },
+    {
+      value: 'Sold',
+      label: t('index:sold')
     },
   ];
 
@@ -92,13 +87,11 @@ export default function DiscoverPage({ navBarItems }) {
         <meta name="title" content={t('index:title')} />
         <meta name="description" content={t('index:description')} />
         <meta name="url" content="https://artportable.com/" />
-
         <meta property="og:title" content="" />
         <meta property="og:description" content={t('index:description')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
         <meta property="og:image" content="/images/artportable_tv_commercial.png" />
-
         <link rel="canonical" href={publicUrl} />
       </Head>
       {!loading &&
@@ -107,7 +100,7 @@ export default function DiscoverPage({ navBarItems }) {
             <IndexHero></IndexHero>
           }
           <div className={s.discoverContainer}>
-            <div className={s.flexare}>
+            <div className={s.tabContainer}>
               <form className={s.form}>
                 <div className={s.textFieldFlex}>
                   <TextField

@@ -16,5 +16,8 @@
   "artistSek": "kr/månad",
   "logIn": "Logga in",
   "title": "Artportable - Upptäck och köp originalkonst direkt från konstnärer",
-  "description": "Ett digitalt galleri där konstnärer kan ställa ut sin konst och sälja den direkt till köpare"
+  "description": "Ett digitalt galleri där konstnärer kan ställa ut sin konst och sälja den direkt till köpare",
+  "all": "Alla",
+  "unsold": "Till salu",
+  "sold": "Sålda"
 }

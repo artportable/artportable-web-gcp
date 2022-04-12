@@ -10,7 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
     discoverContainer: {
       paddingTop: theme.spacing(4),
     },
-    flexare: {
+    tabContainer: {
       display: 'flex',
       flexDirection: 'column',
     },
@@ -19,7 +19,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
     },
     textField: {
-      width: '100px',
+      width: '110px',
       height: "35px",
       marginBottom: '10px',
       '& .MuiSelect-select:focus': {
@@ -62,7 +62,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     [theme.breakpoints.up('mdPlus')]: {
-      flexare: {
+      tabContainer: {
         flexDirection: 'row',
       },
       form: {
@@ -73,6 +73,7 @@ export const styles = makeStyles((theme: Theme) =>
         marginBottom: '0',
       },
       tabs: {
+        marginLeft: '-110px',
         '& .MuiTabScrollButton-root': {
           display: 'none',
         },
