@@ -43,7 +43,21 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'flex-start',
       width: '100%',
     },
-    tabs: {
+    artTabs: {
+      '& .MuiTabs-scroller': {
+        flexGrow: "0",
+      },
+      '& .MuiTab-root': {
+        minWidth: 0,
+      },
+      '& .MuiTabScrollButton-root': {
+        width: 'unset',
+        opacity: '0.8',
+      },
+      justifyContent: "center",
+      width: '100%',
+    },
+    artistTab: {
       '& .MuiTabs-scroller': {
         flexGrow: "0",
       },
@@ -72,8 +86,14 @@ export const styles = makeStyles((theme: Theme) =>
       textField: {
         marginBottom: '0',
       },
-      tabs: {
+      artTabs: {
         marginLeft: '-110px',
+        '& .MuiTabScrollButton-root': {
+          display: 'none',
+        },
+      },
+      artistTab: {
+        marginLeft: '0',
         '& .MuiTabScrollButton-root': {
           display: 'none',
         },

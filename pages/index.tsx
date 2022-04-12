@@ -101,6 +101,7 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
+              { activeTab === 0 || activeTab === 1 || activeTab === 2 ? 
               <form className={s.form}>
                 <div className={s.textFieldFlex}>
                   <TextField
@@ -121,9 +122,11 @@ export default function DiscoverPage({ navBarItems }) {
                   </TextField>
                 </div>
               </form>
-
+              :
+              null
+          }
               <Tabs
-                className={s.tabs}
+                className={`${activeTab < 3 ? s.artTabs : s.artistTab}`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
