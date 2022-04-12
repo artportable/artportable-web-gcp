@@ -87,6 +87,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       textField: {
         marginBottom: '0',
+        minWidth: '110px',
+        width: '110px',
+        maxWidth: '110px'
       },
       artTabs: {
         marginLeft: '-110px',
