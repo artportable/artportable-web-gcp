@@ -57,6 +57,20 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       width: '100%',
     },
+    prost: {
+      '& .MuiTabs-scroller': {
+        flexGrow: "0",
+      },
+      '& .MuiTab-root': {
+        minWidth: 0,
+      },
+      '& .MuiTabScrollButton-root': {
+        width: 'unset',
+        opacity: '0.8',
+      },
+      justifyContent: "center",
+      width: '100%',
+    },
     text: {
       minWidth: 0,
     },
@@ -74,6 +88,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
       tabs: {
         marginLeft: '-110px',
+        '& .MuiTabScrollButton-root': {
+          display: 'none',
+        },
+      },
+      prost: {
+        marginLeft: '0',
         '& .MuiTabScrollButton-root': {
           display: 'none',
         },
