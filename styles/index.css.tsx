@@ -43,7 +43,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'flex-start',
       width: '100%',
     },
-    tabs: {
+    artTabs: {
       '& .MuiTabs-scroller': {
         flexGrow: "0",
       },
@@ -57,7 +57,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       width: '100%',
     },
-    prost: {
+    artistTab: {
       '& .MuiTabs-scroller': {
         flexGrow: "0",
       },
@@ -86,13 +86,13 @@ export const styles = makeStyles((theme: Theme) =>
       textField: {
         marginBottom: '0',
       },
-      tabs: {
+      artTabs: {
         marginLeft: '-110px',
         '& .MuiTabScrollButton-root': {
           display: 'none',
         },
       },
-      prost: {
+      artistTab: {
         marginLeft: '0',
         '& .MuiTabScrollButton-root': {
           display: 'none',

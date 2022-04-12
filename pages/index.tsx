@@ -23,8 +23,6 @@ import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTa
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-import { useBreakpointDown } from '../app/hooks/useBreakpointDown';
-
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -128,7 +126,7 @@ export default function DiscoverPage({ navBarItems }) {
               null
           }
               <Tabs
-                className={`${activeTab < 3 ? s.tabs : s.prost}`}
+                className={`${activeTab < 3 ? s.artTabs : s.artistTab}`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
