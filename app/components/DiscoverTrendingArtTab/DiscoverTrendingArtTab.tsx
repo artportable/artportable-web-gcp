@@ -1,16 +1,12 @@
-import { Collapse, Divider, ListItem, ListItemText, MenuItem, TextField } from "@material-ui/core";
-import { ExpandLess, ExpandMore, LaptopWindowsTwoTone, TrendingUpRounded } from "@material-ui/icons";
 import { useTranslation } from "next-i18next";
-import React, { memo, useContext, useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
-import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
-
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
@@ -79,18 +75,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       }
       return previousPageData.next;
     }, username);
-  const [openListingPages, setOpenListingPages] = useState(false);
-  function handleClickListingPages(event) {
-    setOpenListingPages(!openListingPages);
-    event.stopPropagation();
-  }
-  const [openContact, setOpenContact] = useState(false);
-  const handleClickContact = () => {
-    setOpenContact(true);
-  };
-
-  const [listStatus, setListStatus] = useState("Sortera på...");
-
 
   return (
     <>
