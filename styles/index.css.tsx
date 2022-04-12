@@ -19,8 +19,9 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
     },
     textField: {
-      minwidth: '110px',
+      minWidth: '110px',
       width: '110px',
+      maxWidth: '110px',
       height: "35px",
       marginBottom: '10px',
       '& .MuiSelect-select:focus': {
