@@ -46,16 +46,16 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
       if (pageIndex == 0) {
         let url;
         if (sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/unsold`);
         }
         else if (sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/sold`);
         }
         else if (sold === "All") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
         }
         else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
         }
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);

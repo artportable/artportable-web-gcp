@@ -12,6 +12,7 @@ interface DiscoverTopArtTabProps {
   username?: string;
   socialId?: string;
   rowWidth: number;
+  sold: string;
 }
 
 const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
@@ -25,7 +26,6 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
   const { like } = usePostLike();
-  const [sold, setSold] = useState("");
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -47,17 +47,17 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
 
       if (pageIndex == 0) {
         let url;
-        if (sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
+        if (props.sold === "Unsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/topunsold`);
         }
-        else if (sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
+        else if (props.sold === "Sold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
         }
-        else if (sold === "All") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        else if (props.sold === "All") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
         }
         else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
         }
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
@@ -77,9 +77,6 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
 
   return (
     <>
-      <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
-      <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
-      <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
         <DiscoverArt
           artworks={artworks}
