@@ -11,6 +11,7 @@ interface DiscoverArtTabProps {
   username?: string;
   socialId?: string;
   rowWidth: number;
+  sold: string;
 }
 
 const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
@@ -24,7 +25,6 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
   const { like } = usePostLike();
   const token = useContext(TokenContext);
   const tags = useGetTags();
-  const [sold, setSold] = useState("");
 
   function filter(tags: string[], searchQuery = "") {
     setLoadMoreArtworks(true);
@@ -45,13 +45,13 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
       }
       if (pageIndex == 0) {
         let url;
-        if (sold === "Unsold") {
+        if (props.sold === "Unsold") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/unsold`);
         }
-        else if (sold === "Sold") {
+        else if (props.sold === "Sold") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/sold`);
         }
-        else if (sold === "All") {
+        else if (props.sold === "All") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
         }
         else {
@@ -75,9 +75,6 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
 
   return (
     <>
-      <button onClick={() => { setSold("Sold"); setLoadMoreArtworks(true) }}>Sold</button>
-      <button onClick={() => { setSold("Unsold"); setLoadMoreArtworks(true) }}>UnSold</button>
-      <button onClick={() => { setSold("All"); setLoadMoreArtworks(true) }}>All</button>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
         <DiscoverArt
           artworks={artworks}

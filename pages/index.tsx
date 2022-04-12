@@ -166,6 +166,7 @@ export default function DiscoverPage({ navBarItems }) {
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
+                  sold={sold}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
