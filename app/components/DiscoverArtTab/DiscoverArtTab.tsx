@@ -11,6 +11,7 @@ interface DiscoverArtTabProps {
   username?: string;
   socialId?: string;
   rowWidth: number;
+  sold: string;
 }
 
 const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
@@ -43,7 +44,19 @@ const DiscoverArtTab = memo((props: DiscoverArtTabProps) => {
         return null;
       }
       if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
+        let url;
+        if (props.sold === "Unsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/unsold`);
+        }
+        else if (props.sold === "Sold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/sold`);
+        }
+        else if (props.sold === "All") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
+        }
+        else {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
+        }
         selectedTags.forEach(tag => {
           url.searchParams.append('tag', tag);
         });

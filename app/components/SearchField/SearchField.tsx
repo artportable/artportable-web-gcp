@@ -8,6 +8,8 @@ import clsx from 'clsx'
 import { styles } from './searchField.css'
 import { useBreakpointDown } from '../../hooks/useBreakpointDown';
 import { debounce } from '@material-ui/core/utils';
+import { Collapse, Divider, ListItem, ListItemText, MenuItem, TextField } from '@material-ui/core';
+import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 
 
@@ -27,7 +29,7 @@ const SearchField = ({ onFilter, tags = null }) => {
   ];
 
   useEffect(() => {
-    if(tags !== null) {
+    if (tags !== null) {
       resetCategoryTags();
     }
   }, [isBreakpointSmPlusDown]);
@@ -38,7 +40,7 @@ const SearchField = ({ onFilter, tags = null }) => {
   const [dropdownTags, setDropdownTags] = useState(tags);
   const [moreSelectValue, setMoreSelectValue] = useState("");
 
-  const filterDebounced = debounce(() =>  {
+  const filterDebounced = debounce(() => {
     onFilter(selectedTag ? [selectedTag] : [], searchQuery)
   }, 500)
 
@@ -47,7 +49,7 @@ const SearchField = ({ onFilter, tags = null }) => {
   }, [searchQuery, selectedTag]);
 
   const resetCategoryTags = () => {
-    if(isBreakpointSmPlusDown) {
+    if (isBreakpointSmPlusDown) {
       setSelectedTag("");
       setCategoryTags([])
     } else {
@@ -58,14 +60,14 @@ const SearchField = ({ onFilter, tags = null }) => {
   }
 
   const setCategoryTagSelected = (index) => {
-    if(categoryTags[index].selected) {
+    if (categoryTags[index].selected) {
       setCategoryTags([...initCategoryTags]);
     } else {
       const current = initCategoryTags;
       current[index].selected = !current[index].selected;
       setCategoryTags([...current]);
     }
-    
+
     setMoreSelectValue("");
 
     const selectedCategoryTag = categoryTags[index];
@@ -91,39 +93,46 @@ const SearchField = ({ onFilter, tags = null }) => {
     searchDebounced(event);
   }
 
-  const searchDebounced = debounce((event) =>  {
+  const searchDebounced = debounce((event) => {
     setSearchQuery(event.target.value);
   }, 500)
-  
+
+  function handleClickListingPages(event) {
+    setOpenListingPages(!openListingPages);
+    event.stopPropagation();
+  }
+  const [sold, setSold] = useState("");
+  const [openListingPages, setOpenListingPages] = useState(false);
+
   return (
     <div className={clsx(s.inputContainer, tags === null && s.noTags)} tabIndex={0}>
       <SearchIcon classes={{ root: s.searchIcon }} style={{ fontSize: 30 }}></SearchIcon>
       <input onChange={onSearchChanged} placeholder={t('searchForArt')} className={s.input} ></input>
       {tags !== null &&
-        <div className={s.tagsContainer}> 
+        <div className={s.tagsContainer}>
           <ul className={s.categoryTags}>
-            {categoryTags.map((tag, i) => 
-                <li key={tag.name}>
-                  <Chip
-                    onClick={(_) => setCategoryTagSelected(i)}
-                    variant={tag.selected ? "default" : "outlined"}
-                    color={tag.selected ? "primary" : "default"}
-                    label={tag.name} />
-                </li>
+            {categoryTags.map((tag, i) =>
+              <li key={tag.name}>
+                <Chip
+                  onClick={(_) => setCategoryTagSelected(i)}
+                  variant={tag.selected ? "default" : "outlined"}
+                  color={tag.selected ? "primary" : "default"}
+                  label={tag.name} />
+              </li>
             )}
             <li className={s.moreLiElement}>
-              {moreSelectValue === "" ? 
-                <>
+              {moreSelectValue === "" ?
+                <> 
                   <Chip
                     color={"default"}
                     variant="outlined"
                     label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
                     className={s.moreChip} />
                   <FormControl className={s.selectFormControl}>
-                    <Select 
-                      label={t(isBreakpointSmPlusDown ? 'filter' : 'more')} 
-                      className={s.selectElement} 
-                      native 
+                    <Select
+                      label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
+                      className={s.selectElement}
+                      native
                       value={""}
                       onChange={onSelectMoreChange}
                     >
@@ -133,8 +142,26 @@ const SearchField = ({ onFilter, tags = null }) => {
                       })}
                     </Select>
                   </FormControl>
+                  {/* <div className={s.textFieldFlex}>
+                <TextField
+                  classes={{
+                    root: s.textField
+                  }}
+                  fullWidth
+                  select
+                  required
+                  variant="outlined"
+                  value={sold}
+                >
+                  {dropdownTags.map((tag) => (
+                    <MenuItem key={tag} value={tag}>
+                      {tag}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </div> */}
                 </>
-              :
+                :
                 <Chip
                   color={"primary"}
                   label={t(`tags:${moreSelectValue}`)}

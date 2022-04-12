@@ -16,7 +16,7 @@ export interface Artwork {
   PrimaryFile: Image,
   SecondaryFile: Image,
   TertiaryFile: Image
-  Tags: Array<string>,
+  Tags: Array<any>,
   Likes: number,
   LikedByMe: boolean
 }
@@ -33,5 +33,5 @@ export interface ArtworkForCreation {
   PrimaryFile: Image,
   SecondaryFile: Image,
   TertiaryFile: Image
-  Tags: Array<string>
+  Tags: Array<any>
 }
