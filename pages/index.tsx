@@ -23,6 +23,8 @@ import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTa
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
+import { useBreakpointDown } from '../app/hooks/useBreakpointDown';
+
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -101,6 +103,7 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
+              { activeTab === 0 || activeTab === 1 || activeTab === 2 ? 
               <form className={s.form}>
                 <div className={s.textFieldFlex}>
                   <TextField
@@ -121,9 +124,11 @@ export default function DiscoverPage({ navBarItems }) {
                   </TextField>
                 </div>
               </form>
-
+              :
+              null
+          }
               <Tabs
-                className={s.tabs}
+                className={`${activeTab < 3 ? s.tabs : s.prost}`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
