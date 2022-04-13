@@ -52,7 +52,7 @@ export default function artists() {
               <Link href={`/profile/@${artist.Username}`} passHref>
                 <a>
                   <Typography className={s.artistName}>
-                    {artist.Name}
+                    {artist.Name} {' '}
                     {artist.Surname && artist.Surname}
                   </Typography>
                 </a>
