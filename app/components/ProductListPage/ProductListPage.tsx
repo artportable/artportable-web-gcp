@@ -77,15 +77,54 @@ export default function ProductListPage({ productList, navBarItems }: { productL
     }
   }, []);
 
+  let images = [];
   //List with current promoted artists
-  const images = [
-    { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
-    { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
-    // { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
-    // { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
-    // { name: productList?.userFive, username: productList?.usernameFive, image: productList?.ImageFive.formats?.medium?.url, imageLink: productList?.imageLinkFive },
-    // { name: productList?.userSix, username: productList?.usernameSix, image: productList?.ImageSix.formats?.medium?.url, imageLink: productList?.imageLinkSix },
-  ]
+
+  if (productList.imageLinkSix) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+      { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+      { name: productList?.userFive, username: productList?.usernameFive, image: productList?.ImageFive.formats?.medium?.url, imageLink: productList?.imageLinkFive },
+      { name: productList?.userSix, username: productList?.usernameSix, image: productList?.ImageSix.formats?.medium?.url, imageLink: productList?.imageLinkSix },
+    ]
+  }
+  else if (productList.imageLinkFive) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+      { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+      { name: productList?.userFive, username: productList?.usernameFive, image: productList?.ImageFive.formats?.medium?.url, imageLink: productList?.imageLinkFive },
+    ]
+  }
+  else if (productList.imageLinkFour) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+      { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+    ]
+  }
+  else if (productList.imageLinkThree) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+    ]
+  }
+  else if (productList.imageLinkTwo) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+    ]
+  }
+  else if (productList.imageLinkOne) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+    ]
+  }
 
   useEffect(() => {
     const randomImageIndex = Math.floor(Math.random() * images.length);
@@ -145,11 +184,6 @@ export default function ProductListPage({ productList, navBarItems }: { productL
               }
             </div>
             <div>
-
-
-
-
-
               {/* <div className={s.createdBy}>
                 <Chip
                   onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
