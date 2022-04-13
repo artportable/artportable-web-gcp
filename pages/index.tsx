@@ -108,9 +108,7 @@ export default function DiscoverPage({ navBarItems }) {
                     classes={{
                       root: s.textField
                     }}
-                    fullWidth
                     select
-                    required
                     variant="outlined"
                     value={sold}
                   >

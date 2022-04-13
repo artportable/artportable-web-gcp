@@ -19,9 +19,6 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
     },
     textField: {
-      minWidth: '110px',
-      width: '110px',
-      maxWidth: '110px',
       height: "35px",
       marginBottom: '10px',
       '& .MuiSelect-select:focus': {
@@ -33,6 +30,9 @@ export const styles = makeStyles((theme: Theme) =>
       '& .MuiOutlinedInput-root': {
         height: "35px",
         borderRadius: '16px',
+        minWidth: '110px',
+        width: '110px',
+        maxWidth: '110px',
 
         '&.Mui-focused fieldset': {
           border: '1px solid black',
@@ -72,6 +72,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       justifyContent: "center",
       width: '100%',
+      marginTop: '45px',
     },
     text: {
       minWidth: 0,
@@ -87,9 +88,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       textField: {
         marginBottom: '0',
-        minWidth: '110px',
-        width: '110px',
-        maxWidth: '110px'
       },
       artTabs: {
         marginLeft: '-110px',
@@ -99,6 +97,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       artistTab: {
         marginLeft: '0',
+        marginTop: '0',
         '& .MuiTabScrollButton-root': {
           display: 'none',
         },
