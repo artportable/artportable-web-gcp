@@ -47,6 +47,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   const [toggleButton, setToggleButton] = useState(false);
   const { t } = useTranslation(['common']);
   const [randomImage, setRandomImage] = useState<RandomImageProps | undefined>()
+  const [loading, setLoading] = useState(true);
 
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
@@ -68,11 +69,22 @@ export default function ProductListPage({ productList, navBarItems }: { productL
       return previousPageData.next;
     })
 
+  useEffect(() => {
+    if (randomImage === { artwork: '', username: '', imageLink: '', name: '' }) {
+      setLoading(true)
+    } else {
+      setLoading(false)
+    }
+  }, []);
+
   //List with current promoted artists
   const images = [
-    { name: "Kenneth Karlsson", username: "kenneth.karlsson", image: '/images/kenneth_karlsson.jpg', imageLink: "art/b9193f44-fcc5-487a-ba2e-fcc3aa45bc2a" },
-    { name: "Örjan Sätre", username: "orjan.satre", image: '/images/orjan_satre_03.jpg', imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff" },
-    { name: "Sarah Bazilian", username: "sarahb", image: '/images/Sarah_Bazilian.jpg', imageLink: "art/842399f8-dc7a-4ab4-a573-6fa080ec4cd5" },
+    { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+    { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+    // { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+    // { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+    // { name: productList?.userFive, username: productList?.usernameFive, image: productList?.ImageFive.formats?.medium?.url, imageLink: productList?.imageLinkFive },
+    // { name: productList?.userSix, username: productList?.usernameSix, image: productList?.ImageSix.formats?.medium?.url, imageLink: productList?.imageLinkSix },
   ]
 
   useEffect(() => {
@@ -96,7 +108,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <meta property="og:description" content={productList?.metaDescription ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={BaseUrl + "/" + productList?.slug} />
-        <meta property="og:image" content={productList?.ogImage?.formats?.medium?.url} />
+        <meta property="og:image" content={productList?.ImageOne?.formats?.medium?.url} />
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
@@ -108,26 +120,47 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <>
           <div className={s.container}>
             <div className={s.imageDiv}>
-              {productList.imageLink &&
+              {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
+                :
+                <>
+                  <Link href={`/${randomImage.imageLink}`}>
+                    <a>
+                      <img
+                        className={s.image}
+                        src={(randomImage.artwork)}
+                        alt={`${t("artworkFrom")} ${randomImage.username}`}
+                        title={`${t("artworkFrom")} ${randomImage.username}`} />
+                    </a>
+                  </Link>
+                  <div className={s.createdBy}>
+                    <Chip
+                      onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
+                      size="small"
+                      classes={{
+                        root: s.chip,
+                      }}
+                      label={randomImage.name} />
+                  </div>
+                </>
+              }
+            </div>
+            <div>
 
-                <Link href={`/${productList.imageLink}`}>
-                  <a>
-                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
-                  </a>
-                </Link>
-              }
-              {productList.username &&
-                <div className={s.createdBy}>
-                  <Chip
-                    onClick={(_) => router.push(`/profile/@${productList?.username}`)}
-                    size="small"
-                    classes={{
-                      root: s.chip,
-                    }}
-                    label={productList?.user} />
-                </div>
-              }
-              {productList.externalLink &&
+
+
+
+
+              {/* <div className={s.createdBy}>
+                <Chip
+                  onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
+                  size="small"
+                  classes={{
+                    root: s.chip,
+                  }}
+                  label={randomImage.name} />
+              </div> */}
+
+              {/* {productList.externalLink &&
                 <div>
                   <a href={productList.externalLink} target="_blank">
                     <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
@@ -138,7 +171,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
                 <div>
                   <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
                 </div>
-              }
+              } */}
 
             </div>
             <div className={s.accordionDiv}>
@@ -180,35 +213,6 @@ export default function ProductListPage({ productList, navBarItems }: { productL
                   <div className={s.description} dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
                 </AccordionDetails>
               </Accordion>
-            </div>
-          </div>
-          <div className={s.right}>
-            <div className={s.paintingContainer}>
-              {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
-                :
-                <>
-                  <Link href={`/${randomImage.imageLink}`}>
-                    <a>
-                      <img
-                        className={s.boosted}
-                        src={(randomImage.artwork)}
-                        alt={`${t("artworkFrom")} ${randomImage.username}`}
-                        title={`${t("artworkFrom")} ${randomImage.username}`} />
-                    </a>
-                  </Link>
-                  <div className={s.createdBy}>
-                    <Chip
-                      onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
-                      size="small"
-                      classes={{
-                        root: s.chip,
-                      }}
-                      label={randomImage.name} />
-                  </div>
-                </>
-              }
-            </div>
-            <div>
             </div>
           </div>
           <DiscoverArt
