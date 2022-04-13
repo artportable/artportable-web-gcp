@@ -1,7 +1,7 @@
 import { Chip, Link, Typography } from "@material-ui/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -21,6 +21,14 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import Button from "../Button/Button";
 import { useTranslation } from "next-i18next";
+import { Skeleton } from "@material-ui/lab";
+
+interface RandomImageProps {
+  artwork: string;
+  username: string;
+  imageLink: string;
+  name: string;
+}
 
 export default function ProductListPage({ productList, navBarItems }: { productList: ProductList, navBarItems: NavBarItem[] }) {
   const router = useRouter();
@@ -38,6 +46,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   const s = styles();
   const [toggleButton, setToggleButton] = useState(false);
   const { t } = useTranslation(['common']);
+  const [randomImage, setRandomImage] = useState<RandomImageProps | undefined>()
 
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
@@ -58,6 +67,23 @@ export default function ProductListPage({ productList, navBarItems }: { productL
       }
       return previousPageData.next;
     })
+
+  //List with current promoted artists
+  const images = [
+    { name: "Kenneth Karlsson", username: "kenneth.karlsson", image: '/images/kenneth_karlsson.jpg', imageLink: "art/b9193f44-fcc5-487a-ba2e-fcc3aa45bc2a" },
+    { name: "Örjan Sätre", username: "orjan.satre", image: '/images/orjan_satre_03.jpg', imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff" },
+    { name: "Sarah Bazilian", username: "sarahb", image: '/images/Sarah_Bazilian.jpg', imageLink: "art/842399f8-dc7a-4ab4-a573-6fa080ec4cd5" },
+  ]
+
+  useEffect(() => {
+    const randomImageIndex = Math.floor(Math.random() * images.length);
+    setRandomImage(({
+      artwork: (images[randomImageIndex].image),
+      username: (images[randomImageIndex].username),
+      imageLink: (images[randomImageIndex].imageLink),
+      name: (images[randomImageIndex].name)
+    }));
+  }, [])
 
   return (
     <Main wide={true} navBarItems={navBarItems}>
@@ -110,7 +136,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
               }
               {!productList.externalLink && !productList.imageLink &&
                 <div>
-                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
+                  <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
                 </div>
               }
 
@@ -154,6 +180,35 @@ export default function ProductListPage({ productList, navBarItems }: { productL
                   <div className={s.description} dangerouslySetInnerHTML={{ __html: productList?.bottomDescription }} />
                 </AccordionDetails>
               </Accordion>
+            </div>
+          </div>
+          <div className={s.right}>
+            <div className={s.paintingContainer}>
+              {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
+                :
+                <>
+                  <Link href={`/${randomImage.imageLink}`}>
+                    <a>
+                      <img
+                        className={s.boosted}
+                        src={(randomImage.artwork)}
+                        alt={`${t("artworkFrom")} ${randomImage.username}`}
+                        title={`${t("artworkFrom")} ${randomImage.username}`} />
+                    </a>
+                  </Link>
+                  <div className={s.createdBy}>
+                    <Chip
+                      onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
+                      size="small"
+                      classes={{
+                        root: s.chip,
+                      }}
+                      label={randomImage.name} />
+                  </div>
+                </>
+              }
+            </div>
+            <div>
             </div>
           </div>
           <DiscoverArt
