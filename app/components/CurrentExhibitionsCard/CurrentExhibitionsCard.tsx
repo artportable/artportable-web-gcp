@@ -28,14 +28,14 @@ export default function CurrentExhibitionsCard({ exhibitions }) {
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
-      {exhibitions.map((e, i) =>
+      {exhibitions.sort((a, b) => a.From < b.From ? 1 : -1).map((e, i) =>
           <div key={i} className={s.exhibition}>
             <PaletteIcon color="primary" className={s.icon}></PaletteIcon>
             <div className={s.textContainer}>
+              <div>{e.Name}</div>
               <div className={clsx(s.datesRow, hasInvalidDate(e) && s.displayNone)}>
                 <div className={s.dates}>{e.From ? e.To ? e.From.split('T')[0] + " - " + e.To.split('T')[0] : e.From.split('T')[0] : e.To ? e.To.split('T')[0] : ' '}</div>
               </div>
-              <div>{e.Name}</div>
               <div className={clsx(s.location, e.Place === null && s.displayNone)}>
                 <RoomIcon color="disabled" fontSize="inherit"></RoomIcon>
                 <div className={s.locationText}>{e.Place}</div>

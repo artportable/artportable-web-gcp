@@ -21,12 +21,10 @@ export const styles = makeStyles((theme) =>
       marginRight: "5px"
     },
     dates: {
-      marginBottom: "2px",
       fontStyle: "italic",
       color: "grey"
     },
     location: {
-      marginTop: theme.spacing(0.6),
       marginLeft: theme.spacing(-0.2),
       display: "flex",
       flexDirection: "row",

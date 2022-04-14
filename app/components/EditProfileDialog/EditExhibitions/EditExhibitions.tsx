@@ -27,7 +27,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
   }
   
   const addExhibition = () => {
-    profile.exhibitions.push({ key: v4(), from: new Date(), to: addDays(new Date(), 1)});
+    profile.exhibitions.push({ key: v4(), from: new Date(), to: addDays(new Date(), 2)});
     setProfile({...profile});
   };
 
