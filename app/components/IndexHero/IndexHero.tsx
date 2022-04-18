@@ -42,9 +42,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "Kenneth Karlsson", username: "kenneth.karlsson", image: '/images/kenneth_karlsson.jpg', imageLink: "art/b9193f44-fcc5-487a-ba2e-fcc3aa45bc2a" },
-    { name: "Örjan Sätre", username: "orjan.satre", image: '/images/orjan_satre_03.jpg', imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff" },
-    { name: "Sarah Bazilian", username: "sarahb", image: '/images/Sarah_Bazilian.jpg', imageLink: "art/842399f8-dc7a-4ab4-a573-6fa080ec4cd5" },
+    { name: "Atle Reilo", username: "atle.reilo", image: '/images/Atle_Reilo.jpg', imageLink: "art/442555ed-5673-4356-98a3-7e9abec67454" },
+    // { name: "Örjan Sätre", username: "orjan.satre", image: '/images/orjan_satre_03.jpg', imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff" },
+    // { name: "Sarah Bazilian", username: "sarahb", image: '/images/Sarah_Bazilian.jpg', imageLink: "art/842399f8-dc7a-4ab4-a573-6fa080ec4cd5" },
   ]
 
   useEffect(() => {
