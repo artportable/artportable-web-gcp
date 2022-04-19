@@ -77,9 +77,8 @@ export default function ProductListPage({ productList, navBarItems }: { productL
     }
   }, []);
 
-  let images = [];
   //List with current promoted artists
-
+  let images = [];
   if (productList.imageLinkSix) {
     images = [
       { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
@@ -162,51 +161,44 @@ export default function ProductListPage({ productList, navBarItems }: { productL
               {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
                 :
                 <>
-                  <Link href={`/${randomImage.imageLink}`}>
-                    <a>
-                      <img
-                        className={s.image}
-                        src={(randomImage.artwork)}
-                        alt={`${t("artworkFrom")} ${randomImage.username}`}
-                        title={`${t("artworkFrom")} ${randomImage.username}`} />
-                    </a>
+                  <Link href={`${randomImage.imageLink}`}>
+                    {!randomImage.username ?
+                      <a>
+                        <img
+                          className={s.businessImage}
+                          src={(randomImage.artwork)}
+                          alt={`${t("artworkFrom")} ${randomImage.username}`}
+                          title={`${t("artworkFrom")} ${randomImage.username}`} />
+                      </a>
+                      :
+                      <a className={s.aLink}>
+                        <div className={s.frames}>
+                          <div className={s.frame}>
+                            <img
+                              className={s.image}
+                              src={(randomImage.artwork)}
+                              alt={`${t("artworkFrom")} ${randomImage.username}`}
+                              title={`${t("artworkFrom")} ${randomImage.username}`} />
+                          </div>
+                        </div>
+                      </a>
+                    }
                   </Link>
-                  <div className={s.createdBy}>
-                    <Chip
-                      onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
-                      size="small"
-                      classes={{
-                        root: s.chip,
-                      }}
-                      label={randomImage.name} />
-                  </div>
+                  {randomImage.username ?
+                    <div className={s.createdBy}>
+                      <Chip
+                        onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
+                        size="small"
+                        classes={{
+                          root: s.chip,
+                        }}
+                        label={randomImage.name} />
+                    </div>
+                    :
+                    null
+                  }
                 </>
               }
-            </div>
-            <div>
-              {/* <div className={s.createdBy}>
-                <Chip
-                  onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
-                  size="small"
-                  classes={{
-                    root: s.chip,
-                  }}
-                  label={randomImage.name} />
-              </div> */}
-
-              {/* {productList.externalLink &&
-                <div>
-                  <a href={productList.externalLink} target="_blank">
-                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
-                  </a>
-                </div>
-              }
-              {!productList.externalLink && !productList.imageLink &&
-                <div>
-                  <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
-                </div>
-              } */}
-
             </div>
             <div className={s.accordionDiv}>
               <Accordion
