@@ -1,7 +1,7 @@
 import { Chip, Link, Typography } from "@material-ui/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -21,6 +21,14 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import Button from "../Button/Button";
 import { useTranslation } from "next-i18next";
+import { Skeleton } from "@material-ui/lab";
+
+interface RandomImageProps {
+  artwork: string;
+  username: string;
+  imageLink: string;
+  name: string;
+}
 
 export default function ProductListPage({ productList, navBarItems }: { productList: ProductList, navBarItems: NavBarItem[] }) {
   const router = useRouter();
@@ -38,6 +46,8 @@ export default function ProductListPage({ productList, navBarItems }: { productL
   const s = styles();
   const [toggleButton, setToggleButton] = useState(false);
   const { t } = useTranslation(['common']);
+  const [randomImage, setRandomImage] = useState<RandomImageProps | undefined>()
+  const [loading, setLoading] = useState(true);
 
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn();
@@ -59,6 +69,72 @@ export default function ProductListPage({ productList, navBarItems }: { productL
       return previousPageData.next;
     })
 
+  useEffect(() => {
+    if (randomImage === { artwork: '', username: '', imageLink: '', name: '' }) {
+      setLoading(true)
+    } else {
+      setLoading(false)
+    }
+  }, []);
+
+  //List with current promoted artists
+  let images = [];
+  if (productList.imageLinkSix) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+      { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+      { name: productList?.userFive, username: productList?.usernameFive, image: productList?.ImageFive.formats?.medium?.url, imageLink: productList?.imageLinkFive },
+      { name: productList?.userSix, username: productList?.usernameSix, image: productList?.ImageSix.formats?.medium?.url, imageLink: productList?.imageLinkSix },
+    ]
+  }
+  else if (productList.imageLinkFive) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+      { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+      { name: productList?.userFive, username: productList?.usernameFive, image: productList?.ImageFive.formats?.medium?.url, imageLink: productList?.imageLinkFive },
+    ]
+  }
+  else if (productList.imageLinkFour) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+      { name: productList?.userFour, username: productList?.usernameFour, image: productList?.ImageFour.formats?.medium?.url, imageLink: productList?.imageLinkFour },
+    ]
+  }
+  else if (productList.imageLinkThree) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+      { name: productList?.userThree, username: productList?.usernameThree, image: productList?.ImageThree.formats?.medium?.url, imageLink: productList?.imageLinkThree },
+    ]
+  }
+  else if (productList.imageLinkTwo) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+      { name: productList?.userTwo, username: productList?.usernameTwo, image: productList?.ImageTwo.formats?.medium?.url, imageLink: productList?.imageLinkTwo },
+    ]
+  }
+  else if (productList.imageLinkOne) {
+    images = [
+      { name: productList?.userOne, username: productList?.usernameOne, image: productList?.ImageOne.formats?.medium?.url, imageLink: productList?.imageLinkOne },
+    ]
+  }
+
+  useEffect(() => {
+    const randomImageIndex = Math.floor(Math.random() * images.length);
+    setRandomImage(({
+      artwork: (images[randomImageIndex].image),
+      username: (images[randomImageIndex].username),
+      imageLink: (images[randomImageIndex].imageLink),
+      name: (images[randomImageIndex].name)
+    }));
+  }, [])
+
   return (
     <Main wide={true} navBarItems={navBarItems}>
       <Head>
@@ -70,7 +146,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <meta property="og:description" content={productList?.metaDescription ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={BaseUrl + "/" + productList?.slug} />
-        <meta property="og:image" content={productList?.ogImage?.formats?.medium?.url} />
+        <meta property="og:image" content={productList?.ImageOne?.formats?.medium?.url} />
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
@@ -82,38 +158,47 @@ export default function ProductListPage({ productList, navBarItems }: { productL
         <>
           <div className={s.container}>
             <div className={s.imageDiv}>
-              {productList.imageLink &&
-
-                <Link href={`/${productList.imageLink}`}>
-                  <a>
-                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
-                  </a>
-                </Link>
+              {!randomImage ? <Skeleton variant="rect" width={320} height={320} />
+                :
+                <>
+                  <Link href={`${randomImage.imageLink}`}>
+                    {!randomImage.username ?
+                      <a>
+                        <img
+                          className={s.businessImage}
+                          src={(randomImage.artwork)}
+                          alt={`${t("artworkFrom")} ${randomImage.username}`}
+                          title={`${t("artworkFrom")} ${randomImage.username}`} />
+                      </a>
+                      :
+                      <a className={s.aLink}>
+                        <div className={s.frames}>
+                          <div className={s.frame}>
+                            <img
+                              className={s.image}
+                              src={(randomImage.artwork)}
+                              alt={`${t("artworkFrom")} ${randomImage.username}`}
+                              title={`${t("artworkFrom")} ${randomImage.username}`} />
+                          </div>
+                        </div>
+                      </a>
+                    }
+                  </Link>
+                  {randomImage.username ?
+                    <div className={s.createdBy}>
+                      <Chip
+                        onClick={(_) => router.push(`/profile/@${randomImage.username}`)}
+                        size="small"
+                        classes={{
+                          root: s.chip,
+                        }}
+                        label={randomImage.name} />
+                    </div>
+                    :
+                    null
+                  }
+                </>
               }
-              {productList.username &&
-                <div className={s.createdBy}>
-                  <Chip
-                    onClick={(_) => router.push(`/profile/@${productList?.username}`)}
-                    size="small"
-                    classes={{
-                      root: s.chip,
-                    }}
-                    label={productList?.user} />
-                </div>
-              }
-              {productList.externalLink &&
-                <div>
-                  <a href={productList.externalLink} target="_blank">
-                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
-                  </a>
-                </div>
-              }
-              {!productList.externalLink && !productList.imageLink &&
-                <div>
-                    <img src={productList?.ogImage?.formats?.medium?.url} className={s.image} />
-                </div>
-              }
-
             </div>
             <div className={s.accordionDiv}>
               <Accordion
