@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { Box, Link, Typography } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
@@ -8,6 +9,7 @@ import { styles } from './categoryPage.css';
 import MuiButton from '@material-ui/core/Button'
 import { NavBarItem } from '../../models/NavBarItem';
 import { useState } from 'react';
+import { UserContext } from '../../contexts/user-context'
 
 export default function CategoryPage({ category, navBarItems }: { category: Category, navBarItems: NavBarItem[] }) {
   const s = styles();
@@ -15,6 +17,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const { t } = useTranslation(['articles']);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
+  const { isSignedIn } = useContext(UserContext);
 
   // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
   const [array, setArray] = useState(category?.articles);
@@ -88,6 +91,13 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                     {t('offers')}
                   </MuiButton>
                 </Link>
+                {(isSignedIn.value) &&
+                 <Link className={s.link} href="/medlemserbjudanden">
+                 <MuiButton color="default" size="small">
+                   {t('membershipOffers')}
+                 </MuiButton>
+               </Link>
+                }
                 <Link className={s.link} href="/flerartiklar">
                   <MuiButton color="default" size="small">
                     {t('moreArticlesMenu')}
