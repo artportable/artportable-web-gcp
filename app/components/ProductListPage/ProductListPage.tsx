@@ -133,7 +133,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
       imageLink: (images[randomImageIndex].imageLink),
       name: (images[randomImageIndex].name)
     }));
-  }, [])
+  }, [router.push])
 
   return (
     <Main wide={true} navBarItems={navBarItems}>
