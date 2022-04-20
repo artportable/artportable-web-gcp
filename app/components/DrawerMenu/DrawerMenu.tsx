@@ -22,6 +22,7 @@ import { Locales, DisplayLocales } from '../../models/i18n/locales'
 import Upgrade from './Upgrade'
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 
+
 export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarItems }) {
   const { t } = useTranslation(['header', 'common', 'support']);
   const s = styles();
@@ -71,6 +72,10 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
     setOpenUpgrade(false);
   };
 
+    const forceReload = () => {
+    router.reload();
+  }
+
   return (
     <Drawer classes={{ paper: s.container }} anchor="right" open={open} onClose={() => close()} ModalProps={{ keepMounted: true, }}>
       <div className={s.closeButtonFlex}>
@@ -110,8 +115,11 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
                   if (item.locale == router.locale)
                     return (
                       <Link href={'/' + item.slug} passHref key={index}>
+                        {/* onClick={(_) => router.push(`/${item.slug}`)} */}
                         <a>
+                        {/* <a onClick={(_) =>  { router.push(`/${item.slug}`); forceReload();}}> */}
                           <ListItem button className={s.nested} onClick={() => close()}>
+                          {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
                             <ListItemText primary={item.menuTitle} />
                           </ListItem>
                         </a>
@@ -130,13 +138,6 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             </ListItem>
           </a>
         </Link>
-        <Link href="/erbjudanden" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('offers')}/>
-            </ListItem>
-          </a>
-        </Link>
         <Link href="/artists" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -144,6 +145,22 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             </ListItem>
           </a>
         </Link>
+        <Link href="/erbjudanden" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('offers')}/>
+            </ListItem>
+          </a>
+        </Link>
+        {(isSignedIn.value) &&
+           <Link href="/medlemserbjudanden" passHref>
+           <a>
+             <ListItem button divider onClick={() => close()}>
+               <ListItemText primary={t('membershipOffers')}/>
+             </ListItem>
+           </a>
+         </Link>
+        }
         <ListItem button divider onClick={handleClickContact} >
           <ListItemText primary={t('contactUs')} />
         </ListItem >
