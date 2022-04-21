@@ -106,12 +106,14 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
           {linkToProfile ?
             <Link href={`/profile/@${data?.Username}`}>
               <a>
-                {`${data?.Name} ${data?.Surname}`}
+              {data?.Name} {' '}
+              {data?.Surname && data?.Surname}
               </a>
             </Link>
             :
             <span>
-              {`${data?.Name} ${data?.Surname}`}
+              {data?.Name} {' '}
+              {data?.Surname && data?.Surname}
             </span>
           }
         </Typography>
