@@ -26,9 +26,9 @@ export default function ManageSubscriptionsDialog(props:Props) {
         <IconButton aria-label="close" className={s.closeButton} onClick={props.handleClose}>
           <CloseIcon />
         </IconButton>
-        <DialogTitle id="dialog-title" className={s.title}>Hantera ditt abonnemang</DialogTitle>
+        <DialogTitle id="dialog-title" className={s.title}>{t('manageYourSubscription')}</DialogTitle>
         <DialogContentText className={s.dialogText}>
-            Fyll i din epost och beskriv hur du vill hantera ditt abonnemang.
+            {t('fillYourEmail')}
           </DialogContentText>
         <DialogContent>
           <ManageSubscriptions />

@@ -82,7 +82,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
     setOpenUpgrade(false);
   };
 
-    const forceReload = () => {
+  const forceReload = () => {
     router.reload();
   }
 
@@ -127,9 +127,9 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
                       <Link href={'/' + item.slug} passHref key={index}>
                         {/* onClick={(_) => router.push(`/${item.slug}`)} */}
                         <a>
-                        {/* <a onClick={(_) =>  { router.push(`/${item.slug}`); forceReload();}}> */}
+                          {/* <a onClick={(_) =>  { router.push(`/${item.slug}`); forceReload();}}> */}
                           <ListItem button className={s.nested} onClick={() => close()}>
-                          {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
+                            {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
                             <ListItemText primary={item.menuTitle} />
                           </ListItem>
                         </a>
@@ -158,31 +158,28 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
         <Link href="/erbjudanden" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('offers')}/>
+              <ListItemText primary={t('offers')} />
             </ListItem>
           </a>
         </Link>
         {(isSignedIn.value) &&
-           <Link href="/medlemserbjudanden" passHref>
-           <a>
-             <ListItem button divider onClick={() => close()}>
-               <ListItemText primary={t('membershipOffers')}/>
-             </ListItem>
-           </a>
-         </Link>
+          <Link href="/medlemserbjudanden" passHref>
+            <a>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemText primary={t('membershipOffers')} />
+              </ListItem>
+            </a>
+          </Link>
         }
         <ListItem button divider onClick={handleClickContact} >
           <ListItemText primary={t('contactUs')} />
         </ListItem >
         <DialogConstruction
           openContact={openContact}
-          handleClose={handleCloseManageSubscriptions} />
-                  <ListItem button divider onClick={handleClickManageSubscriptions} >
-          <ListItemText primary="Hantera abonnemang" />
-        </ListItem >
-        <ManageSubscriptionsDialog
-          openContact={openManageSubscriptions}
-          handleClose={handleCloseManageSubscriptions} />
+          handleClose={handleCloseContact} />
+
+
+        
         {isSignedIn.value ?
           <>
             {(membership.value < Membership.Portfolio) &&
@@ -197,6 +194,14 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
               </div>
             }
             {(membership.value > Membership.Base) &&
+                        <>
+                        <ListItem button divider onClick={handleClickManageSubscriptions} >
+                      <ListItemText primary={t('manageSubscription')} />
+                    </ListItem >
+                    <ManageSubscriptionsDialog
+                      openContact={openManageSubscriptions}
+                      handleClose={handleCloseManageSubscriptions} />
+                      
               <Link href="/upload" passHref>
                 <ListItem button divider onClick={() => close()}>
                   <ListItemIcon>
@@ -205,8 +210,8 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
                   <ListItemText primary={t('upload')} />
                 </ListItem>
               </Link>
+              </>
             }
-
             <Link href="/messages" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
