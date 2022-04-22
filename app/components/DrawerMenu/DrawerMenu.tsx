@@ -21,6 +21,7 @@ import DialogConstruction from '../ContactDialog/contactDialog'
 import { Locales, DisplayLocales } from '../../models/i18n/locales'
 import Upgrade from './Upgrade'
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
+import ManageSubscriptionsDialog from '../ManageSubscriptions/ManageSubscriptionsDialog'
 
 
 export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarItems }) {
@@ -38,6 +39,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
   const close = () => setOpen(false);
 
   const [openContact, setOpenContact] = useState(false);
+  const [openManageSubscriptions, setOpenManageSubscriptions] = useState(false);
   const [openUpgrade, setOpenUpgrade] = useState(false);
   const [openListingPages, setOpenListingPages] = useState(false);
 
@@ -62,6 +64,14 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
 
   const handleCloseContact = () => {
     setOpenContact(false);
+  };
+
+  const handleClickManageSubscriptions = () => {
+    setOpenManageSubscriptions(true);
+  };
+
+  const handleCloseManageSubscriptions = () => {
+    setOpenManageSubscriptions(false);
   };
 
   const handleClickUpgrade = () => {
@@ -166,7 +176,13 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
         </ListItem >
         <DialogConstruction
           openContact={openContact}
-          handleClose={handleCloseContact} />
+          handleClose={handleCloseManageSubscriptions} />
+                  <ListItem button divider onClick={handleClickManageSubscriptions} >
+          <ListItemText primary="Hantera abonnemang" />
+        </ListItem >
+        <ManageSubscriptionsDialog
+          openContact={openManageSubscriptions}
+          handleClose={handleCloseManageSubscriptions} />
         {isSignedIn.value ?
           <>
             {(membership.value < Membership.Portfolio) &&
