@@ -20,5 +20,8 @@
   "artists": "Artists",
   "productLists": "Categories",
   "offers": "Offers",
-  "membershipOffers": "Membership offers"
+  "membershipOffers": "Membership offers",
+  "manageSubscription": "Manage subscription",
+  "manageYourSubscription": "Manage your subscription",
+  "fillYourEmail": "Fill in your email and describe how you want to manage your subscription."
 }
