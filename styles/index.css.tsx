@@ -78,7 +78,7 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: 0,
     },
 
-    [theme.breakpoints.up('mdPlus')]: {
+    [theme.breakpoints.up('lg')]: {
       tabContainer: {
         flexDirection: 'row',
       },

@@ -23,6 +23,8 @@ import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTa
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
+import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
+import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -37,6 +39,7 @@ export default function DiscoverPage({ navBarItems }) {
   const rowWidth = useMainWidth().wide
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const { loading, setLoading } = useContext(LoadingContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   useEffect(() => {
     if (!isSignedIn.isPending) {
@@ -49,7 +52,7 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [isSignedIn]);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2;
+  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 6;
 
   function setTab(value) {
     setActiveTab(value);
@@ -101,28 +104,28 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
-              { activeTab === 0 || activeTab === 1 || activeTab === 2 ? 
-              <form className={s.form}>
-                <div className={s.textFieldFlex}>
-                  <TextField
-                    classes={{
-                      root: s.textField
-                    }}
-                    select
-                    variant="outlined"
-                    value={sold}
-                  >
-                    {subjectOptions.map((option) => (
-                      <MenuItem key={option.value} value={option.value} onClick={() => setSold(option.value)}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </div>
-              </form>
-              :
-              null
-          }
+              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 6 ?
+                <form className={s.form}>
+                  <div className={s.textFieldFlex}>
+                    <TextField
+                      classes={{
+                        root: s.textField
+                      }}
+                      select
+                      variant="outlined"
+                      value={sold}
+                    >
+                      {subjectOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value} onClick={() => setSold(option.value)}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </div>
+                </form>
+                :
+                null
+              }
               <Tabs
                 className={`${activeTab < 3 ? s.artTabs : s.artistTab}`}
                 value={activeTab}
@@ -136,6 +139,7 @@ export default function DiscoverPage({ navBarItems }) {
                 <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
                 <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
                 <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
+                <Tab className={s.text} label={t('discover:myLikedArt')} {...a11yProps(t('discover:myLikedArt'))} onClick={redirectIfNotLoggedIn} />
               </Tabs>
             </div>
             <Box paddingTop={4}>
@@ -167,20 +171,28 @@ export default function DiscoverPage({ navBarItems }) {
                 <DiscoverTopArtistsTab
                   username={username.value}
                   socialId={socialId.value}
-                />
+                  />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
                 <DiscoverMonthlyArtistsTab
                   username={username.value}
                   socialId={socialId.value}
-                />
+                  />
               </TabPanel>
               <TabPanel value={activeTab} index={5}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
-                />
+                  />
               </TabPanel>
+              <TabPanel value={activeTab} index={6}>
+                <DiscoverMyLikedArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  sold={sold}
+                  />
+                  </TabPanel>
 
             </Box>
           </div>
