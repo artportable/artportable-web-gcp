@@ -12,5 +12,9 @@
   "support": "Support",
   "economy": "Economy",
   "production": "Production",
-  "report": "Report"
+  "report": "Report",
+  "cancelation": "Cancelation",
+  "renewal": "Renewal",
+  "other": "Other",
+  "errand": "Errand"
 }

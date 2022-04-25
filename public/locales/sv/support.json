@@ -12,5 +12,9 @@
   "support": "Support",
   "economy": "Ekonomi",
   "production": "Produktion",
-  "report": "Anmäl"
+  "report": "Anmäl",
+  "cancelation": "Uppsägning",
+  "renewal": "Förlängning",
+  "other": "Övrigt",
+  "errand": "Ärende"
 }
