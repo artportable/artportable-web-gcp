@@ -12,7 +12,10 @@ interface DiscoverTrendingArtTabProps {
   username?: string;
   socialId?: string;
   rowWidth: number;
-  sold: string
+  sold: string;
+  loadMore: boolean;
+  loadImages: any;
+  stopLoadImages: any;
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
@@ -20,7 +23,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
-  const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
   const loadMoreArtworksElementRef = useRef(null);
   const [selectedTags, setSelectedTags] = useState(null);
   const tags = useGetTags();
@@ -29,7 +31,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const { like } = usePostLike();
 
   function filter(tags: string[], searchQuery = "") {
-    setLoadMoreArtworks(true);
+    props.loadImages();
     setSelectedTags(tags);
     setSearchQuery(searchQuery);
   }
@@ -43,7 +45,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
         console.log(previousPageData.next, ".next")
-        setLoadMoreArtworks(false);
+        props.stopLoadImages();
         return null;
       }
       if (pageIndex == 0) {
@@ -87,7 +89,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           rowWidth={rowWidth}
           loadMoreElementRef={loadMoreArtworksElementRef}
           isLoading={isLoadingArtWorks}
-          loadMore={loadMoreArtworks}
+          loadMore={props.loadMore}
         />
       }
     </>
