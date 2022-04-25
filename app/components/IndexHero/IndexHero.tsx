@@ -42,7 +42,7 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "Carl Lagercrantz", username: "lagerzz", image: '/images/carl_lagercrantz', imageLink: "art/f928b439-841b-44a4-be72-033828016068" },
+    { name: "Carl Lagercrantz", username: "lagerzz", image: '/images/carl_lagercrantz.jpg', imageLink: "art/f928b439-841b-44a4-be72-033828016068" },
     { name: "Örjan Sätre", username: "orjan.satre", image: '/images/orjan_satre_03.jpg', imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff" },
     { name: "Ulrika Hegårdh", username: "ulrikahegardh", image: '/images/Ulrika_Hegardh.jpg', imageLink: "art/318d0ea2-980e-4f22-8bf0-fd09c892fc12" },
   ]
