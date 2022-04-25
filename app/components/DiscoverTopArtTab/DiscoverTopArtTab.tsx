@@ -13,13 +13,15 @@ interface DiscoverTopArtTabProps {
   socialId?: string;
   rowWidth: number;
   sold: string;
+  loadMore: boolean;
+  loadImages: any;
+  stopLoadImages: any;
 }
 
 const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
-  const [loadMoreArtworks, setLoadMoreArtworks] = useState<boolean>(true);
   const loadMoreArtworksElementRef = useRef(null);
   const [selectedTags, setSelectedTags] = useState(null);
   const tags = useGetTags();
@@ -28,7 +30,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   const { like } = usePostLike();
 
   function filter(tags: string[], searchQuery = "") {
-    setLoadMoreArtworks(true);
+    props.loadImages();
     setSelectedTags(tags);
     setSearchQuery(searchQuery);
   }
@@ -41,7 +43,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtworks(false);
+        props.stopLoadImages();
         return null;
       }
 
@@ -86,7 +88,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
           rowWidth={rowWidth}
           loadMoreElementRef={loadMoreArtworksElementRef}
           isLoading={isLoadingArtWorks}
-          loadMore={loadMoreArtworks}
+          loadMore={props.loadMore}
         />
       }
     </>

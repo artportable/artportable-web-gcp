@@ -40,6 +40,7 @@ export default function DiscoverPage({ navBarItems }) {
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const { loading, setLoading } = useContext(LoadingContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+  const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
 
   useEffect(() => {
     if (!isSignedIn.isPending) {
@@ -84,6 +85,15 @@ export default function DiscoverPage({ navBarItems }) {
     },
   ];
 
+  const loadImages = () => {
+    setLoadMoreArtworks(true)
+  }
+  
+  const stopLoadImages = () => {
+    setLoadMoreArtworks(false)
+  }
+
+
   return (
     <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
       <Head>
@@ -104,7 +114,7 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
-              {activeTab === 0 || activeTab === 1 || activeTab === 2 ?
+              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab ===  6 ?
                 <form className={s.form}>
                   <div className={s.textFieldFlex}>
                     <TextField
@@ -116,7 +126,7 @@ export default function DiscoverPage({ navBarItems }) {
                       value={sold}
                     >
                       {subjectOptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value} onClick={() => setSold(option.value)}>
+                        <MenuItem key={option.value} value={option.value} onClick={() => { setSold(option.value); loadImages(); }}>
                           {option.label}
                         </MenuItem>
                       ))}
@@ -127,7 +137,7 @@ export default function DiscoverPage({ navBarItems }) {
                 null
               }
               <Tabs
-                className={`${activeTab < 3 ? s.artTabs : s.artistTab}`}
+                className={`${activeTab < 3  || activeTab === 6 ? s.artTabs : s.artistTab}`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
@@ -149,6 +159,9 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                   rowWidth={rowWidth}
                   sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
@@ -157,6 +170,10 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                   rowWidth={rowWidth}
                   sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
@@ -165,6 +182,9 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                   rowWidth={rowWidth}
                   sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
@@ -191,6 +211,9 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                   rowWidth={rowWidth}
                   sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
                   />
                   </TabPanel>
 
