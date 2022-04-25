@@ -174,6 +174,7 @@ export default function Profile(props) {
       const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
       if (rows) {
         setImageRows(rows);
+        router.push('/profile/@' + username.value);
       }
     }
   }, [rowWidth]);
