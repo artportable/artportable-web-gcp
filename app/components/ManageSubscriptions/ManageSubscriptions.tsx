@@ -37,7 +37,7 @@ export default function ManageSubscriptions() {
   const subjectOptions = [
 
     {
-      value: 'support@artportable.com',
+      value: 'sales@artportable.com',
       label: t('renewal'),
     },
     {
