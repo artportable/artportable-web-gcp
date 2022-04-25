@@ -80,8 +80,8 @@ export const styles = makeStyles((theme: Theme) =>
     description: {
       margin: theme.spacing(1, 0,),
       marginBottom: theme.spacing(2),
-      fontSize: '11pt',
-      lineHeight: '1.28',
+      fontSize: '12pt',
+      lineHeight: '1.38',
       [theme.breakpoints.up('sm')]: {
         fontSize: '1.3rem',
       },
