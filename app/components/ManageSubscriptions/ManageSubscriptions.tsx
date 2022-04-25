@@ -25,7 +25,7 @@ export default function ManageSubscriptions() {
   const { username } = useContext(UserContext);
 
   const [formData, setFormData] = useState<ZendeskFormData>({
-    subject: { value: 'support@artportable.com', error: false },
+    subject: { value: '', error: false },
     email: { value: '', error: false },
     message: { value: '', error: false },
   });
@@ -34,13 +34,21 @@ export default function ManageSubscriptions() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
 
-  // const subjectOptions = [
+  const subjectOptions = [
 
-  //   {
-  //     value: 'support@artportable.com',
-  //     label: t('support'),
-  //   }
-  // ];
+    {
+      value: 'support@artportable.com',
+      label: t('renewal'),
+    },
+    {
+      value: 'agreement@artportable.com',
+      label: t('cancelation'),
+    },
+    {
+      value: 'support@artportable.com',
+      label: t('other'), 
+    },
+  ];
 
   useEffect(() => {
     if (Object.keys(formData).some(key => formData[key].error)) {
@@ -203,6 +211,27 @@ export default function ManageSubscriptions() {
     <div>
       <form className={s.form}>
         <div className={s.textFieldFlex}>
+        <TextField
+            classes={{
+              root: s.textField
+            }}
+            fullWidth
+            select
+            label={t('errand')}
+            required
+            variant="outlined"
+            value={formData.subject.value}
+            error={formData.subject.error}
+            onChange={(e) => handleChange(e, 'subject')}
+            onBlur={(e) => validateFormValue(e.target.value, 'subject')}
+            helperText={formData.subject.error ? t('mustNotBeEmptyMessage') : ''}
+          >
+            {subjectOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <TextField
             classes={{
               root: s.textField
