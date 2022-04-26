@@ -25,11 +25,8 @@ import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/Dis
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
-<<<<<<< HEAD
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
-=======
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
->>>>>>> develop
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -58,7 +55,7 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [isSignedIn]);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 7;
+  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8;
 
   function setTab(value) {
     setActiveTab(value);
@@ -119,11 +116,7 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
-<<<<<<< HEAD
-              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 7 ?
-=======
-              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab ===  7 ?
->>>>>>> develop
+              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8 ?
                 <form className={s.form}>
                   <div className={s.textFieldFlex}>
                     <TextField
@@ -146,11 +139,7 @@ export default function DiscoverPage({ navBarItems }) {
                 null
               }
               <Tabs
-<<<<<<< HEAD
-                className={`${activeTab < 4 || activeTab === 7 ? s.artTabs : s.artistTab}`}
-=======
-                className={`${activeTab < 4  || activeTab === 7 ? s.artTabs : s.artistTab}`}
->>>>>>> develop
+                className={`${activeTab < 5 || activeTab === 8 ? s.artTabs : s.artistTab}`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
@@ -213,9 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
-<<<<<<< HEAD
-=======
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={4}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -226,26 +213,25 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
->>>>>>> develop
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverTopArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMonthlyArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={6}>
+              <TabPanel value={activeTab} index={7}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={7}>
+              <TabPanel value={activeTab} index={8}>
                 <DiscoverMyLikedArtTab
                   username={username.value}
                   socialId={socialId.value}
