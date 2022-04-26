@@ -25,6 +25,7 @@ import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/Dis
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
+import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
 
 export default function DiscoverPage({ navBarItems }) {
@@ -54,7 +55,7 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [isSignedIn]);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 7;
+  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8;
 
   function setTab(value) {
     setActiveTab(value);
@@ -89,7 +90,7 @@ export default function DiscoverPage({ navBarItems }) {
   const loadImages = () => {
     setLoadMoreArtworks(true)
   }
-  
+
   const stopLoadImages = () => {
     setLoadMoreArtworks(false)
   }
@@ -115,7 +116,7 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
-              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab ===  7 ?
+              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8 ?
                 <form className={s.form}>
                   <div className={s.textFieldFlex}>
                     <TextField
@@ -138,12 +139,13 @@ export default function DiscoverPage({ navBarItems }) {
                 null
               }
               <Tabs
-                className={`${activeTab < 4  || activeTab === 7 ? s.artTabs : s.artistTab}`}
+                className={`${activeTab < 5 || activeTab === 8 ? s.artTabs : s.artistTab}`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
                 scrollButtons={"on"}
               >
+                <Tab className={s.text} label={t('discover:highlights')} {...a11yProps(t('discover:highlights'))} />
                 <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
                 <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))} />
                 <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
@@ -156,7 +158,7 @@ export default function DiscoverPage({ navBarItems }) {
             </div>
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
-                <DiscoverTopArtTab
+                <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -167,6 +169,17 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
+                <DiscoverTopArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={2}>
                 <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -178,7 +191,7 @@ export default function DiscoverPage({ navBarItems }) {
 
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={2}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -189,7 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={4}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -200,25 +213,25 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverTopArtistsTab
                   username={username.value}
                   socialId={socialId.value}
-                  />
+                />
               </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMonthlyArtistsTab
                   username={username.value}
                   socialId={socialId.value}
-                  />
+                />
               </TabPanel>
-              <TabPanel value={activeTab} index={6}>
+              <TabPanel value={activeTab} index={7}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
-                  />
+                />
               </TabPanel>
-              <TabPanel value={activeTab} index={7}>
+              <TabPanel value={activeTab} index={8}>
                 <DiscoverMyLikedArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -227,8 +240,8 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
-                  />
-                  </TabPanel>
+                />
+              </TabPanel>
 
             </Box>
           </div>

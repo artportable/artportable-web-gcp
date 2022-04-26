@@ -79,15 +79,29 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     [theme.breakpoints.up('lg')]: {
+      artTabs: {
+        '& .MuiTabScrollButton-root': {
+          display: 'none',
+        },
+      },
+      artistTab: {
+        '& .MuiTabScrollButton-root': {
+          display: 'none',
+        },
+      },
+
+      textField: {
+        marginBottom: '0',
+      },
+    },
+   
+    [theme.breakpoints.up('lgPlus')]: {
       tabContainer: {
         flexDirection: 'row',
       },
       form: {
-        marginTop: '14px',
+        marginTop: '7px',
         alignSelf: 'center',
-      },
-      textField: {
-        marginBottom: '0',
       },
       artTabs: {
         marginLeft: '-110px',
