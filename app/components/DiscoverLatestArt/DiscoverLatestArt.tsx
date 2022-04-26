@@ -51,10 +51,10 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
       if (pageIndex == 0) {
         let url;
         if (props.sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/unsold`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/latestunsold`);
         }
         else if (props.sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/sold`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/latestsold`);
         }
         else if (props.sold === "All") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
