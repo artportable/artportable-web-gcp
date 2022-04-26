@@ -25,7 +25,11 @@ import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/Dis
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
+<<<<<<< HEAD
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
+=======
+import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
+>>>>>>> develop
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -54,7 +58,7 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [isSignedIn]);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 6;
+  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 7;
 
   function setTab(value) {
     setActiveTab(value);
@@ -115,7 +119,11 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
+<<<<<<< HEAD
               {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 7 ?
+=======
+              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab ===  7 ?
+>>>>>>> develop
                 <form className={s.form}>
                   <div className={s.textFieldFlex}>
                     <TextField
@@ -138,7 +146,11 @@ export default function DiscoverPage({ navBarItems }) {
                 null
               }
               <Tabs
+<<<<<<< HEAD
                 className={`${activeTab < 4 || activeTab === 7 ? s.artTabs : s.artistTab}`}
+=======
+                className={`${activeTab < 4  || activeTab === 7 ? s.artTabs : s.artistTab}`}
+>>>>>>> develop
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
@@ -148,6 +160,7 @@ export default function DiscoverPage({ navBarItems }) {
                 <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
                 <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))} />
                 <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+                <Tab className={s.text} label={t('discover:latestArt')} {...a11yProps(t('discover:latestArt'))} />
                 <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
                 <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
                 <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
@@ -200,6 +213,20 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                 />
               </TabPanel>
+<<<<<<< HEAD
+=======
+              <TabPanel value={activeTab} index={3}>
+                <DiscoverLatestArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                />
+              </TabPanel>
+>>>>>>> develop
               <TabPanel value={activeTab} index={4}>
                 <DiscoverTopArtistsTab
                   username={username.value}
