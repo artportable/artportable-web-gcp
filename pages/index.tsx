@@ -54,7 +54,7 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [isSignedIn]);
 
-  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 6;
+  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 7;
 
   function setTab(value) {
     setActiveTab(value);
@@ -115,7 +115,7 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
-              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab ===  6 ?
+              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab ===  7 ?
                 <form className={s.form}>
                   <div className={s.textFieldFlex}>
                     <TextField
