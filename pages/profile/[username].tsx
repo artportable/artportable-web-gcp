@@ -671,7 +671,7 @@ export async function getServerSideProps({ locale, params }) {
   const url = new URL(`${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`);
 
   var articles = [];
-  let articleResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?artist_contains=${username}&_locale=${locale}`)
+  let articleResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?artist=${username}&_locale=${locale}`)
   if (articleResponse.status === 200) {
     articles = await articleResponse.json();
   }
