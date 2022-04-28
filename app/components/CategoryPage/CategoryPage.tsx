@@ -11,6 +11,7 @@ import { NavBarItem } from '../../models/NavBarItem';
 import { useState } from 'react';
 import { UserContext } from '../../contexts/user-context'
 import { Button } from 'react-activity-feed/dist/components/Button';
+import { TabPanel } from '@material-ui/lab';
 
 export default function CategoryPage({ category, navBarItems }: { category: Category, navBarItems: NavBarItem[] }) {
   const s = styles();
@@ -75,31 +76,30 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       {!router.isFallback &&
         <>
           <div className={s.headerDiv}>
-            <Typography className={s.header} variant="h1">Läs om konst</Typography>
+            <Typography className={s.header} variant="h1">{t('readAboutArt')}</Typography>
           </div>
           <div className={s.subheaderDiv}>
-            <Typography>
-              All konst bär på en historia. Här hittar du artiklar om konst, konstnärer och annat aktuellt i konstvärlden. Djupdyk i det som intresserar just dig och läs mer om personen bakom verket.</Typography>
+            <Typography variant="h4" className={s.subHeader}>
+              {t('subHeader')}
+              </Typography>
           </div>
           <div className={s.tabsContainer}>
-          <Tabs
-          className={s.artistTab}
-            value={value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleChange}
-            aria-label="disabled tabs example"
-            variant={"scrollable"}
-            scrollButtons={"on"}
-          >
-            {subjectOptions.map((option) => (
-              <Tab className={s.text} key={option.value} value={option.value} label={option.label} onClick={() => router.push(option.value)} />
+            <Tabs
+              className={s.artistTab}
+              value={value}
+              onChange={handleChange}
+              aria-label="disabled tabs example"
+              variant={"scrollable"}
+              scrollButtons={"on"}
+            >
+              {subjectOptions.map((option) => (
+                <Tab className={s.text} key={option.value} value={option.value} label={option.label} onClick={() => router.push(option.value)} />
 
-            ))}
-            {(isSignedIn.value) &&
-              <Tab className={s.text} key="hej" value="/medlemserbjudande" label="Medlemserbjudande" onClick={() => router.push('/artiklar')} />
-            }
-          </Tabs>
+              ))}
+              {(isSignedIn.value) &&
+                <Tab className={s.text} key="hej" value="/medlemserbjudande" label="Medlemserbjudande" onClick={() => router.push('/artiklar')} />
+              }
+            </Tabs>
           </div>
           <div className={s.flex}>
             {array.map((article) => {

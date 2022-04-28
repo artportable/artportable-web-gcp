@@ -32,10 +32,22 @@ export const styles = makeStyles((theme: Theme) =>
     },
     subheaderDiv: {
       maxWidth: '800px',
-      marginBottom: '30px',
+      marginBottom: '15px'
+    },
+    subHeader: {
+      margin: theme.spacing(1, 0,),
+      marginBottom: theme.spacing(2),
+      fontSize: '12pt',
+      lineHeight: '1.38',
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '1.3rem',
+      },
+      [theme.breakpoints.up('md')]: {
+        marginBottom: theme.spacing(3),
+      }
     },
     tabsContainer: {
-      marginBottom: '50px'
+      marginBottom: '40px'
     },
     artistTab: {
       '& .MuiTabs-scroller': {

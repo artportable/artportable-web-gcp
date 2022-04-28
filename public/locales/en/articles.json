@@ -7,10 +7,12 @@
   "artistPortrait": "ARTIST PORTRAIT",
   "writer": "Writer",
   "tagLine": "Buy original artwork at",
-  "description": "Read our artist portraits, editorial texts and tips",
-  "title": "Articles - read our articles completely free",
+  "description": "Artist portraits, editorial texts and tips",
+  "title": "Articles - art in focus",
   "moreArticlesMenu": "MORE ARTICLES",
   "moreArticles": "More articles",
   "offers": "OFFERS",
-  "membershipOffers": "MEMBERSHIP OFFERS"
+  "membershipOffers": "MEMBERSHIP OFFERS",
+  "subHeader": "Every piece of art tells a story. Find articles about art, artists, and other topics from the art world. Immerse yourself in what interests you the most and read more about the person behind the work.",
+  "readAboutArt": "Read about art"
 }
