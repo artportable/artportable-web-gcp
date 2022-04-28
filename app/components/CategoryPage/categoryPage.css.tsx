@@ -23,32 +23,49 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'row',
       },
     },
-    categories: {
-      display: 'flex',
-      // ...rowGap(16),
+    headerDiv: {
+      marginTop: '40px',
+      marginBottom: '15px'
     },
-    categoryHeading: {
-      fontWeight: 500,
-      marginBottom: '25px',
-      paddingBottom: '10px',
-      borderBottom: '5px solid var(--ion-color-tertiary)',
-      lineHeight: '10px',
-      fontSize: '1rem',
+    header: {
+      fontWeight: 600,
+    },
+    subheaderDiv: {
+      maxWidth: '800px',
+      marginBottom: '15px'
+    },
+    subHeader: {
+      margin: theme.spacing(1, 0,),
+      marginBottom: theme.spacing(2),
+      fontSize: '12pt',
+      lineHeight: '1.38',
       [theme.breakpoints.up('sm')]: {
-        fontSize: '1.45rem',
-        marginTop: theme.spacing(2),
+        fontSize: '1.3rem',
       },
+      [theme.breakpoints.up('md')]: {
+        marginBottom: theme.spacing(3),
+      }
     },
-    underline: {
-      backgroundColor: 'pink',
-      height: '3px',
+    tabsContainer: {
+      marginBottom: '40px'
     },
-    categoryHeadingSecondary: {
-      fontWeight: 400,
-      fontSize: '1rem',
-      [theme.breakpoints.up('sm')]: {
-        fontSize: '1.45rem',
+    artistTab: {
+      '& .MuiTabs-scroller': {
+        flexGrow: "0",
       },
+      '& .MuiTab-root': {
+        minWidth: 0,
+      },
+      '& .MuiTabScrollButton-root': {
+        width: 'unset',
+        opacity: '0.8',
+      },
+      justifyContent: "center",
+      width: '100%',
+      marginTop: '45px',
+    },
+    text: {
+      minWidth: 0,
     },
     headline: {
       textDecoration: 'underline',
@@ -93,6 +110,22 @@ export const styles = makeStyles((theme: Theme) =>
  
       },
       color: '#000'
-    }
+    },
+    [theme.breakpoints.up('lg')]: {
+      artistTab: {
+        '& .MuiTabScrollButton-root': {
+          display: 'none',
+        },
+      },
+    },
+    [theme.breakpoints.up('lgPlus')]: {
+    artistTab: {
+      marginLeft: '0',
+      marginTop: '0',
+      '& .MuiTabScrollButton-root': {
+        display: 'none',
+      },
+    },
+  },
   }),
 );

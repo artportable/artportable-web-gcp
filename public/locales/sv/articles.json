@@ -7,10 +7,13 @@
   "artistPortrait": "KONSTNÄRSPORTRÄTT",
   "writer": "Skribent",
   "tagLine": "Hitta din originalkonst på",
-  "description": "Ta del av konstnärsporträtt, redaktionella texter och tips",
-  "title": "Artiklar - läs våra artiklar helt kostnadsfritt",
+  "description": "Konstnärsporträtt, redaktionella texter och tips",
+  "title": "Artiklar - konst i fokus",
   "moreArticlesMenu": "FLER ARTIKLAR",
   "moreArticles": "Fler artiklar",
   "offers": "ERBJUDANDEN",
-  "membershipOffers": "MEDLEMSERBJUDANDEN"
+  "membershipOffers": "MEDLEMSERBJUDANDEN",
+  "withArtInFocus": " - med konst i fokus",
+  "subHeader": "All konst bär på en historia. Här hittar du artiklar om konst, konstnärer och annat aktuellt i konstvärlden. Djupdyk i det som intresserar just dig och läs mer om personen bakom verket.",
+  "readAboutArt": "Läs om konst"
 }
