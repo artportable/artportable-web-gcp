@@ -1,4 +1,4 @@
 {
   "pleaseTryAgain" : "Failed to open up channel, please try again later",
-  "referToArtwork" : "Hello {{artwork.creator}}!\nI saw your artwork [{{artwork.title}}]({{artwork.url}}) and wanted to connect"
+  "referToArtwork" : "Purchase request\n[{{artwork.title}}]({{artwork.url}})"
 }

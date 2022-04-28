@@ -57,7 +57,6 @@ export default function IndexHero() {
     }));
   }, [])
 
-
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
