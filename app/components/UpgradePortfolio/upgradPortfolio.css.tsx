@@ -7,12 +7,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
     dialogHeight: {
       '&.MuiDialog-paperScrollPaper': {
-      height: '1000px'
+        height: '1000px'
       },
     },
     upgradeButton: {
-      display: 'none'
-  },
+      display: 'none',
+      width: '137px'
+    },
     closeButton: {
       position: 'absolute',
       right: theme.spacing(1),
@@ -26,8 +27,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     spacingBottom: {
       paddingBottom: theme.spacing(5),
-     },
-     [theme.breakpoints.up('sm')]: {
+    },
+    [theme.breakpoints.up('sm')]: {
       upgradeButton: {
         whiteSpace: 'nowrap',
         display: 'initial'
