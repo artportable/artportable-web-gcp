@@ -21,5 +21,6 @@
   "somethinWentWrongText": "Please try again, if the problem exist please send us an email at and we will help you as soon as possible.",
   "sendEmailToArtist": "Send an email to the artist",
   "yourEmail": "Your email",
-  "logIntoSendChatMessages": "Log in to send the purchase request in the chat"
+  "logIntoSendChatMessages": "Log in to send the purchase request in the chat",
+  "deleteArtwork": "Delete artwork?"
 }
