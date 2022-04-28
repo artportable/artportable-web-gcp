@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { Box, Link, Typography } from '@material-ui/core';
+import { useContext, useEffect } from 'react'
+import { Box, Link, Menu, MenuItem, Tab, Tabs, TextField, Typography } from '@material-ui/core';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -10,6 +10,7 @@ import MuiButton from '@material-ui/core/Button'
 import { NavBarItem } from '../../models/NavBarItem';
 import { useState } from 'react';
 import { UserContext } from '../../contexts/user-context'
+import { Button } from 'react-activity-feed/dist/components/Button';
 
 export default function CategoryPage({ category, navBarItems }: { category: Category, navBarItems: NavBarItem[] }) {
   const s = styles();
@@ -19,26 +20,49 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const canonicalURL = publicUrl + router.asPath;
   const { isSignedIn } = useContext(UserContext);
 
+  useEffect(() => {
+    setArray(category?.articles);
+  }, [router.push])
+
   // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
   const [array, setArray] = useState(category?.articles);
   array.sort((x, y) => +new Date(x.published_at) - +new Date(y.published_at));
   array.sort((a, b) => 0 - (a.published_at > b.published_at ? 1 : -1));
 
-  {
-    category.name === 'Artiklar' || category.name === 'Stories' ?
-      <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
-        {t('latest')}
-      </Typography>
-      :
-      <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
-        {category.name}<span className={s.underline}></span>
-      </Typography>
-  }
+  const [value, setValue] = useState(1);
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const subjectOptions = [
+
+    {
+      value: '/artiklar',
+      label: t('articles'),
+    },
+    {
+      value: '/redaktionellt',
+      label: t('editorial')
+    },
+    {
+      value: '/konstnaersportraett',
+      label: t('artistPortrait')
+    },
+    {
+      value: '/erbjudanden',
+      label: t('offers')
+    },
+    {
+      value: '/flerartiklar',
+      label: t('moreArticlesMenu')
+    },
+  ];
 
   return (
     <Main navBarItems={navBarItems}>
       <Head>
-        <meta name="title" content={t('title')} />
+        <meta name="title" content={t('title', 'withArtInFocus')} />
         <meta name="description" content={t('description')} />
         <meta name="url" content="https://artportable.com/artiklar" />
 
@@ -50,61 +74,32 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       }
       {!router.isFallback &&
         <>
+          <div className={s.headerDiv}>
+            <Typography className={s.header} variant="h1">Läs om konst</Typography>
+          </div>
+          <div className={s.subheaderDiv}>
+            <Typography>
+              All konst bär på en historia. Här hittar du artiklar om konst, konstnärer och annat aktuellt i konstvärlden. Djupdyk i det som intresserar just dig och läs mer om personen bakom verket.</Typography>
+          </div>
+          <div className={s.tabsContainer}>
+          <Tabs
+          className={s.artistTab}
+            value={value}
+            indicatorColor="primary"
+            textColor="primary"
+            onChange={handleChange}
+            aria-label="disabled tabs example"
+            variant={"scrollable"}
+            scrollButtons={"on"}
+          >
+            {subjectOptions.map((option) => (
+              <Tab className={s.text} key={option.value} value={option.value} label={option.label} onClick={() => router.push(option.value)} />
 
-          <div>
-            <>
-              <div className={s.categories}>
-                {
-                  // category.name === 'Artiklar' || category.name === 'Stories' ?
-                  //   <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
-                  //     {t('latest')}
-                  //   </Typography>
-                  //   :
-                  category.name === 'Flerartiklar' || category.name === 'Morearticles' ?
-                    <Typography className={s.categoryHeading} component="h1" variant={'h3'}>
-                      {t('moreArticles')}
-                    </Typography>
-                    :
-                    <Typography className={s.categoryHeading} component="h3" variant={'h3'}>
-                      {category.name}<span className={s.underline}></span>
-                    </Typography>
-                }
-              </div>
-              <div className={s.menuFlex}>
-                <Link className={s.link} href="/artiklar">
-                  <MuiButton color="default" size="small">
-                    {t('articles')}
-                  </MuiButton>
-                </Link>
-                <Link className={s.link} href="/redaktionellt">
-                  <MuiButton color="default" size="small">
-                    {t('editorial')}
-                  </MuiButton>
-                </Link>
-                <Link className={s.link} href="/konstnaersportraett">
-                  <MuiButton color="default" size="small">
-                    {t('artistPortrait')}
-                  </MuiButton>
-                </Link>
-                <Link className={s.link} href="/erbjudanden">
-                  <MuiButton color="default" size="small">
-                    {t('offers')}
-                  </MuiButton>
-                </Link>
-                {(isSignedIn.value) &&
-                 <Link className={s.link} href="/medlemserbjudanden">
-                 <MuiButton color="default" size="small">
-                   {t('membershipOffers')}
-                 </MuiButton>
-               </Link>
-                }
-                <Link className={s.link} href="/flerartiklar">
-                  <MuiButton color="default" size="small">
-                    {t('moreArticlesMenu')}
-                  </MuiButton>
-                </Link>
-              </div>
-            </>
+            ))}
+            {(isSignedIn.value) &&
+              <Tab className={s.text} key="hej" value="/medlemserbjudande" label="Medlemserbjudande" onClick={() => router.push('/artiklar')} />
+            }
+          </Tabs>
           </div>
           <div className={s.flex}>
             {array.map((article) => {
