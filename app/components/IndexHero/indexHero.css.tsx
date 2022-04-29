@@ -20,7 +20,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexWrap: 'nowrap',
       padding: '0, 5px',
       
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('mdPlus')]: {
         padding: '0',
         flexDirection: 'row',
         ...columnGap(0),
@@ -49,6 +49,12 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('md')]: {
         textAlign: 'initial',
         margin: theme.spacing(0, 0, 4, 4),
+        placeItems: 'center',
+      },
+      [theme.breakpoints.up('mdPlus')]: {
+        textAlign: 'initial',
+        margin: theme.spacing(0, 0, 4, 4),
+        placeItems: 'flex-start',
       }
     },
     headline: {
@@ -87,8 +93,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up('md')]: {
         marginBottom: theme.spacing(3),
-      }
-    },
+        textAlign: 'center',
+      },
+      [theme.breakpoints.up('mdPlus')]: {
+        textAlign: 'left',
+      }, 
+  },
     right: {
       display: 'flex',
       flexDirection: 'column',
@@ -133,24 +143,55 @@ export const styles = makeStyles((theme: Theme) =>
     },
     
     paintingContainer: {
-
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',
       alignItems: 'flex-end',
-      gap: theme.spacing(1),
       margin: '0 20px',
       [theme.breakpoints.up('sm')]: {
 
       },
+    },
+    frame: {
+      listStyle: 'none',
+      listStyleType: 'none',
+      margin: '0px',
+      textAlign: 'center',
+      display: 'inline-block',
+      padding: '15px 15px 10px 15px',
+      borderWidth: '10px',
+      borderStyle: 'solid',
+      borderColor: '#1F1E1E #292828 #292828 #272626',
+      background: '#F5F5F5',
       [theme.breakpoints.up('smPlus')]: {
-
+        borderWidth: '15px',
+        padding: '30px 30px 25px 30px',
       },
+      backgroundImage: 'linear-gradient(#FFFEF8, #F3F3F1)',
+      filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))',
+      position: 'relative',
+      overflow: 'hidden',
+      '& :before': {
+        content: '""',
+        position: 'absolute',
+        top: '-175px',
+        right: '-20%',
+        width: '400px',
+        height: '400px',
+        transform: 'rotateZ(-40deg)',
+        backgroundImage: 'linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,0))',
+      },
+    },
+    image: {
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      borderColor: '#BBBAB4 #C7C7BF #E5E4DF #C7C7BF',
+      boxShadow: '0 -1px 1px rgba(0,0,0,.1), 0 1px 1px 1px rgba(255,255,255,.7)',
+      maxWidth: '100%',
     },
     boosted: {
       display: 'block',
       objectFit: 'contain',
-      maxHeight: '800px',
       maxWidth: '100%',
       filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))'
     },
@@ -195,38 +236,25 @@ export const styles = makeStyles((theme: Theme) =>
         marginRight: theme.spacing(2),
       },
     },
-    
 
     [theme.breakpoints.up('sm')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.sm.wide
       },
-      // paintingContainer: {
-      //   width: '250px',
-      // },
     },
     [theme.breakpoints.up('smPlus')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.smPlus.wide,
-      },
-      paintingContainer: {
-        width: '380px',
       },
     },
     [theme.breakpoints.up('md')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.md.wide,
       },
-      paintingContainer: {
-        width: '250px',
-      },
     },
     [theme.breakpoints.up('mdPlus')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.mdPlus.wide,
-      },
-      paintingContainer: {
-        width: '300px',
       },
     },
     [theme.breakpoints.up('lg')]: {
@@ -234,7 +262,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: theme.breakpointMainWidths.lg.wide,
       },
       paintingContainer: {
-        width: '400px',
+        width: '600px',
       },
     }, 
   })
