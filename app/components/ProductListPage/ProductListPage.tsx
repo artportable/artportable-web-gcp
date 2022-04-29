@@ -210,7 +210,9 @@ export default function ProductListPage({ productList, navBarItems }: { productL
                     <div className={s.textDiv}>
                       <Typography className={s.header} variant="h1">{productList?.title}</Typography>
                     </div>
+                    <div className={s.flexDescription}>
                     <div className={s.topDescription} dangerouslySetInnerHTML={{ __html: productList?.topDescription }} />
+                    </div>
                     <div className={s.buttonDiv}>
                       {toggleButton ?
                         <Button

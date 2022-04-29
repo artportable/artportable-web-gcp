@@ -5,6 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     header: {
       fontSize: '40px',
       fontWeight: 600,
+      lineHeight: '36px'
     },
     container: {
       marginTop: '-40px',
@@ -88,6 +89,10 @@ export const styles = makeStyles((theme: Theme) =>
       placeContent: 'center',
       marginBottom: '20px',
     },
+    flexDescription: {
+      display: 'flex',
+      justifyContent: 'flex-end'
+    },
     topDescription: {
       '& p': {
         '& span': {
@@ -134,6 +139,12 @@ export const styles = makeStyles((theme: Theme) =>
         paddingLeft: '50px',
       },
     },
+    [theme.breakpoints.up('sm')]: {
+      header: {
+      fontSize: '67px',
+      lineHeight: '60px'
+      }
+    },
     [theme.breakpoints.up('md')]: {
       businessImage: {
         marginBottom: "24px"
@@ -170,12 +181,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
       header: {
         marginTop: '-15px',
+        fontSize: '100px',
+        textAlign: 'right',
+        lineHeight: '93px'
+
       },
       accordionDiv: {
-        paddingRight: theme.spacing(12),
         maxWidth: '1000px',
         marginTop: '0px',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        paddingRight: '30px'
       },
       topDescription: {
         paddingRight: theme.spacing(0),
