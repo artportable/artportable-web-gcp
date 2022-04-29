@@ -55,20 +55,20 @@ export default function Plans({ priceData }) {
   const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
-  const priceDataWithPremium: PriceData[] = [...priceData, {
-    id: "premium",
-    product: "portfolioPremium",
-    productKey: "portfolioPremium",
-    currency: "sek",
-    recurringInterval: "month",
-  }, {
-    id: "premium",
-    product: "portfolioPremium",
-    productKey: "portfolioPremium",
-    currency: "sek",
-    recurringInterval: "year",
-    amount: 4500,
-  }];
+  // const priceDataWithPremium: PriceData[] = [...priceData, {
+  //   id: "premium",
+  //   product: "portfolioPremium",
+  //   productKey: "portfolioPremium",
+  //   currency: "sek",
+  //   recurringInterval: "month",
+  // }, {
+  //   id: "premium",
+  //   product: "portfolioPremium",
+  //   productKey: "portfolioPremium",
+  //   currency: "sek",
+  //   recurringInterval: "year",
+  //   amount: 4500,
+  // }];
 
   
 const noPhonenumber = () => {
@@ -78,7 +78,7 @@ const noPhonenumber = () => {
   )
 }
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
-  plans.push("portfolioPremium");
+  // plans.push("portfolioPremium");
 
   function redirectCreatedUser(plan, isArtist) {
     dispatch({
@@ -162,8 +162,8 @@ const noPhonenumber = () => {
               plan = 'free';
               isArtist = true;
             }
-            const p = priceDataWithPremium.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
-            redirectCreatedUser(p,isArtist)
+            const p = priceData.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
+            p ?? redirectCreatedUser(p,isArtist)
 
           }else{
             setLoading(false);
