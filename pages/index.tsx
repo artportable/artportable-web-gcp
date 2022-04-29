@@ -169,7 +169,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <DiscoverTopArtTab
+                <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -180,7 +180,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
-                <DiscoverTrendingArtTab
+                <DiscoverTopArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -188,11 +188,10 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
-
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
-                <DiscoverArtTab
+                <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -203,7 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                <DiscoverLatestArtTab
+                <DiscoverArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
