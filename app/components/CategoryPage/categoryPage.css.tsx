@@ -47,7 +47,7 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     tabsContainer: {
-      marginBottom: '40px'
+      marginBottom: '20px'
     },
     artistTab: {
       '& .MuiTabs-scroller': {
@@ -62,7 +62,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       justifyContent: "center",
       width: '100%',
-      marginTop: '45px',
+      // marginTop: '45px',
     },
     text: {
       minWidth: 0,
@@ -112,10 +112,15 @@ export const styles = makeStyles((theme: Theme) =>
       color: '#000'
     },
     [theme.breakpoints.up('lg')]: {
+     
       artistTab: {
+        marginTop: '45px',
         '& .MuiTabScrollButton-root': {
           display: 'none',
         },
+      },
+      tabsContainer: {
+        marginBottom: '40px'
       },
     },
     [theme.breakpoints.up('lgPlus')]: {
