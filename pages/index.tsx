@@ -146,10 +146,10 @@ export default function DiscoverPage({ navBarItems }) {
                 scrollButtons={"on"}
               >
                 <Tab className={s.text} label={t('discover:highlights')} {...a11yProps(t('discover:highlights'))} />
-                <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
                 <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))} />
-                <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
+                <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
                 <Tab className={s.text} label={t('discover:latestArt')} {...a11yProps(t('discover:latestArt'))} />
+                <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
                 <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
                 <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
                 <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
@@ -169,7 +169,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <DiscoverTopArtTab
+                <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -180,7 +180,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
-                <DiscoverTrendingArtTab
+                <DiscoverTopArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -188,11 +188,10 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
-
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
-                <DiscoverArtTab
+                <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -203,7 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                <DiscoverLatestArtTab
+                <DiscoverArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
