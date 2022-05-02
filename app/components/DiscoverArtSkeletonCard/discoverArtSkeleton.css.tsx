@@ -40,6 +40,42 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden'
-    }
+    },
+    Skeleton1: {
+      backgroundColor: '#C67777',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
+    Skeleton2: {
+      backgroundColor: '#F5FFC6',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
+    Skeleton3: {
+      backgroundColor: '#B4E1FF',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
+    Skeleton4: {
+      backgroundColor: '#AB87FF',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
+    Skeleton5: {
+      backgroundColor: '#A0AF84',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
+    Skeleton6: {
+      backgroundColor: '#A0AF84',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      textAlign: 'center'
+    },
   }),
 );

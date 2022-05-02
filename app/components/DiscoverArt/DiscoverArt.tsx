@@ -60,7 +60,7 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
     {
       Name: "Skeleton1",
       Width: 16,
-      Height: 9
+      Height: 9,
     },
     {
       Name: "Skeleton2",
@@ -159,7 +159,8 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
                     return <DiscoverArtSkeleton
                       key={image.Name}
                       width={image.Width}
-                      height={image.Height} />
+                      height={image.Height}
+                      name={image.Name} />
                   })}
                 </div>
               }
@@ -171,7 +172,8 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
                     return <DiscoverArtSkeleton
                       key={image.Name}
                       width={image.Width}
-                      height={image.Height} />
+                      height={image.Height}
+                      name={image.Name} />
                   })}
                 </div>
               }
@@ -204,7 +206,8 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
                   return <DiscoverArtSkeleton
                     key={image.Name}
                     width={image.Width}
-                    height={image.Height} />
+                    height={image.Height} 
+                    name={image.Name}/>
                 })}
               </div>
             }
