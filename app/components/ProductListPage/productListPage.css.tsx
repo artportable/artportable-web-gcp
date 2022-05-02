@@ -3,9 +3,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     header: {
-      fontSize: '40px',
+      fontSize: '31px',
       fontWeight: 600,
-      lineHeight: '36px'
+      lineHeight: '32px'
     },
     container: {
       marginTop: '-40px',
@@ -141,8 +141,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('sm')]: {
       header: {
-      fontSize: '67px',
-      lineHeight: '60px'
+      fontSize: '44px',
+      lineHeight: '43px'
       }
     },
     [theme.breakpoints.up('md')]: {
@@ -181,9 +181,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       header: {
         marginTop: '-15px',
-        fontSize: '100px',
+        fontSize: '65px',
         textAlign: 'right',
-        lineHeight: '93px'
+        lineHeight: '63px'
 
       },
       accordionDiv: {
