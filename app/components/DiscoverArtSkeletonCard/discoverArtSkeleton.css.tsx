@@ -40,6 +40,6 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
       overflow: 'hidden'
-    }
+    },
   }),
 );
