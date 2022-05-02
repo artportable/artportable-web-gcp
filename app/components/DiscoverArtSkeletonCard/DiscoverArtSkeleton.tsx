@@ -9,36 +9,25 @@ import { Skeleton } from "@material-ui/lab";
 export default function DiscoverArtSkeleton({width, height, name}) {
   const s = styles();
 
-  // function userToClass(name){
-  //   let userClass = '';
-  //   if(name === 'Skeleton1') {
-  //      userClass = 'left';
-  //   }
-  //   else 
-  //      userClass = 'right';
-  //   }
-  
-  //   return userClass ;
-  // }
-
-
   return (
     <div className={s.container}>
       {/* <div className={userToClass(item.name)}> */}
-      <div className={s.imageContainer} style={
-      name === 'Skeleton1' ? {backgroundColor:"#C67777"} : 
-      name === 'Skeleton2' ? {backgroundColor:"#E1D1C5"} : 
-      name === 'Skeleton3' ? {backgroundColor:"#A35D5D"} :
-      name === 'Skeleton4' ? {backgroundColor:"#48423D"} :
-      name === 'Skeleton5' ? {backgroundColor:"#C67777"} :
-      name === 'Skeleton5' ? {backgroundColor:"#A35D5D"} :
-      {}}>
-      <Skeleton variant="rect" width={width} height={height} animation='pulse' />
+      <div className={s.imageContainer} >
+      <Skeleton variant="rect" width={width} height={height} style={
+      name === 'Skeleton1' ? {backgroundColor:"#F7DAD6"} : 
+      name === 'Skeleton2' ? {backgroundColor:"#FFF8B4"} : 
+      name === 'Skeleton3' ? {backgroundColor:"#D8C7B9"} :
+      name === 'Skeleton4' ? {backgroundColor:"#C7D0B3"} :
+      name === 'Skeleton5' ? {backgroundColor:"#FFF8B4"} :
+      name === 'Skeleton6' ? {backgroundColor:"#F7DAD6"} :
+      {}}/>
       </div>
       <div className={s.titleAndLike}>
-        <div className={s.title}><Skeleton variant="text" width={width/3}/></div>
+        <div className={s.title}>
+          <Skeleton variant="text" width={width/3}/>
+        </div>
         <div className={s.like}>
-            <Skeleton variant="text" width={20} />
+            <Skeleton variant="text" width={20}/>
         </div>
       </div>
     </div>
