@@ -52,6 +52,14 @@ export default function ZendeskForm() {
       value: 'report@artportable',
       label: t('report')
     },
+     {
+      value: 'report@artportable',
+      label: t('report')
+    },
+    {
+      value: 'report@artportable',
+      label: t('other')
+    },
   ];
 
   useEffect(() => {
