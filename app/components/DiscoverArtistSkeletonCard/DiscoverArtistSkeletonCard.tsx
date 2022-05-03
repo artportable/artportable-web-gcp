@@ -47,13 +47,13 @@ export default function DiscoverArtistSkeletonCard() {
     <div className={s.container}>
       <div className={s.header}>
         <div className={s.avatarContainer}>
-          <Skeleton variant="circle">
+          <Skeleton variant="circle" className={s.skeletonColor}>
             <Avatar className={s.avatar} />
           </Skeleton>
           <div className={s.text}>
-            <Skeleton variant="text" width={40}></Skeleton>
-            <Skeleton variant="text" width={70}></Skeleton>
-            <Skeleton variant="text" width={150}></Skeleton>
+            <Skeleton variant="text" width={40} className={s.skeletonColor}></Skeleton>
+            <Skeleton variant="text" width={70} className={s.skeletonColor}></Skeleton>
+            <Skeleton variant="text" width={150} className={s.skeletonColor}></Skeleton>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@ export default function DiscoverArtistSkeletonCard() {
           {images.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <Skeleton variant="rect" width={image.Width} height={image.Height} />
+                <Skeleton variant="rect" width={image.Width} height={image.Height} className={s.skeletonColor}/>
               </Paper>
             </div>
           )}
