@@ -37,15 +37,15 @@ export default function ZendeskForm() {
   const subjectOptions = [
 
     {
-      value: 'support@artportable.com',
+      value: 'salest@artportable.com',
       label: t('marketing'),
     },
     {
-      value: 'invoice@artportable.com',
+      value: 'sales@artportable.com',
       label: t('exhibition')
     },
     {
-      value: 'production@artportable.com',
+      value: 'support@artportable.com',
       label: t('subscription')
     },
     {
@@ -53,7 +53,7 @@ export default function ZendeskForm() {
       label: t('report')
     },
     {
-      value: 'report@artportable',
+      value: 'support@artportable',
       label: t('other')
     },
   ];
