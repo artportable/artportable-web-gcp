@@ -38,21 +38,17 @@ export default function ZendeskForm() {
 
     {
       value: 'support@artportable.com',
-      label: t('support'),
+      label: t('marketing'),
     },
     {
       value: 'invoice@artportable.com',
-      label: t('economy')
+      label: t('exhibition')
     },
     {
       value: 'production@artportable.com',
-      label: t('production')
+      label: t('subscription')
     },
     {
-      value: 'report@artportable',
-      label: t('report')
-    },
-     {
       value: 'report@artportable',
       label: t('report')
     },
