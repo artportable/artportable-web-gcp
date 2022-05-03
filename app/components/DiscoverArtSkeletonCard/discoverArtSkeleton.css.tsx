@@ -41,5 +41,8 @@ export const styles = makeStyles((theme: Theme) =>
       textOverflow: 'ellipsis',
       overflow: 'hidden'
     },
+    skeletonColor: {
+      backgroundColor: 'var(--skeleton-color)'
+    },
   }),
 );
