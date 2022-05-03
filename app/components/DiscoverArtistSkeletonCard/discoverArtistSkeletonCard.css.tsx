@@ -54,5 +54,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       marginLeft: "30px"
     },
+    skeletonColor: {
+      backgroundColor: 'var(--skeleton-color)'
+    },
   }),
 );
