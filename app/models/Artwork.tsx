@@ -18,7 +18,10 @@ export interface Artwork {
   TertiaryFile: Image
   Tags: Array<any>,
   Likes: number,
-  LikedByMe: boolean
+  LikedByMe: boolean,
+  Name: string,
+  Surname: string,
+  Username: string
 }
 
 export interface ArtworkForCreation {
