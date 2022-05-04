@@ -37,6 +37,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   const s = styles();
   const dispatch = useDispatch();
   const href = plan.product === "free" ? "feed" : "/checkout";
+
   // const [isHref, setIsHref] = useState(true);
   // const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
 
@@ -149,7 +150,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   const addNumber = () => {
     if (validateAllFields()) {
       phone.value = formData.phone.value;
-      console.log(formData.phone.value)
+      // console.log(formData.phone.value)
     }
   };
 
@@ -160,8 +161,8 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
       setHideTabs(true)
       event.stopPropagation();
       event.preventDefault();
-      console.log(phone.value)
-      console.log(numberExists)
+      // console.log(phone.value)
+      // console.log(numberExists)
       return onNavClick();
     }
     return onNavClick();

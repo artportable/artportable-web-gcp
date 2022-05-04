@@ -78,7 +78,7 @@ const noPhonenumber = () => {
   )
 }
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
-  // plans.push("portfolioPremium");
+    // plans.push("portfolioPremium");
 
   function redirectCreatedUser(plan, isArtist) {
     dispatch({
@@ -110,8 +110,9 @@ const noPhonenumber = () => {
         });
         router.push('/checkout')
         break
-      case 'portfoliopremium':
+      case 'portfolioPremium':
         trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM_COMPLETED, CategoryType.BUY);
+        console.log('premium')
         zapierLeadPremium({
           artistArtEnthusiast: "artist",
           name: { value: given_name.value + ' ' + family_name.value } ?? '',
@@ -119,7 +120,7 @@ const noPhonenumber = () => {
           email: { value: email.value } ?? '',
           url: window.location.href
         });
-        router.push('/')
+        router.push('/checkout')
         break
     }
   }
