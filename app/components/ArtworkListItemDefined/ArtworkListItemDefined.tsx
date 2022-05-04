@@ -84,9 +84,13 @@ export default function ArtworkListItemDefined({
       </div>
       <div className={s.titleAndLike}>
         <div className={s.info}>
+          <Link href={`/profile/@${artwork.Username}`}>
+            <a>
           <div className={s.name}>
             {`${artwork.Name} ${artwork.Surname}`}
           </div>
+          </a>
+          </Link>
           <div className={s.title}>
             {artwork.Title ? artwork.Title : t('untitled')}
             <span className={s.size}>
