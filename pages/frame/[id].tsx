@@ -41,6 +41,9 @@ export default function Frame(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
       <div>
+        <div dangerouslySetInnerHTML={{__html:'<div id="frameEngine"></div>'}} suppressHydrationWarning>
+
+        </div>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -55,9 +58,7 @@ export default function Frame(props) {
 
             document.getElementsByTagName("body")[0].appendChild(feScript)
             document.getElementsByTagName("head")[0].appendChild(feStyle)
-            const feDiv = document.createElement('div');
-    feDiv.setAttribute("id", "frameEngine");
-    document.getElementsByTagName("body")[0].appendChild(feDiv)
+
 
 
 const getFrameProducts = async () => {
@@ -98,7 +99,9 @@ const onTrackingEvent = async (type, data) => {
     </Main>
   );
 }
-
+// const feDiv = document.createElement('div');
+// feDiv.setAttribute("id", "frameEngine");
+// document.getElementsByTagName("body")[0].appendChild(feDiv)
 
 export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
