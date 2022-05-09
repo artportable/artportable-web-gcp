@@ -22,10 +22,42 @@ export default function Frame(props) {
   const navBarItems = props.navBarItems;
   const canonicalURL = publicUrl + router.asPath;
 
+  const emptyPromise = () => new Promise(r => r([]));
+
+  const onDownloadImage = async (image: Blob) => {
+    console.log(image);
+  };
+
+  const onTrackingEvent = async (type: string, data: any) => {
+    console.log(`Track: ${type}, data: "${JSON.stringify(data)}"`);
+  };
+
+  const start = () => {
+    //@ts-ignore
+    const frameEngine = window.frameEngine as any;
+
+    if (frameEngine?.update) {
+      frameEngine.update({
+        ...frameEngineConfig,
+        getFrameProducts: emptyPromise,
+        getFrameProductsByType: emptyPromise,
+        onDownloadImage,
+        onTrackingEvent,
+      });
+
+      frameEngine.maximize();
+    } else {
+      setTimeout(start, 250);
+    }
+  };
+
+  useEffect(() => {
+    start();
+  }, [])
+
   const { id } = router.query
   const { username, socialId } = useContext(UserContext);
   const artwork = useGetArtwork(id as string, username.value);
-  // const DynamicComponent = dynamic(() => import('../../styles/'))
 
   return (
     <Main wide navBarItems={navBarItems}>
@@ -41,9 +73,7 @@ export default function Frame(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
       <div>
-        <div dangerouslySetInnerHTML={{__html:'<div id="frameEngine"></div>'}} suppressHydrationWarning>
-
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: '<div id="frameEngine"></div>' }} suppressHydrationWarning />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -58,50 +88,12 @@ export default function Frame(props) {
 
             document.getElementsByTagName("body")[0].appendChild(feScript)
             document.getElementsByTagName("head")[0].appendChild(feStyle)
-
-
-
-const getFrameProducts = async () => {
-  return new Promise((resolve) => {
-    resolve([]);
-  });
-};
-
-const getFrameProductsByType = async () => {
-  return new Promise((resolve) => {
-    resolve([]);
-  });
-};
-
-const onDownloadImage = (image) => {
-  console.log(image);
-};
-
-const onTrackingEvent = async (type, data) => {
-};
-            
-            const start = () => {
-              if (window.frameEngine && window.frameEngine.update) {
-                  window.frameEngine.update({...JSON.parse('${JSON.stringify(frameEngineConfig)}'),   getFrameProducts,
-                  getFrameProductsByType,
-                  onDownloadImage,
-                  onTrackingEvent, });
-                  window.frameEngine.maximize();
-              } else {
-                  setTimeout(start, 250);
-              }
-          };
-      
-          start();`
+          `
           }} />
-
       </div>
     </Main>
   );
 }
-// const feDiv = document.createElement('div');
-// feDiv.setAttribute("id", "frameEngine");
-// document.getElementsByTagName("body")[0].appendChild(feDiv)
 
 export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
