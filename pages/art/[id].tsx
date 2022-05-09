@@ -69,7 +69,7 @@ export default function ArtworkPage(props) {
     setIsLiked(artwork?.data?.LikedByMe);
   }, [artwork?.data]);
 
-  function togglePurchaseRequestDialog(){
+  function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
   }
 
@@ -235,6 +235,16 @@ export default function ArtworkPage(props) {
                     <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
                   }
                 </div>
+
+                {username.value === artwork.data.Owner.Username &&
+                  <div>
+                    <a href={`/frame/${artwork.data.Id}`}>
+                      <Button>
+                        Ramverkstad
+                      </Button>
+                    </a>
+                  </div>
+                }
               </div>
 
               <Box textAlign="center" marginY={4} className={s.text}>
@@ -292,7 +302,7 @@ export default function ArtworkPage(props) {
 export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
-  const navBarItems = await getNavBarItems(); 
+  const navBarItems = await getNavBarItems();
 
   try {
     const artworkResponse = await fetchWithTimeout(url.href, {
@@ -301,7 +311,7 @@ export async function getServerSideProps({ locale, params }) {
 
     });
     const artwork = await artworkResponse.json();
- 
+
     return {
       props: {
         // fetch timeout
