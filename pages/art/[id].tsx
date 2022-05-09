@@ -238,7 +238,7 @@ export default function ArtworkPage(props) {
 
                 {username.value === artwork.data.Owner.Username &&
                   <div>
-                    <a href={`/frame/${artwork.data.Id}`}>
+                    <a href={`/tool/${artwork.data.Id}`}>
                       <Button>
                         Ramverkstad
                       </Button>
