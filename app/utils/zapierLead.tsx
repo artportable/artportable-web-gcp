@@ -7,6 +7,8 @@ const zapierPremiumApiUrl = process.env.NEXT_PUBLIC_ZAPIER_PREMIUM
 const zapierFreeTrialApiUrl = process.env.NEXT_PUBLIC_ZAPIER_FREE_TRIAL
 const zapierMonthlyInterestApiUrl = process.env.NEXT_PUBLIC_ZAPIER_MONTHLY_INTEREST
 const zapierPortfolioPremiumInterestApiUrl = process.env.NEXT_PUBLIC_ZAPIER_PORTFOLIO_PREMIUM_INTEREST
+const zapierArticleInterestApiUrl = process.env.NEXT_PUBLIC_ZAPIER_ARTICLE_INTEREST
+
 
 export interface Lead {
   name: any;
@@ -32,6 +34,9 @@ export interface MonthlyInterest {
   // product: any
 }
 export interface PortfolioPremiumInterest {
+  email: any,
+}
+export interface ArticleInterest {
   email: any,
 }
 
@@ -163,6 +168,25 @@ export const zapierPortfolioPremiumInterest = async (portfolioPremiumInterest: P
       }
     });
     const response = await fetch(zapierPortfolioPremiumInterestApiUrl, {
+      method: 'POST',
+      body: FormRequest
+    });
+
+    return response;
+  } catch (error) {
+  }
+}
+export const zapierArticleInterest = async (articleInterest: ArticleInterest): Promise<Response> => {
+
+  try {
+    const FormRequest = JSON.stringify({
+      "request": {
+        "requester": {
+          ...articleInterest
+        },
+      }
+    });
+    const response = await fetch(zapierArticleInterestApiUrl, {
       method: 'POST',
       body: FormRequest
     });
