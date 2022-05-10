@@ -109,7 +109,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
           </div>
           </div>
           <div className={s.articleLeadFlex}>
-          {(membership.value > Membership.Base &&
+          {(isSignedIn &&
             <div className={s.articleLeadDiv}>
               <Button
                 rounded
