@@ -137,7 +137,7 @@ const defaultFrameType = ALL_FRAME_TYPES[2];
 const REFLECTION_HORIZONTAL1 = "/rooms/reflection-horizontal1.jpeg";
 const REFLECTION_HORIZONTAL2 = "/rooms/reflection-horizontal2.jpeg";
 
-const ALL_ROOMS = [
+export const ALL_ROOMS = [
   {
     id: "52b63b37-b5d1-4f70-a1a8-abb7ef359c7d",
     descriptions: {
@@ -268,15 +268,9 @@ export const frameEngineConfig = {
   defaultFrameType,
   defaultRoomDesktop: ALL_ROOMS[0],
   defaultRoomMobile: ALL_ROOMS[1],
-  initialArtwork: {
-    artwork: {
-      imageUrl: "/paintings/o.jpg",
-      width: 70,
-      height: 89,
-    },
-    room: ALL_ROOMS[2],
-  },
   language: "sv",
+  //Use this to render images, but download wont work:
+  //imageCrossOrigin: null,
   shouldDisableNewActions: true,
   styles: {
     iconHighlightColor: "#FF0000",

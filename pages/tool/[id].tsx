@@ -10,7 +10,7 @@ import { UserContext } from "../../app/contexts/user-context";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import Script from "next/script";
 import dynamic from "next/dynamic";
-import { frameEngineConfig } from './config'
+import { ALL_ROOMS, frameEngineConfig } from './config'
 
 export default function Frame(props) {
   const { t } = useTranslation(['art', 'common', 'tags']);
@@ -21,6 +21,9 @@ export default function Frame(props) {
   const staticArtwork = props.artwork;
   const navBarItems = props.navBarItems;
   const canonicalURL = publicUrl + router.asPath;
+
+  //Temporary fix since it loads twice currently
+  const [numberOfLoads, setNumberOfLoads] = useState(0)
 
   const emptyPromise = () => new Promise(r => r([]));
 
@@ -39,9 +42,19 @@ export default function Frame(props) {
     if (frameEngine?.update) {
       frameEngine.update({
         ...frameEngineConfig,
+        initialArtwork: {
+          artwork: {
+            // imageUrl: '/paintings/o.jpg',
+            imageUrl: bucketUrl + artwork.data.PrimaryFile.Name,
+            width: artwork.data.PrimaryFile.Width / 10,
+            height: artwork.data.PrimaryFile.Height / 10,
+          },
+          room: ALL_ROOMS[2],
+        },
         getFrameProducts: emptyPromise,
         getFrameProductsByType: emptyPromise,
         onDownloadImage,
+        // shouldShowWelcomeModal: true,
         onTrackingEvent,
       });
 
@@ -51,13 +64,23 @@ export default function Frame(props) {
     }
   };
 
-  useEffect(() => {
-    start();
-  }, [])
-
   const { id } = router.query
   const { username, socialId } = useContext(UserContext);
   const artwork = useGetArtwork(id as string, username.value);
+
+  useEffect(() => {
+    if (artwork.isLoading) {
+      setNumberOfLoads(numberOfLoads + 1);
+    }
+  }, [artwork?.isLoading])
+
+  useEffect(() => {
+    const shouldStart = artwork?.data && !artwork.isLoading && numberOfLoads === 2;
+
+    if (shouldStart) {
+      start();
+    }
+  }, [artwork?.isLoading, numberOfLoads])
 
   return (
     <Main wide navBarItems={navBarItems}>
