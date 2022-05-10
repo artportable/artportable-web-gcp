@@ -12,6 +12,14 @@ export const styles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
 
     },
+    flexHeaderButton: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+    },
+    articleLeadFlex: {
+      alignSelf: 'center',
+    },
     container: {
       width: '100%',
     },
@@ -95,6 +103,27 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       blockSize: 'fit-content',
     },
+    articleLeadDiv: {
+      '& :hover': {
+        backgroundColor: '#D6A407',
+
+      },
+      gridArea: 'hej',
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    articleLeadButton: {
+      marginTop: '4px',
+      width: '300px',
+      backgroundColor: '#E0AC08',
+      color: '#fff',
+      // height: '70px'
+      marginBottom: '15px'
+    },
+    headerButton: {
+      fontFamily: 'Gotham',
+      fontWeight: 500,
+    },
     menuFlex: {
       [theme.breakpoints.up('smPlus')]: {
         display: 'flex',
@@ -111,8 +140,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
       color: '#000'
     },
+
     [theme.breakpoints.up('lg')]: {
-     
       artistTab: {
         marginTop: '45px',
         '& .MuiTabScrollButton-root': {
@@ -123,7 +152,11 @@ export const styles = makeStyles((theme: Theme) =>
         marginBottom: '40px'
       },
     },
+    
     [theme.breakpoints.up('lgPlus')]: {
+      flexHeaderButton: {
+        flexDirection: 'row',
+      },
     artistTab: {
       marginLeft: '0',
       marginTop: '0',
