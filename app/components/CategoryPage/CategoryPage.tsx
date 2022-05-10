@@ -109,7 +109,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
           </div>
           </div>
           <div className={s.articleLeadFlex}>
-          {(isSignedIn &&
+          {(isSignedIn.value) &&
             <div className={s.articleLeadDiv}>
               <Button
                 rounded
@@ -122,7 +122,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                 </Typography>
               </Button>
             </div>
-          )}
+          }
           </div>
           </div>
           <ArticleLead
