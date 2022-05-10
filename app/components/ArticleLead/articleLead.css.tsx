@@ -12,7 +12,6 @@ export const styles = makeStyles((theme: Theme) =>
     dialog: {
       '& .MuiDialog-paper': {
         // width: '600%',
-        height: '1000px'
       },
     },
     title: {
@@ -47,6 +46,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '1.14rem',
       margin: '30px 0 10px 0',
     },
+    inShort: {
+      fontSize: '1.14rem',
+      margin: '0px 0 30px 0',
+    },
     textPortfolioPremium: {
       // fontStyle: 'italic',
       fontWeight: 600,
@@ -57,9 +60,13 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: '30px',
       width: '50%',
     },
-    emblem: {
+    imagePortfolio: {
       width: '300px',
       color: '#FFD700',
+    },
+    imageText: {
+      fontStyle: 'italic',
+      fontSize: '0.8rem'
     },
     button: {
       alignSelf: 'flex-end',
@@ -89,6 +96,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     [theme.breakpoints.up('sm')]: {
+      imagePortfolio: {
+        width: '350px',
+      },
       dialog: {
         '& .MuiDialog-paper': {
           // height: '570px'

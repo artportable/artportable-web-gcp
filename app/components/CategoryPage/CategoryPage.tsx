@@ -97,7 +97,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       }
       {!router.isFallback &&
         <>
-        <div className={s.flexing}>
+        <div className={s.flexHeaderButton}>
           <div>
           <div className={s.headerDiv}>
             <Typography className={s.header} variant="h1">{t('readAboutArt')}</Typography>
@@ -118,7 +118,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                   handleClickMonthlyDialog(); addNumber();
                 }}>
                 <Typography className={s.headerButton}>
-                  VILL DU HA EN ARTIKEL OM DIG?
+                  {t('arcticleAboutYou')}
                 </Typography>
               </Button>
             </div>
@@ -144,7 +144,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
 
               ))}
               {(isSignedIn.value) &&
-                <Tab className={s.text} key="hej" value="/medlemserbjudande" label="Medlemserbjudande" onClick={() => router.push('/artiklar')} />
+                <Tab className={s.text} key="hej" value="/medlemserbjudande" label={t('membershipOffers')} onClick={() => router.push('/artiklar')} />
               }
             </Tabs>
           </div>

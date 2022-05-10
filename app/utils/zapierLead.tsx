@@ -30,8 +30,6 @@ export interface FreeTrial {
 }
 export interface MonthlyInterest {
   email: any,
-  // name: any,
-  // product: any
 }
 export interface PortfolioPremiumInterest {
   email: any,

@@ -13,33 +13,30 @@ interface Props {
   open: any;
   onClose(): any;
   numberExists: any;
-
 }
 
 export default function DialogMonthlyUser(props: Props) {
   const s = styles();
-  const { t } = useTranslation(['profile']);
+  const { t } = useTranslation(['articles']);
   const [sentInterest, setSentInterest] = useState(false);
   const { email, family_name, given_name, phone } = useContext(UserContext);
   const [phoneNumber, setPhonenNumber] = useState('')
 
   const submit = () => {
     setSentInterest(true)
-    prune();
+    getPhoneNumber();
     zapierArticleInterest({
-      "email": email.value + " " + given_name.value + " " + family_name.value + " " + phone.value + " " + "portfolioPremiumInterest",
+      "email": email.value + " " + given_name.value + " " + family_name.value + " " + phone.value + " " + "Article Interest",
     });
   }
-  const prune = () => {
+  const getPhoneNumber = () => {
     if (!phone.value || phone.value == undefined) {
       phone.value = phoneNumber
     }
   }
-
   const onCloseClick = () => {
     props.onClose();
     setSentInterest(false)
-
   }
 
   return (
@@ -48,8 +45,8 @@ export default function DialogMonthlyUser(props: Props) {
         open={props.open}
         onClose={onCloseClick}
         className={s.dialog}
-      // aria-labelledby="dialog-title"
-      // aria-describedby="dialog-description"
+        aria-labelledby={t('articleAbout')}
+        aria-describedby={t('getInterviewed')}
       >
         {sentInterest ?
           <>
@@ -66,16 +63,9 @@ export default function DialogMonthlyUser(props: Props) {
             </DialogTitle>
             <DialogContent>
               <div className={s.dialogContent}>
-                <Typography className={s.text}>
+                <Typography className={s.inShort}>
                   {t('inShort')}
                 </Typography>
-                {/* <div className={s.imgDivSecondView}>
-                  <img
-                  src="/images/article_portfolio.png"
-                  alt="Logo Artportable"
-                  className={s.emblem}
-                />
-                </div> */}
                 <Button
                   className={s.button}
                   variant="contained"
@@ -103,18 +93,21 @@ export default function DialogMonthlyUser(props: Props) {
               <div className={s.dialogContent}>
                 <div>
                   <Typography variant="h2" className={s.textPortfolioPremium}>
-                    Artikel om dig
+                  {t('articleAbout')}
                   </Typography>
                   <Typography className={s.text}>
-                   Bli intervjuad av vår skribent och få en artikel publicerad om dig och ditt konstnärskap.
+                  {t('getInterviewed')}
                   </Typography>
                 </div>
                 <div className={s.imgDivSecondView}>
                   <img
                   src="/images/article_portfolio.png"
                   alt="Logo Artportable"
-                  className={s.emblem}
+                  className={s.imagePortfolio}
                 />
+                <Typography className={s.imageText}>
+                {t('imageFromPortfolio')}
+                </Typography>
                 </div>
                 <div className={s.phoneDiv}>
                   {(!props.numberExists) &&

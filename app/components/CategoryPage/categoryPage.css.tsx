@@ -12,7 +12,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
 
     },
-    flexing: {
+    flexHeaderButton: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-around',
@@ -142,9 +142,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     [theme.breakpoints.up('lg')]: {
-      flexing: {
-        flexDirection: 'row',
-      },
       artistTab: {
         marginTop: '45px',
         '& .MuiTabScrollButton-root': {
@@ -157,6 +154,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     
     [theme.breakpoints.up('lgPlus')]: {
+      flexHeaderButton: {
+        flexDirection: 'row',
+      },
     artistTab: {
       marginLeft: '0',
       marginTop: '0',
