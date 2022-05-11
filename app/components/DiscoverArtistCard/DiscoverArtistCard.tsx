@@ -66,17 +66,14 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
           {images.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
-              <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <Link href={`/art/${image.id}`}>
-                  <a>
-                    <img className={s.image} src={`${bucketUrl}${image.Name}`}
-                      alt={image.title}
-                      width={image.Width}
-                      height={image.Height}
-                    />
-                  </a>
-                </Link>
-              </Paper>
+             
+              <div>
+                    <a href={`/tool/${image.id}`}>
+                      <Button>
+                        Ramverkstad
+                      </Button>
+                    </a>
+                  </div>
             </div>
           )}
         </div>

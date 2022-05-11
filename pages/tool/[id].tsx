@@ -53,8 +53,8 @@ export default function Frame(props) {
         },
         getFrameProducts: emptyPromise,
         getFrameProductsByType: emptyPromise,
-        onDownloadImage,
-        // shouldShowWelcomeModal: true,
+        // onDownloadImage,
+       shouldShowWelcomeModal: true,
         onTrackingEvent,
       });
 

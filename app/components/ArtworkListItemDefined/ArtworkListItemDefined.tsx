@@ -62,7 +62,7 @@ export default function ArtworkListItemDefined({
   return (
     <div title={artwork.Title} className={s.container}>
       <div className={s.imageContainer}>
-      <Link href={`/art/${artwork.Id}`}>
+        <Link href={`/art/${artwork.Id}`}>
           <a>
             <img
               style={{
@@ -86,10 +86,10 @@ export default function ArtworkListItemDefined({
         <div className={s.info}>
           <Link href={`/profile/@${artwork.Username}`}>
             <a>
-          <div className={s.name}>
-            {`${artwork.Name} ${artwork.Surname}`}
-          </div>
-          </a>
+              <div className={s.name}>
+                {`${artwork.Name} ${artwork.Surname}`}
+              </div>
+            </a>
           </Link>
           <div className={s.title}>
             {artwork.Title ? artwork.Title : t('untitled')}
@@ -125,7 +125,14 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
-
+      {/* <div>
+        <a href={`/tool/${artwork.Id}`}>
+          <Button>
+            Ramverkstad
+          </Button>
+        </a>
+      </div> */}
+<div className={s.purchaseFrameTool}>
       {
         username.value != artwork.Owner.Username && !artwork.SoldOut &&
         <Button
@@ -146,7 +153,19 @@ export default function ArtworkListItemDefined({
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
       }
-
+      {
+        artwork.Width && artwork.Height &&
+      <div>
+        <a href={`/tool/${artwork.Id}`}>
+          <Button 
+          variant="outlined"
+          rounded>
+            Ramverkstad
+          </Button>
+        </a>
+      </div>
+      }
+      </div>
     </div>
   );
 }
