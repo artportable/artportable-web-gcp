@@ -29,7 +29,7 @@ export interface SelectedPlanData {
 
 export interface PriceData {
   id: string;
-  product: "portfolioPremium" | "portfolio" | "free";
+  product: "portfoliopremium" | "portfolio" | "free";
   productKey: string;
   currency: string;
   recurringInterval: string;
@@ -81,11 +81,12 @@ const noPhonenumber = () => {
     // plans.push("portfolioPremium");
 
   function redirectCreatedUser(plan, isArtist) {
+    // console.log(plan)
+    // console.log("hello world")
     dispatch({
       type: ADD_PRICE,
       payload: { ...plan }
     });
-
     switch (plan.product.toLowerCase()) {
       case 'free':
         trackGoogleAnalytics(ActionType.SIGN_UP_FREE_COMPLETED, CategoryType.BUY);
@@ -110,9 +111,9 @@ const noPhonenumber = () => {
         });
         router.push('/checkout')
         break
-      case 'portfolioPremium':
+      case 'portfoliopremium':
         trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM_COMPLETED, CategoryType.BUY);
-        console.log('premium')
+        // console.log('premium')
         zapierLeadPremium({
           artistArtEnthusiast: "artist",
           name: { value: given_name.value + ' ' + family_name.value } ?? '',
@@ -164,8 +165,11 @@ const noPhonenumber = () => {
               isArtist = true;
             }
             const p = priceData.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
-            p ?? redirectCreatedUser(p,isArtist)
-
+            redirectCreatedUser(p,isArtist)
+            // console.log(plan)
+            // console.log(priceData)
+            // console.log(interval)
+            // console.log("hej" + p)
           }else{
             setLoading(false);
           }   
