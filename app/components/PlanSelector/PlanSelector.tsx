@@ -37,27 +37,27 @@ export default function PlanSelector({
 
   const [paymentInterval, setPaymentInterval] = useState("year");
 
-  const priceDataWithPremium: PriceData[] = [
-    ...priceData,
-    {
-      id: "premium",
-      product: "portfolioPremium",
-      productKey: "portfolioPremium",
-      currency: "sek",
-      recurringInterval: "month",
-    },
-    {
-      id: "premium",
-      product: "portfolioPremium",
-      productKey: "portfolioPremium",
-      currency: "sek",
-      recurringInterval: "year",
-      amount: 4500,
-    },
-  ];
+  // const priceDataWithPremium: PriceData[] = [
+  //   ...priceData,
+  //   {
+  //     id: "premium",
+  //     product: "portfolioPremium",
+  //     productKey: "portfolioPremium",
+  //     currency: "sek",
+  //     recurringInterval: "month",
+  //   },
+  //   {
+  //     id: "premium",
+  //     product: "portfolioPremium",
+  //     productKey: "portfolioPremium",
+  //     currency: "sek",
+  //     recurringInterval: "year",
+  //     amount: 4500,
+  //   },
+  // ];
 
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
-  plans.push("portfolioPremium");
+  // plans.push("portfolioPremium");
 
   function compareAmounts(a, b) {
     if (a.amount < b.amount) {
@@ -95,17 +95,8 @@ export default function PlanSelector({
             return showAll || (!showAll && plan === "Portfolio");
           })
           .map((plan) => {
-            const p = priceDataWithPremium.find(
-              (pd) =>
-                pd.product === plan && pd.recurringInterval === paymentInterval
-            );
-            return (
-              <PlanCard
-                plan={p}
-                key={p.id}
-                setHideTabs={setHideTabs}
-              ></PlanCard>
-            );
+            const p = priceData.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
+          return p ? <PlanCard hideButtons={landingPageMode} plan={p} key={p.id} setHideTabs={true}></PlanCard> : <></>
           })}
       </div>
       {landingPageMode && (

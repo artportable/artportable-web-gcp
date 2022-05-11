@@ -37,8 +37,9 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   const s = styles();
   const dispatch = useDispatch();
   const href = plan.product === "free" ? "feed" : "/checkout";
-  const [isHref, setIsHref] = useState(true);
-  const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
+
+  // const [isHref, setIsHref] = useState(true);
+  // const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
 
   const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
   const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
@@ -123,20 +124,20 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
     }
   }
 
-  useEffect(() => {
-    if (plan.product === "portfolioPremium") {
-      setIsHref(false);
-    }
-  }, [plan]);
+  // useEffect(() => {
+  //   if (plan.product === "portfolioPremium") {
+  //     setIsHref(false);
+  //   }
+  // }, [plan]);
 
   function getPriceText() {
     if (plan.product === "free") {
       return "-";
-    } else if (
-      plan.product === "portfolioPremium" &&
-      plan.amount === undefined
-    ) {
-      return "premium";
+    // } else if (
+    //   plan.product === "portfolioPremium" &&
+    //   plan.amount === undefined
+    // ) {
+    //   return "premium";
     }
 
     return (
@@ -149,7 +150,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   const addNumber = () => {
     if (validateAllFields()) {
       phone.value = formData.phone.value;
-      console.log(formData.phone.value)
+      // console.log(formData.phone.value)
     }
   };
 
@@ -160,8 +161,8 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
       setHideTabs(true)
       event.stopPropagation();
       event.preventDefault();
-      console.log(phone.value)
-      console.log(numberExists)
+      // console.log(phone.value)
+      // console.log(numberExists)
       return onNavClick();
     }
     return onNavClick();
@@ -278,7 +279,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
 
             {!hideButtons && (
               <div className={s.button}>
-                {isHref ? (
+                {/* {isHref ? ( */}
                   <Link passHref href={href}>
                     <a>
                       <Button
@@ -297,7 +298,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
                       </Button>
                     </a>
                   </Link>
-                ) : (
+                {/* ) : (
                   <Button
                     size="small"
                     variant="contained"
@@ -318,20 +319,20 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
                         t("common:words.choose")
                       )} ${planName}`}
                   </Button>
-                )}
+                )} */}
               </div>
             )}
           </CardContent>
         </Card>
       )}
-      <Dialog
+      {/* <Dialog
         fullWidth
         maxWidth="md"
         open={isPremiumSignupDialogOpen}
         onClose={() => setIsPremiumSignupDialogOpen(false)}
       >
         <PremiumApply />
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 }

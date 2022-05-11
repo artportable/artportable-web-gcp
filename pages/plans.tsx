@@ -29,7 +29,7 @@ export interface SelectedPlanData {
 
 export interface PriceData {
   id: string;
-  product: "portfolioPremium" | "portfolio" | "free";
+  product: "portfoliopremium" | "portfolio" | "free";
   productKey: string;
   currency: string;
   recurringInterval: string;
@@ -55,20 +55,20 @@ export default function Plans({ priceData }) {
   const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
-  const priceDataWithPremium: PriceData[] = [...priceData, {
-    id: "premium",
-    product: "portfolioPremium",
-    productKey: "portfolioPremium",
-    currency: "sek",
-    recurringInterval: "month",
-  }, {
-    id: "premium",
-    product: "portfolioPremium",
-    productKey: "portfolioPremium",
-    currency: "sek",
-    recurringInterval: "year",
-    amount: 4500,
-  }];
+  // const priceDataWithPremium: PriceData[] = [...priceData, {
+  //   id: "premium",
+  //   product: "portfolioPremium",
+  //   productKey: "portfolioPremium",
+  //   currency: "sek",
+  //   recurringInterval: "month",
+  // }, {
+  //   id: "premium",
+  //   product: "portfolioPremium",
+  //   productKey: "portfolioPremium",
+  //   currency: "sek",
+  //   recurringInterval: "year",
+  //   amount: 4500,
+  // }];
 
   
 const noPhonenumber = () => {
@@ -78,14 +78,15 @@ const noPhonenumber = () => {
   )
 }
   const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
-  plans.push("portfolioPremium");
+    // plans.push("portfolioPremium");
 
   function redirectCreatedUser(plan, isArtist) {
+    // console.log(plan)
+    // console.log("hello world")
     dispatch({
       type: ADD_PRICE,
       payload: { ...plan }
     });
-
     switch (plan.product.toLowerCase()) {
       case 'free':
         trackGoogleAnalytics(ActionType.SIGN_UP_FREE_COMPLETED, CategoryType.BUY);
@@ -112,6 +113,7 @@ const noPhonenumber = () => {
         break
       case 'portfoliopremium':
         trackGoogleAnalytics(ActionType.SIGN_UP_PREMIUM_COMPLETED, CategoryType.BUY);
+        // console.log('premium')
         zapierLeadPremium({
           artistArtEnthusiast: "artist",
           name: { value: given_name.value + ' ' + family_name.value } ?? '',
@@ -119,7 +121,7 @@ const noPhonenumber = () => {
           email: { value: email.value } ?? '',
           url: window.location.href
         });
-        router.push('/')
+        router.push('/checkout')
         break
     }
   }
@@ -162,9 +164,12 @@ const noPhonenumber = () => {
               plan = 'free';
               isArtist = true;
             }
-            const p = priceDataWithPremium.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
+            const p = priceData.find(pd => pd.product.toLowerCase() === plan.toLowerCase() && pd.recurringInterval.toLowerCase() === interval.toLowerCase());
             redirectCreatedUser(p,isArtist)
-
+            // console.log(plan)
+            // console.log(priceData)
+            // console.log(interval)
+            // console.log("hej" + p)
           }else{
             setLoading(false);
           }   

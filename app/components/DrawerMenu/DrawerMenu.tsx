@@ -179,7 +179,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
           handleClose={handleCloseContact} />
 
 
-        
+
         {isSignedIn.value ?
           <>
             {(membership.value < Membership.Portfolio) &&
@@ -194,22 +194,15 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
               </div>
             }
             {(membership.value > Membership.Base) &&
-                        <>
-                        <ListItem button divider onClick={handleClickManageSubscriptions} >
-                      <ListItemText primary={t('manageSubscription')} />
-                    </ListItem >
-                    <ManageSubscriptionsDialog
-                      openContact={openManageSubscriptions}
-                      handleClose={handleCloseManageSubscriptions} />
-                      
-              <Link href="/upload" passHref>
-                <ListItem button divider onClick={() => close()}>
-                  <ListItemIcon>
-                    <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
-                  </ListItemIcon>
-                  <ListItemText primary={t('upload')} />
-                </ListItem>
-              </Link>
+              <>
+                <Link href="/upload" passHref>
+                  <ListItem button divider onClick={() => close()}>
+                    <ListItemIcon>
+                      <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
+                    </ListItemIcon>
+                    <ListItemText primary={t('upload')} />
+                  </ListItem>
+                </Link>
               </>
             }
             <Link href="/messages" passHref>

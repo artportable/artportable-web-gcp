@@ -10,8 +10,10 @@ import MuiButton from '@material-ui/core/Button'
 import { NavBarItem } from '../../models/NavBarItem';
 import { useState } from 'react';
 import { UserContext } from '../../contexts/user-context'
-import { Button } from 'react-activity-feed/dist/components/Button';
-import { TabPanel } from '@material-ui/lab';
+import { Membership } from '../../models/Membership'
+import Button from '../Button/Button';
+import ArticleLead from '../ArticleLead/ArticleLead';
+
 
 export default function CategoryPage({ category, navBarItems }: { category: Category, navBarItems: NavBarItem[] }) {
   const s = styles();
@@ -19,11 +21,10 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
   const { t } = useTranslation(['articles']);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
-  const { isSignedIn } = useContext(UserContext);
+  const { isSignedIn, membership, phone } = useContext(UserContext);
 
   useEffect(() => {
     setArray(category?.articles);
-    console.log(router.locale)
   }, [router.push])
 
   // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
@@ -61,6 +62,26 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
     },
   ];
 
+  const [openArticleLead, setopenArticleLead] = useState(false);
+
+  function toggleArticelLeadDialog() {
+    setopenArticleLead(!openArticleLead);
+  }
+
+
+  const handleClickMonthlyDialog = () => {
+    setopenArticleLead(true);
+  };
+
+  const [numberExists, setNumberExists] = useState(true);
+
+  const addNumber = () => {
+    if (!phone.value || phone.value == undefined) {
+      setNumberExists(false)
+      console.log(phone.value)
+    }
+  }
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -76,20 +97,45 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       }
       {!router.isFallback &&
         <>
+        <div className={s.flexHeaderButton}>
+          <div>
           <div className={s.headerDiv}>
             <Typography className={s.header} variant="h1">{t('readAboutArt')}</Typography>
           </div>
           <div className={s.subheaderDiv}>
-            <Typography variant="h4" className={s.subHeader}>
+            <Typography variant="h4" component="p" className={s.subHeader}>
               {t('subHeader')}
             </Typography>
           </div>
+          </div>
+          <div className={s.articleLeadFlex}>
+          {(isSignedIn.value) &&
+            <div className={s.articleLeadDiv}>
+              <Button
+                rounded
+                className={s.articleLeadButton}
+                onClick={() => {
+                  handleClickMonthlyDialog(); addNumber();
+                }}>
+                <Typography className={s.headerButton}>
+                  {t('arcticleAboutYou')}
+                </Typography>
+              </Button>
+            </div>
+          }
+          </div>
+          </div>
+          <ArticleLead
+            open={openArticleLead}
+            onClose={toggleArticelLeadDialog}
+            numberExists={numberExists}
+          />
           <div className={s.tabsContainer}>
             <Tabs
               className={s.artistTab}
               value={value}
               onChange={handleChange}
-              aria-label="disabled tabs example"
+              aria-label="navigation"
               variant={"scrollable"}
               scrollButtons={"on"}
             >
@@ -98,7 +144,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
 
               ))}
               {(isSignedIn.value) &&
-                <Tab className={s.text} key="hej" value="/medlemserbjudande" label="Medlemserbjudande" onClick={() => router.push('/artiklar')} />
+                <Tab className={s.text} key="hej" value="/medlemserbjudande" label={t('membershipOffers')} onClick={() => router.push('/artiklar')} />
               }
             </Tabs>
           </div>

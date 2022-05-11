@@ -14,5 +14,17 @@
   "offers": "OFFERS",
   "membershipOffers": "MEMBERSHIP OFFERS",
   "subHeader": "Every piece of art tells a story. Find articles about art, artists, and other topics from the art world. Immerse yourself in what interests you the most and read more about the person behind the work.",
-  "readAboutArt": "Read about art"
+  "readAboutArt": "Read about art",
+  "thanks": "Thanks!",
+  "inShort": "You will soon be contacted by one of our art coordinators.",
+  "close": "Close",
+  "sendPurchase": "Send purchase",
+  "send": "Send",
+  "yourPhoneNumber": "Please enter your phone number",
+  "phoneNumber": "Phone number",
+  "artCoordinator": "Get access to an art advisor",
+  "arcticleAboutYou": "DO YOU WANT AN ARTICLE ABOUT YOU?",
+  "articleAbout": "Article about you",
+  "getInterviewed": "Get interviewed by our writer and get an article published about you and your art.",
+  "imageFromPortfolio": "(image from portfolio containing article)"
 }
