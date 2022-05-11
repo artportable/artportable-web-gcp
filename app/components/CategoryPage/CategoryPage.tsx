@@ -153,23 +153,47 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
               if (article.published_at)
                 return (
                   <div key={article.id}>
-                    <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
-                      <div className={s.wrapper}>
-                        <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
-                        <div className={s.textContent}>
-                          <div>
-                            {article?.published_at?.slice(0, -14)}
+                    {router.locale === "en" ?
+                      <>
+                        <Link className={s.link} href={`/en/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
+                          <div className={s.wrapper}>
+                            <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
+                            <div className={s.textContent}>
+                              <div>
+                                {article?.published_at?.slice(0, -14)}
+                              </div>
+                              <Typography component="h2" variant={'h2'}>
+                                <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                  {article?.title} {router.locale !== article?.locale ? '(In Swedish)' : ''}
+                                </Box>
+                              </Typography>
+                              <Typography variant={'subtitle1'}>{article?.description}</Typography>
+                            </div>
+                            <div className={s.line}></div>
                           </div>
-                          <Typography component="h2" variant={'h2'}>
-                            <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
-                              {article?.title} {router.locale !== article?.locale ? '(In Swedish)' : ''}
-                            </Box>
-                          </Typography>
-                          <Typography variant={'subtitle1'}>{article?.description}</Typography>
-                        </div>
-                        <div className={s.line}></div>
-                      </div>
-                    </Link>
+                        </Link>
+                      </>
+                      :
+                      <>
+                        <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
+                          <div className={s.wrapper}>
+                            <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
+                            <div className={s.textContent}>
+                              <div>
+                                {article?.published_at?.slice(0, -14)}
+                              </div>
+                              <Typography component="h2" variant={'h2'}>
+                                <Box fontFamily="LyonDisplay" fontWeight="fontWeightMedium" className={s.headline}>
+                                  {article?.title} {router.locale !== article?.locale ? '(In Swedish)' : ''}
+                                </Box>
+                              </Typography>
+                              <Typography variant={'subtitle1'}>{article?.description}</Typography>
+                            </div>
+                            <div className={s.line}></div>
+                          </div>
+                        </Link>
+                      </>
+                    }
                   </div>
                 )
             })}
