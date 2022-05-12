@@ -240,15 +240,6 @@ export default function PaymentFrame() {
         return (
           <div className={s.right}>
             <div className={s.input}>
-            <Accordion>
-            <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Accordion 1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
               <form>
                 <Paper className={s.inputPaper}>
                   <FormControl fullWidth variant="outlined">
@@ -303,8 +294,6 @@ export default function PaymentFrame() {
                  {t('next')}
                 </Button>
               </form>
-              </AccordionDetails>
-                    </Accordion>
             </div>
           </div>
         );
