@@ -15,7 +15,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
 
 const artportablePurchase = 'zapier'
-const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE;
+const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_MONTHLYARTIST;
 
 
 interface PurchaseFormData {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PaymentPremium() {
+export default function PaymentMonthlyArtist() {
   const classes = useStyles();
   const s = styles();
   const { t } = useTranslation(['payment']);
@@ -327,7 +327,7 @@ export default function PaymentPremium() {
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'Portfolio Premium' }]}
+                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'MonthlyArtist' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
@@ -500,16 +500,14 @@ export default function PaymentPremium() {
                   alt="hej"
                   title="Premium" />
 
-                <Typography variant="h2" component="h2">{t('portfolioPremium')}</Typography>
-                <Typography variant="h2" component="h2">{t('price')}</Typography>
-                <Typography variant="h4" component="h2">{t('length')}</Typography>
-                <Typography variant="h6" component="h2" className={s.textIncluded}>{t('premiumIncludes')}</Typography>
+                <Typography variant="h2" component="h2">{t('monthlyArtist')}</Typography>
+                <Typography variant="h2" component="h2">{t('priceMonthlyArtist')}</Typography>
+                {/* <Typography variant="h4" component="h2">{t('length')}</Typography> */}
+                <Typography variant="h6" component="h2" className={s.textIncluded}>{t('monthlyArtistIncludes')}</Typography>
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('personalArtCoordinator')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('prioritized')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('publish')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
               </div>

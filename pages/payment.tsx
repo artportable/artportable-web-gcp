@@ -6,6 +6,10 @@ import PaymentPremium from "../app/components/Payments/PaymentPremium";
 import { styles } from '../styles/payment.css';
 import Main from "../app/components/Main/Main";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
+import PaymentFrame from "../app/components/Payments/PaymentFrame";
+import PaymentArticle from "../app/components/Payments/PaymentArticle";
+import PaymentMonthlyArtist from "../app/components/Payments/PaymentMonthlyArtist";
+import PaymentCategoryPage from "../app/components/Payments/PaymentCategoryPage";
 
 export default function Payment(navBarItems) {
 
@@ -15,6 +19,10 @@ export default function Payment(navBarItems) {
   return (
     <Main navBarItems={navBarItems}>
     <PaymentPremium />
+    <PaymentFrame />
+    <PaymentArticle />
+    <PaymentMonthlyArtist />
+    <PaymentCategoryPage />
     </Main>
   );
 }

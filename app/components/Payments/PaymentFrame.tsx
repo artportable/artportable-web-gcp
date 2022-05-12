@@ -15,7 +15,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
 
 const artportablePurchase = 'zapier'
-const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE;
+const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_FRAME;
 
 
 interface PurchaseFormData {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PaymentPremium() {
+export default function PaymentFrame() {
   const classes = useStyles();
   const s = styles();
   const { t } = useTranslation(['payment']);
@@ -240,6 +240,15 @@ export default function PaymentPremium() {
         return (
           <div className={s.right}>
             <div className={s.input}>
+            <Accordion>
+            <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>Accordion 1</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
               <form>
                 <Paper className={s.inputPaper}>
                   <FormControl fullWidth variant="outlined">
@@ -258,7 +267,7 @@ export default function PaymentPremium() {
                       inputProps={{
                         'aria-label': 'Name',
                       }}
-                    />
+                      />
                   </FormControl>
                 </Paper>
                 <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.fullName.error ? t('mustNotBeEmptyMessage') : ''}</FormHelperText>
@@ -278,7 +287,7 @@ export default function PaymentPremium() {
                       inputProps={{
                         'aria-label': 'Email',
                       }}
-                    />
+                      />
 
                   </FormControl>
                 </Paper>
@@ -290,10 +299,12 @@ export default function PaymentPremium() {
                   color="secondary"
                   onClick={handleNext}
                   className={s.buttonNextStep1}
-                >
+                  >
                  {t('next')}
                 </Button>
               </form>
+              </AccordionDetails>
+                    </Accordion>
             </div>
           </div>
         );
@@ -327,7 +338,7 @@ export default function PaymentPremium() {
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'Portfolio Premium' }]}
+                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'Frame' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
@@ -500,16 +511,14 @@ export default function PaymentPremium() {
                   alt="hej"
                   title="Premium" />
 
-                <Typography variant="h2" component="h2">{t('portfolioPremium')}</Typography>
-                <Typography variant="h2" component="h2">{t('price')}</Typography>
-                <Typography variant="h4" component="h2">{t('length')}</Typography>
-                <Typography variant="h6" component="h2" className={s.textIncluded}>{t('premiumIncludes')}</Typography>
+                <Typography variant="h2" component="h2">{t('frame')}</Typography>
+                <Typography variant="h2" component="h2">{t('priceFrame')}</Typography>
+                {/* <Typography variant="h4" component="h2">{t('length')}</Typography> */}
+                <Typography variant="h6" component="h2" className={s.textIncluded}>{t('frameIncludes')}</Typography>
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('personalArtCoordinator')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('prioritized')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('publish')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
               </div>

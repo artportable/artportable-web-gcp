@@ -18,8 +18,16 @@
 "welcome": "Välkommen till Artportable! Du kan nu stänga detta fönster.",
 "portfolioPremium": "Portfolio Premium",
 "price": "4500 kr",
+"priceFrame": "4000 sek",
+"priceArticle": "4000 sek",
+"priceMonthlyArtist": "4000 sek",
+"priceCategoryPage": "4000 sek",
 "length": "12 månader",
 "premiumIncludes": "I Portfolio Premium ingår bland annat:",
+"frameIncludes": "Frame inkluderar",
+"articleIncludes": "Artikel inkluderar",
+"monthlyArtistIncludes": "Månadens konstnär inkluderar",
+"categoryPageIncludes": "Kategorisida inkluderar",
 "personalArtCoordinator": "Personlig konstkoordinator",
 "publish": "Publicera dina verk",
 "chat": "Chatta och få förfrågningar om dina konstverk",
@@ -28,5 +36,9 @@
 "support": "Support",
 "mustNotBeEmptyMessage": "Fältet får inte vara tomt",
 "emailErrorMessage": "Ogiltig e-postadress",
-"prioritized": "Prioriterad i sökresultat"
+"prioritized": "Prioriterad i sökresultat",
+"frame": "Frame",
+"article": "Artikel",
+"monthlyArtist": "Månadens konstnär",
+"categoryPage": "Kategorisida"
 }

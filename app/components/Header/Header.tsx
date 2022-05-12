@@ -110,6 +110,13 @@ export default function Header({ navBarItems }) {
                   </MuiButton>
                 </a>
               </Link>
+              <Link href="/payment" passHref>
+                <a>
+                  <MuiButton color="secondary" size="large">
+                    {t('buy').toUpperCase()}
+                  </MuiButton>
+                </a>
+              </Link>
             </nav>
             {(!isSignedIn.value) &&
               <div className={s.login}>
