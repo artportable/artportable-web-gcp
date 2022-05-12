@@ -126,7 +126,8 @@ export const styles = makeStyles((theme: Theme) =>
       right: theme.spacing(1)
     },
     purchaseFrameTool: {
-      display: 'flex'
+      display: 'flex',
+      justifyContent: 'space-between'
     }
   }),
 );

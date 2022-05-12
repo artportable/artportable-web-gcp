@@ -149,22 +149,22 @@ export default function ArtworkListItemDefined({
           }}
           variant="outlined"
           rounded
-          startIcon={<SendIcon color={"inherit"} />}>
+          >
           {capitalizeFirst(t('common:purchaseRequest'))}
         </Button>
       }
-      {
-        artwork.Width && artwork.Height &&
+      {/* {
+        artwork.Width && artwork.Height && */}
       <div>
         <a href={`/tool/${artwork.Id}`}>
-          <Button 
+          <Button
           variant="outlined"
           rounded>
-            Ramverkstad
+            Rum
           </Button>
         </a>
       </div>
-      }
+      {/* } */}
       </div>
     </div>
   );
