@@ -125,12 +125,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignContent: 'flex-start',
       alignItems: 'left',
-
-      marginBottom: theme.spacing(6),
-      [theme.breakpoints.up('md')]: {
-
-        marginBottom: theme.spacing(2)
-      },
+      marginBottom: theme.spacing(2),
     },
     headerButtonArtist: {
       display: 'flex',
@@ -222,21 +217,12 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       cursor: 'pointer',
       alignItems: 'center',
-      // position: 'absolute',
-      // top: '420px',
-      // marginTop: theme.spacing(20),
-      marginBottom: '30px',
-      [theme.breakpoints.up('md')]: {
-        marginBottom: '0',
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(5),
+
+      [theme.breakpoints.up('smPlus')]: {
+        marginBottom: theme.spacing(2),
         },
-      [theme.breakpoints.up('mdPlus')]: {
-      position: 'absolute',
-      bottom: '0',
-      marginBottom: '20px',
-      },
-    },
-    playIcon: {
-      // fontSize: '35px',
     },
     playText: {
       fontWeight: 500,
@@ -244,7 +230,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     buttonLabel: {
       fontSize: '0.9rem',
-      // margin: theme.spacing(0, 1),
       [theme.breakpoints.up('sm')]: {
         fontSize: 'initial',
         margin: theme.spacing(0, 1),

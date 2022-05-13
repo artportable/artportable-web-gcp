@@ -109,7 +109,7 @@ export default function IndexHero() {
             </Button>
           </div>
           <div className={s.videoDiv}>
-            <PlayCircleFilledIcon className={s.playIcon} />
+            <PlayCircleFilledIcon />
             <Typography className={s.playText} onClick={() => { handleClickVideoDialog(); }}>
               {t('thisIsArtportable')}
             </Typography>
