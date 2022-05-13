@@ -7,6 +7,9 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: 'unset',
         // height: '337.5px'
       },
+      '& .MuiBackdrop-root': {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      },
     },
     videoFrame: {
       width: '300px',
