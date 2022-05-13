@@ -7,9 +7,10 @@ import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from "next/router";
 import Skeleton from '@material-ui/lab/Skeleton'
 import Link from 'next/link'
-
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import VideoDialog from '../VideoDialog/VideoDialog';
 
 interface RandomImageProps {
   artwork: string;
@@ -57,6 +58,17 @@ export default function IndexHero() {
     }));
   }, [])
 
+  const [openVideoDialog, setOpenVideoDialog] = useState(false);
+
+  function toggleVideoDialog() {
+    setOpenVideoDialog(!openVideoDialog);
+  }
+
+
+  const handleClickVideoDialog = () => {
+    setOpenVideoDialog(true);
+  };
+
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
@@ -95,6 +107,17 @@ export default function IndexHero() {
               onClick={() => keycloak.login({ locale: router.locale })}>
               {t('logIn')}
             </Button>
+          </div>
+          <div className={s.videoDiv}>
+            <PlayCircleFilledIcon className={s.playIcon} />
+            <Typography className={s.playText} onClick={() => { handleClickVideoDialog(); }}>
+              {t('thisIsArtportable')}
+            </Typography>
+
+            <VideoDialog
+              open={openVideoDialog}
+              onClose={toggleVideoDialog}
+            />
           </div>
         </div>
 

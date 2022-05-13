@@ -19,5 +19,6 @@
   "description": "Ett digitalt galleri där konstnärer kan ställa ut sin konst och sälja den direkt till köpare",
   "all": "Alla",
   "unsold": "Till salu",
-  "sold": "Sålda"
+  "sold": "Sålda",
+  "thisIsArtportable": "DET HÄR ÄR ARTPORTABLE"
 }
