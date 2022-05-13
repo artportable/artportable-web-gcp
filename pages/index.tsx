@@ -244,6 +244,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
 
