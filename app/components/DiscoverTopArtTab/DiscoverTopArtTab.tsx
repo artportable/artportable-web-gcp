@@ -16,6 +16,7 @@ interface DiscoverTopArtTabProps {
   loadMore: boolean;
   loadImages: any;
   stopLoadImages: any;
+  activeTab: number;
 }
 
 const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
@@ -89,6 +90,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
           loadMoreElementRef={loadMoreArtworksElementRef}
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
+          activeTab={props.activeTab}
         />
       }
     </>

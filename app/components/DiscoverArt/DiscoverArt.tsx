@@ -28,9 +28,10 @@ interface InputProps {
   loadMoreElementRef: any
   isLoading: boolean;
   loadMore: boolean;
+  activeTab: number;
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
+export default function DiscoverArt({ artworks, tags, activeTab, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore}: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const smScreenOrSmaller = useBreakpointDown('sm');
@@ -147,7 +148,7 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
       <Box className={s.rowsContainer}>
         {onFilter &&
           <div>
-            <SearchField onFilter={onFilter} tags={tags}></SearchField>
+            <SearchField onFilter={onFilter} tags={tags} activeTab={activeTab}></SearchField>
           </div>
         }
         {showFilterLoadingSkeleton &&
