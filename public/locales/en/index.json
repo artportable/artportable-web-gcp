@@ -20,5 +20,6 @@
   "description": "A digital gallery where artists can exhibit their art and sell it directly to buyers",
   "all": "All",
   "unsold": "For sale",
-  "sold": "Sold"
+  "sold": "Sold",
+  "thisIsArtportable": "THIS IS ARTPORTABLE"
 }

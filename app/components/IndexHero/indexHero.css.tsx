@@ -218,6 +218,30 @@ export const styles = makeStyles((theme: Theme) =>
     signupButtonContainer: {
       marginTop: theme.spacing(1)
     },
+    videoDiv: {
+      display: 'flex',
+      cursor: 'pointer',
+      alignItems: 'center',
+      // position: 'absolute',
+      // top: '420px',
+      // marginTop: theme.spacing(20),
+      marginBottom: '30px',
+      [theme.breakpoints.up('md')]: {
+        marginBottom: '0',
+        },
+      [theme.breakpoints.up('mdPlus')]: {
+      position: 'absolute',
+      bottom: '0',
+      marginBottom: '20px',
+      },
+    },
+    playIcon: {
+      // fontSize: '35px',
+    },
+    playText: {
+      fontWeight: 500,
+      marginLeft: '5px',
+    },
     buttonLabel: {
       fontSize: '0.9rem',
       // margin: theme.spacing(0, 1),
