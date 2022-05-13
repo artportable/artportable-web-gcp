@@ -236,15 +236,18 @@ export default function ArtworkPage(props) {
                   }
                 </div>
 
-                {username.value === artwork.data.Owner.Username &&
-                  <div>
-                    <a href={`/tool/${artwork.data.Id}`}>
-                      <Button>
-                        Ramverkstad
-                      </Button>
-                    </a>
-                  </div>
-                }
+                {/* {
+        artwork.Width && artwork.Height && */}
+                <div>
+                  <a href={`/tool/${artwork.data.Id}`}>
+                    <Button
+                      variant="outlined"
+                      rounded>
+                      Rum
+                    </Button>
+                  </a>
+                </div>
+                {/* } */}
               </div>
 
               <Box textAlign="center" marginY={4} className={s.text}>

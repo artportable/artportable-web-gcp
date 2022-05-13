@@ -75,7 +75,7 @@ export default function Frame(props) {
   }, [artwork?.isLoading])
 
   useEffect(() => {
-    const shouldStart = artwork?.data && !artwork.isLoading && numberOfLoads === 2;
+    const shouldStart = artwork?.data && !artwork.isLoading && numberOfLoads === 1;
 
     if (shouldStart) {
       start();
