@@ -251,7 +251,7 @@ export default function ProductListPage({ productList, navBarItems }: { productL
             loadMoreElementRef={loadMoreArtworksElementRef}
             isLoading={isLoadingArtWorks}
             loadMore={loadMoreArtworks}
-            activeTab={1}
+            activeTab={4}
           />
         </>
       }
