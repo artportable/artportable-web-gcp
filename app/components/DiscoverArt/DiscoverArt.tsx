@@ -28,10 +28,10 @@ interface InputProps {
   loadMoreElementRef: any
   isLoading: boolean;
   loadMore: boolean;
-  activeTab: number
+  activeTab: number;
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore, activeTab }: InputProps) {
+export default function DiscoverArt({ artworks, tags, activeTab, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore}: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const smScreenOrSmaller = useBreakpointDown('sm');
