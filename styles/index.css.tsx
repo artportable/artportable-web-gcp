@@ -44,6 +44,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'flex-start',
       width: '100%',
+      marginBottom: '10px'
     },
     artTabs: {
       '& .MuiTabs-scroller': {
@@ -98,6 +99,9 @@ export const styles = makeStyles((theme: Theme) =>
     [theme.breakpoints.up('lgPlus')]: {
       tabContainer: {
         flexDirection: 'row',
+      },
+      textFieldFlex: {
+        marginBottom: '0'
       },
       form: {
         marginTop: '7px',

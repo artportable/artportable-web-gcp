@@ -26,7 +26,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     input: {
       height: '100%',
-      width: '100%',
+      width: '75%',
       fontSize: '21px',
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: 'GT-America-Standard',

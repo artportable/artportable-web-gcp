@@ -166,6 +166,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
@@ -177,6 +178,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
@@ -188,6 +190,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
@@ -199,6 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
@@ -210,6 +214,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={5}>
@@ -239,6 +244,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
 

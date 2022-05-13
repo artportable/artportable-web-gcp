@@ -12,7 +12,7 @@ export default function DiscoverArtists({ artists, onFilter, onFollowClick, load
   return (
     <Box>
       <div className={s.searchField}>
-        <SearchField onFilter={onFilter}></SearchField>
+        <SearchField onFilter={onFilter} activeTab></SearchField>
       </div>
 
       {artists &&
