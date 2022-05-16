@@ -11,6 +11,7 @@ import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import Script from "next/script";
 import dynamic from "next/dynamic";
 import { ALL_ROOMS, frameEngineConfig } from './config'
+import { styles } from "../../styles/tool.css";
 
 export default function Frame(props) {
   const { t } = useTranslation(['art', 'common', 'tags']);
@@ -21,6 +22,7 @@ export default function Frame(props) {
   const staticArtwork = props.artwork;
   const navBarItems = props.navBarItems;
   const canonicalURL = publicUrl + router.asPath;
+  const s = styles();
 
   //Temporary fix since it loads twice currently
   const [numberOfLoads, setNumberOfLoads] = useState(0)
@@ -95,7 +97,7 @@ export default function Frame(props) {
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
         <link rel="canonical" href={canonicalURL} />
       </Head>
-      <div>
+      <div className={s.toolDiv}>
         <div dangerouslySetInnerHTML={{ __html: '<div id="frameEngine"></div>' }} suppressHydrationWarning />
         <script
           dangerouslySetInnerHTML={{

@@ -105,7 +105,7 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: 'transparent'
       }
     },
-    purchaseRequestButton: {
+    interactiveButton: {
       marginTop: '5px',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,

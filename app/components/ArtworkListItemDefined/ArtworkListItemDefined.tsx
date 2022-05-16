@@ -136,7 +136,7 @@ export default function ArtworkListItemDefined({
       {
         username.value != artwork.Owner.Username && !artwork.SoldOut &&
         <Button
-          className={s.purchaseRequestButton}
+          className={s.interactiveButton}
           onClick={() => {
             onPurchaseRequestClick(
               artwork.Title,
@@ -158,6 +158,7 @@ export default function ArtworkListItemDefined({
       <div>
         <a href={`/tool/${artwork.Id}`}>
           <Button
+          className={s.interactiveButton}
           variant="outlined"
           rounded>
             Rum
