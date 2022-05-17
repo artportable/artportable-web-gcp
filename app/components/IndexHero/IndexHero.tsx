@@ -45,6 +45,7 @@ export default function IndexHero() {
   const images = [
     { name: "Malin Ekström", username: "malin.ekstrom", image: '/images/malin_ekstrom.jpg', imageLink: "art/20898a9a-234d-45ec-9553-ae78beef1332" },
     { name: "Galina Tol-Fakkar", username: "galina.tolfakkar", image: '/images/galina_tol_fakkar.jpg', imageLink: "profile/@galina.tolfakkar" },
+    { name: "Brian Morris", username: "brianmorris", image: '/images/brian_morris.jpg', imageLink: "art/e10b504e-0ef1-43b0-b97f-944ef3e93ac6" },
   ]
 
   useEffect(() => {
