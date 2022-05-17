@@ -22,5 +22,6 @@
   "sendEmailToArtist": "Skicka ett mail till konstnären",
   "yourEmail": "Din epost",
   "logIntoSendChatMessages": "Logga in för att skicka köpförfrågan via chatten",
-  "deleteArtwork": "Ta bort verk?"
+  "deleteArtwork": "Ta bort verk?",
+  "room": "Rum"
 }

@@ -5,7 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Main from "../../app/components/Main/Main";
 import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
-import { Box, IconButton, Paper, Typography } from "@material-ui/core";
+import { Badge, Box, IconButton, Paper, Typography } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { styles } from "../../styles/art.css";
 import { capitalizeFirst, fetchWithTimeout } from "../../app/utils/util";
@@ -69,7 +69,7 @@ export default function ArtworkPage(props) {
     setIsLiked(artwork?.data?.LikedByMe);
   }, [artwork?.data]);
 
-  function togglePurchaseRequestDialog(){
+  function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
   }
 
@@ -106,6 +106,12 @@ export default function ArtworkPage(props) {
   const likedFilled = !isSignedIn.value ?
     <FavoriteBorderOutlinedIcon color="primary" /> :
     isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
+
+  const hej = () => {
+    console.log(artwork.data.Width)
+    console.log(artwork.data.Height)
+    console.log(artwork?.data)
+  }
 
   return (
     <Main wide navBarItems={navBarItems}>
@@ -223,20 +229,34 @@ export default function ArtworkPage(props) {
                     </Box>
                   }
                 </div>
-                <div className={s.likeContainer}>
-                  <Button
-                    //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
-                    onClick={toggleLike}
-                    startIcon={likedFilled}
-                  >
-                    {capitalizeFirst(t('common:like'))}
-                  </Button>
-                  {artwork.data.Likes > 0 &&
-                    <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
+                <div className={s.flexLikeRoom}>
+                  <div className={s.likeContainer}>
+                    <Button
+                      //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
+                      onClick={toggleLike}
+                      startIcon={likedFilled}
+                    >
+                      {capitalizeFirst(t('common:like'))}
+                    </Button>
+                    {artwork.data.Likes > 0 &&
+                      <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
+                    }
+                  </div>
+                  {artwork.data.Width && artwork.data.Height &&
+                    <div className={s.roomDiv}>
+                      <a href={`/tool/${artwork.data.Id}`}>
+                        <Badge badgeContent={'Ny!'} className={s.badgeNew}>
+                          <Button
+                            className={s.roomButton}
+                            rounded>
+                            {t('room')}
+                          </Button>
+                        </Badge>
+                      </a>
+                    </div>
                   }
                 </div>
               </div>
-
               <Box textAlign="center" marginY={4} className={s.text}>
                 {artwork.data.Title &&
                   <Typography variant="h3" component="h2" id="artwork-modal-title">
@@ -285,14 +305,14 @@ export default function ArtworkPage(props) {
           </>
         }
       </div>
-    </Main>
+    </Main >
   );
 }
 
 export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
-  const navBarItems = await getNavBarItems(); 
+  const navBarItems = await getNavBarItems();
 
   try {
     const artworkResponse = await fetchWithTimeout(url.href, {
@@ -301,7 +321,7 @@ export async function getServerSideProps({ locale, params }) {
 
     });
     const artwork = await artworkResponse.json();
- 
+
     return {
       props: {
         // fetch timeout
