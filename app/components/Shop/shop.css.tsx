@@ -9,28 +9,32 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: '3rem',
     },
     flexContainer: {
-      display: 'flex',
+      display: 'grid',
       justifyContent: 'center',
       flexDirection: 'column',
       margin: '0 0 30px 0',
-
       [theme.breakpoints.up('mdPlus')]: {
-        flexDirection: 'row',
-        marginBottom: '3rem'
+        flexDirection: 'column',
+        marginBottom: '3rem',
+        gridTemplateColumns: 'auto auto auto',
+      },
+    },
+    item: {
+      padding: '0.2rem',
+      [theme.breakpoints.up('mdPlus')]: {
+        padding: '1rem',
       },
     },
     left: {
       width: '100%',
-      [theme.breakpoints.up('mdPlus')]: {
-        // width: '400px',
-        width: '100%',
+      [theme.breakpoints.up('smPlus')]: {
+        width: '400px',
       },
     },
     productImage: {
       width: '100%',
-      [theme.breakpoints.up('mdPlus')]: {
-        // width: '400px',
-        width: '100%',
+      [theme.breakpoints.up('smPlus')]: {
+        width: '400px',
       },
     },
     right: {

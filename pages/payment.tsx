@@ -10,6 +10,7 @@ import PaymentFrame from "../app/components/Payments/PaymentFrame";
 import PaymentArticle from "../app/components/Payments/PaymentArticle";
 import PaymentMonthlyArtist from "../app/components/Payments/PaymentMonthlyArtist";
 import PaymentCategoryPage from "../app/components/Payments/PaymentCategoryPage";
+import Shop from "../app/components/Shop/Shop";
 
 export default function Payment(navBarItems) {
 
@@ -18,11 +19,7 @@ export default function Payment(navBarItems) {
 
   return (
     <Main navBarItems={navBarItems}>
-    <PaymentPremium />
-    <PaymentFrame />
-    <PaymentArticle />
-    <PaymentMonthlyArtist />
-    <PaymentCategoryPage />
+    <Shop />
     </Main>
   );
 }

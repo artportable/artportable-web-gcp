@@ -18,7 +18,7 @@
   "welcome": "Welcome to Artportable! You can now close this window.",
   "portfolioPremium": "Portfolio Premium",
   "price": "4500 sek",
-  "priceFrame": "4000 sek",
+  "priceFrame": "4500 sek",
   "priceArticle": "4000 sek",
   "priceMonthlyArtist": "4000 sek",
   "priceCategoryPage": "4000 sek",
@@ -40,5 +40,6 @@
   "frame": "Frame",
   "article": "Article",
   "monthlyArtist": "Artist of the month",
-  "categoryPage": "Category Page"
+  "categoryPage": "Category Page",
+  "buy": "Buy"
 }

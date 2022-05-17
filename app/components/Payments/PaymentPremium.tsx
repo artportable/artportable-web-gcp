@@ -13,6 +13,7 @@ import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/One
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
+import PremiumDialog from '../PaymentDialog/PremiumDialog';
 
 const artportablePurchase = 'zapier'
 const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE;
@@ -65,6 +66,17 @@ export default function PaymentPremium() {
   const [formUntouched, setFormUntouched] = useState(true);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
+
+  const [openPremiumDialog, setOpenPremiumDialog] = useState(false);
+
+  function togglePremiumDialog() {
+    setOpenPremiumDialog(!openPremiumDialog);
+  }
+
+
+  const handleClickPremiumDialog = () => {
+    setOpenPremiumDialog(true);
+  };
 
   useEffect(() => {
     if (Object.keys(formData).some(key => formData[key].error)) {

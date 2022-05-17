@@ -113,7 +113,7 @@ export default function Header({ navBarItems }) {
               <Link href="/payment" passHref>
                 <a>
                   <MuiButton color="secondary" size="large">
-                    {t('buy').toUpperCase()}
+                    {t('shop').toUpperCase()}
                   </MuiButton>
                 </a>
               </Link>

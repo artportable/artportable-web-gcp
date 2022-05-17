@@ -18,7 +18,7 @@
 "welcome": "Välkommen till Artportable! Du kan nu stänga detta fönster.",
 "portfolioPremium": "Portfolio Premium",
 "price": "4500 kr",
-"priceFrame": "4000 sek",
+"priceFrame": "4500 sek",
 "priceArticle": "4000 sek",
 "priceMonthlyArtist": "4000 sek",
 "priceCategoryPage": "4000 sek",
@@ -40,5 +40,6 @@
 "frame": "Frame",
 "article": "Artikel",
 "monthlyArtist": "Månadens konstnär",
-"categoryPage": "Kategorisida"
+"categoryPage": "Kategorisida",
+"buy": "Köp"
 }

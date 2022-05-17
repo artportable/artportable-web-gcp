@@ -151,7 +151,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
         <Link href="/payment" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('buy')} />
+              <ListItemText primary={t('shop')} />
             </ListItem>
           </a>
         </Link>

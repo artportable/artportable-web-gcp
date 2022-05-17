@@ -327,7 +327,7 @@ export default function PaymentMonthlyArtist() {
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'MonthlyArtist' }]}
+                            products={[{ amount: 4000, currency: 'SEK', id: `${stripeProduct}`, name: 'MonthlyArtist' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
