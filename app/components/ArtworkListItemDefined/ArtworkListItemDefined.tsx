@@ -154,7 +154,7 @@ export default function ArtworkListItemDefined({
             {capitalizeFirst(t('common:purchaseRequest'))}
           </Button>
         }
-        {artwork.Width && artwork.Height &&
+        {artwork.Width > 0  && artwork.Height > 0 && 
         <div className={s.roomDiv}>
           <a href={`/tool/${artwork.Id}`}>
             <Badge badgeContent={'Ny!'} className={s.badgeNew}>
