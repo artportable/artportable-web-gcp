@@ -78,8 +78,7 @@ export default function IndexHero() {
             {t('Hitta originalkonst')}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {/* {t('Ta en titt i galleriet med över 30000 konstverk')} */}
-            Här hittar du originalkonst som passar just dig. Ta en titt i Norderns största digitala konstgalleri med över 30000 konstverk, hitta ditt favoritverk och köp det direkt av konstnären.
+            {t('Ta en titt i galleriet med över 30000 konstverk')}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
