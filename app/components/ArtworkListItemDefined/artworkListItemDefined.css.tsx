@@ -107,7 +107,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     purchaseRequestButton: {
       marginTop: '5px',
-      width: '156px',
+      minWidth: '150px',
+      whiteSpace: 'nowrap',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid var(--secondary-color)',
