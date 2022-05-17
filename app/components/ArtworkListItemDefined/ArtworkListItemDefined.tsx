@@ -13,6 +13,9 @@ import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { Badge } from '@material-ui/core'
+import { sv } from 'date-fns/locale';
+import { Locales } from '../../models/i18n/locales'
+
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -133,11 +136,13 @@ export default function ArtworkListItemDefined({
           </Button>
         </a>
       </div> */}
+      {/* <div className={`banner large ${Locales === sv ? "purchaseRequestSv" : "purchaseRequestEn"}}`}></div> */}
       <div className={s.purchaseFrameTool}>
         {
           username.value != artwork.Owner.Username && !artwork.SoldOut &&
           <Button
             className={s.purchaseRequestButton}
+            purchaseRequestButton
             onClick={() => {
               onPurchaseRequestClick(
                 artwork.Title,
@@ -151,10 +156,10 @@ export default function ArtworkListItemDefined({
             variant="outlined"
             rounded
           >
-            {capitalizeFirst(t('common:purchaseRequest'))}
+            {t('request')}
           </Button>
         }
-        {artwork.Width > 0  && artwork.Height > 0 && 
+        {/* {artwork.Width > 0  && artwork.Height > 0 &&  */}
         <div className={s.roomDiv}>
           <a href={`/tool/${artwork.Id}`}>
             <Badge badgeContent={'Ny!'} className={s.badgeNew}>
@@ -166,7 +171,7 @@ export default function ArtworkListItemDefined({
             </Badge>
           </a>
         </div>
-        }
+        {/* } */}
       </div>
     </div>
   );
