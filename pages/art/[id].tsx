@@ -242,7 +242,7 @@ export default function ArtworkPage(props) {
                       <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
                     }
                   </div>
-                  {artwork.data.Width && artwork.data.Height &&
+                  {artwork.data.Width > 0 && artwork.data.Height > 0 &&
                     <div className={s.roomDiv}>
                       <a href={`/tool/${artwork.data.Id}`}>
                         <Badge badgeContent={'Ny!'} className={s.badgeNew}>

@@ -68,11 +68,17 @@ export const styles = makeStyles((theme: Theme) =>
     },
     signUp: {
       display: 'none',
+      whiteSpace: 'nowrap',
       [theme.breakpoints.up('md')]: {
         display: 'flex'
       }
     },
-
+    createButton: {
+      whiteSpace: 'nowrap',
+    },
+    loginButton: {
+      whiteSpace: 'nowrap',
+    },
     notificationButton: {
       width: '54px',
       display: 'flex',
@@ -158,9 +164,6 @@ export const styles = makeStyles((theme: Theme) =>
       upload: {
         display: 'initial'
       },
-      logo: {
-        width: '188px'
-      }
     },
     text: {
       fontSize: '18px',
@@ -178,6 +181,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       iconMenuColor: {
         color: '#000',
+      },
+      logo: {
+        width: '188px'
       },
     },
   }),
