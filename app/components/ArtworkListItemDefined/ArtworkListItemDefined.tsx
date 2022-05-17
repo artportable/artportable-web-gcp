@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import { Badge } from '@material-ui/core'
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -62,7 +63,7 @@ export default function ArtworkListItemDefined({
   return (
     <div title={artwork.Title} className={s.container}>
       <div className={s.imageContainer}>
-      <Link href={`/art/${artwork.Id}`}>
+        <Link href={`/art/${artwork.Id}`}>
           <a>
             <img
               style={{
@@ -86,10 +87,10 @@ export default function ArtworkListItemDefined({
         <div className={s.info}>
           <Link href={`/profile/@${artwork.Username}`}>
             <a>
-          <div className={s.name}>
-            {`${artwork.Name} ${artwork.Surname}`}
-          </div>
-          </a>
+              <div className={s.name}>
+                {`${artwork.Name} ${artwork.Surname}`}
+              </div>
+            </a>
           </Link>
           <div className={s.title}>
             {artwork.Title ? artwork.Title : t('untitled')}
@@ -125,28 +126,48 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
-
-      {
-        username.value != artwork.Owner.Username && !artwork.SoldOut &&
-        <Button
-          className={s.purchaseRequestButton}
-          onClick={() => {
-            onPurchaseRequestClick(
-              artwork.Title,
-              artwork.Owner.Username,
-              artwork.Id,
-              artwork.Owner.SocialId,
-              bucketUrl + artwork.PrimaryFile.Name
-            );
-            trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
-          }}
-          variant="outlined"
-          rounded
-          startIcon={<SendIcon color={"inherit"} />}>
-          {capitalizeFirst(t('common:purchaseRequest'))}
-        </Button>
-      }
-
+      {/* <div>
+        <a href={`/tool/${artwork.Id}`}>
+          <Button>
+            Ramverkstad
+          </Button>
+        </a>
+      </div> */}
+      <div className={s.purchaseFrameTool}>
+        {
+          username.value != artwork.Owner.Username && !artwork.SoldOut &&
+          <Button
+            className={s.purchaseRequestButton}
+            onClick={() => {
+              onPurchaseRequestClick(
+                artwork.Title,
+                artwork.Owner.Username,
+                artwork.Id,
+                artwork.Owner.SocialId,
+                bucketUrl + artwork.PrimaryFile.Name
+              );
+              trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
+            }}
+            variant="outlined"
+            rounded
+          >
+            {capitalizeFirst(t('common:purchaseRequest'))}
+          </Button>
+        }
+        {artwork.Width && artwork.Height &&
+        <div className={s.roomDiv}>
+          <a href={`/tool/${artwork.Id}`}>
+            <Badge badgeContent={'Ny!'} className={s.badgeNew}>
+              <Button
+                className={s.roomButton}
+                rounded>
+                {t('room')}
+              </Button>
+            </Badge>
+          </a>
+        </div>
+        }
+      </div>
     </div>
   );
 }
