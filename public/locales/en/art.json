@@ -24,5 +24,6 @@
   "logIntoSendChatMessages": "Log in to send the purchase request in the chat",
   "deleteArtwork": "Delete artwork?",
   "room": "Room",
-  "request": "Request"
+  "request": "Request",
+  "new": "New!"
 }

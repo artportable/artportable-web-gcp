@@ -24,5 +24,6 @@
   "logIntoSendChatMessages": "Logga in för att skicka köpförfrågan via chatten",
   "deleteArtwork": "Ta bort verk?",
   "room": "Rum",
-  "request": "Köpförfrågan"
+  "request": "Köpförfrågan",
+  "new": "Ny!"
 }
