@@ -41,15 +41,15 @@ export default function Frame(props) {
     //@ts-ignore
     const frameEngine = window.frameEngine as any;
 
+    
     if (frameEngine?.update) {
-      frameEngine.update({
-        ...frameEngineConfig,
+      let config =   {...frameEngineConfig,
         initialArtwork: {
           artwork: {
             // imageUrl: '/paintings/o.jpg',
-            imageUrl: bucketUrl + artwork.data.PrimaryFile.Name,
-            width: artwork.data.PrimaryFile.Width / 10,
-            height: artwork.data.PrimaryFile.Height / 10,
+            imageUrl: bucketUrl + artwork?.data?.PrimaryFile?.Name,
+            width: artwork?.data?.Width,
+            height: artwork?.data?.Height,
           },
           room: ALL_ROOMS[2],
         },
@@ -58,8 +58,10 @@ export default function Frame(props) {
         // onDownloadImage,
        shouldShowWelcomeModal: true,
         onTrackingEvent,
-      });
-
+      }
+      console.log(config)
+      console.log(artwork.data.PrimaryFile.Width)
+      frameEngine.update(config)
       frameEngine.maximize();
     } else {
       setTimeout(start, 250);

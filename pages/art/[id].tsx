@@ -107,6 +107,12 @@ export default function ArtworkPage(props) {
     <FavoriteBorderOutlinedIcon color="primary" /> :
     isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
 
+    const hej = () => {
+      console.log(artwork.data.Width)
+      console.log(artwork.data.Height)
+      console.log(artwork?.data)
+    }
+
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
@@ -223,6 +229,7 @@ export default function ArtworkPage(props) {
                     </Box>
                   }
                 </div>
+                  <div className={s.flexLikeRoom}>
                 <div className={s.likeContainer}>
                   <Button
                     //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
@@ -237,7 +244,7 @@ export default function ArtworkPage(props) {
                 </div>
 
                 {/* {
-        artwork.Width && artwork.Height && */}
+                artwork.Width && artwork.Height && */}
                 <div>
                   <a href={`/tool/${artwork.data.Id}`}>
                     <Button
@@ -249,7 +256,7 @@ export default function ArtworkPage(props) {
                 </div>
                 {/* } */}
               </div>
-
+              </div>
               <Box textAlign="center" marginY={4} className={s.text}>
                 {artwork.data.Title &&
                   <Typography variant="h3" component="h2" id="artwork-modal-title">

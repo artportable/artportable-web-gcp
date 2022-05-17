@@ -112,9 +112,21 @@ export const styles = makeStyles((theme: Theme) =>
       border: '1px solid var(--secondary-color)',
       color: 'var(--secondary-color)',
       '&.MuiButton-root .MuiButton-startIcon ': {
-        margin: theme.spacing(0, 0.4, 0 ,0)
+        margin: theme.spacing(0, 0.4, 0, 0)
       },
     },
+    roomButton: {
+      marginTop: '5px',
+      padding: theme.spacing(0, 2, 0, 2),
+      fontWeight: theme.typography.fontWeightMedium,
+      border: '1px solid black',
+      color: 'black',
+      '&.MuiButton-root .MuiButton-startIcon ': {
+        margin: theme.spacing(0, 0.4, 0, 0)
+      },
+
+    },
+
     deleteGrid: {
       position: "relative"
     },
@@ -128,6 +140,28 @@ export const styles = makeStyles((theme: Theme) =>
     purchaseFrameTool: {
       display: 'flex',
       justifyContent: 'space-between'
-    }
+    },
+    badgeNew: {
+      '& span': {
+        '&.MuiBadge-anchorOriginTopRightRectangle': {
+          top: '0px',
+          right: '12px',
+          backgroundColor: 'black',
+          color: 'white'
+        },
+      },
+    },
+    badgeNewSold: {
+      '& span': {
+        '&.MuiBadge-anchorOriginTopRightRectangle': {
+          top: '4px',
+          right: '-4px',
+          backgroundColor: 'black',
+          color: 'white'
+        },
+        '&.MuiBadge': {
+        },
+      },
+    },
   }),
 );

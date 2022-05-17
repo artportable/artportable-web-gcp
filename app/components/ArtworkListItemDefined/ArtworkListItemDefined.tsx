@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import { Badge } from '@material-ui/core'
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -132,40 +133,56 @@ export default function ArtworkListItemDefined({
           </Button>
         </a>
       </div> */}
-<div className={s.purchaseFrameTool}>
-      {
-        username.value != artwork.Owner.Username && !artwork.SoldOut &&
-        <Button
-          className={s.interactiveButton}
-          onClick={() => {
-            onPurchaseRequestClick(
-              artwork.Title,
-              artwork.Owner.Username,
-              artwork.Id,
-              artwork.Owner.SocialId,
-              bucketUrl + artwork.PrimaryFile.Name
-            );
-            trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
-          }}
-          variant="outlined"
-          rounded
-          >
-          {capitalizeFirst(t('common:purchaseRequest'))}
-        </Button>
-      }
-      {/* {
-        artwork.Width && artwork.Height && */}
-      <div>
-        <a href={`/tool/${artwork.Id}`}>
+      <div className={s.purchaseFrameTool}>
+        {
+          username.value != artwork.Owner.Username && !artwork.SoldOut &&
           <Button
-          className={s.interactiveButton}
-          variant="outlined"
-          rounded>
-            Rum
+            className={s.interactiveButton}
+            onClick={() => {
+              onPurchaseRequestClick(
+                artwork.Title,
+                artwork.Owner.Username,
+                artwork.Id,
+                artwork.Owner.SocialId,
+                bucketUrl + artwork.PrimaryFile.Name
+              );
+              trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
+            }}
+            variant="outlined"
+            rounded
+          >
+            {capitalizeFirst(t('common:purchaseRequest'))}
           </Button>
-        </a>
-      </div>
-      {/* } */}
+        }
+       {
+        artwork.Width && artwork.Height &&
+        <div>
+          <a href={`/tool/${artwork.Id}`}>
+          {artwork.SoldOut ? 
+          <>
+           <Badge badgeContent={'Ny!'} className={s.badgeNewSold}>
+              <Button
+                className={s.roomButton}
+                rounded>
+                Rum
+              </Button>
+            </Badge>
+          </>
+          :
+          <>
+          <Badge badgeContent={'Ny!'} className={s.badgeNew}>
+              <Button
+                className={s.roomButton}
+                rounded>
+                Rum
+              </Button>
+            </Badge>
+            </>
+
+}
+          </a>
+        </div>
+        }
       </div>
     </div>
   );
