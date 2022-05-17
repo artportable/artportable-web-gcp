@@ -23,5 +23,7 @@
   "yourEmail": "Din epost",
   "logIntoSendChatMessages": "Logga in för att skicka köpförfrågan via chatten",
   "deleteArtwork": "Ta bort verk?",
-  "room": "Rum"
+  "room": "Rum",
+  "request": "Köpförfrågan",
+  "new": "Ny!"
 }

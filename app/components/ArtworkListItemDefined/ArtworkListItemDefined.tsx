@@ -13,6 +13,9 @@ import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { Badge } from '@material-ui/core'
+import { sv } from 'date-fns/locale';
+import { Locales } from '../../models/i18n/locales'
+
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -126,46 +129,42 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
-      {/* <div>
-        <a href={`/tool/${artwork.Id}`}>
-          <Button>
-            Ramverkstad
-          </Button>
-        </a>
-      </div> */}
       <div className={s.purchaseFrameTool}>
         {
           username.value != artwork.Owner.Username && !artwork.SoldOut &&
-          <Button
-            className={s.purchaseRequestButton}
-            onClick={() => {
-              onPurchaseRequestClick(
-                artwork.Title,
-                artwork.Owner.Username,
-                artwork.Id,
-                artwork.Owner.SocialId,
-                bucketUrl + artwork.PrimaryFile.Name
-              );
-              trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
-            }}
-            variant="outlined"
-            rounded
-          >
-            {capitalizeFirst(t('common:purchaseRequest'))}
-          </Button>
+          <>
+            <Button
+              className={s.purchaseRequestButton}
+              purchaseRequestButton
+              onClick={() => {
+                onPurchaseRequestClick(
+                  artwork.Title,
+                  artwork.Owner.Username,
+                  artwork.Id,
+                  artwork.Owner.SocialId,
+                  bucketUrl + artwork.PrimaryFile.Name
+                );
+                trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
+              }}
+              variant="outlined"
+              rounded
+            >
+              {t('request')}
+            </Button>
+          </>
         }
-        {artwork.Width > 0  && artwork.Height > 0 && 
-        <div className={s.roomDiv}>
-          <a href={`/tool/${artwork.Id}`}>
-            <Badge badgeContent={'Ny!'} className={s.badgeNew}>
-              <Button
-                className={s.roomButton}
-                rounded>
-                {t('room')}
-              </Button>
-            </Badge>
-          </a>
-        </div>
+        {artwork.Width > 0 && artwork.Height > 0 &&
+          <div className={s.roomDiv}>
+            <a href={`/tool/${artwork.Id}`}>
+              <Badge badgeContent={t('new')} className={s.badgeNew}>
+                <Button
+                  className={s.roomButton}
+                  rounded>
+                  {t('room')}
+                </Button>
+              </Badge>
+            </a>
+          </div>
         }
       </div>
     </div>
