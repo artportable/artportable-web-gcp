@@ -114,6 +114,7 @@ export default function Header({ navBarItems }) {
             {(!isSignedIn.value) &&
               <div className={s.login}>
                 <Button
+                  className={s.createButton}
                   size="small"
                   variant="contained"
                   color="primary"
@@ -138,6 +139,7 @@ export default function Header({ navBarItems }) {
                   {t('signUp')}
                 </Button>
                 <Button
+                  className={s.loginButton}
                   size="small"
                   variant="outlined"
                   disableElevation
