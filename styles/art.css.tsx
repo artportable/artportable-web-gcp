@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap, columnGap } from '../app/utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -78,6 +79,14 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(0, 0.4, 0 ,0)
       }
     },
+    flexLikeRoom: {
+      display: 'flex',
+      flexDirection: 'column',
+      ...columnGap(23),
+      [theme.breakpoints.up('smPlus')]: {
+        ...columnGap(1),
+      }
+    },
     likeContainer: {
       float: 'right',
       display: 'inline-block',
@@ -120,6 +129,35 @@ export const styles = makeStyles((theme: Theme) =>
       width: "15px",
       height: "15px",
       marginRight: '5px',
+    },
+    roomDiv: {
+      placeSelf: 'flex-end',
+      marginRight: '12px'
+      // marginTop: '73px',
+      // [theme.breakpoints.up('smPlus')]: {
+      //   marginTop: '51px',
+      // }
+    },
+    roomButton: {
+      marginTop: '5px',
+      fontWeight: theme.typography.fontWeightMedium,
+      border: '1px solid black',
+      color: 'black',
+    },
+    flexPurchaseRoom: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%'
+    },
+    badgeNew: {
+      '& span': {
+        '&.MuiBadge-anchorOriginTopRightRectangle': {
+          top: '6px',
+          right: '-10px',
+          backgroundColor: 'none',
+          color: 'black'
+        },
+      },
     },
     [theme.breakpoints.up('smPlus')]: {
       titleAndSizeContainer: {

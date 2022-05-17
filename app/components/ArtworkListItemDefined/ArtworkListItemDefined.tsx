@@ -137,7 +137,7 @@ export default function ArtworkListItemDefined({
         {
           username.value != artwork.Owner.Username && !artwork.SoldOut &&
           <Button
-            className={s.interactiveButton}
+            className={s.purchaseRequestButton}
             onClick={() => {
               onPurchaseRequestClick(
                 artwork.Title,
@@ -154,32 +154,16 @@ export default function ArtworkListItemDefined({
             {capitalizeFirst(t('common:purchaseRequest'))}
           </Button>
         }
-       {
-        artwork.Width && artwork.Height &&
-        <div>
+        {artwork.Width && artwork.Height &&
+        <div className={s.roomDiv}>
           <a href={`/tool/${artwork.Id}`}>
-          {artwork.SoldOut ? 
-          <>
-           <Badge badgeContent={'Ny!'} className={s.badgeNewSold}>
+            <Badge badgeContent={'Ny!'} className={s.badgeNew}>
               <Button
                 className={s.roomButton}
                 rounded>
-                Rum
+                {t('room')}
               </Button>
             </Badge>
-          </>
-          :
-          <>
-          <Badge badgeContent={'Ny!'} className={s.badgeNew}>
-              <Button
-                className={s.roomButton}
-                rounded>
-                Rum
-              </Button>
-            </Badge>
-            </>
-
-}
           </a>
         </div>
         }
