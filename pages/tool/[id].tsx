@@ -10,7 +10,7 @@ import { UserContext } from "../../app/contexts/user-context";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import Script from "next/script";
 import dynamic from "next/dynamic";
-import { ALL_ROOMS, frameEngineConfig } from './config'
+import { ALL_ROOMS, frameEngineConfig } from '../../public/config'
 import { styles } from "../../styles/tool.css";
 
 export default function Frame(props) {
