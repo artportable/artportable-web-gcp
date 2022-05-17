@@ -245,7 +245,7 @@ export default function ArtworkPage(props) {
                   {artwork.data.Width > 0 && artwork.data.Height > 0 &&
                     <div className={s.roomDiv}>
                       <a href={`/tool/${artwork.data.Id}`}>
-                        <Badge badgeContent={'Ny!'} className={s.badgeNew}>
+                        <Badge badgeContent={t('new')} className={s.badgeNew}>
                           <Button
                             className={s.roomButton}
                             rounded>

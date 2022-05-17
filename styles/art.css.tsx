@@ -132,7 +132,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     roomDiv: {
       placeSelf: 'flex-end',
-      marginRight: '12px'
+      marginRight: '18px'
       // marginTop: '73px',
       // [theme.breakpoints.up('smPlus')]: {
       //   marginTop: '51px',
