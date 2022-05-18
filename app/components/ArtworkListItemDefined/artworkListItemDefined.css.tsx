@@ -108,17 +108,14 @@ export const styles = makeStyles((theme: Theme) =>
     purchaseRequestButtonSv: {
       marginTop: '5px',
       minWidth: '110px',
+      maxWidth: '110px',
       whiteSpace: 'nowrap',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid var(--secondary-color)',
       color: 'var(--secondary-color)',
-    //   '& span': {
-    //   '&.MuiButton-label ': {
-    //     margin: '0 20px 0 20px',
-    //   },
-    // },
     },
+
     purchaseRequestButtonEn: {
       marginTop: '5px',
       whiteSpace: 'nowrap',
@@ -126,18 +123,29 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid var(--secondary-color)',
       color: 'var(--secondary-color)',
-    //   '& span': {
-    //   '&.MuiButton-label ': {
-    //     margin: '0 20px 0 20px',
-    //   },
-    // },
+
     },
-    roomButton: {
+
+    roomButtonSv: {
+      marginTop: '5px',
+      padding: theme.spacing(0, 0, 0, 0),
+      fontWeight: theme.typography.fontWeightMedium,
+      border: '1px solid black',
+      color: 'black',
+      '&.MuiButton-root': {
+        minWidth: '48px',
+      },
+    },
+    roomButtonEn: {
       marginTop: '5px',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid black',
       color: 'black',
+      '&.MuiButton-root': {
+        minWidth: '48px',
+        maxWidth: '58px',
+      },
     },
 
     deleteGrid: {
