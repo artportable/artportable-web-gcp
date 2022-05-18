@@ -124,7 +124,8 @@ export default function Header({ navBarItems }) {
                     locale: router.locale,
                     redirectUri: signUpRedirectHref
                   })}>
-                  {t('createPortfolio')}
+                  {/* {t('createPortfolio')} */}
+                  Visa upp din konst inom 3 minuter!
                 </Button>
                 <Button
                   className={s.signUp}
