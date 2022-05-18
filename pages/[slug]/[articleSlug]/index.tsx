@@ -30,7 +30,7 @@ export default function ArticlePage({ article, artist }: { article: Article, art
         <meta property="og:description" content={article?.description ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/${article?.publishCategory.name.toLowerCase()}/${article?.slug}`} />
-        <meta property="og:image" content={article?.coverImage?.formats?.medium?.url} />
+        <meta property="og:image" content={article?.coverImage?.formats?.small?.url} />
         <meta property="og:datePublished" content={article?.published_at} />
         <meta property="og:dateModified" content={article?.updated_at} />
         {article?.authors?.map(author => {
