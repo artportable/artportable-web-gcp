@@ -105,9 +105,22 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: 'transparent'
       }
     },
-    purchaseRequestButton: {
+    purchaseRequestButtonSv: {
       marginTop: '5px',
       minWidth: '110px',
+      whiteSpace: 'nowrap',
+      padding: theme.spacing(0, 2, 0, 2),
+      fontWeight: theme.typography.fontWeightMedium,
+      border: '1px solid var(--secondary-color)',
+      color: 'var(--secondary-color)',
+    //   '& span': {
+    //   '&.MuiButton-label ': {
+    //     margin: '0 20px 0 20px',
+    //   },
+    // },
+    },
+    purchaseRequestButtonEn: {
+      marginTop: '5px',
       whiteSpace: 'nowrap',
       padding: theme.spacing(0, 2, 0, 2),
       fontWeight: theme.typography.fontWeightMedium,

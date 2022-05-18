@@ -132,9 +132,8 @@ export default function ArtworkListItemDefined({
       <div className={s.purchaseFrameTool}>
         {
           username.value != artwork.Owner.Username && !artwork.SoldOut &&
-          <>
             <Button
-              className={s.purchaseRequestButton}
+              className={router.locale === Locales.sv ? s.purchaseRequestButtonSv: s.purchaseRequestButtonEn}
               purchaseRequestButton
               onClick={() => {
                 onPurchaseRequestClick(
@@ -151,7 +150,6 @@ export default function ArtworkListItemDefined({
             >
               {t('request')}
             </Button>
-          </>
         }
         {artwork.Width > 0 && artwork.Height > 0 &&
           <div className={s.roomDiv}>
