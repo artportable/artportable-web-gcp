@@ -17,8 +17,8 @@ export default function About({navBarItems}) {
 
   return (
     <>
+        {/* <IndexHero /> */}
       <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
-        <IndexHero></IndexHero>
         <AboutUs />
       </Main>
     </>
