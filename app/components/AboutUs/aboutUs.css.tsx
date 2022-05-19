@@ -23,39 +23,20 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600,
       marginBottom: '20px'
     },
-    flex: {
-      margin: '-100px 0 -10px 0',
-      display: 'grid',
-      gridTemplateColumns: '1fr',
-      [theme.breakpoints.up('sm')]: {
-        margin: '-100px 0 20px 0',
-      },
-      [theme.breakpoints.up('smPlus')]: {
-        margin: '-140px 0 -20px 0',
-      },
-      [theme.breakpoints.up('md')]: {
-        margin: '-170px 0 -40px 0',
-      },
-      [theme.breakpoints.up('mdPlus')]: {
-        margin: '-250px 0 -130px 0',
-      },
-      [theme.breakpoints.up('lg')]: {
-        margin: '-270px 0 -170px 0',
-      },
-      [theme.breakpoints.up('lgPlus')]: {
-        margin: '-360px 0 -190px 0',
-      },
-    },
+
     staffDiv: {
       display: 'grid',
       gridTemplateColumns: '1fr',
+      ...rowGap(8),
+      marginTop: '50px',
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: '1fr 1fr',
+        marginTop: '100px',
       },
       [theme.breakpoints.up('mdPlus')]: {
         gridTemplateColumns: '1fr 1fr 1fr',
+        marginTop: '120px',
       },
-      ...rowGap(8),
 
     },
     wrapper: {
@@ -69,14 +50,42 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: '#FAF3EE',
       marginBottom: '10px'
     },
+
+    flex: {
+      display: 'flex',
+      justifyContent: 'center',
+ 
+    },
     videoFrame: {
-      width: '100%',
-      aspectRatio: '1/1',
-      objectFit: 'cover',
+      width: '350px',
+      height: '196.58px',
+      [theme.breakpoints.up('sm')]: {
+        width: '400px',
+        height: '225px',
+      },
+      [theme.breakpoints.up('smPlus')]: {
+        width: '500px',
+        height: '281.25px',
+      },
+      [theme.breakpoints.up('md')]: {
+        width: '600px',
+        height: '337.5px',
+      },
+      [theme.breakpoints.up('mdPlus')]: {
+        width: '800px',
+        height: '449.33px',
+      },
+      [theme.breakpoints.up('lg')]: {
+        width: '1000px',
+        height: '561.67px',
+      },
+      [theme.breakpoints.up('lgPlus')]: {
+        width: '1200px',
+        height: '674px',
+      },
     },
     bold: {
       fontWeight: 500,
     },
-
   }),
 );
