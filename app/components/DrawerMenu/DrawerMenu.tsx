@@ -171,6 +171,13 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             </a>
           </Link>
         }
+        <Link href="/kurser" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('courses')} />
+            </ListItem>
+          </a>
+        </Link>
         <ListItem button divider onClick={handleClickContact} >
           <ListItemText primary={t('contactUs')} />
         </ListItem >

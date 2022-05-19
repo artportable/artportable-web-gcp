@@ -57,6 +57,10 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       label: t('offers')
     },
     {
+      value: '/kurser',
+      label: t('courses')
+    },
+    {
       value: '/flerartiklar',
       label: t('moreArticlesMenu')
     },
