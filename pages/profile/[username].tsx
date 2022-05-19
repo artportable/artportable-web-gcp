@@ -296,21 +296,21 @@ export default function Profile(props) {
   function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
     referTo = userProfileSummary.data.SocialId;
-    if (isSignedIn.value) {
-      const originalRedirect = {
-        pathname: "/messages",
-        query: {
-          artwork: encodeURIComponent(JSON.stringify({
-            title: title,
-            creator: creator,
-            url: url,
-            imageurl: imageurl
-          })),
-          referTo: referTo
-        }
-      }
-      router.push(originalRedirect);
-    } else {
+    // if (isSignedIn.value) {
+    //   const originalRedirect = {
+    //     pathname: "/messages",
+    //     query: {
+    //       artwork: encodeURIComponent(JSON.stringify({
+    //         title: title,
+    //         creator: creator,
+    //         url: url,
+    //         imageurl: imageurl
+    //       })),
+    //       referTo: referTo
+    //     }
+    //   }
+    //   router.push(originalRedirect);
+    // } else {
       setPurchaseRequestDialogData({
         title: title,
         creator: creator,
@@ -320,7 +320,7 @@ export default function Profile(props) {
       })
       togglePurchaseRequestDialog();
     }
-  }
+  // }
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
   function toggleMonthlyDialog() {

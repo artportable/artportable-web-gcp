@@ -7,6 +7,7 @@ import { useKeycloak } from '@react-keycloak/ssr';
 import type { KeycloakInstance } from 'keycloak-js';
 import { useRouter } from "next/router";
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics';
+import { UserContext } from "../../contexts/user-context";
 
 interface EmailData {
   email: EmailValue;
@@ -33,14 +34,25 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
   });
   const [formHasErrors, setFormHasErrors] = useState(false);
   const [formUntouched, setFormUntouched] = useState(true);
+  const { email, family_name, given_name, phone } = useContext(UserContext);
 
   useEffect(() => {
     if (Object.keys(usersEmail).some(key => usersEmail[key].error)) {
       setFormHasErrors(true);
+    } else if (email.value) {
+    setFormHasErrors(false);
     } else {
       setFormHasErrors(false);
     }
   }, [usersEmail]);
+
+  useEffect(() => {
+    if (email.value) {
+      setFormUntouched(false);
+    } else {
+      setFormHasErrors(false);
+    }
+  }, [email.value]);
 
   const handleChange = (event, key: keyof EmailData) => {
     const newValue: EmailValue = {
@@ -199,7 +211,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
               fullWidth
               id="email"
               placeholder={t('yourEmail')}
-              value={usersEmail.email.value}
+              value={email.value ? email.value : usersEmail.email.value}
               error={usersEmail.email.error}
               onChange={(e) => handleChange(e, 'email')}
               onBlur={(e) => validateFormValue(e.target.value, 'email')}
