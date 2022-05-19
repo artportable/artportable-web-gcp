@@ -37,9 +37,6 @@ export default function Footer() {
                 src={'/images/instagram.svg'}
                 alt="Link to artportables instagram"
                 title="instagram logo" />
-              {/* <Typography variant="body2" component="div">
-              Instagram
-            </Typography> */}
             </a>
           </Link>
           <Link href="https://www.facebook.com/artportable/">
@@ -49,9 +46,7 @@ export default function Footer() {
                 src={'/images/facebook.svg'}
                 alt="Link to artportables facebook"
                 title="facebook logo" />
-              {/* <Typography variant="body2" component="div">
-              Facebook
-            </Typography> */}
+
             </a>
           </Link>
           <Link href="https://www.tiktok.com/@artportable">
@@ -61,9 +56,6 @@ export default function Footer() {
                 src={'/images/TIK-TOK.svg'}
                 alt="Link to artportables tiktok"
                 title="tiktok logo" />
-              {/* <Typography variant="body2" component="div">
-              TikTok
-            </Typography> */}
             </a>
           </Link>
         </div>
@@ -106,6 +98,13 @@ export default function Footer() {
             </Typography>
           </a>
         </Link>
+        <Link href="/about-us">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('aboutUs')}
+            </Typography>
+          </a>
+        </Link>
       </div>
 
       <div className={clsx(s.mobile, s.flexItem)}>
@@ -119,9 +118,6 @@ export default function Footer() {
                 src={'/images/instagram.svg'}
                 alt="Link to artportables instagram"
                 title="instagram logo" />
-              {/* <Typography variant="body2" component="div">
-              Instagram
-            </Typography> */}
             </a>
           </Link>
           <Link href="https://www.facebook.com/artportable/">
@@ -130,9 +126,6 @@ export default function Footer() {
                 src={'/images/facebook.svg'}
                 alt="Link to artportables facebook"
                 title="facebook logo" />
-              {/* <Typography variant="body2" component="div">
-              Facebook
-            </Typography> */}
             </a>
           </Link>
           <Link href="https://www.tiktok.com/@artportable">
@@ -142,9 +135,6 @@ export default function Footer() {
                 src={'/images/TIK-TOK.svg'}
                 alt="Link to artportables tiktok"
                 title="tiktok logo" />
-              {/* <Typography variant="body2" component="div">
-              TikTok
-            </Typography> */}
             </a>
           </Link>
         </div>
