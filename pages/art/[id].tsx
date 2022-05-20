@@ -74,14 +74,14 @@ export default function ArtworkPage(props) {
   }
 
   function purchaseRequest(originalRedirect?: UrlObject | string) {
-    if (isSignedIn.value) {
-      if (originalRedirect !== undefined) {
-        router.push(originalRedirect);
-      }
-    } else {
+    // if (isSignedIn.value) {
+    //   if (originalRedirect !== undefined) {
+    //     router.push(originalRedirect);
+    //   }
+    // } else {
       togglePurchaseRequestDialog();
     }
-  }
+  // }
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
