@@ -29,7 +29,7 @@ export default function AboutMe() {
     { name: "Tony Lidén", title: "Art Coordinator", image: '/staff/artportable_tony.jpg', email: "tony@artportable.com" },
   ]
   const cosmo = [
-    { name: "Cosmo", title: "", image: '/staff/artportable_cosmo.jpg', email: "" },
+    { name: "Cosmo", title: "", image: '/staff/artportable_cosmo.jpg', email: "hello@artportable.com" },
   ]
 
   return (
