@@ -44,16 +44,22 @@ export const styles = makeStyles((theme: Theme) =>
       // display: 'flex',
       // flexWrap: 'wrap',
       // gap: theme.spacing(2),
-      color: '#6F6F6F',
+      color: '#999999',
       marginTop: theme.spacing(2),
     },
-    logo: {
-      width: '120px',
-      alignSelf: 'flex-start',
+    reserved: {
+      color: '#999999',
+    },
+    cookies: {
+      color: '#999999',
+      marginBottom: theme.spacing(2),
       [theme.breakpoints.up('smPlus')]: {
-        width: '180px',
-        marginBottom: theme.spacing(2),
-      },
+        marginBottom: '0',
+      }
+    },
+    logo: {
+      width: '180px',
+      alignSelf: 'flex-start',
     },
     sunneby: {
       display: 'flex',
@@ -72,14 +78,10 @@ export const styles = makeStyles((theme: Theme) =>
       cursor: 'pointer',
     },
     tiktok: {
-
-      width: '30px',
-      [theme.breakpoints.up('smPlus')]: {
-        width: '38px',
-      }
+      width: '38px',
     },
     mobile: {
-      display: 'none',
+      // display: 'none',
     [theme.breakpoints.up('smPlus')]: {
       display: 'initial',
     }
@@ -99,22 +101,38 @@ export const styles = makeStyles((theme: Theme) =>
     }
   },
   hereWeAreLink: {
-    marginTop: '0',
+    // marginTop: '0',
     [theme.breakpoints.up('smPlus')]: {
       marginTop: theme.spacing(2),
     }
   },
   getInTouch: {
-    marginBottom: theme.spacing(2),
+    // marginBottom: theme.spacing(2),
     [theme.breakpoints.up('smPlus')]: {
       marginBottom: 'initial',
     }
   },
   becomeAPart: {
-    display: 'none',
+    // display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'initial',
     }
+  },
+  hide: {
+    [theme.breakpoints.up('smPlus')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'initial',
+    },
+  },
+    hide2: {
+    [theme.breakpoints.up('smPlus')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('mdPlus')]: {
+      display: 'initial',
+    },
   }
   }),
 );
