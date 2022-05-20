@@ -17,7 +17,6 @@ export default function AboutMe() {
   const staff = [
     { name: "Axel Nordblom", title: "Finance Manager", image: '/staff/artportable_axel.jpg', email: "" },
     { name: "Carl Nyberg", title: "COO", image: '/staff/artportable_carl.jpg', email: "carl@artportable.com" },
-    { name: "Cosmo", title: "", image: '/staff/artportable_cosmo.jpg', email: "" },
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
     { name: "Erik Nordlander", title: "CEO & Founder", image: '/staff/artportable_erik.jpg', email: "erik@artportable.com" },
     { name: "Jacob Karlsson", title: "Sales Manager", image: '/staff/artportable_jacob.jpg', email: "jacob@artportable.com" },
@@ -28,6 +27,9 @@ export default function AboutMe() {
     { name: "Patrik Söderberg", title: "IT Manager", image: '/staff/artportable_patrik.jpg', email: "" },
     { name: "Richard Leppänen", title: "Senior Art Coordinator", image: '/staff/artportable_richard.jpg', email: "richard@artportable.com" },
     { name: "Tony Lidén", title: "Art Coordinator", image: '/staff/artportable_tony.jpg', email: "tony@artportable.com" },
+  ]
+  const cosmo = [
+    { name: "Cosmo", title: "", image: '/staff/artportable_cosmo.jpg', email: "hello@artportable.com" },
   ]
 
   return (
@@ -48,6 +50,26 @@ export default function AboutMe() {
       </div>
       <div className={s.staffDiv}>
         {staff.map((person) => (
+          <div key={person.name} className={s.wrapper}>
+            <img
+              className={s.image}
+              src={(person?.image)}
+              alt=""
+              title="" />
+            <Typography className={s.bold}>
+              {person?.name}
+            </Typography>
+            <Typography>
+              {person?.title}
+            </Typography>
+            <Typography>
+              {person?.email}
+            </Typography>
+          </div>
+        ))}
+      </div>
+      <div className={s.staffDiv}>
+        {cosmo.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <img
               className={s.image}

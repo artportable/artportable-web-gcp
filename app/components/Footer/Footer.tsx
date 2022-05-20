@@ -28,8 +28,14 @@ export default function Footer() {
               />
             </a>
           </Link>
+          <Typography variant="body2" component="div" className={s.reserved}>
+          © 2022 Artportable AB. All rights reserved.
+        </Typography>
+        <Typography variant="body2" component="div" className={s.cookies}>
+        {t( 'cookies')}<Link href={"/gdpr"}><a>{t('integrity')}</a></Link>
+        </Typography>
         </div>
-        <div className={s.socialMediaFlex}>
+        {/* <div className={s.socialMediaFlex}>
           <Link href="https://www.instagram.com/artportableofficial/">
             <a>
               <img
@@ -58,9 +64,9 @@ export default function Footer() {
                 title="tiktok logo" />
             </a>
           </Link>
-        </div>
+        </div> */}
       </div>
-      <div className={clsx(s.becomeAPart, s.flexItem)}>
+      <div className={clsx(s.hide, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
           {t('becomeAPart')}
         </Typography>
@@ -75,7 +81,7 @@ export default function Footer() {
         </Typography>
       </div>
 
-      <div className={s.flexItem}>
+      <div className={clsx(s.hide2, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={clsx(s.hereWeAreLink, s.links)}>
           {t('hereWeAre')}
         </Typography>
