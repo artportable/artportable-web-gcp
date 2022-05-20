@@ -118,20 +118,20 @@ export default function DiscoverArt({ artworks, tags, activeTab, onFilter = null
 
   function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
-    if (isSignedIn.value) {
-      const originalRedirect = {
-        pathname: "/messages",
-        query: {
-          artwork: encodeURIComponent(JSON.stringify({
-            title: title,
-            creator: creator,
-            url: url,
-          })),
-          referTo: referTo,
-        }
-      }
-      router.push(originalRedirect);
-    } else {
+    // if (isSignedIn.value) {
+    //   const originalRedirect = {
+    //     pathname: "/messages",
+    //     query: {
+    //       artwork: encodeURIComponent(JSON.stringify({
+    //         title: title,
+    //         creator: creator,
+    //         url: url,
+    //       })),
+    //       referTo: referTo,
+    //     }
+    //   }
+    //   router.push(originalRedirect);
+    // } else {
       setPurchaseRequestDialogData({
         title: title,
         creator: creator,
@@ -141,7 +141,7 @@ export default function DiscoverArt({ artworks, tags, activeTab, onFilter = null
       })
       togglePurchaseRequestDialog();
     }
-  }
+  // }
 
   return (
     <>
