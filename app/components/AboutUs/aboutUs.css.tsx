@@ -23,6 +23,9 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600,
       marginBottom: '20px'
     },
+    subHeaderTypo: {
+      marginBottom: '30px'
+    },
 
     staffDiv: {
       display: 'grid',
