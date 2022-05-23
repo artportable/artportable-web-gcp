@@ -42,5 +42,6 @@
   "messageOptional": "Meddelande (valfritt)",
   "emailErrorMessage": "Ogiltig e-postadress",
   "readMore": "Läs mer",
-  "readLess": "Läs mindre"
+  "readLess": "Läs mindre",
+  "sendMessage": "Skicka meddelande"
 }

@@ -42,5 +42,6 @@
   "messageOptional": "Message (optional)",
   "emailErrorMessage": "Invalid email address",
   "readMore": "Read more",
-  "readLess": "Read less"
+  "readLess": "Read less",
+  "sendMessage": "Send message"
 }
