@@ -17,6 +17,7 @@ import { sv } from 'date-fns/locale';
 import { Locales } from '../../models/i18n/locales'
 import { useRedirectToLoginIfNotLoggedIn } from '../../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 export default function ArtworkListItemDefined({
@@ -119,16 +120,6 @@ export default function ArtworkListItemDefined({
         </div>
         <div className={s.likeInline}>
           <div className={s.likeContainer}>
-            <div className={s.likeCounter}>
-              {artwork.Likes > 0 ? artwork.Likes : ''}
-            </div>
-            <IconButton
-              className={s.likeButton}
-              disableRipple
-              disableFocusRipple
-              onClick={toggleLike}>
-              {likedFilled}
-            </IconButton>
             <Link href="/messages">
               <a onClick={() => {
                 redirectIfNotLoggedIn({
@@ -140,10 +131,22 @@ export default function ArtworkListItemDefined({
                 trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
               }}>
                 <IconButton className={s.chatButton} aria-label="account">
-                  <ChatBubbleOutlineIcon style={{ fontSize: '24px' }} />
+                  <ChatIcon style={{ fontSize: '23px' }} />
                 </IconButton>
               </a>
             </Link>
+            <div className={s.flexLikeCount}>
+              <IconButton
+                className={s.likeButton}
+                disableRipple
+                disableFocusRipple
+                onClick={toggleLike}>
+                {likedFilled}
+              </IconButton>
+              <div className={s.likeCounter}>
+                {artwork.Likes > 0 ? artwork.Likes : ''}
+              </div>
+            </div>
           </div>
         </div>
       </div>
