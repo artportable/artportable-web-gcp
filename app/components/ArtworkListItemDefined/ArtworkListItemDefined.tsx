@@ -68,7 +68,7 @@ export default function ArtworkListItemDefined({
   if (width === null || height === null) return <></>;
 
   return (
-    <div title={artwork.Title} className={s.container}>
+    <div className={s.container}>
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
@@ -120,6 +120,7 @@ export default function ArtworkListItemDefined({
         </div>
         <div className={s.likeInline}>
           <div className={s.likeContainer}>
+            <div title={t('common:sendMessage')}>
             <Link href="/messages">
               <a onClick={() => {
                 redirectIfNotLoggedIn({
@@ -135,6 +136,7 @@ export default function ArtworkListItemDefined({
                 </IconButton>
               </a>
             </Link>
+            </div>
             <div className={s.flexLikeCount}>
               <IconButton
                 className={s.likeButton}
