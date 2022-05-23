@@ -72,7 +72,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontStyle: 'italic',
       fontSize: '0.95rem',
       height: '1.3rem',
-      marginBottom: '5px'
+      marginBottom: '5px',
     },
     price: {
       fontSize: '0.95rem',
@@ -96,7 +96,12 @@ export const styles = makeStyles((theme: Theme) =>
     likeCounter: {
       marginLeft: "auto",
       marginRight: "0",
-      padding: theme.spacing(0.3, 0, 0, 0)
+      padding: theme.spacing(0.3, 0, 0, 0),
+    },
+    flex: {
+      display: 'flex',
+      flexDirection: 'column',
+      textAlign: 'right'
     },
     likeButton: {
       padding: theme.spacing(0.4, 0, 0.4, 0.5),
@@ -104,6 +109,17 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: 'transparent'
       }
+    },
+    chatButton: {
+      padding: theme.spacing(0.4, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+
+      '&:hover': {
+        backgroundColor: 'transparent'
+      }
+    },
+    chatDiv: {
+      marginTop: '-6px',
     },
     purchaseRequestButtonSv: {
       marginTop: '5px',
