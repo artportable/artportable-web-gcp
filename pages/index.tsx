@@ -27,6 +27,7 @@ import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/Disc
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
+import AdDialog from "../app/components/AdDialog/AdDialog";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -94,9 +95,29 @@ export default function DiscoverPage({ navBarItems }) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false)
   }
+  const [openAdDialog, setOpenAdDialog] = useState(true);
 
+  function toggleAdDialog() {
+    setOpenAdDialog(false);
+  }
+  useEffect(()=> {
+    
 
-  return (
+  },[])
+  
+  useEffect(()=> {
+    if (sessionStorage.getItem('dialog')) {
+      setOpenAdDialog(false)
+    }
+  },[])
+
+  useEffect(()=> {
+    if (openAdDialog === false) {
+    sessionStorage.setItem('dialog', 'false')
+    }
+  },[toggleAdDialog])
+  // if(!openAdDialog) 
+  return  (
     <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
       <Head>
         <meta name="title" content={t('index:title')} />
@@ -114,6 +135,11 @@ export default function DiscoverPage({ navBarItems }) {
           {!isSignedIn.value &&
             <IndexHero></IndexHero>
           }
+            <AdDialog
+              openAdDialog={openAdDialog}
+              setOpenAdDialog={setOpenAdDialog}
+              onClose={toggleAdDialog}
+            />
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
               {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8 ?
