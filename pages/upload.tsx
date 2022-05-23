@@ -68,6 +68,7 @@ export default function UploadArtworkPage({navBarItems}) {
   const [mobileImg, setMobileImg] = useState('');
   const [mobileImgBlob, setMobileImgBlob] = useState(null);
   const mobilePreviewImageRef = useRef(null);
+  const [refresh, setRefresh] = useState(false)
 
   const cropperRef = useRef(null);
 
@@ -100,6 +101,7 @@ export default function UploadArtworkPage({navBarItems}) {
           SecondaryFile: nameSecondary,
           TertiaryFile: nameTertiary
         }
+        setRefresh(true)
         setUploadSnackbarOpen(true);
         const res = usePostArtwork(artwork, socialId.value, token);
         router.push('/profile/@' + username.value);
@@ -131,6 +133,11 @@ export default function UploadArtworkPage({navBarItems}) {
       }
     }
   }
+  useEffect(()=> {
+    if (refresh) {
+    sessionStorage.setItem('refresh', 'false')
+    }
+  },[uploadArtwork])
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
