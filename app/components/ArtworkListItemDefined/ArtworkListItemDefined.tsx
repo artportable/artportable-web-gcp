@@ -15,6 +15,8 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import { Badge } from '@material-ui/core'
 import { sv } from 'date-fns/locale';
 import { Locales } from '../../models/i18n/locales'
+import { useRedirectToLoginIfNotLoggedIn } from '../../../app/hooks/useRedirectToLoginIfNotLoggedIn'
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 
 
 export default function ArtworkListItemDefined({
@@ -29,6 +31,7 @@ export default function ArtworkListItemDefined({
   const s = styles();
   const { t } = useTranslation(['art', 'common']);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   const { isSignedIn, username } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -126,37 +129,52 @@ export default function ArtworkListItemDefined({
               onClick={toggleLike}>
               {likedFilled}
             </IconButton>
+            <Link href="/messages">
+              <a onClick={() => {
+                redirectIfNotLoggedIn({
+                  pathname: "/messages",
+                  query: {
+                    referTo: artwork.Owner.SocialId
+                  }
+                });
+                trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
+              }}>
+                <IconButton className={s.chatButton} aria-label="account">
+                  <ChatBubbleOutlineIcon style={{ fontSize: '24px' }} />
+                </IconButton>
+              </a>
+            </Link>
           </div>
         </div>
       </div>
       <div className={s.purchaseFrameTool}>
         {
           username.value != artwork.Owner.Username && !artwork.SoldOut &&
-            <Button
-              className={router.locale === Locales.sv ? s.purchaseRequestButtonSv: s.purchaseRequestButtonEn}
-              purchaseRequestButton
-              onClick={() => {
-                onPurchaseRequestClick(
-                  artwork.Title,
-                  artwork.Owner.Username,
-                  artwork.Id,
-                  artwork.Owner.SocialId,
-                  bucketUrl + artwork.PrimaryFile.Name
-                );
-                trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
-              }}
-              variant="outlined"
-              rounded
-            >
-              {t('request')}
-            </Button>
+          <Button
+            className={router.locale === Locales.sv ? s.purchaseRequestButtonSv : s.purchaseRequestButtonEn}
+            purchaseRequestButton
+            onClick={() => {
+              onPurchaseRequestClick(
+                artwork.Title,
+                artwork.Owner.Username,
+                artwork.Id,
+                artwork.Owner.SocialId,
+                bucketUrl + artwork.PrimaryFile.Name
+              );
+              trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
+            }}
+            variant="outlined"
+            rounded
+          >
+            {t('request')}
+          </Button>
         }
         {artwork.Width > 0 && artwork.Height > 0 &&
           <div className={s.roomDiv}>
             <a href={`/tool/${artwork.Id}`}>
               <Badge badgeContent={t('new')} className={s.badgeNew}>
                 <Button
-                  className={ router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn }
+                  className={router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn}
                   rounded>
                   {t('room')}
                 </Button>
