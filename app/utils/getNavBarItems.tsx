@@ -2,8 +2,8 @@ import { fetchWithTimeout } from './util'
 
 export const getNavBarItems = async () => {
  try {
-  const result = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}productlists`, {
-    timeout: 11000
+  const result = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}productlists`, {
+    // timeout: 11000
   })
   const productlists = await result.json()
 
