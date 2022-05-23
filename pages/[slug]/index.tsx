@@ -27,14 +27,14 @@ export default function slugPage({ category = null, productList = null, navBarIt
 export async function getStaticProps({ params, locale }) {
   let pageType;
 
-  let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`, {
-    timeout: 11000
+  let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`, {
+    // timeout: 11000
   })
   if (res.ok) {
     pageType = 'articleCategory';
   } else {
-    res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/slug/${params.slug}`, {
-      timeout: 11000
+    res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/slug/${params.slug}`, {
+      // timeout: 11000
     })
     if (res.ok) {
       pageType = 'productList';
@@ -57,8 +57,8 @@ export async function getStaticProps({ params, locale }) {
             notFound: true,
           }
         }
-        let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`, {
-          timeout: 11000
+        let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`, {
+          // timeout: 11000
         })
         category = await res.json();
         return {
@@ -72,8 +72,8 @@ export async function getStaticProps({ params, locale }) {
       if (category.locale != Locales.sv) {
         var swedishCategoryLocale = category.localizations.find(locale => locale.locale == Locales.sv);
         if (swedishCategoryLocale) {
-          let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`, {
-            timeout: 11000
+          let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`, {
+            // timeout: 11000
           })
           var swedishArticles: Article[] = await res.json();
           if (swedishArticles && swedishArticles.length > 0) {
@@ -106,8 +106,8 @@ export async function getStaticProps({ params, locale }) {
             notFound: true,
           }
         }
-        let res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/${newLocale.id}`, {
-          timeout: 11000
+        let res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/${newLocale.id}`, {
+          // timeout: 11000
         });
         productList = await res.json();
         return {
@@ -143,13 +143,13 @@ export async function getStaticProps({ params, locale }) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories`, {
-    timeout: 11000
+  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories`, {
+    // timeout: 11000
   })
   const categories = await res.json()
 
-  const result = await fetchWithTimeout(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists`, {
-    timeout: 11000
+  const result = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists`, {
+    // timeout: 11000
   })
   const productlists = await result.json()
 
