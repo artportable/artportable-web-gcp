@@ -40,7 +40,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       alignItems: 'flex-start',
       fontWeight: theme.typography.fontWeightRegular,
-      fontSize: theme.typography.h6.fontSize
+      fontSize: theme.typography.h6.fontSize,
+      // placeItems: 'center'
     },
     likeInline: {
       display: 'inline-block',
@@ -49,12 +50,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeContainer: {
       display: 'flex',
-      alignItems: 'center',
       marginLeft: '10px',
       marginBottom: '5px',
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.caption.fontSize,
-      color: theme.palette.text.secondary
+      color: theme.palette.text.secondary,
+      placeItems: 'center'
     },
     info: {
       flexGrow: 1,
@@ -94,14 +95,15 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightRegular,
     },
     likeCounter: {
-      marginLeft: "auto",
+      marginLeft: '4px',
       marginRight: "0",
-      padding: theme.spacing(0.3, 0, 0, 0),
+
+      padding: theme.spacing(0.9, 0, 0, 0),
+      fontWeight: 500,
+      color: '#000000'
     },
-    flex: {
+    flexLikeCount: {
       display: 'flex',
-      flexDirection: 'column',
-      textAlign: 'right'
     },
     likeButton: {
       padding: theme.spacing(0.4, 0, 0.4, 0.5),
@@ -113,13 +115,13 @@ export const styles = makeStyles((theme: Theme) =>
     chatButton: {
       padding: theme.spacing(0.4, 0, 0.4, 0.5),
       fontSize: '0.5rem',
-
+      color: '#000000',
       '&:hover': {
         backgroundColor: 'transparent'
       }
     },
     chatDiv: {
-      marginTop: '-6px',
+
     },
     purchaseRequestButtonSv: {
       marginTop: '5px',
