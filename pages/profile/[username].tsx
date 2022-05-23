@@ -155,6 +155,13 @@ export default function Profile(props) {
     }
   }, []);
 
+  useEffect(()=> {
+    if (sessionStorage.getItem('refresh')) {
+      router.reload();
+      sessionStorage.removeItem('refresh')
+    }
+  },[])
+
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
     if (imageRows === null) {
