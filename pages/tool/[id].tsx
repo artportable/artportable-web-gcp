@@ -128,8 +128,8 @@ export async function getServerSideProps({ locale, params }) {
   const navBarItems = await getNavBarItems();
 
   try {
-    const artworkResponse = await fetchWithTimeout(url.href, {
-      timeout: 11000
+    const artworkResponse = await fetch(url.href, {
+      // timeout: 11000
       //fail return prop som sätts till true
 
     });
