@@ -55,7 +55,8 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary,
-      placeItems: 'center'
+      placeItems: 'center',
+      
     },
     info: {
       flexGrow: 1,
@@ -113,7 +114,7 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     chatButton: {
-      padding: theme.spacing(0.4, 0, 0.4, 0.5),
+      padding: theme.spacing(0.5, 0, 0.4, 0.5),
       fontSize: '0.5rem',
       color: '#000000',
       '&:hover': {
