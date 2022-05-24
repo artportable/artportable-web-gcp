@@ -22,6 +22,10 @@ export const styles = makeStyles((theme: Theme) =>
     adImage: {
       maxWidth: '90vw',
       maxHeight: '90vh',
+      [theme.breakpoints.up('md')]: {
+        maxWidth: '60vw',
+      maxHeight: '60vh',
+      }
     },
     videoFrame: {
       width: '300px',
