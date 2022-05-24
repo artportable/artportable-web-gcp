@@ -79,27 +79,17 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(0, 0.4, 0 ,0)
       }
     },
-
     flexLikeRoom: {
+      height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(23),
-      [theme.breakpoints.up('smPlus')]: {
-        ...columnGap(1),
-      }
     },
-    flex: {
+    flexMessageLike: {
       display: 'flex',
       alignItems: 'center',
-
+      alignSelf: 'flex-end'
     },
-    // likeContainer: {
-    //   float: 'right',
-    //   display: 'inline-block',
-    //   '& button' : {
-    //     paddingBottom: 0,
-    //   }
-    // },
+
     likeCounter: {
       marginLeft: '4px',
       marginRight: "0",
@@ -160,11 +150,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     roomDiv: {
       placeSelf: 'flex-end',
-      marginRight: '18px'
-      // marginTop: '73px',
-      // [theme.breakpoints.up('smPlus')]: {
-      //   marginTop: '51px',
-      // }
+      marginTop: '42px',
+      [theme.breakpoints.up('smPlus')]: {
+        marginTop: '20px',
+      }
     },
     roomButton: {
       marginTop: '5px',
@@ -181,7 +170,7 @@ export const styles = makeStyles((theme: Theme) =>
       '& span': {
         '&.MuiBadge-anchorOriginTopRightRectangle': {
           top: '6px',
-          right: '-10px',
+          right: '73px',
           backgroundColor: 'none',
           color: 'black'
         },
