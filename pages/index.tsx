@@ -27,6 +27,8 @@ import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/Disc
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
+import AdDialog from "../app/components/AdDialog/AdDialog";
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../app/utils/googleAnalytics";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -43,7 +45,8 @@ export default function DiscoverPage({ navBarItems }) {
   const { loading, setLoading } = useContext(LoadingContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
-
+  const [openAdDialog, setOpenAdDialog] = useState(true);
+  
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
@@ -54,9 +57,24 @@ export default function DiscoverPage({ navBarItems }) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
-
+  
+  
+  useEffect(()=> {
+    if (sessionStorage.getItem('dialog')) {
+      setOpenAdDialog(false)
+    } else if (openAdDialog) {
+      trackGoogleAnalytics(ActionType.SHOW_FIRST_PAGE_AD, CategoryType.INTERACTIVE)
+    } 
+  },[])
+  
+  useEffect(()=> {
+    if (openAdDialog === false) {
+      sessionStorage.setItem('dialog', 'false')
+    }
+  },[toggleAdDialog])
+  
   const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8;
-
+  
   function setTab(value) {
     setActiveTab(value);
     dispatch({
@@ -64,14 +82,14 @@ export default function DiscoverPage({ navBarItems }) {
       payload: value
     });
   }
-
+  
   function a11yProps(index: any) {
     return {
       id: `nav-tab-${index}`,
       'aria-controls': `nav-tabpanel-${index}`,
     };
   }
-
+  
   const subjectOptions = [
     {
       value: 'All',
@@ -95,8 +113,12 @@ export default function DiscoverPage({ navBarItems }) {
     setLoadMoreArtworks(false)
   }
 
+  function toggleAdDialog() {
+    setOpenAdDialog(false);
+  }
+  
 
-  return (
+  return  (
     <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
       <Head>
         <meta name="title" content={t('index:title')} />
@@ -114,6 +136,11 @@ export default function DiscoverPage({ navBarItems }) {
           {!isSignedIn.value &&
             <IndexHero></IndexHero>
           }
+            <AdDialog
+              openAdDialog={openAdDialog}
+              setOpenAdDialog={setOpenAdDialog}
+              onClose={toggleAdDialog}
+            />
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
               {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8 ?
