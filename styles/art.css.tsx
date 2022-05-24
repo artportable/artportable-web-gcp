@@ -79,6 +79,7 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(0, 0.4, 0 ,0)
       }
     },
+
     flexLikeRoom: {
       display: 'flex',
       flexDirection: 'column',
@@ -87,11 +88,38 @@ export const styles = makeStyles((theme: Theme) =>
         ...columnGap(1),
       }
     },
-    likeContainer: {
-      float: 'right',
-      display: 'inline-block',
-      '& button' : {
-        paddingBottom: 0,
+    flex: {
+      display: 'flex',
+      alignItems: 'center',
+
+    },
+    // likeContainer: {
+    //   float: 'right',
+    //   display: 'inline-block',
+    //   '& button' : {
+    //     paddingBottom: 0,
+    //   }
+    // },
+    likeCounter: {
+      marginLeft: '4px',
+      marginRight: "0",
+
+      fontWeight: 500,
+      color: '#000000'
+    },
+    likeButton: {
+      padding: theme.spacing(0.4, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+      '&:hover': {
+        backgroundColor: 'transparent'
+      }
+    },
+    chatButton: {
+      padding: theme.spacing(0.5, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+      color: '#000000',
+      '&:hover': {
+        backgroundColor: 'transparent'
       }
     },
     

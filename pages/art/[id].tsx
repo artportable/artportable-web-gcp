@@ -80,8 +80,8 @@ export default function ArtworkPage(props) {
     //     router.push(originalRedirect);
     //   }
     // } else {
-      togglePurchaseRequestDialog();
-    }
+    togglePurchaseRequestDialog();
+  }
   // }
 
   function toggleFollow() {
@@ -230,49 +230,53 @@ export default function ArtworkPage(props) {
                     </Box>
                   }
                 </div>
-                <div title={t('common:sendMessage')}>
-              <a>
-                <IconButton className={s.chatButton} aria-label="account" onClick={() => {
-                redirectIfNotLoggedIn({
-                  pathname: "/messages",
-                  query: {
-                    referTo: artwork.data.Owner.SocialId
-                  }
-                });
-                trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
-              }}>
-                  <ChatIcon style={{ fontSize: '23px' }} />
-                </IconButton>
-              </a>
-            </div>
-                <div className={s.flexLikeRoom}>
-                  <div className={s.likeContainer}>
-                    <Button
-                      //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
-                      onClick={toggleLike}
-                      startIcon={likedFilled}
-                    >
-                      {capitalizeFirst(t('common:like'))}
-                    </Button>
+                <div className={s.flex}>
+                  <div title={t('common:sendMessage')}>
+                    <a>
+                      <IconButton className={s.chatButton} aria-label="account" onClick={() => {
+                        redirectIfNotLoggedIn({
+                          pathname: "/messages",
+                          query: {
+                            referTo: artwork.data.Owner.SocialId
+                          }
+                        });
+                        trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
+                      }}>
+                        <ChatIcon style={{ fontSize: '23px' }} />
+                      </IconButton>
+                    </a>
+                  </div>
+                  {/* <div className={s.likeContainer}> */}
+                  <div>
+                    <IconButton
+                      className={s.likeButton}
+                      disableRipple
+                      disableFocusRipple
+                      onClick={toggleLike}>
+                      {likedFilled}
+                    </IconButton>
+                  </div>
+                  <div className={s.likeCounter}>
                     {artwork.data.Likes > 0 &&
-                      <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
+                      <div>{artwork.data.Likes}</div>
                     }
                   </div>
-                  {artwork.data.Width > 0 && artwork.data.Height > 0 &&
-                    <div className={s.roomDiv}>
-                      <a href={`/tool/${artwork.data.Id}`}>
-                        <Badge badgeContent={t('new')} className={s.badgeNew}>
-                          <Button
-                            className={s.roomButton}
-                            rounded>
-                            {t('room')}
-                          </Button>
-                        </Badge>
-                      </a>
-                    </div>
-                  }
                 </div>
               </div>
+              {artwork.data.Width > 0 && artwork.data.Height > 0 &&
+                <div className={s.roomDiv}>
+                  <a href={`/tool/${artwork.data.Id}`}>
+                    <Badge badgeContent={t('new')} className={s.badgeNew}>
+                      <Button
+                        className={s.roomButton}
+                        rounded>
+                        {t('room')}
+                      </Button>
+                    </Badge>
+                  </a>
+                </div>
+              }
+
               <Box textAlign="center" marginY={4} className={s.text}>
                 {artwork.data.Title &&
                   <Typography variant="h3" component="h2" id="artwork-modal-title">
