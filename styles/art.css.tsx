@@ -80,18 +80,36 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     flexLikeRoom: {
+      height: '100%',
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(23),
-      [theme.breakpoints.up('smPlus')]: {
-        ...columnGap(1),
+    },
+    flexMessageLike: {
+      display: 'flex',
+      alignItems: 'center',
+      alignSelf: 'flex-end'
+    },
+
+    likeCounter: {
+      marginLeft: '4px',
+      marginRight: "0",
+
+      fontWeight: 500,
+      color: '#000000'
+    },
+    likeButton: {
+      padding: theme.spacing(0.4, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+      '&:hover': {
+        backgroundColor: 'transparent'
       }
     },
-    likeContainer: {
-      float: 'right',
-      display: 'inline-block',
-      '& button' : {
-        paddingBottom: 0,
+    chatButton: {
+      padding: theme.spacing(0.5, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+      color: '#000000',
+      '&:hover': {
+        backgroundColor: 'transparent'
       }
     },
     
@@ -132,11 +150,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     roomDiv: {
       placeSelf: 'flex-end',
-      marginRight: '18px'
-      // marginTop: '73px',
-      // [theme.breakpoints.up('smPlus')]: {
-      //   marginTop: '51px',
-      // }
+      marginTop: '42px',
+      [theme.breakpoints.up('smPlus')]: {
+        marginTop: '20px',
+      }
     },
     roomButton: {
       marginTop: '5px',
@@ -153,7 +170,7 @@ export const styles = makeStyles((theme: Theme) =>
       '& span': {
         '&.MuiBadge-anchorOriginTopRightRectangle': {
           top: '6px',
-          right: '-10px',
+          right: '73px',
           backgroundColor: 'none',
           color: 'black'
         },

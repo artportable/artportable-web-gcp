@@ -121,9 +121,6 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: 'transparent'
       }
     },
-    chatDiv: {
-
-    },
     purchaseRequestButtonSv: {
       marginTop: '5px',
       minWidth: '110px',
