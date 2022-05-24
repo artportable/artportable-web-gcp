@@ -30,7 +30,9 @@ export enum ActionType {
   UPGRADE = 'upgrade_to_portfolio',
   BECOME_MONTHLY_ARTIST = "bli_månadens_konstnär",
   GET_PORTFOLIO_PREMIUM = "skaffa_månadens_konstnär",
-  UPGRADE_ACCOUNT_GOLD_BOTTOM = "uppgradera_konto_profil_guldknapp"
+  UPGRADE_ACCOUNT_GOLD_BOTTOM = "uppgradera_konto_profil_guldknapp",
+  SHOW_FIRST_PAGE_AD = "popup_annons_visad",
+  CLICK_FIRST_PAGE_AD = "popup_annons_klickad"
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 
