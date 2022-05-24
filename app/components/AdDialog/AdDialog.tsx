@@ -15,7 +15,6 @@ interface Props {
   openAdDialog: any;
   setOpenAdDialog: any
   onClose(): any;
-
 }
 
 export default function AdDialog(props: Props) {
@@ -32,22 +31,22 @@ export default function AdDialog(props: Props) {
     }
   }, []);
 
-  const images = [
+  const ad = [
     { companyName: "Apple", companyImage: '/ad/iphone.jpg', companyLink: 'https://www.apple.com/' },
     { companyName: "Nokia", companyImage: '/ad/nokia.jpg', companyLink: "https://www.nokia.com/" },
     { companyName: "Samsung", companyImage: '/ad/samsung.jpg', companyLink: "https://www.samsung.com/" },
   ]
 
   useEffect(() => {
-    const randomImageIndex = Math.floor(Math.random() * images.length);
+    const randomImageIndex = Math.floor(Math.random() * ad.length);
     setRandomImage(({
-      companyImage: (images[randomImageIndex].companyImage),
-      companyLink: (images[randomImageIndex].companyLink),
-      companyName: (images[randomImageIndex].companyName)
+      companyImage: (ad[randomImageIndex].companyImage),
+      companyLink: (ad[randomImageIndex].companyLink),
+      companyName: (ad[randomImageIndex].companyName)
     }));
   }, [])
 
-  const onClick = (e) => {
+  const onClick = () => {
     trackGoogleAnalytics(ActionType.CLICK_FIRST_PAGE_AD, CategoryType.INTERACTIVE)
   };
 
@@ -56,7 +55,6 @@ export default function AdDialog(props: Props) {
   }
 
   return (
-    <div>
       <Dialog
         className={s.dialog}
         open={props.openAdDialog}
@@ -73,7 +71,6 @@ export default function AdDialog(props: Props) {
           </a>
         }
       </Dialog>
-    </div>
   );
 }
 
