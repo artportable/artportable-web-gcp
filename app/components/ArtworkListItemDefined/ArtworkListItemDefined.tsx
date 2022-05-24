@@ -121,8 +121,8 @@ export default function ArtworkListItemDefined({
         <div className={s.likeInline}>
           <div className={s.likeContainer}>
             <div title={t('common:sendMessage')}>
-            <Link href="/messages">
-              <a onClick={() => {
+              <a>
+                <IconButton className={s.chatButton} aria-label="account" onClick={() => {
                 redirectIfNotLoggedIn({
                   pathname: "/messages",
                   query: {
@@ -131,11 +131,9 @@ export default function ArtworkListItemDefined({
                 });
                 trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
               }}>
-                <IconButton className={s.chatButton} aria-label="account">
                   <ChatIcon style={{ fontSize: '23px' }} />
                 </IconButton>
               </a>
-            </Link>
             </div>
             <div className={s.flexLikeCount}>
               <IconButton
