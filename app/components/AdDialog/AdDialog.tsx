@@ -1,11 +1,9 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, IconButton } from "@material-ui/core";
 import { useTranslation } from 'next-i18next'
-
 import CloseIcon from '@material-ui/icons/Close';
-
-
 import { styles } from './adDialog.css'
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
 
 interface RandomImageProps {
   companyImage: string;
@@ -37,6 +35,7 @@ export default function AdDialog(props: Props) {
   const images = [
     { companyName: "Apple", companyImage: '/ad/iphone.jpg', companyLink: 'https://www.apple.com/' },
     { companyName: "Nokia", companyImage: '/ad/nokia.jpg', companyLink: "https://www.nokia.com/" },
+    { companyName: "Samsung", companyImage: '/ad/samsung.jpg', companyLink: "https://www.samsung.com/" },
   ]
 
   useEffect(() => {
@@ -48,7 +47,9 @@ export default function AdDialog(props: Props) {
     }));
   }, [])
 
-
+  const onClick = (e) => {
+    trackGoogleAnalytics(ActionType.CLICK_FIRST_PAGE_AD, CategoryType.INTERACTIVE)
+  };
 
   const onCloseClick = () => {
     props.onClose();
@@ -67,7 +68,7 @@ export default function AdDialog(props: Props) {
           <CloseIcon />
         </IconButton>
         {randomImage &&
-          <a href={(randomImage.companyLink)} className={s.adImage} target="_blank">
+          <a href={(randomImage.companyLink)} target="_blank" onClick={onClick}>
             <img className={s.adImage} src={(randomImage.companyImage)}></img>
           </a>
         }
