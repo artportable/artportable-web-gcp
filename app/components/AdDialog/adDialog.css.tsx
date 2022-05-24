@@ -17,7 +17,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'absolute',
       right: theme.spacing(1),
       top: theme.spacing(1),
-      color: theme.palette.grey[500],
+      color: '#ffffff',
     },
     adImage: {
       maxWidth: '90vw',
