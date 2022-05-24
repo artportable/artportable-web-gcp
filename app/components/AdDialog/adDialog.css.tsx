@@ -5,11 +5,22 @@ export const styles = makeStyles((theme: Theme) =>
     dialog: {
       '& .MuiDialog-paper': {
         maxWidth: 'unset',
+        overflowY: 'unset'
         // height: '337.5px'
       },
       '& .MuiBackdrop-root': {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
       },
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+    adImage: {
+      maxWidth: '90vw',
+      maxHeight: '90vh',
     },
     videoFrame: {
       width: '300px',
@@ -29,5 +40,3 @@ export const styles = makeStyles((theme: Theme) =>
     },
   }),
 );
-// width: '600px',
-// height: '337.5px',
