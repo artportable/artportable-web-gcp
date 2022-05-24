@@ -169,8 +169,8 @@ export const styles = makeStyles((theme: Theme) =>
     badgeNew: {
       '& span': {
         '&.MuiBadge-anchorOriginTopRightRectangle': {
-          top: '6px',
-          right: '73px',
+          top: '-2px',
+          right: '10px',
           backgroundColor: 'none',
           color: 'black'
         },
