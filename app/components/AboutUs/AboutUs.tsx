@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { styles } from './aboutUs.css'
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@material-ui/core';
+import clsx from 'clsx'
 
 interface ImageProps {
   artwork: string;
@@ -16,21 +17,23 @@ export default function AboutMe() {
 
   const staff = [
     { name: "Axel Nordblom", title: "Finance Manager", image: '/staff/artportable_axel.jpg', email: "" },
-    { name: "Carl Nyberg", title: "COO", image: '/staff/artportable_carl.jpg', email: "carl@artportable.com" },
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
-    { name: "Erik Nordlander", title: "CEO & Founder", image: '/staff/artportable_erik.jpg', email: "erik@artportable.com" },
     { name: "Jacob Karlsson", title: "Sales Manager", image: '/staff/artportable_jacob.jpg', email: "jacob@artportable.com" },
-    { name: "Johan Höök", title: "Business Development & Founder", image: '/staff/artportable_johan.jpg', email: "johan@artportable.com" },
     { name: "Linus Gustin", title: "Art Coordinator", image: '/staff/artportable_linus.jpg', email: "linus@artportable.com" },
     { name: "Matilda Wirström", title: "Content Manager", image: '/staff/artportable_matilda.jpg', email: "" },
     { name: "Nannie Höök", title: "Content Creator", image: '/staff/artportable_nannie.jpg', email: "" },
     { name: "Patrik Söderberg", title: "IT Manager", image: '/staff/artportable_patrik.jpg', email: "" },
     { name: "Richard Leppänen", title: "Senior Art Coordinator", image: '/staff/artportable_richard.jpg', email: "richard@artportable.com" },
     { name: "Tony Lidén", title: "Art Coordinator", image: '/staff/artportable_tony.jpg', email: "tony@artportable.com" },
-  ]
-  const cosmo = [
     { name: "Cosmo", title: "", image: '/staff/artportable_cosmo.jpg', email: "hello@artportable.com" },
   ]
+
+  const board = [
+    { name: "Carl Nyberg", title: "COO", image: '/staff/artportable_carl.jpg', email: "carl@artportable.com" },
+    { name: "Erik Nordlander", title: "CEO & Founder", image: '/staff/artportable_erik.jpg', email: "erik@artportable.com" },
+    { name: "Johan Höök", title: "Business Development & Founder", image: '/staff/artportable_johan.jpg', email: "johan@artportable.com" },
+  ]
+
 
   return (
     <div className={s.container}>
@@ -39,10 +42,10 @@ export default function AboutMe() {
           {t('aboutUs')}
         </Typography>
         <Typography variant="h4" className={s.subHeaderTypo}>
-        {t('digitalGallery')}
+          {t('digitalGallery')}
         </Typography>
         <Typography variant="h4">
-        {t('showRoom')}
+          {t('showRoom')}
         </Typography>
       </div>
       <div className={s.flex}>
@@ -68,8 +71,8 @@ export default function AboutMe() {
           </div>
         ))}
       </div>
-      <div className={s.staffDiv}>
-        {cosmo.map((person) => (
+      <div className={clsx(s.bottomDiv, s.staffDiv)}>
+        {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <img
               className={s.image}
