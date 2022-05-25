@@ -43,7 +43,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     },
     wrapper: {
-      marginBottom: '40px',
+      marginBottom: '20px',
     },
 
     image: {
@@ -57,7 +57,12 @@ export const styles = makeStyles((theme: Theme) =>
     flex: {
       display: 'flex',
       justifyContent: 'center',
- 
+    },
+    bottomDiv: {
+      marginBottom: '40px',
+      [theme.breakpoints.up('smPlus')]: {
+        marginBottom: '80px',
+      },
     },
     videoFrame: {
       width: '350px',
