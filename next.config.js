@@ -6,11 +6,6 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/success',
-        destination: '/',
-        permanent: true,
-      },
-      {
         source: '/register',
         destination: signUpRedirect,
         permanent: true,

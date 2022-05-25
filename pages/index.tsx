@@ -29,6 +29,7 @@ import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/Disco
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
 import AdDialog from "../app/components/AdDialog/AdDialog";
 import { ActionType, CategoryType, trackGoogleAnalytics } from "../app/utils/googleAnalytics";
+import router from "next/router";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -72,6 +73,13 @@ export default function DiscoverPage({ navBarItems }) {
       sessionStorage.setItem('dialog', 'false')
     }
   },[toggleAdDialog])
+
+  useEffect(()=> {
+    if (sessionStorage.getItem('payment')) {
+      router.reload();
+      sessionStorage.removeItem('payment')
+    }
+  },[])
   
   const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8;
   
