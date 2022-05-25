@@ -1,22 +1,42 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap, columnGap } from '../app/utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     zendeskForm: {
-      marginTop: theme.spacing(4)
+      marginTop: theme.spacing(4),
+      width: '100%',
+      // [theme.breakpoints.up('md')]: {
+      //   width: '400px',
+      // },
     },
     flexPaper: {
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'space-between'
     },
-    paper: {
+    paperLeft: {
       padding: '0 20px',
-      width: '550px',
+      width: '50%',
     },
-    headline: {
+    paperRight: {
+      padding: '30px 20px 0 20px',
 
-      fontWeight: 500,
-      marginTop: theme.spacing(4)
-    }
+    },
+    headerTypo: {
+      fontWeight: 600,
+      marginBottom: '20px'
+    },
+    textBlock: {
+      margin: '30px 0 30px 0'
+    },
+    icon: {
+      marginRight: '10px',
+      fontSize: '40px'
+    },
+    iconTextFlex: {
+      display: 'flex',
+      alignItems: 'center',
+      ...columnGap(20),
+    },
   }),
 );
