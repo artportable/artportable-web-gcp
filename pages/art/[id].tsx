@@ -26,6 +26,7 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
+import ChatIcon from '@material-ui/icons/Chat';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -79,8 +80,8 @@ export default function ArtworkPage(props) {
     //     router.push(originalRedirect);
     //   }
     // } else {
-      togglePurchaseRequestDialog();
-    }
+    togglePurchaseRequestDialog();
+  }
   // }
 
   function toggleFollow() {
@@ -230,17 +231,36 @@ export default function ArtworkPage(props) {
                   }
                 </div>
                 <div className={s.flexLikeRoom}>
-                  <div className={s.likeContainer}>
-                    <Button
-                      //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
-                      onClick={toggleLike}
-                      startIcon={likedFilled}
-                    >
-                      {capitalizeFirst(t('common:like'))}
-                    </Button>
-                    {artwork.data.Likes > 0 &&
-                      <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
-                    }
+                  <div className={s.flexMessageLike}>
+                    <div title={t('common:sendMessage')}>
+                      <a>
+                        <IconButton className={s.chatButton} aria-label="account" onClick={() => {
+                          redirectIfNotLoggedIn({
+                            pathname: "/messages",
+                            query: {
+                              referTo: artwork.data.Owner.SocialId
+                            }
+                          });
+                          trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
+                        }}>
+                          <ChatIcon style={{ fontSize: '23px' }} />
+                        </IconButton>
+                      </a>
+                    </div>
+                    <div>
+                      <IconButton
+                        className={s.likeButton}
+                        disableRipple
+                        disableFocusRipple
+                        onClick={toggleLike}>
+                        {likedFilled}
+                      </IconButton>
+                    </div>
+                    <div className={s.likeCounter}>
+                      {artwork.data.Likes > 0 &&
+                        <div>{artwork.data.Likes}</div>
+                      }
+                    </div>
                   </div>
                   {artwork.data.Width > 0 && artwork.data.Height > 0 &&
                     <div className={s.roomDiv}>
