@@ -84,6 +84,9 @@ export default function Support({ navBarItems }) {
                   116 32 Stockholm
                 </Typography>
               </div>
+              <Typography>
+                Tel: <a href="tel:+4685576612">08 - 557 661 20</a>
+              </Typography>
             </div>
           </Paper>
         </div>
