@@ -6,13 +6,11 @@ export const styles = makeStyles((theme: Theme) =>
     zendeskForm: {
       marginTop: theme.spacing(4),
       width: '100%',
-      // [theme.breakpoints.up('md')]: {
-      //   width: '400px',
-      // },
     },
     flexPaper: {
       display: 'flex',
-      justifyContent: 'space-between'
+      ...rowGap(20),
+      justifyContent: 'center'
     },
     paperLeft: {
       padding: '0 20px',
@@ -29,6 +27,9 @@ export const styles = makeStyles((theme: Theme) =>
     textBlock: {
       margin: '30px 0 30px 0'
     },
+    textBlockRight: {
+      margin: '15px 0 15px 0'
+    },
     icon: {
       marginRight: '10px',
       fontSize: '40px'
@@ -37,6 +38,13 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       ...columnGap(20),
+    },
+    bold: {
+      fontWeight: 500,
+    },
+    logo: {
+      width: '200px',
+      marginBottom: '20px'
     },
   }),
 );
