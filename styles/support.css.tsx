@@ -7,6 +7,11 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(4),
       width: '100%',
     },
+    paddingWidth: {
+      [theme.breakpoints.up('lg')]: {
+      padding: '0 100px 0 100px',
+      },
+    },
     flexPaper: {
       display: 'flex',
       flexDirection: 'column',
@@ -25,22 +30,29 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     paperRight: {
-      padding: '30px 20px 30px 20px',
+      padding: '30px 20px 20px 20px',
       [theme.breakpoints.up('mdPlus')]: {
-        padding: '30px 20px 0 20px',
-        height: '40%'
+        height: '50%'
       },
 
     },
     headerTypo: {
       fontWeight: 600,
-      marginBottom: '20px'
+      marginBottom: '40px',
     },
     textBlock: {
       margin: '30px 0 30px 0'
     },
+    textBlockWidth: {
+      [theme.breakpoints.up('mdPlus')]: {
+      width: '70%',
+      },
+    },
     textBlockRight: {
       margin: '15px 0 15px 0'
+    },
+    typoBold: {
+      fontWeight: 500,
     },
     icon: {
       marginRight: '10px',

@@ -17,5 +17,12 @@
   "renewal": "Renewal",
   "other": "Other",
   "errand": "Errand",
-  "advertising": "Advertising for companies"
+  "advertising": "Advertising for companies",
+  "contactUs": "Contact us",
+  "yourWelcome": "You are always welcome to contact us if you have any questions about the service or want to get in touch with us.",
+  "openingHours": "Opening Hours: ",
+  "8-17": "Monday - Friday, 8 a.m - 5 p.m",
+  "deviating": "Deviating opening hours during bank holidays and art exhibitions openings"
+
+
 }
