@@ -24,7 +24,7 @@ export default function Support({ navBarItems }) {
           </Typography>
           <div className={s.iconTextFlex}>
             <MailOutlineIcon className={s.icon} />
-            <Typography>
+            <Typography className={s.linkText}>
               <a href="mailto:hello@artportable.com">
                 hello@artportable.com
               </a>
@@ -32,7 +32,7 @@ export default function Support({ navBarItems }) {
           </div>
           <div className={s.iconTextFlex}>
             <PhoneIphoneIcon className={s.icon} />
-            <Typography>
+            <Typography className={s.linkText}>
               {/* <a href="tel:+4733378901"></a>08-55766120 */}
               <a href="tel:+4685576612">08 - 557 661 20</a>
             </Typography>

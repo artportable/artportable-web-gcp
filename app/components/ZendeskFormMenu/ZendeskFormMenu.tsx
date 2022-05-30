@@ -49,6 +49,10 @@ export default function ZendeskForm() {
       label: t('subscription')
     },
     {
+      value: 'sales@artportable.com',
+      label: t('advertising')
+    },
+    {
       value: 'report@artportable',
       label: t('report')
     },
@@ -235,7 +239,7 @@ export default function ZendeskForm() {
             helperText={formData.subject.error ? t('mustNotBeEmptyMessage') : ''}
           >
             {subjectOptions.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={option.label} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}

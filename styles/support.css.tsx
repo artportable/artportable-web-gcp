@@ -9,15 +9,27 @@ export const styles = makeStyles((theme: Theme) =>
     },
     flexPaper: {
       display: 'flex',
+      flexDirection: 'column',
+      ...columnGap(20),
+      justifyContent: 'center',
+      [theme.breakpoints.up('mdPlus')]: {
+        flexDirection: 'row',
       ...rowGap(20),
-      justifyContent: 'center'
+      },
     },
     paperLeft: {
       padding: '0 20px',
-      width: '50%',
+      width: '100%',
+      [theme.breakpoints.up('mdPlus')]: {
+        width: '100%',
+      },
     },
     paperRight: {
-      padding: '30px 20px 0 20px',
+      padding: '30px 20px 30px 20px',
+      [theme.breakpoints.up('mdPlus')]: {
+        padding: '30px 20px 0 20px',
+        height: '40%'
+      },
 
     },
     headerTypo: {
@@ -38,6 +50,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       ...columnGap(20),
+    },
+    linkText: {
+      fontWeight: 500,
+      fontSize: '1.1rem'
     },
     bold: {
       fontWeight: 500,
