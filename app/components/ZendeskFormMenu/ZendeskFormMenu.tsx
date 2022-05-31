@@ -37,7 +37,7 @@ export default function ZendeskForm() {
   const subjectOptions = [
 
     {
-      value: 'salest@artportable.com',
+      value: 'sales@artportable.com',
       label: t('marketing'),
     },
     {
@@ -239,7 +239,7 @@ export default function ZendeskForm() {
             helperText={formData.subject.error ? t('mustNotBeEmptyMessage') : ''}
           >
             {subjectOptions.map((option) => (
-              <MenuItem key={option.label} value={option.value}>
+              <MenuItem key={option.label} value={option.value} className={s.arnold}>
                 {option.label}
               </MenuItem>
             ))}
