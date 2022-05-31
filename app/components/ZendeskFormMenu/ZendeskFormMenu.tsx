@@ -239,7 +239,7 @@ export default function ZendeskForm() {
             helperText={formData.subject.error ? t('mustNotBeEmptyMessage') : ''}
           >
             {subjectOptions.map((option) => (
-              <MenuItem key={option.label} value={option.value} className={s.arnold}>
+              <MenuItem key={option.label} value={option.value} className={s.selectedColor}>
                 {option.label}
               </MenuItem>
             ))}

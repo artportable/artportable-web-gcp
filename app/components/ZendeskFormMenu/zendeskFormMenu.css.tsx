@@ -49,12 +49,12 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       width: '100%',
     },
-    arnold: {
+    selectedColor: {
       '&.MuiListItem-root.Mui-selected': {
         backgroundColor: 'transparent',
       },
       '&.MuiListItem-root.Mui-selected:hover': {
-        backgroundColor: '#ffffff',
+        backgroundColor: 'transparent',
       },
     },
     sendButton: {
