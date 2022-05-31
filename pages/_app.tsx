@@ -30,6 +30,7 @@ import { AuthClientError, AuthClientEvent, AuthClientTokens } from '@react-keycl
 import { CustomSSRCookies } from '../app/utils/customSSRCookies'
 import ArtportableContexts from '../app/contexts/ArtportableContexts'
 import Router from 'next/router'
+import { useTranslation } from "next-i18next";
 
 
 
@@ -101,6 +102,8 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       })
   }, [router.events])
 
+  const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
+
   return (
     <>
       <Head>
@@ -110,7 +113,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         />
         <meta name="google-site-verification" content="B9E_ukZ1WdJdKTaGYuinQ8eZZdSGH3tuC4mBVIogcwc" />
         <link rel="icon" href="/favicon.ico" />
-        <title>Artportable</title>
+        <title>{t('index:title')}</title>
       </Head>
       <SSRKeycloakProvider
         keycloakConfig={keycloakConfig}
