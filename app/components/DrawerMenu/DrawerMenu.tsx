@@ -178,12 +178,13 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             </ListItem>
           </a>
         </Link>
-        <ListItem button divider onClick={handleClickContact} >
-          <ListItemText primary={t('contactUs')} />
-        </ListItem >
-        <DialogConstruction
-          openContact={openContact}
-          handleClose={handleCloseContact} />
+        <Link href="/support" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('contactUs')} />
+            </ListItem>
+          </a>
+        </Link>
         <Link href="/about-us" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
