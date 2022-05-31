@@ -102,7 +102,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       })
   }, [router.events])
 
-  const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
+  const { t } = useTranslation(['header']);
 
   return (
     <>
@@ -113,7 +113,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         />
         <meta name="google-site-verification" content="B9E_ukZ1WdJdKTaGYuinQ8eZZdSGH3tuC4mBVIogcwc" />
         <link rel="icon" href="/favicon.ico" />
-        <title>{t('index:title')}</title>
+        <title>{t('title')}</title>
       </Head>
       <SSRKeycloakProvider
         keycloakConfig={keycloakConfig}
