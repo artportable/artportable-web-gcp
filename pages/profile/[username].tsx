@@ -417,7 +417,7 @@ export default function Profile(props) {
                     <RWebShare
                       data={{
                         text: "Like humans, flamingos make friends for life",
-                        url: "http://localhost:3000/register",
+                        url: "https://beta.artportable.com/register",
                         title: "Få fler följare, bjud in dina vänner",
                       }}
                       onClick={() => console.log("shared successfully!")}
