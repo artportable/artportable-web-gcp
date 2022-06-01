@@ -6,13 +6,12 @@ import Head from "next/head";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 
 export default function Register({navBarItems}) {
-  const { t } = useTranslation(['header']);
-  const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
-
+  const { t } = useTranslation(['common']);
+  
   useEffect(() => {
      const {pathname} = Router
      if(pathname == '/register' ){
-         Router.push('/gdpr')
+         Router.push('https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=3fc6159f-0e2e-4bb4-9b2b-3f3ff826affa&response_mode=fragment&response_type=code&scope=openid&nonce=7d557230-2875-4d33-83b0-2d78830dffcb&ui_locales=sv&code_challenge=6FM1cKFB3vk67DNssTbcr0KxJmgo_OBQVCJFCrYqDqs&code_challenge_method=S256')
      }
    });
 

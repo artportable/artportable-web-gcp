@@ -54,6 +54,7 @@ import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
 import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
+import InviteFriends from '../../app/components/InviteFriends/InviteFriends';
 
 function a11yProps(index: any) {
   return {
@@ -155,12 +156,12 @@ export default function Profile(props) {
     }
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     if (sessionStorage.getItem('refresh')) {
       router.reload();
       sessionStorage.removeItem('refresh')
     }
-  },[])
+  }, [])
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
@@ -318,15 +319,15 @@ export default function Profile(props) {
     //   }
     //   router.push(originalRedirect);
     // } else {
-      setPurchaseRequestDialogData({
-        title: title,
-        creator: creator,
-        url: url,
-        referTo: referTo,
-        imageurl: imageurl
-      })
-      togglePurchaseRequestDialog();
-    }
+    setPurchaseRequestDialogData({
+      title: title,
+      creator: creator,
+      url: url,
+      referTo: referTo,
+      imageurl: imageurl
+    })
+    togglePurchaseRequestDialog();
+  }
   // }
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
@@ -413,6 +414,7 @@ export default function Profile(props) {
                     </div>
                   }
 
+
                   {(membership.value < Membership.Portfolio) &&
                     <UpgradePortfolio />
                   }
@@ -469,6 +471,9 @@ export default function Profile(props) {
                 />
               </div>
             }
+                              <div className={s.friends}>
+                    <InviteFriends />
+                  </div>
             {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&
               <div className={s.hovs}>
                 <Button

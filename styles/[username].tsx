@@ -57,7 +57,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
         '\"      .              .         .        .              .\"       185px' +
         '\"      .              .      profile     .              .\"       50px' +
         '\"      .              .      profile     .              actions\"       auto' +
-        '\"      .              hej      hej          hej               .\"       auto' +
+        '\"      .           friends   friends   friends           .\"       auto' +
+        '\"      .              hej      hej       hej               .\"       auto' +
         '\"   divider        divider   divider   divider       divider\"       auto' +
         '\"      .         priceSpan  priceSpan  priceSpan        .\"       auto' +
         '\"     articles    articles   articles articles      articles\"       auto' +
@@ -83,6 +84,12 @@ export const profileStyles = makeStyles((theme: Theme) =>
       '& .MuiButton-startIcon': {
         margin: '0 0',
       },
+    },
+    friends: {
+      gridArea: 'friends',
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '10px',
     },
     hovs: {
       '& :hover': {
