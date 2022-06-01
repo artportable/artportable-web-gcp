@@ -417,7 +417,7 @@ export default function Profile(props) {
                     <RWebShare
                       data={{
                         text: "Like humans, flamingos make friends for life",
-                        url: "https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=10c375e2-bba1-46b1-a3ba-cae4de1cfe4c&response_mode=fragment&response_type=code&scope=openid&nonce=e947161e-00dd-4e23-8207-63498bd7b096&ui_locales=sv&code_challenge=l5OgBuXRH4B6A2gSrJVG9sfkbvCHkEzugWLY1csanu0&code_challenge_method=S256",
+                        url: "http://localhost:3000/register",
                         title: "Få fler följare, bjud in dina vänner",
                       }}
                       onClick={() => console.log("shared successfully!")}
