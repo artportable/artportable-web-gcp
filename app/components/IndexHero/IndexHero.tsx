@@ -48,6 +48,7 @@ export default function IndexHero() {
     { name: "Anette Lillhammar", username: "anette", image: '/images/anette_lillhammar.jpg', imageLink: "art/40108179-ccca-4ee8-8d99-e0ec644e4800" },
     { name: "Beatrice Jansson", username: "beatrice.jansson", image: '/images/beatrie_jansson.jpg', imageLink: "art/23d78d08-dd61-4817-88e8-db26abe466ee" },
     { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_18.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
+    { name: "Kristina Ekberg Renström", username: "stina.ekberg", image: '/images/kristina_ekberg.jpg', imageLink: "art/6c1ef466-eee7-4a97-bc0b-17018dbff958" },
   ]
 
   useEffect(() => {
