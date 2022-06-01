@@ -9,12 +9,12 @@ export default function Register({navBarItems}) {
   const { t } = useTranslation(['common']);
   const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
 
-  // useEffect(() => {
-  //    const {pathname} = Router
-  //    if(pathname == '/register' ){
-  //        Router.push(signUpRedirect)
-  //    }
-  //  });
+  useEffect(() => {
+     const {pathname} = Router
+     if(pathname == '/register' ){
+         Router.push(signUpRedirect)
+     }
+   });
 
 
   return (
