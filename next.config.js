@@ -1,6 +1,6 @@
 const { i18n } = require('./next-i18next.config')
 
-const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
+// const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
 module.exports = {
   // Fix to reload page after upgrade account
   // async redirects() {
