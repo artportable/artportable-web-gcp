@@ -4,10 +4,8 @@ import Head from "next/head";
 import React from "react";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 
-
 export default function Register({navBarItems}) {
   const { t } = useTranslation(['header']);
-
 
   return (
       <>
@@ -28,10 +26,6 @@ export async function getStaticProps({ locale }) {
   const navBarItems = await getNavBarItems(); 
   const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
   return {
-    redirect: {
-      destination: signUpRedirect,
-      permanent: true,
-    },
     props: {
       navBarItems: navBarItems,
       ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans']),
