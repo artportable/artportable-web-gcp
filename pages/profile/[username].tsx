@@ -54,7 +54,7 @@ import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
 import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
-import { RWebShare } from "react-web-share";
+import InviteFriends from '../../app/components/InviteFriends/InviteFriends';
 
 function a11yProps(index: any) {
   return {
@@ -413,23 +413,7 @@ export default function Profile(props) {
                       </Link>
                     </div>
                   }
-                  <div>
-                    <RWebShare
-                      data={{
-                        text: t('common:description'),
-                        url: "https://beta.artportable.com/register",
-                        title: t('common:invite'),
-                      }}
-                      onClick={() => console.log("shared successfully!")}
-                    >
-                      <Button
-                      size="small"
-                      rounded
-                      variant="outlined">
-                        Bjud in dina vänner
-                      </Button>
-                    </RWebShare>
-                  </div>
+
 
                   {(membership.value < Membership.Portfolio) &&
                     <UpgradePortfolio />
@@ -487,6 +471,9 @@ export default function Profile(props) {
                 />
               </div>
             }
+                              <div className={s.friends}>
+                    <InviteFriends />
+                  </div>
             {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&
               <div className={s.hovs}>
                 <Button
