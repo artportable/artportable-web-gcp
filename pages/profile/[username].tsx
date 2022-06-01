@@ -54,6 +54,7 @@ import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
 import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
+import { RWebShare } from "react-web-share";
 
 function a11yProps(index: any) {
   return {
@@ -155,12 +156,12 @@ export default function Profile(props) {
     }
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     if (sessionStorage.getItem('refresh')) {
       router.reload();
       sessionStorage.removeItem('refresh')
     }
-  },[])
+  }, [])
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
@@ -318,15 +319,15 @@ export default function Profile(props) {
     //   }
     //   router.push(originalRedirect);
     // } else {
-      setPurchaseRequestDialogData({
-        title: title,
-        creator: creator,
-        url: url,
-        referTo: referTo,
-        imageurl: imageurl
-      })
-      togglePurchaseRequestDialog();
-    }
+    setPurchaseRequestDialogData({
+      title: title,
+      creator: creator,
+      url: url,
+      referTo: referTo,
+      imageurl: imageurl
+    })
+    togglePurchaseRequestDialog();
+  }
   // }
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
@@ -412,6 +413,23 @@ export default function Profile(props) {
                       </Link>
                     </div>
                   }
+                  <div>
+                    <RWebShare
+                      data={{
+                        text: "Like humans, flamingos make friends for life",
+                        url: "https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=10c375e2-bba1-46b1-a3ba-cae4de1cfe4c&response_mode=fragment&response_type=code&scope=openid&nonce=e947161e-00dd-4e23-8207-63498bd7b096&ui_locales=sv&code_challenge=l5OgBuXRH4B6A2gSrJVG9sfkbvCHkEzugWLY1csanu0&code_challenge_method=S256",
+                        title: "Få fler följare, bjud in dina vänner",
+                      }}
+                      onClick={() => console.log("shared successfully!")}
+                    >
+                      <Button
+                      size="small"
+                      rounded
+                      variant="outlined">
+                        Bjud in dina vänner
+                      </Button>
+                    </RWebShare>
+                  </div>
 
                   {(membership.value < Membership.Portfolio) &&
                     <UpgradePortfolio />
