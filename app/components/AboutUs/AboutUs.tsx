@@ -16,7 +16,6 @@ export default function AboutMe() {
   const { t } = useTranslation(['about']);
 
   const staff = [
-    { name: "Axel Nordblom", title: "Finance Manager", image: '/staff/artportable_axel.jpg', email: "" },
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
     { name: "Jacob Karlsson", title: "Sales Manager", image: '/staff/artportable_jacob.jpg', email: "jacob@artportable.com" },
     { name: "Linus Gustin", title: "Art Coordinator", image: '/staff/artportable_linus.jpg', email: "linus@artportable.com" },
