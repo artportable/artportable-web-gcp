@@ -7,6 +7,7 @@ import { List } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import FollowSuggestion from '../FollowSuggestion/FollowSuggestion';
+import InviteFriendsFeed from '../InviteFriends/InviteFriendsFeed';
 
 
 export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) {
@@ -17,10 +18,15 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
 
   return (
     <Card elevation={2}>
+      <div className={s.flex}>
       <CardHeader 
         title={t('artistsWeThinkYouWouldLike')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
+      <div className={s.divInviteButton}>
+      <InviteFriendsFeed/>
+      </div>
+      </div>
       <CardContent>
         {!suggestedUsers?.isError ? (
           <List className={s.list} dense>
@@ -37,7 +43,9 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
                     (suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
                       <FollowSuggestion key={user.Username} user={user} onFollowClick={onFollowClick}></FollowSuggestion>
                     )) : (
+                      <>
                       <p className={s.nothing}>{t('noRecommendedUsers')}</p>
+                      </>
                     )
               )}
           </List>

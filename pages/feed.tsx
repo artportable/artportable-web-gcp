@@ -26,7 +26,6 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/goo
 import usePostLike from '../app/hooks/dataFetching/usePostLike';
 import usePostFollow from '../app/hooks/dataFetching/usePostFollow';
 import { getNavBarItems } from '../app/utils/getNavBarItems';
-import InviteFriendsFeed from '../app/components/InviteFriends/InviteFriendsFeed';
 
 
 export default function FeedPage({navBarItems}) {
@@ -155,7 +154,7 @@ export default function FeedPage({navBarItems}) {
             </div>
             <div className={s.colRight}>
               <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={followUser}></FollowSuggestionCard>
-                  <InviteFriendsFeed />
+
             </div>
           </Box>
         }
