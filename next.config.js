@@ -1,18 +1,18 @@
 const { i18n } = require('./next-i18next.config')
 
-const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
+// const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
 module.exports = {
   // Fix to reload page after upgrade account
-  async redirects() {
-    return [
-      {
-        source: '/register',
-        destination: signUpRedirect,
-        permanent: true,
-      },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/register',
+  //       destination: signUpRedirect,
+  //       permanent: true,
+  //     },
 
-    ]
-  },
+  //   ]
+  // },
 
   images: {
     domains: ['artportabletest.blob.core.windows.net', 'artportableprod.blob.core.windows.net'],

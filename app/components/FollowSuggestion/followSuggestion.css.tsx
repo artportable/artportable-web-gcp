@@ -20,6 +20,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     secondaryAction: {
       right: '2px'
+    },
+    followButton: {
+      height: '1.5rem'
     }
   }),
 );

@@ -118,7 +118,7 @@ export default function FeedPage({navBarItems}) {
             {!mdPlusScreenOrDown && 
               <div className={s.colLeft}>
                 <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
-                {membership.value === Membership.PortfolioPremium &&
+                  {membership.value > Membership.Base &&
                   <Link href="/upload">
                     <a>
                       <Button
@@ -126,6 +126,7 @@ export default function FeedPage({navBarItems}) {
                         size="small"
                         variant="contained"
                         color="primary"
+                        rounded
                         onClick={trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_FEED, CategoryType.INTERACTIVE)}
                         disableElevation>
                         {t('uploadNewWorkOfArt')}
@@ -153,6 +154,7 @@ export default function FeedPage({navBarItems}) {
             </div>
             <div className={s.colRight}>
               <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={followUser}></FollowSuggestionCard>
+
             </div>
           </Box>
         }
