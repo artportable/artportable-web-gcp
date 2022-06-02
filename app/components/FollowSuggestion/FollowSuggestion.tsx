@@ -48,10 +48,11 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
       </Link>
       <ListItemSecondaryAction className={s.secondaryAction}>
         <Button
+        className={s.followButton}
           size="small"
           variant={!isFollowed ? "contained" : "outlined"}
           color="primary"
-          startIcon={!isFollowed ? <AddIcon/> : null}
+          // startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
           rounded
           onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOWING_SUGGESTION, CategoryType.INTERACTIVE) : null}}>
