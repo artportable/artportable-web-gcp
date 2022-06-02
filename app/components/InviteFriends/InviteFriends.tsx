@@ -12,7 +12,7 @@ export default function InviteFriends() {
     <RWebShare
       data={{
         text: t('common:description'),
-        url: "https://beta.artportable.com/register",
+        url: "https://artportable.com/register",
         title: t('common:invite'),
       }}
       onClick={() => trackGoogleAnalytics(ActionType.INVITE_PROFILE)}
