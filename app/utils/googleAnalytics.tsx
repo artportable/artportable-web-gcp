@@ -32,7 +32,11 @@ export enum ActionType {
   GET_PORTFOLIO_PREMIUM = "skaffa_månadens_konstnär",
   UPGRADE_ACCOUNT_GOLD_BOTTOM = "uppgradera_konto_profil_guldknapp",
   SHOW_FIRST_PAGE_AD = "popup_annons_visad",
-  CLICK_FIRST_PAGE_AD = "popup_annons_klickad"
+  CLICK_FIRST_PAGE_AD = "popup_annons_klickad",
+  INVITE_FEED = "bjud in_feed",
+  INVITE_PROFILE = "bjud in_profile",
+  INVITE_HEADER = "bjud in_header",
+
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 

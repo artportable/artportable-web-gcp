@@ -46,5 +46,6 @@
   "sendMessage": "Send message",
   "title": "Artportable – Seeing this? Then we think you would fit into our art community.",
   "description": "Become a member and start your journey at Artportable - a modern gallery where artists can exhibit their art, establish new contacts and sell their art.",
-  "invite": "Get more followers, invite your friends"
+  "followersInvite": "Get more followers, invite your friends",
+  "invite": "Invite"
 }

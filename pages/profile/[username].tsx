@@ -471,9 +471,11 @@ export default function Profile(props) {
                 />
               </div>
             }
-                              <div className={s.friends}>
-                    <InviteFriends />
-                  </div>
+            {isMyProfile &&
+            <div className={s.friends}>
+              <InviteFriends />
+            </div>
+          }
             {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&
               <div className={s.hovs}>
                 <Button
