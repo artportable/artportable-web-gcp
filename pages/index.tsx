@@ -132,11 +132,18 @@ export default function DiscoverPage({ navBarItems }) {
         <meta name="title" content={t('index:title')} />
         <meta name="description" content={t('index:description')} />
         <meta name="url" content="https://artportable.com/" />
-        <meta property="og:title" content="" />
+        
+        <meta property="og:title" content={t('index:title')} />
         <meta property="og:description" content={t('index:description')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
         <meta property="og:image" content="/images/artportable_tv_commercial.png" />
+
+        <meta property="twitter:title" content={t('index:title')} />
+        <meta property="twitter:description" content={t('index:description')} />
+        <meta property="twitter:type" content="website" />
+        <meta property="twitter:url" content="https://artportable.com/" />
+        <meta property="twitter:image" content="/images/artportable_tv_commercial.png" />
         <link rel="canonical" href={publicUrl} />
       </Head>
       {!loading &&

@@ -8,9 +8,9 @@ export const styles = makeStyles((theme: Theme) =>
       '&.MuiButton-root:hover:hover':{
         backgroundColor: 'var(--color-green-darker)',
       },
-      margin: '24px 16px 16px 16px',
+      marginTop: '16px',
       height: '28px',
-      width: '82px',
+      width: '100%',
     },
   })
 );
