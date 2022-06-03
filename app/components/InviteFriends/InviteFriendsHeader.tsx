@@ -20,7 +20,7 @@ export default function InviteFriendsFeed() {
         <Button
           className={s.buttonFeed}
           size="small"
-          variant="contained"
+          variant="primary"
           rounded
           disableElevation >
           {t('invite')}

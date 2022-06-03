@@ -45,6 +45,17 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
+    buttonInvite: {
+      display: 'none',
+      gridArea: 'invite',
+      // color: '#ffffff',
+      whiteSpace: 'nowrap',
+      // height: '31px',
+      // backgroundColor: 'var(--color-green)',
+      // '&.MuiButton-root:hover:hover':{
+      //   backgroundColor: 'var(--color-green-darker)',
+      // },
+    },
     menuDrawer: {
       order: 3,
       gridArea: 'menuDrawer',
@@ -78,7 +89,12 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: 'var(--color-green)',
       '&.MuiButton-containedPrimary:hover':{
         backgroundColor: 'var(--color-green-darker)',
-      }
+      },
+      '& span': {
+      '&..MuiButton-label': {
+        margin: '0 !important',
+      },
+    },
     },
     loginButton: {
       whiteSpace: 'nowrap',
@@ -122,15 +138,18 @@ export const styles = makeStyles((theme: Theme) =>
       },
       singleNotificationButton: {
         display: 'none',
-
       },
+      buttonInvite: {
+        display: 'initial'
+      },
+
       login: {
         display: 'flex',
         alignItems: 'center',
         gridArea: 'login',
-        '& .MuiButton-root .MuiButton-label': {
-          margin: theme.spacing(0, 2)
-        },
+        // '& .MuiButton-root .MuiButton-label': {
+        //   margin: theme.spacing(0, 2)
+        // },
         '& > *': {
           margin: theme.spacing(0, 1)
         },
@@ -160,7 +179,7 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-          '\"menu logo navigation login menuDrawer\" auto' +
+          '\"menu logo navigation invite login menuDrawer\" auto' +
           '/ auto auto 1fr auto auto'
         ),
       },
@@ -172,7 +191,6 @@ export const styles = makeStyles((theme: Theme) =>
     text: {
       fontSize: '18px',
     },
-
     iconButtons: {
       display: 'flex',
       alignItems: 'center'
