@@ -116,7 +116,7 @@ export default function Header({ navBarItems }) {
               data={{
                 text: t('common:description'),
                 url: "https://artportable.com",
-                title: t('common:invite'),
+                title: t('common:inviteFriends'),
               }}
               onClick={() => trackGoogleAnalytics(ActionType.INVITE_FEED)}
             >

@@ -14,9 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     divInviteButton: {
       display: 'flex',
-      justifyContent: 'flex-end',
-      margin: '16px 16px 0 16px 0',
-      wrap: 'nowrap'
+      justifyContent: 'center',
     }
   }),
 );

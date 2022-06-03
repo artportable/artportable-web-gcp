@@ -368,11 +368,17 @@ export default function Profile(props) {
         <meta name="title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
         <meta name="description" content={staticUserProfile?.Headline ?? ""} />
 
-        <meta property="og:title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
-        <meta property="og:description" content={staticUserProfile?.Headline ?? ""} />
+        <meta property="og:title" content={t('common:title')} />
+        <meta property="og:description" content={t('common:description')} />
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
-        <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
+        <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}` ?? "/images/artportable_tv_commercial.png"} />
+
+        <meta property="twitter:title" content={t('common:title')} />
+        <meta property="twitter:description" content={t('common:description')} />
+        <meta property="twitter:type" content="profile" />
+        <meta property="twitter:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
+        <meta property="twitter:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}` ?? "/images/artportable_tv_commercial.png"} />
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
