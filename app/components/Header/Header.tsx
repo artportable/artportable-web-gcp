@@ -32,6 +32,7 @@ import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
+import { RWebShare } from "react-web-share";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(['header', 'support']);
@@ -111,6 +112,23 @@ export default function Header({ navBarItems }) {
                 </a>
               </Link>
             </nav>
+            <RWebShare
+              data={{
+                text: t('common:description'),
+                url: "https://artportable.com",
+                title: t('common:invite'),
+              }}
+              onClick={() => trackGoogleAnalytics(ActionType.INVITE_FEED)}
+            >
+              <Button
+                className={s.buttonInvite}
+                size="small"
+                variant="outlined"
+                disableElevation
+                rounded>
+                {t('invite')}
+              </Button>
+            </RWebShare>
             {(!isSignedIn.value) &&
               <div className={s.login}>
                 <Button
