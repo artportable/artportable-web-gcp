@@ -54,7 +54,7 @@ import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
 import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
-import InviteFriends from '../../app/components/InviteFriends/InviteFriends';
+import { RWebShare } from "react-web-share";
 
 function a11yProps(index: any) {
   return {
@@ -359,6 +359,7 @@ export default function Profile(props) {
       console.log(phone.value)
     }
   }
+  const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`
 
   return (
     <Main navBarItems={navBarItems}>
@@ -471,11 +472,26 @@ export default function Profile(props) {
                 />
               </div>
             }
-            {/* {isMyProfile &&
-            <div className={s.friends}>
-              <InviteFriends />
-            </div>
-          } */}
+            {isMyProfile &&
+              <div className={s.friends}>
+                <RWebShare
+                  data={{
+                    text: t('common:description'),
+                    url: userProfileUrl,
+                    title: t('common:followersInvite'),
+                  }}
+                  onClick={() => trackGoogleAnalytics(ActionType.INVITE_PROFILE)}
+                >
+                  <Button
+                    className={s.buttonFeed}
+                    size="small"
+                    rounded
+                    variant="outlined">
+                    {t('followersInvite')}
+                  </Button>
+                </RWebShare>
+              </div>
+            }
             {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&
               <div className={s.hovs}>
                 <Button
