@@ -18,14 +18,12 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
 
   return (
     <Card elevation={2}>
+ 
       <div className={s.flex}>
       <CardHeader 
         title={t('artistsWeThinkYouWouldLike')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <div className={s.divInviteButton}>
-      <InviteFriendsFeed/>
-      </div>
       </div>
       <CardContent>
         {!suggestedUsers?.isError ? (
@@ -52,6 +50,9 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
         ) : (
           <p>{t('recommendedUsersError')}</p>
         )}
+             <div className={s.divInviteButton}>
+      <InviteFriendsFeed/>
+      </div>
       </CardContent>
     </Card>  
   );

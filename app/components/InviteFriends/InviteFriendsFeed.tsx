@@ -13,7 +13,7 @@ export default function InviteFriendsFeed() {
         data={{
           text: t('common:description'),
           url: "https://artportable.com",
-          title: t('common:invite'),
+          title: t('common:inviteFriends'),
         }}
         onClick={() => trackGoogleAnalytics(ActionType.INVITE_FEED)}
       >
@@ -23,7 +23,7 @@ export default function InviteFriendsFeed() {
           variant="contained"
           rounded
           disableElevation >
-          {t('invite')}
+          {t('inviteFriends')}
         </Button>
       </RWebShare>
   )
