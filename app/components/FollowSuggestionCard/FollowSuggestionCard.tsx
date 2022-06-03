@@ -23,9 +23,9 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
         title={t('artistsWeThinkYouWouldLike')} 
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
-      <div className={s.divInviteButton}>
+      {/* <div className={s.divInviteButton}>
       <InviteFriendsFeed/>
-      </div>
+      </div> */}
       </div>
       <CardContent>
         {!suggestedUsers?.isError ? (
