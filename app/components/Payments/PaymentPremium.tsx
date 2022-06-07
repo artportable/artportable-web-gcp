@@ -13,10 +13,10 @@ import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/One
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
-import PremiumDialog from '../PaymentDialog/PremiumDialog';
+// import PremiumDialog from '../PaymentDialog/PremiumDialog';
 
 const artportablePurchase = 'zapier'
-const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE;
+const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_PORTFOLIOPREMIUM;
 
 
 interface PurchaseFormData {
@@ -67,16 +67,16 @@ export default function PaymentPremium() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
 
-  const [openPremiumDialog, setOpenPremiumDialog] = useState(false);
+  // const [openPremiumDialog, setOpenPremiumDialog] = useState(false);
 
-  function togglePremiumDialog() {
-    setOpenPremiumDialog(!openPremiumDialog);
-  }
+  // function togglePremiumDialog() {
+  //   setOpenPremiumDialog(!openPremiumDialog);
+  // }
 
 
-  const handleClickPremiumDialog = () => {
-    setOpenPremiumDialog(true);
-  };
+  // const handleClickPremiumDialog = () => {
+  //   setOpenPremiumDialog(true);
+  // };
 
   useEffect(() => {
     if (Object.keys(formData).some(key => formData[key].error)) {
@@ -242,8 +242,10 @@ export default function PaymentPremium() {
   const handleReset = () => {
     setActiveStep(0);
   };
+
+  // t('confirmEventualSwish')
   function getSteps() {
-    return [t('personalData'), t('paymentMethod'), t('confirmEventualSwish'), t('confirmation')];
+    return [t('personalData'), t('paymentMethod'), t('confirmation')];
   }
 
   function getStepContent(step) {
@@ -344,7 +346,7 @@ export default function PaymentPremium() {
                         </Elements>
                       </div>
                     }
-                    <div className={s.swishFlex}>                     
+                    {/* <div className={s.swishFlex}>                     
                      <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>{t('swish')}</Typography>} />
                       <img
                         className={s.swishLogo}
@@ -352,7 +354,7 @@ export default function PaymentPremium() {
                         src="/images/swishlogo.svg"
                         alt="swishlogo"
                         title="swish" />
-                    </div>
+                    </div> */}
                     {(valueRadio === "swish") &&
                       <div className={s.swish}>
                         <Typography variant="subtitle1" component="h4">{t('scanQr')}</Typography>
@@ -497,39 +499,25 @@ export default function PaymentPremium() {
   return (
     <div>
       <div className={s.flexContainer}>
-        <Paper elevation={2}>
-          <div className={s.left}>
-            <img
+        <div className={s.stepperContainer}>
+          <Paper elevation={2} >
+            {/* <img
               className={s.productImage}
               src="/images/art_free_trial.jpeg"
               alt="artwork"
-              title="lotwinther" />
-            <div>
+              title="Portfolio Premium" /> */}
               <div className={s.premiumText}>
                 <img
                   className={s.logoArtportable}
                   src="/Artportable_Logotyp_Black.svg"
-                  alt="hej"
+                  alt="logo"
                   title="Premium" />
 
-                <Typography variant="h2" component="h2">{t('portfolioPremium')}</Typography>
+                <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('portfolioPremium')}</Typography>
                 <Typography variant="h2" component="h2">{t('price')}</Typography>
                 <Typography variant="h4" component="h2">{t('length')}</Typography>
-                <Typography variant="h6" component="h2" className={s.textIncluded}>{t('premiumIncludes')}</Typography>
-                <ul>
-                  <li><Typography variant="subtitle1" component="p">{t('personalArtCoordinator')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('prioritized')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('publish')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
-                </ul>
+                
               </div>
-            </div>
-          </div>
-        </Paper>
-        <div className={s.stepperContainer}>
-          <Paper elevation={2} >
             <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
               {steps.map((label, index) => (
                 <Step key={label}>

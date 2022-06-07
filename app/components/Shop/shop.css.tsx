@@ -20,9 +20,23 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     item: {
-      padding: '0.2rem',
+      padding: '1rem',
+      transition: "transform 0.15s ease-in-out",
       [theme.breakpoints.up('mdPlus')]: {
         padding: '1rem',
+      },
+    },
+    paper: {
+      height: '670px',
+      boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+      transition: "transform 0.15s ease-in-out",
+      "&:hover": { boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
+      transform: "scale3d(1.05, 1.05, 1)" },
+      [theme.breakpoints.down('sm')]: {
+        height: '670px',
+      },
+      [theme.breakpoints.down('xs')]: {
+        height: '670px',
       },
     },
     left: {
@@ -35,114 +49,12 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       [theme.breakpoints.up('smPlus')]: {
         width: '400px',
+        height: '240px'
       },
-    },
-    right: {
-      width: '900px',
-      display: 'flex',
-    },
-    input: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '240px',
-      [theme.breakpoints.up('smPlus')]: {
-        width: '600px',
-      },
-    },
-    helperText: {
-      position: 'relative',
-      marginLeft: '0',
-      color: 'var(--ion-color-danger)',
-    },
-    inputField: {
-      backgroundColor: 'white',
-      width: '240px',
-      fontSize: '1.5rem',
-      [theme.breakpoints.up('smPlus')]: {
-        width: '600px',
-      },
-    },
-    container: {
-      width: '100%',
-      marginTop: '15px',
-    },
-    accordion: {
-      fontSize: '1.5rem',
-      border: `1px solid #cfcfcf`,
-    },
-    paymentOptions: {
-      width: '550px',
-    },
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      flexBasis: '33.33%',
-      flexShrink: 0,
-    },
-    secondaryHeading: {
-      fontSize: theme.typography.pxToRem(15),
-      color: theme.palette.text.secondary,
-    },
-    radioLabel: {
-      [theme.breakpoints.up('smPlus')]: {
-        fontSize: '1.2rem',
-      },
-    },
-    swishFlex: {
-      display: 'flex',
-
-    },
-    swish: {
-      width: '200px',
-      marginRight: '15px',
-      [theme.breakpoints.up('smPlus')]: {
-        margin: '0 0 15px 15px',
-        width: '300px',
-      },
-    },
-    swishLogo: {
-      marginLeft: '12px',
-      position: 'relative',
-      top: '5px',
-      [theme.breakpoints.up('smPlus')]: {
-        marginLeft: '50px',
-      },
-    },
-      paymentCards: {
-        marginLeft: '-5px',
-        position: 'relative',
-        [theme.breakpoints.up('smPlus')]: {
-          marginLeft: '25px',
-        },
-      },
-    swishNumer: {
-      letterSpacing: '3px',
-      position: 'relative',
-      left: '28px',
-      marginBottom: '15px',
-      [theme.breakpoints.up('smPlus')]: {
-        marginBottom: '0px',
-      },
-    },
-    phoneNumber: {
-      backgroundColor: 'white',
-      width: '300px',
-      fontSize: '1.2rem',
-      [theme.breakpoints.up('smPlus')]: {
-      },
-    },
-    gap: {
-      ...columnGap(theme.spacing(2)),
-    },
-
-    qrCode: {
-      marginTop: '15px',
-    },
-    stripe: {
-      margin: '0 0 15px 15px',
     },
     premiumText: {
       ...columnGap(theme.spacing(1)),
-      margin: '0 15px',
+      margin: '0 11px',
     },
     textIncluded: {
       marginTop: '15px',
@@ -157,77 +69,36 @@ export const styles = makeStyles((theme: Theme) =>
         width: '320px',
       },
     },
-    stepperContainer: {
-      marginTop: '15px',
-      width: '100%',
-      [theme.breakpoints.up('smPlus')]: {
-        marginLeft: '15px',
-        marginTop: 0,
-        width: '700px',
+    button: {
+      marginTop: 38,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 30,
       },
     },
-    buttonFlex: {
-      display: 'flex',
-      marginTop: '16px',
-      [theme.breakpoints.up('smPlus')]: {
-        width: '610px',
+    button2: {
+      marginTop: 124,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 115,
       },
     },
-    buttonBack: {
-      margin: '8px 8px 0 0',
-    },
-    buttonNext: {
-      marginTop: '8px',
-    },
-    buttonNextStep1: {
-      marginTop: '16px',
-    },
-    buttonNextStep2: {
-      marginTop: '0',
-      width: '301.08px',
-    },
-    buttonBackStep2: {
-      margin: '0px 8px 0 0',
-      width: '301.08px',
-    },
-    inputPaper: {
-      marginTop: '16px',
-    },
-    successDiv: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: '15px',
-    },
-    doneDiv: {
-      display: 'flex',
-      alignItems: 'center',
-      margin: '8px 0',
-    },
-    confirmIcon: {
-      display: 'none',
-      color: 'var(--ion-color-success)',
-      fontSize: '3rem',
-    },
-    successHeading: {
-      fontSize: '1rem',
-      marginTop: '15px',
-      [theme.breakpoints.up('smPlus')]: {
-        fontSize: '1.2rem',
+    button3: {
+      marginTop: 68,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 60,
       },
     },
-    successHeading2: {
-      fontSize: '1.2rem',
-      marginTop: '15px',
-      marginLeft: '40px',
-    },
-    accordionPaper: {
-      borderRadius: '4px',
-      padding: '24px 8px',
-      [theme.breakpoints.up('smPlus')]: {
-        padding: '24px'
+    button4: {
+      marginTop: 125,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 115,
       },
     },
-
+    button5: {
+      marginTop: 124.5,
+      [theme.breakpoints.down('sm')]: {
+        marginTop: 115,
+      },
+    },
     footer: {
       display: 'none',
       position: 'absolute',

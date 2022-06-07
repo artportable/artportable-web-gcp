@@ -15,8 +15,8 @@ export const styles = makeStyles((theme: Theme) =>
       margin: '0 0 30px 0',
 
       [theme.breakpoints.up('mdPlus')]: {
-        flexDirection: 'row',
-        marginBottom: '3rem'
+        flexDirection: 'column',
+        marginBottom: '3rem',
       },
     },
     left: {
@@ -34,7 +34,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     right: {
-      width: '900px',
+      width: '690px',
       display: 'flex',
     },
     input: {
@@ -154,12 +154,13 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     stepperContainer: {
-      marginTop: '15px',
+      marginTop: '10px',
       width: '100%',
+      scroll: "body",
       [theme.breakpoints.up('smPlus')]: {
-        marginLeft: '15px',
-        marginTop: 0,
-        width: '700px',
+        marginLeft: '5px',
+        marginTop: '15px',
+        width: '720px',
       },
     },
     buttonFlex: {

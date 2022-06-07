@@ -18,7 +18,6 @@ interface Props {
 
 export default function ArticleDialog(props: Props) {
   const s = styles();
-  const { t } = useTranslation(['profile']);
 
 
   const onCloseClick = () => {
@@ -33,6 +32,7 @@ export default function ArticleDialog(props: Props) {
         onClose={onCloseClick}
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"
+        disableScrollLock={true}
       >
         <IconButton aria-label="close" className={s.closeButton} onClick={onCloseClick}>
           <CloseIcon />
