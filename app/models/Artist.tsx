@@ -6,5 +6,6 @@ export default interface Artist {
   Location: string,
   Images: Image[],
   Tags: string[],
-  FollowedByMe: boolean
+  FollowedByMe: boolean,
+  SocialId: string
 }
