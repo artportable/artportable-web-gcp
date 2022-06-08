@@ -15,9 +15,14 @@ export const styles = makeStyles((theme: Theme) =>
     },
     closeButton: {
       position: 'absolute',
-      right: theme.spacing(1),
-      top: theme.spacing(1),
-      color: '#ffffff',
+      right: '-10px',
+      top: '-10px',
+      color: '#000000',
+      margin: '0 0 10px 10px',
+      [theme.breakpoints.up('smPlus')]: {
+        right: theme.spacing(0),
+        top: theme.spacing(0),
+      },
     },
     adImage: {
       maxWidth: '90vw',
