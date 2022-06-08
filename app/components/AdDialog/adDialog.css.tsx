@@ -28,8 +28,8 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: '90vw',
       maxHeight: '90vh',
       [theme.breakpoints.up('md')]: {
-        maxWidth: '60vw',
-      maxHeight: '60vh',
+      //   maxWidth: '90vw',
+      // maxHeight: '90vh',
       }
     },
     videoFrame: {
