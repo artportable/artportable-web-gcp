@@ -38,9 +38,9 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: "Lo Fehrling",
-      companyImageSv: '/ad/take_over_lo-fehrling_sv.jpg',
+      companyImageSv: '/ad/lo.png',
       companyLinkSv: 'https://artportable.com/profile/@lo',
-      companyImageEn: '/ad/take_over_lo-fehrling_en.jpg',
+      companyImageEn: '/ad/lo.png',
       companyLinkEn: 'https://artportable.com/en/profile/@lo'
     },
     // {
