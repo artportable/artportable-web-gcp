@@ -38,9 +38,9 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: "Lo Fehrling",
-      companyImageSv: '/ad/take_over_lo-fehrling_sv.jpg',
+      companyImageSv: '/ad/lo.png',
       companyLinkSv: 'https://artportable.com/profile/@lo',
-      companyImageEn: '/ad/take_over_lo-fehrling_en.jpg',
+      companyImageEn: '/ad/lo.png',
       companyLinkEn: 'https://artportable.com/en/profile/@lo'
     },
     // {
@@ -51,7 +51,6 @@ export default function AdDialog(props: Props) {
     //   companyLinkEn: 'https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=oAwwi6j92ok&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=en'
     // },
   ]
-
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
     setRandomAd(({
