@@ -51,7 +51,6 @@ export default function AdDialog(props: Props) {
     //   companyLinkEn: 'https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=oAwwi6j92ok&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=en'
     // },
   ]
-
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
     setRandomAd(({
