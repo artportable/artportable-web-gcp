@@ -87,14 +87,14 @@ export const styles = makeStyles((theme: Theme) =>
     createButton: {
       whiteSpace: 'nowrap',
       backgroundColor: 'var(--color-green)',
-      '&.MuiButton-containedPrimary:hover':{
+      '&.MuiButton-containedPrimary:hover': {
         backgroundColor: 'var(--color-green-darker)',
       },
       '& span': {
-      '&..MuiButton-label': {
-        margin: '0 !important',
+        '&..MuiButton-label': {
+          margin: '0 !important',
+        },
       },
-    },
     },
     loginButton: {
       whiteSpace: 'nowrap',
@@ -140,7 +140,8 @@ export const styles = makeStyles((theme: Theme) =>
         display: 'none',
       },
       buttonInvite: {
-        display: 'initial'
+        display: 'initial',
+        marginRight: '-8px'
       },
 
       login: {
@@ -179,7 +180,7 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-          '\"menu logo navigation invite login menuDrawer\" auto' +
+          '\"menu logo navigation invite login language menuDrawer\" auto' +
           '/ auto auto 1fr auto auto'
         ),
       },
@@ -194,6 +195,13 @@ export const styles = makeStyles((theme: Theme) =>
     iconButtons: {
       display: 'flex',
       alignItems: 'center'
+    },
+    language: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'initial',
+        gridArea: 'language'
+      },
     },
     [theme.breakpoints.up('mdPlus')]: {
       navigation: {

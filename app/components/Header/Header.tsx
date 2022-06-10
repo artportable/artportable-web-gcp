@@ -234,6 +234,9 @@ export default function Header({ navBarItems }) {
                 </div>
               </>
             }
+            <div className={s.language}>
+              <I18nSelector></I18nSelector>
+            </div>
             <div className={s.menuDrawer}>
               <IconButton aria-label="menu" onClick={(_) => setOpenMenu(true)} className={s.iconMenuColor}>
                 <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
@@ -242,9 +245,6 @@ export default function Header({ navBarItems }) {
                 <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
               </IconButton>
             </div>
-            {/* <div className={s.language}>
-              <I18nSelector></I18nSelector>
-            </div> */}
           </div>
           <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages} navBarItems={navBarItems}></DrawerMenu>
         </Toolbar>

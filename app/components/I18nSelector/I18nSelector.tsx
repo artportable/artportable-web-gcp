@@ -36,7 +36,7 @@ export default function I18nSelector() {
         aria-controls="language-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        variant="contained"
+        variant="outlined"
         disableElevation
         rounded>
           {displayLocale}
