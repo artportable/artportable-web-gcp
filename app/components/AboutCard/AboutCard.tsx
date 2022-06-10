@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Typography } from '@material-ui/core'
 import { styles } from './aboutCard.css'
 import RoomIcon from '@material-ui/icons/Room';
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export default function AboutCard({ data, userProfilePicture }) {
   const s = styles();

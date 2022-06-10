@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@material-ui/core'
 import SchoolIcon from '@material-ui/icons/School';
 import clsx from 'clsx'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { styles } from './educationCard.css'
 
 export default function EducationCard({ educations }) {

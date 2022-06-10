@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from 'next/link'
 import { styles } from "./discoverArtistCard.css";
 import { useTranslation } from "next-i18next";
@@ -41,12 +41,15 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     setFollow(!isFollowed);
     console.log(artist.SocialId);
   }
+  useEffect(() => {
+    setFollow(artist.FollowedByMe);
+  }, [artist.FollowedByMe]);
 
   return (
     <div className={s.container}>
       <div className={s.header}>
         <AvatarCard user={artist}></AvatarCard>
-        {/* {isSignedIn &&
+        {isSignedIn &&
           <Button
             size="small"
             variant={!isFollowed ? "contained" : "outlined"}
@@ -62,7 +65,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                 t('common:words.following')
             )}
           </Button>
-        } */}
+        }
       </div>
       <div className={s.scrollContainer}>
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>

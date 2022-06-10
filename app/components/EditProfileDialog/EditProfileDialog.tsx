@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, TextField } from '@m
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '../Button/Button'
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { mutate } from 'swr'
 import { styles } from './editProfileDialog.css'
 import { EditMyStudio } from './EditMyStudio/EditMyStudio'

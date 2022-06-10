@@ -3,7 +3,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { EditDialogSection } from '../EditDialogSection/EditDialogSection'
 import Button from '../../Button/Button'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { styles } from './editExhibitions.css'
 
 import { Exhibition } from '../EditProfileDialog'
