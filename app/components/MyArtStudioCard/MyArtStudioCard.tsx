@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@material-ui/core'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export default function MyArtStudioCard({ data }) {
   const { t } = useTranslation('profile');

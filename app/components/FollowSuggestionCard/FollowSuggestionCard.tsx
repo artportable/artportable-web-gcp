@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import { CardHeader, Avatar } from '@material-ui/core';
 import { List } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import FollowSuggestion from '../FollowSuggestion/FollowSuggestion';
 import InviteFriendsFeed from '../InviteFriends/InviteFriendsFeed';

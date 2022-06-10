@@ -8,7 +8,7 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers'
 import Button from '../../Button/Button'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { styles } from './editEducation.css'
 import { Education } from '../EditProfileDialog'
 import { subYears } from 'date-fns'
