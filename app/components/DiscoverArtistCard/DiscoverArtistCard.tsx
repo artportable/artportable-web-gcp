@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from 'next/link'
 import { styles } from "./discoverArtistCard.css";
 import { useTranslation } from "next-i18next";
@@ -41,6 +41,9 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     setFollow(!isFollowed);
     console.log(artist.SocialId);
   }
+  useEffect(() => {
+    setFollow(artist.FollowedByMe);
+  }, [artist.FollowedByMe]);
 
   return (
     <div className={s.container}>
