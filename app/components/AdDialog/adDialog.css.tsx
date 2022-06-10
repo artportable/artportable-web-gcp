@@ -24,6 +24,12 @@ export const styles = makeStyles((theme: Theme) =>
         top: theme.spacing(0),
       },
     },
+    closeIcon: {
+      fontSize: '1rem',
+      [theme.breakpoints.up('mdPlus')]: {
+        fontSize: '1.5rem',
+      },
+    },
     adImage: {
       maxWidth: '90vw',
       maxHeight: '90vh',
