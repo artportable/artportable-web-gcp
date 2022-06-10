@@ -1,6 +1,6 @@
 import { TextField, IconButton, InputAdornment } from '@material-ui/core'
 import { EditDialogSection } from '../EditDialogSection/EditDialogSection'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import InstagramIcon from '@material-ui/icons/Instagram'
 import FacebookIcon from '@material-ui/icons/Facebook'

@@ -5,7 +5,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import clsx from 'clsx'
 import { isValid , parseISO, subYears } from 'date-fns'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { styles } from './exhibitionsCard.css'
 
 export default function CurrentExhibitionsCard({ exhibitions }) {

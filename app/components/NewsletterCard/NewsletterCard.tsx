@@ -5,7 +5,7 @@ import Input from '@material-ui/core/Input'
 import Button from '../Button/Button'
 import { styles } from './newsletterCard.css'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export default function NewsletterCard() {
   const s = styles();

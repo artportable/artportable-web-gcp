@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { styles } from './aboutUs.css'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Typography } from '@material-ui/core';
 import clsx from 'clsx'
 

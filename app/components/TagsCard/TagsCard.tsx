@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, CardContent, CardHeader, Chip } from '@material-ui/core'
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { styles } from './tagsCard.css';
 import TagChip from '../TagChip/TagChip';
 
