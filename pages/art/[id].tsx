@@ -89,6 +89,7 @@ export default function ArtworkPage(props) {
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
+    hej();
     follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token);
     setFollow(!isFollowed);
   }
@@ -116,7 +117,7 @@ export default function ArtworkPage(props) {
     console.log(staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname )
   }
   const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`
-  const shareArtworkTitle = artwork.data.Title ? `${t('common:share')}"${artwork?.data?.Title}"`: `${t('common:share')}`;
+  const shareArtworkTitle = artwork?.data?.Title ? `${t('common:share')}"${artwork?.data?.Title}"`: `${t('common:share')}`;
   const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.data?.Title}"${t('common:atArtportable')}`
 
   return (
