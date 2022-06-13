@@ -98,7 +98,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: '#000000'
     },
     likeButton: {
-      padding: theme.spacing(0.4, 0, 0.4, 0.5),
+      padding: theme.spacing(0.2, 0, 0.4, 0.5),
       fontSize: '0.5rem',
       '&:hover': {
         backgroundColor: 'transparent'
@@ -112,7 +112,14 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: 'transparent'
       }
     },
-    
+    shareButton: {
+      padding: theme.spacing(0, 0.1, 0.2, 0.5),
+      fontSize: '0.5rem',
+      color: '#000000',
+      '&:hover': {
+        backgroundColor: 'transparent'
+      }
+    },
     text: {
       marginLeft: '10px',
       marginRight: '10px',

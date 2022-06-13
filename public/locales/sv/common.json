@@ -48,5 +48,8 @@
   "description": "Bli medlem i Artportable – ett modernt galleri där konstnärer kan sälja sin konst och etablera nya kontakter.",
   "followersInvite": "Få fler följare, bjud in dina vänner",
   "invite": "Bjud in",
-  "inviteFriends": "Bjud in dina vänner"
+  "inviteFriends": "Bjud in dina vänner",
+  "share": "Dela ",
+  "checkThisArtwork": "Kolla in konstverket ",
+  "atArtportable": " på Artportable"
 }
