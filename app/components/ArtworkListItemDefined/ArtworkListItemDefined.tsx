@@ -18,6 +18,8 @@ import { Locales } from '../../models/i18n/locales'
 import { useRedirectToLoginIfNotLoggedIn } from '../../../app/hooks/useRedirectToLoginIfNotLoggedIn'
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ChatIcon from '@material-ui/icons/Chat';
+import { RWebShare } from 'react-web-share'
+import ShareIcon from '@material-ui/icons/Share';
 
 
 export default function ArtworkListItemDefined({
@@ -60,6 +62,7 @@ export default function ArtworkListItemDefined({
     }
     onLikeClick(artwork.Id, !isLiked);
   }
+  const artworkUrl = `https://beta.artportable/art/${artwork.Id}`
 
   const likedFilled = !isSignedIn.value ?
     <FavoriteBorderOutlinedIcon color="primary" /> :
@@ -185,6 +188,18 @@ export default function ArtworkListItemDefined({
             </a>
           </div>
         }
+         <RWebShare
+                  data={{
+                    text: t('common:description'),
+                    url: artworkUrl,
+                    title: t('common:followersInvite'),
+                  }}
+                  onClick={() => trackGoogleAnalytics(ActionType.INVITE_PROFILE)}
+                >
+                  <IconButton className={s.chatButton} >
+                   <ShareIcon />
+                  </IconButton>
+                </RWebShare>
       </div>
     </div>
   );
