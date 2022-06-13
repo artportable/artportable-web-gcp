@@ -22,6 +22,7 @@ import { RWebShare } from 'react-web-share'
 import ShareIcon from '@material-ui/icons/Share';
 
 
+
 export default function ArtworkListItemDefined({
   artwork,
   onLikeClick,
@@ -62,7 +63,7 @@ export default function ArtworkListItemDefined({
     }
     onLikeClick(artwork.Id, !isLiked);
   }
-  const artworkUrl = `https://beta.artportable/art/${artwork.Id}`
+  const artworkUrl = `https://beta.artportable.com/art/${artwork.Id}`
 
   const likedFilled = !isSignedIn.value ?
     <FavoriteBorderOutlinedIcon color="primary" /> :
