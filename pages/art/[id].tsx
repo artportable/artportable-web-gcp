@@ -113,19 +113,18 @@ export default function ArtworkPage(props) {
   const hej = () => {
     console.log(artwork.data.Width)
     console.log(artwork.data.Height)
-    console.log(artwork?.data?.Owner.Name + ' ' + artwork?.data?.Owner.Surname)
   }
   const artworkUrl = `https://beta.artportable.com/art/${artwork?.data?.Id}`
-  const shareArtworkTitle = `${t('common:share')}"${artwork.data.Title}"`
-  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork.data.Title}"${t('common:atArtportable')}`
+  const shareArtworkTitle = `${t('common:share')}"${artwork?.data?.Title}"`
+  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.data?.Title}"${t('common:atArtportable')}`
 
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
         <title>{staticArtwork?.Title ?? "Artportable"}</title>
-        <meta name="title" content={artwork?.data?.Owner.Name + ' ' + artwork?.data?.Owner.Surname ?? "Artportable"} />
+        <meta name="title" content={artwork?.data?.Owner?.Name + ' ' + artwork?.data?.Owner?.Surname ?? "Artportable"} />
         <meta name="description" content={staticArtwork?.Title ?? ""} />
-        <meta property="og:title" content={artwork?.data?.Owner.Name + ' ' + artwork?.data?.Owner.Surname ?? "Artportable"} />
+        <meta property="og:title" content={artwork?.data?.Owner?.Name + ' ' + artwork?.data?.Owner?.Surname ?? "Artportable"} />
         <meta property="og:description" content={staticArtwork?.Title ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />

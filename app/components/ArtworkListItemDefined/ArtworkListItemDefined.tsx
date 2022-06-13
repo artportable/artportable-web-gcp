@@ -61,9 +61,9 @@ export default function ArtworkListItemDefined({
     }
     onLikeClick(artwork.Id, !isLiked);
   }
-  const artworkUrl = `https://beta.artportable.com/art/${artwork.Id}`
-  const shareArtworkTitle = `${t('common:share')}"${artwork.Title}"`
-  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork.Title}"${t('common:atArtportable')}`
+  const artworkUrl = `https://beta.artportable.com/art/${artwork?.Id}`
+  const shareArtworkTitle = `${t('common:share')}"${artwork?.Title}"`
+  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.Title}"${t('common:atArtportable')}`
 
   const likedFilled = !isSignedIn.value ?
     <FavoriteBorderOutlinedIcon color="primary" /> :
