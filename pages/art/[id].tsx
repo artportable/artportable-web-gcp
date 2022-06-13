@@ -115,8 +115,8 @@ export default function ArtworkPage(props) {
     console.log(artwork.data.Height)
     console.log(staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname )
   }
-  const artworkUrl = `https://beta.artportable.com/art/${artwork?.data?.Id}`
-  const shareArtworkTitle = `${t('common:share')}"${artwork?.data?.Title}"`
+  const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`
+  const shareArtworkTitle = artwork.data.Title ? `${t('common:share')}"${artwork?.data?.Title}"`: `${t('common:share')}`;
   const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.data?.Title}"${t('common:atArtportable')}`
 
   return (
