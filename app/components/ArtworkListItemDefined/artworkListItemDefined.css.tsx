@@ -107,7 +107,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     likeButton: {
-      padding: theme.spacing(0.4, 0, 0.4, 0.5),
+      padding: theme.spacing(0.2, 0, 0.4, 0.5),
       fontSize: '0.5rem',
       '&:hover': {
         backgroundColor: 'transparent'
@@ -120,6 +120,18 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: 'transparent'
       }
+    },
+    shareButton: {
+      padding: theme.spacing(0, 0.1, 0.2, 0.5),
+      fontSize: '0.5rem',
+      color: '#000000',
+      '&:hover': {
+        backgroundColor: 'transparent'
+      }
+    },
+    shareImg: {
+      width: '24px',
+      height: '24px',
     },
     purchaseRequestButtonSv: {
       marginTop: '5px',

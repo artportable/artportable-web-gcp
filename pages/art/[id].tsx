@@ -27,6 +27,9 @@ import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import ChatIcon from '@material-ui/icons/Chat';
+import { RWebShare } from "react-web-share";
+import ShareIcon from '@material-ui/icons/Share';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -97,7 +100,6 @@ export default function ArtworkPage(props) {
 
   function toggleLike(event) {
     event.stopPropagation();
-
     likeArtwork(!isLiked);
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
@@ -111,17 +113,20 @@ export default function ArtworkPage(props) {
   const hej = () => {
     console.log(artwork.data.Width)
     console.log(artwork.data.Height)
-    console.log(artwork?.data)
+    console.log(staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname )
   }
+  const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`
+  const shareArtworkTitle = artwork.data.Title ? `${t('common:share')}"${artwork?.data?.Title}"`: `${t('common:share')}`;
+  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.data?.Title}"${t('common:atArtportable')}`
 
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
         <title>{staticArtwork?.Title ?? "Artportable"}</title>
-        <meta name="title" content={staticArtwork?.Title ?? "Artportable"} />
-        <meta name="description" content={staticArtwork?.Description ?? ""} />
-        <meta property="og:title" content={staticArtwork?.Title ?? "Artportable"} />
-        <meta property="og:description" content={staticArtwork?.Description ?? ""} />
+        <meta name="title" content={staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname ?? "Artportable"} />
+        <meta name="description" content={staticArtwork?.Title ?? ""} />
+        <meta property="og:title" content={staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname ?? "Artportable"} />
+        <meta property="og:description" content={staticArtwork?.Title ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
@@ -144,7 +149,7 @@ export default function ArtworkPage(props) {
         {artwork && artwork.data &&
           <>
             <div className={s.avatar}>
-              <AvatarCard user={artwork.data.Owner}></AvatarCard>
+            <AvatarCard user={artwork.data.Owner}></AvatarCard>
               <Button
                 className={s.followButton}
                 variant={!isFollowed ? "contained" : "outlined"}
@@ -232,6 +237,18 @@ export default function ArtworkPage(props) {
                 </div>
                 <div className={s.flexLikeRoom}>
                   <div className={s.flexMessageLike}>
+                    <RWebShare
+                      data={{
+                        text: shareArtworkText,
+                        url: artworkUrl,
+                        title: shareArtworkTitle,
+                      }}
+                      onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK) }
+                    >
+                      <IconButton className={s.shareButton} >
+                      <ShareIcon style={{ fontSize: '21px' }} />
+                      </IconButton>
+                    </RWebShare>
                     <div title={t('common:sendMessage')}>
                       <a>
                         <IconButton className={s.chatButton} aria-label="account" onClick={() => {
@@ -243,7 +260,7 @@ export default function ArtworkPage(props) {
                           });
                           trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
                         }}>
-                          <ChatIcon style={{ fontSize: '23px' }} />
+                          <ChatBubbleOutlineIcon style={{ fontSize: '23px' }} />
                         </IconButton>
                       </a>
                     </div>

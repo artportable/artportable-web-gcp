@@ -36,6 +36,7 @@ export enum ActionType {
   INVITE_FEED = "bjud in_feed",
   INVITE_PROFILE = "bjud in_profile",
   INVITE_HEADER = "bjud in_header",
+  SHARE_ARTWORK = "dela konstverk",
 
  }
  export enum CategoryType { 
