@@ -62,7 +62,7 @@ export default function ArtworkListItemDefined({
     onLikeClick(artwork.Id, !isLiked);
   }
   const artworkUrl = `https://artportable.com/art/${artwork?.Id}`
-  const shareArtworkTitle = artwork.Title ? `${t('common:share')}"${artwork?.Title}"`: `${t('common:share')}`;
+  const shareArtworkTitle = artwork?.Title ? `${t('common:share')}"${artwork?.Title}"`: `${t('common:share')}`;
   const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.Title}"${t('common:atArtportable')}`
 
   const likedFilled = !isSignedIn.value ?
@@ -188,7 +188,7 @@ export default function ArtworkListItemDefined({
             {t('request')}
           </Button>
         }
-        {/* {artwork.Width > 0 && artwork.Height > 0 && */}
+       {artwork.Width > 0 && artwork.Height > 0 && 
         <div className={s.roomDiv}>
           <a href={`/tool/${artwork.Id}`}>
             <Badge badgeContent={t('new')} className={s.badgeNew}>
@@ -200,6 +200,7 @@ export default function ArtworkListItemDefined({
             </Badge>
           </a>
         </div>
+        }
       </div>
     </div>
   );
