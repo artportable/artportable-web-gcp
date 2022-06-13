@@ -21,8 +21,6 @@ import ChatIcon from '@material-ui/icons/Chat';
 import { RWebShare } from 'react-web-share'
 import ShareIcon from '@material-ui/icons/Share';
 
-
-
 export default function ArtworkListItemDefined({
   artwork,
   onLikeClick,
@@ -64,6 +62,8 @@ export default function ArtworkListItemDefined({
     onLikeClick(artwork.Id, !isLiked);
   }
   const artworkUrl = `https://beta.artportable.com/art/${artwork.Id}`
+  const shareArtworkTitle = `${t('common:share')}"${artwork.Title}"`
+  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork.Title}"${t('common:atArtportable')}`
 
   const likedFilled = !isSignedIn.value ?
     <FavoriteBorderOutlinedIcon color="primary" /> :
@@ -124,18 +124,30 @@ export default function ArtworkListItemDefined({
         </div>
         <div className={s.likeInline}>
           <div className={s.likeContainer}>
+            <RWebShare
+              data={{
+                text: shareArtworkText,
+                url: artworkUrl,
+                title: shareArtworkTitle,
+              }}
+              onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK)}
+            >
+              <IconButton className={s.shareButton} >
+                <ShareIcon style={{ fontSize: '21px' }} />
+              </IconButton>
+            </RWebShare>
             <div title={t('common:sendMessage')}>
               <a>
                 <IconButton className={s.chatButton} aria-label="account" onClick={() => {
-                redirectIfNotLoggedIn({
-                  pathname: "/messages",
-                  query: {
-                    referTo: artwork.Owner.SocialId
-                  }
-                });
-                trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
-              }}>
-                  <ChatIcon style={{ fontSize: '23px' }} />
+                  redirectIfNotLoggedIn({
+                    pathname: "/messages",
+                    query: {
+                      referTo: artwork.Owner.SocialId
+                    }
+                  });
+                  trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
+                }}>
+                  <ChatBubbleOutlineIcon style={{ fontSize: '23px' }} />
                 </IconButton>
               </a>
             </div>
@@ -176,31 +188,18 @@ export default function ArtworkListItemDefined({
             {t('request')}
           </Button>
         }
-        {artwork.Width > 0 && artwork.Height > 0 &&
-          <div className={s.roomDiv}>
-            <a href={`/tool/${artwork.Id}`}>
-              <Badge badgeContent={t('new')} className={s.badgeNew}>
-                <Button
-                  className={router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn}
-                  rounded>
-                  {t('room')}
-                </Button>
-              </Badge>
-            </a>
-          </div>
-        }
-         <RWebShare
-                  data={{
-                    text: t('common:description'),
-                    url: artworkUrl,
-                    title: t('common:followersInvite'),
-                  }}
-                  onClick={() => trackGoogleAnalytics(ActionType.INVITE_PROFILE)}
-                >
-                  <IconButton className={s.chatButton} >
-                   <ShareIcon />
-                  </IconButton>
-                </RWebShare>
+        {/* {artwork.Width > 0 && artwork.Height > 0 && */}
+        <div className={s.roomDiv}>
+          <a href={`/tool/${artwork.Id}`}>
+            <Badge badgeContent={t('new')} className={s.badgeNew}>
+              <Button
+                className={router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn}
+                rounded>
+                {t('room')}
+              </Button>
+            </Badge>
+          </a>
+        </div>
       </div>
     </div>
   );
