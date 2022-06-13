@@ -45,7 +45,6 @@ export default function IndexHero() {
   const images = [
     { name: "Galina Tol-Fakkar", username: "galina.tolfakkar", image: '/images/galina_tol_fakkar.jpg', imageLink: "profile/@galina.tolfakkar" },
     { name: "Anette Lillhammar", username: "anette", image: '/images/anette_lillhammar.jpg', imageLink: "art/40108179-ccca-4ee8-8d99-e0ec644e4800" },
-    { name: "Beatrice Jansson", username: "beatrice.jansson", image: '/images/beatrice_jansson_sommarkvall.jpg', imageLink: "art/08607622-e615-4575-ab29-e4027084c865" },
     { name: "Kristina Ekberg Renström", username: "stina.ekberg", image: '/images/kristina_ekberg.jpg', imageLink: "art/6c1ef466-eee7-4a97-bc0b-17018dbff958" },
   ]
 
