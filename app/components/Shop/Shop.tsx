@@ -111,12 +111,14 @@ export default function Shop() {
                   <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('publish')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
+                  <li><Typography variant="subtitle1" component="p">{t('follow')}</Typography></li>
                 </ul>
-                  <Button className={s.button} variant="contained" color="secondary" fullWidth={true} 
+          
+                  <Button className={s.button} variant="contained" color="secondary"
                     onClick={() => { handleClickPremiumDialog(); }}>
                     {t('buy')}
                   </Button>
+                  
               </div>
             </div>
           </div>
@@ -150,14 +152,13 @@ export default function Shop() {
                 <Typography variant="h6" component="h2" className={s.textIncluded}>{t('frameIncludes')}</Typography>
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('exclusiveFrame')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('prioritized')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
-                  <Button className={s.button2} variant="contained" color="secondary" fullWidth={true}
+                
+                  <Button className={s.button} variant="contained" color="secondary"
                     onClick={() => { handleClickFrameDialog(); }}>
                     {t('buy')}
                   </Button>
+                  
               </div>
             </div>
           </div>
@@ -193,9 +194,8 @@ export default function Shop() {
                   <li><Typography variant="subtitle1" component="p">{t('writtenArticle')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('seo')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('ownership')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
-                  <Button className={s.button3} variant="contained" color="secondary" fullWidth={true}
+                  <Button className={s.button} variant="contained" color="secondary"
                     onClick={() => { handleClickArticleDialog(); }}>
                     {t('buy')}
                   </Button>
@@ -234,9 +234,8 @@ export default function Shop() {
                   <li><Typography variant="subtitle1" component="p">{t('visibility')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('tab')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('inquiries')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
-                  <Button className={s.button4} variant="contained" color="secondary" fullWidth={true}
+                  <Button className={s.button} variant="contained" color="secondary"
                     onClick={() => { handleClickMonthlyArtistDialog(); }}>
                     {t('buy')}
                   </Button>
@@ -273,11 +272,8 @@ export default function Shop() {
                 <Typography variant="h6" component="h2" className={s.textIncluded}>{t('categoryPageIncludes')}</Typography>
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('exclusiveCategoryPage')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('prioritized')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p">{t('support')}</Typography></li>
-                  <li><Typography variant="subtitle1" component="p" className={s.textLastLine}>{t('follow')}</Typography></li>
                 </ul>
-                  <Button className={s.button5} variant="contained" color="secondary" fullWidth={true}
+                  <Button className={s.button} variant="contained" color="secondary"
                     onClick={() => { handleClickCategoryPageDialog(); }}>
                     {t('buy')}
                   </Button>
@@ -288,7 +284,7 @@ export default function Shop() {
         </div>
 
         </div>
-      </div>
       
+        </div>
   );
 }

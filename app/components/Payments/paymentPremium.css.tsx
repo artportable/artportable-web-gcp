@@ -34,8 +34,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     right: {
-      width: '690px',
+      width: '300px',
       display: 'flex',
+      [theme.breakpoints.up('smPlus')]: {
+        width: '690px',
+      },
     },
     input: {
       display: 'flex',
@@ -139,6 +142,7 @@ export const styles = makeStyles((theme: Theme) =>
     premiumText: {
       ...columnGap(theme.spacing(1)),
       margin: '0 15px',
+      borderBottom: '5px solid lightgrey'
     },
     textIncluded: {
       marginTop: '15px',

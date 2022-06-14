@@ -488,7 +488,7 @@ export default function PaymentCategoryPage() {
     <div>
       <div className={s.flexContainer}>
         <div className={s.stepperContainer}>
-          <Paper elevation={2} >
+          <Paper elevation={0} >
             {/* <img
               className={s.productImage}
               src="/images/art_free_trial.jpeg"
