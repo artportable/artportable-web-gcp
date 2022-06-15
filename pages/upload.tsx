@@ -173,7 +173,9 @@ export default function UploadArtworkPage({navBarItems}) {
     cropper.getCroppedCanvas().toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
     // Show preview
-    const dataUrl = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+    const dataUrl = cropper.getCroppedCanvas({
+      fillColor: '#fff',
+    }).toDataURL('image/jpeg');
     if (croppedPrimary === null) {
       setCroppedPrimary(dataUrl);
     } else if (croppedSecondary === null) {
