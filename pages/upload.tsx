@@ -170,7 +170,9 @@ export default function UploadArtworkPage({navBarItems}) {
     // Upload image and set image name
     const width = Math.round(cropper?.getData()?.width);
     const height = Math.round(cropper?.getData()?.height);
-    cropper.getCroppedCanvas().toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
+    cropper.getCroppedCanvas({
+      fillColor: '#fff',
+    }).toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
     // Show preview
     const dataUrl = cropper.getCroppedCanvas({
