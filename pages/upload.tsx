@@ -278,13 +278,17 @@ export default function UploadArtworkPage({ navBarItems }) {
               style={{ backgroundColor: color}}
             />
           </div>
+          <div className={s.backgroundColorFlex}>
+          <div className={s.pickColor}  style={{ backgroundColor: '#ffffff'}} onClick={() => setColor('#ffffff')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#FDF9F7'}} onClick={() => setColor('#FDF9F7')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#FAF3EE'}} onClick={() => setColor('#FAF3EE')} />
+          {/* <div className={s.pickColor} style={{ backgroundColor: '#C67777'}} onClick={() => setColor('#C67777')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#A35D5D'}} onClick={() => setColor('#A35D5D')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#01C281'}} onClick={() => setColor('#01C281')} /> */}
+          <div className={s.pickColor} style={{ backgroundColor: '#000000'}} onClick={() => setColor('#000000')} />
+          </div>
           <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
-          <div className={s.black} onClick={() => setColor('#000')}>
-          </div>
-          <div className={s.white} onClick={() => setColor('#fff')}>
-          </div>
-          <div className={s.blue} onClick={() => setColor('#4287f5')}>
-          </div>
+
         </>
           :
           <div>

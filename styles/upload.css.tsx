@@ -10,6 +10,7 @@ const styles = makeStyles((theme: Theme) =>
         gap: '16px',
         gridTemplate: (
         '\"upload   form\" minmax(0, 2fr)' +
+        '\"pickBackgroundColor   form\" auto' +
         '\"options   form\" auto' +
         '\"previews form\" minmax(0, 1fr)' +
         '/  3fr      1fr'),
@@ -106,24 +107,17 @@ const styles = makeStyles((theme: Theme) =>
       justifySelf: 'center',
       alignSelf: 'center',
     },
-    black: {
-      width: '200px',
-      height: '200px',
-      backgroundColor: '#000',
-      pointer: 'cursor',
+    backgroundColorFlex: {
+      display: 'flex',
+      gridArea: 'pickBackgroundColor',
     },
-    white: {
-      width: '200px',
-      height: '200px',
-      backgroundColor: '#fff',
+    pickColor: {
+      width: '40px',
+      height: '40px',
       pointer: 'cursor',
+      border: '1px solid #000',
+      marginRight: '10px'
     },
-    blue: {
-      width: '200px',
-      height: '200px',
-      backgroundColor: '#4287f5',
-      pointer: 'cursor',
-    }
   }),
 );
 
