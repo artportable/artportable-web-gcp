@@ -272,7 +272,7 @@ export default function UploadArtworkPage({ navBarItems }) {
               onInitialized={onCropperInitialized}
               initialAspectRatio={1}
               autoCropArea={1}
-              preview={`.${s.cropperPreview}`}
+              // preview={`.${s.cropperPreview}`}
               ref={cropperRef}
               background={true}
               style={{ backgroundColor: color}}
@@ -318,24 +318,24 @@ export default function UploadArtworkPage({ navBarItems }) {
 
         <div className={s.previewsContainer}>
           {croppedPrimary &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div className={s.previewItem}>
               <img src={croppedPrimary} />
-            </Paper>
+            </div>
           }
           {croppedSecondary &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div className={s.previewItem}>
               <img src={croppedSecondary} />
-            </Paper>
+            </div>
           }
           {croppedTertiary &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div  className={s.previewItem}>
               <img src={croppedTertiary} />
-            </Paper>
+            </div>
           }
           {!croppedTertiary && cropperActive &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div className={s.previewItem}>
               <div className={s.cropperPreview}></div>
-            </Paper>
+            </div>
           }
         </div>
         <div className={s.form}>
