@@ -64,8 +64,10 @@ export default function AboutMe() {
             <Typography>
               {person?.title}
             </Typography>
-            <Typography>
+            <Typography> 
+              <a href={`mailto:${person?.email}`}>
               {person?.email}
+              </a>
             </Typography>
           </div>
         ))}
@@ -85,7 +87,9 @@ export default function AboutMe() {
               {person?.title}
             </Typography>
             <Typography>
+            <a href={`mailto:${person?.email}`}>
               {person?.email}
+              </a>
             </Typography>
           </div>
         ))}
