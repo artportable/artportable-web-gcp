@@ -26,9 +26,10 @@ import { Membership } from '../app/models/Membership';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
 import useRefreshToken from '../app/hooks/useRefreshToken';
 import { getNavBarItems } from '../app/utils/getNavBarItems';
+import Button from '../app/components/Button/Button';
 
 
-export default function UploadArtworkPage({navBarItems}) {
+export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation(['upload']);
   const router = useRouter();
@@ -69,6 +70,7 @@ export default function UploadArtworkPage({navBarItems}) {
   const [mobileImgBlob, setMobileImgBlob] = useState(null);
   const mobilePreviewImageRef = useRef(null);
   const [refresh, setRefresh] = useState(false)
+  const [color, setColor] = useState('#fff');
 
   const cropperRef = useRef(null);
 
@@ -133,11 +135,11 @@ export default function UploadArtworkPage({navBarItems}) {
       }
     }
   }
-  useEffect(()=> {
+  useEffect(() => {
     if (refresh) {
-    sessionStorage.setItem('refresh', 'false')
+      sessionStorage.setItem('refresh', 'false')
     }
-  },[uploadArtwork])
+  }, [uploadArtwork])
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
@@ -171,12 +173,12 @@ export default function UploadArtworkPage({navBarItems}) {
     const width = Math.round(cropper?.getData()?.width);
     const height = Math.round(cropper?.getData()?.height);
     cropper.getCroppedCanvas({
-      fillColor: '#fff',
+      fillColor: color,
     }).toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
     // Show preview
     const dataUrl = cropper.getCroppedCanvas({
-      fillColor: '#fff',
+      fillColor: color,
     }).toDataURL('image/jpeg');
     if (croppedPrimary === null) {
       setCroppedPrimary(dataUrl);
@@ -201,14 +203,14 @@ export default function UploadArtworkPage({navBarItems}) {
 
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken().then(() =>
-    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'image/jpeg',
-        'Authorization': `Bearer ${token}`
-      },
-      body: blob
-    }))
+      fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'image/jpeg',
+          'Authorization': `Bearer ${token}`
+        },
+        body: blob
+      }))
       .then((response) => {
         if (!response.ok) {
           console.log(response.statusText);
@@ -271,9 +273,16 @@ export default function UploadArtworkPage({navBarItems}) {
               autoCropArea={1}
               preview={`.${s.cropperPreview}`}
               ref={cropperRef}
+              background={true}
             />
           </div>
           <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
+          <div className={s.black} onClick={() => setColor('#000')}>
+          </div>
+          <div className={s.white} onClick={() => setColor('#fff')}>
+          </div>
+          <div className={s.blue} onClick={() => setColor('#4287f5')}>
+          </div>
         </>
           :
           <div>
@@ -375,7 +384,7 @@ export default function UploadArtworkPage({navBarItems}) {
 }
 
 export async function getStaticProps({ locale }) {
-  const navBarItems = await getNavBarItems(); 
+  const navBarItems = await getNavBarItems();
   return {
     props: {
       navBarItems: navBarItems,

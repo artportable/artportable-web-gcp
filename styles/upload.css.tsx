@@ -31,6 +31,11 @@ const styles = makeStyles((theme: Theme) =>
     cropper: {
       width: '100%',
       height: '100%',
+      '&.cropperContainer:': {
+        '&.cropperCropBox:': {
+          backgroundColor: '#000'
+        },
+      },
     },
     dropzone: {
       display: 'flex',
@@ -100,6 +105,24 @@ const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       justifySelf: 'center',
       alignSelf: 'center',
+    },
+    black: {
+      width: '200px',
+      height: '200px',
+      backgroundColor: '#000',
+      pointer: 'cursor',
+    },
+    white: {
+      width: '200px',
+      height: '200px',
+      backgroundColor: '#fff',
+      pointer: 'cursor',
+    },
+    blue: {
+      width: '200px',
+      height: '200px',
+      backgroundColor: '#4287f5',
+      pointer: 'cursor',
     }
   }),
 );
