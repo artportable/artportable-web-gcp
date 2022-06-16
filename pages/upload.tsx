@@ -261,7 +261,8 @@ export default function UploadArtworkPage({ navBarItems }) {
               showPreviews={false}
               showPreviewsInDropzone={true}
               filesLimit={3}
-              maxFileSize={2000000000} />
+              maxFileSize={2000000000} 
+              />
           </div>
 
           <div className={s.cropperBox}>
@@ -274,6 +275,7 @@ export default function UploadArtworkPage({ navBarItems }) {
               preview={`.${s.cropperPreview}`}
               ref={cropperRef}
               background={true}
+              style={{ backgroundColor: color}}
             />
           </div>
           <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>

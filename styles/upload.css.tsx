@@ -31,10 +31,11 @@ const styles = makeStyles((theme: Theme) =>
     cropper: {
       width: '100%',
       height: '100%',
-      '&.cropperContainer:': {
-        '&.cropperCropBox:': {
-          backgroundColor: '#000'
-        },
+      '& .cropper-bg': {
+        backgroundImage: 'none'
+      },
+      '& .cropper-modal': {
+        opacity: '0',
       },
     },
     dropzone: {
@@ -56,7 +57,6 @@ const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       height: '100%',
       width: '33.33%',
-      backgroundColor: theme.palette.grey[300],
       borderRadius: '6px',
       overflow: 'hidden',
       '& img': {
