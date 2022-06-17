@@ -13,10 +13,9 @@ import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/One
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
-// import PremiumDialog from '../PaymentDialog/PremiumDialog';
 
 const artportablePurchase = 'zapier'
-const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_PORTFOLIOPREMIUM;
+const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_FRAME;
 
 
 interface PurchaseFormData {
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PaymentPremium() {
+export default function PaymentFrame() {
   const classes = useStyles();
   const s = styles();
   const { t } = useTranslation(['payment']);
@@ -66,17 +65,6 @@ export default function PaymentPremium() {
   const [formUntouched, setFormUntouched] = useState(true);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
-
-  // const [openPremiumDialog, setOpenPremiumDialog] = useState(false);
-
-  // function togglePremiumDialog() {
-  //   setOpenPremiumDialog(!openPremiumDialog);
-  // }
-
-
-  // const handleClickPremiumDialog = () => {
-  //   setOpenPremiumDialog(true);
-  // };
 
   useEffect(() => {
     if (Object.keys(formData).some(key => formData[key].error)) {
@@ -272,7 +260,7 @@ export default function PaymentPremium() {
                       inputProps={{
                         'aria-label': 'Name',
                       }}
-                    />
+                      />
                   </FormControl>
                 </Paper>
                 <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.fullName.error ? t('mustNotBeEmptyMessage') : ''}</FormHelperText>
@@ -292,7 +280,7 @@ export default function PaymentPremium() {
                       inputProps={{
                         'aria-label': 'Email',
                       }}
-                    />
+                      />
 
                   </FormControl>
                 </Paper>
@@ -305,7 +293,7 @@ export default function PaymentPremium() {
                   onClick={handleNext}
                   className={s.buttonNextStep1}
                   rounded
-                >
+                  >
                  {t('next')}
                 </Button>
               </form>
@@ -342,7 +330,7 @@ export default function PaymentPremium() {
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'Portfolio Premium' }]}
+                            products={[{ amount: 8750, currency: 'SEK', id: `${stripeProduct}`, name: 'Frame' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
@@ -362,7 +350,7 @@ export default function PaymentPremium() {
                         <div className={s.qrCode}>
                           <img
                             width={200}
-                            src="/images/swish-premium.png"
+                            src="/images/swish-frame.png"
                             alt="swishqr"
                             title="qr code" />
                           <Typography variant="h4" component="h2" className={s.swishNumer}>1234461489</Typography>
@@ -517,12 +505,10 @@ export default function PaymentPremium() {
                   alt="logo"
                   title="Premium" />
 
-                <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('portfolioPremium')}</Typography>
-                <Typography variant="h2" component="h2">{t('price')}</Typography>
-                <Typography variant="h4" component="h2">{t('length')}</Typography>
+                <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('frame')}</Typography>
+                <Typography variant="h2" component="h2">{t('priceFrame')}</Typography>
                 
               </div>
-              <hr className={s.line}></hr>
             <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
               {steps.map((label, index) => (
                 <Step key={label}>

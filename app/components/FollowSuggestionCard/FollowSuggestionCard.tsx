@@ -18,42 +18,39 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
 
   return (
     <Card elevation={2}>
- 
+
       <div className={s.flex}>
-      <CardHeader 
-        title={t('artistsWeThinkYouWouldLike')} 
-        titleTypographyProps={{ variant: "subtitle1"}}>
-      </CardHeader>
+        <CardHeader
+          title={t('artistsWeThinkYouWouldLike')}
+          titleTypographyProps={{ variant: "subtitle1" }}>
+        </CardHeader>
       </div>
       <CardContent>
         {!suggestedUsers?.isError ? (
           <List className={s.list} dense>
-              {!suggestedUsers ? (
-                <div>
-                  <AvatarSkeleton></AvatarSkeleton>
-                  <AvatarSkeleton></AvatarSkeleton>
-                  <AvatarSkeleton></AvatarSkeleton>
-                  <AvatarSkeleton></AvatarSkeleton>
-                  <AvatarSkeleton></AvatarSkeleton>
-                </div>
-                ) : (
-                  suggestedUsers.length !== 0 && suggestedUsers.length > 0 ?
-                    (suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
-                      <FollowSuggestion key={user.Username} user={user} onFollowClick={onFollowClick}></FollowSuggestion>
-                    )) : (
-                      <>
-                      <p className={s.nothing}>{t('noRecommendedUsers')}</p>
-                      </>
-                    )
-              )}
+            {!suggestedUsers ? (
+              <div>
+                <AvatarSkeleton></AvatarSkeleton>
+                <AvatarSkeleton></AvatarSkeleton>
+                <AvatarSkeleton></AvatarSkeleton>
+                <AvatarSkeleton></AvatarSkeleton>
+                <AvatarSkeleton></AvatarSkeleton>
+              </div>
+            ) : (
+              suggestedUsers.length !== 0 && suggestedUsers.length > 0 ?
+                (suggestedUsers?.slice(0, noOfSuggestions).map((user) =>
+                  <FollowSuggestion key={user.Username} user={user} onFollowClick={onFollowClick}></FollowSuggestion>
+                )) : (
+                  <>
+                    <p className={s.nothing}>{t('noRecommendedUsers')}</p>
+                  </>
+                )
+            )}
           </List>
         ) : (
           <p>{t('recommendedUsersError')}</p>
         )}
-             <div className={s.divInviteButton}>
-      <InviteFriendsFeed/>
-      </div>
       </CardContent>
-    </Card>  
+    </Card>
   );
 }

@@ -13,10 +13,9 @@ import { OneTimeStripeCheckoutFormProps } from '../OneTimeStripeCheckoutForm/One
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckIcon from '@material-ui/icons/Check'
-// import PremiumDialog from '../PaymentDialog/PremiumDialog';
 
 const artportablePurchase = 'zapier'
-const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_PORTFOLIOPREMIUM;
+const stripeProduct = process.env.NEXT_PUBLIC_STRIPE_PRICE_ARTICLE;
 
 
 interface PurchaseFormData {
@@ -50,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PaymentPremium() {
+export default function PaymentArticle() {
   const classes = useStyles();
   const s = styles();
   const { t } = useTranslation(['payment']);
@@ -66,17 +65,6 @@ export default function PaymentPremium() {
   const [formUntouched, setFormUntouched] = useState(true);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<Color>("success");
-
-  // const [openPremiumDialog, setOpenPremiumDialog] = useState(false);
-
-  // function togglePremiumDialog() {
-  //   setOpenPremiumDialog(!openPremiumDialog);
-  // }
-
-
-  // const handleClickPremiumDialog = () => {
-  //   setOpenPremiumDialog(true);
-  // };
 
   useEffect(() => {
     if (Object.keys(formData).some(key => formData[key].error)) {
@@ -342,7 +330,7 @@ export default function PaymentPremium() {
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 4500, currency: 'SEK', id: `${stripeProduct}`, name: 'Portfolio Premium' }]}
+                            products={[{ amount: 5000, currency: 'SEK', id: `${stripeProduct}`, name: 'Artikel' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
@@ -362,7 +350,7 @@ export default function PaymentPremium() {
                         <div className={s.qrCode}>
                           <img
                             width={200}
-                            src="/images/swish-premium.png"
+                            src="/images/swish-artikel.png"
                             alt="swishqr"
                             title="qr code" />
                           <Typography variant="h4" component="h2" className={s.swishNumer}>1234461489</Typography>
@@ -517,12 +505,10 @@ export default function PaymentPremium() {
                   alt="logo"
                   title="Premium" />
 
-                <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('portfolioPremium')}</Typography>
-                <Typography variant="h2" component="h2">{t('price')}</Typography>
-                <Typography variant="h4" component="h2">{t('length')}</Typography>
+                <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('article')}</Typography>
+                <Typography variant="h2" component="h2">{t('priceArticle')}</Typography>
                 
               </div>
-              <hr className={s.line}></hr>
             <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
               {steps.map((label, index) => (
                 <Step key={label}>
