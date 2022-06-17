@@ -14,26 +14,31 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       margin: '0 0 30px 0',
 
-      [theme.breakpoints.up('smPlus')]: {
-        flexDirection: 'row',
-        marginBottom: '3rem'
+      [theme.breakpoints.up('mdPlus')]: {
+        flexDirection: 'column',
+        marginBottom: '3rem',
       },
     },
     left: {
       width: '100%',
-      [theme.breakpoints.up('smPlus')]: {
-        width: '400px',
+      [theme.breakpoints.up('mdPlus')]: {
+        // width: '400px',
+        width: '100%',
       },
     },
     productImage: {
       width: '100%',
-      [theme.breakpoints.up('smPlus')]: {
-        width: '400px',
+      [theme.breakpoints.up('mdPlus')]: {
+        // width: '400px',
+        width: '100%',
       },
     },
     right: {
-      width: '900px',
+      width: '300px',
       display: 'flex',
+      [theme.breakpoints.up('smPlus')]: {
+        width: '690px',
+      },
     },
     input: {
       display: 'flex',
@@ -138,8 +143,11 @@ export const styles = makeStyles((theme: Theme) =>
       ...columnGap(theme.spacing(1)),
       margin: '0 15px',
     },
+    line: {
+      marginTop: '30px'
+    },
     textIncluded: {
-      marginTop: '15px',
+      
     },
     textLastLine: {
       marginBottom: '15px',
@@ -152,12 +160,13 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     stepperContainer: {
-      marginTop: '15px',
+      marginTop: '10px',
       width: '100%',
+      scroll: "body",
       [theme.breakpoints.up('smPlus')]: {
-        marginLeft: '15px',
-        marginTop: 0,
-        width: '700px',
+        marginLeft: '5px',
+        marginTop: '15px',
+        width: '720px',
       },
     },
     buttonFlex: {
