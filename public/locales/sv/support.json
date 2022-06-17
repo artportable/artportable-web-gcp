@@ -16,5 +16,11 @@
   "cancelation": "Uppsägning",
   "renewal": "Förlängning",
   "other": "Övrigt",
-  "errand": "Ärende"
+  "errand": "Ärende",
+  "advertising": "Annonsering för företag",
+  "contactUs": "Kontakta oss",
+  "yourWelcome": "Du är alltid välkommen att höra av dig till oss om du har några frågor kring tjänsten eller vill komma i kontakt med oss.",
+  "openingHours": "Öppettider: ",
+  "8-17": "Måndag - fredag, 8 - 17.",
+  "deviating": "Avvikande öppettider vid röda dagar och vernissager."
 }

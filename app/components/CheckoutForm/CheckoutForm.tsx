@@ -32,6 +32,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const elements = useElements();
   const styles = checkoutFormStyles();
   const { t } = useTranslation(["checkout", "common"]);
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false)
 
   const interval = t(plan?.recurringInterval);
 
@@ -77,6 +78,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   };
 
   const confirmedPortfolio = () => {
+    setPaymentConfirmed(true);
     zapierLeadBasicConfirmed({
       name: { value: given_name.value + " " + family_name.value } ?? "",
       phoneNumber: { value: phone.value } ?? "",
@@ -197,14 +199,20 @@ export default function CheckoutForm({ email, fullName, plan }) {
     if (countdown === 0) {
       clearInterval(countdownRef.current);
       confirmedPortfolio();
-      router.push("/success");
+      router.push('/')
     }
   }, [countdown]);
 
   const handleSuccessClose = () => {
     confirmedPortfolio();
-    router.push("/success");
+    router.push('/')
   };
+
+  useEffect(()=> {
+    if (paymentConfirmed) {
+    sessionStorage.setItem('payment', 'true')
+    }
+  },[confirmedPortfolio])
 
   return (
     <>

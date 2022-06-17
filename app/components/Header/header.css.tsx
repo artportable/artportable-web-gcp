@@ -45,6 +45,17 @@ export const styles = makeStyles((theme: Theme) =>
     navigation: {
       display: 'none'
     },
+    buttonInvite: {
+      display: 'none',
+      gridArea: 'invite',
+      // color: '#ffffff',
+      whiteSpace: 'nowrap',
+      // height: '31px',
+      // backgroundColor: 'var(--color-green)',
+      // '&.MuiButton-root:hover:hover':{
+      //   backgroundColor: 'var(--color-green-darker)',
+      // },
+    },
     menuDrawer: {
       order: 3,
       gridArea: 'menuDrawer',
@@ -68,11 +79,26 @@ export const styles = makeStyles((theme: Theme) =>
     },
     signUp: {
       display: 'none',
+      whiteSpace: 'nowrap',
       [theme.breakpoints.up('md')]: {
         display: 'flex'
       }
     },
-
+    createButton: {
+      whiteSpace: 'nowrap',
+      backgroundColor: 'var(--color-green)',
+      '&.MuiButton-containedPrimary:hover': {
+        backgroundColor: 'var(--color-green-darker)',
+      },
+      '& span': {
+        '&..MuiButton-label': {
+          margin: '0 !important',
+        },
+      },
+    },
+    loginButton: {
+      whiteSpace: 'nowrap',
+    },
     notificationButton: {
       width: '54px',
       display: 'flex',
@@ -112,15 +138,19 @@ export const styles = makeStyles((theme: Theme) =>
       },
       singleNotificationButton: {
         display: 'none',
-
       },
+      buttonInvite: {
+        display: 'initial',
+        marginRight: '-8px'
+      },
+
       login: {
         display: 'flex',
         alignItems: 'center',
         gridArea: 'login',
-        '& .MuiButton-root .MuiButton-label': {
-          margin: theme.spacing(0, 2)
-        },
+        // '& .MuiButton-root .MuiButton-label': {
+        //   margin: theme.spacing(0, 2)
+        // },
         '& > *': {
           margin: theme.spacing(0, 1)
         },
@@ -150,7 +180,7 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         justifyItems: 'start',
         gridTemplate: (
-          '\"menu logo navigation login menuDrawer\" auto' +
+          '\"menu logo navigation invite login language menuDrawer\" auto' +
           '/ auto auto 1fr auto auto'
         ),
       },
@@ -158,17 +188,20 @@ export const styles = makeStyles((theme: Theme) =>
       upload: {
         display: 'initial'
       },
-      logo: {
-        width: '188px'
-      }
     },
     text: {
       fontSize: '18px',
     },
-
     iconButtons: {
       display: 'flex',
       alignItems: 'center'
+    },
+    language: {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'initial',
+        gridArea: 'language'
+      },
     },
     [theme.breakpoints.up('mdPlus')]: {
       navigation: {
@@ -178,6 +211,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       iconMenuColor: {
         color: '#000',
+      },
+      logo: {
+        width: '188px'
       },
     },
   }),

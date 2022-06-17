@@ -7,9 +7,10 @@ import type { KeycloakInstance } from 'keycloak-js'
 import { useRouter } from "next/router";
 import Skeleton from '@material-ui/lab/Skeleton'
 import Link from 'next/link'
-
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import VideoDialog from '../VideoDialog/VideoDialog';
 
 interface RandomImageProps {
   artwork: string;
@@ -42,9 +43,9 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "Brian Morris", username: "brianmorris", image: '/images/brian_morris.jpg', imageLink: "art/e10b504e-0ef1-43b0-b97f-944ef3e93ac6" },
     { name: "Galina Tol-Fakkar", username: "galina.tolfakkar", image: '/images/galina_tol_fakkar.jpg', imageLink: "profile/@galina.tolfakkar" },
-    { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_18.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
+    { name: "Anette Lillhammar", username: "anette", image: '/images/anette_lillhammar.jpg', imageLink: "art/40108179-ccca-4ee8-8d99-e0ec644e4800" },
+    { name: "Kristina Ekberg Renström", username: "stina.ekberg", image: '/images/kristina_ekberg.jpg', imageLink: "art/6c1ef466-eee7-4a97-bc0b-17018dbff958" },
   ]
 
   useEffect(() => {
@@ -57,6 +58,17 @@ export default function IndexHero() {
     }));
   }, [])
 
+  const [openVideoDialog, setOpenVideoDialog] = useState(false);
+
+  function toggleVideoDialog() {
+    setOpenVideoDialog(!openVideoDialog);
+  }
+
+
+  const handleClickVideoDialog = () => {
+    setOpenVideoDialog(true);
+  };
+
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
@@ -65,7 +77,7 @@ export default function IndexHero() {
             {t('Hitta originalkonst')}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {t('Ta en titt i galleriet med över 30000 konstverk')}
+            {t('Ta en titt i galleriet med över 31000 konstverk')}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
@@ -95,6 +107,17 @@ export default function IndexHero() {
               onClick={() => keycloak.login({ locale: router.locale })}>
               {t('logIn')}
             </Button>
+          </div>
+          <div className={s.videoDiv}>
+            <PlayCircleFilledIcon />
+            <Typography className={s.playText} onClick={() => { handleClickVideoDialog(); }}>
+              {t('thisIsArtportable')}
+            </Typography>
+
+            <VideoDialog
+              open={openVideoDialog}
+              onClose={toggleVideoDialog}
+            />
           </div>
         </div>
 

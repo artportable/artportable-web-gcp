@@ -171,13 +171,27 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             </a>
           </Link>
         }
-        <ListItem button divider onClick={handleClickContact} >
-          <ListItemText primary={t('contactUs')} />
-        </ListItem >
-        <DialogConstruction
-          openContact={openContact}
-          handleClose={handleCloseContact} />
-
+        <Link href="/kurser" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('courses')} />
+            </ListItem>
+          </a>
+        </Link>
+        <Link href="/support" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('contactUs')} />
+            </ListItem>
+          </a>
+        </Link>
+        <Link href="/about-us" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('aboutUs')} />
+            </ListItem>
+          </a>
+        </Link>
 
 
         {isSignedIn.value ?

@@ -1,6 +1,6 @@
 {
   "Hitta originalkonst": "Discover unique artworks",
-  "Ta en titt i galleriet med över 30000 konstverk": "Take a look at the gallery with over 30000 works of art. Find your favorite piece and buy it directly from the artist.",
+  "Ta en titt i galleriet med över 31000 konstverk": "Take a look at Scandinavia's largest online art gallery with over 31000 artworks. Find your favorite piece and buy it directly from the artist.",
   "subHeader2": "Follow artists and send purchase requests.",
   "artworkFrom": "Artwork from",
   "signUp": "Sign up",
@@ -20,5 +20,6 @@
   "description": "A digital gallery where artists can exhibit their art and sell it directly to buyers",
   "all": "All",
   "unsold": "For sale",
-  "sold": "Sold"
+  "sold": "Sold",
+  "thisIsArtportable": "THIS IS ARTPORTABLE"
 }

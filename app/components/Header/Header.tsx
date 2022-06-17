@@ -32,6 +32,7 @@ import { OwnUserResponse } from 'stream-chat'
 import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
+import { RWebShare } from "react-web-share";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(['header', 'support']);
@@ -111,9 +112,27 @@ export default function Header({ navBarItems }) {
                 </a>
               </Link>
             </nav>
+            <RWebShare
+              data={{
+                text: t('common:description'),
+                url: "https://artportable.com",
+                title: t('common:inviteFriends'),
+              }}
+              onClick={() => trackGoogleAnalytics(ActionType.INVITE_FEED)}
+            >
+              <Button
+                className={s.buttonInvite}
+                size="small"
+                variant="outlined"
+                disableElevation
+                rounded>
+                {t('invite')}
+              </Button>
+            </RWebShare>
             {(!isSignedIn.value) &&
               <div className={s.login}>
                 <Button
+                  className={s.createButton}
                   size="small"
                   variant="contained"
                   color="primary"
@@ -138,6 +157,7 @@ export default function Header({ navBarItems }) {
                   {t('signUp')}
                 </Button>
                 <Button
+                  className={s.loginButton}
                   size="small"
                   variant="outlined"
                   disableElevation
@@ -214,6 +234,9 @@ export default function Header({ navBarItems }) {
                 </div>
               </>
             }
+            <div className={s.language}>
+              <I18nSelector></I18nSelector>
+            </div>
             <div className={s.menuDrawer}>
               <IconButton aria-label="menu" onClick={(_) => setOpenMenu(true)} className={s.iconMenuColor}>
                 <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
@@ -222,9 +245,6 @@ export default function Header({ navBarItems }) {
                 <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
               </IconButton>
             </div>
-            {/* <div className={s.language}>
-              <I18nSelector></I18nSelector>
-            </div> */}
           </div>
           <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages} navBarItems={navBarItems}></DrawerMenu>
         </Toolbar>

@@ -27,6 +27,9 @@ import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/Disc
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
+import AdDialog from "../app/components/AdDialog/AdDialog";
+import { ActionType, CategoryType, trackGoogleAnalytics } from "../app/utils/googleAnalytics";
+import router from "next/router";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
@@ -43,7 +46,8 @@ export default function DiscoverPage({ navBarItems }) {
   const { loading, setLoading } = useContext(LoadingContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
-
+  const [openAdDialog, setOpenAdDialog] = useState(true);
+  
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
@@ -54,9 +58,31 @@ export default function DiscoverPage({ navBarItems }) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
+  
+  
+  useEffect(()=> {
+    if (sessionStorage.getItem('dialog')) {
+      setOpenAdDialog(false)
+    } else if (openAdDialog) {
+      trackGoogleAnalytics(ActionType.SHOW_FIRST_PAGE_AD, CategoryType.INTERACTIVE)
+    } 
+  },[])
+  
+  useEffect(()=> {
+    if (openAdDialog === false) {
+      sessionStorage.setItem('dialog', 'false')
+    }
+  },[toggleAdDialog])
 
+  useEffect(()=> {
+    if (sessionStorage.getItem('payment')) {
+      router.reload();
+      sessionStorage.removeItem('payment')
+    }
+  },[])
+  
   const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8;
-
+  
   function setTab(value) {
     setActiveTab(value);
     dispatch({
@@ -64,14 +90,14 @@ export default function DiscoverPage({ navBarItems }) {
       payload: value
     });
   }
-
+  
   function a11yProps(index: any) {
     return {
       id: `nav-tab-${index}`,
       'aria-controls': `nav-tabpanel-${index}`,
     };
   }
-
+  
   const subjectOptions = [
     {
       value: 'All',
@@ -95,18 +121,29 @@ export default function DiscoverPage({ navBarItems }) {
     setLoadMoreArtworks(false)
   }
 
+  function toggleAdDialog() {
+    setOpenAdDialog(false);
+  }
+  
 
-  return (
+  return  (
     <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
       <Head>
         <meta name="title" content={t('index:title')} />
         <meta name="description" content={t('index:description')} />
         <meta name="url" content="https://artportable.com/" />
-        <meta property="og:title" content="" />
+        
+        <meta property="og:title" content={t('index:title')} />
         <meta property="og:description" content={t('index:description')} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
         <meta property="og:image" content="/images/artportable_tv_commercial.png" />
+
+        <meta property="twitter:title" content={t('index:title')} />
+        <meta property="twitter:description" content={t('index:description')} />
+        <meta property="twitter:type" content="website" />
+        <meta property="twitter:url" content="https://artportable.com/" />
+        <meta property="twitter:image" content="/images/artportable_tv_commercial.png" />
         <link rel="canonical" href={publicUrl} />
       </Head>
       {!loading &&
@@ -114,6 +151,11 @@ export default function DiscoverPage({ navBarItems }) {
           {!isSignedIn.value &&
             <IndexHero></IndexHero>
           }
+            <AdDialog
+              openAdDialog={openAdDialog}
+              setOpenAdDialog={setOpenAdDialog}
+              onClose={toggleAdDialog}
+            />
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
               {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8 ?
@@ -166,6 +208,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
@@ -177,6 +220,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
@@ -188,6 +232,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
@@ -199,6 +244,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
@@ -210,6 +256,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={5}>
@@ -239,6 +286,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
                 />
               </TabPanel>
 

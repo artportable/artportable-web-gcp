@@ -54,6 +54,7 @@ import { getNavBarItems } from '../../app/utils/getNavBarItems';
 import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade';
 import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade';
 import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
+import { RWebShare } from "react-web-share";
 
 function a11yProps(index: any) {
   return {
@@ -154,6 +155,13 @@ export default function Profile(props) {
       router.events.off('routeChangeComplete', handleRouteChangeStart);
     }
   }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('refresh')) {
+      router.reload();
+      sessionStorage.removeItem('refresh')
+    }
+  }, [])
 
   useEffect(() => {
     const primaryImages = artworks?.data?.map(a => a.PrimaryFile);
@@ -296,31 +304,31 @@ export default function Profile(props) {
   function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
     referTo = userProfileSummary.data.SocialId;
-    if (isSignedIn.value) {
-      const originalRedirect = {
-        pathname: "/messages",
-        query: {
-          artwork: encodeURIComponent(JSON.stringify({
-            title: title,
-            creator: creator,
-            url: url,
-            imageurl: imageurl
-          })),
-          referTo: referTo
-        }
-      }
-      router.push(originalRedirect);
-    } else {
-      setPurchaseRequestDialogData({
-        title: title,
-        creator: creator,
-        url: url,
-        referTo: referTo,
-        imageurl: imageurl
-      })
-      togglePurchaseRequestDialog();
-    }
+    // if (isSignedIn.value) {
+    //   const originalRedirect = {
+    //     pathname: "/messages",
+    //     query: {
+    //       artwork: encodeURIComponent(JSON.stringify({
+    //         title: title,
+    //         creator: creator,
+    //         url: url,
+    //         imageurl: imageurl
+    //       })),
+    //       referTo: referTo
+    //     }
+    //   }
+    //   router.push(originalRedirect);
+    // } else {
+    setPurchaseRequestDialogData({
+      title: title,
+      creator: creator,
+      url: url,
+      referTo: referTo,
+      imageurl: imageurl
+    })
+    togglePurchaseRequestDialog();
   }
+  // }
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
   function toggleMonthlyDialog() {
@@ -351,6 +359,7 @@ export default function Profile(props) {
       console.log(phone.value)
     }
   }
+  const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`
 
   return (
     <Main navBarItems={navBarItems}>
@@ -359,11 +368,17 @@ export default function Profile(props) {
         <meta name="title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
         <meta name="description" content={staticUserProfile?.Headline ?? ""} />
 
-        <meta property="og:title" content={staticUserProfile && staticUserProfile.Name && staticUserProfile.Surname ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname : "Artportable"} />
-        <meta property="og:description" content={staticUserProfile?.Headline ?? ""} />
+        <meta property="og:title" content={t('common:title')} />
+        <meta property="og:description" content={t('common:description')} />
         <meta property="og:type" content="profile" />
         <meta property="og:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
-        <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}`} />
+        <meta property="og:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}` ?? "/images/artportable_tv_commercial.png"} />
+
+        <meta property="twitter:title" content={t('common:title')} />
+        <meta property="twitter:description" content={t('common:description')} />
+        <meta property="twitter:type" content="profile" />
+        <meta property="twitter:url" content={`${publicUrl}/profile/@${staticUserProfile?.Username}`} />
+        <meta property="twitter:image" content={`${bucketUrl}${staticUserProfile?.CoverPhoto}` ?? "/images/artportable_tv_commercial.png"} />
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
@@ -405,6 +420,7 @@ export default function Profile(props) {
                       </Link>
                     </div>
                   }
+
 
                   {(membership.value < Membership.Portfolio) &&
                     <UpgradePortfolio />
@@ -460,6 +476,26 @@ export default function Profile(props) {
                   alt="Logo Artportable"
                   className={s.emblem}
                 />
+              </div>
+            }
+            {isMyProfile &&
+              <div className={s.friends}>
+                <RWebShare
+                  data={{
+                    text: t('common:description'),
+                    url: userProfileUrl,
+                    title: t('common:followersInvite'),
+                  }}
+                  onClick={() => trackGoogleAnalytics(ActionType.INVITE_PROFILE)}
+                >
+                  <Button
+                    className={s.buttonFeed}
+                    size="small"
+                    rounded
+                    variant="outlined">
+                    {t('followersInvite')}
+                  </Button>
+                </RWebShare>
               </div>
             }
             {(isMyProfile && membership.value > Membership.Portfolio && !userProfile.data?.MonthlyArtist) &&

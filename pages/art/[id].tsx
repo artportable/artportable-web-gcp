@@ -5,7 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Main from "../../app/components/Main/Main";
 import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
-import { Box, IconButton, Paper, Typography } from "@material-ui/core";
+import { Badge, Box, IconButton, Paper, Typography } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
 import { styles } from "../../styles/art.css";
 import { capitalizeFirst, fetchWithTimeout } from "../../app/utils/util";
@@ -26,6 +26,10 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
+import ChatIcon from '@material-ui/icons/Chat';
+import { RWebShare } from "react-web-share";
+import ShareIcon from '@material-ui/icons/Share';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -69,22 +73,23 @@ export default function ArtworkPage(props) {
     setIsLiked(artwork?.data?.LikedByMe);
   }, [artwork?.data]);
 
-  function togglePurchaseRequestDialog(){
+  function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
   }
 
   function purchaseRequest(originalRedirect?: UrlObject | string) {
-    if (isSignedIn.value) {
-      if (originalRedirect !== undefined) {
-        router.push(originalRedirect);
-      }
-    } else {
-      togglePurchaseRequestDialog();
-    }
+    // if (isSignedIn.value) {
+    //   if (originalRedirect !== undefined) {
+    //     router.push(originalRedirect);
+    //   }
+    // } else {
+    togglePurchaseRequestDialog();
   }
+  // }
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
+    hej();
     follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token);
     setFollow(!isFollowed);
   }
@@ -96,7 +101,6 @@ export default function ArtworkPage(props) {
 
   function toggleLike(event) {
     event.stopPropagation();
-
     likeArtwork(!isLiked);
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
@@ -107,14 +111,23 @@ export default function ArtworkPage(props) {
     <FavoriteBorderOutlinedIcon color="primary" /> :
     isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
 
+  const hej = () => {
+    console.log(artwork.data.Width)
+    console.log(artwork.data.Height)
+    console.log(staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname )
+  }
+  const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`
+  const shareArtworkTitle = artwork?.data?.Title ? `${t('common:share')}"${artwork?.data?.Title}"`: `${t('common:share')}`;
+  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.data?.Title}"${t('common:atArtportable')}`
+
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
         <title>{staticArtwork?.Title ?? "Artportable"}</title>
-        <meta name="title" content={staticArtwork?.Title ?? "Artportable"} />
-        <meta name="description" content={staticArtwork?.Description ?? ""} />
-        <meta property="og:title" content={staticArtwork?.Title ?? "Artportable"} />
-        <meta property="og:description" content={staticArtwork?.Description ?? ""} />
+        <meta name="title" content={staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname ?? "Artportable"} />
+        <meta name="description" content={staticArtwork?.Title ?? ""} />
+        <meta property="og:title" content={staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname ?? "Artportable"} />
+        <meta property="og:description" content={staticArtwork?.Title ?? ""} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
@@ -137,7 +150,7 @@ export default function ArtworkPage(props) {
         {artwork && artwork.data &&
           <>
             <div className={s.avatar}>
-              <AvatarCard user={artwork.data.Owner}></AvatarCard>
+            <AvatarCard user={artwork.data.Owner}></AvatarCard>
               <Button
                 className={s.followButton}
                 variant={!isFollowed ? "contained" : "outlined"}
@@ -223,20 +236,65 @@ export default function ArtworkPage(props) {
                     </Box>
                   }
                 </div>
-                <div className={s.likeContainer}>
-                  <Button
-                    //  onClick={() => { toggleLike; !isLiked ? likeButton() : null}}
-                    onClick={toggleLike}
-                    startIcon={likedFilled}
-                  >
-                    {capitalizeFirst(t('common:like'))}
-                  </Button>
-                  {artwork.data.Likes > 0 &&
-                    <div>{artwork.data.Likes} {t('peopleLikeThis')}</div>
+                <div className={s.flexLikeRoom}>
+                  <div className={s.flexMessageLike}>
+                    <RWebShare
+                      data={{
+                        text: shareArtworkText,
+                        url: artworkUrl,
+                        title: shareArtworkTitle,
+                      }}
+                      onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK) }
+                    >
+                      <IconButton className={s.shareButton} >
+                      <ShareIcon style={{ fontSize: '21px' }} />
+                      </IconButton>
+                    </RWebShare>
+                    <div title={t('common:sendMessage')}>
+                      <a>
+                        <IconButton className={s.chatButton} aria-label="account" onClick={() => {
+                          redirectIfNotLoggedIn({
+                            pathname: "/messages",
+                            query: {
+                              referTo: artwork.data.Owner.SocialId
+                            }
+                          });
+                          trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
+                        }}>
+                          <ChatBubbleOutlineIcon style={{ fontSize: '23px' }} />
+                        </IconButton>
+                      </a>
+                    </div>
+                    <div>
+                      <IconButton
+                        className={s.likeButton}
+                        disableRipple
+                        disableFocusRipple
+                        onClick={toggleLike}>
+                        {likedFilled}
+                      </IconButton>
+                    </div>
+                    <div className={s.likeCounter}>
+                      {artwork.data.Likes > 0 &&
+                        <div>{artwork.data.Likes}</div>
+                      }
+                    </div>
+                  </div>
+                  {artwork.data.Width > 0 && artwork.data.Height > 0 &&
+                    <div className={s.roomDiv}>
+                      <a href={`/tool/${artwork.data.Id}`}>
+                        <Badge badgeContent={t('new')} className={s.badgeNew}>
+                          <Button
+                            className={s.roomButton}
+                            rounded>
+                            {t('room')}
+                          </Button>
+                        </Badge>
+                      </a>
+                    </div>
                   }
                 </div>
               </div>
-
               <Box textAlign="center" marginY={4} className={s.text}>
                 {artwork.data.Title &&
                   <Typography variant="h3" component="h2" id="artwork-modal-title">
@@ -285,23 +343,23 @@ export default function ArtworkPage(props) {
           </>
         }
       </div>
-    </Main>
+    </Main >
   );
 }
 
 export async function getServerSideProps({ locale, params }) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(`${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`);
-  const navBarItems = await getNavBarItems(); 
+  const navBarItems = await getNavBarItems();
 
   try {
-    const artworkResponse = await fetchWithTimeout(url.href, {
-      timeout: 11000
+    const artworkResponse = await fetch(url.href, {
+      // timeout: 11000
       //fail return prop som sätts till true
 
     });
     const artwork = await artworkResponse.json();
- 
+
     return {
       props: {
         // fetch timeout

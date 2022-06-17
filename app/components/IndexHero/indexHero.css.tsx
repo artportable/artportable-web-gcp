@@ -125,12 +125,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignContent: 'flex-start',
       alignItems: 'left',
-
-      marginBottom: theme.spacing(6),
-      [theme.breakpoints.up('md')]: {
-
-        marginBottom: theme.spacing(2)
-      },
+      marginBottom: theme.spacing(2),
     },
     headerButtonArtist: {
       display: 'flex',
@@ -218,9 +213,23 @@ export const styles = makeStyles((theme: Theme) =>
     signupButtonContainer: {
       marginTop: theme.spacing(1)
     },
+    videoDiv: {
+      display: 'flex',
+      cursor: 'pointer',
+      alignItems: 'center',
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(5),
+
+      [theme.breakpoints.up('smPlus')]: {
+        marginBottom: theme.spacing(2),
+        },
+    },
+    playText: {
+      fontWeight: 500,
+      marginLeft: '5px',
+    },
     buttonLabel: {
       fontSize: '0.9rem',
-      // margin: theme.spacing(0, 1),
       [theme.breakpoints.up('sm')]: {
         fontSize: 'initial',
         margin: theme.spacing(0, 1),

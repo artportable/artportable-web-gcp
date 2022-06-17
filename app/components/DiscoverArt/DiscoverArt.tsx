@@ -28,9 +28,10 @@ interface InputProps {
   loadMoreElementRef: any
   isLoading: boolean;
   loadMore: boolean;
+  activeTab: number;
 }
 
-export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore }: InputProps) {
+export default function DiscoverArt({ artworks, tags, activeTab, onFilter = null, onLike, rowWidth, loadMoreElementRef, isLoading, loadMore}: InputProps) {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const smScreenOrSmaller = useBreakpointDown('sm');
@@ -117,20 +118,20 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
 
   function onPurchaseRequestClick(title: string, creator: string, artworkId: string, referTo: string, imageurl: string) {
     const url = publicUrl + "/art/" + artworkId;
-    if (isSignedIn.value) {
-      const originalRedirect = {
-        pathname: "/messages",
-        query: {
-          artwork: encodeURIComponent(JSON.stringify({
-            title: title,
-            creator: creator,
-            url: url,
-          })),
-          referTo: referTo,
-        }
-      }
-      router.push(originalRedirect);
-    } else {
+    // if (isSignedIn.value) {
+    //   const originalRedirect = {
+    //     pathname: "/messages",
+    //     query: {
+    //       artwork: encodeURIComponent(JSON.stringify({
+    //         title: title,
+    //         creator: creator,
+    //         url: url,
+    //       })),
+    //       referTo: referTo,
+    //     }
+    //   }
+    //   router.push(originalRedirect);
+    // } else {
       setPurchaseRequestDialogData({
         title: title,
         creator: creator,
@@ -140,14 +141,14 @@ export default function DiscoverArt({ artworks, tags, onFilter = null, onLike, r
       })
       togglePurchaseRequestDialog();
     }
-  }
+  // }
 
   return (
     <>
       <Box className={s.rowsContainer}>
         {onFilter &&
           <div>
-            <SearchField onFilter={onFilter} tags={tags}></SearchField>
+            <SearchField onFilter={onFilter} tags={tags} activeTab={activeTab}></SearchField>
           </div>
         }
         {showFilterLoadingSkeleton &&

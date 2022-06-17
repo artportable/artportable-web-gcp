@@ -8,7 +8,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import LanguageIcon from '@material-ui/icons/Language';
 import Icon from '@material-ui/core/Icon';
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { styles } from './socialNetwork.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

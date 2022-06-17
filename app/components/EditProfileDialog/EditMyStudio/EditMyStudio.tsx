@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 
 import { TextField, Typography } from '@material-ui/core'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { styles } from './editMyStudio.css';
 
 export const EditMyStudio = ({ profile, setProfile }) => {

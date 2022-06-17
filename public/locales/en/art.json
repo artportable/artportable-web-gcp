@@ -22,5 +22,8 @@
   "sendEmailToArtist": "Send an email to the artist",
   "yourEmail": "Your email",
   "logIntoSendChatMessages": "Log in to send the purchase request in the chat",
-  "deleteArtwork": "Delete artwork?"
+  "deleteArtwork": "Delete artwork?",
+  "room": "Room",
+  "request": "Request",
+  "new": "New!"
 }

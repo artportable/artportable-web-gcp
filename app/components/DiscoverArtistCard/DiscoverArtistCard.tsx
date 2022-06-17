@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from 'next/link'
 import { styles } from "./discoverArtistCard.css";
 import { useTranslation } from "next-i18next";
@@ -16,6 +16,7 @@ import { useMainWidth } from "../../hooks/useWidth";
 import { useStore } from "react-redux";
 import AddIcon from '@material-ui/icons/Add';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import { UserContext } from "../../contexts/user-context";
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const { t } = useTranslation(['common', 'discover']);
@@ -33,12 +34,16 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
     id: a.Id,
     title: a.Title
   }));
-  const isSignedIn = store.getState()?.user?.isSignedIn;
+  const { isSignedIn } = useContext(UserContext);
 
   function toggleFollow() {
-    onFollowClick(artist.Username, !isFollowed);
+    onFollowClick(artist.SocialId, !isFollowed);
     setFollow(!isFollowed);
+    console.log(artist.SocialId);
   }
+  useEffect(() => {
+    setFollow(artist.FollowedByMe);
+  }, [artist.FollowedByMe]);
 
   return (
     <div className={s.container}>

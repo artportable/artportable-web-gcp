@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 
 import { styles } from './uploadForm.css'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Checkbox, FormControlLabel, Grid, InputAdornment, TextField, Typography } from '@material-ui/core';
 import TagChip from '../TagChip/TagChip';
 

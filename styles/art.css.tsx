@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { rowGap, columnGap } from '../app/utils/styleUtils';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -78,14 +79,47 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(0, 0.4, 0 ,0)
       }
     },
-    likeContainer: {
-      float: 'right',
-      display: 'inline-block',
-      '& button' : {
-        paddingBottom: 0,
+    flexLikeRoom: {
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    flexMessageLike: {
+      display: 'flex',
+      alignItems: 'center',
+      alignSelf: 'flex-end'
+    },
+
+    likeCounter: {
+      marginLeft: '4px',
+      marginRight: "0",
+
+      fontWeight: 500,
+      color: '#000000'
+    },
+    likeButton: {
+      padding: theme.spacing(0.2, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+      '&:hover': {
+        backgroundColor: 'transparent'
       }
     },
-    
+    chatButton: {
+      padding: theme.spacing(0.5, 0, 0.4, 0.5),
+      fontSize: '0.5rem',
+      color: '#000000',
+      '&:hover': {
+        backgroundColor: 'transparent'
+      }
+    },
+    shareButton: {
+      padding: theme.spacing(0, 0.1, 0.2, 0.5),
+      fontSize: '0.5rem',
+      color: '#000000',
+      '&:hover': {
+        backgroundColor: 'transparent'
+      }
+    },
     text: {
       marginLeft: '10px',
       marginRight: '10px',
@@ -120,6 +154,34 @@ export const styles = makeStyles((theme: Theme) =>
       width: "15px",
       height: "15px",
       marginRight: '5px',
+    },
+    roomDiv: {
+      placeSelf: 'flex-end',
+      marginTop: '42px',
+      [theme.breakpoints.up('smPlus')]: {
+        marginTop: '20px',
+      }
+    },
+    roomButton: {
+      marginTop: '5px',
+      fontWeight: theme.typography.fontWeightMedium,
+      border: '1px solid black',
+      color: 'black',
+    },
+    flexPurchaseRoom: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%'
+    },
+    badgeNew: {
+      '& span': {
+        '&.MuiBadge-anchorOriginTopRightRectangle': {
+          top: '-2px',
+          right: '10px',
+          backgroundColor: 'none',
+          color: 'black'
+        },
+      },
     },
     [theme.breakpoints.up('smPlus')]: {
       titleAndSizeContainer: {

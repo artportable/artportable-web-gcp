@@ -30,7 +30,14 @@ export enum ActionType {
   UPGRADE = 'upgrade_to_portfolio',
   BECOME_MONTHLY_ARTIST = "bli_månadens_konstnär",
   GET_PORTFOLIO_PREMIUM = "skaffa_månadens_konstnär",
-  UPGRADE_ACCOUNT_GOLD_BOTTOM = "uppgradera_konto_profil_guldknapp"
+  UPGRADE_ACCOUNT_GOLD_BOTTOM = "uppgradera_konto_profil_guldknapp",
+  SHOW_FIRST_PAGE_AD = "popup_annons_visad",
+  CLICK_FIRST_PAGE_AD = "popup_annons_klickad",
+  INVITE_FEED = "bjud in_feed",
+  INVITE_PROFILE = "bjud in_profile",
+  INVITE_HEADER = "bjud in_header",
+  SHARE_ARTWORK = "dela konstverk",
+
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 

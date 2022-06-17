@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core'
 import { EditDialogSection } from '../EditDialogSection/EditDialogSection'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { styles } from './editInspiredBy.css';
 
 export const EditInspiredBy = ({ profile, setProfile }) => {

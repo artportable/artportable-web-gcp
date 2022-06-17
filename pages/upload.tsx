@@ -26,9 +26,10 @@ import { Membership } from '../app/models/Membership';
 import { ActionType, CategoryType, trackGoogleAnalytics } from '../app/utils/googleAnalytics';
 import useRefreshToken from '../app/hooks/useRefreshToken';
 import { getNavBarItems } from '../app/utils/getNavBarItems';
+import Button from '../app/components/Button/Button';
 
 
-export default function UploadArtworkPage({navBarItems}) {
+export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation(['upload']);
   const router = useRouter();
@@ -68,6 +69,8 @@ export default function UploadArtworkPage({navBarItems}) {
   const [mobileImg, setMobileImg] = useState('');
   const [mobileImgBlob, setMobileImgBlob] = useState(null);
   const mobilePreviewImageRef = useRef(null);
+  const [refresh, setRefresh] = useState(false)
+  const [color, setColor] = useState('#fff');
 
   const cropperRef = useRef(null);
 
@@ -100,6 +103,7 @@ export default function UploadArtworkPage({navBarItems}) {
           SecondaryFile: nameSecondary,
           TertiaryFile: nameTertiary
         }
+        setRefresh(true)
         setUploadSnackbarOpen(true);
         const res = usePostArtwork(artwork, socialId.value, token);
         router.push('/profile/@' + username.value);
@@ -131,6 +135,11 @@ export default function UploadArtworkPage({navBarItems}) {
       }
     }
   }
+  useEffect(() => {
+    if (refresh) {
+      sessionStorage.setItem('refresh', 'false')
+    }
+  }, [uploadArtwork])
 
   const handleSnackbarClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
@@ -163,10 +172,14 @@ export default function UploadArtworkPage({navBarItems}) {
     // Upload image and set image name
     const width = Math.round(cropper?.getData()?.width);
     const height = Math.round(cropper?.getData()?.height);
-    cropper.getCroppedCanvas().toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
+    cropper.getCroppedCanvas({
+      fillColor: color,
+    }).toBlob((blob) => { uploadImage(blob, width, height) }, 'image/jpeg');
 
     // Show preview
-    const dataUrl = cropper.getCroppedCanvas().toDataURL('image/jpeg');
+    const dataUrl = cropper.getCroppedCanvas({
+      fillColor: color,
+    }).toDataURL('image/jpeg');
     if (croppedPrimary === null) {
       setCroppedPrimary(dataUrl);
     } else if (croppedSecondary === null) {
@@ -190,14 +203,14 @@ export default function UploadArtworkPage({navBarItems}) {
 
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken().then(() =>
-    fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'image/jpeg',
-        'Authorization': `Bearer ${token}`
-      },
-      body: blob
-    }))
+      fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'image/jpeg',
+          'Authorization': `Bearer ${token}`
+        },
+        body: blob
+      }))
       .then((response) => {
         if (!response.ok) {
           console.log(response.statusText);
@@ -248,7 +261,8 @@ export default function UploadArtworkPage({navBarItems}) {
               showPreviews={false}
               showPreviewsInDropzone={true}
               filesLimit={3}
-              maxFileSize={2000000000} />
+              maxFileSize={2000000000} 
+              />
           </div>
 
           <div className={s.cropperBox}>
@@ -258,11 +272,23 @@ export default function UploadArtworkPage({navBarItems}) {
               onInitialized={onCropperInitialized}
               initialAspectRatio={1}
               autoCropArea={1}
-              preview={`.${s.cropperPreview}`}
+              // preview={`.${s.cropperPreview}`}
               ref={cropperRef}
+              background={true}
+              // style={{ backgroundColor: color}}
             />
           </div>
+          {/* <div className={s.backgroundColorFlex}>
+          <div className={s.pickColor}  style={{ backgroundColor: '#ffffff'}} onClick={() => setColor('#ffffff')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#FDF9F7'}} onClick={() => setColor('#FDF9F7')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#FAF3EE'}} onClick={() => setColor('#FAF3EE')} /> */}
+          {/* <div className={s.pickColor} style={{ backgroundColor: '#C67777'}} onClick={() => setColor('#C67777')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#A35D5D'}} onClick={() => setColor('#A35D5D')} />
+          <div className={s.pickColor} style={{ backgroundColor: '#01C281'}} onClick={() => setColor('#01C281')} /> */}
+          {/* <div className={s.pickColor} style={{ backgroundColor: '#000000'}} onClick={() => setColor('#000000')} />
+          </div> */}
           <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
+
         </>
           :
           <div>
@@ -296,24 +322,24 @@ export default function UploadArtworkPage({navBarItems}) {
 
         <div className={s.previewsContainer}>
           {croppedPrimary &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div className={s.previewItem}>
               <img src={croppedPrimary} />
-            </Paper>
+            </div>
           }
           {croppedSecondary &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div className={s.previewItem}>
               <img src={croppedSecondary} />
-            </Paper>
+            </div>
           }
           {croppedTertiary &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div  className={s.previewItem}>
               <img src={croppedTertiary} />
-            </Paper>
+            </div>
           }
           {!croppedTertiary && cropperActive &&
-            <Paper elevation={3} className={s.previewItem}>
+            <div className={s.previewItem}>
               <div className={s.cropperPreview}></div>
-            </Paper>
+            </div>
           }
         </div>
         <div className={s.form}>
@@ -364,7 +390,7 @@ export default function UploadArtworkPage({navBarItems}) {
 }
 
 export async function getStaticProps({ locale }) {
-  const navBarItems = await getNavBarItems(); 
+  const navBarItems = await getNavBarItems();
   return {
     props: {
       navBarItems: navBarItems,

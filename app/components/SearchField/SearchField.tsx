@@ -13,7 +13,7 @@ import { ExpandLess, ExpandMore } from '@material-ui/icons';
 
 
 
-const SearchField = ({ onFilter, tags = null }) => {
+const SearchField = ({ onFilter, activeTab, tags = null }) => {
   const s = styles();
   const { t } = useTranslation(['discover', 'tags']);
   const isBreakpointSmPlusDown = useBreakpointDown('smPlus');
@@ -108,6 +108,10 @@ const SearchField = ({ onFilter, tags = null }) => {
     <div className={clsx(s.inputContainer, tags === null && s.noTags)} tabIndex={0}>
       <SearchIcon classes={{ root: s.searchIcon }} style={{ fontSize: 30 }}></SearchIcon>
       <input onChange={onSearchChanged} placeholder={t('searchForArt')} className={s.input} ></input>
+      {activeTab === 0 ?
+      null
+      :
+      <>
       {tags !== null &&
         <div className={s.tagsContainer}>
           <ul className={s.categoryTags}>
@@ -171,6 +175,9 @@ const SearchField = ({ onFilter, tags = null }) => {
           </ul>
         </div>
       }
+      </>
+      }
+      
     </div>
   );
 }

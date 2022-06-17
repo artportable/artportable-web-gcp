@@ -9,7 +9,7 @@ import CurrentExhibitionsCard from '../CurrentExhibitionsCard/CurrentExhibitions
 import AboutCard from '../AboutCard/AboutCard'
 
 import { styles } from './aboutMe.css'
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 
 export default function AboutMe({ userProfile, userProfilePicture, tags }) {

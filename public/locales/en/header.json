@@ -16,12 +16,16 @@
   "english": "English",
   "swedish": "Svenska",
   "upgrade": "Upgrade account",
-  "createPortfolio": "Create portfolio",
+  "createPortfolio": "Show your art in 3 min!",
   "artists": "Artists",
   "productLists": "Categories",
   "offers": "Offers",
   "membershipOffers": "Membership offers",
   "manageSubscription": "Manage subscription",
   "manageYourSubscription": "Manage your subscription",
-  "fillYourEmail": "Fill in your email and describe how you want to manage your subscription."
+  "fillYourEmail": "Fill in your email and describe how you want to manage your subscription.",
+  "courses": "Courses",
+  "aboutUs": "About us",
+  "title": "Artportable - Discover and buy art directly from artists",
+  "invite": "Invite"
 }

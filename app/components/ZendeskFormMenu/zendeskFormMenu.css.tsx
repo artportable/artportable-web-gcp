@@ -48,7 +48,14 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       alignItems: 'center',
       width: '100%',
-
+    },
+    selectedColor: {
+      '&.MuiListItem-root.Mui-selected': {
+        backgroundColor: 'transparent',
+      },
+      '&.MuiListItem-root.Mui-selected:hover': {
+        backgroundColor: 'transparent',
+      },
     },
     sendButton: {
       marginTop: theme.spacing(1),

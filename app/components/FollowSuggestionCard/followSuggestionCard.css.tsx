@@ -8,6 +8,13 @@ export const styles = makeStyles((theme: Theme) =>
     nothing: {
       fontStyle: "italic",
       textAlign: "center"
+    },
+    flex: {
+      display: 'flex',
+    },
+    divInviteButton: {
+      display: 'flex',
+      justifyContent: 'center',
     }
   }),
 );

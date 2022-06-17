@@ -15,6 +15,7 @@ interface DiscoverMyLikedArtTabProps {
   loadMore: boolean;
   loadImages: any;
   stopLoadImages: any;
+  activeTab: number;
 }
 
 export const DiscoverMyLikedArtTab = memo((props: DiscoverMyLikedArtTabProps) => {
@@ -87,6 +88,7 @@ export const DiscoverMyLikedArtTab = memo((props: DiscoverMyLikedArtTabProps) =>
           loadMoreElementRef={loadMoreArtworksElementRef}
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
+          activeTab={props.activeTab}
         />
       }
     </>

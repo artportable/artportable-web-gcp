@@ -10,6 +10,7 @@ const styles = makeStyles((theme: Theme) =>
         gap: '16px',
         gridTemplate: (
         '\"upload   form\" minmax(0, 2fr)' +
+        '\"pickBackgroundColor   form\" auto' +
         '\"options   form\" auto' +
         '\"previews form\" minmax(0, 1fr)' +
         '/  3fr      1fr'),
@@ -31,6 +32,12 @@ const styles = makeStyles((theme: Theme) =>
     cropper: {
       width: '100%',
       height: '100%',
+      // '& .cropper-bg': {
+      //   backgroundImage: 'none'
+      // },
+      // '& .cropper-modal': {
+      //   opacity: '1',
+      // },
     },
     dropzone: {
       display: 'flex',
@@ -51,7 +58,6 @@ const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       height: '100%',
       width: '33.33%',
-      backgroundColor: theme.palette.grey[300],
       borderRadius: '6px',
       overflow: 'hidden',
       '& img': {
@@ -100,7 +106,18 @@ const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       justifySelf: 'center',
       alignSelf: 'center',
-    }
+    },
+    backgroundColorFlex: {
+      display: 'flex',
+      gridArea: 'pickBackgroundColor',
+    },
+    pickColor: {
+      width: '40px',
+      height: '40px',
+      pointer: 'cursor',
+      border: '1px solid #000',
+      marginRight: '10px'
+    },
   }),
 );
 
