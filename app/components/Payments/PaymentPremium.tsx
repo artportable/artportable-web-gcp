@@ -324,8 +324,8 @@ export default function PaymentPremium() {
               >
                 <Typography className={classes.heading}>{t('paymentOptions')}</Typography>
               </AccordionSummary>
-              <AccordionDetails className={s.paymentOptions}>
-                <FormControl component="fieldset" className={s.paymentOptions}>
+              <AccordionDetails>
+                <FormControl component="fieldset">
                   <RadioGroup aria-label="payment" name="payment" value={valueRadio} onChange={handleChangeRadio}>
                     <div className={s.swishFlex}>
                     <FormControlLabel value="betalkort" control={<Radio />} label={<Typography className={s.radioLabel}>{t('card')}</Typography>} />
