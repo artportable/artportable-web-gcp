@@ -112,7 +112,7 @@ export default function Header({ navBarItems }) {
                 </a>
               </Link>
             </nav>
-            <RWebShare
+            {/* <RWebShare
               data={{
                 text: t('common:description'),
                 url: "https://artportable.com",
@@ -128,7 +128,7 @@ export default function Header({ navBarItems }) {
                 rounded>
                 {t('invite')}
               </Button>
-            </RWebShare>
+            </RWebShare> */}
             {(!isSignedIn.value) &&
               <div className={s.login}>
                 <Button

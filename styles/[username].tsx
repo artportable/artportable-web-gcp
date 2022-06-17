@@ -90,6 +90,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       marginTop: '10px',
+      [theme.breakpoints.up('smPlus')]: {
+        display: 'none'
+        },
     },
     hovs: {
       '& :hover': {
