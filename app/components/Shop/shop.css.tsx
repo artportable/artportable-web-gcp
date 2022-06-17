@@ -13,8 +13,11 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       flexDirection: 'column',
       margin: '0 0 30px 0',
+      [theme.breakpoints.up('md')]: {
+        gridTemplateColumns: 'auto auto',
+      },
       [theme.breakpoints.up('lg')]: {
-        flexDirection: 'column',
+        
         marginBottom: '3rem',
         gridTemplateColumns: 'auto auto auto',
       },
@@ -28,17 +31,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     paper: {
-      height: '670px',
       position: 'relative',
       boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
-      // transition: "transform 0.15s ease-in-out",
-      "&:hover": { boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
-      // transform: "scale3d(1.05, 1.05, 1)" 
-    },
-      [theme.breakpoints.down('sm')]: {
-        height: '670px',
+      "&:hover": { 
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 50px',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.up('md')]: {
         height: '670px',
       },
     },
@@ -69,51 +67,21 @@ export const styles = makeStyles((theme: Theme) =>
         width: '320px',
       },
     },
+    buttonFlex: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
     button: {
-      position: 'absolute',
-      width: '95%',
+      position: 'relative',
       display: 'block',
-      bottom: '10px',
+      width: '35%',
+      bottom: '20px',
       marginLeft: '-2px',
-      [theme.breakpoints.up('sm')]: {
+      marginTop: '30px',
+      [theme.breakpoints.up('md')]: {
       position: 'absolute',
-      width: '95%',
-      display: 'block',
-      bottom: '10px',
       },
     },
-    // button2: {
-    //   position: 'absolute',
-    //   marginBottom: '20px',
-    //   [theme.breakpoints.up('sm')]: {
-    //     position: 'absolute',
-    //   // bottom: '20px',
-      
-    //   bottom: '10px'
-    //   },
-    // },
-    // button3: {
-    //   position: 'relative',
-    //   width: '400px',
-    //   marginBottom: 120,
-    //   [theme.breakpoints.up('sm')]: {
-    //     position: 'relative',
-    //   width: '400px',
-    //   marginBottom: 50,
-    //   },
-    // },
-    // button4: {
-    //   marginTop: 125,
-    //   [theme.breakpoints.up('sm')]: {
-    //     marginTop: 115,
-    //   },
-    // },
-    // button5: {
-    //   marginTop: 124.5,
-    //   [theme.breakpoints.up('sm')]: {
-    //     marginTop: 115,
-    //   },
-    // },
     footer: {
       display: 'none',
       position: 'absolute',

@@ -142,10 +142,12 @@ export const styles = makeStyles((theme: Theme) =>
     premiumText: {
       ...columnGap(theme.spacing(1)),
       margin: '0 15px',
-      borderBottom: '5px solid lightgrey'
+    },
+    line: {
+      marginTop: '30px'
     },
     textIncluded: {
-      marginTop: '15px',
+      
     },
     textLastLine: {
       marginBottom: '15px',

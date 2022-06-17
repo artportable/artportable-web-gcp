@@ -255,7 +255,7 @@ export default function PaymentPremium() {
           <div className={s.right}>
             <div className={s.input}>
               <form>
-                <Paper className={s.inputPaper}>
+                <Paper className={s.inputPaper} elevation={0}>
                   <FormControl fullWidth variant="outlined">
                     <TextField
                       required
@@ -276,7 +276,7 @@ export default function PaymentPremium() {
                   </FormControl>
                 </Paper>
                 <FormHelperText id="standard-name-helper-text" className={s.helperText}>{formData.fullName.error ? t('mustNotBeEmptyMessage') : ''}</FormHelperText>
-                <Paper className={s.inputPaper}>
+                <Paper className={s.inputPaper} elevation={0}>
                   <FormControl fullWidth variant="outlined">
                     <TextField
                       color="secondary"
@@ -304,6 +304,7 @@ export default function PaymentPremium() {
                   color="secondary"
                   onClick={handleNext}
                   className={s.buttonNextStep1}
+                  rounded
                 >
                  {t('next')}
                 </Button>
@@ -315,7 +316,7 @@ export default function PaymentPremium() {
         return (
           <div className={s.container}>
 
-            <Accordion className={s.accordion} onChange={handleChangeAccordion('panel1')}>
+            <Accordion className={s.accordion} onChange={handleChangeAccordion('panel1')} elevation={0}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1bh-content"
@@ -346,7 +347,7 @@ export default function PaymentPremium() {
                         </Elements>
                       </div>
                     }
-                    {/* <div className={s.swishFlex}>                     
+                    <div className={s.swishFlex}>                     
                      <FormControlLabel value="swish" control={<Radio />} label={<Typography className={s.radioLabel}>{t('swish')}</Typography>} />
                       <img
                         className={s.swishLogo}
@@ -354,14 +355,14 @@ export default function PaymentPremium() {
                         src="/images/swishlogo.svg"
                         alt="swishlogo"
                         title="swish" />
-                    </div> */}
+                    </div>
                     {(valueRadio === "swish") &&
                       <div className={s.swish}>
                         <Typography variant="subtitle1" component="h4">{t('scanQr')}</Typography>
                         <div className={s.qrCode}>
                           <img
                             width={200}
-                            src="/images/qrswish.svg"
+                            src="/images/swish-premium.png"
                             alt="swishqr"
                             title="qr code" />
                           <Typography variant="h4" component="h2" className={s.swishNumer}>1234461489</Typography>
@@ -379,6 +380,7 @@ export default function PaymentPremium() {
                 color="secondary"
                 onClick={handleBack}
                 className={s.buttonBackStep2}
+                rounded
               >
                 {t('back')}
               </Button>
@@ -390,6 +392,7 @@ export default function PaymentPremium() {
                   color="secondary"
                   onClick={handleNext}
                   className={s.buttonNextStep2}
+                  rounded
                 >
                   {t('next')}
                 </Button>
@@ -401,6 +404,7 @@ export default function PaymentPremium() {
                   color="secondary"
                   onClick={handleNext}
                   className={s.buttonNextStep2}
+                  rounded
                 >
                   {t('next')}
                 </Button>
@@ -420,6 +424,7 @@ export default function PaymentPremium() {
               className={s.buttonBackStep2}
               variant="outlined"
               color="secondary"
+              rounded
             >
              {t('back')}
             </Button>
@@ -429,6 +434,7 @@ export default function PaymentPremium() {
               color="secondary"
               onClick={handleNext}
               className={s.buttonNextStep2}
+              rounded
             >
              {t('next')}
             </Button>
@@ -459,6 +465,7 @@ export default function PaymentPremium() {
                   className={s.buttonBackStep2}
                   variant="outlined"
                   color="secondary"
+                  rounded
                 >
                   {t('back')}
                 </Button>
@@ -470,6 +477,7 @@ export default function PaymentPremium() {
                   className={s.buttonBackStep2}
                   variant="outlined"
                   color="secondary"
+                  rounded
                 >
                   {t('back')}
                 </Button>
@@ -479,6 +487,7 @@ export default function PaymentPremium() {
                 color="secondary"
                 onClick={handleNext}
                 className={s.buttonNextStep2}
+                rounded
               >
                 {t('done')}
               </Button>
@@ -501,11 +510,6 @@ export default function PaymentPremium() {
       <div className={s.flexContainer}>
         <div className={s.stepperContainer}>
           <Paper elevation={0} >
-            {/* <img
-              className={s.productImage}
-              src="/images/art_free_trial.jpeg"
-              alt="artwork"
-              title="Portfolio Premium" /> */}
               <div className={s.premiumText}>
                 <img
                   className={s.logoArtportable}
@@ -518,6 +522,7 @@ export default function PaymentPremium() {
                 <Typography variant="h4" component="h2">{t('length')}</Typography>
                 
               </div>
+              <hr className={s.line}></hr>
             <Stepper activeStep={activeStep} orientation="vertical" className={s.accordionPaper}>
               {steps.map((label, index) => (
                 <Step key={label}>
@@ -538,26 +543,6 @@ export default function PaymentPremium() {
               <div className={s.doneDiv}>
                 <Typography className={s.successHeading}>{t('welcome')}</Typography>
               </div>
-
-              {/* <Button
-                onClick={handleReset}
-                className={s.buttonBackStep2}
-                variant="outlined"
-                color="secondary"
-              >
-                Börja om
-              </Button>
-              <Button
-                className={s.buttonNextStep2}
-                fullwidth
-                variant="contained"
-                color="secondary"
-                disableElevation
-                onClick={() => submit()}
-                disabled={formHasErrors || formUntouched}
-              >
-                Klar
-              </Button> */}
               <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
                 <Alert onClose={(e) => handleSnackbarClose(e, "")} variant="filled" severity={snackbarSeverity}>
                   {t(`${snackbarSeverity}Message`)}

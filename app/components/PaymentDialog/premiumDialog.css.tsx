@@ -5,9 +5,15 @@ export const styles = makeStyles((theme: Theme) =>
     dialog: {
       '& .MuiDialog-paper': {
         maxWidth: 'unset',
-        maxHeight: 'unset',
-        width: '780px',
-        height: '680px',
+        width: '100%',
+        margin: '0',
+        [theme.breakpoints.up('sm')]: {
+          margin: 'initial',
+          width: '90%'
+        },
+        [theme.breakpoints.up('md')]: {
+          width: '780px'
+        }
       },
     },
     closeButton: {

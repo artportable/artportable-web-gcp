@@ -89,15 +89,8 @@ export default function Shop() {
               title="Portfolio Premium" />
             <div>
               <div className={s.premiumText}>
-                {/* <img
-                  className={s.logoArtportable}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="logo"
-                  title="Premium" /> */}
-
                 <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('portfolioPremium')} </Typography>
                 <Typography variant="h3" component="h2" style={{fontWeight: 100}}>{t('price')}</Typography>
-                {/* <Typography variant="h4" component="h2">{t('length')}</Typography> */}
                 <div>
                   <PremiumDialog
                     open={openPremiumDialog}
@@ -113,12 +106,12 @@ export default function Shop() {
                   <li><Typography variant="subtitle1" component="p">{t('chat')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('follow')}</Typography></li>
                 </ul>
-          
-                  <Button className={s.button} variant="contained" color="secondary"
+                  <div className={s.buttonFlex}>
+                  <Button className={s.button} variant="contained" color="secondary" rounded
                     onClick={() => { handleClickPremiumDialog(); }}>
                     {t('buy')}
                   </Button>
-                  
+                  </div>
               </div>
             </div>
           </div>
@@ -135,12 +128,6 @@ export default function Shop() {
               title="Frame" />
             <div>
               <div className={s.premiumText}>
-                {/* <img
-                  className={s.logoArtportable}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="logo"
-                  title="Premium" /> */}
-
                 <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('frame')}</Typography>
                 <Typography variant="h3" component="h2">{t('priceFrame')}</Typography>
                 <div>
@@ -153,12 +140,12 @@ export default function Shop() {
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('exclusiveFrame')}</Typography></li>
                 </ul>
-                
-                  <Button className={s.button} variant="contained" color="secondary"
+                <div className={s.buttonFlex}>
+                  <Button className={s.button} variant="contained" color="secondary" rounded
                     onClick={() => { handleClickFrameDialog(); }}>
                     {t('buy')}
                   </Button>
-                  
+                  </div>
               </div>
             </div>
           </div>
@@ -175,12 +162,6 @@ export default function Shop() {
               title="Article" />
             <div>
               <div className={s.premiumText}>
-                {/* <img
-                  className={s.logoArtportable}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="logo"
-                  title="Premium" /> */}
-
                 <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('article')}</Typography>
                 <Typography variant="h3" component="h2">{t('priceArticle')}</Typography>
                 <div>
@@ -195,10 +176,12 @@ export default function Shop() {
                   <li><Typography variant="subtitle1" component="p">{t('seo')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('ownership')}</Typography></li>
                 </ul>
-                  <Button className={s.button} variant="contained" color="secondary"
+                <div className={s.buttonFlex}>
+                  <Button className={s.button} variant="contained" color="secondary" rounded
                     onClick={() => { handleClickArticleDialog(); }}>
                     {t('buy')}
                   </Button>
+                  </div>
               </div>
             </div>
           </div>
@@ -215,12 +198,6 @@ export default function Shop() {
               title="Monthly Artist" />
             <div>
               <div className={s.premiumText}>
-                {/* <img
-                  className={s.logoArtportable}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="logo"
-                  title="Premium" /> */}
-
                 <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('monthlyArtist')}</Typography>
                 <Typography variant="h3" component="h2">{t('priceMonthlyArtist')}</Typography>
                 <div>
@@ -235,10 +212,12 @@ export default function Shop() {
                   <li><Typography variant="subtitle1" component="p">{t('tab')}</Typography></li>
                   <li><Typography variant="subtitle1" component="p">{t('inquiries')}</Typography></li>
                 </ul>
-                  <Button className={s.button} variant="contained" color="secondary"
+                <div className={s.buttonFlex}>
+                  <Button className={s.button} variant="contained" color="secondary" rounded
                     onClick={() => { handleClickMonthlyArtistDialog(); }}>
                     {t('buy')}
                   </Button>
+                  </div>
               </div>
             </div>
           </div>
@@ -255,12 +234,6 @@ export default function Shop() {
               title="Category Page" />
             <div>
               <div className={s.premiumText}>
-                {/* <img
-                  className={s.logoArtportable}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="logo"
-                  title="Premium" /> */}
-
                 <Typography variant="h2" component="h2" style={{fontWeight: 500}}>{t('categoryPage')}</Typography>
                 <Typography variant="h3" component="h2">{t('priceCategoryPage')}</Typography>
                 <div>
@@ -273,10 +246,12 @@ export default function Shop() {
                 <ul>
                   <li><Typography variant="subtitle1" component="p">{t('exclusiveCategoryPage')}</Typography></li>
                 </ul>
-                  <Button className={s.button} variant="contained" color="secondary"
+                <div className={s.buttonFlex}>
+                  <Button className={s.button} variant="contained" color="secondary" rounded
                     onClick={() => { handleClickCategoryPageDialog(); }}>
                     {t('buy')}
                   </Button>
+                  </div>
               </div>
             </div>
           </div>
