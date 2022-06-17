@@ -69,9 +69,9 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '1.5rem',
       border: `1px solid #cfcfcf`,
     },
-    paymentOptions: {
-      width: '550px',
-    },
+    // paymentOptions: {
+    //   width: '550px',
+    // },
     heading: {
       fontSize: theme.typography.pxToRem(15),
       flexBasis: '33.33%',

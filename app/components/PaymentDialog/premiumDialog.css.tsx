@@ -5,11 +5,16 @@ export const styles = makeStyles((theme: Theme) =>
     dialog: {
       '& .MuiDialog-paper': {
         maxWidth: 'unset',
+        maxHeight: '100%',
         width: '100%',
+        height: '100%',
         margin: '0',
+        padding: '0',
         [theme.breakpoints.up('sm')]: {
           margin: 'initial',
-          width: '90%'
+          width: '90%',
+          height: 'initial',
+          maxHeight: '90%',
         },
         [theme.breakpoints.up('md')]: {
           width: '780px'
