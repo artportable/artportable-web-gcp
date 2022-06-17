@@ -32,12 +32,12 @@ const styles = makeStyles((theme: Theme) =>
     cropper: {
       width: '100%',
       height: '100%',
-      '& .cropper-bg': {
-        backgroundImage: 'none'
-      },
-      '& .cropper-modal': {
-        opacity: '0',
-      },
+      // '& .cropper-bg': {
+      //   backgroundImage: 'none'
+      // },
+      // '& .cropper-modal': {
+      //   opacity: '1',
+      // },
     },
     dropzone: {
       display: 'flex',
