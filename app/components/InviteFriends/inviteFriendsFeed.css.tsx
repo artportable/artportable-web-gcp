@@ -10,7 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       marginTop: '16px',
       height: '28px',
-      width: '100%',
+      width: '200px',
     },
   })
 );
