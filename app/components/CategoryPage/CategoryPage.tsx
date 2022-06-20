@@ -149,7 +149,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
 
               ))}
               {(isSignedIn.value) &&
-                <Tab className={s.text} key="hej" value="/medlemserbjudande" label={t('membershipOffers')} onClick={() => router.push('/artiklar')} />
+                <Tab className={s.text} key="medlemserbjudanden" value="/medlemserbjudanden" label={t('membershipOffers')} onClick={() => router.push('/medlemserbjudanden')} />
               }
             </Tabs>
           </div>
