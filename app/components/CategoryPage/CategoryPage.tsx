@@ -100,9 +100,6 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
         //implement good skeleton here
         <div>Loading...</div>
       }
-      {typeof window === 'undefined' &&
-      <p>hej</p>
-      }
       {!router.isFallback &&
         <>
         <div className={s.flexHeaderButton}>
