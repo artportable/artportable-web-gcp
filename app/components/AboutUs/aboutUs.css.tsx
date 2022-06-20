@@ -36,22 +36,66 @@ export const styles = makeStyles((theme: Theme) =>
         gridTemplateColumns: '1fr 1fr',
         marginTop: '100px',
       },
-      [theme.breakpoints.up('mdPlus')]: {
+      [theme.breakpoints.up('lg')]: {
         gridTemplateColumns: '1fr 1fr 1fr',
         marginTop: '120px',
       },
 
     },
     wrapper: {
-      marginBottom: '20px',
+      margin: '0 30px 30px 30px',
+    },
+    frame: {
+      listStyle: 'none',
+      listStyleType: 'none',
+      margin: '0px',
+      textAlign: 'center',
+      display: 'inline-block',
+      padding: '15px 15px 10px 15px',
+      borderWidth: '10px',
+      borderStyle: 'solid',
+      borderColor: '#1F1E1E #292828 #292828 #272626',
+      background: '#F5F5F5',
+      [theme.breakpoints.up('smPlus')]: {
+        borderWidth: '15px',
+        padding: '30px 30px 25px 30px',
+      },
+      [theme.breakpoints.up('lg')]: {
+        borderWidth: '15px',
+        padding: '20px 20px 15px 20px',
+      },
+      [theme.breakpoints.up('lgPlus')]: {
+        borderWidth: '15px',
+        padding: '30px 30px 25px 30px',
+      },
+      backgroundImage: 'linear-gradient(#FFFEF8, #F3F3F1)',
+      filter: 'drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))',
+      position: 'relative',
+      overflow: 'hidden',
+      '& :before': {
+        content: '""',
+        position: 'absolute',
+        top: '-175px',
+        right: '-20%',
+        width: '400px',
+        height: '400px',
+        transform: 'rotateZ(-40deg)',
+        backgroundImage: 'linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,0))',
+      },
     },
 
     image: {
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      borderColor: '#BBBAB4 #C7C7BF #E5E4DF #C7C7BF',
+      boxShadow: '0 -1px 1px rgba(0,0,0,.1), 0 1px 1px 1px rgba(255,255,255,.7)',
+      maxWidth: '100%',
+
       width: '100%',
       aspectRatio: '1/1',
       objectFit: 'cover',
       backgroundColor: '#FAF3EE',
-      marginBottom: '10px'
+      // marginBottom: '10px'
     },
 
     flex: {
@@ -94,6 +138,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     bold: {
       fontWeight: 500,
+      marginTop: '5px'
     },
   }),
 );
