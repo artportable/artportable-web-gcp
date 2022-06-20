@@ -53,11 +53,13 @@ export default function AboutMe() {
       <div className={s.staffDiv}>
         {staff.map((person) => (
           <div key={person.name} className={s.wrapper}>
+            <div className={s.frame}>
             <img
               className={s.image}
               src={(person?.image)}
               alt=""
               title="" />
+              </div>
             <Typography className={s.bold}>
               {person?.name}
             </Typography>
@@ -75,11 +77,13 @@ export default function AboutMe() {
       <div className={clsx(s.bottomDiv, s.staffDiv)}>
         {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
+            <div className={s.frame}>
             <img
               className={s.image}
               src={(person?.image)}
               alt=""
               title="" />
+              </div>
             <Typography className={s.bold}>
               {person?.name}
             </Typography>
