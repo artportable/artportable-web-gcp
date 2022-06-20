@@ -25,6 +25,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
 
   useEffect(() => {
     setArray(category?.articles);
+    console.log("category.articles")
   }, [router.push])
 
   // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
@@ -53,7 +54,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       label: t('artistPortrait')
     },
     {
-      value: '/erbjudanden',
+      value: '/erbjudanden-1',
       label: t('offers')
     },
     {
@@ -98,6 +99,9 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       {router.isFallback &&
         //implement good skeleton here
         <div>Loading...</div>
+      }
+      {typeof window === 'undefined' &&
+      <p>hej</p>
       }
       {!router.isFallback &&
         <>
