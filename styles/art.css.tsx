@@ -137,7 +137,7 @@ export const styles = makeStyles((theme: Theme) =>
     extraImage: {
       maxWidth: 'calc(100vw - 32px)',
       maxHeight: '50vh',
-      width: '100%'
+      // width: '100%'
     },
     tagsContainer: {
       display: 'flex',
