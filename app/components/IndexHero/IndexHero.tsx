@@ -43,7 +43,8 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "Galina Tol-Fakkar", username: "galina.tolfakkar", image: '/images/galina_tol_fakkar.jpg', imageLink: "profile/@galina.tolfakkar" },
+    { name: "Ulrika Hegårdh", username: "ulrikahegardh", image: '/images/ulrika_hegardh_skor.jpg', imageLink: "art/4b7d0e51-a1a8-4707-8ecb-62d41db97323" },
+    { name: "Daniel Zausnig", username: "danielzausnig", image: '/images/daniel_zausnig_mork_skog.jpg', imageLink: "art/af85e0c3-c4b0-4946-9723-eae0f99229d4" },
     { name: "Anette Lillhammar", username: "anette", image: '/images/anette_lillhammar.jpg', imageLink: "art/40108179-ccca-4ee8-8d99-e0ec644e4800" },
     { name: "Kristina Ekberg Renström", username: "stina.ekberg", image: '/images/kristina_ekberg.jpg', imageLink: "art/6c1ef466-eee7-4a97-bc0b-17018dbff958" },
     { name: "Olle Brandqvist", username: "olle.brandqvist", image: '/images/olle_brandqvist.jpg', imageLink: "art/fccc1122-5a85-4caf-968a-9cfd239a5337" },
