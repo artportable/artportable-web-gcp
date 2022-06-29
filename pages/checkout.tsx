@@ -9,7 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Box from '@material-ui/core/Box';
 import CheckoutForm from "../app/components/CheckoutForm/CheckoutForm";
 import InputLabel from '@material-ui/core/InputLabel';
-import { checkoutStyles } from '../styles/checkout';
+import { styles } from '../styles/checkout';
 import { useRouter } from "next/router";
 import { useStore } from "react-redux";
 import { useKeycloak } from "@react-keycloak/ssr";
@@ -25,13 +25,13 @@ export default function Checkout() {
 
   const store = useStore();
   const { t } = useTranslation(['checkout', 'common']);
-  const styles = checkoutStyles();
   const router = useRouter();
 
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const [email, setEmail] = useState(null);
   const [fullName, setFullName] = useState(null);
   const plan = store.getState()?.signup?.price;
+  const s = styles()
 
   useEffect(() => {
     // TODO: Do redirect of unauthed users in a better way
@@ -49,31 +49,69 @@ export default function Checkout() {
   }, [initialized]);
 
   return (
-    <Box className={styles.root}>
-      <Card className={styles.card}>
-        <CardContent>
-          <Typography variant="h5" component="h1">
-            <Box fontWeight="medium" marginBottom={3}>
-              {t('checkoutHeader')}
-            </Box>
+    <>
+      <Box className={s.root}>
+        <div className={s.left}>
+          <div className={s.leftContent}>
+            <div className={s.headlineDiv}>
+            <Typography variant="h1" className={s.headline}>
+            {t('fewSeconds')}
+            </Typography>
+            {/* <Typography variant="h1" className={s.headline}>
+              några sekunder från att börja
+            </Typography>
+            <Typography variant="h1" className={s.headline}>
+              ladda upp dina verk
+            </Typography> */}
+            </div>
+            {/* <img
+              className={s.image}
+              src="/images/majadror.png"
+              alt=""
+              title="" /> */}
+          
+          </div>
+        </div>
+        <div className={s.right}>
+        <div className={s.headlineDivMobile}>
+        <Typography variant="h1" className={s.headlineMobile}>
+             {t('fewSeconds')}
+            </Typography>
+            </div>
+          <Typography className={s.fillInText}>
+            {t('pleaseFill')}
           </Typography>
+          <Card className={s.card}>
+          <img
+            className={s.logo}
+            src="/Artportable_Logotyp_Black.svg"
+            alt=""
+            title="" />
+            <CardContent className={s.cardContentWidth}>
+              <Typography variant="h5" component="h1">
+                {/* <Box fontWeight="medium" marginBottom={3}>
+              {t('checkoutHeader')}
+            </Box> */}
+              </Typography>
 
-          <InputLabel>{t('paymentDetails')}</InputLabel>
-          {/* Stripe checkout HERE */}
-          <Elements stripe={promise}>
-            <CheckoutForm 
-              email={email}
-              fullName={fullName}
-              plan={plan}
-            />
-          </Elements>
-        </CardContent>
-      </Card>
-    </Box>
+              <InputLabel>{t('paymentDetails')}</InputLabel>
+              {/* Stripe checkout HERE */}
+              <Elements stripe={promise}>
+                <CheckoutForm
+                  email={email}
+                  fullName={fullName}
+                  plan={plan}
+                />
+              </Elements>
+            </CardContent>
+          </Card>
+        </div>
+      </Box>
+    </>
   );
 }
 
-export async function getStaticProps({context, locale}) {
+export async function getStaticProps({ context, locale }) {
   return {
     props: {
       ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'checkout', 'support', 'plans']),
