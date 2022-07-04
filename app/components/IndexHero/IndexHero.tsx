@@ -47,7 +47,7 @@ export default function IndexHero() {
     { name: "Daniel Zausnig", username: "danielzausnig", image: '/images/daniel_zausnig_mork_skog.jpg', imageLink: "art/af85e0c3-c4b0-4946-9723-eae0f99229d4" },
     { name: "Gunilla Svärd", username: "gunilla.svard", image: '/images/gunilla.jpg', imageLink: "art/728958ac-d50d-4a43-8206-7226604c97fa" },
     { name: "Olle Brandqvist", username: "olle.brandqvist", image: '/images/olle-brandqvist-4.jpg', imageLink: "art/fccc1122-5a85-4caf-968a-9cfd239a5337" },
-    { name: "Regina Lund", username: "reginalund", image: '/images/regina.jpg', imageLink: "art/art/51a24252-7e0b-42cc-9a5f-62ab6b11dcac" },
+    { name: "Regina Lund", username: "reginalund", image: '/images/regina.jpg', imageLink: "art/51a24252-7e0b-42cc-9a5f-62ab6b11dcac" },
   ]
 
   useEffect(() => {
