@@ -113,6 +113,9 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
             <Typography variant="h5" component="h2" className={s.sendMailTypo}>
               {t('sendEmailToArtist')}
             </Typography>
+            <Typography>
+            {t('fillInYourEmail')}
+            </Typography>
             <TextField
               classes={{
                 root: s.textField
