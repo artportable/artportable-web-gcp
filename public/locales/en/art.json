@@ -25,5 +25,6 @@
   "deleteArtwork": "Delete artwork?",
   "room": "Room",
   "request": "Request",
-  "new": "New!"
+  "new": "New!",
+  "fillInYourEmail": "Fill in your email"
 }
