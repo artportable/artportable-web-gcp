@@ -43,9 +43,8 @@ export default function IndexHero() {
 
   //List with current promoted artists
   const images = [
-    { name: "Hans Kolb", username: "hans.kolb", image: '/images/hans_kolb.jpg', imageLink: "art/09702d91-c8a9-45c7-adc7-e0e69d9172cd" },
-    { name: "Gunilla Svärd", username: "gunilla.svard", image: '/images/gunilla_svard.jpg', imageLink: "art/728958ac-d50d-4a43-8206-7226604c97fa" },
-    { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_reilo.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
+    { name: "Viggo Carlsen", username: "Viggo.Carlsen", image: '/images/viggo_carlsen.jpg', imageLink: "art/4b300b87-a9c7-49d4-9feb-d71a11a25055" },
+    { name: "Henrik Pätzke", username: "chfpatzke", image: '/images/henrik_patzke.jpg', imageLink: "art/2549b2d6-3e14-4fb5-baae-c10507d81fe8" },
   ]
 
   useEffect(() => {
@@ -77,7 +76,7 @@ export default function IndexHero() {
             {t('Hitta originalkonst')}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {t('Ta en titt i galleriet med över 32000 konstverk')}
+            {t('Ta en titt i galleriet med över 33000 konstverk')}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
