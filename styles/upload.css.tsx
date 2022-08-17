@@ -12,6 +12,7 @@ const styles = makeStyles((theme: Theme) =>
         '\"upload   form\" minmax(0, 2fr)' +
         '\"pickBackgroundColor   form\" auto' +
         '\"options   form\" auto' +
+        '\"instructions   form\" auto' +
         '\"previews form\" minmax(0, 1fr)' +
         '/  3fr      1fr'),
         alignItems: 'stretch'
@@ -21,7 +22,7 @@ const styles = makeStyles((theme: Theme) =>
       gridArea: 'upload',
       display: 'flex',
       borderRadius: '6px',
-      fontFamily: 'GT-America-Standard' 
+      fontFamily: 'GT-America-Standard',
     },
     cropperBox: {
       gridArea: 'upload',
@@ -45,6 +46,11 @@ const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       '& .MuiDropzonePreviewList-root': {
         display: 'none',
+      },
+      '& .MuiDropzoneArea-text': {
+        fontWeight: 500,
+        marginLeft: '100px',
+        marginRight: '100px',
       }
     },
     previewsContainer: {
@@ -88,7 +94,21 @@ const styles = makeStyles((theme: Theme) =>
     },
     uploadButton: {
       width: '100%',
-      marginTop: '20px'
+      marginTop: '20px',
+      backgroundColor: 'var(--color-green)',
+      color: '#fff',
+      '&.MuiButton-root:hover': {
+        backgroundColor: 'var(--color-green-darker)',
+      }
+    },
+    disabledButton: {
+      width: '100%',
+      marginTop: '20px',
+      backgroundColor: 'var(--disabled)',
+      color: '#b3b1b1',
+      '&.MuiButton-root:hover': {
+        backgroundColor: 'var(--disabled)',
+      }
     },
     uploadButtonProgress: {
       position: 'absolute',
@@ -118,6 +138,21 @@ const styles = makeStyles((theme: Theme) =>
       border: '1px solid #000',
       marginRight: '10px'
     },
+    instructionsDiv: {
+
+      // backgroundColor: 'var(--color-green)',
+      width: '500px',
+      height: '30px',
+      // border: '1px solid var(--primary-color)',
+      // borderRadius: '5px',
+      justifySelf: 'right'
+    },
+    instructionsTypo: {
+      gridArea: 'instructions',
+      textAlign: 'right',
+      fontWeight: 500,
+      marginTop: '3px'
+    }
   }),
 );
 

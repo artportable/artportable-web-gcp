@@ -17,7 +17,6 @@ export default function AboutMe() {
 
   const staff = [
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
-    { name: "Jacob Karlsson", title: "Sales Manager", image: '/staff/artportable_jacob.jpg', email: "jacob@artportable.com" },
     { name: "Linus Gustin", title: "Art Coordinator", image: '/staff/artportable_linus.jpg', email: "linus@artportable.com" },
     { name: "Matilda Wirström", title: "Content Manager", image: '/staff/artportable_matilda.jpg', email: "" },
     { name: "Nannie Höök", title: "Content Creator", image: '/staff/artportable_nannie.jpg', email: "" },
@@ -31,6 +30,9 @@ export default function AboutMe() {
     { name: "Carl Nyberg", title: "COO", image: '/staff/artportable_carl.jpg', email: "carl@artportable.com" },
     { name: "Erik Nordlander", title: "CEO & Founder", image: '/staff/artportable_erik.jpg', email: "erik@artportable.com" },
     { name: "Johan Höök", title: "Business Development & Founder", image: '/staff/artportable_johan.jpg', email: "johan@artportable.com" },
+  ]
+  const apply = [
+    { name: "Carl Nyberg", title: "COO", image: '/staff/missyou.png', email: "carl@artportable.com" },
   ]
 
 
@@ -74,6 +76,7 @@ export default function AboutMe() {
           </div>
         ))}
       </div>
+     
       <div className={clsx(s.bottomDiv, s.staffDiv)}>
         {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
@@ -95,6 +98,20 @@ export default function AboutMe() {
               {person?.email}
               </a>
             </Typography>
+          </div>
+        ))}
+      </div>
+
+      <div className={clsx(s.bottomDiv, s.staffDiv)}>
+        {apply.map((person) => (
+          <div key={person.name} className={s.wrapper}>
+            <div className={s.frame}>
+            <img
+              className={s.image}
+              src={(person?.image)}
+              alt=""
+              title="" />
+              </div>
           </div>
         ))}
       </div>

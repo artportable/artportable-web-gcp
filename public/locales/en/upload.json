@@ -2,7 +2,7 @@
   "title": "Title",
   "description": "Description",
   "price": "Price",
-  "tags": "Tags",
+  "tags": "Tags (up to 5 pcs)",
   "upload": "Upload",
   "previewText": "Select an image to preview",
   "selectImage": "Select image",
@@ -13,5 +13,7 @@
   "informationThree": "You further certify that the user content is not obscene, harassing or otherwise illegal.",
   "width": "Width",
   "height": "Height",
-  "depth": "Depth"
+  "depth": "Depth",
+  "addmoreImages": "You can add an additional image of the work, for example a different angle or image from when the work was created.",
+  "publish": "Publish"
 }
