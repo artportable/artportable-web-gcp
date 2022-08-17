@@ -12,7 +12,7 @@ import { Cropper } from 'react-cropper';
 import clsx from 'clsx';
 import CropperOptions from '../app/components/CropperOptions/CropperOptions';
 import "cropperjs/dist/cropper.css";
-import { Paper, Snackbar } from '@material-ui/core';
+import { Paper, Snackbar, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { useRouter } from 'next/router';
@@ -71,6 +71,7 @@ export default function UploadArtworkPage({ navBarItems }) {
   const mobilePreviewImageRef = useRef(null);
   const [refresh, setRefresh] = useState(false)
   const [color, setColor] = useState('#fff');
+  const [text, setText] = useState<string>(t('dragandDropOrClick'))
 
   const cropperRef = useRef(null);
 
@@ -187,7 +188,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     } else if (croppedTertiary === null) {
       setCroppedTertiary(dataUrl);
     }
-
+    setText(t('addmoreImages'))
     setCropperActive(false);
   }
 
@@ -249,6 +250,10 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   return (
     <Main navBarItems={navBarItems}>
+      {/* {(text) &&
+        <div>Hej</div>
+      } */}
+
       <div className={s.mainGrid}>
 
         {isDesktop ? <>
@@ -256,13 +261,13 @@ export default function UploadArtworkPage({ navBarItems }) {
             <DropzoneArea
               classes={{ root: `${s.dropzone} ${cropperActive ? s.hide : ''}` }}
               acceptedFiles={['image/*']}
-              dropzoneText={t('dragandDropOrClick')}
+              dropzoneText={text}
               onChange={onFilesChanged}
               showPreviews={false}
               showPreviewsInDropzone={true}
               filesLimit={3}
-              maxFileSize={2000000000} 
-              />
+              maxFileSize={2000000000}
+            />
           </div>
 
           <div className={s.cropperBox}>
@@ -275,7 +280,7 @@ export default function UploadArtworkPage({ navBarItems }) {
               // preview={`.${s.cropperPreview}`}
               ref={cropperRef}
               background={true}
-              // style={{ backgroundColor: color}}
+            // style={{ backgroundColor: color}}
             />
           </div>
           {/* <div className={s.backgroundColorFlex}>
@@ -288,7 +293,13 @@ export default function UploadArtworkPage({ navBarItems }) {
           {/* <div className={s.pickColor} style={{ backgroundColor: '#000000'}} onClick={() => setColor('#000000')} />
           </div> */}
           <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
-
+          {(cropperActive) &&
+            // <div className={s.instructionsDiv}>
+              <Typography className={s.instructionsTypo}>
+                När du är klar med beskärningen, tryck på den gröna knappen.
+              </Typography>
+            // </div>
+          }
         </>
           :
           <div>
@@ -319,7 +330,6 @@ export default function UploadArtworkPage({ navBarItems }) {
           </div>
         }
 
-
         <div className={s.previewsContainer}>
           {croppedPrimary &&
             <div className={s.previewItem}>
@@ -332,7 +342,7 @@ export default function UploadArtworkPage({ navBarItems }) {
             </div>
           }
           {croppedTertiary &&
-            <div  className={s.previewItem}>
+            <div className={s.previewItem}>
               <img src={croppedTertiary} />
             </div>
           }
@@ -367,23 +377,23 @@ export default function UploadArtworkPage({ navBarItems }) {
           }
           <div>
             <ArtButton
-              color="primary"
-              variant="contained"
-              className={s.uploadButton}
-              disabled={!croppedPrimary && mobileImg === ''}
-              disableElevation
+              className={`${!croppedPrimary && mobileImg === '' ? s.disabledButton : s.uploadButton}`}
+              // className={s.uploadButton}
+              // disabled={!croppedPrimary && mobileImg === ''}
+              // disableElevation
               rounded
               onClick={() => { uploadArtwork(); trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_CONFIRM, CategoryType.INTERACTIVE) }}>
-              {t('upload')}
+              {t('publish')}
             </ArtButton>
-            <WarningMessage />
           </div>
-          <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-            <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
-              {t('artworkUploadedSuccessfully')}
-            </Alert>
-          </Snackbar>
+          <WarningMessage />
         </div>
+        {/* <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
+            {t('artworkUploadedSuccessfully')}
+          </Alert>
+        </Snackbar> */}
+        {/* </div> */}
       </div>
     </Main>
   );
