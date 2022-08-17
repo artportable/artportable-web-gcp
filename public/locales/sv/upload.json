@@ -2,7 +2,7 @@
   "title": "Titel",
   "description": "Beskrivning",
   "price": "Pris",
-  "tags": "Taggar",
+  "tags": "Taggar (upp till 5 st)",
   "upload": "Ladda upp",
   "previewText": "Välj en bild för att förhandsgranska",
   "selectImage": "Välj bild",
@@ -13,5 +13,7 @@
   "informationThree": "Du intygar vidare att användarinnehållet inte är obscent, trakasserande eller på annat sätt olagligt.",
   "width": "Bredd",
   "height": "Höjd",
-  "depth": "Djup"
+  "depth": "Djup",
+  "addmoreImages": "Här kan du lägga till ytterligare bild på verket, exempelvis annan vinkel eller bild från när verket skapades.",
+  "publish": "Publicera"
 }

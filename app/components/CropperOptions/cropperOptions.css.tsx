@@ -10,6 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     startIcon: {
       margin: theme.spacing(0.25, 0),
+      
     },
     // deleteIconButton: {
     //   backgroundColor: theme.palette.error.main,
@@ -19,6 +20,13 @@ export const styles = makeStyles((theme: Theme) =>
     // },
     hide: {
       visibility: 'hidden',
+    },
+    done: {
+      '&.MuiButton-outlinedPrimary': {
+      backgroundColor: 'var(--color-green)',
+      color: '#000',
+      border: '1px solid #000',
     }
+  }
   }),
 );
