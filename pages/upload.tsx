@@ -294,11 +294,9 @@ export default function UploadArtworkPage({ navBarItems }) {
           </div> */}
           <CropperOptions show={cropperActive} cropper={cropper} onCrop={onCrop} onDiscard={onDiscard}></CropperOptions>
           {(cropperActive) &&
-            // <div className={s.instructionsDiv}>
               <Typography className={s.instructionsTypo}>
-                När du är klar med beskärningen, tryck på den gröna knappen.
+                {t('doneCropping')}
               </Typography>
-            // </div>
           }
         </>
           :
@@ -378,9 +376,6 @@ export default function UploadArtworkPage({ navBarItems }) {
           <div>
             <ArtButton
               className={`${!croppedPrimary && mobileImg === '' ? s.disabledButton : s.uploadButton}`}
-              // className={s.uploadButton}
-              // disabled={!croppedPrimary && mobileImg === ''}
-              // disableElevation
               rounded
               onClick={() => { uploadArtwork(); trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_CONFIRM, CategoryType.INTERACTIVE) }}>
               {t('publish')}
@@ -388,11 +383,11 @@ export default function UploadArtworkPage({ navBarItems }) {
           </div>
           <WarningMessage />
         </div>
-        {/* <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+        <Snackbar open={uploadSnackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
           <Alert onClose={handleSnackbarClose} variant="filled" severity="success">
             {t('artworkUploadedSuccessfully')}
           </Alert>
-        </Snackbar> */}
+        </Snackbar>
         {/* </div> */}
       </div>
     </Main>

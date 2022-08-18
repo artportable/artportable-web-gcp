@@ -138,15 +138,6 @@ const styles = makeStyles((theme: Theme) =>
       border: '1px solid #000',
       marginRight: '10px'
     },
-    instructionsDiv: {
-
-      // backgroundColor: 'var(--color-green)',
-      width: '500px',
-      height: '30px',
-      // border: '1px solid var(--primary-color)',
-      // borderRadius: '5px',
-      justifySelf: 'right'
-    },
     instructionsTypo: {
       gridArea: 'instructions',
       textAlign: 'right',
