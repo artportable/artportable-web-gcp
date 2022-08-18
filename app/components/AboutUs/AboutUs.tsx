@@ -34,10 +34,11 @@ export default function AboutMe() {
     { name: "Johan Höök", title: "Business Development & Founder", image: '/staff/artportable_johan.jpg', email: "johan@artportable.com" },
   ]
   const applyEn = [
-    { name: "Carl Nyberg", title: "COO", image: '/staff/missyou_en.png', email: "carl@artportable.com" },
+    { image: '/staff/missyou_en.png', email: "work@artportable.com" },
   ]
   const applySv = [
-    { name: "Carl Nyberg", title: "COO", image: '/staff/missyou_sv.png', email: "carl@artportable.com" },
+
+    { image: '/staff/missyou_sv.png', email: "work@artportable.com" },
   ]
 
 
@@ -110,14 +111,16 @@ export default function AboutMe() {
         <>
           <div className={clsx(s.bottomDiv, s.staffDiv)}>
             {applyEn.map((person) => (
-              <div key={person.name} className={s.wrapper}>
-                <div className={s.frame}>
-                  <img
-                    className={s.image}
-                    src={(person?.image)}
-                    alt=""
-                    title="" />
-                </div>
+              <div key={person.image} className={s.wrapper}>
+                <a href={`mailto:${person?.email}`}>
+                  <div className={s.frame}>
+                    <img
+                      className={s.image}
+                      src={(person?.image)}
+                      alt=""
+                      title="" />
+                  </div>
+                </a>
               </div>
             ))}
           </div>
@@ -126,14 +129,16 @@ export default function AboutMe() {
         <>
           <div className={clsx(s.bottomDiv, s.staffDiv)}>
             {applySv.map((person) => (
-              <div key={person.name} className={s.wrapper}>
-                <div className={s.frame}>
-                  <img
-                    className={s.image}
-                    src={(person?.image)}
-                    alt=""
-                    title="" />
-                </div>
+              <div key={person.image} className={s.wrapper}>
+                <a href={`mailto:${person?.email}`}>
+                  <div className={s.frame}>
+                    <img
+                      className={s.image}
+                      src={(person?.image)}
+                      alt=""
+                      title="" />
+                  </div>
+                </a>
               </div>
             ))}
           </div>
