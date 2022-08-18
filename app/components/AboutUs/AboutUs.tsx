@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { styles } from './aboutUs.css'
 import { useTranslation } from 'next-i18next';
 import { Typography } from '@material-ui/core';
-import clsx from 'clsx'
+import clsx from 'clsx';
+import { useRouter } from 'next/router';
 
 interface ImageProps {
   artwork: string;
@@ -14,6 +15,7 @@ interface ImageProps {
 export default function AboutMe() {
   const s = styles();
   const { t } = useTranslation(['about']);
+  const router = useRouter()
 
   const staff = [
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
@@ -31,8 +33,11 @@ export default function AboutMe() {
     { name: "Erik Nordlander", title: "CEO & Founder", image: '/staff/artportable_erik.jpg', email: "erik@artportable.com" },
     { name: "Johan Höök", title: "Business Development & Founder", image: '/staff/artportable_johan.jpg', email: "johan@artportable.com" },
   ]
-  const apply = [
-    { name: "Carl Nyberg", title: "COO", image: '/staff/missyou.png', email: "carl@artportable.com" },
+  const applyEn = [
+    { name: "Carl Nyberg", title: "COO", image: '/staff/missyou_en.png', email: "carl@artportable.com" },
+  ]
+  const applySv = [
+    { name: "Carl Nyberg", title: "COO", image: '/staff/missyou_sv.png', email: "carl@artportable.com" },
   ]
 
 
@@ -56,46 +61,21 @@ export default function AboutMe() {
         {staff.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <div className={s.frame}>
-            <img
-              className={s.image}
-              src={(person?.image)}
-              alt=""
-              title="" />
-              </div>
+              <img
+                className={s.image}
+                src={(person?.image)}
+                alt=""
+                title="" />
+            </div>
             <Typography className={s.bold}>
               {person?.name}
             </Typography>
             <Typography>
               {person?.title}
             </Typography>
-            <Typography> 
+            <Typography>
               <a href={`mailto:${person?.email}`}>
-              {person?.email}
-              </a>
-            </Typography>
-          </div>
-        ))}
-      </div>
-     
-      <div className={clsx(s.bottomDiv, s.staffDiv)}>
-        {board.map((person) => (
-          <div key={person.name} className={s.wrapper}>
-            <div className={s.frame}>
-            <img
-              className={s.image}
-              src={(person?.image)}
-              alt=""
-              title="" />
-              </div>
-            <Typography className={s.bold}>
-              {person?.name}
-            </Typography>
-            <Typography>
-              {person?.title}
-            </Typography>
-            <Typography>
-            <a href={`mailto:${person?.email}`}>
-              {person?.email}
+                {person?.email}
               </a>
             </Typography>
           </div>
@@ -103,18 +83,62 @@ export default function AboutMe() {
       </div>
 
       <div className={clsx(s.bottomDiv, s.staffDiv)}>
-        {apply.map((person) => (
+        {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <div className={s.frame}>
-            <img
-              className={s.image}
-              src={(person?.image)}
-              alt=""
-              title="" />
-              </div>
+              <img
+                className={s.image}
+                src={(person?.image)}
+                alt=""
+                title="" />
+            </div>
+            <Typography className={s.bold}>
+              {person?.name}
+            </Typography>
+            <Typography>
+              {person?.title}
+            </Typography>
+            <Typography>
+              <a href={`mailto:${person?.email}`}>
+                {person?.email}
+              </a>
+            </Typography>
           </div>
         ))}
       </div>
+      {router.locale === "en" ?
+        <>
+          <div className={clsx(s.bottomDiv, s.staffDiv)}>
+            {applyEn.map((person) => (
+              <div key={person.name} className={s.wrapper}>
+                <div className={s.frame}>
+                  <img
+                    className={s.image}
+                    src={(person?.image)}
+                    alt=""
+                    title="" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+        :
+        <>
+          <div className={clsx(s.bottomDiv, s.staffDiv)}>
+            {applySv.map((person) => (
+              <div key={person.name} className={s.wrapper}>
+                <div className={s.frame}>
+                  <img
+                    className={s.image}
+                    src={(person?.image)}
+                    alt=""
+                    title="" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      }
     </div >
   );
 }

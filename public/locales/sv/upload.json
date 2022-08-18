@@ -15,5 +15,6 @@
   "height": "Höjd",
   "depth": "Djup",
   "addmoreImages": "Här kan du lägga till ytterligare bild på verket, exempelvis annan vinkel eller bild från när verket skapades.",
-  "publish": "Publicera"
+  "publish": "Publicera",
+  "doneCropping": "När du är klar med beskärningen, tryck på den gröna knappen."
 }
