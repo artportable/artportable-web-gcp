@@ -330,7 +330,7 @@ export default function PaymentArticle() {
                           <OneTimeStripeCheckoutForm
                             email={formData.email.value}
                             fullName={formData.fullName.value}
-                            products={[{ amount: 5000, currency: 'SEK', id: `${stripeProduct}`, name: 'Artikel' }]}
+                            products={[{ amount: 6000, currency: 'SEK', id: `${stripeProduct}`, name: 'Artikel' }]}
                             onSuccess={() => setActiveStep(3)} />
                         </Elements>
                       </div>
