@@ -14,6 +14,7 @@
   "width": "Width",
   "height": "Height",
   "depth": "Depth",
-  "addmoreImages": "You can add an additional image of the work, for example a different angle or image from when the work was created.",
-  "publish": "Publish"
+  "addmoreImages": "Feel free to upload additional images of the same artwork. It can be from a different angle or from the studio when the artwork was created.",
+  "publish": "Publish",
+  "doneCropping": "When you are done cropping, press the green button."
 }
