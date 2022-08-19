@@ -133,7 +133,7 @@ export default function Header({ navBarItems }) {
               <div className={s.login}>
                 <Button
                   className={s.createButton}
-                  size="small"
+                  size="large"
                   variant="contained"
                   color="primary"
                   disableElevation
