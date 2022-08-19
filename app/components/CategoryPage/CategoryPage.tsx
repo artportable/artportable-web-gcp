@@ -54,7 +54,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
       label: t('artistPortrait')
     },
     {
-      value: '/erbjudanden-1',
+      value: '/kampanj',
       label: t('offers')
     },
     {
@@ -180,7 +180,7 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
                       </>
                       :
                       <>
-                        <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett').replace('erbjudanden', 'erbjudanden-1')}/${article.slug}`}>
+                        <Link className={s.link} href={`/${category.name.toLowerCase().replace('konstnärsporträtt', 'konstnaersportraett')}/${article.slug}`}>
                           <div className={s.wrapper}>
                             <img className={s.coverImage} src={article?.coverImage?.formats?.small?.url} />
                             <div className={s.textContent}>
