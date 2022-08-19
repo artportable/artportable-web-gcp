@@ -83,7 +83,7 @@ export default function PlanSelector({
               value={paymentInterval}
               onChange={(_, val) => setPaymentInterval(val)}
             >
-              <Tab value="month" label={t("monthlyPayment")} />
+              {/* <Tab value="month" label={t("monthlyPayment")} /> */}
               <Tab value="year" label={t("yearlyPayment")} />
             </Tabs>
           </div>
