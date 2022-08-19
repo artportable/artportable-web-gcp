@@ -87,8 +87,11 @@ export const styles = makeStyles((theme: Theme) =>
     createButton: {
       whiteSpace: 'nowrap',
       backgroundColor: 'var(--color-green)',
+      '&.MuiButton-containedPrimary': {
+        color: 'var(--black-absolute)',
+      },
       '&.MuiButton-containedPrimary:hover': {
-        backgroundColor: 'var(--color-green-darker)',
+        backgroundColor: 'var(--color-green-lighter)',
       },
       '& span': {
         '&..MuiButton-label': {
