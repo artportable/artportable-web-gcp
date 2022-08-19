@@ -96,9 +96,9 @@ const styles = makeStyles((theme: Theme) =>
       width: '100%',
       marginTop: '20px',
       backgroundColor: 'var(--color-green)',
-      color: '#fff',
+      color: 'var(--absolute-black)',
       '&.MuiButton-root:hover': {
-        backgroundColor: 'var(--color-green-darker)',
+        backgroundColor: 'var(--color-green-lighter)',
       }
     },
     disabledButton: {
