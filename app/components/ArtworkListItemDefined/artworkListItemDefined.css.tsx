@@ -195,15 +195,5 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'flex-end',
       width: '100%'
     },
-    badgeNew: {
-      '& span': {
-        '&.MuiBadge-anchorOriginTopRightRectangle': {
-          top: '-4px',
-          right: '12px',
-          backgroundColor: 'none',
-          color: 'black'
-        },
-      },
-    },
-  }),
+  }),  
 );
