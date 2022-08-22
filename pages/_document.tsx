@@ -44,6 +44,13 @@ class MyDocument extends Document {
             `,
             }}
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js")
+            `,
+            }}
+          />
           <link
             rel="preload"
             href="/fonts/GT-America-Standard-Regular.woff2"
@@ -55,13 +62,6 @@ class MyDocument extends Document {
             href="/fonts/GT-America-Standard-Medium.woff2"
             as="font"
             crossOrigin=""
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js")
-            `,
-            }}
           />
         </Head>
         <body>
