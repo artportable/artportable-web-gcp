@@ -40,12 +40,12 @@ export default function IndexHero() {
     const redirectHref = `${window.origin}${isDefaultLocale ? '' : `/${router.locale}`}/plans`
     setSignUpRedirectHref(redirectHref);
   }, []);
-
   //List with current promoted artists
   const images = [
     { name: "Viggo Carlsen", username: "Viggo.Carlsen", image: '/images/viggo_carlsen.jpg', imageLink: "art/4b300b87-a9c7-49d4-9feb-d71a11a25055" },
     { name: "Henrik Pätzke", username: "chfpatzke", image: '/images/henrik_patzke.jpg', imageLink: "art/2549b2d6-3e14-4fb5-baae-c10507d81fe8" },
     { name: "Renata Edin", username: "renata.edin", image: '/images/renata_edin.jpg', imageLink: "art/a6724bfb-a62f-46e9-83dc-698dd2c2513d" },
+    { name: "Susanna Kiander", username: "sanna.kiander", image: '/images/susanna_kiander.jpg', imageLink: "art/53af9ca3-5788-45b1-8a88-d187015685dd" },
   ]
 
   useEffect(() => {
