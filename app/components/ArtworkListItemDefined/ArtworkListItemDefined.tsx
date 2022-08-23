@@ -191,13 +191,11 @@ export default function ArtworkListItemDefined({
        {artwork.Width > 0 && artwork.Height > 0 && 
         <div className={s.roomDiv}>
           <a href={`/tool/${artwork.Id}`}>
-            <Badge badgeContent={t('new')} className={s.badgeNew}>
               <Button
                 className={router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn}
                 rounded>
                 {t('room')}
               </Button>
-            </Badge>
           </a>
         </div>
         }

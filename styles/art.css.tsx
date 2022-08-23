@@ -173,16 +173,6 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       width: '100%'
     },
-    badgeNew: {
-      '& span': {
-        '&.MuiBadge-anchorOriginTopRightRectangle': {
-          top: '-2px',
-          right: '10px',
-          backgroundColor: 'none',
-          color: 'black'
-        },
-      },
-    },
     [theme.breakpoints.up('smPlus')]: {
       titleAndSizeContainer: {
         flexDirection: 'row'
