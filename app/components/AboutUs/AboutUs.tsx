@@ -20,6 +20,7 @@ export default function AboutMe() {
   const staff = [
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
     { name: "Linus Gustin", title: "Art Coordinator", image: '/staff/artportable_linus.jpg', email: "linus@artportable.com" },
+    { name: "Linus Hedberg", title: "Web Developer", image: '/staff/linus_hedberg.jpg', email: "" },
     { name: "Matilda Wirström", title: "Content Manager", image: '/staff/artportable_matilda.jpg', email: "" },
     { name: "Nannie Höök", title: "Content Creator", image: '/staff/artportable_nannie.jpg', email: "" },
     { name: "Patrik Söderberg", title: "IT Manager", image: '/staff/artportable_patrik.jpg', email: "" },
