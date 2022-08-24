@@ -7,6 +7,7 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
+import { styles } from './discoverHighlightsTab.css'
 
 interface DiscoverHighLightsTabProps {
   username?: string;
@@ -29,6 +30,7 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
   const { like } = usePostLike();
+  const s = styles();
 
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
@@ -81,17 +83,22 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
   return (
     <>
       {!tags?.isLoading && !tags?.isError && tags?.data &&
-        <DiscoverArt
-          artworks={artworks}
-          tags={tags?.data}
-          onFilter={filter}
-          onLike={likeArtwork}
-          rowWidth={rowWidth}
-          loadMoreElementRef={loadMoreArtworksElementRef}
-          isLoading={isLoadingArtWorks}
-          loadMore={props.loadMore}
-          activeTab={props.activeTab}
-        />
+        <>
+          <DiscoverArt
+            artworks={artworks}
+            tags={tags?.data}
+            onFilter={filter}
+            onLike={likeArtwork}
+            rowWidth={rowWidth}
+            loadMoreElementRef={loadMoreArtworksElementRef}
+            isLoading={isLoadingArtWorks}
+            loadMore={props.loadMore}
+            activeTab={props.activeTab}
+          />
+          <p className={s.secretLinks}>
+            <a href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
+          </p>
+        </>
       }
     </>
   );
