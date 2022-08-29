@@ -46,6 +46,7 @@ export default function IndexHero() {
     { name: "Henrik Pätzke", username: "chfpatzke", image: '/images/henrik_patzke.jpg', imageLink: "art/2549b2d6-3e14-4fb5-baae-c10507d81fe8" },
     { name: "Renata Edin", username: "renata.edin", image: '/images/renata_edin.jpg', imageLink: "art/a6724bfb-a62f-46e9-83dc-698dd2c2513d" },
     { name: "Susanna Kiander", username: "sanna.kiander", image: '/images/susanna_kiander.jpg', imageLink: "art/53af9ca3-5788-45b1-8a88-d187015685dd" },
+    { name: "Marie Nordstrand", username: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "art/12a28ff9-4b83-4906-b5a8-a5a291f43837" },
   ]
 
   useEffect(() => {
@@ -77,7 +78,7 @@ export default function IndexHero() {
             {t('Hitta originalkonst')}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {t('Ta en titt i galleriet med över 33000 konstverk')}
+            {t('Ta en titt i galleriet med över 35000 konstverk')}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
