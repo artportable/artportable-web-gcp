@@ -42,11 +42,10 @@ export default function IndexHero() {
   }, []);
   //List with current promoted artists
   const images = [
-    { name: "Viggo Carlsen", username: "Viggo.Carlsen", image: '/images/viggo_carlsen.jpg', imageLink: "art/4b300b87-a9c7-49d4-9feb-d71a11a25055" },
-    { name: "Henrik Pätzke", username: "chfpatzke", image: '/images/henrik_patzke.jpg', imageLink: "art/2549b2d6-3e14-4fb5-baae-c10507d81fe8" },
-    { name: "Renata Edin", username: "renata.edin", image: '/images/renata_edin.jpg', imageLink: "art/a6724bfb-a62f-46e9-83dc-698dd2c2513d" },
-    { name: "Susanna Kiander", username: "sanna.kiander", image: '/images/susanna_kiander.jpg', imageLink: "art/53af9ca3-5788-45b1-8a88-d187015685dd" },
-    { name: "Marie Nordstrand", username: "nordstrandmarie", image: '/images/marie_nordstrand.jpg', imageLink: "art/12a28ff9-4b83-4906-b5a8-a5a291f43837" },
+    { name: "Ann-Marie Sarri", username: "ann-marie.sarri", image: '/images/ann_marie_sarri.jpg', imageLink: "art/984a2064-f405-4b24-9d8c-8639c5137961" },
+    { name: "Karen Mølgaard", username: "karen.molgaard", image: '/images/karen_molgaard.jpg', imageLink: "art/3f639d3c-9a01-49fe-aa5c-44c5984709b1" },
+    { name: "Linda Elvegård", username: "elvegard", image: '/images/linda_elvegard.jpg', imageLink: "art/2cda7779-14fc-4fdd-aaa1-a68523a67772" },
+    { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_reilo.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
   ]
 
   useEffect(() => {
