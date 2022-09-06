@@ -66,6 +66,48 @@ export default function Footer() {
           </Link>
         </div> */}
       </div>
+
+      <div className={clsx(s.getInTouch, s.flexItem)}>
+        <Typography variant="subtitle2" component="div" className={s.links}>
+          {t('popularPages')}
+        </Typography>
+        <Link href="https://artportable.com/">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('art')}
+            </Typography>
+          </a>
+        </Link>
+        <Link href="/fotokonst">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('photography')}
+            </Typography>
+          </a>
+        </Link>
+        <Link href="/akvarell">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('aquarelle')}
+            </Typography>
+          </a>
+        </Link>
+        <Link href="/skulpturer">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('sculpture')}
+            </Typography>
+          </a>
+        </Link>
+        <Link href="/oljemalningar">
+          <a>
+            <Typography variant="body2" component="div">
+              {t('oilPaintings')}
+            </Typography>
+          </a>
+        </Link>
+      </div>
+
       <div className={clsx(s.hide, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
           {t('becomeAPart')}
