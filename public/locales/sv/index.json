@@ -15,10 +15,20 @@
   "artloverSek": "kr",
   "artistSek": "kr/månad",
   "logIn": "Logga in",
-  "title": "Artportable -  Upptäck spännande konst. Köp originalkonst direkt från konstnärer.",
+  "title": "Köp konst och originalkonst direkt från konstnärer - Artportable.",
   "description": "Ett digitalt galleri där konstnärer kan ställa ut sin konst och sälja den direkt till köpare",
   "all": "Alla",
   "unsold": "Till salu",
   "sold": "Sålda",
-  "thisIsArtportable": "DET HÄR ÄR ARTPORTABLE"
+  "thisIsArtportable": "DET HÄR ÄR ARTPORTABLE",
+  "readMore": "Läs mer",
+  "readLess": "Läs mindre",
+  "headline": "Konst",
+  "readDescription": "Det finns ingen universell definition av konst. De flesta verkar dock hålla med om att konst är ett medvetet skapande av något vackert eller meningsfullt med hjälp av skicklighet och fantasi. Definitionen av konst har diskuterats i århundraden. Vad som egentligen är konst verkar vara en fråga för varje kultur och varje ny generation människor. Länge värderades ett konstverk utifrån hur troget det replikerade sitt ämne. Denna definition av ”god konst” har inte minst givit status åt de så kallade ”stora mästarna”. Under senare århundraden har de känslor som konsten förmedlar; som i det sublima eller dramatiska måleriet eller i speglingen av det nya, moderna i samhället, fått hög status. Inte minst är publiken en viktig del av konsten och förväntas ofta uttrycka någon form av respons eller till och med kommunicera direkt med skaparen bakom verket.",
+  "headline2": "Konst på nätet",
+  "readDescription2": "Vi är inne i en ny, spännande tid när konst online skapar helt nya uttryck. Återigen förändras alltså definitionen av vad konst kan vara och inte minst sätts nya villkor för konstnärer och konstsamlare. Konstnärer har idag allt fler möjligheter att nå ut, få reaktioner på sin konst och hitta nya köpare. Artportable är till för att hjälpa konstnärer och konstälskare att mötas och att göra konst online till en givande och spännande upplevelse. Det finns ingenting som betyder så mycket för oss som när en ”perfect match” uppstår mellan en hårt kämpande konstnär och en engagerad köpare.",
+  "headline3": "Konst online och att lära av konsten",
+  "readDescription3": "Den digitala världen expanderar hela tiden och ger större möjligheter till att leva ett kreativt liv. Artportable vill att fler ska kunna leva på sin kreativitet och att fler ska kunna hitta inspiration inom konsten. De nya digitala förutsättningarna inspirerar dagligen människor till kreativitet och nya former av konst skapas som kommer att leva vidare i århundraden. Konst formar inte bara hur människor gör saker, det inspirerar också människor till leva på ett visst sätt.",
+  "headline4": "Konstnär på Artportable",
+  "readDescription4": "Med en portfolio på Artportable kan konstnärer enkelt nå ut och sälja sin konst. I Artportables Premium-erbjudande finns också hjälp att sätta priser, personlig kontakt och möjligheter till ytterligare marknadsföring och utställningar."
 }

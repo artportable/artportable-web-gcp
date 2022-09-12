@@ -245,7 +245,43 @@ export const styles = makeStyles((theme: Theme) =>
         marginRight: theme.spacing(2),
       },
     },
-
+    accordion: {
+      backgroundColor: 'var(--header-color)',
+      width: '100%',
+    },
+    accordionDiv: {
+      paddingRight: theme.spacing(0),
+      margin: '0 0',
+      marginLeft: '-15px',
+    },
+    textDiv: {
+      display: 'flex',
+      placeContent: 'center',
+      marginBottom: '20px',
+    },
+    buttonDiv: {
+      justifyContent: 'center',
+    },
+    button: {
+      marginTop: '-38px',
+    },
+    accDescription: {
+      fontFamily: 'Gotham !important',
+      marginTop: '10px',
+      marginBottom: '10px',
+    },
+    heading: {
+      fontWeight: 600,
+      lineHeight: '32px',
+      fontFamily: 'Gotham !important',
+    },
+    detailsText: {
+      ...columnGap(theme.spacing(1)),
+      margin: '20px 0',
+      marginTop: '-20px',
+      fontFamily: 'Gotham !important',
+      fontSizeAdjust: 0.5,
+    },
     [theme.breakpoints.up('sm')]: {
       flexContainer: {
         width: theme.breakpointMainWidths.sm.wide
