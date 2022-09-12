@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Typography, Chip, Paper } from '@material-ui/core';
+import { Typography, Chip, Paper, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import { styles } from './indexHero.css'
 import { useTranslation } from "next-i18next";
 import { useKeycloak } from '@react-keycloak/ssr'
@@ -11,6 +11,8 @@ import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
 import Button from '../Button/Button'
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import VideoDialog from '../VideoDialog/VideoDialog';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 interface RandomImageProps {
   artwork: string;
@@ -28,6 +30,7 @@ export default function IndexHero() {
   const [signUpRedirectHref, setSignUpRedirectHref] = useState('');
   const [randomImage, setRandomImage] = useState<RandomImageProps | undefined>()
   const [loading, setLoading] = useState(true);
+  const [toggleButton, setToggleButton] = useState(false);
 
   useEffect(() => {
     if (randomImage === { artwork: '', username: '', imageLink: '', name: '' }) {
@@ -119,6 +122,51 @@ export default function IndexHero() {
               onClose={toggleVideoDialog}
             />
           </div>
+          <div className={s.accordionDiv}>
+              <Accordion
+                className={s.accordion}
+                elevation={0}>
+                <AccordionSummary className={s.accordionSummary}
+                onClick={() => setToggleButton(!toggleButton)}>
+                  <div>
+                    <div className={s.buttonDiv}>
+                      {toggleButton ?
+                        <Button
+                          className={s.button}
+                          size="small"
+                          onClick={() => setToggleButton(!toggleButton)}
+                          variant="outlined"
+                          rounded
+                          startIcon={<KeyboardArrowUpIcon />}>
+                          {t('readLess')}
+                        </Button>
+                        :
+                        <Button
+                          className={s.button}
+                          size="small"
+                          onClick={() => setToggleButton(!toggleButton)}
+                          variant="outlined"
+                          rounded
+                          startIcon={<KeyboardArrowDownIcon />}>
+                          {t('readMore')}
+                        </Button>}
+                    </div>
+                  </div>
+                </AccordionSummary>
+                <AccordionDetails>
+                <div className={s.detailsText}>
+                <Typography variant="h5" component="h2" className={s.heading}>{t('headline')}</Typography>
+                <Typography className={s.accDescription}>{t('readDescription')}</Typography>
+                <Typography variant="h5" component="h2" className={s.heading}>{t('headline2')}</Typography>
+                <Typography className={s.accDescription}>{t('readDescription2')}</Typography>
+                <Typography variant="h5" component="h2" className={s.heading}>{t('headline3')}</Typography>
+                <Typography className={s.accDescription}>{t('readDescription3')}</Typography>
+                <Typography variant="h5" component="h2" className={s.heading}>{t('headline4')}</Typography>
+                <Typography className={s.accDescription}>{t('readDescription4')}</Typography>
+                  </div> 
+                </AccordionDetails>
+              </Accordion>
+            </div>
         </div>
 
         <div className={s.right}>
