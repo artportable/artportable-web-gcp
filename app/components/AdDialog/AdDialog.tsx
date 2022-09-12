@@ -37,11 +37,11 @@ export default function AdDialog(props: Props) {
 
   const ad = [
     {
-      companyName: "Gunilla Svärd",
-      companyImageSv: '/ad/gunilla_sv.jpg',
-      companyLinkSv: 'https://artportable.com/profile/@gunilla.svard',
-      companyImageEn: '/ad/gunilla_en.jpg',
-      companyLinkEn: 'https://artportable.com/en/profile/@gunilla.svard'
+      companyName: "Morten Klementsen",
+      companyImageSv: '/ad/morten_sv.jpg',
+      companyLinkSv: 'https://artportable.com/profile/@www.klementsen.net',
+      companyImageEn: '/ad/morten_en.jpg',
+      companyLinkEn: 'https://artportable.com/en/profile/@www.klementsen.net'
     },
     // {
     //   companyName: "Artportable",
