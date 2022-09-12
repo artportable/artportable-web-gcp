@@ -42,10 +42,10 @@ export default function IndexHero() {
   }, []);
   //List with current promoted artists
   const images = [
-    { name: "Ann-Marie Sarri", username: "ann-marie.sarri", image: '/images/ann_marie_sarri.jpg', imageLink: "art/984a2064-f405-4b24-9d8c-8639c5137961" },
-    { name: "Karen Mølgaard", username: "karen.molgaard", image: '/images/karen_molgaard.jpg', imageLink: "art/3f639d3c-9a01-49fe-aa5c-44c5984709b1" },
-    { name: "Linda Elvegård", username: "elvegard", image: '/images/linda_elvegard.jpg', imageLink: "art/2cda7779-14fc-4fdd-aaa1-a68523a67772" },
-    { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_reilo.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
+    { name: "Thorulf Löfstedt", username: "thorulf.lofstedt", image: '/images/thorulf_lofstedt.jpg', imageLink: "art/02ac0b26-a7f7-4d4e-999f-79d0796c90e2" },
+    { name: "Karen Mølgaard", username: "karen.molgaard", image: '/images/karen_molgaard_lighthouse.jpg', imageLink: "art/e1394b9f-97e0-4553-af8f-d81a1b38c541" },
+    { name: "Kenneth Karlsson", username: "kenneth.karlsson", image: '/images/kenneth_karlsson.jpg', imageLink: "art/feb4bef6-e3b4-43df-adca-6f5fc0f6123e" },
+    { name: "Inger Klintstam", username: "inger.klintstam", image: '/images/inger_klintstam.jpg', imageLink: "art/fbaabe8c-1bcb-4144-be64-341b4c10d972" },
   ]
 
   useEffect(() => {
