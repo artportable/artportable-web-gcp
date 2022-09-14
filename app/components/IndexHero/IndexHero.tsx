@@ -163,7 +163,40 @@ export default function IndexHero() {
                 <Typography className={s.accDescription}>{t('readDescription3')}</Typography>
                 <Typography variant="h5" component="h2" className={s.heading}>{t('headline4')}</Typography>
                 <Typography className={s.accDescription}>{t('readDescription4')}</Typography>
-                  </div> 
+              
+              <Accordion className={s.accordion} elevation={0}>
+               <AccordionSummary
+                  expandIcon={<KeyboardArrowDownIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>{t('ads')}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                <div>
+                <Typography variant="h5" component="h2" className={s.headingAd}>{t('headlineAd')}</Typography>
+                <div className={s.adContent}>
+                <a href="https://utländskacasino.net/" target="_blank">
+                  <img
+                  className={s.imageAd}
+                  src={'/images/utlandskacasino_net.jpg'}
+                  alt="utländskacasino.net"
+                  title="" />
+                </a>
+                </div>
+                
+                <Typography variant="h5" component="h2" className={s.headingAd}>{t('headlineAd')}</Typography>
+                <div className={s.adContent2}>
+                <div>
+                  <Typography>
+                  <a href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
+                  </Typography>
+                </div>
+                </div>
+                </div>
+                </AccordionDetails>
+                </Accordion>
+                </div> 
                 </AccordionDetails>
               </Accordion>
             </div>
