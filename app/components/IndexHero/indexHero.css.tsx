@@ -264,6 +264,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     button: {
       marginTop: '-38px',
+      [theme.breakpoints.up('sm')]: {
+        marginTop: '-5px',
+        },
     },
     accDescription: {
       fontFamily: 'Gotham !important',
@@ -281,6 +284,38 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: '-20px',
       fontFamily: 'Gotham !important',
       fontSizeAdjust: 0.5,
+    },
+    adContent: {
+      ...columnGap(theme.spacing(1)),
+      margin: '20px 0',
+      marginTop: '-20px',
+      fontFamily: 'Gotham !important',
+      fontSizeAdjust: 0.5,
+      borderBottom: '1px solid grey',
+      width: '200px',
+      height: '200px',
+      padding: '20px',
+      [theme.breakpoints.up('md')]: {
+        width: '400px',
+        },
+    },
+    adContent2: {
+      width: '200px',
+      padding: '20px',
+      borderBottom: '1px solid grey',
+      [theme.breakpoints.up('md')]: {
+        width: '400px',
+        },
+    },
+    imageAd: {
+      height: '150px',
+    },
+    headingAd: {
+      padding: '10px',
+      fontSize: '12px',
+      marginLeft: '10px',
+      marginTop: '10px',
+      color: 'gray'
     },
     [theme.breakpoints.up('sm')]: {
       flexContainer: {
