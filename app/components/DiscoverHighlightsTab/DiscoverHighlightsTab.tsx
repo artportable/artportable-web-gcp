@@ -95,9 +95,9 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
             loadMore={props.loadMore}
             activeTab={props.activeTab}
           />
-          <p className={s.secretLinks}>
+          {/* <p className={s.secretLinks}>
             <a href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
-          </p>
+          </p> */}
         </>
       }
     </>

@@ -2,8 +2,8 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    secretLinks: {
-      color: 'var(--absolute-black)'
-    }
+    // secretLinks: {
+    //   color: 'var(--absolute-black)'
+    // }
   }),  
 );
