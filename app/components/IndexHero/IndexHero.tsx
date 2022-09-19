@@ -45,10 +45,8 @@ export default function IndexHero() {
   }, []);
   //List with current promoted artists
   const images = [
-    { name: "Thorulf Löfstedt", username: "thorulf.lofstedt", image: '/images/thorulf_lofstedt.jpg', imageLink: "art/02ac0b26-a7f7-4d4e-999f-79d0796c90e2" },
-    { name: "Karen Mølgaard", username: "karen.molgaard", image: '/images/karen_molgaard_lighthouse.jpg', imageLink: "art/e1394b9f-97e0-4553-af8f-d81a1b38c541" },
     { name: "Kenneth Karlsson", username: "kenneth.karlsson", image: '/images/kenneth_karlsson.jpg', imageLink: "art/feb4bef6-e3b4-43df-adca-6f5fc0f6123e" },
-    { name: "Inger Klintstam", username: "inger.klintstam", image: '/images/inger_klintstam.jpg', imageLink: "art/fbaabe8c-1bcb-4144-be64-341b4c10d972" },
+    { name: "Matilda Skoglund", username: "matilda.skoglund", image: '/images/matilda_skoglund.jpg', imageLink: "art/eb155bc9-45d7-4895-a581-de0a10f268a2" },
   ]
 
   useEffect(() => {
