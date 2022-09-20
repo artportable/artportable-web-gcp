@@ -263,8 +263,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
     },
     button: {
-      marginTop: '-38px',
-      [theme.breakpoints.up('sm')]: {
+      marginTop: '-50px',
+      [theme.breakpoints.up('smPlus')]: {
         marginTop: '-5px',
         },
     },
