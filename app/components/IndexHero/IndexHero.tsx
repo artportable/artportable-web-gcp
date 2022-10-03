@@ -45,9 +45,10 @@ export default function IndexHero() {
   }, []);
   //List with current promoted artists
   const images = [
-    { name: "Karen Mølgaard", username: "karen.molgaard", image: '/images/karen_molgaard_blue_planet.jpg', imageLink: "art/831877f5-7fd4-499a-8903-47f91f4e3542" },
-    { name: "Lars-Henrik Milert", username: "milert", image: '/images/lars_henrik_milert.jpg', imageLink: "art/d37a9bb3-b1af-4aff-9264-ccebb5d8ddb0" },
+    { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_reilo.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
     { name: "Kurt Forsberg", username: "kurt.forsberg", image: '/images/kurt_forsberg.jpg', imageLink: "art/666a17cb-da1c-49a6-bb1d-1432dabfed5d" },
+    { name: "Nathalie Tsikritea", username: "nattiz_t", image: '/images/nathalie_tsikritea.jpg', imageLink: "art/1fde2bb7-804a-4906-8b00-ce3e18f4de63" },
+    { name: "Thorulf Lofstedt", username: "thorulf.lofstedt", image: '/images/thorulf_lofstedt.jpg', imageLink: "art/02ac0b26-a7f7-4d4e-999f-79d0796c90e2" },
   ]
 
   useEffect(() => {
@@ -79,7 +80,7 @@ export default function IndexHero() {
             {t('Hitta originalkonst')}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {t('Ta en titt i galleriet med över 36000 konstverk')}
+            {t('Ta en titt i galleriet med över 36500 konstverk')}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
