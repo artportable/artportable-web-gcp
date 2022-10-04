@@ -37,11 +37,11 @@ export default function AdDialog(props: Props) {
 
   const ad = [
     {
-      companyName: "Mag Blue",
-      companyImageSv: '/ad/BannerMagBlue.png',
-      companyLinkSv: 'https://artportable.com/profile/@mag_blue',
-      companyImageEn: '/ad/BannerMagBlue.png',
-      companyLinkEn: 'https://artportable.com/en/profile/@mag_blue'
+      companyName: "Fanny Larsson",
+      companyImageSv: '/ad/fanny_sv.png',
+      companyLinkSv: 'https://artportable.com/artiklar/malarkurser-online-hos-fanny-larsson-lar-dig-att-mala-lustfyllt-utan-prestation',
+      companyImageEn: '/ad/fanny_en.png',
+      companyLinkEn: 'https://artportable.com/en/stories/malarkurser-online-hos-fanny-larsson-lar-dig-att-mala-lustfyllt-utan-prestation'
     },
     // {
     //   companyName: "Artportable",
