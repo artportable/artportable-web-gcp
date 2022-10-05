@@ -190,7 +190,19 @@ export default function IndexHero() {
                 <div className={s.adContent2}>
                 <div>
                   <Typography>
-                  <a href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
+                  <a className={s.linkColor} href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
+                  </Typography>
+                </div>
+                </div>
+
+                <Typography variant="h5" component="h2" className={s.headingAd}>{t('headlineAd')}</Typography>
+                <div className={s.adContent2}>
+                <div>
+                  <Typography>
+                  Allt om utländska casinon hittar du på
+                  <a className={s.linkColor}
+                  href="https://spelpressen.se/casino-reportage/casino-utan-svensk-licens"
+                  target="_blank"> Spelpressens sida</a> här.
                   </Typography>
                 </div>
                 </div>

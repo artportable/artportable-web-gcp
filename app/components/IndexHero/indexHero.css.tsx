@@ -307,6 +307,9 @@ export const styles = makeStyles((theme: Theme) =>
         width: '400px',
         },
     },
+    linkColor: {
+      color: 'blue'
+    },
     imageAd: {
       height: '150px',
     },
