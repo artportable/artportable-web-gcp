@@ -37,11 +37,11 @@ export default function AdDialog(props: Props) {
 
   const ad = [
     {
-      companyName: "Fanny Larsson",
-      companyImageSv: '/ad/fanny_sv.png',
-      companyLinkSv: 'https://artportable.com/artiklar/malarkurser-online-hos-fanny-larsson-lar-dig-att-mala-lustfyllt-utan-prestation',
-      companyImageEn: '/ad/fanny_en.png',
-      companyLinkEn: 'https://artportable.com/en/stories/malarkurser-online-hos-fanny-larsson-lar-dig-att-mala-lustfyllt-utan-prestation'
+      companyName: "Ania Witwitzka",
+      companyImageSv: '/ad/ania.jpg',
+      companyLinkSv: 'https://artportable.com/artiklar/shine-through-art-ger-malarkurser-som-later-dig-hitta-dig-sjalv',
+      companyImageEn: '/ad/ania.jpg',
+      companyLinkEn: 'https://artportable.com/en/stories/shine-through-art-ger-malarkurser-som-later-dig-hitta-dig-sjalv'
     },
     // {
     //   companyName: "Artportable",
