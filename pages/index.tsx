@@ -187,8 +187,8 @@ export default function DiscoverPage({ navBarItems }) {
                 variant={"scrollable"}
                 scrollButtons={"on"}
               >
-                <Tab className={s.text} label={t('discover:highlights')} {...a11yProps(t('discover:highlights'))} />
                 <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))} />
+                <Tab className={s.text} label={t('discover:highlights')} {...a11yProps(t('discover:highlights'))} />
                 <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
                 <Tab className={s.text} label={t('discover:latestArt')} {...a11yProps(t('discover:latestArt'))} />
                 <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
@@ -199,8 +199,8 @@ export default function DiscoverPage({ navBarItems }) {
               </Tabs>
             </div>
             <Box paddingTop={4}>
-              <TabPanel value={activeTab} index={0}>
-                <DiscoverHighLightsTab
+            <TabPanel value={activeTab} index={0}>
+                <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -212,7 +212,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <DiscoverTrendingArtTab
+                <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
