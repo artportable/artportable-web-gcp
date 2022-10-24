@@ -45,11 +45,13 @@ export default function IndexHero() {
   }, []);
   //List with current promoted artists
   const images = [
-    { name: "Lars-Henrik Milert", username: "milert", image: '/images/lars_henrik_milert.jpg', imageLink: "art/d37a9bb3-b1af-4aff-9264-ccebb5d8ddb0" },
+    { name: "Lo Fehrling", username: "lo", image: '/images/lo_fehrling.jpg', imageLink: "art/79eda7b1-f008-4d8e-bd67-d7c62d388855" },
     { name: "Kurt Forsberg", username: "kurt.forsberg", image: '/images/kurt_forsberg.jpg', imageLink: "art/666a17cb-da1c-49a6-bb1d-1432dabfed5d" },
     { name: "Nathalie Tsikritea", username: "nattiz_t", image: '/images/nathalie_tsikritea.jpg', imageLink: "art/1fde2bb7-804a-4906-8b00-ce3e18f4de63" },
     { name: "Thorulf Lofstedt", username: "thorulf.lofstedt", image: '/images/thorulf_lofstedt.jpg', imageLink: "art/02ac0b26-a7f7-4d4e-999f-79d0796c90e2" },
     { name: "Ralph Castellan", username: "rc-art", image: '/images/ralph_castellan.jpg', imageLink: "art/f67d95aa-95af-46da-9f3e-4192cb1fc01e" },
+    { name: "Inger Klintstam", username: "inger.klintstam", image: '/images/inger_klintstam_you.jpg', imageLink: "art/6a3d4cf1-2ec1-4ded-9118-1110384d3e88" },
+    { name: "Matilda Skoglund", username: "matilda.skoglund", image: '/images/matilda_skoglund_jarnet.jpg', imageLink: "art/df4080d9-f847-4e79-8910-d3c30abaebea" },
   ]
 
   useEffect(() => {
