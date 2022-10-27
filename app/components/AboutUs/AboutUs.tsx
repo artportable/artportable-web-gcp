@@ -19,17 +19,17 @@ export default function AboutMe() {
 
   const staff = [
     { name: "Emil Sundberg", title: "Web Developer", image: '/staff/artportable_emil.jpg', email: "" },
-    { name: "Erik Glitterstam", title: "Art Coordinator", image: '/staff/artportable_grey.jpg', email: "erik.g@artportable.com" },
+    { name: "Erik Glitterstam", title: "Art Coordinator", image: '/staff/artportable_erik_g.jpg', email: "erik.g@artportable.com" },
     { name: "Fredrik Mannelqvist", title: "", image: '/staff/artportable_grey.jpg', email: "fredrik@artportable.com" },
     { name: "Leonard Edland", title: "Art Coordinator", image: '/staff/artportable_leonard.jpg', email: "leonard@artportable.com" },
     { name: "Linus Gustin", title: "Art Coordinator", image: '/staff/artportable_linus.jpg', email: "linus@artportable.com" },
-    { name: "Linus Hedberg", title: "Web Developer", image: '/staff/linus_hedberg.jpg', email: "" },
     { name: "Matilda Wirström", title: "Content Manager", image: '/staff/artportable_grey.jpg', email: "" },
     { name: "Nannie Höök", title: "Content Creator", image: '/staff/artportable_nannie.jpg', email: "" },
     { name: "Patrik Söderberg", title: "IT Manager", image: '/staff/artportable_patrik.jpg', email: "" },
     { name: "Richard Leppänen", title: "Senior Art Coordinator", image: '/staff/artportable_richard.jpg', email: "richard@artportable.com" },
     { name: "Sebastian Karlholm", title: "Art Coordinator", image: '/staff/artportable_sebastian.jpg', email: "sebastian@artportable.com" },
     { name: "Tony Lidén", title: "Art Coordinator", image: '/staff/artportable_tony.jpg', email: "tony@artportable.com" },
+    { name: "Wladimir Millanao", title: "Senior Art Coordinator", image: '/staff/artportable_wladimir.jpg', email: "wladimir@artportable.com" },
     { name: "Cosmo", title: "", image: '/staff/artportable_cosmo.jpg', email: "hello@artportable.com" },
   ]
 
