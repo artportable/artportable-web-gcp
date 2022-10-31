@@ -37,11 +37,11 @@ export default function AdDialog(props: Props) {
 
   const ad = [
     {
-      companyName: "Ania Witwitzka",
-      companyImageSv: '/ad/ania.jpg',
-      companyLinkSv: 'https://artportable.com/artiklar/shine-through-art-ger-malarkurser-som-later-dig-hitta-dig-sjalv',
-      companyImageEn: '/ad/ania.jpg',
-      companyLinkEn: 'https://artportable.com/en/stories/shine-through-art-ger-malarkurser-som-later-dig-hitta-dig-sjalv'
+      companyName: "Plingon",
+      companyImageSv: '/ad/plingon.jpg',
+      companyLinkSv: 'https://www.plingon.se/shop/',
+      companyImageEn: '/ad/plingon.jpg',
+      companyLinkEn: 'https://www.plingon.se/shop/'
     },
     // {
     //   companyName: "Artportable",
