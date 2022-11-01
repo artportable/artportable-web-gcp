@@ -39,9 +39,9 @@ export default function AdDialog(props: Props) {
     {
       companyName: "Plingon",
       companyImageSv: '/ad/plingon.jpg',
-      companyLinkSv: 'https://www.plingon.se/shop/',
+      companyLinkSv: 'https://bit.ly/3FyutR1',
       companyImageEn: '/ad/plingon.jpg',
-      companyLinkEn: 'https://www.plingon.se/shop/'
+      companyLinkEn: 'https://bit.ly/3FyutR1'
     },
     // {
     //   companyName: "Artportable",
