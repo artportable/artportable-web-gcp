@@ -1,30 +1,49 @@
-import Link from 'next/link'
-import { Drawer, List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, IconButton, Badge, Collapse, Divider } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
-import InsertPhotoIcon from '@material-ui/icons/InsertPhoto'
+import Link from 'next/link';
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+  Badge,
+  Collapse,
+  Divider,
+} from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import { useTranslation } from 'next-i18next'
-import { styles } from './drawerMenu.css'
-import { useKeycloak } from '@react-keycloak/ssr'
-import type { KeycloakInstance } from 'keycloak-js'
-import { useRouter } from 'next/router'
-import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
-import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
-import { UserContext } from '../../contexts/user-context'
-import { useContext, useState } from 'react'
-import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
-import { Membership } from '../../models/Membership'
-import DialogConstruction from '../ContactDialog/contactDialog'
-import { Locales, DisplayLocales } from '../../models/i18n/locales'
-import Upgrade from './Upgrade'
-import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
-import ManageSubscriptionsDialog from '../ManageSubscriptions/ManageSubscriptionsDialog'
+import { useTranslation } from 'next-i18next';
+import { styles } from './drawerMenu.css';
+import { useKeycloak } from '@react-keycloak/ssr';
+import type { KeycloakInstance } from 'keycloak-js';
+import { useRouter } from 'next/router';
+import ProfileAvatar from '../ProfileAvatar/ProfileAvatar';
+import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
+import { UserContext } from '../../contexts/user-context';
+import { useContext, useState } from 'react';
+import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile';
+import { Membership } from '../../models/Membership';
+import DialogConstruction from '../ContactDialog/contactDialog';
+import { Locales, DisplayLocales } from '../../models/i18n/locales';
+import Upgrade from './Upgrade';
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from '../../utils/googleAnalytics';
+import ManageSubscriptionsDialog from '../ManageSubscriptions/ManageSubscriptionsDialog';
 
-
-export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarItems }) {
+export default function DrawerMenu({
+  open,
+  setOpen,
+  unreadChatMessages,
+  navBarItems,
+}) {
   const { t } = useTranslation(['header', 'common', 'support']);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -33,8 +52,8 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
   const [openLanguage, setOpenopenLanguage] = useState(false);
-  const displayLocale = router.locale === Locales.sv ?
-    DisplayLocales.sv : DisplayLocales.en;
+  const displayLocale =
+    router.locale === Locales.sv ? DisplayLocales.sv : DisplayLocales.en;
 
   const close = () => setOpen(false);
 
@@ -51,7 +70,7 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
   function handleClickLanguage(event) {
     setOpenopenLanguage(!openLanguage);
     event.stopPropagation();
-  };
+  }
 
   function handleCloseLanguage(_, locale?: Locales) {
     if (locale !== undefined) {
@@ -84,43 +103,55 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
 
   const forceReload = () => {
     router.reload();
-  }
+  };
 
   return (
-    <Drawer classes={{ paper: s.container }} anchor="right" open={open} onClose={() => close()} ModalProps={{ keepMounted: true, }}>
+    <Drawer
+      classes={{ paper: s.container }}
+      anchor='right'
+      open={open}
+      onClose={() => close()}
+      ModalProps={{ keepMounted: true }}
+    >
       <div className={s.closeButtonFlex}>
-        <IconButton aria-label="close menu" onClick={() => close()} className={s.closeButton}>
+        <IconButton
+          aria-label='close menu'
+          onClick={() => close()}
+          className={s.closeButton}
+        >
           <CloseIcon style={{ fontSize: '30px' }} />
         </IconButton>
       </div>
       <List>
-        {(isSignedIn.value) &&
-          <Link href="/feed" passHref>
+        {isSignedIn.value && (
+          <Link href='/feed' passHref>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('myArtNetwork')} />
             </ListItem>
           </Link>
-        }
+        )}
 
-        <Link href="/" passHref>
+        <Link href='/' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('discover')} />
             </ListItem>
           </a>
         </Link>
-        {navBarItems && navBarItems.length > 0 &&
+        {navBarItems && navBarItems.length > 0 && (
           <div>
             <ListItem button onClick={handleClickListingPages}>
               <ListItemText primary={t('productLists')} />
               {openListingPages ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={openListingPages} timeout="auto">
-              <List component="div" disablePadding >
+            <Collapse in={openListingPages} timeout='auto'>
+              <List component='div' disablePadding>
                 {navBarItems.map((item, index) => {
                   navBarItems.sort((a, b) => {
-                    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase()) return -1;
-                    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase()) return +1;
+                    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase())
+                      return -1;
+                    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase())
+                      return +1;
                   });
                   if (item.locale == router.locale)
                     return (
@@ -128,102 +159,122 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
                         {/* onClick={(_) => router.push(`/${item.slug}`)} */}
                         <a>
                           {/* <a onClick={(_) =>  { router.push(`/${item.slug}`); forceReload();}}> */}
-                          <ListItem button className={s.nested} onClick={() => close()}>
+                          <ListItem
+                            button
+                            className={s.nested}
+                            onClick={() => close()}
+                          >
                             {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
                             <ListItemText primary={item.menuTitle} />
                           </ListItem>
                         </a>
                       </Link>
-                    )
+                    );
                 })}
               </List>
             </Collapse>
             <Divider />
           </div>
-        }
-        <Link href="/artiklar" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('stories')} />
-            </ListItem>
-          </a>
-        </Link>
-        <Link href="/artists" passHref>
+        )}
+        <Link href='/artists' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('artists')} />
             </ListItem>
           </a>
         </Link>
-        <Link href="/kampanj" passHref>
+        <Link href='/artiklar' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('offers')} />
+              <ListItemText primary={t('stories')} />
             </ListItem>
           </a>
         </Link>
-        {(isSignedIn.value) &&
-          <Link href="/medlemserbjudanden" passHref>
-            <a>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemText primary={t('membershipOffers')} />
-              </ListItem>
-            </a>
-          </Link>
-        }
-        <Link href="/kurser" passHref>
+        <Link href='/kurser' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('courses')} />
             </ListItem>
           </a>
         </Link>
-        <Link href="/support" passHref>
+        <Link href='/kampanj' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('contactUs')} />
+              <ListItemText primary={t('offers')} />
             </ListItem>
           </a>
         </Link>
-        <Link href="/about-us" passHref>
+        {isSignedIn.value && (
+          <Link href='/medlemserbjudanden' passHref>
+            <a>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemText primary={t('membershipOffers')} />
+              </ListItem>
+            </a>
+          </Link>
+        )}
+        <Link href='/about-us' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t('aboutUs')} />
             </ListItem>
           </a>
         </Link>
+        <Link href='/support' passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t('contactUs')} />
+            </ListItem>
+          </a>
+        </Link>
 
-
-        {isSignedIn.value ?
+        {isSignedIn.value ? (
           <>
-            {(membership.value < Membership.Portfolio) &&
+            {membership.value < Membership.Portfolio && (
               <div>
-                <ListItem button divider onClick={() => { handleClickUpgrade(); trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY) }}>
+                <ListItem
+                  button
+                  divider
+                  onClick={() => {
+                    handleClickUpgrade();
+                    trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY);
+                  }}
+                >
                   <ListItemText primary={t('upgrade')} />
-                </ListItem >
+                </ListItem>
                 <Upgrade
                   openUpgrade={openUpgrade}
-                  handleCloseUpgrade={handleCloseUpgrade} />
-
+                  handleCloseUpgrade={handleCloseUpgrade}
+                />
               </div>
-            }
-            {(membership.value > Membership.Base) &&
+            )}
+            {membership.value > Membership.Base && (
               <>
-                <Link href="/upload" passHref>
+                <Link href='/upload' passHref>
                   <ListItem button divider onClick={() => close()}>
                     <ListItemIcon>
-                      <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
+                      <InsertPhotoIcon
+                        color='secondary'
+                        style={{ fontSize: 30 }}
+                      />
                     </ListItemIcon>
                     <ListItemText primary={t('upload')} />
                   </ListItem>
                 </Link>
               </>
-            }
-            <Link href="/messages" passHref>
+            )}
+            <Link href='/messages' passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
-                  <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                    <ChatBubbleIcon color="secondary" style={{ fontSize: 30 }} />
+                  <Badge
+                    badgeContent={unreadChatMessages}
+                    max={99}
+                    color='primary'
+                  >
+                    <ChatBubbleIcon
+                      color='secondary'
+                      style={{ fontSize: 30 }}
+                    />
                   </Badge>
                 </ListItemIcon>
                 <ListItemText primary={t('messages')} />
@@ -232,7 +283,10 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
             <Link href={`/profile/@${username.value}`} passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemAvatar>
-                  <ProfileAvatar size={30} profilePicture={profilePicture}></ProfileAvatar>
+                  <ProfileAvatar
+                    size={30}
+                    profilePicture={profilePicture}
+                  ></ProfileAvatar>
                 </ListItemAvatar>
                 <ListItemText primary={t('profile')} />
               </ListItem>
@@ -243,33 +297,48 @@ export default function DrawerMenu({ open, setOpen, unreadChatMessages, navBarIt
               </ListItemIcon>
               <ListItemText primary={t('logout')} />
             </ListItem>
-
           </>
-          :
+        ) : (
           <>
             <ListItem button divider>
-              <ListItemText primary={t('signUp')} onClick={() => keycloak.register({
-                locale: router.locale,
-                redirectUri: signUpRedirectHref
-              })} />
+              <ListItemText
+                primary={t('signUp')}
+                onClick={() =>
+                  keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref,
+                  })
+                }
+              />
             </ListItem>
-            <ListItem button divider onClick={() => keycloak.login({ locale: router.locale })}>
+            <ListItem
+              button
+              divider
+              onClick={() => keycloak.login({ locale: router.locale })}
+            >
               <ListItemText primary={t('login')} />
             </ListItem>
           </>
-
-        }
+        )}
         <div className={s.languageElement}>
           <ListItem button onClick={handleClickLanguage}>
             <ListItemText primary={displayLocale} />
             {openLanguage ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={openLanguage} timeout="auto">
-            <List component="div" disablePadding >
-              <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.sv)}>
+          <Collapse in={openLanguage} timeout='auto'>
+            <List component='div' disablePadding>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.sv)}
+              >
                 <ListItemText primary={t('swedish')} />
               </ListItem>
-              <ListItem button className={s.nested} onClick={(_) => handleCloseLanguage(_, Locales.en)}>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.en)}
+              >
                 <ListItemText primary={t('english')} />
               </ListItem>
             </List>
