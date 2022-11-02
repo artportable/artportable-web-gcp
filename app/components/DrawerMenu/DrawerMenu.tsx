@@ -17,6 +17,11 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationIconButton from '../NotificationIconButton/NotificationIconButton';
+import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
+import SupervisorAccountSharpIcon from '@material-ui/icons/SupervisorAccountSharp';
+import LanguageRoundedIcon from '@material-ui/icons/LanguageRounded';
 import { useTranslation } from 'next-i18next';
 import { styles } from './drawerMenu.css';
 import { useKeycloak } from '@react-keycloak/ssr';
@@ -123,14 +128,6 @@ export default function DrawerMenu({
         </IconButton>
       </div>
       <List>
-        {isSignedIn.value && (
-          <Link href='/feed' passHref>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('myArtNetwork')} />
-            </ListItem>
-          </Link>
-        )}
-
         <Link href='/' passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -263,6 +260,19 @@ export default function DrawerMenu({
                 </Link>
               </>
             )}
+            <Link href='/feed' passHref>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemIcon>
+                  <Badge max={99} color='primary'>
+                    <SupervisorAccountSharpIcon
+                      color='secondary'
+                      style={{ fontSize: 30 }}
+                    />
+                  </Badge>
+                </ListItemIcon>
+                <ListItemText primary={t('myArtNetwork')} />
+              </ListItem>
+            </Link>
             <Link href='/messages' passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
@@ -271,7 +281,7 @@ export default function DrawerMenu({
                     max={99}
                     color='primary'
                   >
-                    <ChatBubbleIcon
+                    <MessageRoundedIcon
                       color='secondary'
                       style={{ fontSize: 30 }}
                     />
@@ -291,12 +301,6 @@ export default function DrawerMenu({
                 <ListItemText primary={t('profile')} />
               </ListItem>
             </Link>
-            <ListItem button divider onClick={() => keycloak.logout()}>
-              <ListItemIcon>
-                <ExitToAppIcon style={{ fontSize: 30 }} />
-              </ListItemIcon>
-              <ListItemText primary={t('logout')} />
-            </ListItem>
           </>
         ) : (
           <>
@@ -322,6 +326,14 @@ export default function DrawerMenu({
         )}
         <div className={s.languageElement}>
           <ListItem button onClick={handleClickLanguage}>
+            <ListItemIcon>
+              <Badge max={99} color='primary'>
+                <LanguageRoundedIcon
+                  color='secondary'
+                  style={{ fontSize: 30 }}
+                />
+              </Badge>
+            </ListItemIcon>
             <ListItemText primary={displayLocale} />
             {openLanguage ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
@@ -346,6 +358,12 @@ export default function DrawerMenu({
           <Divider />
         </div>
       </List>
+      <ListItem button divider onClick={() => keycloak.logout()}>
+        <ListItemIcon>
+          <ExitToAppIcon style={{ fontSize: 30 }} />
+        </ListItemIcon>
+        <ListItemText primary={t('logout')} />
+      </ListItem>
     </Drawer>
   );
 }
