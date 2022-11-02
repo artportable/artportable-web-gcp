@@ -4,6 +4,6 @@ export enum Locales {
 }
 
 export enum DisplayLocales {
-  sv = 'Swe',
+  sv = 'Svenska',
   en = 'Eng'
 }
