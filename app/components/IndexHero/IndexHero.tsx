@@ -48,6 +48,7 @@ export default function IndexHero() {
     { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_reilo.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
     { name: "Helga Egilson", username: "helgaegilson", image: '/images/helga_egilson.jpg', imageLink: "art/0945f177-a80f-4182-891e-481d3735b26e" },
     { name: "Mimmi Scheibe", username: "mimmi.scheibe", image: '/images/mimmi_scheibe.jpg', imageLink: "art/8abbf270-5727-4aa7-b723-dbda75465767" },
+    { name: "Terje Strømsjordet", username: "Terje.Stromsjordet", image: '/images/terje_stromsjordet.jpg', imageLink: "art/61a7c9fb-3d8f-408d-b869-cc4729066ed6" },
   ]
 
   useEffect(() => {
