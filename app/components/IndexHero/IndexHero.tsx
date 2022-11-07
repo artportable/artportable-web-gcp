@@ -45,8 +45,9 @@ export default function IndexHero() {
   }, []);
   //List with current promoted artists
   const images = [
-    { name: "Lo Fehrling", username: "lo", image: '/images/lo_fehrling.jpg', imageLink: "art/79eda7b1-f008-4d8e-bd67-d7c62d388855" },
+    { name: "Atle Reilo", username: "atle.reilo", image: '/images/atle_reilo.jpg', imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76" },
     { name: "Helga Egilson", username: "helgaegilson", image: '/images/helga_egilson.jpg', imageLink: "art/0945f177-a80f-4182-891e-481d3735b26e" },
+    { name: "Mimmi Scheibe", username: "mimmi.scheibe", image: '/images/mimmi_scheibe.jpg', imageLink: "art/8abbf270-5727-4aa7-b723-dbda75465767" },
   ]
 
   useEffect(() => {
