@@ -11,6 +11,7 @@ import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/goog
 import Button from "../Button/Button";
 import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from '@material-ui/icons/Send';
+import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { Badge } from '@material-ui/core'
 import { sv } from 'date-fns/locale';
@@ -79,20 +80,18 @@ export default function ArtworkListItemDefined({
             <img
               style={{
                 width: width,
-                height: height
+                height: height,
               }}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
             />
           </a>
         </Link>
-        {topActions &&
+        {topActions && (
           <div className={s.editOverlay}>
-            <div className={s.topActions}>
-              {topActions}
-            </div>
+            <div className={s.topActions}>{topActions}</div>
           </div>
-        }
+        )}
       </div>
       <div className={s.titleAndLike}>
         <div className={s.info}>
@@ -106,20 +105,32 @@ export default function ArtworkListItemDefined({
           <div className={s.title}>
             {artwork.Title ? artwork.Title : t('untitled')}
             <span className={s.size}>
-              {artwork.MultipleSizes ?
-                " (" + t('common:words.multipleSizes').toLowerCase() + ")" :
-                artwork.Width && artwork.Height && artwork.Depth ?
-                  " (" + artwork.Width + 'x' + artwork.Height + 'x' + artwork.Depth + 'cm)' :
-                  artwork.Width && artwork.Height ?
-                    " (" + artwork.Width + 'x' + artwork.Height + 'cm)' :
-                    null}
+              {artwork.MultipleSizes
+                ? ' (' + t('common:words.multipleSizes').toLowerCase() + ')'
+                : artwork.Width && artwork.Height && artwork.Depth
+                ? ' (' +
+                  artwork.Width +
+                  'x' +
+                  artwork.Height +
+                  'x' +
+                  artwork.Depth +
+                  'cm)'
+                : artwork.Width && artwork.Height
+                ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
+                : null}
             </span>
           </div>
           <div className={s.price}>
-            {artwork.SoldOut ? <><div className={s.soldMark} />{t('common:words.sold')} </> :
-              artwork.Price && artwork.Price != "0" ?
-                formatter.format(artwork.Price) :
-                t('priceOnRequest')}
+            {artwork.SoldOut ? (
+              <>
+                <div className={s.soldMark} />
+                {t('common:words.sold')}{' '}
+              </>
+            ) : artwork.Price && artwork.Price != '0' ? (
+              formatter.format(artwork.Price)
+            ) : (
+              t('priceOnRequest')
+            )}
           </div>
         </div>
         <div className={s.likeInline}>
@@ -132,22 +143,29 @@ export default function ArtworkListItemDefined({
               }}
               onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK)}
             >
-              <IconButton className={s.shareButton} >
+              <IconButton className={s.shareButton}>
                 <ShareIcon style={{ fontSize: '21px' }} />
               </IconButton>
             </RWebShare>
             <div title={t('common:sendMessage')}>
               <a>
-                <IconButton className={s.chatButton} aria-label="account" onClick={() => {
-                  redirectIfNotLoggedIn({
-                    pathname: "/messages",
-                    query: {
-                      referTo: artwork.Owner.SocialId
-                    }
-                  });
-                  trackGoogleAnalytics(ActionType.SEND_MESSAGE, CategoryType.INTERACTIVE)
-                }}>
-                  <ChatBubbleOutlineIcon style={{ fontSize: '23px' }} />
+                <IconButton
+                  className={s.chatButton}
+                  aria-label='account'
+                  onClick={() => {
+                    redirectIfNotLoggedIn({
+                      pathname: '/messages',
+                      query: {
+                        referTo: artwork.Owner.SocialId,
+                      },
+                    });
+                    trackGoogleAnalytics(
+                      ActionType.SEND_MESSAGE,
+                      CategoryType.INTERACTIVE
+                    );
+                  }}
+                >
+                  <MessageRoundedIcon style={{ fontSize: '23px' }} />
                 </IconButton>
               </a>
             </div>
@@ -156,7 +174,8 @@ export default function ArtworkListItemDefined({
                 className={s.likeButton}
                 disableRipple
                 disableFocusRipple
-                onClick={toggleLike}>
+                onClick={toggleLike}
+              >
                 {likedFilled}
               </IconButton>
               <div className={s.likeCounter}>
@@ -167,10 +186,13 @@ export default function ArtworkListItemDefined({
         </div>
       </div>
       <div className={s.purchaseFrameTool}>
-        {
-          username.value != artwork.Owner.Username && !artwork.SoldOut &&
+        {username.value != artwork.Owner.Username && !artwork.SoldOut && (
           <Button
-            className={router.locale === Locales.sv ? s.purchaseRequestButtonSv : s.purchaseRequestButtonEn}
+            className={
+              router.locale === Locales.sv
+                ? s.purchaseRequestButtonSv
+                : s.purchaseRequestButtonEn
+            }
             purchaseRequestButton
             onClick={() => {
               onPurchaseRequestClick(
@@ -180,25 +202,33 @@ export default function ArtworkListItemDefined({
                 artwork.Owner.SocialId,
                 bucketUrl + artwork.PrimaryFile.Name
               );
-              trackGoogleAnalytics(purchaseRequestAction ? purchaseRequestAction : ActionType.PURCHASE_REQUEST_LIST, CategoryType.BUY);
+              trackGoogleAnalytics(
+                purchaseRequestAction
+                  ? purchaseRequestAction
+                  : ActionType.PURCHASE_REQUEST_LIST,
+                CategoryType.BUY
+              );
             }}
-            variant="outlined"
+            variant='outlined'
             rounded
           >
             {t('request')}
           </Button>
-        }
-       {artwork.Width > 0 && artwork.Height > 0 && 
-        <div className={s.roomDiv}>
-          <a href={`/tool/${artwork.Id}`}>
+        )}
+        {artwork.Width > 0 && artwork.Height > 0 && (
+          <div className={s.roomDiv}>
+            <a href={`/tool/${artwork.Id}`}>
               <Button
-                className={router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn}
-                rounded>
+                className={
+                  router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn
+                }
+                rounded
+              >
                 {t('room')}
               </Button>
-          </a>
-        </div>
-        }
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
