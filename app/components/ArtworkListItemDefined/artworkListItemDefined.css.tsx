@@ -4,7 +4,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      display: 'inline-block'
+      display: 'inline-block',
     },
     imageContainer: {
       borderRadius: '2px',
@@ -12,11 +12,11 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       textAlign: 'center',
       '& img': {
-        display: 'block'
+        display: 'block',
       },
       '&:hover > div': {
-        visibility: 'visible'
-      }
+        visibility: 'visible',
+      },
     },
     editOverlay: {
       position: 'absolute',
@@ -56,7 +56,6 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary,
       placeItems: 'center',
-      
     },
     info: {
       flexGrow: 1,
@@ -64,11 +63,11 @@ export const styles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0.4, 0, 0, 0),
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      overflow: 'hidden'
+      overflow: 'hidden',
     },
     name: {
       fontSize: '0.95rem',
-      fontWeight: 400
+      fontWeight: 400,
     },
     title: {
       fontStyle: 'italic',
@@ -84,10 +83,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     soldMark: {
-      background: "#C67777",
-      borderRadius: "50%",
-      width: "15px",
-      height: "15px",
+      background: '#C67777',
+      borderRadius: '50%',
+      width: '15px',
+      height: '15px',
       marginRight: '5px',
     },
     size: {
@@ -97,11 +96,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeCounter: {
       marginLeft: '4px',
-      marginRight: "0",
+      marginRight: '0',
 
       padding: theme.spacing(0.9, 0, 0, 0),
       fontWeight: 500,
-      color: '#000000'
+      color: '#000000',
     },
     flexLikeCount: {
       display: 'flex',
@@ -110,24 +109,24 @@ export const styles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0.2, 0, 0.4, 0.5),
       fontSize: '0.5rem',
       '&:hover': {
-        backgroundColor: 'transparent'
-      }
+        backgroundColor: 'transparent',
+      },
     },
     chatButton: {
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
       fontSize: '0.5rem',
-      color: '#000000',
+      color: '#C67777',
       '&:hover': {
-        backgroundColor: 'transparent'
-      }
+        backgroundColor: 'transparent',
+      },
     },
     shareButton: {
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
       fontSize: '0.5rem',
       color: '#000000',
       '&:hover': {
-        backgroundColor: 'transparent'
-      }
+        backgroundColor: 'transparent',
+      },
     },
     shareImg: {
       width: '24px',
@@ -151,7 +150,6 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightMedium,
       border: '1px solid var(--secondary-color)',
       color: 'var(--secondary-color)',
-
     },
 
     roomButtonSv: {
@@ -177,14 +175,14 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     deleteGrid: {
-      position: "relative"
+      position: 'relative',
     },
     deleteButton: {
       margin: theme.spacing(0.5),
       padding: 0,
-      position: "absolute",
+      position: 'absolute',
       top: theme.spacing(1),
-      right: theme.spacing(1)
+      right: theme.spacing(1),
     },
     purchaseFrameTool: {
       display: 'flex',
@@ -193,7 +191,7 @@ export const styles = makeStyles((theme: Theme) =>
     roomDiv: {
       display: 'flex',
       justifyContent: 'flex-end',
-      width: '100%'
+      width: '100%',
     },
-  }),  
+  })
 );
