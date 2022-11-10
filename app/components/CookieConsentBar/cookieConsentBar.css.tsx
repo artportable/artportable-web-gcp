@@ -54,6 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
           alignItem: 'center',
           gap: '8px',
           width: '300px',
+          padding: '10px 10px'
 
           },
         border: '1px solid',
