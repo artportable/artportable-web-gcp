@@ -48,7 +48,7 @@ export const styles = makeStyles((theme: Theme) =>
         cursor: 'pointer',
         margin: '10px',
         borderRadius: '5px',
-        padding: '5px 10px',
+        padding: '10px 10px',
         width: '250px',
         paddingLeft: theme.spacing(4),
         paddingRight: theme.spacing(4),
