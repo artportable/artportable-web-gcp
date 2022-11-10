@@ -37,26 +37,11 @@ export const styles = makeStyles((theme: Theme) =>
           fontWeight: 'bold',
           textDecoration: 'underline'
         },
-         [theme.breakpoints.down('sm')]: {
-          display: 'grid',
-          justifyContent: 'center',
-          alignItem: 'center',
-          justifyItems: 'center',
-          
-          },
+  
     },
     cookieConsentBarButton: {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
-         [theme.breakpoints.down('sm')]: {
-          display: 'grid',
-          justifyContent: 'center',
-          alignItem: 'center',
-          gap: '8px',
-          width: '300px',
-          padding: '10px 10px'
-
-          },
         border: '1px solid',
         boxShadow: 'none',
         alignItems: 'center',
@@ -66,8 +51,17 @@ export const styles = makeStyles((theme: Theme) =>
         padding: '5px 10px',
         width: '250px',
         paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4)
-    },
+        paddingRight: theme.spacing(4),
+           [theme.breakpoints.down('sm')]: {
+          display: 'grid',
+          justifyContent: 'center',
+          alignItem: 'center',
+          gap: '8px',
+          width: '300px',
+          padding: '10px 10px'
 
+          },
+    },
+      
   }),
 );
