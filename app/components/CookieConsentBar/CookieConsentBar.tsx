@@ -1,4 +1,4 @@
-import { ThemeProvider, Typography } from "@material-ui/core";
+import { Box, ThemeProvider, Typography } from "@material-ui/core";
 import CookieConsent from "react-cookie-consent";
 import { styles } from './cookieConsentBar.css';
 import { CookieOutlined } from "@mui/icons-material";
@@ -10,17 +10,20 @@ export default function CookieConsentBar() {
     return (
         <CookieConsent
             disableStyles={true}
-            buttonText={'Acceptera'}
+            buttonText={'ACCEPTERAR COOKIES'}
             containerClasses={s.cookieConsentBarContainer}
             contentClasses={s.cookieConsentBarContent}
             buttonClasses={s.cookieConsentBarButton}
             enableDeclineButton flipButtons
-            declineButtonText={'Neka'}
+            declineButtonText={'AVVISA COOKIES'}
             declineButtonClasses={s.cookieConsentBarButton}
         >
-        
-        <h2>Vi använder cookies på den här webbplatsen <CookieOutlined /> </h2>
-        <h4>Här kan du läsa mer om hur vi använder cookies på vår webbplats. <a href='/gdpr'> Vår cookie policy</a></h4>
+
+        <img />
+
+        <Typography className={s.cookieHeader}>Vi använder cookies på den här webbplatsen</Typography>
+        <Typography className={s.cookieText}>Här kan du läsa mer om hur vi använder cookies på vår webbplats.<br /><a href='/gdpr'> Vår cookie policy</a>
+        </Typography>
         </CookieConsent>
     );
 }
