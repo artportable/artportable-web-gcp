@@ -73,7 +73,7 @@ export default function IndexHero() {
     {
       name: "Lotta Lassbo",
       username: "lotta.lassbo",
-      image: "/images/lotta_lassbo.jpg",
+      image: "/images/lotta_lassbo1.jpg",
       imageLink: "art/792ff712-3d9b-4272-98a9-582c9c3ac158",
     },
     {
