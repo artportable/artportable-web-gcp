@@ -12,7 +12,7 @@ export default function CookieConsentBar() {
       contentClasses={s.cookieConsentBarContent}
       buttonClasses={s.cookieConsentBarButton}
     >
-      {"This website uses cookies. "}
+      {"This website uses cookies."}
       <a href="/gdpr">Read more</a>
     </CookieConsent>
   );
