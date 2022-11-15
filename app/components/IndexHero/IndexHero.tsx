@@ -82,6 +82,12 @@ export default function IndexHero() {
       image: "/images/terje_stromsjordet.jpg",
       imageLink: "art/61a7c9fb-3d8f-408d-b869-cc4729066ed6",
     },
+    {
+      name: "Ralph Castellan",
+      username: "rc-art",
+      image: "/images/ralph_castellan.jpg",
+      imageLink: "art/f2b38ed5-1dc3-422a-9f1d-3f69cef08900",
+    },
   ];
 
   useEffect(() => {
