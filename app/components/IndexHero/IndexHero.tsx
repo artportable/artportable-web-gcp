@@ -85,7 +85,7 @@ export default function IndexHero() {
     {
       name: "Ralph Castellan",
       username: "rc-art",
-      image: "/images/Ralph_castellan.jpg",
+      image: "/images/ralph_castellan.jpg",
       imageLink: "art/f2b38ed5-1dc3-422a-9f1d-3f69cef08900",
     },
   ];
