@@ -301,6 +301,12 @@ export default function DrawerMenu({
                 <ListItemText primary={t('profile')} />
               </ListItem>
             </Link>
+            <ListItem button divider onClick={() => keycloak.logout()}>
+              <ListItemIcon>
+                <ExitToAppIcon style={{ fontSize: 30 }} />
+              </ListItemIcon>
+              <ListItemText primary={t('logout')} />
+            </ListItem>
           </>
         ) : (
           <>
@@ -358,12 +364,6 @@ export default function DrawerMenu({
           <Divider />
         </div>
       </List>
-      <ListItem button divider onClick={() => keycloak.logout()}>
-        <ListItemIcon>
-          <ExitToAppIcon style={{ fontSize: 30 }} />
-        </ListItemIcon>
-        <ListItemText primary={t('logout')} />
-      </ListItem>
     </Drawer>
   );
 }
