@@ -357,13 +357,19 @@ export default function DrawerMenu({
           </Collapse>
           <Divider />
         </div>
+        {isSignedIn.value ? (
+          <>
+            <ListItem button divider onClick={() => keycloak.logout()}>
+              <ListItemIcon>
+                <ExitToAppIcon style={{ fontSize: 30 }} />
+              </ListItemIcon>
+              <ListItemText primary={t('logout')} />
+            </ListItem>
+          </>
+        ) : (
+          ''
+        )}
       </List>
-      <ListItem button divider onClick={() => keycloak.logout()}>
-        <ListItemIcon>
-          <ExitToAppIcon style={{ fontSize: 30 }} />
-        </ListItemIcon>
-        <ListItemText primary={t('logout')} />
-      </ListItem>
     </Drawer>
   );
 }
