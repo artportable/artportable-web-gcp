@@ -1,55 +1,55 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: 'var(--header-color)',
+      backgroundColor: "var(--header-color)",
       // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
       // width: 'calc(100% + 10px)',
     },
     container: {
-      display: 'flex',
-      width: '100%',
-      height: 'var(--header-height, 70px)',
-      gap: '0 16px',
-      alignItems: 'center',
+      display: "flex",
+      width: "100%",
+      height: "var(--header-height, 70px)",
+      gap: "0 16px",
+      alignItems: "center",
     },
 
     logoContainer: {
       flexGrow: 1,
       order: 2,
-      textAlign: 'center',
-      [theme.breakpoints.up('smPlus')]: {
-        order: 'initial',
-        textAlign: 'left'
+      textAlign: "center",
+      [theme.breakpoints.up("smPlus")]: {
+        order: "initial",
+        textAlign: "left",
       },
-      [theme.breakpoints.up('md')]: {
-        textAlign: 'left'
+      [theme.breakpoints.up("md")]: {
+        textAlign: "left",
       },
-      flexBasis: '100%',
-      position: 'relative',
-      '& a': {
-        position: 'absolute',
-        right: 'calc(50% - 72px)',
-        bottom: '-13px',
-      }
+      flexBasis: "100%",
+      position: "relative",
+      "& a": {
+        position: "absolute",
+        right: "calc(50% - 72px)",
+        bottom: "-13px",
+      },
     },
     menuIcon: {
-      display: 'none',
-      gridArea: 'menu'
+      display: "none",
+      gridArea: "menu",
     },
     logo: {
-      width: '135px',
-      paddingTop: theme.spacing(0.2)
+      width: "135px",
+      paddingTop: theme.spacing(0.2),
     },
     navigation: {
-      display: 'none'
+      display: "none",
     },
     buttonInvite: {
-      display: 'none',
-      gridArea: 'invite',
+      display: "none",
+      gridArea: "invite",
       // color: '#ffffff',
-      whiteSpace: 'nowrap',
+      whiteSpace: "nowrap",
       // height: '31px',
       // backgroundColor: 'var(--color-green)',
       // '&.MuiButton-root:hover:hover':{
@@ -58,117 +58,117 @@ export const styles = makeStyles((theme: Theme) =>
     },
     menuDrawer: {
       order: 3,
-      gridArea: 'menuDrawer',
-      [theme.breakpoints.up('smPlus')]: {
-        order: 'initial'
+      gridArea: "menuDrawer",
+      [theme.breakpoints.up("smPlus")]: {
+        order: "initial",
       },
     },
 
     login: {
-      display: 'none',
+      display: "none",
     },
     upload: {
-      display: 'none',
-      whiteSpace: 'nowrap',
+      display: "none",
+      whiteSpace: "nowrap",
     },
     uploadButton: {
-      whiteSpace: 'nowrap'
+      whiteSpace: "nowrap",
     },
     singleNotificationButton: {
-      minWidth: '54px'
+      minWidth: "54px",
     },
     signUp: {
-      display: 'none',
-      whiteSpace: 'nowrap',
-      [theme.breakpoints.up('md')]: {
-        display: 'flex'
-      }
+      display: "none",
+      whiteSpace: "nowrap",
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+      },
     },
     createButton: {
-      whiteSpace: 'nowrap',
-      backgroundColor: 'var(--color-green)',
-      '&.MuiButton-containedPrimary': {
-        color: 'var(--black-absolute)',
+      whiteSpace: "nowrap",
+      backgroundColor: "var(--color-green)",
+      "&.MuiButton-containedPrimary": {
+        color: "var(--black-absolute)",
       },
-      '&.MuiButton-containedPrimary:hover': {
-        backgroundColor: 'var(--color-green-lighter)',
+      "&.MuiButton-containedPrimary:hover": {
+        backgroundColor: "var(--color-green-lighter)",
       },
-      '& span': {
-        '&..MuiButton-label': {
-          margin: '0 !important',
+      "& span": {
+        "&..MuiButton-label": {
+          margin: "0 !important",
         },
       },
     },
     loginButton: {
-      whiteSpace: 'nowrap',
+      whiteSpace: "nowrap",
     },
     notificationButton: {
-      width: '54px',
-      display: 'flex',
+      width: "54px",
+      display: "flex",
       order: 1,
-      [theme.breakpoints.up('smPlus')]: {
-        order: 'initial'
+      [theme.breakpoints.up("smPlus")]: {
+        order: "initial",
       },
-      '& > *': {
-        margin: 'auto'
+      "& > *": {
+        margin: "auto",
       },
 
-      '& .raf-icon-badge svg': {
-        fill: theme.palette.secondary.main
+      "& .raf-icon-badge svg": {
+        fill: theme.palette.secondary.main,
       },
-      '& .raf-icon-badge:hover svg': {
-        fill: theme.palette.secondary.main
-      }
+      "& .raf-icon-badge:hover svg": {
+        fill: theme.palette.secondary.main,
+      },
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       menuDrawer: {
-        display: 'initial',
+        display: "initial",
       },
       logoContainer: {
-        flexBasis: 'initial',
-        '& a': {
-          position: 'static'
-        }
-      }
+        flexBasis: "initial",
+        "& a": {
+          position: "static",
+        },
+      },
     },
 
-    [theme.breakpoints.up('smPlus')]: {
+    [theme.breakpoints.up("smPlus")]: {
       menuIcon: {
-        display: 'initial',
+        display: "initial",
       },
       menuIconWithBadge: {
-        display: 'none',
+        display: "none",
       },
       singleNotificationButton: {
-        display: 'none',
+        display: "none",
       },
       buttonInvite: {
-        display: 'initial',
-        marginRight: '-8px'
+        display: "initial",
+        marginRight: "-8px",
       },
 
       login: {
-        display: 'flex',
-        alignItems: 'center',
-        gridArea: 'login',
+        display: "flex",
+        alignItems: "center",
+        gridArea: "login",
         // '& .MuiButton-root .MuiButton-label': {
         //   margin: theme.spacing(0, 2)
         // },
-        '& > *': {
-          margin: theme.spacing(0, 1)
+        "& > *": {
+          margin: theme.spacing(0, 1),
         },
-        '& > .MuiIconButton-root': {
-          padding: theme.spacing(0.5)
-        }
+        "& > .MuiIconButton-root": {
+          padding: theme.spacing(0.5),
+        },
       },
       menuDrawer: {
-        display: 'initial'
+        display: "initial",
       },
     },
 
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       toolbar: {
-        backgroundColor: 'var(--header-color)',
+        backgroundColor: "var(--header-color)",
         // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
         // width: 'calc(100% + 10px)',
         // '&.MuiPaper-elevation0': {
@@ -176,48 +176,58 @@ export const styles = makeStyles((theme: Theme) =>
         // }
       },
       container: {
-        display: 'grid',
-        width: '100%',
-        height: 'var(--header-height, 70px)',
-        gap: '0 16px',
-        alignItems: 'center',
-        justifyItems: 'start',
-        gridTemplate: (
-          '\"menu logo navigation invite login language menuDrawer\" auto' +
-          '/ auto auto 1fr auto auto'
-        ),
+        display: "grid",
+        width: "100%",
+        height: "var(--header-height, 70px)",
+        gap: "0 16px",
+        alignItems: "center",
+        justifyItems: "start",
+        gridTemplate:
+          '"menu logo navigation invite login language menuDrawer" auto' +
+          "/ auto auto 1fr auto auto",
       },
 
       upload: {
-        display: 'initial'
+        display: "initial",
       },
     },
     text: {
-      fontSize: '18px',
+      fontSize: "18px",
     },
     iconButtons: {
-      display: 'flex',
-      alignItems: 'center'
+      display: "flex",
+      alignItems: "center",
     },
     language: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'initial',
-        gridArea: 'language'
+      display: "none",
+      [theme.breakpoints.up("md")]: {
+        display: "initial",
+        gridArea: "language",
       },
     },
-    [theme.breakpoints.up('mdPlus')]: {
+    [theme.breakpoints.up("mdPlus")]: {
       navigation: {
-        display: 'initial',
-        gridArea: 'navigation',
-        marginLeft: '20px',
+        display: "initial",
+        gridArea: "navigation",
+        marginLeft: "20px",
       },
       iconMenuColor: {
-        color: '#000',
+        color: "#000",
       },
       logo: {
-        width: '188px'
+        width: "188px",
       },
     },
-  }),
+
+    blackWeekCreateButton: {
+      whiteSpace: "nowrap",
+      backgroundColor: "var(--black-absolute)",
+      color: "white",
+      "& span": {
+        "&..MuiButton-label": {
+          margin: "0 !important",
+        },
+      },
+    },
+  })
 );
