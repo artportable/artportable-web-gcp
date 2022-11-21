@@ -59,34 +59,28 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Linda Elvegård",
-      username: "elvegard",
-      image: "/images/lindaElvegard.jpg",
-      imageLink: "art/78ed234d-d225-4a55-b4e8-2e41dbef429d",
+      name: 'Helga Egilson',
+      username: 'helgaegilson',
+      image: '/images/helga_egilson.jpg',
+      imageLink: 'art/0945f177-a80f-4182-891e-481d3735b26e',
     },
     {
-      name: "Helga Egilson",
-      username: "helgaegilson",
-      image: "/images/helga_egilson.jpg",
-      imageLink: "art/0945f177-a80f-4182-891e-481d3735b26e",
+      name: 'Terje Strømsjordet',
+      username: 'Terje.Stromsjordet',
+      image: '/images/terje_stromsjordet.jpg',
+      imageLink: 'art/61a7c9fb-3d8f-408d-b869-cc4729066ed6',
     },
     {
-      name: "Lotta Lassbo",
-      username: "lotta.lassbo",
-      image: "/images/lotta_lassbo1.jpg",
-      imageLink: "art/792ff712-3d9b-4272-98a9-582c9c3ac158",
+      name: 'Ralph Castellan',
+      username: 'rc-art',
+      image: '/images/ralph_castellan.jpg',
+      imageLink: 'art/f2b38ed5-1dc3-422a-9f1d-3f69cef08900',
     },
     {
-      name: "Terje Strømsjordet",
-      username: "Terje.Stromsjordet",
-      image: "/images/terje_stromsjordet.jpg",
-      imageLink: "art/61a7c9fb-3d8f-408d-b869-cc4729066ed6",
-    },
-    {
-      name: "Ralph Castellan",
-      username: "rc-art",
-      image: "/images/ralph_castellan.jpg",
-      imageLink: "art/f2b38ed5-1dc3-422a-9f1d-3f69cef08900",
+      name: 'Mimmi Scheibe',
+      username: 'mimmi.scheibe',
+      image: '/images/mimmi_scheibe.jpg',
+      imageLink: 'art/8abbf270-5727-4aa7-b723-dbda75465767',
     },
   ];
 
