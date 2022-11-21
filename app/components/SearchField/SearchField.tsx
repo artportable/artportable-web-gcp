@@ -1,31 +1,36 @@
-import { useEffect, useState } from 'react'
-import SearchIcon from '@material-ui/icons/Search';
-import Chip from '@material-ui/core/Chip'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import { useEffect, useState } from "react";
+import SearchIcon from "@material-ui/icons/Search";
+import Chip from "@material-ui/core/Chip";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 import { useTranslation } from "next-i18next";
-import clsx from 'clsx'
-import { styles } from './searchField.css'
-import { useBreakpointDown } from '../../hooks/useBreakpointDown';
-import { debounce } from '@material-ui/core/utils';
-import { Collapse, Divider, ListItem, ListItemText, MenuItem, TextField } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
-
-
+import clsx from "clsx";
+import { styles } from "./searchField.css";
+import { useBreakpointDown } from "../../hooks/useBreakpointDown";
+import { debounce } from "@material-ui/core/utils";
+import {
+  Collapse,
+  Divider,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  TextField,
+} from "@material-ui/core";
+import { ExpandLess, ExpandMore } from "@material-ui/icons";
 
 const SearchField = ({ onFilter, activeTab, tags = null }) => {
   const s = styles();
-  const { t } = useTranslation(['discover', 'tags']);
-  const isBreakpointSmPlusDown = useBreakpointDown('smPlus');
+  const { t } = useTranslation(["discover", "tags"]);
+  const isBreakpointSmPlusDown = useBreakpointDown("smPlus");
 
   const initCategoryTags = [
-    { name: t('tags:oil'), selected: false, id: "oil" },
-    { name: t('tags:acrylic'), selected: false, id: "acrylic" },
-    { name: t('tags:NFT'), selected: false, id: "NFT" },
-    { name: t('tags:aquarelle'), selected: false, id: "aquarelle" },
-    { name: t('tags:photography'), selected: false, id: "photography" },
-    { name: t('tags:sculpture'), selected: false, id: "sculpture" },
-    { name: t('tags:nude'), selected: false, id: "nude" }
+    { name: t("tags:oil"), selected: false, id: "oil" },
+    { name: t("tags:acrylic"), selected: false, id: "acrylic" },
+    { name: t("tags:NFT"), selected: false, id: "NFT" },
+    { name: t("tags:aquarelle"), selected: false, id: "aquarelle" },
+    { name: t("tags:photography"), selected: false, id: "photography" },
+    { name: t("tags:sculpture"), selected: false, id: "sculpture" },
+    { name: t("tags:nude"), selected: false, id: "nude" },
   ];
 
   useEffect(() => {
@@ -41,8 +46,8 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
   const [moreSelectValue, setMoreSelectValue] = useState("");
 
   const filterDebounced = debounce(() => {
-    onFilter(selectedTag ? [selectedTag] : [], searchQuery)
-  }, 500)
+    onFilter(selectedTag ? [selectedTag] : [], searchQuery);
+  }, 500);
 
   useEffect(() => {
     filterDebounced();
@@ -51,13 +56,15 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
   const resetCategoryTags = () => {
     if (isBreakpointSmPlusDown) {
       setSelectedTag("");
-      setCategoryTags([])
+      setCategoryTags([]);
     } else {
-      const filteredTags = tags.filter(t => !initCategoryTags.some(categoryTag => categoryTag.id === t));
+      const filteredTags = tags.filter(
+        (t) => !initCategoryTags.some((categoryTag) => categoryTag.id === t)
+      );
       setDropdownTags(filteredTags);
       setCategoryTags(initCategoryTags);
     }
-  }
+  };
 
   const setCategoryTagSelected = (index) => {
     if (categoryTags[index].selected) {
@@ -76,26 +83,25 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
     } else {
       setSelectedTag("");
     }
-
-  }
+  };
 
   const onSelectMoreChange = (e) => {
     resetCategoryTags();
     setMoreSelectValue((e as any).target.value);
     setSelectedTag(e.target.value);
-  }
+  };
   const deselectMore = (_) => {
     setMoreSelectValue("");
     setSelectedTag("");
-  }
+  };
 
   const onSearchChanged = (event) => {
     searchDebounced(event);
-  }
+  };
 
   const searchDebounced = debounce((event) => {
     setSearchQuery(event.target.value);
-  }, 500)
+  }, 500);
 
   function handleClickListingPages(event) {
     setOpenListingPages(!openListingPages);
@@ -105,48 +111,66 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
   const [openListingPages, setOpenListingPages] = useState(false);
 
   return (
-    <div className={clsx(s.inputContainer, tags === null && s.noTags)} tabIndex={0}>
-      <SearchIcon classes={{ root: s.searchIcon }} style={{ fontSize: 30 }}></SearchIcon>
-      <input onChange={onSearchChanged} placeholder={t('searchForArt')} className={s.input} ></input>
-      {activeTab === 0 ?
-      null
-      :
-      <>
-      {tags !== null &&
-        <div className={s.tagsContainer}>
-          <ul className={s.categoryTags}>
-            {categoryTags.map((tag, i) =>
-              <li key={tag.name}>
-                <Chip
-                  onClick={(_) => setCategoryTagSelected(i)}
-                  variant={tag.selected ? "default" : "outlined"}
-                  color={tag.selected ? "primary" : "default"}
-                  label={tag.name} />
-              </li>
-            )}
-            <li className={s.moreLiElement}>
-              {moreSelectValue === "" ?
-                <> 
-                  <Chip
-                    color={"default"}
-                    variant="outlined"
-                    label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
-                    className={s.moreChip} />
-                  <FormControl className={s.selectFormControl}>
-                    <Select
-                      label={t(isBreakpointSmPlusDown ? 'filter' : 'more')}
-                      className={s.selectElement}
-                      native
-                      value={""}
-                      onChange={onSelectMoreChange}
-                    >
-                      <option aria-label={t('none')} value={""}></option>
-                      {dropdownTags.map((tag) => {
-                        return <option key={tag} aria-label={t(`tags:${tag}`)} value={tag}>{t(`tags:${tag}`)}</option>
-                      })}
-                    </Select>
-                  </FormControl>
-                  {/* <div className={s.textFieldFlex}>
+    <div
+      className={clsx(s.inputContainer, tags === null && s.noTags)}
+      tabIndex={0}
+    >
+      <SearchIcon
+        classes={{ root: s.searchIcon }}
+        style={{ fontSize: 30 }}
+      ></SearchIcon>
+      <input
+        onChange={onSearchChanged}
+        placeholder={t("searchForArt")}
+        className={s.input}
+      ></input>
+      {activeTab === 0 ? null : (
+        <>
+          {tags !== null && (
+            <div className={s.tagsContainer}>
+              <ul className={s.categoryTags}>
+                {categoryTags.map((tag, i) => (
+                  <li key={tag.name}>
+                    <Chip
+                      onClick={(_) => setCategoryTagSelected(i)}
+                      variant={tag.selected ? "default" : "outlined"}
+                      color={tag.selected ? "primary" : "default"}
+                      label={tag.name}
+                    />
+                  </li>
+                ))}
+                <li className={s.moreLiElement}>
+                  {moreSelectValue === "" ? (
+                    <>
+                      <Chip
+                        color={"default"}
+                        variant="outlined"
+                        label={t(isBreakpointSmPlusDown ? "filter" : "more")}
+                        className={s.moreChip}
+                      />
+                      <FormControl className={s.selectFormControl}>
+                        <Select
+                          label={t(isBreakpointSmPlusDown ? "filter" : "more")}
+                          className={s.selectElement}
+                          native
+                          value={""}
+                          onChange={onSelectMoreChange}
+                        >
+                          <option aria-label={t("none")} value={""}></option>
+                          {dropdownTags.map((tag) => {
+                            return (
+                              <option
+                                key={tag}
+                                aria-label={t(`tags:${tag}`)}
+                                value={tag}
+                              >
+                                {t(`tags:${tag}`)}
+                              </option>
+                            );
+                          })}
+                        </Select>
+                      </FormControl>
+                      {/* <div className={s.textFieldFlex}>
                 <TextField
                   classes={{
                     root: s.textField
@@ -164,22 +188,22 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
                   ))}
                 </TextField>
               </div> */}
-                </>
-                :
-                <Chip
-                  color={"primary"}
-                  label={t(`tags:${moreSelectValue}`)}
-                  onDelete={deselectMore} />
-              }
-            </li>
-          </ul>
-        </div>
-      }
-      </>
-      }
-      
+                    </>
+                  ) : (
+                    <Chip
+                      color={"primary"}
+                      label={t(`tags:${moreSelectValue}`)}
+                      onDelete={deselectMore}
+                    />
+                  )}
+                </li>
+              </ul>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default SearchField;

@@ -1,45 +1,54 @@
-import Link from 'next/link'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
-import Badge from '@material-ui/core/Badge'
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
-import MessageRoundedIcon from '@material-ui/icons/MessageRounded'
-import MenuIcon from '@material-ui/icons/Menu'
-import NotificationsIcon from '@material-ui/icons/Notifications'
-import MuiButton from '@material-ui/core/Button'
+import Link from "next/link";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Badge from "@material-ui/core/Badge";
+import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
+import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
+import MenuIcon from "@material-ui/icons/Menu";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MuiButton from "@material-ui/core/Button";
 import { LinearProgress } from "@material-ui/core";
 
-import { useTranslation } from 'next-i18next'
-import Button from '../Button/Button';
-import DrawerMenu from '../DrawerMenu/DrawerMenu';
-import I18nSelector from '../I18nSelector/I18nSelector'
-import { styles } from './header.css'
-import React, { useContext, useEffect, useState } from 'react'
-import { useGetActivityToken } from '../../hooks/useGetActivityClient'
-import ProfileIconButton from '../ProfileIconButton/ProfileIconButton'
-import { useKeycloak } from '@react-keycloak/ssr'
-import type { KeycloakInstance } from 'keycloak-js'
-import router from 'next/router'
-import { Membership } from '../../models/Membership'
-import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
-import 'react-activity-feed/dist/index.css';
-import NotificationIconButton from '../NotificationIconButton/NotificationIconButton'
-import { LoadingContext } from '../../contexts/loading-context'
-import { UserContext } from '../../contexts/user-context'
-import { ChatClientContext } from '../../contexts/chat-context'
-import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile'
-import { OwnUserResponse } from 'stream-chat'
-import { ChannelType, CommandType, UserType } from '../Messaging/MessagingTypes'
-import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
-import UpgradePortfolio from '../UpgradePortfolio/UpgradPortfolio'
+import { useTranslation } from "next-i18next";
+import Button from "../Button/Button";
+import DrawerMenu from "../DrawerMenu/DrawerMenu";
+import I18nSelector from "../I18nSelector/I18nSelector";
+import { styles } from "./header.css";
+import React, { useContext, useEffect, useState } from "react";
+import { useGetActivityToken } from "../../hooks/useGetActivityClient";
+import ProfileIconButton from "../ProfileIconButton/ProfileIconButton";
+import { useKeycloak } from "@react-keycloak/ssr";
+import type { KeycloakInstance } from "keycloak-js";
+import router from "next/router";
+import { Membership } from "../../models/Membership";
+import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
+import "react-activity-feed/dist/index.css";
+import NotificationIconButton from "../NotificationIconButton/NotificationIconButton";
+import { LoadingContext } from "../../contexts/loading-context";
+import { UserContext } from "../../contexts/user-context";
+import { ChatClientContext } from "../../contexts/chat-context";
+import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
+import { OwnUserResponse } from "stream-chat";
+import {
+  ChannelType,
+  CommandType,
+  UserType,
+} from "../Messaging/MessagingTypes";
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
+import UpgradePortfolio from "../UpgradePortfolio/UpgradPortfolio";
 import { RWebShare } from "react-web-share";
 
 export default function Header({ navBarItems }) {
-  const { t } = useTranslation(['header', 'support']);
+  const { t } = useTranslation(["header", "support"]);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
-  const { socialId, username, isSignedIn, membership } = useContext(UserContext);
+  const { socialId, username, isSignedIn, membership } =
+    useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
 
@@ -47,11 +56,14 @@ export default function Header({ navBarItems }) {
   const logoHref = "/";
   const [openMenu, setOpenMenu] = useState(false);
   const [globalIsLoading, setglobalIsLoading] = useState(false);
-  const { token: activityToken, isError, isLoading } = useGetActivityToken(username.value, socialId.value, isSignedIn.value);
+  const {
+    token: activityToken,
+    isError,
+    isLoading,
+  } = useGetActivityToken(username.value, socialId.value, isSignedIn.value);
 
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
-
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -66,7 +78,10 @@ export default function Header({ navBarItems }) {
 
   useEffect(() => {
     if (chatClient) {
-      setUnreadChatMessages((chatClient.user as OwnUserResponse<ChannelType, CommandType, UserType>).total_unread_count);
+      setUnreadChatMessages(
+        (chatClient.user as OwnUserResponse<ChannelType, CommandType, UserType>)
+          .total_unread_count
+      );
       chatClient.on((event) => {
         if (event.total_unread_count !== undefined) {
           setUnreadChatMessages(event.total_unread_count);
@@ -76,9 +91,9 @@ export default function Header({ navBarItems }) {
 
     return () => {
       if (chatClient) {
-        chatClient.off((_) => { });
+        chatClient.off((_) => {});
       }
-    }
+    };
   }, [chatClient]);
 
   return (
@@ -98,17 +113,19 @@ export default function Header({ navBarItems }) {
               </Link>
             </div>
             <nav className={s.navigation}>
-              {(isSignedIn.value) &&
-                <MuiButton classes={{ root: s.feed }} color="secondary" size="large">
-                  <Link href="/feed">
-                    {t('myArtNetwork').toUpperCase()}
-                  </Link>
+              {isSignedIn.value && (
+                <MuiButton
+                  classes={{ root: s.feed }}
+                  color="secondary"
+                  size="large"
+                >
+                  <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
                 </MuiButton>
-              }
+              )}
               <Link href="/artiklar" passHref>
                 <a>
                   <MuiButton color="secondary" size="large">
-                    {t('stories').toUpperCase()}
+                    {t("stories").toUpperCase()}
                   </MuiButton>
                 </a>
               </Link>
@@ -130,20 +147,23 @@ export default function Header({ navBarItems }) {
                 {t('invite')}
               </Button>
             </RWebShare> */}
-            {(!isSignedIn.value) &&
+            {!isSignedIn.value && (
               <div className={s.login}>
                 <Button
-                  className={s.createButton}
+                  className={s.blackWeekCreateButton}
                   size="large"
                   variant="contained"
-                  color="primary"
+                  color="black"
                   disableElevation
                   rounded
-                  onClick={() => keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref
-                  })}>
-                  {t('createPortfolio')}
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                >
+                  {t("blackWeekCreatePortfolio")}
                 </Button>
                 <Button
                   className={s.signUp}
@@ -151,11 +171,14 @@ export default function Header({ navBarItems }) {
                   variant="outlined"
                   disableElevation
                   rounded
-                  onClick={() => keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref
-                  })}>
-                  {t('signUp')}
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                >
+                  {t("signUp")}
                 </Button>
                 <Button
                   className={s.loginButton}
@@ -163,96 +186,139 @@ export default function Header({ navBarItems }) {
                   variant="outlined"
                   disableElevation
                   rounded
-                  onClick={() => keycloak.login({ locale: router.locale })}>
-                  {t('login')}
+                  onClick={() => keycloak.login({ locale: router.locale })}
+                >
+                  {t("login")}
                 </Button>
               </div>
-            }
+            )}
             <div className={s.singleNotificationButton}>
-              {(isSignedIn.value) &&
+              {isSignedIn.value && (
                 <>
-                  {activityToken && !isError && !isLoading ?
-                    <NotificationIconButton activityToken={activityToken} socialId={socialId.value} />
-                    :
+                  {activityToken && !isError && !isLoading ? (
+                    <NotificationIconButton
+                      activityToken={activityToken}
+                      socialId={socialId.value}
+                    />
+                  ) : (
                     <IconButton aria-label="account" disabled aria-disabled>
                       <NotificationsIcon
                         classes={{ root: s.notificationIcon }}
-                        style={{ fontSize: '30px' }}
+                        style={{ fontSize: "30px" }}
                       />
                     </IconButton>
-                  }
+                  )}
                 </>
-              }
+              )}
             </div>
-            {(isSignedIn.value) &&
+            {isSignedIn.value && (
               <>
                 <div className={s.login}>
-                  {(membership.value > Membership.Base) &&
+                  {membership.value > Membership.Base && (
                     <div className={s.upload}>
                       <Link href="/upload">
                         <a>
                           <Button
-                            onClick={() => trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_HEADER, CategoryType.INTERACTIVE)}
+                            onClick={() =>
+                              trackGoogleAnalytics(
+                                ActionType.UPLOAD_IMAGE_HEADER,
+                                CategoryType.INTERACTIVE
+                              )
+                            }
                             className={s.uploadButton}
                             size="small"
                             variant="outlined"
                             disableElevation
-                            rounded>
-                            {t('upload')}
+                            rounded
+                          >
+                            {t("upload")}
                           </Button>
                         </a>
                       </Link>
                     </div>
-                  }
-                  {(membership.value < Membership.Portfolio) &&
+                  )}
+                  {membership.value < Membership.Portfolio && (
                     <UpgradePortfolio />
-                  }
+                  )}
                   <div className={s.iconButtons}>
                     <div className={s.notificationButton}>
-                      {activityToken && !isError && !isLoading ?
-                        <NotificationIconButton activityToken={activityToken} socialId={socialId.value} />
-                        :
+                      {activityToken && !isError && !isLoading ? (
+                        <NotificationIconButton
+                          activityToken={activityToken}
+                          socialId={socialId.value}
+                        />
+                      ) : (
                         <IconButton aria-label="account" disabled aria-disabled>
                           <NotificationsIcon
                             classes={{ root: s.notificationIcon }}
-                            style={{ fontSize: '30px' }}
+                            style={{ fontSize: "30px" }}
                           />
                         </IconButton>
-                      }
+                      )}
                     </div>
                     <Link href="/messages">
                       <a>
                         <IconButton color="secondary" aria-label="account">
-                          <Badge badgeContent={unreadChatMessages} max={99} color="primary">
-                            <MessageRoundedIcon style={{ fontSize: '30px' }} />
+                          <Badge
+                            badgeContent={unreadChatMessages}
+                            max={99}
+                            color="primary"
+                          >
+                            <MessageRoundedIcon style={{ fontSize: "30px" }} />
                           </Badge>
                         </IconButton>
                       </a>
                     </Link>
 
-                    <ProfileIconButton profilePicture={profilePicture}></ProfileIconButton>
+                    <ProfileIconButton
+                      profilePicture={profilePicture}
+                    ></ProfileIconButton>
                   </div>
                 </div>
               </>
-            }
+            )}
             <div className={s.language}>
               <I18nSelector></I18nSelector>
             </div>
             <div className={s.menuDrawer}>
-              <IconButton aria-label="menu" onClick={(_) => setOpenMenu(true)} className={s.iconMenuColor}>
-                <Badge classes={{ root: s.menuIconWithBadge }} badgeContent={unreadChatMessages} max={99} color="primary">
-                  <MenuIcon style={{ fontSize: '30px' }} />
+              <IconButton
+                aria-label="menu"
+                onClick={(_) => setOpenMenu(true)}
+                className={s.iconMenuColor}
+              >
+                <Badge
+                  classes={{ root: s.menuIconWithBadge }}
+                  badgeContent={unreadChatMessages}
+                  max={99}
+                  color="primary"
+                >
+                  <MenuIcon style={{ fontSize: "30px" }} />
                 </Badge>
-                <MenuIcon classes={{ root: s.menuIcon }} style={{ fontSize: '30px' }} />
+                <MenuIcon
+                  classes={{ root: s.menuIcon }}
+                  style={{ fontSize: "30px" }}
+                />
               </IconButton>
             </div>
           </div>
-          <DrawerMenu open={openMenu} setOpen={setOpenMenu} unreadChatMessages={unreadChatMessages} navBarItems={navBarItems}></DrawerMenu>
+          <DrawerMenu
+            open={openMenu}
+            setOpen={setOpenMenu}
+            unreadChatMessages={unreadChatMessages}
+            navBarItems={navBarItems}
+          ></DrawerMenu>
         </Toolbar>
       </AppBar>
-      {globalIsLoading &&
-        <LinearProgress style={{ position: 'absolute', top: '69px', width: '100vw', zIndex: 1 }} />
-      }
+      {globalIsLoading && (
+        <LinearProgress
+          style={{
+            position: "absolute",
+            top: "69px",
+            width: "100vw",
+            zIndex: 1,
+          }}
+        />
+      )}
     </>
   );
 }
