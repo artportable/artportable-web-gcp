@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { Dialog, IconButton } from "@material-ui/core";
-import { useTranslation } from 'next-i18next'
-import CloseIcon from '@material-ui/icons/Close';
-import { styles } from './adDialog.css'
-import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
+import { useTranslation } from "next-i18next";
+import CloseIcon from "@material-ui/icons/Close";
+import { styles } from "./adDialog.css";
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
 import router from "next/router";
 import { Locales } from "../../models/i18n/locales";
 
@@ -17,31 +21,40 @@ interface RandomImageProps {
 
 interface Props {
   openAdDialog: any;
-  setOpenAdDialog: any
+  setOpenAdDialog: any;
   onClose(): any;
 }
 
 export default function AdDialog(props: Props) {
   const s = styles();
-  const { t } = useTranslation(['profile']);
-  const [randomAd, setRandomAd] = useState<RandomImageProps | undefined>()
+  const { t } = useTranslation(["profile"]);
+  const [randomAd, setRandomAd] = useState<RandomImageProps | undefined>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (randomAd === { companyImageSv: '', companyLinkSv: '', companyImageEn: '', companyLinkEn: '', companyName: '' }) {
-      setLoading(true)
+    if (
+      randomAd ===
+      {
+        companyImageSv: "",
+        companyLinkSv: "",
+        companyImageEn: "",
+        companyLinkEn: "",
+        companyName: "",
+      }
+    ) {
+      setLoading(true);
     } else {
-      setLoading(false)
+      setLoading(false);
     }
   }, []);
 
   const ad = [
     {
       companyName: "Plingon",
-      companyImageSv: '/ad/plingon.jpg',
-      companyLinkSv: 'https://bit.ly/3FyutR1',
-      companyImageEn: '/ad/plingon.jpg',
-      companyLinkEn: 'https://bit.ly/3FyutR1'
+      companyImageSv: "/ad/blackfridayPlingon.jpg",
+      companyLinkSv: "https://bit.ly/3FyutR1",
+      companyImageEn: "/ad/plingon.jpg",
+      companyLinkEn: "https://bit.ly/3FyutR1",
     },
     // {
     //   companyName: "Artportable",
@@ -50,25 +63,28 @@ export default function AdDialog(props: Props) {
     //   companyImageEn: '/ad/artportableAdEn.png',
     //   companyLinkEn: 'https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=oAwwi6j92ok&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=en'
     // },
-  ]
+  ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
-    setRandomAd(({
-      companyImageSv: (ad[randomAdIndex].companyImageSv),
-      companyLinkSv: (ad[randomAdIndex].companyLinkSv),
-      companyImageEn: (ad[randomAdIndex].companyImageEn),
-      companyLinkEn: (ad[randomAdIndex].companyLinkEn),
-      companyName: (ad[randomAdIndex].companyName)
-    }));
-  }, [])
+    setRandomAd({
+      companyImageSv: ad[randomAdIndex].companyImageSv,
+      companyLinkSv: ad[randomAdIndex].companyLinkSv,
+      companyImageEn: ad[randomAdIndex].companyImageEn,
+      companyLinkEn: ad[randomAdIndex].companyLinkEn,
+      companyName: ad[randomAdIndex].companyName,
+    });
+  }, []);
 
   const onClick = () => {
-    trackGoogleAnalytics(ActionType.CLICK_FIRST_PAGE_AD, CategoryType.INTERACTIVE)
+    trackGoogleAnalytics(
+      ActionType.CLICK_FIRST_PAGE_AD,
+      CategoryType.INTERACTIVE
+    );
   };
 
   const onCloseClick = () => {
     props.onClose();
-  }
+  };
 
   return (
     <Dialog
@@ -78,27 +94,34 @@ export default function AdDialog(props: Props) {
       aria-labelledby="ad"
       aria-describedby="ad-dialog"
     >
-      <IconButton aria-label="close" className={s.closeButton} onClick={onCloseClick}>
-        <CloseIcon className={s.closeIcon}/>
+      <IconButton
+        aria-label="close"
+        className={s.closeButton}
+        onClick={onCloseClick}
+      >
+        <CloseIcon className={s.closeIcon} />
       </IconButton>
-      {randomAd &&
+      {randomAd && (
         <>
-          {router.locale === Locales.sv ?
-            (
-              <a href={(randomAd.companyLinkSv)} target="_blank" onClick={onClick}>
-                <img className={s.adImage} src={(randomAd.companyImageSv)} alt={(randomAd.companyName)} />
-              </a>
-            )
-            :
-            (
-              <a href={(randomAd.companyLinkEn)} target="_blank" onClick={onClick}>
-                <img className={s.adImage} src={(randomAd.companyImageEn)} alt={(randomAd.companyName)} />
-              </a>
-            )
-          }
+          {router.locale === Locales.sv ? (
+            <a href={randomAd.companyLinkSv} target="_blank" onClick={onClick}>
+              <img
+                className={s.adImage}
+                src={randomAd.companyImageSv}
+                alt={randomAd.companyName}
+              />
+            </a>
+          ) : (
+            <a href={randomAd.companyLinkEn} target="_blank" onClick={onClick}>
+              <img
+                className={s.adImage}
+                src={randomAd.companyImageEn}
+                alt={randomAd.companyName}
+              />
+            </a>
+          )}
         </>
-      }
+      )}
     </Dialog>
   );
 }
-
