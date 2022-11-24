@@ -53,7 +53,7 @@ export default function AdDialog(props: Props) {
       companyName: "Plingon",
       companyImageSv: "/ad/blackfridayPlingon.jpg",
       companyLinkSv: "https://bit.ly/3FyutR1",
-      companyImageEn: "/ad/plingon.jpg",
+      companyImageEn: "/ad/blackfridayPlingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
     },
     // {
