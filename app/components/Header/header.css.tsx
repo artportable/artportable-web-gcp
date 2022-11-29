@@ -218,16 +218,5 @@ export const styles = makeStyles((theme: Theme) =>
         width: "188px",
       },
     },
-
-    blackWeekCreateButton: {
-      whiteSpace: "nowrap",
-      backgroundColor: "var(--black-absolute)",
-      color: "white",
-      "& span": {
-        "&..MuiButton-label": {
-          margin: "0 !important",
-        },
-      },
-    },
   })
 );

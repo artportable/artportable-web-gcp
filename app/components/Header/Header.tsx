@@ -150,7 +150,7 @@ export default function Header({ navBarItems }) {
             {!isSignedIn.value && (
               <div className={s.login}>
                 <Button
-                  className={s.blackWeekCreateButton}
+                  className={s.createButton}
                   size="large"
                   variant="contained"
                   color="black"
@@ -163,7 +163,7 @@ export default function Header({ navBarItems }) {
                     })
                   }
                 >
-                  {t("blackWeekCreatePortfolio")}
+                  {t("createPortfolio")}
                 </Button>
                 <Button
                   className={s.signUp}
