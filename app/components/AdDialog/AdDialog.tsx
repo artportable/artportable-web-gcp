@@ -51,9 +51,9 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: "Plingon",
-      companyImageSv: "/ad/blackfridayPlingon.jpg",
+      companyImageSv: "/ad/plingon.jpg",
       companyLinkSv: "https://bit.ly/3FyutR1",
-      companyImageEn: "/ad/blackfridayPlingon.jpg",
+      companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
     },
     // {
