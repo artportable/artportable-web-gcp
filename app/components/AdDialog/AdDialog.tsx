@@ -49,20 +49,22 @@ export default function AdDialog(props: Props) {
   }, []);
 
   const ad = [
-    {
+    /*   {
       companyName: "Plingon",
       companyImageSv: "/ad/plingon.jpg",
       companyLinkSv: "https://bit.ly/3FyutR1",
       companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
+    }, */
+    {
+      companyName: "Artportable",
+      companyImageSv: "/ad/artportableAdSv.png",
+      companyLinkSv:
+        "https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=2bd10942-7b2e-46ca-b5fc-dc7a8014be24&response_mode=fragment&response_type=code&scope=openid&nonce=1468fa51-5405-4ec3-8738-5cd23c617bdc&ui_locales=sv&code_challenge=7_R5eG0FnCgVgxm7Tf3xuj8kHQ8R0o5XJMtGv3UnUk4&code_challenge_method=S256",
+      companyImageEn: "/ad/artportableAdEn.png",
+      companyLinkEn:
+        "https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=oAwwi6j92ok&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=en",
     },
-    // {
-    //   companyName: "Artportable",
-    //   companyImageSv: '/ad/artportableAdSv.png',
-    //   companyLinkSv: 'https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=2bd10942-7b2e-46ca-b5fc-dc7a8014be24&response_mode=fragment&response_type=code&scope=openid&nonce=1468fa51-5405-4ec3-8738-5cd23c617bdc&ui_locales=sv&code_challenge=7_R5eG0FnCgVgxm7Tf3xuj8kHQ8R0o5XJMtGv3UnUk4&code_challenge_method=S256',
-    //   companyImageEn: '/ad/artportableAdEn.png',
-    //   companyLinkEn: 'https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=oAwwi6j92ok&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=en'
-    // },
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
