@@ -59,28 +59,16 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: 'Helga Egilson',
-      username: 'helgaegilson',
-      image: '/images/helga_egilson.jpg',
-      imageLink: 'art/0945f177-a80f-4182-891e-481d3735b26e',
+      name: "Atle Reilo",
+      username: "atle.reilo",
+      image: "/images/atle.jpg",
+      imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76",
     },
     {
-      name: 'Terje Strømsjordet',
-      username: 'Terje.Stromsjordet',
-      image: '/images/terje_stromsjordet.jpg',
-      imageLink: 'art/61a7c9fb-3d8f-408d-b869-cc4729066ed6',
-    },
-    {
-      name: 'Ralph Castellan',
-      username: 'rc-art',
-      image: '/images/ralph_castellan.jpg',
-      imageLink: 'art/f2b38ed5-1dc3-422a-9f1d-3f69cef08900',
-    },
-    {
-      name: 'Mimmi Scheibe',
-      username: 'mimmi.scheibe',
-      image: '/images/mimmi_scheibe.jpg',
-      imageLink: 'art/8abbf270-5727-4aa7-b723-dbda75465767',
+      name: "Mette Ross",
+      username: "metteross",
+      image: "/images/metteRoss.jpg",
+      imageLink: "art/8317e30c-6126-4d0b-8ca1-11698ded9676",
     },
   ];
 
