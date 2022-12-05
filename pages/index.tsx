@@ -1,10 +1,10 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { styles } from '../styles/index.css';
+import { styles } from "../styles/index.css";
 import React, { useContext, useEffect, useState } from "react";
-import Main from '../app/components/Main/Main'
+import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
 import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
-import TabPanel from '../app/components/TabPanel/TabPanel'
+import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { useGetTags } from "../app/hooks/dataFetching/Artworks";
@@ -18,7 +18,7 @@ import { Artwork } from "../app/models/Artwork";
 import Artist from "../app/models/Artist";
 import { id } from "date-fns/locale";
 import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
-import Head from 'next/head';
+import Head from "next/head";
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
@@ -28,11 +28,21 @@ import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLogin
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
 import AdDialog from "../app/components/AdDialog/AdDialog";
-import { ActionType, CategoryType, trackGoogleAnalytics } from "../app/utils/googleAnalytics";
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../app/utils/googleAnalytics";
 import router from "next/router";
 
 export default function DiscoverPage({ navBarItems }) {
-  const { t } = useTranslation(['index', 'header', 'plans', 'common', 'discover']);
+  const { t } = useTranslation([
+    "index",
+    "header",
+    "plans",
+    "common",
+    "discover",
+  ]);
   const s = styles();
   const store = useStore();
   const [sold, setSold] = useState("All");
@@ -41,13 +51,13 @@ export default function DiscoverPage({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const discoverTab = store.getState()?.discover?.tab ?? 1;
   const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
-  const rowWidth = useMainWidth().wide
+  const rowWidth = useMainWidth().wide;
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const { loading, setLoading } = useContext(LoadingContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [openAdDialog, setOpenAdDialog] = useState(true);
-  
+
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
@@ -58,148 +68,213 @@ export default function DiscoverPage({ navBarItems }) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
-  
-  
-  useEffect(()=> {
-    if (sessionStorage.getItem('dialog')) {
-      setOpenAdDialog(false)
-    } else if (openAdDialog) {
-      trackGoogleAnalytics(ActionType.SHOW_FIRST_PAGE_AD, CategoryType.INTERACTIVE)
-    } 
-  },[])
-  
-  useEffect(()=> {
-    if (openAdDialog === false) {
-      sessionStorage.setItem('dialog', 'false')
-    }
-  },[toggleAdDialog])
 
-  useEffect(()=> {
-    if (sessionStorage.getItem('payment')) {
-      router.reload();
-      sessionStorage.removeItem('payment')
+  useEffect(() => {
+    if (sessionStorage.getItem("dialog")) {
+      setOpenAdDialog(false);
+    } else if (openAdDialog) {
+      trackGoogleAnalytics(
+        ActionType.SHOW_FIRST_PAGE_AD,
+        CategoryType.INTERACTIVE
+      );
     }
-  },[])
-  
-  const useWideLayout = activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8;
-  
+  }, []);
+
+  useEffect(() => {
+    if (openAdDialog === false) {
+      sessionStorage.setItem("dialog", "false");
+    }
+  }, [toggleAdDialog]);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("payment")) {
+      router.reload();
+      sessionStorage.removeItem("payment");
+    }
+  }, []);
+
+  const useWideLayout =
+    activeTab === 0 ||
+    activeTab === 1 ||
+    activeTab === 2 ||
+    activeTab === 3 ||
+    activeTab === 4 ||
+    activeTab === 8;
+
   function setTab(value) {
     setActiveTab(value);
     dispatch({
       type: SET_TAB,
-      payload: value
+      payload: value,
     });
   }
-  
+
   function a11yProps(index: any) {
     return {
       id: `nav-tab-${index}`,
-      'aria-controls': `nav-tabpanel-${index}`,
+      "aria-controls": `nav-tabpanel-${index}`,
     };
   }
-  
+
   const subjectOptions = [
     {
-      value: 'All',
-      label: t('index:all')
+      value: "All",
+      label: t("index:all"),
     },
     {
-      value: 'Unsold',
-      label: t('index:unsold')
+      value: "Unsold",
+      label: t("index:unsold"),
     },
     {
-      value: 'Sold',
-      label: t('index:sold')
+      value: "Sold",
+      label: t("index:sold"),
     },
   ];
 
   const loadImages = () => {
-    setLoadMoreArtworks(true)
-  }
+    setLoadMoreArtworks(true);
+  };
 
   const stopLoadImages = () => {
-    setLoadMoreArtworks(false)
-  }
+    setLoadMoreArtworks(false);
+  };
 
   function toggleAdDialog() {
     setOpenAdDialog(false);
   }
-  
 
-  return  (
-    <Main noHeaderPadding wide={useWideLayout} isShow={false} navBarItems={navBarItems}>
+  return (
+    <Main
+      noHeaderPadding
+      wide={useWideLayout}
+      isShow={false}
+      navBarItems={navBarItems}
+    >
       <Head>
-        <meta name="title" content={t('index:title')} />
-        <meta name="description" content={t('index:description')} />
+        <meta name="title" content={t("index:title")} />
+        <meta name="description" content={t("index:description")} />
         <meta name="url" content="https://artportable.com/" />
-        
-        <meta property="og:title" content={t('index:title')} />
-        <meta property="og:description" content={t('index:description')} />
+
+        <meta property="og:title" content={t("index:title")} />
+        <meta property="og:description" content={t("index:description")} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://artportable.com/" />
-        <meta property="og:image" content="/images/artportable_tv_commercial.png" />
+        <meta
+          property="og:image"
+          content="/images/artportable_tv_commercial.png"
+        />
 
-        <meta property="twitter:title" content={t('index:title')} />
-        <meta property="twitter:description" content={t('index:description')} />
+        <meta property="twitter:title" content={t("index:title")} />
+        <meta property="twitter:description" content={t("index:description")} />
         <meta property="twitter:type" content="website" />
         <meta property="twitter:url" content="https://artportable.com/" />
-        <meta property="twitter:image" content="/images/artportable_tv_commercial.png" />
+        <meta
+          property="twitter:image"
+          content="/images/artportable_tv_commercial.png"
+        />
         <link rel="canonical" href={publicUrl} />
       </Head>
-      {!loading &&
+      {!loading && (
         <>
-          {!isSignedIn.value &&
-            <IndexHero></IndexHero>
-          }
-            <AdDialog
+          {!isSignedIn.value && <IndexHero></IndexHero>}
+          {/*  <AdDialog
               openAdDialog={openAdDialog}
               setOpenAdDialog={setOpenAdDialog}
               onClose={toggleAdDialog}
-            />
+            /> */}
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
-              {activeTab === 0 || activeTab === 1 || activeTab === 2 || activeTab === 3 || activeTab === 4 || activeTab === 8 ?
+              {activeTab === 0 ||
+              activeTab === 1 ||
+              activeTab === 2 ||
+              activeTab === 3 ||
+              activeTab === 4 ||
+              activeTab === 8 ? (
                 <form className={s.form}>
                   <div className={s.textFieldFlex}>
                     <TextField
                       classes={{
-                        root: s.textField
+                        root: s.textField,
                       }}
                       select
                       variant="outlined"
                       value={sold}
                     >
                       {subjectOptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value} onClick={() => { setSold(option.value); loadImages(); }}>
+                        <MenuItem
+                          key={option.value}
+                          value={option.value}
+                          onClick={() => {
+                            setSold(option.value);
+                            loadImages();
+                          }}
+                        >
                           {option.label}
                         </MenuItem>
                       ))}
                     </TextField>
                   </div>
                 </form>
-                :
-                null
-              }
+              ) : null}
               <Tabs
-                className={`${activeTab < 5 || activeTab === 8 ? s.artTabs : s.artistTab}`}
+                className={`${
+                  activeTab < 5 || activeTab === 8 ? s.artTabs : s.artistTab
+                }`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
                 scrollButtons={"on"}
               >
-                <Tab className={s.text} label={t('discover:highlights')} {...a11yProps(t('discover:highlights'))} />
-                <Tab className={s.text} label={t('discover:trendingArt')} {...a11yProps(t('discover:trendingArt'))} />
-                <Tab className={s.text} label={t('discover:topArt')} {...a11yProps(t('discover:topArt'))} />
-                <Tab className={s.text} label={t('discover:latestArt')} {...a11yProps(t('discover:latestArt'))} />
-                <Tab className={s.text} label={t('discover:art')} {...a11yProps(t('discover:art'))} />
-                <Tab className={s.text} label={t('discover:mostFollowed')} {...a11yProps(t('discover:mostFollowed'))} />
-                <Tab className={s.text} label={t('discover:monthlyArtist')} {...a11yProps(t('discover:monthlyArtist'))} />
-                <Tab className={s.text} label={t('discover:artists')} {...a11yProps(t('discover:artists'))} />
-                <Tab className={s.text} label={t('discover:myLikedArt')} {...a11yProps(t('discover:myLikedArt'))} onClick={redirectIfNotLoggedIn} />
+                <Tab
+                  className={s.text}
+                  label={t("discover:highlights")}
+                  {...a11yProps(t("discover:highlights"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:trendingArt")}
+                  {...a11yProps(t("discover:trendingArt"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:topArt")}
+                  {...a11yProps(t("discover:topArt"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:latestArt")}
+                  {...a11yProps(t("discover:latestArt"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:art")}
+                  {...a11yProps(t("discover:art"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:mostFollowed")}
+                  {...a11yProps(t("discover:mostFollowed"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:monthlyArtist")}
+                  {...a11yProps(t("discover:monthlyArtist"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:artists")}
+                  {...a11yProps(t("discover:artists"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:myLikedArt")}
+                  {...a11yProps(t("discover:myLikedArt"))}
+                  onClick={redirectIfNotLoggedIn}
+                />
               </Tabs>
             </div>
             <Box paddingTop={4}>
-            <TabPanel value={activeTab} index={0}>
+              <TabPanel value={activeTab} index={0}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -289,11 +364,10 @@ export default function DiscoverPage({ navBarItems }) {
                   activeTab={activeTab}
                 />
               </TabPanel>
-
             </Box>
           </div>
         </>
-      }
+      )}
     </Main>
   );
 }
@@ -303,7 +377,19 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       navBarItems: navBarItems,
-      ...await serverSideTranslations(locale, ['art', 'header', 'footer', 'common', 'discover', 'tags', 'index', 'plans', 'snackbar', 'support', 'articles']),
+      ...(await serverSideTranslations(locale, [
+        "art",
+        "header",
+        "footer",
+        "common",
+        "discover",
+        "tags",
+        "index",
+        "plans",
+        "snackbar",
+        "support",
+        "articles",
+      ])),
     },
     revalidate: 60,
   };
