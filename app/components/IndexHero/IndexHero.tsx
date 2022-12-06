@@ -66,15 +66,15 @@ export default function IndexHero() {
     },
     {
       name: "Mette Ross",
-      username: "rc-art",
-      image: "/images/ralph_castellan2.jpg",
-      imageLink: "art/f67d95aa-95af-46da-9f3e-4192cb1fc01e",
+      username: "metteross",
+      image: "/images/metteRoss.jpg",
+      imageLink: "art/8317e30c-6126-4d0b-8ca1-11698ded9676",
     },
     {
       name: "Ralph Castellan",
       username: "rc-art",
       image: "/images/ralph_castellan2.jpg",
-      imageLink: "art/8317e30c-6126-4d0b-8ca1-11698ded9676",
+      imageLink: "art/f67d95aa-95af-46da-9f3e-4192cb1fc01e",
     },
   ];
 
