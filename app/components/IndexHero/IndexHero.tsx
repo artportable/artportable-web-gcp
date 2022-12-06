@@ -76,6 +76,12 @@ export default function IndexHero() {
       image: "/images/ralph_castellan2.jpg",
       imageLink: "art/f67d95aa-95af-46da-9f3e-4192cb1fc01e",
     },
+    {
+      name: "Gro Folkan",
+      username: "g-fol",
+      image: "/images/folkan_gro.jpg",
+      imageLink: "art/96d08821-ae08-43ed-bafb-65f364e03e75",
+    },
   ];
 
   useEffect(() => {
