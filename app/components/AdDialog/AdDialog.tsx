@@ -58,12 +58,12 @@ export default function AdDialog(props: Props) {
     }, */
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/artportableAdSv.png",
+      companyImageSv: "/ad/christmasAdSv.jpg",
       companyLinkSv:
         "https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=2bd10942-7b2e-46ca-b5fc-dc7a8014be24&response_mode=fragment&response_type=code&scope=openid&nonce=1468fa51-5405-4ec3-8738-5cd23c617bdc&ui_locales=sv&code_challenge=7_R5eG0FnCgVgxm7Tf3xuj8kHQ8R0o5XJMtGv3UnUk4&code_challenge_method=S256",
-      companyImageEn: "/ad/artportableAdEn.png",
+      companyImageEn: "/ad/christmasAdEn.jpg",
       companyLinkEn:
-        "https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=oAwwi6j92ok&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=en",
+        "https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fen%2Fplans&state=10ee17d6-a134-46db-bb12-d45df4158b7f&response_mode=fragment&response_type=code&scope=openid&nonce=d13efea9-5824-4277-9be7-687902291d10&ui_locales=en&code_challenge=kHSJXTXIJSbExzFBYuGXwunBarL9-tMOgrVgxFDRpfk&code_challenge_method=S256",
     },
   ];
   useEffect(() => {
