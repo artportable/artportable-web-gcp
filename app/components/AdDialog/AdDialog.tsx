@@ -58,7 +58,7 @@ export default function AdDialog(props: Props) {
     }, */
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/newChristmasAd.jpg",
+      companyImageSv: "/ad/newChristmasAd2.jpg",
       companyLinkSv:
         "https://idp.artportable.com/auth/realms/prod/protocol/openid-connect/registrations?client_id=artportable-web&redirect_uri=https%3A%2F%2Fartportable.com%2Fplans&state=2bd10942-7b2e-46ca-b5fc-dc7a8014be24&response_mode=fragment&response_type=code&scope=openid&nonce=1468fa51-5405-4ec3-8738-5cd23c617bdc&ui_locales=sv&code_challenge=7_R5eG0FnCgVgxm7Tf3xuj8kHQ8R0o5XJMtGv3UnUk4&code_challenge_method=S256",
       companyImageEn: "/ad/christmasAdEn.jpg",
