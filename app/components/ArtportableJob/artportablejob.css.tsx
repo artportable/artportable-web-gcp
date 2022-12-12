@@ -1,73 +1,57 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { max } from "date-fns/esm";
-import { rowGap } from "../../utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     banner: {
       display: "flex",
-      width: "100%",
-      height: "520px",
+      flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around",
+      justifyContent: "center",
       backgroundColor: "var(--header-color)",
-      [theme.breakpoints.down("xs")]: {
-        display: "flex",
-        flexWrap: "nowrap",
-        flexDirection: "column-reverse",
+      height: "600px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "400px",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        height: "500px",
+      },
+    },
+    textImgContainer: {
+      display: "flex",
+      width: "300px",
+      flexDirection: "column-reverse",
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "row",
+        justifyContent: "center",
         alignItems: "center",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "auto",
       },
     },
 
     headline: {
-      display: "flex",
-      fontFamily: "Abel",
+      fontFamily: "Gotham",
       fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "70px",
-      alignItems: "center",
-      margin: "10px 30px 10px 100px",
-      [theme.breakpoints.down("xs")]: {
-        fontSize: "58px",
-        width: "300px",
-        margin: "40px auto",
+      fontWeight: 700,
+      fontSize: "48px",
+      [theme.breakpoints.up("sm")]: {
+        margin: "0px 20px 0px 0px",
+        width: "auto",
       },
-      [theme.breakpoints.down("sm")]: {
-        fontSize: "58px",
-        width: "300px",
-        margin: "40px auto",
-      },
-      [theme.breakpoints.down("md")]: {
-        fontSize: "58px",
-        width: "300px",
-        margin: "40px auto",
+      [theme.breakpoints.up("md")]: {
+        width: "500px",
       },
     },
 
     artwork: {
-      display: "flex",
-      width: "600px",
-      height: "450px",
-      alignItems: "center",
-      margin: "0px 50px 10px 0px",
-      [theme.breakpoints.down("xs")]: {
+      width: "300px",
+      height: "250px",
+      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.up("mdPlus")]: {
         display: "flex",
-        alignItems: "center",
-        width: "300px",
-        height: "250px",
-        margin: "0px auto",
-      },
-      [theme.breakpoints.up("sm")]: {
-        display: "flex",
-        alignItems: "center",
-        width: "350px",
-        height: "350px",
-      },
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-        alignItems: "center",
-        width: "550px",
         height: "450px",
+        width: "auto",
       },
     },
 
@@ -81,72 +65,48 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
+    info: {
+      backgroundColor: "var(--header-color)",
+      "&:nth-of-type(odd)": {
+        backgroundColor: "var(--absolute-white)",
+      },
+      display: "flex",
+      justifyContent: "space-around",
+      padding: "20px 0px 10px 0px",
+      fontWeight: 350,
+      "& a": {
+        textDecoration: "underline",
+      },
+      [theme.breakpoints.up("sm")]: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-end",
+        padding: "20px 10px 10px 10px",
+      },
+    },
+
     upperText: {
-      marginBottom: "0px",
+      margin: "10px 0px 10px 0px",
       fontSize: "24px",
       fontFamily: "Gotham",
-      fontWeight: "bold",
-      [theme.breakpoints.down("xs")]: {
-        display: "flex",
-        alignItems: "center",
-      },
-      [theme.breakpoints.down("sm")]: {
-        display: "flex",
-        alignItems: "center",
-        margin: "10px 0px 10px 0px",
-      },
+      fontWeight: 350,
     },
 
     jobs: {
-      margin: "-20px 20px 20px 20px",
+      [theme.breakpoints.up("sm")]: {
+        display: "flex",
+        flexDirection: "column",
+      },
     },
 
     jobName: {
-      display: "flex",
-
+      fontWeight: 450,
+      fontFamily: "Gotham",
       textDecoration: "underline",
-      color: "black",
-    },
-
-    readMore: {
-      margin: "-40px 10px 10px 10px",
-    },
-
-    more: {
-      textAlign: "right",
-      margin: "10px 10px 10px 10px",
     },
 
     apply: {
-      display: "flex",
-      flexDirection: "row-reverse",
-      margin: "10px 18px 10px 10px",
-      [theme.breakpoints.down("xs")]: {
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row-reverse",
-      },
-      [theme.breakpoints.down("sm")]: {
-        display: "flex",
-        alignItems: "center",
-        margin: "0px 18px 0px 0px",
-        flexDirection: "row-reverse",
-      },
-    },
-
-    info: {
-      backgroundColor: "var(--header-color)",
-      height: "100px",
-      margin: "0px 0px 0px 0px",
-      padding: "0px 0px 10px 0px",
-      alignContent: "center",
-      border: "0.5px solid white",
-      [theme.breakpoints.down("xs")]: {
-        padding: "10px 0px 10px 0px",
-      },
-      [theme.breakpoints.down("sm")]: {
-        padding: "20px 0px 10px 0px",
-      },
+      textDecoration: "underline",
     },
   })
 );

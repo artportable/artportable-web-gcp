@@ -68,10 +68,8 @@ export default function ArtportableJob(props: any) {
   return (
     <div>
       <div className={s.banner}>
-        <Typography variant="h1" className={s.headline}>
-          Hitta ditt kulturjobb i Sverige!
-        </Typography>
-        <div className={s.artwork}>
+        <div className={s.textImgContainer}>
+          <div className={s.headline}>Hitta ditt kulturjobb i Sverige!</div>
           <img
             className={s.artwork}
             src={mork_skog.src}
@@ -82,20 +80,19 @@ export default function ArtportableJob(props: any) {
       </div>
 
       <div className={s.jobContainer}>
-        <div className={s.upperText}>Lediga jobbannonser</div>
+        <div className={s.upperText}>Lediga jobbannonser: {data.length}st</div>
         {data.map((data) => (
           <>
             <div className={s.info}>
-              <div className={s.apply}>Ansök senast: {data.apply}</div>
               <div className={s.jobs}>
                 <div className={s.jobName}>{data.jobName}</div>
                 <div>Ort: {data.city}</div>
                 <div>Publicerad den {data.published}</div>
+
+                <div className={s.apply}>Ansök senast: {data.apply}</div>
               </div>
-              <div className={s.more}>
-                <div className={s.readMore}>
-                  <a href={data.readMore}>Läs mer</a>
-                </div>
+              <div>
+                <a href={data.readMore}>Läs mer</a>
               </div>
             </div>
           </>
