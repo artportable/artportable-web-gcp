@@ -86,9 +86,14 @@ export const styles = makeStyles((theme: Theme) =>
     },
     upperTextContainer: {
       display: "flex",
+      flexDirection: "column-reverse",
       justifyContent: "space-between",
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: "row",
+      },
       "& a": {
         textDecoration: "underline",
+        color: "green",
         "&:hover": {
           textDecoration: "none",
         },
@@ -127,6 +132,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column-reverse",
       alignItems: "flex-end",
+      marginBottom: "15px",
       "& a": {
         textDecoration: "underline",
         "&:hover": {
