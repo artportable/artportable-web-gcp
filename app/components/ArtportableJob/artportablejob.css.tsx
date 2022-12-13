@@ -24,6 +24,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        width: "605px",
       },
       [theme.breakpoints.up("md")]: {
         width: "auto",
@@ -37,7 +38,6 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "48px",
       [theme.breakpoints.up("sm")]: {
         margin: "0px 20px 0px 0px",
-        width: "auto",
       },
       [theme.breakpoints.up("md")]: {
         width: "500px",
@@ -50,8 +50,8 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {},
       [theme.breakpoints.up("mdPlus")]: {
         display: "flex",
-        height: "450px",
-        width: "auto",
+        height: "350px",
+        width: "500px",
       },
     },
 
@@ -84,6 +84,16 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "20px 10px 10px 10px",
       },
     },
+    upperTextContainer: {
+      display: "flex",
+      justifyContent: "space-between",
+      "& a": {
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
+      },
+    },
 
     upperText: {
       margin: "10px 0px 10px 0px",
@@ -102,11 +112,34 @@ export const styles = makeStyles((theme: Theme) =>
     jobName: {
       fontWeight: 450,
       fontFamily: "Gotham",
-      textDecoration: "underline",
+      textDecoration: "none",
     },
 
     apply: {
       textDecoration: "underline",
+      [theme.breakpoints.up("md")]: {
+        visibility: "hidden",
+        flexDirection: "column",
+      },
+    },
+
+    leftContainer: {
+      display: "flex",
+      flexDirection: "column-reverse",
+      alignItems: "flex-end",
+      "& a": {
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
+      },
+    },
+
+    applyUpper: {
+      visibility: "hidden",
+      [theme.breakpoints.up("md")]: {
+        visibility: "visible",
+      },
     },
   })
 );
