@@ -10,7 +10,7 @@ import {
 } from "../../utils/googleAnalytics";
 import router from "next/router";
 import { Locales } from "../../models/i18n/locales";
-import mork_skog from "../../../public/images/daniel_zausnig_mork_skog.jpg";
+import jobImage from "../../../public/images/art_free_trial.jpeg";
 import { tableCellClasses } from "@mui/material";
 
 export default function ArtportableJob(props: any) {
@@ -29,52 +29,51 @@ export default function ArtportableJob(props: any) {
 
   const data = [
     createData(
-      "UX designer",
+      "Konstförmedlare",
+      "Göteborg",
+      "2022-11-29",
+      "2023-01-02",
+      "https://vgregion.varbi.com/what:job/jobID:570652/type:job/where:1/apply:1"
+    ),
+    createData(
+      "Fotografredigerare",
       "Stockholm",
-      "2022-12-12",
-      "2022-12-12",
-      "https://www.artportable.com"
+      "2022-12-06",
+      "2023-11-29",
+      "https://candidate.hr-manager.net/ApplicationForm/SinglePageApplicationForm.aspx?cid=1209&departmentId=18957&ProjectId=145645&MediaId=4621"
     ),
     createData(
-      "Web developer",
-      "Uppsala",
-      "2022-8-15",
-      "2022-12-12",
-      "https://www.artportable.com"
-    ),
-    createData(
-      "Art director",
+      "Registrator konstdatabas",
       "Stockholm",
-      "2022-8-12",
-      "2023-12-12",
-      "https://www.artportable.com"
+      "2022-11-28",
+      "2022-12-14",
+      "https://www.modernamuseet.se/stockholm/sv/om-museet/lediga-tjanster/?rmpage=job&rmjob=174"
     ),
     createData(
-      "Artist",
-      "Lund",
-      "2022-9-12",
-      "2023-12-12",
-      "https://www.artportable.com"
+      "Museiintendent/Curator",
+      "Umeå",
+      "2022-11-23",
+      "2023-02-6",
+      "https://umu.varbi.com/what:job/jobID:476115/type:job/where:1/apply:1"
     ),
     createData(
-      "Writer",
-      "Malmö",
-      "2012-12-12",
-      "2022-12-12",
-      "https://www.artportable.com"
+      "UI Artist",
+      "Stockholm",
+      "2022-12-08",
+      "2023-01-31",
+      "https://emp.jobylon.com/jobs/154666-nordlight-ui-artist/"
     ),
   ];
 
   return (
     <div>
       <div className={s.banner}>
-        <Typography variant="h1" className={s.headline}>
-          Hitta ditt kulturjobb i Sverige!
-        </Typography>
-        <div className={s.artwork}>
+        <div className={s.textImgContainer}>
+          <div className={s.headline}>Hitta ditt nästa jobb inom kultur</div>
+
           <img
             className={s.artwork}
-            src={mork_skog.src}
+            src={jobImage.src}
             alt="Konstverk av Daniel Zausnig"
             title="Daniel Zausnig"
           />
@@ -82,20 +81,25 @@ export default function ArtportableJob(props: any) {
       </div>
 
       <div className={s.jobContainer}>
-        <div className={s.upperText}>Lediga jobbannonser</div>
+        <div className={s.upperTextContainer}>
+          <div className={s.upperText}>Lediga jobb: {data.length}st</div>
+          <a href="/support" className={s.upperText}>
+            Publicera jobb
+          </a>
+        </div>
         {data.map((data) => (
           <>
             <div className={s.info}>
-              <div className={s.apply}>Ansök senast: {data.apply}</div>
               <div className={s.jobs}>
                 <div className={s.jobName}>{data.jobName}</div>
                 <div>Ort: {data.city}</div>
                 <div>Publicerad den {data.published}</div>
+
+                <div className={s.apply}>Ansök senast: {data.apply}</div>
               </div>
-              <div className={s.more}>
-                <div className={s.readMore}>
-                  <a href={data.readMore}>Läs mer</a>
-                </div>
+              <div className={s.leftContainer}>
+                <a href={data.readMore}>Läs mer</a>
+                <p className={s.applyUpper}>Ansök senast {data.apply}</p>
               </div>
             </div>
           </>
