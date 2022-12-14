@@ -2,6 +2,12 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    pageContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+
     banner: {
       display: "flex",
       flexDirection: "column",
@@ -10,12 +16,17 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "var(--header-color)",
       height: "500px",
       marginBottom: "30px",
+      width: "100%",
       [theme.breakpoints.up("smPlus")]: {
         height: "400px",
         width: "100%",
       },
       [theme.breakpoints.up("mdPlus")]: {
         height: "400px",
+      },
+      [theme.breakpoints.up("lg")]: {
+        display: "flex",
+        width: "100%",
       },
     },
     textImgContainer: {
@@ -31,6 +42,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("md")]: {
         width: "90%",
+        margin: "10px 10px 10px 10px",
+      },
+      [theme.breakpoints.up("lg")]: {
+        display: "flex",
+        justifyContent: "space-around",
+        width: "100%",
       },
     },
 
@@ -43,8 +60,15 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: "1",
       marginTop: "20px",
       marginBottom: "10px",
-      [theme.breakpoints.up("sm")]: {},
-      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "38px",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "52px",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "52px",
+      },
     },
     heroText: {
       display: "flex",
@@ -57,7 +81,7 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
       [theme.breakpoints.up("sm")]: {
-        width: "450px",
+        width: "400px",
       },
       [theme.breakpoints.up("md")]: {
         width: "650px",
@@ -65,6 +89,9 @@ export const styles = makeStyles((theme: Theme) =>
         "& a": {
           textDecoration: "underline",
         },
+      },
+      [theme.breakpoints.up("lgPlus")]: {
+        width: "600px",
       },
     },
 
@@ -78,16 +105,26 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("mdPlus")]: {
         fontSize: "24px",
       },
+      [theme.breakpoints.up("lgPlus")]: {
+        width: "800px",
+      },
     },
 
     artwork: {
       width: "300px",
       height: "250px",
+      [theme.breakpoints.up("sm")]: {
+        width: "400px",
+      },
       [theme.breakpoints.up("smPlus")]: {},
       [theme.breakpoints.up("mdPlus")]: {
         display: "flex",
-        height: "250px",
-        width: "400px",
+        height: "300px",
+        width: "500px",
+      },
+      [theme.breakpoints.up("lgPlus")]: {
+        height: "350px",
+        width: "600px",
       },
     },
 
@@ -96,7 +133,7 @@ export const styles = makeStyles((theme: Theme) =>
         margin: "0px 35px 0px 30px",
       },
       [theme.breakpoints.up("sm")]: {
-        margin: "60px",
+        margin: "20px",
         width: "90%",
       },
     },
@@ -150,7 +187,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     jobName: {
-      fontWeight: 450,
+      fontWeight: 500,
       fontFamily: "Gotham",
       textDecoration: "none",
     },
