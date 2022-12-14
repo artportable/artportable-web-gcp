@@ -8,7 +8,8 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "var(--header-color)",
-      height: "700px",
+      height: "500px",
+      marginBottom: "30px",
       [theme.breakpoints.up("smPlus")]: {
         height: "400px",
         width: "100%",
@@ -26,9 +27,10 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        width: "90%",
       },
       [theme.breakpoints.up("md")]: {
-        width: "auto",
+        width: "90%",
       },
     },
 
@@ -36,7 +38,8 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Gotham",
       fontStyle: "normal",
       fontWeight: 700,
-      fontSize: "48px",
+      width: "100%",
+      fontSize: "32px",
       lineHeight: "1",
       marginTop: "20px",
       marginBottom: "10px",
@@ -61,16 +64,20 @@ export const styles = makeStyles((theme: Theme) =>
         margin: "10px 20px 10px 10px",
         "& a": {
           textDecoration: "underline",
-          marginLeft: "5px",
         },
       },
     },
 
     description: {
-      fontSize: "30px",
+      fontSize: "18px",
+      width: "100%",
       [theme.breakpoints.up("sm")]: {},
-      [theme.breakpoints.up("md")]: {},
-      [theme.breakpoints.up("mdPlus")]: {},
+      [theme.breakpoints.up("md")]: {
+        fontSize: "24px",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "24px",
+      },
     },
 
     artwork: {
@@ -85,12 +92,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     jobContainer: {
-      margin: "150px",
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.up("xs")]: {
         margin: "0px 35px 0px 30px",
       },
-      [theme.breakpoints.down("sm")]: {
-        margin: "0px 35px 0px 30px",
+      [theme.breakpoints.up("sm")]: {
+        margin: "60px",
+        width: "90%",
       },
     },
 

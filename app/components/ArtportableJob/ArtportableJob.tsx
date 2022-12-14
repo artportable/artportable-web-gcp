@@ -72,15 +72,15 @@ export default function ArtportableJob(props: any) {
           <div className={s.heroText}>
             <div className={s.headline}>Hitta ditt nästa jobb inom kultur</div>
             <div className={s.description}>
-              Vill du lägga upp ditt jobbannons på Artportable?
+              Vill du lägga upp en jobbannons på Artportable?&nbsp;
               <a href="/support">Kontakta oss här</a>
             </div>
           </div>
           <img
             className={s.artwork}
             src={jobImage.src}
-            alt="Konstverk av Daniel Zausnig"
-            title="Daniel Zausnig"
+            alt="Artportable ad banner"
+            title="Artportable"
           />
         </div>
       </div>
