@@ -69,13 +69,18 @@ export default function ArtportableJob(props: any) {
     <div>
       <div className={s.banner}>
         <div className={s.textImgContainer}>
-          <div className={s.headline}>Hitta ditt nästa jobb inom kultur</div>
-
+          <div className={s.heroText}>
+            <div className={s.headline}>Hitta ditt nästa jobb inom kultur</div>
+            <div className={s.description}>
+              Vill du lägga upp en jobbannons på Artportable?&nbsp;
+              <a href="/support">Kontakta oss här</a>
+            </div>
+          </div>
           <img
             className={s.artwork}
             src={jobImage.src}
-            alt="Konstverk av Daniel Zausnig"
-            title="Daniel Zausnig"
+            alt="Artportable ad banner"
+            title="Artportable"
           />
         </div>
       </div>
@@ -83,15 +88,14 @@ export default function ArtportableJob(props: any) {
       <div className={s.jobContainer}>
         <div className={s.upperTextContainer}>
           <div className={s.upperText}>Lediga jobb: {data.length}st</div>
-          <a href="/support" className={s.upperText}>
-            Publicera jobb
-          </a>
         </div>
         {data.map((data) => (
           <>
             <div className={s.info}>
               <div className={s.jobs}>
-                <div className={s.jobName}>{data.jobName}</div>
+                <a href="/support" className={s.jobName}>
+                  {data.jobName}
+                </a>
                 <div>Ort: {data.city}</div>
                 <div>Publicerad den {data.published}</div>
 

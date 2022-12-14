@@ -8,26 +8,29 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "var(--header-color)",
-      height: "600px",
+      height: "500px",
+      marginBottom: "30px",
       [theme.breakpoints.up("smPlus")]: {
         height: "400px",
+        width: "100%",
       },
       [theme.breakpoints.up("mdPlus")]: {
-        height: "500px",
+        height: "400px",
       },
     },
     textImgContainer: {
       display: "flex",
-      width: "300px",
+      width: "auto",
       flexDirection: "column-reverse",
+      alignItems: "center",
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        width: "605px",
+        width: "90%",
       },
       [theme.breakpoints.up("md")]: {
-        width: "auto",
+        width: "90%",
       },
     },
 
@@ -35,12 +38,45 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Gotham",
       fontStyle: "normal",
       fontWeight: 700,
-      fontSize: "48px",
+      width: "100%",
+      fontSize: "32px",
+      lineHeight: "1",
+      marginTop: "20px",
+      marginBottom: "10px",
+      [theme.breakpoints.up("sm")]: {},
+      [theme.breakpoints.up("md")]: {},
+    },
+    heroText: {
+      display: "flex",
+      flexDirection: "column",
+      width: "300px",
+      "& a": {
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
+      },
       [theme.breakpoints.up("sm")]: {
-        margin: "0px 20px 0px 0px",
+        width: "450px",
       },
       [theme.breakpoints.up("md")]: {
-        width: "500px",
+        width: "650px",
+        margin: "10px 20px 10px 10px",
+        "& a": {
+          textDecoration: "underline",
+        },
+      },
+    },
+
+    description: {
+      fontSize: "18px",
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {},
+      [theme.breakpoints.up("md")]: {
+        fontSize: "24px",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "24px",
       },
     },
 
@@ -50,18 +86,18 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {},
       [theme.breakpoints.up("mdPlus")]: {
         display: "flex",
-        height: "350px",
-        width: "500px",
+        height: "250px",
+        width: "400px",
       },
     },
 
     jobContainer: {
-      margin: "150px",
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.up("xs")]: {
         margin: "0px 35px 0px 30px",
       },
-      [theme.breakpoints.down("sm")]: {
-        margin: "0px 35px 0px 30px",
+      [theme.breakpoints.up("sm")]: {
+        margin: "60px",
+        width: "90%",
       },
     },
 
@@ -72,16 +108,28 @@ export const styles = makeStyles((theme: Theme) =>
       },
       display: "flex",
       justifyContent: "space-around",
-      padding: "20px 0px 10px 0px",
+      alignItems: "flex-end",
+      padding: "10px 10px 10px 10px",
       fontWeight: 350,
       "& a": {
         textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
       },
       [theme.breakpoints.up("sm")]: {
         display: "flex",
+        flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "flex-end",
-        padding: "20px 10px 10px 10px",
+        alignItems: "baseline",
+        padding: "10px 0px 10px 0px",
+      },
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        padding: "0px 10px 0px 10px",
       },
     },
     upperTextContainer: {
@@ -90,6 +138,11 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       [theme.breakpoints.up("sm")]: {
         flexDirection: "row",
+        alignItems: "baseline",
+      },
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        alignItems: "baseline",
       },
       "& a": {
         textDecoration: "underline",
@@ -108,9 +161,15 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     jobs: {
+      width: "100%",
       [theme.breakpoints.up("sm")]: {
-        display: "flex",
-        flexDirection: "column",
+        margin: "0px 0px 0px 0px",
+        padding: "0px 0px 0px 0px",
+      },
+
+      [theme.breakpoints.up("md")]: {
+        margin: "0px 0px 0px 0px",
+        padding: "0px 0px 0px 0px",
       },
     },
 
@@ -132,12 +191,18 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column-reverse",
       alignItems: "flex-end",
-      marginBottom: "15px",
       "& a": {
         textDecoration: "underline",
         "&:hover": {
           textDecoration: "none",
         },
+      },
+
+      [theme.breakpoints.up("md")]: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column-reverse",
+        marginBottom: "0px",
       },
     },
 
