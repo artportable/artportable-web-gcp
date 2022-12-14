@@ -36,11 +36,17 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         width: "90%",
       },
       [theme.breakpoints.up("md")]: {
+        justifyContent: "space-between",
+        width: "90%",
+        margin: "10px 10px 10px 10px",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        justifyContent: "space-between",
         width: "90%",
         margin: "10px 10px 10px 10px",
       },
@@ -116,12 +122,21 @@ export const styles = makeStyles((theme: Theme) =>
     artwork: {
       width: "300px",
       height: "250px",
-      [theme.breakpoints.up("sm")]: {},
-      [theme.breakpoints.up("smPlus")]: {},
-      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("sm")]: {
+        width: "400px",
+        height: "250px",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        width: "300px",
+        height: "250px",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "400px",
+        height: "250px",
+      },
       [theme.breakpoints.up("lgPlus")]: {
-        height: "350px",
         width: "500px",
+        height: "400px",
       },
     },
 
