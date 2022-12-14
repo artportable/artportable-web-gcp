@@ -12,6 +12,7 @@ import router from "next/router";
 import { Locales } from "../../models/i18n/locales";
 import jobImage from "../../../public/images/art_free_trial.jpeg";
 import { tableCellClasses } from "@mui/material";
+import { Wrapper } from "@material-ui/pickers/wrappers/Wrapper";
 
 export default function ArtportableJob(props: any) {
   const s = styles();
@@ -91,19 +92,17 @@ export default function ArtportableJob(props: any) {
         </div>
         {data.map((data) => (
           <>
-            <div className={s.info}>
-              <div className={s.jobs}>
-                <a href="/support" className={s.jobName}>
-                  {data.jobName}
-                </a>
+            <div className={s.jobInfoContainer}>
+              <div className={s.wrapperLeft}>
+                <a href="/support">{data.jobName}</a>
                 <div>Ort: {data.city}</div>
                 <div>Publicerad den {data.published}</div>
 
                 <div className={s.apply}>Ansök senast: {data.apply}</div>
               </div>
-              <div className={s.leftContainer}>
+              <div className={s.wrapperRight}>
                 <a href={data.readMore}>Läs mer</a>
-                <p className={s.applyUpper}>Ansök senast {data.apply}</p>
+                <div className={s.applyUpper}>Ansök senast {data.apply}</div>
               </div>
             </div>
           </>
