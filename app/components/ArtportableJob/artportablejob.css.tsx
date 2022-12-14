@@ -113,18 +113,12 @@ export const styles = makeStyles((theme: Theme) =>
     artwork: {
       width: "300px",
       height: "250px",
-      [theme.breakpoints.up("sm")]: {
-        width: "400px",
-      },
+      [theme.breakpoints.up("sm")]: {},
       [theme.breakpoints.up("smPlus")]: {},
-      [theme.breakpoints.up("mdPlus")]: {
-        display: "flex",
-        height: "300px",
-        width: "500px",
-      },
+      [theme.breakpoints.up("md")]: {},
       [theme.breakpoints.up("lgPlus")]: {
         height: "350px",
-        width: "600px",
+        width: "500px",
       },
     },
 
