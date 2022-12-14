@@ -101,36 +101,21 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
-    info: {
+    jobInfoContainer: {
       backgroundColor: "var(--header-color)",
       "&:nth-of-type(odd)": {
         backgroundColor: "var(--absolute-white)",
       },
       display: "flex",
-      justifyContent: "space-around",
-      alignItems: "flex-end",
-      padding: "10px 10px 10px 10px",
-      fontWeight: 350,
       "& a": {
         textDecoration: "underline",
         "&:hover": {
           textDecoration: "none",
         },
       },
-      [theme.breakpoints.up("sm")]: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "baseline",
-        padding: "10px 0px 10px 0px",
-      },
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "baseline",
-        padding: "0px 10px 0px 10px",
-      },
+      padding: "10px 10px 10px 10px",
+      [theme.breakpoints.up("sm")]: {},
+      [theme.breakpoints.up("md")]: {},
     },
     upperTextContainer: {
       display: "flex",
@@ -162,15 +147,6 @@ export const styles = makeStyles((theme: Theme) =>
 
     jobs: {
       width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        margin: "0px 0px 0px 0px",
-        padding: "0px 0px 0px 0px",
-      },
-
-      [theme.breakpoints.up("md")]: {
-        margin: "0px 0px 0px 0px",
-        padding: "0px 0px 0px 0px",
-      },
     },
 
     jobName: {
@@ -197,12 +173,32 @@ export const styles = makeStyles((theme: Theme) =>
           textDecoration: "none",
         },
       },
-
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+      },
       [theme.breakpoints.up("md")]: {
         width: "100%",
         display: "flex",
         flexDirection: "column-reverse",
-        marginBottom: "0px",
+      },
+    },
+
+    wrapperLeft: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      width: "100%",
+    },
+
+    wrapperRight: {
+      display: "flex",
+      flexDirection: "column-reverse",
+      alignItems: "flex-end",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column-reverse",
+        justifyContent: "flex-end",
       },
     },
 
