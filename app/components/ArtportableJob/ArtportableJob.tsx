@@ -68,45 +68,49 @@ export default function ArtportableJob(props: any) {
 
   return (
     <div>
-      <div className={s.banner}>
-        <div className={s.textImgContainer}>
-          <div className={s.heroText}>
-            <div className={s.headline}>Hitta ditt nästa jobb inom kultur</div>
-            <div className={s.description}>
-              Vill du lägga upp en jobbannons på Artportable?&nbsp;
-              <a href="/support">Kontakta oss här</a>
+      <div className={s.pageContainer}>
+        <div className={s.banner}>
+          <div className={s.textImgContainer}>
+            <div className={s.heroText}>
+              <div className={s.headline}>
+                Hitta ditt nästa jobb inom kultur
+              </div>
+              <div className={s.description}>
+                Vill du lägga upp en jobbannons på Artportable?&nbsp;
+                <a href="/support">Kontakta oss här</a>
+              </div>
             </div>
+            <img
+              className={s.artwork}
+              src={jobImage.src}
+              alt="Artportable ad banner"
+              title="Artportable"
+            />
           </div>
-          <img
-            className={s.artwork}
-            src={jobImage.src}
-            alt="Artportable ad banner"
-            title="Artportable"
-          />
         </div>
-      </div>
 
-      <div className={s.jobContainer}>
-        <div className={s.upperTextContainer}>
-          <div className={s.upperText}>Lediga jobb: {data.length}st</div>
+        <div className={s.jobContainer}>
+          <div className={s.upperTextContainer}>
+            <div className={s.upperText}>Lediga jobb: {data.length}st</div>
+          </div>
+          {data.map((data) => (
+            <>
+              <div className={s.jobInfoContainer}>
+                <div className={s.wrapperLeft}>
+                  <div className={s.jobName}>{data.jobName}</div>
+                  <div>Ort: {data.city}</div>
+                  <div>Publicerad den {data.published}</div>
+
+                  <div className={s.apply}>Ansök senast: {data.apply}</div>
+                </div>
+                <div className={s.wrapperRight}>
+                  <a href={data.readMore}>Läs mer</a>
+                  <div className={s.applyUpper}>Ansök senast {data.apply}</div>
+                </div>
+              </div>
+            </>
+          ))}
         </div>
-        {data.map((data) => (
-          <>
-            <div className={s.jobInfoContainer}>
-              <div className={s.wrapperLeft}>
-                <a href="/support">{data.jobName}</a>
-                <div>Ort: {data.city}</div>
-                <div>Publicerad den {data.published}</div>
-
-                <div className={s.apply}>Ansök senast: {data.apply}</div>
-              </div>
-              <div className={s.wrapperRight}>
-                <a href={data.readMore}>Läs mer</a>
-                <div className={s.applyUpper}>Ansök senast {data.apply}</div>
-              </div>
-            </div>
-          </>
-        ))}
       </div>
     </div>
   );
