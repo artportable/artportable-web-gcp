@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 import {
   Drawer,
   List,
@@ -10,38 +10,38 @@ import {
   Badge,
   Collapse,
   Divider,
-} from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import NotificationIconButton from '../NotificationIconButton/NotificationIconButton';
-import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
-import SupervisorAccountSharpIcon from '@material-ui/icons/SupervisorAccountSharp';
-import LanguageRoundedIcon from '@material-ui/icons/LanguageRounded';
-import { useTranslation } from 'next-i18next';
-import { styles } from './drawerMenu.css';
-import { useKeycloak } from '@react-keycloak/ssr';
-import type { KeycloakInstance } from 'keycloak-js';
-import { useRouter } from 'next/router';
-import ProfileAvatar from '../ProfileAvatar/ProfileAvatar';
-import useSignupRedirectHref from '../../hooks/useSignupRedirectHref';
-import { UserContext } from '../../contexts/user-context';
-import { useContext, useState } from 'react';
-import { useGetUserProfilePicture } from '../../hooks/dataFetching/UserProfile';
-import { Membership } from '../../models/Membership';
-import DialogConstruction from '../ContactDialog/contactDialog';
-import { Locales, DisplayLocales } from '../../models/i18n/locales';
-import Upgrade from './Upgrade';
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
+import InsertPhotoIcon from "@material-ui/icons/InsertPhoto";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import NotificationIconButton from "../NotificationIconButton/NotificationIconButton";
+import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
+import SupervisorAccountSharpIcon from "@material-ui/icons/SupervisorAccountSharp";
+import LanguageRoundedIcon from "@material-ui/icons/LanguageRounded";
+import { useTranslation } from "next-i18next";
+import { styles } from "./drawerMenu.css";
+import { useKeycloak } from "@react-keycloak/ssr";
+import type { KeycloakInstance } from "keycloak-js";
+import { useRouter } from "next/router";
+import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
+import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
+import { UserContext } from "../../contexts/user-context";
+import { useContext, useState } from "react";
+import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
+import { Membership } from "../../models/Membership";
+import DialogConstruction from "../ContactDialog/contactDialog";
+import { Locales, DisplayLocales } from "../../models/i18n/locales";
+import Upgrade from "./Upgrade";
 import {
   ActionType,
   CategoryType,
   trackGoogleAnalytics,
-} from '../../utils/googleAnalytics';
-import ManageSubscriptionsDialog from '../ManageSubscriptions/ManageSubscriptionsDialog';
+} from "../../utils/googleAnalytics";
+import ManageSubscriptionsDialog from "../ManageSubscriptions/ManageSubscriptionsDialog";
 
 export default function DrawerMenu({
   open,
@@ -49,7 +49,7 @@ export default function DrawerMenu({
   unreadChatMessages,
   navBarItems,
 }) {
-  const { t } = useTranslation(['header', 'common', 'support']);
+  const { t } = useTranslation(["header", "common", "support"]);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
@@ -113,36 +113,36 @@ export default function DrawerMenu({
   return (
     <Drawer
       classes={{ paper: s.container }}
-      anchor='right'
+      anchor="right"
       open={open}
       onClose={() => close()}
       ModalProps={{ keepMounted: true }}
     >
       <div className={s.closeButtonFlex}>
         <IconButton
-          aria-label='close menu'
+          aria-label="close menu"
           onClick={() => close()}
           className={s.closeButton}
         >
-          <CloseIcon style={{ fontSize: '30px' }} />
+          <CloseIcon style={{ fontSize: "30px" }} />
         </IconButton>
       </div>
       <List>
-        <Link href='/' passHref>
+        <Link href="/" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('discover')} />
+              <ListItemText primary={t("discover")} />
             </ListItem>
           </a>
         </Link>
         {navBarItems && navBarItems.length > 0 && (
           <div>
             <ListItem button onClick={handleClickListingPages}>
-              <ListItemText primary={t('productLists')} />
+              <ListItemText primary={t("productLists")} />
               {openListingPages ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={openListingPages} timeout='auto'>
-              <List component='div' disablePadding>
+            <Collapse in={openListingPages} timeout="auto">
+              <List component="div" disablePadding>
                 {navBarItems.map((item, index) => {
                   navBarItems.sort((a, b) => {
                     if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase())
@@ -152,7 +152,7 @@ export default function DrawerMenu({
                   });
                   if (item.locale == router.locale)
                     return (
-                      <Link href={'/' + item.slug} passHref key={index}>
+                      <Link href={"/" + item.slug} passHref key={index}>
                         {/* onClick={(_) => router.push(`/${item.slug}`)} */}
                         <a>
                           {/* <a onClick={(_) =>  { router.push(`/${item.slug}`); forceReload();}}> */}
@@ -173,54 +173,61 @@ export default function DrawerMenu({
             <Divider />
           </div>
         )}
-        <Link href='/artists' passHref>
+        <Link href="/artists" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('artists')} />
+              <ListItemText primary={t("artists")} />
             </ListItem>
           </a>
         </Link>
-        <Link href='/artiklar' passHref>
+        <Link href="/job" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('stories')} />
+              <ListItemText primary={t("job")} />
             </ListItem>
           </a>
         </Link>
-        <Link href='/kurser' passHref>
+        <Link href="/artiklar" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('courses')} />
+              <ListItemText primary={t("stories")} />
             </ListItem>
           </a>
         </Link>
-        <Link href='/kampanj' passHref>
+        <Link href="/kurser" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('offers')} />
+              <ListItemText primary={t("courses")} />
+            </ListItem>
+          </a>
+        </Link>
+        <Link href="/kampanj" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("offers")} />
             </ListItem>
           </a>
         </Link>
         {isSignedIn.value && (
-          <Link href='/medlemserbjudanden' passHref>
+          <Link href="/medlemserbjudanden" passHref>
             <a>
               <ListItem button divider onClick={() => close()}>
-                <ListItemText primary={t('membershipOffers')} />
+                <ListItemText primary={t("membershipOffers")} />
               </ListItem>
             </a>
           </Link>
         )}
-        <Link href='/about-us' passHref>
+        <Link href="/about-us" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('aboutUs')} />
+              <ListItemText primary={t("aboutUs")} />
             </ListItem>
           </a>
         </Link>
-        <Link href='/support' passHref>
+        <Link href="/support" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t('contactUs')} />
+              <ListItemText primary={t("contactUs")} />
             </ListItem>
           </a>
         </Link>
@@ -237,7 +244,7 @@ export default function DrawerMenu({
                     trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY);
                   }}
                 >
-                  <ListItemText primary={t('upgrade')} />
+                  <ListItemText primary={t("upgrade")} />
                 </ListItem>
                 <Upgrade
                   openUpgrade={openUpgrade}
@@ -247,47 +254,47 @@ export default function DrawerMenu({
             )}
             {membership.value > Membership.Base && (
               <>
-                <Link href='/upload' passHref>
+                <Link href="/upload" passHref>
                   <ListItem button divider onClick={() => close()}>
                     <ListItemIcon>
                       <InsertPhotoIcon
-                        color='secondary'
+                        color="secondary"
                         style={{ fontSize: 30 }}
                       />
                     </ListItemIcon>
-                    <ListItemText primary={t('upload')} />
+                    <ListItemText primary={t("upload")} />
                   </ListItem>
                 </Link>
               </>
             )}
-            <Link href='/feed' passHref>
+            <Link href="/feed" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
-                  <Badge max={99} color='primary'>
+                  <Badge max={99} color="primary">
                     <SupervisorAccountSharpIcon
-                      color='secondary'
+                      color="secondary"
                       style={{ fontSize: 30 }}
                     />
                   </Badge>
                 </ListItemIcon>
-                <ListItemText primary={t('myArtNetwork')} />
+                <ListItemText primary={t("myArtNetwork")} />
               </ListItem>
             </Link>
-            <Link href='/messages' passHref>
+            <Link href="/messages" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
                   <Badge
                     badgeContent={unreadChatMessages}
                     max={99}
-                    color='primary'
+                    color="primary"
                   >
                     <MessageRoundedIcon
-                      color='secondary'
+                      color="secondary"
                       style={{ fontSize: 30 }}
                     />
                   </Badge>
                 </ListItemIcon>
-                <ListItemText primary={t('messages')} />
+                <ListItemText primary={t("messages")} />
               </ListItem>
             </Link>
             <Link href={`/profile/@${username.value}`} passHref>
@@ -298,7 +305,7 @@ export default function DrawerMenu({
                     profilePicture={profilePicture}
                   ></ProfileAvatar>
                 </ListItemAvatar>
-                <ListItemText primary={t('profile')} />
+                <ListItemText primary={t("profile")} />
               </ListItem>
             </Link>
           </>
@@ -306,7 +313,7 @@ export default function DrawerMenu({
           <>
             <ListItem button divider>
               <ListItemText
-                primary={t('signUp')}
+                primary={t("signUp")}
                 onClick={() =>
                   keycloak.register({
                     locale: router.locale,
@@ -320,16 +327,16 @@ export default function DrawerMenu({
               divider
               onClick={() => keycloak.login({ locale: router.locale })}
             >
-              <ListItemText primary={t('login')} />
+              <ListItemText primary={t("login")} />
             </ListItem>
           </>
         )}
         <div className={s.languageElement}>
           <ListItem button onClick={handleClickLanguage}>
             <ListItemIcon>
-              <Badge max={99} color='primary'>
+              <Badge max={99} color="primary">
                 <LanguageRoundedIcon
-                  color='secondary'
+                  color="secondary"
                   style={{ fontSize: 30 }}
                 />
               </Badge>
@@ -337,21 +344,21 @@ export default function DrawerMenu({
             <ListItemText primary={displayLocale} />
             {openLanguage ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
-          <Collapse in={openLanguage} timeout='auto'>
-            <List component='div' disablePadding>
+          <Collapse in={openLanguage} timeout="auto">
+            <List component="div" disablePadding>
               <ListItem
                 button
                 className={s.nested}
                 onClick={(_) => handleCloseLanguage(_, Locales.sv)}
               >
-                <ListItemText primary={t('swedish')} />
+                <ListItemText primary={t("swedish")} />
               </ListItem>
               <ListItem
                 button
                 className={s.nested}
                 onClick={(_) => handleCloseLanguage(_, Locales.en)}
               >
-                <ListItemText primary={t('english')} />
+                <ListItemText primary={t("english")} />
               </ListItem>
             </List>
           </Collapse>
@@ -363,11 +370,11 @@ export default function DrawerMenu({
               <ListItemIcon>
                 <ExitToAppIcon style={{ fontSize: 30 }} />
               </ListItemIcon>
-              <ListItemText primary={t('logout')} />
+              <ListItemText primary={t("logout")} />
             </ListItem>
           </>
         ) : (
-          ''
+          ""
         )}
       </List>
     </Drawer>

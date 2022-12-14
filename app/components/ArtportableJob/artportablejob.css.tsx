@@ -1,151 +1,215 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { max } from "date-fns/esm";
-import { rowGap } from "../../utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     banner: {
       display: "flex",
-      width: "100%",
-      height: "520px",
+      flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around",
+      justifyContent: "center",
       backgroundColor: "var(--header-color)",
-      [theme.breakpoints.down("xs")]: {
-        display: "flex",
-        flexWrap: "nowrap",
-        flexDirection: "column-reverse",
+      height: "500px",
+      marginBottom: "30px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "400px",
+        width: "100%",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        height: "400px",
+      },
+    },
+    textImgContainer: {
+      display: "flex",
+      width: "auto",
+      flexDirection: "column-reverse",
+      alignItems: "center",
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "row",
+        justifyContent: "center",
         alignItems: "center",
+        width: "90%",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "90%",
       },
     },
 
     headline: {
-      display: "flex",
-      fontFamily: "Abel",
+      fontFamily: "Gotham",
       fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "70px",
-      alignItems: "center",
-      margin: "10px 30px 10px 100px",
-      [theme.breakpoints.down("xs")]: {
-        fontSize: "58px",
-        width: "300px",
-        margin: "40px auto",
+      fontWeight: 700,
+      width: "100%",
+      fontSize: "32px",
+      lineHeight: "1",
+      marginTop: "20px",
+      marginBottom: "10px",
+      [theme.breakpoints.up("sm")]: {},
+      [theme.breakpoints.up("md")]: {},
+    },
+    heroText: {
+      display: "flex",
+      flexDirection: "column",
+      width: "300px",
+      "& a": {
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
       },
-      [theme.breakpoints.down("sm")]: {
-        fontSize: "58px",
-        width: "300px",
-        margin: "40px auto",
+      [theme.breakpoints.up("sm")]: {
+        width: "450px",
       },
-      [theme.breakpoints.down("md")]: {
-        fontSize: "58px",
-        width: "300px",
-        margin: "40px auto",
+      [theme.breakpoints.up("md")]: {
+        width: "650px",
+        margin: "10px 20px 10px 10px",
+        "& a": {
+          textDecoration: "underline",
+        },
+      },
+    },
+
+    description: {
+      fontSize: "18px",
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {},
+      [theme.breakpoints.up("md")]: {
+        fontSize: "24px",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "24px",
       },
     },
 
     artwork: {
-      display: "flex",
-      width: "600px",
-      height: "450px",
-      alignItems: "center",
-      margin: "0px 50px 10px 0px",
-      [theme.breakpoints.down("xs")]: {
+      width: "300px",
+      height: "250px",
+      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.up("mdPlus")]: {
         display: "flex",
-        alignItems: "center",
-        width: "300px",
         height: "250px",
-        margin: "0px auto",
-      },
-      [theme.breakpoints.up("sm")]: {
-        display: "flex",
-        alignItems: "center",
-        width: "350px",
-        height: "350px",
-      },
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-        alignItems: "center",
-        width: "550px",
-        height: "450px",
+        width: "400px",
       },
     },
 
     jobContainer: {
-      margin: "150px",
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.up("xs")]: {
         margin: "0px 35px 0px 30px",
       },
-      [theme.breakpoints.down("sm")]: {
-        margin: "0px 35px 0px 30px",
-      },
-    },
-
-    upperText: {
-      marginBottom: "0px",
-      fontSize: "24px",
-      fontFamily: "Gotham",
-      fontWeight: "bold",
-      [theme.breakpoints.down("xs")]: {
-        display: "flex",
-        alignItems: "center",
-      },
-      [theme.breakpoints.down("sm")]: {
-        display: "flex",
-        alignItems: "center",
-        margin: "10px 0px 10px 0px",
-      },
-    },
-
-    jobs: {
-      margin: "-20px 20px 20px 20px",
-    },
-
-    jobName: {
-      display: "flex",
-
-      textDecoration: "underline",
-      color: "black",
-    },
-
-    readMore: {
-      margin: "-40px 10px 10px 10px",
-    },
-
-    more: {
-      textAlign: "right",
-      margin: "10px 10px 10px 10px",
-    },
-
-    apply: {
-      display: "flex",
-      flexDirection: "row-reverse",
-      margin: "10px 18px 10px 10px",
-      [theme.breakpoints.down("xs")]: {
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "row-reverse",
-      },
-      [theme.breakpoints.down("sm")]: {
-        display: "flex",
-        alignItems: "center",
-        margin: "0px 18px 0px 0px",
-        flexDirection: "row-reverse",
+      [theme.breakpoints.up("sm")]: {
+        margin: "60px",
+        width: "90%",
       },
     },
 
     info: {
       backgroundColor: "var(--header-color)",
-      height: "100px",
-      margin: "0px 0px 0px 0px",
-      padding: "0px 0px 10px 0px",
-      alignContent: "center",
-      border: "0.5px solid white",
-      [theme.breakpoints.down("xs")]: {
+      "&:nth-of-type(odd)": {
+        backgroundColor: "var(--absolute-white)",
+      },
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "flex-end",
+      padding: "10px 10px 10px 10px",
+      fontWeight: 350,
+      "& a": {
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
+      },
+      [theme.breakpoints.up("sm")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "baseline",
         padding: "10px 0px 10px 0px",
       },
-      [theme.breakpoints.down("sm")]: {
-        padding: "20px 0px 10px 0px",
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        padding: "0px 10px 0px 10px",
+      },
+    },
+    upperTextContainer: {
+      display: "flex",
+      flexDirection: "column-reverse",
+      justifyContent: "space-between",
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: "row",
+        alignItems: "baseline",
+      },
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        alignItems: "baseline",
+      },
+      "& a": {
+        textDecoration: "underline",
+        color: "green",
+        "&:hover": {
+          textDecoration: "none",
+        },
+      },
+    },
+
+    upperText: {
+      margin: "10px 0px 10px 0px",
+      fontSize: "24px",
+      fontFamily: "Gotham",
+      fontWeight: 350,
+    },
+
+    jobs: {
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {
+        margin: "0px 0px 0px 0px",
+        padding: "0px 0px 0px 0px",
+      },
+
+      [theme.breakpoints.up("md")]: {
+        margin: "0px 0px 0px 0px",
+        padding: "0px 0px 0px 0px",
+      },
+    },
+
+    jobName: {
+      fontWeight: 450,
+      fontFamily: "Gotham",
+      textDecoration: "none",
+    },
+
+    apply: {
+      textDecoration: "underline",
+      [theme.breakpoints.up("md")]: {
+        visibility: "hidden",
+        flexDirection: "column",
+      },
+    },
+
+    leftContainer: {
+      display: "flex",
+      flexDirection: "column-reverse",
+      alignItems: "flex-end",
+      "& a": {
+        textDecoration: "underline",
+        "&:hover": {
+          textDecoration: "none",
+        },
+      },
+
+      [theme.breakpoints.up("md")]: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column-reverse",
+        marginBottom: "0px",
+      },
+    },
+
+    applyUpper: {
+      visibility: "hidden",
+      [theme.breakpoints.up("md")]: {
+        visibility: "visible",
       },
     },
   })
