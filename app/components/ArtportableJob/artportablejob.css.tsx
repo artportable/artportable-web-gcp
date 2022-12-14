@@ -61,12 +61,15 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "20px",
       marginBottom: "10px",
       [theme.breakpoints.up("sm")]: {
+        width: "100%",
         fontSize: "38px",
       },
       [theme.breakpoints.up("md")]: {
+        width: "100%",
         fontSize: "52px",
       },
       [theme.breakpoints.up("lg")]: {
+        width: "100%",
         fontSize: "52px",
       },
     },
