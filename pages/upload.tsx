@@ -94,6 +94,7 @@ export default function UploadArtworkPage({ navBarItems }) {
           Title: title,
           Description: description,
           Price: price,
+          Currency: currency,
           SoldOut: soldOutChecked,
           MultipleSizes: multipleSizesChecked,
           Width: width,
