@@ -42,10 +42,12 @@ export default function ArtworkListItemDefined({
   const router = useRouter();
   const formatter = new Intl.NumberFormat(router.locale, {
     style: 'currency',
-    currency: 'SEK',
+    currency: artwork.Currency || 'SEK',  // Use SEK as the default currency
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   });
+  
+  
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);

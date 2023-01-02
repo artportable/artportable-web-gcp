@@ -44,6 +44,7 @@ export default function UploadArtworkPage({ navBarItems }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
+  const [currency, setCurrency] = useState('SEK');
   const [soldOutChecked, setSoldOutChecked] = useState(false);
   const [multipleSizesChecked, setMultipleSizesChecked] = useState(false);
   const [width, setWidth] = useState(0);
@@ -121,6 +122,7 @@ export default function UploadArtworkPage({ navBarItems }) {
           Title: title,
           Description: description,
           Price: price,
+          Currency: currency,
           SoldOut: soldOutChecked,
           MultipleSizes: multipleSizesChecked,
           Width: width,
@@ -360,6 +362,8 @@ export default function UploadArtworkPage({ navBarItems }) {
               setTitle={setTitle}
               setDescription={setDescription}
               setPrice={setPrice}
+              currency = {currency}
+              setCurrency = {setCurrency}
               soldOutChecked={soldOutChecked}
               setSoldOutChecked={setSoldOutChecked}
               multipleSizesChecked={multipleSizesChecked}

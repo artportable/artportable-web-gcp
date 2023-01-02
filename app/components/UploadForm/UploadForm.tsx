@@ -3,10 +3,10 @@ import Box from '@material-ui/core/Box'
 
 import { styles } from './uploadForm.css'
 import { useTranslation } from 'next-i18next';
-import { Checkbox, FormControlLabel, Grid, InputAdornment, TextField, Typography } from '@material-ui/core';
+import { Checkbox, FormControlLabel, Grid, InputAdornment, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 import TagChip from '../TagChip/TagChip';
 
-export default function UploadForm({ title, setTitle, setDescription, setPrice, soldOutChecked, setSoldOutChecked, multipleSizesChecked, setMultipleSizesChecked, width, setWidth, height, setHeight, setDepth, setSelectedTags, selectedTags, tags }) {
+export default function UploadForm({ title, setTitle, setDescription,currency, setPrice, setCurrency, soldOutChecked, setSoldOutChecked, multipleSizesChecked, setMultipleSizesChecked, width, setWidth, height, setHeight, setDepth, setSelectedTags, selectedTags, tags }) {
   const s = styles();
   const { t } = useTranslation('upload');
 
@@ -43,13 +43,25 @@ export default function UploadForm({ title, setTitle, setDescription, setPrice, 
           label={t('price')}
           onChange={(event) => setPrice(parseInt(event.target.value))}
           InputProps={{
-            endAdornment: <InputAdornment position="end">SEK</InputAdornment>,
+            endAdornment: <InputAdornment position="end">
+                <Select
+                  value={currency}
+                  onChange={(event) => setCurrency(event.target.value)}
+                  label={t('currency')}
+                >
+                  <MenuItem value="SEK">SEK</MenuItem>
+                  <MenuItem value="EUR">EUR</MenuItem>
+                  <MenuItem value="USD">USD</MenuItem>
+                  <MenuItem value="GBP">GBP</MenuItem>
+                </Select>
+            </InputAdornment>,
           }}
           fullWidth/>
           <FormControlLabel
             control={<Checkbox checked={soldOutChecked} onChange={(event) => setSoldOutChecked(event.target.checked)} />}
             label={t('common:words.soldOut')}
           />
+
         {!multipleSizesChecked ?
           <Grid container spacing={2}>
             <Grid item xs={12} md={4}>
