@@ -53,24 +53,18 @@ export default function ArtworkPage(props) {
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
-  const [currency, setCurrency] = useState(null);
+/*   const [currency, setCurrency] = useState(null); */
 
   const { isSignedIn } = useContext(UserContext);
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] = useState(false);
 
-  const formatter = new Intl.NumberFormat(props.locale, {
-    
+ /*  const formatter = new Intl.NumberFormat(props.locale, {
+    style: "currency",
     currency: currency === null ? 'SEK' : currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  });
-
-  useEffect(() => {
-    console.log(currency);
-    
-    setCurrency(artwork?.data?.Currency);
-  }, [artwork?.data?.Currency]);
+  }); */
 
   useEffect(() => {
     setFollow(artwork?.data?.Owner?.FollowedByMe);
@@ -199,7 +193,7 @@ export default function ArtworkPage(props) {
                     {artwork.data.SoldOut ?
                       <><div className={s.soldMark} />{t('common:words.sold')} </> :
                       artwork.data.Price && artwork.data.Price != "0" ?
-                        <span>{formatter.format(artwork.data.Price)} {artwork.data.Currency !== null ? artwork.data.Currency : "SEK"} </span> :
+                        <span>{artwork.data.Price} {artwork.data.Currency !== null ? artwork.data.Currency : "SEK"} </span> :
                         <span>{t('priceOnRequest')}</span>
                     }
                   </div>
