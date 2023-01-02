@@ -42,20 +42,13 @@ export default function IndexHero() {
   const [toggleButton, setToggleButton] = useState(false);
 
   useEffect(() => {
-    if (
-      randomImage === { artwork: "", username: "", imageLink: "", name: "" }
-    ) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-
+    setLoading(randomImage === null);
     const isDefaultLocale = router.locale == router.defaultLocale;
     const redirectHref = `${window.origin}${
       isDefaultLocale ? "" : `/${router.locale}`
     }/plans`;
     setSignUpRedirectHref(redirectHref);
-  }, []);
+  }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
   const images = [
     {
