@@ -59,17 +59,12 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Atle Reilo",
-      username: "atle.reilo",
-      image: "/images/atle.jpg",
-      imageLink: "art/0953c373-1e4e-406f-b837-f16f1e0c5b76",
+      name: "Philip Nicholson",
+      username: "philip_nicholson_artist",
+      image: "/images/sunrise.png",
+      imageLink: "art/be92ffc9-8ffa-4e85-835b-55e1776dda29",
     },
-    {
-      name: "Mette Ross",
-      username: "metteross",
-      image: "/images/metteRoss.jpg",
-      imageLink: "art/8317e30c-6126-4d0b-8ca1-11698ded9676",
-    },
+
     {
       name: "Ralph Castellan",
       username: "rc-art",
