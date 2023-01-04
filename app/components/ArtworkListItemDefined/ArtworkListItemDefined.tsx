@@ -45,14 +45,19 @@ export default function ArtworkListItemDefined({
 
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
-  let formatter: Intl.NumberFormat;
-  if (!excludedCurrencyCodes.includes(artwork.Currency)) {
+
+  let formatter;
+  if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
     formatter = new Intl.NumberFormat(router.locale, {
       style: "currency",
-      currency: artwork.Currency || "SEK",
+      currency: artwork.Currency,
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
+  } else {
+    formatter = {
+      format: (value) => `SEK ${value}`,
+    };
   }
 
   useEffect(() => {
