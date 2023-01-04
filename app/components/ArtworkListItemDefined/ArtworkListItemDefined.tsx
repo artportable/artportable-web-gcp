@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
+import { i18n, useTranslation } from "next-i18next";
 import { styles } from "./artworkListItemDefined.css";
 import { useEffect } from "react";
 import { UserContext } from "../../contexts/user-context";
@@ -46,22 +46,54 @@ export default function ArtworkListItemDefined({
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
-  let formatter = {
-    format: (value: number) =>
-      `${value.toString().replace(/,/g, "")} ${artwork.Currency || "SEK"}`,
-  };
-  if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
-    formatter = new Intl.NumberFormat(router.locale, {
-      style: "currency",
-      currency: artwork.Currency,
+  
+function getFormatter(languageCode: string, currency: string | null): Intl.NumberFormat {
+  if (currency === null) {
+    return new Intl.NumberFormat(languageCode, {
+      style: 'currency',
+      currency: 'SEK',
+      currencyDisplay: 'code',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
-  } else {
-    formatter = {
-      format: (value: number) => `${value} ${artwork.Currency || "SEK"}`,
-    };
   }
+  if (languageCode === 'sv') {
+    return new Intl.NumberFormat('sv', {
+      style: 'currency',
+      currency: artwork.Currency,
+      currencyDisplay: 'code',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    });
+  } else {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: artwork.Currency,
+      currencyDisplay: 'code',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    });
+  }
+}
+const languageCode = i18n.language;
+const formatter = getFormatter(languageCode, artwork.Currency);
+
+let priceFormatter = {
+  format: (value: number) => formatter.format(value),
+};
+if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
+  priceFormatter = {
+    format: (value: number) => formatter.format(value),
+  };
+} else {
+  priceFormatter = {
+    format: (value: number) =>
+      `${value} ${artwork.Currency || "SEK"}`,
+  };
+}
+
+const formattedPrice = priceFormatter.format(artwork.Price);
+
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);
@@ -156,7 +188,7 @@ export default function ArtworkListItemDefined({
                 {t("common:words.sold")}{" "}
               </>
             ) : artwork.Price && artwork.Price != "0" ? (
-              formatter.format(artwork.Price).replace(/,/g,'')
+              formattedPrice.replace(/,/g,'')
             ) : (
               t("priceOnRequest")
             )}
