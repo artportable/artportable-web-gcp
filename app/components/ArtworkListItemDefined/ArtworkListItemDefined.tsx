@@ -1,26 +1,30 @@
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import { useContext, useState } from 'react'
-import IconButton from '@material-ui/core/IconButton'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { useTranslation } from "next-i18next"
-import { styles } from './artworkListItemDefined.css'
-import { useEffect } from 'react'
-import { UserContext } from '../../contexts/user-context'
-import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { useContext, useState } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { useTranslation } from "next-i18next";
+import { styles } from "./artworkListItemDefined.css";
+import { useEffect } from "react";
+import { UserContext } from "../../contexts/user-context";
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
 import Button from "../Button/Button";
 import { capitalizeFirst } from "../../../app/utils/util";
-import SendIcon from '@material-ui/icons/Send';
-import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import { Badge } from '@material-ui/core'
-import { sv } from 'date-fns/locale';
-import { Locales } from '../../models/i18n/locales'
-import { useRedirectToLoginIfNotLoggedIn } from '../../../app/hooks/useRedirectToLoginIfNotLoggedIn'
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import ChatIcon from '@material-ui/icons/Chat';
-import { RWebShare } from 'react-web-share'
-import ShareIcon from '@material-ui/icons/Share';
+import SendIcon from "@material-ui/icons/Send";
+import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+import { Badge } from "@material-ui/core";
+import { sv } from "date-fns/locale";
+import { Locales } from "../../models/i18n/locales";
+import { useRedirectToLoginIfNotLoggedIn } from "../../../app/hooks/useRedirectToLoginIfNotLoggedIn";
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import ChatIcon from "@material-ui/icons/Chat";
+import { RWebShare } from "react-web-share";
+import ShareIcon from "@material-ui/icons/Share";
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -29,10 +33,10 @@ export default function ArtworkListItemDefined({
   purchaseRequestAction,
   height,
   width,
-  topActions = undefined
+  topActions = undefined,
 }) {
   const s = styles();
-  const { t } = useTranslation(['art', 'common']);
+  const { t } = useTranslation(["art", "common"]);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
@@ -40,14 +44,24 @@ export default function ArtworkListItemDefined({
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const router = useRouter();
-  const formatter = new Intl.NumberFormat(router.locale, {
-    style: 'currency',
-    currency: artwork.Currency || 'SEK',  // Use SEK as the default currency
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-  
-  
+  const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
+
+  let formatter = {
+    format: (value: number) =>
+      `${value.toString().replace(/,/g, "")} ${artwork.Currency || "SEK"}`,
+  };
+  if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
+    formatter = new Intl.NumberFormat(router.locale, {
+      style: "currency",
+      currency: artwork.Currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  } else {
+    formatter = {
+      format: (value: number) => `${value} ${artwork.Currency || "SEK"}`,
+    };
+  }
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);
@@ -60,17 +74,30 @@ export default function ArtworkListItemDefined({
       setIsLiked(!isLiked);
       artwork.LikedByMe = !isLiked;
       !isLiked ? artwork.Likes++ : artwork.Likes--;
-      !isLiked ? trackGoogleAnalytics(ActionType.LIKE_PORTFOLIO_DISCOVER, CategoryType.INTERACTIVE) : null
+      !isLiked
+        ? trackGoogleAnalytics(
+            ActionType.LIKE_PORTFOLIO_DISCOVER,
+            CategoryType.INTERACTIVE
+          )
+        : null;
     }
     onLikeClick(artwork.Id, !isLiked);
   }
-  const artworkUrl = `https://artportable.com/art/${artwork?.Id}`
-  const shareArtworkTitle = artwork?.Title ? `${t('common:share')}"${artwork?.Title}"`: `${t('common:share')}`;
-  const shareArtworkText = `${t('common:checkThisArtwork')}"${artwork?.Title}"${t('common:atArtportable')}`
+  const artworkUrl = `https://artportable.com/art/${artwork?.Id}`;
+  const shareArtworkTitle = artwork?.Title
+    ? `${t("common:share")}"${artwork?.Title}"`
+    : `${t("common:share")}`;
+  const shareArtworkText = `${t("common:checkThisArtwork")}"${
+    artwork?.Title
+  }"${t("common:atArtportable")}`;
 
-  const likedFilled = !isSignedIn.value ?
-    <FavoriteBorderOutlinedIcon color="primary" /> :
-    isLiked ? <FavoriteIcon color="primary" /> : <FavoriteBorderOutlinedIcon color="primary" />;
+  const likedFilled = !isSignedIn.value ? (
+    <FavoriteBorderOutlinedIcon color="primary" />
+  ) : isLiked ? (
+    <FavoriteIcon color="primary" />
+  ) : (
+    <FavoriteBorderOutlinedIcon color="primary" />
+  );
 
   if (width === null || height === null) return <></>;
 
@@ -105,20 +132,20 @@ export default function ArtworkListItemDefined({
             </a>
           </Link>
           <div className={s.title}>
-            {artwork.Title ? artwork.Title : t('untitled')}
+            {artwork.Title ? artwork.Title : t("untitled")}
             <span className={s.size}>
               {artwork.MultipleSizes
-                ? ' (' + t('common:words.multipleSizes').toLowerCase() + ')'
+                ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
                 : artwork.Width && artwork.Height && artwork.Depth
-                ? ' (' +
+                ? " (" +
                   artwork.Width +
-                  'x' +
+                  "x" +
                   artwork.Height +
-                  'x' +
+                  "x" +
                   artwork.Depth +
-                  'cm)'
+                  "cm)"
                 : artwork.Width && artwork.Height
-                ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
+                ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
                 : null}
             </span>
           </div>
@@ -126,12 +153,12 @@ export default function ArtworkListItemDefined({
             {artwork.SoldOut ? (
               <>
                 <div className={s.soldMark} />
-                {t('common:words.sold')}{' '}
+                {t("common:words.sold")}{" "}
               </>
-            ) : artwork.Price && artwork.Price != '0' ? (
-              formatter.format(artwork.Price)
+            ) : artwork.Price && artwork.Price != "0" ? (
+              formatter.format(artwork.Price).replace(/,/g,'')
             ) : (
-              t('priceOnRequest')
+              t("priceOnRequest")
             )}
           </div>
         </div>
@@ -146,17 +173,17 @@ export default function ArtworkListItemDefined({
               onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK)}
             >
               <IconButton className={s.shareButton}>
-                <ShareIcon style={{ fontSize: '21px' }} />
+                <ShareIcon style={{ fontSize: "21px" }} />
               </IconButton>
             </RWebShare>
-            <div title={t('common:sendMessage')}>
+            <div title={t("common:sendMessage")}>
               <a>
                 <IconButton
                   className={s.chatButton}
-                  aria-label='account'
+                  aria-label="account"
                   onClick={() => {
                     redirectIfNotLoggedIn({
-                      pathname: '/messages',
+                      pathname: "/messages",
                       query: {
                         referTo: artwork.Owner.SocialId,
                       },
@@ -167,7 +194,7 @@ export default function ArtworkListItemDefined({
                     );
                   }}
                 >
-                  <MessageRoundedIcon style={{ fontSize: '23px' }} />
+                  <MessageRoundedIcon style={{ fontSize: "23px" }} />
                 </IconButton>
               </a>
             </div>
@@ -181,7 +208,7 @@ export default function ArtworkListItemDefined({
                 {likedFilled}
               </IconButton>
               <div className={s.likeCounter}>
-                {artwork.Likes > 0 ? artwork.Likes : ''}
+                {artwork.Likes > 0 ? artwork.Likes : ""}
               </div>
             </div>
           </div>
@@ -211,10 +238,10 @@ export default function ArtworkListItemDefined({
                 CategoryType.BUY
               );
             }}
-            variant='outlined'
+            variant="outlined"
             rounded
           >
-            {t('request')}
+            {t("request")}
           </Button>
         )}
         {artwork.Width > 0 && artwork.Height > 0 && (
@@ -226,7 +253,7 @@ export default function ArtworkListItemDefined({
                 }
                 rounded
               >
-                {t('room')}
+                {t("room")}
               </Button>
             </a>
           </div>
