@@ -46,22 +46,21 @@ export default function ArtworkListItemDefined({
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
-  let formatter = {
-    format: (value: number) =>
-      `${value.toString().replace(/,/g, "")} ${artwork.Currency || "SEK"}`,
-  };
+  let formatter;
   if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
     formatter = new Intl.NumberFormat(router.locale, {
       style: "currency",
       currency: artwork.Currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 0, // don't show decimal places
+      maximumFractionDigits: 0, // don't show decimal places
     });
   } else {
     formatter = {
       format: (value) => `${value} ${artwork.Currency || "SEK"}`,
     };
   }
+
+  const formattedValue = formatter.format(artwork.Price).replace(/,/g, ""); // remove the comma
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);
@@ -156,7 +155,7 @@ export default function ArtworkListItemDefined({
                 {t("common:words.sold")}{" "}
               </>
             ) : artwork.Price && artwork.Price != "0" ? (
-              formatter.format(artwork.Price)
+              formattedValue(artwork.Price)
             ) : (
               t("priceOnRequest")
             )}
