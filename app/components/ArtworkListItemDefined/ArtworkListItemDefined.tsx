@@ -59,7 +59,7 @@ export default function ArtworkListItemDefined({
     });
   } else {
     formatter = {
-      format: (value) => `${value} ${artwork.Currency || "SEK"}`,
+      format: (value: number) => `${value} ${artwork.Currency || "SEK"}`,
     };
   }
 
@@ -156,7 +156,7 @@ export default function ArtworkListItemDefined({
                 {t("common:words.sold")}{" "}
               </>
             ) : artwork.Price && artwork.Price != "0" ? (
-              formatter.format(artwork.Price)
+              formatter.format(artwork.Price).replace(/,/g,'')
             ) : (
               t("priceOnRequest")
             )}
