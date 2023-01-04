@@ -56,7 +56,7 @@ export default function ArtworkListItemDefined({
     });
   } else {
     formatter = {
-      format: (value) => `SEK ${value}`,
+      format: (value) => `${value} ${artwork.Currency || "SEK"}`,
     };
   }
 
