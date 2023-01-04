@@ -60,7 +60,14 @@ export default function ArtworkListItemDefined({
     };
   }
 
-  const formattedValue = formatter.format(artwork.Price).replace(/,/g, ""); // remove the comma
+  function formattedValue(value) {
+    return {
+      value,
+      formatted: formatter.format(value).replace(/,/g, ""),
+    };
+  }
+
+  const artworkValue = formattedValue(artwork.Price);
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);
@@ -155,7 +162,7 @@ export default function ArtworkListItemDefined({
                 {t("common:words.sold")}{" "}
               </>
             ) : artwork.Price && artwork.Price != "0" ? (
-              formattedValue(artwork.Price)
+              artworkValue
             ) : (
               t("priceOnRequest")
             )}
