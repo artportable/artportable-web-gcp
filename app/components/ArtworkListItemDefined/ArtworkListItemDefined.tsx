@@ -46,7 +46,10 @@ export default function ArtworkListItemDefined({
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
-  let formatter;
+  let formatter = {
+    format: (value: number) =>
+      `${value.toString().replace(/,/g, "")} ${artwork.Currency || "SEK"}`,
+  };
   if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
     formatter = new Intl.NumberFormat(router.locale, {
       style: "currency",
