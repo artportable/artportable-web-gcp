@@ -291,14 +291,6 @@ export default function IndexHero() {
                           className={s.headingAd}
                         >
                           {t("headlineAd")}
-                          <a
-                            className={s.linkColor}
-                            href="https://onlinecasinos.se/casino-utan-svensk-licens"
-                            target="_blank"
-                          >
-                            {" "}
-                            Online Casinos sida
-                          </a>{" "}
                         </Typography>
                         <div className={s.adContent}>
                           <a
@@ -308,7 +300,7 @@ export default function IndexHero() {
                             <img
                               className={s.imageAd}
                               src={"/images/OCSLOGO.svg"}
-                              alt="onlinecasinos.se"
+                              alt="OCS"
                               title=""
                             />
                           </a>
