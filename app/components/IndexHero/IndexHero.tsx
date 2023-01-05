@@ -285,6 +285,34 @@ export default function IndexHero() {
                             </Typography>
                           </div>
                         </div>
+                        <Typography
+                          variant="h5"
+                          component="h2"
+                          className={s.headingAd}
+                        >
+                          {t("headlineAd")}
+                          <a
+                            className={s.linkColor}
+                            href="https://onlinecasinos.se/casino-utan-svensk-licens"
+                            target="_blank"
+                          >
+                            {" "}
+                            Online Casinos sida
+                          </a>{" "}
+                        </Typography>
+                        <div className={s.adContent}>
+                          <a
+                            href="https://onlinecasinos.se/casino-utan-svensk-licens"
+                            target="_blank"
+                          >
+                            <img
+                              className={s.imageAd}
+                              src={"/images/OCSLOGO.svg"}
+                              alt="onlinecasinos.se"
+                              title=""
+                            />
+                          </a>
+                        </div>
                       </div>
                     </AccordionDetails>
                   </Accordion>

@@ -156,7 +156,6 @@ export default function Header({ navBarItems }) {
                   color="black"
                   disableElevation
                   rounded
-                  hover="none"
                   onClick={() =>
                     keycloak.register({
                       locale: router.locale,
