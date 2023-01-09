@@ -7,13 +7,30 @@ export default function CookieConsentBar() {
   return (
     <CookieConsent
       disableStyles={true}
-      buttonText={"OK"}
+      buttonText={"Acceptera cookies"}
+      declineButtonText={"Avvisa cookies"}
+      enableDeclineButton
+      flipButtons
       containerClasses={s.cookieConsentBarContainer}
       contentClasses={s.cookieConsentBarContent}
       buttonClasses={s.cookieConsentBarButton}
+      declineButtonClasses={s.cookieConsentBarButton}
     >
-      {"This website uses cookies."}
-      <a href="/gdpr">Read more</a>
+      <div>
+        <img
+          src="Cookies_Icon.svg"
+          className={s.cookieConsentBarIconClass}
+        ></img>
+      </div>
+      <div>
+        <h1 className={s.cookieConsentBarHeadingClass}>
+          Vi använder cookies på den här webbplatsen
+        </h1>
+        <p className={s.cookieConsentBarTextClass}>
+          Här kan du läsa mera om hur vi använder cookies på vår webbplats.
+        </p>
+        <a href="/gdpr">Vår cookie policy</a>
+      </div>
     </CookieConsent>
   );
 }
