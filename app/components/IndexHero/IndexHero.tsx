@@ -54,7 +54,7 @@ export default function IndexHero() {
     {
       name: "Gunilla Svärd",
       username: "gunilla.svard",
-      image: "/images/gunillaSvärd.jpg",
+      image: "/images/GunillaSvard.jpg",
       imageLink: "art/b3ab0dfa-f961-4802-ba4f-88f562e71019",
     },
 
