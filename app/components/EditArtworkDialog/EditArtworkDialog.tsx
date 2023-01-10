@@ -13,7 +13,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
-} from "@material-ui/core"; 
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "../Button/Button";
 import DeleteArtworkWarningDialog from "../DeleteArtworkWarningDialog/DeleteArtworkWarningDialog";
@@ -42,14 +42,14 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
   const [deleteAlertDialogOpen, setDeleteAlertDialogOpen] = useState(false);
   const [currency, setArtworkCurrency] = useState<{ currency: string }>();
 
-
   const { username, socialId } = useContext(UserContext);
   const token = useContext(TokenContext);
 
-  const handleCurrencyChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setArtworkCurrency({ currency: event.target.value as string }); 
+  const handleCurrencyChange = (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => {
+    setArtworkCurrency({ currency: (event.target.value as string) || "SEK" });
   };
-
 
   useEffect(() => {
     if (artwork) {
@@ -62,7 +62,6 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
       setArtworkHeight(artwork.Height);
       setArtworkDepth(artwork.Depth);
       setArtworkCurrency(artwork.Currency);
-
     }
   }, [artwork]);
 
@@ -128,7 +127,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
                 SecondaryFile: artwork.SecondaryFile?.Name,
                 TertiaryFile: artwork.TertiaryFile?.Name,
                 Tags: artwork.Tags,
-                Currency: currency.currency
+                Currency: currency?.currency ? currency.currency : "SEK",
               }),
             }
           )
@@ -174,40 +173,40 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
             onChange={(e) => setArtworkDescription(e.target.value)}
           ></TextField>
           <TextField
-  fullWidth
-  label={t("artworkPrice")}
-  placeholder={t("artworkPrice")}
-  value={artworkPrice}
-  type="number"
-  InputProps={{
-    endAdornment: (
-      <InputAdornment position="end">
-          
-          <InputLabel shrink htmlFor="currency-select">{t("currency")}</InputLabel>
-<Select
-  value={currency ? currency.currency : ''}
-  onChange={handleCurrencyChange}
-  inputProps={{
-    name: 'currency',
-    id: 'currency-select',
-  }}
->
-  <MenuItem value="SEK">SEK</MenuItem>
-  <MenuItem value="NOK">NOK</MenuItem>
-  <MenuItem value="DKK">DKK</MenuItem>
-  <MenuItem value="EUR">EUR</MenuItem>
-  <MenuItem value="USD">USD</MenuItem>
-  <MenuItem value="GBP">GBP</MenuItem>
-</Select>
-
-      </InputAdornment>
-    ),
-    inputProps: {
-      step: 100,
-    },
-  }}
-  onChange={(e) => setArtworkPrice(e.target.value)}
-></TextField>
+            fullWidth
+            label={t("artworkPrice")}
+            placeholder={t("artworkPrice")}
+            value={artworkPrice}
+            type="number"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <InputLabel shrink htmlFor="currency-select">
+                    {t("currency")}
+                  </InputLabel>
+                  <Select
+                    value={currency ? currency.currency : "SEK"}
+                    onChange={handleCurrencyChange}
+                    inputProps={{
+                      name: "currency",
+                      id: "currency-select",
+                    }}
+                  >
+                    <MenuItem value="SEK">SEK</MenuItem>
+                    <MenuItem value="NOK">NOK</MenuItem>
+                    <MenuItem value="DKK">DKK</MenuItem>
+                    <MenuItem value="EUR">EUR</MenuItem>
+                    <MenuItem value="USD">USD</MenuItem>
+                    <MenuItem value="GBP">GBP</MenuItem>
+                  </Select>
+                </InputAdornment>
+              ),
+              inputProps: {
+                step: 100,
+              },
+            }}
+            onChange={(e) => setArtworkPrice(e.target.value)}
+          ></TextField>
 
           <FormControlLabel
             control={
