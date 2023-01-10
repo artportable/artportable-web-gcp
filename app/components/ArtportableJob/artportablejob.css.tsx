@@ -14,8 +14,8 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "var(--header-color)",
-      height: "500px",
-      marginBottom: "30px",
+      height: "754px",
+      marginBottom: "115px",
       width: "100%",
       [theme.breakpoints.up("smPlus")]: {
         height: "400px",
@@ -62,10 +62,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       fontWeight: 700,
       width: "100%",
-      fontSize: "32px",
+      fontSize: "48px",
       lineHeight: "1",
-      marginTop: "20px",
-      marginBottom: "10px",
+      marginTop: "48px",
+      marginBottom: "24px",
       [theme.breakpoints.up("sm")]: {
         width: "100%",
         fontSize: "38px",
@@ -105,7 +105,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     description: {
-      fontSize: "18px",
+      fontSize: "20px",
       width: "100%",
       [theme.breakpoints.up("sm")]: {},
       [theme.breakpoints.up("md")]: {
@@ -188,7 +188,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     upperText: {
-      margin: "10px 0px 10px 0px",
+      //margin: "10px 0px 10px 0px",
       fontSize: "24px",
       fontFamily: "Gotham",
       fontWeight: 350,

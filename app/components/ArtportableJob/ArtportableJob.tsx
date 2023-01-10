@@ -105,7 +105,6 @@ export default function ArtportableJob(props: any) {
                 </div>
                 <div className={s.wrapperRight}>
                   <a href={data.readMore}>Läs mer</a>
-                  <div className={s.applyUpper}>Ansök senast {data.apply}</div>
                 </div>
               </div>
             </>
