@@ -16,7 +16,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "16px 28px",
       border: "1px solid rgba(0, 0, 0, 0.3)",
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.5)",
-      margin: "0px 6px 6px",
+      margin: "0px 4px 4px",
     },
     cookieConsentBarContent: {
       "& a": {
@@ -37,7 +37,8 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "8px 16px",
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
-      width: "100%",
+      width: "328px",
+      maxWidth: "100%",
       height: "56px",
       fontSize: "16px",
       fontWeight: 350,
@@ -65,15 +66,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
       cookieConsentBarButton: {
         marginTop: "20px",
-        width: "50%",
         marginLeft: "60px",
       },
       cookieConsentBarContainer: {
         padding: "40px 37px",
         minWidth: "99%",
+        height: "264px",
+        maxHeight: "100%",
       },
       cookieConsentBarTextClass: {
-        marginTop: "20px",
+        marginTop: "12px",
       },
       cookieConsentBarIconClass: {
         marginRight: "16px",
@@ -82,13 +84,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     [theme.breakpoints.up("md")]: {
       cookieConsentBarContainer: {
-        width: "100%",
-      },
-      cookieConsentBarHeadingClass: {
-        fontSize: "32px",
-      },
-      cookieConsentBarButton: {
-        width: "30%",
+        minWidth: "100%",
       },
     },
   })
