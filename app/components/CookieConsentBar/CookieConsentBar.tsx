@@ -8,14 +8,10 @@ export default function CookieConsentBar() {
     <CookieConsent
       disableStyles={true}
       buttonText={"Acceptera cookies"}
-      //declineButtonText={"Avvisa cookies"}
-      //enableDeclineButton
-      //flipButtons
       buttonWrapperClasses={s.cookieConsentBarContainerButtons}
       containerClasses={s.cookieConsentBarContainer}
       contentClasses={s.cookieConsentBarContent}
       buttonClasses={s.cookieConsentBarButton}
-      //declineButtonClasses={s.cookieConsentBarButton}
     >
       <div>
         <img

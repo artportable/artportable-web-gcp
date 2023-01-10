@@ -4,12 +4,9 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cookieConsentBarContainer: {
       backgroundColor: "var(--background-color)",
-      alignItems: "baseline",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-evenly",
-      left: "0",
-      bottom: "0",
+      justifyContent: "space-between",
       position: "fixed",
       maxWidth: "99%",
       zIndex: 999,
@@ -35,8 +32,6 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "8px 0px",
       borderRadius: "5px",
       padding: "8px 16px",
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
       width: "328px",
       maxWidth: "100%",
       height: "56px",
