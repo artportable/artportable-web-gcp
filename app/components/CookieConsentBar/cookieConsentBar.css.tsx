@@ -3,12 +3,12 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cookieConsentBarContainer: {
-      backgroundColor: "var(--background-color)",
+      backgroundColor: "#FFFFFF",
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
       position: "fixed",
-      maxWidth: "99%",
+      width: "fill-available",
       zIndex: 999,
       padding: "16px 28px",
       border: "1px solid rgba(0, 0, 0, 0.3)",
@@ -32,8 +32,8 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "8px 0px",
       borderRadius: "5px",
       padding: "8px 16px",
-      width: "328px",
-      maxWidth: "100%",
+      width: "100%",
+      maxWidth: "328px",
       height: "56px",
       fontSize: "16px",
       fontWeight: 350,
@@ -47,9 +47,6 @@ export const styles = makeStyles((theme: Theme) =>
     cookieConsentBarTextClass: {
       fontSize: "16px",
       margin: 0,
-    },
-    cookieConsentBarContainerButtons: {
-      width: "100%",
     },
 
     [theme.breakpoints.up("smPlus")]: {
@@ -65,9 +62,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       cookieConsentBarContainer: {
         padding: "40px 37px",
-        minWidth: "99%",
-        height: "264px",
-        maxHeight: "100%",
       },
       cookieConsentBarTextClass: {
         marginTop: "12px",
@@ -79,7 +73,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     [theme.breakpoints.up("md")]: {
       cookieConsentBarContainer: {
-        minWidth: "100%",
+        padding: "44px 90px",
       },
     },
   })
