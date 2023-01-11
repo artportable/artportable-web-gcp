@@ -99,13 +99,14 @@ export default function ArtportableJob(props: any) {
                 <div className={s.wrapperLeft}>
                   <div className={s.jobName}>{data.jobName}</div>
                   <div>Ort: {data.city}</div>
-                  <div>Publicerad den {data.published}</div>
+                </div>
 
+                <div className={s.publish}>Publicerad den {data.published}</div>
+                <div className={s.switchOrderContainer}>
                   <div className={s.apply}>Ansök senast: {data.apply}</div>
                 </div>
                 <div className={s.wrapperRight}>
                   <a href={data.readMore}>Läs mer</a>
-                  <div className={s.applyUpper}>Ansök senast {data.apply}</div>
                 </div>
               </div>
             </>
