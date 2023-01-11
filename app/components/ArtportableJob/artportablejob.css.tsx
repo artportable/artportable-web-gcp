@@ -142,7 +142,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     jobContainer: {
       [theme.breakpoints.up("xs")]: {
-        margin: "0px 35px 0px 30px",
+        margin: "0px 42px",
       },
       [theme.breakpoints.up("sm")]: {
         margin: "20px",
@@ -156,14 +156,21 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "var(--absolute-white)",
       },
       display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      lineHeight: "32px",
+      fontSize: "16px",
       "& a": {
         textDecoration: "underline",
+        fontSize: "16px",
         "&:hover": {
           textDecoration: "none",
         },
       },
-      padding: "10px 10px 10px 10px",
-      [theme.breakpoints.up("sm")]: {},
+      padding: "25px",
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: "column",
+      },
       [theme.breakpoints.up("md")]: {},
     },
     upperTextContainer: {
@@ -199,9 +206,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     jobName: {
-      fontWeight: 500,
+      fontWeight: 450,
       fontFamily: "Gotham",
-      textDecoration: "none",
+      textDecoration: "underline",
     },
 
     apply: {
@@ -210,6 +217,11 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: "hidden",
         flexDirection: "column",
       },
+    },
+
+    publish: {
+      textDecoration: "underline",
+      [theme.breakpoints.up("md")]: {},
     },
 
     leftContainer: {
@@ -235,19 +247,17 @@ export const styles = makeStyles((theme: Theme) =>
     wrapperLeft: {
       display: "flex",
       flexDirection: "column",
+      justifyContent: "space-between",
       alignItems: "flex-start",
-      width: "100%",
+      width: "70%",
     },
 
     wrapperRight: {
-      display: "flex",
-      flexDirection: "column-reverse",
-      alignItems: "flex-end",
+      position: "absolute",
+      right: "60px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "column-reverse",
-        justifyContent: "flex-end",
+        right: "74px",
+        marginTop: "84px",
       },
     },
 
@@ -256,6 +266,12 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         visibility: "visible",
       },
+    },
+
+    switchOrderContainer: {
+      //textDecoration: "underline",
+      // display: "flex",
+      //flexWrap: "wrap-reverse",
     },
   })
 );
