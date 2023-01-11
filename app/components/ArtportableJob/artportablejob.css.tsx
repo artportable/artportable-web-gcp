@@ -13,6 +13,9 @@ export const styles = makeStyles((theme: Theme) =>
         position: "absolute",
         right: "128px",
       },
+      [theme.breakpoints.up("md")]: {
+        right: "14%",
+      },
     },
 
     banner: {
@@ -181,7 +184,9 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         padding: "18px 25px",
       },
-      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "column",
+      },
     },
     upperTextContainer: {
       display: "flex",
@@ -223,10 +228,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     apply: {
       textDecoration: "underline",
-      [theme.breakpoints.up("md")]: {
-        visibility: "hidden",
-        flexDirection: "column",
-      },
+      [theme.breakpoints.up("md")]: {},
     },
 
     publish: {
@@ -268,6 +270,9 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         right: "128px",
         marginTop: "56px",
+      },
+      [theme.breakpoints.up("md")]: {
+        right: "14%",
       },
     },
 
