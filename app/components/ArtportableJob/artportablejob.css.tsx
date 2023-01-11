@@ -8,6 +8,13 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
 
+    switchOrderContainer: {
+      [theme.breakpoints.up("smPlus")]: {
+        position: "absolute",
+        right: "128px",
+      },
+    },
+
     banner: {
       display: "flex",
       flexDirection: "column",
@@ -66,9 +73,9 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: "1",
       marginTop: "48px",
       marginBottom: "24px",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("smPlus")]: {
         width: "100%",
-        fontSize: "38px",
+        fontSize: "48px",
       },
       [theme.breakpoints.up("md")]: {
         width: "100%",
@@ -148,6 +155,9 @@ export const styles = makeStyles((theme: Theme) =>
         margin: "20px",
         width: "90%",
       },
+      [theme.breakpoints.up("smPlus")]: {
+        width: "75%",
+      },
     },
 
     jobInfoContainer: {
@@ -168,8 +178,8 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
       padding: "25px",
-      [theme.breakpoints.up("sm")]: {
-        flexDirection: "column",
+      [theme.breakpoints.up("smPlus")]: {
+        padding: "18px 25px",
       },
       [theme.breakpoints.up("md")]: {},
     },
@@ -256,8 +266,8 @@ export const styles = makeStyles((theme: Theme) =>
       position: "absolute",
       right: "60px",
       [theme.breakpoints.up("smPlus")]: {
-        right: "74px",
-        marginTop: "84px",
+        right: "128px",
+        marginTop: "56px",
       },
     },
 
@@ -266,12 +276,6 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         visibility: "visible",
       },
-    },
-
-    switchOrderContainer: {
-      //textDecoration: "underline",
-      // display: "flex",
-      //flexWrap: "wrap-reverse",
     },
   })
 );
