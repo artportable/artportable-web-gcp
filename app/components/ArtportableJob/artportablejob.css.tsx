@@ -8,14 +8,24 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
 
+    switchOrderContainer: {
+      [theme.breakpoints.up("smPlus")]: {
+        position: "absolute",
+        right: "128px",
+      },
+      [theme.breakpoints.up("md")]: {
+        right: "14%",
+      },
+    },
+
     banner: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "var(--header-color)",
-      height: "500px",
-      marginBottom: "30px",
+      height: "754px",
+      marginBottom: "115px",
       width: "100%",
       [theme.breakpoints.up("smPlus")]: {
         height: "400px",
@@ -62,13 +72,13 @@ export const styles = makeStyles((theme: Theme) =>
       fontStyle: "normal",
       fontWeight: 700,
       width: "100%",
-      fontSize: "32px",
+      fontSize: "48px",
       lineHeight: "1",
-      marginTop: "20px",
-      marginBottom: "10px",
-      [theme.breakpoints.up("sm")]: {
+      marginTop: "48px",
+      marginBottom: "24px",
+      [theme.breakpoints.up("smPlus")]: {
         width: "100%",
-        fontSize: "38px",
+        fontSize: "48px",
       },
       [theme.breakpoints.up("md")]: {
         width: "100%",
@@ -105,7 +115,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     description: {
-      fontSize: "18px",
+      fontSize: "20px",
       width: "100%",
       [theme.breakpoints.up("sm")]: {},
       [theme.breakpoints.up("md")]: {
@@ -142,11 +152,14 @@ export const styles = makeStyles((theme: Theme) =>
 
     jobContainer: {
       [theme.breakpoints.up("xs")]: {
-        margin: "0px 35px 0px 30px",
+        margin: "0px 42px",
       },
       [theme.breakpoints.up("sm")]: {
         margin: "20px",
         width: "90%",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        width: "75%",
       },
     },
 
@@ -156,15 +169,24 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "var(--absolute-white)",
       },
       display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      lineHeight: "32px",
+      fontSize: "16px",
       "& a": {
         textDecoration: "underline",
+        fontSize: "16px",
         "&:hover": {
           textDecoration: "none",
         },
       },
-      padding: "10px 10px 10px 10px",
-      [theme.breakpoints.up("sm")]: {},
-      [theme.breakpoints.up("md")]: {},
+      padding: "25px",
+      [theme.breakpoints.up("smPlus")]: {
+        padding: "18px 25px",
+      },
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "column",
+      },
     },
     upperTextContainer: {
       display: "flex",
@@ -188,7 +210,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     upperText: {
-      margin: "10px 0px 10px 0px",
+      //margin: "10px 0px 10px 0px",
       fontSize: "24px",
       fontFamily: "Gotham",
       fontWeight: 350,
@@ -199,17 +221,19 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     jobName: {
-      fontWeight: 500,
+      fontWeight: 450,
       fontFamily: "Gotham",
-      textDecoration: "none",
+      textDecoration: "underline",
     },
 
     apply: {
       textDecoration: "underline",
-      [theme.breakpoints.up("md")]: {
-        visibility: "hidden",
-        flexDirection: "column",
-      },
+      [theme.breakpoints.up("md")]: {},
+    },
+
+    publish: {
+      textDecoration: "underline",
+      [theme.breakpoints.up("md")]: {},
     },
 
     leftContainer: {
@@ -235,19 +259,20 @@ export const styles = makeStyles((theme: Theme) =>
     wrapperLeft: {
       display: "flex",
       flexDirection: "column",
+      justifyContent: "space-between",
       alignItems: "flex-start",
-      width: "100%",
+      width: "70%",
     },
 
     wrapperRight: {
-      display: "flex",
-      flexDirection: "column-reverse",
-      alignItems: "flex-end",
+      position: "absolute",
+      right: "60px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "column-reverse",
-        justifyContent: "flex-end",
+        right: "128px",
+        marginTop: "56px",
+      },
+      [theme.breakpoints.up("md")]: {
+        right: "14%",
       },
     },
 
