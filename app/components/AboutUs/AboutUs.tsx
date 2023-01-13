@@ -86,7 +86,7 @@ export default function AboutMe() {
     },
     {
       name: 'Cosmo',
-      title: '',
+      title: 'Avant-garde',
       image: '/staff/artportable_cosmo.jpg',
       email: 'hello@artportable.com',
     },
