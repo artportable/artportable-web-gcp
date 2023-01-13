@@ -95,13 +95,13 @@ export default function AboutMe() {
   const board = [
     {
       name: 'Carl Nyberg',
-      title: 'COO',
+      title: 'COO & Founder',
       image: '/staff/artportable_carl.jpg',
       email: 'carl@artportable.com',
     },
     {
       name: 'Erik Nordlander',
-      title: 'CEO & Founder',
+      title: 'CPO & Founder',
       image: '/staff/artportable_erik.jpg',
       email: 'erik@artportable.com',
     },
