@@ -67,7 +67,7 @@ export default function IndexHero() {
     {
       name: "Lars Isaksson",
       username: "lars.isaksson",
-      image: "/images/lars_isaksson.jpeg",
+      image: "/images/lars_isaksson.jpg",
       imageLink: "art/a8b387c3-c644-46b1-941f-993f35e89330",
     },
   ];
