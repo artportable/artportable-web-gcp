@@ -227,13 +227,13 @@ export default function DiscoverPage({ navBarItems }) {
               >
                 <Tab
                   className={s.text}
-                  label={t("discover:highlights")}
-                  {...a11yProps(t("discover:highlights"))}
+                  label={t("discover:trendingArt")}
+                  {...a11yProps(t("discover:trendingArt"))}
                 />
                 <Tab
                   className={s.text}
-                  label={t("discover:trendingArt")}
-                  {...a11yProps(t("discover:trendingArt"))}
+                  label={t("discover:highlights")}
+                  {...a11yProps(t("discover:highlights"))}
                 />
                 <Tab
                   className={s.text}
