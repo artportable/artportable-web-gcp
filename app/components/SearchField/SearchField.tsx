@@ -124,7 +124,7 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
         placeholder={t("searchForArt")}
         className={s.input}
       ></input>
-      {activeTab === 0 ? null : (
+      {activeTab > 4 ? null : (
         <>
           {tags !== null && (
             <div className={s.tagsContainer}>
