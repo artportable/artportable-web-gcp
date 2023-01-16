@@ -52,23 +52,23 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Gunilla Svärd",
-      username: "gunilla.svard",
-      image: "/images/GunillaSvard.jpg",
-      imageLink: "art/b3ab0dfa-f961-4802-ba4f-88f562e71019",
+      name: "Ulf Enhörning",
+      username: "ulf.enhorning",
+      image: "/images/ulf_enhorning.jpg",
+      imageLink: "art/fd073b4c-e00a-4719-a281-6cb60d83c953",
     },
 
     {
-      name: "Galina Tol Fakkar",
-      username: "galina.tolfakkar",
-      image: "/images/GalinaTol.jpg",
-      imageLink: "art/757e7e2d-5100-49d4-8198-e15df6c57c36",
+      name: "Anders Vilhelm Gabrielsson",
+      username: "agngabrielsson",
+      image: "/images/anders_gabrielsson.jpg",
+      imageLink: "art/65238325-0dd4-44d9-b300-104dd9b9db00",
     },
     {
-      name: "Erik Nordström",
-      username: "enordstrom694@gmail.com",
-      image: "/images/ErikNordström.jpeg",
-      imageLink: "art/61670e20-1741-48c4-bb84-46666e23dc60",
+      name: "Lars Isaksson",
+      username: "lars.isaksson",
+      image: "/images/lars_isaksson.jpeg",
+      imageLink: "art/a8b387c3-c644-46b1-941f-993f35e89330",
     },
   ];
 
