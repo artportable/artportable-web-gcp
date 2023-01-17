@@ -103,7 +103,7 @@ export default function ArtportableJob(props: any) {
                   <div>Ort: {data.city}</div>
                 </div>
 
-                <div className={s.publish}>Publicerad den {data.published}</div>
+                <div className={s.publish}>Publicerad: {data.published}</div>
                 <div className={s.switchOrderContainer}>
                   <div className={s.apply}>Ansök senast: {data.apply}</div>
                 </div>

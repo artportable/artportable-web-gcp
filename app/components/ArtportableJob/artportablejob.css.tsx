@@ -69,8 +69,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     imageBorder: {
       borderStyle: "solid",
-      filter: "drop-shadow",
-      dropShadow: "8px 8px 8px rgba(0, 0, 0, 0.4)",
+      filter: "drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))",
       background: "#F5F5F5",
       borderColor: "#1F1E1E #292828 #292828 #272626",
       borderWidth: "10px",
