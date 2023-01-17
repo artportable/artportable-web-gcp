@@ -140,26 +140,21 @@ export const styles = makeStyles((theme: Theme) =>
 
     artwork: {
       width: "300px",
-      //height: "250px",
       boxShadow: "0 -1px 1px rgb(0 0 0 / 10%), 0 1px 1px 1px rgb(255 255 255 / 70%)",
       borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF",
       borderStyle: "solid",
       borderWidth: "2px",
       [theme.breakpoints.up("sm")]: {
         width: "400px",
-        height: "250px",
       },
       [theme.breakpoints.up("smPlus")]: {
         width: "300px",
-        height: "250px",
       },
       [theme.breakpoints.up("md")]: {
         width: "400px",
-        height: "250px",
       },
       [theme.breakpoints.up("lgPlus")]: {
         width: "500px",
-        height: "400px",
       },
     },
 
