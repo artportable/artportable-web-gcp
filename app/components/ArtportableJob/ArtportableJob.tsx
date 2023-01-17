@@ -80,12 +80,14 @@ export default function ArtportableJob(props: any) {
                 <a href="/support">Kontakta oss här</a>
               </h2>
             </div>
+            <div className={s.imageBorder}>
             <img
               className={s.artwork}
               src={jobImage.src}
               alt="Artportable ad banner"
               title="Artportable"
             />
+            </div>
           </div>
         </div>
 
@@ -101,7 +103,7 @@ export default function ArtportableJob(props: any) {
                   <div>Ort: {data.city}</div>
                 </div>
 
-                <div className={s.publish}>Publicerad den {data.published}</div>
+                <div className={s.publish}>Publicerad: {data.published}</div>
                 <div className={s.switchOrderContainer}>
                   <div className={s.apply}>Ansök senast: {data.apply}</div>
                 </div>
