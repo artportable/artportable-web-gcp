@@ -80,12 +80,14 @@ export default function ArtportableJob(props: any) {
                 <a href="/support">Kontakta oss här</a>
               </div>
             </div>
+            <div className={s.imageBorder}>
             <img
               className={s.artwork}
               src={jobImage.src}
               alt="Artportable ad banner"
               title="Artportable"
             />
+            </div>
           </div>
         </div>
 

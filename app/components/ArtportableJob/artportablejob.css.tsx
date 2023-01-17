@@ -67,6 +67,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
+    imageBorder: {
+      borderStyle: "solid",
+      filter: "drop-shadow",
+      dropShadow: "8px 8px 8px rgba(0, 0, 0, 0.4)",
+      background: "#F5F5F5",
+      borderColor: "#1F1E1E #292828 #292828 #272626",
+      borderWidth: "10px",
+      padding: "15px 15px 10px 15px",
+    },
+
     headline: {
       fontFamily: "Gotham",
       fontStyle: "normal",
@@ -131,7 +141,11 @@ export const styles = makeStyles((theme: Theme) =>
 
     artwork: {
       width: "300px",
-      height: "250px",
+      //height: "250px",
+      boxShadow: "0 -1px 1px rgb(0 0 0 / 10%), 0 1px 1px 1px rgb(255 255 255 / 70%)",
+      borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF",
+      borderStyle: "solid",
+      borderWidth: "2px",
       [theme.breakpoints.up("sm")]: {
         width: "400px",
         height: "250px",
