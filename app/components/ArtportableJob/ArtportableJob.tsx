@@ -20,38 +20,19 @@ export default function ArtportableJob(props: any) {
 
   function createData(
     jobName: string,
+    company: string,
     city: string,
     published: string,
     apply: string,
     readMore: string
   ) {
-    return { jobName, city, published, apply, readMore };
+    return { jobName, company, city, published, apply, readMore };
   }
 
   const data = [
     createData(
-      "Konstförmedlare",
-      "Göteborg",
-      "2022-11-29",
-      "2023-01-02",
-      "https://vgregion.varbi.com/what:job/jobID:570652/type:job/where:1/apply:1"
-    ),
-    createData(
-      "Fotografredigerare",
-      "Stockholm",
-      "2022-12-06",
-      "2023-11-29",
-      "https://candidate.hr-manager.net/ApplicationForm/SinglePageApplicationForm.aspx?cid=1209&departmentId=18957&ProjectId=145645&MediaId=4621"
-    ),
-    createData(
-      "Registrator konstdatabas",
-      "Stockholm",
-      "2022-11-28",
-      "2022-12-14",
-      "https://www.modernamuseet.se/stockholm/sv/om-museet/lediga-tjanster/?rmpage=job&rmjob=174"
-    ),
-    createData(
       "Museiintendent/Curator",
+      "Umeå universitet",
       "Umeå",
       "2022-11-23",
       "2023-02-6",
@@ -59,6 +40,7 @@ export default function ArtportableJob(props: any) {
     ),
     createData(
       "UI Artist",
+      "Nørdlight",
       "Stockholm",
       "2022-12-08",
       "2023-01-31",
@@ -100,6 +82,7 @@ export default function ArtportableJob(props: any) {
               <div className={s.jobInfoContainer}>
                 <div className={s.wrapperLeft}>
                   <div className={s.jobName}>{data.jobName}</div>
+                  <div>Företag: {data.company}</div>
                   <div>Ort: {data.city}</div>
                 </div>
 
