@@ -48,7 +48,7 @@ export default function Newsletter() {
         onClick={handleClickOpen}
         className={s.newsletterMenuButton}
       >
-        Prenumrera på vårt nyhetsbrev
+        Prenumerera på vårt nyhetsbrev
       </Button>
       <div className={s.newsletterDesktop}>
         <Dialog
@@ -68,8 +68,8 @@ export default function Newsletter() {
               Prenumerera på vårt nyhetsbrev
             </Typography>
             <Typography variant="h6" className={s.newsletterText}>
-              Anmäl dig här för att ta del av våra kommande kampanjer,
-              erbjudanden. Du får även tips och tricks för att sälja din konst
+              Anmäl dig här för att ta del av våra härliga och inspirerande
+              nyhetsbrev. Uppdatera dig om Artportables senaste konstnärer.
             </Typography>
             <form onSubmit={subscribeUser}>
               <label htmlFor="email-input" className={s.newsletterLabel}>
