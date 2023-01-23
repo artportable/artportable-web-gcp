@@ -20,13 +20,13 @@
   "close": "Close",
   "sendPurchase": "Send purchase",
   "send": "Send",
-  "yourPhoneNumber": "Please enter your phone number",
+  "yourPhoneNumber": "Would you like to be contacted instead? Please provide your phone number below",
   "phoneNumber": "Phone number",
   "artCoordinator": "Get access to an art advisor",
   "arcticleAboutYou": "DO YOU WANT AN ARTICLE ABOUT YOUR ARTISTRY?",
   "articleAbout": "Article about you",
   "getInterviewed": "Get interviewed by our writer and get an article published about you and your art.",
   "imageFromPortfolio": "(image from portfolio containing article)",
-  "courses": "Courses"
+  "courses": "Courses",
+  "checkout": "Buy article"
 }
-
