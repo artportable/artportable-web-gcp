@@ -176,6 +176,7 @@ export const styles = makeStyles((theme: Theme) =>
       "&:nth-of-type(odd)": {
         backgroundColor: "var(--absolute-white)",
       },
+      maxWidth: "700px",
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "space-between",
@@ -191,9 +192,11 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "25px",
       [theme.breakpoints.up("smPlus")]: {
         padding: "18px 25px",
+        maxWidth: "900px",
       },
       [theme.breakpoints.up("md")]: {
         flexDirection: "column",
+        maxWidth: "100%",
       },
     },
     upperTextContainer: {
@@ -276,8 +279,8 @@ export const styles = makeStyles((theme: Theme) =>
       position: "absolute",
       right: "60px",
       [theme.breakpoints.up("smPlus")]: {
-        right: "128px",
-        marginTop: "56px",
+        right: "124px",
+        marginTop: "96px",
       },
       [theme.breakpoints.up("md")]: {
         right: "14%",
