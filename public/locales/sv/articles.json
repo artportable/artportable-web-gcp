@@ -21,12 +21,13 @@
   "close": "Stäng",
   "sendPurchase": "Skicka förfrågan",
   "send": "Skicka",
-  "yourPhoneNumber": "Vänligen uppge ditt telefonnummer",
+  "yourPhoneNumber": "Vill du bli kontaktad istället? Vänligen uppge ditt telefonnummer nedan",
   "phoneNumber": "Telefonnummer",
   "artCoordinator": "Få tillgång till en konstrådgivare",
   "arcticleAboutYou": "VILL DU HA EN ARTIKEL OM DIG?",
   "articleAbout": "Artikel om dig",
   "getInterviewed": "Bli intervjuad av vår skribent och få en artikel publicerad om dig och ditt konstnärskap.",
   "imageFromPortfolio": "(bild från portfolio innehållandes artikel)",
-  "courses": "Kurser"
+  "courses": "Kurser",
+  "checkout": "Köp artikel"
 }

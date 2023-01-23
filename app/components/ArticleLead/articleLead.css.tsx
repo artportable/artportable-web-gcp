@@ -1,86 +1,85 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     closeButton: {
-      position: 'absolute',
+      position: "absolute",
       right: theme.spacing(1),
       top: theme.spacing(1),
       color: theme.palette.grey[500],
     },
-    
+
     dialog: {
-      '& .MuiDialog-paper': {
+      "& .MuiDialog-paper": {
         // width: '600%',
       },
     },
     title: {
-      textAlign: 'center',
-      marginTop: '20px',
+      textAlign: "center",
+      marginTop: "20px",
     },
     thanksText: {
-      '& h2': {
+      "& h2": {
         fontWeight: 600,
-        fontSize: '1.6rem',
+        fontSize: "1.6rem",
       },
-      textAlign: 'center',
-      alignSelf: 'center',
-      marginTop: '30px',
+      textAlign: "center",
+      alignSelf: "center",
+      marginTop: "30px",
       fontWeight: 600,
     },
     dialogContent: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      justifyContent: 'space-between',
-      textAlign: 'center',
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+      justifyContent: "space-between",
+      textAlign: "center",
     },
     phoneDiv: {
-      marginTop: '30px'
+      marginTop: "30px",
     },
     imgDivSecondView: {
-      alignSelf: 'center',
-      marginTop: '25px',
+      alignSelf: "center",
+      marginTop: "25px",
     },
     text: {
-      fontSize: '1.14rem',
-      margin: '30px 0 10px 0',
+      fontSize: "1.14rem",
+      margin: "30px 0 10px 0",
     },
     inShort: {
-      fontSize: '1.14rem',
-      margin: '0px 0 30px 0',
+      fontSize: "1.14rem",
+      margin: "0px 0 30px 0",
     },
     textPortfolioPremium: {
       // fontStyle: 'italic',
       fontWeight: 600,
-      fontSize: '1.6rem',
+      fontSize: "1.6rem",
     },
     logo: {
-      alignSelf: 'center',
-      marginTop: '30px',
-      width: '50%',
+      alignSelf: "center",
+      marginTop: "30px",
+      width: "50%",
     },
     imagePortfolio: {
-      width: '300px',
-      color: '#FFD700',
+      width: "300px",
+      color: "#FFD700",
     },
     imageText: {
-      fontStyle: 'italic',
-      fontSize: '0.8rem'
+      fontStyle: "italic",
+      fontSize: "0.8rem",
     },
     button: {
-      alignSelf: 'flex-end',
-      marginBottom: '20px'
+      alignSelf: "flex-end",
+      marginBottom: "20px",
     },
     listItem: {
-      marginTop: '5px',
+      marginTop: "5px",
     },
     textTextfield: {
-      marginBottom: '5px',
-      textAlign: 'left'
+      marginBottom: "5px",
+      textAlign: "left",
     },
-    textFieldDiv: {
-    },
+    textFieldDiv: {},
     textField: {
       minHeight: "76px",
       "& label.Mui-focused": {
@@ -95,15 +94,15 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       imagePortfolio: {
-        width: '350px',
+        width: "350px",
       },
       dialog: {
-        '& .MuiDialog-paper': {
+        "& .MuiDialog-paper": {
           // height: '570px'
         },
       },
     },
-  }),
+  })
 );
