@@ -35,7 +35,7 @@ export default function ArtportableJob(props: any) {
       "Umeå universitet",
       "Umeå",
       "2022-11-23",
-      "2023-02-6",
+      "2023-02-06",
       "https://umu.varbi.com/what:job/jobID:476115/type:job/where:1/apply:1"
     ),
     createData(
@@ -80,19 +80,16 @@ export default function ArtportableJob(props: any) {
           {data.map((data) => (
             <>
               <div className={s.jobInfoContainer}>
-                <div className={s.wrapperLeft}>
                   <div className={s.jobName}>{data.jobName}</div>
-                  <div>Företag: {data.company}</div>
-                  <div>Ort: {data.city}</div>
-                </div>
-
-                <div className={s.publish}>Publicerad: {data.published}</div>
-                <div className={s.switchOrderContainer}>
-                  <div className={s.apply}>Ansök senast: {data.apply}</div>
-                </div>
-                <div className={s.wrapperRight}>
-                  <a href={data.readMore}>Läs mer</a>
-                </div>
+                  <div className={s.wrapperRight}>
+                    <a href={data.readMore}>Läs mer</a>
+                  </div>
+                  <div className={s.jobCompany}>Företag: {data.company}</div>
+                  <div className={s.jobCity}>Ort: {data.city}</div>
+                  <div>Publicerad: {data.published}</div>
+                  
+                    <div>Ansök senast: {data.apply}</div>
+                  
               </div>
             </>
           ))}
