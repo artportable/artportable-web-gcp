@@ -1,8 +1,10 @@
 export interface FormInputProps {
-  name: string;
-  control: any;
+  name?: string;
+  control?: any;
   label?: string;
-  placeholder: string;
+  placeholder?: string;
   setValue?: any;
-  type: string;
+  type?: string;
+  onClick?: () => void;
+  children?: React.ReactNode;
 }

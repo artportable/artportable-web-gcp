@@ -23,7 +23,8 @@
     "soldOut": "Såld",
     "multipleSizes": "Flera Storlekar",
     "or": "eller",
-    "email": "epost"
+    "email": "epost",
+    "emailCapitalLetter": "E-postadress"
   },
   "timeUnit": {
     "year": "år",
@@ -51,5 +52,6 @@
   "inviteFriends": "Bjud in vänner",
   "share": "Dela ",
   "checkThisArtwork": "Kolla in konstverket ",
-  "atArtportable": " på Artportable"
+  "atArtportable": " på Artportable",
+  "subscribe": "Prenumerera"
 }
