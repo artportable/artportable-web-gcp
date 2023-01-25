@@ -16,7 +16,7 @@ const defaultValues = {
 
 export default function Newsletter() {
   const s = styles();
-  const { t } = useTranslation(["feed, header, common"]);
+  const { t } = useTranslation(["feed"]);
   const methods = useForm<IFormInput>({ defaultValues: defaultValues });
   const { register, handleSubmit, reset, control, setValue, watch } = methods;
   const onSubmit = (data: IFormInput) => console.log(data);
