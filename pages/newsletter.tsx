@@ -9,7 +9,7 @@ import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
 
 export default function Newsletter({navBarItems}) {
     const mdPlusScreenOrDown = useBreakpointDown('mdPlus')
-    const { t } = useTranslation(["common, feed, header"]);
+    const { t } = useTranslation(["feed"]);
 
   return (
     <>
@@ -30,8 +30,6 @@ export default function Newsletter({navBarItems}) {
           "footer",
           "support",
           "feed",
-          "common",
-          "header",
         ])),
       },
       revalidate: 60,

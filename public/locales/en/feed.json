@@ -8,5 +8,8 @@
   "stayUpToDate": "Stay up to date",
   "register": "Register",
   "enterEmailHere": "Enter your email here",
-  "noPosts": "No posts to show..."
+  "noPosts": "No posts to show...",
+  "subscribe": "Subscribe",
+  "emailCapitalLetter": "Email address",
+  "subscribeNewsletter": "Subscribe to our newsletter"
 }

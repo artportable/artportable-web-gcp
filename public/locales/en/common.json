@@ -23,8 +23,7 @@
     "soldOut": "Sold",
     "multipleSizes": "Multiple Sizes",
     "or": "or",
-    "email": "email",
-    "emailCapitalLetter": "Email address"
+    "email": "email"
   },
   "timeUnit": {
     "year": "y",
@@ -51,6 +50,5 @@
   "invite": "Invite",
   "inviteFriends": "Invite your friends",
   "checkThisArtwork": "Check out this artwork ",
-  "atArtportable": " at Artportable",
-  "subscribe": "Subscribe"
+  "atArtportable": " at Artportable"
 }
