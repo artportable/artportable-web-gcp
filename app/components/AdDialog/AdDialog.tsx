@@ -63,7 +63,7 @@ export default function AdDialog(props: Props) {
         "https://artportable.com/en/profile/@zlatkogradholt",
       companyImageEn: "/ad/Zlatko_Gradholt.jpg",
       companyLinkEn:
-        "https://artportable.com/en/profile/@zlatkogradholt",
+         "https://artportable.com/en/profile/@zlatkogradholt",
     },
   ];
   useEffect(() => {
