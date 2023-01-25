@@ -389,6 +389,7 @@ export async function getStaticProps({ locale }) {
         "snackbar",
         "support",
         "articles",
+        "feed",
       ])),
     },
     revalidate: 60,
