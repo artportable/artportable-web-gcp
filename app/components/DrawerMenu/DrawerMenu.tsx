@@ -42,7 +42,6 @@ import {
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
 import ManageSubscriptionsDialog from "../ManageSubscriptions/ManageSubscriptionsDialog";
-import Newsletter from "../Newsletter/Newsletter";
 
 export default function DrawerMenu({
   open,
@@ -378,9 +377,13 @@ export default function DrawerMenu({
           ""
         )}
       </List>
-      <ListItem button divider onClick={() => close()}>
-        <Newsletter />
-      </ListItem>
+      <Link href="/newsletter" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("subscribeNewsletter")} />
+            </ListItem>
+          </a>
+        </Link>
     </Drawer>
   );
 }

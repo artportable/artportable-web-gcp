@@ -3,9 +3,13 @@
   "artistsWeThinkYouWouldLike": "Artists we think you would like",
   "noRecommendedUsers": "No recommended users to show...",
   "recommendedUsersError": "Couldn't load recommended users...",
-  "artPortableNewsLetterRegisterToGetUpdates": "Artportable newsletter, register to get all the lastest updates from the art world",
+  "artPortableNewsLetterRegisterToGetUpdates": "Sign up here to receive our wonderful and inspiring newsletter. Update yourself on Artportable's latest artists.",
+  "newsletterInfo": "You can unsubscribe from our newsletter at any time. See our privacy policy to see how we treat your data.",
   "stayUpToDate": "Stay up to date",
   "register": "Register",
   "enterEmailHere": "Enter your email here",
-  "noPosts": "No posts to show..."
+  "noPosts": "No posts to show...",
+  "subscribe": "Subscribe",
+  "emailCapitalLetter": "Email address",
+  "subscribeNewsletter": "Subscribe to our newsletter"
 }
