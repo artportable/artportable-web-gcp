@@ -19,14 +19,8 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       [theme.breakpoints.up("smPlus")]: {
         height: "400px",
-        width: "100%",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        height: "400px",
       },
       [theme.breakpoints.up("lg")]: {
-        display: "flex",
-        width: "100%",
         height: "600px",
       },
     },
@@ -38,21 +32,12 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "center",
         width: "90%",
       },
       [theme.breakpoints.up("md")]: {
-        justifyContent: "space-between",
-        width: "90%",
-        margin: "10px 10px 10px 10px",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        justifyContent: "space-between",
-        width: "90%",
         margin: "10px 10px 10px 10px",
       },
       [theme.breakpoints.up("lg")]: {
-        display: "flex",
         justifyContent: "space-around",
         width: "100%",
       },
@@ -70,23 +55,15 @@ export const styles = makeStyles((theme: Theme) =>
     headline: {
       fontFamily: "Gotham",
       fontStyle: "normal",
-      fontWeight: 700,
+      fontWeight: 450,
       width: "100%",
       fontSize: "48px",
-      lineHeight: "1",
+      lineHeight: "58px",
       marginTop: "48px",
       marginBottom: "24px",
-      [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
-        fontSize: "48px",
-      },
-      [theme.breakpoints.up("md")]: {
-        width: "100%",
-        fontSize: "52px",
-      },
       [theme.breakpoints.up("lg")]: {
-        width: "100%",
-        fontSize: "52px",
+        fontSize: "70px",
+        lineHeight: "84px",
       },
     },
     heroText: {
@@ -102,30 +79,25 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("sm")]: {
         maxWidth: "400px",
         width: "100%",
+        marginRight: "20px",
       },
       [theme.breakpoints.up("md")]: {
-        width: "100%",
         maxWidth: "716px",
         margin: "10px 20px 10px 10px",
         "& a": {
           textDecoration: "underline",
         },
       },
-      [theme.breakpoints.up("lgPlus")]: {
-        width: "100%",
-        maxWidth: "716px",
-      },
     },
 
     description: {
       fontSize: "20px",
+      fontWeight: 350,
+      lineHeight: "24px",
       width: "100%",
-      [theme.breakpoints.up("sm")]: {},
       [theme.breakpoints.up("md")]: {
-        fontSize: "24px",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "24px",
+        fontSize: "32px",
+        lineHeight: "38px",
       },
       [theme.breakpoints.up("lgPlus")]: {
         width: "800px",
@@ -209,10 +181,24 @@ export const styles = makeStyles((theme: Theme) =>
 
     jobCity: {
       width: "100%",
+      fontSize: "16px",
+      fontWeight: 350,
     },
 
     jobCompany: {
       width: "100%",
+      fontSize: "16px",
+      fontWeight: 350,
+    },
+
+    published: {
+      fontSize: "16px",
+      fontWeight: 350,
+    },
+
+    apply: {
+      fontSize: "16px",
+      fontWeight: 350,
     },
 
     upperTextContainer: {
@@ -224,8 +210,6 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: "baseline",
       },
       [theme.breakpoints.up("md")]: {
-        flexDirection: "row",
-        alignItems: "baseline",
       },
       "& a": {
         textDecoration: "underline",
@@ -248,6 +232,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     jobName: {
       fontWeight: 450,
+      fontSize: "16px",
       fontFamily: "Gotham",
       textDecoration: "underline",
     },
@@ -265,30 +250,11 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
       },
-      [theme.breakpoints.up("md")]: {
-        width: "100%",
-        display: "flex",
-        flexDirection: "column-reverse",
-      },
-    },
-
-    wrapperLeft: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-      width: "70%",
     },
 
     wrapperRight: {
       width: "100%",
       maxWidth: "max-content",
-      [theme.breakpoints.up("smPlus")]: {
-        //order: 10,
-      },
-      [theme.breakpoints.up("md")]: {
-        
-      },
     },
   })
 );
