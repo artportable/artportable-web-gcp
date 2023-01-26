@@ -7,7 +7,6 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       maxHeight: "900px",
       height: "100%",
-      maxWidth: "400px",
       width: "100%",
       border: "1px solid rgba(0, 0, 0, 0.5)",
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -16,6 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     divBackground: {
       backgroundColor: "#FFFFFF",
+      width: "fit-content",
     },
 
     newsletterImg: {
@@ -63,13 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     newsletterTextField: {
-      maxHeight: "80px",
-      height: "100%",
-      marginLeft: "20px",
-      marginRight: "20px",
-      width: "100%",
-      maxWidth: "fill-available",
-      padding: "8px",
+
     },
 
     newsletterLabel: {
@@ -108,12 +102,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       newsletterTextField: {
-        marginLeft: "60px",
-        padding: "12px",
-        maxHeight: "52px",
-        height: "100%",
-        fontSize: "18px",
-        marginRight: "60px",
+
       },
 
       newsletterActions: {

@@ -47,7 +47,7 @@ export default function Newsletter() {
               className={s.newsletterImg}
             />
           </div>
-          <article>
+          <div>
             <div className={s.newsletterHeader}>
               {t('subscribeNewsletter')}
             </div>
@@ -59,7 +59,7 @@ export default function Newsletter() {
                 {t('emailCapitalLetter')}
               </label>{" "}
               <br />
-              <input
+              <FormInputText
                 type="email"
                 id="email-input"
                 name="email"
@@ -67,7 +67,6 @@ export default function Newsletter() {
                 required
                 autoCapitalize="off"
                 autoCorrect="off"
-                className={s.newsletterTextField}
                 placeholder="info@artportable.com"
               />
                 <FormButton
@@ -81,7 +80,7 @@ export default function Newsletter() {
             <div className={s.newsletterTextBottom}>
               {t('newsletterInfo')}
             </div>
-          </article>
+          </div>
         </div>
       </div>
   )
