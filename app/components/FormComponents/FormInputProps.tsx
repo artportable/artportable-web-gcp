@@ -7,4 +7,10 @@ export interface FormInputProps {
   type?: string;
   onClick?: () => void;
   children?: React.ReactNode;
+  id?: string;
+  ref?: any;
+  required?: true;
+  autoCapitalize?: string;
+  autoCorrect?: string;
+  className?: string;
 }

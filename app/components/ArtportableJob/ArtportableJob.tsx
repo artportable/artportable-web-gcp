@@ -86,9 +86,8 @@ export default function ArtportableJob(props: any) {
                   </div>
                   <div className={s.jobCompany}>Företag: {data.company}</div>
                   <div className={s.jobCity}>Ort: {data.city}</div>
-                  <div>Publicerad: {data.published}</div>
-                  
-                    <div>Ansök senast: {data.apply}</div>
+                  <div className={s.published}>Publicerad: {data.published}</div> 
+                    <div className={s.apply}>Ansök senast: {data.apply}</div>
                   
               </div>
             </>

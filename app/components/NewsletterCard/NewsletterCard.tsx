@@ -1,10 +1,10 @@
 import * as React from "react";
-import { FormInputText } from "../FormComponents/FormInputText";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import { styles } from "./newsletterCard.css";
 import { useRef, useState } from "react";
 import FormButton from "../FormComponents/FormButton";
+import { inputStyles } from "../../../styles/FormStyles/FormInputText.css";
 
 interface IFormInput {
   textValue: string;
@@ -16,6 +16,7 @@ const defaultValues = {
 
 export default function Newsletter() {
   const s = styles();
+  const iS = inputStyles()
   const { t } = useTranslation(["feed"]);
   const methods = useForm<IFormInput>({ defaultValues: defaultValues });
   const { register, handleSubmit, reset, control, setValue, watch } = methods;
@@ -47,7 +48,7 @@ export default function Newsletter() {
               className={s.newsletterImg}
             />
           </div>
-          <article>
+          <div>
             <div className={s.newsletterHeader}>
               {t('subscribeNewsletter')}
             </div>
@@ -67,8 +68,8 @@ export default function Newsletter() {
                 required
                 autoCapitalize="off"
                 autoCorrect="off"
-                className={s.newsletterTextField}
                 placeholder="info@artportable.com"
+                className={iS.TextField}
               />
                 <FormButton
                   onClick={() => console.log("You clicked the button")}
@@ -81,7 +82,7 @@ export default function Newsletter() {
             <div className={s.newsletterTextBottom}>
               {t('newsletterInfo')}
             </div>
-          </article>
+          </div>
         </div>
       </div>
   )

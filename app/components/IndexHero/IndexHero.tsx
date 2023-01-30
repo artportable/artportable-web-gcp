@@ -64,12 +64,12 @@ export default function IndexHero() {
       image: "/images/vera_stubergh.jpg",
       imageLink: "art/bd8ba56e-e0db-482f-9ca0-f4da672efb06",
     },
-    /*{
-      name: "Lars Isaksson",
-      username: "lars.isaksson",
-      image: "/images/lars_isaksson.jpg",
-      imageLink: "art/a8b387c3-c644-46b1-941f-993f35e89330",
-    },*/
+    {
+      name: "Ulrica Halling Olsson",
+      username: "ulricahallingolsson",
+      image: "/images/ulrica_halling.jpg",
+      imageLink: "art/1bc454e6-052b-4542-8e0f-81cad804f31b",
+    },
   ];
 
   useEffect(() => {
