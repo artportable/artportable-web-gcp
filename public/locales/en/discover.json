@@ -1,9 +1,9 @@
 {
   "art": "Discover",
   "topArt": "Top list",
-  "trendingArt": "Trending",
+  "trendingArt": "Trending art",
   "artists": "Artists",
-  "mostFollowed" : "Most followed",
+  "mostFollowed" : "Popular artists",
   "monthlyArtist": "Artist of the month",
   "artistsWeThinkYouLike": "Artists we think you like",
   "searchForArtist": "Search",
