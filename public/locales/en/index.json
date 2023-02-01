@@ -1,6 +1,6 @@
 {
   "Hitta originalkonst": "Discover unique artworks",
-  "Ta en titt i galleriet med över 37000 konstverk": "Take a look at Scandinavia's largest online art gallery with over 40 000 artworks. Find your favorite piece and buy it directly from the artist.",
+  "Ta en titt i galleriet med över 37000 konstverk": "Take a look at Scandinavia's largest online art gallery with over 48 000 artworks. Find your favorite piece and buy it directly from the artist.",
   "subHeader2": "Follow artists and send purchase requests.",
   "artworkFrom": "Artwork from",
   "signUp": "Sign up",
@@ -33,5 +33,9 @@
   "headline4": "Artist at Artportable",
   "readDescription4": "With a portfolio on Artportable, artists can easily reach out and sell their art. Artportable's Premium offer also includes help in setting prices, personal contact and opportunities for further marketing and exhibitions.",
   "ads": "Advertisement",
-  "headlineAd": "Advert"
+  "headlineAd": "Advert",
+  "acceptCookies": "Accept cookies",
+  "weUseCookies": "We use cookies on this website",
+  "readMoreCookies": "You can read more about how we manage cookies on our website.",
+  "cookiePolicy": "Our cookie policy"
 }

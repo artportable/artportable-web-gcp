@@ -1,6 +1,6 @@
 {
   "Hitta originalkonst": "Hitta originalkonst",
-  "Ta en titt i galleriet med över 37000 konstverk": "Här hittar du originalkonst som passar just dig. Ta en titt i Nordens största digitala konstgalleri med över 40 000 konstverk, hitta ditt favoritverk och köp det direkt av konstnären.",
+  "Ta en titt i galleriet med över 37000 konstverk": "Här hittar du originalkonst som passar just dig. Ta en titt i Nordens största digitala konstgalleri med över 48 000 konstverk, hitta ditt favoritverk och köp det direkt av konstnären.",
   "artworkFrom": "Konstverk av",
   "signUp": "Bli medlem",
   "artworkBy": "Konstverk av",
@@ -32,5 +32,9 @@
   "headline4": "Konstnär på Artportable",
   "readDescription4": "Med en portfolio på Artportable kan konstnärer enkelt nå ut och sälja sin konst. I Artportables Premium-erbjudande finns också hjälp att sätta priser, personlig kontakt och möjligheter till ytterligare marknadsföring och utställningar.",
   "ads": "Annonser",
-  "headlineAd": "Annons"
+  "headlineAd": "Annons",
+  "acceptCookies": "Acceptera cookies",
+  "weUseCookies": "Vi använder cookies på den här webbplatsen",
+  "readMoreCookies": "Här kan du läsa mer om hur vi använder cookies på vår webbplats.",
+  "cookiePolicy": "Vår cookie policy"
 }
