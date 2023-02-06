@@ -51,18 +51,18 @@ export default function IndexHero() {
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
   const images = [
-    {
+    /*{
       name: "Carl Lindhe",
       username: "callel",
       image: "/images/carl_lindhe.jpg",
       imageLink: "art/0bd567ea-34a6-4e59-9d0f-2778c0200c3f",
-    },
+    },*/
 
     {
-      name: "Vera Stubergh",
-      username: "vera.stubergh1940",
-      image: "/images/vera_stubergh.jpg",
-      imageLink: "art/bd8ba56e-e0db-482f-9ca0-f4da672efb06",
+      name: "Sara Bergman",
+      username: "s_bergman1",
+      image: "/images/sara_bergman.jpg",
+      imageLink: "art/771c7344-711b-40ce-9451-20bb251b0087",
     },
     {
       name: "Ulrica Halling Olsson",
