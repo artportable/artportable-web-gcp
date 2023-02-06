@@ -1,18 +1,18 @@
-import React, { useRef, useState } from "react";
+import * as React from "react";
 import { useTranslation } from "next-i18next";
-import FormButton from "../FormComponents/FormButton";
 import { styles } from "./newsletterCard.css";
+import { useRef, useState } from "react";
+import FormButton from "../FormComponents/FormButton";
 import { inputStyles } from "../../../styles/FormStyles/FormInputText.css";
 
-const Newsletter = () => {
+export default function Newsletter() {
   const s = styles();
   const iS = inputStyles();
   const { t } = useTranslation(["feed"]);
   const inputRef = useRef(null);
-
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e) => {
+  const subscribeUser = async (e) => {
     e.preventDefault();
     setStatus("submitting");
     try {
@@ -51,7 +51,7 @@ const Newsletter = () => {
           <div className={s.newsletterText}>
             {t("artPortableNewsLetterRegisterToGetUpdates")}
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={subscribeUser}>
             <label htmlFor="email-input" className={s.newsletterLabel}>
               {t("emailCapitalLetter")}
             </label>{" "}
@@ -67,22 +67,27 @@ const Newsletter = () => {
               placeholder="info@artportable.com"
               className={iS.TextField}
             />
-            <FormButton type="submit"> {t("subscribe")} </FormButton>
+            <FormButton
+              onClick={() => console.log("You clicked the button")}
+              type="submit"
+            >
+              {" "}
+              {t("subscribe")}{" "}
+            </FormButton>
           </form>
           {status === "success" && (
             <div className={s.newsletterTextBottom}>
-              {t("subscriptionSuccess")}
+              {t("subscriptionSuccessNewsletter")}
             </div>
           )}
           {status === "error" && (
             <div className={s.newsletterTextBottom}>
-              {t("subscriptionError")}
+              {t("subscriptionErrorNewsletter")}
             </div>
           )}
+          <div className={s.newsletterTextBottom}>{t("newsletterInfo")}</div>
         </div>
       </div>
     </div>
   );
-};
-
-export default Newsletter;
+}
