@@ -8,12 +8,11 @@ export default async (req, res) => {
   }
 
   try {
-    const AUDIENCE_ID = "8c2a2f581b";
-    const API_KEY = "c27ec50919cde7202f403dc0e1e0cde5-us20";
+    const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID;
+    const API_KEY = process.env.MAILCHIMP_API_KEY;
     const DATACENTER = "us20";
     const data = {
       email_address: email,
-      status: "subscribed",
     };
 
     const response = await fetch(
