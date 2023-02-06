@@ -58,10 +58,10 @@ export default function AdDialog(props: Props) {
     }, */
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/Zlatko_Gradholt.jpg",
+      companyImageSv: "/ad/Zlatko_w2.jpg",
       companyLinkSv:
         "https://artportable.com/en/profile/@zlatkogradholt",
-      companyImageEn: "/ad/Zlatko_Gradholt.jpg",
+      companyImageEn: "/ad/Zlatko_w2.jpg",
       companyLinkEn:
         "https://artportable.com/en/profile/@zlatkogradholt",
     },
