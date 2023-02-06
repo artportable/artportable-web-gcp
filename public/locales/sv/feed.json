@@ -11,5 +11,7 @@
   "noPosts": "Finns inga inlägg att visa...",
   "emailCapitalLetter": "E-postadress",
   "subscribe": "Prenumerera",
-  "subscribeNewsletter": "Prenumerera på vårt nyhetsbrev"
+  "subscribeNewsletter": "Prenumerera på vårt nyhetsbrev",
+  "subscriptionSuccessNewsletter": "Prenumerationen lyckades! Tack för att du prenumererar på vårt nyhetsbrev.",
+  "subscriptionError": "Hoppsan, något gick fel. Var god försök igen senare eller kontakta oss för hjälp."
 }

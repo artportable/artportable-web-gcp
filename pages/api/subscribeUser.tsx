@@ -1,15 +1,10 @@
-import fetch from "isomorphic-unfetch";
+const AUDIENCE_ID = process.env.NEXT_PUBLIC_MAILCHIMP_AUDIENCE_ID;
+const API_KEY = process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY;
 
 export default async (req, res) => {
   const { email } = req.body;
 
-  if (!email) {
-    return res.status(400).json({ error: "Email is required" });
-  }
-
   try {
-    const AUDIENCE_ID = process.env.MAILCHIMP_AUDIENCE_ID;
-    const API_KEY = process.env.MAILCHIMP_API_KEY;
     const DATACENTER = "us20";
     const data = {
       email_address: email,
@@ -30,7 +25,7 @@ export default async (req, res) => {
 
     if (response.status === 400) {
       return res.status(400).json({
-        error: `There was an error subscribing to the newsletter.`,
+        error: `There was an error subscribing to the newsletter`,
       });
     }
 

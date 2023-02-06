@@ -11,5 +11,7 @@
   "noPosts": "No posts to show...",
   "subscribe": "Subscribe",
   "emailCapitalLetter": "Email address",
-  "subscribeNewsletter": "Subscribe to our newsletter"
+  "subscribeNewsletter": "Subscribe to our newsletter",
+  "subscriptionSuccessNewsletter": "Thank you for subscribing! We will keep you updated with the latest news and promotions.",
+  "subscriptionError": " Oops, something went wrong. Please try again later or contact us for assistance."
 }
