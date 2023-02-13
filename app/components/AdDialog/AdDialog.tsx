@@ -47,10 +47,12 @@ export default function AdDialog(props: Props) {
     }, */
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/Zlatko_w2-min.jpg",
-      companyLinkSv: "https://artportable.com/en/profile/@zlatkogradholt",
-      companyImageEn: "/ad/Zlatko_w2-min.jpg",
-      companyLinkEn: "https://artportable.com/en/profile/@zlatkogradholt",
+      companyImageSv: "/ad/annikaberglof-takeover.jpg",
+      companyLinkSv:
+        "https://artportable.com/en/profile/@annika.berglof",
+      companyImageEn: "/ad/annikaberglof-takeover.jpg",
+      companyLinkEn:
+        "https://artportable.com/en/profile/@annika.berglof",
     },
   ];
   useEffect(() => {
@@ -114,8 +116,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
-                width={500}
-                height={600}
+                width={700}
+                height={900}
                 quality={40}
               />
             </a>
