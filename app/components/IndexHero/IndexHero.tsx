@@ -51,15 +51,20 @@ export default function IndexHero() {
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
   const images = [
-    /*{
-      name: "Carl Lindhe",
-      username: "callel",
-      image: "/images/carl_lindhe.jpg",
-      imageLink: "art/0bd567ea-34a6-4e59-9d0f-2778c0200c3f",
-    },*/
+    {
+      name: "Lars-Henrik Milert",
+      username: "milert",
+      image: "/images/lars-henrik_milert.jpg",
+      imageLink: "art/2f3d1cd4-626d-44ed-9864-2de8a956d248",
+    },
 
+    {
+      name: "Ralph Castellan",
+      username: "rc-art",
+      image: "/images/ralph_castellan3.jpg",
+      imageLink: "art/98acd16f-b23c-4d79-84d8-ee5abd059b7f",
+    },
 
-    /*Frames i två veckor framåt*/
     {
       name: "Ariwinia Pettersson",
       username: "ariwinia",
