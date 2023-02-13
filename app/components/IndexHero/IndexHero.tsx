@@ -58,17 +58,19 @@ export default function IndexHero() {
       imageLink: "art/0bd567ea-34a6-4e59-9d0f-2778c0200c3f",
     },*/
 
+
+    /*Frames i två veckor framåt*/
     {
-      name: "Sara Bergman",
-      username: "s_bergman1",
-      image: "/images/sara_bergman.jpg",
-      imageLink: "art/771c7344-711b-40ce-9451-20bb251b0087",
+      name: "Ariwinia Pettersson",
+      username: "ariwinia",
+      image: "/images/ariwinia_pettersson-frames.jpg",
+      imageLink: "art/a2094c38-d47c-48be-bd85-59a3b1de18f6",
     },
     {
-      name: "Ulrica Halling Olsson",
-      username: "ulricahallingolsson",
-      image: "/images/ulrica_halling.jpg",
-      imageLink: "art/1bc454e6-052b-4542-8e0f-81cad804f31b",
+      name: "Angelica Diehn",
+      username: "angelica.diehn",
+      image: "/images/angelica_diehn-frames.jpg",
+      imageLink: "art/28041cfc-f32b-4639-9663-de450240d6f5",
     },
   ];
 
