@@ -51,24 +51,31 @@ export default function IndexHero() {
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
   const images = [
-    /*{
-      name: "Carl Lindhe",
-      username: "callel",
-      image: "/images/carl_lindhe.jpg",
-      imageLink: "art/0bd567ea-34a6-4e59-9d0f-2778c0200c3f",
-    },*/
+    {
+      name: "Lars-Henrik Milert",
+      username: "milert",
+      image: "/images/lars-henrik_milert.jpg",
+      imageLink: "art/2f3d1cd4-626d-44ed-9864-2de8a956d248",
+    },
 
     {
-      name: "Sara Bergman",
-      username: "s_bergman1",
-      image: "/images/sara_bergman.jpg",
-      imageLink: "art/771c7344-711b-40ce-9451-20bb251b0087",
+      name: "Ralph Castellan",
+      username: "rc-art",
+      image: "/images/ralph_castellan3.jpg",
+      imageLink: "art/98acd16f-b23c-4d79-84d8-ee5abd059b7f",
+    },
+
+    {
+      name: "Ariwinia Pettersson",
+      username: "ariwinia",
+      image: "/images/ariwinia_pettersson-frames.jpg",
+      imageLink: "art/a2094c38-d47c-48be-bd85-59a3b1de18f6",
     },
     {
-      name: "Ulrica Halling Olsson",
-      username: "ulricahallingolsson",
-      image: "/images/ulrica_halling.jpg",
-      imageLink: "art/1bc454e6-052b-4542-8e0f-81cad804f31b",
+      name: "Angelica Diehn",
+      username: "angelica.diehn",
+      image: "/images/angelica_diehn-frames.jpg",
+      imageLink: "art/28041cfc-f32b-4639-9663-de450240d6f5",
     },
   ];
 

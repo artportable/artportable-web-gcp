@@ -10,7 +10,8 @@ import {
 } from "../../utils/googleAnalytics";
 import router from "next/router";
 import { Locales } from "../../models/i18n/locales";
-
+import Image from "next/image";
+import Head from "next/head";
 interface RandomImageProps {
   companyImageSv: string;
   companyLinkSv: string;
@@ -32,22 +33,10 @@ export default function AdDialog(props: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (
-      randomAd ===
-      {
-        companyImageSv: "",
-        companyLinkSv: "",
-        companyImageEn: "",
-        companyLinkEn: "",
-        companyName: "",
-      }
-    ) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
-  }, []);
+    setLoading(randomAd === null || randomAd === undefined);
+  }, [randomAd]);
 
+  // if no add, remove the component from index page
   const ad = [
     /*   {
       companyName: "Plingon",
@@ -58,12 +47,12 @@ export default function AdDialog(props: Props) {
     }, */
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/Zlatko_w2-min.jpg",
+      companyImageSv: "/ad/annikaberglof-takeover.jpg",
       companyLinkSv:
-        "https://artportable.com/en/profile/@zlatkogradholt",
-      companyImageEn: "/ad/Zlatko_w2-min.jpg",
+        "https://artportable.com/en/profile/@annika.berglof",
+      companyImageEn: "/ad/annikaberglof-takeover.jpg",
       companyLinkEn:
-        "https://artportable.com/en/profile/@zlatkogradholt",
+        "https://artportable.com/en/profile/@annika.berglof",
     },
   ];
   useEffect(() => {
@@ -107,18 +96,29 @@ export default function AdDialog(props: Props) {
         <>
           {router.locale === Locales.sv ? (
             <a href={randomAd.companyLinkSv} target="_blank" onClick={onClick}>
-              <img
+              <Image
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
+                width={500}
+                height={600}
+                quality={40}
               />
             </a>
           ) : (
-            <a href={randomAd.companyLinkEn} target="_blank" onClick={onClick}>
-              <img
+            <a
+              href={randomAd.companyLinkEn}
+              target="_blank"
+              onClick={onClick}
+              rel="preload"
+            >
+              <Image
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
+                width={700}
+                height={900}
+                quality={40}
               />
             </a>
           )}
