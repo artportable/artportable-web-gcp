@@ -329,6 +329,13 @@ export default function DrawerMenu({
             >
               <ListItemText primary={t("login")} />
             </ListItem>
+            <Link href="/newsletter" passHref>
+              <a>
+                <ListItem button divider onClick={() => close()}>
+                  <ListItemText primary={t("subscribeNewsletter")} />
+                </ListItem>
+              </a>
+            </Link>
           </>
         )}
         <div className={s.languageElement}>
@@ -377,13 +384,6 @@ export default function DrawerMenu({
           ""
         )}
       </List>
-      <Link href="/newsletter" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("subscribeNewsletter")} />
-            </ListItem>
-          </a>
-        </Link>
     </Drawer>
   );
 }
