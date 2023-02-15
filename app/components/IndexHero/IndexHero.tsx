@@ -57,6 +57,12 @@ export default function IndexHero() {
       image: "/images/lars-henrik_milert.jpg",
       imageLink: "art/2f3d1cd4-626d-44ed-9864-2de8a956d248",
     },
+    {
+      name: "Charlotte Hansson",
+      username: "charlottehansson",
+      image: "/images/charlotteHansson.jpeg",
+      imageLink: "art/10590f17-5cca-4b6b-9649-9a7046119b6e",
+    },
 
     {
       name: "Ralph Castellan",
