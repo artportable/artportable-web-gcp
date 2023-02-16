@@ -394,6 +394,12 @@ export default function Profile(props) {
   };
   const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
 
+  const rocketLink = 'https://buy.stripe.com/28oeVn5ye6VLcdacNE';
+
+  const redirectToRocketUpgrade = () => {
+    window.open(rocketLink);
+  };
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -605,44 +611,17 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
-            {isMyProfile &&
-              membership.value > Membership.Portfolio &&
-              !userProfile.data?.MonthlyArtist && (
-                <div className={s.hovs}>
-                  <Button
-                    rounded
-                    className={s.monthlyArtistButton}
-                    onClick={() => {
-                      handleClickMonthlyDialog();
-                      trackGoogleAnalytics(
-                        ActionType.BECOME_MONTHLY_ARTIST,
-                        CategoryType.INTERACTIVE
-                      );
-                    }}
-                  >
-                    <Typography className={s.headerButton}>
-                      {t("profile:becomeMonthlyArtist")}
-                    </Typography>
-                  </Button>
-                </div>
-              )}
-            {isMyProfile && membership.value === Membership.Portfolio && (
+            {isMyProfile && membership.value > Membership.Base && (
               <div className={s.hovs}>
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
-                  onClick={() => {
-                    handleClickPortfolioPremiumDialog();
-                    addNumber();
-                    trackGoogleAnalytics(
-                      ActionType.GET_PORTFOLIO_PREMIUM,
-                      CategoryType.INTERACTIVE
-                    );
-                  }}
-                >
-                  <Typography className={s.headerButton}>
-                    {t("profile:getPortfolioPremium")}
-                  </Typography>
+                 onClick={redirectToRocketUpgrade}
+                  >
+                    <Typography className={s.headerButtonRocket}>
+                      {t("profile:rocket")}
+                    </Typography>
+                    <img src="/rocket-white.png" alt="Rocket Icon" className={s.rocketIcon} />
                 </Button>
               </div>
             )}
