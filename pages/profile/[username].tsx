@@ -394,6 +394,12 @@ export default function Profile(props) {
   };
   const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
 
+  const rocketLink = 'https://buy.stripe.com/28oeVn5ye6VLcdacNE';
+
+  const redirectToRocketUpgrade = () => {
+    window.location.href = rocketLink;
+  };
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -612,16 +618,10 @@ export default function Profile(props) {
                   <Button
                     rounded
                     className={s.monthlyArtistButton}
-                    onClick={() => {
-                      handleClickMonthlyDialog();
-                      trackGoogleAnalytics(
-                        ActionType.BECOME_MONTHLY_ARTIST,
-                        CategoryType.INTERACTIVE
-                      );
-                    }}
+                    onClick={redirectToRocketUpgrade}
                   >
                     <Typography className={s.headerButton}>
-                      {t("profile:becomeMonthlyArtist")}
+                      {t("profile:rocket")}
                     </Typography>
                   </Button>
                 </div>
