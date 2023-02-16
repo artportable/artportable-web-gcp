@@ -47,10 +47,10 @@ export default function AdDialog(props: Props) {
     }, */
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/annikaberglof-takeover.jpg",
+      companyImageSv: "/ad/annika_berglof-vernissage.jpg",
       companyLinkSv:
         "https://artportable.com/en/profile/@annika.berglof",
-      companyImageEn: "/ad/annikaberglof-takeover.jpg",
+      companyImageEn: "/ad/annika_berglof-vernissage.jpg",
       companyLinkEn:
         "https://artportable.com/en/profile/@annika.berglof",
     },
