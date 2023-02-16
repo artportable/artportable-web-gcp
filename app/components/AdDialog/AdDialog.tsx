@@ -100,7 +100,7 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
-                width={500}
+                width={700}
                 height={700}
                 quality={40}
               />
@@ -116,7 +116,7 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
-                width={500}
+                width={700}
                 height={700}
                 quality={40}
               />
