@@ -234,5 +234,17 @@ export const profileStyles = makeStyles((theme: Theme) =>
 
       },
     },
+
+    headerButtonRocket: {
+      fontFamily: 'Gotham',
+      fontWeight: 500,
+      paddingLeft: '20px'
+    },
+
+    rocketIcon: {
+      padding: '10px',
+      maxWidth: '40px',
+      width: '100%'
+    }
   }),
 );

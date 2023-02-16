@@ -397,7 +397,7 @@ export default function Profile(props) {
   const rocketLink = 'https://buy.stripe.com/28oeVn5ye6VLcdacNE';
 
   const redirectToRocketUpgrade = () => {
-    window.location.href = rocketLink;
+    window.open(rocketLink);
   };
 
   return (
@@ -611,38 +611,17 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
-            {isMyProfile &&
-              membership.value > Membership.Portfolio &&
-              !userProfile.data?.MonthlyArtist && (
-                <div className={s.hovs}>
-                  <Button
-                    rounded
-                    className={s.monthlyArtistButton}
-                    onClick={redirectToRocketUpgrade}
-                  >
-                    <Typography className={s.headerButton}>
-                      {t("profile:rocket")}
-                    </Typography>
-                  </Button>
-                </div>
-              )}
-            {isMyProfile && membership.value === Membership.Portfolio && (
+            {isMyProfile && membership.value > Membership.Base && (
               <div className={s.hovs}>
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
-                  onClick={() => {
-                    handleClickPortfolioPremiumDialog();
-                    addNumber();
-                    trackGoogleAnalytics(
-                      ActionType.GET_PORTFOLIO_PREMIUM,
-                      CategoryType.INTERACTIVE
-                    );
-                  }}
-                >
-                  <Typography className={s.headerButton}>
-                    {t("profile:getPortfolioPremium")}
-                  </Typography>
+                 onClick={redirectToRocketUpgrade}
+                  >
+                    <Typography className={s.headerButtonRocket}>
+                      {t("profile:rocket")}
+                    </Typography>
+                    <img src="/rocket-white.png" alt="Rocket Icon" className={s.rocketIcon} />
                 </Button>
               </div>
             )}
