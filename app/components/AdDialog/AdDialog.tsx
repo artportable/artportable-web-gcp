@@ -45,6 +45,13 @@ export default function AdDialog(props: Props) {
       companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
     }, */
+    {
+      companyName: "Artportable",
+      companyImageSv: "/ad/sarabergmantakeover.jpg",
+      companyLinkSv: "https://artportable.com/en/profile/@s_bergman1",
+      companyImageEn: "/ad/sarabergmantakeover.jpg",
+      companyLinkEn: "https://artportable.com/en/profile/@s_bergman1",
+    },
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
@@ -91,8 +98,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
-                width={700}
-                height={700}
+                width={900}
+                height={500}
                 quality={40}
               />
             </a>
@@ -107,8 +114,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
-                width={700}
-                height={700}
+                width={900}
+                height={500}
                 quality={40}
               />
             </a>
