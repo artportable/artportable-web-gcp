@@ -45,15 +45,6 @@ export default function AdDialog(props: Props) {
       companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
     }, */
-    {
-      companyName: "Artportable",
-      companyImageSv: "/ad/annika_berglof-vernissage.jpg",
-      companyLinkSv:
-        "https://artportable.com/en/profile/@annika.berglof",
-      companyImageEn: "/ad/annika_berglof-vernissage.jpg",
-      companyLinkEn:
-        "https://artportable.com/en/profile/@annika.berglof",
-    },
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
