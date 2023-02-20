@@ -52,12 +52,6 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Lars-Henrik Milert",
-      username: "milert",
-      image: "/images/lars-henrik_milert.jpg",
-      imageLink: "art/2f3d1cd4-626d-44ed-9864-2de8a956d248",
-    },
-    {
       name: "Charlotte Hansson",
       username: "charlottehansson",
       image: "/images/charlotteHansson.jpeg",
@@ -65,23 +59,30 @@ export default function IndexHero() {
     },
 
     {
-      name: "Ralph Castellan",
-      username: "rc-art",
-      image: "/images/ralph_castellan3.jpg",
-      imageLink: "art/98acd16f-b23c-4d79-84d8-ee5abd059b7f",
+      name: "Henrik Pätzke",
+      username: "chfpatzke",
+      image: "/images/Henrik_patzke_frame.jpg",
+      imageLink: "art/16df4201-2ad6-4031-a97b-0eb83a51b564",
     },
 
     {
-      name: "Ariwinia Pettersson",
-      username: "ariwinia",
-      image: "/images/ariwinia_pettersson-frames.jpg",
-      imageLink: "art/a2094c38-d47c-48be-bd85-59a3b1de18f6",
+      name: "Mia Persson",
+      username: "mia.persson",
+      image: "/images/mia_persson.jpg",
+      imageLink: "art/8541fe17-a9de-428c-a363-e7f8eca7bdbf",
+    },
+
+    {
+      name: "Helene Westerlund",
+      username: "artuditech",
+      image: "/images/helene_westerlund.jpg",
+      imageLink: "art/d2f659bb-04dd-412a-a39c-c5492a2eb32c",
     },
     {
-      name: "Angelica Diehn",
-      username: "angelica.diehn",
-      image: "/images/angelica_diehn-frames.jpg",
-      imageLink: "art/28041cfc-f32b-4639-9663-de450240d6f5",
+      name: "Anett Limseth Fägersten",
+      username: "art_of_anett",
+      image: "/images/anett_limseth_fagersten.jpg",
+      imageLink: "art/36cdd317-4518-4001-833b-8e1a3235c372",
     },
   ];
 
