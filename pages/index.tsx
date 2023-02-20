@@ -57,7 +57,7 @@ export default function DiscoverPage({ navBarItems }) {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [openAdDialog, setOpenAdDialog] = useState(true);
-
+  // comment
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
@@ -177,7 +177,7 @@ export default function DiscoverPage({ navBarItems }) {
       {!loading && (
         <>
           {!isSignedIn.value && <IndexHero></IndexHero>}
-            {/*<AdDialog
+          {/*<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
             onClose={toggleAdDialog}
@@ -274,7 +274,7 @@ export default function DiscoverPage({ navBarItems }) {
               </Tabs>
             </div>
             <Box paddingTop={4}>
-            <TabPanel value={activeTab} index={0}>
+              <TabPanel value={activeTab} index={0}>
                 <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
