@@ -105,11 +105,12 @@ export default function CategoryPage({ category, navBarItems }: { category: Cate
         <div className={s.flexHeaderButton}>
           <div>
           <div className={s.headerDiv}>
-            <Typography className={s.header} variant="h1">{t('readAboutArt')}</Typography>
+            <Typography className={s.header} variant="h1">Läs om konst{/*{t('readAboutArt')}*/}</Typography>
           </div>
           <div className={s.subheaderDiv}>
             <Typography variant="h4" component="p" className={s.subHeader}>
-              {t('subHeader')}
+            All konst bär på en historia. Här hittar du artiklar om konst, konstnärer och annat aktuellt i konstvärlden. Djupdyk i det som intresserar just dig och läs mer om personen bakom verket.
+            {/*{t('subHeader')}*/}
             </Typography>
           </div>
           </div>
