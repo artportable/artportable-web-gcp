@@ -38,13 +38,13 @@ export default function AdDialog(props: Props) {
 
   // if no add, remove the component from index page
   const ad = [
-    /*   {
+    /*{
       companyName: "Plingon",
       companyImageSv: "/ad/plingon.jpg",
       companyLinkSv: "https://bit.ly/3FyutR1",
       companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
-    }, */
+    },*/
     {
       companyName: "Artportable",
       companyImageSv: "/ad/sarabergmantakeover.jpg",
