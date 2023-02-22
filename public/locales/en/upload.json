@@ -16,5 +16,6 @@
   "depth": "Depth",
   "addmoreImages": "Feel free to upload additional images of the same artwork. It can be from a different angle or from the studio when the artwork was created.",
   "publish": "Publish",
-  "doneCropping": "When you are done cropping, press the green button."
+  "doneCropping": "When you are done cropping, press the green button.",
+  "limitReached": "Upload limit reached, please upgrade to portfolio premium to upload unlimited artworks"
 }

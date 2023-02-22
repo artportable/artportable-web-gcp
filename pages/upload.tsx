@@ -298,7 +298,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         {" "}
         {userTotalArtworks > 10 &&
         membership.value === 2 &&
-        userCreatedDate > limitDate ? (
+        userCreatedDate < limitDate ? (
           <div>
             Upload limit reached, please upgrade to portfolio premium to upload
             unlimited artworks

@@ -16,5 +16,6 @@
   "depth": "Djup",
   "addmoreImages": "Här kan du lägga till ytterligare bild på verket, exempelvis annan vinkel eller bild från när verket skapades.",
   "publish": "Publicera",
-  "doneCropping": "När du är klar med beskärningen, tryck på den gröna knappen."
+  "doneCropping": "När du är klar med beskärningen, tryck på den gröna knappen.",
+  "limitReached": "Uppladdningsgränsen har nåtts, vänligen uppgradera till portfolio premium för att kunna ladda upp obegränsat med konstverk."
 }
