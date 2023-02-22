@@ -57,7 +57,7 @@ export default function DiscoverPage({ navBarItems }) {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [openAdDialog, setOpenAdDialog] = useState(true);
-  // comment
+
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
