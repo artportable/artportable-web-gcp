@@ -38,6 +38,7 @@ export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation(["upload"]);
   const router = useRouter();
+
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("xs"));
 
