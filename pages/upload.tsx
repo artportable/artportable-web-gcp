@@ -241,19 +241,6 @@ export default function UploadArtworkPage({ navBarItems }) {
       setUserCreated(data.Created);
       setUserTotalArtworks(dataSummary.Artworks);
       setUserCreatedDate(new Date(data.Created));
-
-      console.log(data.Created);
-      console.log("User created at: " + userCreated);
-      console.log("New user created date: " + userCreatedDate);
-
-      console.log("Portfolio role is: " + membership.value);
-      console.log(
-        "Total artworks of " +
-          `${username.value}` +
-          " is " +
-          `${userTotalArtworks}`
-      );
-      console.log(limitDate);
     }
     fetchUserData();
   }, [userCreated, userTotalArtworks]);
@@ -311,7 +298,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         {" "}
         {userTotalArtworks > 10 &&
         membership.value === 2 &&
-        userCreatedDate < limitDate ? (
+        userCreatedDate > limitDate ? (
           <div>
             Upload limit reached, please upgrade to portfolio premium to upload
             unlimited artworks
