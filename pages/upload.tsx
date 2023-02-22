@@ -302,7 +302,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         {" "}
         {userTotalArtworks > 10 &&
         membership.value === 2 &&
-        userCreatedDate < limitDate ? (
+        userCreatedDate > limitDate ? (
           <div className={s.flexPaper}>
             <Paper className={s.paperLeft} elevation={1}>
               <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
