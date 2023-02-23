@@ -226,7 +226,6 @@ export default function UploadArtworkPage({ navBarItems }) {
     setDeletedFile(true);
   };
 
-  const [userData, setUserData] = useState(null);
   const [userCreated, setUserCreated] = useState(new Date());
   const limitDate = new Date("2023-02-17");
   const [userTotalArtworks, setUserTotalArtworks] = useState(null);
@@ -241,7 +240,6 @@ export default function UploadArtworkPage({ navBarItems }) {
       const data = await response.json();
       const dataSummary = await responseSummary.json();
 
-      setUserData(data);
       setUserCreated(data.Created);
       setUserTotalArtworks(dataSummary.Artworks);
       setUserCreatedDate(new Date(data.Created));
