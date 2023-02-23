@@ -226,7 +226,6 @@ export default function UploadArtworkPage({ navBarItems }) {
     setDeletedFile(true);
   };
 
-  const [userData, setUserData] = useState(null);
   const [userCreated, setUserCreated] = useState(new Date());
   const limitDate = new Date("2023-02-17");
   const [userTotalArtworks, setUserTotalArtworks] = useState(null);
@@ -241,13 +240,17 @@ export default function UploadArtworkPage({ navBarItems }) {
       const data = await response.json();
       const dataSummary = await responseSummary.json();
 
-      setUserData(data);
       setUserCreated(data.Created);
       setUserTotalArtworks(dataSummary.Artworks);
       setUserCreatedDate(new Date(data.Created));
     }
     fetchUserData();
   }, [userCreated, userTotalArtworks]);
+
+  const artworkLimitReached =
+    userTotalArtworks >= 10 &&
+    membership.value === 2 &&
+    userCreatedDate > limitDate;
 
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
@@ -300,9 +303,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     <Main navBarItems={navBarItems}>
       <>
         {" "}
-        {userTotalArtworks > 10 &&
-        membership.value === 2 &&
-        userCreatedDate > limitDate ? (
+        {artworkLimitReached ? (
           <div className={s.flexPaper}>
             <Paper className={s.paperLeft} elevation={1}>
               <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
