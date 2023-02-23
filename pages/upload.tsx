@@ -249,6 +249,11 @@ export default function UploadArtworkPage({ navBarItems }) {
     fetchUserData();
   }, [userCreated, userTotalArtworks]);
 
+  const artworkLimitReached =
+    userTotalArtworks >= 10 &&
+    membership.value === 2 &&
+    userCreatedDate > limitDate;
+
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
       .then(() =>
@@ -300,9 +305,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     <Main navBarItems={navBarItems}>
       <>
         {" "}
-        {userTotalArtworks > 10 &&
-        membership.value === 2 &&
-        userCreatedDate > limitDate ? (
+        {artworkLimitReached ? (
           <div className={s.flexPaper}>
             <Paper className={s.paperLeft} elevation={1}>
               <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
