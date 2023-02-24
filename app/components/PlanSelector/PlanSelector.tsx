@@ -75,15 +75,15 @@ export default function PlanSelector({
         {hideTabs === false && (
           <div className={s.paymentOptions}>
             <Tabs
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: "#000"
-               }
+              TabIndicatorProps={{
+                style: {
+                  backgroundColor: "#000",
+                },
               }}
               value={paymentInterval}
               onChange={(_, val) => setPaymentInterval(val)}
             >
-              {/* <Tab value="month" label={t("monthlyPayment")} /> */}
+              <Tab value="month" label={t("monthlyPayment")} />
               <Tab value="year" label={t("yearlyPayment")} />
             </Tabs>
           </div>
@@ -95,8 +95,20 @@ export default function PlanSelector({
             return showAll || (!showAll && plan === "Portfolio");
           })
           .map((plan) => {
-            const p = priceData.find(pd => pd.product === plan && pd.recurringInterval === paymentInterval);
-          return p ? <PlanCard hideButtons={landingPageMode} plan={p} key={p.id} setHideTabs={true}></PlanCard> : <></>
+            const p = priceData.find(
+              (pd) =>
+                pd.product === plan && pd.recurringInterval === paymentInterval
+            );
+            return p ? (
+              <PlanCard
+                hideButtons={landingPageMode}
+                plan={p}
+                key={p.id}
+                setHideTabs={true}
+              ></PlanCard>
+            ) : (
+              <></>
+            );
           })}
       </div>
       {landingPageMode && (
