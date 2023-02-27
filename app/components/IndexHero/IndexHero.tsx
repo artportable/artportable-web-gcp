@@ -52,24 +52,17 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Charlotte Hansson",
-      username: "charlottehansson",
-      image: "/images/charlotteHansson.jpeg",
-      imageLink: "art/10590f17-5cca-4b6b-9649-9a7046119b6e",
+      name: "Lena Trojqa Sätterström",
+      username: "lena.trojqa.satterstrom",
+      image: "/images/medfagel.jpg",
+      imageLink: "art/53fdfee6-e9e0-4520-bdcb-8ef1a6d1dde5",
     },
 
     {
-      name: "Henrik Pätzke",
-      username: "chfpatzke",
-      image: "/images/Henrik_patzke_frame.jpg",
-      imageLink: "art/16df4201-2ad6-4031-a97b-0eb83a51b564",
-    },
-
-    {
-      name: "Mia Persson",
-      username: "mia.persson",
-      image: "/images/mia_persson.jpg",
-      imageLink: "art/8541fe17-a9de-428c-a363-e7f8eca7bdbf",
+      name: "Eva Cheadle",
+      username: "evacheadle",
+      image: "/images/pojkemedbok.jpeg",
+      imageLink: "art/54e87250-7476-4c6d-bc89-48d6fe22c8a3",
     },
 
     {
@@ -79,10 +72,10 @@ export default function IndexHero() {
       imageLink: "art/d2f659bb-04dd-412a-a39c-c5492a2eb32c",
     },
     {
-      name: "Anett Limseth Fägersten",
-      username: "art_of_anett",
-      image: "/images/anett_limseth_fagersten.jpg",
-      imageLink: "art/36cdd317-4518-4001-833b-8e1a3235c372",
+      name: "Mia Persson",
+      username: "mia.persson",
+      image: "/images/beskyd.jpg",
+      imageLink: "art/8f257769-7719-4b9a-8082-dae0e62885b4",
     },
   ];
 
