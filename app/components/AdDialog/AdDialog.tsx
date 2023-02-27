@@ -47,10 +47,10 @@ export default function AdDialog(props: Props) {
     },*/
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/sarabergmantakeover.jpg",
-      companyLinkSv: "https://artportable.com/en/profile/@s_bergman1",
-      companyImageEn: "/ad/sarabergmantakeover.jpg",
-      companyLinkEn: "https://artportable.com/en/profile/@s_bergman1",
+      companyImageSv: "/ad/helenewesterlund.jpg",
+      companyLinkSv: "https://artportable.com/en/profile/@artuditech",
+      companyImageEn: "/ad/helenewesterlund.jpg",
+      companyLinkEn: "https://artportable.com/en/profile/@artuditech",
     },
   ];
   useEffect(() => {
