@@ -59,23 +59,23 @@ export default function IndexHero() {
     },
 
     {
-      name: "Eva Cheadle",
-      username: "evacheadle",
-      image: "/images/pojkemedbok.jpeg",
-      imageLink: "art/54e87250-7476-4c6d-bc89-48d6fe22c8a3",
+      name: "Maria Johansson",
+      username: "marialoca1",
+      image: "/images/maria_johansson.jpg",
+      imageLink: "art/2fc73d30-5534-411b-9cec-6156669d470f",
     },
 
     {
-      name: "Helene Westerlund",
-      username: "artuditech",
-      image: "/images/helene_westerlund.jpg",
-      imageLink: "art/d2f659bb-04dd-412a-a39c-c5492a2eb32c",
+      name: "Lars-Henrik Milert",
+      username: "milert",
+      image: "/images/lars-henrik_milert.jpeg",
+      imageLink: "art/a1b7c0de-f23f-4826-a008-fbfd14ca5a75",
     },
     {
-      name: "Mia Persson",
-      username: "mia.persson",
-      image: "/images/beskyd.jpg",
-      imageLink: "art/8f257769-7719-4b9a-8082-dae0e62885b4",
+      name: "Christina Ganslandt",
+      username: "christina.ganslandt",
+      image: "/images/christina_ganslandt.jpg",
+      imageLink: "art/b6e5dbc9-648b-4390-8380-c8f92161247c",
     },
   ];
 
