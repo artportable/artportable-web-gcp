@@ -45,13 +45,13 @@ export default function AdDialog(props: Props) {
       companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
     },*/
-    {
+    /*{
       companyName: "Artportable",
       companyImageSv: "/ad/helenewesterlund.jpg",
       companyLinkSv: "https://artportable.com/en/profile/@artuditech",
       companyImageEn: "/ad/helenewesterlund.jpg",
       companyLinkEn: "https://artportable.com/en/profile/@artuditech",
-    },
+    },*/
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
