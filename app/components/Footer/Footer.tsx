@@ -160,7 +160,7 @@ export default function Footer() {
           {t('followUs')}
         </Typography>
         <div className={s.flexSocialMedia}>
-          <Link href="https://www.instagram.com/artportableofficial/">
+          <Link href="https://www.instagram.com/artportable/">
             <a>
               <img
                 src={'/images/instagram.svg'}
