@@ -8,61 +8,68 @@ import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
 
 interface DiscoverMonthlyArtistsTabProps {
   username?: string;
-  socialId? : string;
+  socialId?: string;
 }
 
-const DiscoverMonthlyArtistsTab = memo((props: DiscoverMonthlyArtistsTabProps) => {
-  const { username, socialId } = props;
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [searchQueryMontly, setSearchQueryMontly] = useState<string>();
-  const [loadMoreMontlyArtists, setLoadMoreMontlyArtists] = useState<boolean>(true);
-  const loadMoreMontlyArtistsElementRef = useRef(null);
-  const token = useContext(TokenContext);
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
-  const {follow} = usePostFollow();
+const DiscoverMonthlyArtistsTab = memo(
+  (props: DiscoverMonthlyArtistsTabProps) => {
+    const { username, socialId } = props;
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const [searchQueryMontly, setSearchQueryMontly] = useState<string>();
+    const [loadMoreMontlyArtists, setLoadMoreMontlyArtists] =
+      useState<boolean>(true);
+    const loadMoreMontlyArtistsElementRef = useRef(null);
+    const token = useContext(TokenContext);
+    const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+    const { follow } = usePostFollow();
 
-  function filterMontlyArtist(tags: string[], searchQuery = "") {
-    setLoadMoreMontlyArtists(true);
-    setSearchQueryMontly(searchQuery);
-  }
+    function filterMontlyArtist(tags: string[], searchQuery = "") {
+      setLoadMoreMontlyArtists(true);
+      setSearchQueryMontly(searchQuery);
+    }
 
-  function followArtist(userToFollow, isFollow) {
-    redirectIfNotLoggedIn();
-    follow(userToFollow, isFollow, socialId, token);
-  }
+    function followArtist(userToFollow, isFollow) {
+      redirectIfNotLoggedIn();
+      follow(userToFollow, isFollow, socialId, token);
+    }
 
-  const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } = useInfiniteScrollWithKey<Artist>(loadMoreMontlyArtistsElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreMontlyArtists(false);
-        return null;
-      }
+    const { data: monthlyArtists, isLoading: isLoadingMonthlyArtists } =
+      useInfiniteScrollWithKey<Artist>(
+        loadMoreMontlyArtistsElementRef,
+        (pageIndex, previousPageData) => {
+          if (previousPageData && !previousPageData.next) {
+            setLoadMoreMontlyArtists(false);
+            return null;
+          }
 
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
-        if (searchQueryMontly != null && searchQueryMontly != '') {
-          url.searchParams.append('q', searchQueryMontly);
-        }
-        if (username != null && username != '') {
-          url.searchParams.append('myUsername', username);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "10");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+          if (pageIndex == 0) {
+            const url = new URL(`${apiBaseUrl}/api/discover/monthlyArtists`);
+            if (searchQueryMontly != null && searchQueryMontly != "") {
+              url.searchParams.append("q", searchQueryMontly);
+            }
+            if (username != null && username != "") {
+              url.searchParams.append("myUsername", username);
+            }
+            url.searchParams.append("page", (pageIndex + 1).toString());
+            url.searchParams.append("pageSize", "11");
+            return url.href;
+          }
+          return previousPageData.next;
+        },
+        username
+      );
 
-  return(
+    return (
       <DiscoverArtists
-                  artists={monthlyArtists}
-                  onFollowClick={followArtist}
-                  onFilter={filterMontlyArtist}
-                  loadMoreElementRef={loadMoreMontlyArtistsElementRef}
-                  isLoading={isLoadingMonthlyArtists}
-                  loadMore={loadMoreMontlyArtists}
-                ></DiscoverArtists>
-  )
-})
+        artists={monthlyArtists}
+        onFollowClick={followArtist}
+        onFilter={filterMontlyArtist}
+        loadMoreElementRef={loadMoreMontlyArtistsElementRef}
+        isLoading={isLoadingMonthlyArtists}
+        loadMore={loadMoreMontlyArtists}
+      ></DiscoverArtists>
+    );
+  }
+);
 
-export default DiscoverMonthlyArtistsTab
+export default DiscoverMonthlyArtistsTab;
