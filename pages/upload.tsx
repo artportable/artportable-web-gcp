@@ -30,7 +30,6 @@ import {
 } from "../app/utils/googleAnalytics";
 import useRefreshToken from "../app/hooks/useRefreshToken";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-import Button from "../app/components/Button/Button";
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
@@ -223,6 +222,29 @@ export default function UploadArtworkPage({ navBarItems }) {
     setDeletedFile(true);
   };
 
+  const [userData, setUserData] = useState(null);
+  const [userCreated, setUserCreated] = useState(new Date());
+  const limitDate = new Date("2023-02-17");
+  const [userTotalArtworks, setUserTotalArtworks] = useState(null);
+  const [userCreatedDate, setUserCreatedDate] = useState(new Date());
+  useEffect(() => {
+    async function fetchUserData() {
+      const response = await fetch(`${apiBaseUrl}/api/user/${username.value}`);
+      const responseSummary = await fetch(
+        `${apiBaseUrl}/api/profile/${username.value}/summary`
+      );
+
+      const data = await response.json();
+      const dataSummary = await responseSummary.json();
+
+      setUserData(data);
+      setUserCreated(data.Created);
+      setUserTotalArtworks(dataSummary.Artworks);
+      setUserCreatedDate(new Date(data.Created));
+    }
+    fetchUserData();
+  }, [userCreated, userTotalArtworks]);
+
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
       .then(() =>
@@ -272,184 +294,191 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   return (
     <Main navBarItems={navBarItems}>
-      {/* {(text) &&
-        <div>Hej</div>
-      } */}
-
-      <div className={s.mainGrid}>
-        {isDesktop ? (
-          <>
-            <div className={s.uploadBox}>
-              <DropzoneArea
-                classes={{
-                  root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
-                }}
-                acceptedFiles={["image/*"]}
-                dropzoneText={text}
-                onChange={onFilesChanged}
-                showPreviews={false}
-                showPreviewsInDropzone={true}
-                filesLimit={3}
-                maxFileSize={2000000000}
-              />
-            </div>
-
-            <div className={s.cropperBox}>
-              <Cropper
-                className={clsx(s.cropper, !cropperActive && s.hide)}
-                src={cropperImageUrl}
-                onInitialized={onCropperInitialized}
-                initialAspectRatio={1}
-                autoCropArea={1}
-                // preview={`.${s.cropperPreview}`}
-                ref={cropperRef}
-                background={true}
-                // style={{ backgroundColor: color}}
-              />
-            </div>
-            {/* <div className={s.backgroundColorFlex}>
+      <>
+        {" "}
+        {userTotalArtworks > 10 &&
+        membership.value === 2 &&
+        userCreatedDate > limitDate ? (
+          <div>
+            Upload limit reached, please upgrade to portfolio premium to upload
+            unlimited artworks
+          </div>
+        ) : (
+          <div className={s.mainGrid}>
+            {isDesktop ? (
+              <>
+                <div className={s.uploadBox}>
+                  <DropzoneArea
+                    classes={{
+                      root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
+                    }}
+                    acceptedFiles={["image/*"]}
+                    dropzoneText={text}
+                    onChange={onFilesChanged}
+                    showPreviews={false}
+                    showPreviewsInDropzone={true}
+                    filesLimit={3}
+                    maxFileSize={2000000000}
+                  />
+                </div>
+                <div className={s.cropperBox}>
+                  <Cropper
+                    className={clsx(s.cropper, !cropperActive && s.hide)}
+                    src={cropperImageUrl}
+                    onInitialized={onCropperInitialized}
+                    initialAspectRatio={1}
+                    autoCropArea={1}
+                    // preview={`.${s.cropperPreview}`}
+                    ref={cropperRef}
+                    background={true}
+                    // style={{ backgroundColor: color}}
+                  />
+                </div>
+                {/* <div className={s.backgroundColorFlex}>
           <div className={s.pickColor}  style={{ backgroundColor: '#ffffff'}} onClick={() => setColor('#ffffff')} />
           <div className={s.pickColor} style={{ backgroundColor: '#FDF9F7'}} onClick={() => setColor('#FDF9F7')} />
           <div className={s.pickColor} style={{ backgroundColor: '#FAF3EE'}} onClick={() => setColor('#FAF3EE')} /> */}
-            {/* <div className={s.pickColor} style={{ backgroundColor: '#C67777'}} onClick={() => setColor('#C67777')} />
+                {/* <div className={s.pickColor} style={{ backgroundColor: '#C67777'}} onClick={() => setColor('#C67777')} />
           <div className={s.pickColor} style={{ backgroundColor: '#A35D5D'}} onClick={() => setColor('#A35D5D')} />
           <div className={s.pickColor} style={{ backgroundColor: '#01C281'}} onClick={() => setColor('#01C281')} /> */}
-            {/* <div className={s.pickColor} style={{ backgroundColor: '#000000'}} onClick={() => setColor('#000000')} />
+                {/* <div className={s.pickColor} style={{ backgroundColor: '#000000'}} onClick={() => setColor('#000000')} />
           </div> */}
-            <CropperOptions
-              show={cropperActive}
-              cropper={cropper}
-              onCrop={onCrop}
-              onDiscard={onDiscard}
-            ></CropperOptions>
-            {cropperActive && (
-              <Typography className={s.instructionsTypo}>
-                {t("doneCropping")}
-              </Typography>
-            )}
-          </>
-        ) : (
-          <div>
-            <div>
-              {mobileImg === "" ? (
-                <div className={clsx(s.mobilePreview, s.noImgPreview)}>
-                  <span>{t("previewText")}</span>
+                <CropperOptions
+                  show={cropperActive}
+                  cropper={cropper}
+                  onCrop={onCrop}
+                  onDiscard={onDiscard}
+                ></CropperOptions>
+                {cropperActive && (
+                  <Typography className={s.instructionsTypo}>
+                    {t("doneCropping")}
+                  </Typography>
+                )}
+              </>
+            ) : (
+              <div>
+                <div>
+                  {mobileImg === "" ? (
+                    <div className={clsx(s.mobilePreview, s.noImgPreview)}>
+                      <span>{t("previewText")}</span>
+                    </div>
+                  ) : (
+                    <img
+                      className={s.mobilePreview}
+                      src={mobileImg}
+                      ref={mobilePreviewImageRef}
+                    ></img>
+                  )}
                 </div>
-              ) : (
-                <img
-                  className={s.mobilePreview}
-                  src={mobileImg}
-                  ref={mobilePreviewImageRef}
-                ></img>
+                <input
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  id="icon-button-file"
+                  type="file"
+                  onChange={onMobileUpload}
+                />
+                <label htmlFor="icon-button-file">
+                  <ArtButton
+                    className={s.mobileUploadResetButton}
+                    size="small"
+                    variant="contained"
+                    color="primary"
+                    startIcon={<AddPhotoAlternateIcon />}
+                    rounded
+                    aria-label="upload picture"
+                    component="span"
+                  >
+                    {t("selectImage")}
+                  </ArtButton>
+                </label>
+              </div>
+            )}
+
+            <div className={s.previewsContainer}>
+              {croppedPrimary && (
+                <div className={s.previewItem}>
+                  <img src={croppedPrimary} />
+                </div>
+              )}
+              {croppedSecondary && (
+                <div className={s.previewItem}>
+                  <img src={croppedSecondary} />
+                </div>
+              )}
+              {croppedTertiary && (
+                <div className={s.previewItem}>
+                  <img src={croppedTertiary} />
+                </div>
+              )}
+              {!croppedTertiary && cropperActive && (
+                <div className={s.previewItem}>
+                  <div className={s.cropperPreview}></div>
+                </div>
               )}
             </div>
-            <input
-              accept="image/*"
-              style={{ display: "none" }}
-              id="icon-button-file"
-              type="file"
-              onChange={onMobileUpload}
-            />
-            <label htmlFor="icon-button-file">
-              <ArtButton
-                className={s.mobileUploadResetButton}
-                size="small"
-                variant="contained"
-                color="primary"
-                startIcon={<AddPhotoAlternateIcon />}
-                rounded
-                aria-label="upload picture"
-                component="span"
+            <div className={s.form}>
+              {tags.isLoading && <div>loading...</div>}
+              {tags.isError && <div>error...</div>}
+              {tags.data && !tags.isLoading && !tags.isError && (
+                <UploadForm
+                  title={title}
+                  setTitle={setTitle}
+                  setDescription={setDescription}
+                  setPrice={setPrice}
+                  currency={currency}
+                  setCurrency={setCurrency}
+                  soldOutChecked={soldOutChecked}
+                  setSoldOutChecked={setSoldOutChecked}
+                  multipleSizesChecked={multipleSizesChecked}
+                  setMultipleSizesChecked={setMultipleSizesChecked}
+                  width={width}
+                  setWidth={setWidth}
+                  height={height}
+                  setHeight={setHeight}
+                  setDepth={setDepth}
+                  setSelectedTags={setSelectedTags}
+                  selectedTags={selectedTags}
+                  tags={tags.data}
+                ></UploadForm>
+              )}
+              <div>
+                <ArtButton
+                  className={`${
+                    !croppedPrimary && mobileImg === ""
+                      ? s.disabledButton
+                      : s.uploadButton
+                  }`}
+                  rounded
+                  onClick={() => {
+                    uploadArtwork();
+                    trackGoogleAnalytics(
+                      ActionType.UPLOAD_IMAGE_CONFIRM,
+                      CategoryType.INTERACTIVE
+                    );
+                  }}
+                >
+                  {t("publish")}
+                </ArtButton>
+              </div>
+              <WarningMessage />
+            </div>
+            <Snackbar
+              open={uploadSnackbarOpen}
+              autoHideDuration={6000}
+              onClose={handleSnackbarClose}
+            >
+              <Alert
+                onClose={handleSnackbarClose}
+                variant="filled"
+                severity="success"
               >
-                {t("selectImage")}
-              </ArtButton>
-            </label>
+                {t("artworkUploadedSuccessfully")}
+              </Alert>
+            </Snackbar>
+            {/* </div> */}
           </div>
         )}
-
-        <div className={s.previewsContainer}>
-          {croppedPrimary && (
-            <div className={s.previewItem}>
-              <img src={croppedPrimary} />
-            </div>
-          )}
-          {croppedSecondary && (
-            <div className={s.previewItem}>
-              <img src={croppedSecondary} />
-            </div>
-          )}
-          {croppedTertiary && (
-            <div className={s.previewItem}>
-              <img src={croppedTertiary} />
-            </div>
-          )}
-          {!croppedTertiary && cropperActive && (
-            <div className={s.previewItem}>
-              <div className={s.cropperPreview}></div>
-            </div>
-          )}
-        </div>
-        <div className={s.form}>
-          {tags.isLoading && <div>loading...</div>}
-          {tags.isError && <div>error...</div>}
-          {tags.data && !tags.isLoading && !tags.isError && (
-            <UploadForm
-              title={title}
-              setTitle={setTitle}
-              setDescription={setDescription}
-              setPrice={setPrice}
-              currency={currency}
-              setCurrency={setCurrency}
-              soldOutChecked={soldOutChecked}
-              setSoldOutChecked={setSoldOutChecked}
-              multipleSizesChecked={multipleSizesChecked}
-              setMultipleSizesChecked={setMultipleSizesChecked}
-              width={width}
-              setWidth={setWidth}
-              height={height}
-              setHeight={setHeight}
-              setDepth={setDepth}
-              setSelectedTags={setSelectedTags}
-              selectedTags={selectedTags}
-              tags={tags.data}
-            ></UploadForm>
-          )}
-          <div>
-            <ArtButton
-              className={`${
-                !croppedPrimary && mobileImg === ""
-                  ? s.disabledButton
-                  : s.uploadButton
-              }`}
-              rounded
-              onClick={() => {
-                uploadArtwork();
-                trackGoogleAnalytics(
-                  ActionType.UPLOAD_IMAGE_CONFIRM,
-                  CategoryType.INTERACTIVE
-                );
-              }}
-            >
-              {t("publish")}
-            </ArtButton>
-          </div>
-          <WarningMessage />
-        </div>
-        <Snackbar
-          open={uploadSnackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert
-            onClose={handleSnackbarClose}
-            variant="filled"
-            severity="success"
-          >
-            {t("artworkUploadedSuccessfully")}
-          </Alert>
-        </Snackbar>
-        {/* </div> */}
-      </div>
+      </>
     </Main>
   );
 }
