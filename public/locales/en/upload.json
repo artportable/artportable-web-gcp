@@ -16,5 +16,11 @@
   "depth": "Depth",
   "addmoreImages": "Feel free to upload additional images of the same artwork. It can be from a different angle or from the studio when the artwork was created.",
   "publish": "Publish",
-  "doneCropping": "When you are done cropping, press the green button."
+  "doneCropping": "When you are done cropping, press the green button.",
+  "limitArtwork": "Upload limit reached, please upgrade to portfolio premium to upload unlimited artworks",
+  "contactUs": "Contact us",
+  "yourWelcome": "You are always welcome to contact us if you have any questions about the service or want to get in touch with us.",
+  "openingHours": "Opening Hours: ",
+  "8-17": "Monday - Friday, 8 a.m - 5 p.m",
+  "deviating": "Deviating opening hours during bank holidays and art exhibitions openings."
 }

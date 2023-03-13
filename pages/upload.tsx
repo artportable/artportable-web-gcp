@@ -30,11 +30,15 @@ import {
 } from "../app/utils/googleAnalytics";
 import useRefreshToken from "../app/hooks/useRefreshToken";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation(["upload"]);
   const router = useRouter();
+
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("xs"));
 
@@ -245,6 +249,11 @@ export default function UploadArtworkPage({ navBarItems }) {
     fetchUserData();
   }, [userCreated, userTotalArtworks]);
 
+  const artworkLimitReached =
+    userTotalArtworks >= 10 &&
+    membership.value === 2 &&
+    userCreatedDate > limitDate;
+
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
       .then(() =>
@@ -296,12 +305,58 @@ export default function UploadArtworkPage({ navBarItems }) {
     <Main navBarItems={navBarItems}>
       <>
         {" "}
-        {userTotalArtworks > 10 &&
-        membership.value === 2 &&
-        userCreatedDate > limitDate ? (
-          <div>
-            Upload limit reached, please upgrade to portfolio premium to upload
-            unlimited artworks
+        {artworkLimitReached ? (
+          <div className={s.flexPaper}>
+            <Paper className={s.paperLeft} elevation={1}>
+              <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
+                {t("limitArtwork")}
+              </Typography>
+              <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
+                {t("yourWelcome")}
+              </Typography>
+              <div className={s.iconTextFlex}>
+                <MailOutlineIcon className={s.icon} />
+                <Typography className={s.linkText}>
+                  <a href="mailto:hello@artportable.com">
+                    hello@artportable.com
+                  </a>
+                </Typography>
+              </div>
+              <div className={s.iconTextFlex}>
+                <PhoneIphoneIcon className={s.icon} />
+                <Typography className={s.linkText}>
+                  <a href="tel:+4685576612">08 - 557 661 20</a>
+                </Typography>
+              </div>
+              <div className={s.textBlock}>
+                <Typography className={s.typoBold}>
+                  {t("openingHours")}
+                </Typography>
+                <Typography>{t("8-17")}</Typography>
+                <Typography>{t("deviating")}</Typography>
+              </div>
+              <div className={s.zendeskForm}>
+                <ZendeskForm />
+              </div>
+            </Paper>
+            <Paper className={s.paperRight} elevation={1}>
+              <div>
+                <img
+                  className={s.logo}
+                  src="/Artportable_Logotyp_Black.svg"
+                  alt="Logo Artportable"
+                />
+                <Typography className={s.bold}>Artportable AB</Typography>
+                <Typography>559113-1171</Typography>
+                <div className={s.textBlockRight}>
+                  <Typography>Åsögatan 176</Typography>
+                  <Typography>116 32 Stockholm</Typography>
+                </div>
+                <Typography>
+                  Tel: <a href="tel:+4685576612">08 - 557 661 20</a>
+                </Typography>
+              </div>
+            </Paper>
           </div>
         ) : (
           <div className={s.mainGrid}>

@@ -16,5 +16,11 @@
   "depth": "Djup",
   "addmoreImages": "Här kan du lägga till ytterligare bild på verket, exempelvis annan vinkel eller bild från när verket skapades.",
   "publish": "Publicera",
-  "doneCropping": "När du är klar med beskärningen, tryck på den gröna knappen."
+  "doneCropping": "När du är klar med beskärningen, tryck på den gröna knappen.",
+  "limitArtwork": "Uppladdningsgränsen har nåtts, vänligen uppgradera till portfolio premium för att kunna ladda upp obegränsat med konstverk.",
+  "contactUs": "Kontakta oss",
+  "yourWelcome": "Du är alltid välkommen att höra av dig till oss om du har några frågor kring tjänsten eller vill komma i kontakt med oss.",
+  "openingHours": "Öppettider: ",
+  "8-17": "Måndag - fredag, 8 - 17.",
+  "deviating": "Avvikande öppettider vid röda dagar och vernissager."
 }
