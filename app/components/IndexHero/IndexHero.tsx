@@ -52,30 +52,30 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Lena Trojqa Sätterström",
-      username: "lena.trojqa.satterstrom",
-      image: "/images/medfagel.jpg",
-      imageLink: "art/53fdfee6-e9e0-4520-bdcb-8ef1a6d1dde5",
+      name: "Kerstin Reinholdsson",
+      username: "kerstin",
+      image: "/images/KerstinReinholdsson.jpeg",
+      imageLink: "art/90ade537-d005-4624-a3b4-09aa1246c294",
     },
 
     {
-      name: "Maria Johansson",
-      username: "marialoca1",
-      image: "/images/maria_johansson.jpg",
-      imageLink: "art/2fc73d30-5534-411b-9cec-6156669d470f",
+      name: "Jessica Elert",
+      username: "Jessicaelert",
+      image: "/images/jessicaElert.jpeg",
+      imageLink: "art/eaf9caa2-ec71-4ff7-9152-709ca6a8381f",
     },
 
     {
       name: "Lars-Henrik Milert",
       username: "milert",
-      image: "/images/lars-henrik_milert.jpeg",
+      image: "/images/LarsHenrik.jpeg",
       imageLink: "art/a1b7c0de-f23f-4826-a008-fbfd14ca5a75",
     },
     {
-      name: "Christina Ganslandt",
-      username: "christina.ganslandt",
-      image: "/images/christina_ganslandt.jpg",
-      imageLink: "art/b6e5dbc9-648b-4390-8380-c8f92161247c",
+      name: "Ulla Lodesten",
+      username: "ulla",
+      image: "/images/UllaLodesten.jpeg",
+      imageLink: "art/c16b2bfb-85e8-4498-9268-e8dcd17e0f1c",
     },
   ];
 
