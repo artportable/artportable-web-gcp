@@ -68,7 +68,7 @@ export default function IndexHero() {
     {
       name: "Lars-Henrik Milert",
       username: "milert",
-      image: "/images/LarsHenrik.jpeg",
+      image: "/images/larsHenrik.jpeg",
       imageLink: "art/a1b7c0de-f23f-4826-a008-fbfd14ca5a75",
     },
     {
