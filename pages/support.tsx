@@ -1,63 +1,60 @@
-import Main from '../app/components/Main/Main'
-import ZendeskForm from '../app/components/ZendeskFormMenu/ZendeskFormMenu'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { styles } from '../styles/support.css'
-import { Paper, Typography } from '@material-ui/core'
-import { useTranslation } from 'next-i18next'
-import { getNavBarItems } from '../app/utils/getNavBarItems';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import Head from 'next/head';
-import clsx from 'clsx'
+import Main from "../app/components/Main/Main";
+import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { styles } from "../styles/support.css";
+import { Paper, Typography } from "@material-ui/core";
+import { useTranslation } from "next-i18next";
+import { getNavBarItems } from "../app/utils/getNavBarItems";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import Head from "next/head";
+import clsx from "clsx";
 
 export default function Support({ navBarItems }) {
   const s = styles();
-  const { t } = useTranslation(['support']);
+  const { t } = useTranslation(["support"]);
 
   return (
     <Main navBarItems={navBarItems}>
       <Head>
-        <meta name="title" content={t('contactUs')} />
-        <meta name="description" content={t('yourWelcome')} />
+        <meta name="title" content={t("contactUs")} />
+        <meta name="description" content={t("yourWelcome")} />
 
-        <meta property="og:title" content={t('contactUs')} />
-        <meta property="og:description" content={t('yourWelcome')} />
+        <meta property="og:title" content={t("contactUs")} />
+        <meta property="og:description" content={t("yourWelcome")} />
         <meta property="og:url" content="https://artportable.com/support" />
-        <meta property="og:image" content="/images/artportable_tv_commercial.png" />
+        <meta
+          property="og:image"
+          content="/images/artportable_tv_commercial.png"
+        />
       </Head>
       <div className={s.paddingWidth}>
         <Typography variant="h1" className={s.headerTypo}>
-          {t('contactUs')}
+          {t("contactUs")}
         </Typography>
         <div className={s.flexPaper}>
           <Paper className={s.paperLeft} elevation={1}>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
-              {t('yourWelcome')}
+              {t("yourWelcome")}
             </Typography>
             <div className={s.iconTextFlex}>
               <MailOutlineIcon className={s.icon} />
               <Typography className={s.linkText}>
-                <a href="mailto:hello@artportable.com">
-                  hello@artportable.com
-                </a>
+                <a href="mailto:hello@artportable.com">hello@artportable.com</a>
               </Typography>
             </div>
             <div className={s.iconTextFlex}>
-            <PhoneIphoneIcon className={s.icon} />
-            <Typography className={s.linkText}>
-              <a href="tel:+4685576612">08 - 557 661 20</a>
-            </Typography>
-          </div>
+              <PhoneIphoneIcon className={s.icon} />
+              <Typography className={s.linkText}>
+                <a href="tel:+4685576612">08 - 557 661 20</a>
+              </Typography>
+            </div>
             <div className={s.textBlock}>
               <Typography className={s.typoBold}>
-                {t('openingHours')}
+                {t("openingHours")}
               </Typography>
-              <Typography>
-                {t('8-17')}
-              </Typography>
-              <Typography>
-                {t('deviating')}
-              </Typography>
+              <Typography>{t("8-17")}</Typography>
+              <Typography>{t("deviating")}</Typography>
             </div>
             <div className={s.zendeskForm}>
               <ZendeskForm />
@@ -70,19 +67,11 @@ export default function Support({ navBarItems }) {
                 src="/Artportable_Logotyp_Black.svg"
                 alt="Logo Artportable"
               />
-              <Typography className={s.bold}>
-                Artportable AB
-              </Typography>
-              <Typography>
-                559113-1171
-              </Typography>
+              <Typography className={s.bold}>Artportable AB</Typography>
+              <Typography>559113-1171</Typography>
               <div className={s.textBlockRight}>
-                <Typography>
-                  Åsögatan 176
-                </Typography>
-                <Typography>
-                  116 32 Stockholm
-                </Typography>
+                <Typography>Åsögatan 176</Typography>
+                <Typography>116 32 Stockholm</Typography>
               </div>
               <Typography>
                 Tel: <a href="tel:+4685576612">08 - 557 661 20</a>
@@ -100,7 +89,14 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       navBarItems: navBarItems,
-      ...await serverSideTranslations(locale, ['header', 'support', 'footer', 'support', 'common', 'plans']),
+      ...(await serverSideTranslations(locale, [
+        "header",
+        "support",
+        "footer",
+        "support",
+        "common",
+        "plans",
+      ])),
     },
     revalidate: 60,
   };

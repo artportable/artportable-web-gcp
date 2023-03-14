@@ -38,22 +38,20 @@ export default function AdDialog(props: Props) {
 
   // if no add, remove the component from index page
   const ad = [
-    /*   {
+    /*{
       companyName: "Plingon",
       companyImageSv: "/ad/plingon.jpg",
       companyLinkSv: "https://bit.ly/3FyutR1",
       companyImageEn: "/ad/plingon.jpg",
       companyLinkEn: "https://bit.ly/3FyutR1",
-    }, */
-    {
+    },*/
+    /*{
       companyName: "Artportable",
-      companyImageSv: "/ad/annikaberglof-takeover.jpg",
-      companyLinkSv:
-        "https://artportable.com/en/profile/@annika.berglof",
-      companyImageEn: "/ad/annikaberglof-takeover.jpg",
-      companyLinkEn:
-        "https://artportable.com/en/profile/@annika.berglof",
-    },
+      companyImageSv: "/ad/helenewesterlund.jpg",
+      companyLinkSv: "https://artportable.com/en/profile/@artuditech",
+      companyImageEn: "/ad/helenewesterlund.jpg",
+      companyLinkEn: "https://artportable.com/en/profile/@artuditech",
+    },*/
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
@@ -100,8 +98,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
-                width={500}
-                height={600}
+                width={900}
+                height={500}
                 quality={40}
               />
             </a>
@@ -116,8 +114,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
-                width={700}
-                height={900}
+                width={900}
+                height={500}
                 quality={40}
               />
             </a>

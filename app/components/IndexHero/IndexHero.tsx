@@ -52,30 +52,30 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
+      name: "Kerstin Reinholdsson",
+      username: "kerstin",
+      image: "/images/KerstinReinholdsson.jpeg",
+      imageLink: "art/90ade537-d005-4624-a3b4-09aa1246c294",
+    },
+
+    {
+      name: "Jessica Elert",
+      username: "Jessicaelert",
+      image: "/images/jessicaElert.jpeg",
+      imageLink: "art/eaf9caa2-ec71-4ff7-9152-709ca6a8381f",
+    },
+
+    {
       name: "Lars-Henrik Milert",
       username: "milert",
-      image: "/images/lars-henrik_milert.jpg",
-      imageLink: "art/2f3d1cd4-626d-44ed-9864-2de8a956d248",
-    },
-
-    {
-      name: "Ralph Castellan",
-      username: "rc-art",
-      image: "/images/ralph_castellan3.jpg",
-      imageLink: "art/98acd16f-b23c-4d79-84d8-ee5abd059b7f",
-    },
-
-    {
-      name: "Ariwinia Pettersson",
-      username: "ariwinia",
-      image: "/images/ariwinia_pettersson-frames.jpg",
-      imageLink: "art/a2094c38-d47c-48be-bd85-59a3b1de18f6",
+      image: "/images/larsHenrik.jpeg",
+      imageLink: "art/a1b7c0de-f23f-4826-a008-fbfd14ca5a75",
     },
     {
-      name: "Angelica Diehn",
-      username: "angelica.diehn",
-      image: "/images/angelica_diehn-frames.jpg",
-      imageLink: "art/28041cfc-f32b-4639-9663-de450240d6f5",
+      name: "Ulla Lodesten",
+      username: "ulla",
+      image: "/images/UllaLodesten.jpeg",
+      imageLink: "art/c16b2bfb-85e8-4498-9268-e8dcd17e0f1c",
     },
   ];
 

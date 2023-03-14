@@ -177,11 +177,11 @@ export default function DiscoverPage({ navBarItems }) {
       {!loading && (
         <>
           {!isSignedIn.value && <IndexHero></IndexHero>}
-           <AdDialog
+          {/*<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
             onClose={toggleAdDialog}
-          /> 
+      />*/}
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
               {activeTab === 0 ||
@@ -274,7 +274,7 @@ export default function DiscoverPage({ navBarItems }) {
               </Tabs>
             </div>
             <Box paddingTop={4}>
-            <TabPanel value={activeTab} index={0}>
+              <TabPanel value={activeTab} index={0}>
                 <DiscoverTrendingArtTab
                   username={username.value}
                   socialId={socialId.value}
