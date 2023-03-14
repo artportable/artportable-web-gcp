@@ -393,8 +393,7 @@ export default function Profile(props) {
     }
   };
   const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
-
-  const rocketLink = 'https://buy.stripe.com/28oeVn5ye6VLcdacNE';
+  const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
 
   const redirectToRocketUpgrade = () => {
     window.open(rocketLink);
@@ -611,17 +610,36 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
+            {isMyProfile &&
+              membership.value > Membership.Portfolio &&
+              !userProfile.data?.MonthlyArtist && (
+                <div className={s.hovs}>
+                  <Button
+                    rounded
+                    className={s.monthlyArtistButton}
+                    onClick={redirectToRocketUpgrade}
+                  >
+                    <Typography className={s.headerButton}>
+                      {t("rocket")}
+                    </Typography>
+                  </Button>
+                </div>
+              )}
             {isMyProfile && membership.value > Membership.Base && (
               <div className={s.hovs}>
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
-                 onClick={redirectToRocketUpgrade}
-                  >
-                    <Typography className={s.headerButtonRocket}>
-                      {t("profile:rocket")}
-                    </Typography>
-                    <img src="/rocket-white.png" alt="Rocket Icon" className={s.rocketIcon} />
+                  onClick={redirectToRocketUpgrade}
+                >
+                  <Typography className={s.headerButtonRocket}>
+                    {t("profile:rocket")}
+                  </Typography>
+                  <img
+                    src="/rocket-white.png"
+                    alt="Rocket Icon"
+                    className={s.rocketIcon}
+                  />
                 </Button>
               </div>
             )}
