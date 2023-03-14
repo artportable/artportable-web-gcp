@@ -13,6 +13,7 @@
   "edit": "Edit",
   "title": "Title",
   "headline": "Headline",
+  "rocket": "ROCKET",
   "location": "Location",
   "addStudio": "Add studio",
   "remove": "Remove",
@@ -30,8 +31,8 @@
   "website": "Website",
   "profilePictureUpdated": "Profile picture updated!",
   "coverPhotoUpdated": "Cover photo updated!",
-  "deleteArtworkDialog" : "Are you sure that you want to delete the artwork titled \"{{title}}\"?",
-  "deleteArtworkSuccess" : "Artwork successfully deleted",
+  "deleteArtworkDialog": "Are you sure that you want to delete the artwork titled \"{{title}}\"?",
+  "deleteArtworkSuccess": "Artwork successfully deleted",
   "maxLength": "Maximum 140 characters",
   "instagramUrl": "Enter the full url, for instance: https://instagram.com/artportableofficial/",
   "facebookUrl": "Enter the full url, for instance: https://www.facebook.com/artportable/",
@@ -58,4 +59,3 @@
   "service": "Service in 24h",
   "upgradeButton": "UPGRADE ACCOUNT"
 }
-
