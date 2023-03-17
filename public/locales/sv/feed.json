@@ -15,10 +15,10 @@
   "subscriptionSuccessNewsletter": "Prenumerationen lyckades! Tack för att du prenumererar på vårt nyhetsbrev.",
   "subscriptionErrorNewsletter": "Hoppsan, något gick fel. Var god försök igen senare eller kontakta oss för hjälp.",
   "seconds": "s",
-  "minutes": "m",
+  "minutes": "min",
   "hours": "t",
   "days": "d",
   "weeks": "v",
-  "months": "m",
+  "months": "mån",
   "year": "å"
 }

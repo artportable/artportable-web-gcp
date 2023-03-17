@@ -15,10 +15,10 @@
   "subscriptionSuccessNewsletter": "Thank you for subscribing! We will keep you updated with the latest news and promotions.",
   "subscriptionErrorNewsletter": " Oops, something went wrong. Please try again later or contact us for assistance.",
   "seconds": "s",
-  "minutes": "m",
+  "minutes": "min",
   "hours": "h",
   "days": "d",
   "weeks": "w",
-  "months": "m",
+  "months": "mon",
   "year": "y"
 }
