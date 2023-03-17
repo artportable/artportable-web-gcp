@@ -70,8 +70,13 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             title={`${content.Name} ${content.Surname}`}
             subheader={
               <Box>
-                {timePassed.Time} {timePassed.Unit} <br></br>
-                <span>{content.Location}</span>
+                {content.Location && (
+                  <span>
+                    {content.Location}
+                    <br />
+                  </span>
+                )}
+                {timePassed.Time} {timePassed.Unit}
               </Box>
             }
           />
