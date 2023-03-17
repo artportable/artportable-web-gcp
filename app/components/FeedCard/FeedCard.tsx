@@ -39,6 +39,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const router = useRouter();
   const isDefaultLocale = router.locale === router.defaultLocale;
   const elapsedTime = getElapsedTime(content.Published);
+  const timePassed = getTimePassed(content.Published, t);
 
   const mediaClasses = clsx(
     {
@@ -69,6 +70,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             title={`${content.Name} ${content.Surname}`}
             subheader={
               <Box>
+                {timePassed.Time} {timePassed.Unit} <br></br>
                 <span>{content.Location}</span>
               </Box>
             }
