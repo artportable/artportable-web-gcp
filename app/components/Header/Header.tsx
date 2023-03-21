@@ -129,6 +129,13 @@ export default function Header({ navBarItems }) {
                   </MuiButton>
                 </a>
               </Link>
+              <Link href="https://artportable.store/" passHref>
+                <a>
+                  <MuiButton color="secondary" size="large">
+                    {t("store").toUpperCase()}
+                  </MuiButton>
+                </a>
+              </Link>
             </nav>
             {/* <RWebShare
               data={{
