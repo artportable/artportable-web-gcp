@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "./feedCard.css";
 import { useTranslation } from "next-i18next";
 import Card from "@material-ui/core/Card";
@@ -40,6 +40,10 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const isDefaultLocale = router.locale === router.defaultLocale;
   const elapsedTime = getElapsedTime(content.Published);
   const timePassed = getTimePassed(content.Published, t);
+
+  useEffect(() => {
+    console.log("Here is the content: " + content.Likes);
+  });
 
   const mediaClasses = clsx(
     {
@@ -114,6 +118,15 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
+        <div className={s.likeInline}>
+          <div className={s.likeContainer}>
+            <div className={s.flexLikeCount}>
+              <div className={s.likeCounter}>
+                {content.Likes > 0 ? content.Likes : ""}
+              </div>
+            </div>
+          </div>
+        </div>
         <Button
           startIcon={
             isLiked ? (
@@ -228,7 +241,7 @@ interface ElapsedTime {
   Unit: string;
 }
 
-function getTimePassed(publishDate, t) {
+function getTimePassed(publishDate: Date, t) {
   var now = new Date();
   var seconds = Math.floor((now.getTime() - publishDate.getTime()) / 1000);
 
