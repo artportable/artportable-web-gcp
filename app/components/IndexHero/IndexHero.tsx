@@ -64,6 +64,12 @@ export default function IndexHero() {
       image: "/images/lace2.jpeg",
       imageLink: "art/e69df2e8-6fb6-4665-927f-fbfb73a93085",
     },
+    {
+      name: "May Marschal",
+      username: "may.marschal",
+      image: "/images/sagansstad.jpg",
+      imageLink: "art/8d158704-a37b-4283-ad12-31363c37f0df",
+    },
   ];
 
   useEffect(() => {
