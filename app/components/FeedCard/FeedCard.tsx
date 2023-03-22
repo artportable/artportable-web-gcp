@@ -40,10 +40,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const isDefaultLocale = router.locale === router.defaultLocale;
   const elapsedTime = getElapsedTime(content.Published);
   const timePassed = getTimePassed(content.Published, t);
-
-  useEffect(() => {
-    console.log("Here is the content: " + content.Likes);
-  });
+  const [totalLikes, setTotalLikes] = useState(content.Likes);
 
   const mediaClasses = clsx(
     {
@@ -122,7 +119,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           <div className={s.likeContainer}>
             <div className={s.flexLikeCount}>
               <div className={s.likeCounter}>
-                {content.Likes > 0 ? content.Likes : ""}
+                {totalLikes > 0 ? totalLikes : ""}
               </div>
             </div>
           </div>
@@ -138,6 +135,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           onClick={() => {
             onLikeClick(content.Item.Id, !isLiked);
             setLike(!isLiked);
+            setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
           }}
         >
           {capitalizeFirst(t("common:like"))}
