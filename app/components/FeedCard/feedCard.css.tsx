@@ -8,6 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     cardActions: {
       padding: theme.spacing(1),
+      paddingLeft: '16px',
     },
     published: {
       fontStyle: "italic",
@@ -59,14 +60,11 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       maxWidth: '30px',
       minWidth: '30px',
-      '& .MuiButton-label': {
-        width: '100%',
-        maxWidth: '30px',
-      },
       '& .MuiButton-startIcon': {
-        width: '100%',
-        maxWidth: '30px',
         marginRight: 0,
+      },
+      '& .MuiButton-iconSizeMedium': {
+        fontSize: '22px',
       }
     },
     likeCountContainer: {
