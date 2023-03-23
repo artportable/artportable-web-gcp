@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styles } from "./feedCard.css";
 import { useTranslation } from "next-i18next";
 import Card from "@material-ui/core/Card";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import SendIcon from "@material-ui/icons/Send";
-import Button from "../Button/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { capitalizeFirst } from "../../utils/util";
@@ -15,6 +14,7 @@ import {
   CardMedia,
   Box,
   Avatar,
+  Button,
 } from "@material-ui/core";
 import { FeedItem } from "../../models/FeedItem";
 import clsx from "clsx";
@@ -38,8 +38,8 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const [isLiked, setLike] = useState(content.LikedByMe);
   const router = useRouter();
   const isDefaultLocale = router.locale === router.defaultLocale;
-  const elapsedTime = getElapsedTime(content.Published);
   const timePassed = getTimePassed(content.Published, t);
+  const [totalLikes, setTotalLikes] = useState(content.Likes);
 
   const mediaClasses = clsx(
     {
@@ -114,21 +114,27 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-        <Button
-          startIcon={
-            isLiked ? (
-              <FavoriteIcon color="primary" />
-            ) : (
-              <FavoriteBorderOutlinedIcon color="primary" />
-            )
-          }
-          onClick={() => {
-            onLikeClick(content.Item.Id, !isLiked);
-            setLike(!isLiked);
-          }}
-        >
-          {capitalizeFirst(t("common:like"))}
-        </Button>
+        <div className={s.likeCountContainer}>
+          <Button className={s.likeButton}
+            startIcon={
+              isLiked ? (
+                <FavoriteIcon color="primary" />
+              ) : (
+                <FavoriteBorderOutlinedIcon color="primary" />
+              )
+            }
+            onClick={() => {
+              onLikeClick(content.Item.Id, !isLiked);
+              setLike(!isLiked);
+              setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
+            }}
+          >
+            {/*{capitalizeFirst(t("common:like"))}*/}
+          </Button>
+          <div className={s.likeInline}>
+            {totalLikes > 0 ? totalLikes : ""}
+          </div>
+        </div>
         <Link
           href={{
             pathname: "/messages",
@@ -166,69 +172,12 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   );
 }
 
-function getElapsedTime(publishDate: Date): ElapsedTime {
-  var seconds = Math.floor((Date.now() - publishDate.getTime()) / 1000);
-
-  var interval = seconds / 31536000;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "year",
-    };
-  }
-
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "month",
-    };
-  }
-
-  interval = seconds / 604800;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "week",
-    };
-  }
-
-  interval = seconds / 86400;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "day",
-    };
-  }
-
-  interval = seconds / 3600;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "hour",
-    };
-  }
-
-  interval = seconds / 60;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "minute",
-    };
-  }
-
-  return {
-    Time: Math.floor(seconds),
-    Unit: "second",
-  };
-}
-
 interface ElapsedTime {
   Time: number;
   Unit: string;
 }
 
-function getTimePassed(publishDate, t) {
+function getTimePassed(publishDate: Date, t) {
   var now = new Date();
   var seconds = Math.floor((now.getTime() - publishDate.getTime()) / 1000);
 
