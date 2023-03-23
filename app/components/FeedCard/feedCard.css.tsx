@@ -47,31 +47,13 @@ export const styles = makeStyles((theme: Theme) =>
       gridArea: "tertiary",
       position: "relative",
     },
-    likeContainer: {
-      display: "flex",
-      marginLeft: 0,
-      marginBottom: "5px",
-      fontWeight: theme.typography.fontWeightRegular,
-      fontSize: theme.typography.caption.fontSize,
-      color: theme.palette.text.secondary,
-      placeItems: "center",
-    },
-    likeCounter: {
-      marginLeft: "4px",
-      marginRight: "0",
-
-      paddingTop: '8px',
-      fontWeight: 500,
-      color: "#000000",
-    },
     likeInline: {
       display: "inline-block",
       float: "right",
       height: "30px",
       marginLeft: 0,
-    },
-    flexLikeCount: {
-      display: "flex",
+      padding: '8px 4px',
+      fontWeight: 500,
     },
     likeButton: {
       width: '100%',

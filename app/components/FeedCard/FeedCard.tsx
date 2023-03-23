@@ -114,8 +114,8 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-      <div className={s.likeCountContainer}>
-        <Button className={s.likeButton}
+        <div className={s.likeCountContainer}>
+          <Button className={s.likeButton}
             startIcon={
               isLiked ? (
                 <FavoriteIcon color="primary" />
@@ -132,13 +132,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             {/*{capitalizeFirst(t("common:like"))}*/}
           </Button>
           <div className={s.likeInline}>
-            <div className={s.likeContainer}>
-              <div className={s.flexLikeCount}>
-                <div className={s.likeCounter}>
-                  {totalLikes > 0 ? totalLikes : ""}
-                </div>
-              </div>
-            </div>
+            {totalLikes > 0 ? totalLikes : ""}
           </div>
         </div>
         <Link
