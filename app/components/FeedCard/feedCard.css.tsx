@@ -4,15 +4,21 @@ import { red } from "@material-ui/core/colors";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cardHeader: {
-      padding: theme.spacing(1),
+      padding: '12px',
+      alignItems: 'center',
     },
     cardActions: {
-      padding: theme.spacing(1),
       paddingLeft: '16px',
     },
+    /*
     published: {
       fontStyle: "italic",
       marginLeft: "5px",
+    },*/
+    likeCountContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginRight: '12px',
     },
     media: {
       display: "grid !important;",
@@ -60,6 +66,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       maxWidth: '30px',
       minWidth: '30px',
+      paddingLeft: '10px',
       '& .MuiButton-startIcon': {
         marginRight: 0,
       },
@@ -67,8 +74,5 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: '22px',
       }
     },
-    likeCountContainer: {
-      marginRight: '16px',
-    }
   })
 );
