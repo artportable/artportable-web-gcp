@@ -60,7 +60,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "4px",
       marginRight: "0",
 
-      padding: theme.spacing(0.9, 0, 0, 0),
+      padding: theme.spacing(1.3, 0, 0, 0),
       fontWeight: 500,
       color: "#000000",
     },
@@ -69,7 +69,6 @@ export const styles = makeStyles((theme: Theme) =>
       float: "right",
       height: "30px",
       marginLeft: 0,
-      marginRight: '16px',
     },
     flexLikeCount: {
       display: "flex",
@@ -87,6 +86,9 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: '32px',
         marginRight: 0,
       }
+    },
+    likeCountContainer: {
+      marginRight: '16px',
     }
   })
 );
