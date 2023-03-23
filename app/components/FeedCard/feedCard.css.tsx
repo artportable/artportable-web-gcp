@@ -60,7 +60,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "4px",
       marginRight: "0",
 
-      padding: theme.spacing(1.3, 0, 0, 0),
+      paddingTop: '8px',
       fontWeight: 500,
       color: "#000000",
     },
