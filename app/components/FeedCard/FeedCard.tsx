@@ -114,16 +114,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-        <div className={s.likeInline}>
-          <div className={s.likeContainer}>
-            <div className={s.flexLikeCount}>
-              <div className={s.likeCounter}>
-                {totalLikes > 0 ? totalLikes : ""}
-              </div>
-            </div>
-          </div>
-        </div>
-        <Button
+      <Button className={s.likeButton}
           startIcon={
             isLiked ? (
               <FavoriteIcon color="primary" />
@@ -137,8 +128,17 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
             setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
           }}
         >
-          {capitalizeFirst(t("common:like"))}
+          {/*{capitalizeFirst(t("common:like"))}*/}
         </Button>
+        <div className={s.likeInline}>
+          <div className={s.likeContainer}>
+            <div className={s.flexLikeCount}>
+              <div className={s.likeCounter}>
+                {totalLikes > 0 ? totalLikes : ""}
+              </div>
+            </div>
+          </div>
+        </div>
         <Link
           href={{
             pathname: "/messages",

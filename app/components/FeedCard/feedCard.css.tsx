@@ -49,7 +49,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeContainer: {
       display: "flex",
-      marginLeft: "10px",
+      marginLeft: 0,
       marginBottom: "5px",
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.caption.fontSize,
@@ -68,9 +68,25 @@ export const styles = makeStyles((theme: Theme) =>
       display: "inline-block",
       float: "right",
       height: "30px",
+      marginLeft: 0,
+      marginRight: '16px',
     },
     flexLikeCount: {
       display: "flex",
     },
+    likeButton: {
+      width: '100%',
+      maxWidth: '32px',
+      minWidth: '32px',
+      '& .MuiButton-label': {
+        width: '100%',
+        maxWidth: '32px',
+      },
+      '& .MuiButton-startIcon': {
+        width: '100%',
+        maxWidth: '32px',
+        marginRight: 0,
+      }
+    }
   })
 );
