@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import SendIcon from "@material-ui/icons/Send";
-import Button from "../Button/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { capitalizeFirst } from "../../utils/util";
@@ -15,6 +14,7 @@ import {
   CardMedia,
   Box,
   Avatar,
+  Button,
 } from "@material-ui/core";
 import { FeedItem } from "../../models/FeedItem";
 import clsx from "clsx";
