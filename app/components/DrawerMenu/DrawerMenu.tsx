@@ -135,6 +135,13 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
+        <Link href="https://artportable.store/" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("store")} />
+            </ListItem>
+          </a>
+        </Link>
         {navBarItems && navBarItems.length > 0 && (
           <div>
             <ListItem button onClick={handleClickListingPages}>
@@ -180,13 +187,6 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <Link href="/job" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("job")} />
-            </ListItem>
-          </a>
-        </Link>
         <Link href="/artiklar" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -217,6 +217,13 @@ export default function DrawerMenu({
             </a>
           </Link>
         )}
+        <Link href="/job" passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("job")} />
+            </ListItem>
+          </a>
+        </Link>
         <Link href="/about-us" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>

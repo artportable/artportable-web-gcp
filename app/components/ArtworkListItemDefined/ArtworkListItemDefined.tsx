@@ -46,54 +46,54 @@ export default function ArtworkListItemDefined({
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
-  
-function getFormatter(languageCode: string, currency: string | null): Intl.NumberFormat {
-  if (currency === null) {
-    return new Intl.NumberFormat(languageCode, {
-      style: 'currency',
-      currency: 'SEK',
-      currencyDisplay: 'code',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    });
+  function getFormatter(
+    languageCode: string,
+    currency: string | null
+  ): Intl.NumberFormat {
+    if (currency === null) {
+      return new Intl.NumberFormat(languageCode, {
+        style: "currency",
+        currency: "SEK",
+        currencyDisplay: "code",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    }
+    if (languageCode === "sv") {
+      return new Intl.NumberFormat("sv", {
+        style: "currency",
+        currency: artwork.Currency,
+        currencyDisplay: "code",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    } else {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: artwork.Currency,
+        currencyDisplay: "code",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    }
   }
-  if (languageCode === 'sv') {
-    return new Intl.NumberFormat('sv', {
-      style: 'currency',
-      currency: artwork.Currency,
-      currencyDisplay: 'code',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    });
-  } else {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: artwork.Currency,
-      currencyDisplay: 'code',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    });
-  }
-}
-const languageCode = i18n.language;
-const formatter = getFormatter(languageCode, artwork.Currency);
+  const languageCode = i18n.language;
+  const formatter = getFormatter(languageCode, artwork.Currency);
 
-let priceFormatter = {
-  format: (value: number) => formatter.format(value),
-};
-if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
-  priceFormatter = {
+  let priceFormatter = {
     format: (value: number) => formatter.format(value),
   };
-} else {
-  priceFormatter = {
-    format: (value: number) =>
-      `${value} ${artwork.Currency || "SEK"}`,
-  };
-}
+  if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
+    priceFormatter = {
+      format: (value: number) => formatter.format(value),
+    };
+  } else {
+    priceFormatter = {
+      format: (value: number) => `${value} ${artwork.Currency || "SEK"}`,
+    };
+  }
 
-const formattedPrice = priceFormatter.format(artwork.Price);
-
+  const formattedPrice = priceFormatter.format(artwork.Price);
 
   useEffect(() => {
     setIsLiked(artwork?.LikedByMe);
@@ -188,7 +188,7 @@ const formattedPrice = priceFormatter.format(artwork.Price);
                 {t("common:words.sold")}{" "}
               </>
             ) : artwork.Price && artwork.Price != "0" ? (
-              formattedPrice.replace(/,/g,'')
+              formattedPrice.replace(/,/g, "")
             ) : (
               t("priceOnRequest")
             )}

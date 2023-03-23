@@ -1,52 +1,92 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { red } from "@material-ui/core/colors";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cardHeader: {
-      padding: theme.spacing(1)
+      padding: theme.spacing(1),
     },
     cardActions: {
-      padding: theme.spacing(1)
+      padding: theme.spacing(1),
     },
     published: {
       fontStyle: "italic",
-      marginLeft: "5px"
+      marginLeft: "5px",
     },
     media: {
       display: "grid !important;",
       gap: "2px",
-      position: "relative"
+      position: "relative",
     },
     image: {
-      objectFit: 'cover',
-      height: '100%',
-      width: '100%'
+      objectFit: "cover",
+      height: "100%",
+      width: "100%",
     },
     oneImage: {
-      gridTemplate: ('\"primary\" 450px ' +
-      '/ 1fr'),
+      gridTemplate: '"primary" 450px ' + "/ 1fr",
     },
     twoImages: {
-      gridTemplate: ('\"primary\" 250px ' +
-      '\"secondary\" 200px ' +
-      '/ 1fr'),
+      gridTemplate: '"primary" 250px ' + '"secondary" 200px ' + "/ 1fr",
     },
     threeImages: {
-      gridTemplate: ('\"primary primary\" 300px ' +
-      '\"secondary tertiary\" 150px ' +
-      '/ 1fr 1fr'),
+      gridTemplate:
+        '"primary primary" 300px ' +
+        '"secondary tertiary" 150px ' +
+        "/ 1fr 1fr",
     },
     primaryImage: {
       gridArea: "primary",
-      position: "relative"
+      position: "relative",
     },
     secondaryImage: {
       gridArea: "secondary",
-      position: "relative"
+      position: "relative",
     },
     tertiaryImage: {
       gridArea: "tertiary",
-      position: "relative"
+      position: "relative",
+    },
+    likeContainer: {
+      display: "flex",
+      marginLeft: 0,
+      marginBottom: "5px",
+      fontWeight: theme.typography.fontWeightRegular,
+      fontSize: theme.typography.caption.fontSize,
+      color: theme.palette.text.secondary,
+      placeItems: "center",
+    },
+    likeCounter: {
+      marginLeft: "4px",
+      marginRight: "0",
+
+      padding: theme.spacing(0.9, 0, 0, 0),
+      fontWeight: 500,
+      color: "#000000",
+    },
+    likeInline: {
+      display: "inline-block",
+      float: "right",
+      height: "30px",
+      marginLeft: 0,
+      marginRight: '16px',
+    },
+    flexLikeCount: {
+      display: "flex",
+    },
+    likeButton: {
+      width: '100%',
+      maxWidth: '32px',
+      minWidth: '32px',
+      '& .MuiButton-label': {
+        width: '100%',
+        maxWidth: '32px',
+      },
+      '& .MuiButton-startIcon': {
+        width: '100%',
+        maxWidth: '32px',
+        marginRight: 0,
+      }
     }
-  }),
+  })
 );
