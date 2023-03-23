@@ -38,7 +38,6 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const [isLiked, setLike] = useState(content.LikedByMe);
   const router = useRouter();
   const isDefaultLocale = router.locale === router.defaultLocale;
-  const elapsedTime = getElapsedTime(content.Published);
   const timePassed = getTimePassed(content.Published, t);
   const [totalLikes, setTotalLikes] = useState(content.Likes);
 
@@ -175,63 +174,6 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
       </CardActions>
     </Card>
   );
-}
-
-function getElapsedTime(publishDate: Date): ElapsedTime {
-  var seconds = Math.floor((Date.now() - publishDate.getTime()) / 1000);
-
-  var interval = seconds / 31536000;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "year",
-    };
-  }
-
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "month",
-    };
-  }
-
-  interval = seconds / 604800;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "week",
-    };
-  }
-
-  interval = seconds / 86400;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "day",
-    };
-  }
-
-  interval = seconds / 3600;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "hour",
-    };
-  }
-
-  interval = seconds / 60;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: "minute",
-    };
-  }
-
-  return {
-    Time: Math.floor(seconds),
-    Unit: "second",
-  };
 }
 
 interface ElapsedTime {
