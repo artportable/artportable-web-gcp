@@ -57,15 +57,15 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeButton: {
       width: '100%',
-      maxWidth: '32px',
-      minWidth: '32px',
+      maxWidth: '30px',
+      minWidth: '30px',
       '& .MuiButton-label': {
         width: '100%',
-        maxWidth: '32px',
+        maxWidth: '30px',
       },
       '& .MuiButton-startIcon': {
         width: '100%',
-        maxWidth: '32px',
+        maxWidth: '30px',
         marginRight: 0,
       }
     },
