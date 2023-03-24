@@ -65,14 +65,17 @@ export const styles = makeStyles((theme: Theme) =>
     likeButton: {
       width: '100%',
       maxWidth: '30px',
-      minWidth: '30px',
+      minWidth: '30px !important',
       paddingLeft: '10px',
       '& .MuiButton-startIcon': {
         marginRight: 0,
       },
       '& .MuiButton-iconSizeMedium': {
         fontSize: '22px',
-      }
+      },
+      /*'& .MuiButton-root': {
+        minWidth: '30px !important',
+      }*/
     },
   })
 );
