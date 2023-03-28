@@ -57,7 +57,6 @@ export default function IndexHero() {
       image: "/images/sylvette_wikstrom.jpeg",
       imageLink: "art/8cca91d3-8c7a-4fb0-acfe-c8cd79de1cdf",
     },
-
     {
       name: "Karin Sjöblom",
       username: "karin.sjoblom",
@@ -75,6 +74,24 @@ export default function IndexHero() {
       username: "christos",
       image: "/images/christos_tziolas.jpeg",
       imageLink: "art/cbc1ff86-cb58-4c2f-a72b-8509cda9f9f5",
+    },
+    {
+      name: "Lars-Henrik Milert",
+      username: "milert",
+      image: "/images/lars-henrik_milert_grafitti.jpeg",
+      imageLink: "art/48e83608-2449-4d48-bbcb-97ab69e5f856",
+    },
+    {
+      name: "Hesho Serray",
+      username: "hesho.serray",
+      image: "/images/hesho_serray.jpeg",
+      imageLink: "art/624bec32-c399-47e1-ba8f-98dde7747081",
+    },
+    {
+      name: "Ingela Johansson",
+      username: "ingela.johansson",
+      image: "/images/ingela_johansson.jpeg",
+      imageLink: "art/5eebcf83-a7d6-42ea-8fc3-e383182bed12",
     },
   ];
 
