@@ -1,5 +1,4 @@
 {
-  "uploadNewWorkOfArt": "Upload new work of art",
   "artistsWeThinkYouWouldLike": "Artists we think you would like",
   "noRecommendedUsers": "No recommended users to show...",
   "recommendedUsersError": "Couldn't load recommended users...",
@@ -20,5 +19,6 @@
   "days": "d",
   "weeks": "w",
   "months": "mon",
-  "year": "y"
+  "year": "y",
+  "uploadNewWorkOfArt": "Upload new work of art"
 }

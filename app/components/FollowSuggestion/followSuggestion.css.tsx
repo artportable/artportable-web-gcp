@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     listItem: {
       paddingLeft: 0,
-      paddingRight: 75,
+      paddingRight: 90,
     },
     listItemText: {
       textOverflow: 'ellipsis',
@@ -22,7 +22,15 @@ export const styles = makeStyles((theme: Theme) =>
       right: '2px'
     },
     followButton: {
-      height: '1.5rem'
+      height: '1.5rem',
+      background: '#000000',
+      color: '#FFFFFF',
+      textTransform: 'uppercase',
+      fontWeight: 500,
+      "&:hover": {
+        background: "theme.palette.secondary.main",
+        color: "#000000",
+      },
     }
   }),
 );

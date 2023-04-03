@@ -19,7 +19,7 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
   return (
     <Card elevation={2}>
 
-      <div className={s.flex}>
+      <div className={s.flexCard}>
         <CardHeader
           title={t('artistsWeThinkYouWouldLike')}
           titleTypographyProps={{ variant: "subtitle1" }}>

@@ -1,5 +1,4 @@
 {
-  "uploadNewWorkOfArt": "Ladda upp nytt konstverk",
   "artistsWeThinkYouWouldLike": "Konstnärer vi tror du skulle gilla",
   "noRecommendedUsers": "Inga konstnärer att visa...",
   "recommendedUsersError": "Kunde inte ladda rekommendationer...",
@@ -20,5 +19,7 @@
   "days": "d",
   "weeks": "v",
   "months": "mån",
-  "year": "å"
+  "year": "å",
+  "trendingArtFeed": "Trending",
+  "uploadNewWorkOfArt": "Ladda upp nytt konstverk"
 }

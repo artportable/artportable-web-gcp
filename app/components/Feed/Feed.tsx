@@ -4,6 +4,7 @@ import { useGetFeedItems } from "../../hooks/dataFetching/useGetFeedItems";
 import { isNullOrUndefined } from "../../utils/util";
 import InviteFriendsFeed from "../InviteFriends/InviteFriendsFeed";
 import { styles } from "./feed.css";
+import TrendingArtworksCard from "../TrendingArtworks/TrendingArtworksCard";
 
 interface FeedProps {
   user: string;
@@ -13,6 +14,7 @@ interface FeedProps {
   setFetchMorePosts: any;
   entriesCount: any;
   setEntriesCount: any;
+  trendingArtworks: any;
 }
 
 export default function Feed({
@@ -23,6 +25,7 @@ export default function Feed({
   setFetchMorePosts,
   setEntriesCount,
   entriesCount,
+  trendingArtworks,
 }: FeedProps) {
   const page = index + 1;
   const { data, error } = useGetFeedItems(user, page);
@@ -40,21 +43,39 @@ export default function Feed({
     }
   }, [data, error]);
 
+  const random = Math.random();
+  const isTrendingArtworksFirst = random >= 0.5;
+
   return (
     <>
       <div className={s.divInviteButton}>
         <InviteFriendsFeed />
       </div>
-      {user &&
-        data?.map((item) => {
-          return (
-            <FeedCard
-              key={item.Item.Id}
-              content={item}
-              onLikeClick={onLikeClick}
-            ></FeedCard>
-          );
-        })}
+      {isTrendingArtworksFirst ? (
+        <>
+          <TrendingArtworksCard />
+          {user &&
+            data?.map((item) => (
+              <FeedCard
+                key={item.Item.Id}
+                content={item}
+                onLikeClick={onLikeClick}
+              />
+            ))}
+        </>
+      ) : (
+        <>
+          {user &&
+            data?.map((item) => (
+              <FeedCard
+                key={item.Item.Id}
+                content={item}
+                onLikeClick={onLikeClick}
+              />
+            ))}
+          <TrendingArtworksCard />
+        </>
+      )}
     </>
   );
 }
