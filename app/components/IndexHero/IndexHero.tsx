@@ -52,46 +52,28 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Sylvette Wikström",
-      username: "sylvette.wikstrom",
-      image: "/images/sylvette_wikstrom.jpeg",
-      imageLink: "art/8cca91d3-8c7a-4fb0-acfe-c8cd79de1cdf",
+      name: "Anders Gabrielsson",
+      username: "agngabrielsson",
+      image: "/images/anders_gabrielsson_riviera.jpg",
+      imageLink: "art/258f626d-1b1f-4e15-8380-a088461c6304anders",
     },
     {
-      name: "Karin Sjöblom",
-      username: "karin.sjoblom",
-      image: "/images/karin_sjoblom.jpeg",
-      imageLink: "art/dd5e0b1f-34c4-4ae7-9d14-4c846401089c",
+      name: "Christina Ganslandt",
+      username: "christina.ganslandt",
+      image: "/images/Frontsida.jpg",
+      /*imageLink: "art/71eeb116-6178-45cb-8140-c69cbd752a94",*/
     },
     {
       name: "May Marschal",
       username: "may.marschal",
-      image: "/images/sagansstad.jpg",
-      imageLink: "art/8d158704-a37b-4283-ad12-31363c37f0df",
+      image: "/images/may_marschal_tagstationen.jpg",
+      imageLink: "art/6b8932b4-9fd1-4252-bc6d-742b153ef7a9",
     },
     {
-      name: "Christos Tziolas",
-      username: "christos",
-      image: "/images/christos_tziolas.jpeg",
-      imageLink: "art/cbc1ff86-cb58-4c2f-a72b-8509cda9f9f5",
-    },
-    {
-      name: "Lars-Henrik Milert",
-      username: "milert",
-      image: "/images/lars-henrik_milert_grafitti.jpeg",
-      imageLink: "art/48e83608-2449-4d48-bbcb-97ab69e5f856",
-    },
-    {
-      name: "Hesho Serray",
-      username: "hesho.serray",
-      image: "/images/hesho_serray.jpeg",
-      imageLink: "art/624bec32-c399-47e1-ba8f-98dde7747081",
-    },
-    {
-      name: "Ingela Johansson",
-      username: "ingela.johansson",
-      image: "/images/ingela_johansson.jpeg",
-      imageLink: "art/5eebcf83-a7d6-42ea-8fc3-e383182bed12",
+      name: "Elsmarie Rannemalm",
+      username: "elsmarie.rannemalm",
+      image: "/images/elsmarie_rannemalm_stranden.jpeg",
+      imageLink: "art/6f7ca2fd-7331-45c2-97c7-ea4d2dc8be95",
     },
   ];
 
