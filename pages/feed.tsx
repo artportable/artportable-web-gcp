@@ -35,6 +35,7 @@ import usePostFollow from "../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import axios from "axios";
 import { FeedItem } from "../app/models/FeedItem";
+import { useGetTrendingArtworks } from "../app/hooks/dataFetching/Artworks";
 
 export default function FeedPage({ navBarItems }) {
   const s = styles();
@@ -47,6 +48,7 @@ export default function FeedPage({ navBarItems }) {
   const userProfile = useGetUserProfileSummary(username.value);
   const { suggestedUsers } = useFollowRecommendations(username.value);
   const mdPlusScreenOrDown = useBreakpointDown("mdPlus");
+  const xsScreenOrDown = useBreakpointDown("xs");
 
   const loadMoreElement = useRef(null);
   const [pages, setPages] = useState([]);
@@ -61,23 +63,7 @@ export default function FeedPage({ navBarItems }) {
 
   const { like } = usePostLike();
   const { follow } = usePostFollow();
-
-  const [trendingArtworks, setTrendingArtworks] = useState<FeedItem[]>([]);
-
-  useEffect(() => {
-    const fetchTrendingArtworks = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5001/api/discover/artworks/trending"
-        );
-        setTrendingArtworks(response.data);
-      } catch (error) {
-        console.error("Error fetching trending artworks:", error);
-      }
-    };
-
-    fetchTrendingArtworks();
-  }, []);
+  const { data, isLoading, isError } = useGetTrendingArtworks();
 
   useEffect(() => {
     setLoading(true);
@@ -108,7 +94,7 @@ export default function FeedPage({ navBarItems }) {
             entriesCount={entriesCount}
             setEntriesCount={setEntriesCount}
             setFetchMorePosts={setFetchMorePosts}
-            trendingArtworks={trendingArtworks}
+            trendingArtworks={data}
           />
         );
       }
@@ -140,13 +126,14 @@ export default function FeedPage({ navBarItems }) {
       <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
         {!loading && (
           <Box className={s.feedContainer}>
-            {!mdPlusScreenOrDown && (
-              <div className={s.colLeft}>
-                <ProfileCard
-                  userProfile={userProfile}
-                  userProfilePicture={profilePicture}
-                ></ProfileCard>
-                {membership.value > Membership.Base && (
+            {!xsScreenOrDown && (
+              <div className={s.sidebarLeft}>
+                <div className={s.colLeft}>
+                  <ProfileCard
+                    userProfile={userProfile}
+                    userProfilePicture={profilePicture}
+                  ></ProfileCard>
+                  {/*{membership.value > Membership.Base &&
                   <Link href="/upload">
                     <a>
                       <Button
@@ -155,18 +142,21 @@ export default function FeedPage({ navBarItems }) {
                         variant="contained"
                         color="primary"
                         rounded
-                        onClick={trackGoogleAnalytics(
-                          ActionType.UPLOAD_IMAGE_FEED,
-                          CategoryType.INTERACTIVE
-                        )}
-                        disableElevation
-                      >
-                        {t("uploadNewWorkOfArt")}
+                        onClick={trackGoogleAnalytics(ActionType.UPLOAD_IMAGE_FEED, CategoryType.INTERACTIVE)}
+                        disableElevation>
+                        {t('uploadNewWorkOfArt')}
                       </Button>
                     </a>
                   </Link>
-                )}
-                {/* <NewsletterCard></NewsletterCard> */}
+                }*/}
+                  {/* <NewsletterCard></NewsletterCard> */}
+                </div>
+                <div className={s.colFollow}>
+                  <FollowSuggestionCard
+                    suggestedUsers={suggestedUsers}
+                    onFollowClick={followUser}
+                  ></FollowSuggestionCard>
+                </div>
               </div>
             )}
             <div className={s.colFeed}>
@@ -184,12 +174,6 @@ export default function FeedPage({ navBarItems }) {
               ) : (
                 <p>{t("noPosts")}</p>
               )}
-            </div>
-            <div className={s.colRight}>
-              <FollowSuggestionCard
-                suggestedUsers={suggestedUsers}
-                onFollowClick={followUser}
-              ></FollowSuggestionCard>
             </div>
           </Box>
         )}
