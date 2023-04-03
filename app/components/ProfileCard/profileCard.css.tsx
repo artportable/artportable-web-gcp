@@ -20,7 +20,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     counterBox: {
-<<<<<<< HEAD
       display: "flex",
       justifyContent: "space-evenly",
       marginTop: "16px",
@@ -33,20 +32,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "& .MuiTypography-body2": {
         marginRight: "10px",
-=======
-      display: 'flex',
-      justifyContent: 'space-evenly',
-      marginTop: '20px',
-      '& > *': {
-        width: '33.3%'
-      },
-      '& .MuiButton-label': {
-        display: 'flex',
-        flexDirection: 'row',
-      },
-      '& .MuiTypography-body2': {
-        marginRight: '10px',
->>>>>>> 1399e6ae9e9e574f8c73664f56459219aaf4e0f7
         fontWeight: 500,
         fontSize: "14px",
       },
@@ -123,7 +108,6 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "10px",
       },
       counterBox: {
-<<<<<<< HEAD
         width: "100%",
         flexDirection: "row !important",
         justifyContent: "space-evenly",
@@ -133,13 +117,6 @@ export const styles = makeStyles((theme: Theme) =>
         },
         "& .MuiTypography-caption": {
           fontSize: "14px",
-=======
-        width: '100%',
-        justifyContent: 'space-evenly',
-        '& .MuiTypography-body2': {
-          marginRight: '20px',
-          fontSize: '14px',
->>>>>>> 1399e6ae9e9e574f8c73664f56459219aaf4e0f7
         },
       },
     },
@@ -153,7 +130,6 @@ export const styles = makeStyles((theme: Theme) =>
         width: "100%",
       },
       uploadButtons: {
-<<<<<<< HEAD
         maxWidth: "300px",
       },
       counterBox: {
@@ -164,19 +140,6 @@ export const styles = makeStyles((theme: Theme) =>
         "& .MuiTypography-body2": {
           marginRight: "5px",
         },
-=======
-        maxWidth: '400px',
-      },
-      counterBox: {
-        flexDirection: 'column',
-        marginRight: 0,
-        width: '100%',
-        maxWidth: '155px',
-        justifyContent: 'space-between',
-        '& .MuiTypography-body2': {
-            marginRight: '5px',
-          },
->>>>>>> 1399e6ae9e9e574f8c73664f56459219aaf4e0f7
       },
       profileData: {
         marginLeft: "10px",
