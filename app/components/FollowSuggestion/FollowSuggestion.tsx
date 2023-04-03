@@ -51,10 +51,10 @@ export default function FollowSuggestionCard({ user, onFollowClick }) {
         className={s.followButton}
           size="small"
           variant={!isFollowed ? "contained" : "outlined"}
-          color="primary"
+          //color="primary"
           // startIcon={!isFollowed ? <AddIcon/> : null}
           disableElevation
-          rounded
+          //rounded
           onClick={() => { toggleFollow(); !isFollowed ? trackGoogleAnalytics(ActionType.FOLLOWING_SUGGESTION, CategoryType.INTERACTIVE) : null}}>
             {capitalizeFirst(
               !isFollowed ?
