@@ -27,6 +27,10 @@ export const styles = makeStyles((theme: Theme) =>
       color: '#FFFFFF',
       textTransform: 'uppercase',
       fontWeight: 500,
+      "&:hover": {
+        background: "theme.palette.secondary.main",
+        color: "#000000",
+      },
     }
   }),
 );
