@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     listItem: {
       paddingLeft: 0,
-      paddingRight: 75,
+      paddingRight: 90,
     },
     listItemText: {
       textOverflow: 'ellipsis',

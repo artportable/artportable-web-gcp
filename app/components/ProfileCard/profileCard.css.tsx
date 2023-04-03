@@ -22,7 +22,7 @@ export const styles = makeStyles((theme: Theme) =>
     counterBox: {
       display: 'flex',
       justifyContent: 'space-evenly',
-      marginTop: '16px',
+      marginTop: '20px',
       '& > *': {
         width: '33.3%'
       },
@@ -105,7 +105,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       counterBox: {
         width: '100%',
-        flexDirection: 'row !important',
         justifyContent: 'space-evenly',
         '& .MuiTypography-body2': {
           marginRight: '20px',
@@ -129,7 +128,7 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: '300px',
       },
       counterBox: {
-        flexDirecrion: 'row',
+        flexDirection: 'column',
         marginRight: 0,
         width: '100%',
         justifyContent: 'space-between',
