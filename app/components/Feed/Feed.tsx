@@ -53,7 +53,7 @@ export default function Feed({
       </div>
       {isTrendingArtworksFirst ? (
         <>
-          <TrendingArtworksCard onLikeClick={onLikeClick} />
+          <TrendingArtworksCard />
           {user &&
             data?.map((item) => (
               <FeedCard

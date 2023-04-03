@@ -125,12 +125,13 @@ export const styles = makeStyles((theme: Theme) =>
         width: '100%',
       },
       uploadButtons: {
-        maxWidth: '300px',
+        maxWidth: '400px',
       },
       counterBox: {
         flexDirection: 'column',
         marginRight: 0,
         width: '100%',
+        maxWidth: '155px',
         justifyContent: 'space-between',
         '& .MuiTypography-body2': {
             marginRight: '5px',

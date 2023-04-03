@@ -71,7 +71,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'column',
         marginRight: '20px',
         width: '100%',
-        maxWidth: '320px',
+        maxWidth: '350px',
         alignSelf: 'flex-start',
         position: 'sticky',
         top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
