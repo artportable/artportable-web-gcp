@@ -1,8 +1,12 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
+import { ImportantDevices } from "@material-ui/icons";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    cardLayout: {
+      marginBottom: '0 !important',
+    },
     cardHeaderContainer: {
       display: "flex",
       justifyContent: "space-between",

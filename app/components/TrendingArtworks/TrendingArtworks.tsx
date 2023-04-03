@@ -54,7 +54,7 @@ export default function TrendingArtworks({ artwork, onLikeClick }) {
   );
 
   return (
-    <Card>
+    <Card className={s.cardLayout}>
       <Link href={`/profile/@${artwork?.Owner.Username}`}>
         <a>
           <div className={s.cardHeaderContainer}>

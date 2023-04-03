@@ -22,7 +22,11 @@ export const styles = makeStyles((theme: Theme) =>
       right: '2px'
     },
     followButton: {
-      height: '1.5rem'
+      height: '1.5rem',
+      background: '#000000',
+      color: '#FFFFFF',
+      textTransform: 'uppercase',
+      fontWeight: 500,
     }
   }),
 );

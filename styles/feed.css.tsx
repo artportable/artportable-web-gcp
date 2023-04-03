@@ -4,64 +4,80 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     feedContainer: {
       backgroundColor: 'var(--background-color)',
-      display: 'grid',
-      alignItems: 'flex-start',
-      gap: '16px',
-      gridTemplate: (
-      '\"feed\" auto' +
-      '/ 8fr'),
+      display: 'flex',
+      flexDirection: 'column',
     },
     colLeft: {
-      display: 'none',
-      gridArea: 'left',
-      position: 'sticky',
-      top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
-      rowGap: theme.spacing(2)
+      marginBottom: '20px',
+      '& .MuiCardContent-root': {
+        padding: '28px',
+      }
     },
     colFeed: {
-      gridArea: 'feed',
-      display: 'grid',
-      rowGap: theme.spacing(2),
+      display: 'flex',
+      flexDirection: 'column',
+      '& .MuiCard-root': {
+        marginBottom: '10px',
+      }
     },
-    colRight: {
+    colFollow: {
       display: 'none',
-      gridArea: 'right',
-      position: 'sticky',
-      top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
-      rowGap: theme.spacing(2),
-    },
-    uploadArtButton: {
-      width: '100%',
     },
 
-    [theme.breakpoints.up('md')]: {
-      feedContainer: {
-        backgroundColor: 'var(--background-color)',
-        display: 'grid',
-        alignItems: 'flex-start',
-        gap: '16px',
-        gridTemplate: (
-        '\"feed right\" auto' +
-        '/ 8fr minmax(0, 4fr)'),
-      },
+    [theme.breakpoints.up('sm')]: {
       colLeft: {
-        display: 'grid',
+        '& .MuiBox-root': {
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        },
+        '& .MuiCardContent-root': {
+          padding: '34px',
+        }
+      },
+    },
+
+    [theme.breakpoints.up('mdPlus')]: {
+      feedContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+      },
+      colFollow: {
+        display: 'block',
+        '& .MuiCardContent-root': {
+          paddingBottom: '5px',
+        }
+      },
+      sidebarLeft: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginRight: '20px',
+        width: '100%',
+        maxWidth: '320px',
+        alignSelf: 'flex-start',
+        position: 'sticky',
+        top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
       },
       colFeed: {
-        gridArea: 'feed',
-        display: 'grid',
-        rowGap: theme.spacing(2),
+        width: '100%',
+        maxWidth: '400px',
       },
-      colRight: {
-        display: 'grid',
+      colLeft: {
+        marginBottom: '12px',
+        '& .MuiCardContent-root': {
+          padding: '20px',
+        },
+        '& .MuiBox-root': {
+          display: 'flex',
+          flexDirection: 'row',
+        },
       },
     },
 
     [theme.breakpoints.up('lg')]: {
-      feedContainer: {
-        gridTemplate: (
-        '\"left feed right\" auto' +
-        '/ minmax(0, 4fr) 8fr minmax(0, 4fr)'),
+      colFeed: {
+        maxWidth: '600px',
       },
     }
   }),
