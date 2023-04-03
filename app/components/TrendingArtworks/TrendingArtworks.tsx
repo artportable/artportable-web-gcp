@@ -29,7 +29,7 @@ import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 
-export default function TrendingArtworks({ artwork, onLikeClick }) {
+export default function TrendingArtworks({ artwork }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const s = styles();
   const { t } = useTranslation(["feed", "common"]);
