@@ -185,15 +185,15 @@ export default function ProfileCard({ userProfile, userProfilePicture, onUpdateP
          </div>
          {/*<Profile userProfile={userProfile} userProfilePicture={userProfilePicture} hideAddBtn={true} divider></Profile>*/}
          <div className={s.uploadButtons}>
-           {membership.value > Membership.Base &&
-             <Link href="/upload">
-               <a>
-                 <Button className={s.uploadArtButton}>
-                   {t('uploadNewWorkOfArt')}
-                 </Button>
-               </a>
-             </Link>
-           }
+         {/*{membership.value > Membership.Base &&*/}
+          <Link href="/upload">
+            <a>
+              <Button className={s.uploadArtButton}>
+                {t('uploadNewWorkOfArt')}
+              </Button>
+            </a>
+          </Link>
+        {/*}*/}
          </div>
       </CardContent>
     </Card>

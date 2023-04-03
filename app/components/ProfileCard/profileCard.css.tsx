@@ -90,12 +90,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     [theme.breakpoints.up('sm')]: {
-      profileData: {
-        marginLeft: '40px',
-        '& .MuiBox-root': {
-            justifyContent: 'flex-start !important',
-        },
-      },
       followersButton: {
         '& .MuiButton-label': {
             justifyContent: 'flex-start',
@@ -110,8 +104,9 @@ export const styles = makeStyles((theme: Theme) =>
         padding: '10px',
       },
       counterBox: {
-        width: '60%',
-        justifyContent: 'flex-start',
+        width: '100%',
+        flexDirection: 'row !important',
+        justifyContent: 'space-evenly',
         '& .MuiTypography-body2': {
           marginRight: '20px',
           fontSize: '14px',

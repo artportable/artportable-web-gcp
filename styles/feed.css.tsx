@@ -26,14 +26,32 @@ export const styles = makeStyles((theme: Theme) =>
 
     [theme.breakpoints.up('sm')]: {
       colLeft: {
+        width: '100%',
+        marginRight: '20px',
         '& .MuiBox-root': {
           display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
+          flexDirection: 'column',
+          alignItems: 'center',
         },
         '& .MuiCardContent-root': {
           padding: '34px',
         }
+      },
+      colFollow: {
+        width: '100%',
+        display: 'flex',
+        '& .MuiCard-root': {
+          height: 'fit-content',
+          width: '100%',
+        },
+        '& .MuiCardContent-root': {
+          paddingBottom: '10px',
+        }
+      },
+      sidebarLeft: {
+        display: 'flex',
+        width: '100%',
+        marginBottom: '10px',
       },
     },
 

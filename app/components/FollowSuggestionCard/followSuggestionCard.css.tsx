@@ -9,7 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontStyle: "italic",
       textAlign: "center",
     },
-    flex: {
+    flexCard: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -26,6 +26,14 @@ export const styles = makeStyles((theme: Theme) =>
     divInviteButton: {
       display: 'flex',
       justifyContent: 'center',
-    }
+    },
+
+    [theme.breakpoints.up('smPlus')]: {
+      flexCard: {
+        '& .MuiTypography-subtitle1': {
+          fontSize: '12px',
+        },
+      },
+    },
   }),
 );
