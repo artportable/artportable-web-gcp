@@ -11,6 +11,8 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: '20px',
       '& .MuiCardContent-root': {
         padding: '28px',
+        height: '100%',
+        maxHeight: '360px',
       }
     },
     colFeed: {
@@ -22,20 +24,17 @@ export const styles = makeStyles((theme: Theme) =>
     },
     colFollow: {
       display: 'none',
+      '& .MuiCard-root': {
+        height: '100%',
+        maxHeight: '360px',
+      }
     },
 
     [theme.breakpoints.up('sm')]: {
       colLeft: {
         width: '100%',
         marginRight: '20px',
-        '& .MuiBox-root': {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        },
-        '& .MuiCardContent-root': {
-          padding: '34px',
-        }
+        alignItems: 'center',
       },
       colFollow: {
         width: '100%',
@@ -72,7 +71,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'column',
         marginRight: '20px',
         width: '100%',
-        maxWidth: '320px',
+        maxWidth: '350px',
         alignSelf: 'flex-start',
         position: 'sticky',
         top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
