@@ -75,6 +75,12 @@ export default function IndexHero() {
       image: "/images/elsmarie_rannemalm_stranden.jpeg",
       imageLink: "art/6f7ca2fd-7331-45c2-97c7-ea4d2dc8be95",
     },
+    {
+      name: "Anett Limseth Fägersten",
+      username: "art_of_anett",
+      image: "/images/anett_dansa_dansa_dansa.jpeg",
+      imageLink: "art/f0e2dffc-8c69-4cb0-a521-7823c28c036e",
+    },
   ];
 
   useEffect(() => {
