@@ -16,6 +16,7 @@ export const styles = makeStyles((theme: Theme) =>
       textTransform: 'uppercase',
       '& .MuiCardHeader-root': {
         borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+        padding: '16px 28px',
       },
       '& .MuiTypography-subtitle1': {
         fontWeight: 500,
@@ -35,5 +36,13 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
-  }),
+
+    [theme.breakpoints.up('md')]: {
+      flexCard: {
+        '& .MuiCardHeader-root': {
+          padding: '16px 30px',
+        },
+      },
+  },
+}),
 );

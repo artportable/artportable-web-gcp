@@ -34,7 +34,11 @@ export const styles = makeStyles((theme: Theme) =>
       colLeft: {
         width: '100%',
         marginRight: '20px',
+        marginBottom: 0,
         alignItems: 'center',
+        '& .MuiCard-root': {
+          height: '100%',
+        }
       },
       colFollow: {
         width: '100%',
@@ -50,7 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
       sidebarLeft: {
         display: 'flex',
         width: '100%',
-        marginBottom: '10px',
+        marginBottom: '20px',
       },
     },
 
@@ -63,7 +67,7 @@ export const styles = makeStyles((theme: Theme) =>
       colFollow: {
         display: 'block',
         '& .MuiCardContent-root': {
-          paddingBottom: '5px',
+          padding: '16px 20px 5px 20px',
         }
       },
       sidebarLeft: {

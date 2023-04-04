@@ -63,6 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#FFFFFF",
       textTransform: "uppercase",
       width: "100%",
+      maxWidth: '400px',
       marginTop: "20px",
       padding: "8px",
       "& .MuiButton-label": {
@@ -82,6 +83,11 @@ export const styles = makeStyles((theme: Theme) =>
     profileData: {
       textAlign: "center",
       width: "100%",
+      '& .MuiTypography-body1': {
+        fontSize: '14px',
+        display: 'flex',
+        alignItems: 'end',
+      }
     },
     uploadButtons: {
       display: "flex",
@@ -101,7 +107,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       uploadButtons: {
         width: "100%",
-        maxWidth: "260px",
+        maxWidth: "300px",
       },
       uploadArtButton: {
         marginTop: "28px",
@@ -130,7 +136,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "100%",
       },
       uploadButtons: {
-        maxWidth: "300px",
+        maxWidth: "350px",
       },
       counterBox: {
         flexDirecrion: "row",
@@ -145,6 +151,13 @@ export const styles = makeStyles((theme: Theme) =>
       profileData: {
         marginLeft: "10px",
       },
+      locationData: {
+        justifyContent: 'start',
+      },
+      noPictureIcon: {
+        fontSize: '120px',
+        background: 'none',
+      }
     },
   })
 );

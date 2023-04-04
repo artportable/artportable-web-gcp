@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     listItem: {
       paddingLeft: 0,
-      paddingRight: 90,
+      paddingRight: 70,
     },
     listItemText: {
       textOverflow: 'ellipsis',
@@ -25,8 +25,9 @@ export const styles = makeStyles((theme: Theme) =>
       height: '1.5rem',
       background: '#000000',
       color: '#FFFFFF',
-      textTransform: 'uppercase',
+      //textTransform: 'uppercase',
       fontWeight: 500,
+      borderRadius: '2px',
       "&:hover": {
         background: "theme.palette.secondary.main",
         color: "#000000",

@@ -1,58 +1,52 @@
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cardHeader: {
-      padding: '12px',
-      alignItems: 'center',
+      padding: theme.spacing(1)
     },
     cardActions: {
-      paddingLeft: '16px',
+      padding: theme.spacing(1)
     },
-    /*
     published: {
       fontStyle: "italic",
-      marginLeft: "5px",
-    },*/
-    likeCountContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      marginRight: '12px',
+      marginLeft: "5px"
     },
     media: {
-      display: "grid !important;",
+      /*display: "grid !important;",
       gap: "2px",
-      position: "relative",
+      position: "relative"*/
     },
     image: {
-      objectFit: "cover",
-      height: "100%",
-      width: "100%",
+      //objectFit: 'cover',
+      height: '100%',
+      width: '100%'
     },
     oneImage: {
-      gridTemplate: '"primary" 450px ' + "/ 1fr",
+      /*gridTemplate: ('\"primary\" 450px ' +
+      '/ 1fr'),*/
     },
     twoImages: {
-      gridTemplate: '"primary" 250px ' + '"secondary" 200px ' + "/ 1fr",
+      /*gridTemplate: ('\"primary\" 250px ' +
+      '\"secondary\" 200px ' +
+      '/ 1fr'),*/
     },
     threeImages: {
-      gridTemplate:
-        '"primary primary" 300px ' +
-        '"secondary tertiary" 150px ' +
-        "/ 1fr 1fr",
+      /*gridTemplate: ('\"primary primary\" 300px ' +
+      '\"secondary tertiary\" 150px ' +
+      '/ 1fr 1fr'),*/
     },
     primaryImage: {
-      gridArea: "primary",
-      position: "relative",
+      //gridArea: "primary",
+      //position: "relative"
     },
     secondaryImage: {
-      gridArea: "secondary",
-      position: "relative",
+      //gridArea: "secondary",
+      //position: "relative"
     },
     tertiaryImage: {
-      gridArea: "tertiary",
-      position: "relative",
+      //gridArea: "tertiary",
+      //position: "relative"
     },
     likeInline: {
       display: "inline-block",
