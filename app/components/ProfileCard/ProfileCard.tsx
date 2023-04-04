@@ -143,18 +143,9 @@ export default function ProfileCard({
                   )}
                 </Typography>
               </Box>
-              <Box marginTop={1}>
-                <Typography variant="h6" className={s.title}>
-                  {data?.Title}
-                </Typography>
-              </Box>
-
-              <Box marginTop={1}>
-                <Typography>{data?.Headline}</Typography>
-              </Box>
 
               {data?.Location && (
-                <Box
+                <Box className={s.locationData}
                   display="flex"
                   justifyContent="center"
                   marginTop={1}

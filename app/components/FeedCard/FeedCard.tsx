@@ -114,7 +114,7 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-        <div className={s.likeCountContainer}>
+        <div>
           <Button className={s.likeButton}
             startIcon={
               isLiked ? (
