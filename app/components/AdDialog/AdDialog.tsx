@@ -38,13 +38,13 @@ export default function AdDialog(props: Props) {
 
   // if no add, remove the component from index page
   const ad = [
-    {
-      companyName: "artportable",
-      companyImageSv: "/ad/erikmofjelltakeover.jpg",
-      companyLinkSv: "https://artportable.com/en/profile/@erik.mofjell",
-      companyImageEn: "/ad/erikmofjelltakeover.jpg",
-      companyLinkEn: "https://artportable.com/en/profile/@erik.mofjell",
-    },
+    /*{
+      companyName: "Plingon",
+      companyImageSv: "/ad/plingon.jpg",
+      companyLinkSv: "https://bit.ly/3FyutR1",
+      companyImageEn: "/ad/plingon.jpg",
+      companyLinkEn: "https://bit.ly/3FyutR1",
+    },*/
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
