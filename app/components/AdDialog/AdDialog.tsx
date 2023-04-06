@@ -36,7 +36,6 @@ export default function AdDialog(props: Props) {
     setLoading(randomAd === null || randomAd === undefined);
   }, [randomAd]);
 
-  // if no add, remove the component from index page
   const ad = [
     {
       companyName: "Artportable",
