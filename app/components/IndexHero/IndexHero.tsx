@@ -52,34 +52,34 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Anders Gabrielsson",
-      username: "agngabrielsson",
-      image: "/images/anders_gabrielsson_riviera.jpg",
-      imageLink: "art/258f626d-1b1f-4e15-8380-a088461c6304anders",
+      name: "Mirja Angerman Waltersson",
+      username: "mirjaangerman",
+      image: "/images/mirja_bla_dam.jpeg",
+      imageLink: "art/b8c5c948-0a18-4932-814d-6e751b3b434f",
     },
     {
-      name: "Christina Ganslandt",
-      username: "christina.ganslandt",
-      image: "/images/Frontsida.jpg",
-      /*imageLink: "art/71eeb116-6178-45cb-8140-c69cbd752a94",*/
+      name: "Anders Magnusson",
+      username: "grotvikskonstnaren",
+      image: "/images/anders_magnusson_gaddan.jpg",
+      imageLink: "art/5504a3fe-b452-4dba-afc4-b55225eaa6b1",
     },
     {
-      name: "May Marschal",
-      username: "may.marschal",
-      image: "/images/may_marschal_tagstationen.jpg",
-      imageLink: "art/6b8932b4-9fd1-4252-bc6d-742b153ef7a9",
+      name: "Märith Sovin",
+      username: "marithsovin67",
+      image: "/images/marith_sovin_fyrisan.jpg",
+      imageLink: "art/121a35be-db76-4e03-aaf3-ecf1aeefb631",
     },
     {
-      name: "Elsmarie Rannemalm",
-      username: "elsmarie.rannemalm",
-      image: "/images/elsmarie_rannemalm_stranden.jpeg",
-      imageLink: "art/6f7ca2fd-7331-45c2-97c7-ea4d2dc8be95",
+      name: "Cigi Hernandez",
+      username: "cigi",
+      image: "/images/cigi_hernandez_leander.jpeg",
+      imageLink: "art/842189f1-f344-4398-b3ca-684d984eefe4",
     },
     {
       name: "Anett Limseth Fägersten",
       username: "art_of_anett",
-      image: "/images/anett_dansa_dansa_dansa.jpeg",
-      imageLink: "art/f0e2dffc-8c69-4cb0-a521-7823c28c036e",
+      image: "/images/anett_soft_and_gently.jpeg",
+      imageLink: "art/7c9e339b-1c03-49b6-a27e-7bacbc508d78",
     },
   ];
 
