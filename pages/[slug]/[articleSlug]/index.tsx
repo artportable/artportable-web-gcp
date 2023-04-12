@@ -257,7 +257,18 @@ export async function getStaticProps(context) {
     props: {
       artist: artist,
       article: article,
-      ...(await serverSideTranslations(locale, [])),
+      ...(await serverSideTranslations(locale, [
+        "articles",
+            "common",
+            "header",
+            "footer",
+            "profile",
+            "tags",
+            "art",
+            "upload",
+            "support",
+            "plans",
+      ])),
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
