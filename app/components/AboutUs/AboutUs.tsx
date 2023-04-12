@@ -33,7 +33,7 @@ export default function AboutMe() {
     {
       name: 'Filippa Flood',
       title: 'Journalist',
-      image: '/staff/artportable_filippa.jpg',
+      image: '/staff/artportable_filippa_flood.jpg',
       email: 'filippa@artportable.com',
     },
     {
