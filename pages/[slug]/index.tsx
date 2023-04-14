@@ -36,7 +36,7 @@ export async function getStaticProps({ params, locale }) {
   let pageType;
 
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=*articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`,
     {
       // timeout: 11000
     }
@@ -74,7 +74,7 @@ export async function getStaticProps({ params, locale }) {
           };
         }
         let res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`,
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=*articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`,
           {
             // timeout: 11000
           }
