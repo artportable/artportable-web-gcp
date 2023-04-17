@@ -37,13 +37,13 @@ export default function AdDialog(props: Props) {
   }, [randomAd]);
 
   const ad = [
-    {
+    /*{
       companyName: "Artportable",
       companyImageSv: "/ad/erikmofjelltakeover.jpg",
       companyLinkSv: "https://artportable.com/profile/@erik.mofjell",
       companyImageEn: "/ad/erikmofjelltakeover.jpg",
       companyLinkEn: "https://artportable.com/en/profile/@erik.mofjell",
-    },
+    },*/
   ];
   useEffect(() => {
     const randomAdIndex = Math.floor(Math.random() * ad.length);
