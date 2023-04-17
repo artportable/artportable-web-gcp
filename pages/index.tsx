@@ -143,6 +143,10 @@ export default function DiscoverPage({ navBarItems }) {
     setOpenAdDialog(false);
   }
 
+  if (isSignedIn.value) {
+    window.location.href = '/feed';
+  } else {
+    
   return (
     <Main
       noHeaderPadding
@@ -372,6 +376,7 @@ export default function DiscoverPage({ navBarItems }) {
       )}
     </Main>
   );
+  }
 }
 
 export async function getStaticProps({ locale }) {
