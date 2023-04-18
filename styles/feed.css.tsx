@@ -9,11 +9,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     colLeft: {
       marginBottom: '20px',
-      '& .MuiCardContent-root': {
-        padding: '28px',
-        height: '100%',
-        maxHeight: '360px',
-      }
     },
     colFeed: {
       display: 'flex',
@@ -38,13 +33,19 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'center',
         '& .MuiCard-root': {
           height: '100%',
+        },
+        '& .MuiCardContent-root': {
+          padding: '28px',
+          height: '100%',
+          maxHeight: '425px',
         }
       },
       colFollow: {
         width: '100%',
         display: 'flex',
         '& .MuiCard-root': {
-          height: 'fit-content',
+          height: '100%',
+          maxHeight: '425px',
           width: '100%',
         },
         '& .MuiCardContent-root': {

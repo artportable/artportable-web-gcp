@@ -9,12 +9,11 @@ import React from 'react';
 import FollowSuggestion from '../FollowSuggestion/FollowSuggestion';
 import InviteFriendsFeed from '../InviteFriends/InviteFriendsFeed';
 
-
 export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
 
-  const noOfSuggestions = 5;
+  const noOfSuggestions = 6;
 
   return (
     <Card elevation={2}>

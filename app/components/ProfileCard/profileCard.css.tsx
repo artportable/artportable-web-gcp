@@ -91,12 +91,62 @@ export const styles = makeStyles((theme: Theme) =>
     },
     uploadButtons: {
       display: "flex",
+      flexDirection: 'column',
       width: "100%",
       maxWidth: "350px",
       justifyContent: "center",
       "& a": {
         width: "100%",
       },
+    },
+    hovs: {
+      display: "flex",
+      justifyContent: "center",
+    },
+    rocketButton: {
+      marginTop: "8px",
+      textTransform: "uppercase",
+      width: "100%",
+      maxWidth: '400px',
+      padding: "8px",
+      "& .MuiButton-label": {
+        fontSize: "12px",
+      },
+      backgroundColor: "#E0AC08",
+      color: "#fff",
+      "&:hover": {
+        background: "#f4d880",
+      },
+    },
+    headerButtonRocket: {
+      fontFamily: "Gotham",
+      fontWeight: 500,
+      paddingLeft: "20px",
+    },
+    rocketIcon: {
+      paddingLeft: "4px",
+      maxWidth: "20px",
+      width: "100%",
+    },
+    upgradeButton: {
+      marginTop: "8px",
+      textTransform: "uppercase",
+      width: "100%",
+      maxWidth: '400px',
+      padding: "10px",
+      "& .MuiButton-label": {
+        fontSize: "12px",
+      },
+      backgroundColor: "#000000",
+      color: "#fff",
+      "&:hover": {
+        background: "theme.palette.secondary.main",
+        color: '#000000',
+      },
+    },
+    headerButtonUpgrade: {
+      fontSize: '12px',
+      fontWeight: 500,
     },
 
     [theme.breakpoints.up("sm")]: {
