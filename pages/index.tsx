@@ -34,6 +34,7 @@ import {
   trackGoogleAnalytics,
 } from "../app/utils/googleAnalytics";
 import router from "next/router";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -142,10 +143,6 @@ export default function DiscoverPage({ navBarItems }) {
   function toggleAdDialog() {
     setOpenAdDialog(false);
   }
-
-  if (isSignedIn.value) {
-    window.location.href = '/feed';
-  } else {
     
   return (
     <Main
@@ -376,7 +373,6 @@ export default function DiscoverPage({ navBarItems }) {
       )}
     </Main>
   );
-  }
 }
 
 export async function getStaticProps({ locale }) {
