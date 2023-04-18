@@ -128,6 +128,112 @@ export default function DrawerMenu({
         </IconButton>
       </div>
       <List>
+      {isSignedIn.value ? (
+          <>
+            {membership.value < Membership.Portfolio && (
+              <div>
+                <ListItem
+                  button
+                  divider
+                  onClick={() => {
+                    handleClickUpgrade();
+                    trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY);
+                  }}
+                >
+                  <ListItemText primary={t("upgrade")} />
+                </ListItem>
+                <Upgrade
+                  openUpgrade={openUpgrade}
+                  handleCloseUpgrade={handleCloseUpgrade}
+                />
+              </div>
+            )}
+            <Link href={`/profile/@${username.value}`} passHref>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemAvatar>
+                  <ProfileAvatar
+                    size={30}
+                    profilePicture={profilePicture}
+                  ></ProfileAvatar>
+                </ListItemAvatar>
+                <ListItemText primary={t("profile")} />
+              </ListItem>
+            </Link>
+            <Link href="/feed" passHref>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemIcon>
+                  <Badge max={99} color="primary">
+                    <SupervisorAccountSharpIcon
+                      color="secondary"
+                      style={{ fontSize: 30 }}
+                    />
+                  </Badge>
+                </ListItemIcon>
+                <ListItemText primary={t("myArtNetwork")} />
+              </ListItem>
+            </Link>
+            <Link href="/messages" passHref>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemIcon>
+                  <Badge
+                    badgeContent={unreadChatMessages}
+                    max={99}
+                    color="primary"
+                  >
+                    <MessageRoundedIcon
+                      color="secondary"
+                      style={{ fontSize: 30 }}
+                    />
+                  </Badge>
+                </ListItemIcon>
+                <ListItemText primary={t("messages")} />
+              </ListItem>
+            </Link>
+            {membership.value > Membership.Base && (
+              <>
+                <Link href="/upload" passHref>
+                  <ListItem button divider onClick={() => close()}>
+                    <ListItemIcon>
+                      <InsertPhotoIcon
+                        color="secondary"
+                        style={{ fontSize: 30 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={t("upload")} />
+                  </ListItem>
+                </Link>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <ListItem button divider>
+              <ListItemText
+                primary={t("signUp")}
+                onClick={() =>
+                  keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref,
+                  })
+                }
+              />
+            </ListItem>
+            <ListItem
+              button
+              divider
+              onClick={() => keycloak.login({ locale: router.locale })}
+            >
+              <ListItemText primary={t("login")} />
+            </ListItem>
+            <Link href="/newsletter" passHref>
+              <a>
+                <ListItem button divider onClick={() => close()}>
+                  <ListItemText primary={t("subscribeNewsletter")} />
+                </ListItem>
+              </a>
+            </Link>
+          </>
+        )}
         <Link href="/" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -238,113 +344,6 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-
-        {isSignedIn.value ? (
-          <>
-            {membership.value < Membership.Portfolio && (
-              <div>
-                <ListItem
-                  button
-                  divider
-                  onClick={() => {
-                    handleClickUpgrade();
-                    trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY);
-                  }}
-                >
-                  <ListItemText primary={t("upgrade")} />
-                </ListItem>
-                <Upgrade
-                  openUpgrade={openUpgrade}
-                  handleCloseUpgrade={handleCloseUpgrade}
-                />
-              </div>
-            )}
-            {membership.value > Membership.Base && (
-              <>
-                <Link href="/upload" passHref>
-                  <ListItem button divider onClick={() => close()}>
-                    <ListItemIcon>
-                      <InsertPhotoIcon
-                        color="secondary"
-                        style={{ fontSize: 30 }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={t("upload")} />
-                  </ListItem>
-                </Link>
-              </>
-            )}
-            <Link href="/feed" passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemIcon>
-                  <Badge max={99} color="primary">
-                    <SupervisorAccountSharpIcon
-                      color="secondary"
-                      style={{ fontSize: 30 }}
-                    />
-                  </Badge>
-                </ListItemIcon>
-                <ListItemText primary={t("myArtNetwork")} />
-              </ListItem>
-            </Link>
-            <Link href="/messages" passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemIcon>
-                  <Badge
-                    badgeContent={unreadChatMessages}
-                    max={99}
-                    color="primary"
-                  >
-                    <MessageRoundedIcon
-                      color="secondary"
-                      style={{ fontSize: 30 }}
-                    />
-                  </Badge>
-                </ListItemIcon>
-                <ListItemText primary={t("messages")} />
-              </ListItem>
-            </Link>
-            <Link href={`/profile/@${username.value}`} passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemAvatar>
-                  <ProfileAvatar
-                    size={30}
-                    profilePicture={profilePicture}
-                  ></ProfileAvatar>
-                </ListItemAvatar>
-                <ListItemText primary={t("profile")} />
-              </ListItem>
-            </Link>
-          </>
-        ) : (
-          <>
-            <ListItem button divider>
-              <ListItemText
-                primary={t("signUp")}
-                onClick={() =>
-                  keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref,
-                  })
-                }
-              />
-            </ListItem>
-            <ListItem
-              button
-              divider
-              onClick={() => keycloak.login({ locale: router.locale })}
-            >
-              <ListItemText primary={t("login")} />
-            </ListItem>
-            <Link href="/newsletter" passHref>
-              <a>
-                <ListItem button divider onClick={() => close()}>
-                  <ListItemText primary={t("subscribeNewsletter")} />
-                </ListItem>
-              </a>
-            </Link>
-          </>
-        )}
         <div className={s.languageElement}>
           <ListItem button onClick={handleClickLanguage}>
             <ListItemIcon>

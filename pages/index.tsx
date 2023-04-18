@@ -34,6 +34,7 @@ import {
   trackGoogleAnalytics,
 } from "../app/utils/googleAnalytics";
 import router from "next/router";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -142,7 +143,7 @@ export default function DiscoverPage({ navBarItems }) {
   function toggleAdDialog() {
     setOpenAdDialog(false);
   }
-
+    
   return (
     <Main
       noHeaderPadding

@@ -114,13 +114,18 @@ export default function Header({ navBarItems }) {
             </div>
             <nav className={s.navigation}>
               {isSignedIn.value && (
-                <MuiButton
+                <><MuiButton
+                  classes={{ root: s.feed }}
+                  color="secondary"
+                  size="large">
+                  <Link href="/">{t("discoverArt").toUpperCase()}</Link>
+                </MuiButton><MuiButton
                   classes={{ root: s.feed }}
                   color="secondary"
                   size="large"
                 >
-                  <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
-                </MuiButton>
+                    <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
+                  </MuiButton></>
               )}
               <Link href="/artiklar" passHref>
                 <a>

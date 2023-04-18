@@ -69,6 +69,12 @@ export default function IndexHero() {
       image: "/images/HG_Galleri_invite.jpg",
       /*imageLink: "art/121a35be-db76-4e03-aaf3-ecf1aeefb631",*/
     },
+    {
+      name: "Heini Svartengren",
+      username: "heini.svartengren",
+      image: "/images/Heini_Svartengren.jpg",
+      imageLink: "art/0fbb5079-5094-4912-a9d6-549222ca8e58",
+    },
   ];
 
   useEffect(() => {
