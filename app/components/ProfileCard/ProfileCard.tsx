@@ -1,6 +1,5 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-//import Profile from "../Profile/Profile";
 import Link from "next/link";
 import { Typography, Box, Button } from "@material-ui/core";
 import { Membership } from "../../models/Membership";
@@ -210,7 +209,6 @@ export default function ProfileCard({
         </div>
         {/*<Profile userProfile={userProfile} userProfilePicture={userProfilePicture} hideAddBtn={true} divider></Profile>*/}
         <div className={s.uploadButtons}>
-          {/*{membership.value > Membership.Base && ...*/}
           <Link href="/upload">
             <a>
               <Button className={s.uploadArtButton}>
@@ -218,7 +216,6 @@ export default function ProfileCard({
               </Button>
             </a>
           </Link>
-          {/*}*/}
           <div className={s.buyButtons}>
           {membership.value === Membership.Portfolio && (
               <div className={s.hovs}>
