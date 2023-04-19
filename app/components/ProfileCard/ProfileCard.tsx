@@ -199,7 +199,6 @@ export default function ProfileCard({
         </div>
         {/*<Profile userProfile={userProfile} userProfilePicture={userProfilePicture} hideAddBtn={true} divider></Profile>*/}
         <div className={s.uploadButtons}>
-          {/*{membership.value > Membership.Base && ...*/}
           <Link href="/upload">
             <a>
               <Button className={s.uploadArtButton}>
@@ -207,7 +206,37 @@ export default function ProfileCard({
               </Button>
             </a>
           </Link>
-          {/*}*/}
+          <div className={s.buyButtons}>
+          {membership.value === Membership.Portfolio && (
+              <div className={s.hovs}>
+                <Button
+                  className={s.upgradeButton}
+                  onClick={redirectToPremiumUpgrade}
+                >
+                  <Typography className={s.headerButtonUpgrade}>
+                    {t("upgradePremium")}
+                  </Typography>
+                </Button>
+              </div>
+            )}
+          {membership.value > Membership.Base && (
+              <div className={s.hovs}>
+                <Button
+                  className={s.rocketButton}
+                  onClick={redirectToRocketUpgrade}
+                >
+                  <Typography className={s.headerButtonRocket}>
+                    {t("profile:rocket")}
+                  </Typography>
+                  <img
+                    src="/rocket-white.png"
+                    alt="Rocket Icon"
+                    className={s.rocketIcon}
+                  />
+                </Button>
+              </div>
+            )}
+            </div>
         </div>
       </CardContent>
     </Card>
