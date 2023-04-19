@@ -34,8 +34,9 @@ import {
   trackGoogleAnalytics,
 } from "../app/utils/googleAnalytics";
 import router from "next/router";
-import { redirect } from "next/dist/server/api-utils";
-
+import { useKeycloak } from "@react-keycloak/ssr";
+import { useRouter } from "next/router";
+import { getCurrentLanguage } from "../constants/keycloakSettings";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -58,7 +59,17 @@ export default function DiscoverPage({ navBarItems }) {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [openAdDialog, setOpenAdDialog] = useState(true);
-
+  const { keycloak } = useKeycloak();
+  const [justLoggedIn, setJustLoggedIn] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    if (keycloak?.authenticated && !sessionStorage.getItem("loggedIn")) {
+      sessionStorage.setItem("loggedIn", "true");
+      router.push("/" + getCurrentLanguage() + "/feed");
+    } else if (!keycloak?.authenticated) {
+      sessionStorage.removeItem("loggedIn");
+    }
+  }, [keycloak?.authenticated, router]);
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
@@ -69,7 +80,6 @@ export default function DiscoverPage({ navBarItems }) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
-
   useEffect(() => {
     if (sessionStorage.getItem("dialog")) {
       setOpenAdDialog(false);
@@ -80,13 +90,11 @@ export default function DiscoverPage({ navBarItems }) {
       );
     }
   }, []);
-
   useEffect(() => {
     if (openAdDialog === false) {
       sessionStorage.setItem("dialog", "false");
     }
   }, [toggleAdDialog]);
-
   useEffect(() => {
     if (sessionStorage.getItem("payment")) {
       router.reload();

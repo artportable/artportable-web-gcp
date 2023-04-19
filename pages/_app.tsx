@@ -20,7 +20,6 @@ import {
   faDribbble,
   faBehanceSquare,
 } from "@fortawesome/free-brands-svg-icons";
-
 //keycloak
 import type { IncomingMessage } from "http";
 import { SSRKeycloakProvider } from "@react-keycloak/ssr";
@@ -38,32 +37,42 @@ import { CustomSSRCookies } from "../app/utils/customSSRCookies";
 import ArtportableContexts from "../app/contexts/ArtportableContexts";
 import Router from "next/router";
 import { useTranslation } from "next-i18next";
-
+import { getCurrentLanguage } from "../constants/keycloakSettings";
 library.add(faDribbble, faBehanceSquare);
-
 interface InitialProps {
   cookies: unknown;
 }
-
 function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
   const store = useStore(pageProps.initialReduxState);
-
   const [accessToken, setAccessToken] = useState<string>(null);
   const [keycloakState, setKeycloakState] = useState<AuthClientEvent>();
-
   const onAuthRefresh = (tokens: AuthClientTokens) => {
     setAccessToken(tokens.token);
   };
-
   const onKeycloakEvent = (event: AuthClientEvent, error?: AuthClientError) => {
     if (event === "onAuthRefreshError" || event === "onAuthLogout") {
       !!error && console.log(error);
       Router.reload();
+    } else if (
+      event === "onAuthError" &&
+      error &&
+      error.error === "login_required"
+    ) {
+      // Redirect to the index page if the user is not logged in
+      router.push("/");
+    } else if (event === "onAuthSuccess") {
+      // Redirect to the feed page if the user is logged in
+      if (
+        router.asPath === "/" ||
+        router.asPath === "/en" ||
+        router.asPath === "/sv"
+      ) {
+        router.push("/" + getCurrentLanguage() + "/feed");
+      }
     }
     console.log(event);
     setKeycloakState(event);
   };
-
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -74,24 +83,20 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, [router]);
-
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-
     const faCSSNode = loadCSS(
       "https://use.fontawesome.com/releases/v5.12.0/css/all.css",
       document.querySelector("#font-awesome-css")
     );
-
     return () => {
       faCSSNode.parentNode!.removeChild(faCSSNode);
     };
   }, []);
-
   useEffect(() => {
     import("react-facebook-pixel")
       .then((x) => x.default)
@@ -102,9 +107,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         });
       });
   }, [router.events]);
-
   const { t } = useTranslation(["header"]);
-
   return (
     <>
       <Head>
@@ -142,14 +145,12 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
     </>
   );
 }
-
 function parseCookies(req?: IncomingMessage) {
   if (!req || !req.headers) {
     return {};
   }
   return cookie.parse(req.headers.cookie || "");
 }
-
 MyApp.getInitialProps = async (context: AppContext) => {
   var pageProps = App.getInitialProps(context);
   // Extract cookies from AppContext
@@ -158,5 +159,4 @@ MyApp.getInitialProps = async (context: AppContext) => {
     pageProps: { ...pageProps },
   };
 };
-
 export default appWithTranslation(MyApp);
