@@ -42,8 +42,10 @@
   "thanks": "Tack!",
   "inShort": "Inom kort kommer du bli kontaktad av en våra konstkoordinatorer.",
   "close": "Stäng",
+  "rocket": "RAKETEN",
   "becomeMonthly": "Bli månadens konstnär",
   "becomeMonthlyArtist": "BLI MÅNADENS KONSTNÄR",
+  "rocket": "RAKETEN",
   "asMonthlyArtist": "Som månadens konstnär listas dina verk för fler ögon.",
   "sendPurchase": "Skicka förfrågan",
   "send": "Skicka",
@@ -55,6 +57,5 @@
   "artCoordinator": "Få tillgång till en konstrådgivare",
   "priceWork": "Hjälp med att prissätta dina verk",
   "service": "Service inom 24h",
-  "upgradeButton": "UPPGRADERA KONTO",
-  "rocket": "RAKETEN"
+  "upgradeButton": "UPPGRADERA KONTO"
 }

@@ -1,6 +1,6 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-//import Profile from "../Profile/Profile";
+import Profile from "../Profile/Profile";
 import Link from "next/link";
 import { Typography, Box, Button } from "@material-ui/core";
 import { Membership } from "../../models/Membership";
@@ -29,8 +29,8 @@ export default function ProfileCard({
   linkToProfile = true,
 }) {
   const s = styles();
-  const { t } = useTranslation(["common", "feed", "profile"]);
-  const { username, socialId, membership, phone } = useContext(UserContext);
+  const { t } = useTranslation(["common", "feed"]);
+  const { username, socialId, membership } = useContext(UserContext);
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
@@ -60,17 +60,6 @@ export default function ProfileCard({
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
     };
     fr.readAsDataURL(event.target.files[0]);
-  };
-
-  const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
-  const premiumLink = "https://buy.stripe.com/aEUeVngcS7ZPcda4h9";
-
-  const redirectToRocketUpgrade = () => {
-    window.open(rocketLink);
-  };
-
-  const redirectToPremiumUpgrade = () => {
-    window.open(premiumLink);
   };
 
   return (
@@ -162,7 +151,7 @@ export default function ProfileCard({
                   marginTop={1}
                   marginBottom={2}
                 >
-                  <RoomIcon color="secondary" className={s.locationIcon}></RoomIcon>
+                  <RoomIcon color="secondary"></RoomIcon>
                   <Typography>{data?.Location}</Typography>
                 </Box>
               )}
@@ -219,37 +208,6 @@ export default function ProfileCard({
             </a>
           </Link>
           {/*}*/}
-          <div className={s.buyButtons}>
-          {membership.value === Membership.Portfolio && (
-              <div className={s.hovs}>
-                <Button
-                  className={s.upgradeButton}
-                  onClick={redirectToPremiumUpgrade}
-                >
-                  <Typography className={s.headerButtonUpgrade}>
-                    {t("upgradePremium")}
-                  </Typography>
-                </Button>
-              </div>
-            )}
-          {membership.value > Membership.Base && (
-              <div className={s.hovs}>
-                <Button
-                  className={s.rocketButton}
-                  onClick={redirectToRocketUpgrade}
-                >
-                  <Typography className={s.headerButtonRocket}>
-                    {t("profile:rocket")}
-                  </Typography>
-                  <img
-                    src="/rocket-white.png"
-                    alt="Rocket Icon"
-                    className={s.rocketIcon}
-                  />
-                </Button>
-              </div>
-            )}
-            </div>
         </div>
       </CardContent>
     </Card>
