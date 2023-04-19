@@ -29,7 +29,7 @@ export default function ProfileCard({
   linkToProfile = true,
 }) {
   const s = styles();
-  const { t } = useTranslation(["common", "feed"]);
+  const { t } = useTranslation(["common", "feed", "profile"]);
   const { username, socialId, membership, phone } = useContext(UserContext);
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -63,9 +63,14 @@ export default function ProfileCard({
   };
 
   const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
+  const premiumLink = "https://buy.stripe.com/aEUeVngcS7ZPcda4h9";
 
   const redirectToRocketUpgrade = () => {
     window.open(rocketLink);
+  };
+
+  const redirectToPremiumUpgrade = () => {
+    window.open(premiumLink);
   };
 
   return (
@@ -157,7 +162,7 @@ export default function ProfileCard({
                   marginTop={1}
                   marginBottom={2}
                 >
-                  <RoomIcon color="secondary"></RoomIcon>
+                  <RoomIcon color="secondary" className={s.locationIcon}></RoomIcon>
                   <Typography>{data?.Location}</Typography>
                 </Box>
               )}
@@ -214,11 +219,12 @@ export default function ProfileCard({
             </a>
           </Link>
           {/*}*/}
+          <div className={s.buyButtons}>
           {membership.value === Membership.Portfolio && (
               <div className={s.hovs}>
                 <Button
                   className={s.upgradeButton}
-                  onClick={redirectToRocketUpgrade}
+                  onClick={redirectToPremiumUpgrade}
                 >
                   <Typography className={s.headerButtonUpgrade}>
                     {t("upgradePremium")}
@@ -243,6 +249,7 @@ export default function ProfileCard({
                 </Button>
               </div>
             )}
+            </div>
         </div>
       </CardContent>
     </Card>

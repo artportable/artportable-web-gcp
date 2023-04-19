@@ -64,7 +64,7 @@ export const styles = makeStyles((theme: Theme) =>
       textTransform: "uppercase",
       width: "100%",
       maxWidth: '400px',
-      marginTop: "20px",
+      marginTop: "30px",
       padding: "8px",
       "& .MuiButton-label": {
         fontSize: "12px",
@@ -102,9 +102,11 @@ export const styles = makeStyles((theme: Theme) =>
     hovs: {
       display: "flex",
       justifyContent: "center",
+      width: '100%',
+      maxWidth: '160px',
     },
     rocketButton: {
-      marginTop: "8px",
+      marginTop: "12px",
       textTransform: "uppercase",
       width: "100%",
       maxWidth: '400px',
@@ -121,7 +123,7 @@ export const styles = makeStyles((theme: Theme) =>
     headerButtonRocket: {
       fontFamily: "Gotham",
       fontWeight: 500,
-      paddingLeft: "20px",
+      paddingLeft: "10px",
     },
     rocketIcon: {
       paddingLeft: "4px",
@@ -129,7 +131,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     upgradeButton: {
-      marginTop: "8px",
+      marginTop: "12px",
       textTransform: "uppercase",
       width: "100%",
       maxWidth: '400px',
@@ -147,6 +149,11 @@ export const styles = makeStyles((theme: Theme) =>
     headerButtonUpgrade: {
       fontSize: '12px',
       fontWeight: 500,
+    },
+    buyButtons: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%',
     },
 
     [theme.breakpoints.up("sm")]: {
@@ -175,12 +182,16 @@ export const styles = makeStyles((theme: Theme) =>
           fontSize: "14px",
         },
       },
+      hovs: {
+        maxWidth: '126px',
+      }
     },
 
     [theme.breakpoints.up("md")]: {
       uploadArtButton: {
         marginBottom: 0,
-        marginTop: "20px",
+        marginTop: "18px",
+        padding: '8px',
       },
       profileBox: {
         width: "100%",
@@ -207,7 +218,22 @@ export const styles = makeStyles((theme: Theme) =>
       noPictureIcon: {
         fontSize: '120px',
         background: 'none',
-      }
+      },
+      hovs: {
+        maxWidth: '145px',
+      },
+      locationIcon: {
+        display: 'flex',
+      },
+      headerButtonRocket: {
+        fontSize: "12px",
+      },
+      upgradeButton: {
+        padding: '8px',
+      },
+      rocketButton: {
+        padding: '8px',
+      },
     },
   })
 );

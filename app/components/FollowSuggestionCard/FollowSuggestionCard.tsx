@@ -13,7 +13,7 @@ export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) 
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
 
-  const noOfSuggestions = 6;
+  const noOfSuggestions = 5;
 
   return (
     <Card elevation={2}>
