@@ -9,6 +9,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     colLeft: {
       marginBottom: '20px',
+      '& .MuiCardContent-root': {
+        padding: '28px',
+        height: '100%',
+        maxHeight: '360px',
+      }
     },
     colFeed: {
       display: 'flex',
@@ -31,18 +36,15 @@ export const styles = makeStyles((theme: Theme) =>
         marginRight: '20px',
         marginBottom: 0,
         alignItems: 'center',
-        '& .MuiCardContent-root': {
-          padding: '18px 28px',
+        '& .MuiCard-root': {
           height: '100%',
-          maxHeight: '400px',
         }
       },
       colFollow: {
         width: '100%',
         display: 'flex',
         '& .MuiCard-root': {
-          height: '100%',
-          maxHeight: '400px',
+          height: 'fit-content',
           width: '100%',
         },
         '& .MuiCardContent-root': {
@@ -65,7 +67,7 @@ export const styles = makeStyles((theme: Theme) =>
       colFollow: {
         display: 'block',
         '& .MuiCardContent-root': {
-          padding: '2px 20px 5px 20px',
+          padding: '16px 20px 5px 20px',
         }
       },
       sidebarLeft: {
@@ -73,7 +75,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'column',
         marginRight: '20px',
         width: '100%',
-        maxWidth: '340px',
+        maxWidth: '350px',
         alignSelf: 'flex-start',
         position: 'sticky',
         top: 'calc(var(--header-height) + var(--header-box-shadow-padding))',
@@ -85,7 +87,7 @@ export const styles = makeStyles((theme: Theme) =>
       colLeft: {
         marginBottom: '12px',
         '& .MuiCardContent-root': {
-          padding: '16px 20px',
+          padding: '20px',
         },
         '& .MuiBox-root': {
           display: 'flex',
