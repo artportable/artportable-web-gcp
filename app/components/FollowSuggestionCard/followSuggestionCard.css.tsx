@@ -3,10 +3,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     list: {
-      padding: 0,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
+      padding: 0
     },
     nothing: {
       fontStyle: "italic",
@@ -43,7 +40,7 @@ export const styles = makeStyles((theme: Theme) =>
     [theme.breakpoints.up('md')]: {
       flexCard: {
         '& .MuiCardHeader-root': {
-          padding: '16px 30px 10px',
+          padding: '16px 30px',
         },
       },
   },

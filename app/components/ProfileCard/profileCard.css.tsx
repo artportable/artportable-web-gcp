@@ -64,7 +64,7 @@ export const styles = makeStyles((theme: Theme) =>
       textTransform: "uppercase",
       width: "100%",
       maxWidth: '400px',
-      marginTop: "30px",
+      marginTop: "20px",
       padding: "8px",
       "& .MuiButton-label": {
         fontSize: "12px",
@@ -91,69 +91,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     uploadButtons: {
       display: "flex",
-      flexDirection: 'column',
       width: "100%",
       maxWidth: "350px",
       justifyContent: "center",
       "& a": {
         width: "100%",
       },
-    },
-    hovs: {
-      display: "flex",
-      justifyContent: "center",
-      width: '100%',
-      maxWidth: '160px',
-    },
-    rocketButton: {
-      marginTop: "12px",
-      textTransform: "uppercase",
-      width: "100%",
-      maxWidth: '400px',
-      padding: "8px",
-      "& .MuiButton-label": {
-        fontSize: "12px",
-      },
-      backgroundColor: "#E0AC08",
-      color: "#fff",
-      "&:hover": {
-        background: "#f4d880",
-      },
-    },
-    headerButtonRocket: {
-      fontFamily: "Gotham",
-      fontWeight: 500,
-      paddingLeft: "10px",
-    },
-    rocketIcon: {
-      paddingLeft: "4px",
-      maxWidth: "20px",
-      width: "100%",
-    },
-    upgradeButton: {
-      marginTop: "12px",
-      textTransform: "uppercase",
-      width: "100%",
-      maxWidth: '400px',
-      padding: "10px",
-      "& .MuiButton-label": {
-        fontSize: "12px",
-      },
-      backgroundColor: "#000000",
-      color: "#fff",
-      "&:hover": {
-        background: "theme.palette.secondary.main",
-        color: '#000000',
-      },
-    },
-    headerButtonUpgrade: {
-      fontSize: '12px',
-      fontWeight: 500,
-    },
-    buyButtons: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: '100%',
     },
 
     [theme.breakpoints.up("sm")]: {
@@ -182,16 +125,12 @@ export const styles = makeStyles((theme: Theme) =>
           fontSize: "14px",
         },
       },
-      hovs: {
-        maxWidth: '126px',
-      }
     },
 
     [theme.breakpoints.up("md")]: {
       uploadArtButton: {
         marginBottom: 0,
-        marginTop: "18px",
-        padding: '8px',
+        marginTop: "20px",
       },
       profileBox: {
         width: "100%",
@@ -218,22 +157,7 @@ export const styles = makeStyles((theme: Theme) =>
       noPictureIcon: {
         fontSize: '120px',
         background: 'none',
-      },
-      hovs: {
-        maxWidth: '145px',
-      },
-      locationIcon: {
-        display: 'flex',
-      },
-      headerButtonRocket: {
-        fontSize: "12px",
-      },
-      upgradeButton: {
-        padding: '8px',
-      },
-      rocketButton: {
-        padding: '8px',
-      },
+      }
     },
   })
 );

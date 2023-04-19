@@ -9,6 +9,7 @@ import React from 'react';
 import FollowSuggestion from '../FollowSuggestion/FollowSuggestion';
 import InviteFriendsFeed from '../InviteFriends/InviteFriendsFeed';
 
+
 export default function FollowSuggestionCard({ suggestedUsers, onFollowClick }) {
   const s = styles();
   const { t } = useTranslation(['feed', 'common']);
