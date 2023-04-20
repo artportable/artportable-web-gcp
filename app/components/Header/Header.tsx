@@ -226,6 +226,11 @@ export default function Header({ navBarItems }) {
             {isSignedIn.value && (
               <>
                 <div className={s.login}>
+                  {membership.value === Membership.PortfolioPremium && (
+                    <div className={s.premiumEmblem}>
+                      <p className={s.premiumText}>Premium</p>
+                    </div>
+                  )}
                   {membership.value > Membership.Base && (
                     <div className={s.upload}>
                       <Link href="/upload">
