@@ -120,6 +120,19 @@ export const styles = makeStyles((theme: Theme) =>
         fill: theme.palette.secondary.main,
       },
     },
+    premiumEmblem: {
+      backgroundImage: 'linear-gradient(#d1a108, #ffeeb8)',
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    },
+    premiumText: {
+      color: '#FFFFFF',
+      textTransform: 'uppercase',
+      fontWeight: 500,
+      fontSize: '14px',
+      marginRight: '12px',
+    },
+
     [theme.breakpoints.up("sm")]: {
       menuDrawer: {
         display: "initial",
