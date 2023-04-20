@@ -155,11 +155,28 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'space-between',
       width: '100%',
     },
+    rocketButtonPremium: {
+      marginTop: "12px",
+      textTransform: "uppercase",
+      width: "100%",
+      padding: "8px",
+      "& .MuiButton-label": {
+        fontSize: "12px",
+      },
+      backgroundColor: "#E0AC08",
+      color: "#fff",
+      "&:hover": {
+        background: "#f4d880",
+      },
+    },
+    hovsPremium: {
+
+    },
 
     [theme.breakpoints.up("sm")]: {
       followersButton: {
         "& .MuiButton-label": {
-          justifyContent: "flex-start",
+          justifyContent: "flex-end",
         },
       },
       uploadButtons: {
@@ -221,9 +238,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       hovs: {
         maxWidth: '145px',
-      },
-      locationIcon: {
-        display: 'flex',
       },
       headerButtonRocket: {
         fontSize: "12px",
