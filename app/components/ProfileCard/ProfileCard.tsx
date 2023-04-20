@@ -29,7 +29,7 @@ export default function ProfileCard({
   linkToProfile = true,
 }) {
   const s = styles();
-  const { t } = useTranslation(["common", "feed", "profile"]);
+  const { t } = useTranslation(["common", "feed"]);
   const { username, socialId, membership, phone } = useContext(UserContext);
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -220,7 +220,7 @@ export default function ProfileCard({
           </Link>
           {/*}*/}
           <div className={s.buyButtons}>
-          {membership.value === Membership.Portfolio && (
+            {membership.value === Membership.Portfolio && (
               <div className={s.hovs}>
                 <Button
                   className={s.upgradeButton}
@@ -232,14 +232,14 @@ export default function ProfileCard({
                 </Button>
               </div>
             )}
-          {membership.value > Membership.Base && (
+            {membership.value === Membership.Portfolio && (
               <div className={s.hovs}>
                 <Button
                   className={s.rocketButton}
                   onClick={redirectToRocketUpgrade}
                 >
                   <Typography className={s.headerButtonRocket}>
-                    {t("profile:rocket")}
+                    {t("rocket")}
                   </Typography>
                   <img
                     src="/rocket-white.png"
@@ -250,6 +250,23 @@ export default function ProfileCard({
               </div>
             )}
             </div>
+          {membership.value === Membership.PortfolioPremium && (
+              <div className={s.hovsPremium}>
+                <Button
+                  className={s.rocketButtonPremium}
+                  onClick={redirectToRocketUpgrade}
+                >
+                  <Typography className={s.headerButtonRocket}>
+                    {t("rocket")}
+                  </Typography>
+                  <img
+                    src="/rocket-white.png"
+                    alt="Rocket Icon"
+                    className={s.rocketIcon}
+                  />
+                </Button>
+              </div>
+            )}
         </div>
       </CardContent>
     </Card>
