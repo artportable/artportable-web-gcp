@@ -48,7 +48,7 @@ export default function FeedPage({ navBarItems }) {
   const userProfile = useGetUserProfileSummary(username.value);
   const { suggestedUsers } = useFollowRecommendations(username.value);
   const mdPlusScreenOrDown = useBreakpointDown("mdPlus");
-  const xsScreenOrDown = useBreakpointDown('xs');
+  const xsScreenOrDown = useBreakpointDown("xs");
 
   const loadMoreElement = useRef(null);
   const [pages, setPages] = useState([]);
@@ -124,12 +124,15 @@ export default function FeedPage({ navBarItems }) {
       </Head>
 
       <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
-        {!loading &&
+        {!loading && (
           <Box className={s.feedContainer}>
-            {!xsScreenOrDown && 
-            <div className={s.sidebarLeft}>
-              <div className={s.colLeft}>
-                <ProfileCard userProfile={userProfile} userProfilePicture={profilePicture}></ProfileCard>
+            {!xsScreenOrDown && (
+              <div className={s.sidebarLeft}>
+                <div className={s.colLeft}>
+                  <ProfileCard
+                    userProfile={userProfile}
+                    userProfilePicture={profilePicture}
+                  ></ProfileCard>
                   {/*{membership.value > Membership.Base &&
                   <Link href="/upload">
                     <a>
@@ -146,30 +149,28 @@ export default function FeedPage({ navBarItems }) {
                     </a>
                   </Link>
                 }*/}
-                {/* <NewsletterCard></NewsletterCard> */}
+                  {/* <NewsletterCard></NewsletterCard> */}
+                </div>
+                <div className={s.colFollow}>
+                  <FollowSuggestionCard
+                    suggestedUsers={suggestedUsers}
+                    onFollowClick={followUser}
+                  ></FollowSuggestionCard>
+                </div>
               </div>
-              <div className={s.colFollow}>
-                <FollowSuggestionCard suggestedUsers={suggestedUsers} onFollowClick={followUser}></FollowSuggestionCard>
-              </div>
-            </div>
-            }
+            )}
             <div className={s.colFeed}>
-              {(username.value && !isNoPosts) ? (
+              <>
+                {pages}
                 <>
-                  {pages}
-                  {(fetchMorePosts) &&
-                    <>
-                      <div ref={loadMoreElement}>
-                        <FeedCardSkeleton></FeedCardSkeleton>
-                      </div>
-                    </>
-                  }
+                  <div ref={loadMoreElement}>
+                    <FeedCardSkeleton></FeedCardSkeleton>
+                  </div>
                 </>
-              ) : (<p>{t('noPosts')}</p>)}
-
+              </>
             </div>
           </Box>
-        }
+        )}
       </Main>
     </>
   );
