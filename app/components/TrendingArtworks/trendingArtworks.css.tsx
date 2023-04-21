@@ -34,38 +34,38 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: "12px",
     },
     media: {
-      display: "grid !important;",
+      /*display: "grid !important;",
       gap: "2px",
-      position: "relative",
+      position: "relative",*/
     },
     image: {
-      objectFit: "cover",
+      //objectFit: "cover",
       height: "100%",
       width: "100%",
     },
     oneImage: {
-      gridTemplate: '"primary" 450px ' + "/ 1fr",
+      /*gridTemplate: '"primary" 450px ' + "/ 1fr",*/
     },
     twoImages: {
-      gridTemplate: '"primary" 250px ' + '"secondary" 200px ' + "/ 1fr",
+      /*gridTemplate: '"primary" 250px ' + '"secondary" 200px ' + "/ 1fr",*/
     },
     threeImages: {
-      gridTemplate:
+      /*gridTemplate:
         '"primary primary" 300px ' +
         '"secondary tertiary" 150px ' +
-        "/ 1fr 1fr",
+        "/ 1fr 1fr",*/
     },
     primaryImage: {
-      gridArea: "primary",
-      position: "relative",
+      /*gridArea: "primary",
+      position: "relative",*/
     },
     secondaryImage: {
-      gridArea: "secondary",
-      position: "relative",
+      /*gridArea: "secondary",
+      position: "relative",*/
     },
     tertiaryImage: {
-      gridArea: "tertiary",
-      position: "relative",
+      /*gridArea: "tertiary",
+      position: "relative",*/
     },
     likeInline: {
       display: "inline-block",
