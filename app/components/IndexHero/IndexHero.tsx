@@ -75,6 +75,12 @@ export default function IndexHero() {
       image: "/images/Heini_Svartengren.jpg",
       imageLink: "art/0fbb5079-5094-4912-a9d6-549222ca8e58",
     },
+    {
+      name: "Marica Sandström Lindh",
+      username: "marica.sandstrom.lindh",
+      image: "/images/marica_se_mig.jpg",
+      imageLink: "art/cdaba6d4-3d31-47f6-86ef-2ac47cd3c9c3",
+    },
   ];
 
   useEffect(() => {
