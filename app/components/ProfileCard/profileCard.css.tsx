@@ -189,7 +189,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       counterBox: {
         width: "100%",
-        flexDirection: "row !important",
+        flexDirection: "row",
         justifyContent: "space-evenly",
         "& .MuiTypography-body2": {
           marginRight: "20px",
@@ -217,13 +217,17 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: "350px",
       },
       counterBox: {
-        flexDirecrion: "row",
-        marginRight: 0,
+        flexDirection: "column !important",
         width: "100%",
-        maxWidth: '155px',
         justifyContent: "space-between",
         "& .MuiTypography-body2": {
           marginRight: "5px",
+        },
+      },
+      followersButton: {
+        width: '100%',
+        '& .MuiButton-label': {
+          justifyContent: 'flex-start',
         },
       },
       profileData: {
