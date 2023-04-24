@@ -52,34 +52,28 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Erik Mofjell",
-      username: "erik.mofjell",
-      image: "/images/erik_mofjall_vattensamling.jpg",
-      imageLink: "art/eb261e3e-2711-4d74-b82d-7f94a0338278",
+      name: "Stephan Nicolaus Hörhammer",
+      username: "stephannicolaushoerhammer",
+      image: "/images/stephan_horhammer.jpg",
+      imageLink: "art/76cdca5d-53be-4ec2-999e-bdb1fc11c2a0",
     },
     {
-      name: "Hesho Serray",
-      username: "hesho.serray",
-      image: "/images/hesho_serray_poetry.jpeg",
-      imageLink: "art/b81b3cc4-3269-4b9e-94d4-d68dfe31bb2b",
+      name: "Henrik Sjöström",
+      username: "henrik.sjostrom",
+      image: "/images/henrik_sjostrom_johnny.jpg",
+      imageLink: "art/7992564d-4c84-4895-ba3a-99d552bcdf60",
     },
     {
-      name: "Göran Billingskog",
-      username: "gorito",
-      image: "/images/HG_Galleri_invite.jpg",
-      /*imageLink: "art/121a35be-db76-4e03-aaf3-ecf1aeefb631",*/
+      name: "Kerstin Viktoria Krusell",
+      username: "kerstin.viktoria.krusell",
+      image: "/images/kerstin_krusell.jpeg",
+      imageLink: "art/8a474f73-ecb7-4827-ae37-a4c40111c9e1",
     },
     {
-      name: "Heini Svartengren",
-      username: "heini.svartengren",
-      image: "/images/Heini_Svartengren.jpg",
-      imageLink: "art/0fbb5079-5094-4912-a9d6-549222ca8e58",
-    },
-    {
-      name: "Marica Sandström Lindh",
-      username: "marica.sandstrom.lindh",
-      image: "/images/marica_se_mig.jpg",
-      imageLink: "art/cdaba6d4-3d31-47f6-86ef-2ac47cd3c9c3",
+      name: "Viveca Berg",
+      username: "viveca.berg",
+      image: "/images/viveca_berg.jpeg",
+      imageLink: "art/c6e0c985-6969-4b3d-9454-77a4d26f0452",
     },
   ];
 
