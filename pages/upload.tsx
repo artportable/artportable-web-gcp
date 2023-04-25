@@ -33,6 +33,7 @@ import { getNavBarItems } from "../app/utils/getNavBarItems";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
+import Link from "next/link";
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
@@ -310,6 +311,8 @@ export default function UploadArtworkPage({ navBarItems }) {
             <Paper className={s.paperLeft} elevation={1}>
               <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
                 {t("limitArtwork")}
+                <a href="https://buy.stripe.com/aEUeVngcS7ZPcda4h9" target="_blank">{t("clickHere")}</a>
+                {t("uploadUnlimited")}
               </Typography>
               <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
                 {t("yourWelcome")}
