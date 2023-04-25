@@ -211,6 +211,9 @@ const styles = makeStyles((theme: Theme) =>
     },
     textBlock: {
       margin: "30px 0 30px 0",
+      '& a': {
+        fontWeight: 500,
+      }
     },
     textBlockWidth: {
       [theme.breakpoints.up("mdPlus")]: {
@@ -242,6 +245,9 @@ const styles = makeStyles((theme: Theme) =>
     logo: {
       width: "200px",
       marginBottom: "20px",
+    },
+    clickMe: {
+      fontWeight: 600,
     },
   })
 );
