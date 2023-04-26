@@ -79,6 +79,17 @@ export const styles = makeStyles((theme: Theme) =>
       margin: theme.spacing(0, 0, 0, 0.4),
       fontWeight: 500,
       alignItems: "center",
+      '& .MuiButton-root': {
+        color: "#a35d5d",
+        padding: "0px 16px",
+        backgroundColor: "inherit",
+        border: "1px solid #a35d5d",
+        borderRadius: "20px",
+        marginTop: "4px",
+        '& .MuiButton-label': {
+          width: 'auto',
+        }
+      }
     },
     priceTag: {
       marginRight: "20px",
