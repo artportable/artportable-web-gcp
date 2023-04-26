@@ -22,7 +22,7 @@ import {
 import { UserContext } from "../../contexts/user-context";
 
 export default function PurchaseRequestDialog({ open, onClose, props }) {
-  const { t } = useTranslation(["art", "common"]);
+  const { t } = useTranslation(["art"]);
   const s = styles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
@@ -90,14 +90,14 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
         <DialogContent>
           <Typography variant="h3" className={s.thanksTypo}>
             {messageResponse == "200"
-              ? t("thanksForInterestTitle")
-              : t("somethingWentWrongTitle")}
+              ? t("art:thanksForInterestTitle")
+              : t("art:somethingWentWrongTitle")}
           </Typography>
 
           {messageResponse == "200" ? (
-            <Typography>{t("thanksForInterestText")}</Typography>
+            <Typography>{t("art:thanksForInterestText")}</Typography>
           ) : (
-            t("somethinWentWrongText")
+            t("art:somethinWentWrongText")
           )}
           <div className={s.buttonContainer}>
             <Button
@@ -126,7 +126,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                );
              }}
            >
-             {t("createAccountToChat")}
+             {t("art:createAccountToChat")}
            </Button>
 
          )
@@ -138,16 +138,16 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
         <DialogContent>
           <form className={s.form}>
             <Typography variant="h5" component="h2" className={s.sendMailTypo}>
-              {t("sendEmailToArtist")}
+              {t("art:sendEmailToArtist")}
             </Typography>
-            <Typography>{t("fillInYourEmail")}</Typography>
+            <Typography>{t("art:fillInYourEmail")}</Typography>
             <TextField
               classes={{
                 root: s.textField,
               }}
               fullWidth
               id="email"
-              placeholder={t("yourEmail")}
+              placeholder={t("art:yourEmail")}
               value={email.value ? email.value : null}
               onChange={(e) => setUserEmail(e.target.value)}
               variant="outlined"
@@ -179,7 +179,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                   );
                 }}
               >
-                {t("SendPurchaseRequest")}
+                {t("art:SendPurchaseRequest")}
               </Button>
             </FormGroup>
           </form>
