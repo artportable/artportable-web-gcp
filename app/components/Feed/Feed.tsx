@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import FeedCard from "../FeedCard/FeedCard";
 import { useGetFeedItems } from "../../hooks/dataFetching/useGetFeedItems";
 import { isNullOrUndefined } from "../../utils/util";
 import InviteFriendsFeed from "../InviteFriends/InviteFriendsFeed";
 import { styles } from "./feed.css";
 import TrendingArtworksCard from "../TrendingArtworks/TrendingArtworksCard";
+import { UserContext } from "../../../app/contexts/user-context";
 
 interface FeedProps {
   user: string;
@@ -30,6 +31,7 @@ export default function Feed({
   const page = index + 1;
   const { data, error } = useGetFeedItems(user, page);
   const s = styles();
+  const { username, socialId, isSignedIn } = useContext(UserContext);
 
   useEffect(() => {
     if (error) {
@@ -55,24 +57,28 @@ export default function Feed({
         <>
           <TrendingArtworksCard />
           {user &&
-            data?.map((item) => (
-              <FeedCard
-                key={item.Item.Id}
-                content={item}
-                onLikeClick={onLikeClick}
-              />
-            ))}
+            data
+              ?.filter((item) => item.User !== username.value)
+              .map((item) => (
+                <FeedCard
+                  key={item.Item.Id}
+                  content={item}
+                  onLikeClick={onLikeClick}
+                />
+              ))}
         </>
       ) : (
         <>
           {user &&
-            data?.map((item) => (
-              <FeedCard
-                key={item.Item.Id}
-                content={item}
-                onLikeClick={onLikeClick}
-              />
-            ))}
+            data
+              ?.filter((item) => item.User !== username.value)
+              .map((item) => (
+                <FeedCard
+                  key={item.Item.Id}
+                  content={item}
+                  onLikeClick={onLikeClick}
+                />
+              ))}
           <TrendingArtworksCard />
         </>
       )}
