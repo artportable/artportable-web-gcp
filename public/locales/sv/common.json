@@ -55,5 +55,15 @@
   "trendingArtFeed": "Trendande",
   "uploadNewWorkOfArt": "Ladda upp ett nytt konstverk",
   "upgradePremium": "Bli Premium",
-  "rocket": "Raketen"
+  "rocket": "Raketen",
+  "SendPurchaseRequest": "Skicka köpförfrågan",
+  "thanksForYourInterestTitle": "Tack för visat intresse!",
+  "thanksForYourInterestText": "Konstnären kontaktar dig inom kort. Kom ihåg att du kan skapa ett gratiskonto och chatta direkt med konstnärerna för en snabbare dialog.",
+  "somethingWentWrongTitle": "Något gick fel.",
+  "somethinWentWrongText": "Vänligen försök igen. Om problemet kvarstår får du gärna kontakta oss så hjälper vi dig.",
+  "sendEmailToArtist": "Skicka ett mail till konstnären",
+  "yourEmail": "Din epost",
+  "logIntoSendChatMessages": "Logga in för att skicka köpförfrågan via chatten",
+  "createAccountToChat": "Bli medlem",
+  "fillInYourEmail": "Fyll i din email"
 }
