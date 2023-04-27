@@ -1,6 +1,4 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
-import { ImportantDevices } from "@material-ui/icons";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,7 +19,9 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     cardActions: {
-      paddingLeft: "16px",
+      padding: "16px",
+      paddingTop: "10px",
+      justifyContent: "space-between",
     },
     /*
     published: {
@@ -89,6 +89,46 @@ export const styles = makeStyles((theme: Theme) =>
       /*'& .MuiButton-root': {
         minWidth: '30px !important',
       }*/
+    },
+    pricePurchase: {
+      display: "flex",
+      flexDirection: "row",
+      margin: theme.spacing(0, 0, 0, 0.4),
+      fontWeight: 500,
+      alignItems: "center",
+    },
+    priceTag: {
+      marginRight: "20px",
+      marginTop: "4px",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-end",
+    },
+    soldMark: {
+      background: "#C67777",
+      borderRadius: "50%",
+      width: "15px",
+      height: "15px",
+      marginRight: "5px",
+    },
+    priceContainer: {
+      margin: theme.spacing(0, 0, 0, 0.4),
+      fontWeight: 500,
+      paddingBottom: theme.spacing(1),
+      display: "flex",
+      alignItems: "center",
+    },
+    purchaseRequestButton: {
+      color: "#a35d5d",
+      padding: "0px 16px",
+      backgroundColor: "inherit",
+      border: "1px solid #a35d5d",
+      borderRadius: "20px",
+      marginTop: "4px",
+      '& .MuiButton-label': {
+        width: 'auto',
+      }
     },
   })
 );

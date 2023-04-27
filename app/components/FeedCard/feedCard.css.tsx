@@ -1,16 +1,18 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     cardHeader: {
-      padding: theme.spacing(1)
+      padding: theme.spacing(1),
     },
     cardActions: {
-      padding: theme.spacing(1)
+      padding: "16px",
+      paddingTop: "10px",
+      justifyContent: "space-between",
     },
     published: {
       fontStyle: "italic",
-      marginLeft: "5px"
+      marginLeft: "5px",
     },
     media: {
       /*display: "grid !important;",
@@ -19,8 +21,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     image: {
       //objectFit: 'cover',
-      height: '100%',
-      width: '100%'
+      height: "100%",
+      width: "100%",
     },
     oneImage: {
       /*gridTemplate: ('\"primary\" 450px ' +
@@ -53,23 +55,74 @@ export const styles = makeStyles((theme: Theme) =>
       float: "right",
       height: "30px",
       marginLeft: 0,
-      padding: '8px 4px',
+      padding: "8px 4px",
       fontWeight: 500,
     },
     likeButton: {
-      width: '100%',
-      maxWidth: '30px',
-      minWidth: '30px !important',
-      paddingLeft: '10px',
-      '& .MuiButton-startIcon': {
+      width: "100%",
+      maxWidth: "30px",
+      minWidth: "30px !important",
+      paddingLeft: "10px",
+      "& .MuiButton-startIcon": {
         marginRight: 0,
       },
-      '& .MuiButton-iconSizeMedium': {
-        fontSize: '22px',
+      "& .MuiButton-iconSizeMedium": {
+        fontSize: "22px",
       },
       /*'& .MuiButton-root': {
         minWidth: '30px !important',
       }*/
+    },
+    pricePurchase: {
+      display: "flex",
+      flexDirection: "row",
+      margin: theme.spacing(0, 0, 0, 0.4),
+      fontWeight: 500,
+      alignItems: "center",
+      '& .MuiButton-root': {
+        color: "#a35d5d",
+        padding: "0px 16px",
+        backgroundColor: "inherit",
+        border: "1px solid #a35d5d",
+        borderRadius: "20px",
+        marginTop: "4px",
+        '& .MuiButton-label': {
+          width: 'auto',
+        }
+      }
+    },
+    priceTag: {
+      marginRight: "20px",
+      marginTop: "4px",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-end",
+    },
+    soldMark: {
+      background: "#C67777",
+      borderRadius: "50%",
+      width: "15px",
+      height: "15px",
+      marginRight: "5px",
+    },
+    priceContainer: {
+      margin: theme.spacing(0, 0, 0, 0.4),
+      fontWeight: 500,
+      paddingBottom: theme.spacing(1),
+      display: "flex",
+      alignItems: "center",
+    },
+    purchaseRequestButton: {
+      color: "#a35d5d",
+      padding: "0px 16px",
+      backgroundColor: "inherit",
+      border: "1px solid #a35d5d",
+      borderRadius: "20px",
+      marginTop: "4px",
+      '& .MuiButton-label': {
+        width: 'auto',
+      }
     },
   })
 );

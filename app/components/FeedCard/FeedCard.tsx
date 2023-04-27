@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import SendIcon from "@material-ui/icons/Send";
-import Image from "next/image";
+import Image from "../../models/Image";
 import Link from "next/link";
 import { capitalizeFirst } from "../../utils/util";
 import {
@@ -25,7 +25,15 @@ import {
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-
+import axios from "axios";
+import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
+import {
+  useGetSimilarPortfolios,
+  useGetUserProfileTags,
+  useGetUserProfile,
+  useGetUserProfileSummary,
+  useGetUserProfilePicture,
+} from "../../hooks/dataFetching/UserProfile";
 interface FeedCardProps {
   content: FeedItem;
   onLikeClick: any;
@@ -34,12 +42,73 @@ interface FeedCardProps {
 export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(["feed", "common"]);
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL; // profile pic
+  const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [isLiked, setLike] = useState(content.LikedByMe);
   const router = useRouter();
   const isDefaultLocale = router.locale === router.defaultLocale;
   const timePassed = getTimePassed(content.Published, t);
   const [totalLikes, setTotalLikes] = useState(content.Likes);
+  const [artworkData, setArtworkData] = useState(null);
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const userProfileSummary = useGetUserProfileSummary(content?.User);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSoldOut, setIsSoldOut] = useState(false);
+
+  useEffect(() => {
+    if (userProfileSummary) {
+      setIsLoading(false);
+    }
+
+    console.log(content?.User);
+    
+  }, [userProfileSummary]);
+
+  async function isSold() {
+    const theData = await axios.get(
+      `${apiUrl}/api/artworks/${content?.Item?.Id}`
+    );
+    console.log(theData.data.SoldOut);
+
+    setIsSoldOut(theData.data.SoldOut);
+  }
+
+  useEffect(() => {
+    isSold();
+  }, [content]);
+
+  const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
+    useState(false);
+  const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
+    title: "",
+    creator: "",
+    url: "",
+    referTo: "",
+    imageurl: "",
+  });
+
+  function togglePurchaseRequestDialog() {
+    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
+  }
+
+  function onPurchaseRequestClick(
+    title: string,
+    creator: string,
+    artworkId: string,
+    referTo: string,
+    imageurl: string
+  ) {
+    const url = `${publicUrl}/art/${content?.Item?.Id}`;
+    referTo = userProfileSummary.data.SocialId;
+    setPurchaseRequestDialogData({
+      title: title,
+      creator: creator,
+      url: url,
+      referTo: referTo,
+      imageurl: imageurl,
+    });
+    togglePurchaseRequestDialog();
+  }
 
   const mediaClasses = clsx(
     {
@@ -49,6 +118,18 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
     },
     [s.media]
   );
+
+  const getArtworkPrice = async () => {
+    const data = await axios.get(`${apiUrl}/api/Artworks/${content?.Item?.Id}`);
+    console.log(
+      "here is the data from getArtworkPrice function: " + data.data?.Price
+    );
+    setArtworkData(data.data);
+  };
+
+  useEffect(() => {
+    getArtworkPrice();
+  }, []);
 
   return (
     <Card>
@@ -115,7 +196,8 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
       </CardMedia>
       <CardActions className={s.cardActions}>
         <div>
-          <Button className={s.likeButton}
+          <Button
+            className={s.likeButton}
             startIcon={
               isLiked ? (
                 <FavoriteIcon color="primary" />
@@ -131,42 +213,55 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
           >
             {/*{capitalizeFirst(t("common:like"))}*/}
           </Button>
-          <div className={s.likeInline}>
-            {totalLikes > 0 ? totalLikes : ""}
-          </div>
+          <div className={s.likeInline}>{totalLikes > 0 ? totalLikes : ""}</div>
         </div>
-        <Link
-          href={{
-            pathname: "/messages",
-            query: {
-              artwork: Buffer.from(
-                JSON.stringify({
-                  title: content.Item.Title,
-                  creator: content.User,
-                  url: `${window.origin}${
-                    isDefaultLocale ? "" : `/${router.locale}`
-                  }/art/${content.Item.Id}`,
-                })
-              ).toString("base64"),
-              referTo: content.User,
-            },
-          }}
-          as={`/messages`}
-        >
-          <a>
-            <Button
-              startIcon={<SendIcon color={"inherit"} />}
-              onClick={() =>
-                trackGoogleAnalytics(
-                  ActionType.PURCHASE_REQUEST_FEED,
-                  CategoryType.BUY
-                )
-              }
-            >
-              {capitalizeFirst(t("common:purchaseRequest"))}
-            </Button>
-          </a>
-        </Link>
+        <div className={s.pricePurchase}>
+          <div className={s.priceTag}>
+            {artworkData?.SoldOut ? (
+              <>
+                <div className={s.soldMark}></div>
+                <div>{t("common:words.sold")} </div>
+              </>
+            ) : artworkData?.Price && artworkData?.Price != "0" ? (
+              <span>
+                {artworkData?.Price}{" "}
+                {artworkData?.Currency !== null ? artworkData?.Currency : "SEK"}{" "}
+              </span>
+            ) : (
+              <span>{t("priceOnRequest")}</span>
+            )}
+          </div>
+
+          {!isSoldOut && (
+            <>
+              <Button
+                className={s.purchaseRequestButton}
+                onClick={() => {
+                  onPurchaseRequestClick(
+                    content.Item.Title,
+                    `${content.Name} ${content.Surname}`,
+                    `${publicUrl}/art/${content?.Item?.Id}`,
+                    userProfileSummary.data.SocialId,
+                    `${bucketUrl}${content?.Item.Id}`
+                  );
+                }}
+              >
+                {capitalizeFirst(t("common:purchaseRequest"))}
+              </Button>
+              <PurchaseRequestDialog
+                open={purchaseRequestDialogOpen}
+                onClose={togglePurchaseRequestDialog}
+                props={{
+                  title: purchaseRequestDialogData.title,
+                  creator: purchaseRequestDialogData.creator,
+                  url: purchaseRequestDialogData.url,
+                  referTo: purchaseRequestDialogData.referTo,
+                  imageUrl: purchaseRequestDialogData.imageurl,
+                }}
+              />
+            </>
+          )}
+        </div>
       </CardActions>
     </Card>
   );
