@@ -310,6 +310,26 @@ export default function IndexHero() {
                             />
                           </a>
                         </div>
+                        <Typography
+                          variant="h5"
+                          component="h2"
+                          className={s.headingAd}
+                        >
+                          {t("headlineAd")}
+                        </Typography>
+                        <div className={s.adContent2}>
+                          <div> 
+                            <Typography>
+                              <a
+                                className={s.linkColor}
+                                href=" https://passagen.se/betting-utan-svensk-licens/"
+                                target="_blank"
+                              >
+                                Casinon utan Svensk Licens med Trustly
+                              </a>{" "}
+                            </Typography>
+                          </div>
+                        </div>
                       </div>
                     </AccordionDetails>
                   </Accordion>
