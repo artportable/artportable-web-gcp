@@ -58,15 +58,12 @@ function FeedCard({ content, onLikeClick }: FeedCardProps) {
     if (userProfileSummary) {
       setIsLoading(false);
     }
-
-    console.log(content?.User);
   }, [userProfileSummary]);
 
   async function isSold() {
     const theData = await axios.get(
       `${apiUrl}/api/artworks/${content?.Item?.Id}`
     );
-    console.log(theData.data.SoldOut);
 
     setIsSoldOut(theData.data.SoldOut);
   }
@@ -119,9 +116,6 @@ function FeedCard({ content, onLikeClick }: FeedCardProps) {
 
   const getArtworkPrice = async () => {
     const data = await axios.get(`${apiUrl}/api/Artworks/${content?.Item?.Id}`);
-    console.log(
-      "here is the data from getArtworkPrice function: " + data.data?.Price
-    );
     setArtworkData(data.data);
   };
 
