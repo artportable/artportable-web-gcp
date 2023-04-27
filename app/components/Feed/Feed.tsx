@@ -1,22 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import FeedCard from "../FeedCard/FeedCard";
 import { useGetFeedItems } from "../../hooks/dataFetching/useGetFeedItems";
-import { isNullOrUndefined } from "../../utils/util";
 import InviteFriendsFeed from "../InviteFriends/InviteFriendsFeed";
 import { styles } from "./feed.css";
 import TrendingArtworksCard from "../TrendingArtworks/TrendingArtworksCard";
-import { UserContext } from "../../../app/contexts/user-context";
+import { UserContext } from "../../contexts/user-context";
 
-interface FeedProps {
+type FeedProps = {
   user: string;
   index: number;
-  onLikeClick: any;
-  fetchMorePosts: any;
-  setFetchMorePosts: any;
-  entriesCount: any;
-  setEntriesCount: any;
+  onLikeClick: (id: string) => void;
+  fetchMorePosts: boolean;
+  setFetchMorePosts: (fetchMore: boolean) => void;
+  entriesCount: number;
+  setEntriesCount: (count: number) => void;
   trendingArtworks: any;
-}
+};
 
 export default function Feed({
   user,
@@ -31,7 +30,7 @@ export default function Feed({
   const page = index + 1;
   const { data, error } = useGetFeedItems(user, page);
   const s = styles();
-  const { username, socialId, isSignedIn } = useContext(UserContext);
+  const { username } = useContext(UserContext);
 
   useEffect(() => {
     if (error) {
@@ -45,8 +44,16 @@ export default function Feed({
     }
   }, [data, error]);
 
-  const random = Math.random();
-  const isTrendingArtworksFirst = random >= 0.5;
+  const isTrendingArtworksFirst = useMemo(() => Math.random() >= 0.5, []);
+  const isLoading = !data && !error;
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading feed. Please try again later.</div>;
+  }
 
   return (
     <>

@@ -39,8 +39,6 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
     if (email.value) {
       setUserEmail(email.value);
     }
-    console.log("is signed in: " + isSignedIn.value);
-    
   }, []);
 
   const onPurchaseRequestClick = async () => {
@@ -109,29 +107,26 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
             >
               {t("common:words.close")}
             </Button>
-         {!isSignedIn.value && (
-             <Button
-             variant="contained"
-             color="primary"
-             disableElevation
-             rounded
-             onClick={() => {
-               keycloak.register({
-                 locale: router.locale,
-                 redirectUri: signUpRedirectHref,
-               });
-               trackGoogleAnalytics(
-                 ActionType.SIGN_UP_PURCHASE_REQUEST_AFTER,
-                 CategoryType.BUY
-               );
-             }}
-           >
-             {t("createAccountToChat")}
-           </Button>
-
-         )
-
-         }
+            {!isSignedIn.value && (
+              <Button
+                variant="contained"
+                color="primary"
+                disableElevation
+                rounded
+                onClick={() => {
+                  keycloak.register({
+                    locale: router.locale,
+                    redirectUri: signUpRedirectHref,
+                  });
+                  trackGoogleAnalytics(
+                    ActionType.SIGN_UP_PURCHASE_REQUEST_AFTER,
+                    CategoryType.BUY
+                  );
+                }}
+              >
+                {t("createAccountToChat")}
+              </Button>
+            )}
           </div>
         </DialogContent>
       ) : (
