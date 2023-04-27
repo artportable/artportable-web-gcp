@@ -54,13 +54,10 @@ export default function TrendingArtworks({ artwork }) {
     if (userProfileSummary) {
       setIsLoading(false);
     }
-    
   }, [userProfileSummary]);
 
   async function isSold() {
-    const theData = await axios.get(
-      `${apiUrl}/api/artworks/${artwork?.Id}`
-    );
+    const theData = await axios.get(`${apiUrl}/api/artworks/${artwork?.Id}`);
 
     setIsSoldOut(theData.data.SoldOut);
   }
@@ -88,7 +85,7 @@ export default function TrendingArtworks({ artwork }) {
     creator: string,
     artworkId: string,
     referTo: string,
-    imageurl: string,
+    imageurl: string
   ) {
     const url = `${publicUrl}/art/${artwork?.Id}`;
     referTo = userProfileSummary.data?.SocialId;
@@ -114,21 +111,15 @@ export default function TrendingArtworks({ artwork }) {
     },
     [s.media]
   );
-  
+
   const getArtworkPrice = async () => {
     const data = await axios.get(`${apiUrl}/api/Artworks/${artwork?.Id}`);
-    console.log(
-      "here is the data from getArtworkPrice function: " + data.data?.Price
-    );
     setArtworkData(data.data);
   };
 
   useEffect(() => {
     getArtworkPrice();
-
-    
   }, []);
-
 
   return (
     <Card className={s.cardLayout}>

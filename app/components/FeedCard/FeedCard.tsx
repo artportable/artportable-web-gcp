@@ -38,8 +38,7 @@ interface FeedCardProps {
   content: FeedItem;
   onLikeClick: any;
 }
-
-export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
+function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const s = styles();
   const { t } = useTranslation(["feed", "common"]);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL; // profile pic
@@ -59,16 +58,12 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
     if (userProfileSummary) {
       setIsLoading(false);
     }
-
-    console.log(content?.User);
-    
   }, [userProfileSummary]);
 
   async function isSold() {
     const theData = await axios.get(
       `${apiUrl}/api/artworks/${content?.Item?.Id}`
     );
-    console.log(theData.data.SoldOut);
 
     setIsSoldOut(theData.data.SoldOut);
   }
@@ -121,9 +116,6 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
 
   const getArtworkPrice = async () => {
     const data = await axios.get(`${apiUrl}/api/Artworks/${content?.Item?.Id}`);
-    console.log(
-      "here is the data from getArtworkPrice function: " + data.data?.Price
-    );
     setArtworkData(data.data);
   };
 
@@ -266,6 +258,8 @@ export default function FeedCard({ content, onLikeClick }: FeedCardProps) {
     </Card>
   );
 }
+
+export default React.memo(FeedCard);
 
 interface ElapsedTime {
   Time: number;
