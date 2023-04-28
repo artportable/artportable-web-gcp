@@ -322,7 +322,7 @@ export default function IndexHero() {
                             <Typography>
                               <a
                                 className={s.linkColor}
-                                href=" https://passagen.se/betting-utan-svensk-licens/"
+                                href=" https://passagen.se/casino-utan-svensk-licens/"
                                 target="_blank"
                               >
                                 Casinon utan Svensk Licens med Trustly
