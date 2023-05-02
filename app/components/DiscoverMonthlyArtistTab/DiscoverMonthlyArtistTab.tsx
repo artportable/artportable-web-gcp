@@ -51,7 +51,7 @@ const DiscoverMonthlyArtistsTab = memo(
               url.searchParams.append("myUsername", username);
             }
             url.searchParams.append("page", (pageIndex + 1).toString());
-            url.searchParams.append("pageSize", "11");
+            url.searchParams.append("pageSize", "13");
             return url.href;
           }
           return previousPageData.next;
