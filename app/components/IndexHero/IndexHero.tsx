@@ -52,28 +52,28 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Stephan Nicolaus Hörhammer",
-      username: "stephannicolaushoerhammer",
-      image: "/images/stephan_horhammer.jpg",
-      imageLink: "art/76cdca5d-53be-4ec2-999e-bdb1fc11c2a0",
+      name: "Ulrika Sommestad",
+      username: "ulrika.sommestad",
+      image: "/images/ulrika_sommestad.jpeg",
+      imageLink: "art/93c7985d-dc64-430f-88bb-611424064dac",
     },
     {
-      name: "Henrik Sjöström",
-      username: "henrik.sjostrom",
-      image: "/images/henrik_sjostrom_johnny.jpg",
-      imageLink: "art/7992564d-4c84-4895-ba3a-99d552bcdf60",
+      name: "Barbro Strömblad",
+      username: "barbro.stromblad",
+      image: "/images/barbro_stromblad.jpeg",
+      imageLink: "art/e23181b2-c62a-4469-8a41-a9a2324bce5e",
     },
     {
-      name: "Kerstin Viktoria Krusell",
-      username: "kerstin.viktoria.krusell",
-      image: "/images/kerstin_krusell.jpeg",
-      imageLink: "art/8a474f73-ecb7-4827-ae37-a4c40111c9e1",
+      name: "Helen Sjöstrand",
+      username: "sjostrandhelen",
+      image: "/images/helene_sjostrand_fisk.jpeg",
+      imageLink: "art/4312e8a2-5fd5-473b-bb03-ecf1d93a3ff9",
     },
     {
-      name: "Viveca Berg",
-      username: "viveca.berg",
-      image: "/images/viveca_berg.jpeg",
-      imageLink: "art/c6e0c985-6969-4b3d-9454-77a4d26f0452",
+      name: "Camilla Blom",
+      username: "camillablom",
+      image: "/images/camilla_blom.jpg",
+      imageLink: "art/2007ca03-1fe5-432e-8365-7b80a7bfc1be",
     },
   ];
 
