@@ -45,7 +45,6 @@ export default function Feed({
   }, [data, error]);
 
   const isTrendingArtworksFirst = useMemo(() => Math.random() >= 0.5, []);
-  const isLoading = !data && !error;
 
   return (
     <>
