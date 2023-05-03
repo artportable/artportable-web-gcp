@@ -47,14 +47,6 @@ export default function Feed({
   const isTrendingArtworksFirst = useMemo(() => Math.random() >= 0.5, []);
   const isLoading = !data && !error;
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading feed. Please try again later.</div>;
-  }
-
   return (
     <>
       <div className={s.divInviteButton}>
