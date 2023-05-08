@@ -52,28 +52,22 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Ulrika Sommestad",
-      username: "ulrika.sommestad",
-      image: "/images/ulrika_sommestad.jpeg",
-      imageLink: "art/93c7985d-dc64-430f-88bb-611424064dac",
+      name: "Hesho Serray",
+      username: "hesho.serray",
+      image: "/images/hesho_serray.jpeg",
+      imageLink: "art/624bec32-c399-47e1-ba8f-98dde7747081",
     },
     {
-      name: "Barbro Strömblad",
-      username: "barbro.stromblad",
-      image: "/images/barbro_stromblad.jpeg",
-      imageLink: "art/e23181b2-c62a-4469-8a41-a9a2324bce5e",
+      name: "Susanna Kiander",
+      username: "sanna.kiander",
+      image: "/images/susanna_kiander.jpg",
+      imageLink: "art/dff5de89-c7bb-410a-9f4b-d8681acb3771",
     },
     {
-      name: "Helen Sjöstrand",
-      username: "sjostrandhelen",
-      image: "/images/helene_sjostrand_fisk.jpeg",
-      imageLink: "art/4312e8a2-5fd5-473b-bb03-ecf1d93a3ff9",
-    },
-    {
-      name: "Camilla Blom",
-      username: "camillablom",
-      image: "/images/camilla_blom.jpg",
-      imageLink: "art/2007ca03-1fe5-432e-8365-7b80a7bfc1be",
+      name: "Marica Sandström Lindh",
+      username: "marica.sandstrom.lindh",
+      image: "/images/marica_sandstrom_lindh.jpg",
+      imageLink: "art/cdaba6d4-3d31-47f6-86ef-2ac47cd3c9c3",
     },
   ];
 
