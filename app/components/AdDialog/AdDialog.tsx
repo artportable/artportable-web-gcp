@@ -39,9 +39,9 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/annica_hallman_takeover.jpg",
-      companyLinkSv: "https://artportable.com/profile/@Annica.b",
-      companyImageEn: "/ad/annica_hallman_takeover.jpg",
+      companyImageSv: "/ad/annica_hallman_takeover_new.jpg",
+      companyLinkSv: "https://artportable.com/profile@Annica.b",
+      companyImageEn: "/ad/annica_hallman_takeover_new.jpg",
       companyLinkEn: "https://artportable.com/en/profile/@Annica.b",
     },
   ];
