@@ -40,7 +40,7 @@ export default function AdDialog(props: Props) {
     {
       companyName: "Artportable",
       companyImageSv: "/ad/annica_hallman_takeover.jpg",
-      companyLinkSv: "https://artportable.com/profile@Annica.b",
+      companyLinkSv: "https://artportable.com/profile/@Annica.b",
       companyImageEn: "/ad/annica_hallman_takeover.jpg",
       companyLinkEn: "https://artportable.com/en/profile/@Annica.b",
     },
