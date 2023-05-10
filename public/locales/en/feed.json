@@ -21,5 +21,7 @@
   "months": "mon",
   "year": "y",
   "uploadNewWorkOfArt": "Upload new work of art",
-  "priceOnRequest": "Price on request"
+  "priceOnRequest": "Price on request",
+  "writePost": "Write a post",
+  "publishPost": "Publish"
 }

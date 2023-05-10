@@ -38,6 +38,9 @@ export const styles = makeStyles((theme: Theme) =>
           fontSize: '12px',
         },
       },
+      list: {
+        height: '312px',
+      }
     },
 
     [theme.breakpoints.up('md')]: {
@@ -46,6 +49,9 @@ export const styles = makeStyles((theme: Theme) =>
           padding: '16px 30px 10px',
         },
       },
+      list: {
+        height: 'auto',
+      }
   },
 }),
 );
