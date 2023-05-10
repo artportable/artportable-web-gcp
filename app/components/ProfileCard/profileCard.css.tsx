@@ -2,6 +2,9 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    cardContent: {
+      padding: '16px 28px',
+    },
     secondaryColor: {
       backgroundColor: theme.palette.secondary.main,
     },
@@ -65,7 +68,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       maxWidth: '400px',
       marginTop: "30px",
-      padding: "8px",
+      padding: "6px",
       "& .MuiButton-label": {
         fontSize: "12px",
       },
@@ -106,11 +109,12 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: '160px',
     },
     rocketButton: {
-      marginTop: "12px",
+      marginTop: "8px",
+      marginLeft: '4px',
       textTransform: "uppercase",
       width: "100%",
       maxWidth: '400px',
-      padding: "8px",
+      padding: "6px",
       "& .MuiButton-label": {
         fontSize: "12px",
       },
@@ -131,11 +135,12 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     upgradeButton: {
-      marginTop: "12px",
+      marginTop: "8px",
+      marginRight: '4px',
       textTransform: "uppercase",
       width: "100%",
       maxWidth: '400px',
-      padding: "10px",
+      padding: "6px",
       "& .MuiButton-label": {
         fontSize: "12px",
       },
@@ -156,10 +161,10 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
     },
     rocketButtonPremium: {
-      marginTop: "12px",
+      marginTop: "8px",
       textTransform: "uppercase",
       width: "100%",
-      padding: "8px",
+      padding: "6px",
       "& .MuiButton-label": {
         fontSize: "12px",
       },
@@ -185,7 +190,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       uploadArtButton: {
         marginTop: "28px",
-        padding: "10px",
       },
       counterBox: {
         width: "100%",
@@ -200,15 +204,17 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
       hovs: {
-        maxWidth: '126px',
+        maxWidth: '140px',
       }
     },
 
     [theme.breakpoints.up("md")]: {
+      cardContent: {
+        padding: '16px 32px',
+      },
       uploadArtButton: {
         marginBottom: 0,
-        marginTop: "18px",
-        padding: '8px',
+        marginTop: "14px",
       },
       profileBox: {
         width: "100%",
@@ -220,6 +226,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: "column !important",
         width: "100%",
         justifyContent: "space-between",
+        marginTop: '4px',
         "& .MuiTypography-body2": {
           marginRight: "5px",
         },
@@ -233,25 +240,35 @@ export const styles = makeStyles((theme: Theme) =>
       profileData: {
         marginLeft: "10px",
       },
+      locationIcon: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+      },
       locationData: {
         justifyContent: 'start',
+        marginBottom: 0,
+        marginTop: '4px',
       },
       noPictureIcon: {
         fontSize: '120px',
         background: 'none',
       },
       hovs: {
-        maxWidth: '145px',
+        maxWidth: '150px',
       },
       headerButtonRocket: {
         fontSize: "12px",
       },
-      upgradeButton: {
-        padding: '8px',
-      },
       rocketButton: {
         padding: '8px',
       },
+      upgradeButton: {
+        padding: '8px',
+      },
+      avatar: {
+        width: 110,
+        height: 110,
+      }
     },
   })
 );
