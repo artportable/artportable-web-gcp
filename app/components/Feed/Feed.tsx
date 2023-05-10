@@ -5,7 +5,6 @@ import InviteFriendsFeed from "../InviteFriends/InviteFriendsFeed";
 import { styles } from "./feed.css";
 import TrendingArtworksCard from "../TrendingArtworks/TrendingArtworksCard";
 import { UserContext } from "../../contexts/user-context";
-import PostCard from "../PostCard/PostCard";
 
 type FeedProps = {
   user: string;
@@ -46,21 +45,9 @@ export default function Feed({
   }, [data, error]);
 
   const isTrendingArtworksFirst = useMemo(() => Math.random() >= 0.5, []);
-  const isLoading = !data && !error;
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading feed. Please try again later.</div>;
-  }
 
   return (
     <>
-    <div>
-      <PostCard userProfile={undefined}></PostCard>
-    </div>
       <div className={s.divInviteButton}>
         <InviteFriendsFeed />
       </div>

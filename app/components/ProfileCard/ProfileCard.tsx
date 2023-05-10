@@ -18,7 +18,6 @@ import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
 import UserListDialog from "../UserListDialog/UserListDialog";
 import { useGetFollowers } from "../../hooks/dataFetching/useGetFollowers";
 import { useGetFollowing } from "../../hooks/dataFetching/useGetFollowing";
-import WritePostsDialog from "../WritePostsDialog/WritePostsDialog";
 
 export default function ProfileCard({
   userProfile,
@@ -76,7 +75,7 @@ export default function ProfileCard({
 
   return (
     <Card elevation={2}>
-      <CardContent className={s.cardContent}>
+      <CardContent>
         <div className={s.cardData}>
           <Box textAlign="center">
             <input
@@ -163,10 +162,13 @@ export default function ProfileCard({
                   marginTop={1}
                   marginBottom={2}
                 >
-                  {/*<RoomIcon color="secondary" className={s.locationIcon}></RoomIcon>*/}
+                  <RoomIcon color="secondary" className={s.locationIcon}></RoomIcon>
                   <Typography>{data?.Location}</Typography>
                 </Box>
               )}
+              {/*{divider &&
+           <Divider></Divider>
+         }*/}
               <Box className={s.counterBox}>
                 <Button
                   className={s.followersButton}
@@ -216,10 +218,7 @@ export default function ProfileCard({
               </Button>
             </a>
           </Link>
-            <WritePostsDialog
-              userProfile={userProfile}
-              userProfilePicture={userProfilePicture}
-              />
+          {/*}*/}
           <div className={s.buyButtons}>
             {membership.value === Membership.Portfolio && (
               <div className={s.hovs}>
