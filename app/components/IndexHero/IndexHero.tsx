@@ -61,7 +61,7 @@ export default function IndexHero() {
       name: "Susanna Kiander",
       username: "sanna.kiander",
       image: "/images/susanna_kiander_stripee.jpg",
-      imageLink: "art/5d0d1a76-b6d9-4be2-b26c-2312087b7f88su",
+      imageLink: "art/5d0d1a76-b6d9-4be2-b26c-2312087b7f88",
     },
     {
       name: "Christina Ganslandt",
