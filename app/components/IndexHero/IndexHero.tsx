@@ -52,22 +52,34 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Hesho Serray",
-      username: "hesho.serray",
-      image: "/images/hesho_serray.jpeg",
-      imageLink: "art/624bec32-c399-47e1-ba8f-98dde7747081",
+      name: "Annica Hallman",
+      username: "Annica.b",
+      image: "/images/annica_hallman_gloria.jpg",
+      imageLink: "art/403e95ed-221d-4990-9019-aa8be6094289",
     },
     {
       name: "Susanna Kiander",
       username: "sanna.kiander",
-      image: "/images/susanna_kiander.jpg",
-      imageLink: "art/dff5de89-c7bb-410a-9f4b-d8681acb3771",
+      image: "/images/susanna_kiander_stripee.jpg",
+      imageLink: "art/5d0d1a76-b6d9-4be2-b26c-2312087b7f88su",
     },
     {
-      name: "Marica Sandström Lindh",
-      username: "marica.sandstrom.lindh",
-      image: "/images/marica_sandstrom_lindh.jpg",
-      imageLink: "art/cdaba6d4-3d31-47f6-86ef-2ac47cd3c9c3",
+      name: "Christina Ganslandt",
+      username: "christina.ganslandt",
+      image: "/images/christina_granslandt_folder.jpg",
+      /*imageLink: "art/cdaba6d4-3d31-47f6-86ef-2ac47cd3c9c3",*/
+    },
+    {
+      name: "Solveig Riis",
+      username: "solveig.riis",
+      image: "/images/solveig_17_maj.jpg",
+      imageLink: "art/521fd314-916b-4566-a68e-730163e6aabb",
+    },
+    {
+      name: "Atle Reilo",
+      username: "atle.reilo",
+      image: "/images/atle17maj.jpg",
+      imageLink: "art/2990b312-9649-4233-8305-bc53b0594241",
     },
   ];
 
