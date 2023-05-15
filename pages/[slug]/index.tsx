@@ -82,7 +82,7 @@ export async function getStaticProps({ params, locale }) {
         category = await res.json();
         return {
           redirect: {
-            destination: `/${category.slug}`,
+            destination: `/${locale}/${category.slug}`,
             permanent: true,
           },
         };
