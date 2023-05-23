@@ -52,34 +52,28 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Annica Hallman",
-      username: "Annica.b",
-      image: "/images/annica_hallman_gloria.jpg",
-      imageLink: "art/403e95ed-221d-4990-9019-aa8be6094289",
+      name: "Hesho Serray",
+      username: "hesho.serray",
+      image: "/images/hesho_pure_shores.jpeg",
+      imageLink: "art/8b3abce4-4c48-4341-851b-1637bad7aa08",
     },
     {
-      name: "Susanna Kiander",
-      username: "sanna.kiander",
-      image: "/images/susanna_kiander_stripee.jpg",
-      imageLink: "art/5d0d1a76-b6d9-4be2-b26c-2312087b7f88",
+      name: "Åsa Lundberg",
+      username: "råsas%20konst",
+      image: "/images/asa_lundberg.jpg",
+      imageLink: "art/74659744-d919-4cdf-8be5-099c8ac3dce4",
     },
     {
-      name: "Christina Ganslandt",
-      username: "christina.ganslandt",
-      image: "/images/christina_granslandt_folder.jpg",
-      /*imageLink: "art/cdaba6d4-3d31-47f6-86ef-2ac47cd3c9c3",*/
+      name: "Karolin Bast",
+      username: "karolin.bast",
+      image: "/images/karolin_bast_inner_peace.jpeg",
+      imageLink: "art/28d4851b-1ca3-4771-b6d7-8d2bb47eea74",
     },
     {
-      name: "Solveig Riis",
-      username: "solveig.riis",
-      image: "/images/solveig_17_maj.jpg",
-      imageLink: "art/521fd314-916b-4566-a68e-730163e6aabb",
-    },
-    {
-      name: "Atle Reilo",
-      username: "atle.reilo",
-      image: "/images/atle17maj.jpg",
-      imageLink: "art/2990b312-9649-4233-8305-bc53b0594241",
+      name: "Frifararen AnnCatrin Pettersson",
+      username: "frifararen",
+      image: "/images/frifararen_healing.jpg",
+      imageLink: "art/9c966a9e-1975-4853-8d64-f9205b028a72",
     },
   ];
 
