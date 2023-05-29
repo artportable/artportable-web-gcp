@@ -52,28 +52,28 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Hesho Serray",
-      username: "hesho.serray",
-      image: "/images/hesho_pure_shores.jpeg",
-      imageLink: "art/8b3abce4-4c48-4341-851b-1637bad7aa08",
+      name: "Thorulf Löfstedt",
+      username: "thorulf.lofstedt",
+      image: "/images/666d2d9c-e23e-48cf-9433-1c15fa50fc22.jpg",
+      imageLink: "art/9c6bfc54-f72d-4c21-be73-2bf05b9fb028",
     },
     {
-      name: "Åsa Lundberg",
-      username: "råsas%20konst",
-      image: "/images/asa_lundberg.jpg",
-      imageLink: "art/74659744-d919-4cdf-8be5-099c8ac3dce4",
+      name: "Marion Porte",
+      username: "marion-porte",
+      image: "/images/Marion-Porte.jpg",
+      imageLink: "art/ba3b1d5e-e449-425b-82d3-1c1b3971bf77",
     },
     {
       name: "Karolin Bast",
       username: "karolin.bast",
-      image: "/images/karolin_bast_inner_peace.jpeg",
-      imageLink: "art/28d4851b-1ca3-4771-b6d7-8d2bb47eea74",
+      image: "/images/roadtrip.jpg",
+      imageLink: "art/d336c5f7-9605-4ce1-8be6-620398eac5dc",
     },
     {
-      name: "Frifararen AnnCatrin Pettersson",
-      username: "frifararen",
-      image: "/images/frifararen_healing.jpg",
-      imageLink: "art/9c966a9e-1975-4853-8d64-f9205b028a72",
+      name: "Ulrika Sommestad",
+      username: "ulrika.sommestad",
+      image: "/images/ulrika.sommestad_skymtas.jpg",
+      imageLink: "art/b8fbdf16-f814-4b40-8eab-080dfeab2e8b",
     },
   ];
 
