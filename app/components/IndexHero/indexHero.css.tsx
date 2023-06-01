@@ -297,12 +297,15 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Gotham !important",
       margin: "20px",
       [theme.breakpoints.down("sm")]: {
+        fontWeight: 500,
+        lineHeight: "18px",
         fontSize: "12px",
-        margin: "10px",
+        margin: "5px",
       },
       [theme.breakpoints.down("smPlus")]: {
         fontSize: "14px",
-        margin: "10px",
+        lineHeight: "18px",
+        margin: "5px",
       },
     },
     accDescription: {
