@@ -20,6 +20,7 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import VideoDialog from "../VideoDialog/VideoDialog";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import trustpilot from "../../../public/trustpilot.svg";
 
 interface RandomImageProps {
   artwork: string;
@@ -40,6 +41,33 @@ export default function IndexHero() {
   >();
   const [loading, setLoading] = useState(true);
   const [toggleButton, setToggleButton] = useState(false);
+  const [toggleButtonReviews, setToggleButtonReviews] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const reviews = [
+    {
+      title: t("reviewOneTitle"),
+      fullReview: t("reviewOneContent"),
+    },
+    {
+      title: t("reviewTwoTitle"),
+      fullReview: t("reviewTwoContent"),
+    },
+    {
+      title: t("reviewThreeTitle"),
+      fullReview: t("reviewThreeContent"),
+    },
+
+    {
+      title: t("reviewFourTitle"),
+      fullReview: t("reviewFourContent"),
+    },
+    {
+      title: t("reviewFiveTitle"),
+      fullReview: t("reviewFiveContent"),
+    },
+    // add more reviews here
+  ];
 
   useEffect(() => {
     setLoading(randomImage === null);
@@ -318,7 +346,7 @@ export default function IndexHero() {
                           {t("headlineAd")}
                         </Typography>
                         <div className={s.adContent2}>
-                          <div> 
+                          <div>
                             <Typography>
                               <a
                                 className={s.linkColor}
@@ -334,6 +362,77 @@ export default function IndexHero() {
                     </AccordionDetails>
                   </Accordion>
                 </div>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+          {/* start here */}
+          <div className={s.accordionDiv}>
+            <Accordion className={s.accordion} elevation={0}>
+              <AccordionSummary
+                className={s.accordionSummary}
+                onClick={() => setExpanded(!expanded)}
+              >
+                <div className={s.buttonDiv}>
+                  {expanded ? (
+                    <Button
+                      className={s.button}
+                      size="small"
+                      onClick={() => setExpanded(!expanded)}
+                      variant="outlined"
+                      rounded
+                      endIcon={<KeyboardArrowUpIcon />}
+                    >
+                      {t("readLess")}
+                    </Button>
+                  ) : (
+                    <Button
+                      className={s.button}
+                      size="small"
+                      onClick={() => setExpanded(!expanded)}
+                      endIcon={<KeyboardArrowDownIcon />}
+                    >
+                      <img
+                        src="/trustpilot.svg"
+                        alt="Trustpilot Stars"
+                        style={{
+                          width: "100px",
+                          height: "auto",
+                          marginRight: "10px",
+                        }}
+                      />
+                      {t("review")}
+                    </Button>
+                  )}
+                </div>
+              </AccordionSummary>
+              <AccordionDetails className={s.allReviews}>
+                {reviews.map((review, index) => (
+                  <div key={index} className={s.reviewDiv}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <img
+                        src="/trustpilot.svg"
+                        alt="Trustpilot Stars"
+                        style={{
+                          width: "100px",
+                          height: "auto",
+                          marginRight: "10px",
+                        }}
+                      />
+                      <Typography
+                        variant="h6"
+                        component="h2"
+                        className={s.headingReview}
+                      >
+                        {review.title}
+                      </Typography>
+                    </div>
+                    {expanded && (
+                      <Typography className={s.accDescription}>
+                        {review.fullReview}
+                      </Typography>
+                    )}
+                  </div>
+                ))}
               </AccordionDetails>
             </Accordion>
           </div>

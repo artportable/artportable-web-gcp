@@ -219,6 +219,26 @@ export const styles = makeStyles((theme: Theme) =>
         marginBottom: theme.spacing(2),
       },
     },
+    buttonDivReview: {
+      display: "flex",
+      justifyContent: "flex-start",
+      marginTop: theme.spacing(2), // adjust as per your design needs
+    },
+    reviewDiv: {
+      display: "flex",
+      flexDirection: "column", // This sets the children to stack vertically
+      alignItems: "start",
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(5),
+
+      [theme.breakpoints.up("smPlus")]: {
+        marginBottom: theme.spacing(2),
+      },
+    },
+    allReviews: {
+      display: "flex",
+      flexDirection: "column", // This sets the children to stack vertically
+    },
     playText: {
       fontWeight: 500,
       marginLeft: "5px",
@@ -261,6 +281,28 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "-50px",
       [theme.breakpoints.up("smPlus")]: {
         marginTop: "-5px",
+      },
+    },
+    buttonReview: {
+      backgroundColor: "green",
+      marginTop: "-50px",
+      [theme.breakpoints.up("smPlus")]: {
+        marginTop: "-5px",
+      },
+    },
+    headingReview: {
+      fontWeight: 500,
+      fontSize: "18px",
+      lineHeight: "32px",
+      fontFamily: "Gotham !important",
+      margin: "20px",
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "12px",
+        margin: "10px",
+      },
+      [theme.breakpoints.down("smPlus")]: {
+        fontSize: "14px",
+        margin: "10px",
       },
     },
     accDescription: {
