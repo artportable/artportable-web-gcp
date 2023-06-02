@@ -39,10 +39,10 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/ANNCATRINTAKEOVER.jpg",
-      companyLinkSv: "https://artportable.com/profile/@frifararen",
-      companyImageEn: "/ad/ANNCATRINTAKEOVER.jpg",
-      companyLinkEn: "https://artportable.com/en/profile/@frifararen",
+      companyImageSv: "/ad/mieszko.jpg",
+      companyLinkSv: "https://artportable.com/profile/@mieszko.tyszkiewicz",
+      companyImageEn: "/ad/mieszko.jpg",
+      companyLinkEn: "https://artportable.com/en/profile/@mieszko.tyszkiewicz",
     },
   ];
   useEffect(() => {
