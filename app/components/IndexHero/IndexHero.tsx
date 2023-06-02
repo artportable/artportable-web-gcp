@@ -366,6 +366,7 @@ export default function IndexHero() {
             </Accordion>
           </div>
           {/* start here */}
+
           <div className={s.accordionDiv}>
             <Accordion className={s.accordion} elevation={0}>
               <AccordionSummary
@@ -392,6 +393,15 @@ export default function IndexHero() {
                       endIcon={<KeyboardArrowDownIcon />}
                     >
                       <img
+                        src="/trustpilotvector.svg"
+                        alt="Trustpilot logo"
+                        style={{
+                          width: "60px",
+                          height: "auto",
+                          marginRight: "2px",
+                        }}
+                      />
+                      <img
                         src="/trustpilot.svg"
                         alt="Trustpilot Stars"
                         style={{
@@ -400,7 +410,7 @@ export default function IndexHero() {
                           marginRight: "10px",
                         }}
                       />
-                      {t("review")}
+                      <p className={s.firstReview}> {t("review")}</p>
                     </Button>
                   )}
                 </div>
