@@ -39,7 +39,7 @@ export default function Exhibition() {
 
   return (
     <div>
-      <Tabs></Tabs>
+      <Tabs>Hello</Tabs>
     </div>
   );
 }

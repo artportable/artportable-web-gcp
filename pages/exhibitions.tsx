@@ -3,14 +3,16 @@ import Head from "next/head";
 import Main from "../app/components/Main/Main";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { styles } from "../styles/job.css";
+import { useTranslation } from "next-i18next";
 
 export default function Exhibition({ navBarItems }) {
   const s = styles();
+  const { t } = useTranslation(["exhibitions"]);
   return (
     <>
       <Main navBarItems={navBarItems}>
         <Head>
-          <title>Exhibitions at artportable</title>
+          <title>{t("title")}</title>
         </Head>
         <div className={s.banner}>
           <Exhibition navBarItems={undefined}></Exhibition>
@@ -29,6 +31,7 @@ export async function getStaticProps({ locale }) {
         "header",
         "footer",
         "support",
+        "exhibitions",
       ])),
     },
     revalidate: 60,
