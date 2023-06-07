@@ -103,6 +103,12 @@ export default function IndexHero() {
       image: "/images/ulrika.sommestad_skymtas.jpg",
       imageLink: "art/b8fbdf16-f814-4b40-8eab-080dfeab2e8b",
     },
+    {
+      name: "Angelica Diehn",
+      username: "angelica.diehn",
+      image: "/images/angelica_frame.jpg",
+      imageLink: "art/e27e1e95-03c0-4e0a-9851-97dd0b786129",
+    },
   ];
 
   useEffect(() => {
