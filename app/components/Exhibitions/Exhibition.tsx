@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "./exhibition.css";
 import { useTranslation } from "next-i18next";
-import { Typography } from "@material-ui/core";
+import { Tabs, Typography } from "@material-ui/core";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 
@@ -10,5 +10,36 @@ export default function Exhibition() {
   const { t } = useTranslation(["exhibition"]);
   const router = useRouter();
 
-  return <div></div>;
+  const subjectOptions = [
+    {
+      value: "/artiklar",
+      label: t("articles"),
+    },
+    {
+      value: "/redaktionellt",
+      label: t("editorial"),
+    },
+    {
+      value: "/konstnaersportraett",
+      label: t("artistPortrait"),
+    },
+    {
+      value: "/kampanj",
+      label: t("offers"),
+    },
+    {
+      value: "/kurser",
+      label: t("courses"),
+    },
+    {
+      value: "/flerartiklar",
+      label: t("moreArticlesMenu"),
+    },
+  ];
+
+  return (
+    <div>
+      <Tabs></Tabs>
+    </div>
+  );
 }
