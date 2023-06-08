@@ -297,7 +297,6 @@ export default function Exhibition({ navBarItems }) {
               <Tab label={month} key={index} />
             ))}
           </Tabs>
-
           {Object.keys(showrooms).map((month, index) => (
             <TabPanel value={String(index)} key={index}>
               {showrooms[month].map((showroom, i) => (
