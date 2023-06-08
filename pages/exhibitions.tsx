@@ -5,12 +5,19 @@ import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useTranslation } from "next-i18next";
 import ExhibitionCard from "../app/components/Exhibitions/Exhibition";
 import { styles } from "../styles/exhibitions.css";
-import { Typography } from "@material-ui/core";
 import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
 import { useRouter } from "next/router";
-import { Tabs, Tab } from "@material-ui/core";
+import { Tabs, Tab, CardHeader } from "@material-ui/core";
 import { TabPanel, TabContext } from "@material-ui/lab";
 import { useRef, useState } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Grid,
+  Box,
+  Divider,
+} from "@material-ui/core";
 
 export default function Exhibition({ navBarItems }) {
   const s = styles();
@@ -19,6 +26,109 @@ export default function Exhibition({ navBarItems }) {
   const isMobile = useBreakpointDown("md");
 
   const { locale } = useRouter();
+
+  const cafes = {
+    STOCKHOLM_FISK: [
+      {
+        period: "9 JANUARI - 9 APRIL",
+        artists: [
+          "Tobbe Ekman",
+          "Helena Petersson",
+          "Daniel Lundvall",
+          "Lisbeth Olofsdotter",
+        ],
+      },
+      {
+        period: "11 APRIL - 11 JULI",
+        artists: [
+          "Marcus Boman",
+          "Maria Biederbeck",
+          "Orjan Sattre",
+          "Sofie Ohlsson",
+          "Hesho Serray",
+          "Nathalie Tsikritea",
+        ],
+      },
+      {
+        period: "11 JULI - 11 OKTOBER",
+        artists: [
+          "Torill Roselin",
+          "Ulrika Hegardh",
+          "Jason Andersson",
+          "Harriet Strém",
+          "Karin Gréonlund",
+        ],
+      },
+      {
+        period: "11 OKTOBER - 11 JANUARI",
+        artists: [
+          "Marie Sandell",
+          "Johan Thunberg",
+          "Asa Schick",
+          "Felix Oppenheim",
+          "Yvonne Marténg",
+        ],
+      },
+    ],
+    PS_MATSAL: [
+      {
+        period: "4 APRIL - 4 OKTOBER",
+        artists: ["Daniel Lundvall", "Veslemgy Vangsnes"],
+      },
+      {
+        period: "4 OKTOBER - 4 APRIL",
+        artists: ["Gunilla Svard", "Rene Jakobsen"],
+      },
+    ],
+    ART_BAKERY: [
+      {
+        period: "7 MARS - 7 JUNI",
+        artists: ["Stina G Olsson", "Ralph Castellan"],
+      },
+      {
+        period: "8 JUNI - 8 SEPTEMBER",
+        artists: ["Angelica Diehn", "Carl Bennerstedt"],
+      },
+      {
+        period: "9 SEPTEMBER - 9 DECEMBER",
+        artists: ["Susann Karlsson Art", "Hakan Lindskog"],
+      },
+      {
+        period: "10 DECEMBER - 10 MARS",
+        artists: ["Sara Bergman", "Ola Lanteli"],
+      },
+    ],
+    NK_CAFE: [
+      {
+        period: "5 APRIL - 7 JUNI",
+        artists: ["Ulrika Melin"],
+      },
+      {
+        period: "7 JUNI - 22 AUGUSTI",
+        artists: ["Galina Tol-Fakkar"],
+      },
+      {
+        period: "22 AUGUSTI - 23 OKTOBER",
+        artists: ["Radenka Nikola"],
+      },
+      {
+        period: "23 OKTOBER - 22 DECEMBER",
+        artists: ["Marie Andersson"],
+      },
+    ],
+    ANGBATSBRYGGAN: [
+      {
+        period: "All year",
+        artists: ["Borje Ahlstrom"],
+      },
+    ],
+    LA_PIAZZA: [
+      {
+        period: "All year",
+        artists: ["Ulrika Melin"],
+      },
+    ],
+  };
 
   const showrooms = {
     JANUARI: ["Vecka 5 - Zlatko Gradholt"],
@@ -93,6 +203,7 @@ export default function Exhibition({ navBarItems }) {
   const currentMonthIndex = monthNames.indexOf(currentMonth);
 
   const [value, setValue] = useState(currentMonthIndex);
+  const [selectedCafe, setSelectedCafe] = useState(Object.keys(cafes)[0]);
 
   const handleChange = (event, newValue) => {
     setValue(parseInt(newValue, 10));
@@ -129,7 +240,51 @@ export default function Exhibition({ navBarItems }) {
             </div>
           </div>
         </div>
+        {/* Cafe Tabs */}
+        <TabContext value={selectedCafe}>
+          <Tabs
+            value={selectedCafe}
+            onChange={(event, newCafe) => setSelectedCafe(newCafe)}
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            {Object.keys(cafes).map((cafe) => (
+              <Tab
+                label={cafe
+                  .split("_")
+                  .map((word) => word.charAt(0) + word.slice(1).toLowerCase())
+                  .join(" ")}
+                value={cafe}
+                key={cafe}
+              />
+            ))}
+          </Tabs>
+
+          <Grid container spacing={4}>
+            {selectedCafe &&
+              cafes[selectedCafe] &&
+              cafes[selectedCafe].map((exhibition, i) => (
+                <Grid item xs={12} sm={4} key={i}>
+                  <Card
+                    className={s.card}
+                    style={{ backgroundColor: "#faf3ee" }}
+                  >
+                    <CardContent style={{ padding: "20px" }}>
+                      <Typography variant="h6">{exhibition.period}</Typography>
+                      {exhibition.artists.map((artist, j) => (
+                        <Typography variant="body1" key={j}>
+                          {artist}
+                        </Typography>
+                      ))}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
+        </TabContext>
+
         <div className={s.divider} />
+
         <TabContext value={String(value)}>
           <Tabs
             ref={tabsRef}

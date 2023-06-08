@@ -52,6 +52,26 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
 
+    card: {
+      width: "100%",
+      height: "100%",
+      marginTop: "20px",
+      listStyle: "none",
+      listStyleType: "none",
+      marginBottom: "20px",
+      textAlign: "center",
+      display: "inline-block",
+      borderStyle: "solid",
+      background: "#F5F5F5",
+      borderWidth: "5px",
+      [theme.breakpoints.up("smPlus")]: {
+        borderWidth: "5px",
+      },
+
+      filter: "drop-shadow(3px 8px 8px rgba(0, 0, 0, 0.4))",
+      position: "relative",
+    },
+
     headline: {
       fontWeight: 600,
       fontSize: "1.5rem",
@@ -74,7 +94,7 @@ export const styles = makeStyles((theme: Theme) => {
       fontSize: "10pt",
       fontWeight: 600,
       lineHeight: "1.38",
-      color: "var(--secondary-color)",
+      color: "var(--text-color)",
       [theme.breakpoints.up("sm")]: {
         fontSize: "0.8rem",
       },
@@ -100,7 +120,7 @@ export const styles = makeStyles((theme: Theme) => {
     welcomeText: {
       marginBottom: theme.spacing(3),
       fontStyle: "italic",
-      color: "var(--text-color-accent)",
+      color: "var(--text-color)",
       textAlign: "left",
     },
     image: {
@@ -144,7 +164,7 @@ export const styles = makeStyles((theme: Theme) => {
     divider: {
       width: "100%",
       borderTop: "2px solid var(--primary-color)",
-      margin: `${theme.spacing(2)}px 0`,
+      margin: `${theme.spacing(4)}px 0`,
     },
   });
 });
