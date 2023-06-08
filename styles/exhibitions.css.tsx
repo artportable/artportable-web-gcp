@@ -1,63 +1,150 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { columnGap } from "../app/utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) => {
   return createStyles({
-    banner: {
+    flexContainer: {
+      position: "relative",
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "column-reverse",
+      marginLeft: "auto",
+      marginRight: "auto",
+      ...columnGap(theme.spacing(2)),
       alignItems: "center",
-      justifyContent: "center",
-      padding: theme.spacing(2),
-      marginBottom: theme.spacing(0),
-      [theme.breakpoints.up("md")]: {
+      flexWrap: "nowrap",
+      padding: "0, 5px",
+
+      [theme.breakpoints.up("mdPlus")]: {
+        padding: "0",
         flexDirection: "row",
-        alignItems: "flex-start",
-        justifyContent: "space-between",
+        ...columnGap(0),
       },
     },
-    headerDiv: {
-      flex: "1 0 0", // Fill available space, but don't shrink or grow
+    left: {
+      textAlign: "left",
+      flexBasis: "100%",
+      flexGrow: 2,
+      width: "90&",
+      display: "flex",
+      justifyContent: "center",
+      alignContent: "center",
+      flexDirection: "column",
+      ...columnGap(theme.spacing(1)),
+      marginRight: "35px",
+      marginLeft: "16px",
+      margin: theme.spacing(0, 0, 0, 0),
+
+      [theme.breakpoints.up("smPlus")]: {
+        margin: theme.spacing(0, 0, 2, 0),
+        marginRight: "35px",
+        width: "567px",
+      },
+      [theme.breakpoints.up("md")]: {
+        textAlign: "initial",
+        margin: theme.spacing(0, 0, 2, 4),
+        marginRight: "35px",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        textAlign: "initial",
+        margin: theme.spacing(0, 0, 2, 4),
+        marginRight: "35px",
+        placeItems: "flex-start",
+      },
+    },
+
+    headline: {
+      fontWeight: 600,
+      fontSize: "1.5rem",
+      textAlign: "initial",
+      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(6),
+      color: "var(--secondary-color)",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "2rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        textAlign: "left",
+      },
+    },
+
+    description: {
+      margin: theme.spacing(1, 0),
+      marginBottom: theme.spacing(2),
+      marginRight: theme.spacing(4),
+      fontSize: "10pt",
+      fontWeight: 600,
+      lineHeight: "1.38",
+      color: "var(--secondary-color)",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "0.8rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        marginBottom: theme.spacing(3),
+        textAlign: "initial",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        textAlign: "left",
+      },
+    },
+    right: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      marginBottom: theme.spacing(4),
+      flexBasis: "100%",
+      alignItems: "flex-end",
+      height: "70%",
       [theme.breakpoints.up("md")]: {
-        alignItems: "flex-start",
-        marginBottom: 0,
+        marginTop: "25px",
+        height: "70%",
       },
-    },
-    headerTypo: {
-      fontWeight: 600,
-      marginBottom: theme.spacing(2),
-      color: "var(--secondary-color)",
-    },
-    subHeaderTypo: {
-      marginBottom: theme.spacing(3),
-      color: "var(--text-color)",
     },
     welcomeText: {
       marginBottom: theme.spacing(3),
       fontStyle: "italic",
-      color: "var(--text-color)",
+      color: "var(--text-color-accent)",
+      textAlign: "left",
     },
     image: {
-      flex: "1 0 0", // Fill available space, but don't shrink or grow
-      objectFit: "cover",
-      borderRadius: "1%",
-      display: "block",
-      alignSelf: "center",
-      [theme.breakpoints.up("sm")]: {
-        maxWidth: "100%",
-      },
+      borderWidth: "2px",
+      borderStyle: "solid",
+      borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF",
+      boxShadow:
+        "0 -1px 1px rgba(0,0,0,.1), 0 1px 1px 1px rgba(255,255,255,.7)",
+      maxWidth: "100%",
+    },
+
+    frame: {
+      listStyle: "none",
+      listStyleType: "none",
+      margin: "0px",
+      textAlign: "center",
+      display: "inline-block",
+      borderWidth: "0px",
+      borderStyle: "solid",
+      borderColor: "var(--header-color)",
+      background: "#F5F5F5",
       [theme.breakpoints.up("smPlus")]: {
-        maxWidth: "50%",
+        borderWidth: "5px",
+      },
+      backgroundImage: "linear-gradient(#FFFEF8, #F3F3F1)",
+      filter: "drop-shadow(3px 8px 8px rgba(0, 0, 0, 0.4))",
+      position: "relative",
+      overflow: "hidden",
+      "& :before": {
+        content: '""',
+        position: "absolute",
+        top: "-175px",
+        right: "-20%",
+        width: "400px",
+        height: "400px",
+        transform: "rotateZ(-40deg)",
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,0))",
       },
     },
     divider: {
       width: "100%",
       borderTop: "2px solid var(--primary-color)",
-      margin: `${theme.spacing(0)}px 0`,
+      margin: `${theme.spacing(2)}px 0`,
     },
   });
 });
