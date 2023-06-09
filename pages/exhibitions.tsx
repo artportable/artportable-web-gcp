@@ -270,9 +270,21 @@ export default function Exhibition({ navBarItems }) {
                     style={{ backgroundColor: "#faf3ee" }}
                   >
                     <CardContent style={{ padding: "20px" }}>
-                      <Typography variant="h6">{exhibition.period}</Typography>
+                      <Typography
+                        variant="h6"
+                        style={{
+                          marginBottom: "15px",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        {exhibition.period}
+                      </Typography>
                       {exhibition.artists.map((artist, j) => (
-                        <Typography variant="body1" key={j}>
+                        <Typography
+                          variant="body1"
+                          key={j}
+                          style={{ fontStyle: "italic", marginTop: "10px" }}
+                        >
                           {artist}
                         </Typography>
                       ))}
