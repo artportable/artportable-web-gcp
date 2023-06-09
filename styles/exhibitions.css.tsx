@@ -56,11 +56,8 @@ export const styles = makeStyles((theme: Theme) => {
       width: "100%",
       height: "100%",
       marginTop: "20px",
-      listStyle: "none",
-      listStyleType: "none",
       marginBottom: "20px",
       textAlign: "center",
-      display: "inline-block",
       borderStyle: "solid",
       background: "#F5F5F5",
       borderWidth: "5px",
@@ -69,7 +66,6 @@ export const styles = makeStyles((theme: Theme) => {
       },
 
       filter: "drop-shadow(3px 8px 8px rgba(0, 0, 0, 0.4))",
-      position: "relative",
     },
 
     headline: {
@@ -92,7 +88,7 @@ export const styles = makeStyles((theme: Theme) => {
       marginBottom: theme.spacing(2),
       marginRight: theme.spacing(4),
       fontSize: "10pt",
-      fontWeight: 600,
+      fontWeight: 400,
       lineHeight: "1.38",
       color: "var(--text-color)",
       [theme.breakpoints.up("sm")]: {
@@ -164,6 +160,7 @@ export const styles = makeStyles((theme: Theme) => {
     divider: {
       width: "100%",
       borderTop: "2px solid var(--primary-color)",
+      marginTop: "60px",
       margin: `${theme.spacing(4)}px 0`,
     },
   });
