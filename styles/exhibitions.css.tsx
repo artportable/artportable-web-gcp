@@ -13,7 +13,7 @@ export const styles = makeStyles((theme: Theme) => {
       alignItems: "center",
       flexWrap: "nowrap",
       padding: "0, 5px",
-
+      marginBottom: "50px",
       [theme.breakpoints.up("mdPlus")]: {
         padding: "0",
         flexDirection: "row",
@@ -114,7 +114,7 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
     welcomeText: {
-      marginBottom: theme.spacing(3),
+      fontSize: "18px",
       fontStyle: "italic",
       color: "var(--text-color)",
       textAlign: "left",
