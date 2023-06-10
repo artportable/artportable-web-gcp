@@ -3,7 +3,6 @@ import Head from "next/head";
 import Main from "../app/components/Main/Main";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useTranslation } from "next-i18next";
-import ExhibitionCard from "../app/components/Exhibitions/Exhibition";
 import { styles } from "../styles/exhibitions.css";
 import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
 import { useRouter } from "next/router";

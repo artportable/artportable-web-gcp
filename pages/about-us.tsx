@@ -5,8 +5,9 @@ import Main from "../app/components/Main/Main";
 import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 
-export default function About({ navBarItems }) {
-  const mdPlusScreenOrDown = useBreakpointDown("mdPlus");
+export default function About({navBarItems}) {
+  const mdPlusScreenOrDown = useBreakpointDown('mdPlus')
+
 
   return (
     <>
@@ -18,20 +19,12 @@ export default function About({ navBarItems }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const navBarItems = await getNavBarItems();
+  const navBarItems = await getNavBarItems(); 
   return {
     props: {
       navBarItems: navBarItems,
-      ...(await serverSideTranslations(locale, [
-        "common",
-        "footer",
-        "header",
-        "gdpr",
-        "support",
-        "plans",
-        "about",
-      ])),
+      ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans', 'about']),
     },
     revalidate: 60,
-  };
+  }
 }
