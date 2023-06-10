@@ -3,6 +3,7 @@ import Head from "next/head";
 import Main from "../app/components/Main/Main";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 
+
 export default function Exhibitions({ navBarItems }) {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Exhibitions({ navBarItems }) {
           <title>Utställningar</title>
         </Head>
         <div>Exhibitions</div>
+
       </Main>
     </>
   );
@@ -25,6 +27,7 @@ export async function getStaticProps({ locale }) {
         "header",
         "footer",
         "support",
+
       ])),
     },
     revalidate: 60,
