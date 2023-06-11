@@ -128,7 +128,7 @@ export default function DrawerMenu({
         </IconButton>
       </div>
       <List>
-      {isSignedIn.value ? (
+        {isSignedIn.value ? (
           <>
             {membership.value < Membership.Portfolio && (
               <div>
@@ -323,10 +323,10 @@ export default function DrawerMenu({
             </a>
           </Link>
         )}
-        <Link href="/job" passHref>
+        <Link href="/showroom" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("job")} />
+              <ListItemText primary={t("exhibition")} />
             </ListItem>
           </a>
         </Link>

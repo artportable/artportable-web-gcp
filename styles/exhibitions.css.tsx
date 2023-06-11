@@ -73,7 +73,7 @@ export const styles = makeStyles((theme: Theme) => {
       fontSize: "1.5rem",
       textAlign: "initial",
       marginBottom: theme.spacing(2),
-      marginTop: theme.spacing(6),
+      marginTop: theme.spacing(10),
       color: "var(--secondary-color)",
       [theme.breakpoints.up("sm")]: {
         fontSize: "2rem",
@@ -114,7 +114,8 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
     welcomeText: {
-      marginBottom: theme.spacing(3),
+      marginBottom: "60px",
+      fontSize: "16px",
       fontStyle: "italic",
       color: "var(--text-color)",
       textAlign: "left",
