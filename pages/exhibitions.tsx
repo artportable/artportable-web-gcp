@@ -14,3 +14,19 @@ export default function Exhibitions() {
     </>
   );
 }
+
+export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems();
+  return {
+    props: {
+      navBarItems: navBarItems,
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "footer",
+        "header",
+        "exhibitions",
+      ])),
+    },
+    revalidate: 60,
+  };
+}
