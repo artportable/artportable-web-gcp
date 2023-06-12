@@ -20,7 +20,6 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import VideoDialog from "../VideoDialog/VideoDialog";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import trustpilot from "../../../public/trustpilot.svg";
 
 interface RandomImageProps {
   artwork: string;
@@ -80,10 +79,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Thorulf Löfstedt",
-      username: "thorulf.lofstedt",
-      image: "/images/666d2d9c-e23e-48cf-9433-1c15fa50fc22.jpg",
-      imageLink: "art/9c6bfc54-f72d-4c21-be73-2bf05b9fb028",
+      name: "Harriet ström",
+      username: "haje",
+      image: "/images/harrietS.jpeg",
+      imageLink: "art/e0a66129-8cd1-45d1-91cd-717ccce232cc",
     },
     {
       name: "Marion Porte",
