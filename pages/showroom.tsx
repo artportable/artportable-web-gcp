@@ -312,7 +312,7 @@ export default function Exhibition({ navBarItems }) {
       {
         week: "Vecka 39",
         artist: "Anna Lindman",
-        username: "",
+        username: "anna_lindman",
       },
     ],
     OKTOBER: [
@@ -324,7 +324,7 @@ export default function Exhibition({ navBarItems }) {
       {
         week: "Vecka 41",
         artist: "Mary Myntti",
-        username: "",
+        username: "marymyntti",
       },
       {
         week: "Vecka 42",
@@ -334,7 +334,7 @@ export default function Exhibition({ navBarItems }) {
       {
         week: "Vecka 43",
         artist: "Anne Nkeng",
-        username: "",
+        username: "artofuzuri",
       },
       {
         week: "Vecka 44",
@@ -351,7 +351,7 @@ export default function Exhibition({ navBarItems }) {
       {
         week: "Vecka 46",
         artist: "Jakob Fogelquist",
-        username: "",
+        username: "jakob.fogelquist",
       },
       {
         week: "Vecka 47",
