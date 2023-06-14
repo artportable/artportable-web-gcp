@@ -260,6 +260,61 @@ export default function Exhibition({ navBarItems }) {
             </div>
           </div>
         </div>
+
+        <div className={s.divider} />
+        <Typography
+          variant="h4"
+          style={{ marginBottom: "40px" }}
+          align="center"
+        >
+          {t("title")}
+        </Typography>
+        <TabContext value={String(value)}>
+          <Tabs
+            ref={tabsRef}
+            value={String(value)}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            {monthNames.map((month, index) => (
+              <Tab label={month} key={index} />
+            ))}
+          </Tabs>
+          {Object.keys(showrooms).map((month, index) => (
+            <TabPanel value={String(index)} key={index}>
+              <Grid container spacing={4}>
+                {showrooms[month].map((showroom, i) => {
+                  const [week, artist] = showroom.split(" - "); // Split the showroom string
+                  return (
+                    <Grid item xs={12} sm={4} key={i}>
+                      <Card
+                        className={s.card}
+                        style={{ backgroundColor: "#faf3ee" }}
+                      >
+                        <CardContent style={{ padding: "20px" }}>
+                          <Typography
+                            variant="h6"
+                            style={{ marginBottom: "15px" }}
+                          >
+                            {week}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                            style={{ fontStyle: "italic", marginTop: "10px" }}
+                          >
+                            {artist}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </TabPanel>
+          ))}
+        </TabContext>
+        <div className={s.divider} />
         {/* Cafe Tabs */}
         <TabContext value={selectedCafe}>
           <Tabs
@@ -332,60 +387,6 @@ export default function Exhibition({ navBarItems }) {
                 </Grid>
               ))}
           </Grid>
-        </TabContext>
-
-        <div className={s.divider} />
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "40px" }}
-          align="center"
-        >
-          {t("title")}
-        </Typography>
-        <TabContext value={String(value)}>
-          <Tabs
-            ref={tabsRef}
-            value={String(value)}
-            onChange={handleChange}
-            variant="scrollable"
-            scrollButtons="on"
-          >
-            {monthNames.map((month, index) => (
-              <Tab label={month} key={index} />
-            ))}
-          </Tabs>
-          {Object.keys(showrooms).map((month, index) => (
-            <TabPanel value={String(index)} key={index}>
-              <Grid container spacing={4}>
-                {showrooms[month].map((showroom, i) => {
-                  const [week, artist] = showroom.split(" - "); // Split the showroom string
-                  return (
-                    <Grid item xs={12} sm={4} key={i}>
-                      <Card
-                        className={s.card}
-                        style={{ backgroundColor: "#faf3ee" }}
-                      >
-                        <CardContent style={{ padding: "20px" }}>
-                          <Typography
-                            variant="h6"
-                            style={{ marginBottom: "15px" }}
-                          >
-                            {week}
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            style={{ fontStyle: "italic", marginTop: "10px" }}
-                          >
-                            {artist}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </TabPanel>
-          ))}
         </TabContext>
       </Main>
     </>
