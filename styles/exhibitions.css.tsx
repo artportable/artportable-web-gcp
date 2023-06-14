@@ -13,7 +13,6 @@ export const styles = makeStyles((theme: Theme) => {
       alignItems: "center",
       flexWrap: "nowrap",
       padding: "0, 5px",
-
       [theme.breakpoints.up("mdPlus")]: {
         padding: "0",
         flexDirection: "row",
@@ -30,24 +29,24 @@ export const styles = makeStyles((theme: Theme) => {
       alignContent: "center",
       flexDirection: "column",
       ...columnGap(theme.spacing(1)),
-      marginRight: "35px",
+      marginRight: "30px",
       marginLeft: "16px",
       margin: theme.spacing(0, 0, 0, 0),
 
       [theme.breakpoints.up("smPlus")]: {
         margin: theme.spacing(0, 0, 2, 0),
-        marginRight: "35px",
+        marginRight: "50px",
         width: "567px",
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "initial",
         margin: theme.spacing(0, 0, 2, 4),
-        marginRight: "35px",
+        marginRight: "50px",
       },
       [theme.breakpoints.up("mdPlus")]: {
         textAlign: "initial",
         margin: theme.spacing(0, 0, 2, 4),
-        marginRight: "35px",
+        marginRight: "50px",
         placeItems: "flex-start",
       },
     },
@@ -84,15 +83,15 @@ export const styles = makeStyles((theme: Theme) => {
     },
 
     description: {
-      margin: theme.spacing(1, 0),
+      margin: theme.spacing(2, 0),
       marginBottom: theme.spacing(2),
       marginRight: theme.spacing(4),
-      fontSize: "10pt",
+      fontSize: "12px",
       fontWeight: 400,
       lineHeight: "1.38",
       color: "var(--text-color)",
       [theme.breakpoints.up("sm")]: {
-        fontSize: "0.8rem",
+        fontSize: "1.0rem",
       },
       [theme.breakpoints.up("md")]: {
         marginBottom: theme.spacing(3),
@@ -115,48 +114,36 @@ export const styles = makeStyles((theme: Theme) => {
     },
     welcomeText: {
       marginBottom: "60px",
-      fontSize: "16px",
+      fontSize: "14px",
       fontStyle: "italic",
       color: "var(--text-color)",
       textAlign: "left",
     },
     image: {
-      borderWidth: "2px",
+      width: "100%",
+      height: "100%",
+      marginTop: "0px",
+      marginBottom: "0px",
       borderStyle: "solid",
-      borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF",
-      boxShadow:
-        "0 -1px 1px rgba(0,0,0,.1), 0 1px 1px 1px rgba(255,255,255,.7)",
+      background: "#F5F5F5",
+      borderColor: "#faf3ee",
+      borderWidth: "5px",
+      [theme.breakpoints.up("smPlus")]: {
+        borderWidth: "5px",
+      },
+
+      filter: "drop-shadow(3px 8px 8px rgba(0, 0, 0, 0.4))",
       maxWidth: "100%",
     },
 
     frame: {
-      listStyle: "none",
-      listStyleType: "none",
-      margin: "0px",
+      width: "100%",
+      height: "100%",
+      marginTop: "0px",
+      marginBottom: "0px",
       textAlign: "center",
-      display: "inline-block",
-      borderWidth: "0px",
-      borderStyle: "solid",
-      borderColor: "var(--header-color)",
-      background: "#F5F5F5",
-      [theme.breakpoints.up("smPlus")]: {
-        borderWidth: "5px",
-      },
-      backgroundImage: "linear-gradient(#FFFEF8, #F3F3F1)",
+      [theme.breakpoints.up("smPlus")]: {},
       filter: "drop-shadow(3px 8px 8px rgba(0, 0, 0, 0.4))",
-      position: "relative",
-      overflow: "hidden",
-      "& :before": {
-        content: '""',
-        position: "absolute",
-        top: "-175px",
-        right: "-20%",
-        width: "400px",
-        height: "400px",
-        transform: "rotateZ(-40deg)",
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,0))",
-      },
     },
     divider: {
       width: "100%",
