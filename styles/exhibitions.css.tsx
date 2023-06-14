@@ -29,24 +29,18 @@ export const styles = makeStyles((theme: Theme) => {
       alignContent: "center",
       flexDirection: "column",
       ...columnGap(theme.spacing(1)),
-      marginRight: "30px",
-      marginLeft: "16px",
-      margin: theme.spacing(0, 0, 0, 0),
+      margin: "0px, 0px, 0px, 0px",
 
       [theme.breakpoints.up("smPlus")]: {
-        margin: theme.spacing(0, 0, 2, 0),
-        marginRight: "50px",
-        width: "567px",
+        margin: "0px, 0px, 0px, 0px",
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "initial",
-        margin: theme.spacing(0, 0, 2, 4),
-        marginRight: "50px",
+        margin: "0px, 0px, 0px, 0px",
       },
       [theme.breakpoints.up("mdPlus")]: {
         textAlign: "initial",
-        margin: theme.spacing(0, 0, 2, 4),
-        marginRight: "50px",
+        margin: "0px, 0px, 0px, 0px",
         placeItems: "flex-start",
       },
     },
