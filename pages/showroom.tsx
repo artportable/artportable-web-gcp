@@ -58,7 +58,7 @@ export default function Exhibition({ navBarItems }) {
           "Ulrika Hegardh",
           "Jason Andersson",
           "Harriet Ström",
-          "Karin Gréonlund",
+          "Karin Grönlund",
         ],
         site: "www.stockholmfisk.se",
       },
@@ -99,7 +99,7 @@ export default function Exhibition({ navBarItems }) {
       },
       {
         period: "9 SEPTEMBER - 9 DECEMBER",
-        artists: ["Susann Karlsson Art", "Hakan Lindskog"],
+        artists: ["Susann Karlsson Art", "Håkan Lindskog"],
         site: "www.artbakery.se/",
       },
       {
@@ -174,7 +174,7 @@ export default function Exhibition({ navBarItems }) {
     JUNI: [
       "Vecka 23 - Magnus Christiansson",
       "Vecka 24 - Cina Fundin",
-      "Vecka 25 - Henrik Sjéstrém",
+      "Vecka 25 - Henrik Sjéström",
       "Vecka 26 - Maria Biederbeck",
     ],
     JULI: ["Sommarstängt"],
