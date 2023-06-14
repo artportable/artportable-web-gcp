@@ -57,8 +57,8 @@ export default function Exhibition({ navBarItems }) {
           "Torill Roselin",
           "Ulrika Hegardh",
           "Jason Andersson",
-          "Harriet Strém",
-          "Karin Gréonlund",
+          "Harriet Ström",
+          "Karin Grönlund",
         ],
         site: "www.stockholmfisk.se",
       },
@@ -99,7 +99,7 @@ export default function Exhibition({ navBarItems }) {
       },
       {
         period: "9 SEPTEMBER - 9 DECEMBER",
-        artists: ["Susann Karlsson Art", "Hakan Lindskog"],
+        artists: ["Susann Karlsson Art", "Håkan Lindskog"],
         site: "www.artbakery.se/",
       },
       {
@@ -147,69 +147,242 @@ export default function Exhibition({ navBarItems }) {
   };
 
   const showrooms = {
-    JANUARI: ["Vecka 5 - Zlatko Gradholt"],
+    JANUARI: [
+      {
+        week: "Vecka 5",
+        artist: "Zlatko Gradholt",
+        username: "zlatkogradholt",
+      },
+    ],
     FEBRUARI: [
-      "Vecka 7 - Annika Berglof",
-      "Vecka 8 - Sara Bergman",
-      "Vecka 9 - Helene Westerlund",
+      {
+        week: "Vecka 7",
+        artist: "Annika Berglof",
+        username: "annika.berglof",
+      },
+      {
+        week: "Vecka 8",
+        artist: "Sara Bergman",
+        username: "s_bergman1",
+      },
+      {
+        week: "Vecka 9",
+        artist: "Helene Westerlund",
+        username: "artuditech",
+      },
     ],
     MARS: [
-      "Vecka 10 - Malin Altenby Larsen",
-      "Vecka 11 - Jessica Elert",
-      "Vecka 12 - Susanne Strandanger",
-      "Vecka 13 - Olle Brandqvist",
+      {
+        week: "Vecka 10",
+        artist: "Malin Altenby Larsen",
+        username: "malinlarsenart",
+      },
+      {
+        week: "Vecka 11",
+        artist: "Jessica Elert",
+        username: "Jessicaelert",
+      },
+      {
+        week: "Vecka 12",
+        artist: "Susanne Strandanger",
+        username: "Susanne",
+      },
+      {
+        week: "Vecka 13",
+        artist: "Olle Brandqvist",
+        username: "olle.brandqvist",
+      },
     ],
     APRIL: [
-      "Vecka 15 - Erik Mofjell",
-      "Vecka 16 - Anna-Karin Otherhals",
-      "Vecka 17 - Viveca Berg",
+      {
+        week: "Vecka 15",
+        artist: "Erik Mofjell",
+        username: "erik.mofjell",
+      },
+      {
+        week: "Vecka 16",
+        artist: "Anna-Karin Otherhals",
+        username: "anna-karin.oterhals",
+      },
+      {
+        week: "Vecka 17",
+        artist: "Viveca Berg",
+        username: "viveca.berg",
+      },
     ],
     MAJ: [
-      "Vecka 18 - Keya Eriksson",
-      "Vecka 19 - Annica Hallman",
-      "Vecka 20 - Anna Solberg",
-      "Vecka 21 - AnnCatrin Pettersson",
-      "Vecka 22 - Mieszko Tyszkiewicz",
+      {
+        week: "Vecka 18",
+        artist: "Keya Eriksson",
+        username: "keya.eriksson",
+      },
+      {
+        week: "Vecka 19",
+        artist: "Annica Hallman",
+        username: "Annica.b",
+      },
+      {
+        week: "Vecka 20",
+        artist: "Anna Solberg",
+        username: "anna.solberg",
+      },
+      {
+        week: "Vecka 21",
+        artist: "AnnCatrin Pettersson",
+        username: "frifararen",
+      },
+      {
+        week: "Vecka 22",
+        artist: "Mieszko Tyszkiewicz",
+        username: "mieszko.tyszkiewicz",
+      },
     ],
     JUNI: [
-      "Vecka 23 - Magnus Christiansson",
-      "Vecka 24 - Cina Fundin",
-      "Vecka 25 - Henrik Sjéstrém",
-      "Vecka 26 - Maria Biederbeck",
+      {
+        week: "Vecka 23",
+        artist: "Magnus Christiansson",
+        username: "magnus.christiansson",
+      },
+      {
+        week: "Vecka 24",
+        artist: "Cina Fundin",
+        username: "cina.fundin",
+      },
+      {
+        week: "Vecka 25",
+        artist: "Henrik Sjöström",
+        username: "henrik.sjostrom",
+      },
+      {
+        week: "Vecka 26",
+        artist: "Maria Biederbeck",
+        username: "maria.biederbeck",
+      },
     ],
-    JULI: ["Sommarstängt"],
+    JULI: [
+      {
+        week: "Sommarstängt",
+        artist: "",
+        username: "",
+      },
+    ],
     AUGUSTI: [
-      "Vecka 31 - Hanne Linnes",
-      "Vecka 32 - Tove Gulliksrud",
-      "Vecka 33 - Sofia Lagerblad",
-      "Vecka 34 - Serguei Zlenko",
-      "Vecka 35 - Camilla Karlsson",
+      {
+        week: "Vecka 31",
+        artist: "Hanne Linnes",
+        username: "hannelinnes",
+      },
+      {
+        week: "Vecka 32",
+        artist: "Tove Gulliksrud",
+        username: "tove.gulliksrud",
+      },
+      {
+        week: "Vecka 33",
+        artist: "Sofia Lagerblad",
+        username: "sofia.lagerblad",
+      },
+      {
+        week: "Vecka 34",
+        artist: "Serguei Zlenko",
+        username: "sergueizlenko",
+      },
+      {
+        week: "Vecka 35",
+        artist: "Camilla Karlsson",
+        username: "Camilla.Karlsson",
+      },
     ],
     SEPTEMBER: [
-      "Vecka 36 - Pia Haland Anveden",
-      "Vecka 37 - Lo Fehrling",
-      "Vecka 38 - Orjan Satre",
-      "Vecka 39 - Anna Lindman",
+      {
+        week: "Vecka 36",
+        artist: "Pia Håland Anveden",
+        username: "piahd53",
+      },
+      {
+        week: "Vecka 37",
+        artist: "Lo Fehrling",
+        username: "lo",
+      },
+      {
+        week: "Vecka 38",
+        artist: "Örjan Sätre",
+        username: "orjan.satre",
+      },
+      {
+        week: "Vecka 39",
+        artist: "Anna Lindman",
+        username: "anna_lindman",
+      },
     ],
     OKTOBER: [
-      "Vecka 40 - Jason Andersson",
-      "Vecka 41 - Mary Myntti",
-      "Vecka 42 - Anna-Carin Jansson",
-      "Vecka 43 - Anne Nkeng",
-      "Vecka 44 - Ann-Marie Sarri",
+      {
+        week: "Vecka 40",
+        artist: "Jason Andersson",
+        username: "jasonandersson",
+      },
+      {
+        week: "Vecka 41",
+        artist: "Mary Myntti",
+        username: "marymyntti",
+      },
+      {
+        week: "Vecka 42",
+        artist: "Anna-Carin Jansson",
+        username: "marymyntti",
+      },
+      {
+        week: "Vecka 43",
+        artist: "Anne Nkeng",
+        username: "artofuzuri",
+      },
+      {
+        week: "Vecka 44",
+        artist: "Ann-Marie Sarri",
+        username: "ann-marie.sarri",
+      },
     ],
     NOVEMBER: [
-      "Vecka 45 - Lars Henrik Milert",
-      "Vecka 46 - Jakob Fogelquist",
-      "Vecka 47 - Maria Nehlin",
-      "Vecka 48 - Ivy Dorisse",
+      {
+        week: "Vecka 45",
+        artist: "Lars Henrik Milert",
+        username: "milert",
+      },
+      {
+        week: "Vecka 46",
+        artist: "Jakob Fogelquist",
+        username: "jakob.fogelquist",
+      },
+      {
+        week: "Vecka 47",
+        artist: "Maria Nehlin",
+        username: "maria.nehlin",
+      },
+      {
+        week: "Vecka 48",
+        artist: "Ivy Dorisse",
+        username: "ivy.dorisse",
+      },
     ],
     DECEMBER: [
-      "Vecka 49 - Ann-Britt Farmare",
-      "Vecka 50 - Victor Skold",
-      "Vecka 51 - Daniel Lundvall",
+      {
+        week: "Vecka 49",
+        artist: "Ann-Britt Farmare",
+        username: "ann-britt.farmare",
+      },
+      {
+        week: "Vecka 50",
+        artist: "Victor Sköld",
+        username: "wiehre",
+      },
+      {
+        week: "Vecka 51",
+        artist: "Daniel Lundvall",
+        username: "daniel.lundvall",
+      },
     ],
   };
+
   const currentDate = new Date();
   const currentMonth = currentDate
     .toLocaleString(locale, { month: "long" })
@@ -241,12 +414,9 @@ export default function Exhibition({ navBarItems }) {
             <Typography variant="h4" className={s.description}>
               {t("exhibitionText")}
             </Typography>
-            <Typography variant="h4" className={s.description}>
+            <Typography variant="h4" className={s.welcomeText}>
               {t("exhibitQuestion")} {""}
               <a href="mailto: hello@artportable.com">{t("email")}</a>
-            </Typography>
-            <Typography variant="h4" className={s.welcomeText}>
-              {t("welcomeText")}
             </Typography>
           </div>
 
@@ -260,6 +430,77 @@ export default function Exhibition({ navBarItems }) {
             </div>
           </div>
         </div>
+
+        <div className={s.divider} />
+        <Typography
+          variant="h4"
+          style={{ marginBottom: "40px" }}
+          align="center"
+        >
+          {t("title")}
+        </Typography>
+        <TabContext value={String(value)}>
+          <Tabs
+            ref={tabsRef}
+            value={String(value)}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            {monthNames.map((month, index) => (
+              <Tab label={month} key={index} />
+            ))}
+          </Tabs>
+          {Object.keys(showrooms).map((month, index) => (
+            <TabPanel value={String(index)} key={index}>
+              <Grid container spacing={4}>
+                {showrooms[month].map((showroom, i) => {
+                  return (
+                    <Grid item xs={12} sm={4} key={i}>
+                      <Card
+                        className={s.card}
+                        style={{ backgroundColor: "#faf3ee" }}
+                      >
+                        <CardContent style={{ padding: "20px" }}>
+                          <Typography
+                            variant="h6"
+                            style={{ marginBottom: "15px" }}
+                          >
+                            {showroom.week}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                            style={{ fontStyle: "italic", marginTop: "10px" }}
+                          >
+                            <a
+                              href={`https://artportable.com/profile/@${showroom.username}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                textDecoration: "underline",
+                                color: "#a35d5d",
+                                cursor: "pointer",
+                              }}
+                              onMouseOver={(e) =>
+                                (e.target.style.color = "#ff8383")
+                              }
+                              onMouseOut={(e) =>
+                                (e.target.style.color = "#a35d5d")
+                              }
+                            >
+                              {showroom.artist}
+                            </a>
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </TabPanel>
+          ))}
+        </TabContext>
+        <div className={s.divider} />
         {/* Cafe Tabs */}
         <TabContext value={selectedCafe}>
           <Tabs
@@ -333,60 +574,7 @@ export default function Exhibition({ navBarItems }) {
               ))}
           </Grid>
         </TabContext>
-
         <div className={s.divider} />
-        <Typography
-          variant="h4"
-          style={{ marginBottom: "40px" }}
-          align="center"
-        >
-          {t("title")}
-        </Typography>
-        <TabContext value={String(value)}>
-          <Tabs
-            ref={tabsRef}
-            value={String(value)}
-            onChange={handleChange}
-            variant="scrollable"
-            scrollButtons="on"
-          >
-            {monthNames.map((month, index) => (
-              <Tab label={month} key={index} />
-            ))}
-          </Tabs>
-          {Object.keys(showrooms).map((month, index) => (
-            <TabPanel value={String(index)} key={index}>
-              <Grid container spacing={4}>
-                {showrooms[month].map((showroom, i) => {
-                  const [week, artist] = showroom.split(" - "); // Split the showroom string
-                  return (
-                    <Grid item xs={12} sm={4} key={i}>
-                      <Card
-                        className={s.card}
-                        style={{ backgroundColor: "#faf3ee" }}
-                      >
-                        <CardContent style={{ padding: "20px" }}>
-                          <Typography
-                            variant="h6"
-                            style={{ marginBottom: "15px" }}
-                          >
-                            {week}
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            style={{ fontStyle: "italic", marginTop: "10px" }}
-                          >
-                            {artist}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </TabPanel>
-          ))}
-        </TabContext>
       </Main>
     </>
   );
