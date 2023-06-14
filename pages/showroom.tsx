@@ -57,7 +57,7 @@ export default function Exhibition({ navBarItems }) {
           "Torill Roselin",
           "Ulrika Hegardh",
           "Jason Andersson",
-          "Harriet Strém",
+          "Harriet Ström",
           "Karin Gréonlund",
         ],
         site: "www.stockholmfisk.se",
