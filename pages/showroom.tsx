@@ -32,44 +32,44 @@ export default function Exhibition({ navBarItems }) {
       {
         period: "9 JANUARI - 9 APRIL",
         artists: [
-          "Tobbe Ekman",
-          "Helena Petersson",
-          "Daniel Lundvall",
-          "Lisbeth Olofsdotter",
+          { name: "Tobbe Ekman", username: "tobbe.ekman" },
+          { name: "Helena Petersson", username: "helena.petersson" },
+          { name: "Daniel Lundvall", username: "daniel.lundvall" },
+          { name: "Lisbeth Olofsdotter", username: "lisbeth.olofsdotter" },
         ],
         site: "www.stockholmfisk.se",
       },
       {
         period: "11 APRIL - 11 JULI",
         artists: [
-          "Marcus Boman",
-          "Maria Biederbeck",
-          "Orjan Sattre",
-          "Sofie Ohlsson",
-          "Hesho Serray",
-          "Nathalie Tsikritea",
+          { name: "Marcus Boman", username: "marcus.boman" },
+          { name: "Maria Biederbeck", username: "maria.biederbeck" },
+          { name: "Örjan Sätre", username: "orjan.satre" },
+          { name: "Sofie Ohlsson", username: "sofie.ohlsson" },
+          { name: "Hesho Serray", username: "hesho.serray" },
+          { name: "Nathalie Tsikritea", username: "nattiz_t" },
         ],
         site: "www.stockholmfisk.se",
       },
       {
         period: "11 JULI - 11 OKTOBER",
         artists: [
-          "Torill Roselin",
-          "Ulrika Hegardh",
-          "Jason Andersson",
-          "Harriet Ström",
-          "Karin Grönlund",
+          { name: "Torill Roselin", username: "torill.roselin" },
+          { name: "Ulrika Hegårdh", username: "ulrikahegardh" },
+          { name: "Jason Andersson", username: "jasonandersson" },
+          { name: "Harriet Ström", username: "haje" },
+          { name: "Karin Grönlund", username: "karin.gronlund" },
         ],
         site: "www.stockholmfisk.se",
       },
       {
         period: "11 OKTOBER - 11 JANUARI",
         artists: [
-          "Marie Sandell",
-          "Johan Thunberg",
-          "Asa Schick",
-          "Felix Oppenheim",
-          "Yvonne Marténg",
+          { name: "Marie Sandell", username: "marie.sandell" },
+          { name: "Johan Thunberg", username: "johanthunberg52" },
+          { name: "Åsa Schick", username: "asa.schick" },
+          { name: "Felix Oppenheim", username: "felix.oppenheim" },
+          { name: "Yvonne Marténg", username: "yvonne" },
         ],
         site: "www.stockholmfisk.se",
       },
@@ -77,70 +77,88 @@ export default function Exhibition({ navBarItems }) {
     PS_MATSAL: [
       {
         period: "4 APRIL - 4 OKTOBER",
-        artists: ["Daniel Lundvall", "Veslemgy Vangsnes"],
+        artists: [
+          { name: "Daniel Lundvall", username: "daniel.lundvall" },
+          { name: "Veslemøy Vangsnes", username: "veslemoy.vangsnes" },
+        ],
         site: "www.psmatsal.com/new-startpage/",
       },
       {
         period: "4 OKTOBER - 4 APRIL",
-        artists: ["Gunilla Svard", "Rene Jakobsen"],
+        artists: [
+          { name: "Gunilla Svärd", username: "gunilla.svard" },
+          { name: "Rene Jakobsen", username: "rene.jakobsen" },
+        ],
         site: "www.psmatsal.com/new-startpage/",
       },
     ],
     ART_BAKERY: [
       {
         period: "7 MARS - 7 JUNI",
-        artists: ["Stina G Olsson", "Ralph Castellan"],
+        artists: [
+          { name: "Stina G Olsson", username: "stina.g.olsson.art" },
+          { name: "Ralph Castellan", username: "rc-art" },
+        ],
         site: "www.artbakery.se/",
       },
       {
         period: "8 JUNI - 8 SEPTEMBER",
-        artists: ["Angelica Diehn", "Carl Bennerstedt"],
+        artists: [
+          { name: "Angelica Diehn", username: "angelica.diehn" },
+          { name: "Carl Bennerstedt", username: "cabem" },
+        ],
         site: "www.artbakery.se/",
       },
       {
         period: "9 SEPTEMBER - 9 DECEMBER",
-        artists: ["Susann Karlsson Art", "Håkan Lindskog"],
+        artists: [
+          { name: "Susann Karlsson", username: "susann" },
+          { name: "Håkan Lindskog", username: "hakan" },
+        ],
         site: "www.artbakery.se/",
       },
       {
         period: "10 DECEMBER - 10 MARS",
-        artists: ["Sara Bergman", "Ola Lanteli"],
+        artists: [
+          { name: "Sara Bergman", username: "s_bergman1" },
+          { name: "Ola Lanteli", username: "ola" },
+        ],
         site: "www.artbakery.se/",
       },
     ],
     NK_CAFE: [
       {
         period: "5 APRIL - 7 JUNI",
-        artists: ["Ulrika Melin"],
+        artists: [{ name: "Ulrika Melin", username: "ulrikaart" }],
         site: "www.nk.se/avdelningar/stockholm/art-cafe?ssw=1",
       },
       {
         period: "7 JUNI - 22 AUGUSTI",
-        artists: ["Galina Tol-Fakkar"],
+        artists: [{ name: "Galina Tol-Fakkar", username: "galina.tolfakkar" }],
         site: "www.nk.se/avdelningar/stockholm/art-cafe?ssw=1",
       },
       {
         period: "22 AUGUSTI - 23 OKTOBER",
-        artists: ["Radenka Nikola"],
+        artists: [{ name: "Radenka Nikola", username: "radenka.art" }],
         site: "www.nk.se/avdelningar/stockholm/art-cafe?ssw=1",
       },
       {
         period: "23 OKTOBER - 22 DECEMBER",
-        artists: ["Marie Andersson"],
+        artists: [{ name: "Marie Andersson", username: "marieannersa" }],
         site: "www.nk.se/avdelningar/stockholm/art-cafe?ssw=1",
       },
     ],
     ÅNGBATSBRYGGAN: [
       {
         period: "All year",
-        artists: ["Borje Ahlstrom"],
+        artists: [{ name: "Börje Ahlström", username: "ahlstrom1950" }],
         site: "www.angbatsbryggan.com/",
       },
     ],
     LA_PIAZZA: [
       {
         period: "All year",
-        artists: ["Ulrika Melin"],
+        artists: [{ name: "Ulrika Melin", username: "ulrikaart" }],
         site: "www.lapiazzadjursholm.se/",
       },
     ],
@@ -565,7 +583,24 @@ export default function Exhibition({ navBarItems }) {
                           key={j}
                           style={{ fontStyle: "italic", marginTop: "10px" }}
                         >
-                          {artist}
+                          <a
+                            href={`https://artportable.com/profile/@${artist.username}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              textDecoration: "underline",
+                              color: "#a35d5d",
+                              cursor: "pointer",
+                            }}
+                            onMouseOver={(e) =>
+                              (e.target.style.color = "#ff8383")
+                            }
+                            onMouseOut={(e) =>
+                              (e.target.style.color = "#a35d5d")
+                            }
+                          >
+                            {artist.name}
+                          </a>
                         </Typography>
                       ))}
                     </CardContent>
@@ -574,6 +609,7 @@ export default function Exhibition({ navBarItems }) {
               ))}
           </Grid>
         </TabContext>
+
         <div className={s.divider} />
       </Main>
     </>
