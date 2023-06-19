@@ -121,16 +121,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     premiumEmblem: {
-      backgroundImage: 'linear-gradient(#d1a108, #ffeeb8)',
+      backgroundImage: "linear-gradient(#d1a108, #ffeeb8)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
     },
     premiumText: {
-      color: '#FFFFFF',
-      textTransform: 'uppercase',
+      color: "#FFFFFF",
+      textTransform: "uppercase",
       fontWeight: 500,
-      fontSize: '14px',
-      marginRight: '12px',
+      fontSize: "8px",
+      marginRight: "12px",
     },
 
     [theme.breakpoints.up("sm")]: {
@@ -192,7 +192,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "grid",
         width: "100%",
         height: "var(--header-height, 70px)",
-        gap: "0 16px",
+        gap: "0 5px",
         alignItems: "center",
         justifyItems: "start",
         gridTemplate:
@@ -222,7 +222,7 @@ export const styles = makeStyles((theme: Theme) =>
       navigation: {
         display: "initial",
         gridArea: "navigation",
-        marginLeft: "20px",
+        marginLeft: "10px",
       },
       iconMenuColor: {
         color: "#000",

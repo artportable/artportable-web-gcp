@@ -79,34 +79,23 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Harriet ström",
-      username: "haje",
-      image: "/images/harrietS.jpeg",
-      imageLink: "art/e0a66129-8cd1-45d1-91cd-717ccce232cc",
+
+      name: "Hesho Serray",
+      username: "hesho.serray",
+      image: "/images/freespirit.jpg",
+      imageLink: "art/9e9bc621-c439-4748-81c3-90b1287d5458",
     },
     {
-      name: "Marion Porte",
-      username: "marion-porte",
-      image: "/images/Marion-Porte.jpg",
-      imageLink: "art/ba3b1d5e-e449-425b-82d3-1c1b3971bf77",
+      name: "Lars-Henrik Milert",
+      username: "milert",
+      image: "/images/cloudsfalling.jpeg",
+      imageLink: "art/bf92ed53-43a3-4be4-9eef-ab08516bd440",
     },
     {
-      name: "Karolin Bast",
-      username: "karolin.bast",
-      image: "/images/roadtrip.jpg",
-      imageLink: "art/d336c5f7-9605-4ce1-8be6-620398eac5dc",
-    },
-    {
-      name: "Ulrika Sommestad",
-      username: "ulrika.sommestad",
-      image: "/images/ulrika.sommestad_skymtas.jpg",
-      imageLink: "art/b8fbdf16-f814-4b40-8eab-080dfeab2e8b",
-    },
-    {
-      name: "Angelica Diehn",
-      username: "angelica.diehn",
-      image: "/images/angelica_frame.jpg",
-      imageLink: "art/e27e1e95-03c0-4e0a-9851-97dd0b786129",
+      name: "Owe Emfestav",
+      username: "owe",
+      image: "/images/owe.jpeg",
+      imageLink: "art/97439451-b0bb-4344-bfd9-e6611c9e1368",
     },
   ];
 
