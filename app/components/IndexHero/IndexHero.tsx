@@ -20,7 +20,6 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import VideoDialog from "../VideoDialog/VideoDialog";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import trustpilot from "../../../public/trustpilot.svg";
 
 interface RandomImageProps {
   artwork: string;
@@ -80,6 +79,7 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
+
       name: "Hesho Serray",
       username: "hesho.serray",
       image: "/images/freespirit.jpg",
