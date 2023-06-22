@@ -186,7 +186,7 @@ export default function DiscoverPage({ navBarItems }) {
       {!loading && (
         <>
           {!isSignedIn.value && <IndexHero></IndexHero>}
-          { /*<AdDialog
+          { /* remove takeover /* /*<AdDialog
               openAdDialog={openAdDialog}
               setOpenAdDialog={setOpenAdDialog}
               onClose={toggleAdDialog}
