@@ -37,12 +37,6 @@ export default function AboutMe() {
       email: 'linus@artportable.com',
     },
     {
-      name: 'William Sterner',
-      title: 'Art Coordinator',
-      image: '/staff/artportable_william.jpeg',
-      email: 'william@artportable.com',
-    },
-    {
       name: 'Oliver Karlsson',
       title: 'Art Coordinator',
       image: '/staff/artportable_oliver.jpeg',
@@ -70,18 +64,6 @@ export default function AboutMe() {
       name: 'Patrik Söderberg',
       title: 'IT Manager',
       image: '/staff/artportable_patrik.jpg',
-      email: '',
-    },
-    {
-      name: 'Emil Sundberg',
-      title: 'Web Developer',
-      image: '/staff/artportable_emil.jpg',
-      email: '',
-    },
-    {
-      name: 'Elina Elbrink',
-      title: 'Web Developer',
-      image: '/staff/elina_artportable.jpg',
       email: '',
     },
     {
