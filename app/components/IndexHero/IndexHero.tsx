@@ -79,17 +79,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-
-      name: "Hesho Serray",
-      username: "hesho.serray",
-      image: "/images/freespirit.jpg",
-      imageLink: "art/9e9bc621-c439-4748-81c3-90b1287d5458",
-    },
-    {
-      name: "Lars-Henrik Milert",
-      username: "milert",
-      image: "/images/cloudsfalling.jpeg",
-      imageLink: "art/bf92ed53-43a3-4be4-9eef-ab08516bd440",
+      name: "Henrik Sjöström",
+      username: "henrik.sjostrom",
+      image: "/images/wolf.jpeg",
+      imageLink: "art/248c9fc8-24c7-4529-9817-b11200b50e9d",
     },
     {
       name: "Owe Emfestav",
