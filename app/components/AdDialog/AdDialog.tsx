@@ -39,9 +39,9 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: "Artportable",
-      companyImageSv: "/ad/artportableReg.jpg",
+      companyImageSv: "/ad/AdSv.png",
       companyLinkSv: "https://artportable.com/register",
-      companyImageEn: "/ad/artportableReg.jpg",
+      companyImageEn: "/ad/AdEn.png",
       companyLinkEn: "https://artportable.com/en/register",
     },
   ];
@@ -92,7 +92,7 @@ export default function AdDialog(props: Props) {
                 alt={randomAd.companyName}
                 width={700}
                 height={500}
-                quality={40}
+                quality={90}
               />
             </a>
           ) : (
@@ -108,7 +108,7 @@ export default function AdDialog(props: Props) {
                 alt={randomAd.companyName}
                 width={700}
                 height={500}
-                quality={40}
+                quality={90}
               />
             </a>
           )}
