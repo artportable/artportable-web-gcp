@@ -79,16 +79,22 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Henrik Sjöström",
-      username: "henrik.sjostrom",
-      image: "/images/wolf.jpeg",
-      imageLink: "art/248c9fc8-24c7-4529-9817-b11200b50e9d",
+      name: "Harriet Ström",
+      username: "haje",
+      image: "/images/harrietstrom.jpeg",
+      imageLink: "art/e0a66129-8cd1-45d1-91cd-717ccce232cc",
     },
     {
       name: "Owe Emfestav",
       username: "owe",
       image: "/images/owe.jpeg",
       imageLink: "art/97439451-b0bb-4344-bfd9-e6611c9e1368",
+    },
+    {
+      name: "Jason Andersson",
+      username: "jasonandersson",
+      image: "/images/jason.jpeg",
+      imageLink: "art/d30ff591-df0e-4f84-b356-08bf3a9b3cd7",
     },
   ];
 
