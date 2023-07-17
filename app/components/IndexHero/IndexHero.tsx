@@ -85,10 +85,10 @@ export default function IndexHero() {
       imageLink: "art/e0a66129-8cd1-45d1-91cd-717ccce232cc",
     },
     {
-      name: "Owe Emfestav",
-      username: "owe",
-      image: "/images/owe.jpeg",
-      imageLink: "art/97439451-b0bb-4344-bfd9-e6611c9e1368",
+      name: "Cinna Brahme",
+      username: "cinnabrahme",
+      image: "/images/cinna.jpeg",
+      imageLink: "art/af72596c-9506-4363-84d2-661491f67c27",
     },
     {
       name: "Jason Andersson",
