@@ -32,7 +32,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const elements = useElements();
   const styles = checkoutFormStyles();
   const { t } = useTranslation(["checkout", "common"]);
-  const [paymentConfirmed, setPaymentConfirmed] = useState(false)
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
   const interval = t(plan?.recurringInterval);
 
@@ -46,7 +46,11 @@ export default function CheckoutForm({ email, fullName, plan }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ email: email, fullName: fullName }),
+        body: JSON.stringify({
+          email: email,
+          fullName: fullName,
+          phoneNumber: phone.value,
+        }),
       })
         .then((res) => {
           return res.json();
@@ -199,20 +203,20 @@ export default function CheckoutForm({ email, fullName, plan }) {
     if (countdown === 0) {
       clearInterval(countdownRef.current);
       confirmedPortfolio();
-      router.push('/')
+      router.push("/");
     }
   }, [countdown]);
 
   const handleSuccessClose = () => {
     confirmedPortfolio();
-    router.push('/')
+    router.push("/");
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     if (paymentConfirmed) {
-    sessionStorage.setItem('payment', 'true')
+      sessionStorage.setItem("payment", "true");
     }
-  },[confirmedPortfolio])
+  }, [confirmedPortfolio]);
 
   return (
     <>
