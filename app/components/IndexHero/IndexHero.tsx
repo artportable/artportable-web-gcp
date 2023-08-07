@@ -79,10 +79,22 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Gunilla Svärd",
-      username: "gunilla.svard",
-      image: "/images/svard.jpeg",
-      imageLink: "art/147bc13b-da77-4b54-ab19-126e30df41f6",
+      name: "Ralph Castellan",
+      username: "rc-art",
+      image: "/images/ralph.jpeg",
+      imageLink: "art/6ad44f75-bd20-447d-8082-71bb415a3429",
+    },
+    {
+      name: "Dana Yamini",
+      username: "dana.yamini",
+      image: "/images/dana.jpeg",
+      imageLink: "art/0e01816a-983c-40b6-87a1-9c6610388063",
+    },
+    {
+      name: "Ekaterina Andersson",
+      username: "ekaterina.andersson",
+      image: "/images/ekaterina.jpeg",
+      imageLink: "art/b9d9cbd0-8747-4a7f-834e-73a670cccd9b",
     },
     {
       name: "Lars-Henrik Milert",
