@@ -45,7 +45,7 @@ export default function AboutMe() {
     {
       name: "Ola Söderlind ",
       title: "Art Coordinator",
-      image: "/staff/artportable_ola.jpg",
+      image: "/staff/artportable_ola.png",
       email: "ola@artportable.com",
     },
     {
@@ -166,7 +166,7 @@ export default function AboutMe() {
                     <img
                       className={s.image}
                       src={person?.image}
-                      alt=""
+                      alt="staff image"
                       title=""
                     />
                   </div>
@@ -185,7 +185,7 @@ export default function AboutMe() {
                     <img
                       className={s.image}
                       src={person?.image}
-                      alt=""
+                      alt="staff image"
                       title=""
                     />
                   </div>
