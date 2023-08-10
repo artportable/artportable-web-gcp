@@ -2,11 +2,9 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      textTransform: "none",
-    },
+    root: {},
     rounded: {
-      borderRadius: "10px",
+      borderRadius: "20px",
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
     },

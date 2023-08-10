@@ -155,78 +155,80 @@ export default function ArtworkListItemDefined({
           </div>
         )}
       </div>
-      <div className={s.titleAndLike}>
-        <div className={s.info}>
-          <Link href={`/profile/@${artwork.Username}`}>
-            <a>
-              <div className={s.name}>
-                {`${artwork.Name} ${artwork.Surname}`}
-              </div>
-            </a>
-          </Link>
-        </div>
-        <div className={s.likeInline}>
-          <div className={s.likeContainer}>
-            <div className={s.flexLikeCount}>
-              <IconButton
-                className={s.likeButton}
-                disableRipple
-                disableFocusRipple
-                onClick={toggleLike}
-              >
-                {likedFilled}
-              </IconButton>
-              <div className={s.likeCounter}>
-                {artwork.Likes > 0 ? artwork.Likes : ""}
+      <div className={s.infoContainer}>
+        <div className={s.titleAndLike}>
+          <div className={s.info}>
+            <Link href={`/profile/@${artwork.Username}`}>
+              <a>
+                <div className={s.name}>
+                  {`${artwork.Name} ${artwork.Surname}`}
+                </div>
+              </a>
+            </Link>
+          </div>
+          <div className={s.likeInline}>
+            <div className={s.likeContainer}>
+              <div className={s.flexLikeCount}>
+                <IconButton
+                  className={s.likeButton}
+                  disableRipple
+                  disableFocusRipple
+                  onClick={toggleLike}
+                >
+                  {likedFilled}
+                </IconButton>
+                <div className={s.likeCounter}>
+                  {artwork.Likes > 0 ? artwork.Likes : ""}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={s.inLine}>
-        <div className={s.price}>
-          {artwork.SoldOut ? (
-            <>
-              <div className={s.soldMark} />
-              {t("common:words.sold")}{" "}
-            </>
-          ) : artwork.Price && artwork.Price != "0" ? (
-            formattedPrice.replace(/,/g, "")
-          ) : (
-            t("priceOnRequest")
-          )}
-        </div>
-        <div>
-          {username.value != artwork.Owner.Username && !artwork.SoldOut && (
-            <Button
-              className={
-                router.locale === Locales.sv
-                  ? s.purchaseRequestButtonSv
-                  : s.purchaseRequestButtonEn
-              }
-              purchaseRequestButton
-              onClick={() => {
-                onPurchaseRequestClick(
-                  artwork.Title,
-                  artwork.Owner.Username,
-                  artwork.Id,
-                  artwork.Owner.SocialId,
-                  bucketUrl + artwork.PrimaryFile.Name
-                );
-                trackGoogleAnalytics(
-                  purchaseRequestAction
-                    ? purchaseRequestAction
-                    : ActionType.PURCHASE_REQUEST_LIST,
-                  CategoryType.BUY
-                );
-              }}
-              variant="outlined"
-              rounded
-              startIcon={<SendIcon color={"inherit"} />}
-            >
-              {t("request")}
-            </Button>
-          )}
+        <div className={s.inLine}>
+          <div className={s.price}>
+            {artwork.SoldOut ? (
+              <>
+                <div className={s.soldMark} />
+                {t("common:words.sold")}{" "}
+              </>
+            ) : artwork.Price && artwork.Price != "0" ? (
+              formattedPrice.replace(/,/g, "")
+            ) : (
+              t("priceOnRequest")
+            )}
+          </div>
+          <div>
+            {username.value != artwork.Owner.Username && !artwork.SoldOut && (
+              <Button
+                className={
+                  router.locale === Locales.sv
+                    ? s.purchaseRequestButtonSv
+                    : s.purchaseRequestButtonEn
+                }
+                purchaseRequestButton
+                onClick={() => {
+                  onPurchaseRequestClick(
+                    artwork.Title,
+                    artwork.Owner.Username,
+                    artwork.Id,
+                    artwork.Owner.SocialId,
+                    bucketUrl + artwork.PrimaryFile.Name
+                  );
+                  trackGoogleAnalytics(
+                    purchaseRequestAction
+                      ? purchaseRequestAction
+                      : ActionType.PURCHASE_REQUEST_LIST,
+                    CategoryType.BUY
+                  );
+                }}
+                variant="outlined"
+                rounded
+                startIcon={<SendIcon color={"inherit"} />}
+              >
+                {t("request")}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </div>

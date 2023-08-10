@@ -134,24 +134,33 @@ export const styles = makeStyles((theme: Theme) =>
       height: "24px",
     },
     purchaseRequestButtonSv: {
-      minWidth: "110px",
-      maxWidth: "110px",
+      minWidth: "125px",
+      maxWidth: "125px",
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       border: "1px solid #FFA7A4",
       backgroundColor: "#FFA7A4",
       color: "white",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
-      fontSize: "10px",
-      fontWeight: "300",
-      fontStyle: "italic",
+      fontSize: "12px",
+
       fontFamily: "gotham",
       "&:hover": {
         borderRadius: "10px",
 
         backgroundColor: "#FF9191",
-        border: "1px solid #FF9191",
+        border: "0px 0px 0px 0px solid #FF9191",
       },
+    },
+    infoContainer: {
+      backgroundColor: "#faf3ee",
+      border: "1px solid #FFA7A4",
+      borderTopColor: "transparent",
+      margin: "3px 1px 1px 1px",
+      padding: "3px 3px 3px 3px",
+      borderRadius: "5px",
+      maxHeight: "70px",
+      minHeight: "70px",
     },
 
     purchaseRequestButtonEn: {
