@@ -25,6 +25,7 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import ChatIcon from "@material-ui/icons/Chat";
 import { RWebShare } from "react-web-share";
 import ShareIcon from "@material-ui/icons/Share";
+import MuiButton from "@material-ui/core/Button";
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -163,73 +164,9 @@ export default function ArtworkListItemDefined({
               </div>
             </a>
           </Link>
-          <div className={s.title}>
-            {artwork.Title ? artwork.Title : t("untitled")}
-            <span className={s.size}>
-              {artwork.MultipleSizes
-                ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
-                : artwork.Width && artwork.Height && artwork.Depth
-                ? " (" +
-                  artwork.Width +
-                  "x" +
-                  artwork.Height +
-                  "x" +
-                  artwork.Depth +
-                  "cm)"
-                : artwork.Width && artwork.Height
-                ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
-                : null}
-            </span>
-          </div>
-          <div className={s.price}>
-            {artwork.SoldOut ? (
-              <>
-                <div className={s.soldMark} />
-                {t("common:words.sold")}{" "}
-              </>
-            ) : artwork.Price && artwork.Price != "0" ? (
-              formattedPrice.replace(/,/g, "")
-            ) : (
-              t("priceOnRequest")
-            )}
-          </div>
         </div>
         <div className={s.likeInline}>
           <div className={s.likeContainer}>
-            <RWebShare
-              data={{
-                text: shareArtworkText,
-                url: artworkUrl,
-                title: shareArtworkTitle,
-              }}
-              onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK)}
-            >
-              <IconButton className={s.shareButton}>
-                <ShareIcon style={{ fontSize: "21px" }} />
-              </IconButton>
-            </RWebShare>
-            <div title={t("common:sendMessage")}>
-              <a>
-                <IconButton
-                  className={s.chatButton}
-                  aria-label="account"
-                  onClick={() => {
-                    redirectIfNotLoggedIn({
-                      pathname: "/messages",
-                      query: {
-                        referTo: artwork.Owner.SocialId,
-                      },
-                    });
-                    trackGoogleAnalytics(
-                      ActionType.SEND_MESSAGE,
-                      CategoryType.INTERACTIVE
-                    );
-                  }}
-                >
-                  <MessageRoundedIcon style={{ fontSize: "23px" }} />
-                </IconButton>
-              </a>
-            </div>
             <div className={s.flexLikeCount}>
               <IconButton
                 className={s.likeButton}
@@ -246,50 +183,51 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
-      <div className={s.purchaseFrameTool}>
-        {username.value != artwork.Owner.Username && !artwork.SoldOut && (
-          <Button
-            className={
-              router.locale === Locales.sv
-                ? s.purchaseRequestButtonSv
-                : s.purchaseRequestButtonEn
-            }
-            purchaseRequestButton
-            onClick={() => {
-              onPurchaseRequestClick(
-                artwork.Title,
-                artwork.Owner.Username,
-                artwork.Id,
-                artwork.Owner.SocialId,
-                bucketUrl + artwork.PrimaryFile.Name
-              );
-              trackGoogleAnalytics(
-                purchaseRequestAction
-                  ? purchaseRequestAction
-                  : ActionType.PURCHASE_REQUEST_LIST,
-                CategoryType.BUY
-              );
-            }}
-            variant="outlined"
-            rounded
-          >
-            {t("request")}
-          </Button>
-        )}
-        {artwork.Width > 0 && artwork.Height > 0 && (
-          <div className={s.roomDiv}>
-            <a href={`/tool/${artwork.Id}`}>
-              <Button
-                className={
-                  router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn
-                }
-                rounded
-              >
-                {t("room")}
-              </Button>
-            </a>
-          </div>
-        )}
+      <div className={s.inLine}>
+        <div className={s.price}>
+          {artwork.SoldOut ? (
+            <>
+              <div className={s.soldMark} />
+              {t("common:words.sold")}{" "}
+            </>
+          ) : artwork.Price && artwork.Price != "0" ? (
+            formattedPrice.replace(/,/g, "")
+          ) : (
+            t("priceOnRequest")
+          )}
+        </div>
+        <div>
+          {username.value != artwork.Owner.Username && !artwork.SoldOut && (
+            <Button
+              className={
+                router.locale === Locales.sv
+                  ? s.purchaseRequestButtonSv
+                  : s.purchaseRequestButtonEn
+              }
+              purchaseRequestButton
+              onClick={() => {
+                onPurchaseRequestClick(
+                  artwork.Title,
+                  artwork.Owner.Username,
+                  artwork.Id,
+                  artwork.Owner.SocialId,
+                  bucketUrl + artwork.PrimaryFile.Name
+                );
+                trackGoogleAnalytics(
+                  purchaseRequestAction
+                    ? purchaseRequestAction
+                    : ActionType.PURCHASE_REQUEST_LIST,
+                  CategoryType.BUY
+                );
+              }}
+              variant="outlined"
+              rounded
+              startIcon={<SendIcon color={"inherit"} />}
+            >
+              {t("request")}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
