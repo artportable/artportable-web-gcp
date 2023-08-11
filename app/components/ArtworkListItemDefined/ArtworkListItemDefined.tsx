@@ -17,7 +17,7 @@ import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from "@material-ui/icons/Send";
 import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import { Badge } from "@material-ui/core";
+import { Badge, Box } from "@material-ui/core";
 import { sv } from "date-fns/locale";
 import { Locales } from "../../models/i18n/locales";
 import { useRedirectToLoginIfNotLoggedIn } from "../../../app/hooks/useRedirectToLoginIfNotLoggedIn";
@@ -25,6 +25,8 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import ChatIcon from "@material-ui/icons/Chat";
 import { RWebShare } from "react-web-share";
 import ShareIcon from "@material-ui/icons/Share";
+import MuiButton from "@material-ui/core/Button";
+import TagChip from "../TagChip/TagChip";
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -36,7 +38,7 @@ export default function ArtworkListItemDefined({
   topActions = undefined,
 }) {
   const s = styles();
-  const { t } = useTranslation(["art", "common"]);
+  const { t } = useTranslation(["art", "common", "tags"]);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
@@ -96,6 +98,8 @@ export default function ArtworkListItemDefined({
   const formattedPrice = priceFormatter.format(artwork.Price);
 
   useEffect(() => {
+    console.log(artwork.Tags);
+
     setIsLiked(artwork?.LikedByMe);
   }, [artwork?.LikedByMe]);
 
@@ -154,33 +158,100 @@ export default function ArtworkListItemDefined({
           </div>
         )}
       </div>
-      <div className={s.titleAndLike}>
-        <div className={s.info}>
-          <Link href={`/profile/@${artwork.Username}`}>
-            <a>
-              <div className={s.name}>
-                {`${artwork.Name} ${artwork.Surname}`}
+      <div className={s.infoContainer}>
+        <div className={s.nameTitleLike}>
+          <div className={s.titleAndLike}>
+            <div className={s.info}>
+              <Link href={`/profile/@${artwork.Username}`}>
+                <a>
+                  <div className={s.name}>
+                    {`${artwork.Name} ${artwork.Surname}`}
+                  </div>
+                </a>
+              </Link>
+            </div>
+            <div className={s.likeInline}>
+              <div className={s.likeContainer}>
+                <div className={s.flexLikeCount}>
+                  <RWebShare
+                    data={{
+                      text: shareArtworkText,
+                      url: artworkUrl,
+                      title: shareArtworkTitle,
+                    }}
+                    onClick={() =>
+                      trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
+                    }
+                  >
+                    <IconButton className={s.shareButton}>
+                      <ShareIcon style={{ fontSize: "21px" }} />
+                    </IconButton>
+                  </RWebShare>
+                  <div title={t("common:sendMessage")}>
+                    <a>
+                      <IconButton
+                        className={s.chatButton}
+                        aria-label="account"
+                        onClick={() => {
+                          redirectIfNotLoggedIn({
+                            pathname: "/messages",
+                            query: {
+                              referTo: artwork.Owner.SocialId,
+                            },
+                          });
+                          trackGoogleAnalytics(
+                            ActionType.SEND_MESSAGE,
+                            CategoryType.INTERACTIVE
+                          );
+                        }}
+                      >
+                        <MessageRoundedIcon style={{ fontSize: "23px" }} />
+                      </IconButton>
+                    </a>
+                  </div>
+                  <IconButton
+                    className={s.likeButton}
+                    disableRipple
+                    disableFocusRipple
+                    onClick={toggleLike}
+                  >
+                    {likedFilled}
+                  </IconButton>
+                  <div className={s.likeCounter}>
+                    {artwork.Likes > 0 ? artwork.Likes : ""}
+                  </div>
+                </div>
               </div>
-            </a>
-          </Link>
-          <div className={s.title}>
-            {artwork.Title ? artwork.Title : t("untitled")}
-            <span className={s.size}>
-              {artwork.MultipleSizes
-                ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
-                : artwork.Width && artwork.Height && artwork.Depth
-                ? " (" +
-                  artwork.Width +
-                  "x" +
-                  artwork.Height +
-                  "x" +
-                  artwork.Depth +
-                  "cm)"
-                : artwork.Width && artwork.Height
-                ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
-                : null}
-            </span>
+            </div>
           </div>
+          <div className={s.titleTagsContainer}>
+            <div className={s.title}>
+              {artwork.Title ? artwork.Title : t("untitled")}
+              <span>
+                {artwork.MultipleSizes
+                  ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
+                  : artwork.Width && artwork.Height && artwork.Depth
+                  ? " (" +
+                    artwork.Width +
+                    "x" +
+                    artwork.Height +
+                    "x" +
+                    artwork.Depth +
+                    "cm)"
+                  : artwork.Width && artwork.Height
+                  ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
+                  : null}
+              </span>
+            </div>
+            <div className={s.tagsContainer}>
+              {Array.from(artwork.Tags).map((tag: string) => {
+                return <div className={s.smallTag}>{tag}</div>;
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className={s.inLine}>
           <div className={s.price}>
             {artwork.SoldOut ? (
               <>
@@ -193,103 +264,55 @@ export default function ArtworkListItemDefined({
               t("priceOnRequest")
             )}
           </div>
-        </div>
-        <div className={s.likeInline}>
-          <div className={s.likeContainer}>
-            <RWebShare
-              data={{
-                text: shareArtworkText,
-                url: artworkUrl,
-                title: shareArtworkTitle,
-              }}
-              onClick={() => trackGoogleAnalytics(ActionType.SHARE_ARTWORK)}
-            >
-              <IconButton className={s.shareButton}>
-                <ShareIcon style={{ fontSize: "21px" }} />
-              </IconButton>
-            </RWebShare>
-            <div title={t("common:sendMessage")}>
-              <a>
-                <IconButton
-                  className={s.chatButton}
-                  aria-label="account"
-                  onClick={() => {
-                    redirectIfNotLoggedIn({
-                      pathname: "/messages",
-                      query: {
-                        referTo: artwork.Owner.SocialId,
-                      },
-                    });
-                    trackGoogleAnalytics(
-                      ActionType.SEND_MESSAGE,
-                      CategoryType.INTERACTIVE
-                    );
-                  }}
-                >
-                  <MessageRoundedIcon style={{ fontSize: "23px" }} />
-                </IconButton>
-              </a>
-            </div>
-            <div className={s.flexLikeCount}>
-              <IconButton
-                className={s.likeButton}
-                disableRipple
-                disableFocusRipple
-                onClick={toggleLike}
-              >
-                {likedFilled}
-              </IconButton>
-              <div className={s.likeCounter}>
-                {artwork.Likes > 0 ? artwork.Likes : ""}
+
+          <div className={s.rum}>
+            {artwork.Width > 0 && artwork.Height > 0 && (
+              <div>
+                <a href={`/tool/${artwork.Id}`}>
+                  <Button
+                    className={
+                      router.locale === Locales.sv
+                        ? s.roomButtonSv
+                        : s.roomButtonEn
+                    }
+                    rounded
+                  >
+                    {t("room")}
+                  </Button>
+                </a>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={s.purchaseFrameTool}>
-        {username.value != artwork.Owner.Username && !artwork.SoldOut && (
-          <Button
-            className={
-              router.locale === Locales.sv
-                ? s.purchaseRequestButtonSv
-                : s.purchaseRequestButtonEn
-            }
-            purchaseRequestButton
-            onClick={() => {
-              onPurchaseRequestClick(
-                artwork.Title,
-                artwork.Owner.Username,
-                artwork.Id,
-                artwork.Owner.SocialId,
-                bucketUrl + artwork.PrimaryFile.Name
-              );
-              trackGoogleAnalytics(
-                purchaseRequestAction
-                  ? purchaseRequestAction
-                  : ActionType.PURCHASE_REQUEST_LIST,
-                CategoryType.BUY
-              );
-            }}
-            variant="outlined"
-            rounded
-          >
-            {t("request")}
-          </Button>
-        )}
-        {artwork.Width > 0 && artwork.Height > 0 && (
-          <div className={s.roomDiv}>
-            <a href={`/tool/${artwork.Id}`}>
+            )}
+            {username.value != artwork.Owner.Username && !artwork.SoldOut && (
               <Button
                 className={
-                  router.locale === Locales.sv ? s.roomButtonSv : s.roomButtonEn
+                  router.locale === Locales.sv
+                    ? s.purchaseRequestButtonSv
+                    : s.purchaseRequestButtonEn
                 }
+                purchaseRequestButton
+                onClick={() => {
+                  onPurchaseRequestClick(
+                    artwork.Title,
+                    artwork.Owner.Username,
+                    artwork.Id,
+                    artwork.Owner.SocialId,
+                    bucketUrl + artwork.PrimaryFile.Name
+                  );
+                  trackGoogleAnalytics(
+                    purchaseRequestAction
+                      ? purchaseRequestAction
+                      : ActionType.PURCHASE_REQUEST_LIST,
+                    CategoryType.BUY
+                  );
+                }}
+                variant="outlined"
                 rounded
               >
-                {t("room")}
+                {t("request")}
               </Button>
-            </a>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
