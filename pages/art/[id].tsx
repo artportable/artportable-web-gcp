@@ -413,15 +413,19 @@ export default function ArtworkPage(props) {
                 )}
               </Box>
               <Box className={s.tagsContainer} marginBottom={2}>
-                {Array.from(artwork.data.Tags).map((tag: string) => {
+                {Array.from(artwork.Tags).map((tag: string) => {
+                  console.log(
+                    "Translating tag:",
+                    tag,
+                    "Result:",
+                    t(`tags.${tag.toLowerCase()}`, tag)
+                  );
                   return (
-                    <TagChip
-                      key={tag}
-                      title={tag}
-                      onChipClick={null}
-                      limitReached={true}
-                      variant="outlined"
-                    ></TagChip>
+                    <div key={tag}>
+                      <div className={s.smallTag}>
+                        {t(`tags.${tag.toLowerCase()}`, tag)}
+                      </div>
+                    </div>
                   );
                 })}
               </Box>

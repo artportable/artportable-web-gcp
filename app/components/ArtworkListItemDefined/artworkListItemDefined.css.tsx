@@ -3,6 +3,16 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        smPlus: 820,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
     container: {
       display: "inline-block",
       "&:hover $chatButton": {
@@ -13,6 +23,14 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: "visible",
         opacity: 1,
       },
+      "&:hover $title": {
+        visibility: "hidden",
+        opacity: 1,
+      },
+      "&:hover $tagsContainer": {
+        visibility: "visible",
+        opacity: 1,
+      },
     },
     imageContainer: {
       borderRadius: "2px",
@@ -20,14 +38,14 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: "hidden",
       textAlign: "center",
       "& > div": {
-        visibility: "hidden", // Start as hidden
-        opacity: 0, // Start fully transparent
-        transition: "opacity 0.3s linear", // Add transition for the opacity
+        visibility: "hidden",
+        opacity: 0,
+        transition: "opacity 0.3s linear",
       },
 
       "&:hover > div": {
-        visibility: "visible", // Visible on hover
-        opacity: 1, // Fully opaque on hover
+        visibility: "visible",
+        opacity: 1,
       },
     },
     editOverlay: {
@@ -111,7 +129,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "0.95rem",
       height: "1.3rem",
       marginBottom: "5px",
+      [theme.breakpoints.down("sm")]: {
+        visibility: "hidden",
+        opacity: 0,
+      },
     },
+
     price: {
       fontSize: "0.8rem",
       lineHeight: "1rem",
@@ -203,29 +226,88 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     purchaseRequestButtonEn: {
+      minWidth: "100px",
+      maxWidth: "100px",
+      maxHeight: "28px",
+      minHeight: "28px",
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
-      border: "1px solid #FFA7A4",
-      backgroundColor: "#FFA7A4",
+      margin: "1px 1px 1px 1px",
+      border: "1px solid #c67777",
+      backgroundColor: "#c67777",
       color: "white",
-      boxShadow: "1",
+      filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+      fontSize: "12px",
+
+      fontFamily: "gotham",
+      "&:hover": {
+        border: "1px solid #FF9191",
+        backgroundColor: "#FF9191",
+      },
     },
     inLine: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      marginTop: "10px",
     },
 
     roomButtonSv: {
-      marginTop: "5px",
-      padding: theme.spacing(0, 0, 0, 0),
-      fontWeight: theme.typography.fontWeightMedium,
-      border: "1px solid black",
-      color: "black",
-      "&.MuiButton-root": {
-        minWidth: "48px",
+      minWidth: "50px",
+      maxWidth: "50px",
+      maxHeight: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 2, 0, 2),
+      margin: "1px 1px 1px 1px",
+      border: "1px solid #c67777",
+      backgroundColor: "transparent",
+      color: "#FF9191",
+
+      fontSize: "10px",
+
+      fontFamily: "gotham",
+      "&:hover": {
+        border: "1px solid #FF9191",
+        color: "white",
+        backgroundColor: "#FF9191",
       },
     },
+    titleTagsContainer: {
+      position: "relative",
+    },
+
+    tagsContainer: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      display: "flex",
+      visibility: "hidden",
+      opacity: 0,
+      transition: "opacity 0.3s, visibility 0.3s",
+      flexWrap: "wrap",
+      maxWidth: "100%",
+      [theme.breakpoints.down("sm")]: {
+        visibility: "visible",
+        opacity: 1,
+      },
+    },
+
+    smallTag: {
+      backgroundColor: "transparent",
+      border: "1px solid #c67777",
+      margin: "2px",
+      fontSize: "10px",
+      paddingLeft: "3px",
+      paddingRight: "3px",
+      borderRadius: "20px",
+      color: "#c67777",
+      maxWidth: "100px", // Or whatever max width you prefer for individual tags
+      overflow: "hidden", // Hide overflowed text
+      whiteSpace: "nowrap", // Prevent text from breaking into multiple lines
+      textOverflow: "ellipsis", // Show ellipsis for overflowed text
+    },
+
     roomButtonEn: {
       marginTop: "5px",
       padding: theme.spacing(0, 2, 0, 2),

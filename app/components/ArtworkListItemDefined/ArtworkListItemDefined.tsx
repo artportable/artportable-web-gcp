@@ -17,7 +17,7 @@ import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from "@material-ui/icons/Send";
 import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import { Badge } from "@material-ui/core";
+import { Badge, Box } from "@material-ui/core";
 import { sv } from "date-fns/locale";
 import { Locales } from "../../models/i18n/locales";
 import { useRedirectToLoginIfNotLoggedIn } from "../../../app/hooks/useRedirectToLoginIfNotLoggedIn";
@@ -26,6 +26,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 import { RWebShare } from "react-web-share";
 import ShareIcon from "@material-ui/icons/Share";
 import MuiButton from "@material-ui/core/Button";
+import TagChip from "../TagChip/TagChip";
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -37,7 +38,7 @@ export default function ArtworkListItemDefined({
   topActions = undefined,
 }) {
   const s = styles();
-  const { t } = useTranslation(["art", "common"]);
+  const { t } = useTranslation(["art", "common", "tags"]);
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
@@ -97,6 +98,8 @@ export default function ArtworkListItemDefined({
   const formattedPrice = priceFormatter.format(artwork.Price);
 
   useEffect(() => {
+    console.log(artwork.Tags);
+
     setIsLiked(artwork?.LikedByMe);
   }, [artwork?.LikedByMe]);
 
@@ -221,23 +224,30 @@ export default function ArtworkListItemDefined({
               </div>
             </div>
           </div>
-          <div className={s.title}>
-            {artwork.Title ? artwork.Title : t("untitled")}
-            <span>
-              {artwork.MultipleSizes
-                ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
-                : artwork.Width && artwork.Height && artwork.Depth
-                ? " (" +
-                  artwork.Width +
-                  "x" +
-                  artwork.Height +
-                  "x" +
-                  artwork.Depth +
-                  "cm)"
-                : artwork.Width && artwork.Height
-                ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
-                : null}
-            </span>
+          <div className={s.titleTagsContainer}>
+            <div className={s.title}>
+              {artwork.Title ? artwork.Title : t("untitled")}
+              <span>
+                {artwork.MultipleSizes
+                  ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
+                  : artwork.Width && artwork.Height && artwork.Depth
+                  ? " (" +
+                    artwork.Width +
+                    "x" +
+                    artwork.Height +
+                    "x" +
+                    artwork.Depth +
+                    "cm)"
+                  : artwork.Width && artwork.Height
+                  ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
+                  : null}
+              </span>
+            </div>
+            <div className={s.tagsContainer}>
+              {Array.from(artwork.Tags).map((tag: string) => {
+                return <div className={s.smallTag}>{tag}</div>;
+              })}
+            </div>
           </div>
         </div>
 
