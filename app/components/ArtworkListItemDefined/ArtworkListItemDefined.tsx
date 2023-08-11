@@ -156,34 +156,91 @@ export default function ArtworkListItemDefined({
         )}
       </div>
       <div className={s.infoContainer}>
-        <div className={s.titleAndLike}>
-          <div className={s.info}>
-            <Link href={`/profile/@${artwork.Username}`}>
-              <a>
-                <div className={s.name}>
-                  {`${artwork.Name} ${artwork.Surname}`}
-                </div>
-              </a>
-            </Link>
-          </div>
-          <div className={s.likeInline}>
-            <div className={s.likeContainer}>
-              <div className={s.flexLikeCount}>
-                <IconButton
-                  className={s.likeButton}
-                  disableRipple
-                  disableFocusRipple
-                  onClick={toggleLike}
-                >
-                  {likedFilled}
-                </IconButton>
-                <div className={s.likeCounter}>
-                  {artwork.Likes > 0 ? artwork.Likes : ""}
+        <div className={s.nameTitleLike}>
+          <div className={s.titleAndLike}>
+            <div className={s.info}>
+              <Link href={`/profile/@${artwork.Username}`}>
+                <a>
+                  <div className={s.name}>
+                    {`${artwork.Name} ${artwork.Surname}`}
+                  </div>
+                </a>
+              </Link>
+            </div>
+            <div className={s.likeInline}>
+              <div className={s.likeContainer}>
+                <div className={s.flexLikeCount}>
+                  <RWebShare
+                    data={{
+                      text: shareArtworkText,
+                      url: artworkUrl,
+                      title: shareArtworkTitle,
+                    }}
+                    onClick={() =>
+                      trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
+                    }
+                  >
+                    <IconButton className={s.shareButton}>
+                      <ShareIcon style={{ fontSize: "21px" }} />
+                    </IconButton>
+                  </RWebShare>
+                  <div title={t("common:sendMessage")}>
+                    <a>
+                      <IconButton
+                        className={s.chatButton}
+                        aria-label="account"
+                        onClick={() => {
+                          redirectIfNotLoggedIn({
+                            pathname: "/messages",
+                            query: {
+                              referTo: artwork.Owner.SocialId,
+                            },
+                          });
+                          trackGoogleAnalytics(
+                            ActionType.SEND_MESSAGE,
+                            CategoryType.INTERACTIVE
+                          );
+                        }}
+                      >
+                        <MessageRoundedIcon style={{ fontSize: "23px" }} />
+                      </IconButton>
+                    </a>
+                  </div>
+                  <IconButton
+                    className={s.likeButton}
+                    disableRipple
+                    disableFocusRipple
+                    onClick={toggleLike}
+                  >
+                    {likedFilled}
+                  </IconButton>
+                  <div className={s.likeCounter}>
+                    {artwork.Likes > 0 ? artwork.Likes : ""}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className={s.title}>
+            {artwork.Title ? artwork.Title : t("untitled")}
+            <span>
+              {artwork.MultipleSizes
+                ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
+                : artwork.Width && artwork.Height && artwork.Depth
+                ? " (" +
+                  artwork.Width +
+                  "x" +
+                  artwork.Height +
+                  "x" +
+                  artwork.Depth +
+                  "cm)"
+                : artwork.Width && artwork.Height
+                ? " (" + artwork.Width + "x" + artwork.Height + "cm)"
+                : null}
+            </span>
+          </div>
         </div>
+
         <div className={s.inLine}>
           <div className={s.price}>
             {artwork.SoldOut ? (
@@ -197,7 +254,24 @@ export default function ArtworkListItemDefined({
               t("priceOnRequest")
             )}
           </div>
-          <div>
+
+          <div className={s.rum}>
+            {artwork.Width > 0 && artwork.Height > 0 && (
+              <div>
+                <a href={`/tool/${artwork.Id}`}>
+                  <Button
+                    className={
+                      router.locale === Locales.sv
+                        ? s.roomButtonSv
+                        : s.roomButtonEn
+                    }
+                    rounded
+                  >
+                    {t("room")}
+                  </Button>
+                </a>
+              </div>
+            )}
             {username.value != artwork.Owner.Username && !artwork.SoldOut && (
               <Button
                 className={
@@ -223,7 +297,6 @@ export default function ArtworkListItemDefined({
                 }}
                 variant="outlined"
                 rounded
-                startIcon={<SendIcon color={"inherit"} />}
               >
                 {t("request")}
               </Button>

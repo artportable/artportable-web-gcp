@@ -5,17 +5,29 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: "inline-block",
+      "&:hover $chatButton": {
+        visibility: "visible",
+        opacity: 1,
+      },
+      "&:hover $shareButton": {
+        visibility: "visible",
+        opacity: 1,
+      },
     },
     imageContainer: {
       borderRadius: "2px",
       position: "relative",
       overflow: "hidden",
       textAlign: "center",
-      "& img": {
-        display: "block",
+      "& > div": {
+        visibility: "hidden", // Start as hidden
+        opacity: 0, // Start fully transparent
+        transition: "opacity 0.3s linear", // Add transition for the opacity
       },
+
       "&:hover > div": {
-        visibility: "visible",
+        visibility: "visible", // Visible on hover
+        opacity: 1, // Fully opaque on hover
       },
     },
     editOverlay: {
@@ -28,11 +40,35 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       boxShadow: `${theme.palette.common.black} 0px 0px 40px 25px`,
     },
+
     topActions: {
       position: "absolute",
       top: 0,
       right: 0,
       padding: theme.spacing(1),
+    },
+
+    bottomActionsContainer: {
+      background: "white",
+      visibility: "hidden",
+    },
+
+    bottomActions: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      width: "100%",
+      background: "#fdf9f7", // semi-transparent background
+      borderRadius: "1px",
+      padding: "5px", // adjust as necessary
+      color: "black", // text color, adjust as necessary
+      filter: "drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.4))",
+    },
+    iconInfoContainer: {
+      display: "flex",
     },
     titleAndLike: {
       display: "flex",
@@ -43,6 +79,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.h6.fontSize,
       // placeItems: 'center'
     },
+    nameTitleLike: {},
     likeInline: {
       display: "inline-block",
       float: "right",
@@ -88,6 +125,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "15px",
       height: "15px",
       marginRight: "5px",
+      display: "flex",
     },
     size: {
       fontSize: "0.8rem",
@@ -114,6 +152,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     chatButton: {
+      visibility: "hidden",
+      opacity: 0,
+      transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
       fontSize: "0.5rem",
       color: "#C67777",
@@ -122,6 +163,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     shareButton: {
+      visibility: "hidden",
+      opacity: 0,
+      transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
       fontSize: "0.5rem",
       color: "#000000",
@@ -134,33 +178,28 @@ export const styles = makeStyles((theme: Theme) =>
       height: "24px",
     },
     purchaseRequestButtonSv: {
-      minWidth: "125px",
-      maxWidth: "125px",
+      minWidth: "100px",
+      maxWidth: "100px",
+      maxHeight: "28px",
+      minHeight: "28px",
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
-      border: "1px solid #FFA7A4",
-      backgroundColor: "#FFA7A4",
+      margin: "1px 1px 1px 1px",
+      border: "1px solid #c67777",
+      backgroundColor: "#c67777",
       color: "white",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
       fontSize: "12px",
 
       fontFamily: "gotham",
       "&:hover": {
-        borderRadius: "10px",
-
+        border: "1px solid #FF9191",
         backgroundColor: "#FF9191",
-        border: "0px 0px 0px 0px solid #FF9191",
       },
     },
     infoContainer: {
-      backgroundColor: "#faf3ee",
-      border: "1px solid #FFA7A4",
-      borderTopColor: "transparent",
-      margin: "3px 1px 1px 1px",
-      padding: "3px 3px 3px 3px",
-      borderRadius: "5px",
-      maxHeight: "70px",
-      minHeight: "70px",
+      maxHeight: "100px",
+      minHeight: "100px",
     },
 
     purchaseRequestButtonEn: {
@@ -175,7 +214,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "0px 0px 0px 0px",
     },
 
     roomButtonSv: {
@@ -214,10 +252,11 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
     },
-    roomDiv: {
+    rum: {
       display: "flex",
-      justifyContent: "flex-end",
-      width: "100%",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "5px",
     },
   })
 );
