@@ -33,9 +33,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:hover $purchaseRequestButtonSv": {
         backgroundColor: "#FF9191",
+        border: "1px solid #FF9191",
       },
       "&:hover $purchaseRequestButtonEn": {
         backgroundColor: "#FF9191",
+        border: "1px solid #FF9191",
       },
     },
     imageContainer: {
@@ -260,7 +262,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "space-between",
       alignItems: "flex-start",
-      marginTop: "10px",
+      marginTop: "20px",
+      position: "relative",
     },
 
     roomButtonSv: {
@@ -286,6 +289,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleTagsContainer: {
       position: "relative",
+      maxHeight: "100%",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      maxWidth: "100%",
+      overFlow: "hidden",
     },
 
     tagsContainer: {
@@ -297,7 +305,10 @@ export const styles = makeStyles((theme: Theme) =>
       opacity: 0,
       transition: "opacity 0.3s, visibility 0.3s",
       flexWrap: "wrap",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
       maxWidth: "100%",
+      overFlow: "hidden",
       [theme.breakpoints.down("sm")]: {
         visibility: "visible",
         opacity: 1,
@@ -313,10 +324,11 @@ export const styles = makeStyles((theme: Theme) =>
       paddingRight: "3px",
       borderRadius: "20px",
       color: "#c67777",
-      maxWidth: "100px", // Or whatever max width you prefer for individual tags
-      overflow: "hidden", // Hide overflowed text
-      whiteSpace: "nowrap", // Prevent text from breaking into multiple lines
-      textOverflow: "ellipsis", // Show ellipsis for overflowed text
+
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      maxWidth: "100%",
+      overFlow: "hidden",
     },
 
     roomButtonEn: {

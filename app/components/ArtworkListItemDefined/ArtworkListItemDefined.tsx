@@ -267,22 +267,6 @@ export default function ArtworkListItemDefined({
           </div>
 
           <div className={s.rum}>
-            {artwork.Width > 0 && artwork.Height > 0 && (
-              <div>
-                <a href={`/tool/${artwork.Id}`}>
-                  <Button
-                    className={
-                      router.locale === Locales.sv
-                        ? s.roomButtonSv
-                        : s.roomButtonEn
-                    }
-                    rounded
-                  >
-                    {t("room")}
-                  </Button>
-                </a>
-              </div>
-            )}
             {username.value != artwork.Owner.Username && !artwork.SoldOut && (
               <Button
                 className={
