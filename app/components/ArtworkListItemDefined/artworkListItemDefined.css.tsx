@@ -31,6 +31,12 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: "visible",
         opacity: 1,
       },
+      "&:hover $purchaseRequestButtonSv": {
+        backgroundColor: "#FF9191",
+      },
+      "&:hover $purchaseRequestButtonEn": {
+        backgroundColor: "#FF9191",
+      },
     },
     imageContainer: {
       borderRadius: "2px",
@@ -101,7 +107,7 @@ export const styles = makeStyles((theme: Theme) =>
     likeInline: {
       display: "inline-block",
       float: "right",
-      height: "30px",
+      height: "12px",
     },
     likeContainer: {
       display: "flex",
@@ -133,6 +139,11 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: "hidden",
         opacity: 0,
       },
+    },
+
+    sizesArt: {
+      fontStyle: "normal",
+      fontSize: "0.75rem",
     },
 
     price: {
@@ -248,7 +259,7 @@ export const styles = makeStyles((theme: Theme) =>
     inLine: {
       display: "flex",
       justifyContent: "space-between",
-      alignItems: "center",
+      alignItems: "flex-start",
       marginTop: "10px",
     },
 
@@ -309,14 +320,22 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     roomButtonEn: {
-      marginTop: "5px",
+      minWidth: "50px",
+      maxWidth: "50px",
+      maxHeight: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
-      fontWeight: theme.typography.fontWeightMedium,
-      border: "1px solid black",
-      color: "black",
-      "&.MuiButton-root": {
-        minWidth: "48px",
-        maxWidth: "58px",
+      margin: "1px 1px 1px 1px",
+      border: "1px solid #c67777",
+      backgroundColor: "transparent",
+      color: "#FF9191",
+      fontSize: "10px",
+      fontFamily: "gotham",
+      "&:hover": {
+        border: "1px solid #FF9191",
+        color: "white",
+        backgroundColor: "#FF9191",
       },
     },
 
