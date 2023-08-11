@@ -38,7 +38,8 @@ export default function ArtworkListItemDefined({
   topActions = undefined,
 }) {
   const s = styles();
-  const { t } = useTranslation(["art", "common", "tags"]);
+  const { t } = useTranslation(["art", "common"]);
+
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
@@ -227,7 +228,7 @@ export default function ArtworkListItemDefined({
           <div className={s.titleTagsContainer}>
             <div className={s.title}>
               {artwork.Title ? artwork.Title : t("untitled")}
-              <span>
+              <span className={s.sizesArt}>
                 {artwork.MultipleSizes
                   ? " (" + t("common:words.multipleSizes").toLowerCase() + ")"
                   : artwork.Width && artwork.Height && artwork.Depth
@@ -266,22 +267,6 @@ export default function ArtworkListItemDefined({
           </div>
 
           <div className={s.rum}>
-            {artwork.Width > 0 && artwork.Height > 0 && (
-              <div>
-                <a href={`/tool/${artwork.Id}`}>
-                  <Button
-                    className={
-                      router.locale === Locales.sv
-                        ? s.roomButtonSv
-                        : s.roomButtonEn
-                    }
-                    rounded
-                  >
-                    {t("room")}
-                  </Button>
-                </a>
-              </div>
-            )}
             {username.value != artwork.Owner.Username && !artwork.SoldOut && (
               <Button
                 className={
