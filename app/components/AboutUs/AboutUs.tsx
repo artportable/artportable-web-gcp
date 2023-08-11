@@ -68,7 +68,7 @@ export default function AboutMe() {
     },
     {
       name: "Massi Wararoodi",
-      title: "Web Developer",
+      title: "Software Developer",
       image: "/staff/artportable_grey.jpg",
       email: "",
     },
