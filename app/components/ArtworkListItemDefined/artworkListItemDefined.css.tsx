@@ -261,8 +261,8 @@ export const styles = makeStyles((theme: Theme) =>
     inLine: {
       display: "flex",
       justifyContent: "space-between",
-      alignItems: "flex-start",
-      marginTop: "20px",
+      alignItems: "center",
+      marginTop: "5px",
       position: "relative",
     },
 
@@ -289,11 +289,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleTagsContainer: {
       position: "relative",
-      maxHeight: "100%",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
       maxWidth: "100%",
-      overFlow: "hidden",
     },
 
     tagsContainer: {
@@ -324,11 +320,10 @@ export const styles = makeStyles((theme: Theme) =>
       paddingRight: "3px",
       borderRadius: "20px",
       color: "#c67777",
-
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
-      maxWidth: "100%",
-      overFlow: "hidden",
+      maxWidth: "100px", // Or whatever max width you prefer for individual tags
+      overflow: "hidden", // Hide overflowed text
+      whiteSpace: "nowrap", // Prevent text from breaking into multiple lines
+      textOverflow: "ellipsis", // Show ellipsis for overflowed text
     },
 
     roomButtonEn: {

@@ -1,31 +1,40 @@
-import React, { useState } from 'react';
-import { Chip } from '@material-ui/core'
-import { LocalOffer } from '@material-ui/icons';
+import React, { useState } from "react";
+import { Chip } from "@material-ui/core";
+import { LocalOffer } from "@material-ui/icons";
 
-import { styles } from './tagChip.css';
-import { useTranslation } from 'next-i18next';
+import { styles } from "./tagChip.css";
+import { useTranslation } from "next-i18next";
 
-export default function TagChip({title, onChipClick, limitReached, ...muiButtonProps}) {
+export default function TagChip({
+  title,
+  onChipClick,
+  limitReached,
+  isSmall,
+  ...muiButtonProps
+}) {
   const s = styles();
-  const { t } = useTranslation('tags');
+  const { t } = useTranslation("tags");
   const [isSelected, setIsSelected] = useState(false);
 
+  const chipClass = isSmall ? s.smallTag : s.chip;
+
   const onClick = () => {
-    if (limitReached && !isSelected)
-      return;
+    if (limitReached && !isSelected) return;
 
     onChipClick(title, !isSelected);
     setIsSelected(!isSelected);
-  }
+  };
 
   return (
     <Chip
       {...muiButtonProps}
       label={t(title)}
       key={title}
-      className={s.chip}
+      className={chipClass}
       size="small"
-      color= {onChipClick === null ? 'primary' : (isSelected ? "primary" : "default")}
+      color={
+        onChipClick === null ? "primary" : isSelected ? "primary" : "default"
+      }
       clickable={onChipClick !== null}
       onClick={onClick}
     />
