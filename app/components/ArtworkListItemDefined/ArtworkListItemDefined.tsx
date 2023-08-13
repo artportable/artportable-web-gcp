@@ -246,12 +246,7 @@ export default function ArtworkListItemDefined({
             </div>
             <div className={s.tagsContainer}>
               {Array.from(artwork.Tags)
-                .slice(
-                  0,
-                  artwork.Tags.some((tag) => tag.length > 8)
-                    ? 2
-                    : artwork.Tags.length
-                )
+                .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
                 .map((tag: string) => {
                   return (
                     <TagChip
