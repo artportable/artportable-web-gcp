@@ -17,7 +17,7 @@ import { capitalizeFirst } from "../../../app/utils/util";
 import SendIcon from "@material-ui/icons/Send";
 import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import { Badge, Box } from "@material-ui/core";
+import { Badge, Box, Chip } from "@material-ui/core";
 import { sv } from "date-fns/locale";
 import { Locales } from "../../models/i18n/locales";
 import { useRedirectToLoginIfNotLoggedIn } from "../../../app/hooks/useRedirectToLoginIfNotLoggedIn";
@@ -99,7 +99,7 @@ export default function ArtworkListItemDefined({
   const formattedPrice = priceFormatter.format(artwork.Price);
 
   useEffect(() => {
-    console.log(artwork.Tags);
+    console.log(artwork);
 
     setIsLiked(artwork?.LikedByMe);
   }, [artwork?.LikedByMe]);
@@ -245,9 +245,20 @@ export default function ArtworkListItemDefined({
               </span>
             </div>
             <div className={s.tagsContainer}>
-              {Array.from(artwork.Tags).map((tag: string) => {
-                return <div className={s.smallTag}>{tag}</div>;
-              })}
+              {Array.from(artwork.Tags)
+                .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
+                .map((tag: string) => {
+                  return (
+                    <TagChip
+                      key={tag}
+                      title={tag}
+                      onChipClick={null}
+                      limitReached={true}
+                      variant="outlined"
+                      isSmall={true}
+                    ></TagChip>
+                  );
+                })}
             </div>
           </div>
         </div>
