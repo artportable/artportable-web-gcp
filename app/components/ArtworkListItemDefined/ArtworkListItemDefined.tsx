@@ -99,8 +99,6 @@ export default function ArtworkListItemDefined({
   const formattedPrice = priceFormatter.format(artwork.Price);
 
   useEffect(() => {
-    console.log(artwork);
-
     setIsLiked(artwork?.LikedByMe);
   }, [artwork?.LikedByMe]);
 
