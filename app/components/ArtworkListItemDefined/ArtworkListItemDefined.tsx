@@ -156,7 +156,7 @@ export default function ArtworkListItemDefined({
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5001/api/artists/${artwork?.Username}`
+          `https://api.artportable.com/api/artists/${artwork?.Username}`
         );
         if (response.ok) {
           const jsonData = await response.json();
