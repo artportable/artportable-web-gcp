@@ -45,6 +45,7 @@ export default function ArtworkListItemDefined({
 
   const { isSignedIn, username } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const publicUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
@@ -156,7 +157,7 @@ export default function ArtworkListItemDefined({
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://api.artportable.com/api/artists/${artwork?.Username}`
+          `${publicUrl}/api/artists/${artwork?.Username}`
         );
         if (response.ok) {
           const jsonData = await response.json();
