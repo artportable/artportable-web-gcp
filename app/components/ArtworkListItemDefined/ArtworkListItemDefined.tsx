@@ -136,14 +136,44 @@ export default function ArtworkListItemDefined({
 
   if (width === null || height === null) return <></>;
 
-  function isNewUser(publishedDate) {
+  const [data, setData] = useState(null);
+  const [isNew, setIsNew] = useState(false);
+
+  function isNewUser(createdDate) {
+    if (!createdDate) return false;
+
+    const truncatedDate = createdDate.slice(0, 23) + "Z";
+
     const oneMonthInMilliseconds = 30 * 24 * 60 * 60 * 1000;
     const currentDate = new Date();
-    const dateDifference =
-      currentDate.getTime() - new Date(publishedDate).getTime();
+    const parsedDate = new Date(truncatedDate);
+    const dateDifference = currentDate.getTime() - parsedDate.getTime();
 
     return dateDifference <= oneMonthInMilliseconds;
   }
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://api.artportable.com/api/artists/${artwork?.Username}`
+        );
+        if (response.ok) {
+          const jsonData = await response.json();
+          setData(jsonData);
+          if (isNewUser(jsonData.Created)) {
+            setIsNew(true);
+          }
+        } else {
+          console.error(response.statusText);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
+  }, [artwork?.Username]);
 
   return (
     <div className={s.container}>
@@ -161,9 +191,7 @@ export default function ArtworkListItemDefined({
           </a>
         </Link>
         <div className={s.newUserWrapper}>
-          {isNewUser(artwork.Published) && (
-            <div className={s.newUser}>{t("common:newMember")}</div>
-          )}
+          {isNew && <div className={s.newUser}>{t("common:newMember")}</div>}
         </div>
 
         {topActions && (
