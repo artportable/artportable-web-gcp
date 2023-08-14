@@ -85,6 +85,12 @@ export default function IndexHero() {
       imageLink: "art/9e9bc621-c439-4748-81c3-90b1287d5458",
     },
     {
+      name: "Sofia Lagerblad",
+      username: "sofia.lagerblad",
+      image: "/images/sofia.jpg",
+      imageLink: "art/66c09d0d-8c73-413a-99fc-ab7535389a38",
+    },
+    {
       name: "Gunnila Svärd",
       username: "gunilla.svard",
       image: "/images/gunilla.jpg",
