@@ -79,22 +79,22 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Ralph Castellan",
-      username: "rc-art",
-      image: "/images/ralph.jpeg",
-      imageLink: "art/6ad44f75-bd20-447d-8082-71bb415a3429",
+      name: "Hesho Serray",
+      username: "hesho.serray",
+      image: "/images/hesho.jpg",
+      imageLink: "art/9e9bc621-c439-4748-81c3-90b1287d5458",
     },
     {
-      name: "Dana Yamini",
-      username: "dana.yamini",
-      image: "/images/dana.jpeg",
-      imageLink: "art/0e01816a-983c-40b6-87a1-9c6610388063",
+      name: "Gunnila Svärd",
+      username: "gunilla.svard",
+      image: "/images/gunilla.jpg",
+      imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
     },
     {
-      name: "Ekaterina Andersson",
-      username: "ekaterina.andersson",
-      image: "/images/ekaterina.jpeg",
-      imageLink: "art/b9d9cbd0-8747-4a7f-834e-73a670cccd9b",
+      name: "Charlotte Hansson",
+      username: "charlottehansson",
+      image: "/images/charlotte.jpg",
+      imageLink: "art/ab142549-e09a-4bc4-8903-3e68974e3d83",
     },
     {
       name: "Lars-Henrik Milert",
@@ -102,7 +102,6 @@ export default function IndexHero() {
       image: "/images/millert-print.jpeg",
       imageLink: "art/e69df2e8-6fb6-4665-927f-fbfb73a93085",
     },
- 
   ];
 
   useEffect(() => {
