@@ -145,18 +145,18 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex", // Using flexbox for centering
       alignItems: "center", // Vertical centering
       justifyContent: "center", // Horizontal centering
-      fontSize: "8px",
-      backgroundColor: "white",
+      fontSize: "12px",
+      backgroundColor: "rgba(220, 220, 220, 0.7)",
       fontStyle: "italic",
       fontWeight: "bold",
       borderRadius: "20px",
-      color: "#02a16c",
+      color: "black",
       flexShrink: 0,
       font: "Gotham",
       flexGrow: 0,
       padding: "4px 4px 4px 4px",
       boxShadow:
-        "4px 2px 4px rgba(0, 0, 0, 0.4), 4px 2px 8px rgba(0, 0, 0, 0.4)", // Shadow effect
+        "4px 2px 4px rgba(0, 0, 0, 0.5), 4px 2px 8px rgba(0, 0, 0, 0.5)",
     },
 
     info: {
