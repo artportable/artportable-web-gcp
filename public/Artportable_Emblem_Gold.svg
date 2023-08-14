@@ -3,6 +3,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 147.97 143.59" style="enable-background:new 0 0 147.97 143.59;" xml:space="preserve">
 <style type="text/css">
+  <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
 	.st0{fill:#DAA620;}
 </style>
 <path class="st0" d="M22.69,53.37c-3.02,0-4.9-2.18-4.9-5.69c0-3.47,1.9-5.63,4.95-5.63c2.46,0,4.04,1.4,4.33,3.84l0.03,0.26

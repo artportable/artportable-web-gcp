@@ -39,23 +39,37 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#FF9191",
         border: "1px solid #FF9191",
       },
+      "&:hover $newUser": {
+        visibility: "hidden",
+        opacity: 0,
+      },
     },
     imageContainer: {
       borderRadius: "2px",
       position: "relative",
       overflow: "hidden",
       textAlign: "center",
-      "& > div": {
+      "& > div:not( $newUserWrapper)": {
         visibility: "hidden",
         opacity: 0,
         transition: "opacity 0.3s linear",
       },
 
-      "&:hover > div": {
+      "& >  $newUserWrapper  $newUser": {
         visibility: "visible",
         opacity: 1,
       },
+
+      "&:hover > div:not( $newUserWrapper)": {
+        visibility: "visible",
+        opacity: 1,
+      },
+      "&:hover $newUser": {
+        visibility: "hidden",
+        opacity: 0,
+      },
     },
+
     editOverlay: {
       position: "absolute",
       top: 0,
@@ -101,6 +115,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(0.4),
       justifyContent: "space-between",
       alignItems: "flex-start",
+      flexGrow: 2,
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.h6.fontSize,
       // placeItems: 'center'
@@ -120,23 +135,51 @@ export const styles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
       placeItems: "center",
     },
+    newUserWrapper: {},
+    newUser: {
+      position: "absolute",
+      visibility: "visible",
+      opacity: 1,
+      top: 10,
+      right: 10,
+      display: "flex", // Using flexbox for centering
+      alignItems: "center", // Vertical centering
+      justifyContent: "center", // Horizontal centering
+      fontSize: "8px",
+      backgroundColor: "white",
+      fontStyle: "italic",
+      fontWeight: "bold",
+      borderRadius: "20px",
+      color: "#02a16c",
+      flexShrink: 0,
+      font: "Gotham",
+      flexGrow: 0,
+      padding: "4px 4px 4px 4px",
+      boxShadow:
+        "4px 2px 4px rgba(0, 0, 0, 0.4), 4px 2px 8px rgba(0, 0, 0, 0.4)", // Shadow effect
+    },
+
     info: {
-      flexGrow: 1,
+      flexGrow: 2,
       width: 0,
       padding: theme.spacing(0.4, 0, 0, 0),
       whiteSpace: "nowrap",
-      textOverflow: "ellipsis",
       overflow: "hidden",
+      flexWrap: "wrap",
+      flexShrink: 1,
     },
     name: {
       fontSize: "0.95rem",
       fontWeight: 400,
+      textOverflow: "ellipsis",
+      lineClamp: 2,
     },
     title: {
       fontStyle: "italic",
       fontSize: "0.95rem",
       height: "1.3rem",
       marginBottom: "5px",
+
       [theme.breakpoints.down("sm")]: {
         visibility: "hidden",
         opacity: 0,
@@ -146,6 +189,8 @@ export const styles = makeStyles((theme: Theme) =>
     sizesArt: {
       fontStyle: "normal",
       fontSize: "0.75rem",
+      flexShrink: 0,
+      flexGrow: 0,
     },
 
     price: {
@@ -290,6 +335,10 @@ export const styles = makeStyles((theme: Theme) =>
     titleTagsContainer: {
       position: "relative",
       maxWidth: "100%",
+      flexGrow: 1,
+      flexShrink: 0,
+      textOverflow: "ellipsis",
+      overflow: "hidden",
     },
 
     tagsContainer: {

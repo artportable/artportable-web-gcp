@@ -136,6 +136,15 @@ export default function ArtworkListItemDefined({
 
   if (width === null || height === null) return <></>;
 
+  function isNewUser(publishedDate) {
+    const oneMonthInMilliseconds = 30 * 24 * 60 * 60 * 1000;
+    const currentDate = new Date();
+    const dateDifference =
+      currentDate.getTime() - new Date(publishedDate).getTime();
+
+    return dateDifference <= oneMonthInMilliseconds;
+  }
+
   return (
     <div className={s.container}>
       <div className={s.imageContainer}>
@@ -151,6 +160,12 @@ export default function ArtworkListItemDefined({
             />
           </a>
         </Link>
+        <div className={s.newUserWrapper}>
+          {isNewUser(artwork.Published) && (
+            <div className={s.newUser}>{t("common:newMember")}</div>
+          )}
+        </div>
+
         {topActions && (
           <div className={s.editOverlay}>
             <div className={s.topActions}>{topActions}</div>
@@ -164,7 +179,7 @@ export default function ArtworkListItemDefined({
               <Link href={`/profile/@${artwork.Username}`}>
                 <a>
                   <div className={s.name}>
-                    {`${artwork.Name} ${artwork.Surname}`}
+                    {`${artwork.Name} ${artwork.Surname}`}{" "}
                   </div>
                 </a>
               </Link>
