@@ -734,6 +734,7 @@ export default function Profile(props) {
                                       ActionType.PURCHASE_REQUEST_LIST_PROFILE
                                     }
                                     onLikeClick={onLikeClick}
+                                    indexPage={false}
                                   />
                                 );
                               }
