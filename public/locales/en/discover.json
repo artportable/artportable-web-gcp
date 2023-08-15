@@ -3,7 +3,7 @@
   "topArt": "Top list",
   "trendingArt": "Trending art",
   "artists": "Artists",
-  "mostFollowed" : "Popular artists",
+  "mostFollowed": "Popular artists",
   "monthlyArtist": "Artist of the month",
   "artistsWeThinkYouLike": "Artists we think you like",
   "searchForArtist": "Search",
@@ -12,6 +12,6 @@
   "more": "More",
   "searchForArt": "Search",
   "myLikedArt": "My selection",
-  "highlights": "Highlights",
+  "highlights": "Selected art",
   "latestArt": "Latest"
 }
