@@ -156,13 +156,17 @@ export default function ProfileCard({
               </Box>
 
               {data?.Location && (
-                <Box className={s.locationData}
+                <Box
+                  className={s.locationData}
                   display="flex"
                   justifyContent="center"
                   marginTop={1}
                   marginBottom={2}
                 >
-                  <RoomIcon color="secondary" className={s.locationIcon}></RoomIcon>
+                  <RoomIcon
+                    color="secondary"
+                    className={s.locationIcon}
+                  ></RoomIcon>
                   <Typography>{data?.Location}</Typography>
                 </Box>
               )}
@@ -210,15 +214,15 @@ export default function ProfileCard({
         </div>
         {/*<Profile userProfile={userProfile} userProfilePicture={userProfilePicture} hideAddBtn={true} divider></Profile>*/}
         <div className={s.uploadButtons}>
-          {/*{membership.value > Membership.Base && ...*/}
-          <Link href="/upload">
-            <a>
-              <Button className={s.uploadArtButton}>
-                {t("uploadNewWorkOfArt")}
-              </Button>
-            </a>
-          </Link>
-          {/*}*/}
+          {membership.value > Membership.Base && (
+            <Link href="/upload">
+              <a>
+                <Button className={s.uploadArtButton}>
+                  {t("uploadNewWorkOfArt")}
+                </Button>
+              </a>
+            </Link>
+          )}
           <div className={s.buyButtons}>
             {membership.value === Membership.Portfolio && (
               <div className={s.hovs}>
@@ -249,24 +253,24 @@ export default function ProfileCard({
                 </Button>
               </div>
             )}
-            </div>
+          </div>
           {membership.value === Membership.PortfolioPremium && (
-              <div className={s.hovsPremium}>
-                <Button
-                  className={s.rocketButtonPremium}
-                  onClick={redirectToRocketUpgrade}
-                >
-                  <Typography className={s.headerButtonRocket}>
-                    {t("rocket")}
-                  </Typography>
-                  <img
-                    src="/rocket-white.png"
-                    alt="Rocket Icon"
-                    className={s.rocketIcon}
-                  />
-                </Button>
-              </div>
-            )}
+            <div className={s.hovsPremium}>
+              <Button
+                className={s.rocketButtonPremium}
+                onClick={redirectToRocketUpgrade}
+              >
+                <Typography className={s.headerButtonRocket}>
+                  {t("rocket")}
+                </Typography>
+                <img
+                  src="/rocket-white.png"
+                  alt="Rocket Icon"
+                  className={s.rocketIcon}
+                />
+              </Button>
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
