@@ -1,9 +1,9 @@
 {
   "art": "Mix",
-  "topArt" : "Topplista",
-  "trendingArt" : "Trendande verk",
+  "topArt": "Topplista",
+  "trendingArt": "Trendande verk",
   "artists": "Konstnärer",
-  "mostFollowed" : "Populära konstnärer",
+  "mostFollowed": "Populära konstnärer",
   "monthlyArtist": "Månadens konstnär",
   "artistsWeThinkYouLike": "Konstnärer vi tror du gillar",
   "searchForArtist": "Sök",
@@ -12,6 +12,6 @@
   "more": "Mer",
   "searchForArt": "Sök",
   "myLikedArt": "Mina favoriter",
-  "highlights": "Höjdpunkter",
+  "highlights": "Utvalda verk",
   "latestArt": "Senaste"
 }
