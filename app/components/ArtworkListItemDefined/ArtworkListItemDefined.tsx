@@ -36,6 +36,7 @@ export default function ArtworkListItemDefined({
   height,
   width,
   topActions = undefined,
+  indexPage,
 }) {
   const s = styles();
   const { t } = useTranslation(["art", "common"]);
@@ -191,9 +192,11 @@ export default function ArtworkListItemDefined({
             />
           </a>
         </Link>
-        <div className={s.newUserWrapper}>
-          {isNew && <div className={s.newUser}>{t("common:newMember")}</div>}
-        </div>
+        {indexPage && (
+          <div className={s.newUserWrapper}>
+            {isNew && <div className={s.newUser}>{t("common:newMember")}</div>}
+          </div>
+        )}
 
         {topActions && (
           <div className={s.editOverlay}>

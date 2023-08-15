@@ -142,19 +142,17 @@ export const styles = makeStyles((theme: Theme) =>
       opacity: 1,
       top: 10,
       right: 10,
-      display: "flex", // Using flexbox for centering
-      alignItems: "center", // Vertical centering
-      justifyContent: "center", // Horizontal centering
-      fontSize: "12px",
-      backgroundColor: "rgba(220, 220, 220, 0.7)",
-      fontStyle: "italic",
-      fontWeight: "bold",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "10px",
+      backgroundColor: "rgb(0 0 0 / 57%)",
       borderRadius: "20px",
-      color: "black",
+      fontWeight: "500",
+      color: "white",
       flexShrink: 0,
-      font: "Gotham",
       flexGrow: 0,
-      padding: "4px 4px 4px 4px",
+      padding: "10px 15px 10px 15px",
       boxShadow:
         "4px 2px 4px rgba(0, 0, 0, 0.5), 4px 2px 8px rgba(0, 0, 0, 0.5)",
     },
