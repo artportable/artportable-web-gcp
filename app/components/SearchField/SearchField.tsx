@@ -134,8 +134,11 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
                     <Chip
                       onClick={(_) => setCategoryTagSelected(i)}
                       variant={tag.selected ? "default" : "outlined"}
-                      color={tag.selected ? "primary" : "default"}
+                      color={tag.selected ? "primary" : "default"} // no change here, but for clarity
                       label={tag.name}
+                      className={`${s.chip} ${
+                        tag.selected ? s.selectedChip : ""
+                      }`} // added conditional class
                     />
                   </li>
                 ))}
