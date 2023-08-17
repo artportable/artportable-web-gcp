@@ -202,6 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
               activeTab === 4 ||
               activeTab === 8 ? (
                 <form className={s.form}>
+                  {/*  // Remove sold/unsold filter for now
                   <div className={s.textFieldFlex}>
                     <TextField
                       classes={{
@@ -225,6 +226,7 @@ export default function DiscoverPage({ navBarItems }) {
                       ))}
                     </TextField>
                   </div>
+              */}
                 </form>
               ) : null}
               <Tabs
