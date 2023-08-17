@@ -38,7 +38,7 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "75%",
-      fontSize: "21px",
+      fontSize: "12px",
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: "GT-America-Standard",
       border: "none",
@@ -47,6 +47,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:focus-visible": {
         outline: "none",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "21px",
       },
     },
     tagsContainer: {
