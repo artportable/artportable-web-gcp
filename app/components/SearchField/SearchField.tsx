@@ -138,7 +138,7 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
                       label={tag.name}
                       className={`${s.chip} ${
                         tag.selected ? s.selectedChip : ""
-                      }`} // added conditional class
+                      }`}
                     />
                   </li>
                 ))}
