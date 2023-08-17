@@ -10,7 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
       border: "1px solid",
       borderRadius: "48px",
       "&:hover": {
-        border: "1px solid #ff8383",
+        border: "1px solid #a35d5d",
       },
       "&:focus-within": {
         borderWidth: "2px",
