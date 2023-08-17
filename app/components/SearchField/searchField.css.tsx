@@ -7,16 +7,27 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       backgroundColor: theme.palette.common.white,
       height: "48px",
-      border: "1px solid rgba(0, 0, 0, 0.23)",
+      border: "1px solid",
       borderRadius: "48px",
       "&:hover": {
-        border: "1px solid rgba(0, 0, 0, 0.87)",
+        border: "1px solid #a35d5d",
       },
       "&:focus-within": {
         borderWidth: "2px",
         margin: "0 -1px",
-        borderColor: theme.palette.primary.main,
       },
+    },
+    chip: {
+      border: "1px solid #a35d5d",
+      color: "#a35d5d",
+      "&:hover": {
+        border: "1px solid #ff8383",
+      },
+    },
+    selectedChip: {
+      backgroundColor: "#a35d5d",
+      color: "white",
+      border: "1px solid #a35d5d",
     },
     noTags: {
       paddingRight: theme.spacing(2.4),
@@ -27,7 +38,7 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "75%",
-      fontSize: "21px",
+      fontSize: "12px",
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: "GT-America-Standard",
       border: "none",
@@ -36,6 +47,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:focus-visible": {
         outline: "none",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "21px",
       },
     },
     tagsContainer: {
@@ -100,8 +114,9 @@ export const styles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(1.4),
       border: "transparent",
       borderRadius: "0px",
+      color: "#a35d5d",
       [theme.breakpoints.up("md")]: {
-        border: "1px solid rgba(0, 0, 0, 0.23)",
+        border: "1px solid #ff8383",
         borderRadius: "50px ",
       },
     },
