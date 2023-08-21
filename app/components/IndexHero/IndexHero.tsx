@@ -1,149 +1,147 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import {
   Typography,
   Chip,
   Paper,
   Accordion,
   AccordionSummary,
-  AccordionDetails,
-} from "@material-ui/core";
-import { styles } from "./indexHero.css";
-import { useTranslation } from "next-i18next";
-import { useKeycloak } from "@react-keycloak/ssr";
-import type { KeycloakInstance } from "keycloak-js";
-import { useRouter } from "next/router";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Link from "next/link";
-import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
-import Button from "../Button/Button";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import VideoDialog from "../VideoDialog/VideoDialog";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+  AccordionDetails
+} from '@material-ui/core'
+import { styles } from './indexHero.css'
+import { useTranslation } from 'next-i18next'
+import { useKeycloak } from '@react-keycloak/ssr'
+import type { KeycloakInstance } from 'keycloak-js'
+import { useRouter } from 'next/router'
+import Skeleton from '@material-ui/lab/Skeleton'
+import Link from 'next/link'
+import ProfileAvatar from '../ProfileAvatar/ProfileAvatar'
+import Button from '../Button/Button'
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled'
+import VideoDialog from '../VideoDialog/VideoDialog'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
 interface RandomImageProps {
-  artwork: string;
-  username: string;
-  imageLink: string;
-  name: string;
+  artwork: string
+  username: string
+  imageLink: string
+  name: string
 }
 
 export default function IndexHero() {
-  const s = styles();
-  const { t } = useTranslation("index");
-  const { keycloak } = useKeycloak<KeycloakInstance>();
-  const router = useRouter();
+  const s = styles()
+  const { t } = useTranslation('index')
+  const { keycloak } = useKeycloak<KeycloakInstance>()
+  const router = useRouter()
 
-  const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
-  const [randomImage, setRandomImage] = useState<
-    RandomImageProps | undefined
-  >();
-  const [loading, setLoading] = useState(true);
-  const [toggleButton, setToggleButton] = useState(false);
-  const [toggleButtonReviews, setToggleButtonReviews] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const [signUpRedirectHref, setSignUpRedirectHref] = useState('')
+  const [randomImage, setRandomImage] = useState<RandomImageProps | undefined>()
+  const [loading, setLoading] = useState(true)
+  const [toggleButton, setToggleButton] = useState(false)
+  const [toggleButtonReviews, setToggleButtonReviews] = useState(false)
+  const [expanded, setExpanded] = useState(false)
 
   const reviews = [
     {
-      title: t("reviewOneTitle"),
-      fullReview: t("reviewOneContent"),
+      title: t('reviewOneTitle'),
+      fullReview: t('reviewOneContent')
     },
     {
-      title: t("reviewTwoTitle"),
-      fullReview: t("reviewTwoContent"),
+      title: t('reviewTwoTitle'),
+      fullReview: t('reviewTwoContent')
     },
     {
-      title: t("reviewThreeTitle"),
-      fullReview: t("reviewThreeContent"),
+      title: t('reviewThreeTitle'),
+      fullReview: t('reviewThreeContent')
     },
 
     {
-      title: t("reviewFourTitle"),
-      fullReview: t("reviewFourContent"),
+      title: t('reviewFourTitle'),
+      fullReview: t('reviewFourContent')
     },
     {
-      title: t("reviewFiveTitle"),
-      fullReview: t("reviewFiveContent"),
-    },
+      title: t('reviewFiveTitle'),
+      fullReview: t('reviewFiveContent')
+    }
     // add more reviews here
-  ];
+  ]
 
   useEffect(() => {
-    setLoading(randomImage === null);
-    const isDefaultLocale = router.locale == router.defaultLocale;
+    setLoading(randomImage === null)
+    const isDefaultLocale = router.locale == router.defaultLocale
     const redirectHref = `${window.origin}${
-      isDefaultLocale ? "" : `/${router.locale}`
-    }/plans`;
-    setSignUpRedirectHref(redirectHref);
-  }, [randomImage, router.locale, router.defaultLocale]);
+      isDefaultLocale ? '' : `/${router.locale}`
+    }/plans`
+    setSignUpRedirectHref(redirectHref)
+  }, [randomImage, router.locale, router.defaultLocale])
   //List with current promoted artists
   const images = [
     {
-      name: "Hesho Serray",
-      username: "hesho.serray",
-      image: "/images/hesho.jpg",
-      imageLink: "art/9e9bc621-c439-4748-81c3-90b1287d5458",
+      name: 'Hesho Serray',
+      username: 'hesho.serray',
+      image: '/images/hesho.jpg',
+      imageLink: 'art/9e9bc621-c439-4748-81c3-90b1287d5458'
     },
     {
-      name: "Sofia Lagerblad",
-      username: "sofia.lagerblad",
-      image: "/images/sofia.jpg",
-      imageLink: "art/66c09d0d-8c73-413a-99fc-ab7535389a38",
+      name: 'Sofia Lagerblad',
+      username: 'sofia.lagerblad',
+      image: '/images/sofia.jpg',
+      imageLink: 'art/66c09d0d-8c73-413a-99fc-ab7535389a38'
     },
     {
-      name: "Gunnila Svärd",
-      username: "gunilla.svard",
-      image: "/images/gunilla.jpg",
-      imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
+      name: 'Gunnila Svärd',
+      username: 'gunilla.svard',
+      image: '/images/gunilla.jpg',
+      imageLink: 'art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b'
     },
     {
-      name: "Charlotte Hansson",
-      username: "charlottehansson",
-      image: "/images/charlotte.jpg",
-      imageLink: "art/ab142549-e09a-4bc4-8903-3e68974e3d83",
+      name: 'Charlotte Hansson',
+      username: 'charlottehansson',
+      image: '/images/charlotte.jpg',
+      imageLink: 'art/ab142549-e09a-4bc4-8903-3e68974e3d83'
     },
     {
-      name: "Lars-Henrik Milert",
-      username: "milert",
-      image: "/images/millert-print.jpeg",
-      imageLink: "art/e69df2e8-6fb6-4665-927f-fbfb73a93085",
-    },
-  ];
+      name: 'Lars-Henrik Milert',
+      username: 'milert',
+      image: '/images/larsHenrik.jpg',
+      imageLink: 'art/bf92ed53-43a3-4be4-9eef-ab08516bd440'
+    }
+  ]
 
   useEffect(() => {
-    const randomImageIndex = Math.floor(Math.random() * images.length);
+    const randomImageIndex = Math.floor(Math.random() * images.length)
     setRandomImage({
       artwork: images[randomImageIndex].image,
       username: images[randomImageIndex].username,
       imageLink: images[randomImageIndex].imageLink,
-      name: images[randomImageIndex].name,
-    });
-  }, []);
+      name: images[randomImageIndex].name
+    })
+  }, [])
 
-  const [openVideoDialog, setOpenVideoDialog] = useState(false);
+  const [openVideoDialog, setOpenVideoDialog] = useState(false)
 
   function toggleVideoDialog() {
-    setOpenVideoDialog(!openVideoDialog);
+    setOpenVideoDialog(!openVideoDialog)
   }
 
   const handleClickVideoDialog = () => {
-    setOpenVideoDialog(true);
-  };
+    setOpenVideoDialog(true)
+  }
 
   return (
     <div className={s.container}>
       <div className={s.flexContainer}>
         <div className={s.left}>
           <Typography variant="h1" className={s.headline}>
-            {t("Hitta originalkonst")}
+            {t('Hitta originalkonst')}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {t("Ta en titt i galleriet med över 37000 konstverk")}
+            {t('Ta en titt i galleriet med över 37000 konstverk')}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
               classes={{
-                label: s.buttonLabel,
+                label: s.buttonLabel
               }}
               className={s.becomeMemberButton}
               size="small"
@@ -154,15 +152,15 @@ export default function IndexHero() {
               onClick={() =>
                 keycloak.register({
                   locale: router.locale,
-                  redirectUri: signUpRedirectHref,
+                  redirectUri: signUpRedirectHref
                 })
               }
             >
-              {t("signUp")}
+              {t('signUp')}
             </Button>
             <Button
               classes={{
-                label: s.buttonLabel,
+                label: s.buttonLabel
               }}
               size="small"
               variant="outlined"
@@ -170,7 +168,7 @@ export default function IndexHero() {
               rounded
               onClick={() => keycloak.login({ locale: router.locale })}
             >
-              {t("logIn")}
+              {t('logIn')}
             </Button>
           </div>
           <div className={s.videoDiv}>
@@ -178,10 +176,10 @@ export default function IndexHero() {
             <Typography
               className={s.playText}
               onClick={() => {
-                handleClickVideoDialog();
+                handleClickVideoDialog()
               }}
             >
-              {t("thisIsArtportable")}
+              {t('thisIsArtportable')}
             </Typography>
 
             <VideoDialog open={openVideoDialog} onClose={toggleVideoDialog} />
@@ -203,7 +201,7 @@ export default function IndexHero() {
                         rounded
                         startIcon={<KeyboardArrowUpIcon />}
                       >
-                        {t("readLess")}
+                        {t('readLess')}
                       </Button>
                     ) : (
                       <Button
@@ -214,7 +212,7 @@ export default function IndexHero() {
                         rounded
                         startIcon={<KeyboardArrowDownIcon />}
                       >
-                        {t("readMore")}
+                        {t('readMore')}
                       </Button>
                     )}
                   </div>
@@ -223,28 +221,28 @@ export default function IndexHero() {
               <AccordionDetails>
                 <div className={s.detailsText}>
                   <Typography variant="h5" component="h2" className={s.heading}>
-                    {t("headline")}
+                    {t('headline')}
                   </Typography>
                   <Typography className={s.accDescription}>
-                    {t("readDescription")}
+                    {t('readDescription')}
                   </Typography>
                   <Typography variant="h5" component="h2" className={s.heading}>
-                    {t("headline2")}
+                    {t('headline2')}
                   </Typography>
                   <Typography className={s.accDescription}>
-                    {t("readDescription2")}
+                    {t('readDescription2')}
                   </Typography>
                   <Typography variant="h5" component="h2" className={s.heading}>
-                    {t("headline3")}
+                    {t('headline3')}
                   </Typography>
                   <Typography className={s.accDescription}>
-                    {t("readDescription3")}
+                    {t('readDescription3')}
                   </Typography>
                   <Typography variant="h5" component="h2" className={s.heading}>
-                    {t("headline4")}
+                    {t('headline4')}
                   </Typography>
                   <Typography className={s.accDescription}>
-                    {t("readDescription4")}
+                    {t('readDescription4')}
                   </Typography>
 
                   <Accordion className={s.accordion} elevation={0}>
@@ -253,7 +251,7 @@ export default function IndexHero() {
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
-                      <Typography>{t("ads")}</Typography>
+                      <Typography>{t('ads')}</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                       <div>
@@ -262,7 +260,7 @@ export default function IndexHero() {
                           component="h2"
                           className={s.headingAd}
                         >
-                          {t("headlineAd")}
+                          {t('headlineAd')}
                         </Typography>
                         <div className={s.adContent}>
                           <a
@@ -271,7 +269,7 @@ export default function IndexHero() {
                           >
                             <img
                               className={s.imageAd}
-                              src={"/images/utlandskacasino_net.jpg"}
+                              src={'/images/utlandskacasino_net.jpg'}
                               alt="utländskacasino.net"
                               title=""
                             />
@@ -283,7 +281,7 @@ export default function IndexHero() {
                           component="h2"
                           className={s.headingAd}
                         >
-                          {t("headlineAd")}
+                          {t('headlineAd')}
                         </Typography>
                         <div className={s.adContent2}>
                           <div>
@@ -294,7 +292,7 @@ export default function IndexHero() {
                                 target="_blank"
                               >
                                 Goplay.se
-                              </a>{" "}
+                              </a>{' '}
                               informerar om online casino.
                             </Typography>
                           </div>
@@ -305,7 +303,7 @@ export default function IndexHero() {
                           component="h2"
                           className={s.headingAd}
                         >
-                          {t("headlineAd")}
+                          {t('headlineAd')}
                         </Typography>
                         <div className={s.adContent2}>
                           <div>
@@ -316,9 +314,9 @@ export default function IndexHero() {
                                 href="https://spelpressen.se/casino-reportage/casino-utan-svensk-licens"
                                 target="_blank"
                               >
-                                {" "}
+                                {' '}
                                 Spelpressens sida
-                              </a>{" "}
+                              </a>{' '}
                               här.
                             </Typography>
                           </div>
@@ -328,7 +326,7 @@ export default function IndexHero() {
                           component="h2"
                           className={s.headingAd}
                         >
-                          {t("headlineAd")}
+                          {t('headlineAd')}
                         </Typography>
                         <div className={s.adContent}>
                           <a
@@ -337,7 +335,7 @@ export default function IndexHero() {
                           >
                             <img
                               className={s.imageAd}
-                              src={"/images/OCSLOGO.svg"}
+                              src={'/images/OCSLOGO.svg'}
                               alt="OCS"
                               title=""
                             />
@@ -348,7 +346,7 @@ export default function IndexHero() {
                           component="h2"
                           className={s.headingAd}
                         >
-                          {t("headlineAd")}
+                          {t('headlineAd')}
                         </Typography>
                         <div className={s.adContent2}>
                           <div>
@@ -359,7 +357,7 @@ export default function IndexHero() {
                                 target="_blank"
                               >
                                 Casinon utan Svensk Licens med Trustly
-                              </a>{" "}
+                              </a>{' '}
                             </Typography>
                           </div>
                         </div>
@@ -388,7 +386,7 @@ export default function IndexHero() {
                       rounded
                       endIcon={<KeyboardArrowUpIcon />}
                     >
-                      {t("readLess")}
+                      {t('readLess')}
                     </Button>
                   ) : (
                     <Button
@@ -401,21 +399,21 @@ export default function IndexHero() {
                         src="/trustpilotvector.svg"
                         alt="Trustpilot logo"
                         style={{
-                          width: "60px",
-                          height: "auto",
-                          marginRight: "2px",
+                          width: '60px',
+                          height: 'auto',
+                          marginRight: '2px'
                         }}
                       />
                       <img
                         src="/trustpilot.svg"
                         alt="Trustpilot Stars"
                         style={{
-                          width: "100px",
-                          height: "auto",
-                          marginRight: "10px",
+                          width: '100px',
+                          height: 'auto',
+                          marginRight: '10px'
                         }}
                       />
-                      <p className={s.firstReview}> {t("review")}</p>
+                      <p className={s.firstReview}> {t('review')}</p>
                     </Button>
                   )}
                 </div>
@@ -423,14 +421,14 @@ export default function IndexHero() {
               <AccordionDetails className={s.allReviews}>
                 {reviews.map((review, index) => (
                   <div key={index} className={s.reviewDiv}>
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
                       <img
                         src="/trustpilot.svg"
                         alt="Trustpilot Stars"
                         style={{
-                          width: "100px",
-                          height: "auto",
-                          marginRight: "10px",
+                          width: '100px',
+                          height: 'auto',
+                          marginRight: '10px'
                         }}
                       />
                       <Typography
@@ -465,8 +463,8 @@ export default function IndexHero() {
                       <img
                         className={s.image}
                         src={randomImage.artwork}
-                        alt={`${t("artworkFrom")} ${randomImage.username}`}
-                        title={`${t("artworkFrom")} ${randomImage.username}`}
+                        alt={`${t('artworkFrom')} ${randomImage.username}`}
+                        title={`${t('artworkFrom')} ${randomImage.username}`}
                       />
                     </div>
                   </a>
@@ -479,7 +477,7 @@ export default function IndexHero() {
                       }
                       size="small"
                       classes={{
-                        root: s.chip,
+                        root: s.chip
                       }}
                       label={randomImage.name}
                     />
@@ -492,5 +490,5 @@ export default function IndexHero() {
         </div>
       </div>
     </div>
-  );
+  )
 }
