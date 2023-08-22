@@ -1,71 +1,71 @@
-import { useState, useEffect } from "react";
-import { Dialog, IconButton } from "@material-ui/core";
-import { useTranslation } from "next-i18next";
-import CloseIcon from "@material-ui/icons/Close";
-import { styles } from "./adDialog.css";
+import { useState, useEffect } from 'react'
+import { Dialog, IconButton } from '@material-ui/core'
+import { useTranslation } from 'next-i18next'
+import CloseIcon from '@material-ui/icons/Close'
+import { styles } from './adDialog.css'
 import {
   ActionType,
   CategoryType,
-  trackGoogleAnalytics,
-} from "../../utils/googleAnalytics";
-import router from "next/router";
-import { Locales } from "../../models/i18n/locales";
-import Image from "next/image";
-import Head from "next/head";
+  trackGoogleAnalytics
+} from '../../utils/googleAnalytics'
+import router from 'next/router'
+import { Locales } from '../../models/i18n/locales'
+import Image from 'next/image'
+import Head from 'next/head'
 interface RandomImageProps {
-  companyImageSv: string;
-  companyLinkSv: string;
-  companyImageEn: string;
-  companyLinkEn: string;
-  companyName: string;
+  companyImageSv: string
+  companyLinkSv: string
+  companyImageEn: string
+  companyLinkEn: string
+  companyName: string
 }
 
 interface Props {
-  openAdDialog: any;
-  setOpenAdDialog: any;
-  onClose(): any;
+  openAdDialog: any
+  setOpenAdDialog: any
+  onClose(): any
 }
 
 export default function AdDialog(props: Props) {
-  const s = styles();
-  const { t } = useTranslation(["profile"]);
-  const [randomAd, setRandomAd] = useState<RandomImageProps | undefined>();
-  const [loading, setLoading] = useState(true);
+  const s = styles()
+  const { t } = useTranslation(['profile'])
+  const [randomAd, setRandomAd] = useState<RandomImageProps | undefined>()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setLoading(randomAd === null || randomAd === undefined);
-  }, [randomAd]);
+    setLoading(randomAd === null || randomAd === undefined)
+  }, [randomAd])
 
   const ad = [
     {
-      companyName: "Artportable",
-      companyImageSv: "/ad/sofialagerblad-takeover.jpg",
-      companyLinkSv: "https://artportable.com/en/profile/@sofia.lagerblad",
-      companyImageEn: "/ad/sofialagerblad-takeover.jpg",
-      companyLinkEn: "https://artportable.com/en/profile/@sofia.lagerblad",
-    },
-  ];
+      companyName: 'Artportable',
+      companyImageSv: '/ad/AdSv.png',
+      companyLinkSv: 'https://artportable.com/register',
+      companyImageEn: '/ad/AdEn.png',
+      companyLinkEn: 'https://artportable.com/register'
+    }
+  ]
   useEffect(() => {
-    const randomAdIndex = Math.floor(Math.random() * ad.length);
+    const randomAdIndex = Math.floor(Math.random() * ad.length)
     setRandomAd({
       companyImageSv: ad[randomAdIndex].companyImageSv,
       companyLinkSv: ad[randomAdIndex].companyLinkSv,
       companyImageEn: ad[randomAdIndex].companyImageEn,
       companyLinkEn: ad[randomAdIndex].companyLinkEn,
-      companyName: ad[randomAdIndex].companyName,
-    });
-  }, []);
+      companyName: ad[randomAdIndex].companyName
+    })
+  }, [])
 
   const onClick = () => {
     trackGoogleAnalytics(
       ActionType.CLICK_FIRST_PAGE_AD,
       CategoryType.INTERACTIVE
-    );
-  };
+    )
+  }
 
   const onCloseClick = () => {
-    props.onClose();
-  };
+    props.onClose()
+  }
 
   return (
     <Dialog
@@ -90,8 +90,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
-                width={900}
-                height={500}
+                width={700}
+                height={450}
                 quality={90}
               />
             </a>
@@ -107,7 +107,7 @@ export default function AdDialog(props: Props) {
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
                 width={700}
-                height={500}
+                height={450}
                 quality={90}
               />
             </a>
@@ -115,5 +115,5 @@ export default function AdDialog(props: Props) {
         </>
       )}
     </Dialog>
-  );
+  )
 }
