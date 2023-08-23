@@ -39,10 +39,10 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: 'Artportable',
-      companyImageSv: '/ad/AdSv.png',
-      companyLinkSv: 'https://artportable.com/register',
-      companyImageEn: '/ad/AdEn.png',
-      companyLinkEn: 'https://artportable.com/register'
+      companyImageSv: '/ad/camillakarlsson-takeover.jpg',
+      companyLinkSv: 'https://artportable.com/profile/@Camilla.Karlsson',
+      companyImageEn: '/ad/camillakarlsson-takeover.jpg',
+      companyLinkEn: 'https://artportable.com/profile/@Camilla.Karlsson'
     }
   ]
   useEffect(() => {
@@ -90,8 +90,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
-                width={700}
-                height={450}
+                width={550}
+                height={300}
                 quality={90}
               />
             </a>
@@ -106,8 +106,8 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
-                width={700}
-                height={450}
+                width={550}
+                height={300}
                 quality={90}
               />
             </a>
