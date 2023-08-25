@@ -5,6 +5,8 @@ import { styles } from "./artists.css";
 import { useTranslation } from "next-i18next";
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
+import InputAdornment from "@material-ui/core/InputAdornment";
+
 export default function artists() {
   const s = styles();
   const { t } = useTranslation(["common"]);
@@ -151,13 +153,16 @@ export default function artists() {
     <div className={s.pagecontainer}>
       <div className={s.container}>
         <div className={s.searchBar}>
-          <SearchSharpIcon />
           <Input
-            placeholder={t("searchForArtist")}
+            placeholder="Search for an artist..."
             value={searchQuery}
             onChange={handleSearchChange}
             fullWidth
-            className={s.searchBar}
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchSharpIcon />
+              </InputAdornment>
+            }
           />
         </div>
         <div className={s.groupDiv}>

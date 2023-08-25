@@ -54,7 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     artistName: {
       fontSize: "0.975rem",
-      marginBottom: "10px",
+
       transition: "transform 0.3s ease",
       "&:hover": {
         color: "var(--primary-color)",
