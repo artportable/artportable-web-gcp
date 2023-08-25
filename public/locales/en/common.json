@@ -65,5 +65,6 @@
   "logIntoSendChatMessages": "Log in to send the purchase request in the chat",
   "createAccountToChat": "Sign up",
   "fillInYourEmail": "Fill in your email",
-  "newMember": "New member"
+  "newMember": "New member",
+  "searchForArtist": "Search for an artist"
 }
