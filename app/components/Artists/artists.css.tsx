@@ -17,10 +17,27 @@ export const styles = makeStyles((theme: Theme) =>
       height: "50%",
       alignItems: "center",
     },
+    searchBar: {
+      marginBottom: "20px",
+      left: 30,
+      color: "black",
+      width: "80%",
+      fontSize: "16px",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        left: 0,
+        fontSize: "20px",
+      },
+    },
+    highlight: {
+      backgroundColor: "#AC606B",
+      color: "#AC606B",
+    },
     letter: {
-      fontSize: "300%",
-      fontWeight: 800,
-      alignContent: "space-around",
+      fontSize: "2rem", // Increased the size slightly
+      fontWeight: 700, // Not too bold
+      margin: "0.5rem 0",
+      color: "#333", // Dark color for visibility
     },
     letterList: {
       fontWeight: 600,
@@ -36,9 +53,15 @@ export const styles = makeStyles((theme: Theme) =>
       width: "50%",
     },
     artistName: {
-      fontSize: "0.925rem",
-      marginBottom: "10%",
+      fontSize: "0.975rem",
+
+      transition: "transform 0.3s ease",
+      "&:hover": {
+        color: "var(--primary-color)",
+        transform: "scale(1.075)",
+      },
     },
+
     [theme.breakpoints.up("smPlus")]: {
       groupDiv: {
         columns: "2 auto",
