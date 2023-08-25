@@ -17,10 +17,25 @@ export const styles = makeStyles((theme: Theme) =>
       height: "50%",
       alignItems: "center",
     },
+    searchBar: {
+      marginBottom: "20px",
+      left: 30,
+      color: "black",
+      width: "80%",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        left: 0,
+      },
+    },
+    highlight: {
+      backgroundColor: "#AC606B",
+      color: "#AC606B",
+    },
     letter: {
-      fontSize: "300%",
-      fontWeight: 800,
-      alignContent: "space-around",
+      fontSize: "2rem", // Increased the size slightly
+      fontWeight: 700, // Not too bold
+      margin: "0.5rem 0",
+      color: "#333", // Dark color for visibility
     },
     letterList: {
       fontWeight: 600,
@@ -37,7 +52,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     artistName: {
       fontSize: "0.925rem",
-      marginBottom: "10%",
+      "&:hover": {
+        color: "var(--primary-color)",
+      },
     },
     [theme.breakpoints.up("smPlus")]: {
       groupDiv: {
