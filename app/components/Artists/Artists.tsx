@@ -50,10 +50,6 @@ export default function artists() {
             <span
               key={i}
               style={{
-                backgroundColor: "transparent",
-                padding: "0.4em",
-                borderRadius: "10px",
-                border: "0.5px solid #c67777",
                 color: "#c67777",
               }}
             >
