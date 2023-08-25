@@ -2,27 +2,69 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Typography, Input } from "@material-ui/core";
 import { styles } from "./artists.css";
+import { useTranslation } from "next-i18next";
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 export default function artists() {
   const s = styles();
+  const { t } = useTranslation(["common"]);
   const [artists, setArtists] = useState([]);
   const [letters, setLetters] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
   const highlightText = (text, search) => {
-    const searchWords = search.split(" ");
-    let highlightedText = text;
-    for (let word of searchWords) {
-      if (word.trim() === "") continue; // Skip empty words
-      const regex = new RegExp(`(${word.trim()})`, "gi");
-      highlightedText = highlightedText.replace(
-        regex,
-        (_, match) =>
-          `<span style="background-color: #c67777; padding: 0.4em; border-radius: 10px">${match}</span>`
-      );
+    const searchWords = search.split(" ").filter((word) => word.trim() !== "");
+
+    let fragments = [{ text, highlight: false }];
+
+    for (const word of searchWords) {
+      let newFragments = [];
+
+      for (const fragment of fragments) {
+        if (!fragment.highlight) {
+          const parts = fragment.text.split(
+            new RegExp(`(${word.trim()})`, "i")
+          );
+
+          for (let i = 0; i < parts.length; i++) {
+            if (i % 2 === 0) {
+              newFragments.push({ text: parts[i], highlight: false });
+            } else {
+              newFragments.push({ text: parts[i], highlight: true });
+            }
+          }
+        } else {
+          newFragments.push(fragment);
+        }
+      }
+
+      fragments = newFragments;
     }
 
-    return <span dangerouslySetInnerHTML={{ __html: highlightedText }} />;
+    return (
+      <span>
+        {fragments.map((fragment, i) =>
+          fragment.highlight ? (
+            <span
+              key={i}
+              style={{
+                backgroundColor: "transparent",
+                padding: "0.4em",
+                borderRadius: "10px",
+                border: "0.5px solid #c67777",
+                color: "#c67777",
+              }}
+            >
+              {fragment.text}
+            </span>
+          ) : (
+            fragment.text
+          )
+        )}
+      </span>
+    );
   };
+
   const fetchData = async () => {
     const resposne = await fetch(`${apiBaseUrl}/api/Artists`);
     const newData = await resposne.json();
@@ -109,8 +151,9 @@ export default function artists() {
     <div className={s.pagecontainer}>
       <div className={s.container}>
         <div className={s.searchBar}>
+          <SearchSharpIcon />
           <Input
-            placeholder="Search for an artist"
+            placeholder={t("searchForArtist")}
             value={searchQuery}
             onChange={handleSearchChange}
             fullWidth

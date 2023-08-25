@@ -22,9 +22,11 @@ export const styles = makeStyles((theme: Theme) =>
       left: 30,
       color: "black",
       width: "80%",
+      fontSize: "16px",
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
         left: 0,
+        fontSize: "20px",
       },
     },
     highlight: {
@@ -51,11 +53,15 @@ export const styles = makeStyles((theme: Theme) =>
       width: "50%",
     },
     artistName: {
-      fontSize: "0.925rem",
+      fontSize: "0.975rem",
+      marginBottom: "10px",
+      transition: "transform 0.3s ease",
       "&:hover": {
         color: "var(--primary-color)",
+        transform: "scale(1.075)",
       },
     },
+
     [theme.breakpoints.up("smPlus")]: {
       groupDiv: {
         columns: "2 auto",
