@@ -150,7 +150,7 @@ export default function artists() {
       <div className={s.container}>
         <div className={s.searchBar}>
           <Input
-            placeholder="Search for an artist..."
+            placeholder={t("searchForArtist")}
             value={searchQuery}
             onChange={handleSearchChange}
             fullWidth
