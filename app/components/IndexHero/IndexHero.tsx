@@ -85,7 +85,7 @@ export default function IndexHero() {
       imageLink: "art/6f5fd92a-ad60-46f0-9f41-bd57b2aeb549",
     },
     {
-      name: "Gunnila Svärd",
+      name: "Gunilla Svärd",
       username: "gunilla.svard",
       image: "/images/gunilla.jpg",
       imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
