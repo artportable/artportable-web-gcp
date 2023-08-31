@@ -18,6 +18,7 @@ interface DiscoverTrendingArtTabProps {
   stopLoadImages: any;
   activeTab: number;
   fetchType: string;
+  tagPlaceholder: string;
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
@@ -42,10 +43,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     redirectIfNotLoggedIn();
     like(artworkId, isLike, socialId, token);
   }
-
-  useEffect(() => {
-    console.log(tags);
-  }, []);
 
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
@@ -96,6 +93,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          tagPlaceholder={props.tagPlaceholder}
         />
       )}
     </>

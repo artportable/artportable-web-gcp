@@ -167,6 +167,7 @@ export default function DiscoverPage({ navBarItems }) {
   const _plugins = [new Fade()];
   const [clickEnabled, setClickEnabled] = useState(true);
   const flickingRef = useRef(null);
+  const [selectedTag, setSelectedTag] = useState("null");
 
   const handlePrevClick = () => {
     if (flickingRef.current && clickEnabled) {
@@ -260,7 +261,11 @@ export default function DiscoverPage({ navBarItems }) {
                     <div
                       key={index}
                       className={s.panel}
-                      onClick={() => setFetchType(tag)}
+                      onClick={() => {
+                        setFetchType(tag);
+                        setSelectedTag(tag);
+                        console.log(selectedTag);
+                      }}
                     >
                       {tag}
                     </div>
@@ -283,6 +288,7 @@ export default function DiscoverPage({ navBarItems }) {
                   activeTab={activeTab}
                   fetchType={fetchType}
                   sold={sold}
+                  tagPlaceholder={selectedTag}
                 />
               )}
             </Box>

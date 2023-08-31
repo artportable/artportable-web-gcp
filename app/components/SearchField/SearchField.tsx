@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 
-const SearchField = ({ onFilter, activeTab, tags = null }) => {
+const SearchField = ({ onFilter, activeTab, tags = null, tagPlaceholder }) => {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
   const isBreakpointSmPlusDown = useBreakpointDown("smPlus");
@@ -121,90 +121,9 @@ const SearchField = ({ onFilter, activeTab, tags = null }) => {
       ></SearchIcon>
       <input
         onChange={onSearchChanged}
-        placeholder={t("searchForArt")}
+        placeholder={tagPlaceholder}
         className={s.input}
       ></input>
-      {activeTab > 4 ? null : (
-        <>
-          {tags !== null && (
-            <div className={s.tagsContainer}>
-              <ul className={s.categoryTags}>
-                {categoryTags.map((tag, i) => (
-                  <li key={tag.name}>
-                    <Chip
-                      onClick={(_) => setCategoryTagSelected(i)}
-                      variant={tag.selected ? "default" : "outlined"}
-                      color={tag.selected ? "primary" : "default"} // no change here, but for clarity
-                      label={tag.name}
-                      className={`${s.chip} ${
-                        tag.selected ? s.selectedChip : ""
-                      }`}
-                    />
-                  </li>
-                ))}
-                <li className={s.moreLiElement}>
-                  {moreSelectValue === "" ? (
-                    <>
-                      <Chip
-                        color={"default"}
-                        variant="outlined"
-                        label={t(isBreakpointSmPlusDown ? "filter" : "more")}
-                        className={s.moreChip}
-                      />
-                      <FormControl className={s.selectFormControl}>
-                        <Select
-                          label={t(isBreakpointSmPlusDown ? "filter" : "more")}
-                          className={s.selectElement}
-                          native
-                          value={""}
-                          onChange={onSelectMoreChange}
-                        >
-                          <option aria-label={t("none")} value={""}></option>
-                          {dropdownTags.map((tag) => {
-                            return (
-                              <option
-                                key={tag}
-                                aria-label={t(`tags:${tag}`)}
-                                value={tag}
-                              >
-                                {t(`tags:${tag}`)}
-                              </option>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                      {/* <div className={s.textFieldFlex}>
-                <TextField
-                  classes={{
-                    root: s.textField
-                  }}
-                  fullWidth
-                  select
-                  required
-                  variant="outlined"
-                  value={sold}
-                >
-                  {dropdownTags.map((tag) => (
-                    <MenuItem key={tag} value={tag}>
-                      {tag}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </div> */}
-                    </>
-                  ) : (
-                    <Chip
-                      color={"primary"}
-                      label={t(`tags:${moreSelectValue}`)}
-                      onDelete={deselectMore}
-                    />
-                  )}
-                </li>
-              </ul>
-            </div>
-          )}
-        </>
-      )}
     </div>
   );
 };
