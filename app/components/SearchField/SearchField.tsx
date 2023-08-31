@@ -111,13 +111,10 @@ const SearchField = ({ onFilter, activeTab, tags = null, tagPlaceholder }) => {
   const [openListingPages, setOpenListingPages] = useState(false);
 
   return (
-    <div
-      className={clsx(s.inputContainer, tags === null && s.noTags)}
-      tabIndex={0}
-    >
+    <div className={clsx(s.inputContainer)}>
       <SearchIcon
         classes={{ root: s.searchIcon }}
-        style={{ fontSize: 30 }}
+        style={{ fontSize: 20 }}
       ></SearchIcon>
       <input
         onChange={onSearchChanged}

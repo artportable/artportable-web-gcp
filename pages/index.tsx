@@ -199,11 +199,15 @@ export default function DiscoverPage({ navBarItems }) {
 
   const [clickedFilter, setClickedFilter] = useState(null);
 
-  const handleFilterClick = (filter) => {
+  const handleFilterClick = (filter, index) => {
     setActiveFilter(filter);
     setClickedFilter(filter);
+    setCurrentIndex(index);
+    flickingRef.current?.moveTo(index);
     console.log("clicked filter is ", filter);
   };
+
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <Main
@@ -251,8 +255,8 @@ export default function DiscoverPage({ navBarItems }) {
               <Flicking
                 ref={flickingRef}
                 gap={6}
-                circular={true}
                 align="center"
+                circular={true}
                 onMoveStart={() => setClickEnabled(false)}
                 onMoveEnd={() => setClickEnabled(true)}
                 initialIndex={0}
@@ -270,7 +274,7 @@ export default function DiscoverPage({ navBarItems }) {
                     clickedFilter === "trending" ? s.activePanel : ""
                   }`}
                   onClick={() => {
-                    handleFilterClick("trending");
+                    handleFilterClick("trending", 0);
                   }}
                 >
                   <div className={s.carouselItem}>Trending</div>
@@ -283,7 +287,7 @@ export default function DiscoverPage({ navBarItems }) {
                     clickedFilter === "topsold" ? s.activePanel : ""
                   }`}
                   onClick={() => {
-                    handleFilterClick("topsold");
+                    handleFilterClick("topsold", 1);
                   }}
                 >
                   <div className={s.carouselItem}>Sold</div>
@@ -324,26 +328,13 @@ export default function DiscoverPage({ navBarItems }) {
                       }}
                       key={index}
                       className={s.panel}
-                      onClick={() => setActiveFilter(tag)}
+                      onClick={() => handleFilterClick(tag, index + 4)}
                     >
                       <div className={s.carouselItemTag}>
                         {t(`tags:${tag}`)}
                       </div>
                     </div>
                   ))}
-                <div
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
-                    backgroundSize: "cover", // make sure the image covers the div
-                    backgroundRepeat: "no-repeat", // prevent the image from repeating
-                    backgroundPosition: "center", // center the image in the div
-                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
-                  }}
-                  className={s.panel}
-                  onClick={() => setActiveFilter("latest")}
-                >
-                  <div className={s.carouselItem}>Latest</div>
-                </div>
                 {isSignedIn.value && (
                   <div
                     style={{

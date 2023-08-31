@@ -6,15 +6,18 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       backgroundColor: theme.palette.common.white,
-      height: "48px",
-      border: "1px solid",
-      borderRadius: "48px",
+      height: "38px",
+      border: "1px solid #a35d5d",
+      borderRadius: "18px",
+      width: "50%",
+      marginTop: "10px",
+      margin: "0 auto",
       "&:hover": {
         border: "1px solid #a35d5d",
       },
       "&:focus-within": {
-        borderWidth: "2px",
-        margin: "0 -1px",
+        marginTop: "10px",
+        margin: "0 auto",
       },
     },
     chip: {
