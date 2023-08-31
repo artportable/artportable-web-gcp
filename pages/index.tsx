@@ -156,7 +156,7 @@ export default function DiscoverPage({ navBarItems }) {
     setOpenAdDialog(false);
   }
 
-  const [fetchType, setFetchType] = useState("trending"); // default to "trending"
+  const [fetchType, setFetchType] = useState("trending");
 
   const handleCarouselChange = (e) => {
     const index = e.index;
@@ -180,10 +180,6 @@ export default function DiscoverPage({ navBarItems }) {
     }
   };
   const tags = useGetTags();
-
-  useEffect(() => {
-    console.log(tags.data?.value);
-  }, []);
 
   return (
     <Main
@@ -238,6 +234,7 @@ export default function DiscoverPage({ navBarItems }) {
                 onMoveEnd={() => setClickEnabled(true)}
               >
                 <div
+                  style={{ backgroundColor: "red" }}
                   className={s.panel}
                   onClick={() => setFetchType("trending")}
                 >
@@ -252,6 +249,12 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   Top sold
                 </div>
+                <div
+                  className={s.panel}
+                  onClick={() => setFetchType("artists")}
+                >
+                  Artists
+                </div>
                 {tags.data &&
                   tags.data.map((tag, index) => (
                     <div
@@ -264,17 +267,24 @@ export default function DiscoverPage({ navBarItems }) {
                   ))}
               </Flicking>
 
-              <DiscoverTrendingArtTab
-                username={username.value}
-                socialId={socialId.value}
-                rowWidth={rowWidth}
-                loadMore={loadMoreArtworks}
-                loadImages={loadImages}
-                stopLoadImages={stopLoadImages}
-                activeTab={activeTab}
-                fetchType={fetchType}
-                sold={sold}
-              />
+              {fetchType === "artists" ? (
+                <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              ) : (
+                <DiscoverTrendingArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
+                  fetchType={fetchType}
+                  sold={sold}
+                />
+              )}
             </Box>
           </div>
         </>
