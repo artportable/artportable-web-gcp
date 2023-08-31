@@ -195,78 +195,17 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <Box paddingTop={4}>
-              <TabPanel value={activeTab} index={0}>
-                <DiscoverTrendingArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <DiscoverHighLightsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={2}>
-                <DiscoverTopArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={3}>
-                <DiscoverLatestArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={4}>
-                <DiscoverMonthlyArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={5}>
-                <DiscoverArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={6}>
-                <DiscoverMyLikedArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
+              <DiscoverTrendingArtTab
+                username={username.value}
+                socialId={socialId.value}
+                rowWidth={rowWidth}
+                sold={sold}
+                loadMore={loadMoreArtworks}
+                loadImages={loadImages}
+                stopLoadImages={stopLoadImages}
+                activeTab={activeTab}
+                fetchType="top"
+              />
             </Box>
           </div>
         </>
