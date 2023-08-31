@@ -185,11 +185,25 @@ export default function DiscoverPage({ navBarItems }) {
   const tags = useGetTags();
   const [activeFilter, setActiveFilter] = useState("trending");
 
-  const knownFetchTypes = ["trending", "latest", "topsold", "artists"];
+  const knownFetchTypes = [
+    "trending",
+    "latest",
+    "topsold",
+    "artists",
+    "favorites",
+  ];
 
   const tagPlaceholder = knownFetchTypes.includes(activeFilter)
     ? "Originalkonst"
     : activeFilter;
+
+  const [clickedFilter, setClickedFilter] = useState(null);
+
+  const handleFilterClick = (filter) => {
+    setActiveFilter(filter);
+    setClickedFilter(filter);
+    console.log("clicked filter is ", filter);
+  };
 
   return (
     <Main
@@ -238,9 +252,11 @@ export default function DiscoverPage({ navBarItems }) {
                 ref={flickingRef}
                 gap={6}
                 circular={true}
-                align="prev"
+                align="center"
                 onMoveStart={() => setClickEnabled(false)}
                 onMoveEnd={() => setClickEnabled(true)}
+                initialIndex={0}
+                plugins={_plugins}
               >
                 <div
                   style={{
@@ -250,35 +266,25 @@ export default function DiscoverPage({ navBarItems }) {
                     backgroundPosition: "center", // center the image in the div
                     boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
                   }}
-                  className={s.panel}
-                  onClick={() => setActiveFilter("trending")}
+                  className={`${s.panel} ${
+                    clickedFilter === "trending" ? s.activePanel : ""
+                  }`}
+                  onClick={() => {
+                    handleFilterClick("trending");
+                  }}
                 >
                   <div className={s.carouselItem}>Trending</div>
-                </div>
-
-                <div
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
-                    backgroundSize: "cover", // make sure the image covers the div
-                    backgroundRepeat: "no-repeat", // prevent the image from repeating
-                    backgroundPosition: "center", // center the image in the div
-                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
-                  }}
-                  className={s.panel}
-                  onClick={() => setActiveFilter("latest")}
-                >
-                  <div className={s.carouselItem}>Latest</div>
                 </div>
                 <div
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/0fd83649-29f8-4237-bd55-062763981f49.jpg")`,
-                    backgroundSize: "cover", // make sure the image covers the div
-                    backgroundRepeat: "no-repeat", // prevent the image from repeating
-                    backgroundPosition: "top", // center the image in the div
-                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
                   }}
-                  className={s.panel}
-                  onClick={() => setActiveFilter("topsold")}
+                  className={`${s.panel} ${
+                    clickedFilter === "topsold" ? s.activePanel : ""
+                  }`}
+                  onClick={() => {
+                    handleFilterClick("topsold");
+                  }}
                 >
                   <div className={s.carouselItem}>Sold</div>
                 </div>
@@ -325,6 +331,34 @@ export default function DiscoverPage({ navBarItems }) {
                       </div>
                     </div>
                   ))}
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+                    backgroundSize: "cover", // make sure the image covers the div
+                    backgroundRepeat: "no-repeat", // prevent the image from repeating
+                    backgroundPosition: "center", // center the image in the div
+                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                  }}
+                  className={s.panel}
+                  onClick={() => setActiveFilter("latest")}
+                >
+                  <div className={s.carouselItem}>Latest</div>
+                </div>
+                {isSignedIn.value && (
+                  <div
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+                      backgroundSize: "cover", // make sure the image covers the div
+                      backgroundRepeat: "no-repeat", // prevent the image from repeating
+                      backgroundPosition: "center", // center the image in the div
+                      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                    }}
+                    className={s.panel}
+                    onClick={() => setActiveFilter("favorites")}
+                  >
+                    <div className={s.carouselItem}>My Favorites</div>
+                  </div>
+                )}
               </Flicking>
 
               {activeFilter === "artists" ? (
@@ -336,6 +370,18 @@ export default function DiscoverPage({ navBarItems }) {
                 <DiscoverMonthlyArtistsTab
                   username={username.value}
                   socialId={socialId.value}
+                />
+              ) : activeFilter === "favorites" ? (
+                <DiscoverMyLikedArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  sold={sold}
+                  loadMore={loadMoreArtworks}
+                  stopLoadImages={stopLoadImages}
+                  loadImages={loadImages}
+                  rowWidth={rowWidth}
+                  activeTab={activeTab}
+                  tagPlaceholder={tagPlaceholder}
                 />
               ) : (
                 <DiscoverTrendingArtTab

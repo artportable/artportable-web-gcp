@@ -45,24 +45,27 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      backgroundSize: "cover", // make sure the image covers the div
+      backgroundRepeat: "no-repeat", // prevent the image from repeating
+      backgroundPosition: "top", // center the image in the div
+      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
       cursor: "pointer",
-      border: "1px",
+      border: "1px solid lightgray", // added style and color
       borderRadius: "15px",
       marginRight: "10px",
       marginBottom: "6px",
       [theme.breakpoints.up("smPlus")]: {
         width: "20%",
         height: "80px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        border: "1px",
-        borderRadius: "15px",
-        marginRight: "10px",
-        marginBottom: "6px",
       },
     },
+
+    activePanel: {
+      backgroundColor: "rgba(220, 220, 220, 0.5)", // a light gray, you can adjust this
+      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.8)", // boxShadow for all sizes
+      border: "2px solid #ff8383", // thicker and darker border for the active panel
+    },
+
     carouselItem: {
       fontSize: "18px",
       color: "white",
