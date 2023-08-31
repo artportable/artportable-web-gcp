@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/index.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
 import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
@@ -38,7 +38,8 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import Flicking from "@egjs/react-flicking";
-import { Arrow } from "@egjs/flicking-plugins";
+import { Arrow, Fade } from "@egjs/flicking-plugins";
+import "@egjs/react-flicking/dist/flicking.css";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -155,6 +156,30 @@ export default function DiscoverPage({ navBarItems }) {
     setOpenAdDialog(false);
   }
 
+  const [fetchType, setFetchType] = useState("trending"); // default to "trending"
+
+  const handleCarouselChange = (e) => {
+    const index = e.index;
+    if (index === 0) setFetchType("trending");
+    else if (index === 1) setFetchType("latest");
+    else if (index === 2) setFetchType("top");
+  };
+  const _plugins = [new Fade()];
+  const [clickEnabled, setClickEnabled] = useState(true);
+  const flickingRef = useRef(null);
+
+  const handlePrevClick = () => {
+    if (flickingRef.current && clickEnabled) {
+      flickingRef.current.prev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (flickingRef.current && clickEnabled) {
+      flickingRef.current.next();
+    }
+  };
+
   return (
     <Main
       noHeaderPadding
@@ -198,16 +223,41 @@ export default function DiscoverPage({ navBarItems }) {
           }
           <div className={s.discoverContainer}>
             <Box paddingTop={4}>
+              <Flicking
+                ref={flickingRef}
+                gap={6}
+                circular={true}
+                align="center"
+                plugins={_plugins}
+                onMoveStart={() => setClickEnabled(false)}
+                onMoveEnd={() => setClickEnabled(true)}
+              >
+                <div
+                  className={s.panel}
+                  onClick={() => setFetchType("trending")}
+                >
+                  Trending
+                </div>
+                <div className={s.panel} onClick={() => setFetchType("latest")}>
+                  Latest
+                </div>
+                <div
+                  className={s.panel}
+                  onClick={() => setFetchType("topsold")}
+                >
+                  Top sold
+                </div>
+              </Flicking>
               <DiscoverTrendingArtTab
                 username={username.value}
                 socialId={socialId.value}
                 rowWidth={rowWidth}
-                sold={sold}
                 loadMore={loadMoreArtworks}
                 loadImages={loadImages}
                 stopLoadImages={stopLoadImages}
                 activeTab={activeTab}
-                fetchType="top"
+                fetchType={fetchType}
+                sold={sold}
               />
             </Box>
           </div>

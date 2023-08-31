@@ -17,7 +17,7 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  fetchType: "trending" | "latest" | "top";
+  fetchType: string;
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
@@ -62,8 +62,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
           } else if (props.fetchType === "latest") {
             url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
-          } else if (props.fetchType === "top") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
+          } else if (props.fetchType === "topsold") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
           }
 
           selectedTags.forEach((tag) => {
