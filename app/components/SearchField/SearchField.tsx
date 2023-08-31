@@ -121,7 +121,7 @@ const SearchField = ({ onFilter, activeTab, tags = null, tagPlaceholder }) => {
       ></SearchIcon>
       <input
         onChange={onSearchChanged}
-        placeholder={tagPlaceholder}
+        placeholder={"Sök " + t(`tags:${tagPlaceholder}`).toLocaleLowerCase()}
         className={s.input}
       ></input>
     </div>

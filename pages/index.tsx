@@ -3,7 +3,14 @@ import { styles } from "../styles/index.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
-import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
+import {
+  Box,
+  MenuItem,
+  Tab,
+  Tabs,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
@@ -40,6 +47,7 @@ import { getCurrentLanguage } from "../constants/keycloakSettings";
 import Flicking from "@egjs/react-flicking";
 import { Arrow, Fade } from "@egjs/flicking-plugins";
 import "@egjs/react-flicking/dist/flicking.css";
+import GalinaTol from "../public/images/GalinaTol.jpg";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -48,6 +56,7 @@ export default function DiscoverPage({ navBarItems }) {
     "plans",
     "common",
     "discover",
+    "tags",
   ]);
   const s = styles();
   const store = useStore();
@@ -158,16 +167,9 @@ export default function DiscoverPage({ navBarItems }) {
 
   const [fetchType, setFetchType] = useState("trending");
 
-  const handleCarouselChange = (e) => {
-    const index = e.index;
-    if (index === 0) setFetchType("trending");
-    else if (index === 1) setFetchType("latest");
-    else if (index === 2) setFetchType("top");
-  };
   const _plugins = [new Fade()];
   const [clickEnabled, setClickEnabled] = useState(true);
   const flickingRef = useRef(null);
-  const [selectedTag, setSelectedTag] = useState("null");
 
   const handlePrevClick = () => {
     if (flickingRef.current && clickEnabled) {
@@ -181,6 +183,13 @@ export default function DiscoverPage({ navBarItems }) {
     }
   };
   const tags = useGetTags();
+  const [activeFilter, setActiveFilter] = useState("trending");
+
+  const knownFetchTypes = ["trending", "latest", "topsold", "artists"];
+
+  const tagPlaceholder = knownFetchTypes.includes(activeFilter)
+    ? "Originalkonst"
+    : activeFilter;
 
   return (
     <Main
@@ -229,51 +238,102 @@ export default function DiscoverPage({ navBarItems }) {
                 ref={flickingRef}
                 gap={6}
                 circular={true}
-                align="center"
-                plugins={_plugins}
+                align="prev"
                 onMoveStart={() => setClickEnabled(false)}
                 onMoveEnd={() => setClickEnabled(true)}
               >
                 <div
-                  style={{ backgroundColor: "red" }}
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+                    backgroundSize: "cover", // make sure the image covers the div
+                    backgroundRepeat: "no-repeat", // prevent the image from repeating
+                    backgroundPosition: "center", // center the image in the div
+                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                  }}
                   className={s.panel}
-                  onClick={() => setFetchType("trending")}
+                  onClick={() => setActiveFilter("trending")}
                 >
-                  Trending
+                  <div className={s.carouselItem}>Trending</div>
                 </div>
-                <div className={s.panel} onClick={() => setFetchType("latest")}>
-                  Latest
+
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+                    backgroundSize: "cover", // make sure the image covers the div
+                    backgroundRepeat: "no-repeat", // prevent the image from repeating
+                    backgroundPosition: "center", // center the image in the div
+                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                  }}
+                  className={s.panel}
+                  onClick={() => setActiveFilter("latest")}
+                >
+                  <div className={s.carouselItem}>Latest</div>
                 </div>
                 <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/0fd83649-29f8-4237-bd55-062763981f49.jpg")`,
+                    backgroundSize: "cover", // make sure the image covers the div
+                    backgroundRepeat: "no-repeat", // prevent the image from repeating
+                    backgroundPosition: "top", // center the image in the div
+                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                  }}
                   className={s.panel}
-                  onClick={() => setFetchType("topsold")}
+                  onClick={() => setActiveFilter("topsold")}
                 >
-                  Top sold
+                  <div className={s.carouselItem}>Sold</div>
                 </div>
                 <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/Atelier-tegneprosess19.jpg")`,
+                    backgroundSize: "cover", // make sure the image covers the div
+                    backgroundRepeat: "no-repeat", // prevent the image from repeating
+                    backgroundPosition: "center", // center the image in the div
+                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                  }}
                   className={s.panel}
-                  onClick={() => setFetchType("artists")}
+                  onClick={() => setActiveFilter("artists")}
                 >
-                  Artists
+                  <div className={s.carouselItem}>Artists</div>
+                </div>
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/436ba926-2b14-43f2-8090-ab9b26bf8eec.jpg")`,
+                    backgroundSize: "cover", // make sure the image covers the div
+                    backgroundRepeat: "no-repeat", // prevent the image from repeating
+                    backgroundPosition: "top 50px", // center the image in the div
+                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                  }}
+                  className={s.panel}
+                  onClick={() => setActiveFilter("monthlyArtist")}
+                >
+                  <div className={s.carouselItem}>Monthly Artist</div>
                 </div>
                 {tags.data &&
                   tags.data.map((tag, index) => (
                     <div
+                      style={{
+                        backgroundColor: "transparent",
+                        border: "1px solid #c67777",
+                        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                      }}
                       key={index}
                       className={s.panel}
-                      onClick={() => {
-                        setFetchType(tag);
-                        setSelectedTag(tag);
-                        console.log(selectedTag);
-                      }}
+                      onClick={() => setActiveFilter(tag)}
                     >
-                      {tag}
+                      <div className={s.carouselItemTag}>
+                        {t(`tags:${tag}`)}
+                      </div>
                     </div>
                   ))}
               </Flicking>
 
-              {fetchType === "artists" ? (
+              {activeFilter === "artists" ? (
                 <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              ) : activeFilter === "monthlyArtist" ? (
+                <DiscoverMonthlyArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
@@ -286,9 +346,9 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
-                  fetchType={fetchType}
+                  fetchType={activeFilter}
                   sold={sold}
-                  tagPlaceholder={selectedTag}
+                  tagPlaceholder={tagPlaceholder}
                 />
               )}
             </Box>

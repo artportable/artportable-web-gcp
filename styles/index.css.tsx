@@ -8,7 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(4),
     },
     discoverContainer: {
-      paddingTop: theme.spacing(4),
+      paddingTop: theme.spacing(0),
     },
     tabContainer: {
       display: "flex",
@@ -40,15 +40,46 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     panel: {
-      width: "20%",
-      height: "50px",
+      width: "40%",
+      height: "60px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer",
-      border: "1px solid black",
-      borderRadius: "10px",
-      margin: "10px",
+      border: "1px",
+      borderRadius: "15px",
+      marginRight: "10px",
+      marginBottom: "6px",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "20%",
+        height: "80px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        border: "1px",
+        borderRadius: "15px",
+        marginRight: "10px",
+        marginBottom: "6px",
+      },
+    },
+    carouselItem: {
+      fontSize: "18px",
+      color: "white",
+      fontStyle: "gotham",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "15px",
+      },
+    },
+
+    carouselItemTag: {
+      fontSize: "10px",
+      color: "#ff8383",
+      fontStyle: "gotham",
+      overflow: "hidden",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "15px",
+      },
     },
 
     textFieldFlex: {
