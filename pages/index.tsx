@@ -179,6 +179,11 @@ export default function DiscoverPage({ navBarItems }) {
       flickingRef.current.next();
     }
   };
+  const tags = useGetTags();
+
+  useEffect(() => {
+    console.log(tags.data?.value);
+  }, []);
 
   return (
     <Main
@@ -247,7 +252,18 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   Top sold
                 </div>
+                {tags.data &&
+                  tags.data.map((tag, index) => (
+                    <div
+                      key={index}
+                      className={s.panel}
+                      onClick={() => setFetchType(tag)}
+                    >
+                      {tag}
+                    </div>
+                  ))}
               </Flicking>
+
               <DiscoverTrendingArtTab
                 username={username.value}
                 socialId={socialId.value}

@@ -52,35 +52,33 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       loadMoreArtworksElementRef,
       (pageIndex, previousPageData) => {
         if (previousPageData && !previousPageData.next) {
-          console.log(previousPageData.next, ".next");
           props.stopLoadImages();
           return null;
         }
-        if (pageIndex == 0) {
-          let url;
-          if (props.fetchType === "trending") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
-          } else if (props.fetchType === "latest") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
-          } else if (props.fetchType === "topsold") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
-          }
 
-          selectedTags.forEach((tag) => {
-            url.searchParams.append("tag", tag);
-          });
-          if (searchQuery) {
-            url.searchParams.append("q", searchQuery);
-          }
-          if (username && username != "") {
-            url.searchParams.append("myUsername", username);
-          }
-          url.searchParams.append("page", (pageIndex + 1).toString());
-          url.searchParams.append("pageSize", "20");
-
-          return url.href;
+        let url;
+        if (props.fetchType === "trending") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        } else if (props.fetchType === "latest") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
+        } else if (props.fetchType === "topsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
+        } else {
+          // If fetchType is a tag
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
+          url.searchParams.append("tag", props.fetchType);
         }
-        return previousPageData.next;
+
+        if (searchQuery) {
+          url.searchParams.append("q", searchQuery);
+        }
+        if (username && username != "") {
+          url.searchParams.append("myUsername", username);
+        }
+        url.searchParams.append("page", (pageIndex + 1).toString());
+        url.searchParams.append("pageSize", "20");
+
+        return url.href;
       },
       username
     );
