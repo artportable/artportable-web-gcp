@@ -37,6 +37,9 @@ import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
+import Flicking from "@egjs/react-flicking";
+import { Arrow } from "@egjs/flicking-plugins";
+
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
