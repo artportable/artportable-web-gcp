@@ -48,6 +48,7 @@ import Flicking from "@egjs/react-flicking";
 import { Arrow, Fade } from "@egjs/flicking-plugins";
 import "@egjs/react-flicking/dist/flicking.css";
 import GalinaTol from "../public/images/GalinaTol.jpg";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -217,6 +218,14 @@ export default function DiscoverPage({ navBarItems }) {
   };
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  function handleRemoveClick() {
+    setActiveFilter("trending");
+    setClickedFilter("trending");
+    setCurrentIndex(0);
+    setResetToTrending(true);
+  }
+
+  const [resetToTrending, setResetToTrending] = useState(false);
 
   return (
     <Main
@@ -267,7 +276,13 @@ export default function DiscoverPage({ navBarItems }) {
                 circular={true}
                 align="center"
                 onMoveStart={() => setClickEnabled(false)}
-                onMoveEnd={() => setClickEnabled(true)}
+                onMoveEnd={() => {
+                  setClickEnabled(true);
+                  if (resetToTrending) {
+                    flickingRef.current.moveTo(0);
+                    setResetToTrending(false);
+                  }
+                }}
                 initialIndex={0}
                 plugins={_plugins}
                 moveType="snap"
@@ -284,6 +299,13 @@ export default function DiscoverPage({ navBarItems }) {
                   <div className={s.carouselItem}>Trending</div>
                 </div>
                 <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/0fd83649-29f8-4237-bd55-062763981f49.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "repeat",
+                    backgroundPosition: "left",
+                    position: "relative",
+                  }}
                   className={`${s.panel} ${
                     clickedFilter === "topsold" ? s.activePanel : ""
                   }`}
@@ -291,50 +313,87 @@ export default function DiscoverPage({ navBarItems }) {
                     handleFilterClick("topsold", 1);
                   }}
                 >
+                  {clickedFilter === "topsold" && (
+                    <button
+                      className={s.closeButton}
+                      onClick={handleRemoveClick}
+                    >
+                      <CloseIcon />
+                    </button>
+                  )}
                   <div className={s.carouselItem}>Sold</div>
                 </div>
-                <div
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/Atelier-tegneprosess19.jpg")`,
-                    backgroundSize: "cover", // make sure the image covers the div
-                    backgroundRepeat: "no-repeat", // prevent the image from repeating
-                    backgroundPosition: "center", // center the image in the div
-                  }}
-                  className={`${s.panel} ${
-                    clickedFilter === "artists" ? s.activePanel : ""
-                  }`}
-                  onClick={() => handleFilterClick("artists", 2)}
-                >
-                  <div className={s.carouselItem}>Artists</div>
-                </div>
-                <div
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/436ba926-2b14-43f2-8090-ab9b26bf8eec.jpg")`,
-                  }}
-                  className={`${s.panel} ${
-                    clickedFilter === "monthlyArtist" ? s.activePanel : ""
-                  }`}
-                  onClick={() => handleFilterClick("monthlyArtist", 3)}
-                >
-                  <div className={s.carouselItem}>Monthly Artist</div>
-                </div>
+
                 {tags.data &&
                   tags.data.map((tag, index) => (
                     <div
                       style={{
-                        backgroundColor: "transparent",
                         border: "1px solid #c67777",
                         boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                        position: "relative",
                       }}
                       key={index}
-                      className={s.panel}
-                      onClick={() => handleFilterClick(tag, index + 4)}
+                      className={`${s.panel} ${
+                        activeFilter === `${tag}` ? s.activePanel : ""
+                      }`}
+                      onClick={() => handleFilterClick(tag, index + 2)}
                     >
+                      {activeFilter === `${tag}` && (
+                        <button
+                          className={s.closeButton}
+                          onClick={handleRemoveClick} // Modified this line
+                        >
+                          <CloseIcon />
+                        </button>
+                      )}
                       <div className={s.carouselItemTag}>
                         {t(`tags:${tag}`)}
                       </div>
                     </div>
                   ))}
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/Atelier-tegneprosess19.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    position: "relative",
+                  }}
+                  className={`${s.panel} ${
+                    clickedFilter === "artists" ? s.activePanel : ""
+                  }`}
+                  onClick={() => handleFilterClick("artists", 77)}
+                >
+                  {clickedFilter === "artists" && (
+                    <button
+                      className={s.closeButton}
+                      onClick={handleRemoveClick}
+                    >
+                      <CloseIcon />
+                    </button>
+                  )}
+                  <div className={s.carouselItem}>Artists</div>
+                </div>
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/436ba926-2b14-43f2-8090-ab9b26bf8eec.jpg")`,
+                    position: "relative",
+                  }}
+                  className={`${s.panel} ${
+                    clickedFilter === "monthlyArtist" ? s.activePanel : ""
+                  }`}
+                  onClick={() => handleFilterClick("monthlyArtist", 78)}
+                >
+                  {clickedFilter === "monthlyArtist" && (
+                    <button
+                      className={s.closeButton}
+                      onClick={handleRemoveClick}
+                    >
+                      <CloseIcon />
+                    </button>
+                  )}
+                  <div className={s.carouselItem}>Monthly Artist</div>
+                </div>
                 {isSignedIn.value && (
                   <div
                     style={{

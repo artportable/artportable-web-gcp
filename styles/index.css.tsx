@@ -54,7 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "15px",
       marginRight: "10px",
       marginBottom: "6px",
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
 
       [theme.breakpoints.up("smPlus")]: {
         width: "20%",
@@ -79,11 +79,40 @@ export const styles = makeStyles((theme: Theme) =>
 
     carouselItemTag: {
       fontSize: "10px",
-      color: "#ff8383",
+      color: "#faf3ee",
       fontStyle: "gotham",
       overflow: "hidden",
+
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "15px",
+      },
+    },
+
+    closeButton: {
+      position: "absolute",
+      top: "5px",
+      right: "5px",
+      backgroundColor: "#ff8383",
+      border: "1px solid #faf3ee",
+      color: "white",
+      cursor: "pointer",
+      borderRadius: "50%",
+      fontSize: "18px",
+      lineHeight: "18px",
+      width: "24px",
+      height: "24px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 10, // make sure it stays on top
+      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)", // add subtle shadow for depth
+      transition: "transform 0.2s, backgroundColor 0.2s", // subtle transition for button interactions
+      "&:hover": {
+        backgroundColor: "#a35d5d", // secondary color for hover
+        transform: "scale(1.1)", // slight scale up on hover
+      },
+      "&:active": {
+        transform: "scale(0.95)", // slight scale down on click
       },
     },
 
