@@ -54,6 +54,8 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "15px",
       marginRight: "10px",
       marginBottom: "6px",
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+
       [theme.breakpoints.up("smPlus")]: {
         width: "20%",
         height: "80px",
@@ -61,9 +63,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     activePanel: {
-      backgroundColor: "rgba(220, 220, 220, 0.5)", // a light gray, you can adjust this
-      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.8)", // boxShadow for all sizes
-      border: "2px solid #ff8383", // thicker and darker border for the active panel
+      backgroundColor: "#ff8383",
+      border: "2px solid #ff8383",
+      backgroundImage: `none !important`,
     },
 
     carouselItem: {

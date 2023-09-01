@@ -200,11 +200,20 @@ export default function DiscoverPage({ navBarItems }) {
   const [clickedFilter, setClickedFilter] = useState(null);
 
   const handleFilterClick = (filter, index) => {
-    setActiveFilter(filter);
-    setClickedFilter(filter);
-    setCurrentIndex(index);
-    flickingRef.current?.moveTo(index);
-    console.log("clicked filter is ", filter);
+    // If the clicked filter is already active, reset to 'trending' and move to index 0
+    if (clickedFilter === filter) {
+      setActiveFilter("trending");
+      setClickedFilter("trending");
+      setCurrentIndex(0);
+      flickingRef.current?.moveTo(0);
+      console.log("clicked filter is ", "trending");
+    } else {
+      setActiveFilter(filter);
+      setClickedFilter(filter);
+      setCurrentIndex(index);
+      flickingRef.current?.moveTo(index);
+      console.log("clicked filter is ", filter);
+    }
   };
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -255,21 +264,16 @@ export default function DiscoverPage({ navBarItems }) {
               <Flicking
                 ref={flickingRef}
                 gap={6}
-                align="center"
                 circular={true}
+                align="center"
                 onMoveStart={() => setClickEnabled(false)}
                 onMoveEnd={() => setClickEnabled(true)}
                 initialIndex={0}
                 plugins={_plugins}
+                moveType="snap"
               >
                 <div
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
-                    backgroundSize: "cover", // make sure the image covers the div
-                    backgroundRepeat: "no-repeat", // prevent the image from repeating
-                    backgroundPosition: "center", // center the image in the div
-                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
-                  }}
+                  style={{}}
                   className={`${s.panel} ${
                     clickedFilter === "trending" ? s.activePanel : ""
                   }`}
@@ -280,9 +284,6 @@ export default function DiscoverPage({ navBarItems }) {
                   <div className={s.carouselItem}>Trending</div>
                 </div>
                 <div
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/0fd83649-29f8-4237-bd55-062763981f49.jpg")`,
-                  }}
                   className={`${s.panel} ${
                     clickedFilter === "topsold" ? s.activePanel : ""
                   }`}
@@ -298,23 +299,22 @@ export default function DiscoverPage({ navBarItems }) {
                     backgroundSize: "cover", // make sure the image covers the div
                     backgroundRepeat: "no-repeat", // prevent the image from repeating
                     backgroundPosition: "center", // center the image in the div
-                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
                   }}
-                  className={s.panel}
-                  onClick={() => setActiveFilter("artists")}
+                  className={`${s.panel} ${
+                    clickedFilter === "artists" ? s.activePanel : ""
+                  }`}
+                  onClick={() => handleFilterClick("artists", 2)}
                 >
                   <div className={s.carouselItem}>Artists</div>
                 </div>
                 <div
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/436ba926-2b14-43f2-8090-ab9b26bf8eec.jpg")`,
-                    backgroundSize: "cover", // make sure the image covers the div
-                    backgroundRepeat: "no-repeat", // prevent the image from repeating
-                    backgroundPosition: "top 50px", // center the image in the div
-                    boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
                   }}
-                  className={s.panel}
-                  onClick={() => setActiveFilter("monthlyArtist")}
+                  className={`${s.panel} ${
+                    clickedFilter === "monthlyArtist" ? s.activePanel : ""
+                  }`}
+                  onClick={() => handleFilterClick("monthlyArtist", 3)}
                 >
                   <div className={s.carouselItem}>Monthly Artist</div>
                 </div>
