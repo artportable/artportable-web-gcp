@@ -329,8 +329,8 @@ export default function Exhibition({ navBarItems }) {
       },
       {
         week: "Vecka 39",
-        artist: "Anna Lindman",
-        username: "anna_lindman",
+        artist: "Wynja Lindman",
+        username: "wynja.lindman",
       },
     ],
     OKTOBER: [
