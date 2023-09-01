@@ -1,9 +1,16 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/index.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
-import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
+import {
+  Box,
+  MenuItem,
+  Tab,
+  Tabs,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
@@ -37,6 +44,12 @@ import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
+import Flicking from "@egjs/react-flicking";
+import { Arrow, Fade } from "@egjs/flicking-plugins";
+import "@egjs/react-flicking/dist/flicking.css";
+import GalinaTol from "../public/images/GalinaTol.jpg";
+import CloseIcon from "@mui/icons-material/Close";
+
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -44,6 +57,7 @@ export default function DiscoverPage({ navBarItems }) {
     "plans",
     "common",
     "discover",
+    "tags",
   ]);
   const s = styles();
   const store = useStore();
@@ -152,6 +166,67 @@ export default function DiscoverPage({ navBarItems }) {
     setOpenAdDialog(false);
   }
 
+  const [fetchType, setFetchType] = useState("trending");
+
+  const _plugins = [new Fade()];
+  const [clickEnabled, setClickEnabled] = useState(true);
+  const flickingRef = useRef(null);
+
+  const handlePrevClick = () => {
+    if (flickingRef.current && clickEnabled) {
+      flickingRef.current.prev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (flickingRef.current && clickEnabled) {
+      flickingRef.current.next();
+    }
+  };
+  const tags = useGetTags();
+  const [activeFilter, setActiveFilter] = useState("trending");
+
+  const knownFetchTypes = [
+    "trending",
+    "latest",
+    "topsold",
+    "artists",
+    "favorites",
+  ];
+
+  const tagPlaceholder = knownFetchTypes.includes(activeFilter)
+    ? "Originalkonst"
+    : activeFilter;
+
+  const [clickedFilter, setClickedFilter] = useState(null);
+
+  const handleFilterClick = (filter, index) => {
+    // If the clicked filter is already active, reset to 'trending' and move to index 0
+    if (clickedFilter === filter) {
+      setActiveFilter("trending");
+      setClickedFilter("trending");
+      setCurrentIndex(0);
+      flickingRef.current?.moveTo(0);
+      console.log("clicked filter is ", "trending");
+    } else {
+      setActiveFilter(filter);
+      setClickedFilter(filter);
+      setCurrentIndex(index);
+      flickingRef.current?.moveTo(index);
+      console.log("clicked filter is ", filter);
+    }
+  };
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  function handleRemoveClick() {
+    setActiveFilter("trending");
+    setClickedFilter("trending");
+    setCurrentIndex(0);
+    setResetToTrending(true);
+  }
+
+  const [resetToTrending, setResetToTrending] = useState(false);
+
   return (
     <Main
       noHeaderPadding
@@ -194,162 +269,184 @@ export default function DiscoverPage({ navBarItems }) {
             />
           }
           <div className={s.discoverContainer}>
-            <div className={s.tabContainer}>
-              {activeTab === 0 ||
-              activeTab === 1 ||
-              activeTab === 2 ||
-              activeTab === 3 ||
-              activeTab === 4 ||
-              activeTab === 8 ? (
-                <form className={s.form}>
-                  {/*  // Remove sold/unsold filter for now
-                  <div className={s.textFieldFlex}>
-                    <TextField
-                      classes={{
-                        root: s.textField,
-                      }}
-                      select
-                      variant="outlined"
-                      value={sold}
-                    >
-                      {subjectOptions.map((option) => (
-                        <MenuItem
-                          key={option.value}
-                          value={option.value}
-                          onClick={() => {
-                            setSold(option.value);
-                            loadImages();
-                          }}
-                        >
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  </div>
-              */}
-                </form>
-              ) : null}
-              <Tabs
-                className={`${
-                  activeTab < 5 || activeTab === 8 ? s.artTabs : s.artistTab
-                }`}
-                value={activeTab}
-                onChange={(_, newValue) => setTab(newValue)}
-                variant={"scrollable"}
-                scrollButtons={"on"}
-              >
-                <Tab
-                  className={s.text}
-                  label={t("discover:trendingArt")}
-                  {...a11yProps(t("discover:trendingArt"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:highlights")}
-                  {...a11yProps(t("discover:highlights"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:topArt")}
-                  {...a11yProps(t("discover:topArt"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:latestArt")}
-                  {...a11yProps(t("discover:latestArt"))}
-                />
-
-                <Tab
-                  className={s.text}
-                  label={t("discover:monthlyArtist")}
-                  {...a11yProps(t("discover:monthlyArtist"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:artists")}
-                  {...a11yProps(t("discover:artists"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:myLikedArt")}
-                  {...a11yProps(t("discover:myLikedArt"))}
-                  onClick={redirectIfNotLoggedIn}
-                />
-              </Tabs>
-            </div>
             <Box paddingTop={4}>
-              <TabPanel value={activeTab} index={0}>
-                <DiscoverTrendingArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <DiscoverHighLightsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={2}>
-                <DiscoverTopArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={3}>
-                <DiscoverLatestArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={4}>
-                <DiscoverMonthlyArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <Flicking
+                ref={flickingRef}
+                gap={6}
+                circular={true}
+                align="center"
+                onMoveStart={() => setClickEnabled(false)}
+                onMoveEnd={() => {
+                  setClickEnabled(true);
+                  if (resetToTrending) {
+                    flickingRef.current.moveTo(0);
+                    setResetToTrending(false);
+                  }
+                }}
+                initialIndex={0}
+                plugins={_plugins}
+                moveType="snap"
+              >
+                <div
+                  style={{}}
+                  className={`${s.panel} ${
+                    clickedFilter === "trending" ? s.activePanel : ""
+                  }`}
+                  onClick={() => {
+                    handleFilterClick("trending", 0);
+                  }}
+                >
+                  <div className={s.carouselItem}>Trending</div>
+                </div>
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/0fd83649-29f8-4237-bd55-062763981f49.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "repeat",
+                    backgroundPosition: "left",
+                    position: "relative",
+                  }}
+                  className={`${s.panel} ${
+                    clickedFilter === "topsold" ? s.activePanel : ""
+                  }`}
+                  onClick={() => {
+                    handleFilterClick("topsold", 1);
+                  }}
+                >
+                  {clickedFilter === "topsold" && (
+                    <button
+                      className={s.closeButton}
+                      onClick={handleRemoveClick}
+                    >
+                      <CloseIcon />
+                    </button>
+                  )}
+                  <div className={s.carouselItem}>Sold</div>
+                </div>
+
+                {tags.data &&
+                  tags.data.map((tag, index) => (
+                    <div
+                      style={{
+                        border: "1px solid #c67777",
+                        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                        position: "relative",
+                      }}
+                      key={index}
+                      className={`${s.panel} ${
+                        activeFilter === `${tag}` ? s.activePanel : ""
+                      }`}
+                      onClick={() => handleFilterClick(tag, index + 2)}
+                    >
+                      {activeFilter === `${tag}` && (
+                        <button
+                          className={s.closeButton}
+                          onClick={handleRemoveClick} // Modified this line
+                        >
+                          <CloseIcon />
+                        </button>
+                      )}
+                      <div className={s.carouselItemTag}>
+                        {t(`tags:${tag}`)}
+                      </div>
+                    </div>
+                  ))}
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/Atelier-tegneprosess19.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    position: "relative",
+                  }}
+                  className={`${s.panel} ${
+                    clickedFilter === "artists" ? s.activePanel : ""
+                  }`}
+                  onClick={() => handleFilterClick("artists", 77)}
+                >
+                  {clickedFilter === "artists" && (
+                    <button
+                      className={s.closeButton}
+                      onClick={handleRemoveClick}
+                    >
+                      <CloseIcon />
+                    </button>
+                  )}
+                  <div className={s.carouselItem}>Artists</div>
+                </div>
+                <div
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/436ba926-2b14-43f2-8090-ab9b26bf8eec.jpg")`,
+                    position: "relative",
+                  }}
+                  className={`${s.panel} ${
+                    clickedFilter === "monthlyArtist" ? s.activePanel : ""
+                  }`}
+                  onClick={() => handleFilterClick("monthlyArtist", 78)}
+                >
+                  {clickedFilter === "monthlyArtist" && (
+                    <button
+                      className={s.closeButton}
+                      onClick={handleRemoveClick}
+                    >
+                      <CloseIcon />
+                    </button>
+                  )}
+                  <div className={s.carouselItem}>Monthly Artist</div>
+                </div>
+                {isSignedIn.value && (
+                  <div
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+                      backgroundSize: "cover", // make sure the image covers the div
+                      backgroundRepeat: "no-repeat", // prevent the image from repeating
+                      backgroundPosition: "center", // center the image in the div
+                      boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                    }}
+                    className={s.panel}
+                    onClick={() => setActiveFilter("favorites")}
+                  >
+                    <div className={s.carouselItem}>My Favorites</div>
+                  </div>
+                )}
+              </Flicking>
+
+              {activeFilter === "artists" ? (
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
-              </TabPanel>
-              <TabPanel value={activeTab} index={6}>
+              ) : activeFilter === "monthlyArtist" ? (
+                <DiscoverMonthlyArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              ) : activeFilter === "favorites" ? (
                 <DiscoverMyLikedArtTab
                   username={username.value}
                   socialId={socialId.value}
-                  rowWidth={rowWidth}
                   sold={sold}
+                  loadMore={loadMoreArtworks}
+                  stopLoadImages={stopLoadImages}
+                  loadImages={loadImages}
+                  rowWidth={rowWidth}
+                  activeTab={activeTab}
+                  tagPlaceholder={tagPlaceholder}
+                />
+              ) : (
+                <DiscoverTrendingArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
+                  fetchType={activeFilter}
+                  sold={sold}
+                  tagPlaceholder={tagPlaceholder}
                 />
-              </TabPanel>
+              )}
             </Box>
           </div>
         </>

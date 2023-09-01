@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { memo, useContext, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -17,11 +17,13 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  fetchType: string;
+  tagPlaceholder: string;
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
-  const { t } = useTranslation(['header', 'common', 'support']);
-  const { username, socialId, rowWidth } = props
+  const { t } = useTranslation(["header", "common", "support"]);
+  const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -42,46 +44,45 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        console.log(previousPageData.next, ".next")
-        props.stopLoadImages();
-        return null;
-      }
-      if (pageIndex == 0) {
+  const { data: artworks, isLoading: isLoadingArtWorks } =
+    useInfiniteScrollWithKey<Artwork>(
+      loadMoreArtworksElementRef,
+      (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.next) {
+          props.stopLoadImages();
+          return null;
+        }
+
         let url;
-        if (props.sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
-        }
-        else if (props.sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
-        }
-        else if (props.sold === "All") {
+        if (props.fetchType === "trending") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        } else if (props.fetchType === "latest") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
+        } else if (props.fetchType === "topsold") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
+        } else {
+          // If fetchType is a tag
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
+          url.searchParams.append("tag", props.fetchType);
         }
-        else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
-        }
-        selectedTags.forEach(tag => {
-          url.searchParams.append('tag', tag);
-        });
+
         if (searchQuery) {
-          url.searchParams.append('q', searchQuery);
+          url.searchParams.append("q", searchQuery);
         }
-        if (username && username != '') {
-          url.searchParams.append('myUsername', username);
+        if (username && username != "") {
+          url.searchParams.append("myUsername", username);
         }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "20");
+        url.searchParams.append("page", (pageIndex + 1).toString());
+        url.searchParams.append("pageSize", "20");
+
         return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+      },
+      username
+    );
 
   return (
     <>
-      {!tags?.isLoading && !tags?.isError && tags?.data &&
+      {!tags?.isLoading && !tags?.isError && tags?.data && (
         <DiscoverArt
           artworks={artworks}
           tags={tags?.data}
@@ -92,10 +93,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          tagPlaceholder={props.tagPlaceholder}
         />
-      }
+      )}
     </>
   );
-})
+});
 
-export default DiscoverTrendingArtTab
+export default DiscoverTrendingArtTab;

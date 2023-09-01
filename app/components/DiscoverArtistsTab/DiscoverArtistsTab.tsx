@@ -6,7 +6,6 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
 
-
 interface DiscoverArtistsTabProps {
   username?: string;
   socialId?: string;
@@ -32,26 +31,30 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
     follow(userToFollow, isFollow, socialId, token);
   }
 
-  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtists(false);
-        return null;
-      }
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
-        if (searchQuery != null && searchQuery != '') {
-          url.searchParams.append('q', searchQuery);
+  const { data: artists, isLoading: isLoadingArtists } =
+    useInfiniteScrollWithKey<Artist>(
+      loadMoreArtistsElementRef,
+      (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.next) {
+          setLoadMoreArtists(false);
+          return null;
         }
-        if (username != null && username != '') {
-          url.searchParams.append('myUsername', username);
+        if (pageIndex == 0) {
+          const url = new URL(`${apiBaseUrl}/api/discover/artists`);
+          if (searchQuery != null && searchQuery != "") {
+            url.searchParams.append("q", searchQuery);
+          }
+          if (username != null && username != "") {
+            url.searchParams.append("myUsername", username);
+          }
+          url.searchParams.append("page", (pageIndex + 1).toString());
+          url.searchParams.append("pageSize", "10");
+          return url.href;
         }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "10");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+        return previousPageData.next;
+      },
+      username
+    );
 
   return (
     <DiscoverArtists
@@ -63,6 +66,6 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
       loadMore={loadMoreArtists}
     />
   );
-})
+});
 
-export default DiscoverArtistsTab
+export default DiscoverArtistsTab;

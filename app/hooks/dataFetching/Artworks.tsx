@@ -1,7 +1,21 @@
 import useSWR from "swr";
 import { ArtworkForCreation } from "../../models/Artwork";
 
-const fetcher = (url) => fetch(url).then((r) => r.json().then((data) => data));
+const fetcher = async (url) => {
+  const response = await fetch(url);
+
+  // Log the response for debugging
+  console.log("Fetcher response:", response);
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    console.error("Fetcher error:", errorData);
+    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+  }
+
+  return response.json();
+};
+
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export function useGetArtworks(owner = null, myUsername: string = null) {
