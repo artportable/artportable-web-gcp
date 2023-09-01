@@ -6,18 +6,15 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       backgroundColor: theme.palette.common.white,
-      height: "38px",
-      border: "1px solid #a35d5d",
-      borderRadius: "18px",
-      width: "50%",
-      marginTop: "10px",
-      margin: "0 auto",
+      height: "48px",
+      border: "1px solid",
+      borderRadius: "48px",
       "&:hover": {
         border: "1px solid #a35d5d",
       },
       "&:focus-within": {
-        marginTop: "10px",
-        margin: "0 auto",
+        borderWidth: "2px",
+        margin: "0 -1px",
       },
     },
     chip: {
@@ -40,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     input: {
       height: "100%",
-      width: "90%",
+      width: "75%",
       fontSize: "12px",
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: "GT-America-Standard",
