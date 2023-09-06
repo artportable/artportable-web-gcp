@@ -180,6 +180,19 @@ export default function DiscoverPage({ navBarItems }) {
   const tags = useGetTags();
   const [activeFilter, setActiveFilter] = useState("trending");
 
+  const tagBackgrounds = {
+    water:
+      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/86ebe557-0ec0-45b4-8720-9cd4f7b125ae.jpg")',
+    nature:
+      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/311453dc-b157-4be0-b52e-9a418c55a675.jpg")',
+    acrylic:
+      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c23a68a2-0435-4c24-a1b0-26c1f8e9ff06.jpg")',
+    "pop-art":
+      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/276056ac-7e99-4fa3-af11-703c95a36edc.jpg")',
+    default:
+      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")',
+  };
+
   const knownFetchTypes = [
     "trending",
     "latest",
@@ -434,6 +447,12 @@ export default function DiscoverPage({ navBarItems }) {
                   tags.data.map((tag, index) => (
                     <div
                       style={{
+                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), ${
+                          tagBackgrounds[tag] || tagBackgrounds.default
+                        }`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "repeat",
+                        backgroundPosition: "left",
                         boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
                         position: "relative",
                       }}
@@ -513,7 +532,7 @@ export default function DiscoverPage({ navBarItems }) {
                 {isSignedIn.value && (
                   <div
                     style={{
-                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/bc218e0d-d918-470b-96e6-23980ba3fb9e.jpg")`,
                       backgroundSize: "cover", // make sure the image covers the div
                       backgroundRepeat: "no-repeat", // prevent the image from repeating
                       backgroundPosition: "center", // center the image in the div
@@ -522,7 +541,7 @@ export default function DiscoverPage({ navBarItems }) {
                     className={`${s.panel} ${
                       clickedFilter === "likedbyme" ? s.activePanel : ""
                     }`}
-                    onClick={() => handleFilterClick("likedbyme", 80)}
+                    onClick={() => handleFilterClick("likedbyme", 79)}
                   >
                     {" "}
                     {clickedFilter === "likedbyme" && (
@@ -533,7 +552,9 @@ export default function DiscoverPage({ navBarItems }) {
                         <CloseIcon />
                       </button>
                     )}
-                    <div className={s.carouselItem}>My Favorites</div>
+                    <div className={s.carouselItem}>
+                      {t("discover:myLikedArt").toLocaleUpperCase()}
+                    </div>
                   </div>
                 )}
               </Flicking>
@@ -609,6 +630,7 @@ export default function DiscoverPage({ navBarItems }) {
                   rowWidth={rowWidth}
                   activeTab={4}
                   tagPlaceholder={tagPlaceholder}
+                  fetchType={activeFilter}
                 />
               ) : (
                 <DiscoverTrendingArtTab

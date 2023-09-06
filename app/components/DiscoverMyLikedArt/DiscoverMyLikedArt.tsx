@@ -6,6 +6,8 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
+import { useTranslation } from "next-i18next";
+import { styles } from "./discoverMyLikedArtTab.css";
 
 interface DiscoverMyLikedArtTabProps {
   username?: string;
@@ -17,6 +19,7 @@ interface DiscoverMyLikedArtTabProps {
   stopLoadImages: any;
   activeTab: number;
   tagPlaceholder: string;
+  fetchType: string;
 }
 
 export const DiscoverMyLikedArtTab = memo(
@@ -30,6 +33,8 @@ export const DiscoverMyLikedArtTab = memo(
     const { like } = usePostLike();
     const token = useContext(TokenContext);
     const tags = useGetTags();
+    const { t } = useTranslation(["index", "common", "discover", "tags"]);
+    const s = styles();
 
     function filter(tags: string[], searchQuery = "") {
       props.loadImages();
@@ -85,6 +90,28 @@ export const DiscoverMyLikedArtTab = memo(
 
     return (
       <>
+        <div
+          style={{
+            zIndex: 10,
+            color: "#3e3e3e",
+            fontWeight: 700,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "35px",
+            marginTop: "20px",
+            width: "95%",
+          }}
+        >
+          {{
+            likedbyme: t("discover:myLikedArt").toLocaleUpperCase(),
+          }[props.fetchType] || t(`tags:${props.fetchType}`).toUpperCase()}
+        </div>
+
+        {props.fetchType === "likedbyme" && (
+          <div className={s.displayText}>{t("discover:myLikedArtText")}</div>
+        )}
+
         {!tags?.isLoading && !tags?.isError && tags?.data && (
           <DiscoverArt
             artworks={artworks}
