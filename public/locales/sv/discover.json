@@ -13,5 +13,10 @@
   "searchForArt": "Sök originalkonst",
   "myLikedArt": "Mina favoriter",
   "highlights": "Utvalda verk",
-  "latestArt": "Senaste"
+  "latestArt": "Senaste",
+  "trendingText": "Se det som är mest populärt på Artportable just nu",
+  "curatedArtText": "Vi är stolta att visa upp några av våra favoriter på Artportable",
+  "latestText": "Ha koll på det allras senaste som laddats upp från Artportables konstnärer",
+  "topListText": "De mest gillade verken på Artportable"
+
 }

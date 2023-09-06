@@ -44,32 +44,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const token = useContext(TokenContext);
   const { like } = usePostLike();
 
-  const [displayedText, setDisplayedText] = useState('');
-  const hasStartedTyping = useRef(false); // to track if we've started the typing effect
-
-  useEffect(() => {
-    let index = 0;
-    const fullText = "Se det som är mest populärt på Artportable just nu";
-
-    // Only start typing effect for the "trending" tab
-    if (props.fetchType === "trending" && !hasStartedTyping.current) {
-      hasStartedTyping.current = true; // Mark that we've started the typing effect
-
-      // Use a timer to type out text
-      const timer = setInterval(() => {
-        if (index < fullText.length) {
-          setDisplayedText(prevText => prevText + fullText[index]);
-          index++;
-        } else {
-          clearInterval(timer);
-        }
-      }, 100); // Adjust the interval to make typing faster/slower
-
-      // Cleanup effect if component unmounts
-      return () => clearInterval(timer);
-    }
-  }, [props.fetchType]);
-
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
     setSelectedTags(tags);
@@ -142,7 +116,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         <div
           className={s.displayText}
         >
-          {displayedText}
+          {"Se det som är mest populärt på Artportable just nu"}
         </div>
       )}
 
