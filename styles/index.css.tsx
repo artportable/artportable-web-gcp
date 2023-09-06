@@ -78,8 +78,7 @@ export const styles = makeStyles((theme: Theme) =>
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.5))",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "22px",
-        fontWeight: 600
-
+        fontWeight: 600,
       },
     },
 
@@ -93,8 +92,7 @@ export const styles = makeStyles((theme: Theme) =>
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.5))",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "22px",
-        fontWeight: 600
-
+        fontWeight: 600,
       },
     },
 
@@ -152,37 +150,39 @@ export const styles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("md")]: {
         cursor: "pointer",
-      pointerEvents: "auto", 
-      color: "#3d3d44c4",
-      display: "flex",
-      alignItems: "center",
-      backgroundColor: "white",
-      width: "40px",
-      height: "65px",
-      borderRadius: "6px",
-      filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
-      "&:hover": {
-        transform: "scale(1.1)", // slight scale up on hover
-      },
+        pointerEvents: "auto",
+        color: "#3d3d44c4",
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "white",
+        padding: "6px",
+        width: "45px",
+        height: "45px",
+        borderRadius: "50%",
+        filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
+        "&:hover": {
+          transform: "scale(1.1)", // slight scale up on hover
+        },
       },
     },
 
     flickingArrowNext: {
-          display: "none",
+      display: "none",
       [theme.breakpoints.up("md")]: {
         cursor: "pointer",
-      pointerEvents: "auto", 
-      color: "#3d3d44c4",
-      display: "flex",
-      alignItems: "center",
-      backgroundColor: "white",
-      width: "40px",
-      height: "65px",
-      borderRadius: "6px",
-      filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
-      "&:hover": {
-        transform: "scale(1.1)", // slight scale up on hover
-      },
+        pointerEvents: "auto",
+        color: "#3d3d44c4",
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "white",
+        padding: "6px",
+        width: "45px",
+        height: "45px",
+        borderRadius: "50%",
+        filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
+        "&:hover": {
+          transform: "scale(1.1)", // slight scale up on hover
+        },
       },
     },
 
@@ -238,13 +238,11 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("sm")]: {
         width: "40px",
         height: "60px",
-
       },
       [theme.breakpoints.up("smPlus")]: {
         width: "50px",
         right: 100,
         height: "80px",
-
       },
       [theme.breakpoints.up("md")]: {
         width: "40px",
@@ -271,7 +269,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("sm")]: {
         width: "30px",
-  
       },
       [theme.breakpoints.up("smPlus")]: {
         width: "20px",
@@ -281,11 +278,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("mdPlus")]: {
         width: "20px",
-  
       },
       [theme.breakpoints.up("lg")]: {
         width: "30px",
-
       },
     },
     expandMoreLess: {
@@ -328,8 +323,6 @@ export const styles = makeStyles((theme: Theme) =>
         width: "70%",
         maxHeight: "300px",
       },
-      
-      
     },
     tagDialog: {
       display: "flex",
@@ -353,10 +346,10 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#a35d5d", // secondary color for hover
         transform: "scale(1.09)", // slight scale up on hover
         filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
-      }, [theme.breakpoints.up("sm")]: {
+      },
+      [theme.breakpoints.up("sm")]: {
         fontSize: "12px",
       },
-    
     },
 
     tag: {
