@@ -216,12 +216,14 @@ export default function DiscoverPage({ navBarItems }) {
   };
 
   const handlePrevClick = () => {
+    if (isAnimating) return;
     if (flickingRef.current && clickEnabled) {
       flickingRef.current.prev();
     }
   };
 
   const handleNextClick = () => {
+    if (isAnimating) return;
     if (flickingRef.current && clickEnabled) {
       flickingRef.current.next();
     }
