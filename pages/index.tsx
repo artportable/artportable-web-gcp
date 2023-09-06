@@ -52,13 +52,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { FlickingError, ERROR_CODE } from "@egjs/flicking";
 import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import Dialog, { DialogProps } from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
