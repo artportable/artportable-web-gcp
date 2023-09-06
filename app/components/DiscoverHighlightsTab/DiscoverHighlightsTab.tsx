@@ -7,7 +7,7 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
-import { styles } from './discoverHighlightsTab.css'
+import { styles } from "./discoverHighlightsTab.css";
 
 interface DiscoverHighLightsTabProps {
   username?: string;
@@ -18,10 +18,11 @@ interface DiscoverHighLightsTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  tagPlaceholder: string;
 }
 
 const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
-  const { username, socialId, rowWidth } = props
+  const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -43,46 +44,47 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        props.stopLoadImages();
-        return null;
-      }
+  const { data: artworks, isLoading: isLoadingArtWorks } =
+    useInfiniteScrollWithKey<Artwork>(
+      loadMoreArtworksElementRef,
+      (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.next) {
+          props.stopLoadImages();
+          return null;
+        }
 
-      if (pageIndex == 0) {
-        let url;
-        if (props.sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/curatedunsold`);
+        if (pageIndex == 0) {
+          let url;
+          if (props.sold === "Unsold") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/curatedunsold`);
+          } else if (props.sold === "Sold") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/curatedsold`);
+          } else if (props.sold === "All") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/curated`);
+          } else {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/curated`);
+          }
+          selectedTags.forEach((tag) => {
+            url.searchParams.append("tag", tag);
+          });
+          if (searchQuery) {
+            url.searchParams.append("q", searchQuery);
+          }
+          if (username && username != "") {
+            url.searchParams.append("myUsername", username);
+          }
+          url.searchParams.append("page", (pageIndex + 1).toString());
+          url.searchParams.append("pageSize", "20");
+          return url.href;
         }
-        else if (props.sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/curatedsold`);
-        }
-        else if (props.sold === "All") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/curated`);
-        }
-        else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/curated`);
-        }
-        selectedTags.forEach(tag => {
-          url.searchParams.append('tag', tag);
-        });
-        if (searchQuery) {
-          url.searchParams.append('q', searchQuery);
-        }
-        if (username && username != '') {
-          url.searchParams.append('myUsername', username);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "20");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+        return previousPageData.next;
+      },
+      username
+    );
 
   return (
     <>
-      {!tags?.isLoading && !tags?.isError && tags?.data &&
+      {!tags?.isLoading && !tags?.isError && tags?.data && (
         <>
           <DiscoverArt
             artworks={artworks}
@@ -94,14 +96,15 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
             isLoading={isLoadingArtWorks}
             loadMore={props.loadMore}
             activeTab={props.activeTab}
+            tagPlaceholder={props.tagPlaceholder}
           />
           {/* <p className={s.secretLinks}>
             <a href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
           </p> */}
         </>
-      }
+      )}
     </>
   );
-})
+});
 
-export default DiscoverHighLightsTab
+export default DiscoverHighLightsTab;

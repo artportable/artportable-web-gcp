@@ -6,23 +6,24 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       backgroundColor: theme.palette.common.white,
-      height: "48px",
-      border: "1px solid",
-      borderRadius: "48px",
+      height: "38px",
+      border: "1px solid #a35d5d",
+      borderRadius: "18px",
+      width: "70%",
+      marginTop: "10px",
+      margin: "0 auto",
+      marginBottom: "40px",
       "&:hover": {
         border: "1px solid #a35d5d",
       },
       "&:focus-within": {
-        borderWidth: "2px",
-        margin: "0 -1px",
+        marginTop: "10px",
+        margin: "0 auto",
+        marginBottom: "40px",
       },
     },
     chip: {
-      border: "1px solid #a35d5d",
-      color: "#a35d5d",
-      "&:hover": {
-        border: "1px solid #ff8383",
-      },
+
     },
     selectedChip: {
       backgroundColor: "#a35d5d",
@@ -30,18 +31,19 @@ export const styles = makeStyles((theme: Theme) =>
       border: "1px solid #a35d5d",
     },
     noTags: {
-      paddingRight: theme.spacing(2.4),
+      
     },
     searchIcon: {
       margin: theme.spacing(0, 0.4, 0, 1),
     },
     input: {
       height: "100%",
-      width: "75%",
+      width: "100%",
       fontSize: "12px",
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: "GT-America-Standard",
       border: "none",
+      borderRadius: "18px",
       "&:focus": {
         border: "none",
       },
@@ -51,17 +53,12 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         fontSize: "21px",
       },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "21px",
+      },
     },
     tagsContainer: {
-      display: "flex",
-      alignItems: "center",
-      height: "100%",
-
-      padding: theme.spacing(0, 1),
-      borderLeft: "1px solid rgba(0, 0, 0, 0.23)",
-      "& ul": {
-        margin: 0,
-      },
+  
     },
     categoryTags: {
       display: "flex",
