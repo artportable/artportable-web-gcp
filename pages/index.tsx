@@ -441,7 +441,10 @@ export default function DiscoverPage({ navBarItems }) {
                       className={`${s.panel} ${
                         activeFilter === `${tag}` ? s.activePanel : ""
                       }`}
-                      onClick={() => handleFilterClick(tag, index + 4)}
+                      onClick={() => {
+                        console.log(index + 4);
+                        handleFilterClick(tag, index + 4);
+                      }}
                     >
                       {activeFilter === `${tag}` && (
                         <button
@@ -468,7 +471,7 @@ export default function DiscoverPage({ navBarItems }) {
                   className={`${s.panel} ${
                     clickedFilter === "artists" ? s.activePanel : ""
                   }`}
-                  onClick={() => handleFilterClick("artists", 79)}
+                  onClick={() => handleFilterClick("artists", 78)}
                 >
                   {clickedFilter === "artists" && (
                     <button
