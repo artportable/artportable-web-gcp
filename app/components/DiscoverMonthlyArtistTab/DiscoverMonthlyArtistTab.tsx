@@ -5,10 +5,12 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
+import { useTranslation } from "next-i18next";
 
 interface DiscoverMonthlyArtistsTabProps {
   username?: string;
   socialId?: string;
+  tagPlaceholder?: string;
 }
 
 const DiscoverMonthlyArtistsTab = memo(
@@ -22,7 +24,7 @@ const DiscoverMonthlyArtistsTab = memo(
     const token = useContext(TokenContext);
     const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
     const { follow } = usePostFollow();
-
+    const { t } = useTranslation(["discover"]);
     function filterMontlyArtist(tags: string[], searchQuery = "") {
       setLoadMoreMontlyArtists(true);
       setSearchQueryMontly(searchQuery);
@@ -67,6 +69,7 @@ const DiscoverMonthlyArtistsTab = memo(
         loadMoreElementRef={loadMoreMontlyArtistsElementRef}
         isLoading={isLoadingMonthlyArtists}
         loadMore={loadMoreMontlyArtists}
+        tagPlaceholder={t("discover:monthlyArtist")}
       ></DiscoverArtists>
     );
   }

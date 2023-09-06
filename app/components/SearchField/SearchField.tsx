@@ -8,15 +8,6 @@ import clsx from "clsx";
 import { styles } from "./searchField.css";
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
 import { debounce } from "@material-ui/core/utils";
-import {
-  Collapse,
-  Divider,
-  ListItem,
-  ListItemText,
-  MenuItem,
-  TextField,
-} from "@material-ui/core";
-import { ExpandLess, ExpandMore } from "@material-ui/icons";
 
 const SearchField = ({ onFilter, activeTab, tags = null, tagPlaceholder }) => {
   const s = styles();
@@ -118,7 +109,11 @@ const SearchField = ({ onFilter, activeTab, tags = null, tagPlaceholder }) => {
       ></SearchIcon>
       <input
         onChange={onSearchChanged}
-        placeholder={"Sök " + t(`tags:${tagPlaceholder}`).toLocaleLowerCase()}
+        placeholder={
+          t(`searchForArtist`) +
+          " " +
+          t(`tags:${tagPlaceholder}`).toLocaleLowerCase()
+        }
         className={s.input}
       ></input>
     </div>

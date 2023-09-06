@@ -7,8 +7,7 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
-import { styles } from './discoverTrendingArtTab.css'
-
+import { styles } from "./discoverTrendingArtTab.css";
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
@@ -24,15 +23,7 @@ interface DiscoverTrendingArtTabProps {
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
-  const { t } = useTranslation([
-    "index",
-    "header",
-    "plans",
-    "common",
-    "discover",
-    "tags",
-    "support",
-  ]);
+  const { t } = useTranslation(["index", "common", "discover", "tags"]);
   const s = styles();
   const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -55,6 +46,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
+  useEffect(() => {
+    console.log("props tag placeholder is: " + props.tagPlaceholder);
+  }, []);
+
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
       loadMoreArtworksElementRef,
@@ -69,8 +64,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
         } else if (props.fetchType === "latest") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
-        } else if (props.fetchType === "topsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
         } else {
           // If fetchType is a tag
           url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
@@ -113,19 +106,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       </div>
 
       {props.fetchType === "trending" && (
-        <div
-          className={s.displayText}
-        >
-          {t("discover:trendingText")}
-        </div>
+        <div className={s.displayText}>{t("discover:trendingText")}</div>
       )}
 
       {props.fetchType === "latest" && (
-        <div
-        className={s.displayText}
-        >
-          {t("discover:latestText")}
-        </div>
+        <div className={s.displayText}>{t("discover:latestText")}</div>
       )}
 
       {!tags?.isLoading && !tags?.isError && tags?.data && (
@@ -139,7 +124,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
-          tagPlaceholder={props.tagPlaceholder}
+          tagPlaceholder={
+            props.fetchType === "Originalkonst"
+              ? t(`tags:${props.fetchType}`).toLocaleLowerCase()
+              : t(`tags:${props.tagPlaceholder}`).toLocaleLowerCase()
+          }
         />
       )}
     </>

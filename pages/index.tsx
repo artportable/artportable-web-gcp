@@ -54,7 +54,6 @@ import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -328,11 +327,13 @@ export default function DiscoverPage({ navBarItems }) {
                 className={s.flickingWrapper}
               >
                 <div
-                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f027f88d-c616-44ff-a0c5-e418de378a90.jpg")`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "repeat",
-                  backgroundPosition: "left",
-                  position: "relative",}}
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f027f88d-c616-44ff-a0c5-e418de378a90.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "repeat",
+                    backgroundPosition: "left",
+                    position: "relative",
+                  }}
                   className={`${s.panel} ${
                     clickedFilter === "trending" ? s.activePanel : ""
                   }`}
@@ -455,7 +456,7 @@ export default function DiscoverPage({ navBarItems }) {
                   ))}
                 <div
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/Atelier-tegneprosess19.jpg")`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f8f967a9-1b47-4318-b3fb-2349093b33ca.jpg")`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
@@ -474,11 +475,16 @@ export default function DiscoverPage({ navBarItems }) {
                       <CloseIcon />
                     </button>
                   )}
-                  <div className={s.carouselItem}>Artists</div>
+                  <div className={s.carouselItem}>
+                    {t("discover:artists").toLocaleUpperCase()}
+                  </div>
                 </div>
                 <div
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/436ba926-2b14-43f2-8090-ab9b26bf8eec.jpg")`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/701e6927-68ec-40d9-942b-e84e8f8a881e.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
                     position: "relative",
                   }}
                   className={`${s.panel} ${
@@ -494,7 +500,9 @@ export default function DiscoverPage({ navBarItems }) {
                       <CloseIcon />
                     </button>
                   )}
-                  <div className={s.carouselItem}>Monthly Artist</div>
+                  <div className={s.carouselItem}>
+                    {t("discover:monthlyArtist").toLocaleUpperCase()}
+                  </div>
                 </div>
                 {isSignedIn.value && (
                   <div
@@ -568,6 +576,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={3}
+                  fetchType={activeFilter}
                   tagPlaceholder={tagPlaceholder}
                 />
               ) : activeFilter === "top" ? (

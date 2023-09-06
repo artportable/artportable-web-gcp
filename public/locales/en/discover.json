@@ -7,6 +7,7 @@
   "monthlyArtist": "Artist of the month",
   "artistsWeThinkYouLike": "Artists we think you like",
   "searchForArtist": "Search",
+  "searchArtworks": "artworks",
   "tags": "Tags",
   "filter": "Categories",
   "more": "More",
@@ -18,5 +19,4 @@
   "curatedArtText": "We are proud to showcase some of our favorites at Artportable",
   "latestText": "Keep track of the very latest uploads from Artportable's artists",
   "topListText": "The most liked artworks on Artportable"
-
 }

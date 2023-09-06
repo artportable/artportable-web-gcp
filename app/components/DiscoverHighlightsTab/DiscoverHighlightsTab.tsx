@@ -8,6 +8,7 @@ import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { styles } from "./discoverHighlightsTab.css";
+import { useTranslation } from "next-i18next";
 
 interface DiscoverHighLightsTabProps {
   username?: string;
@@ -19,9 +20,11 @@ interface DiscoverHighLightsTabProps {
   stopLoadImages: any;
   activeTab: number;
   tagPlaceholder: string;
+  fetchType: string;
 }
 
 const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
+  const { t } = useTranslation(["header", "common", "support"]);
   const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -84,6 +87,41 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
 
   return (
     <>
+      {" "}
+      <div
+        style={{
+          zIndex: 10,
+          color: "#3e3e3e",
+          fontWeight: 700,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "35px",
+          marginTop: "20px",
+          width: "95%",
+        }}
+      >
+        {{
+          curated: t("discover:highlights"),
+        }[props.fetchType] || props.fetchType.toUpperCase()}
+      </div>
+      {props.fetchType === "curated" && (
+        <div
+          style={{
+            zIndex: 10,
+            color: "#3e3e3e",
+            fontWeight: 400,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "20px",
+            marginTop: "10px",
+            width: "95%",
+          }}
+        >
+          {t("discover:curatedArtText")}
+        </div>
+      )}
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <>
           <DiscoverArt
@@ -96,11 +134,8 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
             isLoading={isLoadingArtWorks}
             loadMore={props.loadMore}
             activeTab={props.activeTab}
-            tagPlaceholder={props.tagPlaceholder}
+            tagPlaceholder={t("discover:searchArtworks")}
           />
-          {/* <p className={s.secretLinks}>
-            <a href="https://goplay.se/casinon/" target="_blank">Goplay.se</a>  informerar om online casino.
-          </p> */}
         </>
       )}
     </>
