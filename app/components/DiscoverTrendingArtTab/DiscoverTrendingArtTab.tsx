@@ -116,7 +116,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         <div
           className={s.displayText}
         >
-          {"Se det som är mest populärt på Artportable just nu"}
+          {t("discover:trendingText")}
         </div>
       )}
 
@@ -124,8 +124,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         <div
         className={s.displayText}
         >
-          Ha koll på det allras senaste som laddats upp från Artportables
-          konstnärer
+          {t("discover:latestText")}
         </div>
       )}
 
