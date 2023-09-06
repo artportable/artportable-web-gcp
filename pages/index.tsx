@@ -275,13 +275,13 @@ export default function DiscoverPage({ navBarItems }) {
       {!loading && (
         <>
           {!isSignedIn.value && <IndexHero></IndexHero>}
-          {
+          {/*
             <AdDialog
               openAdDialog={openAdDialog}
               setOpenAdDialog={setOpenAdDialog}
               onClose={toggleAdDialog}
             />
-          }
+      */}
           <div className={s.discoverContainer}>
             <div className={s.flickingArrow}>
               <span onClick={handlePrevClick}>
@@ -347,6 +347,7 @@ export default function DiscoverPage({ navBarItems }) {
                     {t("discover:trendingArt").toLocaleUpperCase()}
                   </div>
                 </div>
+
                 <div
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/image_6483441-32.jpg")`,
@@ -492,7 +493,7 @@ export default function DiscoverPage({ navBarItems }) {
                   className={`${s.panel} ${
                     clickedFilter === "monthlyArtist" ? s.activePanel : ""
                   }`}
-                  onClick={() => handleFilterClick("monthlyArtist", 80)}
+                  onClick={() => handleFilterClick("monthlyArtist", 79)}
                 >
                   {clickedFilter === "monthlyArtist" && (
                     <button
@@ -518,7 +519,7 @@ export default function DiscoverPage({ navBarItems }) {
                     className={`${s.panel} ${
                       clickedFilter === "likedbyme" ? s.activePanel : ""
                     }`}
-                    onClick={() => handleFilterClick("likedbyme", 81)}
+                    onClick={() => handleFilterClick("likedbyme", 80)}
                   >
                     {" "}
                     {clickedFilter === "likedbyme" && (
@@ -592,18 +593,6 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                   activeTab={2}
                   fetchType={activeFilter}
-                  tagPlaceholder={tagPlaceholder}
-                />
-              ) : activeFilter === "top" ? (
-                <DiscoverLatestArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={sold}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={1}
                   tagPlaceholder={tagPlaceholder}
                 />
               ) : activeFilter === "likedbyme" ? (

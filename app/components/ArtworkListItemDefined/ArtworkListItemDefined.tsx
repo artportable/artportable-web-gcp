@@ -51,6 +51,12 @@ export default function ArtworkListItemDefined({
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
+  const [counter, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("The username is: " + artwork);
+  }, []);
+
   function getFormatter(
     languageCode: string,
     currency: string | null
