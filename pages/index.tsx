@@ -207,7 +207,7 @@ export default function DiscoverPage({ navBarItems }) {
       targetIndex = 0;
     }
 
-    flickingRef.current.moveTo(targetIndex).catch((err) => {
+    flickingRef.current.moveTo(targetIndex, 0).catch((err) => {
       setClickEnabled(true);
     });
     setActiveFilter(targetFilter);
