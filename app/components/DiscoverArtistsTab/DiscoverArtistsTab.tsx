@@ -5,7 +5,7 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import Artist from "../../models/Artist";
 import DiscoverArtists from "../DiscoverArtists/DiscoverArtists";
-
+import { useTranslation } from "next-i18next";
 
 interface DiscoverArtistsTabProps {
   username?: string;
@@ -21,6 +21,7 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const { follow } = usePostFollow();
+  const { t } = useTranslation(["discover"]);
 
   function filterArtist(tags: string[], searchQuery = "") {
     setLoadMoreArtists(true);
@@ -32,26 +33,30 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
     follow(userToFollow, isFollow, socialId, token);
   }
 
-  const { data: artists, isLoading: isLoadingArtists } = useInfiniteScrollWithKey<Artist>(loadMoreArtistsElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        setLoadMoreArtists(false);
-        return null;
-      }
-      if (pageIndex == 0) {
-        const url = new URL(`${apiBaseUrl}/api/discover/artists`);
-        if (searchQuery != null && searchQuery != '') {
-          url.searchParams.append('q', searchQuery);
+  const { data: artists, isLoading: isLoadingArtists } =
+    useInfiniteScrollWithKey<Artist>(
+      loadMoreArtistsElementRef,
+      (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.next) {
+          setLoadMoreArtists(false);
+          return null;
         }
-        if (username != null && username != '') {
-          url.searchParams.append('myUsername', username);
+        if (pageIndex == 0) {
+          const url = new URL(`${apiBaseUrl}/api/discover/artists`);
+          if (searchQuery != null && searchQuery != "") {
+            url.searchParams.append("q", searchQuery);
+          }
+          if (username != null && username != "") {
+            url.searchParams.append("myUsername", username);
+          }
+          url.searchParams.append("page", (pageIndex + 1).toString());
+          url.searchParams.append("pageSize", "10");
+          return url.href;
         }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "10");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+        return previousPageData.next;
+      },
+      username
+    );
 
   return (
     <DiscoverArtists
@@ -61,8 +66,9 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
       loadMoreElementRef={loadMoreArtistsElementRef}
       isLoading={isLoadingArtists}
       loadMore={loadMoreArtists}
+      tagPlaceholder={t("discover:artists")}
     />
   );
-})
+});
 
-export default DiscoverArtistsTab
+export default DiscoverArtistsTab;

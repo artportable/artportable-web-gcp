@@ -7,6 +7,7 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
+import { useTranslation } from "next-i18next";
 
 interface DiscoverTopArtTabProps {
   username?: string;
@@ -22,6 +23,7 @@ interface DiscoverTopArtTabProps {
 }
 
 const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
+  const { t } = useTranslation(["index", "common", "discover", "tags"]);
   const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -98,7 +100,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
         }}
       >
         {{
-          top: "Topplista",
+          top: t("discover:topArt"),
         }[props.fetchType] || props.fetchType.toUpperCase()}
       </div>
       {props.fetchType === "top" && (
@@ -115,7 +117,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
             width: "95%",
           }}
         >
-          De mest gillade verken på Artportable
+          {t("discover:topListText")}
         </div>
       )}
       {!tags?.isLoading && !tags?.isError && tags?.data && (
@@ -129,7 +131,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
-          tagPlaceholder={"Top ART"}
+          tagPlaceholder={t("discover:searchArtworks")}
         />
       )}
     </>
