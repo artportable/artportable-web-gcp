@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { memo, useContext, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -7,6 +7,7 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
+import { styles } from "./discoverTrendingArtTab.css";
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
@@ -17,11 +18,14 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  fetchType: string;
+  tagPlaceholder: string;
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
-  const { t } = useTranslation(['header', 'common', 'support']);
-  const { username, socialId, rowWidth } = props
+  const { t } = useTranslation(["index", "common", "discover", "tags"]);
+  const s = styles();
+  const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -42,46 +46,74 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        console.log(previousPageData.next, ".next")
-        props.stopLoadImages();
-        return null;
-      }
-      if (pageIndex == 0) {
+  useEffect(() => {
+    console.log("props tag placeholder is: " + props.tagPlaceholder);
+  }, []);
+
+  const { data: artworks, isLoading: isLoadingArtWorks } =
+    useInfiniteScrollWithKey<Artwork>(
+      loadMoreArtworksElementRef,
+      (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.next) {
+          props.stopLoadImages();
+          return null;
+        }
+
         let url;
-        if (props.sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
-        }
-        else if (props.sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`);
-        }
-        else if (props.sold === "All") {
+        if (props.fetchType === "trending") {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
+        } else if (props.fetchType === "latest") {
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
+        } else {
+          // If fetchType is a tag
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
+          url.searchParams.append("tag", props.fetchType);
         }
-        else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
-        }
-        selectedTags.forEach(tag => {
-          url.searchParams.append('tag', tag);
-        });
+
         if (searchQuery) {
-          url.searchParams.append('q', searchQuery);
+          url.searchParams.append("q", searchQuery);
         }
-        if (username && username != '') {
-          url.searchParams.append('myUsername', username);
+        if (username && username != "") {
+          url.searchParams.append("myUsername", username);
         }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "20");
+        url.searchParams.append("page", (pageIndex + 1).toString());
+        url.searchParams.append("pageSize", "20");
+
         return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+      },
+      username
+    );
 
   return (
     <>
-      {!tags?.isLoading && !tags?.isError && tags?.data &&
+      <div
+        style={{
+          zIndex: 10,
+          color: "#3e3e3e",
+          fontWeight: 700,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "35px",
+          marginTop: "20px",
+          width: "95%",
+        }}
+      >
+        {{
+          trending: t("discover:trendingArt").toLocaleUpperCase(),
+          latest: t("discover:latestArt").toLocaleUpperCase(),
+        }[props.fetchType] || t(`tags:${props.fetchType}`).toUpperCase()}
+      </div>
+
+      {props.fetchType === "trending" && (
+        <div className={s.displayText}>{t("discover:trendingText")}</div>
+      )}
+
+      {props.fetchType === "latest" && (
+        <div className={s.displayText}>{t("discover:latestText")}</div>
+      )}
+
+      {!tags?.isLoading && !tags?.isError && tags?.data && (
         <DiscoverArt
           artworks={artworks}
           tags={tags?.data}
@@ -92,10 +124,15 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          tagPlaceholder={
+            props.fetchType === "Originalkonst"
+              ? t(`tags:${props.fetchType}`).toLocaleLowerCase()
+              : t(`tags:${props.tagPlaceholder}`).toLocaleLowerCase()
+          }
         />
-      }
+      )}
     </>
   );
-})
+});
 
-export default DiscoverTrendingArtTab
+export default DiscoverTrendingArtTab;

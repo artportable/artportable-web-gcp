@@ -7,6 +7,7 @@ import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginI
 import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
+import { useTranslation } from "next-i18next";
 
 interface DiscoverTopArtTabProps {
   username?: string;
@@ -17,10 +18,13 @@ interface DiscoverTopArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  fetchType: string;
+  tagPlaceholder: string;
 }
 
 const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
-  const { username, socialId, rowWidth } = props
+  const { t } = useTranslation(["index", "common", "discover", "tags"]);
+  const { username, socialId, rowWidth } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -41,46 +45,82 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
-  const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
-    (pageIndex, previousPageData) => {
-      if (previousPageData && !previousPageData.next) {
-        props.stopLoadImages();
-        return null;
-      }
+  const { data: artworks, isLoading: isLoadingArtWorks } =
+    useInfiniteScrollWithKey<Artwork>(
+      loadMoreArtworksElementRef,
+      (pageIndex, previousPageData) => {
+        if (previousPageData && !previousPageData.next) {
+          props.stopLoadImages();
+          return null;
+        }
 
-      if (pageIndex == 0) {
-        let url;
-        if (props.sold === "Unsold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/topunsold`);
+        if (pageIndex == 0) {
+          let url;
+          if (props.sold === "Unsold") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/topunsold`);
+          } else if (props.sold === "Sold") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
+          } else if (props.sold === "All") {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
+          } else {
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
+          }
+          selectedTags.forEach((tag) => {
+            url.searchParams.append("tag", tag);
+          });
+          if (searchQuery) {
+            url.searchParams.append("q", searchQuery);
+          }
+          if (username && username != "") {
+            url.searchParams.append("myUsername", username);
+          }
+          url.searchParams.append("page", (pageIndex + 1).toString());
+          url.searchParams.append("pageSize", "20");
+          return url.href;
         }
-        else if (props.sold === "Sold") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/topsold`);
-        }
-        else if (props.sold === "All") {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
-        }
-        else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
-        }
-        selectedTags.forEach(tag => {
-          url.searchParams.append('tag', tag);
-        });
-        if (searchQuery) {
-          url.searchParams.append('q', searchQuery);
-        }
-        if (username && username != '') {
-          url.searchParams.append('myUsername', username);
-        }
-        url.searchParams.append('page', (pageIndex + 1).toString());
-        url.searchParams.append('pageSize', "20");
-        return url.href;
-      }
-      return previousPageData.next;
-    }, username);
+        return previousPageData.next;
+      },
+      username
+    );
 
   return (
     <>
-      {!tags?.isLoading && !tags?.isError && tags?.data &&
+      {" "}
+      <div
+        style={{
+          zIndex: 10,
+          color: "#3e3e3e",
+          fontWeight: 700,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "35px",
+          marginTop: "20px",
+          width: "95%",
+        }}
+      >
+        {{
+          top: t("discover:topArt"),
+        }[props.fetchType] || props.fetchType.toUpperCase()}
+      </div>
+      {props.fetchType === "top" && (
+        <div
+          style={{
+            zIndex: 10,
+            color: "#3e3e3e",
+            fontWeight: 400,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "20px",
+            marginTop: "10px",
+            width: "95%",
+          }}
+        >
+          {t("discover:topListText")}
+        </div>
+      )}
+      {!tags?.isLoading && !tags?.isError && tags?.data && (
         <DiscoverArt
           artworks={artworks}
           tags={tags?.data}
@@ -91,10 +131,11 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          tagPlaceholder={t("discover:searchArtworks")}
         />
-      }
+      )}
     </>
   );
-})
+});
 
-export default DiscoverTopArtTab
+export default DiscoverTopArtTab;
