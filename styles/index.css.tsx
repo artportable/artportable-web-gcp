@@ -308,7 +308,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       flexWrap: "wrap",
       borderRadius: "6px",
-      zIndex: 10,
+      zIndex: 100,
       backgroundColor: "#faf3ee",
       width: "100%",
       maxHeight: "500px",
@@ -344,6 +344,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "8px",
       fontWeight: 500,
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
+      zIndex: 100,
       "&:hover": {
         color: "white",
         backgroundColor: "#a35d5d",
