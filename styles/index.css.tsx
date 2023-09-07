@@ -324,7 +324,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("md")]: {
         width: "70%",
-        maxHeight: "300px",
+        maxHeight: "700px",
       },
     },
     tagDialog: {
@@ -338,7 +338,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "3px",
       cursor: "pointer",
       margin: theme.spacing(1),
-      height: "60px",
+      height: "100px",
       backgroundColor: "#3e3e3e",
       color: "white",
       fontSize: "8px",
