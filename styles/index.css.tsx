@@ -308,7 +308,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       flexWrap: "wrap",
       borderRadius: "6px",
-      zIndex: 10,
+      zIndex: 100,
       backgroundColor: "#faf3ee",
       width: "100%",
       maxHeight: "500px",
@@ -324,7 +324,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("md")]: {
         width: "70%",
-        maxHeight: "300px",
+        maxHeight: "700px",
       },
     },
     tagDialog: {
@@ -338,12 +338,13 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "3px",
       cursor: "pointer",
       margin: theme.spacing(1),
-      height: "60px",
+      height: "100px",
       backgroundColor: "#3e3e3e",
       color: "white",
       fontSize: "8px",
       fontWeight: 500,
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
+      zIndex: 100,
       "&:hover": {
         color: "white",
         backgroundColor: "#a35d5d",
