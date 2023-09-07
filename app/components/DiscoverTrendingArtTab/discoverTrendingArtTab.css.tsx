@@ -106,7 +106,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "95%",
       fontStyle: "italic",
       [theme.breakpoints.up("xs")]: {
-        fontSize: "8px",
+        fontSize: "10px",
         fontWeight: 400,
         width: "auto",
         position: "relative",
