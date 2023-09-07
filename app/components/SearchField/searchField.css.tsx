@@ -16,23 +16,14 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         border: "1px solid #a35d5d",
       },
-      "&:focus-within": {
-        marginTop: "10px",
-        margin: "0 auto",
-        marginBottom: "40px",
-      },
     },
-    chip: {
-
-    },
+    chip: {},
     selectedChip: {
       backgroundColor: "#a35d5d",
       color: "white",
       border: "1px solid #a35d5d",
     },
-    noTags: {
-      
-    },
+    noTags: {},
     searchIcon: {
       margin: theme.spacing(0, 0.4, 0, 1),
     },
@@ -57,9 +48,7 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: "21px",
       },
     },
-    tagsContainer: {
-  
-    },
+    tagsContainer: {},
     categoryTags: {
       display: "flex",
       gap: theme.spacing(1),
