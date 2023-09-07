@@ -18,7 +18,7 @@ export const tagBackgrounds = {
   ceramic:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c55a049e-f2ed-4280-b211-0e58f50c68ea.jpg")',
   pencil:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/4be25777-3320-4714-b314-e198a56fb8cc.jpg")',
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/5a3963d8-ca3f-4564-865a-b32534d7fb08.jpg")',
   clay: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f383ff47-c0b0-4d20-a960-6ae282be3f32.jpg")',
   textile:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/fc067f7e-8391-4961-b617-b5dc7fa460d0.jpg")',
@@ -47,6 +47,30 @@ export const tagBackgrounds = {
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9ee7deb9-3cde-4bec-8b1f-0c0eb283dcd2.jpg")',
   graffiti:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/e394842a-e405-409c-8fa7-996e36f70867.jpg")',
+  portraiture:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/b3a57605-728c-45ab-9d65-8c8995fc8bcc.jpg")',
+  'arts-craft':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/1a5480e5-61e8-48d9-a9ce-748a7429f5df.jpg")',
+  conceptual:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/25af6010-80c8-40cc-a8f2-db1ed2096600.jpg")',
+  'street-art':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/334dbe96-8d5e-4bcf-81da-6717cc78171c.jpg")',
+  'still-life':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/6c44136e-4020-4616-86c6-812bb72c7064.jpg")',
+  landscape:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a80dd0a4-e308-43fb-bff5-cb4809464464.jpg")',
+  pastel:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/532b92fb-0265-40dc-877d-d55ea0e6efbe.jpg")',
+  animal:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/70440420-e52e-4a31-ae13-41666cb3dd0f.jpg")',
+  collage:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/ca7171db-c6ad-4658-9ac3-4b47c1de4542.jpg")',
+  drawing:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/852446ac-5b75-431e-8fdc-e542415aab6e.jpg")',
+  architecture:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cbe99766-6afe-4579-9035-5648f085ae11.jpg")',
+  fashion:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a3c76d1c-1213-4828-a4c3-141de436c179.jpg")',
   default:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")'
 }
