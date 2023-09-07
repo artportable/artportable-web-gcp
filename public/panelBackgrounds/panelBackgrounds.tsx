@@ -95,6 +95,27 @@ export const tagBackgrounds = {
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/3706d760-c4e3-48d5-b620-9ae63a0a989f.jpg")',
   seasons:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/6bef0b07-e58c-4952-b1be-e16b77a4fc2e.jpg")',
+  cats: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/40e55902-145b-46bf-ae26-d45280534fbe.jpg")',
+  dogs: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/37385088-eea9-47ed-af35-1cd7d4f195d7.jpg")',
+  nude: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/85cf7310-4a56-4917-bf2e-8f66edd59ae5.jpg")',
+  travel:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/3eed73bf-c645-4f27-b84a-895f570c4287.jpg")',
+  'food-drink':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c5b46c9a-82a1-4487-aed8-2be71121b4c5.jpg")',
+  seascape:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/1c89ebde-88b0-4bf5-9bfe-a69be8b5de21.jpg")',
+  photography:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d350ed21-a262-468e-b3d9-b71cae0e601f.jpg")',
+  sculpture:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a95b4beb-e835-4dcb-adf0-99dc77abc6d6.jpg")',
+  digital:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a79851b4-5241-49de-9534-f48d1a4f79ab.jpg")',
+  illustration:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a9438bbe-8202-4c01-9205-5443c0cfb609.jpg")',
+  'video-art':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9cd676c8-8c68-4f6f-b704-f3483f7ef446.jpg")',
+  'performance-art':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f295f4bb-f779-4baf-b8cb-037de931965a.jpg")',
   default:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")'
 }
