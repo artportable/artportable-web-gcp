@@ -50,7 +50,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "95%",
       fontStyle: "italic",
       [theme.breakpoints.up("xs")]: {
-        fontSize: "8px",
+        fontSize: "12px",
         fontWeight: 400,
         width: "auto",
         position: "relative",
@@ -106,13 +106,13 @@ export const styles = makeStyles((theme: Theme) =>
       width: "95%",
       fontStyle: "italic",
       [theme.breakpoints.up("xs")]: {
-        fontSize: "10px",
+        fontSize: "12px",
         fontWeight: 400,
         width: "auto",
         position: "relative",
       },
       [theme.breakpoints.up("sm")]: {
-        fontSize: "12px",
+        fontSize: "14px",
         fontWeight: 400,
         width: "auto",
         position: "relative",

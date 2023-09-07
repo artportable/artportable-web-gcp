@@ -88,39 +88,13 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
   return (
     <>
       {" "}
-      <div
-        style={{
-          zIndex: 10,
-          color: "#3e3e3e",
-          fontWeight: 700,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "35px",
-          marginTop: "20px",
-          width: "95%",
-        }}
-      >
+      <div className={s.displayTitle}>
         {{
           curated: t("discover:highlights"),
         }[props.fetchType] || props.fetchType.toUpperCase()}
       </div>
       {props.fetchType === "curated" && (
-        <div
-          style={{
-            zIndex: 10,
-            color: "#3e3e3e",
-            fontWeight: 400,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "20px",
-            marginTop: "10px",
-            width: "95%",
-          }}
-        >
-          {t("discover:curatedArtText")}
-        </div>
+        <div className={s.displayText}>{t("discover:curatedArtText")}</div>
       )}
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <>

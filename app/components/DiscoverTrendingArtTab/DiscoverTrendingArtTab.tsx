@@ -66,7 +66,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
         } else {
           // If fetchType is a tag
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`);
           url.searchParams.append("tag", props.fetchType);
         }
 
@@ -78,7 +78,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         }
         url.searchParams.append("page", (pageIndex + 1).toString());
         url.searchParams.append("pageSize", "20");
-
+        url.searchParams.append("likesSince", "-30");
         return url.href;
       },
       username
@@ -88,9 +88,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     <>
       <div className={s.displayTitle}>
         {{
-          trending: t("discover:trendingArt").toLocaleUpperCase(),
-          latest: t("discover:latestArt").toLocaleUpperCase(),
-        }[props.fetchType] || t(`tags:${props.fetchType}`).toUpperCase()}
+          trending: t("discover:trendingArt"),
+          latest: t("discover:latestArt"),
+        }[props.fetchType] || t(`tags:${props.fetchType}`)}
       </div>
 
       {props.fetchType === "trending" && (
