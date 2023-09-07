@@ -66,7 +66,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
         } else {
           // If fetchType is a tag
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/top`);
           url.searchParams.append("tag", props.fetchType);
         }
 
