@@ -53,6 +53,7 @@ import { FlickingError, ERROR_CODE } from '@egjs/flicking'
 import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded'
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import { tagBackgrounds } from '../public/panelBackgrounds/panelBackgrounds'
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -179,34 +180,6 @@ export default function DiscoverPage({ navBarItems }) {
 
   const tags = useGetTags()
   const [activeFilter, setActiveFilter] = useState('trending')
-
-  const tagBackgrounds = {
-    water:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/86ebe557-0ec0-45b4-8720-9cd4f7b125ae.jpg")',
-    nature:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/311453dc-b157-4be0-b52e-9a418c55a675.jpg")',
-    acrylic:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c23a68a2-0435-4c24-a1b0-26c1f8e9ff06.jpg")',
-    'pop-art':
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/abad6a11-7992-48b7-91ff-e25fd1015a4c.jpg")',
-    'documentary-photography':
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/ecaf0bef-61e8-42f7-86d0-bec19da14f22.jpg")',
-    default:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")',
-    oil: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/7b105532-2d74-4979-935a-61a6b3bad930.jpg")',
-    aquarelle:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9f5c0a77-e6f6-4afd-b24f-098f7f60f84e.jpg")',
-    'mixed-media':
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9db5dea4-2347-4dc0-bde5-e7d024b80d87.jpg")',
-    ceramic:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c55a049e-f2ed-4280-b211-0e58f50c68ea.jpg")',
-    pencil:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/4be25777-3320-4714-b314-e198a56fb8cc.jpg")',
-    clay: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f383ff47-c0b0-4d20-a960-6ae282be3f32.jpg")',
-    textile:
-      'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/fc067f7e-8391-4961-b617-b5dc7fa460d0.jpg")',
-    ink: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/b9b09b52-c530-4cac-b85c-6e986c0c5286.jpg")'
-  }
 
   const knownFetchTypes = [
     'trending',
@@ -358,7 +331,7 @@ export default function DiscoverPage({ navBarItems }) {
               >
                 <div
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f027f88d-c616-44ff-a0c5-e418de378a90.jpg")`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d771b165-68bc-499d-8beb-16c49d89375e.jpg")`,
                     backgroundSize: 'cover',
                     backgroundRepeat: 'repeat',
                     backgroundPosition: 'left',
