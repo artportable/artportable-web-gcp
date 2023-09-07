@@ -98,7 +98,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       )}
 
       {props.fetchType === "latest" && (
-        <div className={s.displayText}>{t("discover:latestText")}</div>
+        <div className={s.displayTextLatest}>{t("discover:latestText")}</div>
       )}
 
       {!tags?.isLoading && !tags?.isError && tags?.data && (
