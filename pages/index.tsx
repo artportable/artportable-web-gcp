@@ -357,7 +357,7 @@ export default function DiscoverPage({ navBarItems }) {
                   }}
                 >
                   <div className={s.carouselItem}>
-                    {t("discover:trendingArt").toLocaleUpperCase()}
+                    {t("discover:trendingArt")}
                   </div>
                 </div>
 
@@ -385,7 +385,7 @@ export default function DiscoverPage({ navBarItems }) {
                     </button>
                   )}
                   <div className={s.carouselItem}>
-                    {t("discover:latestArt").toLocaleUpperCase()}
+                    {t("discover:latestArt")}
                   </div>
                 </div>
                 <div
@@ -412,7 +412,7 @@ export default function DiscoverPage({ navBarItems }) {
                     </button>
                   )}
                   <div className={s.carouselItem}>
-                    {t("discover:highlights").toLocaleUpperCase()}
+                    {t("discover:highlights")}
                   </div>
                 </div>
                 <div
@@ -438,9 +438,7 @@ export default function DiscoverPage({ navBarItems }) {
                       <CloseIcon />
                     </button>
                   )}
-                  <div className={s.carouselItem}>
-                    {t("discover:topArt").toLocaleUpperCase()}
-                  </div>
+                  <div className={s.carouselItem}>{t("discover:topArt")}</div>
                 </div>
 
                 {tags.data &&
@@ -500,9 +498,7 @@ export default function DiscoverPage({ navBarItems }) {
                       <CloseIcon />
                     </button>
                   )}
-                  <div className={s.carouselItem}>
-                    {t("discover:artists").toLocaleUpperCase()}
-                  </div>
+                  <div className={s.carouselItem}>{t("discover:artists")}</div>
                 </div>
                 <div
                   style={{
@@ -526,7 +522,7 @@ export default function DiscoverPage({ navBarItems }) {
                     </button>
                   )}
                   <div className={s.carouselItem}>
-                    {t("discover:monthlyArtist").toLocaleUpperCase()}
+                    {t("discover:monthlyArtist")}
                   </div>
                 </div>
                 {isSignedIn.value && (
@@ -553,7 +549,7 @@ export default function DiscoverPage({ navBarItems }) {
                       </button>
                     )}
                     <div className={s.carouselItem}>
-                      {t("discover:myLikedArt").toLocaleUpperCase()}
+                      {t("discover:myLikedArt")}
                     </div>
                   </div>
                 )}

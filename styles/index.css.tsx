@@ -42,20 +42,20 @@ export const styles = makeStyles((theme: Theme) =>
     },
     panel: {
       width: "50%",
-      height: "60px",
+      height: "90px",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      backgroundSize: "cover", // make sure the image covers the div
-      backgroundRepeat: "no-repeat", // prevent the image from repeating
-      backgroundPosition: "top", // center the image in the div
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "top",
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
       cursor: "pointer",
-      borderRadius: "15px",
+      borderRadius: "2px",
       border: "1px solid transparent",
       marginRight: "10px",
       marginBottom: "6px",
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/389e4fa4-23d1-49cf-aefb-fcb5979e7a84.jpg")`,
 
       [theme.breakpoints.up("smPlus")]: {
         width: "25%",
@@ -189,7 +189,7 @@ export const styles = makeStyles((theme: Theme) =>
     flickingArrowExpand: {
       position: "absolute",
       cursor: "pointer",
-      top: "53px",
+      top: "65px",
       left: 0,
       right: 0,
       width: "100%",
