@@ -71,6 +71,30 @@ export const tagBackgrounds = {
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cbe99766-6afe-4579-9035-5648f085ae11.jpg")',
   fashion:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a3c76d1c-1213-4828-a4c3-141de436c179.jpg")',
+  geometric:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f5bb2cd4-b236-45f6-882d-4d82abc22067.jpg")',
+  flowers:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/ba9525e1-875b-4c16-9b55-923d6621f12c.jpg")',
+  fantasy:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/63f2057e-7ff2-4258-b72f-400fd391a9aa.jpg")',
+  pattern:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cac939b3-3735-44d8-9f6b-5966d8a86ba1.jpg")',
+  celebrity:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/88d9313a-251b-400f-8a24-f02c0e7ee6a0.jpg")',
+  'pop-culture':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f42b1755-dade-4160-8ce3-f644a99d8ea1.jpg")',
+  minimalism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/af58377b-f774-4f42-b791-432bbafa89c7.jpg")',
+  figurative:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c74e3749-3643-452f-aaae-df53bac51ec7.jpg")',
+  places:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/45797616-8a33-4ac6-8cd8-223bd16bdac7.jpg")',
+  politics:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d2919af3-7fa6-4b85-966a-a242d2bb2ceb.jpg")',
+  'big-city':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/3706d760-c4e3-48d5-b620-9ae63a0a989f.jpg")',
+  seasons:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/6bef0b07-e58c-4952-b1be-e16b77a4fc2e.jpg")',
   default:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")'
 }
