@@ -111,19 +111,19 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      zIndex: 10, // make sure it stays on top
-      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)", // add subtle shadow for depth
-      transition: "transform 0.2s, backgroundColor 0.2s", // subtle transition for button interactions
+      zIndex: 10,
+      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
+      transition: "transform 0.2s, backgroundColor 0.2s",
       "&:hover": {
-        transform: "scale(1.1)", // slight scale up on hover
+        transform: "scale(1.1)",
       },
       "&:active": {
-        transform: "scale(0.95)", // slight scale down on click
+        transform: "scale(0.95)",
       },
     },
 
     flickingWrapper: {
-      position: "relative", // Ensures absolutely positioned children are relative to this
+      position: "relative",
       zIndex: 1,
       width: "95%",
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
@@ -136,11 +136,11 @@ export const styles = makeStyles((theme: Theme) =>
       width: "94%",
       left: 10,
       right: 10,
-      transform: "translateY(-50%)", // Centering the container vertically
+      transform: "translateY(-50%)",
       display: "flex",
       justifyContent: "space-between",
-      alignItems: "center", // Vertical centering for children
-      pointerEvents: "none", // The container won't block other elements
+      alignItems: "center",
+      pointerEvents: "none",
       zIndex: 10,
       backgroundColor: "transparent",
     },
@@ -158,9 +158,11 @@ export const styles = makeStyles((theme: Theme) =>
         width: "45px",
         height: "45px",
         borderRadius: "50%",
-        filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
+        boxShadow:
+          "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 9px 0 rgb(0 0 0 / 72%)",
         "&:hover": {
-          transform: "scale(1.1)", // slight scale up on hover
+          color: "black",
+          backgroundColor: "#efefef",
         },
       },
     },
@@ -178,9 +180,11 @@ export const styles = makeStyles((theme: Theme) =>
         width: "45px",
         height: "45px",
         borderRadius: "50%",
-        filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
+        boxShadow:
+          "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 9px 0 rgb(0 0 0 / 72%)",
         "&:hover": {
-          transform: "scale(1.1)", // slight scale up on hover
+          color: "black",
+          backgroundColor: "#efefef",
         },
       },
     },
@@ -231,8 +235,8 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         border: "1px solid #ff8383",
         color: "white",
-        backgroundColor: "#ff8383", // secondary color for hover
-        transform: "scale(1.09)", // slight scale up on hover
+        backgroundColor: "#ff8383",
+        transform: "scale(1.09)",
       },
       [theme.breakpoints.up("sm")]: {
         width: "40px",
@@ -263,8 +267,8 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         border: "1px solid #ff8383",
         color: "white",
-        backgroundColor: "#ff8383", // secondary color for hover
-        transform: "scale(1.09)", // slight scale up on hover
+        backgroundColor: "#ff8383",
+        transform: "scale(1.09)",
       },
       [theme.breakpoints.up("sm")]: {
         width: "30px",
@@ -342,8 +346,8 @@ export const styles = makeStyles((theme: Theme) =>
       filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
       "&:hover": {
         color: "white",
-        backgroundColor: "#a35d5d", // secondary color for hover
-        transform: "scale(1.09)", // slight scale up on hover
+        backgroundColor: "#a35d5d",
+        transform: "scale(1.09)",
         filter: "drop-shadow(0 2px 3px rgba(25, 25, 25, 0.25))",
       },
       [theme.breakpoints.up("sm")]: {
@@ -362,8 +366,8 @@ export const styles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       "&:hover": {
         color: "white",
-        backgroundColor: "#ff8383", // secondary color for hover
-        transform: "scale(1.09)", // slight scale up on hover
+        backgroundColor: "#ff8383",
+        transform: "scale(1.09)",
       },
     },
 
