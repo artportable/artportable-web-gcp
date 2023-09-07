@@ -90,22 +90,10 @@ export const DiscoverMyLikedArtTab = memo(
 
     return (
       <>
-        <div
-          style={{
-            zIndex: 10,
-            color: "#3e3e3e",
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "35px",
-            marginTop: "20px",
-            width: "95%",
-          }}
-        >
+        <div className={s.displayTitle}>
           {{
-            likedbyme: t("discover:myLikedArt").toLocaleUpperCase(),
-          }[props.fetchType] || t(`tags:${props.fetchType}`).toUpperCase()}
+            likedbyme: t("discover:myLikedArt"),
+          }[props.fetchType] || t(`tags:${props.fetchType}`)}
         </div>
 
         {props.fetchType === "likedbyme" && (
