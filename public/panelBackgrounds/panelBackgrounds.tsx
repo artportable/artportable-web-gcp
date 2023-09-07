@@ -29,6 +29,24 @@ export const tagBackgrounds = {
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f053a380-dad9-4198-9dbd-3427876109e3.jpg")',
   gouache:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/de3008c0-07c5-49ff-8e87-2868bd57cb8b.jpg")',
+  impressionism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/adedb1b8-bef3-4858-a9d2-07959ddb5482.jpg")',
+  abstract:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/e266ba67-c0b6-427d-873b-45351950fd51.jpg")',
+  realism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/2b8ed142-cf54-4a52-bf2e-3442952210c3.jpg")',
+  surrealism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/da5c7c8a-caa3-418c-916b-f4cf73108419.jpg")',
+  expressionism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/b560d678-e880-48bd-b456-bb4ac21d5c05.jpg")',
+  cubism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/7cc15894-4ce4-4105-a23d-461d0d1afc6e.jpg")',
+  photorealism:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/32617299-ac15-49f0-9f7a-2dedcb8b5b60.jpg")',
+  'abstract-expressionism':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9ee7deb9-3cde-4bec-8b1f-0c0eb283dcd2.jpg")',
+  graffiti:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/e394842a-e405-409c-8fa7-996e36f70867.jpg")',
   default:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")'
 }
