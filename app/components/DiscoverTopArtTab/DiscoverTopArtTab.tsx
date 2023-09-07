@@ -8,7 +8,7 @@ import { useMainWidth } from "../../hooks/useWidth";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { useTranslation } from "next-i18next";
-
+import { styles } from "./discoverTopArtTab.css";
 interface DiscoverTopArtTabProps {
   username?: string;
   socialId?: string;
@@ -33,6 +33,7 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
   const { like } = usePostLike();
+  const s = styles();
 
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
@@ -86,39 +87,13 @@ const DiscoverTopArtTab = memo((props: DiscoverTopArtTabProps) => {
   return (
     <>
       {" "}
-      <div
-        style={{
-          zIndex: 10,
-          color: "#3e3e3e",
-          fontWeight: 700,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "35px",
-          marginTop: "20px",
-          width: "95%",
-        }}
-      >
+      <div className={s.displayTitle}>
         {{
           top: t("discover:topArt"),
         }[props.fetchType] || props.fetchType.toUpperCase()}
       </div>
       {props.fetchType === "top" && (
-        <div
-          style={{
-            zIndex: 10,
-            color: "#3e3e3e",
-            fontWeight: 400,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "20px",
-            marginTop: "10px",
-            width: "95%",
-          }}
-        >
-          {t("discover:topListText")}
-        </div>
+        <div className={s.displayText}>{t("discover:topListText")}</div>
       )}
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <DiscoverArt
