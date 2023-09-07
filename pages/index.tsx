@@ -525,7 +525,7 @@ export default function DiscoverPage({ navBarItems }) {
                     className={`${s.panel} ${
                       clickedFilter === "likedbyme" ? s.activePanel : ""
                     }`}
-                    onClick={() => handleFilterClick("likedbyme", 79)}
+                    onClick={() => handleFilterClick("likedbyme", 80)}
                   >
                     {" "}
                     {clickedFilter === "likedbyme" && (
