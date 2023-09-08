@@ -113,9 +113,30 @@ export const tagBackgrounds = {
   illustration:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a9438bbe-8202-4c01-9205-5443c0cfb609.jpg")',
   'video-art':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9cd676c8-8c68-4f6f-b704-f3483f7ef446.jpg")',
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d5a0834c-c077-43ee-b8d3-bec0c0a3c176.jpg")',
   'performance-art':
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f295f4bb-f779-4baf-b8cb-037de931965a.jpg")',
+  triptych:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/437973b4-7115-449d-adf1-1152c67edba3.jpg")',
+  installation:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f157a680-b0c8-40d2-8a8d-e1a25a187882.jpg")',
+  mural:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/5d994328-fa1c-4da5-b6c0-81c532b229ad.jpg")',
+  'art-exhibition':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/8d10a2df-0d82-47fd-b63d-3c6455d6a15a.jpg")',
+  gallery:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/06a1dec2-95ce-49f0-9df3-ff61d56f410e.jpg")',
+  'group-exhibition':
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f15019f1-4a12-41d7-bf9f-fcdad728b161.jpg")',
+  posters:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/7a9bffab-ba39-4c34-bb58-2d755bd85024.jpg")',
+  NFT: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cf65f16e-70e3-427c-865a-da55ad291b99.jpg")',
+  print:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/4a96b251-afce-47e7-8a37-fa2871c0f4d6.jpg")',
+  jewelry:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a8c81c48-c7d1-4270-9484-81b5db716b56.jpg")',
+  graphic:
+    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/1a385063-6c79-494f-956d-985d008fc939.jpg")',
   default:
     'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")'
 }

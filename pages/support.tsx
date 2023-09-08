@@ -43,12 +43,7 @@ export default function Support({ navBarItems }) {
                 <a href="mailto:hello@artportable.com">hello@artportable.com</a>
               </Typography>
             </div>
-            <div className={s.iconTextFlex}>
-              <PhoneIphoneIcon className={s.icon} />
-              <Typography className={s.linkText}>
-                <a href="tel:+4685576612">08 - 557 661 20</a>
-              </Typography>
-            </div>
+
             <div className={s.textBlock}>
               <Typography className={s.typoBold}>
                 {t("openingHours")}
@@ -73,9 +68,6 @@ export default function Support({ navBarItems }) {
                 <Typography>Åsögatan 176</Typography>
                 <Typography>116 32 Stockholm</Typography>
               </div>
-              <Typography>
-                Tel: <a href="tel:+4685576612">08 - 557 661 20</a>
-              </Typography>
             </div>
           </Paper>
         </div>
