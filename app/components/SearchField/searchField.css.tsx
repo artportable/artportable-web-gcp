@@ -9,12 +9,16 @@ export const styles = makeStyles((theme: Theme) =>
       height: "38px",
       border: "1px solid #a35d5d",
       borderRadius: "18px",
-      width: "70%",
+      width: "100%",
       marginTop: "10px",
       margin: "0 auto",
-      marginBottom: "40px",
       "&:hover": {
         border: "1px solid #a35d5d",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "21px",
+        marginBottom: "20px",
+        width: "70%",
       },
     },
     chip: {},
