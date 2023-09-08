@@ -31,14 +31,7 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: "visible",
         opacity: 1,
       },
-      "&:hover $purchaseRequestButtonSv": {
-        backgroundColor: "#FF9191",
-        border: "1px solid #FF9191",
-      },
-      "&:hover $purchaseRequestButtonEn": {
-        backgroundColor: "#FF9191",
-        border: "1px solid #FF9191",
-      },
+
       "&:hover $newUser": {
         visibility: "hidden",
         opacity: 0,
@@ -223,9 +216,9 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
     },
     likeButton: {
-      color: "#FFA7A4",
       padding: theme.spacing(0.2, 0, 0.4, 0.5),
       fontSize: "0.5rem",
+      color: "red !important",
       "&:hover": {
         backgroundColor: "transparent",
       },
@@ -236,7 +229,7 @@ export const styles = makeStyles((theme: Theme) =>
       transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
       fontSize: "0.5rem",
-      color: "#C67777",
+      color: "016A70",
       "&:hover": {
         backgroundColor: "transparent",
       },
@@ -247,7 +240,7 @@ export const styles = makeStyles((theme: Theme) =>
       transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
       fontSize: "0.5rem",
-      color: "#000000",
+      color: "016A70",
       "&:hover": {
         backgroundColor: "transparent",
       },
@@ -264,16 +257,16 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       margin: "1px 1px 1px 1px",
-      border: "1px solid #c67777",
-      backgroundColor: "#c67777",
-      color: "white",
+      border: "1px solid #ffda79",
+      backgroundColor: "#ffda79",
+      color: "#3d3d4e",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
       fontSize: "12px",
-
       fontFamily: "gotham",
       "&:hover": {
-        border: "1px solid #FF9191",
-        backgroundColor: "#FF9191",
+        filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+        backgroundColor: "#ffda79",
+        color: "black",
       },
     },
     infoContainer: {
@@ -359,18 +352,18 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     smallTag: {
-      backgroundColor: "transparent",
-      border: "1px solid #c67777",
+      backgroundColor: "#ffda79",
+      border: "1px solid #ffda79",
       margin: "2px",
       fontSize: "10px",
       paddingLeft: "3px",
       paddingRight: "3px",
       borderRadius: "20px",
       color: "#c67777",
-      maxWidth: "100px", // Or whatever max width you prefer for individual tags
-      overflow: "hidden", // Hide overflowed text
-      whiteSpace: "nowrap", // Prevent text from breaking into multiple lines
-      textOverflow: "ellipsis", // Show ellipsis for overflowed text
+      maxWidth: "100px",
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
     },
 
     roomButtonEn: {
@@ -387,7 +380,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "10px",
       fontFamily: "gotham",
       "&:hover": {
-        border: "1px solid #FF9191",
+        border: "1px solid #ffda79",
         color: "white",
         backgroundColor: "#FF9191",
       },
