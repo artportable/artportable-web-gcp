@@ -5,18 +5,18 @@ export const styles = makeStyles((theme: Theme) =>
     inputContainer: {
       display: "flex",
       alignItems: "center",
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: "#fdf9f7",
       height: "38px",
-      border: "1px solid #a35d5d",
-      borderRadius: "18px",
+      borderRadius: "2px",
       width: "100%",
       marginTop: "10px",
       margin: "0 auto",
+      marginBottom: "5px",
+      boxShadow: "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 3px 0 rgb(0 0 0 / 60%)",
       "&:hover": {
-        border: "1px solid #a35d5d",
+        boxShadow: "0 0px 0px 0 rgb(255 255 255 / 20%), 0 0px 6px 0 #c5c5c5a6",
       },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "21px",
+      [theme.breakpoints.up("smPlus")]: {
         marginBottom: "20px",
         width: "70%",
       },
@@ -38,7 +38,9 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: "GT-America-Standard",
       border: "none",
-      borderRadius: "18px",
+      borderRadius: "2px",
+      autoFocus: "false",
+      backgroundColor: "#fdf9f7",
       "&:focus": {
         border: "none",
       },
