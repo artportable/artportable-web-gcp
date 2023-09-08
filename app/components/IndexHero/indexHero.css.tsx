@@ -38,11 +38,13 @@ export const styles = makeStyles((theme: Theme) =>
       ...columnGap(theme.spacing(1)),
       marginRight: "16px",
       marginLeft: "16px",
+      marginTop: "12px",
       margin: theme.spacing(0, 0, 4, 0),
 
       [theme.breakpoints.up("smPlus")]: {
         margin: theme.spacing(0, 0, 2, 0),
         width: "567px",
+        marginTop: "2px",
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "initial",
@@ -57,10 +59,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       fontWeight: 600,
-      fontSize: "1.9rem",
+      fontSize: "1.6rem",
       textAlign: "center",
       [theme.breakpoints.up("sm")]: {
-        fontSize: "2.9rem",
+        fontSize: "2.5rem",
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "left",
@@ -83,8 +85,9 @@ export const styles = makeStyles((theme: Theme) =>
     description: {
       margin: theme.spacing(1, 0),
       marginBottom: theme.spacing(2),
-      fontSize: "12pt",
+      fontSize: "10pt",
       lineHeight: "1.38",
+      fontStyle: "italic",
       [theme.breakpoints.up("sm")]: {
         fontSize: "1.3rem",
       },
@@ -97,10 +100,14 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     right: {
-      display: "flex",
-      flexDirection: "column",
-      flexBasis: "100%",
-      alignItems: "flex-end",
+      display: "none",
+
+      [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
+        flexDirection: "column",
+        flexBasis: "100%",
+        alignItems: "flex-end",
+      },
       [theme.breakpoints.up("md")]: {
         marginTop: "20px",
       },
@@ -119,8 +126,13 @@ export const styles = makeStyles((theme: Theme) =>
     headerButtonArtlover: {
       display: "flex",
       alignContent: "flex-start",
-      alignItems: "left",
-      marginBottom: theme.spacing(2),
+      alignItems: "center",
+      marginBottom: theme.spacing(4),
+      justifyContent: "center",
+      [theme.breakpoints.up("smPlus")]: {
+        marginBottom: theme.spacing(2),
+        justifyContent: "flex-start",
+      },
     },
     headerButtonArtist: {
       display: "flex",
@@ -209,13 +221,13 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(1),
     },
     videoDiv: {
-      display: "flex",
-      cursor: "pointer",
-      alignItems: "center",
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(5),
+      display: "none",
 
       [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
+        cursor: "pointer",
+        alignItems: "center",
+        marginTop: theme.spacing(1),
         marginBottom: theme.spacing(2),
       },
     },
@@ -265,9 +277,13 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     accordionDiv: {
-      paddingRight: theme.spacing(0),
-      margin: "0 0",
-      marginLeft: "-15px",
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
+        paddingRight: theme.spacing(0),
+        margin: "0 0",
+        marginLeft: "-15px",
+      },
     },
     textDiv: {
       display: "flex",

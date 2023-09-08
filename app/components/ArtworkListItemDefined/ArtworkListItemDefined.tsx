@@ -258,7 +258,6 @@ export default function ArtworkListItemDefined({
                   <IconButton
                     className={s.likeButton}
                     disableRipple
-                    disableFocusRipple
                     onClick={toggleLike}
                   >
                     {likedFilled}

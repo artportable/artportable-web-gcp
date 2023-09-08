@@ -409,7 +409,6 @@ export default function IndexHero() {
                           marginRight: "10px",
                         }}
                       />
-                      <p className={s.firstReview}> {t("review")}</p>
                     </Button>
                   )}
                 </div>
