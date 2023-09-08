@@ -79,30 +79,30 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: 'Thorulf Löfstedt',
-      username: 'thorulf.lofstedt',
-      image: '/images/Thorulf.jpg',
-      imageLink: 'art/c49b4cee-29e3-4b18-9095-e6324c8e20b6'
+      name: "Thorulf Löfstedt",
+      username: "thorulf.lofstedt",
+      image: "/images/Thorulf.jpg",
+      imageLink: "art/c49b4cee-29e3-4b18-9095-e6324c8e20b6",
     },
     {
-      name: 'Pia Håland Anveden',
-      username: 'piahd53',
-      image: '/images/pia.jpg',
-      imageLink: 'art/60315ad1-a13e-4fa2-a2b6-ecc172d62c53'
+      name: "Pia Håland Anveden",
+      username: "piahd53",
+      image: "/images/pia.jpg",
+      imageLink: "art/60315ad1-a13e-4fa2-a2b6-ecc172d62c53",
     },
     {
-      name: 'Gunnila Svärd',
-      username: 'gunilla.svard',
-      image: '/images/gunilla.jpg',
-      imageLink: 'art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b'
+      name: "Gunnila Svärd",
+      username: "gunilla.svard",
+      image: "/images/gunilla.jpg",
+      imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
     },
     {
-      name: 'Lars-Henrik Milert',
-      username: 'milert',
-      image: '/images/larsHenrik.jpg',
-      imageLink: 'art/bf92ed53-43a3-4be4-9eef-ab08516bd440'
-    }
-  ]
+      name: "Lars-Henrik Milert",
+      username: "milert",
+      image: "/images/larsHenrik.jpg",
+      imageLink: "art/bf92ed53-43a3-4be4-9eef-ab08516bd440",
+    },
+  ];
 
   useEffect(() => {
     const randomImageIndex = Math.floor(Math.random() * images.length);
