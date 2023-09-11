@@ -4,9 +4,6 @@ import { ArtworkForCreation } from "../../models/Artwork";
 const fetcher = async (url) => {
   const response = await fetch(url);
 
-  // Log the response for debugging
-  console.log("Fetcher response:", response);
-
   if (!response.ok) {
     const errorData = await response.json();
     console.error("Fetcher error:", errorData);
