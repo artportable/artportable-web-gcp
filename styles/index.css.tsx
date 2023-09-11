@@ -57,7 +57,7 @@ export const styles = makeStyles((theme: Theme) =>
       boxShadow: "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 9px 0 rgb(0 0 0 / 72%)",
 
       [theme.breakpoints.up("smPlus")]: {
-        width: "25%",
+        width: "20%",
         height: "80px",
       },
     },
@@ -155,8 +155,8 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: "center",
         backgroundColor: "white",
         padding: "10px",
-        width: "45px",
-        height: "45px",
+        width: "40px",
+        height: "40px",
         borderRadius: "50%",
         boxShadow:
           "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 9px 0 rgb(0 0 0 / 72%)",
@@ -177,8 +177,8 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: "center",
         backgroundColor: "white",
         padding: "10px",
-        width: "45px",
-        height: "45px",
+        width: "40px",
+        height: "40px",
         borderRadius: "50%",
         boxShadow:
           "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 9px 0 rgb(0 0 0 / 72%)",
