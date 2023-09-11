@@ -558,7 +558,18 @@ export default function DiscoverPage({ navBarItems }) {
                 <div className={s.expanedTagsWrapper}>
                   <div className={s.expanedTags}>
                     {tags.data &&
-                      tags.data.map((tag, index) => (
+                      [
+                        ...tags.data
+                          .filter((tag) => preferredOrder.includes(tag))
+                          .sort(
+                            (a, b) =>
+                              preferredOrder.indexOf(a) -
+                              preferredOrder.indexOf(b)
+                          ),
+                        ...tags.data.filter(
+                          (tag) => !preferredOrder.includes(tag)
+                        ),
+                      ].map((tag, index) => (
                         <div
                           style={{
                             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${
@@ -577,7 +588,7 @@ export default function DiscoverPage({ navBarItems }) {
                           }`}
                           key={index}
                           onClick={() => {
-                            handleFilterClick(tag, index + 8);
+                            handleFilterClick(tag, index + 4);
                             setShowTags(false);
                           }}
                         >
