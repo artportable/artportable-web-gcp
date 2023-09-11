@@ -1,25 +1,9 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
-
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     secondaryColor: {
       backgroundColor: theme.palette.secondary.main
-    },
-    avatar: {
-      backgroundColor: 'transparent',
-      border: `0.15rem solid ${theme.palette.common.white}`,
-      width: 120,
-      height: 120
-    },
-    badgeIcon: {
-      backgroundColor: 'white',
-      borderRadius: '50%',
-      cursor: 'pointer',
-      '&:hover': {
-        color: theme.palette.primary.dark,
-      }
     },
     counterBox: {
       display: 'flex',
@@ -29,27 +13,36 @@ export const styles = makeStyles((theme: Theme) =>
         width: '33.3%'
       }
     },
+    fullnameConatiner: {
+      position: 'absolute',
+      top: '20%',
+      textAlign: 'center',
+      display: 'flex'
+    },
     fullName: {
-      fontWeight: 600
+      fontWeight: 600,
+    },
+    nameMargin:{
+      marginTop: '1.5vh'
     },
     title: {
       lineHeight: 1.5,
       fontWeight: 400
     },
     username: {
-      lineHeight: 1.5,
+      lineHeight: 1.5
     },
     noPictureIcon: {
       fontSize: '160px',
-      backgroundColor: theme.palette.background.default,
+      backgroundColor: theme.palette.background.default
     },
     followersButton: {
       display: 'block',
-      padding: 0,
+      padding: 0
     },
     followeesButton: {
       display: 'block',
-      padding: 0,
+      padding: 0
     }
-  }),
-);
+  })
+)
