@@ -83,13 +83,17 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     description: {
-      margin: theme.spacing(1, 0),
       marginBottom: theme.spacing(2),
-      fontSize: "10pt",
-      lineHeight: "1.38",
+      fontSize: "14px",
+      lineHeight: "1.18",
+      textAlign: "center",
       fontStyle: "italic",
+
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "15px",
+      },
       [theme.breakpoints.up("sm")]: {
-        fontSize: "1.3rem",
+        fontSize: "22px",
       },
       [theme.breakpoints.up("md")]: {
         marginBottom: theme.spacing(3),
