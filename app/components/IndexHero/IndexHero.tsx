@@ -87,7 +87,7 @@ export default function IndexHero() {
 
     {
       name: "Charlotte Hansson",
-      username: "gunilla.svard",
+      username: "charlottehansson",
       image: "/images/charlotteHansson.jpeg",
       imageLink: "art/25b4f342-7750-4404-be58-f1ee0bde15cb",
     },
