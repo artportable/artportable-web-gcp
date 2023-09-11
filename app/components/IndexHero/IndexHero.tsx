@@ -79,10 +79,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Thorulf Löfstedt",
-      username: "thorulf.lofstedt",
-      image: "/images/Thorulf.jpg",
-      imageLink: "art/c49b4cee-29e3-4b18-9095-e6324c8e20b6",
+      name: "Örjan Sätre",
+      username: "orjan.satre",
+      image: "/images/orjanframe.jpeg",
+      imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff",
     },
     {
       name: "Pia Håland Anveden",
