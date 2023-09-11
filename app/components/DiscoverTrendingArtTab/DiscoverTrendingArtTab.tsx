@@ -46,10 +46,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     like(artworkId, isLike, socialId, token);
   }
 
-  useEffect(() => {
-    console.log("props tag placeholder is: " + props.tagPlaceholder);
-  }, []);
-
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
       loadMoreArtworksElementRef,
