@@ -558,32 +558,34 @@ export default function DiscoverPage({ navBarItems }) {
                 <div className={s.expanedTagsWrapper}>
                   <div className={s.expanedTags}>
                     {tags.data &&
-                      tags.data.map((tag, index) => (
-                        <div
-                          style={{
-                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${
-                              tagBackgrounds[tag] || tagBackgrounds.default
-                            }`,
-                            backgroundSize: "cover",
-                            backgroundRepeat: "repeat",
-                            backgroundPosition: "left",
-                            boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
-                            position: "relative",
-                          }}
-                          className={`${s.tagDialog} ${
-                            activeFilter === `${tag}`
-                              ? s.activePanelTagsDrop
-                              : ""
-                          }`}
-                          key={index}
-                          onClick={() => {
-                            handleFilterClick(tag, index + 4);
-                            setShowTags(false);
-                          }}
-                        >
-                          {t(`tags:${tag}`)}
-                        </div>
-                      ))}
+                      [...tags.data]
+                        .sort((a, b) => a.localeCompare(b))
+                        .map((tag, index) => (
+                          <div
+                            style={{
+                              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${
+                                tagBackgrounds[tag] || tagBackgrounds.default
+                              }`,
+                              backgroundSize: "cover",
+                              backgroundRepeat: "repeat",
+                              backgroundPosition: "left",
+                              boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)",
+                              position: "relative",
+                            }}
+                            className={`${s.tagDialog} ${
+                              activeFilter === `${tag}`
+                                ? s.activePanelTagsDrop
+                                : ""
+                            }`}
+                            key={index}
+                            onClick={() => {
+                              handleFilterClick(tag, index + 4);
+                              setShowTags(false);
+                            }}
+                          >
+                            {t(`tags:${tag}`)}
+                          </div>
+                        ))}
                   </div>
                 </div>
               )}
