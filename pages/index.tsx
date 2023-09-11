@@ -487,7 +487,7 @@ export default function DiscoverPage({ navBarItems }) {
                   className={`${s.panel} ${
                     clickedFilter === "artists" ? s.activePanel : ""
                   }`}
-                  onClick={() => handleFilterClick("artists", 74)}
+                  onClick={() => handleFilterClick("artists", 71)}
                 >
                   {clickedFilter === "artists" && (
                     <button
@@ -510,7 +510,7 @@ export default function DiscoverPage({ navBarItems }) {
                   className={`${s.panel} ${
                     clickedFilter === "monthlyArtist" ? s.activePanel : ""
                   }`}
-                  onClick={() => handleFilterClick("monthlyArtist", 75)}
+                  onClick={() => handleFilterClick("monthlyArtist", 72)}
                 >
                   {clickedFilter === "monthlyArtist" && (
                     <button
@@ -536,7 +536,7 @@ export default function DiscoverPage({ navBarItems }) {
                     className={`${s.panel} ${
                       clickedFilter === "likedbyme" ? s.activePanel : ""
                     }`}
-                    onClick={() => handleFilterClick("likedbyme", 76)}
+                    onClick={() => handleFilterClick("likedbyme", 73)}
                   >
                     {" "}
                     {clickedFilter === "likedbyme" && (
