@@ -1,142 +1,76 @@
 export const tagBackgrounds = {
-  water:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/86ebe557-0ec0-45b4-8720-9cd4f7b125ae.jpg")',
-  nature:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/311453dc-b157-4be0-b52e-9a418c55a675.jpg")',
-  acrylic:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c23a68a2-0435-4c24-a1b0-26c1f8e9ff06.jpg")',
-  'pop-art':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/abad6a11-7992-48b7-91ff-e25fd1015a4c.jpg")',
-  'documentary-photography':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/ecaf0bef-61e8-42f7-86d0-bec19da14f22.jpg")',
+  water: 'url("../tagImages/water.jpg")',
+  nature: 'url("../tagImages/nature.jpg")',
+  acrylic: 'url("../tagImages/acrylic.jpg")',
+  "pop-art": 'url("../tagImages/pop-art.jpg")',
+  "documentary-photography": 'url("../tagImages/documentary-photography.jpg")',
 
-  oil: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/7b105532-2d74-4979-935a-61a6b3bad930.jpg")',
-  aquarelle:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9f5c0a77-e6f6-4afd-b24f-098f7f60f84e.jpg")',
-  'mixed-media':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9db5dea4-2347-4dc0-bde5-e7d024b80d87.jpg")',
-  ceramic:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c55a049e-f2ed-4280-b211-0e58f50c68ea.jpg")',
-  pencil:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/5a3963d8-ca3f-4564-865a-b32534d7fb08.jpg")',
-  clay: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f383ff47-c0b0-4d20-a960-6ae282be3f32.jpg")',
-  textile:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/fc067f7e-8391-4961-b617-b5dc7fa460d0.jpg")',
-  ink: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/b9b09b52-c530-4cac-b85c-6e986c0c5286.jpg")',
-  charcoal:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cce92f92-7bd9-46dc-aa47-bff023461ce2.jpg")',
-  glass:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f053a380-dad9-4198-9dbd-3427876109e3.jpg")',
-  gouache:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/de3008c0-07c5-49ff-8e87-2868bd57cb8b.jpg")',
-  impressionism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/adedb1b8-bef3-4858-a9d2-07959ddb5482.jpg")',
-  abstract:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/e266ba67-c0b6-427d-873b-45351950fd51.jpg")',
-  realism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/2b8ed142-cf54-4a52-bf2e-3442952210c3.jpg")',
-  surrealism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/da5c7c8a-caa3-418c-916b-f4cf73108419.jpg")',
-  expressionism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/b560d678-e880-48bd-b456-bb4ac21d5c05.jpg")',
-  cubism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/7cc15894-4ce4-4105-a23d-461d0d1afc6e.jpg")',
-  photorealism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/32617299-ac15-49f0-9f7a-2dedcb8b5b60.jpg")',
-  'abstract-expressionism':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/9ee7deb9-3cde-4bec-8b1f-0c0eb283dcd2.jpg")',
-  graffiti:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/e394842a-e405-409c-8fa7-996e36f70867.jpg")',
-  portraiture:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/b3a57605-728c-45ab-9d65-8c8995fc8bcc.jpg")',
-  'arts-craft':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/1a5480e5-61e8-48d9-a9ce-748a7429f5df.jpg")',
-  conceptual:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/25af6010-80c8-40cc-a8f2-db1ed2096600.jpg")',
-  'street-art':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/334dbe96-8d5e-4bcf-81da-6717cc78171c.jpg")',
-  'still-life':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/6c44136e-4020-4616-86c6-812bb72c7064.jpg")',
-  landscape:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a80dd0a4-e308-43fb-bff5-cb4809464464.jpg")',
-  pastel:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/532b92fb-0265-40dc-877d-d55ea0e6efbe.jpg")',
-  animal:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/70440420-e52e-4a31-ae13-41666cb3dd0f.jpg")',
-  collage:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/ca7171db-c6ad-4658-9ac3-4b47c1de4542.jpg")',
-  drawing:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/852446ac-5b75-431e-8fdc-e542415aab6e.jpg")',
-  architecture:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cbe99766-6afe-4579-9035-5648f085ae11.jpg")',
-  fashion:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a3c76d1c-1213-4828-a4c3-141de436c179.jpg")',
-  geometric:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f5bb2cd4-b236-45f6-882d-4d82abc22067.jpg")',
-  flowers:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/ba9525e1-875b-4c16-9b55-923d6621f12c.jpg")',
-  fantasy:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/63f2057e-7ff2-4258-b72f-400fd391a9aa.jpg")',
-  pattern:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cac939b3-3735-44d8-9f6b-5966d8a86ba1.jpg")',
-  celebrity:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/88d9313a-251b-400f-8a24-f02c0e7ee6a0.jpg")',
-  'pop-culture':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f42b1755-dade-4160-8ce3-f644a99d8ea1.jpg")',
-  minimalism:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/af58377b-f774-4f42-b791-432bbafa89c7.jpg")',
-  figurative:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c74e3749-3643-452f-aaae-df53bac51ec7.jpg")',
-  places:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/45797616-8a33-4ac6-8cd8-223bd16bdac7.jpg")',
-  politics:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d2919af3-7fa6-4b85-966a-a242d2bb2ceb.jpg")',
-  'big-city':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/3706d760-c4e3-48d5-b620-9ae63a0a989f.jpg")',
-  seasons:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/6bef0b07-e58c-4952-b1be-e16b77a4fc2e.jpg")',
-  cats: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/40e55902-145b-46bf-ae26-d45280534fbe.jpg")',
-  dogs: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/37385088-eea9-47ed-af35-1cd7d4f195d7.jpg")',
-  nude: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/85cf7310-4a56-4917-bf2e-8f66edd59ae5.jpg")',
-  travel:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/3eed73bf-c645-4f27-b84a-895f570c4287.jpg")',
-  'food-drink':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/c5b46c9a-82a1-4487-aed8-2be71121b4c5.jpg")',
-  seascape:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/1c89ebde-88b0-4bf5-9bfe-a69be8b5de21.jpg")',
-  photography:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d350ed21-a262-468e-b3d9-b71cae0e601f.jpg")',
-  sculpture:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a95b4beb-e835-4dcb-adf0-99dc77abc6d6.jpg")',
-  digital:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a79851b4-5241-49de-9534-f48d1a4f79ab.jpg")',
-  illustration:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a9438bbe-8202-4c01-9205-5443c0cfb609.jpg")',
-  'video-art':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/d5a0834c-c077-43ee-b8d3-bec0c0a3c176.jpg")',
-  'performance-art':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f295f4bb-f779-4baf-b8cb-037de931965a.jpg")',
-  triptych:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/437973b4-7115-449d-adf1-1152c67edba3.jpg")',
-  installation:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f157a680-b0c8-40d2-8a8d-e1a25a187882.jpg")',
-  mural:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/5d994328-fa1c-4da5-b6c0-81c532b229ad.jpg")',
-  'art-exhibition':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/8d10a2df-0d82-47fd-b63d-3c6455d6a15a.jpg")',
-  gallery:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/06a1dec2-95ce-49f0-9df3-ff61d56f410e.jpg")',
-  'group-exhibition':
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f15019f1-4a12-41d7-bf9f-fcdad728b161.jpg")',
-  posters:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/7a9bffab-ba39-4c34-bb58-2d755bd85024.jpg")',
-  NFT: 'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/cf65f16e-70e3-427c-865a-da55ad291b99.jpg")',
-  print:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/4a96b251-afce-47e7-8a37-fa2871c0f4d6.jpg")',
-  jewelry:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/a8c81c48-c7d1-4270-9484-81b5db716b56.jpg")',
-  graphic:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/1a385063-6c79-494f-956d-985d008fc939.jpg")',
-  default:
-    'url("https://artportableprod.blob.core.windows.net/artportable-prod/images/dc00a6bd-63ab-412c-8728-7e0446ef5a80.jpg")'
-}
+  oil: 'url("../tagImages/oil.jpg")',
+  aquarelle: 'url("../tagImages/aquarelle.jpg")',
+  "mixed-media": 'url("../tagImages/mixed-media.jpg")',
+  ceramic: 'url("../tagImages/ceramic.jpg")',
+  pencil: 'url("../tagImages/pencil.jpg")',
+  clay: 'url("../tagImages/clay.jpg")',
+  textile: 'url("../tagImages/textile.jpg")',
+  ink: 'url("../tagImages/ink.jpg")',
+  charcoal: 'url("../tagImages/charcoal.jpg")',
+  glass: 'url("../tagImages/glass.jpg")',
+  gouache: 'url("../tagImages/gouache.jpg")',
+  impressionism: 'url("../tagImages/impressionism.jpg")',
+  abstract: 'url("../tagImages/abstract.jpg")',
+  realism: 'url("../tagImages/realism.jpg")',
+  surrealism: 'url("../tagImages/surrealism.jpg")',
+  expressionism: 'url("../tagImages/expressionism.jpg")',
+  cubism: 'url("../tagImages/cubism.jpg")',
+  photorealism: 'url("../tagImages/photorealism.jpg")',
+  "abstract-expressionism": 'url("../tagImages/abstract-expressionism.jpg")',
+  graffiti: 'url("../tagImages/graffiti.jpg")',
+  portraiture: 'url("../tagImages/portraiture.jpg")',
+  "arts-craft": 'url("../tagImages/arts-craft.jpg")',
+  conceptual: 'url("../tagImages/conceptual.jpg")',
+  "street-art": 'url("../tagImages/street-art.jpg")',
+  "still-life": 'url("../tagImages/still-life.jpg")',
+  landscape: 'url("../tagImages/landscape.jpg")',
+  pastel: 'url("../tagImages/pastel.jpg")',
+  animal: 'url("../tagImages/animal.jpg")',
+  collage: 'url("../tagImages/collage.jpg")',
+  drawing: 'url("../tagImages/drawing.jpg")',
+  architecture: 'url("../tagImages/architecture.jpg")',
+  fashion: 'url("../tagImages/fashion.jpg")',
+  geometric: 'url("../tagImages/geometric.jpg")',
+  flowers: 'url("../tagImages/flowers.jpg")',
+  fantasy: 'url("../tagImages/fantasy.jpg")',
+  pattern: 'url("../tagImages/pattern.jpg")',
+  celebrity: 'url("../tagImages/celebrity.jpg")',
+  "pop-culture": 'url("../tagImages/pop-culture.jpg")',
+  minimalism: 'url("../tagImages/minimalism.jpg")',
+  figurative: 'url("../tagImages/figurative.jpg")',
+  places: 'url("../tagImages/places.jpg")',
+  politics: 'url("../tagImages/politics.jpg")',
+  "big-city": 'url("../tagImages/big-city.jpg")',
+  seasons: 'url("../tagImages/seasons.jpg")',
+  cats: 'url("../tagImages/cats.jpg")',
+  dogs: 'url("../tagImages/dogs.jpg")',
+  nude: 'url("../tagImages/nude.jpg")',
+  travel: 'url("../tagImages/travel.jpg")',
+  "food-drink": 'url("../tagImages/food-drink.jpg")',
+  seascape: 'url("../tagImages/seascape.jpg")',
+  photography: 'url("../tagImages/photography.jpg")',
+  sculpture: 'url("../tagImages/sculpture.jpg")',
+  digital: 'url("../tagImages/digital.jpg")',
+  illustration: 'url("../tagImages/illustration.jpg")',
+  "video-art": 'url("../tagImages/video-art.jpg")',
+  "performance-art": 'url("../tagImages/performance-art.jpg")',
+  triptych: 'url("../tagImages/triptych.jpg")',
+  installation: 'url("../tagImages/installation.jpg")',
+  mural: 'url("../tagImages/mural.jpg")',
+  "art-exhibition": 'url("../tagImages/art-exhibition.jpg")',
+  gallery: 'url("../tagImages/gallery.jpg")',
+  "group-exhibition": 'url("../tagImages/gallery.jpg")',
+  posters: 'url("../tagImages/posters.jpg")',
+  NFT: 'url("../tagImages/NFT.jpg")',
+  print: 'url("../tagImages/print.jpg")',
+  jewelry: 'url("../tagImages/jewelry.jpg")',
+  graphic: 'url("../tagImages/graphic.jpg")',
+  default: 'url("../tagImages/default.jpg")',
+};
