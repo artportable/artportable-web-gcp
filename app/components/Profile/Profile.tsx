@@ -65,82 +65,81 @@ export default function Profile({
         style={{ display: 'none' }}
         multiple={false}
       />
-
-      <Box fontWeight="fontWeightBold" marginTop={2}>
-        <Typography variant="h5" className={s.fullName}>
-          {linkToProfile ? (
-            <Link href={`/profile/@${data?.Username}`}>
-              <a>
-                {data?.Name} {data?.Surname && data?.Surname}
-              </a>
-            </Link>
-          ) : (
-            <span>
-              {data?.Name} {data?.Surname && data?.Surname}
-            </span>
-          )}
-        </Typography>
-      </Box>
-      <div className={s.nameMargin}></div>
-
-      {data?.Location && (
-        <Box
-          display="flex"
-          justifyContent="center"
-          marginTop={1}
-          marginBottom={2}
-        >
+      <div className={s.nameAndFollowContainer}>
+        <div>
+          <Typography className={s.fullName}>
+            {linkToProfile ? (
+              <Link href={`/profile/@${data?.Username}`}>
+                <a>
+                  {data?.Name.toUpperCase()}{' '}
+                  {data?.Surname.toUpperCase() && data?.Surname.toUpperCase()}
+                </a>
+              </Link>
+            ) : (
+              <span>
+                {data?.Name.toUpperCase()}{' '}
+                {data?.Surname && data?.Surname.toUpperCase()}
+              </span>
+            )}
+          </Typography>
+        </div>
+        {/* {data?.Location &&
+        <div className={s.location}>
           <RoomIcon color="secondary"></RoomIcon>
-          <Typography>{data?.Location}</Typography>
-        </Box>
-      )}
-      {divider && <Divider></Divider>}
-      <Box className={s.counterBox}>
-        <Button
-          className={s.followersButton}
-          onClick={() => setFollowersOpen(true)}
-        >
-          <Typography variant="body2" display="block">
-            {data?.Followees}
+          <Typography>
+            {data?.Location}
           </Typography>
-          <Typography variant="caption" display="block">
-            {capitalizeFirst(t('words.followers'))}
-          </Typography>
-        </Button>
-        <UserListDialog
-          title={capitalizeFirst(t('words.followers'))}
-          users={followersData}
-          open={followersOpen}
-          onClose={() => setFollowersOpen(false)}
-        />
-        <Button
-          onClick={() => setFollowingOpen(true)}
-          className={s.followeesButton}
-        >
-          <Typography variant="body2" display="block">
-            {data?.Followers}
-          </Typography>
-          <Typography variant="caption" display="block">
-            {capitalizeFirst(t('words.following'))}
-          </Typography>
-        </Button>
-        <UserListDialog
-          title={capitalizeFirst(t('words.following'))}
-          users={followingData}
-          open={followingOpen}
-          onClose={() => setFollowingOpen(false)}
-        />
-        {data?.Artworks > 0 && (
-          <Box>
-            <Typography variant="body2" display="block">
-              {data?.Artworks}
+        </div>
+      } */}
+        <div className={s.btnWrapper}>
+          <div
+            className={s.followerButton}
+            onClick={() => setFollowersOpen(true)}
+          >
+            <Typography variant="body2" display="block" className={s.fontSize}>
+              {data?.Followees}
             </Typography>
-            <Typography variant="caption" display="block">
-              {capitalizeFirst(t('words.worksOfArt'))}
+            <Typography
+              variant="caption"
+              display="block"
+              className={s.fontSize}
+            >
+              {capitalizeFirst(t('words.followers'))}
             </Typography>
-          </Box>
-        )}
-      </Box>
+          </div>
+          <UserListDialog
+            title={capitalizeFirst(t('words.followers'))}
+            users={followersData}
+            open={followersOpen}
+            onClose={() => setFollowersOpen(false)}
+          />
+          <div
+            className={s.followeeButton}
+            onClick={() => setFollowingOpen(true)}
+          >
+            <Typography variant="body2" display="block" className={s.fontSize}>
+              {data?.Followers}
+            </Typography>
+            <Typography className={s.fontSize}>
+              {capitalizeFirst(t('words.following'))}
+            </Typography>
+          </div>
+          <UserListDialog
+            title={capitalizeFirst(t('words.following'))}
+            users={followingData}
+            open={followingOpen}
+            onClose={() => setFollowingOpen(false)}
+          />
+          {data?.Artworks > 0 && (
+            <div className={s.artwork}>
+              <Typography className={s.fontSize}>{data?.Artworks}</Typography>
+              <Typography className={s.fontSize}>
+                {capitalizeFirst(t('words.worksOfArt'))}
+              </Typography>
+            </div>
+          )}
+        </div>
+      </div>
     </Box>
   )
 }

@@ -5,44 +5,72 @@ export const styles = makeStyles((theme: Theme) =>
     secondaryColor: {
       backgroundColor: theme.palette.secondary.main
     },
-    counterBox: {
-      display: 'flex',
-      justifyContent: 'space-around',
-      paddingTop: theme.spacing(1),
-      '& > *': {
-        width: '33.3%'
+
+    nameAndFollowContainer: {
+      display: '',
+      alignItems: 'center',
+      textAlign: 'center',
+      width: '100%',
+      justifyContent: 'center',
+      marginTop: '-30px',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex',
+        marginLeft: '10%'
       }
     },
-    fullnameConatiner: {
-      position: 'absolute',
-      top: '20%',
-      textAlign: 'center',
-      display: 'flex'
+
+    btnWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: '-10px',
+      [theme.breakpoints.up('smPlus')]: {
+        marginLeft: '-4.5vw'
+      },
+      [theme.breakpoints.up('md')]: {
+        marginTop: '0px'
+      }
     },
+
     fullName: {
       fontWeight: 600,
+      fontSize: '2rem',
+      marginLeft: '0%',
+      [theme.breakpoints.up('smPlus')]: {
+        marginRight: '3vw'
+      },
+      [theme.breakpoints.up('mdPlus')]: {
+        letterSpacing: '13px'
+      }
     },
-    nameMargin:{
-      marginTop: '1.5vh'
+
+    location: {
+      display: 'none',
+      [theme.breakpoints.up('mdPlus')]: {
+        display: 'contents',
+        paddingRight: '20px'
+      }
     },
-    title: {
-      lineHeight: 1.5,
-      fontWeight: 400
+
+    fontSize: {
+      fontSize: '0.55em',
+      [theme.breakpoints.up('smPlus')]: {
+        fontSize: '0.85em'
+      }
     },
-    username: {
-      lineHeight: 1.5
+    followerButton: {
+      padding: '10px',
+      cursor: 'pointer',
+      [theme.breakpoints.up('md')]: {
+        paddingLeft: '3.5vw'
+      }
     },
-    noPictureIcon: {
-      fontSize: '160px',
-      backgroundColor: theme.palette.background.default
+    followeeButton: {
+      cursor: 'pointer'
     },
-    followersButton: {
-      display: 'block',
-      padding: 0
-    },
-    followeesButton: {
-      display: 'block',
-      padding: 0
+    artwork: {
+      paddingLeft: '10px'
     }
   })
 )

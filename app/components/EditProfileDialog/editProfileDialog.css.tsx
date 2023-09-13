@@ -10,6 +10,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     buttonPosition: {
       marginTop: theme.spacing(1),
+      display: 'flex',
+      justifyContent: 'center',
+      [theme.breakpoints.up('md')]: {
+        justifyContent: 'normal'
+      }
     },
     editButtonText: {
       display: 'none',
@@ -33,11 +38,12 @@ export const styles = makeStyles((theme: Theme) =>
       width: 'clamp(10px, 100vw - 88px, 660px)',
       ...columnGap(16),
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('sm')]:{
       editProfileButton: {
         width: '137px',
-        marginBottom: '3px'
+        marginBottom: '3px',
       },
+
       editButtonText: {
         display: 'flex',
       },

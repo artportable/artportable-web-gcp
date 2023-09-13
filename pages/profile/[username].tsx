@@ -550,58 +550,43 @@ export default function Profile(props) {
                     //   </div>
                     // </Button>
                   }
-                  <div
-                    style={{
-                      marginTop: '2vh',
-                      textAlign: 'center',
-                      display: 'flex',
-                      width: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center'
+                  {/* <div className="followBtnDiv"> */}
+                  {/* <Button
+                    className={s.followButton}
+                    size={smScreenOrSmaller ? 'small' : 'medium'}
+                    variant={!isFollowed ? 'contained' : 'outlined'}
+                    color="primary"
+                    startIcon={!isFollowed ? <AddIcon /> : null}
+                    disableElevation
+                    rounded
+                    disabled={!isSignedIn}
+                    onClick={() => {
+                      toggleFollow()
+                      !isFollowed
+                        ? trackGoogleAnalytics(
+                            ActionType.FOLLOW_PROFILE,
+                            CategoryType.INTERACTIVE
+                          )
+                        : null
                     }}
                   >
-                    <Button
-                      className={s.followButton}
-                      style={{
-                        // backgroundColor: 'green',
-                        width: '30%',
-                        display: 'flex',
-                        justifyContent: 'center'
-                      }}
-                      size={smScreenOrSmaller ? 'small' : 'medium'}
-                      variant={!isFollowed ? 'contained' : 'outlined'}
-                      color="primary"
-                      startIcon={!isFollowed ? <AddIcon /> : null}
-                      disableElevation
-                      rounded
-                      disabled={!isSignedIn}
-                      onClick={() => {
-                        toggleFollow()
-                        !isFollowed
-                          ? trackGoogleAnalytics(
-                              ActionType.FOLLOW_PROFILE,
-                              CategoryType.INTERACTIVE
-                            )
-                          : null
-                      }}
-                    >
-                      {capitalizeFirst(
-                        !isFollowed
-                          ? t('common:words.follow')
-                          : t('common:words.following')
-                      )}
-                    </Button>
-                  </div>
+                    {capitalizeFirst(
+                      !isFollowed
+                        ? t('common:words.follow')
+                        : t('common:words.following')
+                    )}
+                  </Button> */}
+                  {/* </div> */}
                 </>
               )}
             </div>
             {userProfile.data?.MonthlyArtist && (
-              <div className={s.catalogued}>
-                <img
+              <div>
+                {/* <img
                   src="/Artportable_Emblem_Gold.svg"
                   alt="Logo Artportable"
-                  className={s.emblem}
-                />
+                  className={s.cataloguedImg}
+                /> */}
               </div>
             )}
             {isMyProfile && (
@@ -622,7 +607,7 @@ export default function Profile(props) {
                     rounded
                     variant="outlined"
                   >
-                    {t('followersInvite')}
+                    {t('Bjud in vänner!')}
                   </Button>
                 </RWebShare>
               </div>
@@ -643,7 +628,8 @@ export default function Profile(props) {
                 </div>
               )}
             {isMyProfile && membership.value > Membership.Base && (
-              <div className={s.hovs}>
+              <div className={s.hovs} style={{}}>
+                {/* raket knapp */}
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
@@ -689,16 +675,19 @@ export default function Profile(props) {
                 >
                   <Tab
                     label={t('profile:portfolio')}
+                    style={{ textTransform: 'none' }}
                     {...a11yProps(t('profile:portfolio'))}
                   />
                   <Tab
                     label={t('profile:aboutMe')}
+                    style={{ textTransform: 'none' }}
                     {...a11yProps(t('profile:aboutMe'))}
                   />
                   {
                     articles && articles.length > 0 && (
                       <Tab
                         label={t('profile:articles')}
+                        style={{ textTransform: 'none' }}
                         {...a11yProps(t('profile:articles'))}
                       />
                     )

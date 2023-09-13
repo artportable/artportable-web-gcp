@@ -1,58 +1,59 @@
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { rowGap, columnGap } from "../app/utils/styleUtils";
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { rowGap, columnGap } from '../app/utils/styleUtils'
 
 export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
     flex: {
-      display: "flex",
-      width: "100%",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      gridArea: "articles",
-      cursor: "pointer",
-      marginBottom: "15px",
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gridArea: 'articles',
+      cursor: 'pointer',
+      marginBottom: '15px'
     },
     wrapper: {
-      backgroundColor: "white",
-      display: "flex",
-      flexDirection: "column",
-      [theme.breakpoints.up("lg")]: {
-        flexDirection: "row",
-      },
+      backgroundColor: 'white',
+      display: 'flex',
+      flexDirection: 'column',
+      [theme.breakpoints.up('lg')]: {
+        flexDirection: 'row'
+      }
     },
     headline: {
-      textDecoration: "underline",
-      marginBottom: theme.spacing(1),
+      textDecoration: 'underline',
+      marginBottom: theme.spacing(1)
     },
     imageDiv: {
-      width: "100%",
+      width: '100%'
     },
+
     coverImage: {
-      width: "100%",
-      borderRadius: "5px 5px 0 0",
-      [theme.breakpoints.up("lg")]: {
-        flexDirection: "row",
-        borderRadius: "5px 0 0 5px",
-        width: "unset",
-        height: "100%",
-      },
+      width: '100%',
+      borderRadius: '5px 5px 0 0',
+      [theme.breakpoints.up('lg')]: {
+        flexDirection: 'row',
+        borderRadius: '5px 0 0 5px',
+        width: 'unset',
+        height: '100%'
+      }
     },
     line: {
       marginTop: theme.spacing(1),
-      height: "4px",
-      backgroundColor: "var(--primary-color)",
+      height: '4px',
+      backgroundColor: 'var(--primary-color)'
     },
     textContent: {
-      padding: "20px",
-      display: "inline-block",
-      width: "100%",
-      blockSize: "fit-content",
-      color: "var(--text-color)",
+      padding: '20px',
+      display: 'inline-block',
+      width: '100%',
+      blockSize: 'fit-content',
+      color: 'var(--text-color)'
     },
 
     profileGrid: {
-      display: "grid",
-      gap: "16px",
+      display: 'grid',
+      gap: '16px',
       gridTemplate:
         '"      .              .         .        .              ."       185px' +
         '"      .              .      profile     .              ."       50px' +
@@ -65,182 +66,218 @@ export const profileStyles = makeStyles((theme: Theme) =>
         '"     tabs           tabs      tabs     tabs           tabs"       1fr' +
         '"   divider2       divider2  divider2  divider2      divider2"       auto' +
         '"   portfolio      portfolio portfolio portfolio    portfolio"       auto' +
-        "/ minmax(0, 2fr) minmax(0, 2fr) minmax(200px, 2fr) minmax(0, 2fr) minmax(0, 2fr)",
+        '/ minmax(0, 2fr) minmax(0, 2fr) minmax(200px, 2fr) minmax(0, 2fr) minmax(0, 2fr)'
     },
     profileSummary: {
-      gridArea: "profile",
+      gridArea: 'profile'
     },
     editActions: {
       paddingTop: theme.spacing(0.5),
-      gridArea: "actions",
-      display: "flex",
-      flexDirection: "column",
+      gridArea: 'actions',
+      display: 'flex',
+      flexDirection: 'column',
       gap: theme.spacing(1),
-      justifySelf: "flex-end",
+      justifySelf: 'flex-end'
     },
     followButton: {
-      marginTop: "-1px",
-      maxHeight: "27px",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
+      maxHeight: '27px',
+      backgroundColor: '#ffda79',
+      color: '#3d3d4e',
+      marginTop: '1.5vh',
+      width: '30%',
+      // display: 'flex',
+      // justifyContent: 'center',
+      // marginBottom: '3vh',
+      '& .MuiButton-startIcon': {
+        margin: '0 0'
+      }
+    },
+    followBtnDiv: {
+      marginTop: '3vh',
+      textAlign: 'center',
+      display: 'flex',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '8vh'
+      // position: 'absolute',
+      // left: '35%',
+      // top: '16%'
     },
     friends: {
-      gridArea: "friends",
-      display: "flex",
-      justifyContent: "center",
-      marginTop: "10px",
-      [theme.breakpoints.up("smPlus")]: {
-        display: "none",
-      },
+      gridArea: 'friends',
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '10px',
+      [theme.breakpoints.up('smPlus')]: {
+        display: 'none'
+      }
     },
     hovs: {
-      "& :hover": {
-        backgroundColor: "#D6A407",
+      '& :hover': {
+        backgroundColor: '#D6A407'
       },
-      gridArea: "hej",
-      display: "flex",
-      justifyContent: "center",
+      gridArea: 'hej',
+      display: 'flex',
+      justifyContent: 'center'
     },
     upgradeGoldDiv: {
-      gridArea: "hej",
-      display: "flex",
-      justifyContent: "center",
+      gridArea: 'hej',
+      display: 'flex',
+      justifyContent: 'center'
     },
     monthlyArtistButton: {
-      marginTop: "4px",
-      width: "300px",
-      backgroundColor: "#E0AC08",
-      color: "#fff",
+      //marginTop: '4px',
+      marginBottom: '1vh',
+      width: '150px',
+      height: '40px',
+      backgroundColor: '#E0AC08',
+      color: '#fff',
+      //marginTop:'20px',
+      [theme.breakpoints.up('md')]: {
+        marginTop: '-40px'
+        // width: '200px',
+        // height: '50px',
+      }
     },
     headerButton: {
-      fontFamily: "Gotham",
-      fontWeight: 500,
+      fontFamily: 'Gotham',
+      fontWeight: 500
     },
     pButton: {
-      fontFamily: "Gotham",
+      fontFamily: 'Gotham'
     },
     messageButtonText: {
-      display: "none",
+      display: 'none'
     },
     tabsContainer: {
-      gridArea: "tabs",
+      gridArea: 'tabs'
     },
     tabs: {
-      "& .MuiTab-root": {
-        minWidth: "0px",
+      '& .MuiTab-root': {
+        minWidth: '0px'
       },
-      [theme.breakpoints.up("md")]: {
-        "& .MuiTab-root": {
-          minWidth: "172px",
-        },
+      [theme.breakpoints.up('md')]: {
+        '& .MuiTab-root': {
+          minWidth: '172px'
+        }
       },
-      justifyContent: "center",
-      width: "100%",
+      justifyContent: 'center',
+      width: '100%'
     },
     text: {
-      minWidth: 0,
+      minWidth: 0
     },
     catalogued: {
-      gridRow: "3/4",
-      gridColumn: "4/5",
-      display: "flex",
-      justifyContent: "center",
-      margin: "50px 0 0 0",
+      gridRow: '3/4',
+      gridColumn: '4/5',
+      display: 'flex',
+      justifyContent: 'center',
+      margin: '50px 0 0 0'
     },
     emblem: {
-      width: "60px",
-      height: "60px",
-      color: "#FFD700",
-      marginLeft: "20px",
-      marginTop: "50px",
+      width: '60px',
+      height: '60px',
+      color: '#FFD700',
+      marginLeft: '20px',
+      marginTop: '50px'
     },
     divider: {
-      gridArea: "divider",
+      gridArea: 'divider'
     },
     portfolioContainer: {
-      display: "flex",
-      flexDirection: "column",
-      ...columnGap(16),
+      display: 'flex',
+      flexDirection: 'column',
+      ...columnGap(16)
     },
     portfolioRow: {
-      display: "flex",
+      display: 'flex',
       ...rowGap(16),
-      justifyContent: "flex-start",
-      overflow: "hidden",
+      justifyContent: 'flex-start',
+      overflow: 'hidden'
     },
     uploadButton: {
-      width: "137px",
-      display: "none",
+      width: '137px',
+      display: 'none'
     },
     secondDivider: {
-      gridArea: "divider2",
+      gridArea: 'divider2'
     },
     similarPortfolios: {
-      gridArea: "portfolio",
-      marginBottom: "100px",
+      gridArea: 'portfolio',
+      marginBottom: '100px'
     },
     editButton: {
-      width: "38px",
-      minWidth: "36px",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
+      width: '38px',
+      minWidth: '36px',
+      '& .MuiButton-startIcon': {
+        margin: '0 0'
+      }
     },
     headerButtonRocket: {
-      fontFamily: "Gotham",
+      fontFamily: 'Gotham',
       fontWeight: 500,
-      paddingLeft: "20px",
+      paddingLeft: '20px'
+    },
+    editProfile: {
+      margin: 10
     },
 
     rocketIcon: {
-      padding: "10px",
-      maxWidth: "40px",
-      width: "100%",
+      padding: '10px',
+      maxWidth: '40px',
+      width: '100%'
     },
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       emblem: {
-        width: "80px",
-        height: "80px",
-        marginLeft: "45px",
-        marginTop: "50px",
+        width: '80px',
+        height: '80px',
+        marginLeft: '45px',
+        marginTop: '50px'
       },
       followButton: {
-        marginTop: "8px",
-        maxHeight: "27px",
-        "& .MuiButton-startIcon": {
-          margin: "0 8px 0 -4px",
-        },
-      },
+        marginTop: '8px',
+        maxHeight: '27px',
+        '& .MuiButton-startIcon': {
+          margin: '0 8px 0 -4px'
+        }
+      }
     },
-    [theme.breakpoints.up("smPlus")]: {
+    [theme.breakpoints.up('smPlus')]: {
       emblem: {
-        width: "80px",
-      },
+        width: '80px'
+      }
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
       uploadButton: {
-        display: "flex",
+        display: 'flex'
       },
       catalogued: {
-        position: "relative",
-        left: "120px",
-        justifySelf: "flex-end",
-        gridRow: "3/4",
-        gridColumn: "5/6",
-        marginTop: "10px",
+        position: 'relative',
+        left: '120px',
+        justifySelf: 'flex-end',
+        gridRow: '3/4',
+        gridColumn: '5/6',
+        marginTop: '10px'
       },
       emblem: {
-        marginLeft: "0",
-        marginRight: "30px",
-        marginTop: "0",
+        marginLeft: '0',
+        marginRight: '30px',
+        marginTop: '0'
       },
       messageButtonText: {
-        display: "initial",
-      },
+        display: 'initial'
+      }
     },
-    [theme.breakpoints.up("mdPlus")]: {
-      emblem: {},
+    [theme.breakpoints.up('mdPlus')]: {
+      emblem: {}
     },
+
+    cataloguedImg: {
+      width: '15vw',
+      height: '10vh',
+      position: 'absolute',
+      top: '15%'
+    }
   })
-);
+)
