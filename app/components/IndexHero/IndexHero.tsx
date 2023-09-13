@@ -137,14 +137,10 @@ export default function IndexHero() {
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
-              classes={{
-                label: s.buttonLabel,
-              }}
               className={s.becomeMemberButton}
-              size="small"
+              size="medium"
               variant="contained"
               color="primary"
-              disableElevation
               rounded
               onClick={() =>
                 keycloak.register({
@@ -156,12 +152,10 @@ export default function IndexHero() {
               {t("signUp")}
             </Button>
             <Button
-              classes={{
-                label: s.buttonLabel,
-              }}
+              className={s.buttonLabel}
               size="small"
-              variant="outlined"
-              disableElevation
+              variant="contained"
+              color="primary"
               rounded
               onClick={() => keycloak.login({ locale: router.locale })}
             >

@@ -174,10 +174,9 @@ export default function Header({ navBarItems }) {
               <div className={s.login}>
                 <Button
                   className={s.createButton}
-                  size="large"
+                  size="medium"
                   variant="contained"
                   color="black"
-                  disableElevation
                   rounded
                   onClick={() =>
                     keycloak.register({
@@ -187,31 +186,6 @@ export default function Header({ navBarItems }) {
                   }
                 >
                   {t("createPortfolio")}
-                </Button>
-                <Button
-                  className={s.signUp}
-                  size="small"
-                  variant="outlined"
-                  disableElevation
-                  rounded
-                  onClick={() =>
-                    keycloak.register({
-                      locale: router.locale,
-                      redirectUri: signUpRedirectHref,
-                    })
-                  }
-                >
-                  {t("signUp")}
-                </Button>
-                <Button
-                  className={s.loginButton}
-                  size="small"
-                  variant="outlined"
-                  disableElevation
-                  rounded
-                  onClick={() => keycloak.login({ locale: router.locale })}
-                >
-                  {t("login")}
                 </Button>
               </div>
             )}
@@ -305,9 +279,7 @@ export default function Header({ navBarItems }) {
                 </div>
               </>
             )}
-            <div className={s.language}>
-              <I18nSelector></I18nSelector>
-            </div>
+
             <div className={s.menuDrawer}>
               <IconButton
                 aria-label="menu"
