@@ -162,6 +162,7 @@ export default function IndexHero() {
               {t("logIn")}
             </Button>
           </div>
+          {/* 
           <div className={s.videoDiv}>
             <PlayCircleFilledIcon />
             <Typography
@@ -175,6 +176,7 @@ export default function IndexHero() {
 
             <VideoDialog open={openVideoDialog} onClose={toggleVideoDialog} />
           </div>
+          */}
           <div className={s.accordionDiv}>
             <Accordion className={s.accordion} elevation={0}>
               <AccordionSummary
@@ -211,6 +213,86 @@ export default function IndexHero() {
               </AccordionSummary>
               <AccordionDetails>
                 <div className={s.detailsText}>
+                  <div className={s.accordionDiv}>
+                    <Accordion className={s.accordion} elevation={0}>
+                      <AccordionSummary
+                        className={s.accordionSummary}
+                        onClick={() => setExpanded(!expanded)}
+                      >
+                        <div className={s.buttonDiv}>
+                          {expanded ? (
+                            <Button
+                              className={s.button}
+                              size="small"
+                              onClick={() => setExpanded(!expanded)}
+                              variant="outlined"
+                              rounded
+                              endIcon={<KeyboardArrowUpIcon />}
+                            >
+                              {t("readLess")}
+                            </Button>
+                          ) : (
+                            <Button
+                              className={s.button}
+                              size="small"
+                              onClick={() => setExpanded(!expanded)}
+                              endIcon={<KeyboardArrowDownIcon />}
+                            >
+                              <img
+                                src="/trustpilotvector.svg"
+                                alt="Trustpilot logo"
+                                style={{
+                                  width: "60px",
+                                  height: "auto",
+                                  marginRight: "2px",
+                                }}
+                              />
+                              <img
+                                src="/trustpilot.svg"
+                                alt="Trustpilot Stars"
+                                style={{
+                                  width: "100px",
+                                  height: "auto",
+                                  marginRight: "10px",
+                                }}
+                              />
+                            </Button>
+                          )}
+                        </div>
+                      </AccordionSummary>
+                      <AccordionDetails className={s.allReviews}>
+                        {reviews.map((review, index) => (
+                          <div key={index} className={s.reviewDiv}>
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <img
+                                src="/trustpilot.svg"
+                                alt="Trustpilot Stars"
+                                style={{
+                                  width: "100px",
+                                  height: "auto",
+                                  marginRight: "10px",
+                                }}
+                              />
+                              <Typography
+                                variant="h6"
+                                component="h2"
+                                className={s.headingReview}
+                              >
+                                {review.title}
+                              </Typography>
+                            </div>
+                            {expanded && (
+                              <Typography className={s.accDescription}>
+                                {review.fullReview}
+                              </Typography>
+                            )}
+                          </div>
+                        ))}
+                      </AccordionDetails>
+                    </Accordion>
+                  </div>
                   <Typography variant="h5" component="h2" className={s.heading}>
                     {t("headline")}
                   </Typography>
@@ -360,85 +442,6 @@ export default function IndexHero() {
             </Accordion>
           </div>
           {/* start here */}
-
-          <div className={s.accordionDiv}>
-            <Accordion className={s.accordion} elevation={0}>
-              <AccordionSummary
-                className={s.accordionSummary}
-                onClick={() => setExpanded(!expanded)}
-              >
-                <div className={s.buttonDiv}>
-                  {expanded ? (
-                    <Button
-                      className={s.button}
-                      size="small"
-                      onClick={() => setExpanded(!expanded)}
-                      variant="outlined"
-                      rounded
-                      endIcon={<KeyboardArrowUpIcon />}
-                    >
-                      {t("readLess")}
-                    </Button>
-                  ) : (
-                    <Button
-                      className={s.button}
-                      size="small"
-                      onClick={() => setExpanded(!expanded)}
-                      endIcon={<KeyboardArrowDownIcon />}
-                    >
-                      <img
-                        src="/trustpilotvector.svg"
-                        alt="Trustpilot logo"
-                        style={{
-                          width: "60px",
-                          height: "auto",
-                          marginRight: "2px",
-                        }}
-                      />
-                      <img
-                        src="/trustpilot.svg"
-                        alt="Trustpilot Stars"
-                        style={{
-                          width: "100px",
-                          height: "auto",
-                          marginRight: "10px",
-                        }}
-                      />
-                    </Button>
-                  )}
-                </div>
-              </AccordionSummary>
-              <AccordionDetails className={s.allReviews}>
-                {reviews.map((review, index) => (
-                  <div key={index} className={s.reviewDiv}>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <img
-                        src="/trustpilot.svg"
-                        alt="Trustpilot Stars"
-                        style={{
-                          width: "100px",
-                          height: "auto",
-                          marginRight: "10px",
-                        }}
-                      />
-                      <Typography
-                        variant="h6"
-                        component="h2"
-                        className={s.headingReview}
-                      >
-                        {review.title}
-                      </Typography>
-                    </div>
-                    {expanded && (
-                      <Typography className={s.accDescription}>
-                        {review.fullReview}
-                      </Typography>
-                    )}
-                  </div>
-                ))}
-              </AccordionDetails>
-            </Accordion>
-          </div>
         </div>
 
         <div className={s.right}>
