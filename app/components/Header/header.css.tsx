@@ -86,17 +86,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     createButton: {
       whiteSpace: "nowrap",
-      backgroundColor: "var(--color-green-lighter)",
-      "&.MuiButton-containedPrimary": {
-        color: "var(--black-absolute)",
-      },
-      "&.MuiButton-containedPrimary:hover": {
-        backgroundColor: "green",
-      },
-      "& span": {
-        "&..MuiButton-label": {
-          margin: "0 !important",
-        },
+      backgroundColor: "var(--yellow-darker)",
+      "&:hover": {
+        backgroundColor: "#ffda79b3",
+        color: "black",
       },
     },
     loginButton: {

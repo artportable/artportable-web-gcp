@@ -260,17 +260,31 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "5px",
     },
     buttonLabel: {
+      whiteSpace: "nowrap",
+      backgroundColor: "#ffffff00",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "#00e196",
+        color: "black",
+      },
       fontSize: "0.9rem",
       [theme.breakpoints.up("sm")]: {
         fontSize: "initial",
-        margin: theme.spacing(0, 1),
+        margin: theme.spacing(0, 0),
       },
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "initial",
-        margin: theme.spacing(0, 2),
+        margin: theme.spacing(0, 0),
       },
     },
     becomeMemberButton: {
+      whiteSpace: "nowrap",
+      backgroundColor: "var(--yellow-darker)",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "#ffda79b3",
+        color: "black",
+      },
       marginRight: theme.spacing(1),
       [theme.breakpoints.up("sm")]: {
         marginRight: theme.spacing(2),
