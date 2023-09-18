@@ -79,12 +79,25 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gap: theme.spacing(1),
       justifySelf: 'flex-end'
     },
+
+    btnWrapper: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '3vw',
+      //marginBottom: '1.5vh',
+      [theme.breakpoints.up('md')]: {
+          justifyContent:'normal',
+          gap: '0.5vw',
+      }
+
+    },
     followButton: {
       maxHeight: '27px',
-      backgroundColor: '#ffda79',
+      backgroundColor: 'white',
       color: '#3d3d4e',
+      border: ' 1px solid black',
       marginTop: '1.5vh',
-      width: '30%',
+      //width: '30%',
       // display: 'flex',
       // justifyContent: 'center',
       // marginBottom: '3vh',

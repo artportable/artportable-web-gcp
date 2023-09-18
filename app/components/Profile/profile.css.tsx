@@ -7,15 +7,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     nameAndFollowContainer: {
-      display: '',
+      display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       textAlign: 'center',
       width: '100%',
       justifyContent: 'center',
       marginTop: '-30px',
       [theme.breakpoints.up('md')]: {
-        display: 'flex',
-        marginLeft: '10%'
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
       }
     },
 
@@ -24,50 +25,31 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: '-10px',
-      [theme.breakpoints.up('smPlus')]: {
-        marginLeft: '-4.5vw'
-      },
-      [theme.breakpoints.up('md')]: {
-        marginTop: '0px'
-      }
     },
 
     fullName: {
       fontWeight: 600,
       fontSize: '2rem',
-      marginLeft: '0%',
-      [theme.breakpoints.up('smPlus')]: {
-        marginRight: '3vw'
-      },
+      justifyContent:'center',
+      textAlign:'center',
       [theme.breakpoints.up('mdPlus')]: {
         letterSpacing: '13px'
       }
     },
 
-    location: {
-      display: 'none',
-      [theme.breakpoints.up('mdPlus')]: {
-        display: 'contents',
-        paddingRight: '20px'
-      }
-    },
 
     fontSize: {
-      fontSize: '0.55em',
-      [theme.breakpoints.up('smPlus')]: {
-        fontSize: '0.85em'
+      [theme.breakpoints.up('md')]: {
+        fontSize: '1em'
       }
     },
     followerButton: {
-      padding: '10px',
+      margin: '10px',
       cursor: 'pointer',
-      [theme.breakpoints.up('md')]: {
-        paddingLeft: '3.5vw'
-      }
     },
+
     followeeButton: {
-      cursor: 'pointer'
+      cursor: 'pointer',
     },
     artwork: {
       paddingLeft: '10px'

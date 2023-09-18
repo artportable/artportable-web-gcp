@@ -66,7 +66,6 @@ export default function Profile({
         multiple={false}
       />
       <div className={s.nameAndFollowContainer}>
-        <div>
           <Typography className={s.fullName}>
             {linkToProfile ? (
               <Link href={`/profile/@${data?.Username}`}>
@@ -82,7 +81,6 @@ export default function Profile({
               </span>
             )}
           </Typography>
-        </div>
         {/* {data?.Location &&
         <div className={s.location}>
           <RoomIcon color="secondary"></RoomIcon>
@@ -96,12 +94,10 @@ export default function Profile({
             className={s.followerButton}
             onClick={() => setFollowersOpen(true)}
           >
-            <Typography variant="body2" display="block" className={s.fontSize}>
+            <Typography className={s.fontSize}>
               {data?.Followees}
             </Typography>
             <Typography
-              variant="caption"
-              display="block"
               className={s.fontSize}
             >
               {capitalizeFirst(t('words.followers'))}
@@ -117,7 +113,7 @@ export default function Profile({
             className={s.followeeButton}
             onClick={() => setFollowingOpen(true)}
           >
-            <Typography variant="body2" display="block" className={s.fontSize}>
+            <Typography className={s.fontSize}>
               {data?.Followers}
             </Typography>
             <Typography className={s.fontSize}>

@@ -6,7 +6,7 @@ import { Tabs, Tab, Snackbar, Typography, Paper } from '@material-ui/core'
 import Divider from '@material-ui/core/Divider'
 import Box from '@material-ui/core/Box'
 import ProfileComponent from '../../app/components/Profile/Profile'
-import ArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/ArtworkListItemDefined'
+import ProfileArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/ProfileArtworkListItemDefined'
 import Image from '../../app/models/Image'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
@@ -470,7 +470,6 @@ export default function Profile(props) {
             {userProfile?.isError && <div>error...</div>}
           </FullWidthBlock>
           <div>
-            <div>
               <ProfileComponent
                 userProfile={userProfileSummary}
                 userProfilePicture={
@@ -482,8 +481,7 @@ export default function Profile(props) {
                 isMyProfile={isMyProfile}
                 linkToProfile={false}
               ></ProfileComponent>
-            </div>
-            <div>
+              <div>
               {isMyProfile ? (
                 <>
                   <EditProfileDialog userProfile={userProfile.data} />
@@ -518,28 +516,31 @@ export default function Profile(props) {
                   )}
                 </>
               ) : (
-                <>
+                <div className={s.btnWrapper}>
                   {
+                    //MESSAGES
+
                     // <Button
                     //   onClick={() => {
                     //     redirectIfNotLoggedIn({
-                    //       pathname: "/messages",
+                    //       pathname: '/messages',
                     //       query: {
-                    //         referTo: userProfileSummary.data?.SocialId,
-                    //       },
-                    //     });
+                    //         referTo: userProfileSummary.data?.SocialId
+                    //       }
+                    //     })
                     //     trackGoogleAnalytics(
                     //       ActionType.SEND_MESSAGE,
                     //       CategoryType.INTERACTIVE
-                    //     );
+                    //     )
                     //   }}
                     //   className={s.followButton}
-                    //   size={smScreenOrSmaller ? "small" : "medium"}
-                    //   variant={"contained"}
+                    //   size={smScreenOrSmaller ? 'small' : 'medium'}
+                    //   variant={'contained'}
                     //   color="primary"
                     //   startIcon={
-                    //     <ChatIcon className={s.chatIcon} color={"inherit"} />
+                    //     <ChatIcon className={s.chatIcon} color={'inherit'} />
                     //   }
+
                     //   disableElevation
                     //   rounded
                     //   disabled={!isSignedIn}
@@ -550,36 +551,36 @@ export default function Profile(props) {
                     //   </div>
                     // </Button>
                   }
-                  {/* <div className="followBtnDiv"> */}
-                  {/* <Button
-                    className={s.followButton}
-                    size={smScreenOrSmaller ? 'small' : 'medium'}
-                    variant={!isFollowed ? 'contained' : 'outlined'}
-                    color="primary"
-                    startIcon={!isFollowed ? <AddIcon /> : null}
-                    disableElevation
-                    rounded
-                    disabled={!isSignedIn}
-                    onClick={() => {
-                      toggleFollow()
-                      !isFollowed
-                        ? trackGoogleAnalytics(
-                            ActionType.FOLLOW_PROFILE,
-                            CategoryType.INTERACTIVE
-                          )
-                        : null
-                    }}
-                  >
-                    {capitalizeFirst(
+                  <div className="followBtnDiv">
+                    {/* <Button
+                      //FOLLOW BUTTON
+                      className={s.followButton}
+                      size={smScreenOrSmaller ? 'small' : 'medium'}
+                      variant={!isFollowed ? 'contained' : 'outlined'}
+                      color="primary"
+                      startIcon={!isFollowed ? <AddIcon /> : null}
+                      disableElevation
+                      rounded
+                      disabled={!isSignedIn}
+                      onClick={() => {
+                        toggleFollow()
+                        !isFollowed
+                          ? trackGoogleAnalytics(
+                              ActionType.FOLLOW_PROFILE,
+                              CategoryType.INTERACTIVE
+                            )
+                          : null
+                      }}
+                    >
+                      {capitalizeFirst(
                       !isFollowed
                         ? t('common:words.follow')
                         : t('common:words.following')
                     )}
-                  </Button> */}
-                  {/* </div> */}
-                </>
+                    </Button> */}
+                  </div>
+                </div>
               )}
-            </div>
             {userProfile.data?.MonthlyArtist && (
               <div>
                 {/* <img
@@ -661,6 +662,7 @@ export default function Profile(props) {
               onClose={togglePortfolioPremiumDialog}
               numberExists={numberExists}
             />
+            </div>
 
             <Divider className={s.divider}></Divider>
             {/* <ArtistPriceSpan prices={artworkPrices} /> */}
@@ -675,19 +677,19 @@ export default function Profile(props) {
                 >
                   <Tab
                     label={t('profile:portfolio')}
-                    style={{ textTransform: 'none' }}
+                    style={{ textTransform: 'none', fontWeight: 'normal' }}
                     {...a11yProps(t('profile:portfolio'))}
                   />
                   <Tab
                     label={t('profile:aboutMe')}
-                    style={{ textTransform: 'none' }}
+                    style={{ textTransform: 'none', fontWeight: 'normal' }}
                     {...a11yProps(t('profile:aboutMe'))}
                   />
                   {
                     articles && articles.length > 0 && (
                       <Tab
                         label={t('profile:articles')}
-                        style={{ textTransform: 'none' }}
+                        style={{ textTransform: 'none', fontWeight: 'normal' }}
                         {...a11yProps(t('profile:articles'))}
                       />
                     )
@@ -708,7 +710,7 @@ export default function Profile(props) {
 
                               if (artwork) {
                                 return (
-                                  <ArtworkListItemDefined
+                                  <ProfileArtworkListItemDefined
                                     key={image.Name}
                                     width={
                                       smScreenOrSmaller ? '100%' : image.Width
