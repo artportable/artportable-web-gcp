@@ -14,9 +14,34 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%',
       justifyContent: 'center',
       marginTop: '-30px',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('mdPlus')]: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly'
+      }
+    },
+
+    followButton: {
+      maxHeight: '27px',
+      backgroundColor: 'white',
+      color: '#3d3d4e',
+      border: ' 1px solid black',
+      marginTop: '1.5vh',
+      '& .MuiButton-startIcon': {
+        margin: '0 0'
+      }
+    },
+
+    messageButtonText: {
+      display: 'none'
+    },
+
+    friends: {
+      gridArea: 'friends',
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '10px',
+      [theme.breakpoints.up('smPlus')]: {
+        display: 'none'
       }
     },
 
@@ -24,19 +49,18 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
 
     fullName: {
       fontWeight: 600,
       fontSize: '2rem',
-      justifyContent:'center',
-      textAlign:'center',
+      justifyContent: 'center',
+      textAlign: 'center',
       [theme.breakpoints.up('mdPlus')]: {
         letterSpacing: '13px'
       }
     },
-
 
     fontSize: {
       [theme.breakpoints.up('md')]: {
@@ -45,11 +69,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     followerButton: {
       margin: '10px',
-      cursor: 'pointer',
+      cursor: 'pointer'
     },
 
     followeeButton: {
-      cursor: 'pointer',
+      cursor: 'pointer'
     },
     artwork: {
       paddingLeft: '10px'

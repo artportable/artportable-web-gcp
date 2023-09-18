@@ -25,7 +25,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         opacity: 1
       },
       '&:hover $title': {
-        // visibility: 'visible',
         opacity: 1,
         display: 'flex',
         justifyContent: 'center'
@@ -46,10 +45,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         visibility: 'hidden',
         opacity: 0
       }
-      // '&:hover $titleOnImg': {
-      //   visibility: 'visible',
-      //   opacity: 1
-      // }
     },
 
     imgWrapper: {
@@ -89,78 +84,19 @@ export const profileStyles = makeStyles((theme: Theme) =>
       }
     },
 
-    // en div för taggarna på bilden
-    tagsOnImg: {
-      position: 'absolute',
-      top: '92%',
-      left: '35%',
-      width: '100%',
-      transform: 'translate(-50%, -50%)'
-      // marginLeft: '7vw'
-    },
-
-    // poistionerade taggarna
-
-    titleTagsContainer: {
-      // position: 'relative',
-      // maxWidth: '100%',
-      // flexGrow: 1,
-      // flexShrink: 0,
-      // textOverflow: 'ellipsis',
-      // overflow: 'hidden',
-      // marginBottom: '2vh'
-      position: 'absolute',
-      top: '0',
-      left: '16%',
-      transform: 'translate(0, 0)',
-      // zIndex: '1',
-      width: '100%',
-      display: 'flex'
-    },
-
     tagsContainer: {
-      marginBottom: '2vh',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      display: 'flex',
-      visibility: 'hidden',
-      opacity: 0,
-      transition: 'opacity 0.3s, visibility 0.3s',
-      flexWrap: 'wrap',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      // maxWidth: '100%',
-      overFlow: 'hidden',
-      [theme.breakpoints.down('sm')]: {
-        visibility: 'visible',
-        opacity: 1
-      }
-    },
-
-    smallTag: {
-      backgroundColor: 'transparent',
-      border: '1px solid black',
-      margin: '2px',
-      fontSize: '10px',
-      paddingLeft: '3px',
-      paddingRight: '3px',
-      borderRadius: '20px',
-      color: '#c67777',
-      maxWidth: '100px', // Or whatever max width you prefer for individual tags
-      overflow: 'hidden', // Hide overflowed text
-      whiteSpace: 'nowrap', // Prevent text from breaking into multiple lines
-      textOverflow: 'ellipsis' // Show ellipsis for overflowed text
+      marginTop: '0.5vh'
     },
 
     // Bild titeln/namnet
     styleOnTitle: {
-      fontStyle: 'italic'
+      fontStyle: 'italic',
+      fontSize: '1.4em'
     },
 
     // Pris på bilden
     princeOnImg: {
-      marginTop: '0.3vh'
+      marginTop: '0.5vh'
     },
 
     title: {
@@ -187,6 +123,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       position: 'relative',
       overflow: 'hidden',
       textAlign: 'center',
+      justifyContent: 'space-evenly',
       '& > div:not( $newUserWrapper)': {
         visibility: 'hidden',
         opacity: 0,
@@ -328,14 +265,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       display: 'flex'
     },
 
-    soldMark: {
-      // background: '#C67777',
-      // borderRadius: '50%',
-      // width: '15px',
-      // height: '15px',
-      // marginRight: '5px',
-      // display: 'flex',
-    },
     size: {
       fontSize: '0.8rem',
       lineHeight: '1rem',

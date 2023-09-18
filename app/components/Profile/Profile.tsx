@@ -13,9 +13,11 @@ import { useRef, useState } from 'react'
 import UserListDialog from '../UserListDialog/UserListDialog'
 import { useGetFollowers } from '../../hooks/dataFetching/useGetFollowers'
 import { useGetFollowing } from '../../hooks/dataFetching/useGetFollowing'
+import MessageAndFollowButton from "./MessageAndFollowButton"
 
 export default function Profile({
   userProfile,
+  userProfileSummary,
   userProfilePicture,
   onUpdateProfilePicture = null,
   hideAddBtn = false,
@@ -25,7 +27,7 @@ export default function Profile({
 }) {
   const s = styles()
   const { t } = useTranslation('common')
-  const data = userProfile?.data
+  const data = userProfileSummary?.data
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
 
   const fileInput = useRef(null)
@@ -135,6 +137,9 @@ export default function Profile({
             </div>
           )}
         </div>
+          {!isMyProfile && (
+          <MessageAndFollowButton userProfile={userProfile} userProfileSummary={userProfileSummary}/>)
+          }
       </div>
     </Box>
   )

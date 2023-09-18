@@ -80,43 +80,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       justifySelf: 'flex-end'
     },
 
-    btnWrapper: {
-      display: 'flex',
-      justifyContent: 'center',
-      gap: '3vw',
-      //marginBottom: '1.5vh',
-      [theme.breakpoints.up('md')]: {
-          justifyContent:'normal',
-          gap: '0.5vw',
-      }
-
-    },
-    followButton: {
-      maxHeight: '27px',
-      backgroundColor: 'white',
-      color: '#3d3d4e',
-      border: ' 1px solid black',
-      marginTop: '1.5vh',
-      //width: '30%',
-      // display: 'flex',
-      // justifyContent: 'center',
-      // marginBottom: '3vh',
-      '& .MuiButton-startIcon': {
-        margin: '0 0'
-      }
-    },
-    followBtnDiv: {
-      marginTop: '3vh',
-      textAlign: 'center',
-      display: 'flex',
-      width: '100%',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '8vh'
-      // position: 'absolute',
-      // left: '35%',
-      // top: '16%'
-    },
     friends: {
       gridArea: 'friends',
       display: 'flex',
