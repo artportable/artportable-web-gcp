@@ -498,10 +498,10 @@ export default function Profile(props) {
                     <UpgradePortfolio />
                   )}
                 </>
-              ) }
+              )}
 
               {userProfile.data?.MonthlyArtist && (
-                <div style={{display:'none'}}>
+                <div style={{ display: 'none' }}>
                   {/* <img
                   src="/Artportable_Emblem_Gold.svg"
                   alt="Logo Artportable"
