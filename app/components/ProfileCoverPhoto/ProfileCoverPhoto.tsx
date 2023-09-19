@@ -31,14 +31,14 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
 
   return (
     <div className={s.container}>
-      {/* {coverPhoto &&
+      {coverPhoto &&
         <img
           src={`${bucketUrl}${coverPhoto}`}
           alt="Cover image"
           className={s.profileCoverPhoto}
         />
       }
-
+      
       {isMyProfile &&
         <div className={s.buttonContainer}>
           <div className={s.buttonPosition}>
@@ -60,8 +60,8 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
             </Button>
           </div>
         </div>
-      } */}
-
+      }
+     
     </div>
   );
 }

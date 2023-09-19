@@ -10,7 +10,7 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "transparent",
       border: "1px solid #3e3e3e",
       margin: "1px",
-      fontSize: "0.8em",
+      fontSize: "10px",
       borderRadius: "20px",
       color: "#3e3e3e",
       height: "20px",
