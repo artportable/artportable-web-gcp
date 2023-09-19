@@ -1,7 +1,8 @@
 import { red } from "@material-ui/core/colors";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { Opacity } from "@material-ui/icons";
 
-export const styles = makeStyles((theme: Theme) =>
+export const profileStyles = makeStyles((theme: Theme) =>
   createStyles({
     breakpoints: {
       values: {
@@ -15,35 +16,114 @@ export const styles = makeStyles((theme: Theme) =>
     },
     container: {
       display: "inline-block",
-      "&:hover $title": {
-        visibility: "hidden",
+      "&:hover $chatButton": {
+        visibility: "visible",
         opacity: 1,
+      },
+      "&:hover $shareButton": {
+        visibility: "visible",
+        opacity: 1,
+      },
+      "&:hover $title": {
+        opacity: 1,
+        display: "flex",
+        justifyContent: "center",
       },
       "&:hover $tagsContainer": {
         visibility: "visible",
         opacity: 1,
       },
-
+      "&:hover $purchaseRequestButtonSv": {
+        backgroundColor: "#FF9191",
+        border: "1px solid #FF9191",
+      },
+      "&:hover $purchaseRequestButtonEn": {
+        backgroundColor: "#FF9191",
+        border: "1px solid #FF9191",
+      },
       "&:hover $newUser": {
         visibility: "hidden",
         opacity: 0,
       },
-      [theme.breakpoints.up("md")]: {
-        "&:hover $chatButton": {
-          visibility: "visible",
-          opacity: 1,
-        },
-        "&:hover $shareButton": {
-          visibility: "visible",
-          opacity: 1,
-        },
+    },
+
+    imgWrapper: {
+      position: "relative",
+      display: "inline-block",
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        // background: 'rgba(198, 119, 119, 0.8)',
+        background: "rgba(250,243,238, 0.9)",
+        opacity: 0,
+      },
+      "&:hover::before": {
+        opacity: 1,
+      },
+      "&:hover $titleOnImg": {
+        visibility: "visible",
+        opacity: 1,
       },
     },
+
+    // Centera titel, pris och pil div
+    titleOnImg: {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      color: "black",
+      fontSize: "1rem",
+      opacity: 0,
+      "&:hover::before": {
+        opacity: 1,
+      },
+    },
+
+    tagsContainer: {
+      marginTop: "0.5vh",
+    },
+
+    // Bild titeln/namnet
+    styleOnTitle: {
+      fontStyle: "italic",
+      fontSize: "1.4em",
+    },
+
+    // Pris på bilden
+    princeOnImg: {
+      marginTop: "0.5vh",
+    },
+
+    title: {
+      fontStyle: "italic",
+      fontSize: "0.95rem",
+      height: "1.3rem",
+      marginBottom: "5px",
+      marginLeft: "10vw",
+      visibility: "hidden",
+      [theme.breakpoints.down("sm")]: {
+        visibility: "hidden",
+        opacity: 0,
+      },
+    },
+
+    infoContainer: {
+      maxHeight: "100px",
+      minHeight: "100px",
+      display: "none",
+    },
+
     imageContainer: {
       borderRadius: "2px",
       position: "relative",
       overflow: "hidden",
       textAlign: "center",
+      justifyContent: "space-evenly",
       "& > div:not( $newUserWrapper)": {
         visibility: "hidden",
         opacity: 0,
@@ -115,9 +195,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.h6.fontSize,
       // placeItems: 'center'
     },
-    nameTitleLike: {},
+
     likeInline: {
-      display: "inline-block",
+      // display: 'inline-block',
+      display: "none",
       float: "right",
       height: "12px",
     },
@@ -166,17 +247,8 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       textOverflow: "ellipsis",
       lineClamp: 2,
-    },
-    title: {
-      fontStyle: "italic",
-      fontSize: "0.95rem",
-      height: "1.3rem",
-      marginBottom: "5px",
-
-      [theme.breakpoints.down("sm")]: {
-        visibility: "hidden",
-        opacity: 0,
-      },
+      // ändring
+      display: "none",
     },
 
     sizesArt: {
@@ -193,14 +265,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
     },
 
-    soldMark: {
-      background: "#C67777",
-      borderRadius: "50%",
-      width: "15px",
-      height: "15px",
-      marginRight: "5px",
-      display: "flex",
-    },
     size: {
       fontSize: "0.8rem",
       lineHeight: "1rem",
@@ -218,9 +282,9 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
     },
     likeButton: {
+      color: "#FFA7A4",
       padding: theme.spacing(0.2, 0, 0.4, 0.5),
       fontSize: "0.5rem",
-      color: "red !important",
       "&:hover": {
         backgroundColor: "transparent",
       },
@@ -231,7 +295,7 @@ export const styles = makeStyles((theme: Theme) =>
       transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
       fontSize: "0.5rem",
-      color: "016A70",
+      color: "#C67777",
       "&:hover": {
         backgroundColor: "transparent",
       },
@@ -242,7 +306,7 @@ export const styles = makeStyles((theme: Theme) =>
       transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
       fontSize: "0.5rem",
-      color: "016A70",
+      color: "#000000",
       "&:hover": {
         backgroundColor: "transparent",
       },
@@ -259,21 +323,17 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       margin: "1px 1px 1px 1px",
-      border: "1px solid #ffda79",
-      backgroundColor: "#ffda79",
-      color: "#3d3d4e",
+      border: "1px solid #c67777",
+      backgroundColor: "#c67777",
+      color: "white",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
       fontSize: "12px",
+
       fontFamily: "gotham",
       "&:hover": {
-        filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
-        backgroundColor: "#ffda79",
-        color: "black",
+        border: "1px solid #FF9191",
+        backgroundColor: "#FF9191",
       },
-    },
-    infoContainer: {
-      maxHeight: "100px",
-      minHeight: "100px",
     },
 
     purchaseRequestButtonEn: {
@@ -284,20 +344,22 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       margin: "1px 1px 1px 1px",
-      border: "1px solid #ffda79",
-      backgroundColor: "#ffda79",
-      color: "#3d3d4e",
+      border: "1px solid #c67777",
+      backgroundColor: "#c67777",
+      color: "white",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
       fontSize: "12px",
+
       fontFamily: "gotham",
       "&:hover": {
-        filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
-        backgroundColor: "#ffda79",
-        color: "black",
+        border: "1px solid #FF9191",
+        backgroundColor: "#FF9191",
       },
     },
     inLine: {
-      display: "flex",
+      // display: 'flex',
+      // Ändring
+      display: "none",
       justifyContent: "space-between",
       alignItems: "center",
       marginTop: "5px",
@@ -325,48 +387,6 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#FF9191",
       },
     },
-    titleTagsContainer: {
-      position: "relative",
-      maxWidth: "100%",
-      flexGrow: 1,
-      flexShrink: 0,
-      textOverflow: "ellipsis",
-      overflow: "hidden",
-    },
-
-    tagsContainer: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      display: "flex",
-      visibility: "hidden",
-      opacity: 0,
-      transition: "opacity 0.3s, visibility 0.3s",
-      flexWrap: "wrap",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
-      maxWidth: "100%",
-      overFlow: "hidden",
-      [theme.breakpoints.down("sm")]: {
-        visibility: "visible",
-        opacity: 1,
-      },
-    },
-
-    smallTag: {
-      backgroundColor: "#ffda79",
-      border: "1px solid #ffda79",
-      margin: "2px",
-      fontSize: "10px",
-      paddingLeft: "3px",
-      paddingRight: "3px",
-      borderRadius: "20px",
-      color: "#c67777",
-      maxWidth: "100px",
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-      textOverflow: "ellipsis",
-    },
 
     roomButtonEn: {
       minWidth: "50px",
@@ -382,7 +402,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "10px",
       fontFamily: "gotham",
       "&:hover": {
-        border: "1px solid #ffda79",
+        border: "1px solid #FF9191",
         color: "white",
         backgroundColor: "#FF9191",
       },
