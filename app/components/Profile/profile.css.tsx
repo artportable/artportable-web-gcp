@@ -1,82 +1,55 @@
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+
+
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     secondaryColor: {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: theme.palette.secondary.main
     },
-
-    nameAndFollowContainer: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      textAlign: "center",
-      width: "100%",
-      justifyContent: "center",
-      marginTop: "-30px",
-      [theme.breakpoints.up("mdPlus")]: {
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-      },
+    avatar: {
+      backgroundColor: 'transparent',
+      border: `0.15rem solid ${theme.palette.common.white}`,
+      width: 120,
+      height: 120
     },
-
-    followButton: {
-      maxHeight: "27px",
-      backgroundColor: "white",
-      color: "#3d3d4e",
-      border: " 1px solid black",
-      marginTop: "1.5vh",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
+    badgeIcon: {
+      backgroundColor: 'white',
+      borderRadius: '50%',
+      cursor: 'pointer',
+      '&:hover': {
+        color: theme.palette.primary.dark,
+      }
     },
-
-    messageButtonText: {
-      display: "none",
+    counterBox: {
+      display: 'flex',
+      justifyContent: 'space-around',
+      paddingTop: theme.spacing(1),
+      '& > *': {
+        width: '33.3%'
+      }
     },
-
-    friends: {
-      gridArea: "friends",
-      display: "flex",
-      justifyContent: "center",
-      marginTop: "10px",
-      [theme.breakpoints.up("smPlus")]: {
-        display: "none",
-      },
-    },
-
-    btnWrapper: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-
     fullName: {
-      fontWeight: 600,
-      fontSize: "2rem",
-      justifyContent: "center",
-      textAlign: "center",
-      [theme.breakpoints.up("mdPlus")]: {
-        letterSpacing: "13px",
-      },
+      fontWeight: 600
     },
-
-    fontSize: {
-      [theme.breakpoints.up("md")]: {
-        fontSize: "1em",
-      },
+    title: {
+      lineHeight: 1.5,
+      fontWeight: 400
     },
-    followerButton: {
-      margin: "10px",
-      cursor: "pointer",
+    username: {
+      lineHeight: 1.5,
     },
-
-    followeeButton: {
-      cursor: "pointer",
+    noPictureIcon: {
+      fontSize: '160px',
+      backgroundColor: theme.palette.background.default,
     },
-    artwork: {
-      paddingLeft: "10px",
+    followersButton: {
+      display: 'block',
+      padding: 0,
     },
-  })
+    followeesButton: {
+      display: 'block',
+      padding: 0,
+    }
+  }),
 );
