@@ -1,27 +1,36 @@
-import styles from './profileCoverPhoto.css'
-import Button from '../../components/Button/Button'
-import CameraAltIcon from '@material-ui/icons/CameraAlt'
-import { useTranslation } from 'next-i18next';
-import { isNullOrUndefined } from '../../utils/util';
-import { useRef } from 'react';
+import styles from "./profileCoverPhoto.css";
+import Button from "../../components/Button/Button";
+import CameraAltIcon from "@material-ui/icons/CameraAlt";
+import { useTranslation } from "next-i18next";
+import { isNullOrUndefined } from "../../utils/util";
+import { useRef } from "react";
 
-export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile }) => {
+export const ProfileCoverPhoto = ({
+  coverPhoto,
+  onUpdateCoverPhoto,
+  isMyProfile,
+}) => {
   const s = styles();
-  const { t } = useTranslation(['profile']);
+  const { t } = useTranslation(["profile"]);
 
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const coverFileInput = useRef(null);
 
-  const handleFileUpload = event => {
+  const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
       return;
     }
 
-    var fr = new FileReader;
-    fr.onload = function() {
-      var img = new Image;
-      img.onload = function() {
-        onUpdateCoverPhoto(event.target.files[0], img.width, img.height, 'cover')
+    var fr = new FileReader();
+    fr.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        onUpdateCoverPhoto(
+          event.target.files[0],
+          img.width,
+          img.height,
+          "cover"
+        );
       };
 
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
@@ -31,14 +40,14 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
 
   return (
     <div className={s.container}>
-      {coverPhoto &&
+      {/* {coverPhoto &&
         <img
           src={`${bucketUrl}${coverPhoto}`}
           alt="Cover image"
           className={s.profileCoverPhoto}
         />
       }
-      
+
       {isMyProfile &&
         <div className={s.buttonContainer}>
           <div className={s.buttonPosition}>
@@ -60,10 +69,9 @@ export const ProfileCoverPhoto = ({ coverPhoto, onUpdateCoverPhoto, isMyProfile 
             </Button>
           </div>
         </div>
-      }
-     
+      } */}
     </div>
   );
-}
+};
 
 export default ProfileCoverPhoto;
