@@ -15,14 +15,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     container: {
       display: "inline-block",
-      "&:hover $chatButton": {
-        visibility: "visible",
-        opacity: 1,
-      },
-      "&:hover $shareButton": {
-        visibility: "visible",
-        opacity: 1,
-      },
       "&:hover $title": {
         visibility: "hidden",
         opacity: 1,
@@ -35,6 +27,16 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover $newUser": {
         visibility: "hidden",
         opacity: 0,
+      },
+      [theme.breakpoints.up("md")]: {
+        "&:hover $chatButton": {
+          visibility: "visible",
+          opacity: 1,
+        },
+        "&:hover $shareButton": {
+          visibility: "visible",
+          opacity: 1,
+        },
       },
     },
     imageContainer: {
@@ -282,16 +284,16 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       margin: "1px 1px 1px 1px",
-      border: "1px solid #c67777",
-      backgroundColor: "#c67777",
-      color: "white",
+      border: "1px solid #ffda79",
+      backgroundColor: "#ffda79",
+      color: "#3d3d4e",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
       fontSize: "12px",
-
       fontFamily: "gotham",
       "&:hover": {
-        border: "1px solid #FF9191",
-        backgroundColor: "#FF9191",
+        filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+        backgroundColor: "#ffda79",
+        color: "black",
       },
     },
     inLine: {

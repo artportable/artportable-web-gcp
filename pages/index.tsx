@@ -138,6 +138,8 @@ export default function DiscoverPage({ navBarItems }) {
     });
   }
 
+  const preferredOrder = ["abstract", "pop-culture", "nude", "dogs"];
+
   function a11yProps(index: any) {
     return {
       id: `nav-tab-${index}`,
@@ -430,7 +432,15 @@ export default function DiscoverPage({ navBarItems }) {
                 </div>
 
                 {tags.data &&
-                  tags.data.map((tag, index) => (
+                  [
+                    ...tags.data
+                      .filter((tag) => preferredOrder.includes(tag))
+                      .sort(
+                        (a, b) =>
+                          preferredOrder.indexOf(a) - preferredOrder.indexOf(b)
+                      ),
+                    ...tags.data.filter((tag) => !preferredOrder.includes(tag)),
+                  ].map((tag, index) => (
                     <div
                       style={{
                         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${
@@ -447,14 +457,13 @@ export default function DiscoverPage({ navBarItems }) {
                         activeFilter === `${tag}` ? s.activePanel : ""
                       }`}
                       onClick={() => {
-                        console.log(index + 4);
                         handleFilterClick(tag, index + 4);
                       }}
                     >
                       {activeFilter === `${tag}` && (
                         <button
                           className={s.closeButton}
-                          onClick={handleRemoveClick} // Modified this line
+                          onClick={handleRemoveClick}
                         >
                           <CloseIcon />
                         </button>
@@ -465,6 +474,7 @@ export default function DiscoverPage({ navBarItems }) {
                       </div>
                     </div>
                   ))}
+
                 <div
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://artportableprod.blob.core.windows.net/artportable-prod/images/f8f967a9-1b47-4318-b3fb-2349093b33ca.jpg")`,
@@ -476,7 +486,7 @@ export default function DiscoverPage({ navBarItems }) {
                   className={`${s.panel} ${
                     clickedFilter === "artists" ? s.activePanel : ""
                   }`}
-                  onClick={() => handleFilterClick("artists", 78)}
+                  onClick={() => handleFilterClick("artists", 77)}
                 >
                   {clickedFilter === "artists" && (
                     <button
@@ -499,7 +509,7 @@ export default function DiscoverPage({ navBarItems }) {
                   className={`${s.panel} ${
                     clickedFilter === "monthlyArtist" ? s.activePanel : ""
                   }`}
-                  onClick={() => handleFilterClick("monthlyArtist", 79)}
+                  onClick={() => handleFilterClick("monthlyArtist", 78)}
                 >
                   {clickedFilter === "monthlyArtist" && (
                     <button
@@ -525,7 +535,7 @@ export default function DiscoverPage({ navBarItems }) {
                     className={`${s.panel} ${
                       clickedFilter === "likedbyme" ? s.activePanel : ""
                     }`}
-                    onClick={() => handleFilterClick("likedbyme", 80)}
+                    onClick={() => handleFilterClick("likedbyme", 79)}
                   >
                     {" "}
                     {clickedFilter === "likedbyme" && (
@@ -547,7 +557,18 @@ export default function DiscoverPage({ navBarItems }) {
                 <div className={s.expanedTagsWrapper}>
                   <div className={s.expanedTags}>
                     {tags.data &&
-                      tags.data.map((tag, index) => (
+                      [
+                        ...tags.data
+                          .filter((tag) => preferredOrder.includes(tag))
+                          .sort(
+                            (a, b) =>
+                              preferredOrder.indexOf(a) -
+                              preferredOrder.indexOf(b)
+                          ),
+                        ...tags.data.filter(
+                          (tag) => !preferredOrder.includes(tag)
+                        ),
+                      ].map((tag, index) => (
                         <div
                           style={{
                             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), ${

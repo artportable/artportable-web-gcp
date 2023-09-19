@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       backgroundColor: "#fdf9f7",
       height: "38px",
-      borderRadius: "2px",
+      borderRadius: "20px",
       width: "100%",
       marginTop: "10px",
       margin: "0 auto",
@@ -38,7 +38,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: "GT-America-Standard",
       border: "none",
-      borderRadius: "2px",
+      borderRadius: "20px",
       autoFocus: "false",
       backgroundColor: "#fdf9f7",
       "&:focus": {

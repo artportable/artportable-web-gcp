@@ -79,16 +79,17 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Thorulf Löfstedt",
-      username: "thorulf.lofstedt",
-      image: "/images/Thorulf.jpg",
-      imageLink: "art/c49b4cee-29e3-4b18-9095-e6324c8e20b6",
+      name: "Owe Emfestav",
+      username: "owe",
+      image: "/images/oweEm.jpeg",
+      imageLink: "art/c1827abc-1eb3-467d-8818-d7f6ec53abb8",
     },
+
     {
-      name: "Pia Håland Anveden",
-      username: "piahd53",
-      image: "/images/pia.jpg",
-      imageLink: "art/60315ad1-a13e-4fa2-a2b6-ecc172d62c53",
+      name: "Charlotte Hansson",
+      username: "charlottehansson",
+      image: "/images/charlotteHansson.jpeg",
+      imageLink: "art/25b4f342-7750-4404-be58-f1ee0bde15cb",
     },
     {
       name: "Gunnila Svärd",
@@ -99,8 +100,8 @@ export default function IndexHero() {
     {
       name: "Lars-Henrik Milert",
       username: "milert",
-      image: "/images/larsHenrik.jpg",
-      imageLink: "art/bf92ed53-43a3-4be4-9eef-ab08516bd440",
+      image: "/images/milertimage.jpg",
+      imageLink: "art/8e505104-f0e8-4b2a-9641-ebeef2c557cb",
     },
   ];
 
@@ -136,14 +137,10 @@ export default function IndexHero() {
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
-              classes={{
-                label: s.buttonLabel,
-              }}
               className={s.becomeMemberButton}
-              size="small"
+              size="medium"
               variant="contained"
               color="primary"
-              disableElevation
               rounded
               onClick={() =>
                 keycloak.register({
@@ -155,18 +152,17 @@ export default function IndexHero() {
               {t("signUp")}
             </Button>
             <Button
-              classes={{
-                label: s.buttonLabel,
-              }}
+              className={s.buttonLabel}
               size="small"
-              variant="outlined"
-              disableElevation
+              variant="contained"
+              color="primary"
               rounded
               onClick={() => keycloak.login({ locale: router.locale })}
             >
               {t("logIn")}
             </Button>
           </div>
+          {/* 
           <div className={s.videoDiv}>
             <PlayCircleFilledIcon />
             <Typography
@@ -180,6 +176,7 @@ export default function IndexHero() {
 
             <VideoDialog open={openVideoDialog} onClose={toggleVideoDialog} />
           </div>
+          */}
           <div className={s.accordionDiv}>
             <Accordion className={s.accordion} elevation={0}>
               <AccordionSummary
@@ -216,6 +213,86 @@ export default function IndexHero() {
               </AccordionSummary>
               <AccordionDetails>
                 <div className={s.detailsText}>
+                  <div className={s.accordionDiv}>
+                    <Accordion className={s.accordion} elevation={0}>
+                      <AccordionSummary
+                        className={s.accordionSummary}
+                        onClick={() => setExpanded(!expanded)}
+                      >
+                        <div className={s.buttonDiv}>
+                          {expanded ? (
+                            <Button
+                              className={s.button}
+                              size="small"
+                              onClick={() => setExpanded(!expanded)}
+                              variant="outlined"
+                              rounded
+                              endIcon={<KeyboardArrowUpIcon />}
+                            >
+                              {t("readLess")}
+                            </Button>
+                          ) : (
+                            <Button
+                              className={s.button}
+                              size="small"
+                              onClick={() => setExpanded(!expanded)}
+                              endIcon={<KeyboardArrowDownIcon />}
+                            >
+                              <img
+                                src="/trustpilotvector.svg"
+                                alt="Trustpilot logo"
+                                style={{
+                                  width: "60px",
+                                  height: "auto",
+                                  marginRight: "2px",
+                                }}
+                              />
+                              <img
+                                src="/trustpilot.svg"
+                                alt="Trustpilot Stars"
+                                style={{
+                                  width: "100px",
+                                  height: "auto",
+                                  marginRight: "10px",
+                                }}
+                              />
+                            </Button>
+                          )}
+                        </div>
+                      </AccordionSummary>
+                      <AccordionDetails className={s.allReviews}>
+                        {reviews.map((review, index) => (
+                          <div key={index} className={s.reviewDiv}>
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <img
+                                src="/trustpilot.svg"
+                                alt="Trustpilot Stars"
+                                style={{
+                                  width: "100px",
+                                  height: "auto",
+                                  marginRight: "10px",
+                                }}
+                              />
+                              <Typography
+                                variant="h6"
+                                component="h2"
+                                className={s.headingReview}
+                              >
+                                {review.title}
+                              </Typography>
+                            </div>
+                            {expanded && (
+                              <Typography className={s.accDescription}>
+                                {review.fullReview}
+                              </Typography>
+                            )}
+                          </div>
+                        ))}
+                      </AccordionDetails>
+                    </Accordion>
+                  </div>
                   <Typography variant="h5" component="h2" className={s.heading}>
                     {t("headline")}
                   </Typography>
@@ -365,85 +442,6 @@ export default function IndexHero() {
             </Accordion>
           </div>
           {/* start here */}
-
-          <div className={s.accordionDiv}>
-            <Accordion className={s.accordion} elevation={0}>
-              <AccordionSummary
-                className={s.accordionSummary}
-                onClick={() => setExpanded(!expanded)}
-              >
-                <div className={s.buttonDiv}>
-                  {expanded ? (
-                    <Button
-                      className={s.button}
-                      size="small"
-                      onClick={() => setExpanded(!expanded)}
-                      variant="outlined"
-                      rounded
-                      endIcon={<KeyboardArrowUpIcon />}
-                    >
-                      {t("readLess")}
-                    </Button>
-                  ) : (
-                    <Button
-                      className={s.button}
-                      size="small"
-                      onClick={() => setExpanded(!expanded)}
-                      endIcon={<KeyboardArrowDownIcon />}
-                    >
-                      <img
-                        src="/trustpilotvector.svg"
-                        alt="Trustpilot logo"
-                        style={{
-                          width: "60px",
-                          height: "auto",
-                          marginRight: "2px",
-                        }}
-                      />
-                      <img
-                        src="/trustpilot.svg"
-                        alt="Trustpilot Stars"
-                        style={{
-                          width: "100px",
-                          height: "auto",
-                          marginRight: "10px",
-                        }}
-                      />
-                    </Button>
-                  )}
-                </div>
-              </AccordionSummary>
-              <AccordionDetails className={s.allReviews}>
-                {reviews.map((review, index) => (
-                  <div key={index} className={s.reviewDiv}>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <img
-                        src="/trustpilot.svg"
-                        alt="Trustpilot Stars"
-                        style={{
-                          width: "100px",
-                          height: "auto",
-                          marginRight: "10px",
-                        }}
-                      />
-                      <Typography
-                        variant="h6"
-                        component="h2"
-                        className={s.headingReview}
-                      >
-                        {review.title}
-                      </Typography>
-                    </div>
-                    {expanded && (
-                      <Typography className={s.accDescription}>
-                        {review.fullReview}
-                      </Typography>
-                    )}
-                  </div>
-                ))}
-              </AccordionDetails>
-            </Accordion>
-          </div>
         </div>
 
         <div className={s.right}>
