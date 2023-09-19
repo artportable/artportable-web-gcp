@@ -1,333 +1,315 @@
-import Main, { FullWidthBlock } from "../../app/components/Main/Main";
-import Head from "next/head";
-import AboutMe from "../../app/components/AboutMe/AboutMe";
-import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
-import { Tabs, Tab, Snackbar, Typography, Paper } from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
-import Box from "@material-ui/core/Box";
-import ProfileComponent from "../../app/components/Profile/Profile";
-import ArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefined";
-import Image from "../../app/models/Image";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import EditProfileDialog from "../../app/components/EditProfileDialog/EditProfileDialog";
-import EditArtworkDialog from "../../app/components/EditArtworkDialog/EditArtworkDialog";
-import UploadIcon from "@material-ui/icons/Publish";
+import Main, { FullWidthBlock } from '../../app/components/Main/Main'
+import Head from 'next/head'
+import AboutMe from '../../app/components/AboutMe/AboutMe'
+import ProfileCoverPhoto from '../../app/components/ProfileCoverPhoto/ProfileCoverPhoto'
+import { Tabs, Tab, Snackbar, Typography, Paper } from '@material-ui/core'
+import Divider from '@material-ui/core/Divider'
+import Box from '@material-ui/core/Box'
+import ProfileComponent from '../../app/components/Profile/Profile'
+import ProfileArtworkListItemDefined from '../../app/components/ArtworkListItemDefined/ProfileArtworkListItemDefined'
+import Image from '../../app/models/Image'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import EditProfileDialog from '../../app/components/EditProfileDialog/EditProfileDialog'
+import EditArtworkDialog from '../../app/components/EditArtworkDialog/EditArtworkDialog'
+import UploadIcon from '@material-ui/icons/Publish'
 
-import { useTranslation } from "next-i18next";
-import { profileStyles } from "../../styles/[username]";
-import { useGetArtworks } from "../../app/hooks/dataFetching/Artworks";
+import { useTranslation } from 'next-i18next'
+import { profileStyles } from '../../styles/[username]'
+import { useGetArtworks } from '../../app/hooks/dataFetching/Artworks'
 import {
   useGetSimilarPortfolios,
   useGetUserProfileTags,
   useGetUserProfile,
   useGetUserProfileSummary,
-  useGetUserProfilePicture,
-} from "../../app/hooks/dataFetching/UserProfile";
-import React, { useContext, useEffect, useState } from "react";
-import TabPanel from "../../app/components/TabPanel/TabPanel";
-import { useGetProfileUser } from "../../app/hooks/dataFetching/useGetProfileUser";
-import SimilarPortfoliosSection from "../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection";
-import { useMainWidth } from "../../app/hooks/useWidth";
-import { getImageAsRows } from "../../app/utils/layoutUtils";
-import { useTheme, Theme } from "@material-ui/core";
-import { useRouter } from "next/router";
-import ArtworkListItemDefinedSkeleton from "../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton";
-import { Alert } from "@material-ui/lab";
-import { useDispatch } from "react-redux";
-import { UPDATE_PROFILE_PICTURE } from "../../app/redux/actions/userActions";
-import { capitalizeFirst } from "../../app/utils/util";
-import Button from "../../app/components/Button/Button";
+  useGetUserProfilePicture
+} from '../../app/hooks/dataFetching/UserProfile'
+import React, { useContext, useEffect, useState } from 'react'
+import TabPanel from '../../app/components/TabPanel/TabPanel'
+import { useGetProfileUser } from '../../app/hooks/dataFetching/useGetProfileUser'
+import SimilarPortfoliosSection from '../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection'
+import { useMainWidth } from '../../app/hooks/useWidth'
+import { getImageAsRows } from '../../app/utils/layoutUtils'
+import { useTheme, Theme } from '@material-ui/core'
+import { useRouter } from 'next/router'
+import ArtworkListItemDefinedSkeleton from '../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton'
+import { Alert } from '@material-ui/lab'
+import { useDispatch } from 'react-redux'
+import { UPDATE_PROFILE_PICTURE } from '../../app/redux/actions/userActions'
+import { capitalizeFirst } from '../../app/utils/util'
+import Button from '../../app/components/Button/Button'
 
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
-import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
-import Link from "next/link";
-import ChatIcon from "@material-ui/icons/Chat";
-import EditIcon from "@material-ui/icons/Edit";
-import { TokenContext } from "../../app/contexts/token-context";
-import ArtistPriceSpan from "../../app/components/ArtistPriceSpan/ArtistPriceSpan";
-import { LoadingContext } from "../../app/contexts/loading-context";
-import { UserContext } from "../../app/contexts/user-context";
-import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
-import { Membership } from "../../app/models/Membership";
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
+import { useBreakpointDown } from '../../app/hooks/useBreakpointDown'
+import Link from 'next/link'
+import ChatIcon from '@material-ui/icons/Chat'
+import EditIcon from '@material-ui/icons/Edit'
+import { TokenContext } from '../../app/contexts/token-context'
+import ArtistPriceSpan from '../../app/components/ArtistPriceSpan/ArtistPriceSpan'
+import { LoadingContext } from '../../app/contexts/loading-context'
+import { UserContext } from '../../app/contexts/user-context'
+import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
+import { Membership } from '../../app/models/Membership'
 import {
   ActionType,
   CategoryType,
-  trackGoogleAnalytics,
-} from "../../app/utils/googleAnalytics";
-import UpgradePortfolio from "../../app/components/UpgradePortfolio/UpgradPortfolio";
-import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
-import usePostLike from "../../app/hooks/dataFetching/usePostLike";
-import useRefreshToken from "../../app/hooks/useRefreshToken";
-import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
-import { getNavBarItems } from "../../app/utils/getNavBarItems";
-import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade";
-import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade";
-import UpgradePortfolioProfile from "../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile";
-import { RWebShare } from "react-web-share";
+  trackGoogleAnalytics
+} from '../../app/utils/googleAnalytics'
+import UpgradePortfolio from '../../app/components/UpgradePortfolio/UpgradPortfolio'
+import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog'
+import usePostLike from '../../app/hooks/dataFetching/usePostLike'
+import useRefreshToken from '../../app/hooks/useRefreshToken'
+import { getNavBarItems } from '../../app/utils/getNavBarItems'
+import DialogMonthlyUser from '../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade'
+import DialogPortfolioPremium from '../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade'
+import UpgradePortfolioProfile from '../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile'
+import { RWebShare } from 'react-web-share'
 
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
-    "aria-controls": `nav-tabpanel-${index}`,
-  };
+    'aria-controls': `nav-tabpanel-${index}`
+  }
 }
 
 export default function Profile(props) {
-  const { t } = useTranslation(["common", "profile", "upload", "header"]);
-  const s = profileStyles();
-  const rowWidth = useMainWidth().regular;
-  const theme: Theme = useTheme();
-  const router = useRouter();
-  const smScreenOrSmaller = useBreakpointDown("sm");
+  const { t } = useTranslation(['common', 'profile', 'upload', 'header'])
+  const s = profileStyles()
+  const rowWidth = useMainWidth().regular
+  const theme: Theme = useTheme()
+  const router = useRouter()
+  const smScreenOrSmaller = useBreakpointDown('sm')
   const { isSignedIn, username, socialId, membership, phone } =
-    useContext(UserContext);
-  const profileUser = useGetProfileUser();
-  const isMyProfile = profileUser === username.value;
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
-  const publicUrl = process.env.NEXT_PUBLIC_URL;
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const { articles, navBarItems, profile: staticUserProfile } = props;
-  const canonicalURL = publicUrl + router.asPath;
+    useContext(UserContext)
+  const profileUser = useGetProfileUser()
+  const isMyProfile = profileUser === username.value
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn()
+  const publicUrl = process.env.NEXT_PUBLIC_URL
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  const { articles, navBarItems, profile: staticUserProfile } = props
+  const canonicalURL = publicUrl + router.asPath
 
-  const [activeTab, setActiveTab] = useState(0);
-  const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false);
-  const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState(0)
+  const [uploadSnackbarOpen, setUploadSnackbarOpen] = useState(false)
+  const [uploadCoverSnackbarOpen, setUploadCoverSnackbarOpen] = useState(false)
   const [deleteArtworkSnackbarOpen, setDeleteArtworkSnackbarOpen] =
-    useState(false);
-  const [hasArtwork, setHasArtwork] = useState(false);
-  const [artworkPrices, setArtworkPrices] = useState<number[]>([]);
-  const [editArtworkOpen, setEditArtworkOpen] = useState(false);
-  const [artworkToEdit, setArtworkToEdit] = useState(null);
-  const [isReady, setIsReady] = useState(false);
+    useState(false)
+  const [hasArtwork, setHasArtwork] = useState(false)
+  const [artworkPrices, setArtworkPrices] = useState<number[]>([])
+  const [editArtworkOpen, setEditArtworkOpen] = useState(false)
+  const [artworkToEdit, setArtworkToEdit] = useState(null)
+  const [isReady, setIsReady] = useState(false)
 
-  const { data: profilePicture } = useGetUserProfilePicture(username.value);
-  const artworks = useGetArtworks(profileUser, username.value);
-  const userProfileSummary = useGetUserProfileSummary(profileUser);
-  const tags = useGetUserProfileTags(profileUser);
-  const similarPortfolios = useGetSimilarPortfolios(profileUser);
-  const userProfile = useGetUserProfile(profileUser, username.value);
+  const { data: profilePicture } = useGetUserProfilePicture(username.value)
+  const artworks = useGetArtworks(profileUser, username.value)
+  const userProfileSummary = useGetUserProfileSummary(profileUser)
+  const tags = useGetUserProfileTags(profileUser)
+  const similarPortfolios = useGetSimilarPortfolios(profileUser)
+  const userProfile = useGetUserProfile(profileUser, username.value)
 
-  const [imageRows, setImageRows] = useState(null);
-  const dispatch = useDispatch();
-  const token = useContext(TokenContext);
-  const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
-  const { setLoading } = useContext(LoadingContext);
+  const [imageRows, setImageRows] = useState(null)
+  const dispatch = useDispatch()
+  const token = useContext(TokenContext)
+  const { setLoading } = useContext(LoadingContext)
 
-  const { like } = usePostLike();
-  const { follow } = usePostFollow();
-  const { refreshToken } = useRefreshToken();
+  const { like } = usePostLike()
+  const { refreshToken } = useRefreshToken()
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
-    useState(false);
+    useState(false)
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
-    title: "",
-    creator: "",
-    url: "",
-    referTo: "",
-    imageurl: "",
-  });
+    title: '',
+    creator: '',
+    url: '',
+    referTo: '',
+    imageurl: ''
+  })
 
   useEffect(() => {
     if (!isReady) {
-      setLoading(true);
+      setLoading(true)
     }
     if (isReady) {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [isReady]);
+  }, [isReady])
 
   useEffect(() => {
     if (!isSignedIn.isPending && !userProfile.isLoading) {
-      setIsReady(true);
+      setIsReady(true)
     }
-  }, [isSignedIn, userProfile.isLoading]);
+  }, [isSignedIn, userProfile.isLoading])
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
       type: UPDATE_PROFILE_PICTURE,
-      profilePicture: profilePicture,
-    });
-  };
-
-  useEffect(() => {
-    setFollow(userProfile?.data?.FollowedByMe);
-  }, [userProfile?.data?.FollowedByMe]);
+      profilePicture: profilePicture
+    })
+  }
 
   useEffect(() => {
     const handleRouteChangeStart = (url) => {
       if (url.includes(`/profile/@`)) {
-        setImageRows(null);
+        setImageRows(null)
       }
-    };
-    router.events.on("routeChangeComplete", handleRouteChangeStart);
+    }
+    router.events.on('routeChangeComplete', handleRouteChangeStart)
 
     return () => {
-      router.events.off("routeChangeComplete", handleRouteChangeStart);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("refresh")) {
-      router.reload();
-      sessionStorage.removeItem("refresh");
+      router.events.off('routeChangeComplete', handleRouteChangeStart)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    const primaryImages = artworks?.data?.map((a) => a.PrimaryFile);
+    if (sessionStorage.getItem('refresh')) {
+      router.reload()
+      sessionStorage.removeItem('refresh')
+    }
+  }, [])
+
+  useEffect(() => {
+    const primaryImages = artworks?.data?.map((a) => a.PrimaryFile)
     if (imageRows === null) {
-      const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
+      const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth)
       if (rows) {
-        setImageRows(rows);
+        setImageRows(rows)
       }
     }
 
-    setArtworkPrices(artworks.data?.map((a) => a.Price));
-    setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
-  }, [artworks.data, imageRows]);
+    setArtworkPrices(artworks.data?.map((a) => a.Price))
+    setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0)
+  }, [artworks.data, imageRows])
 
   useEffect(() => {
-    const primaryImages = artworks?.data?.map((a) => a.PrimaryFile);
+    const primaryImages = artworks?.data?.map((a) => a.PrimaryFile)
     if (imageRows !== null) {
-      const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
+      const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth)
       if (rows) {
-        setImageRows(rows);
+        setImageRows(rows)
       }
     }
-  }, [rowWidth]);
+  }, [rowWidth])
 
   function onLikeClick(artworkId, isLike) {
-    redirectIfNotLoggedIn();
-    like(artworkId, isLike, socialId.value, token);
-  }
-
-  function toggleFollow() {
-    redirectIfNotLoggedIn();
-    follow(
-      userProfileSummary.data?.SocialId,
-      !isFollowed,
-      socialId.value,
-      token
-    );
-    setFollow(!isFollowed);
+    redirectIfNotLoggedIn()
+    like(artworkId, isLike, socialId.value, token)
   }
 
   function handleTabChange(_, newValue) {
-    setActiveTab(newValue);
+    setActiveTab(newValue)
   }
 
   const handleSnackbarClose = (
     event?: React.SyntheticEvent,
     reason?: string
   ) => {
-    if (reason === "clickaway") {
-      return;
+    if (reason === 'clickaway') {
+      return
     }
-    setUploadSnackbarOpen(false);
-  };
+    setUploadSnackbarOpen(false)
+  }
 
   const handleCoverSnackbarClose = (
     event?: React.SyntheticEvent,
     reason?: string
   ) => {
-    if (reason === "clickaway") {
-      return;
+    if (reason === 'clickaway') {
+      return
     }
-    setUploadCoverSnackbarOpen(false);
-  };
+    setUploadCoverSnackbarOpen(false)
+  }
   const handleDeleteArtworkSnackbarClose = (
     event?: React.SyntheticEvent,
     reason?: string
   ) => {
-    if (reason === "clickaway") {
-      return;
+    if (reason === 'clickaway') {
+      return
     }
-    setDeleteArtworkSnackbarOpen(false);
-  };
+    setDeleteArtworkSnackbarOpen(false)
+  }
 
   function updateImage(blob, width: number, height: number, type: string) {
     refreshToken()
       .then(() =>
         fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "image/jpeg",
-            Authorization: `Bearer ${token}`,
+            'Content-Type': 'image/jpeg',
+            Authorization: `Bearer ${token}`
           },
-          body: blob,
+          body: blob
         })
       )
       .then((response) => {
         if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
+          console.log(response.statusText)
+          throw response
         }
-        return response.text();
+        return response.text()
       })
       .then((name) => {
         const url =
-          type === "profile"
+          type === 'profile'
             ? `${apiBaseUrl}/api/profile/${username.value}/profilepicture?filename=${name}`
-            : `${apiBaseUrl}/api/profile/${username.value}/coverphoto?filename=${name}`;
+            : `${apiBaseUrl}/api/profile/${username.value}/coverphoto?filename=${name}`
 
         fetch(url, {
-          method: "PUT",
+          method: 'PUT',
           headers: {
-            "Content-Type": "image/jpeg",
-            Authorization: `Bearer ${token}`,
-          },
+            'Content-Type': 'image/jpeg',
+            Authorization: `Bearer ${token}`
+          }
         })
           .then((response) => {
             if (!response.ok) {
-              console.log(response.statusText);
-              throw response;
+              console.log(response.statusText)
+              throw response
             }
             switch (type) {
-              case "profile":
-                onUpdateProfilePicture(name);
-                setUploadSnackbarOpen(true);
-                break;
+              case 'profile':
+                onUpdateProfilePicture(name)
+                setUploadSnackbarOpen(true)
+                break
               default:
-                userProfile.mutate();
-                setUploadCoverSnackbarOpen(true);
-                break;
+                userProfile.mutate()
+                setUploadCoverSnackbarOpen(true)
+                break
             }
           })
           .catch((error) => {
-            console.log(error);
-          });
+            console.log(error)
+          })
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   }
 
   const openEditArtworkDialog = (artwork) => {
-    setArtworkToEdit(artwork);
-    setEditArtworkOpen(true);
-  };
+    setArtworkToEdit(artwork)
+    setEditArtworkOpen(true)
+  }
 
   const onEditArtworkClose = async (promise) => {
     if (promise) {
       try {
-        setEditArtworkOpen(false);
-        setLoading(true);
-        await promise;
-        setLoading(false);
+        setEditArtworkOpen(false)
+        setLoading(true)
+        await promise
+        setLoading(false)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
 
-      artworks.mutate();
+      artworks.mutate()
     } else {
-      setEditArtworkOpen(false);
+      setEditArtworkOpen(false)
     }
-  };
+  }
 
   function togglePurchaseRequestDialog() {
-    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
+    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
   }
 
   function onPurchaseRequestClick(
@@ -337,8 +319,8 @@ export default function Profile(props) {
     referTo: string,
     imageurl: string
   ) {
-    const url = publicUrl + "/art/" + artworkId;
-    referTo = userProfileSummary.data.SocialId;
+    const url = publicUrl + '/art/' + artworkId
+    referTo = userProfileSummary.data.SocialId
     // if (isSignedIn.value) {
     //   const originalRedirect = {
     //     pathname: "/messages",
@@ -359,45 +341,45 @@ export default function Profile(props) {
       creator: creator,
       url: url,
       referTo: referTo,
-      imageurl: imageurl,
-    });
-    togglePurchaseRequestDialog();
+      imageurl: imageurl
+    })
+    togglePurchaseRequestDialog()
   }
   // }
-  const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
+  const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false)
 
   function toggleMonthlyDialog() {
-    setOpenMonthlyDialogOpen(!openMonthlyDialogOpen);
+    setOpenMonthlyDialogOpen(!openMonthlyDialogOpen)
   }
 
   const handleClickMonthlyDialog = () => {
-    setOpenMonthlyDialogOpen(true);
-  };
+    setOpenMonthlyDialogOpen(true)
+  }
 
-  const [openPortfolioPremium, setOpenPortfolioPremium] = useState(false);
+  const [openPortfolioPremium, setOpenPortfolioPremium] = useState(false)
 
   function togglePortfolioPremiumDialog() {
-    setOpenPortfolioPremium(!openPortfolioPremium);
+    setOpenPortfolioPremium(!openPortfolioPremium)
   }
 
   const handleClickPortfolioPremiumDialog = () => {
-    setOpenPortfolioPremium(true);
-  };
+    setOpenPortfolioPremium(true)
+  }
 
-  const [numberExists, setNumberExists] = useState(true);
+  const [numberExists, setNumberExists] = useState(true)
 
   const addNumber = () => {
     if (!phone.value || phone.value == undefined) {
-      setNumberExists(false);
-      console.log(phone.value);
+      setNumberExists(false)
+      console.log(phone.value)
     }
-  };
-  const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
-  const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
+  }
+  const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`
+  const rocketLink = 'https://buy.stripe.com/28oeVn5ye6VLcdacNE'
 
   const redirectToRocketUpgrade = () => {
-    window.open(rocketLink);
-  };
+    window.open(rocketLink)
+  }
 
   return (
     <Main navBarItems={navBarItems}>
@@ -406,8 +388,8 @@ export default function Profile(props) {
           {staticUserProfile &&
           staticUserProfile.Name &&
           staticUserProfile.Surname
-            ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
-            : "Artportable"}
+            ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname
+            : 'Artportable'}
         </title>
         <meta
           name="title"
@@ -415,14 +397,14 @@ export default function Profile(props) {
             staticUserProfile &&
             staticUserProfile.Name &&
             staticUserProfile.Surname
-              ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
-              : "Artportable"
+              ? staticUserProfile?.Name + ' ' + staticUserProfile?.Surname
+              : 'Artportable'
           }
         />
-        <meta name="description" content={staticUserProfile?.Headline ?? ""} />
+        <meta name="description" content={staticUserProfile?.Headline ?? ''} />
 
-        <meta property="og:title" content={t("common:title")} />
-        <meta property="og:description" content={t("common:description")} />
+        <meta property="og:title" content={t('common:title')} />
+        <meta property="og:description" content={t('common:description')} />
         <meta property="og:type" content="profile" />
         <meta
           property="og:url"
@@ -432,14 +414,14 @@ export default function Profile(props) {
           property="og:image"
           content={
             `${bucketUrl}${staticUserProfile?.CoverPhoto}` ??
-            "/images/artportable_tv_commercial.png"
+            '/images/artportable_tv_commercial.png'
           }
         />
 
-        <meta property="twitter:title" content={t("common:title")} />
+        <meta property="twitter:title" content={t('common:title')} />
         <meta
           property="twitter:description"
-          content={t("common:description")}
+          content={t('common:description')}
         />
         <meta property="twitter:type" content="profile" />
         <meta
@@ -450,7 +432,7 @@ export default function Profile(props) {
           property="twitter:image"
           content={
             `${bucketUrl}${staticUserProfile?.CoverPhoto}` ??
-            "/images/artportable_tv_commercial.png"
+            '/images/artportable_tv_commercial.png'
           }
         />
 
@@ -469,22 +451,21 @@ export default function Profile(props) {
             )}
             {userProfile?.isError && <div>error...</div>}
           </FullWidthBlock>
-          <div className={s.profileGrid}>
-            <div className={s.profileSummary}>
-              <ProfileComponent
-                userProfile={userProfileSummary}
-                userProfilePicture={
-                  isMyProfile
-                    ? profilePicture
-                    : userProfileSummary.data?.ProfilePicture
-                }
-                onUpdateProfilePicture={updateImage}
-                isMyProfile={isMyProfile}
-                linkToProfile={false}
-              ></ProfileComponent>
-            </div>
-            <div className={s.editActions}>
-              {isMyProfile ? (
+          <div>
+            <ProfileComponent
+              userProfileSummary={userProfileSummary}
+              userProfile={userProfile}
+              userProfilePicture={
+                isMyProfile
+                  ? profilePicture
+                  : userProfileSummary.data?.ProfilePicture
+              }
+              onUpdateProfilePicture={updateImage}
+              isMyProfile={isMyProfile}
+              linkToProfile={false}
+            ></ProfileComponent>
+            <div>
+              {isMyProfile && (
                 <>
                   <EditProfileDialog userProfile={userProfile.data} />
                   {membership.value > Membership.Base && (
@@ -506,7 +487,7 @@ export default function Profile(props) {
                             startIcon={<UploadIcon className={s.uploadIcon} />}
                             rounded
                           >
-                            {t("upload:upload")}
+                            {t('upload:upload')}
                           </Button>
                         </a>
                       </Link>
@@ -517,150 +498,93 @@ export default function Profile(props) {
                     <UpgradePortfolio />
                   )}
                 </>
-              ) : (
-                <>
-                  {
-                    <Button
-                      onClick={() => {
-                        redirectIfNotLoggedIn({
-                          pathname: "/messages",
-                          query: {
-                            referTo: userProfileSummary.data?.SocialId,
-                          },
-                        });
-                        trackGoogleAnalytics(
-                          ActionType.SEND_MESSAGE,
-                          CategoryType.INTERACTIVE
-                        );
-                      }}
-                      className={s.followButton}
-                      size={smScreenOrSmaller ? "small" : "medium"}
-                      variant={"contained"}
-                      color="primary"
-                      startIcon={
-                        <ChatIcon className={s.chatIcon} color={"inherit"} />
-                      }
-                      disableElevation
-                      rounded
-                      disabled={!isSignedIn}
-                    >
-                      <div className={s.messageButtonText}>
-                        {" "}
-                        {capitalizeFirst(t("common:message"))}
-                      </div>
-                    </Button>
-                  }
-                  <Button
-                    className={s.followButton}
-                    size={smScreenOrSmaller ? "small" : "medium"}
-                    variant={!isFollowed ? "contained" : "outlined"}
-                    color="primary"
-                    startIcon={!isFollowed ? <AddIcon /> : null}
-                    disableElevation
-                    rounded
-                    disabled={!isSignedIn}
-                    onClick={() => {
-                      toggleFollow();
-                      !isFollowed
-                        ? trackGoogleAnalytics(
-                            ActionType.FOLLOW_PROFILE,
-                            CategoryType.INTERACTIVE
-                          )
-                        : null;
-                    }}
-                  >
-                    {capitalizeFirst(
-                      !isFollowed
-                        ? t("common:words.follow")
-                        : t("common:words.following")
-                    )}
-                  </Button>
-                </>
               )}
-            </div>
-            {userProfile.data?.MonthlyArtist && (
-              <div className={s.catalogued}>
-                <img
+
+              {userProfile.data?.MonthlyArtist && (
+                <div style={{ display: 'none' }}>
+                  {/* <img
                   src="/Artportable_Emblem_Gold.svg"
                   alt="Logo Artportable"
-                  className={s.emblem}
-                />
-              </div>
-            )}
-            {isMyProfile && (
-              <div className={s.friends}>
-                <RWebShare
-                  data={{
-                    text: t("common:description"),
-                    url: userProfileUrl,
-                    title: t("common:followersInvite"),
-                  }}
-                  onClick={() =>
-                    trackGoogleAnalytics(ActionType.INVITE_PROFILE)
-                  }
-                >
-                  <Button
-                    className={s.buttonFeed}
-                    size="small"
-                    rounded
-                    variant="outlined"
+                  className={s.cataloguedImg}
+                /> */}
+                </div>
+              )}
+              {isMyProfile && (
+                <div className={s.friends}>
+                  <RWebShare
+                    data={{
+                      text: t('common:description'),
+                      url: userProfileUrl,
+                      title: t('common:followersInvite')
+                    }}
+                    onClick={() =>
+                      trackGoogleAnalytics(ActionType.INVITE_PROFILE)
+                    }
                   >
-                    {t("followersInvite")}
-                  </Button>
-                </RWebShare>
-              </div>
-            )}
-            {isMyProfile &&
-              membership.value > Membership.Portfolio &&
-              !userProfile.data?.MonthlyArtist && (
-                <div className={s.hovs}>
+                    <Button
+                      className={s.buttonFeed}
+                      size="small"
+                      rounded
+                      variant="outlined"
+                    >
+                      {t('Bjud in vänner!')}
+                    </Button>
+                  </RWebShare>
+                </div>
+              )}
+              {isMyProfile &&
+                membership.value > Membership.Portfolio &&
+                !userProfile.data?.MonthlyArtist && (
+                  <div className={s.hovs}>
+                    <Button
+                      rounded
+                      className={s.monthlyArtistButton}
+                      onClick={redirectToRocketUpgrade}
+                    >
+                      <Typography className={s.headerButton}>
+                        {t('rocket')}
+                      </Typography>
+                    </Button>
+                  </div>
+                )}
+              {isMyProfile && membership.value > Membership.Base && (
+                <div className={s.hovs} style={{}}>
+                  {/* raket knapp */}
                   <Button
                     rounded
                     className={s.monthlyArtistButton}
                     onClick={redirectToRocketUpgrade}
                   >
-                    <Typography className={s.headerButton}>
-                      {t("rocket")}
+                    <Typography className={s.headerButtonRocket}>
+                      {t('profile:rocket')}
                     </Typography>
+                    <img
+                      src="/rocket-white.png"
+                      alt="Rocket Icon"
+                      className={s.rocketIcon}
+                    />
                   </Button>
                 </div>
               )}
-            {isMyProfile && membership.value > Membership.Base && (
-              <div className={s.hovs}>
-                <Button
-                  rounded
-                  className={s.monthlyArtistButton}
-                  onClick={redirectToRocketUpgrade}
-                >
-                  <Typography className={s.headerButtonRocket}>
-                    {t("profile:rocket")}
-                  </Typography>
-                  <img
-                    src="/rocket-white.png"
-                    alt="Rocket Icon"
-                    className={s.rocketIcon}
-                  />
-                </Button>
-              </div>
-            )}
-            {isMyProfile && membership.value === Membership.Base && (
-              <div className={s.upgradeGoldDiv}>
-                <UpgradePortfolioProfile />
-              </div>
-            )}
+              {isMyProfile && membership.value === Membership.Base && (
+                <div className={s.upgradeGoldDiv}>
+                  <UpgradePortfolioProfile />
+                </div>
+              )}
 
-            <DialogMonthlyUser
-              open={openMonthlyDialogOpen}
-              onClose={toggleMonthlyDialog}
-            />
-            <DialogPortfolioPremium
-              open={openPortfolioPremium}
-              onClose={togglePortfolioPremiumDialog}
-              numberExists={numberExists}
-            />
+              <DialogMonthlyUser
+                open={openMonthlyDialogOpen}
+                onClose={toggleMonthlyDialog}
+              />
+              <DialogPortfolioPremium
+                open={openPortfolioPremium}
+                onClose={togglePortfolioPremiumDialog}
+                numberExists={numberExists}
+              />
+            </div>
 
             <Divider className={s.divider}></Divider>
-            <ArtistPriceSpan prices={artworkPrices} />
+            {/* <ArtistPriceSpan prices={artworkPrices} /> */}
 
             {hasArtwork ? (
               <div className={s.tabsContainer}>
@@ -671,18 +595,21 @@ export default function Profile(props) {
                   centered
                 >
                   <Tab
-                    label={t("profile:portfolio")}
-                    {...a11yProps(t("profile:portfolio"))}
+                    label={t('profile:portfolio')}
+                    style={{ textTransform: 'none', fontWeight: 'normal' }}
+                    {...a11yProps(t('profile:portfolio'))}
                   />
                   <Tab
-                    label={t("profile:aboutMe")}
-                    {...a11yProps(t("profile:aboutMe"))}
+                    label={t('profile:aboutMe')}
+                    style={{ textTransform: 'none', fontWeight: 'normal' }}
+                    {...a11yProps(t('profile:aboutMe'))}
                   />
                   {
                     articles && articles.length > 0 && (
                       <Tab
-                        label={t("profile:articles")}
-                        {...a11yProps(t("profile:articles"))}
+                        label={t('profile:articles')}
+                        style={{ textTransform: 'none', fontWeight: 'normal' }}
+                        {...a11yProps(t('profile:articles'))}
                       />
                     )
 
@@ -698,17 +625,17 @@ export default function Profile(props) {
                             {row.map((image) => {
                               let artwork = artworks.data?.find(
                                 (a) => a.PrimaryFile.Name === image.Name
-                              );
+                              )
 
                               if (artwork) {
                                 return (
-                                  <ArtworkListItemDefined
+                                  <ProfileArtworkListItemDefined
                                     key={image.Name}
                                     width={
-                                      smScreenOrSmaller ? "100%" : image.Width
+                                      smScreenOrSmaller ? '100%' : image.Width
                                     }
                                     height={
-                                      smScreenOrSmaller ? "auto" : image.Height
+                                      smScreenOrSmaller ? 'auto' : image.Height
                                     }
                                     artwork={artwork}
                                     topActions={
@@ -736,7 +663,7 @@ export default function Profile(props) {
                                     onLikeClick={onLikeClick}
                                     indexPage={false}
                                   />
-                                );
+                                )
                               }
                             })}
                           </div>
@@ -745,12 +672,12 @@ export default function Profile(props) {
                         open={purchaseRequestDialogOpen}
                         onClose={togglePurchaseRequestDialog}
                         props={{
-                          pathname: "/messages",
+                          pathname: '/messages',
                           title: purchaseRequestDialogData.title,
                           creator: purchaseRequestDialogData.creator,
                           url: purchaseRequestDialogData.url,
                           referTo: purchaseRequestDialogData.referTo,
-                          imageUrl: purchaseRequestDialogData.imageurl,
+                          imageUrl: purchaseRequestDialogData.imageurl
                         }}
                       />
                       <EditArtworkDialog
@@ -794,8 +721,8 @@ export default function Profile(props) {
                             return (
                               <Link
                                 href={`/${article.publishCategory.slug.replace(
-                                  "konstnärsporträtt",
-                                  "konstnaersportraett"
+                                  'konstnärsporträtt',
+                                  'konstnaersportraett'
                                 )}/${article.slug}`}
                                 key={key}
                               >
@@ -813,26 +740,26 @@ export default function Profile(props) {
                                       {article.published_at.slice(0, -14)}
                                     </div>
 
-                                    <Typography component="h2" variant={"h2"}>
+                                    <Typography component="h2" variant={'h2'}>
                                       <Box
                                         fontFamily="LyonDisplay"
                                         fontWeight="fontWeightMedium"
                                         className={s.headline}
                                       >
-                                        {article.title}{" "}
+                                        {article.title}{' '}
                                         {router.locale !== article.locale
-                                          ? "(In Swedish)"
-                                          : ""}
+                                          ? '(In Swedish)'
+                                          : ''}
                                       </Box>
                                     </Typography>
-                                    <Typography variant={"subtitle1"}>
+                                    <Typography variant={'subtitle1'}>
                                       {article.description}
                                     </Typography>
                                   </div>
                                   <div className={s.line}></div>
                                 </Paper>
                               </Link>
-                            );
+                            )
                           })}
                         </div>
                       )
@@ -845,8 +772,8 @@ export default function Profile(props) {
               <div className={s.tabsContainer}>
                 <Tabs value={activeTab} centered>
                   <Tab
-                    label={t("profile:aboutMe")}
-                    {...a11yProps(t("profile:aboutMe"))}
+                    label={t('profile:aboutMe')}
+                    {...a11yProps(t('profile:aboutMe'))}
                   />
                 </Tabs>
                 <Box paddingY={1}>
@@ -885,7 +812,7 @@ export default function Profile(props) {
               variant="filled"
               severity="success"
             >
-              {t("profile:profilePictureUpdated")}
+              {t('profile:profilePictureUpdated')}
             </Alert>
           </Snackbar>
           <Snackbar
@@ -898,7 +825,7 @@ export default function Profile(props) {
               variant="filled"
               severity="success"
             >
-              {t("profile:coverPhotoUpdated")}
+              {t('profile:coverPhotoUpdated')}
             </Alert>
           </Snackbar>
           <Snackbar
@@ -911,34 +838,34 @@ export default function Profile(props) {
               variant="filled"
               severity="success"
             >
-              {t("profile:deleteArtworkSuccess")}
+              {t('profile:deleteArtworkSuccess')}
             </Alert>
           </Snackbar>
         </>
       )}
     </Main>
-  );
+  )
 }
 
 export async function getServerSideProps({ locale, params }) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const split = params.username.split("@");
-  const username = split.length > 1 ? split[1] : null;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  const split = params.username.split('@')
+  const username = split.length > 1 ? split[1] : null
   const url = new URL(
     `${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`
-  );
+  )
 
-  var articles = [];
+  var articles = []
   let articleResponse = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?artist=${username}&_locale=${locale}`
-  );
+  )
   if (articleResponse.status === 200) {
-    articles = await articleResponse.json();
+    articles = await articleResponse.json()
   }
   try {
-    const profileResponse = await fetch(url.href);
-    const profile = await profileResponse.json();
-    const navBarItems = await getNavBarItems();
+    const profileResponse = await fetch(url.href)
+    const profile = await profileResponse.json()
+    const navBarItems = await getNavBarItems()
     return {
       props: {
         articles: articles,
@@ -946,20 +873,20 @@ export async function getServerSideProps({ locale, params }) {
         profile: profile,
         locale: locale,
         ...(await serverSideTranslations(locale, [
-          "common",
-          "header",
-          "footer",
-          "profile",
-          "tags",
-          "art",
-          "upload",
-          "support",
-          "plans",
-        ])),
-      },
-    };
+          'common',
+          'header',
+          'footer',
+          'profile',
+          'tags',
+          'art',
+          'upload',
+          'support',
+          'plans'
+        ]))
+      }
+    }
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 
   return {
@@ -967,16 +894,16 @@ export async function getServerSideProps({ locale, params }) {
       articles: articles,
       locale: locale,
       ...(await serverSideTranslations(locale, [
-        "common",
-        "header",
-        "footer",
-        "profile",
-        "tags",
-        "art",
-        "upload",
-        "support",
-        "plans",
-      ])),
-    },
-  };
+        'common',
+        'header',
+        'footer',
+        'profile',
+        'tags',
+        'art',
+        'upload',
+        'support',
+        'plans'
+      ]))
+    }
+  }
 }

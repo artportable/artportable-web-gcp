@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { i18n, useTranslation } from 'next-i18next'
-import { styles } from './artworkListItemDefined.css'
 import { useEffect } from 'react'
 import { UserContext } from '../../contexts/user-context'
 import {
@@ -27,6 +26,8 @@ import { RWebShare } from 'react-web-share'
 import ShareIcon from '@material-ui/icons/Share'
 import MuiButton from '@material-ui/core/Button'
 import TagChip from '../TagChip/TagChip'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { profileStyles } from './profileStyle.css'
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -38,7 +39,7 @@ export default function ArtworkListItemDefined({
   topActions = undefined,
   indexPage
 }) {
-  const s = styles()
+  const s = profileStyles()
   const { t } = useTranslation(['art', 'common'])
 
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe)
@@ -181,11 +182,47 @@ export default function ArtworkListItemDefined({
     <div className={s.container}>
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
-          <a>
+          <a className={s.imgWrapper}>
+            <div className={s.titleOnImg}>
+              <div className={s.styleOnTitle}>{artwork.Title}</div>
+              <div className={s.princeOnImg}>
+                {' '}
+                {artwork.SoldOut ? (
+                  <>
+                    {t('common:words.sold')}{' '}
+                  </>
+                ) : artwork.Price && artwork.Price != '0' ? (
+                  formattedPrice.replace(/,/g, '')
+                ) : (
+                  t('priceOnRequest')
+                )}
+              </div>
+              <ArrowForwardIcon
+                style={{ marginTop: '8px', fontSize: '2rem' }}
+              />
+              <div className={s.tagsContainer}>
+                {Array.from(artwork.Tags)
+                  .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
+                  .map((tag: string) => {
+                    return (
+                      <TagChip
+                        style={{ cursor: 'pointer' }}
+                        key={tag}
+                        title={tag}
+                        onChipClick={null}
+                        limitReached={true}
+                        variant="outlined"
+                        isSmall={true}
+                      ></TagChip>
+                    )
+                  })}
+              </div>
+            </div>
             <img
               style={{
                 width: width,
                 height: height
+
               }}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
@@ -205,7 +242,6 @@ export default function ArtworkListItemDefined({
         )}
       </div>
       <div className={s.infoContainer}>
-        <div className={s.nameTitleLike}>
           <div className={s.titleAndLike}>
             <div className={s.info}>
               <Link href={`/profile/@${artwork.Username}`}>
@@ -258,6 +294,7 @@ export default function ArtworkListItemDefined({
                   <IconButton
                     className={s.likeButton}
                     disableRipple
+                    disableFocusRipple
                     onClick={toggleLike}
                   >
                     {likedFilled}
@@ -269,49 +306,12 @@ export default function ArtworkListItemDefined({
               </div>
             </div>
           </div>
-          <div className={s.titleTagsContainer}>
-            <div className={s.title}>
-              {artwork.Title ? artwork.Title : t('untitled')}
-              <span className={s.sizesArt}>
-                {artwork.MultipleSizes
-                  ? ' (' + t('common:words.multipleSizes').toLowerCase() + ')'
-                  : artwork.Width && artwork.Height && artwork.Depth
-                  ? ' (' +
-                    artwork.Width +
-                    'x' +
-                    artwork.Height +
-                    'x' +
-                    artwork.Depth +
-                    'cm)'
-                  : artwork.Width && artwork.Height
-                  ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
-                  : null}
-              </span>
-            </div>
-            <div className={s.tagsContainer}>
-              {Array.from(artwork.Tags)
-                .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
-                .map((tag: string) => {
-                  return (
-                    <TagChip
-                      key={tag}
-                      title={tag}
-                      onChipClick={null}
-                      limitReached={true}
-                      variant="outlined"
-                      isSmall={true}
-                    ></TagChip>
-                  )
-                })}
-            </div>
-          </div>
-        </div>
 
         <div className={s.inLine}>
           <div className={s.price}>
             {artwork.SoldOut ? (
               <>
-                <div className={s.soldMark} />
+
                 {t('common:words.sold')}{' '}
               </>
             ) : artwork.Price && artwork.Price != '0' ? (
