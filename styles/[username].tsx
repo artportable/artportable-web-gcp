@@ -27,6 +27,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     imageDiv: {
       width: "100%",
     },
+
     coverImage: {
       width: "100%",
       borderRadius: "5px 5px 0 0",
@@ -78,13 +79,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       gap: theme.spacing(1),
       justifySelf: "flex-end",
     },
-    followButton: {
-      marginTop: "-1px",
-      maxHeight: "27px",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
-    },
+
     friends: {
       gridArea: "friends",
       display: "flex",
@@ -108,10 +103,18 @@ export const profileStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
     },
     monthlyArtistButton: {
-      marginTop: "4px",
-      width: "300px",
+      //marginTop: '4px',
+      marginBottom: "1vh",
+      width: "150px",
+      height: "40px",
       backgroundColor: "#E0AC08",
       color: "#fff",
+      //marginTop:'20px',
+      [theme.breakpoints.up("md")]: {
+        marginTop: "-40px",
+        // width: '200px',
+        // height: '50px',
+      },
     },
     headerButton: {
       fontFamily: "Gotham",
@@ -192,6 +195,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       fontWeight: 500,
       paddingLeft: "20px",
     },
+    editProfile: {
+      margin: 10,
+    },
 
     rocketIcon: {
       padding: "10px",
@@ -241,6 +247,13 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up("mdPlus")]: {
       emblem: {},
+    },
+
+    cataloguedImg: {
+      width: "15vw",
+      height: "10vh",
+      position: "absolute",
+      top: "15%",
     },
   })
 );
