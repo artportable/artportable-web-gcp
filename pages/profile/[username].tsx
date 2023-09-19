@@ -6,7 +6,7 @@ import { Tabs, Tab, Snackbar, Typography, Paper } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import ProfileComponent from "../../app/components/Profile/Profile";
-import ArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefined";
+import ProfileArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ProfileArtworkListItemDefined";
 import Image from "../../app/models/Image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import EditProfileDialog from "../../app/components/EditProfileDialog/EditProfileDialog";
@@ -59,7 +59,6 @@ import UpgradePortfolio from "../../app/components/UpgradePortfolio/UpgradPortfo
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 import useRefreshToken from "../../app/hooks/useRefreshToken";
-import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade";
 import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade";
@@ -112,11 +111,9 @@ export default function Profile(props) {
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
   const token = useContext(TokenContext);
-  const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
   const { setLoading } = useContext(LoadingContext);
 
   const { like } = usePostLike();
-  const { follow } = usePostFollow();
   const { refreshToken } = useRefreshToken();
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
@@ -150,10 +147,6 @@ export default function Profile(props) {
       profilePicture: profilePicture,
     });
   };
-
-  useEffect(() => {
-    setFollow(userProfile?.data?.FollowedByMe);
-  }, [userProfile?.data?.FollowedByMe]);
 
   useEffect(() => {
     const handleRouteChangeStart = (url) => {
@@ -201,17 +194,6 @@ export default function Profile(props) {
   function onLikeClick(artworkId, isLike) {
     redirectIfNotLoggedIn();
     like(artworkId, isLike, socialId.value, token);
-  }
-
-  function toggleFollow() {
-    redirectIfNotLoggedIn();
-    follow(
-      userProfileSummary.data?.SocialId,
-      !isFollowed,
-      socialId.value,
-      token
-    );
-    setFollow(!isFollowed);
   }
 
   function handleTabChange(_, newValue) {
@@ -469,22 +451,21 @@ export default function Profile(props) {
             )}
             {userProfile?.isError && <div>error...</div>}
           </FullWidthBlock>
-          <div className={s.profileGrid}>
-            <div className={s.profileSummary}>
-              <ProfileComponent
-                userProfile={userProfileSummary}
-                userProfilePicture={
-                  isMyProfile
-                    ? profilePicture
-                    : userProfileSummary.data?.ProfilePicture
-                }
-                onUpdateProfilePicture={updateImage}
-                isMyProfile={isMyProfile}
-                linkToProfile={false}
-              ></ProfileComponent>
-            </div>
-            <div className={s.editActions}>
-              {isMyProfile ? (
+          <div>
+            <ProfileComponent
+              userProfileSummary={userProfileSummary}
+              userProfile={userProfile}
+              userProfilePicture={
+                isMyProfile
+                  ? profilePicture
+                  : userProfileSummary.data?.ProfilePicture
+              }
+              onUpdateProfilePicture={updateImage}
+              isMyProfile={isMyProfile}
+              linkToProfile={false}
+            ></ProfileComponent>
+            <div>
+              {isMyProfile && (
                 <>
                   <EditProfileDialog userProfile={userProfile.data} />
                   {membership.value > Membership.Base && (
@@ -517,150 +498,93 @@ export default function Profile(props) {
                     <UpgradePortfolio />
                   )}
                 </>
-              ) : (
-                <>
-                  {
-                    <Button
-                      onClick={() => {
-                        redirectIfNotLoggedIn({
-                          pathname: "/messages",
-                          query: {
-                            referTo: userProfileSummary.data?.SocialId,
-                          },
-                        });
-                        trackGoogleAnalytics(
-                          ActionType.SEND_MESSAGE,
-                          CategoryType.INTERACTIVE
-                        );
-                      }}
-                      className={s.followButton}
-                      size={smScreenOrSmaller ? "small" : "medium"}
-                      variant={"contained"}
-                      color="primary"
-                      startIcon={
-                        <ChatIcon className={s.chatIcon} color={"inherit"} />
-                      }
-                      disableElevation
-                      rounded
-                      disabled={!isSignedIn}
-                    >
-                      <div className={s.messageButtonText}>
-                        {" "}
-                        {capitalizeFirst(t("common:message"))}
-                      </div>
-                    </Button>
-                  }
-                  <Button
-                    className={s.followButton}
-                    size={smScreenOrSmaller ? "small" : "medium"}
-                    variant={!isFollowed ? "contained" : "outlined"}
-                    color="primary"
-                    startIcon={!isFollowed ? <AddIcon /> : null}
-                    disableElevation
-                    rounded
-                    disabled={!isSignedIn}
-                    onClick={() => {
-                      toggleFollow();
-                      !isFollowed
-                        ? trackGoogleAnalytics(
-                            ActionType.FOLLOW_PROFILE,
-                            CategoryType.INTERACTIVE
-                          )
-                        : null;
-                    }}
-                  >
-                    {capitalizeFirst(
-                      !isFollowed
-                        ? t("common:words.follow")
-                        : t("common:words.following")
-                    )}
-                  </Button>
-                </>
               )}
-            </div>
-            {userProfile.data?.MonthlyArtist && (
-              <div className={s.catalogued}>
-                <img
+
+              {userProfile.data?.MonthlyArtist && (
+                <div style={{ display: "none" }}>
+                  {/* <img
                   src="/Artportable_Emblem_Gold.svg"
                   alt="Logo Artportable"
-                  className={s.emblem}
-                />
-              </div>
-            )}
-            {isMyProfile && (
-              <div className={s.friends}>
-                <RWebShare
-                  data={{
-                    text: t("common:description"),
-                    url: userProfileUrl,
-                    title: t("common:followersInvite"),
-                  }}
-                  onClick={() =>
-                    trackGoogleAnalytics(ActionType.INVITE_PROFILE)
-                  }
-                >
-                  <Button
-                    className={s.buttonFeed}
-                    size="small"
-                    rounded
-                    variant="outlined"
+                  className={s.cataloguedImg}
+                /> */}
+                </div>
+              )}
+              {isMyProfile && (
+                <div className={s.friends}>
+                  <RWebShare
+                    data={{
+                      text: t("common:description"),
+                      url: userProfileUrl,
+                      title: t("common:followersInvite"),
+                    }}
+                    onClick={() =>
+                      trackGoogleAnalytics(ActionType.INVITE_PROFILE)
+                    }
                   >
-                    {t("followersInvite")}
-                  </Button>
-                </RWebShare>
-              </div>
-            )}
-            {isMyProfile &&
-              membership.value > Membership.Portfolio &&
-              !userProfile.data?.MonthlyArtist && (
-                <div className={s.hovs}>
+                    <Button
+                      className={s.buttonFeed}
+                      size="small"
+                      rounded
+                      variant="outlined"
+                    >
+                      {t("Bjud in vänner!")}
+                    </Button>
+                  </RWebShare>
+                </div>
+              )}
+              {isMyProfile &&
+                membership.value > Membership.Portfolio &&
+                !userProfile.data?.MonthlyArtist && (
+                  <div className={s.hovs}>
+                    <Button
+                      rounded
+                      className={s.monthlyArtistButton}
+                      onClick={redirectToRocketUpgrade}
+                    >
+                      <Typography className={s.headerButton}>
+                        {t("rocket")}
+                      </Typography>
+                    </Button>
+                  </div>
+                )}
+              {isMyProfile && membership.value > Membership.Base && (
+                <div className={s.hovs} style={{}}>
+                  {/* raket knapp */}
                   <Button
                     rounded
                     className={s.monthlyArtistButton}
                     onClick={redirectToRocketUpgrade}
                   >
-                    <Typography className={s.headerButton}>
-                      {t("rocket")}
+                    <Typography className={s.headerButtonRocket}>
+                      {t("profile:rocket")}
                     </Typography>
+                    <img
+                      src="/rocket-white.png"
+                      alt="Rocket Icon"
+                      className={s.rocketIcon}
+                    />
                   </Button>
                 </div>
               )}
-            {isMyProfile && membership.value > Membership.Base && (
-              <div className={s.hovs}>
-                <Button
-                  rounded
-                  className={s.monthlyArtistButton}
-                  onClick={redirectToRocketUpgrade}
-                >
-                  <Typography className={s.headerButtonRocket}>
-                    {t("profile:rocket")}
-                  </Typography>
-                  <img
-                    src="/rocket-white.png"
-                    alt="Rocket Icon"
-                    className={s.rocketIcon}
-                  />
-                </Button>
-              </div>
-            )}
-            {isMyProfile && membership.value === Membership.Base && (
-              <div className={s.upgradeGoldDiv}>
-                <UpgradePortfolioProfile />
-              </div>
-            )}
+              {isMyProfile && membership.value === Membership.Base && (
+                <div className={s.upgradeGoldDiv}>
+                  <UpgradePortfolioProfile />
+                </div>
+              )}
 
-            <DialogMonthlyUser
-              open={openMonthlyDialogOpen}
-              onClose={toggleMonthlyDialog}
-            />
-            <DialogPortfolioPremium
-              open={openPortfolioPremium}
-              onClose={togglePortfolioPremiumDialog}
-              numberExists={numberExists}
-            />
+              <DialogMonthlyUser
+                open={openMonthlyDialogOpen}
+                onClose={toggleMonthlyDialog}
+              />
+              <DialogPortfolioPremium
+                open={openPortfolioPremium}
+                onClose={togglePortfolioPremiumDialog}
+                numberExists={numberExists}
+              />
+            </div>
 
             <Divider className={s.divider}></Divider>
-            <ArtistPriceSpan prices={artworkPrices} />
+            {/* <ArtistPriceSpan prices={artworkPrices} /> */}
 
             {hasArtwork ? (
               <div className={s.tabsContainer}>
@@ -672,16 +596,19 @@ export default function Profile(props) {
                 >
                   <Tab
                     label={t("profile:portfolio")}
+                    style={{ textTransform: "none", fontWeight: "normal" }}
                     {...a11yProps(t("profile:portfolio"))}
                   />
                   <Tab
                     label={t("profile:aboutMe")}
+                    style={{ textTransform: "none", fontWeight: "normal" }}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
                   {
                     articles && articles.length > 0 && (
                       <Tab
                         label={t("profile:articles")}
+                        style={{ textTransform: "none", fontWeight: "normal" }}
                         {...a11yProps(t("profile:articles"))}
                       />
                     )
@@ -702,7 +629,7 @@ export default function Profile(props) {
 
                               if (artwork) {
                                 return (
-                                  <ArtworkListItemDefined
+                                  <ProfileArtworkListItemDefined
                                     key={image.Name}
                                     width={
                                       smScreenOrSmaller ? "100%" : image.Width
