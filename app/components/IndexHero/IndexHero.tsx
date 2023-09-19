@@ -79,10 +79,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Örjan Sätre",
-      username: "orjan.satre",
-      image: "/images/orjanframe.jpeg",
-      imageLink: "art/c41303e9-6e30-4f28-b9cb-0b8025b2b8ff",
+      name: "Owe Emfestav",
+      username: "owe",
+      image: "/images/oweEm.jpeg",
+      imageLink: "art/c1827abc-1eb3-467d-8818-d7f6ec53abb8",
     },
 
     {
