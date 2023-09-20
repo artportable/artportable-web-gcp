@@ -52,7 +52,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         style={{ display: "none" }}
         multiple={false}
       />
-      <Badge
+      {/* <Badge
         overlap="circle"
         anchorOrigin={{
           vertical: 'bottom',
@@ -99,7 +99,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
             )}
           </Avatar>
         }
-      </Badge>
+      </Badge> */}
 
       <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="h5" className={s.fullName}>
@@ -119,7 +119,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         </Typography>
       </Box>
 
-      <Box marginTop={1}>
+      {/* <Box marginTop={1}>
         <Typography variant="h6" className={s.title}>
           {data?.Title}
         </Typography>
@@ -129,16 +129,16 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         <Typography>
           {data?.Headline}
         </Typography>
-      </Box>
+      </Box> */}
 
-      {data?.Location &&
+      {/* {data?.Location &&
         <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
           <RoomIcon color="secondary"></RoomIcon>
           <Typography>
             {data?.Location}
           </Typography>
         </Box>
-      }
+      } */}
       {divider &&
         <Divider></Divider>
       }

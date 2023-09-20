@@ -458,19 +458,9 @@ export default function Profile(props) {
       </Head>
       {isReady && (
         <>
-          <FullWidthBlock>
-            {userProfile?.isLoading && <div>Loading...</div>}
-            {!userProfile?.isLoading && !userProfile?.isError && (
-              <ProfileCoverPhoto
-                coverPhoto={userProfile?.data?.CoverPhoto}
-                onUpdateCoverPhoto={updateImage}
-                isMyProfile={isMyProfile}
-              />
-            )}
-            {userProfile?.isError && <div>error...</div>}
-          </FullWidthBlock>
-          <div className={s.profileGrid}>
-            <div className={s.profileSummary}>
+        
+          <div>
+            <div>
               <ProfileComponent
                 userProfile={userProfileSummary}
                 userProfilePicture={
@@ -660,7 +650,7 @@ export default function Profile(props) {
             />
 
             <Divider className={s.divider}></Divider>
-            <ArtistPriceSpan prices={artworkPrices} />
+            
 
             {hasArtwork ? (
               <div className={s.tabsContainer}>

@@ -24,13 +24,17 @@ export const styles = makeStyles((theme: Theme) =>
     counterBox: {
       display: 'flex',
       justifyContent: 'space-around',
+      width: "20%",
+      margin: "0 auto",
       paddingTop: theme.spacing(1),
       '& > *': {
         width: '33.3%'
       }
     },
     fullName: {
-      fontWeight: 600
+      fontWeight: 600,
+      fontSize: "30px",
+      letterSpacing: "8px"
     },
     title: {
       lineHeight: 1.5,
