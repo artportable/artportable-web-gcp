@@ -79,8 +79,20 @@ export const profileStyles = makeStyles((theme: Theme) =>
       justifySelf: "flex-end",
     },
     followButton: {
-      marginTop: "-1px",
+
       maxHeight: "27px",
+      width: "20%",
+      margin: "0 auto",
+      marginBottom: "20px",
+      "& .MuiButton-startIcon": {
+        margin: "0 0",
+      },
+    },
+    chatButton: {
+      maxHeight: "27px",
+      width: "20%",
+      margin: "0 auto",
+      marginTop: "10px",
       "& .MuiButton-startIcon": {
         margin: "0 0",
       },

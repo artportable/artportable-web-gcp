@@ -523,7 +523,7 @@ export default function Profile(props) {
                           CategoryType.INTERACTIVE
                         );
                       }}
-                      className={s.followButton}
+                      className={s.chatButton}
                       size={smScreenOrSmaller ? "small" : "medium"}
                       variant={"contained"}
                       color="primary"
@@ -649,8 +649,7 @@ export default function Profile(props) {
               numberExists={numberExists}
             />
 
-            <Divider className={s.divider}></Divider>
-            
+      
 
             {hasArtwork ? (
               <div className={s.tabsContainer}>
