@@ -110,9 +110,9 @@ export default function Exhibition({ navBarItems }) {
         site: "www.artbakery.se/",
       },
       {
-        period: "9 SEPTEMBER - 9 DECEMBER",
+        period: "11 SEPTEMBER - 11 DECEMBER",
         artists: [
-          { name: "Susann Karlsson", username: "susann" },
+          { name: "Göran Billingskog", username: "gorito" },
           { name: "Håkan Lindskog", username: "hakan" },
         ],
         site: "www.artbakery.se/",
@@ -430,8 +430,17 @@ export default function Exhibition({ navBarItems }) {
               {t("artportableExhibition")}
             </Typography>
             <Typography variant="h4" className={s.description}>
-              {t("exhibitionText")}
+            {t("exhibitionText")} 
+            <a style={{color: "#c67777"}} href="https://www.stockholmfisk.se/">Stockholm Fisk, </a> 
+            <a style={{color: "#c67777"}} href="https://psmatsal.com/new-startpage/">PS Matsal, </a>
+            <a style={{color: "#c67777"}} href="https://artbakery.se/">Art Bakery, </a>
+            <a style={{color: "#c67777"}} href="https://www.nk.se/avdelningar/stockholm/art-cafe?ssw=1">NK CAFE, </a>
+            <a style={{color: "#c67777"}} href="https://angbatsbryggan.com/">ÅNGBÅTSBRYGGAN, </a>
+            <a style={{color: "#c67777"}} href="https://www.lapiazzadjursholm.se/">LA PIAZZA, </a>
             </Typography>
+
+            
+          
             <Typography variant="h4" className={s.welcomeText}>
               {t("exhibitQuestion")} {""}
               <a href="mailto: hello@artportable.com">{t("email")}</a>
