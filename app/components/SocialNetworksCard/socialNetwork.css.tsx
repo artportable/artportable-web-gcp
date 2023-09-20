@@ -9,7 +9,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     cardContent: {
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'row',
+      justifyContent: 'center',
       gap: theme.spacing(1)
     },
     icon: {

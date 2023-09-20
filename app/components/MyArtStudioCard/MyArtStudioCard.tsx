@@ -6,9 +6,9 @@ export default function MyArtStudioCard({ data }) {
   const { t } = useTranslation('profile');
 
   return (
-    <Card elevation={2}>
-      <CardHeader 
-        title={t('myArtStudio')} 
+    <Card elevation={0}>
+      <CardHeader
+        title={t('myArtStudio')}
         titleTypographyProps={{ variant: "subtitle1"}}>
       </CardHeader>
       <CardContent>
