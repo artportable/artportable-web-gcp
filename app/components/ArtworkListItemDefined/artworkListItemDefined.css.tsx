@@ -44,18 +44,16 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       overflow: "hidden",
       textAlign: "center",
-      "& > div:not( $newUserWrapper)": {
+      "& > div:not($newUserWrapper)": {
         visibility: "hidden",
         opacity: 0,
         transition: "opacity 0.3s linear",
       },
-
-      "& >  $newUserWrapper  $newUser": {
+      "& > $newUserWrapper $newUser": {
         visibility: "visible",
         opacity: 1,
       },
-
-      "&:hover > div:not( $newUserWrapper)": {
+      "&:hover > div:not($newUserWrapper)": {
         visibility: "visible",
         opacity: 1,
       },
@@ -63,8 +61,52 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: "hidden",
         opacity: 0,
       },
+      "&:hover $infoHover": {
+        visibility: "hidden",
+        opacity: 0,
+      },
+      [theme.breakpoints.up("md")]: {
+        "&:hover $infoHover": {
+          visibility: "visible",
+          opacity: 1,
+        },
+      },
     },
-
+    infoHover: {
+      visibility: "hidden",
+      opacity: 0,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#ffffffc2",
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+ 
+    },
+    infoWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    titleHover: {
+      color: "black",
+      fontSize: "20px",
+      fontStyle: "italic"
+    },
+    priceHover: {
+      color: "black",
+      fontSize: "16px",
+    },
+    tagsWrapper: {
+     
+    },
+    
+    
     editOverlay: {
       position: "absolute",
       top: 0,
@@ -96,10 +138,10 @@ export const styles = makeStyles((theme: Theme) =>
       bottom: 0,
       left: 0,
       width: "100%",
-      background: "#fdf9f7", // semi-transparent background
+      background: "#fdf9f7",
       borderRadius: "1px",
-      padding: "5px", // adjust as necessary
-      color: "black", // text color, adjust as necessary
+      padding: "5px", 
+      color: "black", 
       filter: "drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.4))",
     },
     iconInfoContainer: {
