@@ -81,20 +81,40 @@ export const profileStyles = makeStyles((theme: Theme) =>
     followButton: {
 
       maxHeight: "27px",
-      width: "20%",
+      width: "40%",
       margin: "0 auto",
       marginBottom: "20px",
+      backgroundColor: "transparent",
+      border: "1px solid black",
+      color: "black",
       "& .MuiButton-startIcon": {
         margin: "0 0",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "15%",
+      },
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
       },
     },
     chatButton: {
       maxHeight: "27px",
-      width: "20%",
+      width: "40%",
       margin: "0 auto",
       marginTop: "10px",
+      backgroundColor: "transparent",
+      border: "1px solid black",
+      color: "black",
       "& .MuiButton-startIcon": {
         margin: "0 0",
+      },
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "15%",
       },
     },
     friends: {
@@ -105,6 +125,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         display: "none",
       },
+      
     },
     hovs: {
       "& :hover": {
