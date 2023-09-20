@@ -436,7 +436,7 @@ export default function Exhibition({ navBarItems }) {
             <a style={{color: "#c67777"}} href="https://artbakery.se/">Art Bakery, </a>
             <a style={{color: "#c67777"}} href="https://www.nk.se/avdelningar/stockholm/art-cafe?ssw=1">NK CAFE, </a>
             <a style={{color: "#c67777"}} href="https://angbatsbryggan.com/">ÅNGBÅTSBRYGGAN, </a>
-            <a style={{color: "#c67777"}} href="https://www.lapiazzadjursholm.se/">LA PIAZZA, </a>
+            <a style={{color: "#c67777"}} href="https://www.lapiazzadjursholm.se/">LA PIAZZA</a>
             </Typography>
 
             
