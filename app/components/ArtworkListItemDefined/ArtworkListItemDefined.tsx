@@ -27,6 +27,7 @@ import { RWebShare } from "react-web-share";
 import ShareIcon from "@material-ui/icons/Share";
 import MuiButton from "@material-ui/core/Button";
 import TagChip from "../TagChip/TagChip";
+import EastOutlinedIcon from '@mui/icons-material/EastOutlined';
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -181,30 +182,72 @@ export default function ArtworkListItemDefined({
     <div className={s.container}>
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
-          <a>
-            <img
-              style={{
-                width: width,
-                height: height,
-              }}
-              key={artwork?.PrimaryFile}
-              src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-            />
-          </a>
+        <a>
+          <img
+            style={{
+              width: width,
+              height: height,
+            }}
+            key={artwork?.PrimaryFile}
+            src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+          />
+          {!indexPage && (
+            <div className={s.infoHover}>
+            <div className={s.infoWrapper}>
+              <div className={s.titleHover}>
+                {artwork.Title ? artwork.Title : t("untitled")}
+              </div>
+              <div className={s.priceHover}>
+                {artwork.SoldOut ? (
+                  <>
+                    <div className={s.soldMark} />
+                    {t("common:words.sold")}{" "}
+                  </>
+                ) : artwork.Price && artwork.Price !== "0" ? (
+                  formattedPrice.replace(/,/g, "")
+                ) : (
+                  t("priceOnRequest")
+                )}
+              </div>
+              <EastOutlinedIcon style={{ marginBottom: "12px" }} />
+            </div>
+            <div className={s.tagsWrapper}>
+              {Array.from(artwork.Tags)
+                .slice(
+                  0,
+                  artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4
+                )
+                .map((tag: string) => (
+                  <TagChip
+                    key={tag}
+                    title={tag}
+                    onChipClick={null}
+                    limitReached
+                    variant="outlined"
+                    isSmall
+                  />
+                ))}
+            </div>
+          </div>
+          
+          )}
+        </a>
+
         </Link>
+     
         {indexPage && (
           <div className={s.newUserWrapper}>
             {isNew && <div className={s.newUser}>{t("common:newMember")}</div>}
           </div>
         )}
-
         {topActions && (
           <div className={s.editOverlay}>
             <div className={s.topActions}>{topActions}</div>
           </div>
         )}
       </div>
-      <div className={s.infoContainer}>
+      {indexPage && (
+        <div className={s.infoContainer}>
         <div className={s.nameTitleLike}>
           <div className={s.titleAndLike}>
             <div className={s.info}>
@@ -354,6 +397,7 @@ export default function ArtworkListItemDefined({
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

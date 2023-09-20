@@ -12,10 +12,10 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "1px",
       fontSize: "10px",
       borderRadius: "20px",
-      color: "#3e3e3e",
+      color: "black",
       height: "20px",
       width: "auto",
-      filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2))",
+      
     },
   })
 );
