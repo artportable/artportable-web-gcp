@@ -6,12 +6,13 @@ export default function InspiredByCard({ text }) {
   const { t } = useTranslation('profile');
 
   return (
-    <Card elevation={2}>
-      <CardHeader 
-        title={t('inspiredBy')} 
-        titleTypographyProps={{ variant: "subtitle1"}}>
+    <Card elevation={0} style={{marginTop: '2vh'}}>
+      <CardHeader
+        title={t('inspiredBy')}
+        titleTypographyProps={{ variant: "subtitle1"}}
+        style={{padding: 0, fontStyle:'italic', }} >
       </CardHeader>
-      <CardContent>{text}</CardContent>
+      <CardContent style={{padding: 0}}>{text}</CardContent>
     </Card>
   );
 }

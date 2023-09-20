@@ -1,4 +1,4 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import { columnGap, rowGap } from '../../utils/styleUtils'
 
 export const styles = makeStyles((theme: Theme) =>
@@ -6,7 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(32),
+      ...columnGap(32)
     },
     rightCol: {
       display: 'flex',
@@ -15,17 +15,15 @@ export const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('smPlus')]: {
       container: {
-        ...columnGap(0),
-      },
+        ...columnGap(0)
+      }
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lgPlus')]: {
       container: {
         display: 'grid',
         alignItems: 'start',
         ...rowGap(16),
-        gridTemplate: 
-        '\"mainCard   rightCol\" auto' +
-        '/  7fr         3fr',
+        gridTemplate: '"mainCard   rightCol" auto' + '/  7fr         3fr'
       },
       rightCol: {
         gridArea: 'rightCol',
@@ -33,6 +31,6 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'column',
         ...columnGap(16)
       }
-    },
-  }),
-);
+    }
+  })
+)

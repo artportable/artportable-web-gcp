@@ -16,7 +16,7 @@ export const styles = makeStyles(() =>
     },
     icon: {
       overflow: "visible",
-      marginRight: "5px"
+      marginRight: "5px",
     },
     years: {
       marginBottom: "2px",
