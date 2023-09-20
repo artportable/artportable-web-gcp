@@ -327,7 +327,6 @@ export default function DiscoverPage({ navBarItems }) {
                 align="center"
                 onMoveStart={() => setIsAnimating(true)}
                 onMoveEnd={() => setIsAnimating(false)}
-                initialIndex={0}
                 moveType="snap"
                 className={s.flickingWrapper}
               >
