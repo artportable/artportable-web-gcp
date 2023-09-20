@@ -62,13 +62,19 @@ export const styles = makeStyles((theme: Theme) =>
         opacity: 0,
       },
       "&:hover $infoHover": {
-        visibility: "visible",
-        opacity: 1,
+        visibility: "hidden",
+        opacity: 0,
+      },
+      [theme.breakpoints.up("md")]: {
+        "&:hover $infoHover": {
+          visibility: "visible",
+          opacity: 1,
+        },
       },
     },
     infoHover: {
       visibility: "hidden",
-        opacity: 0,
+      opacity: 0,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -79,6 +85,7 @@ export const styles = makeStyles((theme: Theme) =>
       bottom: 0,
       left: 0,
       right: 0,
+ 
     },
     infoWrapper: {
       display: "flex",
@@ -89,6 +96,7 @@ export const styles = makeStyles((theme: Theme) =>
     titleHover: {
       color: "black",
       fontSize: "20px",
+      fontStyle: "italic"
     },
     priceHover: {
       color: "black",
