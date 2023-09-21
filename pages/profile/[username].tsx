@@ -544,7 +544,7 @@ export default function Profile(props) {
                     </Button>
                   }
                   <Button
-                    className={s.followButton}
+                    className={`${s.followButton} ${isFollowed ? s.following : ""}`}
                     rounded
                     disabled={!isSignedIn}
                     onClick={() => {

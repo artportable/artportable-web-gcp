@@ -9,7 +9,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import { Typography, Box, Button } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import UserListDialog from '../UserListDialog/UserListDialog'
 import { useGetFollowers } from '../../hooks/dataFetching/useGetFollowers'
 import { useGetFollowing } from '../../hooks/dataFetching/useGetFollowing'

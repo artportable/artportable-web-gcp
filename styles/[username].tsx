@@ -132,6 +132,24 @@ export const profileStyles = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    following: {
+      maxHeight: "27px",
+      width: "40%",
+      margin: "0 auto",
+      marginBottom: "10px",
+      backgroundColor: "#fadf87",
+      border: "1px solid #fadf87",
+      color: "white",
+      [theme.breakpoints.up("md")]: {
+        width: "40%",
+
+
+      },
+      "&:hover": {
+        backgroundColor: "transparent",
+        color: "black",
+      },
+    },
     chatButton: {
       maxHeight: "27px",
       width: "40%",
