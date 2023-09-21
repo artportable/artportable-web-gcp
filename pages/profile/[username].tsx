@@ -461,6 +461,16 @@ export default function Profile(props) {
         
           <div>
             <div>
+            <Box fontWeight="fontWeightBold" marginTop={1}>
+              <Typography variant="h5" className={s.fullName}>
+                  <Link href={`/profile/@${userProfile?.data?.Username}`}>
+                    <a>
+                    {userProfile?.data.Name} {' '}
+                    {userProfile?.data.Surname && userProfile.data?.Surname}
+                    </a>
+                  </Link>
+              </Typography>
+            </Box>
               <ProfileComponent
                 userProfile={userProfileSummary}
                 userProfilePicture={
@@ -509,6 +519,7 @@ export default function Profile(props) {
                 </>
               ) : (
                 <>
+                  <div className={s.chatFollowWrapper}>
                   {
                     <Button
                       onClick={() => {
@@ -523,30 +534,17 @@ export default function Profile(props) {
                           CategoryType.INTERACTIVE
                         );
                       }}
-                      className={s.chatButton}
-                      size={smScreenOrSmaller ? "small" : "medium"}
-                      variant={"contained"}
-                      color="primary"
-                      startIcon={
-                        <ChatIcon className={s.chatIcon} color={"inherit"} />
-                      }
-                      disableElevation
+                      className={s.followButton}
                       rounded
                       disabled={!isSignedIn}
                     >
-                      <div className={s.messageButtonText}>
-                        {" "}
-                        {capitalizeFirst(t("common:message"))}
-                      </div>
+          
+                       Chat
+                     
                     </Button>
                   }
                   <Button
-                    className={s.followButton}
-                    size={smScreenOrSmaller ? "small" : "medium"}
-                    variant={!isFollowed ? "contained" : "outlined"}
-                    color="primary"
-                    startIcon={!isFollowed ? <AddIcon /> : null}
-                    disableElevation
+                    className={`${s.followButton} ${isFollowed ? s.following : ""}`}
                     rounded
                     disabled={!isSignedIn}
                     onClick={() => {
@@ -565,10 +563,11 @@ export default function Profile(props) {
                         : t("common:words.following")
                     )}
                   </Button>
+                  </div>
                 </>
               )}
             </div>
-            {userProfile.data?.MonthlyArtist && (
+            {/* {userProfile.data?.MonthlyArtist && (
               <div className={s.catalogued}>
                 <img
                   src="/Artportable_Emblem_Gold.svg"
@@ -576,7 +575,7 @@ export default function Profile(props) {
                   className={s.emblem}
                 />
               </div>
-            )}
+            )} */}
             {isMyProfile && (
               <div className={s.friends}>
                 <RWebShare
