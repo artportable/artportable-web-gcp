@@ -34,7 +34,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "50%",
       },
       [theme.breakpoints.up("md")]: {
-        width: "10%",
+        width: "20%",
         justifyContent: 'flex-start',
         
       },

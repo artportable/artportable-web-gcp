@@ -88,12 +88,13 @@ export const profileStyles = makeStyles((theme: Theme) =>
 
     chatFollowWrapper: {
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "row",
+      marginTop: "10px",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
         justifyContent: "flex-end",  
         margin: "0",  
-        width: "20%"
+        width: "25%"
       },
     },
     
@@ -101,7 +102,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center", 
       fontWeight: 600,
-      fontSize: "22px",
+      fontSize: "25px",
       letterSpacing: "6px",
       margin: "auto",
       [theme.breakpoints.up("smPlus")]: {
@@ -111,7 +112,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         justifyContent: "flex-start",
         marginBottom: "-45px",
-        fontSize: "20px",
+        fontSize: "25px",
        
   
       },
@@ -121,13 +122,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
       width: "40%",
       margin: "0 auto",
       marginBottom: "10px",
-      backgroundColor: "transparent",
+      backgroundColor: "#fadf87",
       border: "1px solid #fadf87",
       color: "black",
       [theme.breakpoints.up("md")]: {
-        width: "40%",
-
-
+        width: "45%",
       },
       "&:hover": {
         backgroundColor: "#fadf87",
@@ -139,13 +138,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
       width: "40%",
       margin: "0 auto",
       marginBottom: "10px",
-      backgroundColor: "#fadf87",
-      border: "1px solid #fadf87",
+      backgroundColor: "#49cc90",
+      border: "1px solid #49cc90",
       color: "white",
       [theme.breakpoints.up("md")]: {
-        width: "40%",
-
-
+        width: "45%",
       },
       "&:hover": {
         backgroundColor: "transparent",
@@ -168,12 +165,27 @@ export const profileStyles = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    editUploadButtons: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "flex-end",
+    
+      marginBottom: "10px",
+      [theme.breakpoints.up("md")]: {
+        marginBottom: "0px",
+        flexDirection:"column",
+        marginTop: "-20px",
+      },
+
+    },
     
     friends: {
       gridArea: "friends",
       display: "flex",
       justifyContent: "center",
-      marginTop: "10px",
+      marginTop: "30px",
+      marginBottom: "10px",
       [theme.breakpoints.up("smPlus")]: {
         display: "none",
       },
@@ -194,7 +206,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     monthlyArtistButton: {
       marginTop: "4px",
-      width: "300px",
+      width: "200px",
+      height: "50px",
       backgroundColor: "#E0AC08",
       color: "#fff",
     },
@@ -255,8 +268,17 @@ export const profileStyles = makeStyles((theme: Theme) =>
       overflow: "hidden",
     },
     uploadButton: {
-      width: "13px",
-      display: "none",
+      marginTop: "20px",
+      backgroundColor: "#FFD700",
+      display: "flex",
+      margin: "0 auto",
+      
+      [theme.breakpoints.up("smPlus")]: {
+ 
+      },
+      "&:hover": {
+        backgroundColor: "#D6A407",
+      },
     },
     secondDivider: {
       gridArea: "divider2",

@@ -486,37 +486,36 @@ export default function Profile(props) {
             </div>
             <div className={s.editActions}>
               {isMyProfile ? (
-                <>
-                  <EditProfileDialog userProfile={userProfile.data} />
-                  {membership.value > Membership.Base && (
-                    <div className={s.upload}>
-                      <Link href="/upload">
-                        <a>
-                          <Button
-                            className={s.uploadButton}
-                            onClick={() =>
-                              trackGoogleAnalytics(
-                                ActionType.UPLOAD_IMAGE_PROFILE,
-                                CategoryType.INTERACTIVE
-                              )
-                            }
-                            size="small"
-                            variant="contained"
-                            color="primary"
-                            
-                            startIcon={<UploadIcon className={s.uploadIcon} />}
-                            rounded
-                          >
-                            {t("upload:upload")}
-                          </Button>
-                        </a>
-                      </Link>
-                    </div>
-                  )}
+                 <>
+                <div className={s.editUploadButtons}>
+                 {membership.value > Membership.Base && (
+                   <div className={s.upload}>
+                     <Link href="/upload">
+                       <a>
+                         <Button
+                           className={s.uploadButton}
+                           onClick={() =>
+                             trackGoogleAnalytics(
+                               ActionType.UPLOAD_IMAGE_PROFILE,
+                               CategoryType.INTERACTIVE
+                             )
+                           }
+                           startIcon={<UploadIcon className={s.uploadIcon} />}
+                           rounded
+                         >
+                           {t("upload:upload")}
+                         </Button>
+                       </a>
+                     </Link>
+                   </div>
+                 )}
 
-                  {membership.value < Membership.Portfolio && (
-                    <UpgradePortfolio />
-                  )}
+                 {membership.value < Membership.Portfolio && (
+                   <UpgradePortfolio />
+                 )}
+                  <EditProfileDialog userProfile={userProfile.data} />
+              
+                </div>
                 </>
               ) : (
                 <>
