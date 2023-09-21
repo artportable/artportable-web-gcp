@@ -502,7 +502,7 @@ export default function Profile(props) {
                             size="small"
                             variant="contained"
                             color="primary"
-                            disableElevation="true"
+                            
                             startIcon={<UploadIcon className={s.uploadIcon} />}
                             rounded
                           >
@@ -599,21 +599,6 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
-            {isMyProfile &&
-              membership.value > Membership.Portfolio &&
-              !userProfile.data?.MonthlyArtist && (
-                <div className={s.hovs}>
-                  <Button
-                    rounded
-                    className={s.monthlyArtistButton}
-                    onClick={redirectToRocketUpgrade}
-                  >
-                    <Typography className={s.headerButton}>
-                      {t("rocket")}
-                    </Typography>
-                  </Button>
-                </div>
-              )}
             {isMyProfile && membership.value > Membership.Base && (
               <div className={s.hovs}>
                 <Button
