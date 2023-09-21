@@ -100,6 +100,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     fullName: {
       display: "flex",
       justifyContent: "space-around",
+      textTransform: "uppercase",
       fontWeight: 600,
       fontSize: "30px",
       letterSpacing: "10px",
