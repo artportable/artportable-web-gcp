@@ -14,9 +14,16 @@ export const styles = makeStyles((theme: Theme) =>
     editButtonText: {
       display: 'none',
     },
+    editProfileButton: {
+      marginLeft: "20px", 
+     
+      border: "1px solid black"
+    },
     editProfileIcon: {
       position: 'relative',
-      right: '-5px'
+      right: '-5px',
+     
+
     },
     form: {
       display: 'flex',
@@ -35,11 +42,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('sm')]: {
       editProfileButton: {
-        width: '137px',
-        marginBottom: '3px'
       },
       editButtonText: {
-        display: 'flex',
+        display: 'none',
       },
       editProfileIcon: {
         right: '0px',
