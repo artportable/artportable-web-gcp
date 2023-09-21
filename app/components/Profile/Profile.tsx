@@ -101,7 +101,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         }
       </Badge> */}
 
-      <Box fontWeight="fontWeightBold" marginTop={1}>
+      {/* <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="h5" className={s.fullName}>
           {linkToProfile ?
             <Link href={`/profile/@${data?.Username}`}>
@@ -117,7 +117,7 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
             </span>
           }
         </Typography>
-      </Box>
+      </Box> */}
 
       {/* <Box marginTop={1}>
         <Typography variant="h6" className={s.title}>
