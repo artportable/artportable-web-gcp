@@ -462,14 +462,15 @@ export default function Profile(props) {
           <div>
             <div>
             <Box fontWeight="fontWeightBold" marginTop={1}>
-              <Typography variant="h5" className={s.fullName}>
-                  <Link href={`/profile/@${userProfile?.data?.Username}`}>
-                    <a>
-                    {userProfile?.data.Name} {' '}
-                    {userProfile?.data.Surname && userProfile.data?.Surname}
-                    </a>
-                  </Link>
-              </Typography>
+            <Typography variant="h5" className={s.fullName}>
+    <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
+        <a>
+            {userProfile?.data?.Name.toUpperCase()} {' '}
+            {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
+        </a>
+    </Link>
+</Typography>
+
             </Box>
               <ProfileComponent
                 userProfile={userProfileSummary}
@@ -599,6 +600,21 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
+            {/* {isMyProfile &&
+              membership.value > Membership.Portfolio &&
+              !userProfile.data?.MonthlyArtist && (
+                <div className={s.hovs}>
+                  <Button
+                    rounded
+                    className={s.monthlyArtistButton}
+                    onClick={redirectToRocketUpgrade}
+                  >
+                    <Typography className={s.headerButton}>
+                      {t("rocket")}
+                    </Typography>
+                  </Button>
+                </div>
+              )} */}
             {isMyProfile && membership.value > Membership.Base && (
               <div className={s.hovs}>
                 <Button
