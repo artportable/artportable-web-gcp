@@ -23,13 +23,21 @@ export const styles = makeStyles((theme: Theme) =>
     },
     counterBox: {
       display: 'flex',
-      justifyContent: 'space-around',
-      width: "20%",
+      justifyContent: 'space-between',
+      width: "50%",
       margin: "0 auto",
       paddingTop: theme.spacing(1),
       '& > *': {
         width: '33.3%'
-      }
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        width: "50%",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "10%",
+        justifyContent: 'flex-start',
+        
+      },
     },
     fullName: {
       fontWeight: 600,
