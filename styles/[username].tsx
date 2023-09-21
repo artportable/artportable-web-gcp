@@ -77,9 +77,81 @@ export const profileStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       gap: theme.spacing(1),
       justifySelf: "flex-end",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        justifyContent: "flex-end",  
+        margin: "0",  
+        marginTop: "-42px"
+ 
+      },
+    },
+
+    chatFollowWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        justifyContent: "flex-end",  
+        margin: "0",  
+        width: "20%"
+      },
+    },
+    
+    fullName: {
+      display: "flex",
+      justifyContent: "space-around",
+      textTransform: "uppercase",
+      fontWeight: 600,
+      fontSize: "30px",
+      letterSpacing: "10px",
+      margin: "0 auto",
+      [theme.breakpoints.up("smPlus")]: {
+        justifyContent: "space-around",
+      },
+      [theme.breakpoints.up("md")]: {
+        justifyContent: "flex-start",
+        marginBottom: "-45px",
+        fontSize: "25px",
+  
+      },
     },
     followButton: {
+      maxHeight: "27px",
+      width: "40%",
+      margin: "0 auto",
+      marginBottom: "10px",
+      backgroundColor: "transparent",
+      border: "1px solid #fadf87",
+      color: "black",
+      [theme.breakpoints.up("md")]: {
+        width: "40%",
 
+
+      },
+      "&:hover": {
+        backgroundColor: "#fadf87",
+        color: "white",
+      },
+    },
+    following: {
+      maxHeight: "27px",
+      width: "40%",
+      margin: "0 auto",
+      marginBottom: "10px",
+      backgroundColor: "#fadf87",
+      border: "1px solid #fadf87",
+      color: "white",
+      [theme.breakpoints.up("md")]: {
+        width: "40%",
+
+
+      },
+      "&:hover": {
+        backgroundColor: "transparent",
+        color: "black",
+      },
+    },
+    chatButton: {
       maxHeight: "27px",
       width: "40%",
       margin: "0 auto",
@@ -87,36 +159,15 @@ export const profileStyles = makeStyles((theme: Theme) =>
       backgroundColor: "transparent",
       border: "1px solid black",
       color: "black",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
       [theme.breakpoints.up("md")]: {
-        width: "15%",
+        width: "40%",
       },
       "&:hover": {
         backgroundColor: "black",
         color: "white",
       },
     },
-    chatButton: {
-      maxHeight: "27px",
-      width: "40%",
-      margin: "0 auto",
-      marginTop: "10px",
-      backgroundColor: "transparent",
-      border: "1px solid black",
-      color: "black",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
-      },
-      [theme.breakpoints.up("md")]: {
-        width: "15%",
-      },
-    },
+    
     friends: {
       gridArea: "friends",
       display: "flex",
