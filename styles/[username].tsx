@@ -99,19 +99,20 @@ export const profileStyles = makeStyles((theme: Theme) =>
     
     fullName: {
       display: "flex",
-      justifyContent: "space-around",
-      textTransform: "uppercase",
+      justifyContent: "center", 
       fontWeight: 600,
-      fontSize: "30px",
-      letterSpacing: "10px",
-      margin: "0 auto",
+      fontSize: "22px",
+      letterSpacing: "6px",
+      margin: "auto",
       [theme.breakpoints.up("smPlus")]: {
         justifyContent: "space-around",
+
       },
       [theme.breakpoints.up("md")]: {
         justifyContent: "flex-start",
         marginBottom: "-45px",
-        fontSize: "25px",
+        fontSize: "20px",
+       
   
       },
     },
@@ -254,7 +255,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       overflow: "hidden",
     },
     uploadButton: {
-      width: "130px",
+      width: "13px",
       display: "none",
     },
     secondDivider: {
