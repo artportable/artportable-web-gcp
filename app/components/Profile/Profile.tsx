@@ -166,7 +166,6 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
           <Typography variant="body2" display="block">
           {connectionscountData.loading && <CircularProgress size={10} />}
           {connectionscountData?.data?.following}
-          <CircularProgress size={10} />
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.following'))}
