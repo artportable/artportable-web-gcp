@@ -13,6 +13,8 @@ import { useEffect, useRef, useState } from 'react'
 import UserListDialog from '../UserListDialog/UserListDialog'
 import { useGetFollowers } from '../../hooks/dataFetching/useGetFollowers'
 import { useGetFollowing } from '../../hooks/dataFetching/useGetFollowing'
+import { useGetConnectionsCount } from '../../hooks/dataFetching/userGetConnectionsCount'
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Profile({ userProfile, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
@@ -25,6 +27,8 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
   const [followersOpen, setFollowersOpen] = useState(false);
   const followersData = useGetFollowers(data?.Username, followersOpen);
   const followingData = useGetFollowing(data?.Username, followingOpen);
+  const connectionscountData = useGetConnectionsCount(data?.Username);
+
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -145,7 +149,8 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
       <Box className={s.counterBox}>
         <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
           <Typography variant="body2" display="block">
-            {data?.Followees}
+          {connectionscountData.loading && <CircularProgress  size={10}/>}
+          {connectionscountData?.data?.followers}
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.followers'))}
@@ -159,7 +164,9 @@ export default function Profile({ userProfile, userProfilePicture, onUpdateProfi
         />
         <Button onClick={() => setFollowingOpen(true)} className={s.followeesButton}>
           <Typography variant="body2" display="block">
-            {data?.Followers}
+          {connectionscountData.loading && <CircularProgress size={10} />}
+          {connectionscountData?.data?.following}
+          <CircularProgress size={10} />
           </Typography>
           <Typography variant="caption" display="block">
             {capitalizeFirst(t('words.following'))}
