@@ -128,10 +128,7 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
-
-
   
-
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
