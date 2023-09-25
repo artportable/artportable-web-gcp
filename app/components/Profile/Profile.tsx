@@ -24,6 +24,7 @@ import { useRedirectToLoginIfNotLoggedIn } from '../../hooks/useRedirectToLoginI
 import Button from "../../components/Button/Button";
 import { ActionType,
   CategoryType,trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import axios from 'axios'
 
 export default function Profile({ userProfile,isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
@@ -50,6 +51,23 @@ export default function Profile({ userProfile,isFollowed, userProfilePicture, on
 
   const [followers, setFollowers] = useState(connectionscountData?.data?.followers);
   const [following, setFollowing] = useState(connectionscountData?.data?.following);
+
+  const url = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+
+  async function getUserFullname() {
+    const userData = await axios.get(`${url}/api/artists/${profileUser}`);
+    setFirstName(userData?.data?.Name);
+    console.log(firstName);
+    setLastName(userData?.data?.Surname);
+    console.log(lastName);
+  }
+
+  useEffect(() => {
+    getUserFullname();
+  }, [firstName, lastName])
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
@@ -196,12 +214,11 @@ export default function Profile({ userProfile,isFollowed, userProfilePicture, on
       }
         
       <div className={s.fullNameCounter}>
-
       <Typography variant="h5" className={s.fullName}>
         <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
             <a>
-                {userProfile?.data?.Name.toUpperCase()} {' '}
-                {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
+                {firstName.toUpperCase()} {' '}
+                {lastName && lastName.toUpperCase()}
             </a>
         </Link>
       </Typography>
