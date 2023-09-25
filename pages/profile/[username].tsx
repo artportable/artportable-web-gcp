@@ -129,6 +129,9 @@ export default function Profile(props) {
     imageurl: "",
   });
 
+
+  
+
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
@@ -389,7 +392,7 @@ export default function Profile(props) {
   const addNumber = () => {
     if (!phone.value || phone.value == undefined) {
       setNumberExists(false);
-      console.log(phone.value);
+
     }
   };
   const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
@@ -462,14 +465,14 @@ export default function Profile(props) {
           <div>
             <div>
             <Box fontWeight="fontWeightBold" marginTop={1}>
-            <Typography variant="h5" className={s.fullName}>
+            {/* <Typography variant="h5" className={s.fullName}>
     <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
         <a>
             {userProfile?.data?.Name.toUpperCase()} {' '}
             {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
         </a>
     </Link>
-</Typography>
+</Typography> */}
 
             </Box>
               <ProfileComponent
@@ -482,6 +485,7 @@ export default function Profile(props) {
                 onUpdateProfilePicture={updateImage}
                 isMyProfile={isMyProfile}
                 linkToProfile={false}
+                isFollowed={isFollowed}
               ></ProfileComponent>
             </div>
             <div className={s.editActions}>
@@ -519,7 +523,7 @@ export default function Profile(props) {
                 </>
               ) : (
                 <>
-                  <div className={s.chatFollowWrapper}>
+                  {/* <div className={s.chatFollowWrapper}>
                   {
                     <Button
                       onClick={() => {
@@ -563,7 +567,7 @@ export default function Profile(props) {
                         : t("common:words.following")
                     )}
                   </Button>
-                  </div>
+                  </div> */}
                 </>
               )}
             </div>

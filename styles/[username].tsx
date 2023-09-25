@@ -81,8 +81,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         flexDirection: "row",
         justifyContent: "flex-end",  
         margin: "0",  
-        marginTop: "-42px"
- 
       },
     },
 
@@ -107,14 +105,12 @@ export const profileStyles = makeStyles((theme: Theme) =>
       margin: "auto",
       [theme.breakpoints.up("smPlus")]: {
         justifyContent: "space-around",
-
+        fontSize: "20px",
       },
       [theme.breakpoints.up("md")]: {
         justifyContent: "flex-start",
         marginBottom: "-45px",
-        fontSize: "25px",
-       
-  
+        fontSize: "30px",
       },
     },
     followButton: {
@@ -170,12 +166,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "flex-end",
-    
       marginBottom: "10px",
       [theme.breakpoints.up("md")]: {
         marginBottom: "0px",
         flexDirection:"column",
-        marginTop: "-20px",
       },
 
     },
