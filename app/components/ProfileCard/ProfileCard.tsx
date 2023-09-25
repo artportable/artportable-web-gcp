@@ -18,6 +18,7 @@ import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
 import UserListDialog from "../UserListDialog/UserListDialog";
 import { useGetFollowers } from "../../hooks/dataFetching/useGetFollowers";
 import { useGetFollowing } from "../../hooks/dataFetching/useGetFollowing";
+import { useGetConnectionsCount } from '../../hooks/dataFetching/userGetConnectionsCount'
 
 export default function ProfileCard({
   userProfile,
@@ -39,6 +40,8 @@ export default function ProfileCard({
   const [followersOpen, setFollowersOpen] = useState(false);
   const followersData = useGetFollowers(data?.Username, followersOpen);
   const followingData = useGetFollowing(data?.Username, followingOpen);
+  const connectionscountData = useGetConnectionsCount(data?.Username);
+
 
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -179,7 +182,7 @@ export default function ProfileCard({
                   onClick={() => setFollowersOpen(true)}
                 >
                   <Typography variant="body2" display="block">
-                    {data?.Followees}
+                    {connectionscountData?.data?.followers}
                   </Typography>
                   <Typography variant="caption" display="block">
                     {capitalizeFirst(t("words.followers"))}
@@ -196,7 +199,7 @@ export default function ProfileCard({
                   className={s.followersButton}
                 >
                   <Typography variant="body2" display="block">
-                    {data?.Followers}
+                    {connectionscountData?.data?.following}
                   </Typography>
                   <Typography variant="caption" display="block">
                     {capitalizeFirst(t("words.following"))}
