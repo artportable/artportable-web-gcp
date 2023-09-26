@@ -1,4 +1,5 @@
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { theme } from '../../../styles/theme';
 
 export const styles = makeStyles(() =>
   createStyles({
@@ -32,7 +33,11 @@ export const styles = makeStyles(() =>
       alignItems: "center",
       justifyContent: "center",
       marginBottom: "30px",
-      fontSize: "20px"
+      fontSize: "14px",
+      fontWeight: "bold",
+      [theme.breakpoints.up("md")]: {
+      fontSize: "20px",
+      },
     },
     frame: {
       display: "flex", 
