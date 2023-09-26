@@ -56,5 +56,11 @@
   "priceWork": "Help to set price on your art",
   "service": "Service in 24h",
   "upgradeButton": "UPGRADE ACCOUNT",
-  "rocket": "ROCKET"
+  "rocket": "ROCKET",
+  "offers": "Exclusive offer",
+  "offerTitle": "Exclusive offer for you as an Artportable member!",
+  "offerText": "Are you looking for the perfect frame for your artwork? As an appreciation of our collaboration with Minram, we are pleased to offer all our members an exclusive 25% discount on all orders on ",
+  "useOffer": "Use the discount code:",
+  "onCheckout": "at checkout to take advantage of this fantastic offer!"
+
 }

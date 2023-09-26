@@ -65,6 +65,7 @@ import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUs
 import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade";
 import UpgradePortfolioProfile from "../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile";
 import { RWebShare } from "react-web-share";
+import Offers from "../../app/components/ExclusiveOffers/Offers";
 
 function a11yProps(index: any) {
   return {
@@ -621,6 +622,7 @@ export default function Profile(props) {
                   rounded
                   className={s.monthlyArtistButton}
                   onClick={redirectToRocketUpgrade}
+                  style={{marginBottom: "20px"}}
                 >
                   <Typography className={s.headerButtonRocket}>
                     {t("profile:rocket")}
@@ -667,6 +669,13 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
+                  {isMyProfile && 
+                    <Tab
+                    style={{color: "white", backgroundColor: "#02a16c", borderRadius: "10px", marginBottom: "5px", height: "50%", paddingTop: "10px", paddingBottom: "10px" }}
+                    label={t("profile:offers")}
+                    {...a11yProps(t("profile:offers"))}
+                  />
+                  }
                   {
                     articles && articles.length > 0 && (
                       <Tab
@@ -828,6 +837,22 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
+                  <TabPanel value={activeTab} index={3}>
+                    <AboutMe
+                      userProfile={userProfile}
+                      userProfilePicture={
+                        isMyProfile
+                          ? profilePicture
+                          : userProfileSummary.data?.ProfilePicture
+                      }
+                      tags={tags.data}
+                    ></AboutMe>
+                  </TabPanel>
+                  {isMyProfile && membership.value > Membership.Base &&
+                      <TabPanel value={activeTab} index={2}>
+                          <Offers />
+                  </TabPanel>
+                  }
                 </Box>
               </div>
             ) : (

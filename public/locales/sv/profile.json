@@ -56,5 +56,10 @@
   "priceWork": "Hjälp med att prissätta dina verk",
   "service": "Service inom 24h",
   "upgradeButton": "UPPGRADERA KONTO",
-  "rocket": "RAKETEN"
+  "rocket": "RAKETEN",
+  "offers": "Exklusivt erbjudande",
+  "offerTitle": "Exklusivt erbjudande till dig som är Artportable medlem!",
+  "offerText": "Letar du efter den perfekta ramen för ditt konstverk? Som en uppskattning av vårt samarbete med Minram, är vi glada att kunna erbjuda alla våra medlemmar en exklusiv rabatt på 25% på alla beställningar hos",
+  "useOffer": "Använd rabattkoden:",
+  "onCheckout": "vid utcheckningen för att ta del av detta fantastiska erbjudande!"
 }
