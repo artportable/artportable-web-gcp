@@ -65,6 +65,7 @@ import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUs
 import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade";
 import UpgradePortfolioProfile from "../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile";
 import { RWebShare } from "react-web-share";
+import Offers from "../../app/components/ExclusiveOffers/Offers";
 
 function a11yProps(index: any) {
   return {
@@ -677,6 +678,11 @@ export default function Profile(props) {
 
                     // Grid i första div sen flexbox i nästa
                   }
+                  {isMyProfile && 
+                    <Tab
+                    label={"Exklusivt erbjudande"}
+                    {...a11yProps(t("profile:aboutMe"))}
+                  />}
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -828,6 +834,23 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
+                  <TabPanel value={activeTab} index={3}>
+                    <AboutMe
+                      userProfile={userProfile}
+                      userProfilePicture={
+                        isMyProfile
+                          ? profilePicture
+                          : userProfileSummary.data?.ProfilePicture
+                      }
+                      tags={tags.data}
+                    ></AboutMe>
+                  </TabPanel>
+
+                  {isMyProfile && membership.value > Membership.Base &&
+                         <TabPanel value={activeTab} index={2}>
+                            <Offers />
+                       </TabPanel>
+                  }
                 </Box>
               </div>
             ) : (
