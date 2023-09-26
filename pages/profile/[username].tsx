@@ -669,13 +669,6 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  {isMyProfile && 
-                    <Tab
-                    style={{color: "white", backgroundColor: "#02a16c", borderRadius: "10px", marginBottom: "5px", height: "50%", paddingTop: "10px", paddingBottom: "10px" }}
-                    label={t("profile:offers")}
-                    {...a11yProps(t("profile:offers"))}
-                  />
-                  }
                   {
                     articles && articles.length > 0 && (
                       <Tab
@@ -685,6 +678,13 @@ export default function Profile(props) {
                     )
 
                     // Grid i första div sen flexbox i nästa
+                  }
+                  {isMyProfile && 
+                    <Tab
+                    style={{color: "white", backgroundColor: "#02a16c", borderRadius: "10px", marginBottom: "5px", height: "50%", paddingTop: "10px", paddingBottom: "10px" }}
+                    label={t("profile:offers")}
+                    {...a11yProps(t("profile:offers"))}
+                  />
                   }
                 </Tabs>
                 <Box paddingY={1}>
@@ -837,6 +837,11 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
+                  {isMyProfile && membership.value > Membership.Base &&
+                      <TabPanel value={activeTab} index={2}>
+                          <Offers />
+                  </TabPanel>
+                  }
                   <TabPanel value={activeTab} index={3}>
                     <AboutMe
                       userProfile={userProfile}
@@ -848,11 +853,6 @@ export default function Profile(props) {
                       tags={tags.data}
                     ></AboutMe>
                   </TabPanel>
-                  {isMyProfile && membership.value > Membership.Base &&
-                      <TabPanel value={activeTab} index={2}>
-                          <Offers />
-                  </TabPanel>
-                  }
                 </Box>
               </div>
             ) : (
