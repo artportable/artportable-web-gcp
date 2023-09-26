@@ -225,7 +225,7 @@ export default function Profile({ userProfile,isFollowed, userProfilePicture, on
       <Box className={s.counterBox}>
         <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
           <Typography variant="body2" >
-          {!connectionscountData?.data?.followers && <CircularProgress  size={10}/>}
+          {connectionscountData?.loading && <CircularProgress  size={10}/>}
           {followers}
           </Typography>
           <Typography variant="caption" className={s.followFollowersArtworks}>
