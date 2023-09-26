@@ -19,12 +19,23 @@ export default function AboutMe({ userProfile, userProfilePicture, tags }) {
   return (
     // TODO: Handle potential errors
     <Box className={s.container}>
-      <AboutCard data={data} userProfilePicture={userProfilePicture}></AboutCard>
+      <AboutCard
+        data={data}
+        userProfilePicture={userProfilePicture}
+      ></AboutCard>
       <Box className={s.rightCol}>
-        {data?.Studio && (<MyArtStudioCard data={data?.Studio}></MyArtStudioCard>)}
+        {data?.Studio && (
+          <MyArtStudioCard data={data?.Studio}></MyArtStudioCard>
+        )}
         {tags?.length > 0 && <TagsCard tags={tags}></TagsCard>}
-        {data?.Exhibitions?.length > 0 && (<CurrentExhibitionsCard exhibitions={data?.Exhibitions} ></CurrentExhibitionsCard>)}
-        {data?.Educations?.length > 0 && (<EducationCard educations={data?.Educations}></EducationCard>)}
+        {data?.Exhibitions?.length > 0 && (
+          <CurrentExhibitionsCard
+            exhibitions={data?.Exhibitions}
+          ></CurrentExhibitionsCard>
+        )}
+        {data?.Educations?.length > 0 && (
+          <EducationCard educations={data?.Educations}></EducationCard>
+        )}
       </Box>
     </Box>
   )
