@@ -13,8 +13,11 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       gap: theme.spacing(1),
       backgroundColor: '#fdf9f7',
-      marginTop: '-10px'
-
+      marginTop: '-10px',
+      [theme.breakpoints.up('md')]: {
+        justifyContent: 'left',
+        marginLeft: '-0.6vw'
+      },
     },
     icon: {
       marginRight: '5px',

@@ -6,10 +6,11 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'grid',
       gridTemplateColumns: '1fr', // Single column layout by default
       gap: '2vw',
+      marginTop: '2vh',
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: '2fr 4fr',
         gap: '3vw',
-        marginTop: '4vh'
+        marginTop: '2vh'
       },
     },
     imgAndTextWrapper: {
@@ -31,13 +32,14 @@ export const styles = makeStyles((theme: Theme) =>
       margin: '0 auto',
     },
     textContainer: {
-      // textAlign: 'left',
       textAlign: 'center',
       [theme.breakpoints.up('md')]: {
         textAlign: 'left',
       },
     },
+
     bioText: {
+      marginLeft: '2vw',
       [theme.breakpoints.up('md')]: {
         gridColumn: 'span 1', // Occupy one column on screens wider than md (960px)
         textAlign: 'left', // Align bioText to the left

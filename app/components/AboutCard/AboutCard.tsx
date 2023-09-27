@@ -26,24 +26,33 @@ export default function AboutCard({ data, userProfilePicture, tags }) {
           </div>
           <div className={s.textContainer}>
             {data?.Title && <Typography>{`${data?.Title}`}</Typography>}
-            {data?.Headline && <Typography>{`${data?.Headline}`}</Typography>}
+            <div style={{ marginBottom: '4px' }}>
+              {data?.Headline && <Typography>{`${data?.Headline}`}</Typography>}
+            </div>
             {data?.Location && (
               <Typography>
-                <RoomIcon color="primary" fontSize="small"></RoomIcon>
+                <RoomIcon color="primary" fontSize="small" style={{color: '#da8c77'}}></RoomIcon>
                 {`${data?.Location}`}
               </Typography>
             )}
-            {data?.SocialMedia && (
-              <SocialNetworksCard data={data?.SocialMedia}></SocialNetworksCard>
-            )}
+            <div style={{ marginTop: '5px' }}>
+              {data?.SocialMedia && (
+                <SocialNetworksCard
+                  data={data?.SocialMedia}
+                ></SocialNetworksCard>
+              )}
+            </div>
           </div>
         </div>
         <div className={s.bioText}>
-          <b>Om <a>
-              {data?.Name} {' '}
-              {data?.Surname && data?.Surname}
-              </a>:</b>
-              <p></p>
+          <b>
+            {t('profile:aboutArtist')}{' '}
+            <a>
+              {data?.Name} {data?.Surname && data?.Surname}
+            </a>
+            :
+          </b>
+          <p></p>
           {data?.About}
           {data?.InspiredBy && (
             <InspiredByCard text={data?.InspiredBy}></InspiredByCard>
