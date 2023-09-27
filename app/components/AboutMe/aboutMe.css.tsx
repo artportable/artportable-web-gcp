@@ -6,13 +6,17 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(32)
+      ...columnGap(32),
+      marginBottom: '0.5vh'
     },
+
+
     rightCol: {
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(16)
+      ...columnGap(16),
     },
+
     [theme.breakpoints.up('smPlus')]: {
       container: {
         ...columnGap(0)
@@ -20,16 +24,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
     [theme.breakpoints.up('lgPlus')]: {
       container: {
-        display: 'grid',
-        alignItems: 'start',
-        ...rowGap(16),
-        gridTemplate: '"mainCard   rightCol" auto' + '/  7fr         3fr'
+        // display: 'grid',
+        // alignItems: 'start',
+        // ...rowGap(16),
+        // gridTemplate: '"mainCard   rightCol" auto' + '/  7fr         3fr'
       },
       rightCol: {
-        gridArea: 'rightCol',
-        display: 'flex',
-        flexDirection: 'column',
-        ...columnGap(16)
+        // gridArea: 'rightCol',
+        // display: 'flex',
+        // flexDirection: 'column',
+        // ...columnGap(16)
       }
     }
   })
