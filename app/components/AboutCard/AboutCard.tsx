@@ -31,7 +31,11 @@ export default function AboutCard({ data, userProfilePicture, tags }) {
             </div>
             {data?.Location && (
               <Typography>
-                <RoomIcon color="primary" fontSize="small" style={{color: '#da8c77'}}></RoomIcon>
+                <RoomIcon
+                  color="primary"
+                  fontSize="small"
+                  style={{ color: '#da8c77' }}
+                ></RoomIcon>
                 {`${data?.Location}`}
               </Typography>
             )}

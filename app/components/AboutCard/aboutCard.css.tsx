@@ -1,4 +1,4 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -11,39 +11,37 @@ export const styles = makeStyles((theme: Theme) =>
         gridTemplateColumns: '2fr 4fr',
         gap: '3vw',
         marginTop: '2vh'
-      },
+      }
     },
     imgAndTextWrapper: {
       display: 'flex',
       alignItems: 'center',
       gap: '2vw',
       flexDirection: 'column',
-      [theme.breakpoints.up('md')]: {
-
-      },
+      [theme.breakpoints.up('md')]: {}
     },
     imgContainer: {
-      textAlign: 'center',
+      textAlign: 'center'
     },
     profilePicture: {
       width: '100%',
       maxWidth: '300px',
       display: 'block',
-      margin: '0 auto',
+      margin: '0 auto'
     },
     textContainer: {
       textAlign: 'center',
       [theme.breakpoints.up('md')]: {
-        textAlign: 'left',
-      },
+        textAlign: 'left'
+      }
     },
 
     bioText: {
       marginLeft: '2vw',
       [theme.breakpoints.up('md')]: {
         gridColumn: 'span 1', // Occupy one column on screens wider than md (960px)
-        textAlign: 'left', // Align bioText to the left
-      },
-    },
+        textAlign: 'left' // Align bioText to the left
+      }
+    }
   })
-);
+)
