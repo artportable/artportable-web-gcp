@@ -129,7 +129,7 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
-  
+
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
@@ -459,7 +459,7 @@ export default function Profile(props) {
       </Head>
       {isReady && (
         <>
-        
+
           <div>
             <div>
             <Box fontWeight="fontWeightBold" marginTop={1}>
@@ -516,7 +516,7 @@ export default function Profile(props) {
                    <UpgradePortfolio />
                  )}
                   <EditProfileDialog userProfile={userProfile.data} />
-              
+
                 </div>
                 </>
               ) : (
@@ -540,9 +540,9 @@ export default function Profile(props) {
                       rounded
                       disabled={!isSignedIn}
                     >
-          
+
                        Chat
-                     
+
                     </Button>
                   }
                   <Button
@@ -651,7 +651,7 @@ export default function Profile(props) {
               numberExists={numberExists}
             />
 
-      
+
 
             {hasArtwork ? (
               <div className={s.tabsContainer}>
@@ -679,7 +679,7 @@ export default function Profile(props) {
 
                     // Grid i första div sen flexbox i nästa
                   }
-                  {isMyProfile && 
+                  {isMyProfile &&
                     <Tab
                     style={{color: "white", backgroundColor: "#02a16c", borderRadius: "10px", marginBottom: "5px", height: "50%", paddingTop: "10px", paddingBottom: "10px" }}
                     label={t("profile:offers")}
