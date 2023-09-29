@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Avatar, Box, Card, CardContent, Typography } from '@material-ui/core'
 import { styles } from './aboutCard.css'
 import RoomIcon from '@material-ui/icons/Room'
@@ -14,20 +14,31 @@ export default function AboutCard({ data, userProfilePicture, onUpdateProfilePic
   const s = styles()
   const { t } = useTranslation(['profile', 'tags'])
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
+  const [profilepic, setProfilepic] = useState("No change");
 
  
   const fileInput = useRef(null);
+
+
+  useEffect(() => {
+    console.log(profilepic);
+  
+  }, [profilepic])
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {
       return;
     }
 
+   
+
     var fr = new FileReader;
     fr.onload = function () {
+      
       var img = new Image;
       img.onload = function () {
-        onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
+        setProfilepic("new profile pic");
+        onUpdateProfilePicture(event.target.files[0], img.width, img.height)
       };
 
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
@@ -157,7 +168,7 @@ export default function AboutCard({ data, userProfilePicture, onUpdateProfilePic
                   {t("profile:NoProfilePicSet")}
                   
                   </div>
-                  { isMyProfile &&
+                  { isMyProfile && 
                     <div style={{display: "flex", justifyContent: "center", margin: "10px"}} >
                     <button style={{ color: "black", border: "1px solid black", borderRadius: "20px", display: "flex", alignItems: "center", textAlign: "center", backgroundColor: "transparent"}}>
                     <div>
@@ -173,13 +184,13 @@ export default function AboutCard({ data, userProfilePicture, onUpdateProfilePic
                       style={{ display: "none" }}
                       multiple={false}
                     />
-                    {
-                      isMyProfile && 
+                    
+              
                       <AddCircleIcon
                         
                         color="primary"
                         onClick={() => fileInput.current.click()} />
-                    }
+                    
                     </button>
                   </div>
                 }
