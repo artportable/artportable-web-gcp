@@ -10,7 +10,7 @@ import AboutCard from '../AboutCard/AboutCard'
 import { styles } from './aboutMe.css'
 import { useTranslation } from 'next-i18next'
 
-export default function AboutMe({ userProfile, userProfilePicture, tags }) {
+export default function AboutMe({ userProfile, userProfilePicture, tags, isMyProfile, onUpdateProfilePicture }) {
   const s = styles()
   const { t } = useTranslation(['profile', 'tags'])
 
@@ -22,6 +22,9 @@ export default function AboutMe({ userProfile, userProfilePicture, tags }) {
       <AboutCard
         data={data}
         userProfilePicture={userProfilePicture}
+        isMyProfile={isMyProfile}
+        tags={undefined}
+        onUpdateProfilePicture={onUpdateProfilePicture}
       ></AboutCard>
       <Box className={s.rightCol}>
         {data?.Studio && (

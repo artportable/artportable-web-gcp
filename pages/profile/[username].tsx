@@ -129,7 +129,7 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
-
+  
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
@@ -459,7 +459,7 @@ export default function Profile(props) {
       </Head>
       {isReady && (
         <>
-
+        
           <div>
             <div>
             <Box fontWeight="fontWeightBold" marginTop={1}>
@@ -516,7 +516,7 @@ export default function Profile(props) {
                    <UpgradePortfolio />
                  )}
                   <EditProfileDialog userProfile={userProfile.data} />
-
+              
                 </div>
                 </>
               ) : (
@@ -540,9 +540,9 @@ export default function Profile(props) {
                       rounded
                       disabled={!isSignedIn}
                     >
-
+          
                        Chat
-
+                     
                     </Button>
                   }
                   <Button
@@ -651,7 +651,7 @@ export default function Profile(props) {
               numberExists={numberExists}
             />
 
-
+      
 
             {hasArtwork ? (
               <div className={s.tabsContainer}>
@@ -679,7 +679,7 @@ export default function Profile(props) {
 
                     // Grid i första div sen flexbox i nästa
                   }
-                  {isMyProfile &&
+                  {isMyProfile && 
                     <Tab
                     style={{color: "white", backgroundColor: "#02a16c", borderRadius: "10px", marginBottom: "5px", height: "50%", paddingTop: "10px", paddingBottom: "10px" }}
                     label={t("profile:offers")}
@@ -781,7 +781,9 @@ export default function Profile(props) {
                           ? profilePicture
                           : userProfileSummary.data?.ProfilePicture
                       }
+                      isMyProfile={isMyProfile}
                       tags={tags.data}
+                      onUpdateProfilePicture={updateImage}
                     ></AboutMe>
                   </TabPanel>
                   <TabPanel value={activeTab} index={2}>
@@ -845,13 +847,13 @@ export default function Profile(props) {
                   <TabPanel value={activeTab} index={3}>
                     <AboutMe
                       userProfile={userProfile}
-                      userProfilePicture={
-                        isMyProfile
-                          ? profilePicture
-                          : userProfileSummary.data?.ProfilePicture
-                      }
-                      tags={tags.data}
-                    ></AboutMe>
+                      userProfilePicture={isMyProfile
+                        ? profilePicture
+                        : userProfileSummary.data?.ProfilePicture}
+                      tags={tags.data} 
+                      isMyProfile={isMyProfile} 
+                      onUpdateProfilePicture={onUpdateProfilePicture}>
+                      </AboutMe>
                   </TabPanel>
                 </Box>
               </div>
@@ -873,6 +875,8 @@ export default function Profile(props) {
                           : userProfileSummary.data?.ProfilePicture
                       }
                       tags={tags.data}
+                      onUpdateProfilePicture={onUpdateProfilePicture}
+                      isMyProfile={isMyProfile}
                     ></AboutMe>
                   </TabPanel>
                 </Box>

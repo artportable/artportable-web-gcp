@@ -16,7 +16,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: '-10px',
       [theme.breakpoints.up('md')]: {
         justifyContent: 'left',
-        marginLeft: '-0.6vw'
+        marginLeft: '-1.0vw'
       }
     },
     icon: {

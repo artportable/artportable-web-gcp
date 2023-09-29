@@ -62,6 +62,10 @@
   "offerTitle": "Exclusive offer for Artportable members!",
   "offerText": "Are you looking for the perfect frame for your artwork? As an appreciation of our collaboration with Min Ram, we are pleased to offer all our members an exclusive 25% discount on all orders on ",
   "useOffer": "Use the discount code:",
-  "onCheckout": "at checkout to take advantage of this fantastic offer!"
+  "onCheckout": "at checkout to take advantage of this fantastic offer!",
+  "changeProfilePicture": "Change profile picture",
+  "addProfilePicture": "Add a profile picture",
+  "noBioSet": "No biograpy set",
+  "NoProfilePicSet": "No profile picture set"
 
 }
