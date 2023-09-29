@@ -39,27 +39,63 @@ export const styles = makeStyles((theme: Theme) =>
         '&:hover $shareButton': {
           visibility: 'visible',
           opacity: 1
+        },
+           '&:hover $desktopLikeTitle': {
+          visibility: 'visible',
+          opacity: 1
         }
       }
     },
 
     desktopLikeBtn: {
-      marginTop: '1vh',
+
       display: 'flex',
       justifyContent: 'center',
-      zIndex: '1',
-      // backgroundColor: 'red',
+      zIndex: 10,
       position: 'absolute',
       transform: '(50%, 50%)',
       bottom: '0',
       right: '0'
-      // visibility: 'hidden',
     },
     '&:hover $desktopLikeBtn': {
       visibility: 'visible',
       opacity: 1,
       backgroundColor: 'green'
     },
+
+    desktopLikeTitle: {
+      display: 'flex',
+      zIndex: 10,
+      justifyContent: "space-between",
+      alignItems: "center",
+      [theme.breakpoints.up('md')]: {
+          visibility: "hidden",
+          opacity: 0,
+          zIndex: 10,
+          position: 'absolute',
+          transform: '(50%, 50%)',
+          bottom: '10px',
+          right: '10px'
+      }
+    },
+
+    titleMobile: {
+        fontSize: '16px',
+        fontStyle: "italic",
+        [theme.breakpoints.up('md')]: {
+          visibility: "hidden",
+          opacity: 0,
+      }
+
+    },
+    
+    likeMobile: {
+      color: "black",
+      fontSize: "14px",
+      fontFamily: "Gotham",
+      marginLeft: "4px"
+    },
+
 
     imageContainer: {
       borderRadius: '2px',
@@ -95,9 +131,9 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('md')]: {
         '&:hover $infoHover': {
           visibility: 'visible',
-          //display:'none',
           opacity: 1
-        }
+        },
+     
       }
     },
     mobileContent: {
@@ -261,6 +297,7 @@ export const styles = makeStyles((theme: Theme) =>
         opacity: 0
       }
     },
+
 
     sizesArt: {
       fontStyle: 'normal',

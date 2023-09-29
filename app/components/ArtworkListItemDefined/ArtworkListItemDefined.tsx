@@ -28,6 +28,7 @@ import ShareIcon from '@material-ui/icons/Share'
 import MuiButton from '@material-ui/core/Button'
 import TagChip from '../TagChip/TagChip'
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -180,21 +181,6 @@ export default function ArtworkListItemDefined({
 
   return (
     <div className={s.container}>
-      <div className={s.desktopLikeBtn}>
-        <IconButton className={s.likeButton} disableRipple onClick={toggleLike}>
-          {likedFilled}
-          <div
-            style={{
-              fontSize: '2em',
-              marginLeft: '2px',
-              color: '#000000',
-              fontWeight: 'light'
-            }}
-          >
-            {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
-          </div>
-        </IconButton>
-      </div>
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
@@ -280,23 +266,6 @@ export default function ArtworkListItemDefined({
           </a>
         </Link>
 
-        {!indexPage && (
-          /* Ny div */
-          <div className={s.mobileContent}>
-            {artwork && artwork.Title ? artwork.Title : t('untitled')}
-            <IconButton
-              className={s.likeButton}
-              disableRipple
-              onClick={toggleLike}
-            >
-              {likedFilled}
-              <div className={s.heartAndLikes}>
-                {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
-              </div>
-            </IconButton>
-          </div>
-          /* Slut på ny div */
-        )}
 
         {indexPage && (
           <div className={s.newUserWrapper}>
@@ -309,6 +278,29 @@ export default function ArtworkListItemDefined({
           </div>
         )}
       </div>
+      { !indexPage  && (
+          
+          <div className={s.desktopLikeTitle}>
+            <div className={s.titleMobile}>
+      {artwork && artwork.Title ? artwork.Title : t('untitled')}
+      
+        </div>
+      
+        <IconButton className={s.likeButton} onClick={toggleLike}
+            
+            >
+              {likedFilled}
+                <div
+                className={s.likeMobile}
+                  
+                >
+                  {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
+                </div>
+            </IconButton>
+      
+           
+        </div>
+      )}
 
       {indexPage && (
         <div className={s.infoContainer}>
