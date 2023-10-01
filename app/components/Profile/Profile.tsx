@@ -26,7 +26,7 @@ import { ActionType,
   CategoryType,trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import axios from 'axios'
 
-export default function Profile({ userProfile,isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
+export default function Profile({ userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation(["common", "profile", "upload", "header"]);
   const data = userProfile?.data;
@@ -115,14 +115,14 @@ export default function Profile({ userProfile,isFollowed, userProfilePicture, on
 
   return (
     <Box >
-      <input
+      {/* <input
         ref={fileInput}
         onChange={handleFileUpload}
         type="file"
         style={{ display: "none" }}
         multiple={false}
       />
-      {/* <Badge
+    <Badge
         overlap="circle"
         anchorOrigin={{
           vertical: 'bottom',
@@ -169,7 +169,7 @@ export default function Profile({ userProfile,isFollowed, userProfilePicture, on
             )}
           </Avatar>
         }
-      </Badge> */}
+      </Badge>  */}
 
       {/* <Box fontWeight="fontWeightBold" marginTop={1}>
         <Typography variant="h5" className={s.fullName}>

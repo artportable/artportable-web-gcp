@@ -6,41 +6,80 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'grid',
       gridTemplateColumns: '1fr', // Single column layout by default
       gap: '2vw',
-      marginTop: '2vh',
+      marginTop: '6vh',
       [theme.breakpoints.up('md')]: {
         gridTemplateColumns: '2fr 4fr',
         gap: '3vw',
-        marginTop: '2vh'
+        marginTop: '4vh'
       }
     },
     imgAndTextWrapper: {
       display: 'flex',
-      alignItems: 'center',
-      gap: '2vw',
       flexDirection: 'column',
+      alignItems: "center",
       [theme.breakpoints.up('md')]: {}
     },
     imgContainer: {
-      textAlign: 'center'
+      width: "300px",
+      height: "300px",
+      textAlign: 'center',
     },
     profilePicture: {
-      width: '100%',
-      maxWidth: '300px',
-      display: 'block',
-      margin: '0 auto'
+      display: "flex",
+      maxHeight: "100%",
+      maxWidth: '100%',
+ 
     },
     textContainer: {
-      textAlign: 'center',
+
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       [theme.breakpoints.up('md')]: {
-        textAlign: 'left'
+        alignItems: "flex-start",
+      }
+
+    },
+    aboutText: {
+    
+      [theme.breakpoints.up('md')]: {
+       
+       
+      }
+      
+    },
+
+    aboutTextProfilePic: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      [theme.breakpoints.up('md')]: {
+        flexDirection: "row",
+        alignItems: "flex-start"
+       
       }
     },
 
-    bioText: {
-      marginLeft: '2vw',
+    ChangeProfilePicture: {
+      display: "flex",
+      justifyContent: "center",
+      marginBottom: "10px",
+    },
+    noProfilePic: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       [theme.breakpoints.up('md')]: {
-        gridColumn: 'span 1', // Occupy one column on screens wider than md (960px)
-        textAlign: 'left' // Align bioText to the left
+        flexDirection: "column",
+        alignItems: "flex-start"
+       
+      }
+    },
+    bioText: {
+     
+      [theme.breakpoints.up('md')]: {
+   
+       
       }
     }
   })
