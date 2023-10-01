@@ -121,6 +121,14 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         />
         <link rel="icon" href="/favicon.ico" />
         <title>{t("title")}</title>
+
+        <script
+          type="text/javascript"
+          id="hs-script-loader"
+          async
+          defer
+          src="//js-eu1.hs-scripts.com/26502769.js"
+        ></script>
       </Head>
       <SSRKeycloakProvider
         keycloakConfig={keycloakConfig}
