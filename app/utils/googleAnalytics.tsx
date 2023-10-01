@@ -37,7 +37,7 @@ export enum ActionType {
   INVITE_PROFILE = "bjud in_profile",
   INVITE_HEADER = "bjud in_header",
   SHARE_ARTWORK = "dela konstverk",
-
+  EXCLUSIVE_OFFER = "erbjudande min_ram"
  }
  export enum CategoryType { 
   INTERACTIVE = 'interactive', 

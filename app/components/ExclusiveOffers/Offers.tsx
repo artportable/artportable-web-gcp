@@ -12,6 +12,11 @@ import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import minRam  from "../../../public/offers/minramwhite.png";
 import Image from 'next/image'
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../../app/utils/googleAnalytics";
 
 export default function Offers() {
   const s = styles()
@@ -24,7 +29,11 @@ export default function Offers() {
           </div>
           <div className={s.frame}>
             <div style={{width: "190px", display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <Link href='https://www.minram.se'>
+            <Link href='https://www.minram.se' onClick={ () => 
+            trackGoogleAnalytics(
+              ActionType.EXCLUSIVE_OFFER,
+              CategoryType.INTERACTIVE
+            )}>
             <Image  src={minRam} alt="logo"/>
             </Link>
             </div>

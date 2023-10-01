@@ -1,4 +1,5 @@
 {
+  "aboutArtist": "Om",
   "portfolio": "Portfolio",
   "aboutMe": "Biografi",
   "articles": "Artiklar",
@@ -61,5 +62,9 @@
   "offerTitle": "Exklusivt erbjudande till dig som är Artportable-medlem!",
   "offerText": "Letar du efter den perfekta ramen för ditt konstverk? Som en uppskattning av vårt samarbete med Min Ram, är vi glada att kunna erbjuda alla våra medlemmar en exklusiv rabatt på 25% på alla beställningar hos ",
   "useOffer": "Använd rabattkoden:",
-  "onCheckout": "vid utcheckningen för att ta del av detta fantastiska erbjudande!"
+  "onCheckout": "vid utcheckningen för att ta del av detta fantastiska erbjudande!",
+  "changeProfilePicture": "Ändra profilbild",
+  "addProfilePicture": "Lägg till din profilbild",
+  "noBioSet": "Ingen biografi än",
+  "NoProfilePicSet": "Profilbild saknas"
 }
