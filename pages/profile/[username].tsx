@@ -129,7 +129,7 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
-  
+
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
@@ -390,7 +390,6 @@ export default function Profile(props) {
   const addNumber = () => {
     if (!phone.value || phone.value == undefined) {
       setNumberExists(false);
-
     }
   };
   const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
@@ -459,11 +458,10 @@ export default function Profile(props) {
       </Head>
       {isReady && (
         <>
-        
           <div>
             <div>
-            <Box fontWeight="fontWeightBold" marginTop={1}>
-            {/* <Typography variant="h5" className={s.fullName}>
+              <Box fontWeight="fontWeightBold" marginTop={1}>
+                {/* <Typography variant="h5" className={s.fullName}>
     <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
         <a>
             {userProfile?.data?.Name.toUpperCase()} {' '}
@@ -471,8 +469,7 @@ export default function Profile(props) {
         </a>
     </Link>
 </Typography> */}
-
-            </Box>
+              </Box>
               <ProfileComponent
                 userProfile={userProfileSummary}
                 userProfilePicture={
@@ -488,36 +485,37 @@ export default function Profile(props) {
             </div>
             <div className={s.editActions}>
               {isMyProfile ? (
-                 <>
-                <div className={s.editUploadButtons}>
-                 {membership.value > Membership.Base && (
-                   <div className={s.upload}>
-                     <Link href="/upload">
-                       <a>
-                         <Button
-                           className={s.uploadButton}
-                           onClick={() =>
-                             trackGoogleAnalytics(
-                               ActionType.UPLOAD_IMAGE_PROFILE,
-                               CategoryType.INTERACTIVE
-                             )
-                           }
-                           startIcon={<UploadIcon className={s.uploadIcon} />}
-                           rounded
-                         >
-                           {t("upload:upload")}
-                         </Button>
-                       </a>
-                     </Link>
-                   </div>
-                 )}
+                <>
+                  <div className={s.editUploadButtons}>
+                    {membership.value > Membership.Base && (
+                      <div className={s.upload}>
+                        <Link href="/upload">
+                          <a>
+                            <Button
+                              className={s.uploadButton}
+                              onClick={() =>
+                                trackGoogleAnalytics(
+                                  ActionType.UPLOAD_IMAGE_PROFILE,
+                                  CategoryType.INTERACTIVE
+                                )
+                              }
+                              startIcon={
+                                <UploadIcon className={s.uploadIcon} />
+                              }
+                              rounded
+                            >
+                              {t("upload:upload")}
+                            </Button>
+                          </a>
+                        </Link>
+                      </div>
+                    )}
 
-                 {membership.value < Membership.Portfolio && (
-                   <UpgradePortfolio />
-                 )}
-                  <EditProfileDialog userProfile={userProfile.data} />
-              
-                </div>
+                    {membership.value < Membership.Portfolio && (
+                      <UpgradePortfolio />
+                    )}
+                    <EditProfileDialog userProfile={userProfile.data} />
+                  </div>
                 </>
               ) : (
                 <>
@@ -622,7 +620,7 @@ export default function Profile(props) {
                   rounded
                   className={s.monthlyArtistButton}
                   onClick={redirectToRocketUpgrade}
-                  style={{marginBottom: "20px"}}
+                  style={{ marginBottom: "20px" }}
                 >
                   <Typography className={s.headerButtonRocket}>
                     {t("profile:rocket")}
@@ -651,8 +649,6 @@ export default function Profile(props) {
               numberExists={numberExists}
             />
 
-      
-
             {hasArtwork ? (
               <div className={s.tabsContainer}>
                 <Tabs
@@ -679,13 +675,21 @@ export default function Profile(props) {
 
                     // Grid i första div sen flexbox i nästa
                   }
-                  {isMyProfile && 
+                  {isMyProfile && (
                     <Tab
-                    style={{color: "white", backgroundColor: "#02a16c", borderRadius: "10px", marginBottom: "5px", height: "50%", paddingTop: "10px", paddingBottom: "10px" }}
-                    label={t("profile:offers")}
-                    {...a11yProps(t("profile:offers"))}
-                  />
-                  }
+                      style={{
+                        color: "white",
+                        backgroundColor: "#02a16c",
+                        borderRadius: "10px",
+                        marginBottom: "5px",
+                        height: "50%",
+                        paddingTop: "10px",
+                        paddingBottom: "10px",
+                      }}
+                      label={t("profile:offers")}
+                      {...a11yProps(t("profile:offers"))}
+                    />
+                  )}
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -839,21 +843,23 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
-                  {isMyProfile && membership.value > Membership.Base &&
-                      <TabPanel value={activeTab} index={2}>
-                          <Offers />
-                  </TabPanel>
-                  }
+                  {isMyProfile && membership.value > Membership.Base && (
+                    <TabPanel value={activeTab} index={2}>
+                      <Offers />
+                    </TabPanel>
+                  )}
                   <TabPanel value={activeTab} index={3}>
                     <AboutMe
                       userProfile={userProfile}
-                      userProfilePicture={isMyProfile
-                        ? profilePicture
-                        : userProfileSummary.data?.ProfilePicture}
-                      tags={tags.data} 
-                      isMyProfile={isMyProfile} 
-                      onUpdateProfilePicture={onUpdateProfilePicture}>
-                      </AboutMe>
+                      userProfilePicture={
+                        isMyProfile
+                          ? profilePicture
+                          : userProfileSummary.data?.ProfilePicture
+                      }
+                      tags={tags.data}
+                      isMyProfile={isMyProfile}
+                      onUpdateProfilePicture={updateImage}
+                    ></AboutMe>
                   </TabPanel>
                 </Box>
               </div>

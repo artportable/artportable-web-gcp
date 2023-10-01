@@ -1,20 +1,26 @@
-import React from 'react'
-import Box from '@material-ui/core/Box'
-import MyArtStudioCard from '../MyArtStudioCard/MyArtStudioCard'
-import TagsCard from '../TagsCard/TagsCard'
-import InspiredByCard from '../InspiredByCard/InspiredByCard'
-import EducationCard from '../EducationCard/EducationCard'
-import CurrentExhibitionsCard from '../CurrentExhibitionsCard/CurrentExhibitionsCard'
-import AboutCard from '../AboutCard/AboutCard'
+import React from "react";
+import Box from "@material-ui/core/Box";
+import MyArtStudioCard from "../MyArtStudioCard/MyArtStudioCard";
+import TagsCard from "../TagsCard/TagsCard";
+import InspiredByCard from "../InspiredByCard/InspiredByCard";
+import EducationCard from "../EducationCard/EducationCard";
+import CurrentExhibitionsCard from "../CurrentExhibitionsCard/CurrentExhibitionsCard";
+import AboutCard from "../AboutCard/AboutCard";
 
-import { styles } from './aboutMe.css'
-import { useTranslation } from 'next-i18next'
+import { styles } from "./aboutMe.css";
+import { useTranslation } from "next-i18next";
 
-export default function AboutMe({ userProfile, userProfilePicture, tags, isMyProfile, onUpdateProfilePicture }) {
-  const s = styles()
-  const { t } = useTranslation(['profile', 'tags'])
+export default function AboutMe({
+  userProfile,
+  userProfilePicture,
+  tags,
+  isMyProfile,
+  onUpdateProfilePicture,
+}) {
+  const s = styles();
+  const { t } = useTranslation(["profile", "tags"]);
 
-  const data = userProfile.data
+  const data = userProfile.data;
 
   return (
     // TODO: Handle potential errors
@@ -41,5 +47,5 @@ export default function AboutMe({ userProfile, userProfilePicture, tags, isMyPro
         )}
       </Box>
     </Box>
-  )
+  );
 }
