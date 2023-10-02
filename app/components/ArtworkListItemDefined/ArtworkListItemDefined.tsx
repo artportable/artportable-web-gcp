@@ -308,10 +308,10 @@ export default function ArtworkListItemDefined({
       ): (!indexPage && isMyProfile) &&
         (
           <div className={s.desktopLikeTitle}>
-            <div className={s.titleMobile}>      
+            <div>      
           </div>
             {topActions && (
-              <div >
+              <div className={s.likeButton}>
                 <div>{topActions}</div>
               </div>
             )}
