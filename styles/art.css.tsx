@@ -9,6 +9,9 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      [theme.breakpoints.up('mdPlus')]: {
+       marginTop: '4vh'
+      }
 
     },
     flexContainer: {
@@ -41,8 +44,15 @@ export const styles = makeStyles((theme: Theme) =>
         border: '1px solid #01c281',
         color: 'white'
       }
-      //label:'none'
     },
+
+    linkName:{
+      '&:hover': {
+        textDecoration:'underline',
+        opacity: '70%',
+      }
+    },
+
 
     imageContainer: {
       position: 'relative',
@@ -113,7 +123,7 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(0, 0.4, 0, 0)
       },
       [theme.breakpoints.up('mdPlus')]: {
-       margin: '1vh'
+       marginTop: '3vh'
       },
       '&:hover': {
         backgroundColor: '#fadf87',
@@ -186,8 +196,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'center'
-      // justifyContent: 'space-evenly'
+      justifyContent: 'center',
+      [theme.breakpoints.up('mdPlus')]: {
+        margin: '3vh'
+       },
     },
     chip: {
       marginRight: '5px'

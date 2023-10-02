@@ -349,14 +349,16 @@ export default function ArtworkPage(props) {
                     <IconButton onClick={() => router.back()}>
                       <ArrowBackIcon />
                     </IconButton>
-                    <p>
+                    <Link href={`/profile/@${artwork.data.Owner.Username}`}>
+                    <a className={s.linkName}>
                       {t('common:words.by') + ' '}
                       <i>
                         {artwork.data.Owner.Name +
                           ' ' +
                           artwork.data.Owner.Surname}
                       </i>
-                    </p>
+                    </a>
+                    </Link>
                     <Button
                       className={s.followButton}
                       variant={!isFollowed ? 'contained' : 'outlined'}
@@ -373,13 +375,11 @@ export default function ArtworkPage(props) {
                           : null
                       }}
                     >
-                      <div className={s.followText}>
                         {capitalizeFirst(
                           !isFollowed
                             ? t('common:words.follow')
                             : t('common:words.following')
                         )}
-                      </div>
                     </Button>
                   </div>
                 </div>
