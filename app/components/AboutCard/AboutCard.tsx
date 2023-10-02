@@ -24,13 +24,11 @@ export default function AboutCard({
 
   const fileInput = useRef(null);
 
-  useEffect(() => {
-    console.log(profilepic);
-  }, [profilepic]);
+  
 
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
-      return;
+      return; 
     }
 
     var fr = new FileReader();
@@ -65,7 +63,7 @@ export default function AboutCard({
                   <div>
                     <img
                       src={`${bucketUrl}${userProfilePicture}`}
-                      style={{ height: "200px", width: "250px" }}
+                      style={{ maxHeight: "200px", maxWidth: "250px", width: '100%', height: 'auto' }}
                     ></img>
 
                     <div
