@@ -60,10 +60,14 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
     setFirstName(userData?.data?.Name);
-    console.log(firstName);
     setLastName(userData?.data?.Surname);
-    console.log(lastName);
   }
+
+
+  useEffect(() => {
+    console.log(userProfile);
+    
+  },)
 
   useEffect(() => {
     getUserFullname();
@@ -217,8 +221,8 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
       <Typography variant="h5" className={s.fullName}>
         <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
             <a>
-                {firstName.toUpperCase()} {' '}
-                {lastName && lastName.toUpperCase()}
+                {userProfile?.data?.Name.toUpperCase()} {' '}
+                {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
             </a>
         </Link>
       </Typography>
