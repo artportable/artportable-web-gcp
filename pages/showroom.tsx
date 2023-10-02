@@ -347,7 +347,7 @@ export default function Exhibition({ navBarItems }) {
       {
         week: "Vecka 42",
         artist: "Anna-Carin Jansson",
-        username: "marymyntti",
+        username: "Anna-Carin.Jansson",
       },
       {
         week: "Vecka 43",
