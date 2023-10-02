@@ -79,10 +79,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Owe Emfestav",
-      username: "owe",
-      image: "/images/oweEm.jpeg",
-      imageLink: "art/c1827abc-1eb3-467d-8818-d7f6ec53abb8",
+      name: "Thorulf Löfstedt",
+      username: "thorulf.lofstedt",
+      image: "/images/thorulfl.jpeg",
+      imageLink: "art/393bdbfb-c7d2-4139-b825-add0ae189da3",
     },
 
     {
@@ -98,10 +98,10 @@ export default function IndexHero() {
       imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
     },
     {
-      name: "Lars-Henrik Milert",
-      username: "milert",
-      image: "/images/milertimage.jpg",
-      imageLink: "art/8e505104-f0e8-4b2a-9641-ebeef2c557cb",
+      name: "Lisa Dreier",
+      username: "lisa.dreier",
+      image: "/images/lisad.jpeg",
+      imageLink: "art/78f1eb79-4cc8-4d50-9115-596b0f01604b",
     },
   ];
 
