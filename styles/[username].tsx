@@ -284,6 +284,8 @@ export const profileStyles = makeStyles((theme: Theme) =>
     editButton: {
       width: "38px",
       minWidth: "36px",
+      color: "white",
+      backgroundColor: "var(--yellow-darker)",
       "& .MuiButton-startIcon": {
         margin: "0 0",
       },

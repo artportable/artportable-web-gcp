@@ -29,6 +29,7 @@ import MuiButton from '@material-ui/core/Button'
 import TagChip from '../TagChip/TagChip'
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useGetProfileUser } from '../../hooks/dataFetching/useGetProfileUser'
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -52,6 +53,15 @@ export default function ArtworkListItemDefined({
 
   const router = useRouter()
   const excludedCurrencyCodes = ['SEK', 'NOK', 'DKK']
+
+  const profileUser = useGetProfileUser();
+
+  const isMyProfile = profileUser === username.value;
+
+  useEffect(() => {
+    console.log(isMyProfile);
+    
+  }, )
 
   function getFormatter(
     languageCode: string,
@@ -272,13 +282,8 @@ export default function ArtworkListItemDefined({
             {isNew && <div className={s.newUser}>{t('common:newMember')}</div>}
           </div>
         )}
-        {topActions && (
-          <div className={s.editOverlay}>
-            <div className={s.topActions}>{topActions}</div>
-          </div>
-        )}
       </div>
-      { !indexPage  && (
+      { (!indexPage && !isMyProfile) ? (
           
           <div className={s.desktopLikeTitle}>
             <div className={s.titleMobile}>
@@ -300,7 +305,19 @@ export default function ArtworkListItemDefined({
       
            
         </div>
-      )}
+      ): (!indexPage && isMyProfile) &&
+        (
+          <div className={s.desktopLikeTitle}>
+            <div>      
+          </div>
+            {topActions && (
+              <div className={s.likeButton}>
+                <div>{topActions}</div>
+              </div>
+            )}
+          </div>
+          )        
+        } 
 
       {indexPage && (
         <div className={s.infoContainer}>

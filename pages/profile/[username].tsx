@@ -66,6 +66,7 @@ import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade
 import UpgradePortfolioProfile from "../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile";
 import { RWebShare } from "react-web-share";
 import Offers from "../../app/components/ExclusiveOffers/Offers";
+import BrushSharpIcon from '@mui/icons-material/BrushSharp';
 
 function a11yProps(index: any) {
   return {
@@ -719,12 +720,12 @@ export default function Profile(props) {
                                           <Button
                                             className={s.editButton}
                                             variant="contained"
-                                            color="default"
+                                            color="red"
                                             rounded
                                             onClick={() =>
                                               openEditArtworkDialog(artwork)
                                             }
-                                            startIcon={<EditIcon />}
+                                            startIcon={<BrushSharpIcon />}
                                           ></Button>
                                         </>
                                       ) : undefined

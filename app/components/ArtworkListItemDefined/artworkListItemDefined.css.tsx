@@ -187,10 +187,6 @@ export const styles = makeStyles((theme: Theme) =>
     editOverlay: {
       position: 'absolute',
       top: 0,
-      visibility: 'hidden',
-      '@media (hover: none)': {
-        visibility: 'visible'
-      },
       width: '100%',
       boxShadow: `${theme.palette.common.black} 0px 0px 40px 25px`
     },
