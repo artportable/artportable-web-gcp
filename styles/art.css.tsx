@@ -10,9 +10,14 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       [theme.breakpoints.up('mdPlus')]: {
-       marginTop: '4vh'
+       marginTop: '3vh'
       }
-
+    },
+    imageInfoContainer:{
+      [theme.breakpoints.up('mdPlus')]: {
+        display:'flex',
+        flexDirection: 'row',
+       }
     },
     flexContainer: {
       display: 'flex',
@@ -30,7 +35,7 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: '100%',
       [theme.breakpoints.up('mdPlus')]: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'column'
       }
     },
     followButton: {
@@ -46,11 +51,24 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
 
-    linkName:{
-      '&:hover': {
-        textDecoration:'underline',
-        opacity: '70%',
-      }
+    linkName: {
+      position: 'relative',
+      textDecoration: 'none',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        width: 0,
+        height: '1px', // Adjust the height as needed
+        backgroundColor: '#000', // Adjust the color as needed
+        transition: 'width 0.3s ease', // Adjust the duration as needed
+      },
+      '&:hover::before': {
+        width: '100%',
+        left: 0,
+        right: 'auto',
+      },
     },
 
 
@@ -118,7 +136,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     purchaseRequestButton: {
       backgroundColor: '#fadf87',
-      color: '#3d3d4e',
+      color: 'black',
       '&.MuiButton-root .MuiButton-startIcon ': {
         margin: theme.spacing(0, 0.4, 0, 0)
       },
@@ -126,8 +144,10 @@ export const styles = makeStyles((theme: Theme) =>
        marginTop: '3vh'
       },
       '&:hover': {
-        backgroundColor: '#fadf87',
-        color: '#3d3d4e'
+        backgroundColor: '#fee19c',
+        color: 'black',
+        boxShadow: '5px 5px 10px #e5e6e4'
+
       }
     },
     flexLikeRoom: {
@@ -171,7 +191,24 @@ export const styles = makeStyles((theme: Theme) =>
       color: '#000000',
       '&:hover': {
         backgroundColor: 'transparent'
-      }
+      },
+      position: 'relative',
+      textDecoration: 'none',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        width: 0,
+        height: '1px',
+        backgroundColor: '#000',
+        transition: 'width 0.3s ease',
+      },
+      '&:hover::before': {
+        width: '100%',
+        left: 0,
+        right: 'auto',
+      },
     },
     text: {
       marginLeft: '10px',
@@ -179,13 +216,14 @@ export const styles = makeStyles((theme: Theme) =>
       paddingBottom: '10px'
     },
     extraImages: {
-      display: 'flex',
-      flexFlow: 'row wrap',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-      '& :not(:first-child)': {
-        marginLeft: theme.spacing(2)
-      }
+      //flexBasis:'100%',
+      // display: 'flex',
+      // flexFlow: 'row wrap',
+      // justifyContent: 'space-around',
+      // alignItems: 'center',
+      // '& :not(:first-child)': {
+      //   marginLeft: theme.spacing(2)
+      // }
     },
     extraImage: {
       maxWidth: 'calc(100vw - 32px)',
@@ -198,7 +236,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
       justifyContent: 'center',
       [theme.breakpoints.up('mdPlus')]: {
-        margin: '3vh'
+        margin: '1vh'
        },
     },
     chip: {

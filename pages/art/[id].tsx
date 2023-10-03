@@ -25,6 +25,7 @@ import {
   trackGoogleAnalytics
 } from '../../app/utils/googleAnalytics'
 import { UrlObject } from 'url'
+import Divider from '@mui/material/Divider';
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog'
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined'
 import usePostLike from '../../app/hooks/dataFetching/usePostLike'
@@ -178,7 +179,8 @@ export default function ArtworkPage(props) {
 
         {artwork && artwork.data && (
           <>
-            <Paper classes={{ root: s.paper }}>
+          <Paper classes={{ root: s.paper }}>
+            <div className={s.imageInfoContainer}>
               <div className={s.imageContainer}>
                 <img
                   src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
@@ -186,6 +188,9 @@ export default function ArtworkPage(props) {
                 />
                 <div className={s.flexLikeRoom}>
                   <div className={s.flexMessageLike}>
+                    <IconButton onClick={() => router.back()}>
+                      <ArrowBackIcon />
+                    </IconButton>
                     <RWebShare
                       data={{
                         text: shareArtworkText,
@@ -196,7 +201,7 @@ export default function ArtworkPage(props) {
                         trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
                       }
                     >
-                      <IconButton className={s.shareButton}>
+                     <IconButton className={s.shareButton}>
                         {t('art:share')}
                       </IconButton>
                     </RWebShare>
@@ -384,9 +389,11 @@ export default function ArtworkPage(props) {
                   </div>
                 </div>
               </div>
+            </div>
               <Box className={s.extraImages}>
                 {artwork.data.SecondaryFile && (
                   <div className={s.imageContainer}>
+                    <Divider sx={{ m:4}}/>
                     <img
                       src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
                       className={s.extraImage}
@@ -395,6 +402,7 @@ export default function ArtworkPage(props) {
                 )}
                 {artwork.data.TertiaryFile && (
                   <div className={s.imageContainer}>
+                    <Divider sx={{ m:4}}/>
                     <img
                       src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
                       className={s.extraImage}
@@ -402,7 +410,7 @@ export default function ArtworkPage(props) {
                   </div>
                 )}
               </Box>
-            </Paper>
+        </Paper>
           </>
         )}
       </div>
