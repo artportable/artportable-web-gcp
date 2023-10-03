@@ -71,7 +71,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
-    follow( 
+    follow(
       userProfileSummary.data?.SocialId,
       !isUserFollowed,
       socialId.value,
@@ -94,7 +94,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
     setFollowers(connectionscountData?.data?.followers);
     setFollowing(connectionscountData?.data?.following);
   }, [connectionscountData?.data?.followers]);
-  
+
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -212,7 +212,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
       {divider &&
         <Divider></Divider>
       }
-        
+
       <div className={s.fullNameCounter}>
       <Typography variant="h5" className={s.fullName}>
         <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
@@ -264,7 +264,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
           </Box>
         }
       </Box>
-       {!isMyProfile && 
+       {!isMyProfile &&
         <div className={s.chatFollowWrapper}>
         {
           <Button

@@ -10,14 +10,14 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       [theme.breakpoints.up('mdPlus')]: {
-       marginTop: '3vh'
+        marginTop: '3vh'
       }
     },
-    imageInfoContainer:{
+    imageInfoContainer: {
       [theme.breakpoints.up('mdPlus')]: {
-        display:'flex',
-        flexDirection: 'row',
-       }
+        display: 'flex',
+        flexDirection: 'row'
+      }
     },
     flexContainer: {
       display: 'flex',
@@ -38,39 +38,59 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'column'
       }
     },
-    followButton: {
-      maxHeight: '30px',
-      margin: '10px',
-      backgroundColor: 'white',
-      color: 'black',
-      border: '1px solid #01c281 ',
-      '&:hover': {
-        backgroundColor: '#01c281',
-        border: '1px solid #01c281',
-        color: 'white'
+    nameAndFollow: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      [theme.breakpoints.up('mdPlus')]: {
+        justifyContent: 'center',
       }
     },
 
-    linkName: {
-      position: 'relative',
-      textDecoration: 'none',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        width: 0,
-        height: '1px', // Adjust the height as needed
-        backgroundColor: '#000', // Adjust the color as needed
-        transition: 'width 0.3s ease', // Adjust the duration as needed
-      },
-      '&:hover::before': {
-        width: '100%',
-        left: 0,
-        right: 'auto',
+    artistName:{
+      [theme.breakpoints.up('mdPlus')]: {
+        fontSize: '1.2rem'
+      }
+    },
+
+    followButton: {
+      maxHeight: '30px',
+      margin: '10px',
+      backgroundColor: '#fadf87',
+      border: '1px solid #fadf87',
+      color: 'black',
+      '&:hover': {
+        backgroundColor: '#fadf87',
+        color: 'white'
       },
     },
 
+    following: {
+      maxHeight: '30px',
+      margin: '10px',
+      backgroundColor: "#49cc90",
+      border: "1px solid #49cc90",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "transparent",
+        color: "black",
+      },
+    },
+
+    linkName: {
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+      textDecoration: 'underline',
+      margin: '2vh',
+      [theme.breakpoints.up('mdPlus')]: {
+        fontWeight: '500',
+        marginTop: '3vh'
+      },
+      '&:hover': {
+        opacity: '70%'
+      }
+    },
 
     imageContainer: {
       position: 'relative',
@@ -95,33 +115,33 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1.6),
       [theme.breakpoints.up('mdPlus')]: {
         alignItems: 'center',
-        textAlign: 'center',
+        textAlign: 'center'
       }
     },
     infoContainer: {
       fontSize: '0.95rem',
       overflow: 'hidden',
       flexGrow: 1,
-      textOverflow: 'ellipsis',
+      textOverflow: 'ellipsis'
     },
 
     titleSpace: {
       marginBottom: '5px',
       [theme.breakpoints.up('mdPlus')]: {
-       marginBottom: '2vh',
-       fontSize: '1.4rem'
+        marginBottom: '2vh',
+        fontSize: '1.4rem'
       }
     },
 
     textSpace: {
       marginBottom: '5px',
       [theme.breakpoints.up('mdPlus')]: {
-        marginBottom: '2vh',
-       }
+        marginBottom: '2vh'
+      }
     },
     titleAndSizeContainer: {
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'column'
     },
     priceContainer: {
       fontWeight: theme.typography.fontWeightMedium,
@@ -131,7 +151,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('mdPlus')]: {
         justifyContent: 'center',
         alignItems: 'center',
-        margin: '1vh 0',
+        margin: '1vh 0'
       }
     },
     purchaseRequestButton: {
@@ -141,13 +161,12 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(0, 0.4, 0, 0)
       },
       [theme.breakpoints.up('mdPlus')]: {
-       marginTop: '3vh'
+        marginTop: '3vh'
       },
       '&:hover': {
         backgroundColor: '#fee19c',
         color: 'black',
         boxShadow: '5px 5px 10px #e5e6e4'
-
       }
     },
     flexLikeRoom: {
@@ -157,10 +176,11 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     flexMessageLike: {
-      display: 'flex',
-      justifyContent: 'end',
+      // display: 'flex',
+      //justifyContent: 'end',
       alignItems: 'center',
-      alignSelf: 'flex-end'
+      display: 'grid',
+      gridTemplateColumns: '1fr 0fr 0fr 0fr'
     },
 
     likeCounter: {
@@ -202,13 +222,13 @@ export const styles = makeStyles((theme: Theme) =>
         width: 0,
         height: '1px',
         backgroundColor: '#000',
-        transition: 'width 0.3s ease',
+        transition: 'width 0.3s ease'
       },
       '&:hover::before': {
         width: '100%',
         left: 0,
-        right: 'auto',
-      },
+        right: 'auto'
+      }
     },
     text: {
       marginLeft: '10px',
@@ -237,7 +257,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       [theme.breakpoints.up('mdPlus')]: {
         margin: '1vh'
-       },
+      }
     },
     chip: {
       marginRight: '5px'
@@ -271,6 +291,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       width: '100%'
+    },
+
+    divider: {
+      margin: '4'
     }
     // [theme.breakpoints.up('smPlus')]: {
     //   titleAndSizeContainer: {

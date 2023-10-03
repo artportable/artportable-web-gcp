@@ -25,7 +25,7 @@ import {
   trackGoogleAnalytics
 } from '../../app/utils/googleAnalytics'
 import { UrlObject } from 'url'
-import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider'
 import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog'
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined'
 import usePostLike from '../../app/hooks/dataFetching/usePostLike'
@@ -179,221 +179,228 @@ export default function ArtworkPage(props) {
 
         {artwork && artwork.data && (
           <>
-          <Paper classes={{ root: s.paper }}>
-            <div className={s.imageInfoContainer}>
-              <div className={s.imageContainer}>
-                <img
-                  src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
-                  className={s.primaryImage}
-                />
-                <div className={s.flexLikeRoom}>
-                  <div className={s.flexMessageLike}>
-                    <IconButton onClick={() => router.back()}>
-                      <ArrowBackIcon />
-                    </IconButton>
-                    <RWebShare
-                      data={{
-                        text: shareArtworkText,
-                        url: artworkUrl,
-                        title: shareArtworkTitle
-                      }}
-                      onClick={() =>
-                        trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
-                      }
-                    >
-                     <IconButton className={s.shareButton}>
-                        {t('art:share')}
-                      </IconButton>
-                    </RWebShare>
-
-                    <div>
-                      <IconButton
-                        className={s.likeButton}
-                        disableRipple
-                        disableFocusRipple
-                        onClick={toggleLike}
+            <Paper classes={{ root: s.paper }}>
+              <div className={s.imageInfoContainer}>
+                <div className={s.imageContainer}>
+                  <img
+                    src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
+                    className={s.primaryImage}
+                  />
+                  <div className={s.flexLikeRoom}>
+                    <div className={s.flexMessageLike}>
+                      <div
+                        style={{
+                          left: '0',
+                          display: 'flex',
+                          justifyContent: 'left'
+                        }}
                       >
-                        {likedFilled}
-                      </IconButton>
-                    </div>
-                    <div className={s.likeCounter}>
-                      {artwork.data.Likes > 0 && (
-                        <div>{artwork.data.Likes}</div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className={s.infoBar}>
-                <div className={s.infoContainer}>
-                  <div className={s.titleAndSizeContainer}>
-                    <i className={s.titleSpace}>
-                      {artwork.data.Title && <span>{artwork.data.Title}</span>}
-                    </i>
-                    <div className={s.textSpace}>
-                      {artwork.data.Description && (
-                        <Typography
-                          variant="body1"
-                          id="artwork-modal-description"
-                        >
-                          {artwork.data.Description}
-                        </Typography>
-                      )}
-                    </div>
-                    {t('art:size')}:
-                    {artwork.data.MultipleSizes
-                      ? ' (' +
-                        t('common:words.multipleSizes').toLowerCase() +
-                        ')'
-                      : artwork.data.Width &&
-                        artwork.data.Height &&
-                        artwork.data.Depth
-                      ? ' (' +
-                        artwork.data.Width +
-                        'x' +
-                        artwork.data.Height +
-                        'x' +
-                        artwork.data.Depth +
-                        'cm)'
-                      : artwork.data.Width && artwork.data.Height
-                      ? ' (' +
-                        artwork.data.Width +
-                        'x' +
-                        artwork.data.Height +
-                        'cm)'
-                      : null}
-                  </div>
-                  <div style={{ marginBottom: '0.6vh' }}></div>
-                  <div className={s.priceContainer}>
-                    {artwork.data.SoldOut ? (
-                      <>
-                        <div className={s.soldMark} />
-                        {t('common:words.sold')}{' '}
-                      </>
-                    ) : artwork.data.Price && artwork.data.Price != '0' ? (
-                      <span>
-                        {t('art:artworkPrice')}:{' ' + artwork.data.Price}{' '}
-                        {artwork.data.Currency !== null
-                          ? artwork.data.Currency
-                          : 'SEK'}{' '}
-                      </span>
-                    ) : (
-                      <span>{t('priceOnRequest')}</span>
-                    )}
-                  </div>
+                        <IconButton onClick={() => router.back()}>
+                          <ArrowBackIcon />
+                        </IconButton>
+                      </div>
+                      <RWebShare
+                        data={{
+                          text: shareArtworkText,
+                          url: artworkUrl,
+                          title: shareArtworkTitle
+                        }}
+                        onClick={() =>
+                          trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
+                        }
+                      >
+                        <IconButton className={s.shareButton}>
+                          {t('art:share')}
+                        </IconButton>
+                      </RWebShare>
 
-                  <Box className={s.tagsContainer} marginBottom={2}>
-                    {Array.from(artwork.data.Tags).map((tag: string) => {
-                      return (
-                        <TagChip
-                          key={tag}
-                          title={tag}
-                          onChipClick={null}
-                          limitReached={true}
-                          variant="outlined"
-                          isSmall={true}
-                        ></TagChip>
-                      )
-                    })}
-                  </Box>
-                  {username.value !== artwork.data.Owner.Username &&
-                    !artwork.data.SoldOut && (
-                      <Box className={s.purchaseAndRoom}>
-                        <Button
-                          className={s.purchaseRequestButton}
-                          variant="contained"
-                          rounded
-                          disableElevation
-                          onClick={() => {
-                            purchaseRequest({
-                              pathname: '/messages',
-                              query: {
-                                artwork: encodeURIComponent(
-                                  JSON.stringify({
-                                    title: artwork.data.Title,
-                                    creator: artwork.data.Owner.Username,
-                                    url: window.location.href
-                                  })
-                                ),
-                                referTo: artwork.data.Owner.SocialId
-                              }
-                            })
-                            trackGoogleAnalytics(
-                              ActionType.PURCHASE_REQUEST_ARTWORK,
-                              CategoryType.BUY
-                            )
-                          }}
-                          startIcon={<SendIcon color={'inherit'} />}
+                      <div>
+                        <IconButton
+                          className={s.likeButton}
+                          disableRipple
+                          disableFocusRipple
+                          onClick={toggleLike}
                         >
-                          {capitalizeFirst(t('common:purchaseRequest'))}
-                        </Button>
-                        {artwork.data.Width > 0 && artwork.data.Height > 0 && (
-                          <div className={s.roomDiv}>
-                            <a href={`/tool/${artwork.data.Id}`}>
-                              <Button className={s.roomButton} rounded>
-                                {t('room')}
-                              </Button>
-                            </a>
-                          </div>
+                          {likedFilled}
+                        </IconButton>
+                      </div>
+                      <div className={s.likeCounter}>
+                        {artwork.data.Likes > 0 && (
+                          <div>{artwork.data.Likes}</div>
                         )}
-                        <PurchaseRequestDialog
-                          open={purchaseRequestDialogOpen}
-                          onClose={togglePurchaseRequestDialog}
-                          props={{
-                            pathname: '/messages',
-                            title: artwork.data.Title,
-                            creator: artwork.data.Owner.Username,
-                            url: window.location.href,
-                            referTo: artwork.data.Owner.SocialId,
-                            imageUrl: bucketUrl + artwork.data.PrimaryFile.Name
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={s.infoBar}>
+                  <div className={s.infoContainer}>
+                    <div className={s.titleAndSizeContainer}>
+                      <div className={s.nameAndFollow}>
+                          <p className={s.artistName}>
+                            {artwork.data.Owner.Name +
+                              ' ' +
+                              artwork.data.Owner.Surname}
+                          </p>
+                        <Button
+                          className={`${s.followButton} ${isFollowed ? s.following : ""}`}
+                          variant={!isFollowed ? 'contained' : 'outlined'}
+                          startIcon={!isFollowed ? <AddIcon /> : null}
+                          disableElevation
+                          rounded
+                          onClick={() => {
+                            toggleFollow()
+                            !isFollowed
+                              ? trackGoogleAnalytics(
+                                  ActionType.FOLLOW_ARTWORK,
+                                  CategoryType.INTERACTIVE
+                                )
+                              : null
                           }}
-                        />
-                      </Box>
-                    )}
-                  <div className={s.backBtnContainer}>
-                    <IconButton onClick={() => router.back()}>
-                      <ArrowBackIcon />
-                    </IconButton>
-                    <Link href={`/profile/@${artwork.data.Owner.Username}`}>
-                    <a className={s.linkName}>
-                      {t('common:words.by') + ' '}
-                      <i>
-                        {artwork.data.Owner.Name +
-                          ' ' +
-                          artwork.data.Owner.Surname}
-                      </i>
-                    </a>
-                    </Link>
-                    <Button
-                      className={s.followButton}
-                      variant={!isFollowed ? 'contained' : 'outlined'}
-                      startIcon={!isFollowed ? <AddIcon /> : null}
-                      disableElevation
-                      rounded
-                      onClick={() => {
-                        toggleFollow()
-                        !isFollowed
-                          ? trackGoogleAnalytics(
-                              ActionType.FOLLOW_ARTWORK,
-                              CategoryType.INTERACTIVE
-                            )
-                          : null
-                      }}
-                    >
-                        {capitalizeFirst(
-                          !isFollowed
-                            ? t('common:words.follow')
-                            : t('common:words.following')
+                        >
+                          {capitalizeFirst(
+                            !isFollowed
+                              ? t('common:words.follow')
+                              : t('common:words.following')
+                          )}
+                        </Button>
+                      </div>
+                      <i className={s.titleSpace}>
+                        {artwork.data.Title && (
+                          <span>{artwork.data.Title}</span>
                         )}
-                    </Button>
+                      </i>
+                      <div className={s.textSpace}>
+                        {artwork.data.Description && (
+                          <Typography
+                            variant="body1"
+                            id="artwork-modal-description"
+                          >
+                            {artwork.data.Description}
+                          </Typography>
+                        )}
+                      </div>
+                      {t('art:size')}:
+                      {artwork.data.MultipleSizes
+                        ? ' (' +
+                          t('common:words.multipleSizes').toLowerCase() +
+                          ')'
+                        : artwork.data.Width &&
+                          artwork.data.Height &&
+                          artwork.data.Depth
+                        ? ' (' +
+                          artwork.data.Width +
+                          'x' +
+                          artwork.data.Height +
+                          'x' +
+                          artwork.data.Depth +
+                          'cm)'
+                        : artwork.data.Width && artwork.data.Height
+                        ? ' (' +
+                          artwork.data.Width +
+                          'x' +
+                          artwork.data.Height +
+                          'cm)'
+                        : null}
+                    </div>
+                    <div style={{ marginBottom: '0.6vh' }}></div>
+                    <div className={s.priceContainer}>
+                      {artwork.data.SoldOut ? (
+                        <>
+                          <div className={s.soldMark} />
+                          {t('common:words.sold')}{' '}
+                        </>
+                      ) : artwork.data.Price && artwork.data.Price != '0' ? (
+                        <span>
+                          {t('art:artworkPrice')}:{' ' + artwork.data.Price}{' '}
+                          {artwork.data.Currency !== null
+                            ? artwork.data.Currency
+                            : 'SEK'}{' '}
+                        </span>
+                      ) : (
+                        <span>{t('priceOnRequest')}</span>
+                      )}
+                    </div>
+
+                    <Box className={s.tagsContainer} marginBottom={2}>
+                      {Array.from(artwork.data.Tags).map((tag: string) => {
+                        return (
+                          <TagChip
+                            key={tag}
+                            title={tag}
+                            onChipClick={null}
+                            limitReached={true}
+                            variant="outlined"
+                            isSmall={true}
+                          ></TagChip>
+                        )
+                      })}
+                    </Box>
+                    {username.value !== artwork.data.Owner.Username &&
+                      !artwork.data.SoldOut && (
+                        <Box className={s.purchaseAndRoom}>
+                          <Button
+                            className={s.purchaseRequestButton}
+                            variant="contained"
+                            rounded
+                            disableElevation
+                            onClick={() => {
+                              purchaseRequest({
+                                pathname: '/messages',
+                                query: {
+                                  artwork: encodeURIComponent(
+                                    JSON.stringify({
+                                      title: artwork.data.Title,
+                                      creator: artwork.data.Owner.Username,
+                                      url: window.location.href
+                                    })
+                                  ),
+                                  referTo: artwork.data.Owner.SocialId
+                                }
+                              })
+                              trackGoogleAnalytics(
+                                ActionType.PURCHASE_REQUEST_ARTWORK,
+                                CategoryType.BUY
+                              )
+                            }}
+                            startIcon={<SendIcon color={'inherit'} />}
+                          >
+                            {capitalizeFirst(t('common:purchaseRequest'))}
+                          </Button>
+                          {artwork.data.Width > 0 &&
+                            artwork.data.Height > 0 && (
+                              <div className={s.roomDiv}>
+                                <a href={`/tool/${artwork.data.Id}`}>
+                                  <Button className={s.roomButton} rounded>
+                                    {t('room')}
+                                  </Button>
+                                </a>
+                              </div>
+                            )}
+                          <PurchaseRequestDialog
+                            open={purchaseRequestDialogOpen}
+                            onClose={togglePurchaseRequestDialog}
+                            props={{
+                              pathname: '/messages',
+                              title: artwork.data.Title,
+                              creator: artwork.data.Owner.Username,
+                              url: window.location.href,
+                              referTo: artwork.data.Owner.SocialId,
+                              imageUrl:
+                                bucketUrl + artwork.data.PrimaryFile.Name
+                            }}
+                          />
+                        </Box>
+                      )}
+                    <Link href={`/profile/@${artwork.data.Owner.Username}`}>
+                      <a className={s.linkName}>{t('art:goToPortfolio')}</a>
+                    </Link>
                   </div>
                 </div>
               </div>
-            </div>
               <Box className={s.extraImages}>
                 {artwork.data.SecondaryFile && (
                   <div className={s.imageContainer}>
-                    <Divider sx={{ m:4}}/>
+                    <Divider sx={{ m: 4 }} />
                     <img
                       src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
                       className={s.extraImage}
@@ -402,7 +409,7 @@ export default function ArtworkPage(props) {
                 )}
                 {artwork.data.TertiaryFile && (
                   <div className={s.imageContainer}>
-                    <Divider sx={{ m:4}}/>
+                    <Divider sx={{ m: 4 }} />
                     <img
                       src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
                       className={s.extraImage}
@@ -410,7 +417,7 @@ export default function ArtworkPage(props) {
                   </div>
                 )}
               </Box>
-        </Paper>
+            </Paper>
           </>
         )}
       </div>
