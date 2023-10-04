@@ -16,7 +16,8 @@ export const styles = makeStyles((theme: Theme) =>
     imageInfoContainer: {
       [theme.breakpoints.up('mdPlus')]: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        // maxWidth: '80%'
       }
     },
     flexContainer: {
@@ -43,38 +44,46 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       [theme.breakpoints.up('mdPlus')]: {
-        justifyContent: 'center',
+        justifyContent: 'center'
       }
     },
 
-    artistName:{
+    artistName: {
       [theme.breakpoints.up('mdPlus')]: {
-        fontSize: '1.2rem'
+        fontSize: '22.4px',
+        marginBottom: '1.8vh'
       }
     },
 
     followButton: {
       maxHeight: '30px',
+      // minWidth: '75px',
+      // maxWidth: '75px',
+      width:'75px',
       margin: '10px',
       backgroundColor: '#fadf87',
       border: '1px solid #fadf87',
       color: 'black',
+      padding: '5px',
+      // [theme.breakpoints.up('mdPlus')]: {
+      //   marginLeft: '200px',
+      // },
       '&:hover': {
         backgroundColor: '#fadf87',
         color: 'white'
-      },
+      }
     },
 
     following: {
       maxHeight: '30px',
       margin: '10px',
-      backgroundColor: "#49cc90",
-      border: "1px solid #49cc90",
-      color: "white",
-      "&:hover": {
-        backgroundColor: "transparent",
-        color: "black",
-      },
+      backgroundColor: '#49cc90',
+      border: '1px solid #49cc90',
+      color: 'white',
+      '&:hover': {
+        backgroundColor: 'transparent',
+        color: 'black'
+      }
     },
 
     linkName: {
@@ -102,9 +111,12 @@ export const styles = makeStyles((theme: Theme) =>
     primaryImage: {
       minWidth: '100%',
       width: '100%',
-      maxWidth: 'calc(100vw - 32px)',
+      maxWidth: 'calc(100vw - 36px)',
       maxHeight: 'calc(100vh - var(--header-plus-box-shadow-padding) - 16px)',
-      objectFit: 'contain'
+      objectFit: 'contain',
+      [theme.breakpoints.up('mdPlus')]: {
+        maxWidth: 'calc(80vw)',
+      }
     },
     infoBar: {
       display: 'flex',
@@ -115,7 +127,9 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1.6),
       [theme.breakpoints.up('mdPlus')]: {
         alignItems: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        minWidth:'20vw',
+        maxWidth:'25vw',
       }
     },
     infoContainer: {
@@ -135,8 +149,9 @@ export const styles = makeStyles((theme: Theme) =>
 
     textSpace: {
       marginBottom: '5px',
+      overflowWrap: 'break-word',
       [theme.breakpoints.up('mdPlus')]: {
-        marginBottom: '2vh'
+        marginBottom: '2vh',
       }
     },
     titleAndSizeContainer: {
@@ -172,7 +187,7 @@ export const styles = makeStyles((theme: Theme) =>
     flexLikeRoom: {
       paddingRight: '9px',
       [theme.breakpoints.up('mdPlus')]: {
-        paddingRight: '2px'
+        paddingRight: '20px'
       }
     },
     flexMessageLike: {
@@ -180,7 +195,7 @@ export const styles = makeStyles((theme: Theme) =>
       //justifyContent: 'end',
       alignItems: 'center',
       display: 'grid',
-      gridTemplateColumns: '1fr 0fr 0fr 0fr'
+      gridTemplateColumns: '1fr 0fr 0fr 0fr 0fr'
     },
 
     likeCounter: {
@@ -193,14 +208,7 @@ export const styles = makeStyles((theme: Theme) =>
     likeButton: {
       padding: theme.spacing(0.2, 0, 0.4, 0.5),
       fontSize: '0.5rem',
-      '&:hover': {
-        backgroundColor: 'transparent'
-      }
-    },
-    chatButton: {
-      padding: theme.spacing(0.5, 0, 0.4, 0.5),
-      fontSize: '0.5rem',
-      color: '#000000',
+
       '&:hover': {
         backgroundColor: 'transparent'
       }
@@ -209,6 +217,10 @@ export const styles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
       fontSize: '0.9rem',
       color: '#000000',
+      [theme.breakpoints.up('mdPlus')]: {
+        marginRight: '15px',
+        marginLeft: '15px'
+      },
       '&:hover': {
         backgroundColor: 'transparent'
       },
@@ -293,9 +305,9 @@ export const styles = makeStyles((theme: Theme) =>
       width: '100%'
     },
 
-    divider: {
-      margin: '4'
-    }
+    imageDivider: {
+
+    },
     // [theme.breakpoints.up('smPlus')]: {
     //   titleAndSizeContainer: {
     //     flexDirection: 'column'

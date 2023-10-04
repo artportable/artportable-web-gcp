@@ -199,6 +199,30 @@ export default function ArtworkPage(props) {
                           <ArrowBackIcon />
                         </IconButton>
                       </div>
+                      <Button
+                          className={`${s.followButton} ${
+                            isFollowed ? s.following : ''
+                          }`}
+                          variant={!isFollowed ? 'contained' : 'outlined'}
+                          startIcon={!isFollowed ? <AddIcon /> : null}
+                          disableElevation
+                          rounded
+                          onClick={() => {
+                            toggleFollow()
+                            !isFollowed
+                              ? trackGoogleAnalytics(
+                                  ActionType.FOLLOW_ARTWORK,
+                                  CategoryType.INTERACTIVE
+                                )
+                              : null
+                          }}
+                        >
+                          {capitalizeFirst(
+                            !isFollowed
+                              ? t('common:words.follow')
+                              : t('common:words.following')
+                          )}
+                        </Button>
                       <RWebShare
                         data={{
                           text: shareArtworkText,
@@ -236,33 +260,11 @@ export default function ArtworkPage(props) {
                   <div className={s.infoContainer}>
                     <div className={s.titleAndSizeContainer}>
                       <div className={s.nameAndFollow}>
-                          <p className={s.artistName}>
-                            {artwork.data.Owner.Name +
-                              ' ' +
-                              artwork.data.Owner.Surname}
-                          </p>
-                        <Button
-                          className={`${s.followButton} ${isFollowed ? s.following : ""}`}
-                          variant={!isFollowed ? 'contained' : 'outlined'}
-                          startIcon={!isFollowed ? <AddIcon /> : null}
-                          disableElevation
-                          rounded
-                          onClick={() => {
-                            toggleFollow()
-                            !isFollowed
-                              ? trackGoogleAnalytics(
-                                  ActionType.FOLLOW_ARTWORK,
-                                  CategoryType.INTERACTIVE
-                                )
-                              : null
-                          }}
-                        >
-                          {capitalizeFirst(
-                            !isFollowed
-                              ? t('common:words.follow')
-                              : t('common:words.following')
-                          )}
-                        </Button>
+                        <p className={s.artistName}>
+                          {artwork.data.Owner.Name +
+                            ' ' +
+                            artwork.data.Owner.Surname}
+                        </p>
                       </div>
                       <i className={s.titleSpace}>
                         {artwork.data.Title && (
@@ -400,10 +402,11 @@ export default function ArtworkPage(props) {
               <Box className={s.extraImages}>
                 {artwork.data.SecondaryFile && (
                   <div className={s.imageContainer}>
-                    <Divider sx={{ m: 4 }} />
+                    <Divider />
                     <img
                       src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
                       className={s.extraImage}
+                      style={{marginTop: '25px', marginBottom:'20px'}}
                     />
                   </div>
                 )}
@@ -413,6 +416,7 @@ export default function ArtworkPage(props) {
                     <img
                       src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
                       className={s.extraImage}
+                      style={{marginTop: '25px'}}
                     />
                   </div>
                 )}
