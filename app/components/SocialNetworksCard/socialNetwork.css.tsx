@@ -13,14 +13,14 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       gap: theme.spacing(1),
       backgroundColor: '#fdf9f7',
-      marginTop: '-10px',
+      // marginTop: '-10px',
       [theme.breakpoints.up('md')]: {
         justifyContent: 'left',
-        marginLeft: '-1.0vw'
+        padding: '10px 0'
       }
     },
     icon: {
-      marginRight: '5px',
+      marginRight: '1px',
       display: 'flex',
       alignItems: 'center'
     },

@@ -66,7 +66,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
 
   useEffect(() => {
     console.log(userProfile);
-    
+
   },)
 
   useEffect(() => {
