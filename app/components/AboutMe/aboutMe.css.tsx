@@ -7,14 +7,17 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       ...columnGap(32),
-      marginBottom: '0.5vh'
+      marginBottom: '0.5vh',
+      justifyContent: 'center',
+      alignItems: 'center'
     },
-
 
     rightCol: {
       display: 'flex',
       flexDirection: 'column',
-      ...columnGap(16),
+      maxWidth: 'calc(280px + 40vw)',
+      justifyContent: 'center',
+      ...columnGap(16)
     },
 
     [theme.breakpoints.up('smPlus')]: {
