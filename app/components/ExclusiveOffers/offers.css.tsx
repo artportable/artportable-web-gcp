@@ -1,19 +1,19 @@
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { theme } from '../../../styles/theme';
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { theme } from "../../../styles/theme";
 
 export const styles = makeStyles(() =>
   createStyles({
     container: {
-      display: 'flex'
+      display: "flex",
     },
     textContainer: {
-      display: 'flex',
-      flexDirection: 'column'
+      display: "flex",
+      flexDirection: "column",
     },
     yearsRow: {
       display: "flex",
       flexDirection: "row",
-      alignItems: "center"
+      alignItems: "center",
     },
     icon: {
       overflow: "visible",
@@ -22,10 +22,10 @@ export const styles = makeStyles(() =>
     years: {
       marginBottom: "2px",
       fontStyle: "italic",
-      color: "grey"
+      color: "grey",
     },
     displayNone: {
-      display: 'none'
+      display: "none",
     },
 
     title: {
@@ -36,23 +36,28 @@ export const styles = makeStyles(() =>
       fontSize: "14px",
       fontWeight: "bold",
       [theme.breakpoints.up("md")]: {
-      fontSize: "20px",
+        fontSize: "20px",
       },
     },
     frame: {
-      display: "flex", 
-      flexDirection: "column", 
-      padding: "20px", 
-      marginBottom: "30px", 
-      borderRadius: "5px",    
+      display: "flex",
+      flexDirection: "column",
+      padding: "20px",
+      marginBottom: "30px",
+      borderRadius: "5px",
       textAlign: "center",
       borderStyle: "solid",
       backgroundColor: "#faf3ee",
-      borderWidth: "2px", 
-      boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",     
+      borderWidth: "2px",
+      boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
       filter: "drop-shadow(3px 8px 8px rgba(0, 0, 0, 0.4))",
       width: "100%",
-      alignItems: "center"
-    }
-  }),
+      alignItems: "center",
+    },
+
+    frameDexter: {
+      borderStyle: "solid",
+      paddingTop: "4px",
+    },
+  })
 );

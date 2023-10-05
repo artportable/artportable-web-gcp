@@ -66,7 +66,7 @@ import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade
 import UpgradePortfolioProfile from "../../app/components/UpgradePortfolioProfile/UpgradPortfolioProfile";
 import { RWebShare } from "react-web-share";
 import Offers from "../../app/components/ExclusiveOffers/Offers";
-import BrushSharpIcon from '@mui/icons-material/BrushSharp';
+import BrushSharpIcon from "@mui/icons-material/BrushSharp";
 
 function a11yProps(index: any) {
   return {
@@ -664,14 +664,14 @@ export default function Profile(props) {
                     {...a11yProps(t("profile:portfolio"))}
                   />
                   <Tab
-                        className={s.tab}
+                    className={s.tab}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
                   {
                     articles && articles.length > 0 && (
                       <Tab
-                      className={s.tab}
+                        className={s.tab}
                         label={t("profile:articles")}
                         {...a11yProps(t("profile:articles"))}
                       />
