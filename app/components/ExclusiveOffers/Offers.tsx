@@ -14,7 +14,7 @@ import minRam from "../../../public/offers/minramwhite.png";
 import dexterDesktop from "../../../public/offers/dexterDesktopSv.jpg";
 import dexterMobile from "../../../public/offers/dexterMobileSv.jpg";
 import dexterDesktopEn from "../../../public/offers/dexterDesktopEn.jpg";
-import dexterMobileEn from "../../../public/offers/dexterMobileSv.jpg";
+import dexterMobileEn from "../../../public/offers/dexterMobileEn.jpg";
 import Image from "next/image";
 import {
   ActionType,
