@@ -8,8 +8,8 @@ import InspiredByCard from '../InspiredByCard/InspiredByCard'
 import { isNullOrUndefined } from '../../utils/util'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
-import { UserContext } from '../../contexts/user-context'
-import { Membership } from '../../models/Membership'
+
+
 // ny
 
 export default function AboutCard({
@@ -23,8 +23,6 @@ export default function AboutCard({
   const { t } = useTranslation(['profile', 'tags'])
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
   const [profilepic, setProfilepic] = useState('No change')
-  const { membership } =
-  useContext(UserContext);
   
   const fileInput = useRef(null)
 

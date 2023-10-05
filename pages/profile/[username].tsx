@@ -659,16 +659,19 @@ export default function Profile(props) {
                   centered
                 >
                   <Tab
+                    className={s.tab}
                     label={t("profile:portfolio")}
                     {...a11yProps(t("profile:portfolio"))}
                   />
                   <Tab
+                        className={s.tab}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
                   {
                     articles && articles.length > 0 && (
                       <Tab
+                      className={s.tab}
                         label={t("profile:articles")}
                         {...a11yProps(t("profile:articles"))}
                       />
@@ -678,6 +681,7 @@ export default function Profile(props) {
                   }
                   {isMyProfile && (
                     <Tab
+                      className={s.tab}
                       style={{
                         color: "white",
                         backgroundColor: "#02a16c",
