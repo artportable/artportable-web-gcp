@@ -16,70 +16,90 @@ export const styles = makeStyles((theme: Theme) =>
     imgAndTextWrapper: {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: "center",
+      alignItems: 'center',
       [theme.breakpoints.up('md')]: {}
     },
-    imgContainer: {
-      width: "300px",
-      height: "300px",
-      textAlign: 'center',
+    imgClass: {
+      width: '300px',
+      heigh: 'auto'
     },
     profilePicture: {
-      display: "flex",
-      maxHeight: "100%",
-      maxWidth: '100%',
- 
+      display: 'flex',
+      maxHeight: '100%',
+      maxWidth: '100%'
     },
     textContainer: {
-
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '300px',
       [theme.breakpoints.up('md')]: {
-        alignItems: "flex-start",
+        alignItems: 'flex-start'
       }
-
-    },
-    aboutText: {
-    
-      [theme.breakpoints.up('md')]: {
-       
-       
-      }
-      
     },
 
+    profilePicBtn: {
+      marginTop: '20px',
+      color: 'black',
+      fontWeight: 'bold',
+      padding: '0 15px',
+      border: '1px solid black',
+      borderRadius: '20px',
+      display: 'flex',
+      alignItems: 'center',
+      textAlign: 'center',
+      backgroundColor: '#FDF9F7',
+      // border: 'none',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: 'white',
+        boxShadow: '5px 5px 10px #e5e6e4'
+      }
+    },
     aboutTextProfilePic: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
       [theme.breakpoints.up('md')]: {
-        flexDirection: "row",
-        alignItems: "flex-start"
-       
+        flexDirection: 'row',
+        alignItems: 'flex-start'
       }
     },
 
     ChangeProfilePicture: {
-      display: "flex",
-      justifyContent: "center",
-      marginBottom: "10px",
+      display: 'flex',
+      justifyContent: 'center',
+      marginBottom: '10px'
     },
     noProfilePic: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       [theme.breakpoints.up('md')]: {
-        flexDirection: "column",
-        alignItems: "flex-start"
-       
+        flexDirection: 'column',
+        alignItems: 'flex-start'
       }
     },
+    noPicBox: {
+      display: 'flex',
+      justifyContent: 'center',
+      margin: '10px',
+      border: '1px solid gr',
+      width: '200px',
+      height: '200px',
+      borderRadius: '20px',
+      textAlign: 'center',
+      alignItems: 'center',
+      boxShadow: '5px 5px 10px #e5e6e4',
+      fontSize: '15px',
+    },
     bioText: {
-     
+      display:'inline-block',
+      overflowWrap: 'break-word', 
+      wordBreak: 'break-word',
       [theme.breakpoints.up('md')]: {
-   
-       
+        maxWidth: '35vw'
       }
     }
   })

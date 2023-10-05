@@ -5,7 +5,8 @@ export const styles = makeStyles((theme: Theme) =>
     tagsContainer: {
       display: 'flex',
       gap: theme.spacing(1),
-      flexWrap: 'wrap'
-    }
+      flexWrap: 'wrap',
+      marginBottom: '2vh'
+    },
   }),
 );
