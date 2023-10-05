@@ -81,8 +81,23 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: 'flex-start'
       }
     },
+    noPicBox: {
+      display: 'flex',
+      justifyContent: 'center',
+      margin: '10px',
+      border: '1px solid gr',
+      width: '200px',
+      height: '200px',
+      borderRadius: '20px',
+      textAlign: 'center',
+      alignItems: 'center',
+      boxShadow: '5px 5px 10px #e5e6e4',
+      fontSize: '15px',
+    },
     bioText: {
-      overflowWrap: 'break-word',
+      display:'inline-block',
+      overflowWrap: 'break-word', 
+      wordBreak: 'break-word',
       [theme.breakpoints.up('md')]: {
         maxWidth: '35vw'
       }

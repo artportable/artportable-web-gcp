@@ -220,7 +220,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     tabs: {
       "& .MuiTab-root": {
-        minWidth: "0px",
+        minWidth: "60px",
       },
       [theme.breakpoints.up("md")]: {
         "& .MuiTab-root": {
@@ -229,6 +229,12 @@ export const profileStyles = makeStyles((theme: Theme) =>
       },
       justifyContent: "center",
       width: "100%",
+    },
+    tab: {
+      fontSize:'8px',
+      [theme.breakpoints.up("sm")] : {
+        fontSize: '14px',
+      },
     },
     text: {
       minWidth: 0,
@@ -266,9 +272,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       backgroundColor: "#FFD700",
       display: "flex",
       margin: "0 auto",
+      padding:'7px',
       
       [theme.breakpoints.up("smPlus")]: {
- 
       },
       "&:hover": {
         backgroundColor: "#D6A407",

@@ -39,14 +39,6 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: 'column'
       }
     },
-    nameAndFollow: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      [theme.breakpoints.up('mdPlus')]: {
-        justifyContent: 'center'
-      }
-    },
 
     artistName: {
       [theme.breakpoints.up('mdPlus')]: {
@@ -57,17 +49,12 @@ export const styles = makeStyles((theme: Theme) =>
 
     followButton: {
       maxHeight: '30px',
-      // minWidth: '75px',
-      // maxWidth: '75px',
       width:'75px',
       margin: '10px',
       backgroundColor: '#fadf87',
       border: '1px solid #fadf87',
       color: 'black',
       padding: '5px',
-      // [theme.breakpoints.up('mdPlus')]: {
-      //   marginLeft: '200px',
-      // },
       '&:hover': {
         backgroundColor: '#fadf87',
         color: 'white'
@@ -184,23 +171,20 @@ export const styles = makeStyles((theme: Theme) =>
         boxShadow: '5px 5px 10px #e5e6e4'
       }
     },
-    flexLikeRoom: {
-      paddingRight: '9px',
-      [theme.breakpoints.up('mdPlus')]: {
-        paddingRight: '20px'
-      }
-    },
     flexMessageLike: {
-      // display: 'flex',
-      //justifyContent: 'end',
       alignItems: 'center',
       display: 'grid',
-      gridTemplateColumns: '1fr 0fr 0fr 0fr 0fr'
+      gridTemplateColumns: '1fr 0fr 0fr 0fr 0fr',
+      [theme.breakpoints.up('mdPlus')]: {
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+      },
     },
 
     likeCounter: {
       marginLeft: '4px',
-      marginRight: '0',
+      marginRight: '17px',
 
       fontWeight: 500,
       color: '#000000'

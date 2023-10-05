@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Avatar, Box, Card, CardContent, Typography } from '@material-ui/core'
 import { styles } from './aboutCard.css'
 import RoomIcon from '@material-ui/icons/Room'
@@ -8,6 +8,8 @@ import InspiredByCard from '../InspiredByCard/InspiredByCard'
 import { isNullOrUndefined } from '../../utils/util'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
+
+
 // ny
 
 export default function AboutCard({
@@ -21,7 +23,7 @@ export default function AboutCard({
   const { t } = useTranslation(['profile', 'tags'])
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
   const [profilepic, setProfilepic] = useState('No change')
-
+  
   const fileInput = useRef(null)
 
   const handleFileUpload = (event) => {
@@ -65,24 +67,47 @@ export default function AboutCard({
                     ></img>
                   )}
                   {!data?.ProfilePicture && (
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                      <div
-                        style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          margin: '10px',
-                          border: '1px solid gr',
-                          width: '200px',
-                          height: '200px',
-                          borderRadius: '20px',
-                          textAlign: 'center',
-                          alignItems: 'center',
-                          boxShadow: '5px 5px 10px #e5e6e4',
-                          fontSize: '15px'
-                        }}
-                      >
+                    <div className={s.noProfilePic}>
+                      <div className={s.noPicBox}>
                         {t('profile:NoProfilePicSet')}
                       </div>
+                      {isMyProfile && (
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    margin: '10px'
+                  }}
+                >
+                  <button
+                    style={{
+                      color: 'black',
+                      border: '1px solid black',
+                      borderRadius: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      backgroundColor: 'transparent',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <div>{t('profile:addProfilePicture')}</div>
+
+                    <input
+                      ref={fileInput}
+                      onChange={handleFileUpload}
+                      type="file"
+                      style={{ display: 'none' }}
+                      multiple={false}
+                    />
+
+                    <AddCircleIcon
+                      color="primary"
+                      onClick={() => fileInput.current.click()}
+                    />
+                  </button>
+                </div>
+              )}
                     </div>
                   )}
                   {data?.ProfilePicture && (
@@ -176,43 +201,7 @@ export default function AboutCard({
 
           {!data?.ProfilePicture && (
             <div className={s.noProfilePic}>
-              {isMyProfile && (
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    margin: '10px'
-                  }}
-                >
-                  <button
-                    style={{
-                      color: 'black',
-                      border: '1px solid black',
-                      borderRadius: '20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      backgroundColor: 'transparent',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <div>{t('profile:addProfilePicture')}</div>
-
-                    <input
-                      ref={fileInput}
-                      onChange={handleFileUpload}
-                      type="file"
-                      style={{ display: 'none' }}
-                      multiple={false}
-                    />
-
-                    <AddCircleIcon
-                      color="primary"
-                      onClick={() => fileInput.current.click()}
-                    />
-                  </button>
-                </div>
-              )}
+              
             </div>
           )}
         </div>
