@@ -11,8 +11,10 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import minRam from "../../../public/offers/minramwhite.png";
-import dexterDesktop from "../../../public/offers/dexterDesktop.jpg";
-import dexterMobile from "../../../public/offers/dexterMobile.jpg";
+import dexterDesktop from "../../../public/offers/dexterDesktopSv.jpg";
+import dexterMobile from "../../../public/offers/dexterMobileSv.jpg";
+import dexterDesktopEn from "../../../public/offers/dexterDesktopEn.jpg";
+import dexterMobileRn from "../../../public/offers/dexterMobileSv.jpg";
 import Image from "next/image";
 import {
   ActionType,
@@ -32,9 +34,8 @@ export default function Offers() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // call once initially
+    handleResize();
 
-    // Cleanup event listener on component unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
