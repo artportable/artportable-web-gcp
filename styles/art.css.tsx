@@ -172,14 +172,19 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     flexMessageLike: {
-      display:'flex',
-      alignItems:'center',
-      justifyContent:'center',
+      alignItems: 'center',
+      display: 'grid',
+      gridTemplateColumns: '1fr 0fr 0fr 0fr 0fr',
+      [theme.breakpoints.up('mdPlus')]: {
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+      },
     },
 
     likeCounter: {
       marginLeft: '4px',
-      marginRight: '0',
+      marginRight: '17px',
 
       fontWeight: 500,
       color: '#000000'

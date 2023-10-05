@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import Main from '../../app/components/Main/Main'
 import { useGetArtwork } from '../../app/hooks/dataFetching/Artworks'
 import { Badge, Box, IconButton, Paper, Typography } from '@material-ui/core'
-import AddIcon from '@material-ui/icons/Add'
 import { styles } from '../../styles/art.css'
 import { capitalizeFirst, fetchWithTimeout } from '../../app/utils/util'
 import Button from '../../app/components/Button/Button'
@@ -189,7 +188,7 @@ export default function ArtworkPage(props) {
                     <div className={s.flexMessageLike}>
                       <div
                         style={{
-                          //marginRight: 'auto',
+                          display:'flex',
                         }}
                       >
                         <IconButton onClick={() => router.back()}>
@@ -201,7 +200,6 @@ export default function ArtworkPage(props) {
                             isFollowed ? s.following : ''
                           }`}
                           variant={!isFollowed ? 'contained' : 'outlined'}
-                          startIcon={!isFollowed ? <AddIcon /> : null}
                           disableElevation
                           rounded
                           onClick={() => {
