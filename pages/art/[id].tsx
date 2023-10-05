@@ -186,13 +186,10 @@ export default function ArtworkPage(props) {
                     src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
                     className={s.primaryImage}
                   />
-                  <div className={s.flexLikeRoom}>
                     <div className={s.flexMessageLike}>
                       <div
                         style={{
-                          left: '0',
-                          display: 'flex',
-                          justifyContent: 'left'
+                          //marginRight: 'auto',
                         }}
                       >
                         <IconButton onClick={() => router.back()}>
@@ -254,18 +251,15 @@ export default function ArtworkPage(props) {
                         )}
                       </div>
                     </div>
-                  </div>
                 </div>
                 <div className={s.infoBar}>
                   <div className={s.infoContainer}>
                     <div className={s.titleAndSizeContainer}>
-                      <div className={s.nameAndFollow}>
                         <p className={s.artistName}>
                           {artwork.data.Owner.Name +
                             ' ' +
                             artwork.data.Owner.Surname}
                         </p>
-                      </div>
                       <i className={s.titleSpace}>
                         {artwork.data.Title && (
                           <span>{artwork.data.Title}</span>
