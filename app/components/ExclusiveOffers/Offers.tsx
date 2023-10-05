@@ -11,8 +11,10 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import minRam from "../../../public/offers/minramwhite.png";
-import dexterDesktop from "../../../public/offers/dexterDesktop.jpg";
-import dexterMobile from "../../../public/offers/dexterMobile.jpg";
+import dexterDesktop from "../../../public/offers/dexterDesktopSv.jpg";
+import dexterMobile from "../../../public/offers/dexterMobileSv.jpg";
+import dexterDesktopEn from "../../../public/offers/dexterDesktopEn.jpg";
+import dexterMobileEn from "../../../public/offers/dexterMobileSv.jpg";
 import Image from "next/image";
 import {
   ActionType,
@@ -22,21 +24,41 @@ import {
 
 export default function Offers() {
   const s = styles();
-  const { t } = useTranslation("profile");
+  const { t, i18n } = useTranslation("profile");
 
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const debounceResize = (callback, delay) => {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          callback(...args);
+        }, delay);
+      };
+    };
+
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 767);
     };
 
-    window.addEventListener("resize", handleResize);
-    handleResize(); // call once initially
+    handleResize();
 
-    // Cleanup event listener on component unmount
-    return () => window.removeEventListener("resize", handleResize);
+    const debouncedHandleResize = debounceResize(handleResize, 200);
+    window.addEventListener("resize", debouncedHandleResize);
+
+    return () => window.removeEventListener("resize", debouncedHandleResize);
   }, []);
+
+  let dexterImage;
+  if (i18n.language === "sv") {
+    dexterImage = isMobile ? dexterMobile : dexterDesktop;
+  } else if (i18n.language === "en") {
+    dexterImage = isMobile ? dexterMobileEn : dexterDesktopEn;
+  }
+
+  if (isMobile === null) return null;
 
   return (
     <div>
@@ -52,7 +74,7 @@ export default function Offers() {
               )
             }
           >
-            <Image src={isMobile ? dexterMobile : dexterDesktop} alt="logo" />
+            <Image src={dexterImage} alt="logo" />
           </a>
         </Link>
       </div>
