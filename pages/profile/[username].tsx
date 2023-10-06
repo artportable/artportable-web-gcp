@@ -815,6 +815,7 @@ export default function Profile(props) {
                                         article?.coverImage?.formats?.small?.url
                                       }
                                       className={s.coverImage}
+                                      alt="cover image"
                                     />
                                   </div>
                                   <div className={s.textContent}>

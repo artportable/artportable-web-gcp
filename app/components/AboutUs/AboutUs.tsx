@@ -131,7 +131,7 @@ export default function AboutMe() {
         {staff.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <div className={s.frame}>
-              <img className={s.image} src={person?.image} alt="" title="" />
+              <img className={s.image} src={person?.image} alt="staff image" title="" />
             </div>
             <Typography className={s.bold}>{person?.name}</Typography>
             <Typography>{person?.title}</Typography>
@@ -146,7 +146,7 @@ export default function AboutMe() {
         {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <div className={s.frame}>
-              <img className={s.image} src={person?.image} alt="" title="" />
+              <img className={s.image} src={person?.image} alt="staff image" title="" />
             </div>
             <Typography className={s.bold}>{person?.name}</Typography>
             <Typography>{person?.title}</Typography>

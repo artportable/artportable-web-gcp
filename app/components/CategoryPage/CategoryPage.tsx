@@ -198,6 +198,7 @@ export default function CategoryPage({
                         >
                           <div className={s.wrapper}>
                             <img
+                              alt="Cover Image"
                               className={s.coverImage}
                               src={article?.coverImage?.formats?.small?.url}
                             />
@@ -236,6 +237,7 @@ export default function CategoryPage({
                         >
                           <div className={s.wrapper}>
                             <img
+                              alt="Cover Image"
                               className={s.coverImage}
                               src={article?.coverImage?.formats?.small?.url}
                             />

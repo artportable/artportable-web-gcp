@@ -199,6 +199,7 @@ export default function ArtworkListItemDefined({
                 width: width,
                 height: height
               }}
+              alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
             />
@@ -283,41 +284,41 @@ export default function ArtworkListItemDefined({
           </div>
         )}
       </div>
-      { (!indexPage && !isMyProfile) ? (
-          
-          <div className={s.desktopLikeTitle}>
-            <div className={s.titleMobile}>
-      {artwork && artwork.Title ? artwork.Title : t('untitled')}
-      
-        </div>
-      
-        <IconButton className={s.likeButton} onClick={toggleLike}
-            
+      {(!indexPage && !isMyProfile) ? (
+
+        <div className={s.desktopLikeTitle}>
+          <div className={s.titleMobile}>
+            {artwork && artwork.Title ? artwork.Title : t('untitled')}
+
+          </div>
+
+          <IconButton className={s.likeButton} onClick={toggleLike}
+
+          >
+            {likedFilled}
+            <div
+              className={s.likeMobile}
+
             >
-              {likedFilled}
-                <div
-                className={s.likeMobile}
-                  
-                >
-                  {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
-                </div>
-            </IconButton>
-      
-           
+              {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
+            </div>
+          </IconButton>
+
+
         </div>
-      ): (!indexPage && isMyProfile) &&
-        (
-          <div className={s.desktopLikeTitle}>
-            <div>      
+      ) : (!indexPage && isMyProfile) &&
+      (
+        <div className={s.desktopLikeTitle}>
+          <div>
           </div>
-            {topActions && (
-              <div className={s.likeButton}>
-                <div>{topActions}</div>
-              </div>
-            )}
-          </div>
-          )        
-        } 
+          {topActions && (
+            <div className={s.likeButton}>
+              <div>{topActions}</div>
+            </div>
+          )}
+        </div>
+      )
+      }
 
       {indexPage && (
         <div className={s.infoContainer}>
@@ -393,16 +394,16 @@ export default function ArtworkListItemDefined({
                   {artwork.MultipleSizes
                     ? ' (' + t('common:words.multipleSizes').toLowerCase() + ')'
                     : artwork.Width && artwork.Height && artwork.Depth
-                    ? ' (' +
+                      ? ' (' +
                       artwork.Width +
                       'x' +
                       artwork.Height +
                       'x' +
                       artwork.Depth +
                       'cm)'
-                    : artwork.Width && artwork.Height
-                    ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
-                    : null}
+                      : artwork.Width && artwork.Height
+                        ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
+                        : null}
                 </span>
               </div>
               <div className={s.tagsContainer}>

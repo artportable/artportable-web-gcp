@@ -170,6 +170,7 @@ export default function TrendingArtworks({ artwork }) {
                 className={s.image}
                 src={`${bucketUrl}${artwork?.PrimaryFile.Name}`}
                 key={artwork?.PrimaryFile}
+                alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               />
             </div>
             {artwork.SecondaryFile && (

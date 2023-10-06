@@ -70,6 +70,7 @@ export default function ArticlePage({
           <img
             className={s.background}
             src={article?.coverImage?.formats?.medium?.url}
+            alt="background image"
           />
 
           <Paper className={s.paper}>
