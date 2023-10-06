@@ -58,11 +58,6 @@ export default function ArtworkListItemDefined({
 
   const isMyProfile = profileUser === username.value;
 
-  useEffect(() => {
-    console.log(isMyProfile);
-    
-  }, )
-
   function getFormatter(
     languageCode: string,
     currency: string | null

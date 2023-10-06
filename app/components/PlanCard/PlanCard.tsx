@@ -155,7 +155,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   };
 
   const upgradeWithPhone = (event) => {
-    console.log(numberExists)
+     //console.log(numberExists)
     if (!phone.value) {
       setNumberExists(false)
       setHideTabs(true)

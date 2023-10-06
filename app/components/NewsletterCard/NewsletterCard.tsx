@@ -68,7 +68,6 @@ export default function Newsletter() {
               className={iS.TextField}
             />
             <FormButton
-              onClick={() => console.log("You clicked the button")}
               type="submit"
             >
               {" "}

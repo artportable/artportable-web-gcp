@@ -59,8 +59,6 @@ export default function Frame(props) {
        shouldShowWelcomeModal: true,
         onTrackingEvent,
       }
-      console.log(config)
-      console.log(artwork.data.PrimaryFile.Width)
       frameEngine.update(config)
       frameEngine.maximize();
     } else {
