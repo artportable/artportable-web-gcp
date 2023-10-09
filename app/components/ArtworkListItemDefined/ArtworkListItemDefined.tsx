@@ -352,7 +352,6 @@ export default function ArtworkListItemDefined({
                       </IconButton>
                     </RWebShare>
                     <div title={t('common:sendMessage')}>
-                      <a>
                         <IconButton
                           className={s.chatButton}
                           aria-label="account"
@@ -371,7 +370,6 @@ export default function ArtworkListItemDefined({
                         >
                           <MessageRoundedIcon style={{ fontSize: '23px' }} />
                         </IconButton>
-                      </a>
                     </div>
 
                     <IconButton
