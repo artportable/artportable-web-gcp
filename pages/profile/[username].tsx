@@ -722,6 +722,7 @@ export default function Profile(props) {
                                       isMyProfile ? (
                                         <>
                                           <Button
+                                            aria-label="edit"
                                             className={s.editButton}
                                             variant="contained"
                                             color="red"

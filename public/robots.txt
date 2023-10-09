@@ -1,0 +1,4 @@
+#Allow all bots to crawl the website except the profile
+User-agent: *
+Allow: /
+Disallow: /profile

@@ -240,6 +240,7 @@ export default function ArtworkPage(props) {
                           disableRipple
                           disableFocusRipple
                           onClick={toggleLike}
+                          aria-label="like button"
                         >
                           {likedFilled}
                         </IconButton>

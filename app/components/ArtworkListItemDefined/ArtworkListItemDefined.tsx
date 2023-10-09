@@ -293,7 +293,7 @@ export default function ArtworkListItemDefined({
 
           </div>
 
-          <IconButton className={s.likeButton} onClick={toggleLike}
+          <IconButton aria-label="like" className={s.likeButton} onClick={toggleLike}
 
           >
             {likedFilled}
@@ -347,7 +347,7 @@ export default function ArtworkListItemDefined({
                         trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
                       }
                     >
-                      <IconButton className={s.shareButton}>
+                      <IconButton aria-label="share" className={s.shareButton}>
                         <ShareIcon style={{ fontSize: '21px' }} />
                       </IconButton>
                     </RWebShare>
@@ -375,6 +375,7 @@ export default function ArtworkListItemDefined({
                     </div>
 
                     <IconButton
+                      aria-label="like"
                       className={s.likeButton}
                       disableRipple
                       onClick={toggleLike}

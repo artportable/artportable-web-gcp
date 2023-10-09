@@ -367,6 +367,7 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   {clickedFilter === "latest" && (
                     <button
+                      aria-label="close"
                       className={s.closeButton}
                       onClick={handleRemoveClick}
                     >
@@ -394,6 +395,7 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   {clickedFilter === "curated" && (
                     <button
+                      aria-label="close"
                       className={s.closeButton}
                       onClick={handleRemoveClick}
                     >
@@ -421,6 +423,7 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   {clickedFilter === "top" && (
                     <button
+                      aria-label="close"
                       className={s.closeButton}
                       onClick={handleRemoveClick}
                     >
@@ -461,6 +464,7 @@ export default function DiscoverPage({ navBarItems }) {
                     >
                       {activeFilter === `${tag}` && (
                         <button
+                          aria-label="close"
                           className={s.closeButton}
                           onClick={handleRemoveClick}
                         >
@@ -489,6 +493,7 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   {clickedFilter === "artists" && (
                     <button
+                      aria-label="close"
                       className={s.closeButton}
                       onClick={handleRemoveClick}
                     >
@@ -512,6 +517,7 @@ export default function DiscoverPage({ navBarItems }) {
                 >
                   {clickedFilter === "monthlyArtist" && (
                     <button
+                      aria-label="close"
                       className={s.closeButton}
                       onClick={handleRemoveClick}
                     >
@@ -539,6 +545,7 @@ export default function DiscoverPage({ navBarItems }) {
                     {" "}
                     {clickedFilter === "likedbyme" && (
                       <button
+                        aria-label="close"
                         className={s.closeButton}
                         onClick={handleRemoveClick}
                       >

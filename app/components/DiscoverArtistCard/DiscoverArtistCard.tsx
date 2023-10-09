@@ -85,7 +85,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             </div>
           )}
         </div>
-        <IconButton className={s.leftButton} color="primary" onClick={() => {
+        <IconButton  aria-label="close" className={s.leftButton} color="primary" onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: -scrollBy, behavior: 'smooth' });
         }}>
           <ChevronLeftOutlinedIcon className={s.chevron}></ChevronLeftOutlinedIcon>

@@ -197,6 +197,7 @@ export default function TrendingArtworks({ artwork }) {
       <CardActions className={s.cardActions}>
         <div className={s.likeCountContainer}>
           <Button
+            aria-label="like button"
             className={s.likeButton}
             type="button"
             startIcon={

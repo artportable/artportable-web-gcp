@@ -288,7 +288,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
         </form>
         <div className={s.deleteContainer}>
           <Typography>{t("deleteArtwork")}</Typography>
-          <IconButton onClick={() => setDeleteAlertDialogOpen(true)}>
+          <IconButton aria-label="delete" onClick={() => setDeleteAlertDialogOpen(true)}>
             <DeleteIcon color="error"></DeleteIcon>
           </IconButton>
         </div>
