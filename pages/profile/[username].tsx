@@ -808,6 +808,7 @@ export default function Profile(props) {
                                 )}/${article.slug}`}
                                 key={key}
                               >
+                                <a>
                                 <Paper className={s.wrapper}>
                                   <div>
                                     <img
@@ -841,6 +842,7 @@ export default function Profile(props) {
                                   </div>
                                   <div className={s.line}></div>
                                 </Paper>
+                                </a>
                               </Link>
                             );
                           })}
