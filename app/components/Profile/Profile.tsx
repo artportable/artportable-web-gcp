@@ -63,12 +63,6 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
     setLastName(userData?.data?.Surname);
   }
 
-
-  useEffect(() => {
-    console.log(userProfile);
-
-  },)
-
   useEffect(() => {
     getUserFullname();
   }, [firstName, lastName])

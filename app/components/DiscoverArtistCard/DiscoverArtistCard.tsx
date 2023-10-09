@@ -39,7 +39,6 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   function toggleFollow() {
     onFollowClick(artist.SocialId, !isFollowed);
     setFollow(!isFollowed);
-    console.log(artist.SocialId);
   }
   useEffect(() => {
     setFollow(artist.FollowedByMe);

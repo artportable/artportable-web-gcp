@@ -39,7 +39,6 @@ export default function CategoryPage({
 
   useEffect(() => {
     setArray(category?.articles);
-    console.log("category.articles");
   }, [router.push]);
 
   // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
@@ -95,7 +94,6 @@ export default function CategoryPage({
   const addNumber = () => {
     if (!phone.value || phone.value == undefined) {
       setNumberExists(false);
-      console.log(phone.value);
     }
   };
 

@@ -95,7 +95,6 @@ export default function ArtworkPage(props) {
 
   function toggleFollow() {
     redirectIfNotLoggedIn()
-    hej()
     follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token)
     setFollow(!isFollowed)
   }
@@ -123,13 +122,6 @@ export default function ArtworkPage(props) {
     <FavoriteBorderOutlinedIcon color="primary" />
   )
 
-  const hej = () => {
-    console.log(artwork.data.Width)
-    console.log(artwork.data.Height)
-    console.log(
-      staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname
-    )
-  }
   const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`
   const shareArtworkTitle = artwork?.data?.Title
     ? `${t('common:share')}"${artwork?.data?.Title}"`

@@ -48,7 +48,6 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
       loadMoreArtworksElementRef,
       (pageIndex, previousPageData) => {
         if (previousPageData && !previousPageData.next) {
-          console.log(previousPageData.next, ".next");
           props.stopLoadImages();
           return null;
         }
