@@ -36,7 +36,6 @@ interface InputProps {
   isLoading: boolean;
   loadMore: boolean;
   activeTab: number;
-  tagPlaceholder: string;
 }
 
 export default function DiscoverArt({
@@ -49,7 +48,7 @@ export default function DiscoverArt({
   loadMoreElementRef,
   isLoading,
   loadMore,
-  tagPlaceholder,
+
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
@@ -176,16 +175,6 @@ export default function DiscoverArt({
   return (
     <>
       <Box className={s.rowsContainer}>
-        {onFilter && (
-          <div>
-            <SearchField
-              onFilter={onFilter}
-              tags={tags}
-              activeTab={activeTab}
-              tagPlaceholder={tagPlaceholder}
-            ></SearchField>
-          </div>
-        )}
         {showFilterLoadingSkeleton && (
           <>
             <div className={s.row}>
