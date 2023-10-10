@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { memo, useContext, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
@@ -36,10 +36,15 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   const [selectedOrientation, setSelectedOrientation] = useState<string | null>(null);
 
-  const handleOrientationChange = (newOrientation: string) => {
+  const handleOrientationChange = (newOrientation) => {
     setSelectedOrientation(newOrientation);
-
+    localStorage.setItem('filters', JSON.stringify({
+      orientation: newOrientation,
+      technique: selectedTechnique,
+      theme: selectedTheme,
+    }));
   };
+  
   
 
   function filter(tags: string[], searchQuery = "") {
@@ -57,9 +62,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   
 
-  const handleThemeChange = (newTheme: string) => {
+  const handleThemeChange = (newTheme) => {
     setSelectedTheme(newTheme);
-    
+      
     setSelectedTags((prevTags) => {
       if (newTheme === "") {
         return prevTags.filter(tag => tag !== selectedTheme);
@@ -67,7 +72,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         return Array.from(new Set(prevTags.concat(newTheme)));
       }
     });
+  
+    // Update localStorage
+    localStorage.setItem('filters', JSON.stringify({
+      ...JSON.parse(localStorage.getItem('filters')),
+      theme: newTheme
+    }));
   };
+  
   
   const handleTechniqueChange = (newTechnique: string) => {
     setSelectedTechnique(newTechnique);
@@ -89,7 +101,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setSelectedTheme(null);
     setSelectedTechnique(null);
     setSelectedOrientation(null);
-
+    localStorage.removeItem('filters');
   };
 
   const isFilterActive = () => {
@@ -230,24 +242,16 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       return url.href;
     }, username);
 
-    const selectStyle = {
-      margin: "10px",
-      padding: "10px",
-      fontSize: "16px",
-      width: "calc(100% - 20px)",
-      maxWidth: "200px",
-      borderRadius: "8px",
-      border: "1px solid #ccc",
-    };
+    useEffect(() => {
+      const savedFilters = JSON.parse(localStorage.getItem('filters'));
+      if (savedFilters) {
+        setSelectedOrientation(savedFilters.orientation || null);
+        setSelectedTechnique(savedFilters.technique || null);
+        setSelectedTheme(savedFilters.theme || null);
+        // ... apply other filters
+      }
+    }, []);
     
-    const buttonStyle = {
-      border: "none",
-      cursor: "pointer",
-      backgroundColor: "transparent",
-      color: "red",
-      fontSize: "20px",
-      marginRight: "10px",
-    };
   
 
   return (
