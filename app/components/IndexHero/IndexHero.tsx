@@ -317,6 +317,12 @@ export default function IndexHero() {
                   <Typography className={s.accDescription}>
                     {t("readDescription4")}
                   </Typography>
+                  <Typography variant="h5" component="h2" className={s.heading}>
+                    {t("headline5")}
+                  </Typography>
+                  <Typography className={s.accDescription}>
+                    {t("readDescription5")}
+                  </Typography>
 
                   <Accordion className={s.accordion} elevation={0}>
                     <AccordionSummary

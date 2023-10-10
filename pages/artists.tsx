@@ -4,6 +4,7 @@ import Artists from '../app/components/Artists/Artists';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { getNavBarItems } from "../app/utils/getNavBarItems";
+const { t } = useTranslation("art");
 
 export default function artists({navBarItems}) {
 
@@ -15,6 +16,7 @@ export default function artists({navBarItems}) {
         <title>
           {t("artists")}
         </title>
+        <meta name="description" content={t("artistsPageDescripton")} />
       </Head>
       <Artists />
     </Main>
