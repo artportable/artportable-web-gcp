@@ -172,7 +172,7 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!loading && (
         <>
-          {!isSignedIn.value && activeTab != 1 && activeTab  != 2 && <IndexHero></IndexHero>}
+          {!isSignedIn.value && activeTab != 1 && activeTab  != 2 && activeTab  != 3 && <IndexHero></IndexHero>}
              { <AdDialog
               openAdDialog={openAdDialog}
               setOpenAdDialog={setOpenAdDialog}
@@ -182,7 +182,7 @@ export default function DiscoverPage({ navBarItems }) {
             <div className={s.tabContainer}>
               <Tabs
                 className={`${
-                  activeTab < 2 || activeTab === 2 ? s.artTabs : s.artistTab
+                  activeTab <= 3 ? s.artTabs : s.artistTab
                 }`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
@@ -193,7 +193,12 @@ export default function DiscoverPage({ navBarItems }) {
                   className={s.text}
                   label={"Konst"}
                   {...a11yProps(t("discover:trendingArt"))}
-                />     
+                /> 
+                 <Tab
+                  className={s.text}
+                  label={t("discover:latestArt")}
+                  {...a11yProps(t("discover:latestArt"))}
+                />    
                 <Tab
                   className={s.text}
                   label={t("discover:highlights")}
@@ -220,6 +225,17 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
+                <DiscoverLatestArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  sold={sold}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab} tagPlaceholder={""} />
+              </TabPanel>
+              <TabPanel value={activeTab} index={2}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -230,7 +246,7 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab} tagPlaceholder={""} fetchType={""}  />
               </TabPanel>
-              <TabPanel value={activeTab} index={2}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}

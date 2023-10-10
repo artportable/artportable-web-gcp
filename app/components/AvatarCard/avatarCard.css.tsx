@@ -12,19 +12,24 @@ export const styles = makeStyles((theme: Theme) =>
       height: "60px",
     },
     emblem: {
-      margin: '0 10px',
-      width: '45px',
+
+      width: '25px',
+  
+      height: "50px"
     },
     text: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      marginLeft: "30px"
+      marginLeft: "0px"
     },
     username: {
-      fontWeight: 600
+      fontWeight: 600,
+      letterSpacing: "5px",
+      fontSize: "18px"
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('smPlus')]: {
+      fontSize: "26px",
       emblem: {
         margin: '0 20px',
         width: '60px'
