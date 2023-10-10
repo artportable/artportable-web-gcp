@@ -7,7 +7,7 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
-
+import {THEMES, TECHNIQUES} from "./tags";
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
@@ -21,7 +21,7 @@ interface DiscoverTrendingArtTabProps {
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
-  const { t } = useTranslation(['header', 'common', 'support', 'techniques', 'themes']);
+  const { t } = useTranslation(['header', 'common', 'support']);
   const { username, socialId, rowWidth } = props
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
@@ -31,6 +31,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const token = useContext(TokenContext);
   const { like } = usePostLike();
+
 
   
 
@@ -113,87 +114,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     );
   };
   
-
-  const TECHNIQUE_TAGS = {
-    "oil": "Oil",
-    "acrylic": "Acrylic",
-    "aquarelle": "Aquarelle",
-    "mixed-media": "Mixed media",
-    "ceramic": "Ceramic",
-    "pencil": "Pencil",
-    "charcoal": "Charcoal",
-    "clay": "Clay",
-    "glass": "Glass",
-    "textile": "Textile",
-    "gouache": "Gouache",
-    "ink": "Ink",
-    "pastel": "Pastel",
-    "collage": "Collage",
-    "drawing": "Drawing",
-    "photography": "Photography",
-    "sculpture": "Sculpture",
-    "digital": "Digital",
-    "illustration": "Illustration",
-    "video-art": "Video art",
-    "performance-art": "Performance art",
-    "triptych": "Triptych",
-    "installation": "Installation",
-    "mural": "Mural",
-    "print": "Prints",
-    "graphic": "Graphics"
-  };
-
-  const THEME_TAGS = {
-    "impressionism": "Impressionism",
-    "abstract": "Abstract",
-    "realism": "Realism",
-    "surrealism": "Surrealism",
-    "expressionism": "Expressionism",
-    "cubism": "Cubism",
-    "pop-art": "Pop art",
-    "documentary-photography": "Documentary photography",
-    "photorealism": "Photorealism",
-    "abstract-expressionism": "Abstract expressionism",
-    "graffiti": "Graffiti",
-    "portraiture": "Portraiture",
-    "arts-craft": "Arts & craft",
-    "conceptual": "Conceptual",
-    "street-art": "Street art",
-    "still-life": "Still life",
-    "landscape": "Landscape",
-    "animal": "Animal",
-    "architecture": "Architecture",
-    "nature": "Nature",
-    "fashion": "Fashion",
-    "geometric": "Geometric",
-    "flowers": "Flowers",
-    "fantasy": "Fantasy",
-    "pattern": "Pattern",
-    "celebrity": "Celebrity",
-    "pop-culture": "Pop culture",
-    "minimalism": "Minimalism",
-    "figurative": "Figurative",
-    "places": "Places",
-    "politics": "Politics",
-    "water": "Water",
-    "big-city": "Big city",
-    "seasons": "Seasons",
-    "cats": "Cats",
-    "dogs": "Dogs",
-    "nude": "Nude",
-    "travel": "Travel",
-    "food-drink": "Food & drink",
-    "seascape": "Seascape",
-    "art-exhibition": "Art exhibition",
-    "gallery": "Gallery",
-    "group-exhibition": "Group exhibition",
-    "posters": "Posters",
-    "artwork": "Artwork",
-    "NFT": "NFT",
-    "jewelry": "Jewelry",
-  };
-
-
   const { data: artworks, isLoading: isLoadingArtWorks } = useInfiniteScrollWithKey<Artwork>(loadMoreArtworksElementRef,
     (pageIndex, previousPageData) => {
       if (previousPageData && !previousPageData.next) {
@@ -202,7 +122,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         return null;
       }
       
-      // Logic to build the URL should be the same whether it's the first page or subsequent pages.
       let url;
       if (props.sold === "Unsold") {
         url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`);
@@ -277,8 +196,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         }}
       >
         <option value={""}>Format</option>
-        <option value={"Vertical"}>Vertical</option>
-        <option value={"Horizontal"}>Horizontal</option>
+        <option value={"Vertical"}>{t('common:selectOptions:vertical')}</option>
+        <option value={"Horizontal"}>{t('common:selectOptions:horizontal')}</option>
       </select>
 
       <select 
@@ -292,12 +211,16 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           width: "80%",
           maxWidth: "300px",
         }}
+    
       >
-        <option value={""}>Teknik</option>
-        {Object.keys(TECHNIQUE_TAGS).map((key) => (
-          <option value={key} key={key}>{TECHNIQUE_TAGS[key]}</option>
+        <option value={""}>{t('common:selectOptions:technique')}</option>
+        {Object.keys(TECHNIQUES).map((key) => (
+          <option value={key} key={key}>
+            {t(`common:techniques:${key}`)}
+          </option>
         ))}
       </select>
+
       <select 
         value={selectedTheme || ""} 
         onChange={(e) => handleThemeChange(e.target.value)}
@@ -309,12 +232,16 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           width: "80%",
           maxWidth: "300px",
         }}
+  
       >
-        <option value={""}>Tema</option>
-        {Object.keys(THEME_TAGS).map((key) => (
-          <option value={key} key={key}>{THEME_TAGS[key]}</option>
+        <option value={""}>{t('common:selectOptions:theme')}</option>
+        {Object.keys(THEMES).map((key) => (
+          <option value={key} key={key}>
+            {t(`common:themes:${key}`)}
+          </option>
         ))}
       </select>
+
 
       <select 
         style={{
@@ -326,7 +253,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           maxWidth: "300px",
         }}
       >
-        <option value={""}>Pris</option>
+        <option value={""}>{t('common:selectOptions:price')}</option>
         <option value={""}>Upp till 1000kr</option>
         <option value={"Horizontal"}>Upp till 2000kr</option>
         <option value={"Horizontal"}>4000kr </option>
@@ -344,7 +271,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           maxWidth: "300px",
         }}
       >
-        <option value={""}>Storlek</option>
+        <option value={""}>{t('common:selectOptions:size')}</option>
         <option value={""}>Upp till 20cm </option>
         <option value={"Horizontal"}>Upp till 60cm </option>
         <option value={"Horizontal"}>Upp till 90cm </option>

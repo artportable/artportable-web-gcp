@@ -1,4 +1,33 @@
-{
+export const TECHNIQUES = {
+    "oil": "Oil",
+    "acrylic": "Acrylic",
+    "aquarelle": "Aquarelle",
+    "mixed-media": "Mixed media",
+    "ceramic": "Ceramic",
+    "pencil": "Pencil",
+    "charcoal": "Charcoal",
+    "clay": "Clay",
+    "glass": "Glass",
+    "textile": "Textile",
+    "gouache": "Gouache",
+    "ink": "Ink",
+    "pastel": "Pastel",
+    "collage": "Collage",
+    "drawing": "Drawing",
+    "photography": "Photography",
+    "sculpture": "Sculpture",
+    "digital": "Digital",
+    "illustration": "Illustration",
+    "video-art": "Video art",
+    "performance-art": "Performance art",
+    "triptych": "Triptych",
+    "installation": "Installation",
+    "mural": "Mural",
+    "print": "Prints",
+    "graphic": "Graphics"
+  };
+
+  export const THEMES = {
     "impressionism": "Impressionism",
     "abstract": "Abstract",
     "realism": "Realism",
@@ -45,5 +74,5 @@
     "posters": "Posters",
     "artwork": "Artwork",
     "NFT": "NFT",
-    "jewelry": "Jewelry"
-  }
+    "jewelry": "Jewelry",
+  };
