@@ -14,6 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
     tabContainer: {
       display: "flex",
       flexDirection: "column",
+
     },
     form: {
       display: "flex",
@@ -387,6 +388,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: "10px",
     },
     artTabs: {
+      margin: "0 auto",
       "& .MuiTabs-scroller": {
         flexGrow: "0",
       },

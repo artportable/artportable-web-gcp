@@ -191,8 +191,8 @@ export default function DiscoverPage({ navBarItems }) {
               >
                 <Tab
                   className={s.text}
-                  label={"Konst"}
-                  {...a11yProps(t("discover:trendingArt"))}
+                  label={t("discover:searchArtworks")}
+                  {...a11yProps(t("discover:searchArtworks"))}
                 /> 
                  <Tab
                   className={s.text}

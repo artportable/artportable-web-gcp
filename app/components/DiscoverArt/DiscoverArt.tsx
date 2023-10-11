@@ -64,7 +64,6 @@ export default function DiscoverArt({
     setShowFilterLoadingSkeleton(value);
   }, 200);
 
-  const router = useRouter();
   const { isSignedIn } = useContext(UserContext);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
@@ -76,6 +75,8 @@ export default function DiscoverArt({
     referTo: "",
     imageurl: "",
   });
+
+  
 
   const theme: Theme = useTheme();
   const skeletonImages = [
@@ -174,10 +175,71 @@ export default function DiscoverArt({
 
   return (
     <>
-      <Box className={s.rowsContainer}>
-        {showFilterLoadingSkeleton && (
-          <>
-            <div className={s.row}>
+    {artworks ? (
+      artworks.length > 0 ? (
+          <Box className={s.rowsContainer}>
+          {showFilterLoadingSkeleton && (
+            <>
+              <div className={s.row}>
+                {skeletonRows && skeletonRows.length > 0 && (
+                  <div className={s.row}>
+                    {skeletonRows[0].map((image) => {
+                      return (
+                        <DiscoverArtSkeleton
+                          key={image.Name}
+                          width={image.Width}
+                          height={image.Height}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+              <div className={s.row}>
+                {skeletonRows && skeletonRows.length > 0 && (
+                  <div className={s.row}>
+                    {skeletonRows[1].map((image) => {
+                      return (
+                        <DiscoverArtSkeleton
+                          key={image.Name}
+                          width={image.Width}
+                          height={image.Height}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+          {imageRows &&
+            imageRows.map((row: Image[], i) => (
+              <div className={s.row} key={i}>
+                {row.map((image) => {
+                  let artwork = artworks.find(
+                    (a) => a.PrimaryFile.Name === image.Name
+                  );
+                  if (artwork) {
+                    return (
+                      <ArtworkListItemDefined
+                        key={image.Name}
+                        width={smScreenOrSmaller ? "100%" : image.Width}
+                        height={smScreenOrSmaller ? "auto" : image.Height}
+                        artwork={artwork}
+                        onPurchaseRequestClick={onPurchaseRequestClick}
+                        purchaseRequestAction={
+                          ActionType.PURCHASE_REQUEST_LIST_DISCOVER
+                        }
+                        onLikeClick={onLike}
+                        indexPage={true}
+                      />
+                    );
+                  }
+                })}
+              </div>
+            ))}
+          {!isLoading && loadMore && (
+            <div className={s.row} ref={loadMoreElementRef}>
               {skeletonRows && skeletonRows.length > 0 && (
                 <div className={s.row}>
                   {skeletonRows[0].map((image) => {
@@ -192,79 +254,50 @@ export default function DiscoverArt({
                 </div>
               )}
             </div>
-            <div className={s.row}>
-              {skeletonRows && skeletonRows.length > 0 && (
-                <div className={s.row}>
-                  {skeletonRows[1].map((image) => {
-                    return (
-                      <DiscoverArtSkeleton
-                        key={image.Name}
-                        width={image.Width}
-                        height={image.Height}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </>
+          )}
+          <PurchaseRequestDialog
+            open={purchaseRequestDialogOpen}
+            onClose={togglePurchaseRequestDialog}
+            props={{
+              pathname: "/messages",
+              title: purchaseRequestDialogData.title,
+              creator: purchaseRequestDialogData.creator,
+              url: purchaseRequestDialogData.url,
+              referTo: purchaseRequestDialogData.referTo,
+              imageUrl: purchaseRequestDialogData.imageurl,
+            }}
+          />
+        </Box>
+    ): (
+      <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100px",
+          width: "300px",
+       
+  
+        }}
+      >
+        Nothing Found with the chosen filters
+      </div>
+      </div>
+
+    )
+  ) : (
+    <Box className={s.rowsContainer}>
+    Loading...
+  </Box>
         )}
-        {imageRows &&
-          imageRows.map((row: Image[], i) => (
-            <div className={s.row} key={i}>
-              {row.map((image) => {
-                let artwork = artworks.find(
-                  (a) => a.PrimaryFile.Name === image.Name
-                );
-                if (artwork) {
-                  return (
-                    <ArtworkListItemDefined
-                      key={image.Name}
-                      width={smScreenOrSmaller ? "100%" : image.Width}
-                      height={smScreenOrSmaller ? "auto" : image.Height}
-                      artwork={artwork}
-                      onPurchaseRequestClick={onPurchaseRequestClick}
-                      purchaseRequestAction={
-                        ActionType.PURCHASE_REQUEST_LIST_DISCOVER
-                      }
-                      onLikeClick={onLike}
-                      indexPage={true}
-                    />
-                  );
-                }
-              })}
-            </div>
-          ))}
-        {!isLoading && loadMore && (
-          <div className={s.row} ref={loadMoreElementRef}>
-            {skeletonRows && skeletonRows.length > 0 && (
-              <div className={s.row}>
-                {skeletonRows[0].map((image) => {
-                  return (
-                    <DiscoverArtSkeleton
-                      key={image.Name}
-                      width={image.Width}
-                      height={image.Height}
-                    />
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        )}
-        <PurchaseRequestDialog
-          open={purchaseRequestDialogOpen}
-          onClose={togglePurchaseRequestDialog}
-          props={{
-            pathname: "/messages",
-            title: purchaseRequestDialogData.title,
-            creator: purchaseRequestDialogData.creator,
-            url: purchaseRequestDialogData.url,
-            referTo: purchaseRequestDialogData.referTo,
-            imageUrl: purchaseRequestDialogData.imageurl,
-          }}
-        />
-      </Box>
+ 
     </>
   );
 }
