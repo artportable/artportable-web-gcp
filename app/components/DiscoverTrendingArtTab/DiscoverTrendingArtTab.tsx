@@ -497,7 +497,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         <option value={"500"}>{t('common:selectOptions:upTo500')}</option>
         <option value={"1000"}>{t('common:selectOptions:upTo1000')}</option>
         <option value={"3000"}>{t('common:selectOptions:upTo3000')}</option>
-        <option value={"5000"}>{t('common:selectOptions:upTo000')}</option>
+        <option value={"5000"}>{t('common:selectOptions:upTo5000')}</option>
         <option value={"1000001"}>{t('common:selectOptions:over5000')}</option>
     </select>
 
