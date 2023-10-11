@@ -25,6 +25,8 @@ import { UserContext } from "../../../app/contexts/user-context";
 import { useRouter } from "next/router";
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
 import { ActionType } from "../../utils/googleAnalytics";
+import Stack from '@mui/material/Stack';
+import LinearProgress from '@mui/material/LinearProgress';
 
 interface InputProps {
   artworks: Artwork[];
@@ -53,6 +55,21 @@ export default function DiscoverArt({
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
   const smScreenOrSmaller = useBreakpointDown("sm");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if(artworks && artworks.length === 0) {
+      setLoading(true);
+
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 4000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [artworks]);
 
   const [imageRows, setImageRows] = useState([]);
   const [skeletonRows, setSkeletonRows] = useState([]);
@@ -268,33 +285,29 @@ export default function DiscoverArt({
             }}
           />
         </Box>
-    ): (
-      <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-      >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100px",
-          width: "300px",
-       
-  
-        }}
-      >
-        Nothing Found with the chosen filters
-      </div>
-      </div>
+      ): (
+        <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100px",
+              width: "100%",
+            }}
+          >
+            {loading ? (
+               <Stack sx={{ width: '100%', color: 'grey.500' }}>
+               <LinearProgress color="secondary" />
+             </Stack>
+            ) : (
+              <div>Nothing Found with the chosen filters</div>
+            )}
+          </div>
 
-    )
-  ) : (
+      )
+    ) : (
     <Box className={s.rowsContainer}>
-    Loading...
+
   </Box>
         )}
  
