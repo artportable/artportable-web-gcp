@@ -16,32 +16,16 @@ export default function AvatarCard({ user }) {
     <Link href={`/profile/@${user.Username}`}>
     <a style={{ textDecoration: 'none', color: 'black' }}>
       <div className={s.container}>
-        {user?.ProfilePicture ? (
-          <Avatar src={`${bucketUrl}${user?.ProfilePicture}`}
-            alt="Profile picture"
-            className={s.avatar}
-          />
-        ) : (
-          <Avatar className={s.avatar}>
-            <AccountCircleIcon style={{ fontSize: 72 }} color="secondary"></AccountCircleIcon>
-          </Avatar>
-        )}
         <div className={s.text}>
-          <span className={s.username}>{`${user.Name} ${user.Surname}`}</span>
-          <span>{user.Location}</span>
-          {user?.Tags &&
-            <span>{user.Tags.map(tag => capitalizeFirst(t(tag))).join(', ')}</span>
-          }
-        </div>
-        {user.MonthlyArtist &&
-          <div>
-            <img
+          <span className={s.username}>{`${user.Name.toUpperCase()} ${user.Surname.toUpperCase()}`} 
+          <img
               src="/Artportable_Emblem_Gold.svg"
               alt="Logo Artportable"
               className={s.emblem}
             />
-          </div>
-        }
+          </span>
+          <span style={{fontSize: "18px"}}>{user.Location}</span>
+        </div>
       </div>
     </a>
   </Link>

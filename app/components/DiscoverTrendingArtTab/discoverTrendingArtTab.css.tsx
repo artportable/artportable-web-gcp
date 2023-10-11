@@ -93,6 +93,92 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
+    toggleFiltersButton: {
+      display: "block",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "none"
+      },
+      
+    },
+
+    selectWrapper: {
+      display: "flex",
+        flexDirection: "column",
+        borderRadius: "20px",
+        
+     
+      
+    },
+
+    selectStyle: {
+      padding: "8px",
+      border: "1px solid black",
+      borderRadius: "20px",
+      margin: "0px 0px 0px 4px",
+      textAlign: "center",
+      cursor: "pointer",
+      fontWeight: "bold",
+      maxWidth: "300px",
+      backgroundColor: "#c67777",
+
+    },
+
+    selectStyleDesktop: {
+      padding: "8px",
+      border: "1px solid black",
+      borderRadius: "20px",
+      margin: "0px 0px 0px 12px",
+      textAlign: "center",
+      cursor: "pointer",
+      fontWeight: "bold",
+      maxWidth: "300px",
+      backgroundColor: "transparent"
+    },
+
+    clearButton: {
+      backgroundColor: "transparent",
+      borderRadius: "20px",
+      border: "1px solid black",
+      cursor: "pointer",
+      padding: "4px 6px 4px 6px",
+      marginLeft: "4px",
+      
+    },
+    selectedTagWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+ 
+      backgroundColor: "transparent"
+    },
+    selectedTags: {
+      display: "flex",
+      marginTop: "10px",
+      flexDirection: "column-reverse",
+      padding: "10px"
+
+    },
+
+    selectedTagsDesktop: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "flex-end",
+      marginBottom: "10px",
+      margin: "4px",
+      border: "1px solid black",
+      borderRadius: "20px",
+      padding: "12px"
+    },
+    removeTagButton: {
+      marginLeft: "10px",
+      backgroundColor: "transparent",
+      border: "none",
+      cursor: "pointer",
+      fontSize: "14px",
+      fontWeight: "bold"
+    },
+
     displayTextLatest: {
       zIndex: 10,
       color: "#3e3e3e",

@@ -13,6 +13,13 @@ export default function artists() {
   const [artists, setArtists] = useState([]);
   const [letters, setLetters] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLetter, setSelectedLetter] = useState(null);
+
+  const handleLetterClick = (letter, event) => {
+    event.preventDefault();  
+    setSelectedLetter(letter);
+    setSearchQuery("");
+  };
 
   const highlightText = (text, search) => {
     const searchWords = search.split(" ").filter((word) => word.trim() !== "");
@@ -104,9 +111,9 @@ export default function artists() {
               >
                 <a>
                   <Typography className={s.artistName}>
-                    <>{highlightText(artist.Name, searchQuery)} </>
+                    {highlightText(artist.Name, searchQuery)}
                     {artist.Surname && (
-                      <>{highlightText(artist.Surname, searchQuery)}</>
+                      <> {highlightText(artist.Surname, searchQuery)}</>
                     )}
                   </Typography>
                 </a>
@@ -120,7 +127,12 @@ export default function artists() {
   const listLetters = () => {
     return letters.map((l) => {
       return (
-        <a href={`#${l}`} className={s.letterList}>
+        <a 
+          href={`#${l}`} 
+          className={s.letterList}
+          onClick={(e) => handleLetterClick(l, e)} 
+          key={l} 
+        >
           {l}
         </a>
       );
@@ -131,19 +143,29 @@ export default function artists() {
   }, []);
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
+    setSelectedLetter(null);
   };
   const filteredArtists: () => any[] = () => {
-    if (!searchQuery) return artists;
-    return artists
-      .map((section) => ({
-        ...section,
-        sameLetterArtists: section.sameLetterArtists.filter((artist) =>
-          `${artist.Name} ${artist.Surname || ""}`
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())
-        ),
-      }))
-      .filter((section) => section.sameLetterArtists.length > 0);
+    let filtered = artists;
+
+    if (searchQuery) {
+      filtered = filtered
+        .map((section) => ({
+          ...section,
+          sameLetterArtists: section.sameLetterArtists.filter((artist) =>
+            `${artist.Name} ${artist.Surname || ""}`
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+          ),
+        }))
+        .filter((section) => section.sameLetterArtists.length > 0);
+    }
+
+    if (selectedLetter) {
+      filtered = filtered.filter((section) => section.currentChar === selectedLetter);
+    }
+
+    return filtered;
   };
   return (
     <div className={s.pagecontainer}>
@@ -161,11 +183,15 @@ export default function artists() {
             }
           />
         </div>
+        <div className={s.alphabetcontainer}>{listLetters()}</div>
         <div className={s.groupDiv}>
-          <div>{listArtists()}</div>
+          {((searchQuery && searchQuery.length > 0) || selectedLetter) && (
+            <div>{listArtists()}</div>
+          )}
         </div>
       </div>
-      <div className={s.alphabetcontainer}>{listLetters()}</div>
+      
     </div>
   );
+
 }
