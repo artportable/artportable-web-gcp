@@ -138,7 +138,6 @@ export default function ManageSubscriptions() {
   const submit = async () => {
     if (validateAllFields()) {
       const response = await postDataToZendesk();
-      console.log(formData.subject.value)
       handleResponse(response);
     }
   }

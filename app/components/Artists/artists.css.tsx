@@ -9,19 +9,22 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
     },
     alphabetcontainer: {
-      display: "flex",
-      flexDirection: "column",
-      position: "fixed",
-      justifyContent: "space-between",
-      right: 8,
-      height: "50%",
-      alignItems: "center",
+      marginBottom: "20px",
+      color: "black",
+      width: "100%",
+      fontSize: "16px",
+      textAlign: "center",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        left: 0,
+        fontSize: "20px",
+      },
     },
     searchBar: {
       marginBottom: "20px",
       left: 30,
       color: "black",
-      width: "80%",
+      width: "100%",
       fontSize: "16px",
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
@@ -34,13 +37,18 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#AC606B",
     },
     letter: {
-      fontSize: "2rem", // Increased the size slightly
-      fontWeight: 700, // Not too bold
+      fontSize: "2rem", 
+      fontWeight: 700, 
       margin: "0.5rem 0",
-      color: "#333", // Dark color for visibility
+      color: "#333",
     },
     letterList: {
       fontWeight: 600,
+      margin: "2px",
+      [theme.breakpoints.up("smPlus")]: {
+        margin: "4px",
+        alignItems: "center"
+      },
     },
     container: {
       display: "flex",
@@ -77,11 +85,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around",
-        position: "fixed",
-        width: "100%",
-        backgroundColor: "#FDF9F7",
-        top: "70px",
-        height: "var(--header-height, 70px)",
+       
       },
       alphabeticTypo: {
         fontweight: 600,

@@ -70,7 +70,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         router.push("/" + getCurrentLanguage() + "/feed");
       }
     }
-    console.log(event);
+    //console.log(event);
     setKeycloakState(event);
   };
   const router = useRouter();

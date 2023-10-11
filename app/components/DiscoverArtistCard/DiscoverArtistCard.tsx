@@ -26,10 +26,10 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const scrollRef = useRef(null);
-  const scrollBy = mainWidth / 1.5;
+  const scrollBy = mainWidth / 1;
 
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
-  const images = artist.Artworks.map(a => ({
+  const images = artist.Artworks?.map(a => ({
     ...normalizeImageSize(a.PrimaryFile),
     id: a.Id,
     title: a.Title
@@ -53,9 +53,8 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
           <Button
             size="small"
             variant={!isFollowed ? "contained" : "outlined"}
-            color="primary"
+
             startIcon={!isFollowed ? <AddIcon /> : null}
-            disableElevation
             rounded
             className={s.button}
             onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FOLLOW_DISCOVER, CategoryType.INTERACTIVE); }}>
@@ -69,7 +68,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
       </div>
       <div className={s.scrollContainer}>
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
-          {images.map((image, i) =>
+          {images?.map((image, i) =>
             <div className={clsx(s.rowFlex)} key={i}>
               <Paper key={image.Name} className={s.imagePaper} variant="outlined">
                 <Link href={`/art/${image.id}`}>
@@ -85,12 +84,12 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             </div>
           )}
         </div>
-        <IconButton className={s.leftButton} color="primary" onClick={() => {
+        <IconButton className={s.leftButton} onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: -scrollBy, behavior: 'smooth' });
         }}>
           <ChevronLeftOutlinedIcon className={s.chevron}></ChevronLeftOutlinedIcon>
         </IconButton>
-        <IconButton className={s.rightButton} color="primary" onClick={() => {
+        <IconButton  className={s.rightButton} onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: scrollBy, behavior: 'smooth' });
         }}>
           <ChevronRightOutlinedIcon className={s.chevron}></ChevronRightOutlinedIcon>

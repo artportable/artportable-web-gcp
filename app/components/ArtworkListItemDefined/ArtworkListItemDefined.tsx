@@ -58,11 +58,6 @@ export default function ArtworkListItemDefined({
 
   const isMyProfile = profileUser === username.value;
 
-  useEffect(() => {
-    console.log(isMyProfile);
-    
-  }, )
-
   function getFormatter(
     languageCode: string,
     currency: string | null
@@ -150,7 +145,6 @@ export default function ArtworkListItemDefined({
 
   if (width === null || height === null) return <></>
 
-  const [data, setData] = useState(null)
   const [isNew, setIsNew] = useState(false)
 
   function isNewUser(createdDate) {
@@ -168,21 +162,22 @@ export default function ArtworkListItemDefined({
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const response = await fetch(
-          `${publicUrl}/api/artists/${artwork?.Username}`
-        )
-        if (response.ok) {
-          const jsonData = await response.json()
-          setData(jsonData)
-          if (isNewUser(jsonData.Created)) {
-            setIsNew(true)
+      if(indexPage){
+        try {
+          const response = await fetch(
+            `${publicUrl}/api/artists/${artwork?.Username}`
+          )
+          if (response.ok) {
+            const jsonData = await response.json()
+            if (isNewUser(jsonData.Created)) {
+              setIsNew(true)
+            }
+          } else {
+            console.error(response.statusText)
           }
-        } else {
-          console.error(response.statusText)
+        } catch (error) {
+          console.error(error)
         }
-      } catch (error) {
-        console.error(error)
       }
     }
 
