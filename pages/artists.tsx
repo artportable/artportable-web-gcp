@@ -4,10 +4,9 @@ import Artists from '../app/components/Artists/Artists';
 import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-const { t } = useTranslation("art");
 
 export default function artists({navBarItems}) {
-
+  
   const { t } = useTranslation(['header']);
 
   return <>
