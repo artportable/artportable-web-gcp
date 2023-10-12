@@ -11,7 +11,7 @@ import { TAGS } from './tags'
 import { styles } from './discoverTrendingArtTab.css'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { useTheme } from '@material-ui/core'
+import { MenuItem, NativeSelect, useTheme } from '@material-ui/core'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -20,6 +20,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import RemoveIcon from '@mui/icons-material/Remove'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import ClearIcon from '@mui/icons-material/Clear'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
 
 
 interface DiscoverTrendingArtTabProps {
@@ -214,11 +217,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
     <>
       {isMobile ? (
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{  marginBottom: '20px' }}>
         <Accordion style={{backgroundColor: "#faf3ee", borderRadius: "20px"}} expanded={showFilters} onClick={() => setShowFilters(!showFilters)}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography style={{ textAlign: 'center', fontWeight: 'bold' }}>
-                Filters
+              {t('common:selectOptions:searchFilter')}
               </Typography>
             </AccordionSummary>
             <AccordionDetails
@@ -228,196 +231,133 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 width: '100%'
               }}
             >
-              <div className={s.selectWrapper}>
-                <div
-                  className={s.trendAndTechnique}
-                >
-                  <select
+              
+            <div style={{textAlign: "center", display: "flex", flexDirection: "column"}}>
+              <FormControl>
+                  <InputLabel sx={{
+                      width: '100%',
+                      fontSize: '16px', 
+                    }}>{t('common:selectOptions:trending')}</InputLabel>
+                  <Select
                     value={selectedTrending || ''}
                     onChange={(e) => handleTrendingChange(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
-                    style={{
-                      direction: 'ltr',
-                      margin: '10px',
-                      borderRadius: '20px',
-                      height: '40px',
-                      textAlign: 'center',
-                      padding: '10px',
-                      border: '1px solid #c67777',
-                      color: 'black',
-                      width: '300px',
-                      fontSize: '7px',
-                      fontWeight: "bold",
-                      backgroundColor: "transparent"
-                    }}
+                  
+                    
+                    sx={{'.MuiOutlinedInput-notchedOutline': {
+                      borderRadius: "20px",
+                      marginBottom: "10px",
+                      textAlign: "center",
+                      
+                    }}}
+                    
                   >
-                    <option value={''}>
-                      {t('common:selectOptions:trending').toUpperCase()}
-                    </option>
-                    <option value={'14'}>
-                      {t('common:selectOptions:trending14')}
-                    </option>
-                    <option value={'30'}>
-                      {t('common:selectOptions:trending30')}
-                    </option>
-                    <option value={'90'}>
-                      {t('common:selectOptions:trending90')}
-                    </option>
-                    <option value={'365'}>
-                      {t('common:selectOptions:trendingYear')}
-                    </option>
-                    <option value={'2000'}>
-                      {t('common:selectOptions:trendingAll')}
-                    </option>
-                  </select>
-                  <select
+                    <MenuItem value={7}>{t('common:selectOptions:trending')}</MenuItem>
+                    <MenuItem value={14}>{t('common:selectOptions:trending14')}</MenuItem>
+                    <MenuItem value={30}>{t('common:selectOptions:trending30')}</MenuItem>
+                    <MenuItem value={90}>{t('common:selectOptions:trending90')}</MenuItem>
+                    <MenuItem value={365}>{t('common:selectOptions:trendingYear')}</MenuItem>
+                    <MenuItem value={2000}>{t('common:selectOptions:trendingAll')}</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <InputLabel sx={{
+                      width: '100%',
+                      fontSize: '16px', 
+                    }}>{t('common:selectOptions:technique')}</InputLabel>
+                  <Select
                     value={selectedTechnique || ''}
                     onChange={(e) => handleTagChange(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
-                    style={{
-                      direction: 'ltr',
-                      margin: '10px',
-                      borderRadius: '20px',
-                      height: '40px',
-                      textAlign: 'center',
-                      padding: '10px',
-                      border: '1px solid #c67777',
-                      color: 'black',
-                      width: '300px',
-                      fontSize: '8px',
-                      fontWeight: "bold",
-                      backgroundColor: "transparent"
-                    }}
+                   
+                    
+                    sx={{'.MuiOutlinedInput-notchedOutline': {
+                      borderRadius: "20px",
+                      marginBottom: "10px",
+                      textAlign: "center"
+                    }}}
                   >
-                    <option value={''}>
-                      {t('common:selectOptions:technique').toLocaleUpperCase()}
-                    </option>
                     {Object.keys(TAGS).map((key) => (
-                      <option value={key} key={key}>
-                        {t(`common:techniques:${key}`)}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className={s.formatSizePrice}>
-                  <div style={{ margin: '0 auto' }}>
-                    <select
-                      value={selectedOrientation || ''}
-                      onChange={(e) => handleOrientationChange(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                      style={{
-                        direction: 'ltr',
-                        borderRadius: '20px',
-                        padding: '10px',
-                        height: '40px',
-                        textAlign: 'center',
-                        width: '80px',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '10px',
-                        fontSize: '8px',
-                        border: '1px solid #c67777',
-                        color: 'black',
-                        fontWeight: "bold",
-                        backgroundColor: "transparent"
-                      }}
-                    >
-                      <option value={''}>
-                        {t('common:selectOptions:format').toLocaleUpperCase()}
-                      </option>
-                      <option value={'Vertical'}>
-                        {t('common:selectOptions:vertical')}
-                      </option>
-                      <option value={'Horizontal'}>
-                        {t('common:selectOptions:horizontal')}
-                      </option>
-                    </select>
-                  </div>
-                  <div
-                    style={{
-                      margin: '0 auto'
-                    }}
+                    <MenuItem value={key} key={key}>
+                      {t(`common:techniques:${key}`)}
+                    </MenuItem>
+                  ))}
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <InputLabel sx={{
+                      width: '100%',
+                      fontSize: '16px', 
+                    }}>{t('common:selectOptions:format')}</InputLabel>
+                  <Select
+                    value={selectedOrientation || ''}
+                    onChange={(e) => handleOrientationChange(e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{'.MuiOutlinedInput-notchedOutline': {
+                      borderRadius: "20px",
+                      marginBottom: "10px",
+                      textAlign: "center"
+                    }}}
                   >
-                    <select
-                      value={selectedSize || ''}
-                      onChange={(e) => handleSizeChange(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                      style={{
-                        direction: 'ltr',
-                        borderRadius: '20px',
-                        padding: '10px',
-                        height: '40px',
-                        textAlign: 'center',
-                        width: '90px',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '10px',
-                        fontSize: '8px',
-                        fontWeight: 'bold',
-                        border: '1px solid #c67777',
-                        backgroundColor: "transparent"
-                      }}
-                    >
-                      <option value={''}>
-                        {t('common:selectOptions:size').toUpperCase()}
-                      </option>
-                      <option value={'30'}>
-                        {t('common:selectOptions:small')}
-                      </option>
-                      <option value={'60'}>
-                        {t('common:selectOptions:medium')}
-                      </option>
-                      <option value={'100'}>
-                        {t('common:selectOptions:large')}
-                      </option>
-                      <option value={'101'}>
-                        {t('common:selectOptions:extraLarge')}
-                      </option>
-                    </select>
-                  </div>
-                  <div style={{ margin: '0 auto' }}>
-                    <select
-                      value={selectedPrice || ''}
-                      onChange={(e) => handlePriceChange(e.target.value)}
-                      onClick={(e) => e.stopPropagation()}
-                      style={{
-                        direction: 'ltr',
-                        borderRadius: '20px',
-                        padding: '10px',
-                        height: '40px',
-                        textAlign: 'center',
-                        width: '90px',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '10px',
-                        fontSize: '8px',
-                        border: '1px solid #c67777',
-                        color: 'black',
-                        fontWeight: "bold",
-                        backgroundColor: "transparent"
-                      }}
-                    >
-                      <option value={''}>
-                        {t('common:selectOptions:price').toUpperCase()}
-                      </option>
-                      <option value={'500'}>
-                        {t('common:selectOptions:upTo500')}
-                      </option>
-                      <option value={'1000'}>
-                        {t('common:selectOptions:upTo1000')}
-                      </option>
-                      <option value={'3000'}>
-                        {t('common:selectOptions:upTo3000')}
-                      </option>
-                      <option value={'5000'}>
-                        {t('common:selectOptions:upTo5000')}
-                      </option>
-                      <option value={'5001'}>
-                        {t('common:selectOptions:over5000')}
-                      </option>
-                    </select>
-                  </div>
-                </div>
+                    
+                    <MenuItem value={'Vertical'}> {t('common:selectOptions:vertical')}</MenuItem>
+                    <MenuItem value={'Horizontal'}> {t('common:selectOptions:horizontal')}</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <FormControl>
+                  <InputLabel sx={{
+                      width: '100%',
+                      fontSize: '16px', 
+                    }}>{t('common:selectOptions:size')}</InputLabel>
+                  <Select
+                    value={selectedSize || ''}
+                    onChange={(e) => handleSizeChange(e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{'.MuiOutlinedInput-notchedOutline': {
+                      borderRadius: "20px",
+                      marginBottom: "10px",
+                      textAlign: "center"
+                    }}}
+                   
+                  >
+                    <MenuItem value={'30'}>{t('common:selectOptions:small')}</MenuItem>
+                    <MenuItem value={'60'}> {t('common:selectOptions:medium')}</MenuItem>
+                    <MenuItem value={'100'}>{t('common:selectOptions:large')}</MenuItem>
+                    <MenuItem value={'101'}> {t('common:selectOptions:extraLarge')}</MenuItem>
+                    
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <InputLabel  sx={{
+                      width: '100%',
+                      fontSize: '16px', 
+                    }}
+                    > {t('common:selectOptions:price')}</InputLabel>
+                  <Select
+                    value={selectedPrice || ''}
+                    onChange={(e) => handlePriceChange(e.target.value)}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{'.MuiOutlinedInput-notchedOutline': {
+                      borderRadius: "20px",
+                      textAlign: "center",
+                      marginBottom: "10px"
+                    
+                    },
+                    width: '100%', 
+                    fontSize: '16px', 
+                  }}
+                  >
+                    <MenuItem value={'500'}> {t('common:selectOptions:upTo500')}</MenuItem>
+                    <MenuItem value={'1000'}> {t('common:selectOptions:upTo1000')}</MenuItem>
+                    <MenuItem value={'3000'}> {t('common:selectOptions:upTo3000')}</MenuItem>
+                    <MenuItem value={'5000'}>  {t('common:selectOptions:upTo5000')}</MenuItem>
+                    <MenuItem value={'5001'}>  {t('common:selectOptions:over5000')}</MenuItem>
+                    
+                  </Select>
+                </FormControl>
+              
+                
 
                 {isFilterActive() && (
                   <Button
@@ -440,7 +380,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     {t('common:selectOptions:clearFilter')}
                   </Button>
                 )}
-              </div>
+            </div>
               <div className={s.selectedTagWrapper}>
                 {selectedTags.map((tag, index) => (
                   <div key={index}>
@@ -476,123 +416,140 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         </div>
       ) : (
         // Desktop filters hereeee
+
+
+
+
+
+
+
+        
         <div>
-          <div>
-            <div
-              style={{
+            <div>
+            <div style={{
                 display: 'flex',
                 flexDirection: 'row',
                 marginTop: '-20px',
                 marginBottom: '20px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                alignContent: 'center',
-                width: '100%'
-              }}
-            >
-              <div>
-                <select
+            
+            
+             
+                width: "100%"
+             
+              }}> 
+              <div style={{display: "flex", flexDirection: "row", width: "90%"}}>
+              <FormControl fullWidth>
+                <InputLabel style={{ width: "100%"}}>
+                {t('common:selectOptions:trending')}
+                </InputLabel>
+                <Select
                   value={selectedTrending || ''}
                   onChange={(e) => handleTrendingChange(e.target.value)}
-                  className={s.selectStyleDesktop}
+                  onClick={(e) => e.stopPropagation()}
+              
+                  sx={{'.MuiOutlinedInput-notchedOutline': {
+                    borderStyle: "none",
+                    
+                  }}}
+
                 >
-                  <option value={''}>
-                    {t('common:selectOptions:trending').toUpperCase()}
-                  </option>
-                  <option value={'14'}>
-                    {t('common:selectOptions:trending14')}
-                  </option>
-                  <option value={'30'}>
-                    {t('common:selectOptions:trending30')}
-                  </option>
-                  <option value={'90'}>
-                    {t('common:selectOptions:trending90')}
-                  </option>
-                  <option value={'365'}>
-                    {t('common:selectOptions:trendingYear')}
-                  </option>
-                  <option value={'2000'}>
-                    {t('common:selectOptions:trendingAll')}
-                  </option>
-                </select>
-                <select
+                  <MenuItem value={7}>{t('common:selectOptions:trending')}</MenuItem>
+                    <MenuItem value={14}>{t('common:selectOptions:trending14')}</MenuItem>
+                    <MenuItem value={30}>{t('common:selectOptions:trending30')}</MenuItem>
+                    <MenuItem value={90}>{t('common:selectOptions:trending90')}</MenuItem>
+                    <MenuItem value={365}>{t('common:selectOptions:trendingYear')}</MenuItem>
+                    <MenuItem value={2000}>{t('common:selectOptions:trendingAll')}</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth>
+                <InputLabel style={{  width: "100%"}}>
+                  {t('common:selectOptions:technique')}
+                </InputLabel>
+                <Select
                   value={selectedTechnique || ''}
                   onChange={(e) => handleTagChange(e.target.value)}
-                  className={s.selectStyleDesktop}
+                  onClick={(e) => e.stopPropagation()}
+                
+                  sx={{'.MuiOutlinedInput-notchedOutline': {
+                    borderStyle: "none",
+                    
+                  }}}
                 >
-                  <option value={''}>
-                    {t('common:selectOptions:technique').toLocaleUpperCase()}
-                  </option>
                   {Object.keys(TAGS).map((key) => (
-                    <option value={key} key={key}>
+                    <MenuItem value={key} key={key}>
                       {t(`common:techniques:${key}`)}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
-
-                <select
+                </Select>
+              </FormControl>
+              </div>
+                  
+                  <div style={{display: "flex", flexDirection: "row", width: "100%"}}>
+                  <FormControl fullWidth>
+                <InputLabel style={{ marginBottom: "8px", width: "100%" }}>
+                  {t('common:selectOptions:format')}
+                </InputLabel>
+                <Select
                   value={selectedOrientation || ''}
                   onChange={(e) => handleOrientationChange(e.target.value)}
-                  className={s.selectStyleDesktop}
+                  onClick={(e) => e.stopPropagation()}
+                 
+                  sx={{'.MuiOutlinedInput-notchedOutline': {
+                    borderStyle: "none",
+                    
+                  }}}
                 >
-                  <option value={''}>
-                    {t('common:selectOptions:format').toLocaleUpperCase()}
-                  </option>
-                  <option value={'Vertical'}>
-                    {t('common:selectOptions:vertical')}
-                  </option>
-                  <option value={'Horizontal'}>
-                    {t('common:selectOptions:horizontal')}
-                  </option>
-                </select>
+                  
+                    <MenuItem value={'Vertical'}> {t('common:selectOptions:vertical')}</MenuItem>
+                    <MenuItem value={'Horizontal'}> {t('common:selectOptions:horizontal')}</MenuItem>
+                </Select>
+              </FormControl>
 
-                <select
+              <FormControl fullWidth>
+                <InputLabel style={{ marginBottom: "8px" }}>
+                  {t('common:selectOptions:size')}
+                </InputLabel>
+                <Select
                   value={selectedSize || ''}
                   onChange={(e) => handleSizeChange(e.target.value)}
-                  className={s.selectStyleDesktop}
+                  onClick={(e) => e.stopPropagation()}
+                  sx={{'.MuiOutlinedInput-notchedOutline': {
+                    borderStyle: "none",
+                    
+                  }}}
                 >
-                  <option value={''}>
-                    {t('common:selectOptions:size').toUpperCase()}
-                  </option>
-                  <option value={'30'}>
-                    {t('common:selectOptions:small')}
-                  </option>
-                  <option value={'60'}>
-                    {t('common:selectOptions:medium')}
-                  </option>
-                  <option value={'100'}>
-                    {t('common:selectOptions:large')}
-                  </option>
-                  <option value={'101'}>
-                    {t('common:selectOptions:extraLarge')}
-                  </option>
-                </select>
-                <select
+                  <MenuItem value={'30'}>{t('common:selectOptions:small')}</MenuItem>
+                  <MenuItem value={'60'}> {t('common:selectOptions:medium')}</MenuItem>
+                  <MenuItem value={'100'}>{t('common:selectOptions:large')}</MenuItem>
+                  <MenuItem value={'101'}> {t('common:selectOptions:extraLarge')}</MenuItem>
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth>
+                <InputLabel style={{ marginBottom: "8px" }}>
+                  {t('common:selectOptions:price')}
+                </InputLabel>
+                <Select
                   value={selectedPrice || ''}
                   onChange={(e) => handlePriceChange(e.target.value)}
-                  className={s.selectStyleDesktop}
+                  onClick={(e) => e.stopPropagation()}
+                  sx={{'.MuiOutlinedInput-notchedOutline': {
+                    borderStyle: "none",
+                    
+                  }}}
                 >
-                  <option value={''}>
-                    {t('common:selectOptions:price').toUpperCase()}
-                  </option>
-                  <option value={'500'}>
-                    {t('common:selectOptions:upTo500')}
-                  </option>
-                  <option value={'1000'}>
-                    {t('common:selectOptions:upTo1000')}
-                  </option>
-                  <option value={'3000'}>
-                    {t('common:selectOptions:upTo3000')}
-                  </option>
-                  <option value={'5000'}>
-                    {t('common:selectOptions:upTo5000')}
-                  </option>
-                  <option value={'5001'}>
-                    {t('common:selectOptions:over5000')}
-                  </option>
-                </select>
-
-                {isFilterActive() && (
+                    <MenuItem value={'500'}> {t('common:selectOptions:upTo500')}</MenuItem>
+                    <MenuItem value={'1000'}>  {t('common:selectOptions:upTo1000')}</MenuItem>
+                    <MenuItem value={'3000'}>             {t('common:selectOptions:upTo3000')}</MenuItem>
+                    <MenuItem value={'5000'}>  {t('common:selectOptions:upTo5000')}</MenuItem>
+                    <MenuItem value={'5001'}>  {t('common:selectOptions:over5000')}</MenuItem>
+                </Select>
+              </FormControl>
+                  </div>
+         
+              
+              {isFilterActive() && (
                   <Button
                     onClick={(e) => {
                       e.stopPropagation()
@@ -613,8 +570,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     {t('common:selectOptions:clearFilter')}
                   </Button>
                 )}
-              </div>
             </div>
+
+
+                
+
+                
+              </div>
             <div className={s.selectedTagWrapper}>
               {selectedTags.map((tag, index) => (
                 <div key={index}>
@@ -639,7 +601,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               ))}
             </div>
           </div>
-        </div>
       )}
 
       <DiscoverArt

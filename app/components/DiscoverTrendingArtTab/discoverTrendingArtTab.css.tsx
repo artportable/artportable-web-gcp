@@ -106,6 +106,11 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: "column",
         borderRadius: "20px",
     },
+    selectWrapperMobile: {
+      display: "flex",
+        flexDirection: "column",
+        borderRadius: "20px",
+    },
 
     trendAndTechnique: {
       display: 'flex',
@@ -119,7 +124,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     formatSizePrice: {
       display: 'flex',
-      flexWrap: 'wrap',
+      flexDirection: "column",
     },
 
     selectStyle: {
