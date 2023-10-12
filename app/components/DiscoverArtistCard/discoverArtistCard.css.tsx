@@ -58,7 +58,6 @@ export const styles = makeStyles((theme: Theme) =>
       height: '200px',
       overflow: 'hidden',
       scrollSnapAlign: 'end',
-      border: "7px solid black",
       padding: "0px 5px 5px 5px",
       
     },
