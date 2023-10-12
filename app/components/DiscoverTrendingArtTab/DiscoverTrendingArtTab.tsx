@@ -21,6 +21,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import ClearIcon from '@mui/icons-material/Clear'
 
+
 interface DiscoverTrendingArtTabProps {
   username?: string
   socialId?: string
@@ -238,6 +239,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     onChange={(e) => handleTrendingChange(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
                     style={{
+                      direction: 'ltr',
                       margin: '10px',
                       borderRadius: '20px',
                       height: '40px',
@@ -247,7 +249,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       color: 'black',
                       width: '300px',
                       fontSize: '7px',
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
                     }}
                   >
                     <option value={''}>
@@ -274,6 +276,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     onChange={(e) => handleTagChange(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
                     style={{
+                      direction: 'ltr',
                       margin: '10px',
                       borderRadius: '20px',
                       height: '40px',
@@ -304,6 +307,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       onChange={(e) => handleOrientationChange(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                       style={{
+                        direction: 'ltr',
                         borderRadius: '20px',
                         padding: '10px',
                         height: '40px',
@@ -340,6 +344,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       onChange={(e) => handleSizeChange(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                       style={{
+                        direction: 'ltr',
                         borderRadius: '20px',
                         padding: '10px',
                         height: '40px',
@@ -377,6 +382,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       onChange={(e) => handlePriceChange(e.target.value)}
                       onClick={(e) => e.stopPropagation()}
                       style={{
+                        direction: 'ltr',
                         borderRadius: '20px',
                         padding: '10px',
                         height: '40px',
