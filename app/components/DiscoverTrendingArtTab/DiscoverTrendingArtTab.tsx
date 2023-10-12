@@ -219,7 +219,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     {isMobile ? (
       <div style={{marginBottom: "20px"}}>
        
-        <Accordion expanded={showFilters} onClick={() => setShowFilters(!showFilters)}>
+        <Accordion style={{backgroundColor: "#faf3ee", borderRadius: "20px"}} expanded={showFilters} onClick={() => setShowFilters(!showFilters)}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography style={{textAlign: "center", fontWeight: "bold"}}>Filters</Typography>
           </AccordionSummary>
@@ -240,7 +240,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   color: "black",
                   width: "300px",
                   fontSize: "7px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
+                  backgroundColor: "transparent"
                 }}
                 
                
@@ -266,7 +267,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   color: "black",
                   width: "300px",
                   fontSize: "8px",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
+                  backgroundColor: "transparent"
               }}
             
             >
@@ -297,7 +299,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 fontSize: "8px",
                 border: "1px solid #c67777",
                   color: "black",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
+                  backgroundColor: "transparent"
               }}
               
             >
@@ -328,7 +331,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 fontSize: "8px",
                 fontWeight: "bold",
                 border: "1px solid #c67777",
-                  color: "black"
+                  color: "black",
+                  backgroundColor: "transparent"
               }}
              
             >
@@ -356,7 +360,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   fontSize: "8px",
                   border: "1px solid #c67777",
                   color: "black",
-                  fontWeight: "bold"
+                  fontWeight: "bold",
+                  backgroundColor: "transparent"
                 }}
                 
             >
@@ -365,7 +370,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 <option value={"1000"}>{t('common:selectOptions:upTo1000')}</option>
                 <option value={"3000"}>{t('common:selectOptions:upTo3000')}</option>
                 <option value={"5000"}>{t('common:selectOptions:upTo5000')}</option>
-                <option value={"1000001"}>{t('common:selectOptions:over5000')}</option>
+                <option value={"5001"}>{t('common:selectOptions:over5000')}</option>
             </select>
            </div>
          </div>
