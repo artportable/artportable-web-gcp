@@ -88,7 +88,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   }
 
   const handleTagChange = (newTag: string) => {
-    if (selectedTags.length < 4) {
+    if (selectedTags.length < 4 && !selectedTags.includes(newTag)) {
       setSelectedTags((prevTags) => [...prevTags, newTag])
     }
   }
