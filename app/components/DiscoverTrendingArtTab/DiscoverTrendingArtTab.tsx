@@ -112,11 +112,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   }
 
   useEffect(() => {
-    console.log(
-      'Component re-rendered due to tag changes:',
-      selectedTags,
-      loadMoreArtworksElementRef
-    )
+
   }, [selectedTags])
 
   const resetFilters = () => {
@@ -235,11 +231,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             >
               <div className={s.selectWrapper}>
                 <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    width: '50% !important'
-                  }}
+                  className={s.trendAndTechnique}
                 >
                   <select
                     value={selectedTrending || ''}
@@ -305,7 +297,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   </select>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div className={s.formatSizePrice}>
                   <div style={{ margin: '0 auto' }}>
                     <select
                       value={selectedOrientation || ''}
