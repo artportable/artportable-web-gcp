@@ -98,16 +98,28 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         display: "none"
       },
-      
+
     },
 
     selectWrapper: {
       display: "flex",
         flexDirection: "column",
         borderRadius: "20px",
-        
-     
-      
+    },
+
+    trendAndTechnique: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+      },
+    },
+
+    formatSizePrice: {
+      display: 'flex',
+      flexWrap: 'wrap',
     },
 
     selectStyle: {
@@ -142,22 +154,21 @@ export const styles = makeStyles((theme: Theme) =>
       cursor: "pointer",
       padding: "4px 6px 4px 6px",
       marginLeft: "4px",
-      
+
     },
     selectedTagWrapper: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
- 
+
       backgroundColor: "transparent"
     },
     selectedTags: {
       display: "flex",
       marginTop: "10px",
       flexDirection: "column-reverse",
-      padding: "10px"
-
+      padding: "10px",
     },
 
     selectedTagsDesktop: {
@@ -168,15 +179,16 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "4px",
       border: "1px solid black",
       borderRadius: "20px",
-      padding: "12px"
+      padding: "12px",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: 'rgba(0,0, 0, 0.05)'
+      }
     },
     removeTagButton: {
-      marginLeft: "10px",
-      backgroundColor: "transparent",
-      border: "none",
+      display: 'flex',
+      alignItems: 'center',
       cursor: "pointer",
-      fontSize: "14px",
-      fontWeight: "bold"
     },
 
     displayTextLatest: {

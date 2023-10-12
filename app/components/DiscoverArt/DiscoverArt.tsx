@@ -93,7 +93,7 @@ export default function DiscoverArt({
     imageurl: "",
   });
 
-  
+
 
   const theme: Theme = useTheme();
   const skeletonImages = [
@@ -300,7 +300,7 @@ export default function DiscoverArt({
                <LinearProgress color="secondary" />
              </Stack>
             ) : (
-              <div>Nothing Found with the chosen filters</div>
+              <div>{t('nothingFound')}</div>
             )}
           </div>
 
@@ -310,7 +310,7 @@ export default function DiscoverArt({
 
   </Box>
         )}
- 
+
     </>
   );
 }
