@@ -333,7 +333,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       </option>
                     </select>
                   </div>
-
                   <div
                     style={{
                       margin: '0 auto'
