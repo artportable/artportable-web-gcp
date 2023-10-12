@@ -191,9 +191,14 @@ export default function DiscoverPage({ navBarItems }) {
               >
                 <Tab
                   className={s.text}
-                  label={t("discover:searchArtworks")}
-                  {...a11yProps(t("discover:searchArtworks"))}
+                  label={t("discover:topArt")}
+                  {...a11yProps(t("discover:topArt"))}
                 /> 
+                <Tab
+                  className={s.text}
+                  label={t("discover:artists")}
+                  {...a11yProps(t("discover:artists"))}
+                />
                  <Tab
                   className={s.text}
                   label={t("discover:latestArt")}
@@ -202,11 +207,6 @@ export default function DiscoverPage({ navBarItems }) {
                 <Tab
                   className={s.text}
                   label={t("discover:highlights")}
-                  {...a11yProps(t("discover:artists"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:artists")}
                   {...a11yProps(t("discover:artists"))}
                 />
               </Tabs>
@@ -225,6 +225,12 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
+                <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={2}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -235,7 +241,7 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab} tagPlaceholder={""} />
               </TabPanel>
-              <TabPanel value={activeTab} index={2}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -246,12 +252,7 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab} tagPlaceholder={""} fetchType={""}  />
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
-                <DiscoverArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
-              </TabPanel>
+              
             </Box>
           </div>
         </>
