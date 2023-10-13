@@ -45,6 +45,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "row",
       marginTop: "10px",
+      margin: "4px",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
         justifyContent: "flex-end",  
@@ -52,11 +53,32 @@ export const styles = makeStyles((theme: Theme) =>
         width: "25%"
       },
     },
+
+    modal: {
+      position: 'absolute' as 'absolute',
+      top: '30%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      border: '2px solid #000',
+      backgroundColor: "white",
+      width: "80%",
+      padding: "20px",
+      borderRadius: "20px",
+      borderColor: "transparent",
+      [theme.breakpoints.up("md")]: {
+         
+        width: "45%"
+      },
+
+    
+    },
+
     followButton: {
       maxHeight: "27px",
       width: "40%",
       margin: "0 auto",
       marginBottom: "10px",
+      marginRight: "6px",
       backgroundColor: "#fadf87",
       border: "1px solid #fadf87",
       color: "black",
@@ -84,6 +106,26 @@ export const styles = makeStyles((theme: Theme) =>
         color: "black",
       },
     },
+    buyBottom: {
+      maxHeight: "27px",
+      width: "80%",
+      margin: "0 auto",
+      marginBottom: "10px",
+      backgroundColor: "#49cc90",
+      color: "black",
+      border: "#49cc90",
+      marginRight: "2px",
+      [theme.breakpoints.up("md")]: {
+        width: "75%",
+      },
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
+        border: "#49cc90",
+      },
+
+    },
+
     chatButton: {
       maxHeight: "27px",
       width: "40%",
