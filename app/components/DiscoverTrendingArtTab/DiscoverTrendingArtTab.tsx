@@ -233,21 +233,25 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             >
               
             <div style={{textAlign: "center", display: "flex", flexDirection: "column"}}>
-              <FormControl>
+              <FormControl style={{  marginTop: "6px"}}>
                   <InputLabel sx={{
                       width: '100%',
                       fontSize: '16px', 
+                      color: "black !important",
+                      borderColor: "black !important",
+                      margin: "-6px !important"
                     }}>{t('common:selectOptions:trending')}</InputLabel>
                   <Select
                     value={selectedTrending || ''}
                     onChange={(e) => handleTrendingChange(e.target.value)}
                     onClick={(e) => e.stopPropagation()}
-                  
-                    
                     sx={{'.MuiOutlinedInput-notchedOutline': {
                       borderRadius: "20px",
                       marginBottom: "10px",
                       textAlign: "center",
+                      borderColor: "black !important",
+                      borderStyle: "none",
+           
                       
                     }}}
                     
@@ -260,21 +264,25 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     <MenuItem value={2000}>{t('common:selectOptions:trendingAll')}</MenuItem>
                   </Select>
                 </FormControl>
-                <FormControl>
+                <FormControl style={{  marginTop: "6px"}}>
                   <InputLabel sx={{
                       width: '100%',
                       fontSize: '16px', 
+                      borderColor: "black !important",
+                      color: "black !important",
+                      margin: "-6px !important"
                     }}>{t('common:selectOptions:technique')}</InputLabel>
                   <Select
                     value={selectedTechnique || ''}
-                    onChange={(e) => handleTagChange(e.target.value)}
+                    onChange={(e) => handleTagChange(e.target.value as string)}
                     onClick={(e) => e.stopPropagation()}
-                   
-                    
                     sx={{'.MuiOutlinedInput-notchedOutline': {
                       borderRadius: "20px",
                       marginBottom: "10px",
-                      textAlign: "center"
+                      textAlign: "center",
+                      borderColor: "black !important",
+                      borderStyle: "none",
+                 
                     }}}
                   >
                     {Object.keys(TAGS).map((key) => (
@@ -284,10 +292,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   ))}
                   </Select>
                 </FormControl>
-                <FormControl>
+                <FormControl style={{  marginTop: "6px"}}> 
                   <InputLabel sx={{
                       width: '100%',
                       fontSize: '16px', 
+                      color: "black !important",
+                      borderColor: "black !important",
+                      margin: "-6px !important"
                     }}>{t('common:selectOptions:format')}</InputLabel>
                   <Select
                     value={selectedOrientation || ''}
@@ -296,7 +307,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     sx={{'.MuiOutlinedInput-notchedOutline': {
                       borderRadius: "20px",
                       marginBottom: "10px",
-                      textAlign: "center"
+                      borderColor: "black !important",
+                      borderStyle: "none",
+                     
+                    
                     }}}
                   >
                     
@@ -305,10 +319,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   </Select>
                 </FormControl>
 
-                <FormControl>
+                <FormControl style={{  marginTop: "6px"}}>
                   <InputLabel sx={{
                       width: '100%',
                       fontSize: '16px', 
+                      color: "black !important",
+                      borderColor: "black !important",
+                      margin: "-6px !important"
+               
                     }}>{t('common:selectOptions:size')}</InputLabel>
                   <Select
                     value={selectedSize || ''}
@@ -317,7 +335,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     sx={{'.MuiOutlinedInput-notchedOutline': {
                       borderRadius: "20px",
                       marginBottom: "10px",
-                      textAlign: "center"
+                      textAlign: "center",
+                      borderColor: "black !important",
+                      borderStyle: "none",
+                  
                     }}}
                    
                   >
@@ -328,10 +349,12 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     
                   </Select>
                 </FormControl>
-                <FormControl>
+                <FormControl style={{  marginTop: "6px"}}>
                   <InputLabel  sx={{
                       width: '100%',
                       fontSize: '16px', 
+                      color: "black !important",
+                      margin: "-6px !important"
                     }}
                     > {t('common:selectOptions:price')}</InputLabel>
                   <Select
@@ -341,7 +364,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     sx={{'.MuiOutlinedInput-notchedOutline': {
                       borderRadius: "20px",
                       textAlign: "center",
-                      marginBottom: "10px"
+                      marginBottom: "10px",
+                      borderColor: "black !important",
+                      borderStyle: "none",
+              
                     
                     },
                     width: '100%', 
@@ -439,7 +465,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               }}> 
               <div style={{display: "flex", flexDirection: "row", width: "90%"}}>
               <FormControl fullWidth>
-                <InputLabel style={{ width: "100%"}}>
+                <InputLabel style={{width: "100%", color: "black"}}>
                 {t('common:selectOptions:trending')}
                 </InputLabel>
                 <Select
@@ -449,11 +475,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               
                   sx={{'.MuiOutlinedInput-notchedOutline': {
                     borderStyle: "none",
+                    color: "black"
                     
                   }}}
-
                 >
-                  <MenuItem value={7}>{t('common:selectOptions:trending')}</MenuItem>
+                  <MenuItem value={7}>{t('common:selectOptions:trending7')}</MenuItem>
                     <MenuItem value={14}>{t('common:selectOptions:trending14')}</MenuItem>
                     <MenuItem value={30}>{t('common:selectOptions:trending30')}</MenuItem>
                     <MenuItem value={90}>{t('common:selectOptions:trending90')}</MenuItem>
@@ -463,12 +489,12 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </FormControl>
 
               <FormControl fullWidth>
-                <InputLabel style={{  width: "100%"}}>
+                <InputLabel style={{  width: "100%",  color: "black"}}>
                   {t('common:selectOptions:technique')}
                 </InputLabel>
                 <Select
                   value={selectedTechnique || ''}
-                  onChange={(e) => handleTagChange(e.target.value)}
+                  onChange={(e) => handleTagChange(e.target.value as string)}
                   onClick={(e) => e.stopPropagation()}
                 
                   sx={{'.MuiOutlinedInput-notchedOutline': {
@@ -487,7 +513,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   
                   <div style={{display: "flex", flexDirection: "row", width: "100%"}}>
                   <FormControl fullWidth>
-                <InputLabel style={{ marginBottom: "8px", width: "100%" }}>
+                <InputLabel style={{ marginBottom: "8px", width: "100%",  color: "black" }}>
                   {t('common:selectOptions:format')}
                 </InputLabel>
                 <Select
@@ -507,7 +533,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </FormControl>
 
               <FormControl fullWidth>
-                <InputLabel style={{ marginBottom: "8px" }}>
+                <InputLabel style={{ marginBottom: "8px",  color: "black" }}>
                   {t('common:selectOptions:size')}
                 </InputLabel>
                 <Select
@@ -527,7 +553,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </FormControl>
 
               <FormControl fullWidth>
-                <InputLabel style={{ marginBottom: "8px" }}>
+                <InputLabel style={{ marginBottom: "8px",  color: "black" }}>
                   {t('common:selectOptions:price')}
                 </InputLabel>
                 <Select

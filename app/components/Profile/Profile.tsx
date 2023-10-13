@@ -25,6 +25,7 @@ import Button from "../../components/Button/Button";
 import { ActionType,
   CategoryType,trackGoogleAnalytics } from '../../utils/googleAnalytics'
 import axios from 'axios'
+import Modal from '@mui/material/Modal'
 
 export default function Profile({ userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
@@ -55,6 +56,10 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
   const url = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
   async function getUserFullname() {
@@ -306,6 +311,27 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
               : t("common:words.following")
           )}
         </Button>
+        <Button 
+        rounded
+        className={s.buyBottom} onClick={handleOpen}>{t("profile:buyingArt")}</Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+          >
+            <Box className={s.modal}>
+              <Typography style={{
+                marginBottom: "10px"
+              }} id="modal-modal-title" variant="h6" component="h2">
+                {t("profile:buyingArtTitle")}
+              </Typography>
+              <Typography style={{marginBottom: "10px"}}>
+                {t("profile:buyingArtBody")}
+              </Typography>
+              <Typography>
+                {t("profile:buyingArtBodyTwo")}
+              </Typography>
+            </Box>
+          </Modal>
         </div>
        }
       </div>
