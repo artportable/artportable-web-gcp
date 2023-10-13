@@ -250,6 +250,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       marginBottom: "10px",
                       textAlign: "center",
                       borderColor: "black !important",
+                      borderStyle: "none",
            
                       
                     }}}
@@ -280,6 +281,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       marginBottom: "10px",
                       textAlign: "center",
                       borderColor: "black !important",
+                      borderStyle: "none",
                  
                     }}}
                   >
@@ -306,6 +308,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       borderRadius: "20px",
                       marginBottom: "10px",
                       borderColor: "black !important",
+                      borderStyle: "none",
                      
                     
                     }}}
@@ -334,6 +337,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       marginBottom: "10px",
                       textAlign: "center",
                       borderColor: "black !important",
+                      borderStyle: "none",
                   
                     }}}
                    
@@ -362,6 +366,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       textAlign: "center",
                       marginBottom: "10px",
                       borderColor: "black !important",
+                      borderStyle: "none",
               
                     
                     },
