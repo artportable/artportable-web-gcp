@@ -852,10 +852,22 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
-                  {isMyProfile && membership.value > Membership.Base && (
+                  {articles && articles.length > 0 ? (
+                    <>
+                    {isMyProfile && membership.value > Membership.Base && (
                     <TabPanel value={activeTab} index={3}>
                       <Offers />
                     </TabPanel>
+                  )}
+                    </>
+                  ) : (
+                    <>
+                      {isMyProfile && membership.value > Membership.Base && (
+                        <TabPanel value={activeTab} index={2}>
+                          <Offers />
+                        </TabPanel>
+                      )}
+                    </>
                   )}
                 </Box>
               </div>
@@ -866,6 +878,22 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
+                  {isMyProfile && (
+                    <Tab
+                      className={s.tab}
+                      style={{
+                        color: "white",
+                        backgroundColor: "#02a16c",
+                        borderRadius: "10px",
+                        marginBottom: "5px",
+                        height: "50%",
+                        paddingTop: "10px",
+                        paddingBottom: "10px",
+                      }}
+                      label={t("profile:offers")}
+                      {...a11yProps(t("profile:offers"))}
+                    />
+                  )}
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
