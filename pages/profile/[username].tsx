@@ -852,33 +852,53 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
-                  {isMyProfile && membership.value > Membership.Base && (
-                    <TabPanel value={activeTab} index={2}>
+                  {articles && articles.length > 0 ? (
+                    <>
+                    {isMyProfile && membership.value > Membership.Base && (
+                    <TabPanel value={activeTab} index={3}>
                       <Offers />
                     </TabPanel>
                   )}
-                  <TabPanel value={activeTab} index={3}>
-                    <AboutMe
-                      userProfile={userProfile}
-                      userProfilePicture={
-                        isMyProfile
-                          ? profilePicture
-                          : userProfileSummary.data?.ProfilePicture
-                      }
-                      tags={tags.data}
-                      isMyProfile={isMyProfile}
-                      onUpdateProfilePicture={updateImage}
-                    ></AboutMe>
-                  </TabPanel>
+                    </>
+                  ) : (
+                    <>
+                      {isMyProfile && membership.value > Membership.Base && (
+                        <TabPanel value={activeTab} index={2}>
+                          <Offers />
+                        </TabPanel>
+                      )}
+                    </>
+                  )}
                 </Box>
               </div>
             ) : (
               <div className={s.tabsContainer}>
-                <Tabs value={activeTab} centered>
+                <Tabs 
+                value={activeTab} 
+                centered 
+                className={s.tabs}
+                onChange={handleTabChange}
+                >
                   <Tab
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
+                  {isMyProfile && membership.value > Membership.Base && (
+                    <Tab
+                      className={s.tab}
+                      style={{
+                        color: "white",
+                        backgroundColor: "#02a16c",
+                        borderRadius: "10px",
+                        marginBottom: "5px",
+                        height: "50%",
+                        paddingTop: "10px",
+                        paddingBottom: "10px",
+                      }}
+                      label={t("profile:offers")}
+                      {...a11yProps(t("profile:offers"))}
+                    />
+                  )}
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -894,9 +914,15 @@ export default function Profile(props) {
                       isMyProfile={isMyProfile}
                     ></AboutMe>
                   </TabPanel>
+                  {isMyProfile && membership.value > Membership.Base && (
+                    <TabPanel value={activeTab} index={1}>
+                      <Offers />
+                    </TabPanel>
+                  )}
                 </Box>
               </div>
             )}
+
             {similarPortfolios?.data && !similarPortfolios?.isError && (
               <>
                 <Divider className={s.secondDivider}></Divider>
