@@ -64,7 +64,7 @@ const MessagingChannelHeader: React.FC<Props> = (props) => {
   return (
     <div className='messaging__channel-header'>
       <div id='mobile-nav-icon' className={`${theme}`} onClick={() => toggleMobile()}>
-        <IconButton>
+        <IconButton aria-label='mobile'>
           <PeopleAltIcon />
         </IconButton>
       </div>

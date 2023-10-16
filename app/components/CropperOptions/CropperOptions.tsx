@@ -67,11 +67,13 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
       </ButtonGroup>
       <ButtonGroup disableElevation variant="outlined" color="primary">
         <Button
+          aria-label='Zoom out'
           classes={{ startIcon: s.startIcon }}
           onClick={() => cropper.zoom(-0.1)}
           startIcon={<ZoomOutIcon />}>
         </Button>
         <Button
+          aria-label='Zoom in'
           classes={{ startIcon: s.startIcon }}
           onClick={() => cropper.zoom(0.1)}
           startIcon={<ZoomInIcon />}>
@@ -79,6 +81,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
       </ButtonGroup>
       <ButtonGroup disableElevation variant="outlined" color="primary">
         <Button
+          aria-label='Rotate left'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
@@ -86,6 +89,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           startIcon={<RotateLeftIcon />}>
         </Button>
         <Button
+          aria-label='Rotate left'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
@@ -93,6 +97,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           startIcon={<Replay5Icon />}>
         </Button>
         <Button
+          aria-label='Rotate right'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
@@ -100,6 +105,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           startIcon={<Forward5Icon />}>
         </Button>
         <Button
+          aria-label='Rotate right'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
@@ -109,6 +115,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
       </ButtonGroup>
       <ButtonGroup disableElevation variant="outlined" color="primary">
         <Button
+          aria-label='Flip horizontal'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
@@ -119,6 +126,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           startIcon={<SwapHorizIcon />}>
         </Button>
         <Button
+          aria-label='Flip vertical'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
@@ -131,11 +139,13 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
       </ButtonGroup>
       <ButtonGroup disableElevation color="primary">
         <Button
+          aria-label='Reset'
           classes={{ startIcon: s.startIcon }}
           startIcon={<LoopIcon />}
           onClick={() => { cropper.reset() }}>
         </Button>
         <Button
+          aria-label='Delete'
           classes={{ startIcon: s.startIcon}}
           // classes={{ startIcon: s.startIcon, root: s.deleteIconButton }}
           startIcon={<DeleteIcon />}
@@ -143,6 +153,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
             variant="outlined">
         </Button>
         <Button 
+          aria-label='Done'
           classes={{ startIcon: s.startIcon }}
           startIcon={<DoneIcon />}
           onClick={onCrop}

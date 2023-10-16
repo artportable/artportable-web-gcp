@@ -113,7 +113,7 @@ export default function FreeTrial() {
   return (
     <article className={s.articleContainer}>
       <div className={s.imageDiv}>
-        <img src='/images/free_trial.jpg' className={s.image} />
+        <img src='/images/free_trial.jpg' className={s.image} alt="free trial" />
       </div>
       {!sentEmail ?
         <div className={s.contentDiv}>

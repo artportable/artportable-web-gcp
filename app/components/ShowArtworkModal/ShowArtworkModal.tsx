@@ -84,6 +84,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
               <img
                 src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
                 className={s.primaryImage}
+                alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               />
             </div>
             <Box textAlign="center" marginY={2}>
@@ -102,6 +103,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
                   <img
                     src={`${bucketUrl}${artwork.SecondaryFile.Name}`}
                     className={s.extraImage}
+                    alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
                   />
                 </div>
               }
@@ -110,6 +112,7 @@ export default function ShowArtworkModal({ open, setOpen, artwork, onLikeClick }
                   <img
                     src={`${bucketUrl}${artwork.TertiaryFile.Name}`}
                     className={s.extraImage}
+                    alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
                   />
                 </div>
               }

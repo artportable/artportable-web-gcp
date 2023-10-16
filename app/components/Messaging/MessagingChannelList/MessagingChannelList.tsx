@@ -56,7 +56,7 @@ const MessagingChannelList: React.FC<Props> = (props) => {
         <div className='messaging__channel-list__header'>
           <ChatAvatar image={image} />
           <div className='messaging__channel-list__header__name'>{name || id}</div>
-          <button className='messaging__channel-list__header__button' onClick={onCreateChannel}>
+          <button aria-label='start new conversation' className='messaging__channel-list__header__button' onClick={onCreateChannel}>
             <AddIcon />
           </button>
         </div>

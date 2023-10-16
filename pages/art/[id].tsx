@@ -176,6 +176,7 @@ export default function ArtworkPage(props) {
                   <img
                     src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
                     className={s.primaryImage}
+                    alt={`${artwork?.data.Title ? artwork?.data.Title : 'artwork'}`}
                   />
                     <div className={s.flexMessageLike}>
                       <div
@@ -231,6 +232,7 @@ export default function ArtworkPage(props) {
                           disableRipple
                           disableFocusRipple
                           onClick={toggleLike}
+                          aria-label="like button"
                         >
                           {likedFilled}
                         </IconButton>
@@ -391,6 +393,7 @@ export default function ArtworkPage(props) {
                       src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
                       className={s.extraImage}
                       style={{marginTop: '25px', marginBottom:'20px'}}
+                      alt={`${artwork?.data?.Title ? artwork?.data?.Title : 'secondary artwork'}`}
                     />
                   </div>
                 )}
@@ -401,6 +404,7 @@ export default function ArtworkPage(props) {
                       src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
                       className={s.extraImage}
                       style={{marginTop: '25px'}}
+                      alt={`${artwork?.data?.Title ? artwork?.data?.Title : 'tertiary artwork'}`}
                     />
                   </div>
                 )}

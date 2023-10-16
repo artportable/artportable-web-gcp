@@ -194,8 +194,10 @@ export default function CategoryPage({
                               "konstnaersportraett"
                             )}/${article.slug}`}
                         >
+                          <a>
                           <div className={s.wrapper}>
                             <img
+                              alt="Cover Image"
                               className={s.coverImage}
                               src={article?.coverImage?.formats?.small?.url}
                             />
@@ -219,6 +221,7 @@ export default function CategoryPage({
                             </div>
                             <div className={s.line}></div>
                           </div>
+                          </a>
                         </Link>
                       </>
                     ) : (
@@ -232,8 +235,10 @@ export default function CategoryPage({
                               "konstnaersportraett"
                             )}/${article.slug}`}
                         >
+                          <a>
                           <div className={s.wrapper}>
                             <img
+                              alt="Cover Image"
                               className={s.coverImage}
                               src={article?.coverImage?.formats?.small?.url}
                             />
@@ -257,6 +262,7 @@ export default function CategoryPage({
                             </div>
                             <div className={s.line}></div>
                           </div>
+                          </a>
                         </Link>
                       </>
                     )}

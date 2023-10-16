@@ -85,7 +85,7 @@ export default function Checkout() {
           <img
             className={s.logo}
             src="/Artportable_Logotyp_Black.svg"
-            alt=""
+            alt="logo"
             title="" />
             <CardContent className={s.cardContentWidth}>
               <Typography variant="h5" component="h1">

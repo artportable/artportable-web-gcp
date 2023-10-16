@@ -194,6 +194,8 @@ export default function ArtworkListItemDefined({
                 width: width,
                 height: height
               }}
+              loading='lazy'
+              alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
             />
@@ -278,41 +280,41 @@ export default function ArtworkListItemDefined({
           </div>
         )}
       </div>
-      { (!indexPage && !isMyProfile) ? (
-          
-          <div className={s.desktopLikeTitle}>
-            <div className={s.titleMobile}>
-      {artwork && artwork.Title ? artwork.Title : t('untitled')}
-      
-        </div>
-      
-        <IconButton className={s.likeButton} onClick={toggleLike}
-            
+      {(!indexPage && !isMyProfile) ? (
+
+        <div className={s.desktopLikeTitle}>
+          <div className={s.titleMobile}>
+            {artwork && artwork.Title ? artwork.Title : t('untitled')}
+
+          </div>
+
+          <IconButton aria-label="like" className={s.likeButton} onClick={toggleLike}
+
+          >
+            {likedFilled}
+            <div
+              className={s.likeMobile}
+
             >
-              {likedFilled}
-                <div
-                className={s.likeMobile}
-                  
-                >
-                  {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
-                </div>
-            </IconButton>
-      
-           
+              {artwork && artwork.Likes > 0 ? artwork.Likes : ''}
+            </div>
+          </IconButton>
+
+
         </div>
-      ): (!indexPage && isMyProfile) &&
-        (
-          <div className={s.desktopLikeTitle}>
-            <div>      
+      ) : (!indexPage && isMyProfile) &&
+      (
+        <div className={s.desktopLikeTitle}>
+          <div>
           </div>
-            {topActions && (
-              <div className={s.likeButton}>
-                <div>{topActions}</div>
-              </div>
-            )}
-          </div>
-          )        
-        } 
+          {topActions && (
+            <div className={s.likeButton}>
+              <div>{topActions}</div>
+            </div>
+          )}
+        </div>
+      )
+      }
 
       {indexPage && (
         <div className={s.infoContainer}>
@@ -340,12 +342,11 @@ export default function ArtworkListItemDefined({
                         trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
                       }
                     >
-                      <IconButton className={s.shareButton}>
+                      <IconButton aria-label="share" className={s.shareButton}>
                         <ShareIcon style={{ fontSize: '21px' }} />
                       </IconButton>
                     </RWebShare>
                     <div title={t('common:sendMessage')}>
-                      <a>
                         <IconButton
                           className={s.chatButton}
                           aria-label="account"
@@ -364,10 +365,10 @@ export default function ArtworkListItemDefined({
                         >
                           <MessageRoundedIcon style={{ fontSize: '23px' }} />
                         </IconButton>
-                      </a>
                     </div>
 
                     <IconButton
+                      aria-label="like"
                       className={s.likeButton}
                       disableRipple
                       onClick={toggleLike}
@@ -388,16 +389,16 @@ export default function ArtworkListItemDefined({
                   {artwork.MultipleSizes
                     ? ' (' + t('common:words.multipleSizes').toLowerCase() + ')'
                     : artwork.Width && artwork.Height && artwork.Depth
-                    ? ' (' +
+                      ? ' (' +
                       artwork.Width +
                       'x' +
                       artwork.Height +
                       'x' +
                       artwork.Depth +
                       'cm)'
-                    : artwork.Width && artwork.Height
-                    ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
-                    : null}
+                      : artwork.Width && artwork.Height
+                        ? ' (' + artwork.Width + 'x' + artwork.Height + 'cm)'
+                        : null}
                 </span>
               </div>
               <div className={s.tagsContainer}>

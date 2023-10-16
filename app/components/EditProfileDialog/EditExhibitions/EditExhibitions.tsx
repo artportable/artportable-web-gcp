@@ -65,7 +65,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
         }}
         classes={{ root: s.badgeRoot }}
         badgeContent={
-          <IconButton onClick={() => deleteExhibition(e)}>
+          <IconButton aria-label="delete" onClick={() => deleteExhibition(e)}>
             <DeleteIcon
               color="error" />
           </IconButton>

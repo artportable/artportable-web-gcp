@@ -722,6 +722,7 @@ export default function Profile(props) {
                                       isMyProfile ? (
                                         <>
                                           <Button
+                                            aria-label="edit"
                                             className={s.editButton}
                                             variant="contained"
                                             color="red"
@@ -808,6 +809,7 @@ export default function Profile(props) {
                                 )}/${article.slug}`}
                                 key={key}
                               >
+                                <a>
                                 <Paper className={s.wrapper}>
                                   <div>
                                     <img
@@ -815,6 +817,7 @@ export default function Profile(props) {
                                         article?.coverImage?.formats?.small?.url
                                       }
                                       className={s.coverImage}
+                                      alt="cover image"
                                     />
                                   </div>
                                   <div className={s.textContent}>
@@ -840,6 +843,7 @@ export default function Profile(props) {
                                   </div>
                                   <div className={s.line}></div>
                                 </Paper>
+                                </a>
                               </Link>
                             );
                           })}
