@@ -173,11 +173,11 @@ export default function DiscoverPage({ navBarItems }) {
       {!loading && (
         <>
           {!isSignedIn.value && activeTab != 1 && activeTab  != 2 && activeTab  != 3 && <IndexHero></IndexHero>}
-             {/* { <AdDialog
+            { <AdDialog
               openAdDialog={openAdDialog}
               setOpenAdDialog={setOpenAdDialog}
               onClose={toggleAdDialog}
-              /> }  */}
+              /> } 
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
               <Tabs
