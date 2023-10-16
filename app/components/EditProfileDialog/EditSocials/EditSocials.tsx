@@ -28,7 +28,7 @@ export const EditSocials = ({ profile, setProfile }) => {
   const ResetAdornment = ({ socialMedia }) => {
     return (
       <InputAdornment position="end">
-        <IconButton onClick={(e) => resetSocialMediaProp(socialMedia, e)}>
+        <IconButton aria-label="close" onClick={(e) => resetSocialMediaProp(socialMedia, e)}>
           <ClearIcon></ClearIcon>
         </IconButton>
       </InputAdornment>
@@ -48,7 +48,7 @@ export const EditSocials = ({ profile, setProfile }) => {
           </InputAdornment>),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={(e) => resetSocialMediaProp('instagram', e)}>
+              <IconButton aria-label="close" onClick={(e) => resetSocialMediaProp('instagram', e)}>
                 <ClearIcon></ClearIcon>
               </IconButton>
             </InputAdornment>
@@ -91,7 +91,7 @@ export const EditSocials = ({ profile, setProfile }) => {
           </InputAdornment>),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={(e) => resetSocialMediaProp('linkedIn', e)}>
+              <IconButton aria-label="close" onClick={(e) => resetSocialMediaProp('linkedIn', e)}>
                 <ClearIcon></ClearIcon>
               </IconButton>
             </InputAdornment>
@@ -115,7 +115,7 @@ export const EditSocials = ({ profile, setProfile }) => {
           </InputAdornment>),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={(e) => resetSocialMediaProp('dribbble', e)}>
+              <IconButton aria-label="clear" onClick={(e) => resetSocialMediaProp('dribbble', e)}>
                 <ClearIcon></ClearIcon>
               </IconButton>
             </InputAdornment>
@@ -139,7 +139,7 @@ export const EditSocials = ({ profile, setProfile }) => {
           </InputAdornment>),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={(e) => resetSocialMediaProp('behance', e)}>
+              <IconButton  aria-label="clear" onClick={(e) => resetSocialMediaProp('behance', e)}>
                 <ClearIcon></ClearIcon>
               </IconButton>
             </InputAdornment>
@@ -163,7 +163,7 @@ export const EditSocials = ({ profile, setProfile }) => {
           </InputAdornment>),
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={(e) => resetSocialMediaProp('website', e)}>
+              <IconButton aria-label="clear" onClick={(e) => resetSocialMediaProp('website', e)}>
                 <ClearIcon></ClearIcon>
               </IconButton>
             </InputAdornment>

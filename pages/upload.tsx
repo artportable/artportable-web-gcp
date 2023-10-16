@@ -425,6 +425,7 @@ export default function UploadArtworkPage({ navBarItems }) {
                       className={s.mobilePreview}
                       src={mobileImg}
                       ref={mobilePreviewImageRef}
+                      alt="mobile image"
                     ></img>
                   )}
                 </div>
@@ -455,17 +456,17 @@ export default function UploadArtworkPage({ navBarItems }) {
             <div className={s.previewsContainer}>
               {croppedPrimary && (
                 <div className={s.previewItem}>
-                  <img src={croppedPrimary} />
+                  <img src={croppedPrimary} alt="primary image"/>
                 </div>
               )}
               {croppedSecondary && (
                 <div className={s.previewItem}>
-                  <img src={croppedSecondary} />
+                  <img src={croppedSecondary} alt="secondary image"/>
                 </div>
               )}
               {croppedTertiary && (
                 <div className={s.previewItem}>
-                  <img src={croppedTertiary} />
+                  <img src={croppedTertiary} alt="tertiary image"/>
                 </div>
               )}
               {!croppedTertiary && cropperActive && (

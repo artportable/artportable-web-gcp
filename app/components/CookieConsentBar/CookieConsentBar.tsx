@@ -17,6 +17,7 @@ export default function CookieConsentBar() {
     >
       <div>
         <img
+          alt="Cookie icon"
           src="Cookies_Icon.svg"
           className={s.cookieConsentBarIconClass}
         ></img>
