@@ -11,7 +11,7 @@ import {
 import router from 'next/router'
 import { Locales } from '../../models/i18n/locales'
 import Image from 'next/image'
-import Head from 'next/head'
+
 interface RandomImageProps {
   companyImageSv: string
   companyLinkSv: string
@@ -39,10 +39,10 @@ export default function AdDialog(props: Props) {
   const ad = [
     {
       companyName: 'Artportable',
-      companyImageSv: '/ad/camillakarlsson-takeover.jpg',
-      companyLinkSv: 'https://artportable.com/profile/@Camilla.Karlsson',
-      companyImageEn: '/ad/camillakarlsson-takeover.jpg',
-      companyLinkEn: 'https://artportable.com/profile/@Camilla.Karlsson'
+      companyImageSv: '/ad/carin.jpg',
+      companyLinkSv: 'https://artportable.com/profile/@Anna-Carin.Jansson',
+      companyImageEn: '/ad/carin.jpg',
+      companyLinkEn: 'https://artportable.com/en/profile/@Anna-Carin.Jansson'
     }
   ]
   useEffect(() => {
@@ -90,9 +90,9 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageSv}
                 alt={randomAd.companyName}
-                width={550}
-                height={300}
-                quality={90}
+                width={950}
+                height={500}
+                quality={100}
               />
             </a>
           ) : (
@@ -106,9 +106,9 @@ export default function AdDialog(props: Props) {
                 className={s.adImage}
                 src={randomAd.companyImageEn}
                 alt={randomAd.companyName}
-                width={550}
-                height={300}
-                quality={90}
+                width={950}
+                height={500}
+                quality={100}
               />
             </a>
           )}
