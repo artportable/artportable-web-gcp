@@ -873,12 +873,17 @@ export default function Profile(props) {
               </div>
             ) : (
               <div className={s.tabsContainer}>
-                <Tabs value={activeTab} centered>
+                <Tabs 
+                value={activeTab} 
+                centered 
+                className={s.tabs}
+                onChange={handleTabChange}
+                >
                   <Tab
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  {isMyProfile && (
+                  {isMyProfile && membership.value > Membership.Base && (
                     <Tab
                       className={s.tab}
                       style={{
