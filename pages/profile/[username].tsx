@@ -853,23 +853,10 @@ export default function Profile(props) {
                     }
                   </TabPanel>
                   {isMyProfile && membership.value > Membership.Base && (
-                    <TabPanel value={activeTab} index={2}>
+                    <TabPanel value={activeTab} index={3}>
                       <Offers />
                     </TabPanel>
                   )}
-                  <TabPanel value={activeTab} index={3}>
-                    <AboutMe
-                      userProfile={userProfile}
-                      userProfilePicture={
-                        isMyProfile
-                          ? profilePicture
-                          : userProfileSummary.data?.ProfilePicture
-                      }
-                      tags={tags.data}
-                      isMyProfile={isMyProfile}
-                      onUpdateProfilePicture={updateImage}
-                    ></AboutMe>
-                  </TabPanel>
                 </Box>
               </div>
             ) : (
@@ -894,9 +881,15 @@ export default function Profile(props) {
                       isMyProfile={isMyProfile}
                     ></AboutMe>
                   </TabPanel>
+                  {isMyProfile && membership.value > Membership.Base && (
+                    <TabPanel value={activeTab} index={1}>
+                      <Offers />
+                    </TabPanel>
+                  )}
                 </Box>
               </div>
             )}
+
             {similarPortfolios?.data && !similarPortfolios?.isError && (
               <>
                 <Divider className={s.secondDivider}></Divider>
