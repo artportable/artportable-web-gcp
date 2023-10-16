@@ -11,11 +11,18 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
-      alignItems: "center",
+      alignItems: "flex-start",
       marginBottom: "10px"
     },
     button: {
-      height: "30px",
+      height: "25px",
+      backgroundColor: "var(--yellow-darker)",
+      color: "black",
+      "&:hover": {
+        transform: "scale(1.095)",
+        color: "white",
+        backgroundColor: "var(--yellow-darker)"
+      },
     },
     navButtons: {
       backgroundColor: theme.palette.primary.main,
@@ -35,6 +42,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     scrollContainer: {
       position: 'relative',
+      display: "flex",
     },
     scroll: {
       overflow: 'auto',
@@ -46,28 +54,32 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     imagePaper: {
+      width: "100%",
       height: '200px',
       overflow: 'hidden',
       scrollSnapAlign: 'end',
+      padding: "0px 5px 5px 5px",
+      
     },
     chevron: {
       fontSize: '2.5rem',
       borderRadius: '50%',
-      backgroundColor: 'var( --background-color)',
-      color: theme.palette.common.black,
-      border: 'solid #c0bbb7 1px',
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+     
       
     },
     leftButton: {
       display: 'none',
       position: 'absolute',
-      left: '-68px',
-      top: '120px'
+      left: '0px',
+      top: '120px',
+     
     },
     rightButton: {
       display: 'none',
       position: 'absolute',
-      right: '-68px',
+      right: '0px',
       top: '120px'
     },
     image:{

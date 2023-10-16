@@ -117,14 +117,14 @@ export default function Header({ navBarItems }) {
                 <>
                   <MuiButton
                     classes={{ root: s.feed }}
-                    color="secondary"
+                    color="default" 
                     size="large"
                   >
                     <Link href="/">{t("discoverArt").toUpperCase()}</Link>
                   </MuiButton>
                   <MuiButton
                     classes={{ root: s.feed }}
-                    color="secondary"
+                    color="default" 
                     size="large"
                   >
                     <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
@@ -133,14 +133,14 @@ export default function Header({ navBarItems }) {
               )}
               <Link href="/artiklar" passHref>
                 <a>
-                  <MuiButton color="secondary" size="large">
+                  <MuiButton color="default" size="large">
                     {t("stories").toUpperCase()}
                   </MuiButton>
                 </a>
               </Link>
               <Link href="/showroom" passHref>
                 <a>
-                  <MuiButton color="secondary" size="large">
+                  <MuiButton color="default" size="large">
                     {t("exhibition").toUpperCase()}
                   </MuiButton>
                 </a>

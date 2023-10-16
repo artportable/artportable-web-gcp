@@ -102,7 +102,6 @@ export default function FreeTrial() {
 
 
   const submit = async () => {
-    console.log(formData.email.value)
     if (validateAllFields()) {
       zapierFreeTrial({
         "email": formData.email.value

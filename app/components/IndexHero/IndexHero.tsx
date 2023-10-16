@@ -79,30 +79,19 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Thorulf Löfstedt",
-      username: "thorulf.lofstedt",
-      image: "/images/thorulfl.jpeg",
-      imageLink: "art/393bdbfb-c7d2-4139-b825-add0ae189da3",
+      name: "Owe Emfestav",
+      username: "owe",
+      image: "/images/owe.jpeg",
+      imageLink: "art/712a7f0-e764-41b8-bea8-470b93c5e9c5",
     },
 
-    {
-      name: "Charlotte Hansson",
-      username: "charlottehansson",
-      image: "/images/charlotteHansson.jpeg",
-      imageLink: "art/25b4f342-7750-4404-be58-f1ee0bde15cb",
-    },
     {
       name: "Gunnila Svärd",
       username: "gunilla.svard",
       image: "/images/gunilla.jpg",
       imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
     },
-    {
-      name: "Lisa Dreier",
-      username: "lisa.dreier",
-      image: "/images/lisad.jpeg",
-      imageLink: "art/78f1eb79-4cc8-4d50-9115-596b0f01604b",
-    },
+  
   ];
 
   useEffect(() => {
