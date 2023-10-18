@@ -35,6 +35,14 @@ import PhotoSizeSelectLargeOutlinedIcon from '@mui/icons-material/PhotoSizeSelec
 import AspectRatioOutlinedIcon from '@mui/icons-material/AspectRatioOutlined';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 
+import { ListItemButton } from '@mui/material'
+
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
+import PhotoSizeSelectLargeIcon from '@mui/icons-material/PhotoSizeSelectLarge';
+import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+
+
 
 interface DiscoverTrendingArtTabProps {
   username?: string
@@ -69,6 +77,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     null
   )
   const [selectedTechnique, setSelectedTechnique] = useState<string[]>([])
+
+
+  const [trendingExpanded, setTrendingExpanded] = useState(false);
+  const [techniqueExpanded, setTechniqueExpanded] = useState(false);
+  const [orientationExpanded, setOrientationExpanded] = useState(false);
+  const [sizeExpanded, setSizeExpanded] = useState(false);
+  const [priceExpanded, setPriceExpanded] = useState(false);
 
 
 
@@ -562,184 +577,140 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         // Desktop filters hereeee
 
 
-
-        <div>
-            <div>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                marginTop: '-20px',
-                marginBottom: '20px',
-            
-            
-             
-                width: "100%"
-             
-              }}> 
-              <div style={{display: "flex", flexDirection: "row", width: "90%"}}>
-              <FormControl fullWidth>
-                <InputLabel style={{width: "100%", color: "black"}}>
-                {t('common:selectOptions:trending')}
-                </InputLabel>
-                <Select
-                  value={selectedTrending || ''}
-                  onChange={(e) => handleTrendingChange(e.target.value)}
-                  onClick={(e) => e.stopPropagation()}
-              
-                  sx={{'.MuiOutlinedInput-notchedOutline': {
-                    borderStyle: "none",
-                    color: "black"
-                    
-                  }}}
-                >
-                  <MenuItem value={7}>{t('common:selectOptions:trending7')}</MenuItem>
-                    <MenuItem value={14}>{t('common:selectOptions:trending14')}</MenuItem>
-                    <MenuItem value={30}>{t('common:selectOptions:trending30')}</MenuItem>
-                    <MenuItem value={90}>{t('common:selectOptions:trending90')}</MenuItem>
-                    <MenuItem value={365}>{t('common:selectOptions:trendingYear')}</MenuItem>
-                    <MenuItem value={2000}>{t('common:selectOptions:trendingAll')}</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth>
-                <InputLabel style={{  width: "100%",  color: "black"}}>
-                  {t('common:selectOptions:technique')}
-                </InputLabel>
-                <Select
-                  value={selectedTechnique || ''}
-                  onChange={(e) => handleTagChange(e.target.value as string)}
-                  onClick={(e) => e.stopPropagation()}
-                
-                  sx={{'.MuiOutlinedInput-notchedOutline': {
-                    borderStyle: "none",
-                    
-                  }}}
-                >
-                  {Object.keys(TAGS).map((key) => (
-                    <MenuItem value={key} key={key}>
-                      {t(`common:techniques:${key}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              </div>
-                  
-                  <div style={{display: "flex", flexDirection: "row", width: "100%"}}>
-                  <FormControl fullWidth>
-                <InputLabel style={{ marginBottom: "8px", width: "100%",  color: "black" }}>
-                  {t('common:selectOptions:format')}
-                </InputLabel>
-                <Select
-                  value={selectedOrientation || ''}
-                  onChange={(e) => handleOrientationChange(e.target.value)}
-                  onClick={(e) => e.stopPropagation()}
-                 
-                  sx={{'.MuiOutlinedInput-notchedOutline': {
-                    borderStyle: "none",
-                    
-                  }}}
-                >
-                  
-                    <MenuItem value={'Vertical'}> {t('common:selectOptions:vertical')}</MenuItem>
-                    <MenuItem value={'Horizontal'}> {t('common:selectOptions:horizontal')}</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth>
-                <InputLabel style={{ marginBottom: "8px",  color: "black" }}>
-                  {t('common:selectOptions:size')}
-                </InputLabel>
-                <Select
-                  value={selectedSize || ''}
-                  onChange={(e) => handleSizeChange(e.target.value)}
-                  onClick={(e) => e.stopPropagation()}
-                  sx={{'.MuiOutlinedInput-notchedOutline': {
-                    borderStyle: "none",
-                    
-                  }}}
-                >
-                  <MenuItem value={'30'}>{t('common:selectOptions:small')}</MenuItem>
-                  <MenuItem value={'60'}> {t('common:selectOptions:medium')}</MenuItem>
-                  <MenuItem value={'100'}>{t('common:selectOptions:large')}</MenuItem>
-                  <MenuItem value={'101'}> {t('common:selectOptions:extraLarge')}</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth>
-                <InputLabel style={{ marginBottom: "8px",  color: "black" }}>
-                  {t('common:selectOptions:price')}
-                </InputLabel>
-                <Select
-                  value={selectedPrice || ''}
-                  onChange={(e) => handlePriceChange(e.target.value)}
-                  onClick={(e) => e.stopPropagation()}
-                  sx={{'.MuiOutlinedInput-notchedOutline': {
-                    borderStyle: "none",
-                    
-                  }}}
-                >
-                    <MenuItem value={'500'}> {t('common:selectOptions:upTo500')}</MenuItem>
-                    <MenuItem value={'1000'}>  {t('common:selectOptions:upTo1000')}</MenuItem>
-                    <MenuItem value={'3000'}>             {t('common:selectOptions:upTo3000')}</MenuItem>
-                    <MenuItem value={'5000'}>  {t('common:selectOptions:upTo5000')}</MenuItem>
-                    <MenuItem value={'5001'}>  {t('common:selectOptions:over5000')}</MenuItem>
-                </Select>
-              </FormControl>
-                  </div>
-         
-              
-              {isFilterActive() && (
-                  <Button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      resetFilters()
-                    }}
-                    variant="outlined"
-                    color="secondary"
-                    style={{
-                      margin: '6px',
-                      borderRadius: '20px',
-                      height: '40px',
-                      textAlign: 'center',
-                      border: '1px solid #c67777',
-                      color: 'black',
-                      fontSize: '10px'
-                    }}
-                  >
-                    {t('common:selectOptions:clearFilter')}
-                  </Button>
-                )}
-            </div>
-
-
-                
-
-                
-              </div>
-            <div className={s.selectedTagWrapper}>
-              {selectedTags.map((tag, index) => (
-                <div key={index}>
-                  <div
-                    className={s.selectedTagsDesktop}
-                    style={{
-                      textAlign: 'center'
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      removeTag(tag)
-                    }}
-                  >
-                    <Typography>
-                      {t('common:techniques:' + `${tag}`)}
-                    </Typography>
-                    <span className={s.removeTagButton}>
-                      <ClearIcon></ClearIcon>
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          marginTop: '-20px',
+          marginBottom: '20px',
+          width: "100%",
+          height: '60px',
+          justifyContent:'space-evenly',
+        }}>
+          <div>
+            <Accordion elevation={0} className={s.filter} expanded={trendingExpanded} onClick={() => setTrendingExpanded(!trendingExpanded)}>
+              <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
+                <TrendingUpIcon className={s.filterIcon}></TrendingUpIcon>
+                <Typography className={s.filterSummary}>
+                  {selectedTrending ? t(`common:selectOptions:trending${selectedTrending}`) : (t('common:selectOptions:trending'))}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails className={s.filterDetails}>
+                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('7')}>{t('common:selectOptions:trending7')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('14')}>{t('common:selectOptions:trending14')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('30')}>{t('common:selectOptions:trending30')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('90')}>{t('common:selectOptions:trending90')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('365')}>{t('common:selectOptions:trending365')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('2000')}>{t('common:selectOptions:trending2000')}</ListItemButton>
+              </AccordionDetails>
+            </Accordion>
           </div>
+
+          <div>
+            <Accordion elevation={0} className={s.filter} expanded={techniqueExpanded} onClick={() => setTechniqueExpanded(!techniqueExpanded)}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
+                <Typography className={s.filterSummary}>
+                  {t('common:selectOptions:technique')}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails className={s.filterDetailsTags}>
+                {Object.keys(TAGS).map((key) => (
+                  <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
+                    {t(`common:techniques:${key}`)}
+                  </ListItemButton>
+                ))}
+              </AccordionDetails>
+            </Accordion>
+          </div>
+
+          <div>
+            <Accordion elevation={0} className={s.filter} expanded={orientationExpanded} onClick={() => setOrientationExpanded(!orientationExpanded)}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <AspectRatioIcon className={s.filterIcon}></AspectRatioIcon>
+                <Typography className={s.filterSummary}>
+                  {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation.toLowerCase()}`)) : (t('common:selectOptions:format'))}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails className={s.filterDetails}>
+                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Vertical')}> {t('common:selectOptions:vertical')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Horizontal')}> {t('common:selectOptions:horizontal')}</ListItemButton>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+
+          <div>
+            <Accordion elevation={0} className={s.filter} expanded={sizeExpanded} onClick={() => setSizeExpanded(!sizeExpanded)}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <PhotoSizeSelectLargeIcon className={s.filterIcon}></PhotoSizeSelectLargeIcon>
+                <Typography className={s.filterSummary}>
+                  {selectedSize ? (t(`common:selectOptions:${selectedSize}`)) : (t('common:selectOptions:size'))}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails  className={s.filterDetails}>
+                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('30')}>{t('common:selectOptions:30')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('60')}> {t('common:selectOptions:60')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('100')}>{t('common:selectOptions:100')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('101')}> {t('common:selectOptions:101')}</ListItemButton>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+
+          <div>
+            <Accordion disableGutters={true} elevation={0} className={s.filter} expanded={priceExpanded} onClick={() => setPriceExpanded(!priceExpanded)}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <CreditCardOutlinedIcon className={s.filterIcon}></CreditCardOutlinedIcon>
+                <Typography className={s.filterSummary}>
+                  {selectedPrice ? (t(`common:selectOptions:${selectedPrice}`)) : (t('common:selectOptions:price'))}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails className={s.filterDetails}>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('500')}>{t('common:selectOptions:500')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('1000')}>{t('common:selectOptions:1000')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:5000')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('3000')}>{t('common:selectOptions:3000')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5001')}>{t('common:selectOptions:5001')}</ListItemButton>
+              </AccordionDetails>
+            </Accordion>
+          </div>
+
+          {isFilterActive() && (
+            <Button
+              onClick={(e) => {
+                e.stopPropagation()
+                resetFilters()
+              } }
+              variant="outlined"
+              color="secondary"
+              className={s.filterClearBtn}
+            >
+              {t('common:selectOptions:clearFilter')}
+            </Button>
+          )}
+        </div><div className={s.selectedTagWrapper}>
+          {selectedTags.map((tag, index) => (
+            <div key={index}>
+              <div
+                className={s.selectedTagsDesktop}
+                style={{
+                  textAlign: 'center'
+                }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  removeTag(tag)
+                } }
+              >
+                <Typography>
+                  {t('common:techniques:' + `${tag}`)}
+                </Typography>
+                <span className={s.removeTagButton}>
+                  <ClearIcon></ClearIcon>
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
       )}
 
       <DiscoverArt
