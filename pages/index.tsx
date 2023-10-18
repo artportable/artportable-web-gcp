@@ -71,7 +71,7 @@ export default function DiscoverPage({ navBarItems }) {
       sessionStorage.removeItem("loggedIn");
     }
   }, [keycloak?.authenticated, router]);
-  
+
   useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
@@ -172,18 +172,17 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!loading && (
         <>
-          {!isSignedIn.value && activeTab != 1 && activeTab  != 2 && activeTab  != 3 && <IndexHero></IndexHero>}
-            { <AdDialog
-              openAdDialog={openAdDialog}
-              setOpenAdDialog={setOpenAdDialog}
-              onClose={toggleAdDialog}
-              /> } 
+          {!isSignedIn.value && activeTab != 1 && activeTab != 2 && activeTab != 3 && <IndexHero></IndexHero>}
+          {<AdDialog
+            openAdDialog={openAdDialog}
+            setOpenAdDialog={setOpenAdDialog}
+            onClose={toggleAdDialog}
+          />}
           <div className={s.discoverContainer}>
             <div className={s.tabContainer}>
               <Tabs
-                className={`${
-                  activeTab <= 3 ? s.artTabs : s.artistTab
-                }`}
+                className={`${activeTab <= 3 ? s.artTabs : s.artistTab
+                  }`}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
@@ -193,20 +192,20 @@ export default function DiscoverPage({ navBarItems }) {
                   className={s.text}
                   label={t("discover:topArt")}
                   {...a11yProps(t("discover:topArt"))}
-                /> 
-                <Tab
-                  className={s.text}
-                  label={t("discover:artists")}
-                  {...a11yProps(t("discover:artists"))}
                 />
-                 <Tab
+                <Tab
                   className={s.text}
                   label={t("discover:latestArt")}
                   {...a11yProps(t("discover:latestArt"))}
-                />    
+                />
                 <Tab
                   className={s.text}
                   label={t("discover:highlights")}
+                  {...a11yProps(t("discover:artists"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:artists")}
                   {...a11yProps(t("discover:artists"))}
                 />
               </Tabs>
@@ -225,12 +224,6 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
-                <DiscoverArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={2}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -241,7 +234,7 @@ export default function DiscoverPage({ navBarItems }) {
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab} tagPlaceholder={""} />
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={2}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -250,9 +243,15 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
-                  activeTab={activeTab} tagPlaceholder={""} fetchType={""}  />
+                  activeTab={activeTab} tagPlaceholder={""} fetchType={""} />
               </TabPanel>
-              
+              <TabPanel value={activeTab} index={3}>
+                <DiscoverArtistsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                />
+              </TabPanel>
+
             </Box>
           </div>
         </>
