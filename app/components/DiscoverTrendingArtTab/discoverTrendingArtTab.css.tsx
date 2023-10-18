@@ -166,19 +166,14 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+
       backgroundColor: "transparent"
-    },
-
-    selectedTagContainer: {
-      display: "flex",
-
     },
     selectedTags: {
       display: "flex",
       marginTop: "10px",
       flexDirection: "column-reverse",
       padding: "10px",
-      
     },
 
     selectedTagsDesktop: {
