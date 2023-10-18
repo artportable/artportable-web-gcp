@@ -121,7 +121,7 @@ export const styles = makeStyles((theme: Theme) =>
     filterDetailsTags: {
       display:'grid', 
       gridTemplateColumns:'1fr 1fr', 
-      backgroundColor:'white', 
+      backgroundColor:'var(--header-color)', 
       overflow: 'auto',
       position:'absolute', 
       zIndex: 1,
@@ -131,6 +131,8 @@ export const styles = makeStyles((theme: Theme) =>
       maxHeight:'500px',
       fontSize:'15px',
       fontWeight:500,
+
+      borderRadius: "10px"
     },
     filterItemTags: {
       justifyContent:'start', 
@@ -145,12 +147,15 @@ export const styles = makeStyles((theme: Theme) =>
       display:'grid', 
       gridTemplateColumns:'1fr',
       position: 'absolute', 
-      backgroundColor: 'white', 
+      backgroundColor: "var(--header-color)", 
       zIndex: 1, 
       padding: '10px',
       boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
       fontSize:'15px',
       fontWeight:500,
+
+      borderRadius: "10px"
+
     },
     filterItem: {
       justifyContent:'start', 

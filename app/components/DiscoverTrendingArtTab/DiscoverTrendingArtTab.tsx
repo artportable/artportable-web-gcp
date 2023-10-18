@@ -597,10 +597,15 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </AccordionSummary>
               <AccordionDetails className={s.filterDetails}>
                 <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('7')}>{t('common:selectOptions:trending7')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('14')}>{t('common:selectOptions:trending14')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('30')}>{t('common:selectOptions:trending30')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('90')}>{t('common:selectOptions:trending90')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('365')}>{t('common:selectOptions:trending365')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('2000')}>{t('common:selectOptions:trending2000')}</ListItemButton>
               </AccordionDetails>
             </Accordion>
@@ -616,9 +621,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </AccordionSummary>
               <AccordionDetails className={s.filterDetailsTags}>
                 {Object.keys(TAGS).map((key) => (
-                  <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
+                  <div>
+                     
+                     <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
                     {t(`common:techniques:${key}`)}
                   </ListItemButton>
+                  <Divider/>
+                  </div>
+              
                 ))}
               </AccordionDetails>
             </Accordion>
@@ -634,6 +644,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </AccordionSummary>
               <AccordionDetails className={s.filterDetails}>
                 <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Vertical')}> {t('common:selectOptions:Vertical')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Horizontal')}> {t('common:selectOptions:Horizontal')}</ListItemButton>
               </AccordionDetails>
             </Accordion>
@@ -649,8 +660,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </AccordionSummary>
               <AccordionDetails  className={s.filterDetails}>
                 <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('30')}>{t('common:selectOptions:30')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('60')}> {t('common:selectOptions:60')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('100')}>{t('common:selectOptions:100')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('101')}> {t('common:selectOptions:101')}</ListItemButton>
               </AccordionDetails>
             </Accordion>
@@ -666,9 +680,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </AccordionSummary>
               <AccordionDetails className={s.filterDetails}>
                 <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('500')}>{t('common:selectOptions:500')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('1000')}>{t('common:selectOptions:1000')}</ListItemButton>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:5000')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('3000')}>{t('common:selectOptions:3000')}</ListItemButton>
+                <Divider/>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:5000')}</ListItemButton>
+                <Divider/>
                 <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5001')}>{t('common:selectOptions:5001')}</ListItemButton>
               </AccordionDetails>
             </Accordion>
