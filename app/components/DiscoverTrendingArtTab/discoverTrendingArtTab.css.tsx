@@ -101,6 +101,83 @@ export const styles = makeStyles((theme: Theme) =>
 
     },
 
+    filter: {
+      backgroundColor:'transparent !important',
+      //Trying to remove the margin increase when Accordion is active
+      // margin:'0px',
+      // '&.Mui-expanded': {
+      //   backgroundColor:'lightblue !important',
+      //   maxHeight: '50px',
+      //   justifyContent:'center',
+      //   alignItems:'start',
+      // },
+    },
+
+    filterSummary: {
+      fontSize:'15px',
+      fontWeight: 500,
+    },
+
+    filterDetailsTags: {
+      display:'grid', 
+      gridTemplateColumns:'1fr 1fr', 
+      backgroundColor:'#fdf9f7', 
+      overflow: 'auto',
+      position:'absolute', 
+      zIndex: 1,
+      paddingTop: '10px',
+      paddingBottom: '10px',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+      maxHeight:'500px',
+      fontSize:'15px',
+      fontWeight:500,
+      borderRadius: "10px"
+    },
+    filterItemTags: {
+      justifyContent:'start', 
+      width:'200px',
+      paddingBottom:'6px', 
+      paddingTop:'6px', 
+      paddingRight:'16px',
+      paddingLeft:'16px'
+    },
+
+    filterDetails: {
+      display:'grid', 
+      gridTemplateColumns:'1fr',
+      position: 'absolute', 
+      backgroundColor: '#fdf9f7', 
+      zIndex: 1, 
+      padding: '10px',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+      fontSize:'15px',
+      fontWeight:500,
+      borderRadius: "10px",
+      
+    },
+    filterItem: {
+      justifyContent:'start', 
+      paddingBottom:'6px', 
+      paddingTop:'6px', 
+      paddingRight:'16px',
+      paddingLeft:'16px',
+      width:'250px'
+    },
+    filterIcon: {
+      marginRight:'7px',
+    },
+    filterClearBtn: {
+      margin: '6px',
+      borderRadius: '20px',
+      height: '40px',
+      width: '100px',
+      textAlign: 'center',
+      border: '1px solid #c67777',
+      color: 'black',
+      fontSize: '10px',
+      padding: '0px',
+    },
+
     selectWrapper: {
       display: "flex",
         flexDirection: "column",
@@ -110,6 +187,11 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
         flexDirection: "column",
         borderRadius: "20px",
+    },
+
+    selectedTagContainer: {
+      display: "flex",
+
     },
 
     trendAndTechnique: {
