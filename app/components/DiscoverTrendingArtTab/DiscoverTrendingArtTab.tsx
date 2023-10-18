@@ -633,8 +633,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 </Typography>
               </AccordionSummary>
               <AccordionDetails className={s.filterDetails}>
-                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Vertical')}> {t('common:selectOptions:vertical')}</ListItemButton>
-                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Horizontal')}> {t('common:selectOptions:horizontal')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Vertical')}> {t('common:selectOptions:Vertical')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Horizontal')}> {t('common:selectOptions:Horizontal')}</ListItemButton>
               </AccordionDetails>
             </Accordion>
           </div>
