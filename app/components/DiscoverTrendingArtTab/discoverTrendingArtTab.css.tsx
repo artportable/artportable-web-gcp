@@ -167,7 +167,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: '6px',
       borderRadius: '20px',
       height: '40px',
-      width: '400px',
+      width: '100px',
       textAlign: 'center',
       border: '1px solid #c67777',
       color: 'black',

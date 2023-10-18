@@ -629,7 +629,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <AspectRatioIcon className={s.filterIcon}></AspectRatioIcon>
                 <Typography className={s.filterSummary}>
-                  {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation.toLowerCase()}`)) : (t('common:selectOptions:format'))}
+                  {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation}`)) : (t('common:selectOptions:format'))}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails className={s.filterDetails}>
@@ -673,20 +673,21 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </AccordionDetails>
             </Accordion>
           </div>
-
+          <div style={{width:'100px'}}>
           {isFilterActive() && (
             <Button
-              onClick={(e) => {
-                e.stopPropagation()
-                resetFilters()
-              } }
-              variant="outlined"
-              color="secondary"
-              className={s.filterClearBtn}
+            onClick={(e) => {
+              e.stopPropagation()
+              resetFilters()
+            } }
+            variant="outlined"
+            color="secondary"
+            className={s.filterClearBtn}
             >
               {t('common:selectOptions:clearFilter')}
             </Button>
           )}
+          </div>
         </div><div className={s.selectedTagWrapper}>
           {selectedTags.map((tag, index) => (
             <div key={index}>
