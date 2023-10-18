@@ -293,7 +293,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 open={open}
                 onClose={handleClose}
             > 
-                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: "#fdf9f7" }}>
+                <div style={{ display: 'flex', flexDirection: 'column', width: "100%", height: '100%', backgroundColor: "#fdf9f7", overflowY: "scroll" }}>
     
               <List style={{ flexGrow: 1 }}>
                   <div style={{display: "flex", marginTop: "12px", fontSize: "20px", fontWeight: "bold", padding: "10px"}}>
@@ -495,7 +495,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           </List>
                    
           </div>
-                <div style={{ display: "flex", backgroundColor: "#faf3ee", justifyContent: "space-between", padding: '10px', borderTop: '1px solid #ddd' }}>
+          <div style={{position: "fixed", width: "100%", bottom: "0", left: "0"}}>
+          <div style={{ display: "flex", backgroundColor: "#faf3ee", justifyContent: "space-between", padding: '10px', borderTop: '1px solid #ddd' }}>
                   {isFilterActiveMobile() && (
                     <Button
                       onClick={(e) => {
@@ -526,6 +527,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                        </Button>
                       )}
                 </div>
+          </div>
+                
             </Dialog>
         </div>
       ) : (
