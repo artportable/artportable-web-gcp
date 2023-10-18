@@ -296,8 +296,8 @@ export default function DiscoverArt({
             }}
           >
             {loading ? (
-               <Stack sx={{ width: '100%', color: 'grey.500' }}>
-               <LinearProgress color="secondary" />
+               <Stack sx={{ width: '100%', color: '#a35d5d' }}>
+               <LinearProgress color="inherit"/>
              </Stack>
             ) : (
               <div>{t('nothingFound')}</div>
