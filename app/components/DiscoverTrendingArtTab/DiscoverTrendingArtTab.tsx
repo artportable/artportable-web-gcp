@@ -28,14 +28,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
 import TuneIcon from '@mui/icons-material/Tune';
-import { keys } from '@material-ui/core/styles/createBreakpoints'
+
 
 
 interface DiscoverTrendingArtTabProps {
@@ -71,15 +65,15 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     null
   )
   const [selectedTechnique, setSelectedTechnique] = useState<string[]>([])
-  const [showFilters, setShowFilters] = useState<boolean>(false)
+
 
 
   const [tempSelectedTrending, setTempSelectedTrending] = useState<string | null>(null);
   const [tempSelectedOrientation, setTempSelectedOrientation] = useState<string | null>(null);
+  const [tempSelectedPrice, setTempSelectedPrice] = useState<string | null>(null)
 
 
-
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -110,13 +104,20 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       setSelectedOrientation(value)
   }
 
-  const handleOrientationChangeMobile = (value: number) => {  
+  const handleOrientationChangeMobile = (value) => {  
     setTempSelectedOrientation(String(value));
   };
   
   const handleSizeChangeMobile = (value: number) => {
     setTempSelectedSize(String(value));
   }
+
+  const handlePriceChangeMobile = (value: any) => {
+    setTempSelectedPrice(value);
+
+  }
+
+
 
 
   function filter(tags: string[], searchQuery = '') {
@@ -142,16 +143,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const handleTagChangeMobile = (newTag: string) => {
       if (selectedTempTags.length < 4 && !selectedTempTags.includes(newTag)) {
         setTempSelectedTags((prevTags) => [...prevTags, newTag])
+
     }
   }
 
-  useEffect(() => {
-   
-    
-    
-  },[selectedTempTags])
-
- 
 
   const removeTag = (tagToRemove: string) => {
     setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
@@ -168,13 +163,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setTempSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
   }
 
-  useEffect(() => {
-
-  }, [selectedTags])
-
-  useEffect(() => {
-
-  }, [selectedTempTags])
 
   const resetFilters = () => {
     setSelectedTags([])
@@ -194,6 +182,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setSelectedSize(null)
     setSelectedPrice(null)
     setSelectedTrending(null)
+    setTempSelectedOrientation(null)
+    setTempSelectedPrice(null)
   }
 
   useEffect(() => {}, [handleClose, resetFiltersMobile])
@@ -213,7 +203,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     return (
       selectedTempTags.length > 0 ||
       selectedTempSize !== null ||
-      tempSelectedTrending !== null
+      tempSelectedTrending !== null ||
+      tempSelectedOrientation !== null ||
+      tempSelectedPrice !== null
     )
   }
 
@@ -302,15 +294,19 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 onClose={handleClose}
             > 
                 <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: "#fdf9f7" }}>
+    
               <List style={{ flexGrow: 1 }}>
+                  <div style={{display: "flex", marginTop: "12px", fontSize: "20px", fontWeight: "bold", padding: "10px"}}>
                   <ListItem>
-                      Artportable
+                      {t("common:selectOptions:doFilter")}
                   </ListItem>
+                  <Button onClick={handleClose}>{t("common:selectOptions:close")}</Button>
+                  </div>
                   <Divider style={{marginTop: "20px"}} />
 
                 <div style={{textAlign: "center", display: "flex", flexDirection: "column"}}>
                 <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                  <Accordion style={{borderRadius: "20px", width: "90%"}}>
+                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
                       <AccordionSummary
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel-content"
@@ -320,58 +316,68 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                               {tempSelectedTrending ? t(`common:selectOptions:trending${tempSelectedTrending}`) : t('common:selectOptions:trending')}
                       </Typography>
                       </AccordionSummary>
+                      <Divider/>
                       <AccordionDetails>
                           <Typography onClick={() => handleTrendingChangeMobile(7)}>{t('common:selectOptions:trending')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
                           <Typography onClick={() => handleTrendingChangeMobile(14)}>{t('common:selectOptions:trending14')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
                           <Typography onClick={() => handleTrendingChangeMobile(30)}>{t('common:selectOptions:trending30')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
                           <Typography onClick={() => handleTrendingChangeMobile(90)}>{t('common:selectOptions:trending90')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(365)}>{t('common:selectOptions:trendingYear')}</Typography>
+                          <Typography onClick={() => handleTrendingChangeMobile(365)}>{t('common:selectOptions:trending365')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(2000)}>{t('common:selectOptions:trendingAll')}</Typography>
+                          <Typography onClick={() => handleTrendingChangeMobile(2000)}>{t('common:selectOptions:trending2000')}</Typography>
                       </AccordionDetails>
                   </Accordion>
               </FormControl>
-              <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                <Accordion style={{ borderRadius: "20px", width: "90%", alignItems: "center"}}>
+              <FormControl style={{ marginTop: "30px", alignItems: "center"}}>
+                <Accordion style={{ borderRadius: "20px", width: "90%", alignItems: "center", backgroundColor: "#faf3ee"}}>
                   <AccordionSummary
                      expandIcon={<ExpandMoreIcon />}
                      aria-controls="panel-content"
                      id="panel-header"
+                     
                   >
                      <Typography>
                             { t('common:selectOptions:technique')}
                       </Typography> 
                   </AccordionSummary>
-                  {Object.keys(TAGS).map((key) => (
+                  <div style={{maxHeight: '300px', overflowY: 'auto'}}> 
+                    {Object.keys(TAGS).map((key) => (
+                      <div>
                         <ListItem button onClick={() => handleTagChangeMobile(key)}>
                         {t(`common:techniques:${key}`)}
-                    </ListItem>
-                    
-                      ))}
+                      </ListItem>
+                        <Divider/>
+                      </div>
+                    ))}
+                  </div>
+
                 </Accordion>
               </FormControl>
               <div className={s.selectedTagWrapper}>
                     {
                       selectedTempTags && 
-                      <div>
+                      <div className={s.selectedTagContainer}>
                            {selectedTempTags.map((tag, index) => (
                   <div key={index}>
                     <div
                       className={s.selectedTags}
-                      style={{
-                        textAlign: 'center'
-                      }}
+                     
                     >
-                      <Typography>
+                      <Typography style={{fontSize: "12px", fontWeight: "lighter"}}>
                         {t('common:techniques:' + `${tag}`)}
                       </Typography>
                       <span
@@ -384,7 +390,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                           style={{
                             border: '0px solid #c67777',
                             color: '#c67777',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            fontSize: "12px"
                           }}
                         ></HighlightOffRoundedIcon>
                       </span>
@@ -395,8 +402,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     }
               </div>
 
-              <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                  <Accordion style={{borderRadius: "20px", width: "90%"}}>
+              <FormControl style={{ marginTop: "30px", alignItems: "center"}}>
+                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
                       <AccordionSummary
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel-content"
@@ -404,56 +411,121 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                           style={{height: "100%"}}
                       >
                       <Typography>
-                              {selectedTempSize ? t(`common:selectOptions:${selectedTempSize}`): t('common:selectOptions:format')}
+                              {selectedTempSize ? t(`common:selectOptions:${selectedTempSize}`): t('common:selectOptions:size')}
                       </Typography>
                       </AccordionSummary>
+                      <Divider/>
                       <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(30)}>{t('common:selectOptions:small')}</Typography>
+                          <Typography onClick={() => handleSizeChangeMobile(30)}>{t('common:selectOptions:30')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(60)}>{t('common:selectOptions:medium')}</Typography>
+                          <Typography onClick={() => handleSizeChangeMobile(60)}>{t('common:selectOptions:60')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(100)}>{t('common:selectOptions:large')}</Typography>
+                          <Typography onClick={() => handleSizeChangeMobile(100)}>{t('common:selectOptions:100')}</Typography>
                       </AccordionDetails>
+                      <Divider/>
                       <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(101)}>{t('common:selectOptions:extraLarge')}</Typography>
+                          <Typography onClick={() => handleSizeChangeMobile(101)}>{t('common:selectOptions:101')}</Typography>
+                      </AccordionDetails>
+                  </Accordion>
+              </FormControl>
+            
+              <FormControl style={{ marginTop: "30px", alignItems: "center"}}>
+                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
+                      <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel-content"
+                          id="panel-header"
+                          style={{height: "100%"}}
+                      >
+                      <Typography>
+                              {tempSelectedOrientation ? t(`common:selectOptions:${tempSelectedOrientation}`): t('common:selectOptions:format')}
+                      </Typography>
+                      </AccordionSummary>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handleOrientationChangeMobile("Vertical")}>{t('common:selectOptions:Vertical')}</Typography>
+                      </AccordionDetails>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handleOrientationChangeMobile("Horizontal")}>{t('common:selectOptions:Horizontal')}</Typography>
+                      </AccordionDetails>
+                  </Accordion>
+              </FormControl>
+
+
+              <FormControl style={{ marginTop: "30px", alignItems: "center"}}>
+                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
+                      <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel-content"
+                          id="panel-header"
+                          style={{height: "100%"}}
+                      >
+                      <Typography>
+                              {tempSelectedPrice ? t(`common:selectOptions:upTo${tempSelectedPrice}`): t('common:selectOptions:price')}
+                      </Typography>
+                      </AccordionSummary>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handlePriceChangeMobile(500)}>{t('common:selectOptions:upTo500')}</Typography>
+                      </AccordionDetails>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handlePriceChangeMobile(1000)}>{t('common:selectOptions:upTo1000')}</Typography>
+                      </AccordionDetails>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handlePriceChangeMobile(3000)}>{t('common:selectOptions:upTo3000')}</Typography>
+                      </AccordionDetails>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handlePriceChangeMobile(5000)}>{t('common:selectOptions:upTo5000')}</Typography>
+                      </AccordionDetails>
+                      <Divider/>
+                      <AccordionDetails>
+                          <Typography onClick={() => handlePriceChangeMobile(5001)}>{t('common:selectOptions:upTo5001')}</Typography>
                       </AccordionDetails>
                   </Accordion>
               </FormControl>
             </div>
           </List>
                    
-                </div>
-                    
-                    <div style={{display: "flex", backgroundColor: "#faf3ee", justifyContent: "space-between"}}>
-                    {isFilterActiveMobile() && (
-                  <Button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      resetFiltersMobile()
-                    }}
-                    variant="outlined"
-                    color="secondary"
-                    style={{margin: "10px", backgroundColor: "#fadf87", borderRadius: "20px", padding: "10px"}}
-                  >
-                    {t('common:selectOptions:clearFilter')}
-                  </Button>
-                )}
-                      <Button onClick={handleClose}>Stäng</Button>
-                      <Button 
-                        onClick={() => {
-                            setSelectedTrending(tempSelectedTrending);
-                            setSelectedTags(selectedTempTags)
-                            setSelectedSize(selectedTempSize)
-                            handleClose();
-                        }} 
-                        style={{margin: "10px", backgroundColor: "#fadf87", borderRadius: "20px", padding: "10px"}}
+          </div>
+                <div style={{ display: "flex", backgroundColor: "#faf3ee", justifyContent: "space-between", padding: '10px', borderTop: '1px solid #ddd' }}>
+                  {isFilterActiveMobile() && (
+                    <Button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        resetFiltersMobile();
+                      }}
+                      variant="outlined"
+                      color="secondary"
+                      style={{ backgroundColor: "#fadf87", borderRadius: "20px", padding: "10px", border: "none", color: "black" }}
                     >
-                        Filtrera
+                      {t('common:selectOptions:clearFilter')}
                     </Button>
+                  )}
 
-                    </div>
+                      {isFilterActiveMobile() && (
+                         <Button 
+                         onClick={() => {
+                             setSelectedTrending(tempSelectedTrending);
+                             setSelectedTags(selectedTempTags);
+                             setSelectedSize(selectedTempSize);
+                             setSelectedOrientation(tempSelectedOrientation)
+                             setSelectedPrice(tempSelectedPrice)
+                             handleClose();
+                         }} 
+                         style={{ backgroundColor: "#02a16c", borderRadius: "20px", padding: "10px", color: "white" }}
+                       >
+                         {t("common:selectOptions:showResult")}
+                       </Button>
+                      )}
+                </div>
             </Dialog>
         </div>
       ) : (

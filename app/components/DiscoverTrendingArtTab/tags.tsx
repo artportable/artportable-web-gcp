@@ -6,7 +6,6 @@ export const TAGS = {
   "aquarelle": "Aquarelle",
   "architecture": "Architecture",
   "art-exhibition": "Art exhibition",
-  "artwork": "Artwork",
   "arts-craft": "Arts & craft",
   "big-city": "Big city",
   "celebrity": "Celebrity",
