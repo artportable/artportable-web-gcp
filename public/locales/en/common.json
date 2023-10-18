@@ -143,12 +143,7 @@
     "Horizontal": "Horizontal",
     "close": "Close",
     "doFilter": "Filters",
-    "showResult": "Filter",
-    "500": "Upp till 500 (SEK)",
-    "1000": "Upp till 1000 (SEK)",
-    "3000": "Upp till 3000 (SEK)",
-    "5000": "Upp till 5000 (SEK)",
-    "5001": "Över 5000 (SEK)"
+    "showResult": "Filter"
   },
 
   "like": "Like",

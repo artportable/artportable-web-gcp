@@ -142,12 +142,8 @@
   "Horizontal": "Horisontella",
   "close": "Stäng",
   "doFilter": "Filtrera på",
-  "showResult": "Visa sökresultat",
-  "500": "Up to 500 (SEK)",
-  "1000": "Up to 1000 (SEK)",
-  "3000": "Up to 3000 (SEK)",
-  "5000": "Up to 5000 (SEK)",
-  "5001": "Over 5000 (SEK)"
+  "showResult": "Visa sökresultat"
+
 },
   "like": "Gilla",
   "message": "Meddelande",

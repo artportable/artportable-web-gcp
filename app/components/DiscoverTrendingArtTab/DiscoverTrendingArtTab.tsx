@@ -675,19 +675,19 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <CreditCardOutlinedIcon className={s.filterIcon}></CreditCardOutlinedIcon>
                 <Typography className={s.filterSummary}>
-                  {selectedPrice ? (t(`common:selectOptions:${selectedPrice}`)) : (t('common:selectOptions:price'))}
+                  {selectedPrice ? (t(`common:selectOptions:upTo${selectedPrice}`)) : (t('common:selectOptions:price'))}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails className={s.filterDetails}>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('500')}>{t('common:selectOptions:500')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('500')}>{t('common:selectOptions:upTo500')}</ListItemButton>
                 <Divider/>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('1000')}>{t('common:selectOptions:1000')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('1000')}>{t('common:selectOptions:upTo1000')}</ListItemButton>
                 <Divider/>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('3000')}>{t('common:selectOptions:3000')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('3000')}>{t('common:selectOptions:upTo3000')}</ListItemButton>
                 <Divider/>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:5000')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:upTo5000')}</ListItemButton>
                 <Divider/>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5001')}>{t('common:selectOptions:5001')}</ListItemButton>
+                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5001')}>{t('common:selectOptions:upTo5001')}</ListItemButton>
               </AccordionDetails>
             </Accordion>
           </div>
