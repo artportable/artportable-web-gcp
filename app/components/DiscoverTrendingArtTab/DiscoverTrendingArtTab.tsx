@@ -29,7 +29,11 @@ import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import TuneIcon from '@mui/icons-material/Tune';
-
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
+import PhotoSizeSelectLargeOutlinedIcon from '@mui/icons-material/PhotoSizeSelectLargeOutlined';
+import AspectRatioOutlinedIcon from '@mui/icons-material/AspectRatioOutlined';
+import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 
 
 interface DiscoverTrendingArtTabProps {
@@ -307,14 +311,19 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 <div style={{textAlign: "center", display: "flex", flexDirection: "column"}}>
                 <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
                   <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
+                    
                       <AccordionSummary
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel-content"
                           id="panel-header"
                       >
-                      <Typography>
-                              {tempSelectedTrending ? t(`common:selectOptions:trending${tempSelectedTrending}`) : t('common:selectOptions:trending')}
+                        <div style={{display: "flex", alignItems: "flex-end" }}>
+                          <TrendingUpIcon style={{marginRight: "4px"}} />
+                          <Typography>
+                        {tempSelectedTrending ? t(`common:selectOptions:trending${tempSelectedTrending}`) : t('common:selectOptions:trending')}
                       </Typography>
+                        </div>
+                     
                       </AccordionSummary>
                       <Divider/>
                       <AccordionDetails>
@@ -349,10 +358,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                      aria-controls="panel-content"
                      id="panel-header"
                      
-                  >
-                     <Typography>
-                            { t('common:selectOptions:technique')}
-                      </Typography> 
+                  > 
+                        <div style={{display: "flex", alignItems: "flex-end", }}>
+                        <PaletteOutlinedIcon style={{marginRight: "4px"}}/>
+                          <Typography>
+                          { t('common:selectOptions:technique')}
+                          </Typography>
+                        </div>
+                    
                   </AccordionSummary>
                   <div style={{maxHeight: '300px', overflowY: 'auto'}}> 
                     {Object.keys(TAGS).map((key) => (
@@ -410,9 +423,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                           id="panel-header"
                           style={{height: "100%"}}
                       >
-                      <Typography>
-                              {selectedTempSize ? t(`common:selectOptions:${selectedTempSize}`): t('common:selectOptions:size')}
-                      </Typography>
+                        <div style={{display: "flex", alignItems: "flex-end", }}>
+                          <PhotoSizeSelectLargeOutlinedIcon style={{marginRight: "4px"}}/>
+                            <Typography>
+                                  {selectedTempSize ? t(`common:selectOptions:${selectedTempSize}`): t('common:selectOptions:size')}
+                            </Typography>
+                        </div>
+                      
                       </AccordionSummary>
                       <Divider/>
                       <AccordionDetails>
@@ -441,9 +458,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                           id="panel-header"
                           style={{height: "100%"}}
                       >
-                      <Typography>
+                        <div style={{display: "flex", alignItems: "flex-end", }}>
+                        <AspectRatioOutlinedIcon style={{marginRight: "4px"}}/>
+                        <Typography>
                               {tempSelectedOrientation ? t(`common:selectOptions:${tempSelectedOrientation}`): t('common:selectOptions:format')}
                       </Typography>
+                        </div>
+
+                     
                       </AccordionSummary>
                       <Divider/>
                       <AccordionDetails>
@@ -465,9 +487,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                           id="panel-header"
                           style={{height: "100%"}}
                       >
-                      <Typography>
+                         <div style={{display: "flex", alignItems: "flex-end", }}>
+                        <PaymentOutlinedIcon style={{marginRight: "4px"}}/>
+                        <Typography>
                               {tempSelectedPrice ? t(`common:selectOptions:upTo${tempSelectedPrice}`): t('common:selectOptions:price')}
                       </Typography>
+                        </div>
+
+                     
                       </AccordionSummary>
                       <Divider/>
                       <AccordionDetails>
@@ -536,11 +563,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
 
 
-
-
-
-
-        
         <div>
             <div>
             <div style={{
