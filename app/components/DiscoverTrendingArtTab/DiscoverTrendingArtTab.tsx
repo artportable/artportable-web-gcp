@@ -300,7 +300,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 <Typography>
                   {t("common:selectOptions:filter")}
                 </Typography>
-                <TuneIcon style={{marginLeft: "5px"}} />
+                <TuneIcon style={{marginLeft: "6px"}} />
             </Button>
             <Dialog
                 fullScreen
