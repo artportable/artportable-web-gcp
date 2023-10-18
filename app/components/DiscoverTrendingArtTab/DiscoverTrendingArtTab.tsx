@@ -11,20 +11,17 @@ import { TAGS } from './tags'
 import { styles } from './discoverTrendingArtTab.css'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { MenuItem, NativeSelect, useTheme } from '@material-ui/core'
+import { useTheme } from '@material-ui/core'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import RemoveIcon from '@mui/icons-material/Remove'
+import CloseIcon from '@mui/icons-material/Close';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import ClearIcon from '@mui/icons-material/Clear'
 import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import Select from '@mui/material/Select'
 import Dialog from '@mui/material/Dialog';
-import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -76,8 +73,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const [selectedOrientation, setSelectedOrientation] = useState<string | null>(
     null
   )
-  const [selectedTechnique, setSelectedTechnique] = useState<string[]>([])
-
 
   const [trendingExpanded, setTrendingExpanded] = useState(false);
   const [techniqueExpanded, setTechniqueExpanded] = useState(false);
@@ -300,10 +295,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
     <>
       {isMobile ? (
-        <div style={{  marginBottom: '20px' }}>
+        <div>
           <Button style={{width: "100%", borderRadius: "20px",}} variant="outlined" onClick={handleClickOpen}>
                 <Typography>
-                Filtrera 
+                  {t("common:selectOptions:filter")}
                 </Typography>
                 <TuneIcon style={{marginLeft: "5px"}} />
             </Button>
@@ -315,13 +310,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 <div style={{ display: 'flex', flexDirection: 'column', width: "100%", height: '100%', backgroundColor: "#fdf9f7", overflowY: "scroll" }}>
     
               <List style={{ flexGrow: 1 }}>
-                  <div style={{display: "flex", marginTop: "12px", fontSize: "20px", fontWeight: "bold", padding: "10px"}}>
+                  <div style={{display: "flex", fontSize: "20px", fontWeight: "bold", padding: "6px"}}>
                   <ListItem>
                       {t("common:selectOptions:doFilter")}
                   </ListItem>
-                  <Button onClick={handleClose}>{t("common:selectOptions:close")}</Button>
+                  <Button onClick={handleClose}> {t("common:selectOptions:close")} <CloseIcon /></Button>
                   </div>
-                  <Divider style={{marginTop: "20px"}} />
+                  <Divider/>
 
                 <div style={{textAlign: "center", display: "flex", flexDirection: "column"}}>
                 <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
@@ -367,7 +362,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   </Accordion>
               </FormControl>
               <FormControl style={{ marginTop: "30px", alignItems: "center"}}>
-                <Accordion style={{ borderRadius: "20px", width: "90%", alignItems: "center", backgroundColor: "#faf3ee"}}>
+                <Accordion style={{ borderRadius: "20px", width: "90%", alignItems: "center", backgroundColor: "#faf3ee"}}       
+                >
                   <AccordionSummary
                      expandIcon={<ExpandMoreIcon />}
                      aria-controls="panel-content"

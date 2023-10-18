@@ -142,7 +142,8 @@
   "Horizontal": "Horisontella",
   "close": "Stäng",
   "doFilter": "Filtrera på",
-  "showResult": "Visa sökresultat"
+  "showResult": "Visa sökresultat",
+  "filter": "Filtrera"
 
 },
   "like": "Gilla",

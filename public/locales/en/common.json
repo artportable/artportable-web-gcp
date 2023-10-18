@@ -143,7 +143,8 @@
     "Horizontal": "Horizontal",
     "close": "Close",
     "doFilter": "Filters",
-    "showResult": "Filter"
+    "showResult": "Filter",
+    "filter": "Filter"
   },
 
   "like": "Like",
