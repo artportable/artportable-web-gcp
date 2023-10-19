@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Avatar, Box, Card, CardContent, Typography } from '@material-ui/core'
+import { Avatar, Box, Card, CardContent, Divider, Typography } from '@material-ui/core'
 import { styles } from './aboutCard.css'
 import RoomIcon from '@material-ui/icons/Room'
 import { useTranslation } from 'next-i18next'
@@ -25,6 +25,22 @@ export default function AboutCard({
   const [profilepic, setProfilepic] = useState('No change')
   
   const fileInput = useRef(null)
+
+  function renderWithLineBreaks(text) {
+    return text.split('\n').map((str, index, array) => (
+        <>
+            {str}
+            {index === array.length - 1 ? null : <br />}
+        </>
+    ));
+}
+
+
+
+  useEffect(() => {
+    console.log(data.About);
+    
+  }, [])
 
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -181,22 +197,25 @@ export default function AboutCard({
               </div>
 
               {data?.About && (
-                <div className={s.bioText}>
-                  <b>
-                    {t('profile:aboutArtist')}{' '}
-                    <a>
-                      {data?.Name} {data?.Surname && data?.Surname}
-                    </a>
-                    :
-                  </b>{' '}
-                  <br />
-                  <br />
-                  {data?.About}
-                  {data?.InspiredBy && (
-                    <InspiredByCard text={data?.InspiredBy}></InspiredByCard>
-                  )}
-                </div>
+                  <div className={s.bioText}>
+                      <b>
+                          {t('profile:aboutArtist')}{' '}
+                          <a>
+                              {data?.Name} {data?.Surname && data?.Surname}
+                          </a>
+                          :
+                      </b>
+                      <Divider></Divider>
+                      <br />
+               
+                      {renderWithLineBreaks(data?.About)}
+                      <Divider style={{marginTop: "20px"}}></Divider>
+                      {data?.InspiredBy && (
+                          <InspiredByCard text={data?.InspiredBy}></InspiredByCard>
+                      )}
+                  </div>
               )}
+
             </div>
           </div>
 
