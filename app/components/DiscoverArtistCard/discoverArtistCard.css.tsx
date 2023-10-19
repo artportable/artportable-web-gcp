@@ -10,8 +10,8 @@ export const styles = makeStyles((theme: Theme) =>
     header: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
+      //justifyContent: "space-between",
+      alignItems: "flex-end",
       marginBottom: "10px"
     },
     button: {

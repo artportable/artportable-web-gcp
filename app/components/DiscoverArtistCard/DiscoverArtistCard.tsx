@@ -48,8 +48,8 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   return (
     <div className={s.container}>
       <div className={s.header}>
-        <AvatarCard user={artist}></AvatarCard>
-        {isSignedIn &&
+        <AvatarCard artist={artist} onFollowClick={onFollowClick}></AvatarCard>
+        {/* {isSignedIn &&
           <Button
             size="small"
             variant={!isFollowed ? "contained" : "outlined"}
@@ -64,19 +64,21 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                 t('common:words.following')
             )}
           </Button>
-        }
+        } */}
       </div>
       <div className={s.scrollContainer}>
         <div ref={scrollRef} className={clsx(s.row, s.scroll, s.rowFlex)}>
-          {images?.map((image, i) =>
-            <div className={clsx(s.rowFlex)} key={i}>
-              <Paper key={image.Name} className={s.imagePaper} variant="outlined">
-                <Link href={`/art/${image.id}`}>
+          {images && images.length > 0 && (
+            <div className={clsx(s.rowFlex)}>
+              <Paper key={images[0].Name} className={s.imagePaper} variant="outlined">
+                <Link href={`/art/${images[0].id}`}>
                   <a>
-                    <img className={s.image} src={`${bucketUrl}${image.Name}`}
-                      alt={image.title}
-                      width={image.Width}
-                      height={image.Height}
+                    <img
+                      className={s.image}
+                      src={`${bucketUrl}${images[0].Name}`}
+                      alt={images[0].title}
+                      width={images[0].Width}
+                      height={images[0].Height}
                     />
                   </a>
                 </Link>
@@ -84,16 +86,16 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             </div>
           )}
         </div>
-        <IconButton  aria-label="close" className={s.leftButton} onClick={() => {
+        {/* <IconButton aria-label="close" className={s.leftButton} onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: -scrollBy, behavior: 'smooth' });
         }}>
           <ChevronLeftOutlinedIcon className={s.chevron}></ChevronLeftOutlinedIcon>
         </IconButton>
-        <IconButton  className={s.rightButton} onClick={() => {
+        <IconButton className={s.rightButton} onClick={() => {
           scrollRef.current.scrollBy({ top: 0, left: scrollBy, behavior: 'smooth' });
         }}>
           <ChevronRightOutlinedIcon className={s.chevron}></ChevronRightOutlinedIcon>
-        </IconButton>
+        </IconButton> */}
       </div>
     </div>
   );
