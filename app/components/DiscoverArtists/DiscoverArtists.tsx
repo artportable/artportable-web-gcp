@@ -27,32 +27,37 @@ export default function DiscoverArtists({
   const getMonthlyArtists = async () => {
     const getData = await axios.get(`${apiBaseUrl}/api/discover/monthlyArtists`);
     setMonthlyArtist(getData.data);
-    
-  }     
+
+  }
 
   useEffect(() => {
     getMonthlyArtists();
-  }, []); 
+  }, []);
 
   useEffect(() => {
-  }, [monthlyArtist]); 
+  }, [monthlyArtist]);
 
   return (
     <Box>
       <Artists />
-      <div style={{marginBottom: "40px", marginTop: "40px", fontSize: "30px", fontWeight: "bold"}}>MÅNADENS KONSTNÄR</div>
+      <div style={{ marginBottom: "40px", marginTop: "40px", fontSize: "30px", fontWeight: "bold", display:'flex', flexWrap:'wrap', alignItems:'center' }}>MÅNADENS KONSTNÄR
+      <img
+      src="/Artportable_Emblem_Gold.svg"
+      alt="Logo Artportable"
+      className={s.emblem} />
+      </div>
       <div className={s.discoverArtistWrapper}>
-      {monthlyArtist &&
-      monthlyArtist?.map((artist, index) => (
-        <div style={{width:''}}>
-          <DiscoverArtistCard
-          key={index}
-          artist={artist}
-          onFollowClick={onFollowClick}
-          />
-        </div>
-        ))}
-        </div>
+        {monthlyArtist &&
+          monthlyArtist?.map((artist, index) => (
+            <div style={{ width: '' }}>
+              <DiscoverArtistCard
+                key={index}
+                artist={artist}
+                onFollowClick={onFollowClick}
+              />
+            </div>
+          ))}
+      </div>
       {isLoading && loadMore && (
         <div ref={loadMoreElementRef}>
           <DiscoverArtistSkeletonCard />
