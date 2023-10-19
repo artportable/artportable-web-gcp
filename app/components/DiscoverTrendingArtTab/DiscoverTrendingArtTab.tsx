@@ -11,20 +11,16 @@ import { TAGS } from './tags'
 import { styles } from './discoverTrendingArtTab.css'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { MenuItem, NativeSelect, useTheme } from '@material-ui/core'
+import { useTheme } from '@material-ui/core'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import RemoveIcon from '@mui/icons-material/Remove'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import ClearIcon from '@mui/icons-material/Clear'
 import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import Select from '@mui/material/Select'
 import Dialog from '@mui/material/Dialog';
-import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -77,8 +73,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const [selectedOrientation, setSelectedOrientation] = useState<string | null>(
     null
   )
-  const [selectedTechnique, setSelectedTechnique] = useState<string[]>([])
-
 
   const [trendingExpanded, setTrendingExpanded] = useState(false);
   const [techniqueExpanded, setTechniqueExpanded] = useState(false);

@@ -72,7 +72,14 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
     },
     uploadButton: {
+      backgroundColor: "var(--color-green-darker)",
+      border: "none",
+      color: "var(--header-color)",
       whiteSpace: "nowrap",
+      "&:hover": {
+        backgroundColor: "var(--color-green-darker)",
+        color: "var(--header-color-lighter)",
+      },
     },
     singleNotificationButton: {
       minWidth: "54px",

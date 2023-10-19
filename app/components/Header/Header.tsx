@@ -42,6 +42,8 @@ import {
 } from "../../utils/googleAnalytics";
 import UpgradePortfolio from "../UpgradePortfolio/UpgradPortfolio";
 import { RWebShare } from "react-web-share";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -225,6 +227,10 @@ export default function Header({ navBarItems }) {
                             variant="outlined"
                             disableElevation
                             rounded
+                          
+                            endIcon={
+                              <ColorLensIcon/>
+                            }
                           >
                             {t("upload")}
                           </Button>

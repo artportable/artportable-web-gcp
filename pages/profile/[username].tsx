@@ -37,15 +37,9 @@ import { useDispatch } from "react-redux";
 import { UPDATE_PROFILE_PICTURE } from "../../app/redux/actions/userActions";
 import { capitalizeFirst } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
-
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import { useBreakpointDown } from "../../app/hooks/useBreakpointDown";
 import Link from "next/link";
-import ChatIcon from "@material-ui/icons/Chat";
-import EditIcon from "@material-ui/icons/Edit";
 import { TokenContext } from "../../app/contexts/token-context";
-import ArtistPriceSpan from "../../app/components/ArtistPriceSpan/ArtistPriceSpan";
 import { LoadingContext } from "../../app/contexts/loading-context";
 import { UserContext } from "../../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
@@ -67,6 +61,7 @@ import UpgradePortfolioProfile from "../../app/components/UpgradePortfolioProfil
 import { RWebShare } from "react-web-share";
 import Offers from "../../app/components/ExclusiveOffers/Offers";
 import BrushSharpIcon from "@mui/icons-material/BrushSharp";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 function a11yProps(index: any) {
   return {
@@ -120,6 +115,20 @@ export default function Profile(props) {
   const { like } = usePostLike();
   const { follow } = usePostFollow();
   const { refreshToken } = useRefreshToken();
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))  
+
+  useEffect(() => {
+
+    if(isMobile) {
+      console.log("Is Mobile");
+      
+    } else {
+      console.log("is Desktop");
+      
+    }
+    
+  },)
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
@@ -490,7 +499,8 @@ export default function Profile(props) {
                   <div className={s.editUploadButtons}>
                     {membership.value > Membership.Base && (
                       <div className={s.upload}>
-                        <Link href="/upload">
+                    {isMobile && (
+                          <Link href="/upload">
                           <a>
                             <Button
                               className={s.uploadButton}
@@ -509,6 +519,7 @@ export default function Profile(props) {
                             </Button>
                           </a>
                         </Link>
+                    )}
                       </div>
                     )}
 
@@ -600,21 +611,7 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
-            {/* {isMyProfile &&
-              membership.value > Membership.Portfolio &&
-              !userProfile.data?.MonthlyArtist && (
-                <div className={s.hovs}>
-                  <Button
-                    rounded
-                    className={s.monthlyArtistButton}
-                    onClick={redirectToRocketUpgrade}
-                  >
-                    <Typography className={s.headerButton}>
-                      {t("rocket")}
-                    </Typography>
-                  </Button>
-                </div>
-              )} */}
+          
             {isMyProfile && membership.value > Membership.Base && (
               <div className={s.hovs}>
                 <Button
