@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Avatar, Box, Card, CardContent, Typography } from '@material-ui/core'
+import { Avatar, Box, Card, CardContent, Divider, Typography } from '@material-ui/core'
 import { styles } from './aboutCard.css'
 import RoomIcon from '@material-ui/icons/Room'
 import { useTranslation } from 'next-i18next'
@@ -204,10 +204,12 @@ export default function AboutCard({
                               {data?.Name} {data?.Surname && data?.Surname}
                           </a>
                           :
-                      </b>{' '}
+                      </b>
+                      <Divider></Divider>
                       <br />
-                      <br />
+               
                       {renderWithLineBreaks(data?.About)}
+                      <Divider style={{marginTop: "20px"}}></Divider>
                       {data?.InspiredBy && (
                           <InspiredByCard text={data?.InspiredBy}></InspiredByCard>
                       )}
