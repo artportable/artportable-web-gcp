@@ -14,16 +14,6 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "flex-end",
       marginBottom: "10px"
     },
-    button: {
-      height: "25px",
-      backgroundColor: "var(--yellow-darker)",
-      color: "black",
-      "&:hover": {
-        transform: "scale(1.095)",
-        color: "white",
-        backgroundColor: "var(--yellow-darker)"
-      },
-    },
     navButtons: {
       backgroundColor: theme.palette.primary.main,
       width: "28px",
