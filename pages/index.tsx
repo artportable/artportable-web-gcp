@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/index.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
 import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
@@ -139,6 +139,21 @@ export default function DiscoverPage({ navBarItems }) {
     setOpenAdDialog(false);
   }
 
+  const scrollToDiscoverRef = useRef(null);
+  const [clickedTabOnce, setClickedTabOnce] = useState(false)
+
+  useEffect(() => {
+    if (scrollToDiscoverRef.current && activeTab === 0 && clickedTabOnce) {
+      setTimeout(() => {
+        scrollToDiscoverRef.current.scrollIntoView();
+        window.scrollBy(0, -70);
+      }, 0);
+    }
+    if(activeTab !== 0){
+      setClickedTabOnce(true);
+    }
+  }, [activeTab]);
+
   return (
     <Main
       noHeaderPadding
@@ -178,7 +193,7 @@ export default function DiscoverPage({ navBarItems }) {
             setOpenAdDialog={setOpenAdDialog}
             onClose={toggleAdDialog}
           />}
-          <div className={s.discoverContainer}>
+          <div ref={scrollToDiscoverRef} className={s.discoverContainer}>
             <div className={s.tabContainer}>
               <Tabs
                 className={`${activeTab <= 3 ? s.artTabs : s.artistTab
