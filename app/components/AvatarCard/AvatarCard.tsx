@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from 'next/link'
 import { Avatar } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -19,45 +19,42 @@ export default function AvatarCard({ artist, onFollowClick }) {
   const { isSignedIn } = useContext(UserContext);
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
   function toggleFollow() {
-    onFollowClick(artist.SocialId, !isFollowed);
-    setFollow(!isFollowed);
-    console.log(artist.SocialId);
+    console.log(isSignedIn);
+    // onFollowClick(artist.SocialId, !isFollowed);
+    // setFollow(!isFollowed);
   }
+  useEffect(() => {
+    setFollow(artist.FollowedByMe);
+  }, [artist.FollowedByMe]);
 
   return (
-    <Link href={`/profile/@${artist.Username}`}>
-      <a style={{ textDecoration: 'none', color: 'black' }}>
-        <div className={s.container}>
+    <div className={s.container}>
+      <Link href={`/profile/@${artist.Username}`}>
+        <a style={{ textDecoration: 'none', color: 'black' }}>
           <div className={s.text}>
             <span className={s.username}>{`${artist.Name.toUpperCase()} ${artist.Surname.toUpperCase()}`}
-              <img
-                src="/Artportable_Emblem_Gold.svg"
-                alt="Logo Artportable"
-                className={s.emblem}
-              />
-            </span>
-            <span
-              style={{ fontSize: "18px" }}>{artist.Location}
-              {isSignedIn &&
-                <Button
-                  size="small"
-                  variant={!isFollowed ? "contained" : "outlined"}
-
-                  startIcon={!isFollowed ? <AddIcon /> : null}
-                  rounded
-                  className={s.button}
-                  onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FOLLOW_DISCOVER, CategoryType.INTERACTIVE); }}>
-                  {capitalizeFirst(
-                    !isFollowed ?
-                      t('common:words.follow') :
-                      t('common:words.following')
-                  )}
-                </Button>
-              }
             </span>
           </div>
-        </div>
-      </a>
-    </Link>
+        </a>
+      </Link>
+      <span
+        style={{ fontSize: "18px", marginTop:'10px' }}>{artist.Location}
+        {isSignedIn &&
+          <Button
+            size="small"
+            variant={!isFollowed ? "contained" : "outlined"}
+
+            startIcon={!isFollowed ? <AddIcon /> : null}
+            rounded
+            className={s.button}
+            onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FOLLOW_DISCOVER, CategoryType.INTERACTIVE); }}>
+            {capitalizeFirst(
+              !isFollowed ?
+                t('common:words.follow') :
+                t('common:words.following')
+            )}
+          </Button>}
+      </span>
+    </div>
   );
 }

@@ -4,18 +4,12 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: "flex",
-      flexDirection: "row"
+      flexDirection: "column"
     },
     avatar: {
       backgroundColor: theme.palette.common.white,
       width: "60px",
       height: "60px",
-    },
-    emblem: {
-
-      width: '25px',
-  
-      height: "50px"
     },
     text: {
       display: "flex",
@@ -28,11 +22,15 @@ export const styles = makeStyles((theme: Theme) =>
       letterSpacing: "5px",
       fontSize: "18px"
     },
-    [theme.breakpoints.up('smPlus')]: {
-      fontSize: "26px",
-      emblem: {
-        margin: '0 20px',
-        width: '60px'
+    button: {
+      height: "25px",
+      marginLeft:'20px',
+      backgroundColor: "var(--yellow-darker)",
+      color: "black",
+      "&:hover": {
+        transform: "scale(1.095)",
+        color: "white",
+        backgroundColor: "var(--yellow-darker)"
       },
     },
   }),
