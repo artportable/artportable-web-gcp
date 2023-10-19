@@ -41,14 +41,18 @@ export default function DiscoverArtists({
     <Box>
       <Artists />
       <div style={{marginBottom: "40px", marginTop: "40px", fontSize: "30px", fontWeight: "bold"}}>MÅNADENS KONSTNÄR</div>
+      <div className={s.discoverArtistWrapper}>
       {monthlyArtist &&
       monthlyArtist?.map((artist, index) => (
-        <DiscoverArtistCard
+        <div style={{width:''}}>
+          <DiscoverArtistCard
           key={index}
           artist={artist}
           onFollowClick={onFollowClick}
-        />
-      ))}
+          />
+        </div>
+        ))}
+        </div>
       {isLoading && loadMore && (
         <div ref={loadMoreElementRef}>
           <DiscoverArtistSkeletonCard />
