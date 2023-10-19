@@ -188,6 +188,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     image: {
+      height:'400px',
       borderWidth: "2px",
       borderStyle: "solid",
       borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF",
