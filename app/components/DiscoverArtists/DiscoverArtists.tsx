@@ -6,6 +6,7 @@ import DiscoverArtistSkeletonCard from "../DiscoverArtistSkeletonCard/DiscoverAr
 import SearchField from "../SearchField/SearchField";
 import axios from "axios";
 import Artists from "../Artists/Artists";
+import { useTranslation } from "next-i18next";
 
 export default function DiscoverArtists({
   artists,
@@ -16,6 +17,9 @@ export default function DiscoverArtists({
   loadMore,
   tagPlaceholder,
 }) {
+  const { t } = useTranslation([
+    "discover",
+  ]);
   const s = styles();
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -42,12 +46,8 @@ export default function DiscoverArtists({
       <Artists />
       <div className={s.titleEmblem}>
         <Typography className={s.title}>
-          MÅNADENS KONSTNÄR
+          {t('discover:monthlyArtist')}
         </Typography>
-        <img
-          src="/Artportable_Emblem_Gold.svg"
-          alt="Logo Artportable"
-          className={s.emblem} />
       </div>
       <div className={s.discoverArtistWrapper}>
         {monthlyArtist &&
