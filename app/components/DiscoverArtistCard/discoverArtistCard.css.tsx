@@ -10,9 +10,9 @@ export const styles = makeStyles((theme: Theme) =>
     header: {
       display: "flex",
       flexDirection: "row",
-      //justifyContent: "space-between",
       alignItems: "flex-end",
-      marginBottom: "10px"
+      marginBottom: "10px",
+      justifyContent:'center'
     },
     navButtons: {
       backgroundColor: theme.palette.primary.main,
@@ -33,44 +33,7 @@ export const styles = makeStyles((theme: Theme) =>
     scrollContainer: {
       position: 'relative',
       display: "flex",
-    },
-    scroll: {
-      overflow: 'auto',
-      scrollSnapType: 'none',
-      scrollbarColor: 'transparent transparent',
-      scrollbarWidth: 'none',
-      '&::-webkit-scrollbar': {
-        display: 'none',
-      }
-    },
-    imagePaper: {
-      width: "100%",
-      height: '200px',
-      overflow: 'hidden',
-      scrollSnapAlign: 'end',
-      padding: "0px 5px 5px 5px",
-      
-    },
-    chevron: {
-      fontSize: '2.5rem',
-      borderRadius: '50%',
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-     
-      
-    },
-    leftButton: {
-      display: 'none',
-      position: 'absolute',
-      left: '0px',
-      top: '120px',
-     
-    },
-    rightButton: {
-      display: 'none',
-      position: 'absolute',
-      right: '0px',
-      top: '120px'
+      justifyContent:'center',
     },
     image:{
       height: '220px'
