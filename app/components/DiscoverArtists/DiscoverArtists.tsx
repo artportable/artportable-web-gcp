@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DiscoverArtistCard from "../DiscoverArtistCard/DiscoverArtistCard";
-import { Box } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { styles } from "./discoverArtists.css";
 import DiscoverArtistSkeletonCard from "../DiscoverArtistSkeletonCard/DiscoverArtistSkeletonCard";
 import SearchField from "../SearchField/SearchField";
@@ -40,7 +40,10 @@ export default function DiscoverArtists({
   return (
     <Box>
       <Artists />
-      <div style={{ marginBottom: "40px", marginTop: "40px", fontSize: "30px", fontWeight: "bold", display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}>MÅNADENS KONSTNÄR
+      <div className={s.titleEmblem}>
+        <Typography className={s.title}>
+          MÅNADENS KONSTNÄR
+        </Typography>
         <img
           src="/Artportable_Emblem_Gold.svg"
           alt="Logo Artportable"
