@@ -82,7 +82,7 @@ export default function IndexHero() {
       name: "Owe Emfestav",
       username: "owe",
       image: "/images/owe.jpeg",
-      imageLink: "art/712a7f0-e764-41b8-bea8-470b93c5e9c5",
+      imageLink: "art/f712a7f0-e764-41b8-bea8-470b93c5e9c5",
     },
 
     {
