@@ -6,11 +6,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
     },
-    avatar: {
-      backgroundColor: theme.palette.common.white,
-      width: "60px",
-      height: "60px",
-    },
     text: {
       display: "flex",
       flexDirection: "column",

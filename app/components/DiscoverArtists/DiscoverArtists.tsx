@@ -3,7 +3,6 @@ import DiscoverArtistCard from "../DiscoverArtistCard/DiscoverArtistCard";
 import { Box, Typography } from "@material-ui/core";
 import { styles } from "./discoverArtists.css";
 import DiscoverArtistSkeletonCard from "../DiscoverArtistSkeletonCard/DiscoverArtistSkeletonCard";
-import SearchField from "../SearchField/SearchField";
 import axios from "axios";
 import Artists from "../Artists/Artists";
 import { useTranslation } from "next-i18next";
@@ -52,7 +51,7 @@ export default function DiscoverArtists({
       <div className={s.discoverArtistWrapper}>
         {monthlyArtist &&
           monthlyArtist?.map((artist, index) => (
-            <div style={{ width: '' }}>
+            <div>
               <DiscoverArtistCard
                 key={index}
                 artist={artist}
