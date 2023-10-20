@@ -118,18 +118,6 @@ export default function Profile(props) {
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))  
 
-  useEffect(() => {
-
-    if(isMobile) {
-      console.log("Is Mobile");
-      
-    } else {
-      console.log("is Desktop");
-      
-    }
-    
-  },)
-
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
@@ -272,7 +260,6 @@ export default function Profile(props) {
       )
       .then((response) => {
         if (!response.ok) {
-          console.log(response.statusText);
           throw response;
         }
         return response.text();
@@ -292,7 +279,6 @@ export default function Profile(props) {
         })
           .then((response) => {
             if (!response.ok) {
-              console.log(response.statusText);
               throw response;
             }
             switch (type) {
