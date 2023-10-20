@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from 'next/link'
-import { Avatar } from "@material-ui/core";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { styles } from "./avatarCard.css";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from "../../utils/util";
