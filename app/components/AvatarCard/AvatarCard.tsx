@@ -38,7 +38,7 @@ export default function AvatarCard({ artist, onFollowClick }) {
         </a>
       </Link>
       <span
-        style={{ fontSize: "18px", marginTop:'10px', textAlign:'center', textOverflow:'ellipsis', wordBreak:'break-word' }}>
+        className={s.location}>
           {artist.Location}
         {isSignedIn &&
           <Button

@@ -23,6 +23,13 @@ export const styles = makeStyles((theme: Theme) =>
       letterSpacing: "5px",
       fontSize: "18px",
     },
+    location: {
+      fontSize: "18px", 
+      marginTop:'10px', 
+      textAlign:'center', 
+      textOverflow:'ellipsis', 
+      wordBreak:'break-word'
+    },
     button: {
       height: "25px",
       marginLeft:'20px',
