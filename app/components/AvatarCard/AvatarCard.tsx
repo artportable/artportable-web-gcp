@@ -19,9 +19,8 @@ export default function AvatarCard({ artist, onFollowClick }) {
   const { isSignedIn } = useContext(UserContext);
   const [isFollowed, setFollow] = useState(artist.FollowedByMe);
   function toggleFollow() {
-    console.log(isSignedIn);
-    // onFollowClick(artist.SocialId, !isFollowed);
-    // setFollow(!isFollowed);
+    onFollowClick(artist.SocialId, !isFollowed);
+    setFollow(!isFollowed);
   }
   useEffect(() => {
     setFollow(artist.FollowedByMe);
@@ -30,20 +29,21 @@ export default function AvatarCard({ artist, onFollowClick }) {
   return (
     <div className={s.container}>
       <Link href={`/profile/@${artist.Username}`}>
-        <a style={{ textDecoration: 'none', color: 'black' }}>
+        <a>
           <div className={s.text}>
-            <span className={s.username}>{`${artist.Name.toUpperCase()} ${artist.Surname.toUpperCase()}`}
+            <span className={s.username}>
+              {`${artist.Name.toUpperCase()} ${artist.Surname.toUpperCase()}`}
             </span>
           </div>
         </a>
       </Link>
       <span
-        style={{ fontSize: "18px", marginTop:'10px' }}>{artist.Location}
+        style={{ fontSize: "18px", marginTop:'10px', textAlign:'center', textOverflow:'ellipsis', wordBreak:'break-word' }}>
+          {artist.Location}
         {isSignedIn &&
           <Button
             size="small"
             variant={!isFollowed ? "contained" : "outlined"}
-
             startIcon={!isFollowed ? <AddIcon /> : null}
             rounded
             className={s.button}
