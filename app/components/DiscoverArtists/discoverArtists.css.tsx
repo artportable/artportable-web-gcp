@@ -23,16 +23,6 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: '30px',
       },
     },
-    emblem: {
-      margin: '0 20px',
-      width: '60px'
-    },
-    [theme.breakpoints.up('smPlus')]: {
-      emblem: {
-        margin: '0 20px',
-        width: '60px'
-      },
-    },
     discoverArtistWrapper: {
       display:'grid', 
       justifyContent:'center',
