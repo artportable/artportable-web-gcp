@@ -66,7 +66,7 @@ export default function ProfileCard({
   };
 
   const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
-  const premiumLink = "https://buy.stripe.com/aEUeVngcS7ZPcda4h9";
+  const premiumLink = "https://buy.stripe.com/8wMfZrgcS2Fvfpm3d9";
 
   const redirectToRocketUpgrade = () => {
     window.open(rocketLink);
