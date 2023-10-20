@@ -4,35 +4,36 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: "flex",
-      flexDirection: "row"
-    },
-    avatar: {
-      backgroundColor: theme.palette.common.white,
-      width: "60px",
-      height: "60px",
-    },
-    emblem: {
-
-      width: '25px',
-  
-      height: "50px"
+      flexDirection: "column",
     },
     text: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      marginLeft: "0px"
+      marginLeft: "0px",
     },
     username: {
+      textAlign:'center',
       fontWeight: 600,
       letterSpacing: "5px",
-      fontSize: "18px"
+      fontSize: "18px",
     },
-    [theme.breakpoints.up('smPlus')]: {
-      fontSize: "26px",
-      emblem: {
-        margin: '0 20px',
-        width: '60px'
+    location: {
+      fontSize: "18px", 
+      marginTop:'10px', 
+      textAlign:'center', 
+      textOverflow:'ellipsis', 
+      wordBreak:'break-word'
+    },
+    button: {
+      height: "25px",
+      marginLeft:'20px',
+      backgroundColor: "var(--yellow-darker)",
+      color: "black",
+      "&:hover": {
+        transform: "scale(1.095)",
+        color: "white",
+        backgroundColor: "var(--yellow-darker)"
       },
     },
   }),
