@@ -236,8 +236,6 @@ export default function DiscoverArt({
                   let artwork = artworks.find(
                     (a) => a.PrimaryFile.Name === image.Name
                   );
-                  //console.log("height: " + image.Height)
-                  //console.log("width: " + image.Width)
                   if (artwork) {
                     return (
                       <ArtworkListItemDefined
