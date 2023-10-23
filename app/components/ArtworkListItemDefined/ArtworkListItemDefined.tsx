@@ -194,11 +194,10 @@ export default function ArtworkListItemDefined({
               height={height}
               width={width}
               loading='lazy'
-              // layout='fill'
-              // objectFit='contain'
               alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+              quality={33}
             />
 
             {/* om man inte är på indexsidan, utan på profilsidan */}
