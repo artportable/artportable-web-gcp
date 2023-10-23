@@ -15,6 +15,8 @@ import dexterDesktop from "../../../public/offers/dexterDesktopSv.jpg";
 import dexterMobile from "../../../public/offers/dexterMobileSv.jpg";
 import dexterDesktopEn from "../../../public/offers/dexterDesktopEn.jpg";
 import dexterMobileEn from "../../../public/offers/dexterMobileEn.jpg";
+import penstoreMobile from "../../../public/offers/penstoreMobile.png";
+import penstoreDesktop from "../../../public/offers/penstoreDesktop.png";
 import Image from "next/image";
 import {
   ActionType,
@@ -52,10 +54,13 @@ export default function Offers() {
   }, []);
 
   let dexterImage;
+  let penstoreImage;
   if (i18n.language === "sv") {
     dexterImage = isMobile ? dexterMobile : dexterDesktop;
+    penstoreImage = isMobile ? penstoreMobile : penstoreDesktop;
   } else if (i18n.language === "en") {
     dexterImage = isMobile ? dexterMobileEn : dexterDesktopEn;
+    penstoreImage = isMobile ? penstoreMobile : penstoreDesktop;
   }
 
   if (isMobile === null) return null;
@@ -63,6 +68,21 @@ export default function Offers() {
   return (
     <div>
       <div className={s.title}>{t("offerTitle")}</div>
+
+      <div className={s.frameDexter}>
+        <Link href="https://www.penstore.se">
+          <a
+            onClick={() =>
+              trackGoogleAnalytics(
+                ActionType.EXCLUSIVE_OFFER,
+                CategoryType.INTERACTIVE
+              )
+            }
+          >
+            <Image src={penstoreImage} alt="logo" />
+          </a>
+        </Link>
+      </div>
 
       <div className={s.frameDexter}>
         <Link href="https://www.dexterfineart.com/editions-campaign">
