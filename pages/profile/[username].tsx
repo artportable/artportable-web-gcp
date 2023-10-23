@@ -893,7 +893,7 @@ export default function Profile(props) {
                           : userProfileSummary.data?.ProfilePicture
                       }
                       tags={tags.data}
-                      onUpdateProfilePicture={onUpdateProfilePicture}
+                      onUpdateProfilePicture={updateImage}
                       isMyProfile={isMyProfile}
                     ></AboutMe>
                   </TabPanel>
