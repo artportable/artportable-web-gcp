@@ -27,7 +27,7 @@ export function useMainWidth(): { breakpoint: string, regular: number, wide: num
   
   switch (width) {
     case 'xs':
-      return theme.breakpointMainWidths.xs;
+      return theme.breakpointMainWidths.sm;
     case 'sm':
       return theme.breakpointMainWidths.sm;
     case 'smPlus':
