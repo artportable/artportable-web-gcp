@@ -240,8 +240,8 @@ export default function DiscoverArt({
                     return (
                       <ArtworkListItemDefined
                         key={image.Name}
-                        width={image.Width}
-                        height={image.Height}
+                        width={smScreenOrSmaller ? "100%" : image.Width}
+                        height={smScreenOrSmaller ? "auto" : image.Height}
                         artwork={artwork}
                         onPurchaseRequestClick={onPurchaseRequestClick}
                         purchaseRequestAction={
@@ -249,7 +249,7 @@ export default function DiscoverArt({
                         }
                         onLikeClick={onLike}
                         indexPage={true}
-                        />
+                      />
                     );
                   }
                 })}

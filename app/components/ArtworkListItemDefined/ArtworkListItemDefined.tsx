@@ -30,7 +30,6 @@ import TagChip from '../TagChip/TagChip'
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useGetProfileUser } from '../../hooks/dataFetching/useGetProfileUser'
-import Image from 'next/image'
 
 export default function ArtworkListItemDefined({
   artwork,
@@ -190,14 +189,15 @@ export default function ArtworkListItemDefined({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <Image
-              height={height}
-              width={width}
+            <img
+              style={{
+                width: width,
+                height: height
+              }}
               loading='lazy'
               alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-              quality={33}
             />
 
             {/* om man inte är på indexsidan, utan på profilsidan */}
