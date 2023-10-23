@@ -22,25 +22,17 @@ export default function AboutCard({
   const s = styles()
   const { t } = useTranslation(['profile', 'tags'])
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
-  const [profilepic, setProfilepic] = useState('No change')
-  
+
   const fileInput = useRef(null)
 
   function renderWithLineBreaks(text) {
     return text.split('\n').map((str, index, array) => (
-        <>
-            {str}
-            {index === array.length - 1 ? null : <br />}
-        </>
+      <>
+        {str}
+        {index === array.length - 1 ? null : <br />}
+      </>
     ));
-}
-
-
-
-  useEffect(() => {
-    console.log(data.About);
-    
-  }, [])
+  }
 
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -51,7 +43,6 @@ export default function AboutCard({
     fr.onload = function () {
       var img = new Image()
       img.onload = function () {
-        setProfilepic('new profile pic')
         onUpdateProfilePicture(
           event.target.files[0],
           img.width,
@@ -89,42 +80,42 @@ export default function AboutCard({
                         {t('profile:NoProfilePicSet')}
                       </div>
                       {isMyProfile && (
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    margin: '10px'
-                  }}
-                >
-                  <button
-                    style={{
-                      color: 'black',
-                      border: '1px solid black',
-                      borderRadius: '20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      backgroundColor: 'transparent',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <div>{t('profile:addProfilePicture')}</div>
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            margin: '10px'
+                          }}
+                        >
+                          <button
+                            style={{
+                              color: 'black',
+                              border: '1px solid black',
+                              borderRadius: '20px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              textAlign: 'center',
+                              backgroundColor: 'transparent',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <div>{t('profile:addProfilePicture')}</div>
 
-                    <input
-                      ref={fileInput}
-                      onChange={handleFileUpload}
-                      type="file"
-                      style={{ display: 'none' }}
-                      multiple={false}
-                    />
+                            <input
+                              ref={fileInput}
+                              onChange={handleFileUpload}
+                              type="file"
+                              style={{ display: 'none' }}
+                              multiple={false}
+                            />
 
-                    <AddCircleIcon
-                      color="primary"
-                      onClick={() => fileInput.current.click()}
-                    />
-                  </button>
-                </div>
-              )}
+                            <AddCircleIcon
+                              color="primary"
+                              onClick={() => fileInput.current.click()}
+                            />
+                          </button>
+                        </div>
+                      )}
                     </div>
                   )}
                   {data?.ProfilePicture && (
@@ -197,23 +188,23 @@ export default function AboutCard({
               </div>
 
               {data?.About && (
-                  <div className={s.bioText}>
-                      <b>
-                          {t('profile:aboutArtist')}{' '}
-                          <a>
-                              {data?.Name} {data?.Surname && data?.Surname}
-                          </a>
-                          :
-                      </b>
-                      <Divider></Divider>
-                      <br />
-               
-                      {renderWithLineBreaks(data?.About)}
-                      <Divider style={{marginTop: "20px"}}></Divider>
-                      {data?.InspiredBy && (
-                          <InspiredByCard text={data?.InspiredBy}></InspiredByCard>
-                      )}
-                  </div>
+                <div className={s.bioText}>
+                  <b>
+                    {t('profile:aboutArtist')}{' '}
+                    <a>
+                      {data?.Name} {data?.Surname && data?.Surname}
+                    </a>
+                    :
+                  </b>
+                  <Divider></Divider>
+                  <br />
+
+                  {renderWithLineBreaks(data?.About)}
+                  <Divider style={{ marginTop: "20px" }}></Divider>
+                  {data?.InspiredBy && (
+                    <InspiredByCard text={data?.InspiredBy}></InspiredByCard>
+                  )}
+                </div>
               )}
 
             </div>
@@ -221,7 +212,7 @@ export default function AboutCard({
 
           {!data?.ProfilePicture && (
             <div className={s.noProfilePic}>
-              
+
             </div>
           )}
         </div>
