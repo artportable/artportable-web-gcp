@@ -236,12 +236,14 @@ export default function DiscoverArt({
                   let artwork = artworks.find(
                     (a) => a.PrimaryFile.Name === image.Name
                   );
+                  //console.log("height: " + image.Height)
+                  //console.log("width: " + image.Width)
                   if (artwork) {
                     return (
                       <ArtworkListItemDefined
                         key={image.Name}
-                        width={smScreenOrSmaller ? "100%" : image.Width}
-                        height={smScreenOrSmaller ? "auto" : image.Height}
+                        width={image.Width}
+                        height={image.Height}
                         artwork={artwork}
                         onPurchaseRequestClick={onPurchaseRequestClick}
                         purchaseRequestAction={
@@ -249,7 +251,7 @@ export default function DiscoverArt({
                         }
                         onLikeClick={onLike}
                         indexPage={true}
-                      />
+                        />
                     );
                   }
                 })}
