@@ -837,7 +837,7 @@ export default function Profile(props) {
                   </TabPanel>
                   {articles && articles.length > 0 ? (
                     <>
-                    {isMyProfile && membership.value > Membership.Base && (
+                    {isMyProfile && (
                     <TabPanel value={activeTab} index={3}>
                       <Offers />
                     </TabPanel>
@@ -845,7 +845,7 @@ export default function Profile(props) {
                     </>
                   ) : (
                     <>
-                      {isMyProfile && membership.value > Membership.Base && (
+                      {isMyProfile && (
                         <TabPanel value={activeTab} index={2}>
                           <Offers />
                         </TabPanel>
@@ -866,7 +866,7 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  {isMyProfile && membership.value > Membership.Base && (
+                  {isMyProfile && (
                     <Tab
                       className={s.tab}
                       style={{
@@ -897,7 +897,7 @@ export default function Profile(props) {
                       isMyProfile={isMyProfile}
                     ></AboutMe>
                   </TabPanel>
-                  {isMyProfile && membership.value > Membership.Base && (
+                  {isMyProfile && (
                     <TabPanel value={activeTab} index={1}>
                       <Offers />
                     </TabPanel>

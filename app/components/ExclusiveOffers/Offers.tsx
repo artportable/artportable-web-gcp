@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, Link } from "@material-ui/core";
 import SchoolIcon from "@material-ui/icons/School";
 import clsx from "clsx";
@@ -23,10 +23,14 @@ import {
   CategoryType,
   trackGoogleAnalytics,
 } from "../../../app/utils/googleAnalytics";
+import { UserContext } from "../../contexts/user-context";
+import { Membership } from "../../models/Membership";
+
 
 export default function Offers() {
   const s = styles();
   const { t, i18n } = useTranslation("profile");
+  const {  membership } = useContext(UserContext);
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -40,6 +44,7 @@ export default function Offers() {
         }, delay);
       };
     };
+
 
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 767);
@@ -68,23 +73,25 @@ export default function Offers() {
   return (
     <div>
       <div className={s.title}>{t("offerTitle")}</div>
+        <div className={s.frameDexter}>
+          <Link href="https://www.penstore.se">
+             <a
+               onClick={() =>
+                  trackGoogleAnalytics(
+                     ActionType.EXCLUSIVE_OFFER,
+                    CategoryType.INTERACTIVE
+                    )
+                 }
+              >
+                  <Image src={penstoreImage} alt="logo" />
+                </a>
+              </Link>
+            </div>
 
-      <div className={s.frameDexter}>
-        <Link href="https://www.penstore.se">
-          <a
-            onClick={() =>
-              trackGoogleAnalytics(
-                ActionType.EXCLUSIVE_OFFER,
-                CategoryType.INTERACTIVE
-              )
-            }
-          >
-            <Image src={penstoreImage} alt="logo" />
-          </a>
-        </Link>
-      </div>
 
-      <div className={s.frameDexter}>
+      {membership.value > Membership.Base && (
+        <>
+           <div className={s.frameDexter}>
         <Link href="https://www.dexterfineart.com/editions-campaign">
           <a
             onClick={() =>
@@ -135,6 +142,12 @@ export default function Offers() {
           {t("onCheckout")}
         </div>
       </div>
+        </>
+      )}
+
+  
+
+     
     </div>
   );
 }
