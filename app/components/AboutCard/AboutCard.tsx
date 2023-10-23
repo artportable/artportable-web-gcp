@@ -22,12 +22,6 @@ export default function AboutCard({
   const s = styles()
   const { t } = useTranslation(['profile', 'tags'])
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
-  const [profilepic, setProfilepic] = useState('No change')
-
-  useEffect(() => {
-    s
-    console.log(profilepic);
-  }, [profilepic])
 
   const fileInput = useRef(null)
 
