@@ -42,8 +42,7 @@ interface InputProps {
 
 export default function DiscoverArt({
   artworks,
-  tags,
-  activeTab,
+
   onFilter = null,
   onLike,
   rowWidth,
@@ -54,7 +53,7 @@ export default function DiscoverArt({
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
-  const smScreenOrSmaller = useBreakpointDown("sm");
+  //const smScreenOrSmaller = useBreakpointDown("sm");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

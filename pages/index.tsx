@@ -241,7 +241,6 @@ export default function DiscoverPage({ navBarItems }) {
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
-                  sold={sold}
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
@@ -252,7 +251,6 @@ export default function DiscoverPage({ navBarItems }) {
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
-                  sold={sold}
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
