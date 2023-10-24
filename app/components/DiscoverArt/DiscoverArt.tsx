@@ -42,7 +42,6 @@ interface InputProps {
 
 export default function DiscoverArt({
   artworks,
-
   onFilter = null,
   onLike,
   rowWidth,
