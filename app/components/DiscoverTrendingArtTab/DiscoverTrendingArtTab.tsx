@@ -45,7 +45,6 @@ interface DiscoverTrendingArtTabProps {
   username?: string
   socialId?: string
   rowWidth: number
-  sold: string
   loadMore: boolean
   loadImages: any
   stopLoadImages: any
@@ -95,7 +94,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   const handleClose = () => {
     setOpen(false);
-  };  
+  };
 
   const handleSizeChange = (newSize) => {
     setSelectedSize(newSize)
@@ -115,13 +114,13 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   };
 
   const handleOrientationChange = (value: string) => {
-      setSelectedOrientation(value)
+    setSelectedOrientation(value)
   }
 
-  const handleOrientationChangeMobile = (value) => {  
+  const handleOrientationChangeMobile = (value) => {
     setTempSelectedOrientation(String(value));
   };
-  
+
   const handleSizeChangeMobile = (value: number) => {
     setTempSelectedSize(String(value));
   }
@@ -155,8 +154,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
 
   const handleTagChangeMobile = (newTag: string) => {
-      if (selectedTempTags.length < 4 && !selectedTempTags.includes(newTag)) {
-        setTempSelectedTags((prevTags) => [...prevTags, newTag])
+    if (selectedTempTags.length < 4 && !selectedTempTags.includes(newTag)) {
+      setTempSelectedTags((prevTags) => [...prevTags, newTag])
 
     }
   }
@@ -200,7 +199,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setTempSelectedPrice(null)
   }
 
-  useEffect(() => {}, [handleClose, resetFiltersMobile])
+  useEffect(() => { }, [handleClose, resetFiltersMobile])
 
   const isFilterActive = () => {
     return (
@@ -238,24 +237,15 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           return null
         }
 
-        let url
-        if (props.sold === 'Unsold') {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`)
-        } else if (props.sold === 'Sold') {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`)
-        } else if (props.sold === 'All') {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
-        } else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
-        }
+
+        let url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
+
 
         selectedTags.forEach((tag) => {
           if (tag) {
             url.searchParams.append('tag', tag)
           }
         })
-
-        
 
         if (selectedOrientation) {
           url.searchParams.append('orientation', selectedOrientation)
@@ -287,443 +277,425 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
 
 
-      useEffect(() => {}, [artworks])
-      const theme = useTheme()
-      const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  useEffect(() => { }, [artworks])
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
 
     <>
       {isMobile ? (
-        <div>
-          <Button style={{width: "100%", borderRadius: "20px",}} variant="outlined" onClick={handleClickOpen}>
-                <Typography>
-                {t("common:selectOptions:filter")}
-                </Typography>
-                <TuneIcon style={{marginLeft: "5px"}} />
-            </Button>
-            <Dialog
-                fullScreen
-                open={open}
-                onClose={handleClose}
-            > 
-                <div style={{ display: 'flex', flexDirection: 'column', width: "100%", height: '100%', backgroundColor: "#fdf9f7", overflowY: "scroll" }}>
-    
-              <List style={{ flexGrow: 1 }}>
-                  <div style={{display: "flex",fontSize: "20px", fontWeight: "bold", padding: "10px"}}>
+        <div className={s.mobileContainer1}>
+          <Button className={s.mobileButton} variant="outlined" onClick={handleClickOpen}>
+            <Typography>
+              {t("common:selectOptions:filter")}
+            </Typography>
+            <TuneIcon className={s.tuneIcon}/>
+          </Button>
+          <Dialog
+            fullScreen
+            open={open}
+            onClose={handleClose}
+          >
+            <div className={s.mobileContainer}>
+              <List className={s.mobileList}>
+                <div className={s.mobileListItem}>
                   <ListItem>
-                      {t("common:selectOptions:doFilter")}
+                    {t("common:selectOptions:doFilter")}
                   </ListItem>
-                  <Button onClick={handleClose}>{t("common:selectOptions:close")} <CancelPresentationIcon style={{marginLeft: "6px"}} /></Button>
-                  
-                  </div>
-                  <Divider />
+                  <Button onClick={handleClose}>{t("common:selectOptions:close")} <CancelPresentationIcon className={s.cancelPresentationIcon} /></Button>
 
-                <div style={{textAlign: "center", display: "flex", flexDirection: "column"}}>
-                <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
-                    
+                </div>
+                <Divider />
+
+                <div className={s.mobileAccordionWrapper}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel-content"
-                          id="panel-header"
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel-content"
+                        id="panel-header"
                       >
-                        <div style={{display: "flex", alignItems: "flex-end" }}>
-                          <TrendingUpIcon style={{marginRight: "4px"}} />
+                        <div className={s.mobileTitleIcon}>
+                          <TrendingUpIcon className={s.mobileIcon} />
                           <Typography>
-                        {tempSelectedTrending ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:trending${tempSelectedTrending}`)}</div> : t('common:selectOptions:trending')}
-                      </Typography>
-                        </div>
-                     
-                      </AccordionSummary>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(7)}>{t('common:selectOptions:trending')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(14)}>{t('common:selectOptions:trending14')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(30)}>{t('common:selectOptions:trending30')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(90)}>{t('common:selectOptions:trending90')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(365)}>{t('common:selectOptions:trending365')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleTrendingChangeMobile(2000)}>{t('common:selectOptions:trending2000')}</Typography>
-                      </AccordionDetails>
-                  </Accordion>
-              </FormControl>
-              <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                <Accordion style={{ borderRadius: "20px", width: "90%", alignItems: "center", backgroundColor: "#faf3ee"}}>
-                  <AccordionSummary
-                     expandIcon={<ExpandMoreIcon />}
-                     aria-controls="panel-content"
-                     id="panel-header"
-                     
-                  > 
-                        <div style={{display: "flex", alignItems: "flex-end", }}>
-                        <PaletteOutlinedIcon style={{marginRight: "4px"}}/>
-                          <Typography>
-                          { t('common:selectOptions:technique')}
+                            {tempSelectedTrending ? <div className={s.mobileTemp}>{t(`common:selectOptions:trending${tempSelectedTrending}`)}</div> : t('common:selectOptions:trending')}
                           </Typography>
                         </div>
-                    
-                  </AccordionSummary>
-                  <div style={{maxHeight: '300px', overflowY: 'auto'}}> 
-                    {Object.keys(TAGS).map((key) => (
-                      <div>
-                        <ListItem button onClick={() => handleTagChangeMobile(key)}>
-                        {t(`common:techniques:${key}`)}
-                      </ListItem>
-                        <Divider/>
-                      </div>
-                    ))}
-                  </div>
 
-                </Accordion>
-              </FormControl>
-              <div className={s.selectedTagWrapper}>
-                    {
-                      selectedTempTags && 
-                      <div className={s.selectedTagContainer}>
-                           {selectedTempTags.map((tag, index) => (
-                  <div key={index}>
-                    <div
-                      className={s.selectedTags}
-                     
-                    >
-                      <Typography style={{fontSize: "12px", fontWeight: "lighter"}}>
-                        {t('common:techniques:' + `${tag}`)}
-                      </Typography>
-                      <span
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          removeTagMobile(tag)
-                        }}
+                      </AccordionSummary>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleTrendingChangeMobile(7)}>{t('common:selectOptions:trending')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleTrendingChangeMobile(14)}>{t('common:selectOptions:trending14')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleTrendingChangeMobile(30)}>{t('common:selectOptions:trending30')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleTrendingChangeMobile(90)}>{t('common:selectOptions:trending90')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleTrendingChangeMobile(365)}>{t('common:selectOptions:trending365')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleTrendingChangeMobile(2000)}>{t('common:selectOptions:trending2000')}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </FormControl>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel-content"
+                        id="panel-header"
+
                       >
-                        <HighlightOffRoundedIcon
-                          style={{
-                            border: '0px solid #c67777',
-                            color: '#c67777',
-                            alignItems: 'center',
-                            fontSize: "12px"
-                          }}
-                        ></HighlightOffRoundedIcon>
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                        <div className={s.mobileTitleIcon}>
+                          <PaletteOutlinedIcon className={s.mobileIcon} />
+                          <Typography>
+                            {t('common:selectOptions:technique')}
+                          </Typography>
+                        </div>
+
+                      </AccordionSummary>
+                      <div className={s.mobileOverflow}>
+                        {Object.keys(TAGS).map((key) => (
+                          <div>
+                            <ListItem button onClick={() => handleTagChangeMobile(key)}>
+                              {t(`common:techniques:${key}`)}
+                            </ListItem>
+                            <Divider />
+                          </div>
+                        ))}
+                      </div>
+
+                    </Accordion>
+                  </FormControl>
+                  <div className={s.selectedTagWrapper}>
+                    {
+                      selectedTempTags &&
+                      <div className={s.selectedTagContainer}>
+                        {selectedTempTags.map((tag, index) => (
+                          <div key={index}>
+                            <div
+                              className={s.selectedTags}
+
+                            >
+                              <Typography className={s.mobileTag}>
+                                {t('common:techniques:' + `${tag}`)}
+                              </Typography>
+                              <span
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  removeTagMobile(tag)
+                                }}
+                              >
+                                <HighlightOffRoundedIcon
+                                  className={s.highlightIcon}
+                                ></HighlightOffRoundedIcon>
+                              </span>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     }
-              </div>
+                  </div>
 
-              <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel-content"
-                          id="panel-header"
-                          style={{height: "100%"}}
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel-content"
+                        id="panel-header"
+                        className={s.mobileSummary}
                       >
-                        <div style={{display: "flex", alignItems: "flex-end", }}>
-                          <PhotoSizeSelectLargeOutlinedIcon style={{marginRight: "4px"}}/>
-                            <Typography>
-                                  {selectedTempSize ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:${selectedTempSize}`)}</div>: t('common:selectOptions:size')}
-                            </Typography>
-                        </div>
-                      
-                      </AccordionSummary>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(30)}>{t('common:selectOptions:30')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(60)}>{t('common:selectOptions:60')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(100)}>{t('common:selectOptions:100')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handleSizeChangeMobile(101)}>{t('common:selectOptions:101')}</Typography>
-                      </AccordionDetails>
-                  </Accordion>
-              </FormControl>
-            
-              <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
-                      <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel-content"
-                          id="panel-header"
-                          style={{height: "100%"}}
-                      >
-                        <div style={{display: "flex", alignItems: "flex-end", }}>
-                        <AspectRatioOutlinedIcon style={{marginRight: "4px"}}/>
-                        <Typography>
-                              {tempSelectedOrientation ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:${tempSelectedOrientation}`)}</div>: t('common:selectOptions:format')}
-                      </Typography>
+                        <div className={s.mobileTitleIcon}>
+                          <PhotoSizeSelectLargeOutlinedIcon className={s.mobileIcon} />
+                          <Typography>
+                            {selectedTempSize ? <div className={s.mobileTemp}>{t(`common:selectOptions:${selectedTempSize}`)}</div> : t('common:selectOptions:size')}
+                          </Typography>
                         </div>
 
-                     
                       </AccordionSummary>
-                      <Divider/>
+                      <Divider />
                       <AccordionDetails>
-                          <Typography onClick={() => handleOrientationChangeMobile("Vertical")}>{t('common:selectOptions:Vertical')}</Typography>
+                        <Typography onClick={() => handleSizeChangeMobile(30)}>{t('common:selectOptions:30')}</Typography>
                       </AccordionDetails>
-                      <Divider/>
+                      <Divider />
                       <AccordionDetails>
-                          <Typography onClick={() => handleOrientationChangeMobile("Horizontal")}>{t('common:selectOptions:Horizontal')}</Typography>
+                        <Typography onClick={() => handleSizeChangeMobile(60)}>{t('common:selectOptions:60')}</Typography>
                       </AccordionDetails>
-                  </Accordion>
-              </FormControl>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleSizeChangeMobile(100)}>{t('common:selectOptions:100')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleSizeChangeMobile(101)}>{t('common:selectOptions:101')}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </FormControl>
 
-
-              <FormControl style={{ marginTop: "20px", alignItems: "center"}}>
-                  <Accordion style={{borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee"}}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls="panel-content"
-                          id="panel-header"
-                          style={{height: "100%"}}
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel-content"
+                        id="panel-header"
+                        className={s.mobileSummary}
                       >
-                         <div style={{display: "flex", alignItems: "flex-end", }}>
-                        <PaymentOutlinedIcon style={{marginRight: "4px"}}/>
-                        <Typography>
-                              {tempSelectedPrice ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:upTo${tempSelectedPrice}`)}</div>: t('common:selectOptions:price')}
-                      </Typography>
+                        <div className={s.mobileTitleIcon}>
+                          <AspectRatioOutlinedIcon className={s.mobileIcon} />
+                          <Typography>
+                            {tempSelectedOrientation ? <div className={s.mobileTemp}>{t(`common:selectOptions:${tempSelectedOrientation}`)}</div> : t('common:selectOptions:format')}
+                          </Typography>
                         </div>
 
-                     
-                      </AccordionSummary>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handlePriceChangeMobile(500)}>{t('common:selectOptions:upTo500')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handlePriceChangeMobile(1000)}>{t('common:selectOptions:upTo1000')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handlePriceChangeMobile(3000)}>{t('common:selectOptions:upTo3000')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handlePriceChangeMobile(5000)}>{t('common:selectOptions:upTo5000')}</Typography>
-                      </AccordionDetails>
-                      <Divider/>
-                      <AccordionDetails>
-                          <Typography onClick={() => handlePriceChangeMobile(5001)}>{t('common:selectOptions:upTo5001')}</Typography>
-                      </AccordionDetails>
-                  </Accordion>
-              </FormControl>
-            </div>
-          </List>
-                   
-          </div>
-          <div style={{position: "fixed", width: "100%", bottom: "0", left: "0"}}>
-          <div style={{ display: "flex", backgroundColor: "#faf3ee", justifyContent: "space-between", padding: '10px', borderTop: '1px solid #ddd' }}>
-                  {isFilterActiveMobile() && (
-                    <Button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        resetFiltersMobile();
-                      }}
-                      variant="outlined"
-                      color="secondary"
-                      style={{ backgroundColor: "#fadf87", borderRadius: "20px", padding: "10px", border: "none", color: "black" }}
-                    >
-                      {t('common:selectOptions:clearFilter')}
-                    </Button>
-                  )}
 
-                      {isFilterActiveMobile() && (
-                         <Button 
-                         onClick={() => {
-                             setSelectedTrending(tempSelectedTrending);
-                             setSelectedTags(selectedTempTags);
-                             setSelectedSize(selectedTempSize);
-                             setSelectedOrientation(tempSelectedOrientation)
-                             setSelectedPrice(tempSelectedPrice)
-                             handleClose();
-                         }} 
-                         style={{ backgroundColor: "#02a16c", borderRadius: "20px", padding: "10px", color: "white" }}
-                       >
-                         {t("common:selectOptions:showResult")}
-                       </Button>
-                      )}
+                      </AccordionSummary>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleOrientationChangeMobile("Vertical")}>{t('common:selectOptions:Vertical')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handleOrientationChangeMobile("Horizontal")}>{t('common:selectOptions:Horizontal')}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </FormControl>
+
+
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel-content"
+                        id="panel-header"
+                        className={s.mobileSummary}
+                      >
+                        <div className={s.mobileTitleIcon}>
+                          <PaymentOutlinedIcon className={s.mobileIcon} />
+                          <Typography>
+                            {tempSelectedPrice ? <div className={s.mobileTemp}>{t(`common:selectOptions:upTo${tempSelectedPrice}`)}</div> : t('common:selectOptions:price')}
+                          </Typography>
+                        </div>
+
+
+                      </AccordionSummary>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handlePriceChangeMobile(500)}>{t('common:selectOptions:upTo500')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handlePriceChangeMobile(1000)}>{t('common:selectOptions:upTo1000')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handlePriceChangeMobile(3000)}>{t('common:selectOptions:upTo3000')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handlePriceChangeMobile(5000)}>{t('common:selectOptions:upTo5000')}</Typography>
+                      </AccordionDetails>
+                      <Divider />
+                      <AccordionDetails>
+                        <Typography onClick={() => handlePriceChangeMobile(5001)}>{t('common:selectOptions:upTo5001')}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </FormControl>
                 </div>
-          </div>
-                
-            </Dialog>
+              </List>
+
+            </div>
+            <div className={s.activeFilterContainer}>
+              <div className={s.activeFilter}>
+                {isFilterActiveMobile() && (
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      resetFiltersMobile();
+                    }}
+                    variant="outlined"
+                    color="secondary"
+                    className={s.activeFilterClear}
+                  >
+                    {t('common:selectOptions:clearFilter')}
+                  </Button>
+                )}
+
+                {isFilterActiveMobile() && (
+                  <Button
+                    onClick={() => {
+                      setSelectedTrending(tempSelectedTrending);
+                      setSelectedTags(selectedTempTags);
+                      setSelectedSize(selectedTempSize);
+                      setSelectedOrientation(tempSelectedOrientation)
+                      setSelectedPrice(tempSelectedPrice)
+                      handleClose();
+                    }}
+                    className={s.activeFilterResult}
+                  >
+                    {t("common:selectOptions:showResult")}
+                  </Button>
+                )}
+              </div>
+            </div>
+
+          </Dialog>
         </div>
       ) : (
         // Desktop filters hereeee
 
 
         <>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          marginTop: '-20px',
-          marginBottom: '20px',
-          width: "100%",
-          height: '60px',
-          justifyContent:'space-evenly',
-        }}>
-          <div>
-            <Accordion elevation={0} className={s.filter} expanded={trendingExpanded} onClick={() => setTrendingExpanded(!trendingExpanded)}>
-              <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
-                <TrendingUpIcon className={s.filterIcon}></TrendingUpIcon>
-                <Typography className={s.filterSummary}>
-                  {selectedTrending ? t(`common:selectOptions:trending${selectedTrending}`) : (t('common:selectOptions:trending'))}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails className={s.filterDetails}>
-                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('7')}>{t('common:selectOptions:trending7')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('14')}>{t('common:selectOptions:trending14')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('30')}>{t('common:selectOptions:trending30')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('90')}>{t('common:selectOptions:trending90')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('365')}>{t('common:selectOptions:trending365')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('2000')}>{t('common:selectOptions:trending2000')}</ListItemButton>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-
-          <div>
-            <Accordion elevation={0} className={s.filter} expanded={techniqueExpanded} onClick={() => setTechniqueExpanded(!techniqueExpanded)}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
-                <Typography className={s.filterSummary}>
-                  {t('common:selectOptions:technique')}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails className={s.filterDetailsTags}>
-                {Object.keys(TAGS).map((key) => (
-                  <div>
-                    <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
-                    {t(`common:techniques:${key}`)}
-                  </ListItemButton>
+          <div className={s.desktopContainer}>
+            <div>
+              <Accordion elevation={0} className={s.filter} expanded={trendingExpanded} onClick={() => setTrendingExpanded(!trendingExpanded)}>
+                <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
+                  <TrendingUpIcon className={s.filterIcon}></TrendingUpIcon>
+                  <Typography className={s.filterSummary}>
+                    {selectedTrending ? t(`common:selectOptions:trending${selectedTrending}`) : (t('common:selectOptions:trending'))}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className={s.filterDetails}>
+                  <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('7')}>{t('common:selectOptions:trending7')}</ListItemButton>
                   <Divider />
-                  </div>
-                ))}
-              </AccordionDetails>
-            </Accordion>
-          </div>
-
-          <div>
-            <Accordion elevation={0} className={s.filter} expanded={orientationExpanded} onClick={() => setOrientationExpanded(!orientationExpanded)}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <AspectRatioIcon className={s.filterIcon}></AspectRatioIcon>
-                <Typography className={s.filterSummary}>
-                  {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation}`)) : (t('common:selectOptions:format'))}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails className={s.filterDetails}>
-                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Vertical')}> {t('common:selectOptions:Vertical')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Horizontal')}> {t('common:selectOptions:Horizontal')}</ListItemButton>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-
-          <div>
-            <Accordion elevation={0} className={s.filter} expanded={sizeExpanded} onClick={() => setSizeExpanded(!sizeExpanded)}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <PhotoSizeSelectLargeIcon className={s.filterIcon}></PhotoSizeSelectLargeIcon>
-                <Typography className={s.filterSummary}>
-                  {selectedSize ? (t(`common:selectOptions:${selectedSize}`)) : (t('common:selectOptions:size'))}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails  className={s.filterDetails}>
-                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('30')}>{t('common:selectOptions:30')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('60')}> {t('common:selectOptions:60')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('100')}>{t('common:selectOptions:100')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('101')}> {t('common:selectOptions:101')}</ListItemButton>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-
-          <div>
-            <Accordion disableGutters={true} elevation={0} className={s.filter} expanded={priceExpanded} onClick={() => setPriceExpanded(!priceExpanded)}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <CreditCardOutlinedIcon className={s.filterIcon}></CreditCardOutlinedIcon>
-                <Typography className={s.filterSummary}>
-                  {selectedPrice ? (t(`common:selectOptions:${selectedPrice}`)) : (t('common:selectOptions:price'))}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails className={s.filterDetails}>
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('500')}>{t('common:selectOptions:500')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('1000')}>{t('common:selectOptions:1000')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:5000')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('3000')}>{t('common:selectOptions:3000')}</ListItemButton>
-                <Divider />
-                <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5001')}>{t('common:selectOptions:5001')}</ListItemButton>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-          <div style={{width:'100px'}}>
-          {isFilterActive() && (
-            <Button
-            onClick={(e) => {
-              e.stopPropagation()
-              resetFilters()
-            } }
-            variant="outlined"
-            color="secondary"
-            className={s.filterClearBtn}
-            >
-              {t('common:selectOptions:clearFilter')}
-            </Button>
-          )}
-          </div>
-        </div><div className={s.selectedTagWrapper}>
-          {selectedTags.map((tag, index) => (
-            <div key={index}>
-              <div
-                className={s.selectedTagsDesktop}
-                style={{
-                  textAlign: 'center'
-                }}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  removeTag(tag)
-                } }
-              >
-                <Typography>
-                  {t('common:techniques:' + `${tag}`)}
-                </Typography>
-                <span className={s.removeTagButton}>
-                  <ClearIcon></ClearIcon>
-                </span>
-              </div>
+                  <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('14')}>{t('common:selectOptions:trending14')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('30')}>{t('common:selectOptions:trending30')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('90')}>{t('common:selectOptions:trending90')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('365')}>{t('common:selectOptions:trending365')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleTrendingChange('2000')}>{t('common:selectOptions:trending2000')}</ListItemButton>
+                </AccordionDetails>
+              </Accordion>
             </div>
-          ))}
-        </div>
-      </>
+
+            <div>
+              <Accordion elevation={0} className={s.filter} expanded={techniqueExpanded} onClick={() => setTechniqueExpanded(!techniqueExpanded)}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
+                  <Typography className={s.filterSummary}>
+                    {t('common:selectOptions:technique')}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className={s.filterDetailsTags}>
+                  {Object.keys(TAGS).map((key) => (
+                    <div>
+                      <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
+                        {t(`common:techniques:${key}`)}
+                      </ListItemButton>
+                      <Divider />
+                    </div>
+                  ))}
+                </AccordionDetails>
+              </Accordion>
+            </div>
+
+            <div>
+              <Accordion elevation={0} className={s.filter} expanded={orientationExpanded} onClick={() => setOrientationExpanded(!orientationExpanded)}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <AspectRatioIcon className={s.filterIcon}></AspectRatioIcon>
+                  <Typography className={s.filterSummary}>
+                    {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation}`)) : (t('common:selectOptions:format'))}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className={s.filterDetails}>
+                  <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Vertical')}> {t('common:selectOptions:Vertical')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleOrientationChange('Horizontal')}> {t('common:selectOptions:Horizontal')}</ListItemButton>
+                </AccordionDetails>
+              </Accordion>
+            </div>
+
+            <div>
+              <Accordion elevation={0} className={s.filter} expanded={sizeExpanded} onClick={() => setSizeExpanded(!sizeExpanded)}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <PhotoSizeSelectLargeIcon className={s.filterIcon}></PhotoSizeSelectLargeIcon>
+                  <Typography className={s.filterSummary}>
+                    {selectedSize ? (t(`common:selectOptions:${selectedSize}`)) : (t('common:selectOptions:size'))}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className={s.filterDetails}>
+                  <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('30')}>{t('common:selectOptions:30')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('60')}> {t('common:selectOptions:60')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('100')}>{t('common:selectOptions:100')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handleSizeChange('101')}> {t('common:selectOptions:101')}</ListItemButton>
+                </AccordionDetails>
+              </Accordion>
+            </div>
+
+            <div>
+              <Accordion disableGutters={true} elevation={0} className={s.filter} expanded={priceExpanded} onClick={() => setPriceExpanded(!priceExpanded)}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <CreditCardOutlinedIcon className={s.filterIcon}></CreditCardOutlinedIcon>
+                  <Typography className={s.filterSummary}>
+                    {selectedPrice ? (t(`common:selectOptions:${selectedPrice}`)) : (t('common:selectOptions:price'))}
+                  </Typography>
+                </AccordionSummary>
+                <AccordionDetails className={s.filterDetails}>
+                  <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('500')}>{t('common:selectOptions:500')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('1000')}>{t('common:selectOptions:1000')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5000')}>{t('common:selectOptions:5000')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('3000')}>{t('common:selectOptions:3000')}</ListItemButton>
+                  <Divider />
+                  <ListItemButton className={s.filterItem} onClick={() => handlePriceChange('5001')}>{t('common:selectOptions:5001')}</ListItemButton>
+                </AccordionDetails>
+              </Accordion>
+            </div>
+            <div className={s.desktopActiveFilter}>
+              {isFilterActive() && (
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    resetFilters()
+                  }}
+                  variant="outlined"
+                  color="secondary"
+                  className={s.filterClearBtn}
+                >
+                  {t('common:selectOptions:clearFilter')}
+                </Button>
+              )}
+            </div>
+          </div><div className={s.selectedTagWrapper}>
+            {selectedTags.map((tag, index) => (
+              <div key={index}>
+                <div
+                  className={s.selectedTagsDesktop}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    removeTag(tag)
+                  }}
+                >
+                  <Typography>
+                    {t('common:techniques:' + `${tag}`)}
+                  </Typography>
+                  <span className={s.removeTagButton}>
+                    <ClearIcon></ClearIcon>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       <DiscoverArt
