@@ -73,12 +73,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     null
   )
 
-  const [trendingExpanded, setTrendingExpanded] = useState(false);
-  const [techniqueExpanded, setTechniqueExpanded] = useState(false);
-  const [orientationExpanded, setOrientationExpanded] = useState(false);
-  const [sizeExpanded, setSizeExpanded] = useState(false);
-  const [priceExpanded, setPriceExpanded] = useState(false);
-
   const [expandedAccordion, setExpandedAccordion] = useState(null);
 
   const handleAccordionChange = (accordionName) => {
