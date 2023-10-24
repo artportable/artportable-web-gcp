@@ -79,7 +79,6 @@ export default function DiscoverArt({
     setShowFilterLoadingSkeleton(value);
   }, 200);
 
-  const { isSignedIn } = useContext(UserContext);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
