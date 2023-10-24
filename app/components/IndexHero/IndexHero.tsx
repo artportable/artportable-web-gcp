@@ -68,41 +68,42 @@ export default function IndexHero() {
     // add more reviews here
   ];
 
-  useEffect(() => {
-    setLoading(randomImage === null);
-    const isDefaultLocale = router.locale == router.defaultLocale;
-    const redirectHref = `${window.origin}${
-      isDefaultLocale ? "" : `/${router.locale}`
-    }/plans`;
-    setSignUpRedirectHref(redirectHref);
-  }, [randomImage, router.locale, router.defaultLocale]);
+  // useEffect(() => {
+  //   setLoading(randomImage === null);
+  //   const isDefaultLocale = router.locale == router.defaultLocale;
+  //   const redirectHref = `${window.origin}${
+  //     isDefaultLocale ? "" : `/${router.locale}`
+  //   }/plans`;
+  //   setSignUpRedirectHref(redirectHref);
+  // }, [randomImage, router.locale, router.defaultLocale]);
+
   //List with current promoted artists
-  const images = [
-    {
-      name: "Owe Emfestav",
-      username: "owe",
-      image: "/images/owe.jpeg",
-      imageLink: "art/f712a7f0-e764-41b8-bea8-470b93c5e9c5",
-    },
+  // const images = [
+  //   {
+  //     name: "Owe Emfestav",
+  //     username: "owe",
+  //     image: "/images/owe.jpeg",
+  //     imageLink: "art/f712a7f0-e764-41b8-bea8-470b93c5e9c5",
+  //   },
 
-    {
-      name: "Gunnila Svärd",
-      username: "gunilla.svard",
-      image: "/images/gunilla.jpg",
-      imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
-    },
+  //   {
+  //     name: "Gunnila Svärd",
+  //     username: "gunilla.svard",
+  //     image: "/images/gunilla.jpg",
+  //     imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
+  //   },
   
-  ];
+  // ];
 
-  useEffect(() => {
-    const randomImageIndex = Math.floor(Math.random() * images.length);
-    setRandomImage({
-      artwork: images[randomImageIndex].image,
-      username: images[randomImageIndex].username,
-      imageLink: images[randomImageIndex].imageLink,
-      name: images[randomImageIndex].name,
-    });
-  }, []);
+  // useEffect(() => {
+  //   const randomImageIndex = Math.floor(Math.random() * images.length);
+  //   setRandomImage({
+  //     artwork: images[randomImageIndex].image,
+  //     username: images[randomImageIndex].username,
+  //     imageLink: images[randomImageIndex].imageLink,
+  //     name: images[randomImageIndex].name,
+  //   });
+  // }, []);
 
   const [openVideoDialog, setOpenVideoDialog] = useState(false);
 
@@ -230,18 +231,18 @@ export default function IndexHero() {
                               <img
                                 src="/trustpilotvector.svg"
                                 alt="Trustpilot logo"
+                                width={60}
+                                height={60}
                                 style={{
-                                  width: "60px",
-                                  height: "auto",
                                   marginRight: "2px",
                                 }}
                               />
                               <img
                                 src="/trustpilot.svg"
                                 alt="Trustpilot Stars"
+                                width={100}
+                                height={18.76}
                                 style={{
-                                  width: "100px",
-                                  height: "auto",
                                   marginRight: "10px",
                                 }}
                               />
@@ -258,9 +259,9 @@ export default function IndexHero() {
                               <img
                                 src="/trustpilot.svg"
                                 alt="Trustpilot Stars"
+                                width={100}
+                                height={18.76}
                                 style={{
-                                  width: "100px",
-                                  height: "auto",
                                   marginRight: "10px",
                                 }}
                               />
@@ -340,6 +341,8 @@ export default function IndexHero() {
                               src={"/images/utlandskacasino_net.jpg"}
                               alt="utländskacasino.net"
                               title=""
+                              width={150}
+                              height={150}
                             />
                           </a>
                         </div>
@@ -406,6 +409,8 @@ export default function IndexHero() {
                               src={"/images/OCSLOGO.svg"}
                               alt="OCS"
                               title=""
+                              width={150}
+                              height={150}
                             />
                           </a>
                         </div>
@@ -438,8 +443,8 @@ export default function IndexHero() {
           </div>
           {/* start here */}
         </div>
-
-        <div className={s.right}>
+              
+        {/* <div className={s.right}>
           <div className={s.paintingContainer}>
             {!randomImage ? (
               <Skeleton variant="rect" width={320} height={320} />
@@ -474,8 +479,7 @@ export default function IndexHero() {
               </>
             )}
           </div>
-          <div></div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       gridColumn: "1/4",
-      padding: theme.spacing(1, 1, 0, 1),
+      padding: theme.spacing(10, 1, 0, 1),
       background: theme.palette.grey[200],
       backgroundColor: "var(--background-color-darker)",
     },
@@ -20,11 +20,11 @@ export const styles = makeStyles((theme: Theme) =>
       flexWrap: "nowrap",
       padding: "0, 5px",
 
-      [theme.breakpoints.up("mdPlus")]: {
-        padding: "0",
-        flexDirection: "row",
-        ...columnGap(0),
-      },
+      // [theme.breakpoints.up("mdPlus")]: {
+      //   padding: "0",
+      //   flexDirection: "row",
+      //   ...columnGap(0),
+      // },
     },
     left: {
       textAlign: "left",
@@ -53,6 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("mdPlus")]: {
         textAlign: "initial",
+        width: "567px",
         margin: theme.spacing(0, 0, 4, 4),
         placeItems: "flex-start",
       },

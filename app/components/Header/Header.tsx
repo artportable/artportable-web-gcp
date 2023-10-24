@@ -107,6 +107,8 @@ export default function Header({ navBarItems }) {
               <Link href={logoHref}>
                 <a>
                   <img
+                    height={26}
+                    width={135}
                     className={s.logo}
                     src="/Artportable_Logotyp_Black.svg"
                     alt="Logo Artportable"
