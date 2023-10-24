@@ -45,7 +45,6 @@ interface DiscoverTrendingArtTabProps {
   username?: string
   socialId?: string
   rowWidth: number
-  sold: string
   loadMore: boolean
   loadImages: any
   stopLoadImages: any
@@ -238,24 +237,15 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           return null
         }
 
-        let url
-        if (props.sold === 'Unsold') {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingunsold`)
-        } else if (props.sold === 'Sold') {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trendingsold`)
-        } else if (props.sold === 'All') {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
-        } else {
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
-        }
+
+        let url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
+        
 
         selectedTags.forEach((tag) => {
           if (tag) {
             url.searchParams.append('tag', tag)
           }
         })
-
-        
 
         if (selectedOrientation) {
           url.searchParams.append('orientation', selectedOrientation)

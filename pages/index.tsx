@@ -57,11 +57,10 @@ export default function DiscoverPage({ navBarItems }) {
   const rowWidth = useMainWidth().wide;
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const { loading, setLoading } = useContext(LoadingContext);
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [openAdDialog, setOpenAdDialog] = useState(true);
   const { keycloak } = useKeycloak();
-  const [justLoggedIn, setJustLoggedIn] = useState(false);
+
   const router = useRouter();
   useEffect(() => {
     if (keycloak?.authenticated && !sessionStorage.getItem("loggedIn")) {
@@ -96,6 +95,7 @@ export default function DiscoverPage({ navBarItems }) {
     if (openAdDialog === false) {
       sessionStorage.setItem("dialog", "false");
     }
+    console.log(sold);
   }, [toggleAdDialog]);
   useEffect(() => {
     if (sessionStorage.getItem("payment")) {
@@ -231,7 +231,6 @@ export default function DiscoverPage({ navBarItems }) {
                   username={username.value}
                   socialId={socialId.value}
                   rowWidth={rowWidth}
-                  sold={sold}
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
