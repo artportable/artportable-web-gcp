@@ -190,14 +190,15 @@ export default function ArtworkListItemDefined({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <Image
-              height={height}
-              width={width}
+            <img
+              style={{
+                width: width,
+                height: height
+              }}
               loading='lazy'
               alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-              quality={33}
             />
 
             {/* om man inte är på indexsidan, utan på profilsidan */}

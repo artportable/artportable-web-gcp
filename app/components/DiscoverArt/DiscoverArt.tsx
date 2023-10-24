@@ -52,7 +52,7 @@ export default function DiscoverArt({
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
-  //const smScreenOrSmaller = useBreakpointDown("sm");
+  const smScreenOrSmaller = useBreakpointDown("sm");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -237,8 +237,8 @@ export default function DiscoverArt({
                     return (
                       <ArtworkListItemDefined
                         key={image.Name}
-                        width={image.Width}
-                        height={image.Height}
+                        width={smScreenOrSmaller ? "100%" : image.Width}
+                        height={smScreenOrSmaller ? "auto" : image.Height}
                         artwork={artwork}
                         onPurchaseRequestClick={onPurchaseRequestClick}
                         purchaseRequestAction={
