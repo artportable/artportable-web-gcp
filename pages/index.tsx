@@ -95,7 +95,6 @@ export default function DiscoverPage({ navBarItems }) {
     if (openAdDialog === false) {
       sessionStorage.setItem("dialog", "false");
     }
-    console.log(sold);
   }, [toggleAdDialog]);
   useEffect(() => {
     if (sessionStorage.getItem("payment")) {
