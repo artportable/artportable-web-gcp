@@ -290,38 +290,36 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             <Typography>
               {t("common:selectOptions:filter")}
             </Typography>
-            <TuneIcon style={{ marginLeft: "5px" }} />
+            <TuneIcon className={s.tuneIcon}/>
           </Button>
           <Dialog
             fullScreen
             open={open}
             onClose={handleClose}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', width: "100%", height: '100%', backgroundColor: "#fdf9f7", overflowY: "scroll" }}>
-
-              <List style={{ flexGrow: 1 }}>
-                <div style={{ display: "flex", fontSize: "20px", fontWeight: "bold", padding: "10px" }}>
+            <div className={s.mobileContainer}>
+              <List className={s.mobileList}>
+                <div className={s.mobileListItem}>
                   <ListItem>
                     {t("common:selectOptions:doFilter")}
                   </ListItem>
-                  <Button onClick={handleClose}>{t("common:selectOptions:close")} <CancelPresentationIcon style={{ marginLeft: "6px" }} /></Button>
+                  <Button onClick={handleClose}>{t("common:selectOptions:close")} <CancelPresentationIcon className={s.cancelPresentationIcon} /></Button>
 
                 </div>
                 <Divider />
 
-                <div style={{ textAlign: "center", display: "flex", flexDirection: "column" }}>
-                  <FormControl style={{ marginTop: "20px", alignItems: "center" }}>
-                    <Accordion style={{ borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee" }}>
-
+                <div className={s.mobileAccordionWrapper}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel-content"
                         id="panel-header"
                       >
-                        <div style={{ display: "flex", alignItems: "flex-end" }}>
-                          <TrendingUpIcon style={{ marginRight: "4px" }} />
+                        <div className={s.mobileTitleIcon}>
+                          <TrendingUpIcon className={s.mobileIcon} />
                           <Typography>
-                            {tempSelectedTrending ? <div style={{ fontWeight: "bold" }}>{t(`common:selectOptions:trending${tempSelectedTrending}`)}</div> : t('common:selectOptions:trending')}
+                            {tempSelectedTrending ? <div className={s.mobileTemp}>{t(`common:selectOptions:trending${tempSelectedTrending}`)}</div> : t('common:selectOptions:trending')}
                           </Typography>
                         </div>
 
@@ -352,23 +350,23 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       </AccordionDetails>
                     </Accordion>
                   </FormControl>
-                  <FormControl style={{ marginTop: "20px", alignItems: "center" }}>
-                    <Accordion style={{ borderRadius: "20px", width: "90%", alignItems: "center", backgroundColor: "#faf3ee" }}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel-content"
                         id="panel-header"
 
                       >
-                        <div style={{ display: "flex", alignItems: "flex-end", }}>
-                          <PaletteOutlinedIcon style={{ marginRight: "4px" }} />
+                        <div className={s.mobileTitleIcon}>
+                          <PaletteOutlinedIcon className={s.mobileIcon} />
                           <Typography>
                             {t('common:selectOptions:technique')}
                           </Typography>
                         </div>
 
                       </AccordionSummary>
-                      <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                      <div className={s.mobileOverflow}>
                         {Object.keys(TAGS).map((key) => (
                           <div>
                             <ListItem button onClick={() => handleTagChangeMobile(key)}>
@@ -391,7 +389,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                               className={s.selectedTags}
 
                             >
-                              <Typography style={{ fontSize: "12px", fontWeight: "lighter" }}>
+                              <Typography className={s.mobileTag}>
                                 {t('common:techniques:' + `${tag}`)}
                               </Typography>
                               <span
@@ -401,12 +399,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                                 }}
                               >
                                 <HighlightOffRoundedIcon
-                                  style={{
-                                    border: '0px solid #c67777',
-                                    color: '#c67777',
-                                    alignItems: 'center',
-                                    fontSize: "12px"
-                                  }}
+                                  className={s.highlightIcon}
                                 ></HighlightOffRoundedIcon>
                               </span>
                             </div>
@@ -416,18 +409,18 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     }
                   </div>
 
-                  <FormControl style={{ marginTop: "20px", alignItems: "center" }}>
-                    <Accordion style={{ borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee" }}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel-content"
                         id="panel-header"
-                        style={{ height: "100%" }}
+                        className={s.mobileSummary}
                       >
-                        <div style={{ display: "flex", alignItems: "flex-end", }}>
-                          <PhotoSizeSelectLargeOutlinedIcon style={{ marginRight: "4px" }} />
+                        <div className={s.mobileTitleIcon}>
+                          <PhotoSizeSelectLargeOutlinedIcon className={s.mobileIcon} />
                           <Typography>
-                            {selectedTempSize ? <div style={{ fontWeight: "bold" }}>{t(`common:selectOptions:${selectedTempSize}`)}</div> : t('common:selectOptions:size')}
+                            {selectedTempSize ? <div className={s.mobileTemp}>{t(`common:selectOptions:${selectedTempSize}`)}</div> : t('common:selectOptions:size')}
                           </Typography>
                         </div>
 
@@ -451,18 +444,18 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     </Accordion>
                   </FormControl>
 
-                  <FormControl style={{ marginTop: "20px", alignItems: "center" }}>
-                    <Accordion style={{ borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee" }}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel-content"
                         id="panel-header"
-                        style={{ height: "100%" }}
+                        className={s.mobileSummary}
                       >
-                        <div style={{ display: "flex", alignItems: "flex-end", }}>
-                          <AspectRatioOutlinedIcon style={{ marginRight: "4px" }} />
+                        <div className={s.mobileTitleIcon}>
+                          <AspectRatioOutlinedIcon className={s.mobileIcon} />
                           <Typography>
-                            {tempSelectedOrientation ? <div style={{ fontWeight: "bold" }}>{t(`common:selectOptions:${tempSelectedOrientation}`)}</div> : t('common:selectOptions:format')}
+                            {tempSelectedOrientation ? <div className={s.mobileTemp}>{t(`common:selectOptions:${tempSelectedOrientation}`)}</div> : t('common:selectOptions:format')}
                           </Typography>
                         </div>
 
@@ -480,18 +473,18 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   </FormControl>
 
 
-                  <FormControl style={{ marginTop: "20px", alignItems: "center" }}>
-                    <Accordion style={{ borderRadius: "20px", width: "90%", backgroundColor: "#faf3ee" }}>
+                  <FormControl className={s.mobileFormControl}>
+                    <Accordion className={s.mobileAccordion}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel-content"
                         id="panel-header"
-                        style={{ height: "100%" }}
+                        className={s.mobileSummary}
                       >
-                        <div style={{ display: "flex", alignItems: "flex-end", }}>
-                          <PaymentOutlinedIcon style={{ marginRight: "4px" }} />
+                        <div className={s.mobileTitleIcon}>
+                          <PaymentOutlinedIcon className={s.mobileIcon} />
                           <Typography>
-                            {tempSelectedPrice ? <div style={{ fontWeight: "bold" }}>{t(`common:selectOptions:upTo${tempSelectedPrice}`)}</div> : t('common:selectOptions:price')}
+                            {tempSelectedPrice ? <div className={s.mobileTemp}>{t(`common:selectOptions:upTo${tempSelectedPrice}`)}</div> : t('common:selectOptions:price')}
                           </Typography>
                         </div>
 
@@ -523,8 +516,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               </List>
 
             </div>
-            <div style={{ position: "fixed", width: "100%", bottom: "0", left: "0" }}>
-              <div style={{ display: "flex", backgroundColor: "#faf3ee", justifyContent: "space-between", padding: '10px', borderTop: '1px solid #ddd' }}>
+            <div className={s.activeFilterContainer}>
+              <div className={s.activeFilter}>
                 {isFilterActiveMobile() && (
                   <Button
                     onClick={(e) => {
@@ -533,7 +526,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     }}
                     variant="outlined"
                     color="secondary"
-                    style={{ backgroundColor: "#fadf87", borderRadius: "20px", padding: "10px", border: "none", color: "black" }}
+                    className={s.activeFilterClear}
                   >
                     {t('common:selectOptions:clearFilter')}
                   </Button>
@@ -549,7 +542,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       setSelectedPrice(tempSelectedPrice)
                       handleClose();
                     }}
-                    style={{ backgroundColor: "#02a16c", borderRadius: "20px", padding: "10px", color: "white" }}
+                    className={s.activeFilterResult}
                   >
                     {t("common:selectOptions:showResult")}
                   </Button>
@@ -564,15 +557,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
 
         <>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            marginTop: '-20px',
-            marginBottom: '20px',
-            width: "100%",
-            height: '60px',
-            justifyContent: 'space-evenly',
-          }}>
+          <div className={s.desktopContainer}>
             <div>
               <Accordion elevation={0} className={s.filter} expanded={trendingExpanded} onClick={() => setTrendingExpanded(!trendingExpanded)}>
                 <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
@@ -675,7 +660,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 </AccordionDetails>
               </Accordion>
             </div>
-            <div style={{ width: '100px' }}>
+            <div className={s.desktopActiveFilter}>
               {isFilterActive() && (
                 <Button
                   onClick={(e) => {
@@ -695,9 +680,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
               <div key={index}>
                 <div
                   className={s.selectedTagsDesktop}
-                  style={{
-                    textAlign: 'center'
-                  }}
                   onClick={(e) => {
                     e.stopPropagation()
                     removeTag(tag)
