@@ -79,6 +79,16 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const [sizeExpanded, setSizeExpanded] = useState(false);
   const [priceExpanded, setPriceExpanded] = useState(false);
 
+  const [expandedAccordion, setExpandedAccordion] = useState(null);
+
+  const handleAccordionChange = (accordionName) => {
+    if (expandedAccordion === accordionName) {
+      setExpandedAccordion(null);
+    } else {
+      setExpandedAccordion(accordionName);
+    }
+  };
+
 
 
   const [tempSelectedTrending, setTempSelectedTrending] = useState<string | null>(null);
@@ -559,7 +569,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         <>
           <div className={s.desktopContainer}>
             <div>
-              <Accordion elevation={0} className={s.filter} expanded={trendingExpanded} onClick={() => setTrendingExpanded(!trendingExpanded)}>
+              <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'trending'} onClick={() => handleAccordionChange('trending')}>
                 <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
                   <TrendingUpIcon className={s.filterIcon}></TrendingUpIcon>
                   <Typography className={s.filterSummary}>
@@ -583,7 +593,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             </div>
 
             <div>
-              <Accordion elevation={0} className={s.filter} expanded={techniqueExpanded} onClick={() => setTechniqueExpanded(!techniqueExpanded)}>
+              <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'technique'} onClick={() => handleAccordionChange('technique')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
                   <Typography className={s.filterSummary}>
@@ -604,7 +614,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             </div>
 
             <div>
-              <Accordion elevation={0} className={s.filter} expanded={orientationExpanded} onClick={() => setOrientationExpanded(!orientationExpanded)}>
+              <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'orientation'} onClick={() => handleAccordionChange('orientation')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <AspectRatioIcon className={s.filterIcon}></AspectRatioIcon>
                   <Typography className={s.filterSummary}>
@@ -620,7 +630,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             </div>
 
             <div>
-              <Accordion elevation={0} className={s.filter} expanded={sizeExpanded} onClick={() => setSizeExpanded(!sizeExpanded)}>
+              <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'size'} onClick={() => handleAccordionChange('size')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <PhotoSizeSelectLargeIcon className={s.filterIcon}></PhotoSizeSelectLargeIcon>
                   <Typography className={s.filterSummary}>
@@ -640,7 +650,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             </div>
 
             <div>
-              <Accordion disableGutters={true} elevation={0} className={s.filter} expanded={priceExpanded} onClick={() => setPriceExpanded(!priceExpanded)}>
+              <Accordion disableGutters={true} elevation={0} className={s.filter} expanded={expandedAccordion === 'price'} onClick={() => handleAccordionChange('price')}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <CreditCardOutlinedIcon className={s.filterIcon}></CreditCardOutlinedIcon>
                   <Typography className={s.filterSummary}>
@@ -666,6 +676,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                   onClick={(e) => {
                     e.stopPropagation()
                     resetFilters()
+                    handleAccordionChange('null')
                   }}
                   variant="outlined"
                   color="secondary"
