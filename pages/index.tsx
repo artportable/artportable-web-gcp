@@ -48,7 +48,6 @@ export default function DiscoverPage({ navBarItems }) {
   ]);
   const s = styles();
   const store = useStore();
-  const [sold, setSold] = useState("All");
   const { username, socialId, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
