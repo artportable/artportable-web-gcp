@@ -47,22 +47,6 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
 
-    desktopLikeBtn: {
-
-      display: 'flex',
-      justifyContent: 'center',
-      zIndex: 10,
-      position: 'absolute',
-      transform: '(50%, 50%)',
-      bottom: '0',
-      right: '0'
-    },
-    '&:hover $desktopLikeBtn': {
-      visibility: 'visible',
-      opacity: 1,
-      backgroundColor: 'green'
-    },
-
     desktopLikeTitle: {
       display: 'flex',
       zIndex: 10,
@@ -136,23 +120,6 @@ export const styles = makeStyles((theme: Theme) =>
      
       }
     },
-    mobileContent: {
-      // backgroundColor: 'palegreen',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: '1rem',
-      fontStyle: 'italic',
-      [theme.breakpoints.up('md')]: {
-        display: 'none'
-      }
-    },
-    heartAndLikes: {
-      fontSize: '2em',
-      marginLeft: '1vw',
-      color: '#000000',
-      width: '100%'
-    },
     infoHover: {
       visibility: 'hidden',
       opacity: 0,
@@ -184,42 +151,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     tagsWrapper: {},
 
-    editOverlay: {
-      position: 'absolute',
-      top: 0,
-      width: '100%',
-      boxShadow: `${theme.palette.common.black} 0px 0px 40px 25px`
-    },
-
-    topActions: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      padding: theme.spacing(1)
-    },
-
-    bottomActionsContainer: {
-      background: 'white',
-      visibility: 'hidden'
-    },
-
-    bottomActions: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      width: '100%',
-      background: '#fdf9f7',
-      borderRadius: '1px',
-      padding: '5px',
-      color: 'black',
-      filter: 'drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.4))'
-    },
-    iconInfoContainer: {
-      display: 'flex'
-    },
     titleAndLike: {
       display: 'flex',
       marginTop: theme.spacing(0.4),
@@ -317,11 +248,6 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: '5px',
       display: 'flex'
     },
-    size: {
-      fontSize: '0.8rem',
-      lineHeight: '1rem',
-      fontWeight: theme.typography.fontWeightRegular
-    },
     likeCounter: {
       marginLeft: '4px',
       marginRight: '0',
@@ -362,10 +288,6 @@ export const styles = makeStyles((theme: Theme) =>
       '&:hover': {
         backgroundColor: 'transparent'
       }
-    },
-    shareImg: {
-      width: '24px',
-      height: '24px'
     },
     purchaseRequestButtonSv: {
       minWidth: '100px',
@@ -420,27 +342,6 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'relative'
     },
 
-    roomButtonSv: {
-      minWidth: '50px',
-      maxWidth: '50px',
-      maxHeight: '28px',
-      minHeight: '28px',
-      whiteSpace: 'nowrap',
-      padding: theme.spacing(0, 2, 0, 2),
-      margin: '1px 1px 1px 1px',
-      border: '1px solid #c67777',
-      backgroundColor: 'transparent',
-      color: '#FF9191',
-
-      fontSize: '10px',
-
-      fontFamily: 'gotham',
-      '&:hover': {
-        border: '1px solid #FF9191',
-        color: 'white',
-        backgroundColor: '#FF9191'
-      }
-    },
     titleTagsContainer: {
       position: 'relative',
       maxWidth: '100%',
@@ -467,56 +368,6 @@ export const styles = makeStyles((theme: Theme) =>
         visibility: 'visible',
         opacity: 1
       }
-    },
-
-    smallTag: {
-      backgroundColor: '#ffda79',
-      border: '1px solid #ffda79',
-      margin: '2px',
-      fontSize: '10px',
-      paddingLeft: '3px',
-      paddingRight: '3px',
-      borderRadius: '20px',
-      color: '#c67777',
-      maxWidth: '100px',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap',
-      textOverflow: 'ellipsis'
-    },
-
-    roomButtonEn: {
-      minWidth: '50px',
-      maxWidth: '50px',
-      maxHeight: '28px',
-      minHeight: '28px',
-      whiteSpace: 'nowrap',
-      padding: theme.spacing(0, 2, 0, 2),
-      margin: '1px 1px 1px 1px',
-      border: '1px solid #c67777',
-      backgroundColor: 'transparent',
-      color: '#FF9191',
-      fontSize: '10px',
-      fontFamily: 'gotham',
-      '&:hover': {
-        border: '1px solid #ffda79',
-        color: 'white',
-        backgroundColor: '#FF9191'
-      }
-    },
-
-    deleteGrid: {
-      position: 'relative'
-    },
-    deleteButton: {
-      margin: theme.spacing(0.5),
-      padding: 0,
-      position: 'absolute',
-      top: theme.spacing(1),
-      right: theme.spacing(1)
-    },
-    purchaseFrameTool: {
-      display: 'flex',
-      justifyContent: 'space-between'
     },
     rum: {
       display: 'flex',
