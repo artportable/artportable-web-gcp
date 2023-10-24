@@ -229,5 +229,8 @@ export const styles = makeStyles((theme: Theme) =>
     tuneIcon: {
       marginLeft: "5px"
     },
+    mobileContainer1: {
+      marginBottom:'30px'
+    }
   })
 );

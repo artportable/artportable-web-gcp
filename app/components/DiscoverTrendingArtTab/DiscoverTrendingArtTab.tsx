@@ -285,7 +285,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
     <>
       {isMobile ? (
-        <div>
+        <div className={s.mobileContainer1}>
           <Button className={s.mobileButton} variant="outlined" onClick={handleClickOpen}>
             <Typography>
               {t("common:selectOptions:filter")}
