@@ -14,11 +14,6 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: "10px",
       justifyContent:'center'
     },
-    navButtons: {
-      backgroundColor: theme.palette.primary.main,
-      width: "28px",
-      height: "28px",
-    },
     row: {
       height: '220px',
     },
@@ -49,13 +44,5 @@ export const styles = makeStyles((theme: Theme) =>
         height: '300px'
       }
       },
-    [theme.breakpoints.up('md')]: {
-      leftButton: {
-        display: 'initial',
-      },
-      rightButton: {
-        display: 'initial',
-      }
-    }
   }),
 );
