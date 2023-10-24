@@ -2,104 +2,6 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    displayTitle: {
-      zIndex: 10,
-      color: "#3e3e3e",
-      fontWeight: 700,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: "28px",
-      marginTop: "20px",
-      width: "95%",
-      [theme.breakpoints.up("xs")]: {
-        fontSize: "14px",
-        fontWeight: 700,
-      },
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "18px",
-        fontWeight: 700,
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "20px",
-        fontWeight: 700,
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "22px",
-        fontWeight: 700,
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "24px",
-        fontWeight: 700,
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "24px",
-        fontWeight: 700,
-      },
-    },
-    displayText: {
-      zIndex: 10,
-      color: "#3e3e3e",
-      fontWeight: 400,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      margin: "0 auto",
-      fontSize: "12px",
-      marginTop: "10px",
-      width: "95%",
-      fontStyle: "italic",
-      [theme.breakpoints.up("xs")]: {
-        fontSize: "12px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-        right: "0px",
-      },
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "14px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-        right: "0px",
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "22px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-        right: "0px",
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "22px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-        right: "35px",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "22px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-        right: "35px",
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "22px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-        right: "40px",
-      },
-    },
-
-    toggleFiltersButton: {
-      display: "block",
-      [theme.breakpoints.up("smPlus")]: {
-        display: "none"
-      },
-
-    },
 
     filter: {
       backgroundColor:'transparent !important',
@@ -178,71 +80,11 @@ export const styles = makeStyles((theme: Theme) =>
       padding: '0px',
     },
 
-    selectWrapper: {
-      display: "flex",
-        flexDirection: "column",
-        borderRadius: "20px",
-    },
-    selectWrapperMobile: {
-      display: "flex",
-        flexDirection: "column",
-        borderRadius: "20px",
-    },
-
     selectedTagContainer: {
       display: "flex",
 
     },
 
-    trendAndTechnique: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      [theme.breakpoints.up("sm")]: {
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-      },
-    },
-
-    formatSizePrice: {
-      display: 'flex',
-      flexDirection: "column",
-    },
-
-    selectStyle: {
-      padding: "8px",
-      border: "1px solid black",
-      borderRadius: "20px",
-      margin: "0px 0px 0px 4px",
-      textAlign: "center",
-      cursor: "pointer",
-      fontWeight: "bold",
-      maxWidth: "300px",
-      backgroundColor: "#c67777",
-
-    },
-
-    selectStyleDesktop: {
-      padding: "8px",
-      border: "1px solid black",
-      borderRadius: "20px",
-      margin: "0px 0px 0px 12px",
-      textAlign: "center",
-      cursor: "pointer",
-      fontWeight: "bold",
-      maxWidth: "300px",
-      backgroundColor: "transparent"
-    },
-
-    clearButton: {
-      backgroundColor: "transparent",
-      borderRadius: "20px",
-      border: "1px solid black",
-      cursor: "pointer",
-      padding: "4px 6px 4px 6px",
-      marginLeft: "4px",
-
-    },
     selectedTagWrapper: {
       display: 'flex',
       flexDirection: 'row',
@@ -259,6 +101,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     selectedTagsDesktop: {
+      textAlign:'center',
       display: "flex",
       flexDirection: "row",
       alignItems: "flex-end",
@@ -278,50 +121,116 @@ export const styles = makeStyles((theme: Theme) =>
       cursor: "pointer",
     },
 
-    displayTextLatest: {
-      zIndex: 10,
-      color: "#3e3e3e",
-      fontWeight: 400,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      margin: "0 auto",
-      fontSize: "12px",
-      marginTop: "10px",
-      width: "95%",
-      fontStyle: "italic",
-      [theme.breakpoints.up("xs")]: {
-        fontSize: "12px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-      },
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "14px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "16px",
-        fontWeight: 400,
-        width: "auto",
-        position: "relative",
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "18px",
-        fontWeight: 400,
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "20px",
-        fontWeight: 400,
-        width: "auto",
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "22px",
-        fontWeight: 400,
-        width: "auto",
-      },
+    mobileButton: {
+      width: "100%", 
+      borderRadius: "20px"
     },
+
+    mobileContainer: {
+      display: 'flex', 
+      flexDirection: 'column', 
+      width: "100%", 
+      height: '100%', 
+      backgroundColor: "#fdf9f7", 
+      overflowY: "scroll",
+    },
+    mobileList: {
+      flexGrow: 1,
+    },
+    mobileListItem: {
+      display: "flex", 
+      fontSize: "20px", 
+      fontWeight: "bold", 
+      padding: "10px" 
+    },
+    cancelPresentationIcon: {
+      marginLeft:'6px',
+    },
+    mobileAccordionWrapper: {
+      textAlign: "center", 
+      display: "flex", 
+      flexDirection: "column" 
+    },
+    mobileFormControl: {
+      marginTop: "20px", 
+      alignItems: "center" 
+    },
+    mobileAccordion: {
+      borderRadius: "20px !important", 
+      width: "90%", 
+      alignItems: "center",
+      backgroundColor: "#faf3ee"
+    },
+    mobileTitleIcon: {
+      display: 'flex',
+      alignItems:'flex-end'
+    },
+    mobileIcon: {
+      marginRight:'4px',
+    },
+    mobileTemp: {
+      fontWeight: 'bold'
+    },
+    mobileOverflow: {
+      maxHeight: '300px', 
+      overflowY: 'auto'
+    },
+    mobileTag: {
+      fontSize: "12px", 
+      fontWeight: "lighter"
+    },
+    highlightIcon: {
+      border: '0px solid #c67777',
+      color: '#c67777',
+      alignItems: 'center',
+      fontSize: "12px"
+    },
+    mobileSummary: {
+      height: '100%'
+    },
+    activeFilterContainer: {
+      position: "fixed", 
+      width: "100%", 
+      bottom: "0", 
+      left: "0"
+    },
+    activeFilter: {
+      display: "flex", 
+      backgroundColor: "#faf3ee", 
+      justifyContent: "space-between", 
+      padding: '10px',
+       borderTop: '1px solid #ddd'
+    },
+    activeFilterClear: {
+      backgroundColor: "#fadf87", 
+      borderRadius: "20px", 
+      padding: "10px", 
+      border: "none", 
+      color: "black"
+    },
+    activeFilterResult: {
+      backgroundColor: "#02a16c", 
+      borderRadius: "20px",
+      padding: "10px",
+      color: "white"
+    },
+    desktopContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginTop: '-20px',
+      marginBottom: '20px',
+      width: "100%",
+      height: '60px',
+      justifyContent: 'space-evenly'
+    },
+    desktopActiveFilter: {
+      width: '100px' 
+    },
+    tuneIcon: {
+      marginLeft: "5px"
+    },
+    mobileContainer1: {
+      marginBottom:'30px'
+    }
   })
 );
