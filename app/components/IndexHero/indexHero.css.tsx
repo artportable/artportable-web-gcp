@@ -69,19 +69,6 @@ export const styles = makeStyles((theme: Theme) =>
         textAlign: "left",
       },
     },
-    subHeadline: {
-      "& span": {
-        fontSize: "1.3rem",
-      },
-      fontWeight: 500,
-      margin: theme.spacing(0, 2, 0, 1),
-      textAlign: "left",
-      fontSize: "1rem",
-      [theme.breakpoints.up("sm")]: {
-        margin: theme.spacing(0, 2, 1, 1),
-        fontWeight: 600,
-      },
-    },
 
     description: {
       marginBottom: theme.spacing(2),
@@ -117,17 +104,6 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: "20px",
       },
     },
-    flexheaderButton: {
-      display: "flex",
-      ...rowGap(theme.spacing(3)),
-      flexDirection: "column",
-      marginTop: "-20px",
-
-      [theme.breakpoints.up("smPlus")]: {
-        flexDirection: "row",
-        marginTop: "0",
-      },
-    },
     headerButtonArtlover: {
       display: "flex",
       alignContent: "flex-start",
@@ -137,15 +113,6 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: theme.spacing(2),
         justifyContent: "flex-start",
-      },
-    },
-    headerButtonArtist: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "left",
-      marginTop: "10px",
-      [theme.breakpoints.up("smPlus")]: {
-        marginTop: "0",
       },
     },
 
@@ -197,12 +164,6 @@ export const styles = makeStyles((theme: Theme) =>
         "0 -1px 1px rgba(0,0,0,.1), 0 1px 1px 1px rgba(255,255,255,.7)",
       maxWidth: "100%",
     },
-    boosted: {
-      display: "block",
-      objectFit: "contain",
-      maxWidth: "100%",
-      filter: "drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))",
-    },
     createdBy: {
       display: "flex",
       gap: theme.spacing(1),
@@ -212,19 +173,8 @@ export const styles = makeStyles((theme: Theme) =>
         margin: theme.spacing(1, 0, 2, 0),
       },
     },
-    chipAvatar: {
-      marginLeft: "2px",
-      borderRadius: "50%",
-    },
     chip: {
       backgroundColor: theme.palette.common.white,
-    },
-    sofaImage: {
-      display: "block",
-      width: "100%",
-    },
-    signupButtonContainer: {
-      marginTop: theme.spacing(1),
     },
     videoDiv: {
       display: "none",
@@ -236,11 +186,6 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(2),
       },
-    },
-    buttonDivReview: {
-      display: "flex",
-      justifyContent: "flex-start",
-      marginTop: theme.spacing(2), // adjust as per your design needs
     },
     reviewDiv: {
       display: "flex",
@@ -305,22 +250,10 @@ export const styles = makeStyles((theme: Theme) =>
         marginLeft: "-15px",
       },
     },
-    textDiv: {
-      display: "flex",
-      placeContent: "center",
-      marginBottom: "20px",
-    },
     buttonDiv: {
       justifyContent: "center",
     },
     button: {
-      marginTop: "-50px",
-      [theme.breakpoints.up("smPlus")]: {
-        marginTop: "-5px",
-      },
-    },
-    buttonReview: {
-      backgroundColor: "green",
       marginTop: "-50px",
       [theme.breakpoints.up("smPlus")]: {
         marginTop: "-5px",
@@ -336,24 +269,6 @@ export const styles = makeStyles((theme: Theme) =>
         fontWeight: 500,
         lineHeight: "18px",
         fontSize: "10px",
-        margin: "5px",
-      },
-      [theme.breakpoints.down("smPlus")]: {
-        fontSize: "14px",
-        lineHeight: "18px",
-        margin: "5px",
-      },
-    },
-    firstReview: {
-      fontWeight: 500,
-      fontSize: "12px",
-      lineHeight: "32px",
-      fontFamily: "Gotham !important",
-      margin: "0px",
-      [theme.breakpoints.down("sm")]: {
-        fontWeight: 400,
-        lineHeight: "15px",
-        fontSize: "12px",
         margin: "5px",
       },
       [theme.breakpoints.down("smPlus")]: {
