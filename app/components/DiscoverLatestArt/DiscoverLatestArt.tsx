@@ -85,7 +85,6 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
-          tagPlaceholder={""}
         />
       )}
     </>
