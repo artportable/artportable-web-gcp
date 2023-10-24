@@ -14,27 +14,18 @@ export const styles = makeStyles((theme: Theme) =>
       width: "95%",
       [theme.breakpoints.up("xs")]: {
         fontSize: "14px",
-        fontWeight: 700,
       },
       [theme.breakpoints.up("sm")]: {
         fontSize: "18px",
-        fontWeight: 700,
       },
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "20px",
-        fontWeight: 700,
       },
       [theme.breakpoints.up("md")]: {
         fontSize: "22px",
-        fontWeight: 700,
       },
       [theme.breakpoints.up("mdPlus")]: {
         fontSize: "24px",
-        fontWeight: 700,
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "24px",
-        fontWeight: 700,
       },
     },
     displayText: {
