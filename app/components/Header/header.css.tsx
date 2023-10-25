@@ -39,7 +39,6 @@ export const styles = makeStyles((theme: Theme) =>
       gridArea: "menu",
     },
     logo: {
-      width: "135px",
       paddingTop: theme.spacing(0.2),
     },
     navigation: {

@@ -1,0 +1,123 @@
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+
+export const styles = makeStyles((theme: Theme) =>
+  createStyles({
+
+    filter: {
+      backgroundColor:'transparent !important',
+      //Trying to remove the margin increase when Accordion is active
+      // margin:'0px',
+      // '&.Mui-expanded': {
+      //   backgroundColor:'lightblue !important',
+      //   maxHeight: '50px',
+      //   justifyContent:'center',
+      //   alignItems:'start',
+      // },
+    },
+
+    filterSummary: {
+      fontSize:'15px',
+      fontWeight: 500,
+    },
+
+    filterDetailsTags: {
+      display:'grid', 
+      gridTemplateColumns:'1fr 1fr', 
+      backgroundColor:'#fdf9f7', 
+      overflow: 'auto',
+      position:'absolute', 
+      zIndex: 1,
+      paddingTop: '10px',
+      paddingBottom: '10px',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+      maxHeight:'500px',
+      fontSize:'15px',
+      fontWeight:500,
+      borderRadius: "10px"
+    },
+    filterItemTags: {
+      justifyContent:'start', 
+      width:'200px',
+      paddingBottom:'6px', 
+      paddingTop:'6px', 
+      paddingRight:'16px',
+      paddingLeft:'16px'
+    },
+
+    filterDetails: {
+      display:'grid', 
+      gridTemplateColumns:'1fr',
+      position: 'absolute', 
+      backgroundColor: '#fdf9f7', 
+      zIndex: 1, 
+      padding: '10px',
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
+      fontSize:'15px',
+      fontWeight:500,
+      borderRadius: "10px",
+      
+    },
+    filterItem: {
+      justifyContent:'start', 
+      paddingBottom:'6px', 
+      paddingTop:'6px', 
+      paddingRight:'16px',
+      paddingLeft:'16px',
+      width:'250px'
+    },
+    filterIcon: {
+      marginRight:'7px',
+    },
+    filterClearBtn: {
+      margin: '6px',
+      borderRadius: '20px',
+      height: '40px',
+      width: '100px',
+      textAlign: 'center',
+      border: '1px solid #c67777',
+      color: 'black',
+      fontSize: '10px',
+      padding: '0px',
+    },
+    selectedTagWrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+
+      backgroundColor: "transparent"
+    },
+    selectedTagsDesktop: {
+      textAlign:'center',
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "flex-end",
+      marginBottom: "10px",
+      margin: "4px",
+      border: "1px solid black",
+      borderRadius: "20px",
+      padding: "12px",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: 'rgba(0,0, 0, 0.05)'
+      }
+    },
+    removeTagButton: {
+      display: 'flex',
+      alignItems: 'center',
+      cursor: "pointer",
+    },
+    desktopContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginTop: '-20px',
+      marginBottom: '20px',
+      width: "100%",
+      height: '60px',
+      justifyContent: 'space-evenly'
+    },
+    desktopActiveFilter: {
+      width: '100px' 
+    },
+  })
+);

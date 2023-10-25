@@ -12,14 +12,11 @@ import { useStore } from "react-redux";
 import { UserContext } from "../../contexts/user-context";
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
-  const { t } = useTranslation(['common', 'discover']);
-  const mainWidth = useMainWidth().regular;
   const s = styles();
-  const store = useStore();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const scrollRef = useRef(null);
-  const scrollBy = mainWidth / 1;
+
 
   const images = artist.Artworks?.map(a => ({
     ...normalizeImageSize(a.PrimaryFile),
