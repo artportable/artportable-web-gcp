@@ -214,7 +214,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
                    
                             <Typography className={s.filterSummary}>
-                                {selectedTrending ? t(`common:selectOptions:trending${selectedTrending}`) : (t('common:selectOptions:trending'))}
+                                {selectedTrending ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:trending${selectedTrending}`)}</div>  : (t('common:selectOptions:trending'))}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetails}>
