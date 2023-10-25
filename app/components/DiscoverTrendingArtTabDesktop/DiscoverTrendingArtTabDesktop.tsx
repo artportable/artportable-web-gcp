@@ -64,7 +64,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     const [sizeExpanded, setSizeExpanded] = useState(false);
     const [priceExpanded, setPriceExpanded] = useState(false);
 
-
     const handleSizeChange = (newSize) => {
         setSelectedSize(newSize)
     }
@@ -72,7 +71,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     const handlePriceChange = (newPrice: string) => {
         setSelectedPrice(newPrice)
     }
-
 
     const handleTrendingChange = (value: string) => {
         setSelectedTrending(String(value));
@@ -82,16 +80,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         setSelectedOrientation(value)
     }
 
-
-
-
     function filter(tags: string[], searchQuery = '') {
         props.loadImages()
         setSelectedTags(tags)
         setSearchQuery(searchQuery)
     }
-
-
 
     function likeArtwork(artworkId, isLike) {
         redirectIfNotLoggedIn()
@@ -104,8 +97,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         }
     }
 
-
-
     const removeTag = (tagToRemove: string) => {
         setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
         const storedFilters = JSON.parse(localStorage.getItem('filters')) || {
@@ -115,7 +106,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         localStorage.setItem('filters', JSON.stringify({ tags: updatedTags }))
         localStorage.removeItem('filters')
     }
-
 
     const resetFilters = () => {
         setSelectedTags([])
@@ -134,8 +124,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             selectedTrending !== null
         )
     }
-
-
 
     const [loading, setLoading] = useState(false)
     const { data: artworks, isLoading: isLoadingArtWorks } =
@@ -189,7 +177,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             },
             username
         )
-
 
 
     useEffect(() => { }, [artworks])
