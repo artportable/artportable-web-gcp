@@ -214,7 +214,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'trending'} onClick={() => handleAccordionChange('trending')}>
                         <AccordionSummary aria-controls='' expandIcon={<ExpandMoreIcon />}>
-                            <TrendingUpIcon className={s.filterIcon}></TrendingUpIcon>
+                   
                             <Typography className={s.filterSummary}>
                                 {selectedTrending ? t(`common:selectOptions:trending${selectedTrending}`) : (t('common:selectOptions:trending'))}
                             </Typography>
@@ -241,7 +241,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'technique_tags'} onClick={() => handleAccordionChange('technique_tags')}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
+                            
                             <Typography className={s.filterSummary}>
                                Teknik
                             </Typography>
@@ -262,7 +262,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'theme_tags'} onClick={() => handleAccordionChange('theme_tags')}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
+                           
                             <Typography className={s.filterSummary}>
                                Tema
                             </Typography>
@@ -285,7 +285,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'orientation'} onClick={() => handleAccordionChange('orientation')}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <AspectRatioIcon className={s.filterIcon}></AspectRatioIcon>
+                           
                             <Typography className={s.filterSummary}>
                                 {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation}`)) : (t('common:selectOptions:format'))}
                             </Typography>
@@ -301,7 +301,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'size'} onClick={() => handleAccordionChange('size')}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <PhotoSizeSelectLargeIcon className={s.filterIcon}></PhotoSizeSelectLargeIcon>
+                           
                             <Typography className={s.filterSummary}>
                                 {selectedSize ? (t(`common:selectOptions:${selectedSize}`)) : (t('common:selectOptions:size'))}
                             </Typography>
@@ -321,7 +321,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'price'} onClick={() => handleAccordionChange('price')}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <CreditCardOutlinedIcon className={s.filterIcon}></CreditCardOutlinedIcon>
+                         
                             <Typography className={s.filterSummary}>
                                 {selectedPrice ? (t(`common:selectOptions:${selectedPrice}`)) : (t('common:selectOptions:price'))}
                             </Typography>
