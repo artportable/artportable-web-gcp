@@ -16,28 +16,28 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     filterSummary: {
-      fontSize:'15px',
-      fontWeight: 500,
+      fontSize:'14px',
+      fontWeight: 300,
     },
 
     filterDetailsTags: {
-      display:'grid', 
-      gridTemplateColumns:'1fr 1fr', 
+      display: "flex",
+      flexDirection: "column",
       backgroundColor:'#fdf9f7', 
-      overflow: 'auto',
+      overflowY: 'scroll',
       position:'absolute', 
       zIndex: 1,
       paddingTop: '10px',
       paddingBottom: '10px',
       boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-      maxHeight:'500px',
-      fontSize:'15px',
-      fontWeight:500,
+      maxHeight:'400px',
+      fontSize:'10px',
+      fontWeight: 500,
       borderRadius: "10px"
     },
     filterItemTags: {
       justifyContent:'start', 
-      width:'200px',
+      width:'auto',
       paddingBottom:'6px', 
       paddingTop:'6px', 
       paddingRight:'16px',
@@ -111,10 +111,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       marginTop: '-20px',
-      marginBottom: '20px',
+      marginBottom: '10px',
       width: "100%",
       height: '60px',
-      justifyContent: 'space-evenly'
+      justifyContent: 'center'
     },
     desktopActiveFilter: {
       width: '100px' 

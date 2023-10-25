@@ -7,7 +7,7 @@ import { useInfiniteScrollWithKey } from '../../hooks/useInfiniteScroll'
 import { useRedirectToLoginIfNotLoggedIn } from '../../hooks/useRedirectToLoginIfNotLoggedIn'
 import { Artwork } from '../../models/Artwork'
 import DiscoverArt from '../DiscoverArt/DiscoverArt'
-import { TAGS } from '../DiscoverTrendingArtTab/tags'
+import { TAGS, THEME_TAGS, TECHNIQUE_TAGS } from '../DiscoverTrendingArtTab/tags'
 import { styles } from './discoverTrendingArtTabDesktop.css'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -23,7 +23,6 @@ import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import PhotoSizeSelectLargeIcon from '@mui/icons-material/PhotoSizeSelectLarge';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
-
 
 
 interface DiscoverTrendingArtTabProps {
@@ -49,6 +48,8 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
     const { like } = usePostLike()
 
     const [selectedTags, setSelectedTags] = useState<string[]>([])
+    const [selectedTheme, setSelectedTheme] = useState<string>(null)
+    const [selectedTechnique, setSelectedTechnique] = useState<string>(null)
     const [selectedSize, setSelectedSize] = useState<string | null>(null)
     const [selectedPrice, setSelectedPrice] = useState<string | null>(null)
     const [selectedTrending, setSelectedTrending] = useState<string | null>(null)
@@ -88,6 +89,8 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
         setSearchQuery(searchQuery)
     }
 
+
+
     function likeArtwork(artworkId, isLike) {
         redirectIfNotLoggedIn()
         like(artworkId, isLike, socialId, token)
@@ -99,14 +102,20 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
         }
     }
 
+    const handleTechnqiueTagChange = (newTag: string) => {
+            setSelectedTechnique(newTag)
+    }
+
     const removeTag = (tagToRemove: string) => {
         setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
-        const storedFilters = JSON.parse(localStorage.getItem('filters')) || {
-            tags: []
-        }
-        const updatedTags = storedFilters.tags.filter((tag) => tag !== tagToRemove)
-        localStorage.setItem('filters', JSON.stringify({ tags: updatedTags }))
-        localStorage.removeItem('filters')
+        setSelectedTechnique(null);
+
+    }
+    const removeTechnique = (tagToRemove: string) => {
+        setSelectedTechnique(null);
+    }
+    const removeTheme = (tagToRemove: string) => {
+        setSelectedTheme(null);
     }
 
     const resetFilters = () => {
@@ -115,7 +124,12 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
         setSelectedSize(null)
         setSelectedPrice(null)
         setSelectedTrending(null)
+        setSelectedTheme(null)
+        setSelectedTechnique(null)
     }
+
+    useEffect(() => {        
+    }, [selectedTheme, selectedTechnique])
 
     const isFilterActive = () => {
         return (
@@ -123,8 +137,10 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
             selectedOrientation !== null ||
             selectedSize !== null ||
             selectedPrice !== null ||
-            selectedTrending !== null
-        )
+            selectedTrending !== null ||
+            selectedTechnique !== null || 
+            selectedTheme !== null
+            )
     }
 
     const [loading, setLoading] = useState(false)
@@ -151,6 +167,15 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         url.searchParams.append('tag', tag)
                     }
                 })
+
+                if(selectedTheme) {
+                    url.searchParams.append('tag', selectedTheme)
+                }
+
+                if(selectedTechnique) {
+                    url.searchParams.append('tag', selectedTechnique)
+                }
+                
 
                 if (selectedOrientation) {
                     url.searchParams.append('orientation', selectedOrientation)
@@ -210,16 +235,40 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                     </Accordion>
                 </div>
 
+
+                {/* TEKNIK             HERE */}
+
                 <div>
-                    <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'technique'} onClick={() => handleAccordionChange('technique')}>
+                    <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'technique_tags'} onClick={() => handleAccordionChange('technique_tags')}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
                             <Typography className={s.filterSummary}>
-                                {t('common:selectOptions:technique')}
+                               Teknik
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetailsTags}>
-                            {Object.keys(TAGS).map((key) => (
+                            {Object.keys(TECHNIQUE_TAGS).map((key) => (
+                                <div>
+                                    <ListItemButton className={s.filterItemTags} onClick={() => handleTechnqiueTagChange(`${key}`)} key={key}>
+                                        {t(`common:techniques:${key}`)}
+                                    </ListItemButton>
+                                    <Divider />
+                                </div>
+                            ))}
+                        </AccordionDetails>
+                    </Accordion>
+                </div>
+
+                <div>
+                    <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'theme_tags'} onClick={() => handleAccordionChange('theme_tags')}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <ColorLensOutlinedIcon className={s.filterIcon}></ColorLensOutlinedIcon>
+                            <Typography className={s.filterSummary}>
+                               Tema
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails className={s.filterDetailsTags}>
+                            {Object.keys(THEME_TAGS).map((key) => (
                                 <div>
                                     <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
                                         {t(`common:techniques:${key}`)}
@@ -230,6 +279,8 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         </AccordionDetails>
                     </Accordion>
                 </div>
+              
+               
 
                 <div>
                     <Accordion elevation={0} className={s.filter} expanded={expandedAccordion === 'orientation'} onClick={() => handleAccordionChange('orientation')}>
@@ -288,6 +339,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         </AccordionDetails>
                     </Accordion>
                 </div>
+                
                 <div className={s.desktopActiveFilter}>
                     {isFilterActive() && (
                         <Button
@@ -304,25 +356,28 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         </Button>
                     )}
                 </div>
-            </div><div className={s.selectedTagWrapper}>
-                {selectedTags.map((tag, index) => (
-                    <div key={index}>
+            </div>
+            
+            <div className={s.selectedTagWrapper}>
+       
+                    <div>
+                        {selectedTechnique && (
                         <div
                             className={s.selectedTagsDesktop}
                             onClick={(e) => {
                                 e.stopPropagation()
-                                removeTag(tag)
+                                removeTag(selectedTechnique)
                             }}
                         >
                             <Typography>
-                                {t('common:techniques:' + `${tag}`)}
+                                {t('common:techniques:' + `${selectedTechnique}`)}
                             </Typography>
                             <span className={s.removeTagButton}>
                                 <ClearIcon></ClearIcon>
                             </span>
                         </div>
+                        )}
                     </div>
-                ))}
             </div>
             <DiscoverArt
                 artworks={artworks}
