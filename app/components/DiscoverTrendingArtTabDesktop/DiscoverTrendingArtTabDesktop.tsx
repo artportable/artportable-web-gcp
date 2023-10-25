@@ -102,21 +102,19 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
         }
     }
 
-    const handleTechnqiueTagChange = (newTag: string) => {
+    const handleTechniqueTagChange = (newTag: string) => {
             setSelectedTechnique(newTag)
     }
+    const handleThemeTagChange = (newTag: string) => {
+        setSelectedTheme(newTag)
+}
 
     const removeTag = (tagToRemove: string) => {
         setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
         setSelectedTechnique(null);
 
     }
-    const removeTechnique = (tagToRemove: string) => {
-        setSelectedTechnique(null);
-    }
-    const removeTheme = (tagToRemove: string) => {
-        setSelectedTheme(null);
-    }
+
 
     const resetFilters = () => {
         setSelectedTags([])
@@ -243,13 +241,13 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             
                             <Typography className={s.filterSummary}>
-                               Teknik
+                               {selectedTechnique ? <>{t(`common:techniques:${selectedTechnique}`)}</> : <>{t("common:selectOptions:technique")}</>}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetailsTags}>
                             {Object.keys(TECHNIQUE_TAGS).map((key) => (
                                 <div>
-                                    <ListItemButton className={s.filterItemTags} onClick={() => handleTechnqiueTagChange(`${key}`)} key={key}>
+                                    <ListItemButton className={s.filterItemTags} onClick={() => handleTechniqueTagChange(`${key}`)} key={key}>
                                         {t(`common:techniques:${key}`)}
                                     </ListItemButton>
                                     <Divider />
@@ -264,13 +262,13 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                            
                             <Typography className={s.filterSummary}>
-                               Tema
+                            {selectedTheme ? <>{t(`common:techniques:${selectedTheme}`)}</> : <>{t("common:selectOptions:theme")}</>}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetailsTags}>
                             {Object.keys(THEME_TAGS).map((key) => (
                                 <div>
-                                    <ListItemButton className={s.filterItemTags} onClick={() => handleTagChange(`${key}`)} key={key}>
+                                    <ListItemButton className={s.filterItemTags} onClick={() => handleThemeTagChange(`${key}`)} key={key}>
                                         {t(`common:techniques:${key}`)}
                                     </ListItemButton>
                                     <Divider />
@@ -356,7 +354,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                     )}
                 </div>
             </div>
-            
+{/*             
             <div className={s.selectedTagWrapper}>
        
                     <div>
@@ -377,7 +375,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         </div>
                         )}
                     </div>
-            </div>
+            </div> */}
             <DiscoverArt
                 artworks={artworks}
                 tags={tags?.data}

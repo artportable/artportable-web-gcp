@@ -110,7 +110,7 @@ export const styles = makeStyles((theme: Theme) =>
     desktopContainer: {
       display: 'flex',
       flexDirection: 'row',
-      marginTop: '-20px',
+      marginTop: '-30px',
       marginBottom: '10px',
       width: "100%",
       height: '60px',

@@ -116,7 +116,7 @@
   },
   "selectOptions": {
     "format": "Format",
-    "technique": "Technique and theme",
+    "technique": "Technique",
     "theme": "Theme",
     "price": "Price",
     "upTo500": "Up to 500 (SEK)",
