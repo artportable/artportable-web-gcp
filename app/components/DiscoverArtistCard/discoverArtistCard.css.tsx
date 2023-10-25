@@ -5,7 +5,7 @@ import { rowGap, columnGap } from '../../utils/styleUtils';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      marginBottom: "30px"
+      marginBottom: "100px"
     },
     header: {
       display: "flex",
