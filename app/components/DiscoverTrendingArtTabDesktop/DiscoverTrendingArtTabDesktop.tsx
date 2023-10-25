@@ -339,8 +339,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         </AccordionDetails>
                     </Accordion>
                 </div>
-                
-                <div className={s.desktopActiveFilter}>
+                <div>
                     {isFilterActive() && (
                         <Button
                             onClick={(e) => {

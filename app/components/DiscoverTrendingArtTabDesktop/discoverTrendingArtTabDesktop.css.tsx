@@ -116,8 +116,6 @@ export const styles = makeStyles((theme: Theme) =>
       height: '60px',
       justifyContent: 'center'
     },
-    desktopActiveFilter: {
-      width: '100px' 
-    },
+
   })
 );
