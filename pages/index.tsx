@@ -240,7 +240,7 @@ export default function DiscoverPage({ navBarItems }) {
                     activeTab={activeTab}
                   />
                 ) : (
-                  <DiscoverTrendingArtTabDesktop 
+                  <DiscoverTrendingArtTabDesktop
                     username={username.value}
                     socialId={socialId.value}
                     rowWidth={rowWidth}
