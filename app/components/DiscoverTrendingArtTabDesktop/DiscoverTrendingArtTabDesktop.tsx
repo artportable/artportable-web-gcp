@@ -285,7 +285,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                            
                             <Typography className={s.filterSummary}>
-                                {selectedOrientation ? (t(`common:selectOptions:${selectedOrientation}`)) : (t('common:selectOptions:format'))}
+                                {selectedOrientation ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:${selectedOrientation}`)}</div> : (t('common:selectOptions:format'))}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetails}>
@@ -301,7 +301,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                            
                             <Typography className={s.filterSummary}>
-                                {selectedSize ? (t(`common:selectOptions:${selectedSize}`)) : (t('common:selectOptions:size'))}
+                                {selectedSize ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:${selectedSize}`)}</div> : (t('common:selectOptions:size'))}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetails}>
@@ -321,7 +321,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                          
                             <Typography className={s.filterSummary}>
-                                {selectedPrice ? (t(`common:selectOptions:${selectedPrice}`)) : (t('common:selectOptions:price'))}
+                                {selectedPrice ? <div style={{fontWeight: "bold"}}>{t(`common:selectOptions:${selectedPrice}`)}</div> : (t('common:selectOptions:price'))}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetails}>

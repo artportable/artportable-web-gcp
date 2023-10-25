@@ -58,12 +58,14 @@ export const styles = makeStyles((theme: Theme) =>
       
     },
     filterItem: {
-      justifyContent:'start', 
+      
       paddingBottom:'6px', 
       paddingTop:'6px', 
       paddingRight:'16px',
       paddingLeft:'16px',
-      width:'250px'
+      width:'200px',
+      fontWeight: "lighter",
+      fontSize: "12px"
     },
     filterIcon: {
       marginRight:'7px',
@@ -85,6 +87,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
+
       backgroundColor: "transparent"
     },
     selectedTagsDesktop: {
