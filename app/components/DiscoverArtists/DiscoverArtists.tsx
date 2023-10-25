@@ -8,13 +8,10 @@ import Artists from "../Artists/Artists";
 import { useTranslation } from "next-i18next";
 
 export default function DiscoverArtists({
-  artists,
-  onFilter,
   onFollowClick,
   loadMoreElementRef,
   isLoading,
   loadMore,
-  tagPlaceholder,
 }) {
   const { t } = useTranslation([
     "discover",
@@ -22,7 +19,7 @@ export default function DiscoverArtists({
   const s = styles();
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const apiBaseUrlImages = process.env.NEXT_PUBLIC_BUCKET_URL;
+  //const apiBaseUrlImages = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   const [monthlyArtist, setMonthlyArtist] = useState(null);
 

@@ -5,7 +5,7 @@ import { rowGap, columnGap } from '../../utils/styleUtils';
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      marginBottom: "30px"
+      marginBottom: "100px"
     },
     header: {
       display: "flex",
@@ -13,11 +13,6 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "flex-end",
       marginBottom: "10px",
       justifyContent:'center'
-    },
-    navButtons: {
-      backgroundColor: theme.palette.primary.main,
-      width: "28px",
-      height: "28px",
     },
     row: {
       height: '220px',
@@ -49,13 +44,5 @@ export const styles = makeStyles((theme: Theme) =>
         height: '300px'
       }
       },
-    [theme.breakpoints.up('md')]: {
-      leftButton: {
-        display: 'initial',
-      },
-      rightButton: {
-        display: 'initial',
-      }
-    }
   }),
 );

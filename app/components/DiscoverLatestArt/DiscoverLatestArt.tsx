@@ -12,7 +12,6 @@ interface DiscoverLatestArtTabProps {
   username?: string;
   socialId?: string;
   rowWidth: number;
-  sold: string;
   loadMore: boolean;
   loadImages: any;
   stopLoadImages: any;
@@ -52,16 +51,9 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
           return null;
         }
         if (pageIndex == 0) {
-          let url;
-          if (props.sold === "Unsold") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/latestunsold`);
-          } else if (props.sold === "Sold") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/latestsold`);
-          } else if (props.sold === "All") {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
-          } else {
-            url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
-          }
+
+          let url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
+          
           selectedTags.forEach((tag) => {
             url.searchParams.append("tag", tag);
           });
@@ -93,7 +85,6 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
-          tagPlaceholder={""}
         />
       )}
     </>

@@ -194,7 +194,6 @@ export default function ArtworkListItemDefined({
                 width: width,
                 height: height
               }}
-              loading='lazy'
               alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}

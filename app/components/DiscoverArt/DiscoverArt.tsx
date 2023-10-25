@@ -42,8 +42,6 @@ interface InputProps {
 
 export default function DiscoverArt({
   artworks,
-  tags,
-  activeTab,
   onFilter = null,
   onLike,
   rowWidth,
@@ -81,7 +79,6 @@ export default function DiscoverArt({
     setShowFilterLoadingSkeleton(value);
   }, 200);
 
-  const { isSignedIn } = useContext(UserContext);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);

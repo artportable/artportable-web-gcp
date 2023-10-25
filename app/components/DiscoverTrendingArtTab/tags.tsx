@@ -75,7 +75,4 @@ export const TAGS = {
  
   "video-art": "Videokonst",
   "mural": "Väggmålning",
-
-
-
 };
