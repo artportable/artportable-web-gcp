@@ -246,7 +246,7 @@ export default function DiscoverArt({
                         }
                         onLikeClick={onLike}
                         indexPage={true}
-                        />
+                      />
                     );
                   }
                 })}

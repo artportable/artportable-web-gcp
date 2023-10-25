@@ -30,7 +30,6 @@ import TagChip from '../TagChip/TagChip'
 import EastOutlinedIcon from '@mui/icons-material/EastOutlined'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useGetProfileUser } from '../../hooks/dataFetching/useGetProfileUser'
-import Image from 'next/image'
 
 export default function ArtworkListItemDefined({
   artwork,

@@ -351,13 +351,13 @@ export default function Exhibition({ navBarItems }) {
       },
       {
         week: "Vecka 43",
-        artist: "Anne Nkeng",
-        username: "artofuzuri",
+        artist: "Kari Malm",
+        username: "kamidas",
       },
       {
         week: "Vecka 44",
-        artist: "Ann-Marie Sarri",
-        username: "ann-marie.sarri",
+        artist: "Ilias Maniouras",
+        username: "ilias.maniouras",
       },
     ],
     NOVEMBER: [
