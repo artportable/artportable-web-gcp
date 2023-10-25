@@ -70,21 +70,21 @@ export const styles = makeStyles((theme: Theme) =>
     },
     filterClearBtn: {
       margin: '6px',
+      marginTop: "10px",
       borderRadius: '20px',
-      height: '40px',
+      height: '30px',
       width: '100px',
       textAlign: 'center',
-      border: '1px solid #c67777',
+      border: '1px solid black',
       color: 'black',
-      fontSize: '10px',
-      padding: '0px',
+      fontSize: '12px',
+      padding: '1px',
     },
     selectedTagWrapper: {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-
       backgroundColor: "transparent"
     },
     selectedTagsDesktop: {
