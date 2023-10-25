@@ -177,6 +177,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
             },
             username
         )
+
     useEffect(() => { }, [artworks])
 
     return (

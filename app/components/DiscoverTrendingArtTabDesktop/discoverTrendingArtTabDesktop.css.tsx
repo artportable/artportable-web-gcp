@@ -79,12 +79,6 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: '10px',
       padding: '0px',
     },
-
-    selectedTagContainer: {
-      display: "flex",
-
-    },
-
     selectedTagWrapper: {
       display: 'flex',
       flexDirection: 'row',
@@ -93,13 +87,6 @@ export const styles = makeStyles((theme: Theme) =>
 
       backgroundColor: "transparent"
     },
-    selectedTags: {
-      display: "flex",
-      marginTop: "10px",
-      flexDirection: "column-reverse",
-      padding: "10px",
-    },
-
     selectedTagsDesktop: {
       textAlign:'center',
       display: "flex",
