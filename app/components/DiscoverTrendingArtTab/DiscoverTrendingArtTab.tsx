@@ -18,7 +18,6 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import ClearIcon from '@mui/icons-material/Clear'
 import FormControl from '@mui/material/FormControl'
 import Dialog from '@mui/material/Dialog';
 import ListItem from '@mui/material/ListItem';
@@ -31,14 +30,6 @@ import PhotoSizeSelectLargeOutlinedIcon from '@mui/icons-material/PhotoSizeSelec
 import AspectRatioOutlinedIcon from '@mui/icons-material/AspectRatioOutlined';
 import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
-
-import { ListItemButton } from '@mui/material'
-
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
-import AspectRatioIcon from '@mui/icons-material/AspectRatio';
-import PhotoSizeSelectLargeIcon from '@mui/icons-material/PhotoSizeSelectLarge';
-import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
-
 
 
 interface DiscoverTrendingArtTabProps {
@@ -73,14 +64,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     null
   )
 
-  const [trendingExpanded, setTrendingExpanded] = useState(false);
-  const [techniqueExpanded, setTechniqueExpanded] = useState(false);
-  const [orientationExpanded, setOrientationExpanded] = useState(false);
-  const [sizeExpanded, setSizeExpanded] = useState(false);
-  const [priceExpanded, setPriceExpanded] = useState(false);
-
-
-
   const [tempSelectedTrending, setTempSelectedTrending] = useState<string | null>(null);
   const [tempSelectedOrientation, setTempSelectedOrientation] = useState<string | null>(null);
   const [tempSelectedPrice, setTempSelectedPrice] = useState<string | null>(null)
@@ -96,26 +79,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setOpen(false);
   };
 
-  const handleSizeChange = (newSize) => {
-    setSelectedSize(newSize)
-  }
-
-  const handlePriceChange = (newPrice: string) => {
-    setSelectedPrice(newPrice)
-  }
-
   const handleTrendingChangeMobile = (value: number) => {
     setTempSelectedTrending(String(value));
   };
-
-
-  const handleTrendingChange = (value: string) => {
-    setSelectedTrending(String(value));
-  };
-
-  const handleOrientationChange = (value: string) => {
-    setSelectedOrientation(value)
-  }
 
   const handleOrientationChangeMobile = (value) => {
     setTempSelectedOrientation(String(value));
@@ -127,11 +93,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   const handlePriceChangeMobile = (value: any) => {
     setTempSelectedPrice(value);
-
   }
-
-
-
 
   function filter(tags: string[], searchQuery = '') {
     props.loadImages()
@@ -139,19 +101,10 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setSearchQuery(searchQuery)
   }
 
-
-
   function likeArtwork(artworkId, isLike) {
     redirectIfNotLoggedIn()
     like(artworkId, isLike, socialId, token)
   }
-
-  const handleTagChange = (newTag: string) => {
-    if (selectedTags.length < 4 && !selectedTags.includes(newTag)) {
-      setSelectedTags((prevTags) => [...prevTags, newTag])
-    }
-  }
-
 
   const handleTagChangeMobile = (newTag: string) => {
     if (selectedTempTags.length < 4 && !selectedTempTags.includes(newTag)) {
@@ -160,31 +113,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     }
   }
 
-
-  const removeTag = (tagToRemove: string) => {
-    setSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
-    const storedFilters = JSON.parse(localStorage.getItem('filters')) || {
-      tags: []
-    }
-    const updatedTags = storedFilters.tags.filter((tag) => tag !== tagToRemove)
-    localStorage.setItem('filters', JSON.stringify({ tags: updatedTags }))
-    localStorage.removeItem('filters')
-  }
-
-
   const removeTagMobile = (tagToRemove: string) => {
     setTempSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
   }
-
-
-  const resetFilters = () => {
-    setSelectedTags([])
-    setSelectedOrientation(null)
-    setSelectedSize(null)
-    setSelectedPrice(null)
-    setSelectedTrending(null)
-  }
-
 
   const resetFiltersMobile = () => {
     setTempSelectedTrending(null);
@@ -200,17 +131,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   }
 
   useEffect(() => { }, [handleClose, resetFiltersMobile])
-
-  const isFilterActive = () => {
-    return (
-      selectedTags.length > 0 ||
-      selectedOrientation !== null ||
-      selectedSize !== null ||
-      selectedPrice !== null ||
-      selectedTrending !== null
-    )
-  }
-
 
   const isFilterActiveMobile = () => {
     return (
@@ -237,9 +157,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           return null
         }
 
-
         let url = new URL(`${apiBaseUrl}/api/Discover/artworks/trending`)
-
 
         selectedTags.forEach((tag) => {
           if (tag) {
@@ -274,8 +192,6 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       },
       username
     )
-
-
 
   useEffect(() => { }, [artworks])
   const theme = useTheme()
