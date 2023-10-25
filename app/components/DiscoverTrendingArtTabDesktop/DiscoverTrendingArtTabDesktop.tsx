@@ -38,7 +38,7 @@ interface DiscoverTrendingArtTabProps {
     activeTab: number
 }
 
-const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
+const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) => {
     const { t } = useTranslation(['header', 'common', 'support'])
     const s = styles()
     const { username, socialId, rowWidth } = props
@@ -177,11 +177,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             },
             username
         )
-
-
     useEffect(() => { }, [artworks])
-    const theme = useTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
     return (
 
@@ -339,4 +335,4 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     )
 })
 
-export default DiscoverTrendingArtTab
+export default DiscoverTrendingArtTabDesktop
