@@ -3,7 +3,7 @@ import { styles } from "../styles/index.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
-import { Box, MenuItem, Tab, Tabs, TextField } from "@material-ui/core";
+import { Box, MenuItem, Tab, Tabs, TextField, useMediaQuery, useTheme } from "@material-ui/core";
 import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
@@ -22,6 +22,7 @@ import Head from "next/head";
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
+import DiscoverTrendingArtTabDesktop from "../app/components/DiscoverTrendingArtTabDesktop/DiscoverTrendingArtTabDesktop"
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
@@ -147,10 +148,13 @@ export default function DiscoverPage({ navBarItems }) {
         window.scrollBy(0, -70);
       }, 0);
     }
-    if(activeTab !== 0){
+    if (activeTab !== 0) {
       setClickedTabOnce(true);
     }
   }, [activeTab]);
+
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <Main
@@ -225,15 +229,27 @@ export default function DiscoverPage({ navBarItems }) {
             </div>
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
-                <DiscoverTrendingArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
+                {isMobile ? (
+                  <DiscoverTrendingArtTab
+                    username={username.value}
+                    socialId={socialId.value}
+                    rowWidth={rowWidth}
+                    loadMore={loadMoreArtworks}
+                    loadImages={loadImages}
+                    stopLoadImages={stopLoadImages}
+                    activeTab={activeTab}
+                  />
+                ) : (
+                  <DiscoverTrendingArtTabDesktop 
+                    username={username.value}
+                    socialId={socialId.value}
+                    rowWidth={rowWidth}
+                    loadMore={loadMoreArtworks}
+                    loadImages={loadImages}
+                    stopLoadImages={stopLoadImages}
+                    activeTab={activeTab}
+                  />
+                )}
               </TabPanel>
               <TabPanel value={activeTab} index={1}>
                 <DiscoverLatestArtTab
