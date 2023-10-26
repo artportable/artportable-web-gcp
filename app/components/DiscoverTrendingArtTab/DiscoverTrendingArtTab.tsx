@@ -53,6 +53,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const { like } = usePostLike()
 
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [selectedTheme, setSelectedTheme] = useState(null)
+  const [selectedTechnique, setSelectedTechnique] = useState(null)
   const [selectedTempTags, setTempSelectedTags] = useState<string[]>([])
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [selectedTempSize, setTempSelectedSize] = useState<string | null>(null)
@@ -111,6 +113,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     }
   }
 
+  const handleTechniqueChangeMobile = (newTag: string) => {
+    setSelectedTechnique(newTag);
+  }
+
+  const handleThemeChangeMobile = (newTag: string) => {
+    setSelectedTheme(newTag);
+  }
+
   const removeTagMobile = (tagToRemove: string) => {
     setTempSelectedTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove))
   }
@@ -126,6 +136,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
     setSelectedTrending(null)
     setTempSelectedOrientation(null)
     setTempSelectedPrice(null)
+    setSelectedTechnique(null)
+    setSelectedTheme(null)
   }
 
   useEffect(() => { }, [handleClose, resetFiltersMobile])
@@ -136,7 +148,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
       selectedTempSize !== null ||
       tempSelectedTrending !== null ||
       tempSelectedOrientation !== null ||
-      tempSelectedPrice !== null
+      tempSelectedPrice !== null ||
+      selectedTechnique !== null ||
+      selectedTheme !== null
     )
   }
 
@@ -162,6 +176,14 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
             url.searchParams.append('tag', tag)
           }
         })
+
+        if(selectedTechnique) {
+          url.searchParams.append('tag', selectedTechnique);
+        }
+
+        if(selectedTheme) {
+          url.searchParams.append('tag', selectedTheme)
+        }
 
         if (selectedOrientation) {
           url.searchParams.append('orientation', selectedOrientation)
@@ -230,7 +252,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       <div className={s.mobileTitleIcon}>
                         <TrendingUpIcon className={s.mobileIcon} />
                         <Typography>
-                          {tempSelectedTrending ? <div className={s.mobileTemp}>{t(`common:selectOptions:trending${tempSelectedTrending}`)}</div> : t('common:selectOptions:trending')}
+                          {tempSelectedTrending ? <div className={s.mobileTemp}>{t(`common:selectOptions:trending${tempSelectedTrending}`)}</div> :  t('common:selectOptions:trending')}
                         </Typography>
                       </div>
 
@@ -272,24 +294,53 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       <div className={s.mobileTitleIcon}>
                         <PaletteOutlinedIcon className={s.mobileIcon} />
                         <Typography>
-                          {t('common:selectOptions:technique')}
+                          {selectedTheme ? <div style={{fontWeight: "bold"}}>{t(`common:techniques:${selectedTheme}`)}</div> : <div>{t('common:selectOptions:theme')}</div>}
                         </Typography>
                       </div>
-
+                      
                     </AccordionSummary>
                     <div className={s.mobileOverflow}>
-                      {Object.keys(TAGS).map((key) => (
+                      {Object.keys(THEME_TAGS).map((key) => (
                         <div>
-                          <ListItem button onClick={() => handleTagChangeMobile(key)}>
+                          <ListItem button onClick={() => handleThemeChangeMobile(key)}>
                             {t(`common:techniques:${key}`)}
                           </ListItem>
                           <Divider />
                         </div>
                       ))}
                     </div>
-
                   </Accordion>
                 </FormControl>
+                <FormControl className={s.mobileFormControl}>
+                  <Accordion className={s.mobileAccordion}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel-content"
+                      id="panel-header"
+
+                    >
+                      <div className={s.mobileTitleIcon}>
+                        <PaletteOutlinedIcon className={s.mobileIcon} />
+                        <Typography>
+                          {selectedTechnique ? <div style={{fontWeight: "bold"}}>{t(`common:techniques:${selectedTechnique}`)}</div> : <div>{t('common:selectOptions:technique')}</div>}
+                        </Typography>
+                      </div>
+
+                    </AccordionSummary>
+                    <div className={s.mobileOverflow}>
+                      {Object.keys(TECHNIQUE_TAGS).map((key) => (
+                        <div>
+                          <ListItem button onClick={() => handleTechniqueChangeMobile(key)}>
+                            {t(`common:techniques:${key}`)}
+                          </ListItem>
+                          <Divider />
+                        </div>
+                      ))}
+                    </div>
+                  </Accordion>
+                </FormControl>
+
+
                 <div className={s.selectedTagWrapper}>
                   {
                     selectedTempTags &&
