@@ -8,9 +8,9 @@ import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { useTranslation } from "next-i18next";
 import { styles } from "./discoverMyLikedArtTab.css";
+import { UserContext } from "../../contexts/user-context";
 
 interface DiscoverMyLikedArtTabProps {
-  username?: string;
   socialId?: string;
   rowWidth: number;
   sold: string;
@@ -18,18 +18,17 @@ interface DiscoverMyLikedArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  tagPlaceholder: string;
-  fetchType: string;
 }
 
 export const DiscoverMyLikedArtTab = memo(
   (props: DiscoverMyLikedArtTabProps) => {
-    const { username, socialId, rowWidth } = props;
+    const { socialId, rowWidth } = props;
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     const loadMoreArtworksElementRef = useRef(null);
     const [selectedTags, setSelectedTags] = useState(null);
     const [searchQueryArt, setSearchQueryArt] = useState(null);
     const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+    const { username } = useContext(UserContext);
     const { like } = usePostLike();
     const token = useContext(TokenContext);
     const tags = useGetTags();
@@ -57,24 +56,13 @@ export const DiscoverMyLikedArtTab = memo(
           }
           if (pageIndex == 0) {
             let url;
-            if (props.sold === "Unsold") {
-              url = new URL(
-                `${apiBaseUrl}/api/Discover/artworks/likedbymeunsold`
-              );
-            } else if (props.sold === "Sold") {
-              url = new URL(
-                `${apiBaseUrl}/api/Discover/artworks/likedbymesold`
-              );
-            } else if (props.sold === "All") {
-              url = new URL(`${apiBaseUrl}/api/Discover/artworks/likedbyme`);
-            } else {
-              url = new URL(`${apiBaseUrl}/api/Discover/artworks/likedbyme`);
-            }
+            url = new URL(`${apiBaseUrl}/api/Discover/artworks/likedbyme`);
+           
             selectedTags.forEach((tag) => {
               url.searchParams.append("tag", tag);
             });
-            if (username != null && username != "") {
-              url.searchParams.append("myUsername", username);
+            if (username.value != null && username.value != "") {
+              url.searchParams.append("myUsername", username.value);
             }
             if (searchQueryArt) {
               url.searchParams.append("q", searchQueryArt);
@@ -85,22 +73,11 @@ export const DiscoverMyLikedArtTab = memo(
           }
           return previousPageData.next;
         },
-        username
+        username.value
       );
 
     return (
       <>
-        <div className={s.displayTitle}>
-          {{
-            likedbyme: t("discover:myLikedArt"),
-          }[props.fetchType] || t(`tags:${props.fetchType}`)}
-        </div>
-
-        {props.fetchType === "likedbyme" && (
-          <div className={s.displayText}>{t("discover:myLikedArtText")}</div>
-        )}
-
-        {!tags?.isLoading && !tags?.isError && tags?.data && (
           <DiscoverArt
             artworks={artworks}
             tags={tags?.data}
@@ -111,9 +88,7 @@ export const DiscoverMyLikedArtTab = memo(
             isLoading={isLoadingArtWorks}
             loadMore={props.loadMore}
             activeTab={props.activeTab}
-            tagPlaceholder={props.tagPlaceholder}
           />
-        )}
       </>
     );
   }
