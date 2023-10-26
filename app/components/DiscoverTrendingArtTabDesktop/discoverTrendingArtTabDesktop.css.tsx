@@ -5,14 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     filter: {
       backgroundColor:'transparent !important',
-      //Trying to remove the margin increase when Accordion is active
-      // margin:'0px',
-      // '&.Mui-expanded': {
-      //   backgroundColor:'lightblue !important',
-      //   maxHeight: '50px',
-      //   justifyContent:'center',
-      //   alignItems:'start',
-      // },
+      margin: "10px"
     },
 
     filterSummary: {
@@ -113,7 +106,7 @@ export const styles = makeStyles((theme: Theme) =>
     desktopContainer: {
       display: 'flex',
       flexDirection: 'row',
-      marginTop: '-30px',
+      marginTop: '-40px',
       marginBottom: '10px',
       width: "100%",
       height: '60px',

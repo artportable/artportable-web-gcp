@@ -13,7 +13,7 @@ import IndexHero from "../app/components/IndexHero/IndexHero";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
-import DiscoverTopArtistsTab from "../app/components/DisvoerTopArtistTab/DiscoverTopArtistsTab";
+import DiscoverTopArtistsTab from "../app/components/DiscoverTopArtistTab/DiscoverTopArtistsTab";
 import { Artwork } from "../app/models/Artwork";
 import Artist from "../app/models/Artist";
 import { id } from "date-fns/locale";
@@ -198,8 +198,7 @@ export default function DiscoverPage({ navBarItems }) {
           <div ref={scrollToDiscoverRef} className={s.discoverContainer}>
             <div className={s.tabContainer}>
               <Tabs
-                className={`${activeTab <= 3 ? s.artTabs : s.artistTab
-                  }`}
+                className={s.artTabs}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
@@ -225,6 +224,13 @@ export default function DiscoverPage({ navBarItems }) {
                   label={t("discover:artists")}
                   {...a11yProps(t("discover:artists"))}
                 />
+                 {isSignedIn.value && (
+                  <Tab
+                  className={s.text}
+                  label={t("discover:myLikedArt")}
+                  {...a11yProps(t("discover:myLikedArt"))}
+                />
+                 )}
               </Tabs>
             </div>
             <Box paddingTop={4}>
@@ -276,6 +282,10 @@ export default function DiscoverPage({ navBarItems }) {
                   username={username.value}
                   socialId={socialId.value}
                 />
+              </TabPanel>
+              <TabPanel value={activeTab} index={4}>
+                <DiscoverMyLikedArtTab
+                  socialId={socialId.value} rowWidth={rowWidth} sold={""} loadMore={loadMoreArtworks} loadImages={loadImages} stopLoadImages={stopLoadImages} activeTab={activeTab}/>
               </TabPanel>
 
             </Box>
