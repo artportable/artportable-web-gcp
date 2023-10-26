@@ -241,7 +241,7 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             
                             <Typography className={s.filterSummary}>
-                               {selectedTechnique ? <div style={{fontWeight: "bold"}}>{t(`common:techniques:${selectedTechnique}`)}</div> : <>{t("common:selectOptions:technique")}</>}
+                               {selectedTechnique ? <div style={{fontWeight: "bold"}}>{t(`common:techniques:${selectedTechnique}`)}</div> : <div style={{fontStyle: "italic"}}>{t("common:selectOptions:technique")}</div>}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetailsTags}>
