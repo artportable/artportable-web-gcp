@@ -198,8 +198,7 @@ export default function DiscoverPage({ navBarItems }) {
           <div ref={scrollToDiscoverRef} className={s.discoverContainer}>
             <div className={s.tabContainer}>
               <Tabs
-                className={`${activeTab <= 3 ? s.artTabs : s.artistTab
-                  }`}
+                className={s.artTabs}
                 value={activeTab}
                 onChange={(_, newValue) => setTab(newValue)}
                 variant={"scrollable"}
@@ -284,7 +283,7 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={4}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value} rowWidth={rowWidth} sold={""} loadMore={loadMoreArtworks} loadImages={loadImages} stopLoadImages={stopLoadImages} activeTab={activeTab}/>
               </TabPanel>

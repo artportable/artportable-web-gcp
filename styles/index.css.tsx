@@ -64,7 +64,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: "row",
       },
       artTabs: {
-        marginLeft: "-110px",
+        marginLeft: "0px",
         "& .MuiTabScrollButton-root": {
           display: "none",
         },
