@@ -1,11 +1,6 @@
 import Link from 'next/link'
-import Avatar from '@material-ui/core/Avatar'
-import Badge from '@material-ui/core/Badge'
 import Divider from '@material-ui/core/Divider'
 import { styles } from './profile.css'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RoomIcon from '@material-ui/icons/Room';
 import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
@@ -43,7 +38,6 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const theme: Theme = useTheme();
 
-  const fileInput = useRef(null);
   const [followingOpen, setFollowingOpen] = useState(false);
   const [followersOpen, setFollowersOpen] = useState(false);
   const followersData = useGetFollowers(data?.Username, followersOpen);
@@ -109,23 +103,6 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
   }, [connectionscountData?.data?.followers]);
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-
-  const handleFileUpload = event => {
-    if (isNullOrUndefined(event?.target?.files[0])) {
-      return;
-    }
-
-    var fr = new FileReader;
-    fr.onload = function () {
-      var img = new Image;
-      img.onload = function () {
-        onUpdateProfilePicture(event.target.files[0], img.width, img.height, 'profile')
-      };
-
-      img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
-    };
-    fr.readAsDataURL(event.target.files[0]);
-  };
 
   const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
 
