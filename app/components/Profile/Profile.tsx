@@ -6,7 +6,7 @@ import { styles } from './profile.css'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RoomIcon from '@material-ui/icons/Room';
-import { Typography, Box} from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { useTranslation } from 'next-i18next'
 import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
 import { useContext, useEffect, useRef, useState } from 'react'
@@ -22,8 +22,10 @@ import { useGetUserProfile, useGetUserProfileSummary } from '../../hooks/dataFet
 import usePostFollow from '../../hooks/dataFetching/usePostFollow'
 import { useRedirectToLoginIfNotLoggedIn } from '../../hooks/useRedirectToLoginIfNotLoggedIn'
 import Button from "../../components/Button/Button";
-import { ActionType,
-  CategoryType,trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import {
+  ActionType,
+  CategoryType, trackGoogleAnalytics
+} from '../../utils/googleAnalytics'
 import axios from 'axios'
 import Modal from '@mui/material/Modal'
 
@@ -89,7 +91,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
   }
 
   useEffect(() => {
-      setUserFollow(isUserFollowed);
+    setUserFollow(isUserFollowed);
   }, [isUserFollowed]);
 
 
@@ -217,123 +219,160 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
       }
 
       <div className={s.fullNameCounter}>
-      <Typography variant="h5" className={s.fullName}>
-        <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
+        <Typography variant="h5" className={s.fullName}>
+          <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
             <a>
-                {userProfile?.data?.Name.toUpperCase()} {' '}
-                {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
+              {userProfile?.data?.Name.toUpperCase()} {' '}
+              {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
             </a>
-        </Link>
-      </Typography>
-      <Box className={s.counterBox}>
-        <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
-          <Typography variant="body2" >
-          {connectionscountData?.loading && <CircularProgress  size={10}/>}
-          {followers}
-          </Typography>
-          <Typography variant="caption" className={s.followFollowersArtworks}>
-            {capitalizeFirst(t('words.followers'))}
-          </Typography>
-        </Button>
-        <UserListDialog
-          title={capitalizeFirst(t('words.followers'))}
-          users={followersData}
-          open={followersOpen}
-          onClose={() => setFollowersOpen(false)}
-        />
-        <Button onClick={() => setFollowingOpen(true)} className={s.followeesButton}>
-          <Typography variant="body2">
-          {connectionscountData.loading && <CircularProgress size={10} />}
-          {following}
-          </Typography>
-          <Typography variant="caption" className={s.followFollowersArtworks}>
-            {capitalizeFirst(t('words.following'))}
-          </Typography>
-        </Button>
-        <UserListDialog
-          title={capitalizeFirst(t('words.following'))}
-          users={followingData}
-          open={followingOpen}
-          onClose={() => setFollowingOpen(false)}
-        />
-        {data?.Artworks > 0 &&
-          <Box className={s.followFollowersArtworks}>
-            <Typography variant="body2">
-              {data?.Artworks}
+          </Link>
+        </Typography>
+        <Box className={s.counterBox}>
+          <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
+            <Typography variant="body2" >
+              {connectionscountData?.loading && <CircularProgress size={10} />}
+              {followers}
             </Typography>
-            <Typography variant="caption">
-              {capitalizeFirst(t('words.worksOfArt'))}
+            <Typography variant="caption" className={s.followFollowersArtworks}>
+              {capitalizeFirst(t('words.followers'))}
             </Typography>
-          </Box>
-        }
-      </Box>
-       {!isMyProfile &&
-        <div className={s.chatFollowWrapper}>
-        {
-          <Button
-            onClick={() => {
-              redirectIfNotLoggedIn({
-                pathname: "/messages",
-                query: {
-                  referTo: userProfileSummary.data?.SocialId,
-                },
-              });
-              trackGoogleAnalytics(
-                ActionType.SEND_MESSAGE,
-                CategoryType.INTERACTIVE
-              );
-            }}
-            className={s.followButton}
-            rounded
-            disabled={!isSignedIn}
-          >
-
-             Chat
           </Button>
-        }
-        <Button
-          className={`${s.followButton} ${isUserFollowed ? s.following : ""}`}
-          rounded
-          disabled={!isSignedIn}
-          onClick={() => {
-            toggleFollow();
-            !isUserFollowed
-              ? trackGoogleAnalytics(
-                  ActionType.FOLLOW_PROFILE,
-                  CategoryType.INTERACTIVE
-                )
-              : null;
-          }}
-        >
-          {capitalizeFirst(
-            !isUserFollowed
-              ? t("common:words.follow")
-              : t("common:words.following")
-          )}
-        </Button>
-        <Button 
-        rounded
-        className={s.buyBottom} onClick={handleOpen}>{t("profile:buyingArt")}</Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-          >
-            <Box className={s.modal}>
-              <Typography style={{
-                marginBottom: "10px"
-              }} id="modal-modal-title" variant="h6" component="h2">
-                {t("profile:buyingArtTitle")}
+          <UserListDialog
+            title={capitalizeFirst(t('words.followers'))}
+            users={followersData}
+            open={followersOpen}
+            onClose={() => setFollowersOpen(false)}
+          />
+          <Button onClick={() => setFollowingOpen(true)} className={s.followeesButton}>
+            <Typography variant="body2">
+              {connectionscountData.loading && <CircularProgress size={10} />}
+              {following}
+            </Typography>
+            <Typography variant="caption" className={s.followFollowersArtworks}>
+              {capitalizeFirst(t('words.following'))}
+            </Typography>
+          </Button>
+          <UserListDialog
+            title={capitalizeFirst(t('words.following'))}
+            users={followingData}
+            open={followingOpen}
+            onClose={() => setFollowingOpen(false)}
+          />
+          {data?.Artworks > 0 &&
+            <Box className={s.followFollowersArtworks}>
+              <Typography variant="body2">
+                {data?.Artworks}
               </Typography>
-              <Typography style={{marginBottom: "10px"}}>
-                {t("profile:buyingArtBody")}
-              </Typography>
-              <Typography>
-                {t("profile:buyingArtBodyTwo")}
+              <Typography variant="caption">
+                {capitalizeFirst(t('words.worksOfArt'))}
               </Typography>
             </Box>
-          </Modal>
-        </div>
-       }
+          }
+        </Box>
+        {!isMyProfile &&
+          <div className={s.chatFollowWrapper}>
+            {
+              <Button
+                onClick={() => {
+                  redirectIfNotLoggedIn({
+                    pathname: "/messages",
+                    query: {
+                      referTo: userProfileSummary.data?.SocialId,
+                    },
+                  });
+                  trackGoogleAnalytics(
+                    ActionType.SEND_MESSAGE,
+                    CategoryType.INTERACTIVE
+                  );
+                }}
+                className={s.followButton}
+                rounded
+                disabled={!isSignedIn}
+              >
+
+                Chat
+              </Button>
+            }
+            <Button
+              className={`${s.followButton} ${isUserFollowed ? s.following : ""}`}
+              rounded
+              disabled={!isSignedIn}
+              onClick={() => {
+                toggleFollow();
+                !isUserFollowed
+                  ? trackGoogleAnalytics(
+                    ActionType.FOLLOW_PROFILE,
+                    CategoryType.INTERACTIVE
+                  )
+                  : null;
+              }}
+            >
+              {capitalizeFirst(
+                !isUserFollowed
+                  ? t("common:words.follow")
+                  : t("common:words.following")
+              )}
+            </Button>
+            <Button
+              rounded
+              className={s.buyBottom} onClick={handleOpen}>{t("profile:buyingArt")}</Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+            >
+              <Box className={s.modal}>
+                <Typography style={{
+                  marginBottom: "10px"
+                }} id="modal-modal-title" variant="h6" component="h2">
+                  {t("profile:buyingArtTitle")}
+                </Typography>
+                <Typography style={{ marginBottom: "10px" }}>
+                  {t("profile:buyingArtBody")}
+                </Typography>
+                <Typography>
+                  {t("profile:buyingArtBodyTwo")}
+                </Typography>
+              </Box>
+            </Modal>
+          </div>
+        }
+      </div>
+      <div className={s.editActions}>
+        {isMyProfile && (
+          <>
+            <div className={s.editUploadButtons}>
+              {membership.value > Membership.Base && (
+                <div className={s.upload}>
+                  {isMobile && (
+                    <Link href="/upload">
+                      <a>
+                        <Button
+                          className={s.uploadButton}
+                          onClick={() =>
+                            trackGoogleAnalytics(
+                              ActionType.UPLOAD_IMAGE_PROFILE,
+                              CategoryType.INTERACTIVE
+                            )
+                          }
+                          startIcon={
+                            <UploadIcon className={s.uploadIcon} />
+                          }
+                          rounded
+                        >
+                          {t("upload:upload")}
+                        </Button>
+                      </a>
+                    </Link>
+                  )}
+                </div>
+              )}
+              {/* {membership.value < Membership.Portfolio && (
+                      <UpgradePortfolio />
+                    )} */}
+              <EditProfileDialog userProfile={userProfile.data} />
+            </div>
+          </>
+        )}
       </div>
     </Box>
   );
