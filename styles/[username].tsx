@@ -212,6 +212,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       color: "#fff",
     },
     offersButton: {
+      marginRight: "4px",
       marginTop: "4px",
       width: "150px",
       height: "45px",
