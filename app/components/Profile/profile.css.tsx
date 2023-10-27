@@ -243,6 +243,80 @@ export const styles = makeStyles((theme: Theme) =>
       },
       
     },
+    hovs: {
+      "& :hover": {
+        backgroundColor: "#D6A407",
+      },
+      display: "flex",
+      justifyContent: "space-evenly",
+      [theme.breakpoints.up("smPlus")]: {
+        justifyContent: "center",
+      },
+    },
+    upgradeGoldDiv: {
+      gridArea: "hej",
+      display: "flex",
+      justifyContent: "center",
+    },
+    monthlyArtistButton: {
+      marginTop: "4px",
+      width: "150px",
+      height: "45px",
+      backgroundColor: "#E0AC08",
+      color: "#fff",
+    },
+    offersButton: {
+      marginRight: "4px",
+      marginTop: "4px",
+      width: "150px",
+      height: "45px",
+      backgroundColor: "#000000",
+      color: "#fff",
+    },
+    headerButtonRocket: {
+      fontFamily: "Gotham",
+      fontWeight: 500,
+      paddingLeft: "20px",
+      height: "100%",
+    },
+    headerButtonOffers: {
+      fontFamily: "Gotham",
+      fontWeight: 500,
+      height: "100%",
+    },
+    rocketIcon: {
+      padding: "10px",
+      maxWidth: "40px",
+      width: "100%",
+    },
+    modalContainer: {
+      display: 'flex',
+      justifyContent: 'center', 
+      alignItems: 'center',     
+      height: '100vh',         
+      position: 'relative',    
+    },
+    modalOffers: {
+      position: 'absolute' as 'absolute',
+      overflowY: "scroll",
+      border: '2px solid #000',
+      backgroundColor: "white",
+      width: "100%",
+      height: "100%",
+      padding: "20px",
+      borderRadius: "20px",
+      borderColor: "transparent",
+      [theme.breakpoints.up("md")]: {
+        
+        width: "50%",
+        height: "60%"
+      },
+
+    offersButton: {
+      backgroundColor: "red",
+      margin: "20px"
+    },
+    },
 
   }),
 );

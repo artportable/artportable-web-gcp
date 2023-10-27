@@ -34,6 +34,7 @@ import { useTheme, Theme } from "@material-ui/core";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import UploadIcon from "@material-ui/icons/Publish";
 import { RWebShare } from 'react-web-share'
+import Offers from "../ExclusiveOffers/Offers";
 
 export default function Profile({ userProfileUrl, userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
@@ -124,6 +125,12 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
       img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
     };
     fr.readAsDataURL(event.target.files[0]);
+  };
+
+  const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
+
+  const redirectToRocketUpgrade = () => {
+    window.open(rocketLink);
   };
 
   return (
@@ -403,6 +410,55 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
               {t("followersInvite")}
             </Button>
           </RWebShare>
+        </div>
+      )}
+      {isMyProfile && (
+        <div>
+          <div className={s.hovs}>
+            <Button
+              rounded
+              className={s.offersButton}
+              onClick={handleOpen}>
+              <div>
+                <Typography style={{ fontSize: "11px" }} className={s.headerButtonOffers}>
+                  {t("profile:exclusiveOffers").toLocaleUpperCase()}
+                </Typography>
+              </div>
+            </Button>
+            <Button
+              rounded
+              className={s.monthlyArtistButton}
+              onClick={redirectToRocketUpgrade}
+              style={{ marginBottom: "20px" }}
+
+            >
+              <Typography className={s.headerButtonRocket}>
+                {t("profile:rocket")}
+              </Typography>
+              <img
+                src="/rocket-white.png"
+                alt="Rocket Icon"
+                className={s.rocketIcon}
+              />
+            </Button>
+
+          </div>
+
+          <div>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              className={s.modalContainer}
+            >
+              <Box className={s.modalOffers}>
+                <Button
+                  onClick={handleClose}
+                  style={{ backgroundColor: "#000000", borderRadius: "20px", color: "#f7f7f7", marginTop: "20px", marginBottom: "20px", display: "flex" }}
+                >{t("profile:closeButton")}</Button>
+                <Offers></Offers>
+              </Box>
+            </Modal>
+          </div>
         </div>
       )}
     </Box>
