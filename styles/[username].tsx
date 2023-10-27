@@ -70,20 +70,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
     profileSummary: {
       gridArea: "profile",
     },
-    editActions: {
-      paddingTop: theme.spacing(0.5),
-      gridArea: "actions",
-      display: "flex",
-      flexDirection: "column",
-      gap: theme.spacing(1),
-      justifySelf: "flex-end",
-      [theme.breakpoints.up("md")]: {
-        flexDirection: "row",
-        justifyContent: "flex-end",  
-        margin: "0",  
-      },
-    },
-
     chatFollowWrapper: {
       display: "flex",
       flexDirection: "row",
@@ -161,19 +147,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
-    editUploadButtons: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "flex-end",
-      marginBottom: "10px",
-      [theme.breakpoints.up("md")]: {
-        marginBottom: "0px",
-        flexDirection:"column",
-      },
-
-    },
-    
     friends: {
       gridArea: "friends",
       display: "flex",
@@ -309,20 +282,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       backgroundColor: "red",
       margin: "20px"
     },
-
-    },
-    uploadButton: {
-      marginTop: "20px",
-      backgroundColor: "#FFD700",
-      display: "flex",
-      margin: "0 auto",
-      padding:'7px',
-      
-      [theme.breakpoints.up("smPlus")]: {
-      },
-      "&:hover": {
-        backgroundColor: "#D6A407",
-      },
     },
     secondDivider: {
       gridArea: "divider2",
@@ -381,9 +340,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       },
     },
     [theme.breakpoints.up("md")]: {
-      uploadButton: {
-        display: "flex",
-      },
       catalogued: {
         position: "relative",
         left: "120px",

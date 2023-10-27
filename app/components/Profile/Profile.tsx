@@ -28,12 +28,18 @@ import {
 } from '../../utils/googleAnalytics'
 import axios from 'axios'
 import Modal from '@mui/material/Modal'
+import { Membership } from "../../models/Membership";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme, Theme } from "@material-ui/core";
+import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
+import UploadIcon from "@material-ui/icons/Publish";
 
 export default function Profile({ userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation(["common", "profile", "upload", "header"]);
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const theme: Theme = useTheme();
 
   const fileInput = useRef(null);
   const [followingOpen, setFollowingOpen] = useState(false);
@@ -100,6 +106,7 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
     setFollowing(connectionscountData?.data?.following);
   }, [connectionscountData?.data?.followers]);
 
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   const handleFileUpload = event => {
     if (isNullOrUndefined(event?.target?.files[0])) {

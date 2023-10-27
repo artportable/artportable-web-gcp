@@ -193,6 +193,46 @@ export const styles = makeStyles((theme: Theme) =>
     followeesButton: {
       display: 'block',
       padding: 0,
-    }
+    },
+    editActions: {
+      paddingTop: theme.spacing(0.5),
+      gridArea: "actions",
+      display: "flex",
+      flexDirection: "column",
+      gap: theme.spacing(1),
+      justifySelf: "flex-end",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        justifyContent: "flex-end",  
+        margin: "0",  
+      },
+    },
+    editUploadButtons: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "flex-end",
+      marginBottom: "10px",
+      [theme.breakpoints.up("md")]: {
+        marginBottom: "0px",
+        flexDirection:"column",
+      },
+    },
+    uploadButton: {
+      marginTop: "20px",
+      backgroundColor: "#FFD700",
+      display: "flex",
+      margin: "0 auto",
+      padding:'7px',
+      
+      [theme.breakpoints.up("md")]: {
+        display:'flex',
+      },
+      "&:hover": {
+        backgroundColor: "#D6A407",
+      },
+    },
+
+
   }),
 );

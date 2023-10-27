@@ -43,7 +43,6 @@ import { TokenContext } from "../../app/contexts/token-context";
 import { LoadingContext } from "../../app/contexts/loading-context";
 import { UserContext } from "../../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
-import { Membership } from "../../app/models/Membership";
 import {
   ActionType,
   CategoryType,
@@ -117,8 +116,8 @@ export default function Profile(props) {
   const { follow } = usePostFollow();
   const { refreshToken } = useRefreshToken();
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))  
-  
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -405,8 +404,8 @@ export default function Profile(props) {
       <Head>
         <title>
           {staticUserProfile &&
-          staticUserProfile.Name &&
-          staticUserProfile.Surname
+            staticUserProfile.Name &&
+            staticUserProfile.Surname
             ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
             : "Artportable"}
         </title>
@@ -414,8 +413,8 @@ export default function Profile(props) {
           name="title"
           content={
             staticUserProfile &&
-            staticUserProfile.Name &&
-            staticUserProfile.Surname
+              staticUserProfile.Name &&
+              staticUserProfile.Surname
               ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
               : "Artportable"
           }
@@ -461,16 +460,6 @@ export default function Profile(props) {
         <>
           <div>
             <div>
-              <Box fontWeight="fontWeightBold" marginTop={1}>
-                {/* <Typography variant="h5" className={s.fullName}>
-    <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
-        <a>
-            {userProfile?.data?.Name.toUpperCase()} {' '}
-            {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
-        </a>
-    </Link>
-</Typography> */}
-              </Box>
               <ProfileComponent
                 userProfile={userProfileSummary}
                 userProfilePicture={
@@ -483,92 +472,6 @@ export default function Profile(props) {
                 linkToProfile={false}
                 isFollowed={isFollowed}
               ></ProfileComponent>
-            </div>
-            <div className={s.editActions}>
-              {isMyProfile ? (
-                <>
-                  <div className={s.editUploadButtons}>
-                    {membership.value > Membership.Base && (
-                      <div className={s.upload}>
-                    {isMobile && (
-                          <Link href="/upload">
-                          <a>
-                            <Button
-                              className={s.uploadButton}
-                              onClick={() =>
-                                trackGoogleAnalytics(
-                                  ActionType.UPLOAD_IMAGE_PROFILE,
-                                  CategoryType.INTERACTIVE
-                                )
-                              }
-                              startIcon={
-                                <UploadIcon className={s.uploadIcon} />
-                              }
-                              rounded
-                            >
-                              {t("upload:upload")}
-                            </Button>
-                          </a>
-                        </Link>
-                    )}
-                      </div>
-                    )}
-
-                    {/* {membership.value < Membership.Portfolio && (
-                      <UpgradePortfolio />
-                    )} */}
-                    <EditProfileDialog userProfile={userProfile.data} />
-                  </div>
-                </>
-              ) : (
-                <>
-                  {/* <div className={s.chatFollowWrapper}>
-                  {
-                    <Button
-                      onClick={() => {
-                        redirectIfNotLoggedIn({
-                          pathname: "/messages",
-                          query: {
-                            referTo: userProfileSummary.data?.SocialId,
-                          },
-                        });
-                        trackGoogleAnalytics(
-                          ActionType.SEND_MESSAGE,
-                          CategoryType.INTERACTIVE
-                        );
-                      }}
-                      className={s.followButton}
-                      rounded
-                      disabled={!isSignedIn}
-                    >
-          
-                       Chat
-                     
-                    </Button>
-                  }
-                  <Button
-                    className={`${s.followButton} ${isFollowed ? s.following : ""}`}
-                    rounded
-                    disabled={!isSignedIn}
-                    onClick={() => {
-                      toggleFollow();
-                      !isFollowed
-                        ? trackGoogleAnalytics(
-                            ActionType.FOLLOW_PROFILE,
-                            CategoryType.INTERACTIVE
-                          )
-                        : null;
-                    }}
-                  >
-                    {capitalizeFirst(
-                      !isFollowed
-                        ? t("common:words.follow")
-                        : t("common:words.following")
-                    )}
-                  </Button>
-                  </div> */}
-                </>
-              )}
             </div>
             {/* {userProfile.data?.MonthlyArtist && (
               <div className={s.catalogued}>
@@ -602,40 +505,40 @@ export default function Profile(props) {
                 </RWebShare>
               </div>
             )}
-          
+
             {isMyProfile && (
               <div>
-              <div className={s.hovs}>
-                <Button 
-                  rounded
-                  className={s.offersButton}
-                  onClick={handleOpen}>
-                  <div>
-                  <Typography style={{fontSize: "11px"}} className={s.headerButtonOffers}>
-                    {t("profile:exclusiveOffers").toLocaleUpperCase()}
-                  </Typography>
-                  </div>
-                </Button>
-                <Button
-                  rounded
-                  className={s.monthlyArtistButton}
-                  onClick={redirectToRocketUpgrade}
-                  style={{ marginBottom: "20px" }}
-                  
-                >
-                  <Typography className={s.headerButtonRocket}>
-                    {t("profile:rocket")}
-                  </Typography>
-                  <img
-                    src="/rocket-white.png"
-                    alt="Rocket Icon"
-                    className={s.rocketIcon}
-                  />
-                </Button>
-              
-              </div>
+                <div className={s.hovs}>
+                  <Button
+                    rounded
+                    className={s.offersButton}
+                    onClick={handleOpen}>
+                    <div>
+                      <Typography style={{ fontSize: "11px" }} className={s.headerButtonOffers}>
+                        {t("profile:exclusiveOffers").toLocaleUpperCase()}
+                      </Typography>
+                    </div>
+                  </Button>
+                  <Button
+                    rounded
+                    className={s.monthlyArtistButton}
+                    onClick={redirectToRocketUpgrade}
+                    style={{ marginBottom: "20px" }}
 
-              <div>              
+                  >
+                    <Typography className={s.headerButtonRocket}>
+                      {t("profile:rocket")}
+                    </Typography>
+                    <img
+                      src="/rocket-white.png"
+                      alt="Rocket Icon"
+                      className={s.rocketIcon}
+                    />
+                  </Button>
+
+                </div>
+
+                <div>
                   <Modal
                     open={open}
                     onClose={handleClose}
@@ -644,13 +547,13 @@ export default function Profile(props) {
                     <Box className={s.modal}>
                       <Button
                         onClick={handleClose}
-                        style={{backgroundColor: "#000000", borderRadius: "20px", color: "#f7f7f7",marginTop: "20px", marginBottom: "20px", display: "flex"}}
+                        style={{ backgroundColor: "#000000", borderRadius: "20px", color: "#f7f7f7", marginTop: "20px", marginBottom: "20px", display: "flex" }}
                       >{t("profile:closeButton")}</Button>
                       <Offers></Offers>
                     </Box>
                   </Modal>
+                </div>
               </div>
-            </div>           
             )}
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
@@ -691,7 +594,7 @@ export default function Profile(props) {
 
                     // Grid i första div sen flexbox i nästa
                   }
-             
+
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -807,39 +710,39 @@ export default function Profile(props) {
                                 key={key}
                               >
                                 <a>
-                                <Paper className={s.wrapper}>
-                                  <div>
-                                    <img
-                                      src={
-                                        article?.coverImage?.formats?.small?.url
-                                      }
-                                      className={s.coverImage}
-                                      alt="cover image"
-                                    />
-                                  </div>
-                                  <div className={s.textContent}>
+                                  <Paper className={s.wrapper}>
                                     <div>
-                                      {article.published_at.slice(0, -14)}
+                                      <img
+                                        src={
+                                          article?.coverImage?.formats?.small?.url
+                                        }
+                                        className={s.coverImage}
+                                        alt="cover image"
+                                      />
                                     </div>
+                                    <div className={s.textContent}>
+                                      <div>
+                                        {article.published_at.slice(0, -14)}
+                                      </div>
 
-                                    <Typography component="h2" variant={"h2"}>
-                                      <Box
-                                        fontFamily="LyonDisplay"
-                                        fontWeight="fontWeightMedium"
-                                        className={s.headline}
-                                      >
-                                        {article.title}{" "}
-                                        {router.locale !== article.locale
-                                          ? "(In Swedish)"
-                                          : ""}
-                                      </Box>
-                                    </Typography>
-                                    <Typography variant={"subtitle1"}>
-                                      {article.description}
-                                    </Typography>
-                                  </div>
-                                  <div className={s.line}></div>
-                                </Paper>
+                                      <Typography component="h2" variant={"h2"}>
+                                        <Box
+                                          fontFamily="LyonDisplay"
+                                          fontWeight="fontWeightMedium"
+                                          className={s.headline}
+                                        >
+                                          {article.title}{" "}
+                                          {router.locale !== article.locale
+                                            ? "(In Swedish)"
+                                            : ""}
+                                        </Box>
+                                      </Typography>
+                                      <Typography variant={"subtitle1"}>
+                                        {article.description}
+                                      </Typography>
+                                    </div>
+                                    <div className={s.line}></div>
+                                  </Paper>
                                 </a>
                               </Link>
                             );
@@ -853,11 +756,11 @@ export default function Profile(props) {
               </div>
             ) : (
               <div className={s.tabsContainer}>
-                <Tabs 
-                value={activeTab} 
-                centered 
-                className={s.tabs}
-                onChange={handleTabChange}
+                <Tabs
+                  value={activeTab}
+                  centered
+                  className={s.tabs}
+                  onChange={handleTabChange}
                 >
                   <Tab
                     label={t("profile:aboutMe")}
