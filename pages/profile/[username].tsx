@@ -849,23 +849,6 @@ export default function Profile(props) {
                       // Grid i första div sen flexbox i nästa
                     }
                   </TabPanel>
-                  {articles && articles.length > 0 ? (
-                    <>
-                    {isMyProfile && (
-                    <TabPanel value={activeTab} index={3}>
-                      <Offers />
-                    </TabPanel>
-                  )}
-                    </>
-                  ) : (
-                    <>
-                      {isMyProfile && (
-                        <TabPanel value={activeTab} index={2}>
-                          <Offers />
-                        </TabPanel>
-                      )}
-                    </>
-                  )}
                 </Box>
               </div>
             ) : (
