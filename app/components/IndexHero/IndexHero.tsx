@@ -71,9 +71,8 @@ export default function IndexHero() {
   useEffect(() => {
     setLoading(randomImage === null);
     const isDefaultLocale = router.locale == router.defaultLocale;
-    const redirectHref = `${window.origin}${
-      isDefaultLocale ? "" : `/${router.locale}`
-    }/plans`;
+    const redirectHref = `${window.origin}${isDefaultLocale ? "" : `/${router.locale}`
+      }/plans`;
     setSignUpRedirectHref(redirectHref);
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
@@ -91,7 +90,7 @@ export default function IndexHero() {
       image: "/images/gunilla.jpg",
       imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
     },
-  
+
   ];
 
   useEffect(() => {
@@ -323,6 +322,13 @@ export default function IndexHero() {
                     </AccordionSummary>
                     <AccordionDetails>
                       <div>
+                        <img
+                          height={50}
+                          width={170}
+                          className={s.logo}
+                          src="/Artportable_Logotyp_Black.svg"
+                          alt="Logo Artportable"
+                        />
                         <Typography
                           variant="h5"
                           component="h2"
