@@ -135,104 +135,9 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
 
   return (
     <Box >
-      {/* <input
-        ref={fileInput}
-        onChange={handleFileUpload}
-        type="file"
-        style={{ display: "none" }}
-        multiple={false}
-      />
-    <Badge
-        overlap="circle"
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        badgeContent={
-          isMyProfile && !hideAddBtn &&
-          <AddCircleIcon
-            className={s.badgeIcon}
-            color="primary"
-            onClick={() => fileInput.current.click()} />
-        }
-      >
-        {linkToProfile ?
-          <Link href={`/profile/@${data?.Username}`}>
-            <a>
-              <Avatar className={s.avatar}>
-                {data?.ProfilePicture ? (
-                  <Avatar src={`${bucketUrl}${data?.ProfilePicture}`}
-                    alt="Profile picture"
-                    style={{ height: '120px', width: '120px' }}
-                  />
-                ) : (
-                  <AccountCircleIcon
-                    color="secondary"
-                    className={s.noPictureIcon}
-                  />
-                )}
-              </Avatar>
-            </a>
-          </Link>
-          :
-          <Avatar className={s.avatar}>
-            {userProfilePicture ? (
-              <Avatar src={`${bucketUrl}${userProfilePicture}`}
-                alt="Profile picture"
-                style={{ height: '120px', width: '120px' }}
-              />
-            ) : (
-              <AccountCircleIcon
-                color="secondary"
-                className={s.noPictureIcon}
-              />
-            )}
-          </Avatar>
-        }
-      </Badge>  */}
-
-      {/* <Box fontWeight="fontWeightBold" marginTop={1}>
-        <Typography variant="h5" className={s.fullName}>
-          {linkToProfile ?
-            <Link href={`/profile/@${data?.Username}`}>
-              <a>
-              {data?.Name} {' '}
-              {data?.Surname && data?.Surname}
-              </a>
-            </Link>
-            :
-            <span>
-              {data?.Name} {' '}
-              {data?.Surname && data?.Surname}
-            </span>
-          }
-        </Typography>
-      </Box> */}
-
-      {/* <Box marginTop={1}>
-        <Typography variant="h6" className={s.title}>
-          {data?.Title}
-        </Typography>
-      </Box>
-
-      <Box marginTop={1}>
-        <Typography>
-          {data?.Headline}
-        </Typography>
-      </Box> */}
-
-      {/* {data?.Location &&
-        <Box display="flex" justifyContent="center" marginTop={1} marginBottom={2}>
-          <RoomIcon color="secondary"></RoomIcon>
-          <Typography>
-            {data?.Location}
-          </Typography>
-        </Box>
-      } */}
       {divider &&
         <Divider></Divider>
       }
-
       <div className={s.fullNameCounter}>
         <Typography variant="h5" className={s.fullName}>
           <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
@@ -357,7 +262,7 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
           <>
             <div className={s.editUploadButtons}>
               {membership.value > Membership.Base && (
-                <div className={s.upload}>
+                <div>
                   {isMobile && (
                     <Link href="/upload">
                       <a>
@@ -370,7 +275,7 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
                             )
                           }
                           startIcon={
-                            <UploadIcon className={s.uploadIcon} />
+                            <UploadIcon  />
                           }
                           rounded
                         >
@@ -402,7 +307,6 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
             }
           >
             <Button
-              className={s.buttonFeed}
               size="small"
               rounded
               variant="outlined"
