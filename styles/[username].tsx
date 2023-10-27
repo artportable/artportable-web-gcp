@@ -147,17 +147,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
-    friends: {
-      gridArea: "friends",
-      display: "flex",
-      justifyContent: "center",
-      marginTop: "30px",
-      marginBottom: "10px",
-      [theme.breakpoints.up("smPlus")]: {
-        display: "none",
-      },
-      
-    },
     hovs: {
       "& :hover": {
         backgroundColor: "#D6A407",

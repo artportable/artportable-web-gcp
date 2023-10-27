@@ -232,7 +232,17 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#D6A407",
       },
     },
-
+    friends: {
+      gridArea: "friends",
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "30px",
+      marginBottom: "10px",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "none",
+      },
+      
+    },
 
   }),
 );

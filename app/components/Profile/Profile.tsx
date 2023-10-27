@@ -33,8 +33,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme, Theme } from "@material-ui/core";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import UploadIcon from "@material-ui/icons/Publish";
+import { RWebShare } from 'react-web-share'
 
-export default function Profile({ userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
+export default function Profile({ userProfileUrl, userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
   const s = styles();
   const { t } = useTranslation(["common", "profile", "upload", "header"]);
   const data = userProfile?.data;
@@ -381,6 +382,29 @@ export default function Profile({ userProfile, isFollowed, userProfilePicture, o
           </>
         )}
       </div>
+      {isMyProfile && (
+        <div className={s.friends}>
+          <RWebShare
+            data={{
+              text: t("common:description"),
+              url: userProfileUrl,
+              title: t("common:followersInvite"),
+            }}
+            onClick={() =>
+              trackGoogleAnalytics(ActionType.INVITE_PROFILE)
+            }
+          >
+            <Button
+              className={s.buttonFeed}
+              size="small"
+              rounded
+              variant="outlined"
+            >
+              {t("followersInvite")}
+            </Button>
+          </RWebShare>
+        </div>
+      )}
     </Box>
   );
 }

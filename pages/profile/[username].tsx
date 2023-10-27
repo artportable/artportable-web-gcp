@@ -471,6 +471,7 @@ export default function Profile(props) {
                 isMyProfile={isMyProfile}
                 linkToProfile={false}
                 isFollowed={isFollowed}
+                userProfileUrl={userProfileUrl}
               ></ProfileComponent>
             </div>
             {/* {userProfile.data?.MonthlyArtist && (
@@ -482,30 +483,6 @@ export default function Profile(props) {
                 />
               </div>
             )} */}
-            {isMyProfile && (
-              <div className={s.friends}>
-                <RWebShare
-                  data={{
-                    text: t("common:description"),
-                    url: userProfileUrl,
-                    title: t("common:followersInvite"),
-                  }}
-                  onClick={() =>
-                    trackGoogleAnalytics(ActionType.INVITE_PROFILE)
-                  }
-                >
-                  <Button
-                    className={s.buttonFeed}
-                    size="small"
-                    rounded
-                    variant="outlined"
-                  >
-                    {t("followersInvite")}
-                  </Button>
-                </RWebShare>
-              </div>
-            )}
-
             {isMyProfile && (
               <div>
                 <div className={s.hovs}>
