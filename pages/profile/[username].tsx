@@ -514,9 +514,9 @@ export default function Profile(props) {
                       </div>
                     )}
 
-                    {membership.value < Membership.Portfolio && (
+                    {/* {membership.value < Membership.Portfolio && (
                       <UpgradePortfolio />
-                    )}
+                    )} */}
                     <EditProfileDialog userProfile={userProfile.data} />
                   </div>
                 </>
