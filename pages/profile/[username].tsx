@@ -603,7 +603,7 @@ export default function Profile(props) {
               </div>
             )}
           
-            {isMyProfile && membership.value > Membership.Base && (
+            {isMyProfile && (
               <div>
               <div className={s.hovs}>
                 <Button 
@@ -650,16 +650,8 @@ export default function Profile(props) {
                     </Box>
                   </Modal>
               </div>
-            </div>
-
-              
+            </div>           
             )}
-            {isMyProfile && membership.value === Membership.Base && (
-              <div className={s.upgradeGoldDiv}>
-                <UpgradePortfolioProfile />
-              </div>
-            )}
-
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
@@ -888,22 +880,6 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  {isMyProfile && (
-                    <Tab
-                      className={s.tab}
-                      style={{
-                        color: "white",
-                        backgroundColor: "#02a16c",
-                        borderRadius: "10px",
-                        marginBottom: "5px",
-                        height: "50%",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                      }}
-                      label={t("profile:offers")}
-                      {...a11yProps(t("profile:offers"))}
-                    />
-                  )}
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
