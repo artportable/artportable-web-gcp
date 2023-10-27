@@ -62,6 +62,7 @@ import { RWebShare } from "react-web-share";
 import Offers from "../../app/components/ExclusiveOffers/Offers";
 import BrushSharpIcon from "@mui/icons-material/BrushSharp";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Modal from "@mui/material/Modal";
 
 function a11yProps(index: any) {
   return {
@@ -117,6 +118,10 @@ export default function Profile(props) {
   const { refreshToken } = useRefreshToken();
 
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))  
+  
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
@@ -599,12 +604,24 @@ export default function Profile(props) {
             )}
           
             {isMyProfile && membership.value > Membership.Base && (
+              <div>
               <div className={s.hovs}>
+                <Button 
+                  rounded
+                  className={s.offersButton}
+                  onClick={handleOpen}>
+                  <div>
+                  <Typography style={{fontSize: "11px"}} className={s.headerButtonOffers}>
+                    {t("profile:exclusiveOffers").toLocaleUpperCase()}
+                  </Typography>
+                  </div>
+                </Button>
                 <Button
                   rounded
                   className={s.monthlyArtistButton}
                   onClick={redirectToRocketUpgrade}
                   style={{ marginBottom: "20px" }}
+                  
                 >
                   <Typography className={s.headerButtonRocket}>
                     {t("profile:rocket")}
@@ -615,7 +632,27 @@ export default function Profile(props) {
                     className={s.rocketIcon}
                   />
                 </Button>
+              
               </div>
+
+              <div>              
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    className={s.modalContainer}
+                  >
+                    <Box className={s.modal}>
+                      <Button
+                        onClick={handleClose}
+                        style={{backgroundColor: "#000000", borderRadius: "20px", color: "#f7f7f7",marginTop: "20px", marginBottom: "20px", display: "flex"}}
+                      >{t("profile:closeButton")}</Button>
+                      <Offers></Offers>
+                    </Box>
+                  </Modal>
+              </div>
+            </div>
+
+              
             )}
             {isMyProfile && membership.value === Membership.Base && (
               <div className={s.upgradeGoldDiv}>
@@ -662,22 +699,7 @@ export default function Profile(props) {
 
                     // Grid i första div sen flexbox i nästa
                   }
-                  {isMyProfile && (
-                    <Tab
-                      className={s.tab}
-                      style={{
-                        color: "white",
-                        backgroundColor: "#02a16c",
-                        borderRadius: "10px",
-                        marginBottom: "5px",
-                        height: "50%",
-                        paddingTop: "10px",
-                        paddingBottom: "10px",
-                      }}
-                      label={t("profile:offers")}
-                      {...a11yProps(t("profile:offers"))}
-                    />
-                  )}
+             
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>

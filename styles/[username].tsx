@@ -189,9 +189,15 @@ export const profileStyles = makeStyles((theme: Theme) =>
       "& :hover": {
         backgroundColor: "#D6A407",
       },
-      gridArea: "hej",
+
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-evenly",
+
+      [theme.breakpoints.up("smPlus")]: {
+        justifyContent: "center",
+      },
+      
+      
     },
     upgradeGoldDiv: {
       gridArea: "hej",
@@ -200,10 +206,19 @@ export const profileStyles = makeStyles((theme: Theme) =>
     },
     monthlyArtistButton: {
       marginTop: "4px",
-      width: "200px",
-      height: "50px",
+      width: "150px",
+      height: "45px",
       backgroundColor: "#E0AC08",
       color: "#fff",
+    },
+    offersButton: {
+      marginRight: "4px",
+      marginTop: "4px",
+      width: "150px",
+      height: "45px",
+      backgroundColor: "#000000",
+      color: "#fff",
+
     },
     headerButton: {
       fontFamily: "Gotham",
@@ -267,6 +282,35 @@ export const profileStyles = makeStyles((theme: Theme) =>
       justifyContent: "flex-start",
       overflow: "hidden",
     },
+    modalContainer: {
+      display: 'flex',
+      justifyContent: 'center', 
+      alignItems: 'center',     
+      height: '100vh',         
+      position: 'relative',    
+    },
+    modal: {
+      position: 'absolute' as 'absolute',
+      overflowY: "scroll",
+      border: '2px solid #000',
+      backgroundColor: "white",
+      width: "100%",
+      height: "100%",
+      padding: "20px",
+      borderRadius: "20px",
+      borderColor: "transparent",
+      [theme.breakpoints.up("md")]: {
+        
+        width: "50%",
+        height: "60%"
+      },
+
+    offersButton: {
+      backgroundColor: "red",
+      margin: "20px"
+    },
+
+    },
     uploadButton: {
       marginTop: "20px",
       backgroundColor: "#FFD700",
@@ -300,6 +344,15 @@ export const profileStyles = makeStyles((theme: Theme) =>
       fontFamily: "Gotham",
       fontWeight: 500,
       paddingLeft: "20px",
+      height: "100%",
+
+    },
+
+    headerButtonOffers: {
+      fontFamily: "Gotham",
+      fontWeight: 500,
+      height: "100%",
+
     },
 
     rocketIcon: {
