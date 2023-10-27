@@ -12,7 +12,6 @@
   "textile": "Textile",
   "gouache": "Gouache",
   "ink": "Ink",
-
   "impressionism": "Impressionism",
   "abstract": "Abstract",
   "realism": "Realism",
@@ -28,7 +27,6 @@
   "arts-craft": "Arts & craft",
   "conceptual": "Conceptual",
   "street-art": "Street art",
-
   "still-life": "Still life",
   "landscape": "Landscape",
   "pastel": "Pastel",
@@ -57,7 +55,6 @@
   "travel": "Travel",
   "food-drink": "Food & drink",
   "seascape": "Seascape",
-
   "photography": "Photography",
   "sculpture": "Sculpture",
   "digital": "Digital",
@@ -67,14 +64,14 @@
   "triptych": "Triptych",
   "installation": "Installation",
   "mural": "Mural",
-
   "art-exhibition": "Art exhibition",
   "gallery": "Gallery",
   "group-exhibition": "Group exhibition",
   "posters": "Posters",
-  "artwork": "Artwork",
   "NFT": "NFT",
   "print": "Prints",
   "jewelry": "Jewelry",
   "graphic": "Graphics"
 }
+
+

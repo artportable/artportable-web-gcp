@@ -7,7 +7,7 @@ import { useInfiniteScrollWithKey } from '../../hooks/useInfiniteScroll'
 import { useRedirectToLoginIfNotLoggedIn } from '../../hooks/useRedirectToLoginIfNotLoggedIn'
 import { Artwork } from '../../models/Artwork'
 import DiscoverArt from '../DiscoverArt/DiscoverArt'
-import { TAGS, THEME_TAGS, TECHNIQUE_TAGS } from '../DiscoverTrendingArtTab/tags'
+import { THEME_TAGS, TECHNIQUE_TAGS } from '../DiscoverTrendingArtTab/tags'
 import { styles } from './discoverTrendingArtTabDesktop.css'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -262,14 +262,14 @@ const DiscoverTrendingArtTabDesktop = memo((props: DiscoverTrendingArtTabProps) 
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                            
                             <Typography className={s.filterSummary}>
-                            {selectedTheme ? <div style={{fontWeight: "bold"}}>{t(`common:techniques:${selectedTheme}`)}</div> : <>{t("common:selectOptions:theme")}</>}
+                            {selectedTheme ? <div style={{fontWeight: "bold"}}>{t(`common:themes:${selectedTheme}`)}</div> : <>{t("common:selectOptions:theme")}</>}
                             </Typography>
                         </AccordionSummary>
                         <AccordionDetails className={s.filterDetailsTags}>
                             {Object.keys(THEME_TAGS).map((key) => (
                                 <div>
                                     <ListItemButton className={s.filterItemTags} onClick={() => handleThemeTagChange(`${key}`)} key={key}>
-                                        {t(`common:techniques:${key}`)}
+                                        {t(`common:themes:${key}`)}
                                     </ListItemButton>
                                     <Divider />
                                 </div>

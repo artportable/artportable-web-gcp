@@ -7,7 +7,7 @@ import { useInfiniteScrollWithKey } from '../../hooks/useInfiniteScroll'
 import { useRedirectToLoginIfNotLoggedIn } from '../../hooks/useRedirectToLoginIfNotLoggedIn'
 import { Artwork } from '../../models/Artwork'
 import DiscoverArt from '../DiscoverArt/DiscoverArt'
-import { TAGS, THEME_TAGS, TECHNIQUE_TAGS } from './tags'
+import { THEME_TAGS, TECHNIQUE_TAGS } from './tags'
 import { styles } from './discoverTrendingArtTab.css'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
@@ -294,7 +294,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       <div className={s.mobileTitleIcon}>
                         <PaletteOutlinedIcon className={s.mobileIcon} />
                         <Typography>
-                          {selectedTheme ? <div style={{fontWeight: "bold"}}>{t(`common:techniques:${selectedTheme}`)}</div> : <div>{t('common:selectOptions:theme')}</div>}
+                          {selectedTheme ? <div style={{fontWeight: "bold"}}>{t(`common:themes:${selectedTheme}`)}</div> : <div>{t('common:selectOptions:theme')}</div>}
                         </Typography>
                       </div>
                       
@@ -303,7 +303,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                       {Object.keys(THEME_TAGS).map((key) => (
                         <div>
                           <ListItem button onClick={() => handleThemeChangeMobile(key)}>
-                            {t(`common:techniques:${key}`)}
+                            {t(`common:themes:${key}`)}
                           </ListItem>
                           <Divider />
                         </div>
