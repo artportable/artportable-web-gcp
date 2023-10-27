@@ -24,9 +24,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       textDecoration: "underline",
       marginBottom: theme.spacing(1),
     },
-    imageDiv: {
-      width: "100%",
-    },
     coverImage: {
       width: "100%",
       borderRadius: "5px 5px 0 0",
@@ -49,114 +46,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       blockSize: "fit-content",
       color: "var(--text-color)",
     },
-
-    profileGrid: {
-      display: "grid",
-      gap: "16px",
-      gridTemplate:
-        '"      .              .         .        .              ."       185px' +
-        '"      .              .      profile     .              ."       50px' +
-        '"      .              .      profile     .              actions"       auto' +
-        '"      .           friends   friends   friends           ."       auto' +
-        '"      .              hej      hej       hej               ."       auto' +
-        '"   divider        divider   divider   divider       divider"       auto' +
-        '"      .         priceSpan  priceSpan  priceSpan        ."       auto' +
-        '"     articles    articles   articles articles      articles"       auto' +
-        '"     tabs           tabs      tabs     tabs           tabs"       1fr' +
-        '"   divider2       divider2  divider2  divider2      divider2"       auto' +
-        '"   portfolio      portfolio portfolio portfolio    portfolio"       auto' +
-        "/ minmax(0, 2fr) minmax(0, 2fr) minmax(200px, 2fr) minmax(0, 2fr) minmax(0, 2fr)",
-    },
-    profileSummary: {
-      gridArea: "profile",
-    },
-    chatFollowWrapper: {
-      display: "flex",
-      flexDirection: "row",
-      marginTop: "10px",
-      [theme.breakpoints.up("md")]: {
-        flexDirection: "row",
-        justifyContent: "flex-end",  
-        margin: "0",  
-        width: "25%"
-      },
-    },
-    
-    fullName: {
-      display: "flex",
-      justifyContent: "center", 
-      fontWeight: 600,
-      fontSize: "25px",
-      letterSpacing: "6px",
-      margin: "auto",
-      [theme.breakpoints.up("smPlus")]: {
-        justifyContent: "space-around",
-        fontSize: "20px",
-      },
-      [theme.breakpoints.up("md")]: {
-        justifyContent: "flex-start",
-        marginBottom: "-45px",
-        fontSize: "30px",
-      },
-    },
-    followButton: {
-      maxHeight: "27px",
-      width: "40%",
-      margin: "0 auto",
-      marginBottom: "10px",
-      backgroundColor: "#fadf87",
-      border: "1px solid #fadf87",
-      color: "black",
-      [theme.breakpoints.up("md")]: {
-        width: "45%",
-      },
-      "&:hover": {
-        backgroundColor: "#fadf87",
-        color: "white",
-      },
-    },
-    following: {
-      maxHeight: "27px",
-      width: "40%",
-      margin: "0 auto",
-      marginBottom: "10px",
-      backgroundColor: "#49cc90",
-      border: "1px solid #49cc90",
-      color: "white",
-      [theme.breakpoints.up("md")]: {
-        width: "45%",
-      },
-      "&:hover": {
-        backgroundColor: "transparent",
-        color: "black",
-      },
-    },
-    chatButton: {
-      maxHeight: "27px",
-      width: "40%",
-      margin: "0 auto",
-      marginBottom: "20px",
-      backgroundColor: "transparent",
-      border: "1px solid black",
-      color: "black",
-      [theme.breakpoints.up("md")]: {
-        width: "40%",
-      },
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
-      },
-    },
-    headerButton: {
-      fontFamily: "Gotham",
-      fontWeight: 500,
-    },
-    pButton: {
-      fontFamily: "Gotham",
-    },
-    messageButtonText: {
-      display: "none",
-    },
     tabsContainer: {
       gridArea: "tabs",
     },
@@ -178,9 +67,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         fontSize: '14px',
       },
     },
-    text: {
-      minWidth: 0,
-    },
     catalogued: {
       gridRow: "3/4",
       gridColumn: "4/5",
@@ -194,9 +80,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
       color: "#FFD700",
       marginLeft: "20px",
       marginTop: "50px",
-    },
-    divider: {
-      gridArea: "divider",
     },
     portfolioContainer: {
       display: "flex",
@@ -258,9 +141,6 @@ export const profileStyles = makeStyles((theme: Theme) =>
         marginLeft: "0",
         marginRight: "30px",
         marginTop: "0",
-      },
-      messageButtonText: {
-        display: "initial",
       },
     },
     [theme.breakpoints.up("mdPlus")]: {
