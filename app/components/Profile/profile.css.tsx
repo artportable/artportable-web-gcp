@@ -4,23 +4,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    secondaryColor: {
-      backgroundColor: theme.palette.secondary.main
-    },
-    avatar: {
-      backgroundColor: 'transparent',
-      border: `0.15rem solid ${theme.palette.common.white}`,
-      width: 120,
-      height: 120
-    },
-    badgeIcon: {
-      backgroundColor: 'white',
-      borderRadius: '50%',
-      cursor: 'pointer',
-      '&:hover': {
-        color: theme.palette.primary.dark,
-      }
-    },
     followFollowersArtworks: {
       display: "flex",
       flexDirection: "column",
@@ -125,23 +108,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
     },
-
-    chatButton: {
-      maxHeight: "27px",
-      width: "40%",
-      margin: "0 auto",
-      marginBottom: "20px",
-      backgroundColor: "transparent",
-      border: "1px solid black",
-      color: "black",
-      [theme.breakpoints.up("md")]: {
-        width: "40%",
-      },
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
-      },
-    },
     fullNameCounter: {
       display: "flex",
       flexDirection: "column",
@@ -157,7 +123,6 @@ export const styles = makeStyles((theme: Theme) =>
     
       },
     },
-
     fullName: {
       disaply: "flex",
       textAlign: 'center', // centers text horizontally
@@ -172,19 +137,6 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         fontSize: "30px",
       },
-    },
-
-
-    title: {
-      lineHeight: 1.5,
-      fontWeight: 400
-    },
-    username: {
-      lineHeight: 1.5,
-    },
-    noPictureIcon: {
-      fontSize: '160px',
-      backgroundColor: theme.palette.background.default,
     },
     followersButton: {
       display: 'block',
