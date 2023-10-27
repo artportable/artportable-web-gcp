@@ -60,7 +60,11 @@
     "installation": "Installation",
     "mural": "Mural",
     "print": "Prints",
-    "graphic": "Graphics",
+    "graphic": "Graphics"
+      
+  },
+
+  "themes": {
     "impressionism": "Impressionism",
     "abstract": "Abstract",
     "realism": "Realism",
@@ -108,11 +112,7 @@
     "artwork": "Artwork",
     "NFT": "NFT",
     "jewelry": "Jewelry"
-      
-  },
-
-  "themes": {
-     
+    
   },
   "selectOptions": {
     "format": "Format",
