@@ -190,10 +190,8 @@ export default function ArtworkListItemDefined({
         <Link href={`/art/${artwork.Id}`}>
           <a>
             <img
-              style={{
-                width: width,
-                height: height
-              }}
+              width={width}
+              height={height}
               alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}

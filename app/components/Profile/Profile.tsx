@@ -117,12 +117,8 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
       }
       <div className={s.fullNameCounter}>
         <Typography variant="h5" className={s.fullName}>
-          <Link href={`/profile/@${userProfile?.data?.Username.toUpperCase()}`}>
-            <a>
-              {userProfile?.data?.Name.toUpperCase()} {' '}
-              {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
-            </a>
-          </Link>
+          {userProfile?.data?.Name.toUpperCase()} {' '}
+          {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
         </Typography>
         <Box className={s.counterBox}>
           <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
@@ -252,7 +248,7 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
                             )
                           }
                           startIcon={
-                            <UploadIcon  />
+                            <UploadIcon />
                           }
                           rounded
                         >
