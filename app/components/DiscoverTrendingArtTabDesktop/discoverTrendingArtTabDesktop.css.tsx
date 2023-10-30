@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     filter: {
       backgroundColor:'transparent !important',
-      margin: "10px",
+      margin: "10px !important",
     },
 
     filterSummary: {
