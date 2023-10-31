@@ -18,7 +18,7 @@ import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
 import UserListDialog from "../UserListDialog/UserListDialog";
 import { useGetFollowers } from "../../hooks/dataFetching/useGetFollowers";
 import { useGetFollowing } from "../../hooks/dataFetching/useGetFollowing";
-import { useGetConnectionsCount } from '../../hooks/dataFetching/userGetConnectionsCount'
+import { useGetConnectionsCount } from "../../hooks/dataFetching/userGetConnectionsCount";
 
 export default function ProfileCard({
   userProfile,
@@ -41,7 +41,6 @@ export default function ProfileCard({
   const followersData = useGetFollowers(data?.Username, followersOpen);
   const followingData = useGetFollowing(data?.Username, followingOpen);
   const connectionscountData = useGetConnectionsCount(data?.Username);
-
 
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
@@ -66,7 +65,7 @@ export default function ProfileCard({
   };
 
   const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
-  const premiumLink = "https://buy.stripe.com/8wMfZrgcS2Fvfpm3d9";
+  const premiumLink = "https://buy.stripe.com/6oE4gJ6Ci3Jz1yw3df";
 
   const redirectToRocketUpgrade = () => {
     window.open(rocketLink);
