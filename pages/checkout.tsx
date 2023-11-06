@@ -6,10 +6,10 @@ import { useTranslation } from "next-i18next";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import CheckoutForm from "../app/components/CheckoutForm/CheckoutForm";
-import InputLabel from '@material-ui/core/InputLabel';
-import { styles } from '../styles/checkout';
+import InputLabel from "@material-ui/core/InputLabel";
+import { styles } from "../styles/checkout";
 import { useRouter } from "next/router";
 import { useStore } from "react-redux";
 import { useKeycloak } from "@react-keycloak/ssr";
@@ -24,27 +24,27 @@ export default function Checkout() {
   const promise = loadStripe(stripeKey);
 
   const store = useStore();
-  const { t } = useTranslation(['checkout', 'common']);
+  const { t } = useTranslation(["checkout", "common"]);
   const router = useRouter();
 
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
   const [email, setEmail] = useState(null);
   const [fullName, setFullName] = useState(null);
   const plan = store.getState()?.signup?.price;
-  const s = styles()
+  const s = styles();
+
+  // useEffect(() => {
+  //   // TODO: Do redirect of unauthed users in a better way
+  //   if (!plan) {
+  //     router.push("/plans");
+  //   }
+  // });
 
   useEffect(() => {
-    // TODO: Do redirect of unauthed users in a better way
-    if (!plan) {
-      router.push('/plans');
-    }
-  });
-
-  useEffect(() => {
-    if(initialized && keycloak.tokenParsed) {
+    if (initialized && keycloak.tokenParsed) {
       const parsedToken = keycloak.tokenParsed as any;
       setEmail(parsedToken.email);
-      setFullName(parsedToken.given_name + ' ' + parsedToken.family_name);
+      setFullName(parsedToken.given_name + " " + parsedToken.family_name);
     }
   }, [initialized]);
 
@@ -54,10 +54,10 @@ export default function Checkout() {
         <div className={s.left}>
           <div className={s.leftContent}>
             <div className={s.headlineDiv}>
-            <Typography variant="h1" className={s.headline}>
-            {t('fewSeconds')}
-            </Typography>
-            {/* <Typography variant="h1" className={s.headline}>
+              <Typography variant="h1" className={s.headline}>
+                {t("fewSeconds")}
+              </Typography>
+              {/* <Typography variant="h1" className={s.headline}>
               några sekunder från att börja
             </Typography>
             <Typography variant="h1" className={s.headline}>
@@ -69,24 +69,22 @@ export default function Checkout() {
               src="/images/majadror.png"
               alt=""
               title="" /> */}
-          
           </div>
         </div>
         <div className={s.right}>
-        <div className={s.headlineDivMobile}>
-        <Typography variant="h1" className={s.headlineMobile}>
-             {t('fewSeconds')}
+          <div className={s.headlineDivMobile}>
+            <Typography variant="h1" className={s.headlineMobile}>
+              {t("fewSeconds")}
             </Typography>
-            </div>
-          <Typography className={s.fillInText}>
-            {t('pleaseFill')}
-          </Typography>
+          </div>
+          <Typography className={s.fillInText}>{t("pleaseFill")}</Typography>
           <Card className={s.card}>
-          <img
-            className={s.logo}
-            src="/Artportable_Logotyp_Black.svg"
-            alt="logo"
-            title="" />
+            <img
+              className={s.logo}
+              src="/Artportable_Logotyp_Black.svg"
+              alt="logo"
+              title=""
+            />
             <CardContent className={s.cardContentWidth}>
               <Typography variant="h5" component="h1">
                 {/* <Box fontWeight="medium" marginBottom={3}>
@@ -94,14 +92,10 @@ export default function Checkout() {
             </Box> */}
               </Typography>
 
-              <InputLabel>{t('paymentDetails')}</InputLabel>
+              <InputLabel>{t("paymentDetails")}</InputLabel>
               {/* Stripe checkout HERE */}
               <Elements stripe={promise}>
-                <CheckoutForm
-                  email={email}
-                  fullName={fullName}
-                  plan={plan}
-                />
+                <CheckoutForm email={email} fullName={fullName} plan={plan} />
               </Elements>
             </CardContent>
           </Card>
@@ -114,7 +108,14 @@ export default function Checkout() {
 export async function getStaticProps({ context, locale }) {
   return {
     props: {
-      ...await serverSideTranslations(locale, ['common', 'header', 'footer', 'checkout', 'support', 'plans']),
-    }
-  }
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "header",
+        "footer",
+        "checkout",
+        "support",
+        "plans",
+      ])),
+    },
+  };
 }
