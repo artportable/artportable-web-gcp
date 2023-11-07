@@ -1,4 +1,0 @@
-{
-  "pleaseTryAgain" : "Failed to open up channel, please try again later",
-  "referToArtwork" : "Purchase request\n[{{artwork.title}}]({{artwork.url}})"
-}
