@@ -57,15 +57,8 @@ export default function DrawerMenu({
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
   const [openLanguage, setOpenopenLanguage] = useState(false);
-  
   const displayLocale =
-  router.locale === Locales.sv
-    ? DisplayLocales.sv
-    : router.locale === Locales.no
-    ? DisplayLocales.no
-    : router.locale === Locales.da
-    ? DisplayLocales.da
-    : DisplayLocales.en;
+    router.locale === Locales.sv ? DisplayLocales.sv : DisplayLocales.en;
 
   const close = () => setOpen(false);
 
@@ -371,43 +364,15 @@ export default function DrawerMenu({
                 className={s.nested}
                 onClick={(_) => handleCloseLanguage(_, Locales.sv)}
               >
-                <ListItemText primary={"Svenska"} />
+                <ListItemText primary={t("swedish")} />
               </ListItem>
               <ListItem
                 button
                 className={s.nested}
                 onClick={(_) => handleCloseLanguage(_, Locales.en)}
               >
-                <ListItemText primary={"English"} />
+                <ListItemText primary={t("english")} />
               </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.da)}
-              >
-                <ListItemText primary={"Dansk"} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.no)}
-              >
-                <ListItemText primary={"Norsk"} />
-              </ListItem>
-              {/* <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.de)}
-              >
-                <ListItemText primary={t("german")} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.es)}
-              >
-                <ListItemText primary={t("spanish")} />
-              </ListItem> */}
             </List>
           </Collapse>
           <Divider />
