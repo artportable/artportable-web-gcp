@@ -34,7 +34,6 @@ export default function slugPage({
 
 export async function getStaticProps({ params, locale }) {
   let pageType;
-
   let res = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`,
     {
@@ -63,7 +62,14 @@ export async function getStaticProps({ params, locale }) {
   switch (pageType) {
     case "articleCategory":
       var category = await res.json();
-
+      if (!(locale === 'sv' || locale === "en")) {
+        return {
+          redirect: {
+            destination: `/en/${category.slug}`,
+            permanent: true,
+          }
+        };
+      }
       if (locale != category.locale) {
         var newLocale = category.localizations.find(
           (categoryLocale: Localization) => categoryLocale.locale == locale
@@ -137,7 +143,14 @@ export async function getStaticProps({ params, locale }) {
 
     case "productList":
       var productList = await res.json();
-
+      if (!(locale === "sv" || locale === "en")) {
+        return {
+          redirect: {
+            destination: `/en/${productList.slug}`,
+            permanent: true,
+          }
+        };
+      }
       if (locale != productList.locale) {
         var newLocale = productList.localizations.find(
           (productListLocale) => productListLocale.locale == locale

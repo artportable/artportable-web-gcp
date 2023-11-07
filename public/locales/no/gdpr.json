@@ -1,0 +1,45 @@
+{
+  "gdpr": {
+    "privacyPolicy": {
+      "title": "Personvernpolicy",
+      "lastUpdated": "Sist oppdatert: 22. september 2021",
+      "texts": [
+        "Denne personvernpolicyen beskriver våre retningslinjer og prosedyrer for innsamling, bruk og deling av dine opplysninger når du bruker tjenesten, og informerer deg om dine personvernrettigheter og hvordan loven beskytter deg.",
+        "Vi bruker dine personlige data for å tilby og forbedre tjenesten. Ved å bruke tjenesten samtykker du i innsamling og bruk av informasjon i samsvar med denne personvernpolicyen."
+      ]
+    },
+    "sections": [
+      {
+        "title": "Tolkning og definisjoner",
+        "interpretation": {
+          "title": "Tolkning",
+          "description": "Ordene hvor den første bokstaven er stor, har definerte betydninger under følgende forhold. De følgende definisjonene skal ha samme betydning uavhengig av om de opptrer i entall eller flertall."
+        },
+        "definitions": {
+          "title": "Definisjoner",
+          "description": "For formål med denne personvernpolicyen:",
+          "list": [
+            "<strong>Konto</strong> betyr en unik konto opprettet for deg for å få tilgang til vår tjeneste eller deler av vår tjeneste.",
+            "<strong>Selskap</strong> (referert til som enten \"Selskapet\", \"Vi\", \"Oss\" eller \"Vårt\" i denne avtalen) refererer til Artportable AB, Åsögatan 176, Stockholm, Sverige",
+            "<strong>Cookies</strong> er små filer som plasseres på din datamaskin, mobiltelefon eller annen enhet av en nettside, og inneholder detaljer om din nettlesningshistorie på den nettsiden blant dens mange bruksområder.",
+            "<strong>Land</strong> refererer til: Sverige.",
+            "<strong>Enhet</strong> betyr en hvilken som helst enhet som kan få tilgang til tjenesten, for eksempel en datamaskin, en mobiltelefon eller en digital tavle.",
+            "<strong>Personopplysninger</strong> er all informasjon som knytter seg til en identifisert eller identifiserbar person.",
+            "<strong>Tjeneste</strong> refererer til nettsiden.",
+            "<strong>Tjenesteleverandør</strong> betyr en hvilken som helst fysisk eller juridisk person som behandler data på vegne av Selskapet. Dette refererer til tredjepartsfirmaer eller enkeltpersoner som er ansatt av Selskapet for å lette tjenesten, for å levere tjenesten på vegne av Selskapet, for å utføre tjenester knyttet til tjenesten eller for å hjelpe Selskapet med å analysere hvordan tjenesten brukes.",
+            "<strong>Tredjeparts sosiale medier tjeneste</strong> refererer til hvilken som helst nettside eller hvilket som helst sosialt nettverksnettsted der en bruker kan logge inn eller opprette en konto for å bruke tjenesten.",
+            "<strong>Bruksdata</strong> refererer til data som samles inn automatisk, enten generert av bruk av tjenesten eller fra tjenesteinfrastrukturen selv (for eksempel varigheten av et sidebesøk).",
+            "<strong>Nettsted</strong> refererer til Artportable, tilgjengelig fra https://artportable.com",
+            "<strong>Du</strong> refererer til den enkeltpersonen som får tilgang til eller bruker tjenesten, eller til selskapet eller en annen juridisk enhet på vegne av hvilken en slik person får tilgang til eller bruker tjenesten, som er relevant."
+          ]
+        }
+      },
+      {
+        "title": "Innsamling og bruk av dine personopplysninger",
+        "typesOfData": {
+          
+        }
+      }
+    ]
+  }
+}
