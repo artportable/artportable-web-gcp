@@ -12,7 +12,7 @@
   "subscribe": "Prenumerera",
   "subscribeNewsletter": "Prenumerera på vårt nyhetsbrev",
   "subscriptionSuccessNewsletter": "Prenumerationen lyckades! Tack för att du prenumererar på vårt nyhetsbrev.",
-  "subscriptionErrorNewsletter": "Hoppsan, något gick fel. Var god försök igen senare eller kontakta oss för hjälp.",
+  "subscriptionErrorNewsletter": "Hoppsan, det verkar som att den här e-postadressen redan är prenumererad på vårt nyhetsbrev. Tack för ditt fortsatta intresse och stöd!",
   "seconds": "s",
   "minutes": "min",
   "hours": "t",
