@@ -1,37 +1,51 @@
-import Link from 'next/link'
-import Divider from '@material-ui/core/Divider'
-import { styles } from './profile.css'
-import { Typography, Box } from '@material-ui/core';
-import { useTranslation } from 'next-i18next'
-import { capitalizeFirst, isNullOrUndefined } from '../../utils/util';
-import { useContext, useEffect, useRef, useState } from 'react'
-import UserListDialog from '../UserListDialog/UserListDialog'
-import { useGetFollowers } from '../../hooks/dataFetching/useGetFollowers'
-import { useGetFollowing } from '../../hooks/dataFetching/useGetFollowing'
-import { useGetConnectionsCount } from '../../hooks/dataFetching/userGetConnectionsCount'
-import CircularProgress from '@mui/material/CircularProgress';
-import { UserContext } from '../../contexts/user-context'
-import { TokenContext } from '../../contexts/token-context'
-import { useGetProfileUser } from '../../hooks/dataFetching/useGetProfileUser'
-import { useGetUserProfile, useGetUserProfileSummary } from '../../hooks/dataFetching/UserProfile'
-import usePostFollow from '../../hooks/dataFetching/usePostFollow'
-import { useRedirectToLoginIfNotLoggedIn } from '../../hooks/useRedirectToLoginIfNotLoggedIn'
+import Link from "next/link";
+import Divider from "@material-ui/core/Divider";
+import { styles } from "./profile.css";
+import { Typography, Box } from "@material-ui/core";
+import { useTranslation } from "next-i18next";
+import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
+import { useContext, useEffect, useRef, useState } from "react";
+import UserListDialog from "../UserListDialog/UserListDialog";
+import { useGetFollowers } from "../../hooks/dataFetching/useGetFollowers";
+import { useGetFollowing } from "../../hooks/dataFetching/useGetFollowing";
+import { useGetConnectionsCount } from "../../hooks/dataFetching/userGetConnectionsCount";
+import CircularProgress from "@mui/material/CircularProgress";
+import { UserContext } from "../../contexts/user-context";
+import { TokenContext } from "../../contexts/token-context";
+import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
+import {
+  useGetUserProfile,
+  useGetUserProfileSummary,
+} from "../../hooks/dataFetching/UserProfile";
+import usePostFollow from "../../hooks/dataFetching/usePostFollow";
+import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import Button from "../../components/Button/Button";
 import {
   ActionType,
-  CategoryType, trackGoogleAnalytics
-} from '../../utils/googleAnalytics'
-import axios from 'axios'
-import Modal from '@mui/material/Modal'
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
+import axios from "axios";
+import Modal from "@mui/material/Modal";
 import { Membership } from "../../models/Membership";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme, Theme } from "@material-ui/core";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import UploadIcon from "@material-ui/icons/Publish";
-import { RWebShare } from 'react-web-share'
+import { RWebShare } from "react-web-share";
 import Offers from "../ExclusiveOffers/Offers";
 
-export default function Profile({ userProfileUrl, userProfile, isFollowed, userProfilePicture, onUpdateProfilePicture = null, hideAddBtn = false, divider = false, isMyProfile = false, linkToProfile = true }) {
+export default function Profile({
+  userProfileUrl,
+  userProfile,
+  isFollowed,
+  userProfilePicture,
+  onUpdateProfilePicture = null,
+  hideAddBtn = false,
+  divider = false,
+  isMyProfile = false,
+  linkToProfile = true,
+}) {
   const s = styles();
   const { t } = useTranslation(["common", "profile", "upload", "header"]);
   const data = userProfile?.data;
@@ -49,13 +63,19 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
   const token = useContext(TokenContext);
   const profileUser = useGetProfileUser();
   const getUserProfile = useGetUserProfile(profileUser, username?.value);
-  const [isUserFollowed, setUserFollow] = useState(getUserProfile?.data?.FollowedByMe);
+  const [isUserFollowed, setUserFollow] = useState(
+    getUserProfile?.data?.FollowedByMe
+  );
   const { follow } = usePostFollow();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const userProfileSummary = useGetUserProfileSummary(profileUser);
 
-  const [followers, setFollowers] = useState(connectionscountData?.data?.followers);
-  const [following, setFollowing] = useState(connectionscountData?.data?.following);
+  const [followers, setFollowers] = useState(
+    connectionscountData?.data?.followers
+  );
+  const [following, setFollowing] = useState(
+    connectionscountData?.data?.following
+  );
 
   const url = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [firstName, setFirstName] = useState("");
@@ -65,7 +85,6 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
     setFirstName(userData?.data?.Name);
@@ -74,7 +93,7 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
 
   useEffect(() => {
     getUserFullname();
-  }, [firstName, lastName])
+  }, [firstName, lastName]);
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
@@ -86,9 +105,9 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
     );
     setUserFollow(!isUserFollowed);
     if (isUserFollowed) {
-      setFollowers(prevFollowers => prevFollowers - 1);
+      setFollowers((prevFollowers) => prevFollowers - 1);
     } else {
-      setFollowers(prevFollowers => prevFollowers + 1);
+      setFollowers((prevFollowers) => prevFollowers + 1);
     }
   }
 
@@ -96,13 +115,12 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
     setUserFollow(isUserFollowed);
   }, [isUserFollowed]);
 
-
   useEffect(() => {
     setFollowers(connectionscountData?.data?.followers);
     setFollowing(connectionscountData?.data?.following);
   }, [connectionscountData?.data?.followers]);
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
 
@@ -111,58 +129,61 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
   };
 
   return (
-    <Box >
-      {divider &&
-        <Divider></Divider>
-      }
+    <Box>
+      {divider && <Divider></Divider>}
       <div className={s.fullNameCounter}>
         <Typography variant="h5" className={s.fullName}>
-          {userProfile?.data?.Name.toUpperCase()} {' '}
-          {userProfile?.data?.Surname && userProfile?.data?.Surname.toUpperCase()}
+          {userProfile?.data?.Name.toUpperCase()}{" "}
+          {userProfile?.data?.Surname &&
+            userProfile?.data?.Surname.toUpperCase()}
         </Typography>
         <Box className={s.counterBox}>
-          <Button className={s.followersButton} onClick={() => setFollowersOpen(true)}>
-            <Typography variant="body2" >
+          <Button
+            className={s.followersButton}
+            onClick={() => setFollowersOpen(true)}
+          >
+            <Typography variant="body2">
               {connectionscountData?.loading && <CircularProgress size={10} />}
               {followers}
             </Typography>
             <Typography variant="caption" className={s.followFollowersArtworks}>
-              {capitalizeFirst(t('words.followers'))}
+              {capitalizeFirst(t("words.followers"))}
             </Typography>
           </Button>
           <UserListDialog
-            title={capitalizeFirst(t('words.followers'))}
+            title={capitalizeFirst(t("words.followers"))}
             users={followersData}
             open={followersOpen}
             onClose={() => setFollowersOpen(false)}
           />
-          <Button onClick={() => setFollowingOpen(true)} className={s.followeesButton}>
+          <Button
+            onClick={() => setFollowingOpen(true)}
+            className={s.followeesButton}
+          >
             <Typography variant="body2">
               {connectionscountData.loading && <CircularProgress size={10} />}
               {following}
             </Typography>
             <Typography variant="caption" className={s.followFollowersArtworks}>
-              {capitalizeFirst(t('words.following'))}
+              {capitalizeFirst(t("words.following"))}
             </Typography>
           </Button>
           <UserListDialog
-            title={capitalizeFirst(t('words.following'))}
+            title={capitalizeFirst(t("words.following"))}
             users={followingData}
             open={followingOpen}
             onClose={() => setFollowingOpen(false)}
           />
-          {data?.Artworks > 0 &&
+          {data?.Artworks > 0 && (
             <Box className={s.followFollowersArtworks}>
-              <Typography variant="body2">
-                {data?.Artworks}
-              </Typography>
+              <Typography variant="body2">{data?.Artworks}</Typography>
               <Typography variant="caption">
-                {capitalizeFirst(t('words.worksOfArt'))}
+                {capitalizeFirst(t("words.worksOfArt"))}
               </Typography>
             </Box>
-          }
+          )}
         </Box>
-        {!isMyProfile &&
+        {!isMyProfile && (
           <div className={s.chatFollowWrapper}>
             {
               <Button
@@ -182,21 +203,22 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
                 rounded
                 disabled={!isSignedIn}
               >
-
                 Chat
               </Button>
             }
             <Button
-              className={`${s.followButton} ${isUserFollowed ? s.following : ""}`}
+              className={`${s.followButton} ${
+                isUserFollowed ? s.following : ""
+              }`}
               rounded
               disabled={!isSignedIn}
               onClick={() => {
                 toggleFollow();
                 !isUserFollowed
                   ? trackGoogleAnalytics(
-                    ActionType.FOLLOW_PROFILE,
-                    CategoryType.INTERACTIVE
-                  )
+                      ActionType.FOLLOW_PROFILE,
+                      CategoryType.INTERACTIVE
+                    )
                   : null;
               }}
             >
@@ -206,29 +228,29 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
                   : t("common:words.following")
               )}
             </Button>
-            <Button
-              rounded
-              className={s.buyBottom} onClick={handleOpen}>{t("profile:buyingArt")}</Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-            >
+            <Button rounded className={s.buyBottom} onClick={handleOpen}>
+              {t("profile:buyingArt")}
+            </Button>
+            <Modal open={open} onClose={handleClose}>
               <Box className={s.modal}>
-                <Typography style={{
-                  marginBottom: "10px"
-                }} id="modal-modal-title" variant="h6" component="h2">
+                <Typography
+                  style={{
+                    marginBottom: "10px",
+                  }}
+                  id="modal-modal-title"
+                  variant="h6"
+                  component="h2"
+                >
                   {t("profile:buyingArtTitle")}
                 </Typography>
                 <Typography style={{ marginBottom: "10px" }}>
                   {t("profile:buyingArtBody")}
                 </Typography>
-                <Typography>
-                  {t("profile:buyingArtBodyTwo")}
-                </Typography>
+                <Typography>{t("profile:buyingArtBodyTwo")}</Typography>
               </Box>
             </Modal>
           </div>
-        }
+        )}
       </div>
       <div className={s.editActions}>
         {isMyProfile && (
@@ -247,9 +269,7 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
                               CategoryType.INTERACTIVE
                             )
                           }
-                          startIcon={
-                            <UploadIcon />
-                          }
+                          startIcon={<UploadIcon />}
                           rounded
                         >
                           {t("upload:upload")}
@@ -275,15 +295,9 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
               url: userProfileUrl,
               title: t("common:followersInvite"),
             }}
-            onClick={() =>
-              trackGoogleAnalytics(ActionType.INVITE_PROFILE)
-            }
+            onClick={() => trackGoogleAnalytics(ActionType.INVITE_PROFILE)}
           >
-            <Button
-              size="small"
-              rounded
-              variant="outlined"
-            >
+            <Button size="small" rounded variant="outlined">
               {t("followersInvite")}
             </Button>
           </RWebShare>
@@ -292,12 +306,12 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
       {isMyProfile && (
         <div>
           <div className={s.hovs}>
-            <Button
-              rounded
-              className={s.offersButton}
-              onClick={handleOpen}>
+            <Button rounded className={s.offersButton} onClick={handleOpen}>
               <div>
-                <Typography style={{ fontSize: "11px" }} className={s.headerButtonOffers}>
+                <Typography
+                  style={{ fontSize: "11px" }}
+                  className={s.headerButtonOffers}
+                >
                   {t("profile:exclusiveOffers").toLocaleUpperCase()}
                 </Typography>
               </div>
@@ -307,7 +321,6 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
               className={s.monthlyArtistButton}
               onClick={redirectToRocketUpgrade}
               style={{ marginBottom: "20px" }}
-
             >
               <Typography className={s.headerButtonRocket}>
                 {t("profile:rocket")}
@@ -318,7 +331,6 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
                 className={s.rocketIcon}
               />
             </Button>
-
           </div>
 
           <div>
@@ -330,8 +342,17 @@ export default function Profile({ userProfileUrl, userProfile, isFollowed, userP
               <Box className={s.modalOffers}>
                 <Button
                   onClick={handleClose}
-                  style={{ backgroundColor: "#000000", borderRadius: "20px", color: "#f7f7f7", marginTop: "20px", marginBottom: "20px", display: "flex" }}
-                >{t("profile:closeButton")}</Button>
+                  style={{
+                    backgroundColor: "#000000",
+                    borderRadius: "20px",
+                    color: "#f7f7f7",
+                    marginTop: "20px",
+                    marginBottom: "20px",
+                    display: "flex",
+                  }}
+                >
+                  {t("profile:closeButton")}
+                </Button>
                 <Offers></Offers>
               </Box>
             </Modal>

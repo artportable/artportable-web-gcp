@@ -1,23 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Dialog, DialogContent, DialogTitle, DialogActions, TextField } from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit'
-import Button from '../Button/Button'
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogActions,
+  TextField,
+} from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+import Button from "../Button/Button";
 
-import { useTranslation } from 'next-i18next'
-import { mutate } from 'swr'
-import { styles } from './editProfileDialog.css'
-import { EditMyStudio } from './EditMyStudio/EditMyStudio'
-import { EditInspiredBy } from './EditInspiredBy/EditInspiredBy'
-import { EditEducation } from './EditEducation/EditEducation'
-import { EditExhibitions } from './EditExhibitions/EditExhibitions'
-import { EditSocials } from './EditSocials/EditSocials'
+import { useTranslation } from "next-i18next";
+import { mutate } from "swr";
+import { styles } from "./editProfileDialog.css";
+import { EditMyStudio } from "./EditMyStudio/EditMyStudio";
+import { EditInspiredBy } from "./EditInspiredBy/EditInspiredBy";
+import { EditEducation } from "./EditEducation/EditEducation";
+import { EditExhibitions } from "./EditExhibitions/EditExhibitions";
+import { EditSocials } from "./EditSocials/EditSocials";
 
-import { v4 } from 'uuid'
-import { getUserProfileSummaryUri, getUserProfileUri } from '../../hooks/dataFetching/UserProfile';
-import { TokenContext } from '../../contexts/token-context';
-import { UserContext } from '../../contexts/user-context';
-import { capitalizeFirst } from '../../utils/util';
-import useRefreshToken from '../../hooks/useRefreshToken';
+import { v4 } from "uuid";
+import {
+  getUserProfileSummaryUri,
+  getUserProfileUri,
+} from "../../hooks/dataFetching/UserProfile";
+import { TokenContext } from "../../contexts/token-context";
+import { UserContext } from "../../contexts/user-context";
+import { capitalizeFirst } from "../../utils/util";
+import useRefreshToken from "../../hooks/useRefreshToken";
 
 interface Profile {
   title: string;
@@ -60,38 +69,43 @@ export interface Socials {
 
 export default function EditProfileDialog({ userProfile }) {
   const s = styles();
-  const { t } = useTranslation(['profile', 'common']);
+  const { t } = useTranslation(["profile", "common"]);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
 
-
   const [openEdit, setOpenEdit] = useState(false);
-  const [profile, setProfile] = useState<Profile>(populateProfileObject(userProfile));
+  const [profile, setProfile] = useState<Profile>(
+    populateProfileObject(userProfile)
+  );
 
-  const makeChanges = async (_) => {
+  const makeChanges = async () => {
     setOpenEdit(false);
     try {
       validate(profile);
-      mutate(getUserProfileUri(username.value, null), { ...userProfile, ...createOriginalProfileObject(profile) }, false);
+      mutate(
+        getUserProfileUri(username.value, null),
+        { ...userProfile, ...createOriginalProfileObject(profile) },
+        false
+      );
 
-      await refreshToken()
-        .then(() =>
-          fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(profile),
-          }));
+      await refreshToken().then(() =>
+        fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(profile),
+        })
+      );
 
       mutate(getUserProfileSummaryUri(username.value));
-    } catch (error) {
 
-    }
-  }
+      window.location.reload();
+    } catch (error) {}
+  };
 
   const validate = (p) => {
     profile?.educations?.map((e) => {
@@ -129,8 +143,9 @@ export default function EditProfileDialog({ userProfile }) {
           className={s.editProfileButton}
           rounded
           startIcon={<EditIcon className={s.editProfileIcon} />}
-          onClick={() => setOpenEdit(true)}>
-          <div> {t('editProfile')}</div>
+          onClick={() => setOpenEdit(true)}
+        >
+          <div> {t("editProfile")}</div>
         </Button>
       </div>
 
@@ -141,49 +156,76 @@ export default function EditProfileDialog({ userProfile }) {
         aria-labelledby="artwork-modal-title"
         aria-describedby="artwork-modal-description"
       >
-        <DialogTitle>{t('editProfile')}</DialogTitle>
+        <DialogTitle>{t("editProfile")}</DialogTitle>
         <DialogContent>
           <form className={s.form}>
             <div className={s.flexColumn}>
               <TextField
-                label={t('title')}
+                label={t("title")}
                 defaultValue={profile.title}
-                onChange={(event) => setProfile({ ...profile, title: event.target.value })}
-                inputProps={{ maxLength: 140 }} />
+                onChange={(event) =>
+                  setProfile({ ...profile, title: event.target.value })
+                }
+                inputProps={{ maxLength: 140 }}
+              />
 
               <TextField
-                label={t('headline')}
+                label={t("headline")}
                 defaultValue={profile.headline}
                 multiline
-                onChange={(event) => setProfile({ ...profile, headline: event.target.value })}
-                inputProps={{ maxLength: 140 }} />
+                onChange={(event) =>
+                  setProfile({ ...profile, headline: event.target.value })
+                }
+                inputProps={{ maxLength: 140 }}
+              />
 
               <TextField
-                label={t('location')}
+                label={t("location")}
                 defaultValue={profile.location}
-                onChange={(event) => setProfile({ ...profile, location: event.target.value })}
-                inputProps={{ maxLength: 280 }} />
+                onChange={(event) =>
+                  setProfile({ ...profile, location: event.target.value })
+                }
+                inputProps={{ maxLength: 280 }}
+              />
 
               <TextField
-                label={t('aboutMe')}
+                label={t("aboutMe")}
                 defaultValue={profile.about}
                 multiline
-                onChange={(event) => setProfile({ ...profile, about: event.target.value })} />
+                onChange={(event) =>
+                  setProfile({ ...profile, about: event.target.value })
+                }
+              />
             </div>
             <div>
-              <EditMyStudio profile={profile} setProfile={setProfile}></EditMyStudio>
+              <EditMyStudio
+                profile={profile}
+                setProfile={setProfile}
+              ></EditMyStudio>
             </div>
             <div>
-              <EditInspiredBy profile={profile} setProfile={setProfile}></EditInspiredBy>
+              <EditInspiredBy
+                profile={profile}
+                setProfile={setProfile}
+              ></EditInspiredBy>
             </div>
             <div>
-              <EditEducation profile={profile} setProfile={setProfile}></EditEducation>
+              <EditEducation
+                profile={profile}
+                setProfile={setProfile}
+              ></EditEducation>
             </div>
             <div>
-              <EditExhibitions profile={profile} setProfile={setProfile}></EditExhibitions>
+              <EditExhibitions
+                profile={profile}
+                setProfile={setProfile}
+              ></EditExhibitions>
             </div>
             <div>
-              <EditSocials profile={profile} setProfile={setProfile}></EditSocials>
+              <EditSocials
+                profile={profile}
+                setProfile={setProfile}
+              ></EditSocials>
             </div>
           </form>
         </DialogContent>
@@ -195,7 +237,7 @@ export default function EditProfileDialog({ userProfile }) {
             rounded
             onClick={cancel}
           >
-            {capitalizeFirst(t('common:words.cancel'))}
+            {capitalizeFirst(t("common:words.cancel"))}
           </Button>
           <Button
             variant="contained"
@@ -204,7 +246,7 @@ export default function EditProfileDialog({ userProfile }) {
             rounded
             onClick={makeChanges}
           >
-            {capitalizeFirst(t('common:words.save'))}
+            {capitalizeFirst(t("common:words.save"))}
           </Button>
         </DialogActions>
       </Dialog>
@@ -220,18 +262,18 @@ const populateProfileObject = (userProfile): Profile => {
     about: userProfile?.About,
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
-    educations: userProfile?.Educations?.map(e => ({
+    educations: userProfile?.Educations?.map((e) => ({
       from: e.From ? e.From : false,
       to: e.To ? e.To : false,
       name: e.Name,
-      key: v4()
+      key: v4(),
     })),
-    exhibitions: userProfile?.Exhibitions?.map(e => ({
+    exhibitions: userProfile?.Exhibitions?.map((e) => ({
       key: v4(),
       from: e.From ? e.From : false,
       to: e.To ? e.To : false,
       name: e.Name,
-      place: e.Place
+      place: e.Place,
     })),
     socialMedia: {
       instagram: userProfile?.SocialMedia?.Instagram,
@@ -239,10 +281,10 @@ const populateProfileObject = (userProfile): Profile => {
       linkedIn: userProfile?.SocialMedia?.LinkedIn,
       dribbble: userProfile?.SocialMedia?.Dribble,
       behance: userProfile?.SocialMedia?.Behance,
-      website: userProfile?.SocialMedia?.Website
-    }
-  }
-}
+      website: userProfile?.SocialMedia?.Website,
+    },
+  };
+};
 
 const createOriginalProfileObject = (userProfile: Profile) => {
   return {
@@ -252,16 +294,16 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     About: userProfile?.about,
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,
-    Educations: userProfile?.educations?.map(e => ({
+    Educations: userProfile?.educations?.map((e) => ({
       From: e.from ? e.from : false,
       To: e.to ? e.to : false,
       Name: e.name,
     })),
-    Exhibitions: userProfile?.exhibitions?.map(e => ({
+    Exhibitions: userProfile?.exhibitions?.map((e) => ({
       From: e.from ? e.from : false,
       To: e.to ? e.to : false,
       Name: e.name,
-      Place: e.place
+      Place: e.place,
     })),
     SocialMedia: {
       Instagram: userProfile?.socialMedia?.instagram,
@@ -269,7 +311,7 @@ const createOriginalProfileObject = (userProfile: Profile) => {
       LinkedIn: userProfile?.socialMedia?.linkedIn,
       Dribble: userProfile?.socialMedia?.dribbble,
       Behance: userProfile?.socialMedia?.behance,
-      Website: userProfile?.socialMedia?.website
-    }
-  }
-}
+      Website: userProfile?.socialMedia?.website,
+    },
+  };
+};
