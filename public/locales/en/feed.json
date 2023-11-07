@@ -12,7 +12,7 @@
   "emailCapitalLetter": "Email address",
   "subscribeNewsletter": "Subscribe to our newsletter",
   "subscriptionSuccessNewsletter": "Thank you for subscribing! We will keep you updated with the latest news and promotions.",
-  "subscriptionErrorNewsletter": " Oops, something went wrong. Please try again later or contact us for assistance.",
+  "subscriptionErrorNewsletter": "Oops, it appears that this email address is already subscribed to our newsletter. Thank you for your continued interest and support!",
   "seconds": "s",
   "minutes": "min",
   "hours": "h",
