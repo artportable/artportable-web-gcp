@@ -11,8 +11,8 @@ export const getCurrentLanguage = () => {
 
     if (languageCode === "en") {
       return "en";
-    } else if (languageCode === "no") {
-      return "no";
+    } else if (languageCode === "nn-NO") {
+      return "nn-NO";
     } else {
       return "sv";
     }
