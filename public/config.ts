@@ -260,7 +260,6 @@ export const ALL_ROOMS = [
   },
 ];
 
-
 //The config object to pass to the tool
 export const frameEngineConfig = {
   frameTypes: ALL_FRAME_TYPES,

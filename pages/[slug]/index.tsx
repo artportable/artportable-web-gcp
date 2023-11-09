@@ -9,6 +9,7 @@ import { ProductList } from "../../app/models/ProductList";
 import { NavBarItem } from "../../app/models/NavBarItem";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import { fetchWithTimeout } from "../../app/utils/util";
+import { useEffect } from "react";
 
 export default function slugPage({
   category = null,
@@ -41,6 +42,7 @@ export async function getStaticProps({ params, locale }) {
       // timeout: 11000
     }
   );
+
   if (res.ok) {
     pageType = "articleCategory";
   } else {
@@ -50,9 +52,12 @@ export async function getStaticProps({ params, locale }) {
         // timeout: 11000
       }
     );
+
     if (res.ok) {
       pageType = "productList";
     } else {
+      console.log("on else...Not found.. line 58");
+
       return {
         notFound: true,
       };
@@ -68,11 +73,15 @@ export async function getStaticProps({ params, locale }) {
         var newLocale = category.localizations.find(
           (categoryLocale: Localization) => categoryLocale.locale == locale
         );
+
         if (newLocale == null) {
+          console.log("On ELSE NOT FOUND");
+
           return {
             notFound: true,
           };
         }
+
         let res = await fetch(
           `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`,
           {
@@ -80,6 +89,7 @@ export async function getStaticProps({ params, locale }) {
           }
         );
         category = await res.json();
+
         return {
           redirect: {
             destination: `/${locale}/${category.slug}`,
@@ -88,26 +98,37 @@ export async function getStaticProps({ params, locale }) {
         };
       }
 
-      if (category.locale != Locales.sv) {
-        var swedishCategoryLocale = category.localizations.find(
-          (locale) => locale.locale == Locales.sv
+      if (
+        category.locale !== Locales.sv &&
+        category.locale !== Locales.en &&
+        category.locale !== Locales["nn-NO"]
+      ) {
+        var localizedCategory = category.localizations.find(
+          (locale) => locale.locale === locale
         );
-        if (swedishCategoryLocale) {
+
+        if (localizedCategory) {
           let res = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${swedishCategoryLocale.id}`,
+            `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${localizedCategory.id}`,
             {
               // timeout: 11000
             }
           );
-          var swedishArticles: Article[] = await res.json();
-          if (swedishArticles && swedishArticles.length > 0) {
-            var swedishArticles = swedishArticles.filter(
+
+          var localizedArticles: Article[] = await res.json();
+
+          if (localizedArticles && localizedArticles.length > 0) {
+            localizedArticles = localizedArticles.filter(
               (article) =>
                 !article.localizations.some(
-                  (locale) => locale.locale == Locales.en
+                  (locale) =>
+                    locale.locale == Locales.en ||
+                    locale.locale == Locales.sv ||
+                    locale.locale == Locales["nn-NO"]
                 )
             );
-            category.articles.push(...swedishArticles);
+
+            category.articles.push(...localizedArticles);
           }
         }
       }
@@ -129,10 +150,7 @@ export async function getStaticProps({ params, locale }) {
             "plans",
           ])),
         },
-        // Next.js will attempt to re-generate the page:
-        // - When a request comes in
-        // - At most once every 60 seconds
-        revalidate: 60, // In seconds
+        revalidate: 60,
       };
 
     case "productList":
@@ -143,10 +161,13 @@ export async function getStaticProps({ params, locale }) {
           (productListLocale) => productListLocale.locale == locale
         );
         if (newLocale == null) {
+          console.log("Not found here line 163");
+
           return {
             notFound: true,
           };
         }
+
         let res = await fetch(
           `${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/${newLocale.id}`,
           {
@@ -154,6 +175,7 @@ export async function getStaticProps({ params, locale }) {
           }
         );
         productList = await res.json();
+
         return {
           redirect: {
             destination: `/${productList.slug}`,
@@ -183,6 +205,8 @@ export async function getStaticProps({ params, locale }) {
       };
 
     default:
+      console.log("not found line 207");
+
       return {
         props: {},
         notFound: true,

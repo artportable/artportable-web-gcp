@@ -7,10 +7,20 @@ export const keycloakConfig: KeycloakConfig = {
 };
 export const getCurrentLanguage = () => {
   if (typeof window !== "undefined") {
-    return window.location.pathname.split("/")[1] === "en" ? "en" : "sv";
+    const languageCode = window.location.pathname.split("/")[1];
+
+    if (languageCode === "en") {
+      return "en";
+    } else if (languageCode === "no") {
+      return "no";
+    } else {
+      return "sv";
+    }
   }
-  return "sv"; // default language, change to your preference
+
+  return "sv";
 };
+
 export const keycloakInitOptions: KeycloakInitOptions = {
   onLoad: "check-sso",
   silentCheckSsoRedirectUri:

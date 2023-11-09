@@ -42,8 +42,8 @@ import {
 } from "../../utils/googleAnalytics";
 import UpgradePortfolio from "../UpgradePortfolio/UpgradPortfolio";
 import { RWebShare } from "react-web-share";
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import ColorLensIcon from '@mui/icons-material/ColorLens';
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import ColorLensIcon from "@mui/icons-material/ColorLens";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -121,21 +121,21 @@ export default function Header({ navBarItems }) {
                 <>
                   <MuiButton
                     classes={{ root: s.feed }}
-                    color="default" 
+                    color="default"
                     size="large"
                   >
                     <Link href="/">{t("discoverArt").toUpperCase()}</Link>
                   </MuiButton>
                   <MuiButton
                     classes={{ root: s.feed }}
-                    color="default" 
+                    color="default"
                     size="large"
                   >
                     <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
                   </MuiButton>
                 </>
               )}
-              <Link href="/artiklar" passHref>
+              <Link href={`/${t("header:storiesSlug")}`} passHref>
                 <a>
                   <MuiButton color="default" size="large">
                     {t("stories").toUpperCase()}
@@ -229,10 +229,7 @@ export default function Header({ navBarItems }) {
                             variant="outlined"
                             disableElevation
                             rounded
-                          
-                            endIcon={
-                              <ColorLensIcon/>
-                            }
+                            endIcon={<ColorLensIcon />}
                           >
                             {t("upload")}
                           </Button>
