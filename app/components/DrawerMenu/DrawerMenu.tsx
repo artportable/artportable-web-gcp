@@ -62,8 +62,8 @@ export default function DrawerMenu({
       ? DisplayLocales.sv
       : router.locale === Locales.en
       ? DisplayLocales.en
-      : router.locale === Locales.no
-      ? DisplayLocales.no
+      : router.locale === Locales["nn-NO"]
+      ? DisplayLocales["nn-NO"]
       : DisplayLocales.en;
 
   const close = () => setOpen(false);
@@ -299,7 +299,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <Link href="/artiklar" passHref>
+        <Link href={`${t("header:articles")}`} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("stories")} />
