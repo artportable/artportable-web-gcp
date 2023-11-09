@@ -188,8 +188,6 @@ export async function getStaticProps(context) {
     );
 
     if (!categoryRes.ok) {
-      console.log("not found line 191");
-
       return {
         notFound: true,
       };
@@ -209,8 +207,6 @@ export async function getStaticProps(context) {
     );
 
     if (!res.ok) {
-      console.log("not found line 212");
-
       return {
         notFound: true,
       };

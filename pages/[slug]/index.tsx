@@ -56,8 +56,6 @@ export async function getStaticProps({ params, locale }) {
     if (res.ok) {
       pageType = "productList";
     } else {
-      console.log("on else...Not found.. line 58");
-
       return {
         notFound: true,
       };
@@ -75,8 +73,6 @@ export async function getStaticProps({ params, locale }) {
         );
 
         if (newLocale == null) {
-          console.log("On ELSE NOT FOUND");
-
           return {
             notFound: true,
           };
@@ -161,8 +157,6 @@ export async function getStaticProps({ params, locale }) {
           (productListLocale) => productListLocale.locale == locale
         );
         if (newLocale == null) {
-          console.log("Not found here line 163");
-
           return {
             notFound: true,
           };
@@ -205,8 +199,6 @@ export async function getStaticProps({ params, locale }) {
       };
 
     default:
-      console.log("not found line 207");
-
       return {
         props: {},
         notFound: true,
