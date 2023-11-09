@@ -54,27 +54,27 @@ export default function CategoryPage({
 
   const subjectOptions = [
     {
-      value: "/artiklar",
+      value: t("articlesSlug"),
       label: t("articles"),
     },
     {
-      value: "/redaktionellt",
+      value: t("editorialSlug"),
       label: t("editorial"),
     },
     {
-      value: "/konstnaersportraett",
+      value: t("artistPortraitSlug"),
       label: t("artistPortrait"),
     },
     {
-      value: "/kampanj",
+      value: t("offersSlug"),
       label: t("offers"),
     },
     {
-      value: "/kurser",
+      value: t("coursesSlug"),
       label: t("courses"),
     },
     {
-      value: "/flerartiklar",
+      value: t("moreArticlesSlug"),
       label: t("moreArticlesMenu"),
     },
   ];
@@ -195,32 +195,34 @@ export default function CategoryPage({
                             )}/${article.slug}`}
                         >
                           <a>
-                          <div className={s.wrapper}>
-                            <img
-                              alt="Cover Image"
-                              className={s.coverImage}
-                              src={article?.coverImage?.formats?.small?.url}
-                            />
-                            <div className={s.textContent}>
-                              <div>{article?.published_at?.slice(0, -14)}</div>
-                              <Typography component="h2" variant={"h2"}>
-                                <Box
-                                  fontFamily="LyonDisplay"
-                                  fontWeight="fontWeightMedium"
-                                  className={s.headline}
-                                >
-                                  {article?.title}{" "}
-                                  {router.locale !== article?.locale
-                                    ? "(In Swedish)"
-                                    : ""}
-                                </Box>
-                              </Typography>
-                              <Typography variant={"subtitle1"}>
-                                {article?.description}
-                              </Typography>
+                            <div className={s.wrapper}>
+                              <img
+                                alt="Cover Image"
+                                className={s.coverImage}
+                                src={article?.coverImage?.formats?.small?.url}
+                              />
+                              <div className={s.textContent}>
+                                <div>
+                                  {article?.published_at?.slice(0, -14)}
+                                </div>
+                                <Typography component="h2" variant={"h2"}>
+                                  <Box
+                                    fontFamily="LyonDisplay"
+                                    fontWeight="fontWeightMedium"
+                                    className={s.headline}
+                                  >
+                                    {article?.title}{" "}
+                                    {router.locale !== article?.locale
+                                      ? "(In Swedish)"
+                                      : ""}
+                                  </Box>
+                                </Typography>
+                                <Typography variant={"subtitle1"}>
+                                  {article?.description}
+                                </Typography>
+                              </div>
+                              <div className={s.line}></div>
                             </div>
-                            <div className={s.line}></div>
-                          </div>
                           </a>
                         </Link>
                       </>
@@ -236,32 +238,34 @@ export default function CategoryPage({
                             )}/${article.slug}`}
                         >
                           <a>
-                          <div className={s.wrapper}>
-                            <img
-                              alt="Cover Image"
-                              className={s.coverImage}
-                              src={article?.coverImage?.formats?.small?.url}
-                            />
-                            <div className={s.textContent}>
-                              <div>{article?.published_at?.slice(0, -14)}</div>
-                              <Typography component="h2" variant={"h2"}>
-                                <Box
-                                  fontFamily="LyonDisplay"
-                                  fontWeight="fontWeightMedium"
-                                  className={s.headline}
-                                >
-                                  {article?.title}{" "}
-                                  {router.locale !== article?.locale
-                                    ? "(In Swedish)"
-                                    : ""}
-                                </Box>
-                              </Typography>
-                              <Typography variant={"subtitle1"}>
-                                {article?.description}
-                              </Typography>
+                            <div className={s.wrapper}>
+                              <img
+                                alt="Cover Image"
+                                className={s.coverImage}
+                                src={article?.coverImage?.formats?.small?.url}
+                              />
+                              <div className={s.textContent}>
+                                <div>
+                                  {article?.published_at?.slice(0, -14)}
+                                </div>
+                                <Typography component="h2" variant={"h2"}>
+                                  <Box
+                                    fontFamily="LyonDisplay"
+                                    fontWeight="fontWeightMedium"
+                                    className={s.headline}
+                                  >
+                                    {article?.title}{" "}
+                                    {router.locale !== article?.locale
+                                      ? "(In Swedish)"
+                                      : ""}
+                                  </Box>
+                                </Typography>
+                                <Typography variant={"subtitle1"}>
+                                  {article?.description}
+                                </Typography>
+                              </div>
+                              <div className={s.line}></div>
                             </div>
-                            <div className={s.line}></div>
-                          </div>
                           </a>
                         </Link>
                       </>

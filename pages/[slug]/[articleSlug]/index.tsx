@@ -160,6 +160,8 @@ export default function ArticlePage({
   );
 }
 
+// ... (other imports)
+
 export async function getStaticProps(context) {
   const { locale, params, preview } = context;
   let res = await fetch(
@@ -176,6 +178,7 @@ export async function getStaticProps(context) {
   var article: Article = articles.find(
     (article: Article) => article.locale == locale
   );
+
   if (article == null) {
     let categoryRes = await fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}`,
@@ -183,12 +186,15 @@ export async function getStaticProps(context) {
         // timeout: 11000
       }
     );
+
     if (!categoryRes.ok) {
       return {
         notFound: true,
       };
     }
+
     var currentCategory = await categoryRes.json();
+
     let res = await fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
         params.articleSlug
@@ -199,22 +205,27 @@ export async function getStaticProps(context) {
         // timeout: 11000
       }
     );
+
     if (!res.ok) {
       return {
         notFound: true,
       };
     }
+
     article = await res.json();
+
     categoryRes = await fetch(
       `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`,
       {
         // timeout: 11000
       }
     );
+
     var newLocaleCategories = await categoryRes.json();
     var newLocaleCategory: Category = newLocaleCategories.find(
       (category: Category) => category.locale == locale
     );
+
     if (
       newLocaleCategory &&
       newLocaleCategory.id !== currentCategory.id &&
@@ -227,18 +238,34 @@ export async function getStaticProps(context) {
         },
       };
     }
-  }
 
-  if (
-    article.publishCategory.slug !== params.slug &&
-    locale === article.locale
-  ) {
-    return {
-      redirect: {
-        destination: `/${article.publishCategory.slug}/${article.slug}`,
-        permanent: true,
-      },
-    };
+    if (
+      locale !== article.locale &&
+      article.locale !== locale.sv &&
+      article.locale !== locale.en &&
+      article.locale !== locale["nn-NO"]
+    ) {
+      var newLocaleArticle = article.localizations.find(
+        (articleLocale) => articleLocale.locale === locale
+      );
+
+      if (newLocaleArticle) {
+        let res = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
+            params.articleSlug
+          }?_locale=${locale}&categories_in=${newLocaleArticle.id}${
+            preview ? "&_publicationState=preview" : ""
+          }`,
+          {
+            // timeout: 11000
+          }
+        );
+
+        if (res.ok) {
+          article = await res.json();
+        }
+      }
+    }
   }
 
   var artist = null;
@@ -260,21 +287,18 @@ export async function getStaticProps(context) {
       article: article,
       ...(await serverSideTranslations(locale, [
         "articles",
-            "common",
-            "header",
-            "footer",
-            "profile",
-            "tags",
-            "art",
-            "upload",
-            "support",
-            "plans",
+        "common",
+        "header",
+        "footer",
+        "profile",
+        "tags",
+        "art",
+        "upload",
+        "support",
+        "plans",
       ])),
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 60 seconds
-    revalidate: 60, // In seconds
+    revalidate: 60,
   };
 }
 
@@ -287,7 +311,6 @@ export async function getStaticPaths() {
   );
   const articles = await res.json();
 
-  // Get the paths we want to pre-render based on posts
   const paths = articles.map((article: Article) => ({
     params: { slug: article.publishCategory.slug, articleSlug: article.slug },
     locale: article.locale,
