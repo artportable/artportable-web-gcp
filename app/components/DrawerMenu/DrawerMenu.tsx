@@ -58,7 +58,13 @@ export default function DrawerMenu({
   const signUpRedirectHref = useSignupRedirectHref();
   const [openLanguage, setOpenopenLanguage] = useState(false);
   const displayLocale =
-    router.locale === Locales.sv ? DisplayLocales.sv : DisplayLocales.en;
+    router.locale === Locales.sv
+      ? DisplayLocales.sv
+      : router.locale === Locales.en
+      ? DisplayLocales.en
+      : router.locale === Locales.no
+      ? DisplayLocales.no
+      : DisplayLocales.en;
 
   const close = () => setOpen(false);
 
@@ -372,6 +378,13 @@ export default function DrawerMenu({
                 onClick={(_) => handleCloseLanguage(_, Locales.en)}
               >
                 <ListItemText primary={t("english")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales["nn-NO"])}
+              >
+                <ListItemText primary={t("Norsk")} />
               </ListItem>
             </List>
           </Collapse>

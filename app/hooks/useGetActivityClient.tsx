@@ -1,7 +1,6 @@
-import { useContext } from 'react'
-import useSWR from 'swr'
-import { TokenContext } from '../contexts/token-context';
-
+import { useContext } from "react";
+import useSWR from "swr";
+import { TokenContext } from "../contexts/token-context";
 
 export function useGetActivityToken(username, userId, isSignedIn) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -9,12 +8,13 @@ export function useGetActivityToken(username, userId, isSignedIn) {
 
   const shouldFetch = username && isSignedIn && token;
 
-  const fetcher = url => fetch(url, {
-      method: 'GET',
+  const fetcher = (url) =>
+    fetch(url, {
+      method: "GET",
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }).then(r => r.json().then(data => data))
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((r) => r.json().then((data) => data));
 
   const { data, error } = useSWR(
     shouldFetch ? `${apiBaseUrl}/api/activity/connect?userId=${userId}` : null,
@@ -22,11 +22,12 @@ export function useGetActivityToken(username, userId, isSignedIn) {
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    });
+    }
+  );
 
   return {
     token: data?.Token,
     isLoading: !error && !data,
-    isError: error
-  }
+    isError: error,
+  };
 }

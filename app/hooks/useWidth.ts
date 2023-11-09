@@ -1,6 +1,6 @@
-import { Theme, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
+import { Theme, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Breakpoint } from "@material-ui/core/styles/createBreakpoints";
 
 type BreakpointOrNull = Breakpoint | null;
 
@@ -11,36 +11,49 @@ type BreakpointOrNull = Breakpoint | null;
  */
 export function useWidth() {
   const theme: Theme = useTheme();
-  const keys: Breakpoint[] = ['xl', 'lgPlus', 'lg', 'mdPlus', 'md', 'smPlus', 'sm', 'xs'];
+  const keys: Breakpoint[] = [
+    "xl",
+    "lgPlus",
+    "lg",
+    "mdPlus",
+    "md",
+    "smPlus",
+    "sm",
+    "xs",
+  ];
   return (
     keys.reduce((output: BreakpointOrNull, key: Breakpoint) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const matches = useMediaQuery(theme.breakpoints.up(key));
       return !output && matches ? key : output;
-    }, null) || 'xs'
+    }, null) || "xs"
   );
 }
 
-export function useMainWidth(): { breakpoint: string, regular: number, wide: number } {
+export function useMainWidth(): {
+  breakpoint: string;
+  regular: number;
+  wide: number;
+} {
   const theme: Theme = useTheme();
   const width: Breakpoint = useWidth();
-  
+
   switch (width) {
-    case 'xs':
+    case "xs":
       return theme.breakpointMainWidths.xs;
-    case 'sm':
+    case "sm":
       return theme.breakpointMainWidths.sm;
-    case 'smPlus':
+    case "smPlus":
       return theme.breakpointMainWidths.smPlus;
-    case 'md':
+    case "md":
       return theme.breakpointMainWidths.md;
-    case 'mdPlus':
+    case "mdPlus":
       return theme.breakpointMainWidths.mdPlus;
-    case 'lg':
-      return theme.breakpointMainWidths.lg
-    case 'lgPlus':
-      return theme.breakpointMainWidths.lgPlus
-    case 'xl':
+    case "lg":
+      return theme.breakpointMainWidths.lg;
+    case "lgPlus":
+      return theme.breakpointMainWidths.lgPlus;
+    case "xl":
       return theme.breakpointMainWidths.xl;
     default:
       break;
