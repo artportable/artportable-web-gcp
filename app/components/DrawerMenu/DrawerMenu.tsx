@@ -133,6 +133,46 @@ export default function DrawerMenu({
           <CloseIcon style={{ fontSize: "30px" }} />
         </IconButton>
       </div>
+
+      <div className={s.languageElement} style={{ marginTop: "10px" }}>
+        <Divider />
+        <ListItem button onClick={handleClickLanguage}>
+          <ListItemIcon>
+            <Badge max={99} color="primary">
+              <LanguageRoundedIcon color="secondary" style={{ fontSize: 30 }} />
+            </Badge>
+          </ListItemIcon>
+          <ListItemText primary={displayLocale} />
+          {openLanguage ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openLanguage} timeout="auto">
+          <List component="div" disablePadding>
+            <ListItem
+              button
+              className={s.nested}
+              onClick={(_) => handleCloseLanguage(_, Locales.sv)}
+            >
+              <ListItemText primary={t("Swedish")} />
+            </ListItem>
+            <ListItem
+              button
+              className={s.nested}
+              onClick={(_) => handleCloseLanguage(_, Locales.en)}
+            >
+              <ListItemText primary={t("english")} />
+            </ListItem>
+            <ListItem
+              button
+              className={s.nested}
+              onClick={(_) => handleCloseLanguage(_, Locales["nn-NO"])}
+            >
+              <ListItemText primary={t("Norsk")} />
+            </ListItem>
+          </List>
+        </Collapse>
+        <Divider />
+      </div>
+
       <List>
         {isSignedIn.value ? (
           <>
@@ -231,6 +271,7 @@ export default function DrawerMenu({
             >
               <ListItemText primary={t("login")} />
             </ListItem>
+
             <Link href="/newsletter" passHref>
               <a>
                 <ListItem button divider onClick={() => close()}>
@@ -299,7 +340,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <Link href={`${t("header:articles")}`} passHref>
+        <Link href={`${t("header:storiesSlug")}`} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("stories")} />
@@ -350,46 +391,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <div className={s.languageElement}>
-          <ListItem button onClick={handleClickLanguage}>
-            <ListItemIcon>
-              <Badge max={99} color="primary">
-                <LanguageRoundedIcon
-                  color="secondary"
-                  style={{ fontSize: 30 }}
-                />
-              </Badge>
-            </ListItemIcon>
-            <ListItemText primary={displayLocale} />
-            {openLanguage ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={openLanguage} timeout="auto">
-            <List component="div" disablePadding>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.sv)}
-              >
-                <ListItemText primary={t("swedish")} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.en)}
-              >
-                <ListItemText primary={t("english")} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales["nn-NO"])}
-              >
-                <ListItemText primary={t("Norsk")} />
-              </ListItem>
-            </List>
-          </Collapse>
-          <Divider />
-        </div>
+
         {isSignedIn.value ? (
           <>
             <ListItem button divider onClick={() => keycloak.logout()}>
