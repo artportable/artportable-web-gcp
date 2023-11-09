@@ -1,19 +1,19 @@
-import { Menu, MenuItem } from '@material-ui/core'
-import Button from '../Button/Button'
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import { useTranslation } from 'next-i18next'
-import { useState } from 'react';
-import { Locales, DisplayLocales } from '../../models/i18n/locales'
-import { useRouter } from 'next/router';
-import { styles } from './i18nSelector.css'
+import { Menu, MenuItem } from "@material-ui/core";
+import Button from "../Button/Button";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { useTranslation } from "next-i18next";
+import { useState } from "react";
+import { Locales, DisplayLocales } from "../../models/i18n/locales";
+import { useRouter } from "next/router";
+import { styles } from "./i18nSelector.css";
 
 export default function I18nSelector() {
-  const { t } = useTranslation('i18n');
+  const { t } = useTranslation("i18n");
   const s = styles();
   const [anchorElement, setAnchorElement] = useState(null);
   const router = useRouter();
-  const displayLocale = router.locale === Locales.sv ?
-    DisplayLocales.sv : DisplayLocales.en;
+  const displayLocale =
+    router.locale === Locales.sv ? DisplayLocales.sv : DisplayLocales.en;
 
   function handleClick(event) {
     setAnchorElement(event.currentTarget);
@@ -22,10 +22,10 @@ export default function I18nSelector() {
 
   function handleClose(_, locale?: Locales) {
     setAnchorElement(null);
-    if(locale !== undefined) {
+    if (locale !== undefined) {
       router.push(router.asPath, null, { locale: locale });
     }
-  } 
+  }
 
   return (
     <>
@@ -38,19 +38,20 @@ export default function I18nSelector() {
         onClick={handleClick}
         variant="outlined"
         disableElevation
-        rounded>
-          {displayLocale}
+        rounded
+      >
+        {displayLocale}
       </Button>
       <Menu
         id="language-menu"
         disableScrollLock
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
+          vertical: "bottom",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "center",
         }}
         anchorEl={anchorElement}
         getContentAnchorEl={null}
