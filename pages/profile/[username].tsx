@@ -104,7 +104,6 @@ export default function Profile(props) {
   const { like } = usePostLike();
   const { refreshToken } = useRefreshToken();
 
-
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
@@ -356,8 +355,8 @@ export default function Profile(props) {
       <Head>
         <title>
           {staticUserProfile &&
-            staticUserProfile.Name &&
-            staticUserProfile.Surname
+          staticUserProfile.Name &&
+          staticUserProfile.Surname
             ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
             : "Artportable"}
         </title>
@@ -365,8 +364,8 @@ export default function Profile(props) {
           name="title"
           content={
             staticUserProfile &&
-              staticUserProfile.Name &&
-              staticUserProfile.Surname
+            staticUserProfile.Name &&
+            staticUserProfile.Surname
               ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
               : "Artportable"
           }
@@ -463,18 +462,17 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  {
+                  {/* {
                     articles && articles.length > 0 && (
                       <Tab
                         className={s.tab}
-                        label={t("profile:articles")}
+                        label={t("profile:articlesSlug")}
                         {...a11yProps(t("profile:articles"))}
                       />
-                    )
+                    ) */}
 
                     // Grid i första div sen flexbox i nästa
                   }
-
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -576,7 +574,7 @@ export default function Profile(props) {
                       onUpdateProfilePicture={updateImage}
                     ></AboutMe>
                   </TabPanel>
-                  <TabPanel value={activeTab} index={2}>
+                  {/* <TabPanel value={activeTab} index={2}>
                     {
                       articles && (
                         <div className={s.flex}>
@@ -594,7 +592,8 @@ export default function Profile(props) {
                                     <div>
                                       <img
                                         src={
-                                          article?.coverImage?.formats?.small?.url
+                                          article?.coverImage?.formats?.small
+                                            ?.url
                                         }
                                         className={s.coverImage}
                                         alt="cover image"
@@ -631,7 +630,7 @@ export default function Profile(props) {
                       )
                       // Grid i första div sen flexbox i nästa
                     }
-                  </TabPanel>
+                  </TabPanel> */}
                 </Box>
               </div>
             ) : (
