@@ -306,18 +306,29 @@ export async function getStaticProps(context) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?_locale=all`
-  );
-  const articles = await res.json();
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?_locale=all`
+    );
+    const articles = await res.json();
 
-  const paths = articles.map((article: Article) => ({
-    params: { slug: article.publishCategory.slug, articleSlug: article.slug },
-    locale: article.locale,
-  }));
+    const paths = articles
+      .filter(
+        (article) =>
+          typeof article.publishCategory?.slug === "string" &&
+          typeof article.slug === "string"
+      )
+      .map((article) => ({
+        params: {
+          slug: article.publishCategory.slug,
+          articleSlug: article.slug,
+        },
+        locale: article.locale,
+      }));
 
-  // We'll pre-render only these paths at build time.
-  // {fallback: blocking } will server-render pages
-  // on-demand if the path doesn't exist.
-  return { paths, fallback: true };
+    return { paths, fallback: true };
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return { paths: [], fallback: true };
+  }
 }
