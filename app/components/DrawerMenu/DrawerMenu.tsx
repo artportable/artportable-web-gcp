@@ -164,7 +164,7 @@ export default function DrawerMenu({
             <ListItem
               button
               className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales["nn-NO"])}
+              onClick={(_) => handleCloseLanguage(_, Locales.nb)}
             >
               <ListItemText primary={t("Norsk")} />
             </ListItem>
