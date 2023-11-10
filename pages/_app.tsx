@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         router.asPath === "/" ||
         router.asPath === "/en" ||
         router.asPath === "/sv" ||
-        router.asPath === "/nn-NO"
+        router.asPath === "/nb"
       ) {
         router.push("/" + getCurrentLanguage() + "/feed");
       }

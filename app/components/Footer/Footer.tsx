@@ -1,16 +1,16 @@
-import Link from 'next/link'
-import { Typography } from '@material-ui/core'
-import { styles } from './footer.css'
-import clsx from 'clsx'
-import { useTranslation } from 'next-i18next'
-import { useKeycloak } from '@react-keycloak/ssr'
-import type { KeycloakInstance } from 'keycloak-js'
-import { useRouter } from 'next/router'
-import useSignupRedirectHref from '../../hooks/useSignupRedirectHref'
+import Link from "next/link";
+import { Typography } from "@material-ui/core";
+import { styles } from "./footer.css";
+import clsx from "clsx";
+import { useTranslation } from "next-i18next";
+import { useKeycloak } from "@react-keycloak/ssr";
+import type { KeycloakInstance } from "keycloak-js";
+import { useRouter } from "next/router";
+import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
 
 export default function Footer() {
   const s = styles();
-  const { t } = useTranslation('footer');
+  const { t } = useTranslation("footer");
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const signUpRedirectHref = useSignupRedirectHref();
@@ -29,11 +29,14 @@ export default function Footer() {
             </a>
           </Link>
           <Typography variant="body2" component="div" className={s.reserved}>
-          © 2022 Artportable AB. All rights reserved.
-        </Typography>
-        <Typography variant="body2" component="div" className={s.cookies}>
-        {t( 'cookies')}<Link href={"/gdpr"}><a>{t('integrity')}</a></Link>
-        </Typography>
+            © 2023 Artportable AB. All rights reserved.
+          </Typography>
+          <Typography variant="body2" component="div" className={s.cookies}>
+            {t("cookies")}
+            <Link href={"/gdpr"}>
+              <a>{t("integrity")}</a>
+            </Link>
+          </Typography>
         </div>
         {/* <div className={s.socialMediaFlex}>
           <Link href="https://www.instagram.com/artportableofficial/">
@@ -69,40 +72,40 @@ export default function Footer() {
 
       <div className={clsx(s.getInTouch, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
-          {t('popularPages')}
+          {t("popularPages")}
         </Typography>
         <Link href="https://artportable.com/">
           <a>
             <Typography variant="body2" component="div">
-              {t('art')}
+              {t("art")}
             </Typography>
           </a>
         </Link>
         <Link href="/fotokonst">
           <a>
             <Typography variant="body2" component="div">
-              {t('photography')}
+              {t("photography")}
             </Typography>
           </a>
         </Link>
         <Link href="/akvarell">
           <a>
             <Typography variant="body2" component="div">
-              {t('aquarelle')}
+              {t("aquarelle")}
             </Typography>
           </a>
         </Link>
         <Link href="/skulpturer">
           <a>
             <Typography variant="body2" component="div">
-              {t('sculpture')}
+              {t("sculpture")}
             </Typography>
           </a>
         </Link>
         <Link href="/oljemalningar">
           <a>
             <Typography variant="body2" component="div">
-              {t('oilPaintings')}
+              {t("oilPaintings")}
             </Typography>
           </a>
         </Link>
@@ -110,22 +113,38 @@ export default function Footer() {
 
       <div className={clsx(s.hide, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
-          {t('becomeAPart')}
+          {t("becomeAPart")}
         </Typography>
-        <Typography variant="body2" component="div" onClick={() => keycloak.login({ locale: router.locale })} className={s.idpLink}>
-          {t('logIn')}
+        <Typography
+          variant="body2"
+          component="div"
+          onClick={() => keycloak.login({ locale: router.locale })}
+          className={s.idpLink}
+        >
+          {t("logIn")}
         </Typography>
-        <Typography variant="body2" component="div" onClick={() => keycloak.register({
-          locale: router.locale,
-          redirectUri: signUpRedirectHref
-        })} className={s.idpLink}>
-          {t('register')}
+        <Typography
+          variant="body2"
+          component="div"
+          onClick={() =>
+            keycloak.register({
+              locale: router.locale,
+              redirectUri: signUpRedirectHref,
+            })
+          }
+          className={s.idpLink}
+        >
+          {t("register")}
         </Typography>
       </div>
 
       <div className={clsx(s.hide2, s.flexItem)}>
-        <Typography variant="subtitle2" component="div" className={clsx(s.hereWeAreLink, s.links)}>
-          {t('hereWeAre')}
+        <Typography
+          variant="subtitle2"
+          component="div"
+          className={clsx(s.hereWeAreLink, s.links)}
+        >
+          {t("hereWeAre")}
         </Typography>
         <Typography variant="body2" component="div">
           Åsögatan 176
@@ -137,19 +156,19 @@ export default function Footer() {
 
       <div className={clsx(s.getInTouch, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
-          {t('getInTouch')}
+          {t("getInTouch")}
         </Typography>
         <Link href="/support">
           <a>
             <Typography variant="body2" component="div">
-              {t('contactUs')}
+              {t("contactUs")}
             </Typography>
           </a>
         </Link>
         <Link href="/about-us">
           <a>
             <Typography variant="body2" component="div">
-              {t('aboutUs')}
+              {t("aboutUs")}
             </Typography>
           </a>
         </Link>
@@ -157,32 +176,35 @@ export default function Footer() {
 
       <div className={clsx(s.mobile, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
-          {t('followUs')}
+          {t("followUs")}
         </Typography>
         <div className={s.flexSocialMedia}>
           <Link href="https://www.instagram.com/artportable/">
             <a>
               <img
-                src={'/images/instagram.svg'}
+                src={"/images/instagram.svg"}
                 alt="Link to artportables instagram"
-                title="instagram logo" />
+                title="instagram logo"
+              />
             </a>
           </Link>
           <Link href="https://www.facebook.com/artportable/">
             <a>
               <img
-                src={'/images/facebook.svg'}
+                src={"/images/facebook.svg"}
                 alt="Link to artportables facebook"
-                title="facebook logo" />
+                title="facebook logo"
+              />
             </a>
           </Link>
           <Link href="https://www.tiktok.com/@artportable">
             <a>
               <img
                 className={s.tiktok}
-                src={'/images/TIK-TOK.svg'}
+                src={"/images/TIK-TOK.svg"}
                 alt="Link to artportables tiktok"
-                title="tiktok logo" />
+                title="tiktok logo"
+              />
             </a>
           </Link>
         </div>
