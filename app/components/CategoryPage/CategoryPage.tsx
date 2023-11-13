@@ -183,11 +183,13 @@ export default function CategoryPage({
               if (article.published_at)
                 return (
                   <div key={article.id}>
-                    {router.locale === "en" ? (
+                    {router.locale === "en" ||
+                    router.locale === "da" ||
+                    router.locale === "nb" ? (
                       <>
                         <Link
                           className={s.link}
-                          href={`/en/${category.name
+                          href={`/${router.locale}/${category.name
                             .toLowerCase()
                             .replace(
                               "konstnärsporträtt",
@@ -230,7 +232,7 @@ export default function CategoryPage({
                       <>
                         <Link
                           className={s.link}
-                          href={`/${category.name
+                          href={`/${router.locale}/${category.name
                             .toLowerCase()
                             .replace(
                               "konstnärsporträtt",
