@@ -57,14 +57,20 @@ export default function DrawerMenu({
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
   const [openLanguage, setOpenopenLanguage] = useState(false);
-  const displayLocale =
-    router.locale === Locales.sv
-      ? DisplayLocales.sv
-      : router.locale === Locales.en
-      ? DisplayLocales.en
-      : router.locale === Locales["nn-NO"]
-      ? DisplayLocales["nn-NO"]
-      : DisplayLocales.en;
+  const displayLocale = (() => {
+    switch (router.locale) {
+      case Locales.sv:
+        return DisplayLocales.sv;
+      case Locales.en:
+        return DisplayLocales.en;
+      case Locales.nb:
+        return DisplayLocales.nb;
+      case Locales.da:
+        return DisplayLocales.da;
+      default:
+        return DisplayLocales.en;
+    }
+  })();
 
   const close = () => setOpen(false);
 
@@ -167,6 +173,13 @@ export default function DrawerMenu({
               onClick={(_) => handleCloseLanguage(_, Locales.nb)}
             >
               <ListItemText primary={t("Norsk")} />
+            </ListItem>
+            <ListItem
+              button
+              className={s.nested}
+              onClick={(_) => handleCloseLanguage(_, Locales.da)}
+            >
+              <ListItemText primary={t("Danska")} />
             </ListItem>
           </List>
         </Collapse>
