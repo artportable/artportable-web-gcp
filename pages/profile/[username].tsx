@@ -462,14 +462,14 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  {/* {
+                  {
                     articles && articles.length > 0 && (
                       <Tab
                         className={s.tab}
-                        label={t("profile:articlesSlug")}
+                        label={t("profile:articles")}
                         {...a11yProps(t("profile:articles"))}
                       />
-                    ) */}
+                    )
 
                     // Grid i första div sen flexbox i nästa
                   }
@@ -574,17 +574,14 @@ export default function Profile(props) {
                       onUpdateProfilePicture={updateImage}
                     ></AboutMe>
                   </TabPanel>
-                  {/* <TabPanel value={activeTab} index={2}>
+                  <TabPanel value={activeTab} index={2}>
                     {
                       articles && (
                         <div className={s.flex}>
                           {articles.map((article, key) => {
                             return (
                               <Link
-                                href={`/${article.publishCategory.slug.replace(
-                                  "konstnärsporträtt",
-                                  "konstnaersportraett"
-                                )}/${article.slug}`}
+                                href={`/konstnaersportraett/${article.slug}`}
                                 key={key}
                               >
                                 <a>
@@ -630,7 +627,7 @@ export default function Profile(props) {
                       )
                       // Grid i första div sen flexbox i nästa
                     }
-                  </TabPanel> */}
+                  </TabPanel>
                 </Box>
               </div>
             ) : (
