@@ -1,0 +1,43 @@
+{
+  "gdpr": {
+    "privacyPolicy": {
+      "title": "Fortrolighedspolitik",
+      "lastUpdated": "Sidst opdateret: 22. september 2021",
+      "texts": [
+        "Denne fortrolighedspolitik beskriver vores politikker og procedurer for indsamling, brug og offentliggørelse af dine oplysninger, når du bruger tjenesten, og informerer dig om dine privatlivsrettigheder og hvordan loven beskytter dig.",
+        "Vi bruger dine personlige data til at levere og forbedre tjenesten. Ved at bruge tjenesten accepterer du indsamling og brug af oplysninger i overensstemmelse med denne fortrolighedspolitik."
+      ]
+    },
+    "sections": [
+      {
+        "title": "Fortolkning og definitioner",
+        "interpretation": {
+          "title": "Fortolkning",
+          "description": "Ordene, hvis begyndelsesbogstav er stort, har betydninger defineret under følgende betingelser. De følgende definitioner skal have samme betydning, uanset om de optræder i ental eller flertal."
+        },
+        "definitions": {
+          "title": "Definitioner",
+          "description": "Til formål med denne fortrolighedspolitik:",
+          "list": [
+            "<strong>Brugerkonto</strong> betyder en unik konto, oprettet til dig for at få adgang til vores tjeneste eller dele af vores tjeneste.",
+            "<strong>Virksomhed</strong> (refereres enten til som \"virksomheden\", \"vi\", \"os\" eller \"vores\" i denne aftale) henviser til Artportable AB, Åsögatan 176, Stockholm, Sverige",
+            "<strong>Cookies</strong> er små filer, der placeres på din computer, mobil eller anden enhed af en hjemmeside, og som indeholder detaljerne fra din browsinghistorie på den pågældende hjemmeside blandt dens mange anvendelser.",
+            "<strong>Land</strong> refererer til: Sverige.",
+            "<strong>Enheden</strong> betyder enhver enhed, der kan få adgang til tjenesten, såsom en computer, en mobiltelefon eller en digital tablet.",
+            "<strong>Persondata</strong> er enhver information, der vedrører en identificeret eller identificerbar person.",
+            "<strong>Tjeneste</strong> refererer til hjemmesiden.",
+            "<strong>Tjenesteudbyder</strong> betyder enhver fysisk eller juridisk person, der behandler dataene på vegne af virksomheden. Det refererer til tredjepartsfirmaer eller enkeltpersoner ansat af virksomheden for at lette tjenesten, levere tjenesten på vegne af virksomheden, udføre tjenester relateret til tjenesten eller assistere virksomheden i at analysere, hvordan tjenesten bruges.",
+            "<strong>Tredjeparts social medietjeneste</strong> refererer til enhver hjemmeside eller ethvert socialt netværkssted, gennem hvilket en bruger kan logge ind eller oprette en konto for at bruge tjenesten.",
+            "<strong>Brugsdata</strong> henviser til data, der indsamles automatisk, enten genereret ved brugen af tjenesten eller fra tjenesteinfrastrukturen selv (f.eks. varigheden af et besøg på en side).",
+            "<strong>Hjemmeside</strong> refererer til Artportable, tilgængelig fra https://artportable.com",
+            "<strong>Du</strong> betyder den person, der får adgang til eller bruger tjenesten, eller virksomheden eller en anden juridisk enhed, på hvis vegne en sådan person får adgang til eller bruger tjenesten, som er relevant."
+          ]
+        }
+      },
+      {
+        "title": "Indsamling og brug af dine personlige data",
+        "typesOfData": {}
+      }
+    ]
+  }
+}

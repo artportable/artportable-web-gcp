@@ -61,6 +61,8 @@ export default function I18nSelector() {
       >
         <MenuItem onClick={(_) => handleClose(_, Locales.sv)}>Swe</MenuItem>
         <MenuItem onClick={(_) => handleClose(_, Locales.en)}>Eng</MenuItem>
+        <MenuItem onClick={(_) => handleClose(_, Locales.nb)}>Norska</MenuItem>
+        <MenuItem onClick={(_) => handleClose(_, Locales.da)}>Danska</MenuItem>
       </Menu>
     </>
   );
