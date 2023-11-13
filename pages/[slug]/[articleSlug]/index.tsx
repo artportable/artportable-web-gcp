@@ -36,10 +36,11 @@ export default function ArticlePage({
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content={`${publicUrl}/${article?.publishCategory.name.toLowerCase()}/${
-            article?.slug
-          }`}
+          content={`${publicUrl}/${(
+            article?.publishCategory?.name || "fallback-category"
+          ).toLowerCase()}/${article?.slug}`}
         />
+
         <meta
           property="og:image"
           content={article?.coverImage?.formats?.small?.url}
