@@ -1,0 +1,48 @@
+{
+  "welcomeTo": "Velkomin(n) á stærstu samfélag Norðurlandanna fyrir list",
+  "artPortableDescription": "Artportable-portfolioið þitt er tól sem hjálpar þér að kynna listskap þitt á fagmannlegan hátt. Artportable er fundarstaður fyrir listamenn, kaupendur listaverka og listdugandi",
+  "ourMemberships": "Okkar mismunandi meðlimasamningar",
+  "youCanAlwaysUpdateYourMembership": "Þú getur alltaf uppfært meðlimapakka þinn",
+  "yearlyPayment": "Ársáætlun",
+  "monthlyPayment": "Mánaðarleg greiðsla",
+  "sek": "kr",
+  "signUp": "Skráðu þig",
+  "plans": {
+    "free": {
+      "name": "Ókeypis",
+      "subtitle": "Listhugaður – fáðu ókeypis aðgang í dag og finndu frumlist fyrir heimilið.",
+      "listTexts": [
+        "Fylgstu með listamönnum",
+        "Finndu listaverk fyrir heimilið",
+        "Spjallaðu og sendu beiðnir um listaverk",
+        "Lesðu greinar og fáðu uppfærslur um sýningar"
+      ]
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "subtitle": "Fyrir þig sem ert listamaður og vilt sýna fram og selja verk þín",
+      "listTexts": [
+        "Birtu verk þín",
+        "Spjallaðu og fáðu beiðnir um listaverkin þín",
+        "Borgaðu 0 % af selðum verkum í þjónustugjaldi",
+        "Fylgdu og tengdu við aðra listamenn"
+      ]
+    },
+    "portfolioPremium": {
+      "name": "Premium Portfolio",
+      "subtitle": "Fyrir þig sem ert listamaður og vilt fá forgang og aðgang að fleiri ávöxtunum.",
+      "listTexts": [
+        "Allt frá Portfolio",
+        "Verða forgangsaðili í flæðinu",
+        "Borgaðu 0 % af selðum verkum í þjónustugjaldi",
+        "Stuðningur",
+        "Persónulegur listastjóri",
+        "Hjálp við að búa til fagmannlega portfólió"
+      ]
+    }
+  },
+  "joinTheCommunity": "Taktu þátt í samfélaginu",
+  "Endast siffror": "Aðeins tölur",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "Til að halda áfram með uppfærsluna þína þarftu að slá inn símanúmerið þitt",
+  "Telefonnummer": "Símanúmer"
+}

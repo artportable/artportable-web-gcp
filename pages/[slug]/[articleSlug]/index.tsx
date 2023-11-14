@@ -245,7 +245,8 @@ export async function getStaticProps(context) {
       article.locale !== locale.sv &&
       article.locale !== locale.en &&
       article.locale !== locale.nb &&
-      article.locale !== locale.da
+      article.locale !== locale.da &&
+      article.locale !== locale.is
     ) {
       var newLocaleArticle = article.localizations.find(
         (articleLocale) => articleLocale.locale === locale

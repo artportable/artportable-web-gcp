@@ -3,11 +3,13 @@ export enum Locales {
   en = "en",
   nb = "nb",
   da = "da",
+  is = "is",
 }
 
 export enum DisplayLocales {
   sv = "Svenska",
-  en = "Eng",
+  en = "English",
   nb = "Norsk",
   da = "Danska",
+  is = "Íslenska",
 }
