@@ -14,7 +14,7 @@
   "title": "Greinar - list í fókus",
   "moreArticlesMenu": "FLEIRI GREINAR",
   "moreArticles": "Fleiri greinar",
-  "moreArticlesSlug": "fleirigreinar",
+  "moreArticlesSlug": "fleiri-greinar",
   "offers": "TILBOÐ",
   "offersSlug": "tilbod",
   "membershipOffers": "MEÐLEMSFRAMLEIÐSLUR",
@@ -34,6 +34,6 @@
   "getInterviewed": "Verðu viðtalinn af rithöfundinum okkar og fáðu grein birtaða um þig og listaskap þitt.",
   "imageFromPortfolio": "(mynd úr safn sem inniheldur grein)",
   "courses": "Námskeið og menntun",
-  "coursesSlug": "namskeid",
+  "coursesSlug": "namskeid-og-menntun",
   "checkout": "Kaupa grein"
 }

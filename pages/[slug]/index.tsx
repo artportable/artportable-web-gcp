@@ -98,7 +98,8 @@ export async function getStaticProps({ params, locale }) {
         category.locale !== Locales.sv &&
         category.locale !== Locales.en &&
         category.locale !== Locales.nb &&
-        category.locale !== Locales.da
+        category.locale !== Locales.da &&
+        category.locale !== Locales.is
       ) {
         var localizedCategory = category.localizations.find(
           (locale) => locale.locale === locale
@@ -122,7 +123,8 @@ export async function getStaticProps({ params, locale }) {
                     locale.locale == Locales.en ||
                     locale.locale == Locales.sv ||
                     locale.locale == Locales.nb ||
-                    locale.locale == Locales.da
+                    locale.locale == Locales.da ||
+                    locale.locale == Locales.is
                 )
             );
 
