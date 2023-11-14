@@ -1,4 +1,4 @@
 {
-  "pleaseTryAgain" : "Något gick fel när kanalen skulle öppnas, var vänlig försök igen senare",
-  "referToArtwork" : "Köpförfrågan\n[{{artwork.title}}]({{artwork.url}})"
+  "pleaseTryAgain": "Eitthvað fór úrskeiðis þegar reynt var að opna rásina, vinsamlegast reyndu aftur seinna",
+  "referToArtwork": "Kaupa beiðni\n[{{artwork.title}}]({{artwork.url}})"
 }

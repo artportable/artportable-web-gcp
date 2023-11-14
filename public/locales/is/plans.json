@@ -1,48 +1,48 @@
 {
-  "welcomeTo": "Välkommen till Nordens största community för konst",
-  "artPortableDescription": "Din Artportable-portfolio är ett verktyg som hjälper dig att presentera ditt konstnärskap på ett professionellt sätt. Artportable är en mötesplats för konstnärer, konstköpare och konstentusiaster",
-  "ourMemberships": "Våra olika medlemsskap",
-  "youCanAlwaysUpdateYourMembership": "Du kan alltid uppdatera ditt medlemspaket",
-  "yearlyPayment": "Årsvis",
-  "monthlyPayment": "Månadsvis",
+  "welcomeTo": "Velkomin(n) á stærstu samfélag Norðurlandanna fyrir list",
+  "artPortableDescription": "Artportable-portfolioið þitt er tól sem hjálpar þér að kynna listskap þitt á fagmannlegan hátt. Artportable er fundarstaður fyrir listamenn, kaupendur listaverka og listdugandi",
+  "ourMemberships": "Okkar mismunandi meðlimasamningar",
+  "youCanAlwaysUpdateYourMembership": "Þú getur alltaf uppfært meðlimapakka þinn",
+  "yearlyPayment": "Ársáætlun",
+  "monthlyPayment": "Mánaðarleg greiðsla",
   "sek": "kr",
-  "signUp": "Bli medlem",
+  "signUp": "Skráðu þig",
   "plans": {
     "free": {
-      "name": "Gratis",
-      "subtitle": "Konstintresserad – skaffa ett gratiskonto idag och hitta originalkonst till hemmet.",
+      "name": "Ókeypis",
+      "subtitle": "Listhugaður – fáðu ókeypis aðgang í dag og finndu frumlist fyrir heimilið.",
       "listTexts": [
-        "Följ konstnärer",
-        "Hitta konstverk till ditt hem",
-        "Chatta och skicka förfrågan om konstverk",
-        "Läs artiklar och få uppdateringar om utställningar"
+        "Fylgstu með listamönnum",
+        "Finndu listaverk fyrir heimilið",
+        "Spjallaðu og sendu beiðnir um listaverk",
+        "Lesðu greinar og fáðu uppfærslur um sýningar"
       ]
     },
     "portfolio": {
       "name": "Portfolio",
-      "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
+      "subtitle": "Fyrir þig sem ert listamaður og vilt sýna fram og selja verk þín",
       "listTexts": [
-        "Publicera dina verk",
-        "Chatta och få förfrågningar om dina konstverk",
-        "Betala 0 % i provision på sålda verk",
-        "Följ och interagera med andra konstnärer"
+        "Birtu verk þín",
+        "Spjallaðu og fáðu beiðnir um listaverkin þín",
+        "Borgaðu 0 % af selðum verkum í þjónustugjaldi",
+        "Fylgdu og tengdu við aðra listamenn"
       ]
     },
     "portfolioPremium": {
-      "name": "Portfolio Premium",
-      "subtitle": "För dig som är konstnär och vill bli prioriterad samt få tillgång till fler förmåner.",
+      "name": "Premium Portfolio",
+      "subtitle": "Fyrir þig sem ert listamaður og vilt fá forgang og aðgang að fleiri ávöxtunum.",
       "listTexts": [
-        "Allt från Portfolio",
-        "Bli prioriterad i flödet",
-        "Betala 0 % i provision på sålda verk",
-        "Support",
-        "Personlig konstkoordinator",
-        "Hjälp att skapa en professionell portfolio"
+        "Allt frá Portfolio",
+        "Verða forgangsaðili í flæðinu",
+        "Borgaðu 0 % af selðum verkum í þjónustugjaldi",
+        "Stuðningur",
+        "Persónulegur listastjóri",
+        "Hjálp við að búa til fagmannlega portfólió"
       ]
-    } 
+    }
   },
-  "joinTheCommunity": "Gå med i gemenskapen",
-  "Endast siffror": "Endast siffror",
-  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer",
-  "Telefonnummer": "Telefonnummer"
+  "joinTheCommunity": "Taktu þátt í samfélaginu",
+  "Endast siffror": "Aðeins tölur",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "Til að halda áfram með uppfærsluna þína þarftu að slá inn símanúmerið þitt",
+  "Telefonnummer": "Símanúmer"
 }
