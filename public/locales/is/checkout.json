@@ -1,0 +1,25 @@
+{
+  "checkoutHeader": "Betalningsalternativ",
+  "yearlyPayment": "Årlig betalning",
+  "monthlyPayment": "Månadsvis betalning",
+  "youSave": "Du sparar",
+  "paymentDetails": "Betalningsuppgifter",
+  "product": "Produkt",
+  "products": "Produkter",
+  "subtotal": "Subtotal",
+  "total": "Totalt",
+  "discount": "Rabatt",
+  "toPayToday": "Betalas idag",
+  "checkoutTermsFooter": "Artportable får informera mig med anpassade e-postmeddelanden om produkter och tjänster. Mer information finns i vår Sekretesspolicy. Du kan när som helst avbryta prenumerationen.",
+  "backButton": "Tillbaka",
+  "finishButton": "Slutför",
+  "paymentSuccessful": "Betalning lyckades",
+  "paymentUnsuccessful": "Payment unsuccessful",
+  "redirectingIn": "Omdirigerar om",
+  "takeMeThereNow": "Klicka för gå vidare",
+  "tryAgain": "Försök igen",
+  "cardDetails": "Fyll i dina kortuppgifter",
+  "fewSeconds": "Nu är du några sekunder från att börja ladda upp dina verk...",
+  "pleaseFill": "Vänligen fyll i dina uppgifter"
+
+}

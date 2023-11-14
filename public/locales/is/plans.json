@@ -1,0 +1,48 @@
+{
+  "welcomeTo": "Välkommen till Nordens största community för konst",
+  "artPortableDescription": "Din Artportable-portfolio är ett verktyg som hjälper dig att presentera ditt konstnärskap på ett professionellt sätt. Artportable är en mötesplats för konstnärer, konstköpare och konstentusiaster",
+  "ourMemberships": "Våra olika medlemsskap",
+  "youCanAlwaysUpdateYourMembership": "Du kan alltid uppdatera ditt medlemspaket",
+  "yearlyPayment": "Årsvis",
+  "monthlyPayment": "Månadsvis",
+  "sek": "kr",
+  "signUp": "Bli medlem",
+  "plans": {
+    "free": {
+      "name": "Gratis",
+      "subtitle": "Konstintresserad – skaffa ett gratiskonto idag och hitta originalkonst till hemmet.",
+      "listTexts": [
+        "Följ konstnärer",
+        "Hitta konstverk till ditt hem",
+        "Chatta och skicka förfrågan om konstverk",
+        "Läs artiklar och få uppdateringar om utställningar"
+      ]
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
+      "listTexts": [
+        "Publicera dina verk",
+        "Chatta och få förfrågningar om dina konstverk",
+        "Betala 0 % i provision på sålda verk",
+        "Följ och interagera med andra konstnärer"
+      ]
+    },
+    "portfolioPremium": {
+      "name": "Portfolio Premium",
+      "subtitle": "För dig som är konstnär och vill bli prioriterad samt få tillgång till fler förmåner.",
+      "listTexts": [
+        "Allt från Portfolio",
+        "Bli prioriterad i flödet",
+        "Betala 0 % i provision på sålda verk",
+        "Support",
+        "Personlig konstkoordinator",
+        "Hjälp att skapa en professionell portfolio"
+      ]
+    } 
+  },
+  "joinTheCommunity": "Gå med i gemenskapen",
+  "Endast siffror": "Endast siffror",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer",
+  "Telefonnummer": "Telefonnummer"
+}
