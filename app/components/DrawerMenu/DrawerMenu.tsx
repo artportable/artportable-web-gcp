@@ -67,6 +67,8 @@ export default function DrawerMenu({
         return DisplayLocales.nb;
       case Locales.da:
         return DisplayLocales.da;
+      case Locales.is:
+        return DisplayLocales.is;
       default:
         return DisplayLocales.en;
     }
@@ -180,6 +182,13 @@ export default function DrawerMenu({
               onClick={(_) => handleCloseLanguage(_, Locales.da)}
             >
               <ListItemText primary={t("Danska")} />
+            </ListItem>
+            <ListItem
+              button
+              className={s.nested}
+              onClick={(_) => handleCloseLanguage(_, Locales.is)}
+            >
+              <ListItemText primary={t("Íslenska")} />
             </ListItem>
           </List>
         </Collapse>
