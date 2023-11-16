@@ -6,8 +6,8 @@ export const styles = makeStyles((theme: Theme) =>
         //width:'800px', 
         marginLeft:'auto', 
         marginRight:'auto',
-        maxWidth: '850px',
-        backgroundColor:'#ffffff',
+        maxWidth: '800px',
+        //backgroundColor:'#ffffff',
     },
     image: {
         width: '100%',
@@ -16,20 +16,20 @@ export const styles = makeStyles((theme: Theme) =>
     published: {
         color: '#999999',
         fontSize: '16px',
-        padding: '2rem'
+        //padding: '1rem'
     },
     titleText: {
         //height:'1000px'
-        padding: '2rem'
+        //padding: '0.5rem'
     },
     title: {
         //textAlign:'center',
         fontSize: '38px',
-        marginBottom: '20px',
+
     },
     text: {
         fontSize: '18px',
-        padding: '1.5rem 0px'
+        padding: '1rem 0px'
     },
 
 
