@@ -423,6 +423,9 @@ export default function Exhibition({ navBarItems }) {
       <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
         <Head>
           <title>{t("title")}</title>
+
+          <meta name="description" content={t("artportableExhibition")} />
+          <meta name="url" content="https://artportable.com/showroom" />
         </Head>
         <div className={s.flexContainer}>
           <div className={s.left}>
@@ -430,17 +433,42 @@ export default function Exhibition({ navBarItems }) {
               {t("artportableExhibition")}
             </Typography>
             <Typography variant="h4" className={s.description}>
-            {t("exhibitionText")} 
-            <a style={{color: "#c67777"}} href="https://www.stockholmfisk.se/">Stockholm Fisk, </a> 
-            <a style={{color: "#c67777"}} href="https://psmatsal.com/new-startpage/">PS Matsal, </a>
-            <a style={{color: "#c67777"}} href="https://artbakery.se/">Art Bakery, </a>
-            <a style={{color: "#c67777"}} href="https://www.nk.se/avdelningar/stockholm/art-cafe?ssw=1">NK CAFE, </a>
-            <a style={{color: "#c67777"}} href="https://angbatsbryggan.com/">ÅNGBÅTSBRYGGAN, </a>
-            <a style={{color: "#c67777"}} href="https://www.lapiazzadjursholm.se/">LA PIAZZA</a>
+              {t("exhibitionText")}
+              <a
+                style={{ color: "#c67777" }}
+                href="https://www.stockholmfisk.se/"
+              >
+                Stockholm Fisk,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://psmatsal.com/new-startpage/"
+              >
+                PS Matsal,{" "}
+              </a>
+              <a style={{ color: "#c67777" }} href="https://artbakery.se/">
+                Art Bakery,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://www.nk.se/avdelningar/stockholm/art-cafe?ssw=1"
+              >
+                NK CAFE,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://angbatsbryggan.com/"
+              >
+                ÅNGBÅTSBRYGGAN,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://www.lapiazzadjursholm.se/"
+              >
+                LA PIAZZA
+              </a>
             </Typography>
 
-            
-          
             <Typography variant="h4" className={s.welcomeText}>
               {t("exhibitQuestion")} {""}
               <a href="mailto: hello@artportable.com">{t("email")}</a>
@@ -505,15 +533,9 @@ export default function Exhibition({ navBarItems }) {
                               rel="noopener noreferrer"
                               style={{
                                 textDecoration: "underline",
-                                color: "#a35d5d",
+
                                 cursor: "pointer",
                               }}
-                              onMouseOver={(e) =>
-                                (e.target.style.color = "#ff8383")
-                              }
-                              onMouseOut={(e) =>
-                                (e.target.style.color = "#a35d5d")
-                              }
                             >
                               {showroom.artist}
                             </a>
@@ -565,13 +587,9 @@ export default function Exhibition({ navBarItems }) {
                           rel="noopener noreferrer"
                           style={{
                             textDecoration: "underline",
-                            color: "#a35d5d",
+
                             cursor: "pointer",
                           }}
-                          onMouseOver={(e) =>
-                            (e.target.style.color = "#ff8383")
-                          }
-                          onMouseOut={(e) => (e.target.style.color = "#a35d5d")}
                         >
                           {selectedCafe.replace("_", " ")}
                         </a>
@@ -598,15 +616,9 @@ export default function Exhibition({ navBarItems }) {
                             rel="noopener noreferrer"
                             style={{
                               textDecoration: "underline",
-                              color: "#a35d5d",
+
                               cursor: "pointer",
                             }}
-                            onMouseOver={(e) =>
-                              (e.target.style.color = "#ff8383")
-                            }
-                            onMouseOut={(e) =>
-                              (e.target.style.color = "#a35d5d")
-                            }
                           >
                             {artist.name}
                           </a>
