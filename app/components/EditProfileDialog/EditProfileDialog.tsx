@@ -27,13 +27,18 @@ import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import { capitalizeFirst } from "../../utils/util";
 import useRefreshToken from "../../hooks/useRefreshToken";
+import { Country, State, City } from "country-state-city";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import { allCountriesData } from "../../../public/countries/allCountries";
 
 interface Profile {
   title: string;
   headline: string;
   location: string;
-  Country: string;
-  City: string;
+  country: string;
+  state: string;
+  city: string;
   about: string;
   studio: Studio;
   inspiredBy: string;
@@ -76,6 +81,30 @@ export default function EditProfileDialog({ userProfile }) {
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [states, setStates] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+
+  useEffect(() => {
+    const countries = allCountriesData.map((country) => ({
+      name: country.name,
+    }));
+    setCountries(countries);
+    console.log(countries); // Log the updated countries immediately after setting the state
+  }, []);
+
+  useEffect(() => {
+    console.log(countries);
+  }, []);
+
+  const handleCountryChange = (event) => {
+    const selectedCountryName = event.target.value;
+    console.log(selectedCountryName);
+
+    setSelectedCountry(selectedCountryName);
+  };
 
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(
@@ -110,20 +139,22 @@ export default function EditProfileDialog({ userProfile }) {
   };
 
   const validate = (p) => {
-    profile?.educations?.map((e) => {
-      if (!e.from) {
+    // Check educations for null 'from' and 'to'
+    profile?.educations?.forEach((e) => {
+      if (e.from === undefined || e.from === null) {
         e.from = null;
       }
-      if (!e.to) {
+      if (e.to === undefined || e.to === null) {
         e.to = null;
       }
     });
 
-    profile?.exhibitions?.map((e) => {
-      if (!e.from) {
+    // Check exhibitions for null 'from' and 'to'
+    profile?.exhibitions?.forEach((e) => {
+      if (e.from === undefined || e.from === null) {
         e.from = null;
       }
-      if (!e.to) {
+      if (e.to === undefined || e.to === null) {
         e.to = null;
       }
     });
@@ -189,6 +220,17 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 280 }}
               />
+              <Select
+                label={t("Country")}
+                value={selectedCountry}
+                onChange={handleCountryChange}
+              >
+                {countries.map((country) => (
+                  <MenuItem key={country.isoCode} value={country.name}>
+                    {country.name}
+                  </MenuItem>
+                ))}
+              </Select>
 
               <TextField
                 label={t("aboutMe")}
@@ -261,6 +303,9 @@ const populateProfileObject = (userProfile): Profile => {
     title: userProfile?.Title,
     headline: userProfile?.Headline,
     location: userProfile?.Location,
+    country: userProfile?.Country,
+    state: userProfile?.State,
+    city: userProfile?.City,
     about: userProfile?.About,
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
@@ -293,6 +338,9 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     Title: userProfile?.title,
     Headline: userProfile?.headline,
     Location: userProfile?.location,
+    Country: userProfile?.country,
+    State: userProfile?.state,
+    City: userProfile?.city,
     About: userProfile?.about,
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,
