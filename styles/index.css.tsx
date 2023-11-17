@@ -1,4 +1,5 @@
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { rowGap } from "../app/utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
@@ -10,7 +11,6 @@ export const styles = makeStyles((theme: Theme) =>
     tabContainer: {
       display: "flex",
       flexDirection: "column",
-
     },
     artTabs: {
       margin: "0 auto",

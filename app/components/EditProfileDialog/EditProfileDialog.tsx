@@ -32,6 +32,8 @@ interface Profile {
   title: string;
   headline: string;
   location: string;
+  Country: string;
+  City: string;
   about: string;
   studio: Studio;
   inspiredBy: string;
