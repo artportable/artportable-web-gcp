@@ -16,7 +16,7 @@ export default function artists() {
   const [selectedLetter, setSelectedLetter] = useState(null);
 
   const handleLetterClick = (letter, event) => {
-    event.preventDefault();  
+    event.preventDefault();
     setSelectedLetter(letter);
     setSearchQuery("");
   };
@@ -127,11 +127,11 @@ export default function artists() {
   const listLetters = () => {
     return letters.map((l) => {
       return (
-        <a 
-          href={`#${l}`} 
+        <a
+          href={`#${l}`}
           className={s.letterList}
-          onClick={(e) => handleLetterClick(l, e)} 
-          key={l} 
+          onClick={(e) => handleLetterClick(l, e)}
+          key={l}
         >
           {l}
         </a>
@@ -162,7 +162,9 @@ export default function artists() {
     }
 
     if (selectedLetter) {
-      filtered = filtered.filter((section) => section.currentChar === selectedLetter);
+      filtered = filtered.filter(
+        (section) => section.currentChar === selectedLetter
+      );
     }
 
     return filtered;
@@ -190,8 +192,6 @@ export default function artists() {
           )}
         </div>
       </div>
-      
     </div>
   );
-
 }

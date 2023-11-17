@@ -17,14 +17,13 @@ import {
   Box,
   Divider,
 } from "@material-ui/core";
-import { alignProperty } from "@mui/material/styles/cssUtils";
 
 export default function Exhibition({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation("exhibitions");
   const mdPlusScreenOrDown = useBreakpointDown("mdPlus");
   const isMobile = useBreakpointDown("md");
-
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { locale } = useRouter();
 
   const cafes = {
@@ -426,6 +425,10 @@ export default function Exhibition({ navBarItems }) {
 
           <meta name="description" content={t("artportableExhibition")} />
           <meta name="url" content="https://artportable.com/showroom" />
+          <link
+            rel="canonical"
+            href={locale === "en" ? publicUrl + "/en/showroom" : publicUrl}
+          />
         </Head>
         <div className={s.flexContainer}>
           <div className={s.left}>
