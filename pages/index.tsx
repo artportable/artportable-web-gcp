@@ -46,7 +46,7 @@ import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
-import artists from "./artists";
+
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -109,6 +109,11 @@ export default function DiscoverPage({ navBarItems }) {
       router.reload();
       sessionStorage.removeItem("payment");
     }
+  }, []);
+  const { locale } = router;
+
+  useEffect(() => {
+    console.log(locale);
   }, []);
 
   const useWideLayout =
@@ -193,7 +198,10 @@ export default function DiscoverPage({ navBarItems }) {
           property="twitter:image"
           content="/images/artportable_tv_commercial.png"
         />
-        <link rel="canonical" href={publicUrl} />
+        <link
+          rel="canonical"
+          href={locale === "en" ? publicUrl + "/en" : publicUrl}
+        />
       </Head>
       {!loading && (
         <>
