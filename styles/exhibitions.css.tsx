@@ -67,7 +67,7 @@ export const styles = makeStyles((theme: Theme) => {
       textAlign: "initial",
       marginBottom: theme.spacing(2),
       marginTop: theme.spacing(10),
-      color: "var(--secondary-color)",
+      color: "var(--text-color)",
       [theme.breakpoints.up("sm")]: {
         fontSize: "2rem",
       },
@@ -141,7 +141,7 @@ export const styles = makeStyles((theme: Theme) => {
     },
     divider: {
       width: "100%",
-      borderTop: "2px solid var(--primary-color)",
+      borderTop: "2px solid var(--text-color)",
       marginTop: "60px",
       margin: `${theme.spacing(4)}px 0`,
     },

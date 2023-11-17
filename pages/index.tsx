@@ -3,7 +3,15 @@ import { styles } from "../styles/index.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
-import { Box, MenuItem, Tab, Tabs, TextField, useMediaQuery, useTheme } from "@material-ui/core";
+import {
+  Box,
+  MenuItem,
+  Tab,
+  Tabs,
+  TextField,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
@@ -22,7 +30,7 @@ import Head from "next/head";
 import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
 import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
-import DiscoverTrendingArtTabDesktop from "../app/components/DiscoverTrendingArtTabDesktop/DiscoverTrendingArtTabDesktop"
+import DiscoverTrendingArtTabDesktop from "../app/components/DiscoverTrendingArtTabDesktop/DiscoverTrendingArtTabDesktop";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
 import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
@@ -139,7 +147,7 @@ export default function DiscoverPage({ navBarItems }) {
   }
 
   const scrollToDiscoverRef = useRef(null);
-  const [clickedTabOnce, setClickedTabOnce] = useState(false)
+  const [clickedTabOnce, setClickedTabOnce] = useState(false);
 
   useEffect(() => {
     if (scrollToDiscoverRef.current && activeTab === 0 && clickedTabOnce) {
@@ -153,8 +161,8 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [activeTab]);
 
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Main
@@ -189,7 +197,10 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!loading && (
         <>
-          {!isSignedIn.value && activeTab != 1 && activeTab != 2 && activeTab != 3 && <IndexHero></IndexHero>}
+          {!isSignedIn.value &&
+            activeTab != 1 &&
+            activeTab != 2 &&
+            activeTab != 3 && <IndexHero></IndexHero>}
           {/* {<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
@@ -224,13 +235,13 @@ export default function DiscoverPage({ navBarItems }) {
                   label={t("discover:artists")}
                   {...a11yProps(t("discover:artists"))}
                 />
-                 {isSignedIn.value && (
+                {isSignedIn.value && (
                   <Tab
-                  className={s.text}
-                  label={t("discover:myLikedArt")}
-                  {...a11yProps(t("discover:myLikedArt"))}
-                />
-                 )}
+                    className={s.text}
+                    label={t("discover:myLikedArt")}
+                    {...a11yProps(t("discover:myLikedArt"))}
+                  />
+                )}
               </Tabs>
             </div>
             <Box paddingTop={4}>
@@ -265,7 +276,9 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
-                  activeTab={activeTab} tagPlaceholder={""} />
+                  activeTab={activeTab}
+                  tagPlaceholder={""}
+                />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
                 <DiscoverHighLightsTab
@@ -275,7 +288,10 @@ export default function DiscoverPage({ navBarItems }) {
                   loadMore={loadMoreArtworks}
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
-                  activeTab={activeTab} tagPlaceholder={""} fetchType={""} />
+                  activeTab={activeTab}
+                  tagPlaceholder={""}
+                  fetchType={""}
+                />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
                 <DiscoverArtistsTab
@@ -285,9 +301,15 @@ export default function DiscoverPage({ navBarItems }) {
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
                 <DiscoverMyLikedArtTab
-                  socialId={socialId.value} rowWidth={rowWidth} sold={""} loadMore={loadMoreArtworks} loadImages={loadImages} stopLoadImages={stopLoadImages} activeTab={activeTab}/>
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  sold={""}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
+                />
               </TabPanel>
-
             </Box>
           </div>
         </>
