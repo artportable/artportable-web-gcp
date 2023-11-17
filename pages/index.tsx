@@ -112,10 +112,6 @@ export default function DiscoverPage({ navBarItems }) {
   }, []);
   const { locale } = router;
 
-  useEffect(() => {
-    console.log(locale);
-  }, []);
-
   const useWideLayout =
     activeTab === 0 ||
     activeTab === 1 ||
