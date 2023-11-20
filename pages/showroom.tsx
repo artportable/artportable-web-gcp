@@ -377,8 +377,8 @@ export default function Exhibition({ navBarItems }) {
       },
       {
         week: "Vecka 48",
-        artist: "Ivy Dorisse",
-        username: "ivy.dorisse",
+        artist: "Hans-Olof Dahlgren",
+        username: "hans-o",
       },
     ],
     DECEMBER: [
