@@ -2,7 +2,7 @@ import Main, { FullWidthBlock } from "../../app/components/Main/Main";
 import Head from "next/head";
 import AboutMe from "../../app/components/AboutMe/AboutMe";
 import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
-import { Tabs, Tab, Snackbar, Typography, Paper } from "@material-ui/core";
+import { Tabs, Tab, Snackbar, Typography, Paper, Grid } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import ProfileComponent from "../../app/components/Profile/Profile";
@@ -53,6 +53,12 @@ import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUs
 import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade";
 import Offers from "../../app/components/ExclusiveOffers/Offers";
 import BrushSharpIcon from "@mui/icons-material/BrushSharp";
+
+import { useGetStories } from "../../app/hooks/dataFetching/Stories";
+import StoryComponent from "../../app/components/Story/StoryComponent";
+import { Story } from "../../app/models/Story";
+import { Membership } from "../../app/models/Membership";
+
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -67,6 +73,7 @@ export default function Profile(props) {
   const theme: Theme = useTheme();
   const router = useRouter();
   const smScreenOrSmaller = useBreakpointDown("sm");
+  const smPlusOrSmaller = useBreakpointDown("smPlus");
   const { isSignedIn, username, socialId, membership, phone } =
     useContext(UserContext);
   const profileUser = useGetProfileUser();
@@ -87,6 +94,11 @@ export default function Profile(props) {
   const [editArtworkOpen, setEditArtworkOpen] = useState(false);
   const [artworkToEdit, setArtworkToEdit] = useState(null);
   const [isReady, setIsReady] = useState(false);
+
+  const [hasStories, setHasStories] = useState(false);
+  const stories = useGetStories(profileUser, username.value);
+  const oddStories = stories?.data?.filter((_, index) => index % 2 === 0);
+  const evenStories = stories?.data?.filter((_, index) => index % 2 !== 0);
 
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const artworks = useGetArtworks(profileUser, username.value);
@@ -180,6 +192,15 @@ export default function Profile(props) {
       }
     }
   }, [rowWidth]);
+
+  const premiumLink = "https://buy.stripe.com/cN2aF74ua6VL7WU6ps";
+  const redirectToPremiumUpgrade = () => {
+    window.open(premiumLink);
+  };
+
+  useEffect(() => {
+    console.log(membership.value)
+  })
 
   function onLikeClick(artworkId, isLike) {
     redirectIfNotLoggedIn();
@@ -355,8 +376,8 @@ export default function Profile(props) {
       <Head>
         <title>
           {staticUserProfile &&
-          staticUserProfile.Name &&
-          staticUserProfile.Surname
+            staticUserProfile.Name &&
+            staticUserProfile.Surname
             ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
             : "Artportable"}
         </title>
@@ -364,8 +385,8 @@ export default function Profile(props) {
           name="title"
           content={
             staticUserProfile &&
-            staticUserProfile.Name &&
-            staticUserProfile.Surname
+              staticUserProfile.Name &&
+              staticUserProfile.Surname
               ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
               : "Artportable"
           }
@@ -461,6 +482,11 @@ export default function Profile(props) {
                     className={s.tab}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
+                  />
+                  <Tab
+                    className={s.tab}
+                    label="Stories"
+                    {...a11yProps("Stories")}
                   />
                   {
                     articles && articles.length > 0 && (
@@ -573,6 +599,68 @@ export default function Profile(props) {
                       tags={tags.data}
                       onUpdateProfilePicture={updateImage}
                     ></AboutMe>
+                  </TabPanel>
+                  <TabPanel value={activeTab} index={2}>
+                    {
+                      <>
+                        {isMyProfile && membership.value === Membership.PortfolioPremium && (
+                          <div style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
+                            <Link href="/upload-story">
+                              <a>
+                                <Button
+                                  aria-label="upload story"
+                                  variant="contained"
+                                  style={{ backgroundColor: "#ffd700" }}
+                                  rounded
+                                >{t("profile:uploadStory")}</Button>
+                              </a>
+                            </Link>
+                          </div>
+                        )}
+                        {isMyProfile && membership.value === Membership.Portfolio && (
+                          <div style={{ display: 'flex', alignItems:'center',  margin: '20px', flexDirection:'column' }}>
+                            <Typography style={{ margin: '20px', fontSize:'16px' }}>{t("profile:upgradePremiumStory")}</Typography>
+                                <Button
+                                  style={{ backgroundColor: "#ffd700" }}
+                                  aria-label="upgrade"
+                                  variant="contained"
+                                  rounded
+                                  onClick={redirectToPremiumUpgrade}
+                                >{t("profile:upgradeButton")}</Button>
+                          </div>
+                        )}
+                        <Grid justifyContent="center" container spacing={2}>
+                          {!smPlusOrSmaller ? (
+                            <>
+                              <Grid item style={{ flexBasis: 'auto', marginRight: '1.5rem' }}>
+                                <div className={s.stories}>
+                                  {oddStories?.map((story: Story) => (
+                                    <StoryComponent story={story} key={story.Id} />
+                                  ))}
+                                </div>
+                              </Grid>
+                              <Grid item style={{ flexBasis: 'auto' }}>
+                                <div className={s.stories}>
+                                  {evenStories?.map((story: Story) => (
+                                    <StoryComponent story={story} key={story.Id} />
+                                  ))}
+                                </div>
+                              </Grid>
+                            </>
+                          ) : (
+                            <>
+                              <Grid item xs={12}>
+                                <div className={s.stories}>
+                                  {stories?.data?.map((story: Story) => (
+                                    <StoryComponent story={story} key={story.Id} />
+                                  ))}
+                                </div>
+                              </Grid>
+                            </>
+                          )}
+                        </Grid>
+                      </>
+                    }
                   </TabPanel>
                   <TabPanel value={activeTab} index={2}>
                     {
@@ -717,8 +805,9 @@ export default function Profile(props) {
             </Alert>
           </Snackbar>
         </>
-      )}
-    </Main>
+      )
+      }
+    </Main >
   );
 }
 
