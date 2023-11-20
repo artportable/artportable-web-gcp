@@ -5,11 +5,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import Main from '../../app/components/Main/Main'
 import { useGetStory } from '../../app/hooks/dataFetching/Stories'
-import { Box, IconButton, Paper, Typography } from '@material-ui/core'
+import { Avatar, Slide } from '@material-ui/core'
 import { styles } from '../../styles/story.css'
 import { fetchWithTimeout } from '../../app/utils/util'
-import AvatarCard from '../../app/components/AvatarCard/AvatarCard'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import Button from "../../app/components/Button/Button";
+import { LoadingContext } from "../../app/contexts/loading-context";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import Link from 'next/link'
 import { TokenContext } from '../../app/contexts/token-context'
@@ -22,6 +24,8 @@ import {
 import { UrlObject } from 'url'
 import { getNavBarItems } from '../../app/utils/getNavBarItems'
 import { Story } from '../../app/models/Story'
+import EditStoryDialog from '../../app/components/EditStoryDialog/EditStoryDialog'
+import Carousel from "react-material-ui-carousel";
 
 interface StoryProps {
     navBarItems: any,
@@ -31,7 +35,7 @@ interface StoryProps {
 
 export default function StoryPage(props: StoryProps) {
     const s = styles()
-    const { t } = useTranslation(['art', 'common', 'tags'])
+    const { t } = useTranslation(['story', 'common'])
     const router = useRouter()
     const publicUrl = process.env.NEXT_PUBLIC_URL
     const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
@@ -45,15 +49,53 @@ export default function StoryPage(props: StoryProps) {
     const storyData = useGetStory(id as string, username.value)
     const story: Story = storyData?.data;
     const date: Date = new Date(story?.Published);
-    //const month: string = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
-    //const day: string = date.toLocaleString('default', { day: 'numeric' });
+    const images: (string | undefined)[] = [
+        story?.PrimaryFile?.Name,
+        story?.SecondaryFile?.Name,
+        story?.TertiaryFile?.Name,
+    ];
+    const filteredImages: string[] = images.filter((image) => image !== undefined) as string[];
 
+    //const profileUser = useGetProfileUser();
+    const isMyStory = story?.Username === username?.value;
     //const token = useContext(TokenContext)
 
+    const [editStoryOpen, setEditStoryOpen] = useState(false);
+    const { setLoading } = useContext(LoadingContext);
+
+    const openEditStoryDialog = () => {
+        setEditStoryOpen(true);
+    };
+
+    const onEditStoryClose = async (promise) => {
+        if (promise) {
+            try {
+                setEditStoryOpen(false);
+                setLoading(true);
+                await promise;
+                setLoading(false);
+            } catch (error) {
+                console.log(error);
+            }
+            //storyData.mutate();
+        } else {
+            setEditStoryOpen(false);
+        }
+    };
+
+    function renderWithLineBreaks(text) {
+        return text.split('\n').map((str, index, array) => (
+            <>
+                {str}
+                {index === array.length - 1 ? null : <br />}
+            </>
+        ));
+    }
+
     useEffect(() => {
-        console.log(staticStory);
-        console.log(props);
-    }, [])
+        console.log(username.value);
+        console.log(story?.Username)
+    }, [username.value])
 
     const storyUrl = `https://artportable.com/stories/${storyData?.data?.Id}`
     const shareStoryTitle = storyData?.data?.Title
@@ -96,29 +138,88 @@ export default function StoryPage(props: StoryProps) {
             </Head>
             {/* // if den prop, visa kompontent, annars visa det andra */}
 
-            {/* <> */}
-                {storyData.isLoading && <div>loading...</div>}
-                {storyData.isError && <div>error...</div>}
+            {storyData.isLoading && <div>loading...</div>}
+            {storyData.isError && <div>error...</div>}
 
-                {storyData && storyData.data && (
-                    <>
-                        <article className={s.story}>
+            {storyData && storyData.data && (
+                <>
+                    <article className={s.story}>
+                        {story?.SecondaryFile ? (
+                            <Carousel navButtonsAlwaysVisible autoPlay={false}>
+                                {
+                                    filteredImages.map((image, i) => {
+                                        return (
+                                            <img
+                                                key={i}
+                                                className={s.image}
+                                                src={`${bucketUrl}${image}`}
+                                                alt={`${story.Title ? story.Title : 'story image'}`}
+                                            />
+                                        )
+                                    }
+                                    )
+                                }
+                            </Carousel>
+                        ) : (
                             <img
                                 className={s.image}
                                 src={`${bucketUrl}${story.PrimaryFile.Name}`}
-                                alt={`${storyData?.data.Title ? story.Title : 'story image'}`}
+                                alt={`${story.Title ? story.Title : 'story image'}`}
                             />
-                            <time dateTime={date.toISOString()}className={s.published}>
-                                Published: {date.toLocaleDateString()}
-                            </time>
-                            <div className={s.titleText}>
-                                <h1 className={s.title}>{story.Title}</h1>
-                                <p className={s.text}>{story.Description}</p>
-                            </div>
-                        </article>
-                    </>
-                )}
-            {/* </> */}
+                        )}
+                        <time dateTime={date.toISOString()} className={s.published}>
+                            {t("published")} {date.toLocaleDateString()}
+                        </time>
+                        <h1 className={s.title}>{story.Title}</h1>
+                        <p className={s.text}>{renderWithLineBreaks(story.Description)}</p>
+
+                        {isMyStory ? (
+                            <>
+                                <Button
+                                    aria-label="edit"
+                                    className={s.editButton}
+                                    variant="contained"
+                                    rounded
+                                    style={{ backgroundColor: "#ffd700" }}
+                                    onClick={() =>
+                                        openEditStoryDialog()
+                                    }
+                                >{t("editStory")}</Button>
+                                <EditStoryDialog
+                                    story={story}
+                                    open={editStoryOpen}
+                                    onClose={onEditStoryClose}
+                                />
+                            </>
+                        ) : (<> </>)}
+                        <div className={s.writerContainer}>
+                            {story?.ProfilePicture ? (
+                                <Link href={`/profile/@${story.Username}`}>
+                                    <a>
+                                        <Avatar
+                                            src={`${bucketUrl}${story?.ProfilePicture}`}
+                                            alt="Profile picture"
+                                            style={{ height: "120px", width: "120px" }}
+                                            className={s.image}
+                                        />
+                                    </a>
+                                </Link>
+                            ) : (
+                                <Link href={`/profile/@${story.Username}`}>
+                                    <a>
+                                        <AccountCircleIcon color="secondary" style={{ fontSize: 48 }} />
+                                    </a>
+                                </Link>
+                            )}
+                            <Link href={`/profile/@${story.Username}`}>
+                                <a>
+                                    <h2>{story.Name}{" "}{story.Surname}</h2>
+                                </a>
+                            </Link>
+                        </div>
+                    </article>
+                </>
+            )}
         </Main>
     )
 }
@@ -146,11 +247,10 @@ export async function getServerSideProps({ locale, params }) {
                 ...(await serverSideTranslations(locale, [
                     'header',
                     'footer',
-                    'art',
                     'common',
-                    'tags',
                     'support',
-                    'plans'
+                    'plans',
+                    'story'
                 ]))
             }
         }
@@ -167,11 +267,10 @@ export async function getServerSideProps({ locale, params }) {
             ...(await serverSideTranslations(locale, [
                 'header',
                 'footer',
-                'art',
                 'common',
-                'tags',
                 'support',
-                'plans'
+                'plans',
+                'story'
             ]))
         }
     }
