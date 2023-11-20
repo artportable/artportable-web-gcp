@@ -485,8 +485,8 @@ export default function Profile(props) {
                   />
                   <Tab
                     className={s.tab}
-                    label="Stories"
-                    {...a11yProps("Stories")}
+                    label={t("profile:stories")}
+                    {...a11yProps(t("profile:stories"))}
                   />
                   {
                     articles && articles.length > 0 && (
