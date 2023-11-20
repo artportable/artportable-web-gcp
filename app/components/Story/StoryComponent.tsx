@@ -1,26 +1,17 @@
 import Link from 'next/link';
 import { styles } from './storyComponent.css';
 import { Story } from '../../models/Story';
-import { useTranslation } from 'next-i18next';
-import { useEffect, useRef } from 'react';
 
 interface StoryComponentProps {
     story: Story;
 }
 
 export default function StoryComponent({ story }: StoryComponentProps) {
-    const { t } = useTranslation('feed');
     const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
     const s = styles();
     const date: Date = new Date(story?.Published);
     const month: string = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
     const day: string = date.toLocaleString('default', { day: 'numeric' });
-
-    useEffect(() => {
-        //console.log(date);
-        console.log(date.toLocaleString());
-        console.log(date.toISOString());
-      })
 
     return (
         <article className={s.story}>
@@ -50,7 +41,11 @@ export default function StoryComponent({ story }: StoryComponentProps) {
                         </Link>
                     </h2>
                 </header>
-                <p className={s.text}>{story?.Description}</p>
+                {story.Description.length > 200 ? (
+                    <p className={s.text}>{story?.Description.slice(0, 200).trimEnd()}...</p>
+                ) : (
+                    <p className={s.text}>{story?.Description}</p>
+                )}
             </div>
         </article>
     );
