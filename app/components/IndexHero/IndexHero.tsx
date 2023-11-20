@@ -71,26 +71,19 @@ export default function IndexHero() {
   useEffect(() => {
     setLoading(randomImage === null);
     const isDefaultLocale = router.locale == router.defaultLocale;
-    const redirectHref = `${window.origin}${isDefaultLocale ? "" : `/${router.locale}`
-      }/plans`;
+    const redirectHref = `${window.origin}${
+      isDefaultLocale ? "" : `/${router.locale}`
+    }/plans`;
     setSignUpRedirectHref(redirectHref);
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
   const images = [
     {
-      name: "Owe Emfestav",
-      username: "owe",
-      image: "/images/owe.jpeg",
-      imageLink: "art/f712a7f0-e764-41b8-bea8-470b93c5e9c5",
+      name: "Maria Nehlin",
+      username: "maria.nehlin",
+      image: "/images/underytan.jpg",
+      imageLink: "art/5b50b80f-eaaf-4d5f-9de0-182d3849f79b",
     },
-
-    {
-      name: "Gunnila Svärd",
-      username: "gunilla.svard",
-      image: "/images/gunilla.jpg",
-      imageLink: "art/b56cd4e6-5955-414e-bbc2-8557e4cdb56b",
-    },
-
   ];
 
   useEffect(() => {
