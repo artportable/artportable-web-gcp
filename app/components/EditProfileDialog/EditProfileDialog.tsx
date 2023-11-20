@@ -31,6 +31,9 @@ import { Country, State, City } from "country-state-city";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { allCountriesData } from "../../../public/countries/allCountries";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { theme } from "../../../styles/theme";
+import { event } from "../../../lib/gtag";
 
 interface Profile {
   title: string;
@@ -84,26 +87,54 @@ export default function EditProfileDialog({ userProfile }) {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const [states, setStates] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("SE");
   const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSeletedCity] = useState("");
+  const fullScreen = useMediaQuery(theme.breakpoints.down("smPlus"));
+
+  useEffect(() => {
+    console.log(fullScreen);
+  }, []);
 
   useEffect(() => {
     const countries = allCountriesData.map((country) => ({
       name: country.name,
+      isoCode: country.isoCode,
     }));
     setCountries(countries);
-    console.log(countries); // Log the updated countries immediately after setting the state
-  }, []);
-
-  useEffect(() => {
-    console.log(countries);
   }, []);
 
   const handleCountryChange = (event) => {
-    const selectedCountryName = event.target.value;
-    console.log(selectedCountryName);
+    const selectedCountryIsoCode = event.target.value;
+    const statesOfCountry = State.getStatesOfCountry(selectedCountryIsoCode);
 
-    setSelectedCountry(selectedCountryName);
+    const formattedStates = statesOfCountry
+      ? statesOfCountry.map((state) => ({
+          name: state.name,
+          isoCode: state.isoCode,
+        }))
+      : [];
+    setStates(formattedStates);
+    setSelectedCountry(selectedCountryIsoCode);
+    setSelectedState(""); // Reset selected state when country changes
+    setCities([]); // Clear cities when country changes
+  };
+
+  const handleStateChange = (event) => {
+    const selectedStateIsoCode = event.target.value;
+    setSelectedState(selectedStateIsoCode);
+
+    const citiesOfState = City.getCitiesOfState(
+      selectedCountry,
+      selectedStateIsoCode
+    );
+    setCities(citiesOfState);
+  };
+
+  const handleCityChange = (event) => {
+    const selectedCityName = event.target.value;
+    setSeletedCity(selectedCityName);
+    console.log(selectedCity);
   };
 
   const [openEdit, setOpenEdit] = useState(false);
@@ -185,7 +216,7 @@ export default function EditProfileDialog({ userProfile }) {
       <Dialog
         open={openEdit}
         onClose={cancel}
-        maxWidth="md"
+        fullScreen
         aria-labelledby="artwork-modal-title"
         aria-describedby="artwork-modal-description"
       >
@@ -220,17 +251,78 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 280 }}
               />
-              <Select
-                label={t("Country")}
-                value={selectedCountry}
+              <label htmlFor="select-id" style={{ fontWeight: "200px" }}>
+                {t("Country")}
+              </label>
+              <select
+                id="select-id"
+                style={{
+                  height: "20px",
+                  border: "none",
+                  borderBottom: "1px solid black",
+                }}
+                aria-label={t("location")}
+                value={selectedCountry ? selectedCountry : "Sweden"}
                 onChange={handleCountryChange}
               >
-                {countries.map((country) => (
-                  <MenuItem key={country.isoCode} value={country.name}>
+                {countries.map((country, index) => (
+                  <option
+                    key={index}
+                    value={country.isoCode}
+                    style={{ width: "auto", height: "30px" }}
+                  >
                     {country.name}
-                  </MenuItem>
+                  </option>
                 ))}
-              </Select>
+              </select>
+              <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
+                {t("State")}
+              </label>
+              <select
+                id="select-state"
+                style={{
+                  height: "20px",
+                  border: "none",
+                  borderBottom: "1px solid black",
+                }}
+                aria-label={t("location")}
+                value={selectedState ? selectedState : " "}
+                onChange={handleStateChange}
+              >
+                {states.map((state, index) => (
+                  <option
+                    key={index}
+                    value={state.isoCode}
+                    style={{ width: "auto", height: "10px" }}
+                  >
+                    {state.name}
+                  </option>
+                ))}
+              </select>
+              <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
+                {t("City")}
+              </label>
+              <select
+                id="select-city"
+                style={{
+                  height: "20px",
+                  border: "none",
+                  borderBottom: "1px solid black",
+                }}
+                aria-label={t("location")}
+                value={selectedCity}
+                onChange={handleCityChange}
+              >
+                {cities.map((city, index) => (
+                  <option
+                    key={index}
+                    value={city.isoCode}
+                    style={{ width: "auto", height: "10px" }}
+                  >
+                    {city.name}
+                  </option>
+                ))}
+              </select>
 
               <TextField
                 label={t("aboutMe")}
