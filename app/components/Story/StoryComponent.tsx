@@ -18,7 +18,7 @@ export default function StoryComponent({ story }: StoryComponentProps) {
             <Link href={`/story/${story.Id}`}>
                 <a>
                     <img
-                        style={{ maxWidth: '100%' }}
+                        className={s.image}
                         alt={`${story?.Title ? story?.Title : 'story image'}`}
                         src={`${bucketUrl}${story?.PrimaryFile?.Name}`}
                     />

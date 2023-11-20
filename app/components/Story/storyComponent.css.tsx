@@ -5,10 +5,10 @@ export const styles = makeStyles((theme: Theme) =>
         story: {
             backgroundColor: '#ffffff',
             maxWidth: '100%',
-            marginBottom:'1.5rem',
+            marginBottom: '1.5rem',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
             [theme.breakpoints.up('md')]: {
-              maxWidth: '300px'
+                maxWidth: '300px'
             },
             [theme.breakpoints.up('mdPlus')]: {
                 maxWidth: '380px'
@@ -16,8 +16,10 @@ export const styles = makeStyles((theme: Theme) =>
             [theme.breakpoints.up('lg')]: {
                 maxWidth: '460px'
             },
-            
-          },
+        },
+        image: {
+            maxWidth: '100%',
+        },
         textTitle: {
             padding: '0 8% 8%',
             backgroundColor: '#ffffff',
