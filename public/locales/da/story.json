@@ -1,0 +1,22 @@
+{
+    "editStory": "Rediger nyhed",
+    "storyTitle": "Titel",
+    "storyDescription": "Beskrivelse",
+    "deleteStory": "Slet nyhed?",
+    "storyUploadedSuccessfully": "Nyhed uploadet!",
+    "title": "Titel",
+    "description": "Beskrivelse",
+    "upload": "Upload",
+    "previewText": "Vælg et billede for at få en forhåndsvisning",
+    "selectImage": "Vælg billede",
+    "dragandDropOrClick": "Træk og slip et billede her eller klik",
+    "informationOne": "Du er alene ansvarlig for det brugerindhold, du uploader.",
+    "informationTwo": "Du bekræfter, at du er eneste forfatter til brugerindholdet eller har alle nødvendige rettigheder til at gøre brugerindholdet tilgængeligt.",
+    "informationThree": "Du bekræfter yderligere, at brugerindholdet ikke er stødende, chikanerende eller på anden måde ulovligt.",
+    "addmoreImages": "Her kan du tilføje yderligere billeder af værket, for eksempel en anden vinkel eller et billede fra, da værket blev skabt.",
+    "publish": "Publicer",
+    "doneCropping": "Når du er færdig med beskæringen, tryk på den grønne knap.",
+    "published": "Publiceret",
+    "deleteStoryWarningTitle": "Er du sikker på, at du vil slette nyheden?",
+    "deleteStoryWarningText": "Bekræft venligst, at du vil slette nyheden"
+}
