@@ -7,10 +7,11 @@ export interface Story {
   Published: Date,
   PrimaryFile: Image,
   SecondaryFile: Image,
-  TertiaryFile: Image
+  TertiaryFile: Image,
   Name: string,
   Surname: string,
-  Username: string
+  Username: string,
+  ProfilePicture: string
 }
 
 export interface StoryForCreation {
