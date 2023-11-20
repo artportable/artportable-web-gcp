@@ -108,6 +108,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
         margin: "0 0",
       },
     },
+
+    stories: {
+      
+    },
+
     [theme.breakpoints.up("sm")]: {
       emblem: {
         width: "80px",
