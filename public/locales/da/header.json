@@ -1,7 +1,7 @@
 {
   "myArtNetwork": "Mit kunstnetværk",
   "discover": "Startside",
-  "articles": "Artikler",
+  "articles": "Redaktionelt",
   "about": "Om os",
   "login": "Log ind",
   "logout": "Log ud",
@@ -12,7 +12,7 @@
   "upgradeButton": "Opgradér",
   "upgradeHeading": "Opgradér til kunstnerkonto",
   "contactUs": "Kontakt os",
-  "stories": "Artikler",
+  "stories": "Redaktionelt",
   "storiesSlug": "artikler-da",
   "english": "Engelsk",
   "swedish": "Svenska",
