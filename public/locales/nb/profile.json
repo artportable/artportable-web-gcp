@@ -72,5 +72,8 @@
   "buyingArtBody": "Som kunstkjøper på Artportable sender du en forespørsel direkte til kunstneren. Klikk på et kunstverk og velg knappen ''Kjøpsforespørsel'' og skriv meldingen din.",
   "buyingArtBodyTwo": "Kunstneren svarer vanligvis innen 1-3 dager. Etter at kommunikasjonen er etablert, er det opp til kunstneren og kjøperen å avtale kjøpet, samt eventuelle fraktkostnader eller henting av kunstverket. Du kan selvfølgelig også stille flere spørsmål om kunstneren i samme forespørsel. Men vennligst send bare spørsmål om kunsten! Brudd vil bli rapportert.",
   "exclusiveOffers": "Eksklusive tilbud",
-  "closeButton": "Lukk"
+  "closeButton": "Lukk",
+  "upgradePremiumStory": "Oppgrader til premium for å kunne laste opp nyheter",
+  "uploadStory": "Last opp en nyhet",
+  "stories": "Nyheter"
 }

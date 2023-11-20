@@ -3,14 +3,20 @@ import Button from '../Button/Button'
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from '../../utils/util';
 
-export default function DeleteArtworkWarningDialog({ open, onClose }) {
-  const { t } = useTranslation(['art', 'common']);
+interface ArtworkProps{
+  open: any,
+  onClose: any,
+  isArtwork: boolean
+}
+
+export default function DeleteArtworkWarningDialog({ open, onClose, isArtwork } : ArtworkProps) {
+  const { t } = useTranslation(['art', 'common', 'story']);
 
   return (
     <Dialog open={open}>
-      <DialogTitle>{t('deleteArtworkWarningTitle')}</DialogTitle>
+      <DialogTitle>{isArtwork ? t('art:deleteArtworkWarningTitle') : t('story:deleteStoryWarningTitle')}</DialogTitle>
       <DialogContent>
-        <DialogContentText>{t('deleteArtworkWarningText')}</DialogContentText>
+        <DialogContentText>{isArtwork ? t('art:deleteArtworkWarningText') : t('story:deleteStoryWarningText')}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button
