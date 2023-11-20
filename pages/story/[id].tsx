@@ -92,11 +92,6 @@ export default function StoryPage(props: StoryProps) {
         ));
     }
 
-    useEffect(() => {
-        console.log(username.value);
-        console.log(story?.Username)
-    }, [username.value])
-
     const storyUrl = `https://artportable.com/stories/${storyData?.data?.Id}`
     const shareStoryTitle = storyData?.data?.Title
         ? `${t('common:share')}"${storyData?.data?.Title}"`
