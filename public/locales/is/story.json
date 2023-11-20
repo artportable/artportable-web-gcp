@@ -1,0 +1,22 @@
+{
+    "editStory": "Breyta frétt",
+    "storyTitle": "Titill",
+    "storyDescription": "Lýsing",
+    "deleteStory": "Eyða frétt?",
+    "storyUploadedSuccessfully": "Frétt hlaðið upp!",
+    "title": "Titill",
+    "description": "Lýsing",
+    "upload": "Hlaða upp",
+    "previewText": "Veldu mynd til að fyrirframsglæða",
+    "selectImage": "Veldu mynd",
+    "dragandDropOrClick": "Dragðu og slepptu mynd hér eða smelltu",
+    "informationOne": "Þú ert fullum ábyrgð fyrir notendaefni sem þú hleður upp.",
+    "informationTwo": "Þú staðfestir að þú ert einn höfundur notendaefnisins eða á öllum nauðsynlegum réttindum til að gera notendaefnið aðgengilegt.",
+    "informationThree": "Þú lýsir að notendaefnið sé ekki óhóflegt, ofbeldisfullt eða lögbilt.",
+    "addmoreImages": "Hér getur þú bætt við fleiri myndum af verknum, svo sem öðrum sjónarhorni eða mynd af því þegar verk var búið til.",
+    "publish": "Birta",
+    "doneCropping": "Þegar þú ert búinn að skera, ýttu á græna hnappinn.",
+    "published": "Birtist",
+    "deleteStoryWarningTitle": "Ertu viss um að þú viljir eyða fréttinni?",
+    "deleteStoryWarningText": "Vinsamlegast staðfestu að þú viljir eyða fréttinni."
+}

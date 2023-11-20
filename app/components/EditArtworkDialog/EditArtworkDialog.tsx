@@ -316,6 +316,7 @@ export default function EditArtworkDialog({ artwork, open, onClose }) {
       <DeleteArtworkWarningDialog
         open={deleteAlertDialogOpen}
         onClose={onDeleteAlertDialogClose}
+        isArtwork={true}
       />
     </Dialog>
   );

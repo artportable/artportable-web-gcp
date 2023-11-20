@@ -73,5 +73,8 @@
   "buyingArtBody": "Sem kaupandi á Artportable sendir þú fyrirspurn beint til listamannsins. Smelltu á verk og veldu hnappinn ''Kaupa fyrirspurn''.",
   "buyingArtBodyTwo": "Listamaðurinn svarar venjulega innan 1-3 daga. Eftir að samskipti hafa verið sett upp er það upp á listamann og kaupanda að gera kaupasamning og líka koma með ákvörðun um flutningskostnað eða uppsöfnun verkanna. Þú getur auðvitað líka í sömu fyrirspurn fyrirspurt um önnur verk. En sendu bara spurningar um listaverk takk!",
   "exclusiveOffers": "Einstök tilboð",
-  "closeButton": "Loka"
+  "closeButton": "Loka",
+  "upgradePremiumStory": "Uppfærðu til frumsýningar til að geta hlaðið upp fréttir",
+  "uploadStory": "Hlaða upp frétt",
+  "stories": "Fréttir"
 }

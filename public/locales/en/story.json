@@ -1,0 +1,22 @@
+{
+    "editStory": "Edit Story",
+    "storyTitle": "Title",
+    "storyDescription": "Description",
+    "deleteStory": "Delete Story?",
+    "storyUploadedSuccessfully": "Story uploaded!",
+    "title": "Title",
+    "description": "Description",
+    "upload": "Upload",
+    "previewText": "Select an image to preview",
+    "selectImage": "Select Image",
+    "dragandDropOrClick": "Drag and drop an image here or click",
+    "informationOne": "You are solely responsible for the user content you upload.",
+    "informationTwo": "You confirm that you are the sole author of the user content or hold all necessary rights to make the user content available.",
+    "informationThree": "You further certify that the user content is not obscene, harassing, or otherwise illegal.",
+    "addmoreImages": "Here you can add additional images of the work, for example, another angle or an image from when the work was created.",
+    "publish": "Publish",
+    "doneCropping": "When you're done cropping, press the green button.",
+    "published": "Published",
+    "deleteStoryWarningTitle": "Are you sure you want to delete the story?",
+    "deleteStoryWarningText": "Please confirm that you want to delete the story"
+}

@@ -72,6 +72,8 @@
   "buyingArtBody": "As a buyer of art at Artportable, you send a request directly to the artist. Click on an artwork and select the button ''Purchase request'' and write your message.",
   "buyingArtBodyTwo": "The artist usually responds within 1-3 days. After a communication is established, it is up to the artist and the buyer to settle the deal as well as any shipping costs or collection of the work. You can of course also ask more about the artist in the same request. But please only send questions about the art! Violations will be reported.",
   "exclusiveOffers": "Exclusive offers",
-  "closeButton": "Close"
-
+  "closeButton": "Close",
+  "upgradePremiumStory": "Upgrade to premium to be able to upload stories",
+  "uploadStory": "Upload a story",
+  "stories": "Stories"
 }
