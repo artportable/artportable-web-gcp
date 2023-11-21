@@ -22,6 +22,37 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       right: "-5px",
     },
+    selectInfo: {
+      MozAppearance: "none",
+      WebkitAppearance: "none",
+      appearance: "none",
+      height: "30px",
+      padding: "5px",
+      width: "100%",
+      border: "none",
+      borderBottom: "1px solid black",
+    },
+
+    optionStyle: {
+      MozAppearance: "none",
+      WebkitAppearance: "none",
+      appearance: "none",
+      height: "30px",
+      padding: "5px",
+      width: "100px",
+      color: "black",
+      border: "none",
+      background: "transparent",
+    },
+
+    fillIn: {
+      marginTop: "5px",
+      textAlign: "center",
+      marginLeft: "15px",
+      fontSize: "12px",
+      color: "red",
+    },
+
     form: {
       display: "flex",
       flexDirection: "column",
