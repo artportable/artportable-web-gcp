@@ -198,10 +198,6 @@ export default function Profile(props) {
     window.open(premiumLink);
   };
 
-  useEffect(() => {
-    console.log(membership.value)
-  })
-
   function onLikeClick(artworkId, isLike) {
     redirectIfNotLoggedIn();
     like(artworkId, isLike, socialId.value, token);
@@ -662,7 +658,7 @@ export default function Profile(props) {
                       </>
                     }
                   </TabPanel>
-                  <TabPanel value={activeTab} index={2}>
+                  <TabPanel value={activeTab} index={3}>
                     {
                       articles && (
                         <div className={s.flex}>
