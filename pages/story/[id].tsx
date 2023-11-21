@@ -129,7 +129,7 @@ export default function StoryPage(props: StoryProps) {
                     content={`${bucketUrl}${staticStory?.PrimaryFile?.Name}`}
                 />
 
-                <link rel="canonical" href={canonicalURL} />
+                <link rel="canonical" href={`${publicUrl}/${props.locale}${router.asPath}`} />
             </Head>
             {/* // if den prop, visa kompontent, annars visa det andra */}
 

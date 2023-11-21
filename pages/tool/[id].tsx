@@ -95,7 +95,7 @@ export default function Frame(props) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${publicUrl}/art/${staticArtwork?.Id}`} />
         <meta property="og:image" content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`} />
-        <link rel="canonical" href={canonicalURL} />
+        <link rel="canonical" href={`${publicUrl}/${props.locale}${router.asPath}`} />
       </Head>
       <div className={s.toolDiv}>
         <div dangerouslySetInnerHTML={{ __html: '<div id="frameEngine"></div>' }} suppressHydrationWarning />
