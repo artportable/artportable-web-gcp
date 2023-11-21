@@ -196,7 +196,7 @@ export default function DiscoverPage({ navBarItems }) {
         />
         <link
           rel="canonical"
-          href={locale === "en" ? publicUrl + "/en" : publicUrl}
+          href={`${publicUrl}/${locale}`}
         />
       </Head>
       {!loading && (
