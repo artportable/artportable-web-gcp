@@ -1,27 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import Main from '../../app/components/Main/Main'
 import { useGetStory } from '../../app/hooks/dataFetching/Stories'
-import { Avatar, Slide } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 import { styles } from '../../styles/story.css'
-import { fetchWithTimeout } from '../../app/utils/util'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack' //could be good
 import Button from "../../app/components/Button/Button";
 import { LoadingContext } from "../../app/contexts/loading-context";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import Link from 'next/link'
-import { TokenContext } from '../../app/contexts/token-context'
 import { UserContext } from '../../app/contexts/user-context'
 import {
     ActionType,
     CategoryType,
     trackGoogleAnalytics
 } from '../../app/utils/googleAnalytics'
-import { UrlObject } from 'url'
 import { getNavBarItems } from '../../app/utils/getNavBarItems'
 import { Story } from '../../app/models/Story'
 import EditStoryDialog from '../../app/components/EditStoryDialog/EditStoryDialog'
@@ -151,8 +148,7 @@ export default function StoryPage(props: StoryProps) {
                                                 alt={`${story.Title ? story.Title : 'story image'}`}
                                             />
                                         )
-                                    }
-                                    )
+                                    })
                                 }
                             </Carousel>
                         ) : (
@@ -170,16 +166,17 @@ export default function StoryPage(props: StoryProps) {
 
                         {isMyStory ? (
                             <>
+                            <div className={s.btnContainer}>
                                 <Button
                                     aria-label="edit"
                                     className={s.editButton}
                                     variant="contained"
                                     rounded
-                                    style={{ backgroundColor: "#ffd700" }}
                                     onClick={() =>
                                         openEditStoryDialog()
                                     }
                                 >{t("editStory")}</Button>
+                            </div>
                                 <EditStoryDialog
                                     story={story}
                                     open={editStoryOpen}

@@ -17,12 +17,22 @@ export const styles = makeStyles((theme: Theme) =>
     },
     title: {
         fontSize: '38px',
+        textAlign: 'center'
     },
     text: {
         fontSize: '18px',
-        padding: '1rem 0px'
+        padding: '1rem 0px',
+        lineHeight:'1.7em',
+    },
+    btnContainer: {
+        display:'flex', 
+        justifyContent:'center'
     },
     editButton: {
+        backgroundColor: "#ffd700",
+        '&:hover': {
+            backgroundColor: "#ffd700",
+        }
     },
     writerContainer: {
         marginTop:'2rem',
