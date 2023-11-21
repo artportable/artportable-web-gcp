@@ -33,7 +33,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { allCountriesData } from "../../../public/countries/allCountries";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { theme } from "../../../styles/theme";
-import { event } from "../../../lib/gtag";
+import { parseJSON } from "date-fns";
+import { Fullscreen } from "@material-ui/icons";
 
 interface Profile {
   title: string;
@@ -87,13 +88,14 @@ export default function EditProfileDialog({ userProfile }) {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const [states, setStates] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("SE");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountryName, setSelectedCountryName] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSeletedCity] = useState("");
-  const fullScreen = useMediaQuery(theme.breakpoints.down("smPlus"));
+  const fullScreen = useMediaQuery(theme.breakpoints.up("smPlus"));
 
   useEffect(() => {
-    console.log(fullScreen);
+    console.log(userProfile);
   }, []);
 
   useEffect(() => {
@@ -105,28 +107,35 @@ export default function EditProfileDialog({ userProfile }) {
   }, []);
 
   const handleCountryChange = (event) => {
-    const selectedCountryIsoCode = event.target.value;
-    const statesOfCountry = State.getStatesOfCountry(selectedCountryIsoCode);
+    const selectedCountryString = event.target.value;
+    const selectedCountry = JSON.parse(selectedCountryString);
+    const selectedCountryCode = selectedCountry.isoCode;
+    const selectedCountryName = selectedCountry.name;
+    setSelectedCountryName(selectedCountryName);
+    console.log(selectedCountryName);
 
-    const formattedStates = statesOfCountry
-      ? statesOfCountry.map((state) => ({
-          name: state.name,
-          isoCode: state.isoCode,
-        }))
-      : [];
-    setStates(formattedStates);
-    setSelectedCountry(selectedCountryIsoCode);
-    setSelectedState(""); // Reset selected state when country changes
-    setCities([]); // Clear cities when country changes
+    setProfile({
+      ...userProfile,
+      country: selectedCountryName,
+    });
+
+    setSelectedCountry(selectedCountryCode);
+    setStates(State.getStatesOfCountry(selectedCountryCode));
   };
 
   const handleStateChange = (event) => {
-    const selectedStateIsoCode = event.target.value;
-    setSelectedState(selectedStateIsoCode);
+    const selectedStateString = event.target.value;
+    const selectedState = JSON.parse(selectedStateString);
+    const selectedStateName = selectedState?.name;
+
+    setProfile({
+      ...profile,
+      state: selectedStateName,
+    });
 
     const citiesOfState = City.getCitiesOfState(
       selectedCountry,
-      selectedStateIsoCode
+      selectedState.isoCode
     );
     setCities(citiesOfState);
   };
@@ -134,7 +143,12 @@ export default function EditProfileDialog({ userProfile }) {
   const handleCityChange = (event) => {
     const selectedCityName = event.target.value;
     setSeletedCity(selectedCityName);
-    console.log(selectedCity);
+    console.log(selectedCityName);
+
+    setProfile({
+      ...profile,
+      city: selectedCityName,
+    });
   };
 
   const [openEdit, setOpenEdit] = useState(false);
@@ -216,7 +230,7 @@ export default function EditProfileDialog({ userProfile }) {
       <Dialog
         open={openEdit}
         onClose={cancel}
-        fullScreen
+        fullScreen={false}
         aria-labelledby="artwork-modal-title"
         aria-describedby="artwork-modal-description"
       >
@@ -243,80 +257,68 @@ export default function EditProfileDialog({ userProfile }) {
                 inputProps={{ maxLength: 140 }}
               />
 
-              <TextField
-                label={t("location")}
-                defaultValue={profile.location}
-                onChange={(event) =>
-                  setProfile({ ...profile, location: event.target.value })
-                }
-                inputProps={{ maxLength: 280 }}
-              />
               <label htmlFor="select-id" style={{ fontWeight: "200px" }}>
                 {t("Country")}
               </label>
               <select
-                id="select-id"
                 style={{
                   height: "20px",
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
                 aria-label={t("location")}
-                value={selectedCountry ? selectedCountry : "Sweden"}
                 onChange={handleCountryChange}
               >
                 {countries.map((country, index) => (
                   <option
                     key={index}
-                    value={country.isoCode}
+                    value={JSON.stringify(country)}
                     style={{ width: "auto", height: "30px" }}
                   >
-                    {country.name}
+                    {country?.name}
                   </option>
                 ))}
               </select>
+
               <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
                 {t("State")}
               </label>
               <select
-                id="select-state"
                 style={{
                   height: "20px",
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
                 aria-label={t("location")}
-                value={selectedState ? selectedState : " "}
                 onChange={handleStateChange}
               >
                 {states.map((state, index) => (
                   <option
                     key={index}
-                    value={state.isoCode}
+                    value={JSON.stringify(state)}
                     style={{ width: "auto", height: "10px" }}
                   >
                     {state.name}
                   </option>
                 ))}
               </select>
+
               <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
                 {t("City")}
               </label>
               <select
-                id="select-city"
                 style={{
                   height: "20px",
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
                 aria-label={t("location")}
-                value={selectedCity}
                 onChange={handleCityChange}
               >
                 {cities.map((city, index) => (
                   <option
                     key={index}
-                    value={city.isoCode}
+                    value={city.name}
                     style={{ width: "auto", height: "10px" }}
                   >
                     {city.name}
