@@ -40,6 +40,8 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#8d8d8d",
       fontFamily: "inherit",
       fontSize: "14px",
+      backgroundColor: "transparent",
+      background: "transparent",
       "&:focus": {
         outline: "none",
         borderColor: "transparent",
@@ -54,7 +56,9 @@ export const styles = makeStyles((theme: Theme) =>
         width: "100px",
         border: "none",
         background: "transparent",
-        color: "#333",
+        color: "#000000de",
+
+        fontFamily: "inherit",
       },
     },
 
