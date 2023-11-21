@@ -172,8 +172,7 @@ export default function AboutCard({
                             <Typography>{`${data?.Location}`}</Typography>
                           ) : (
                             <div>
-                              Lägg gärna till plats genom att klicka på knappen
-                              ändra profil
+                              <Typography>""</Typography>
                             </div>
                           )}
                         </div>

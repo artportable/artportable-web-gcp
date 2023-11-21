@@ -216,6 +216,24 @@ export default function EditProfileDialog({ userProfile }) {
         >
           <div>{t("editProfile")}</div>
         </Button>
+        <div>
+          {userProfile?.City ? (
+            ""
+          ) : (
+            <div
+              style={{
+                marginTop: "5px",
+                textAlign: "center",
+                marginLeft: "15px",
+                fontSize: "12px",
+                color: "red",
+              }}
+            >
+              {" "}
+              {t("fillInCountry")}
+            </div>
+          )}
+        </div>
       </div>
 
       <Dialog
@@ -248,7 +266,7 @@ export default function EditProfileDialog({ userProfile }) {
                 inputProps={{ maxLength: 140 }}
               />
               <label htmlFor="select-id" style={{ fontWeight: "200px" }}>
-                {t("Country")}
+                {t("country")}
               </label>
               <select
                 style={{
@@ -256,7 +274,6 @@ export default function EditProfileDialog({ userProfile }) {
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
-                aria-label={t("location")}
                 onChange={handleCountryChange}
               >
                 {countries.map((country, index) => (
@@ -275,7 +292,7 @@ export default function EditProfileDialog({ userProfile }) {
               </select>
 
               <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
-                {t("State")}
+                {t("state")}
               </label>
               <select
                 style={{
@@ -298,7 +315,7 @@ export default function EditProfileDialog({ userProfile }) {
               </select>
 
               <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
-                {t("City")}
+                {t("city")}
               </label>
               <select
                 style={{
