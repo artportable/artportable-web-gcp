@@ -6,6 +6,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  useTheme,
+  useMediaQuery,
 } from "@material-ui/core";
 import { styles } from "./indexHero.css";
 import { useTranslation } from "next-i18next";
@@ -43,6 +45,9 @@ export default function IndexHero() {
   const [toggleButtonReviews, setToggleButtonReviews] = useState(false);
   const [expanded, setExpanded] = useState(false);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("smPlus"));
+
   const reviews = [
     {
       title: t("reviewOneTitle"),
@@ -71,9 +76,8 @@ export default function IndexHero() {
   useEffect(() => {
     setLoading(randomImage === null);
     const isDefaultLocale = router.locale == router.defaultLocale;
-    const redirectHref = `${window.origin}${
-      isDefaultLocale ? "" : `/${router.locale}`
-    }/plans`;
+    const redirectHref = `${window.origin}${isDefaultLocale ? "" : `/${router.locale}`
+      }/plans`;
     setSignUpRedirectHref(redirectHref);
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
@@ -305,132 +309,134 @@ export default function IndexHero() {
                     {t("readDescription5")}
                   </Typography>
 
-                  <Accordion className={s.accordion} elevation={0}>
-                    <AccordionSummary
-                      expandIcon={<KeyboardArrowDownIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography>{t("ads")}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <div>
-                        <img
-                          height={50}
-                          width={170}
-                          className={s.logo}
-                          src="/Artportable_Logotyp_Black.svg"
-                          alt="Logo Artportable"
-                        />
-                        <Typography
-                          variant="h5"
-                          component="h2"
-                          className={s.headingAd}
-                        >
-                          {t("headlineAd")}
-                        </Typography>
-                        <div className={s.adContent}>
-                          <a
-                            href="https://utländskacasino.net/"
-                            target="_blank"
+                  {isMobile && (
+                    <Accordion className={s.accordion} elevation={0}>
+                      <AccordionSummary
+                        expandIcon={<KeyboardArrowDownIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Typography>{t("ads")}</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <div>
+                          <img
+                            height={50}
+                            width={170}
+                            className={s.logo}
+                            src="/Artportable_Logotyp_Black.svg"
+                            alt="Logo Artportable"
+                          />
+                          <Typography
+                            variant="h5"
+                            component="h2"
+                            className={s.headingAd}
                           >
-                            <img
-                              className={s.imageAd}
-                              src={"/images/utlandskacasino_net.jpg"}
-                              alt="utländskacasino.net"
-                              title=""
-                            />
-                          </a>
-                        </div>
-
-                        <Typography
-                          variant="h5"
-                          component="h2"
-                          className={s.headingAd}
-                        >
-                          {t("headlineAd")}
-                        </Typography>
-                        <div className={s.adContent2}>
-                          <div>
-                            <Typography>
-                              <a
-                                className={s.linkColor}
-                                href="https://goplay.se/casinon/"
-                                target="_blank"
-                              >
-                                Goplay.se
-                              </a>{" "}
-                              informerar om online casino.
-                            </Typography>
+                            {t("headlineAd")}
+                          </Typography>
+                          <div className={s.adContent}>
+                            <a
+                              href="https://utländskacasino.net/"
+                              target="_blank"
+                            >
+                              <img
+                                className={s.imageAd}
+                                src={"/images/utlandskacasino_net.jpg"}
+                                alt="utländskacasino.net"
+                                title=""
+                              />
+                            </a>
                           </div>
-                        </div>
 
-                        <Typography
-                          variant="h5"
-                          component="h2"
-                          className={s.headingAd}
-                        >
-                          {t("headlineAd")}
-                        </Typography>
-                        <div className={s.adContent2}>
-                          <div>
-                            <Typography>
-                              Allt om utländska casinon hittar du på
-                              <a
-                                className={s.linkColor}
-                                href="https://spelpressen.se/casino-reportage/casino-utan-svensk-licens"
-                                target="_blank"
-                              >
-                                {" "}
-                                Spelpressens sida
-                              </a>{" "}
-                              här.
-                            </Typography>
-                          </div>
-                        </div>
-                        <Typography
-                          variant="h5"
-                          component="h2"
-                          className={s.headingAd}
-                        >
-                          {t("headlineAd")}
-                        </Typography>
-                        <div className={s.adContent}>
-                          <a
-                            href="https://onlinecasinos.se/casino-utan-svensk-licens"
-                            target="_blank"
+                          <Typography
+                            variant="h5"
+                            component="h2"
+                            className={s.headingAd}
                           >
-                            <img
-                              className={s.imageAd}
-                              src={"/images/OCSLOGO.svg"}
-                              alt="OCS"
-                              title=""
-                            />
-                          </a>
-                        </div>
-                        <Typography
-                          variant="h5"
-                          component="h2"
-                          className={s.headingAd}
-                        >
-                          {t("headlineAd")}
-                        </Typography>
-                        <div className={s.adContent2}>
-                          <div>
-                            <Typography>
-                              <a
-                                className={s.linkColor}
-                                href=" https://passagen.se/casino-utan-svensk-licens/"
-                                target="_blank"
-                              >
-                                Casinon utan Svensk Licens med Trustly
-                              </a>{" "}
-                            </Typography>
+                            {t("headlineAd")}
+                          </Typography>
+                          <div className={s.adContent2}>
+                            <div>
+                              <Typography>
+                                <a
+                                  className={s.linkColor}
+                                  href="https://goplay.se/casinon/"
+                                  target="_blank"
+                                >
+                                  Goplay.se
+                                </a>{" "}
+                                informerar om online casino.
+                              </Typography>
+                            </div>
+                          </div>
+
+                          <Typography
+                            variant="h5"
+                            component="h2"
+                            className={s.headingAd}
+                          >
+                            {t("headlineAd")}
+                          </Typography>
+                          <div className={s.adContent2}>
+                            <div>
+                              <Typography>
+                                Allt om utländska casinon hittar du på
+                                <a
+                                  className={s.linkColor}
+                                  href="https://spelpressen.se/casino-reportage/casino-utan-svensk-licens"
+                                  target="_blank"
+                                >
+                                  {" "}
+                                  Spelpressens sida
+                                </a>{" "}
+                                här.
+                              </Typography>
+                            </div>
+                          </div>
+                          <Typography
+                            variant="h5"
+                            component="h2"
+                            className={s.headingAd}
+                          >
+                            {t("headlineAd")}
+                          </Typography>
+                          <div className={s.adContent}>
+                            <a
+                              href="https://onlinecasinos.se/casino-utan-svensk-licens"
+                              target="_blank"
+                            >
+                              <img
+                                className={s.imageAd}
+                                src={"/images/OCSLOGO.svg"}
+                                alt="OCS"
+                                title=""
+                              />
+                            </a>
+                          </div>
+                          <Typography
+                            variant="h5"
+                            component="h2"
+                            className={s.headingAd}
+                          >
+                            {t("headlineAd")}
+                          </Typography>
+                          <div className={s.adContent2}>
+                            <div>
+                              <Typography>
+                                <a
+                                  className={s.linkColor}
+                                  href=" https://passagen.se/casino-utan-svensk-licens/"
+                                  target="_blank"
+                                >
+                                  Casinon utan Svensk Licens med Trustly
+                                </a>{" "}
+                              </Typography>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </AccordionDetails>
-                  </Accordion>
+                      </AccordionDetails>
+                    </Accordion>
+                  )}
                 </div>
               </AccordionDetails>
             </Accordion>

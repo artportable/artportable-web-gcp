@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { styles } from './storyComponent.css';
 import { Story } from '../../models/Story';
+import { useTranslation } from "next-i18next";
 
 interface StoryComponentProps {
     story: Story;
 }
 
 export default function StoryComponent({ story }: StoryComponentProps) {
+    const { t } = useTranslation(["common",]);
     const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
     const s = styles();
     const date: Date = new Date(story?.Published);
@@ -22,31 +24,26 @@ export default function StoryComponent({ story }: StoryComponentProps) {
                         alt={`${story?.Title ? story?.Title : 'story image'}`}
                         src={`${bucketUrl}${story?.PrimaryFile?.Name}`}
                     />
+                    <div className={s.textTitle}>
+                        <header>
+                            <time dateTime={date.toISOString()} className={s.datePublished}>
+                                <div className={s.monthDay}>
+                                    <span className={s.month}>{month}</span>
+                                    <span className={s.day}>{day}</span>
+                                </div>
+                            </time>
+                            <h2 className={s.title}>
+                                {story?.Title}
+                            </h2>
+                        </header>
+                        {story.Description.length > 200 ? (
+                            <p className={s.text}>{story?.Description.slice(0, 200).trimEnd()}... <i>{t("common:readMore")}</i></p>
+                        ) : (
+                            <p className={s.text}>{story?.Description}</p>
+                        )}
+                    </div>
                 </a>
             </Link>
-            <div className={s.textTitle}>
-                <header>
-                    <time dateTime={date.toISOString()} className={s.datePublished}>
-                        <div className={s.monthDay}>
-                            <span className={s.month}>{month}</span>
-                            <span className={s.day}>{day}</span>
-                        </div>
-                    </time>
-                    <h2 className={s.title}>
-                        <Link href={`/story/${story.Id}`}>
-                            <a>
-                                <time></time>
-                                {story?.Title}
-                            </a>
-                        </Link>
-                    </h2>
-                </header>
-                {story.Description.length > 200 ? (
-                    <p className={s.text}>{story?.Description.slice(0, 200).trimEnd()}...</p>
-                ) : (
-                    <p className={s.text}>{story?.Description}</p>
-                )}
-            </div>
         </article>
     );
 }
