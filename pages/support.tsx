@@ -31,7 +31,7 @@ export default function Support({ navBarItems }) {
         />
         <link
           rel="canonical"
-          href={locale === "en" ? publicUrl + "/en/support" : publicUrl}
+          href={`${publicUrl}/${locale}/support`}
         />
       </Head>
       <div className={s.paddingWidth}>
