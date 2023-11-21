@@ -76,5 +76,9 @@
   "closeButton": "Stäng",
   "upgradePremiumStory": "Upgradera till premium för att kunna ladda upp nyheter",
   "uploadStory": "Ladda upp en nyhet",
-  "stories": "Nyheter"
+  "stories": "Nyheter",
+  "country": "Land",
+  "state": "Län",
+  "city": "Stad",
+  "fillInCountry": "Fyll i land och stad"
 }

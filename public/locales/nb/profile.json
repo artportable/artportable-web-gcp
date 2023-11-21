@@ -75,5 +75,9 @@
   "closeButton": "Lukk",
   "upgradePremiumStory": "Oppgrader til premium for å kunne laste opp nyheter",
   "uploadStory": "Last opp en nyhet",
-  "stories": "Nyheter"
+  "stories": "Nyheter",
+  "country": "Land",
+  "state": "Stat",
+  "city": "By",
+  "fillInCountry": "Vennligst fyll inn Land og By"
 }
