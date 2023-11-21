@@ -258,7 +258,6 @@ export default function EditProfileDialog({ userProfile }) {
                 inputProps={{ maxLength: 140 }}
               />
 
-              <InputLabel>{t("country")}</InputLabel>
               <select className={s.selectInfo} onChange={handleCountryChange}>
                 <option hidden>{t("country")}</option>
                 <option disabled></option>
@@ -273,7 +272,6 @@ export default function EditProfileDialog({ userProfile }) {
                 ))}
               </select>
 
-              <InputLabel>{t("state")}</InputLabel>
               <select className={s.selectInfo} onChange={handleStateChange}>
                 <option hidden>{t("state")}</option>
                 <option disabled></option>
@@ -288,7 +286,6 @@ export default function EditProfileDialog({ userProfile }) {
                 ))}
               </select>
 
-              <InputLabel>{t("city")}</InputLabel>
               <select className={s.selectInfo} onChange={handleCityChange}>
                 <option hidden>{t("city")}</option>
                 <option disabled></option>
