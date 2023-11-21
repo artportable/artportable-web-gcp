@@ -5,6 +5,7 @@ import {
   DialogTitle,
   DialogActions,
   TextField,
+  Select,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import Button from "../Button/Button";
@@ -33,6 +34,8 @@ import { allCountriesData } from "../../../public/countries/allCountries";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { theme } from "../../../styles/theme";
 import useTheme from "@mui/material/styles/useTheme";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
 interface Profile {
   title: string;
@@ -220,18 +223,7 @@ export default function EditProfileDialog({ userProfile }) {
           {userProfile?.City ? (
             ""
           ) : (
-            <div
-              style={{
-                marginTop: "5px",
-                textAlign: "center",
-                marginLeft: "15px",
-                fontSize: "12px",
-                color: "red",
-              }}
-            >
-              {" "}
-              {t("fillInCountry")}
-            </div>
+            <div className={s.fillIn}> {t("fillInCountry")}</div>
           )}
         </div>
       </div>
@@ -265,72 +257,42 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 140 }}
               />
-              <label htmlFor="select-id" style={{ fontWeight: "200px" }}>
-                {t("country")}
-              </label>
-              <select
-                style={{
-                  width: "100%",
-                  border: "none",
-                  borderBottom: "1px solid black",
-                }}
-                onChange={handleCountryChange}
-              >
+
+              <InputLabel>{t("country")}</InputLabel>
+              <select className={s.selectInfo} onChange={handleCountryChange}>
+                <option hidden>{""}</option>
+                <option disabled></option>
                 {countries.map((country, index) => (
                   <option
                     key={index}
                     value={JSON.stringify(country)}
-                    style={{
-                      padding: "5px 10px",
-                      width: "auto",
-                      color: "black",
-                    }}
+                    className={s.optionStyle}
                   >
                     {country?.name}
                   </option>
                 ))}
               </select>
 
-              <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
-                {t("state")}
-              </label>
-              <select
-                style={{
-                  width: "100%",
-                  border: "none",
-                  borderBottom: "1px solid black",
-                }}
-                aria-label={t("location")}
-                onChange={handleStateChange}
-              >
+              <InputLabel>{t("state")}</InputLabel>
+              <select className={s.selectInfo} onChange={handleStateChange}>
                 {states.map((state, index) => (
                   <option
                     key={index}
                     value={JSON.stringify(state)}
-                    style={{ width: "auto", height: "10px" }}
+                    className={s.optionStyle}
                   >
                     {state.name}
                   </option>
                 ))}
               </select>
 
-              <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
-                {t("city")}
-              </label>
-              <select
-                style={{
-                  width: "100%",
-                  border: "none",
-                  borderBottom: "1px solid black",
-                }}
-                aria-label={t("location")}
-                onChange={handleCityChange}
-              >
+              <InputLabel>{t("city")}</InputLabel>
+              <select className={s.selectInfo} onChange={handleCityChange}>
                 {cities.map((city, index) => (
                   <option
                     key={index}
                     value={city.name}
-                    style={{ width: "100%", height: "10px" }}
+                    className={s.optionStyle}
                   >
                     {city.name}
                   </option>
