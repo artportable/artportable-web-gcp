@@ -1,32 +1,36 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Avatar, Box, Card, CardContent, Divider, Typography } from '@material-ui/core'
-import { styles } from './aboutCard.css'
-import RoomIcon from '@material-ui/icons/Room'
-import { useTranslation } from 'next-i18next'
-import SocialNetworksCard from '../SocialNetworksCard/SocialNetworksCard'
-import InspiredByCard from '../InspiredByCard/InspiredByCard'
-import { isNullOrUndefined } from '../../utils/util'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import AddCircleIcon from '@material-ui/icons/AddCircle'
-
-
-// ny
+import React, { useContext, useEffect, useRef, useState } from "react";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  Divider,
+  Typography,
+} from "@material-ui/core";
+import { styles } from "./aboutCard.css";
+import RoomIcon from "@material-ui/icons/Room";
+import { useTranslation } from "next-i18next";
+import SocialNetworksCard from "../SocialNetworksCard/SocialNetworksCard";
+import InspiredByCard from "../InspiredByCard/InspiredByCard";
+import { isNullOrUndefined } from "../../utils/util";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 export default function AboutCard({
   data,
   userProfilePicture,
   onUpdateProfilePicture,
   tags,
-  isMyProfile
+  isMyProfile,
 }) {
-  const s = styles()
-  const { t } = useTranslation(['profile', 'tags'])
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
+  const s = styles();
+  const { t } = useTranslation(["profile", "tags"]);
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
-  const fileInput = useRef(null)
+  const fileInput = useRef(null);
 
   function renderWithLineBreaks(text) {
-    return text.split('\n').map((str, index, array) => (
+    return text.split("\n").map((str, index, array) => (
       <>
         {str}
         {index === array.length - 1 ? null : <br />}
@@ -36,32 +40,32 @@ export default function AboutCard({
 
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
-      return
+      return;
     }
 
-    var fr = new FileReader()
+    var fr = new FileReader();
     fr.onload = function () {
-      var img = new Image()
+      var img = new Image();
       img.onload = function () {
         onUpdateProfilePicture(
           event.target.files[0],
           img.width,
           img.height,
-          'profile'
-        )
-      }
+          "profile"
+        );
+      };
 
-      img.src = fr.result.toString() // is the data URL because called with readAsDataURL
-    }
-    fr.readAsDataURL(event.target.files[0])
-  }
+      img.src = fr.result.toString(); // is the data URL because called with readAsDataURL
+    };
+    fr.readAsDataURL(event.target.files[0]);
+  };
 
   return (
     <>
-      <div style={{ marginTop: '2vh' }}>
+      <div style={{ marginTop: "2vh" }}>
         <div>
           <div
-            style={{ display: 'flex', marginTop: '20px' }}
+            style={{ display: "flex", marginTop: "20px" }}
             className={s.aboutTextProfilePic}
           >
             {data && (
@@ -69,7 +73,7 @@ export default function AboutCard({
                 <div>
                   {data?.ProfilePicture && (
                     <img
-                      alt='profile picture'
+                      alt="profile picture"
                       className={s.imgClass}
                       src={`${bucketUrl}${userProfilePicture}`}
                     ></img>
@@ -77,35 +81,35 @@ export default function AboutCard({
                   {!data?.ProfilePicture && (
                     <div className={s.noProfilePic}>
                       <div className={s.noPicBox}>
-                        {t('profile:NoProfilePicSet')}
+                        {t("profile:NoProfilePicSet")}
                       </div>
                       {isMyProfile && (
                         <div
                           style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            margin: '10px'
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "10px",
                           }}
                         >
                           <button
                             style={{
-                              color: 'black',
-                              border: '1px solid black',
-                              borderRadius: '20px',
-                              display: 'flex',
-                              alignItems: 'center',
-                              textAlign: 'center',
-                              backgroundColor: 'transparent',
-                              cursor: 'pointer'
+                              color: "black",
+                              border: "1px solid black",
+                              borderRadius: "20px",
+                              display: "flex",
+                              alignItems: "center",
+                              textAlign: "center",
+                              backgroundColor: "transparent",
+                              cursor: "pointer",
                             }}
                           >
-                            <div>{t('profile:addProfilePicture')}</div>
+                            <div>{t("profile:addProfilePicture")}</div>
 
                             <input
                               ref={fileInput}
                               onChange={handleFileUpload}
                               type="file"
-                              style={{ display: 'none' }}
+                              style={{ display: "none" }}
                               multiple={false}
                             />
 
@@ -126,18 +130,18 @@ export default function AboutCard({
                       {isMyProfile && (
                         <div>
                           <button className={s.profilePicBtn}>
-                            {t('profile:changeProfilePicture')}
+                            {t("profile:changeProfilePicture")}
 
                             <input
                               ref={fileInput}
                               onChange={handleFileUpload}
                               type="file"
-                              style={{ display: 'none' }}
+                              style={{ display: "none" }}
                               multiple={false}
                             />
                             {isMyProfile && (
                               <AddCircleIcon
-                                style={{ margin: '5px' }}
+                                style={{ margin: "5px" }}
                                 color="primary"
                               />
                             )}
@@ -156,18 +160,25 @@ export default function AboutCard({
                           <Typography>{`${data?.Headline}`}</Typography>
                         )}
                       </div>
-                      {data?.Location && (
+
+                      {data?.City ? (
                         <Typography>
-                          <RoomIcon
-                            color="primary"
-                            fontSize="small"
-                            style={{ color: '#da8c77' }}
-                          ></RoomIcon>
-                          {`${data?.Location}`}
+                          {`${data?.Country}, `}
+                          {`${data?.State}, `} {`${data?.City}`}
                         </Typography>
+                      ) : (
+                        <div>
+                          {data?.Location ? (
+                            <Typography>{`${data?.Location}`}</Typography>
+                          ) : (
+                            <div>
+                              <Typography>""</Typography>
+                            </div>
+                          )}
+                        </div>
                       )}
                     </div>
-                    <div style={{ marginTop: '5px' }}>
+                    <div style={{ marginTop: "5px" }}>
                       {data?.SocialMedia && (
                         <SocialNetworksCard
                           data={data?.SocialMedia}
@@ -178,11 +189,11 @@ export default function AboutCard({
                 </div>
               </div>
             )}
-            <div style={{ marginLeft: '30px' }}>
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ marginLeft: "30px" }}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
                 {!data?.About && (
-                  <p style={{ display: 'flex', justifyContent: 'center' }}>
-                    {t('profile:noBioSet')}
+                  <p style={{ display: "flex", justifyContent: "center" }}>
+                    {t("profile:noBioSet")}
                   </p>
                 )}
               </div>
@@ -190,7 +201,7 @@ export default function AboutCard({
               {data?.About && (
                 <div className={s.bioText}>
                   <b>
-                    {t('profile:aboutArtist')}{' '}
+                    {t("profile:aboutArtist")}{" "}
                     <a>
                       {data?.Name} {data?.Surname && data?.Surname}
                     </a>
@@ -206,18 +217,13 @@ export default function AboutCard({
                   )}
                 </div>
               )}
-
             </div>
           </div>
 
-          {!data?.ProfilePicture && (
-            <div className={s.noProfilePic}>
-
-            </div>
-          )}
+          {!data?.ProfilePicture && <div className={s.noProfilePic}></div>}
         </div>
         <div></div>
       </div>
     </>
-  )
+  );
 }

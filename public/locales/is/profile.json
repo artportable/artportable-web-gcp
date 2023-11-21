@@ -76,5 +76,9 @@
   "closeButton": "Loka",
   "upgradePremiumStory": "Uppfærðu til frumsýningar til að geta hlaðið upp fréttir",
   "uploadStory": "Hlaða upp frétt",
-  "stories": "Fréttir"
+  "stories": "Fréttir",
+  "country": "Land",
+  "state": "Hérað",
+  "city": "Bær",
+  "fillInCountry": "Vinsamlegast fyllið út land og borg"
 }

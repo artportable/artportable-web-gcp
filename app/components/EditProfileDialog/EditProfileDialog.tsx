@@ -27,11 +27,20 @@ import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import { capitalizeFirst } from "../../utils/util";
 import useRefreshToken from "../../hooks/useRefreshToken";
+import { Country, State, City } from "country-state-city";
+
+import { allCountriesData } from "../../../public/countries/allCountries";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { theme } from "../../../styles/theme";
+import useTheme from "@mui/material/styles/useTheme";
 
 interface Profile {
   title: string;
   headline: string;
   location: string;
+  country: string;
+  state: string;
+  city: string;
   about: string;
   studio: Studio;
   inspiredBy: string;
@@ -74,6 +83,64 @@ export default function EditProfileDialog({ userProfile }) {
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [states, setStates] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountryName, setSelectedCountryName] = useState("");
+  const [selectedCity, setSeletedCity] = useState("");
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    const countries = allCountriesData.map((country) => ({
+      name: country.name,
+      isoCode: country.isoCode,
+    }));
+    setCountries(countries);
+  }, []);
+
+  const handleCountryChange = (event) => {
+    const selectedCountryString = event.target.value;
+    const selectedCountry = JSON.parse(selectedCountryString);
+    const selectedCountryCode = selectedCountry.isoCode;
+    const selectedCountryName = selectedCountry.name;
+    setSelectedCountryName(selectedCountryName);
+
+    setProfile({
+      ...userProfile,
+      country: selectedCountryName,
+    });
+
+    setSelectedCountry(selectedCountryCode);
+    setStates(State.getStatesOfCountry(selectedCountryCode));
+  };
+
+  const handleStateChange = (event) => {
+    const selectedStateString = event.target.value;
+    const selectedState = JSON.parse(selectedStateString);
+    const selectedStateName = selectedState?.name;
+
+    setProfile({
+      ...profile,
+      state: selectedStateName,
+    });
+
+    const citiesOfState = City.getCitiesOfState(
+      selectedCountry,
+      selectedState.isoCode
+    );
+    setCities(citiesOfState);
+  };
+
+  const handleCityChange = (event) => {
+    const selectedCityName = event.target.value;
+    setSeletedCity(selectedCityName);
+
+    setProfile({
+      ...profile,
+      city: selectedCityName,
+    });
+  };
 
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(
@@ -108,20 +175,22 @@ export default function EditProfileDialog({ userProfile }) {
   };
 
   const validate = (p) => {
-    profile?.educations?.map((e) => {
-      if (!e.from) {
+    // Check educations for null 'from' and 'to'
+    profile?.educations?.forEach((e) => {
+      if (e.from === undefined || e.from === null) {
         e.from = null;
       }
-      if (!e.to) {
+      if (e.to === undefined || e.to === null) {
         e.to = null;
       }
     });
 
-    profile?.exhibitions?.map((e) => {
-      if (!e.from) {
+    // Check exhibitions for null 'from' and 'to'
+    profile?.exhibitions?.forEach((e) => {
+      if (e.from === undefined || e.from === null) {
         e.from = null;
       }
-      if (!e.to) {
+      if (e.to === undefined || e.to === null) {
         e.to = null;
       }
     });
@@ -145,14 +214,33 @@ export default function EditProfileDialog({ userProfile }) {
           startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}
         >
-          <div> {t("editProfile")}</div>
+          <div>{t("editProfile")}</div>
         </Button>
+        <div>
+          {userProfile?.City ? (
+            ""
+          ) : (
+            <div
+              style={{
+                marginTop: "5px",
+                textAlign: "center",
+                marginLeft: "15px",
+                fontSize: "12px",
+                color: "red",
+              }}
+            >
+              {" "}
+              {t("fillInCountry")}
+            </div>
+          )}
+        </div>
       </div>
 
       <Dialog
         open={openEdit}
         onClose={cancel}
-        maxWidth="md"
+        fullScreen={fullScreen}
+        maxWidth={fullScreen ? false : "md"}
         aria-labelledby="artwork-modal-title"
         aria-describedby="artwork-modal-description"
       >
@@ -168,7 +256,6 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 140 }}
               />
-
               <TextField
                 label={t("headline")}
                 defaultValue={profile.headline}
@@ -178,15 +265,77 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 140 }}
               />
+              <label htmlFor="select-id" style={{ fontWeight: "200px" }}>
+                {t("country")}
+              </label>
+              <select
+                style={{
+                  width: "100%",
+                  border: "none",
+                  borderBottom: "1px solid black",
+                }}
+                onChange={handleCountryChange}
+              >
+                {countries.map((country, index) => (
+                  <option
+                    key={index}
+                    value={JSON.stringify(country)}
+                    style={{
+                      padding: "5px 10px",
+                      width: "auto",
+                      color: "black",
+                    }}
+                  >
+                    {country?.name}
+                  </option>
+                ))}
+              </select>
 
-              <TextField
-                label={t("location")}
-                defaultValue={profile.location}
-                onChange={(event) =>
-                  setProfile({ ...profile, location: event.target.value })
-                }
-                inputProps={{ maxLength: 280 }}
-              />
+              <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
+                {t("state")}
+              </label>
+              <select
+                style={{
+                  width: "100%",
+                  border: "none",
+                  borderBottom: "1px solid black",
+                }}
+                aria-label={t("location")}
+                onChange={handleStateChange}
+              >
+                {states.map((state, index) => (
+                  <option
+                    key={index}
+                    value={JSON.stringify(state)}
+                    style={{ width: "auto", height: "10px" }}
+                  >
+                    {state.name}
+                  </option>
+                ))}
+              </select>
+
+              <label htmlFor="select-state" style={{ fontWeight: "200px" }}>
+                {t("city")}
+              </label>
+              <select
+                style={{
+                  width: "100%",
+                  border: "none",
+                  borderBottom: "1px solid black",
+                }}
+                aria-label={t("location")}
+                onChange={handleCityChange}
+              >
+                {cities.map((city, index) => (
+                  <option
+                    key={index}
+                    value={city.name}
+                    style={{ width: "100%", height: "10px" }}
+                  >
+                    {city.name}
+                  </option>
+                ))}
+              </select>
 
               <TextField
                 label={t("aboutMe")}
@@ -259,6 +408,9 @@ const populateProfileObject = (userProfile): Profile => {
     title: userProfile?.Title,
     headline: userProfile?.Headline,
     location: userProfile?.Location,
+    country: userProfile?.Country,
+    state: userProfile?.State,
+    city: userProfile?.City,
     about: userProfile?.About,
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
@@ -291,6 +443,9 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     Title: userProfile?.title,
     Headline: userProfile?.headline,
     Location: userProfile?.location,
+    Country: userProfile?.country,
+    State: userProfile?.state,
+    City: userProfile?.city,
     About: userProfile?.about,
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,

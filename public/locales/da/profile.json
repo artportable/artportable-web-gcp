@@ -75,5 +75,9 @@
   "closeButton": "Luk",
   "upgradePremiumStory": "Opgrader til premium for at kunne uploade nyheder",
   "uploadStory": "Upload en nyhed",
-  "stories": "Nyheder"
+  "stories": "Nyheder",
+  "country": "Land",
+  "state": "Stat",
+  "city": "By",
+  "fillInCountry": "Udfyld venligst land og by"
 }
