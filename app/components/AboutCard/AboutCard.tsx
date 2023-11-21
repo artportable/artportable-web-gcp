@@ -16,8 +16,6 @@ import { isNullOrUndefined } from "../../utils/util";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
-// ny
-
 export default function AboutCard({
   data,
   userProfilePicture,
@@ -163,14 +161,21 @@ export default function AboutCard({
                         )}
                       </div>
 
-                      {data?.Country ? (
+                      {data?.City ? (
                         <Typography>
                           {`${data?.Country}, `}
                           {`${data?.State}, `} {`${data?.City}`}
                         </Typography>
                       ) : (
                         <div>
-                          <Typography>{`${data?.Location}`}</Typography>
+                          {data?.Location ? (
+                            <Typography>{`${data?.Location}`}</Typography>
+                          ) : (
+                            <div>
+                              Lägg gärna till plats genom att klicka på knappen
+                              ändra profil
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>

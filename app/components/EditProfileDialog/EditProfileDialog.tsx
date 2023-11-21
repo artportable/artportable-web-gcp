@@ -28,13 +28,11 @@ import { UserContext } from "../../contexts/user-context";
 import { capitalizeFirst } from "../../utils/util";
 import useRefreshToken from "../../hooks/useRefreshToken";
 import { Country, State, City } from "country-state-city";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
+
 import { allCountriesData } from "../../../public/countries/allCountries";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { theme } from "../../../styles/theme";
-import { parseJSON } from "date-fns";
-import { Fullscreen } from "@material-ui/icons";
+import useTheme from "@mui/material/styles/useTheme";
 
 interface Profile {
   title: string;
@@ -90,13 +88,8 @@ export default function EditProfileDialog({ userProfile }) {
   const [states, setStates] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedCountryName, setSelectedCountryName] = useState("");
-  const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSeletedCity] = useState("");
-  const fullScreen = useMediaQuery(theme.breakpoints.up("smPlus"));
-
-  useEffect(() => {
-    console.log(userProfile);
-  }, []);
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     const countries = allCountriesData.map((country) => ({
@@ -112,7 +105,6 @@ export default function EditProfileDialog({ userProfile }) {
     const selectedCountryCode = selectedCountry.isoCode;
     const selectedCountryName = selectedCountry.name;
     setSelectedCountryName(selectedCountryName);
-    console.log(selectedCountryName);
 
     setProfile({
       ...userProfile,
@@ -143,7 +135,6 @@ export default function EditProfileDialog({ userProfile }) {
   const handleCityChange = (event) => {
     const selectedCityName = event.target.value;
     setSeletedCity(selectedCityName);
-    console.log(selectedCityName);
 
     setProfile({
       ...profile,
@@ -223,14 +214,15 @@ export default function EditProfileDialog({ userProfile }) {
           startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}
         >
-          <div> {t("editProfile")}</div>
+          <div>{t("editProfile")}</div>
         </Button>
       </div>
 
       <Dialog
         open={openEdit}
         onClose={cancel}
-        fullScreen={false}
+        fullScreen={fullScreen}
+        maxWidth={fullScreen ? false : "md"}
         aria-labelledby="artwork-modal-title"
         aria-describedby="artwork-modal-description"
       >
@@ -246,7 +238,6 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 140 }}
               />
-
               <TextField
                 label={t("headline")}
                 defaultValue={profile.headline}
@@ -256,13 +247,12 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 140 }}
               />
-
               <label htmlFor="select-id" style={{ fontWeight: "200px" }}>
                 {t("Country")}
               </label>
               <select
                 style={{
-                  height: "20px",
+                  width: "100%",
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
@@ -273,7 +263,11 @@ export default function EditProfileDialog({ userProfile }) {
                   <option
                     key={index}
                     value={JSON.stringify(country)}
-                    style={{ width: "auto", height: "30px" }}
+                    style={{
+                      padding: "5px 10px",
+                      width: "auto",
+                      color: "black",
+                    }}
                   >
                     {country?.name}
                   </option>
@@ -285,7 +279,7 @@ export default function EditProfileDialog({ userProfile }) {
               </label>
               <select
                 style={{
-                  height: "20px",
+                  width: "100%",
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
@@ -308,7 +302,7 @@ export default function EditProfileDialog({ userProfile }) {
               </label>
               <select
                 style={{
-                  height: "20px",
+                  width: "100%",
                   border: "none",
                   borderBottom: "1px solid black",
                 }}
@@ -319,7 +313,7 @@ export default function EditProfileDialog({ userProfile }) {
                   <option
                     key={index}
                     value={city.name}
-                    style={{ width: "auto", height: "10px" }}
+                    style={{ width: "100%", height: "10px" }}
                   >
                     {city.name}
                   </option>

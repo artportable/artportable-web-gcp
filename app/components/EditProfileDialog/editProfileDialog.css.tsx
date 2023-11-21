@@ -16,7 +16,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     editProfileButton: {
       marginLeft: "20px",
-
       border: "1px solid black",
     },
     editProfileIcon: {
