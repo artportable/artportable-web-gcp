@@ -44,7 +44,7 @@ export const styles = makeStyles((theme: Theme) =>
         text: {
             textAlign: 'center',
             fontSize: '16px',
-            lineHeight: '1.6em',
+            lineHeight: '1.7em',
             textTransform: 'none',
             letterSpacing: '0px',
         },

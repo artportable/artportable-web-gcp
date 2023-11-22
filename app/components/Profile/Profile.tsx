@@ -135,7 +135,7 @@ export default function Profile({
         <Typography variant="h5" className={s.fullName}>
           {userProfile?.data?.Name.toUpperCase()}{" "}
           {userProfile?.data?.Surname &&
-            userProfile?.data?.Surname.toUpperCase()}
+            userProfile?.data?.Surname.toUpperCase()}{" "}
         </Typography>
         <Box className={s.counterBox}>
           <Button

@@ -427,7 +427,7 @@ export default function Exhibition({ navBarItems }) {
           <meta name="url" content="https://artportable.com/showroom" />
           <link
             rel="canonical"
-            href={locale === "en" ? publicUrl + "/en/showroom" : publicUrl}
+            href={`${publicUrl}/${locale}/showroom`}
           />
         </Head>
         <div className={s.flexContainer}>

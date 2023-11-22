@@ -114,6 +114,12 @@ export default function ArtworkPage(props) {
       : null
   }
 
+  useEffect(() => {
+    console.log(`${publicUrl}/${props.locale}${router.asPath}`)
+  
+    console.log(canonicalURL)
+  })
+
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />
   ) : isLiked ? (
@@ -160,7 +166,7 @@ export default function ArtworkPage(props) {
           content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`}
         />
 
-        <link rel="canonical" href={canonicalURL} />
+        <link rel="canonical" href={`${publicUrl}/${props.locale}${router.asPath}`} />
       </Head>
       {/* // if den prop, visa kompontent, annars visa det andra */}
 

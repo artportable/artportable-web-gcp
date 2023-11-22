@@ -75,5 +75,9 @@
   "closeButton": "Close",
   "upgradePremiumStory": "Upgrade to premium to be able to upload stories",
   "uploadStory": "Upload a story",
-  "stories": "Stories"
+  "stories": "Stories",
+  "country": "Country",
+  "state": "State",
+  "city": "City",
+  "fillInCountry": "Please fill in Country and City"
 }

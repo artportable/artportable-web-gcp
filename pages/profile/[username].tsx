@@ -2,7 +2,14 @@ import Main, { FullWidthBlock } from "../../app/components/Main/Main";
 import Head from "next/head";
 import AboutMe from "../../app/components/AboutMe/AboutMe";
 import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
-import { Tabs, Tab, Snackbar, Typography, Paper, Grid } from "@material-ui/core";
+import {
+  Tabs,
+  Tab,
+  Snackbar,
+  Typography,
+  Paper,
+  Grid,
+} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import ProfileComponent from "../../app/components/Profile/Profile";
@@ -372,8 +379,8 @@ export default function Profile(props) {
       <Head>
         <title>
           {staticUserProfile &&
-            staticUserProfile.Name &&
-            staticUserProfile.Surname
+          staticUserProfile.Name &&
+          staticUserProfile.Surname
             ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
             : "Artportable"}
         </title>
@@ -381,8 +388,8 @@ export default function Profile(props) {
           name="title"
           content={
             staticUserProfile &&
-              staticUserProfile.Name &&
-              staticUserProfile.Surname
+            staticUserProfile.Name &&
+            staticUserProfile.Surname
               ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
               : "Artportable"
           }
@@ -422,7 +429,7 @@ export default function Profile(props) {
           }
         />
 
-        <link rel="canonical" href={canonicalURL} />
+        <link rel="canonical" href={`${publicUrl}/${props.locale}${router.asPath}`} />
       </Head>
       {isReady && (
         <>
@@ -599,43 +606,72 @@ export default function Profile(props) {
                   <TabPanel value={activeTab} index={2}>
                     {
                       <>
-                        {isMyProfile && membership.value === Membership.PortfolioPremium && (
-                          <div style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
-                            <Link href="/upload-story">
-                              <a>
-                                <Button
-                                  aria-label="upload story"
-                                  variant="contained"
-                                  style={{ backgroundColor: "#ffd700" }}
-                                  rounded
-                                >{t("profile:uploadStory")}</Button>
-                              </a>
-                            </Link>
-                          </div>
-                        )}
-                        {isMyProfile && membership.value === Membership.Portfolio && (
-                          <div style={{ display: 'flex', alignItems:'center',  margin: '20px', flexDirection:'column' }}>
-                            <Typography style={{ margin: '20px', fontSize:'16px' }}>{t("profile:upgradePremiumStory")}</Typography>
-                                <Button
-                                  style={{ backgroundColor: "#ffd700" }}
-                                  aria-label="upgrade"
-                                  variant="contained"
-                                  rounded
-                                  onClick={redirectToPremiumUpgrade}
-                                >{t("profile:upgradeButton")}</Button>
-                          </div>
-                        )}
+                        {isMyProfile &&
+                          membership.value === Membership.PortfolioPremium && (
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "20px",
+                              }}
+                            >
+                              <Link href="/upload-story">
+                                <a>
+                                  <Button
+                                    aria-label="upload story"
+                                    variant="contained"
+                                    style={{ backgroundColor: "#ffd700" }}
+                                    rounded
+                                  >
+                                    {t("profile:uploadStory")}
+                                  </Button>
+                                </a>
+                              </Link>
+                            </div>
+                          )}
+                        {isMyProfile &&
+                          membership.value === Membership.Portfolio && (
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                margin: "20px",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <Typography
+                                style={{ margin: "20px", fontSize: "16px" }}
+                              >
+                                {t("profile:upgradePremiumStory")}
+                              </Typography>
+                              <Button
+                                style={{ backgroundColor: "#ffd700" }}
+                                aria-label="upgrade"
+                                variant="contained"
+                                rounded
+                                onClick={redirectToPremiumUpgrade}
+                              >
+                                {t("profile:upgradeButton")}
+                              </Button>
+                            </div>
+                          )}
                         <Grid justifyContent="center" container spacing={2}>
                           {!smPlusOrSmaller ? (
                             <>
-                              <Grid item style={{ flexBasis: 'auto', marginRight: '1.5rem' }}>
+                              <Grid
+                                item
+                                style={{
+                                  flexBasis: "auto",
+                                  marginRight: "1.5rem",
+                                }}
+                              >
                                 <div className={s.stories}>
                                   {oddStories?.map((story: Story) => (
                                     <StoryComponent isIndex={false} story={story} key={story.Id} />
                                   ))}
                                 </div>
                               </Grid>
-                              <Grid item style={{ flexBasis: 'auto' }}>
+                              <Grid item style={{ flexBasis: "auto" }}>
                                 <div className={s.stories}>
                                   {evenStories?.map((story: Story) => (
                                     <StoryComponent isIndex={false} story={story} key={story.Id} />
@@ -801,9 +837,8 @@ export default function Profile(props) {
             </Alert>
           </Snackbar>
         </>
-      )
-      }
-    </Main >
+      )}
+    </Main>
   );
 }
 
