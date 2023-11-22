@@ -33,6 +33,22 @@ export function useGetStories(owner = null, myUsername: string = null) {
   };
 }
 
+export function useGetLatestStories(page: number) {
+  const stories = 12;
+  const url = new URL(`${apiBaseUrl}/api/stories/latest?page=${page}&pageSize=${stories}`);
+  const { data, error, mutate } = useSWR(url.toString(), fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+    mutate: mutate,
+  };
+}
+
 export function useGetStory(id: string, myUsername: string = null) {
   const url = new URL(
     `${apiBaseUrl}/api/stories/${id}?myUsername=${myUsername}`
