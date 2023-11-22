@@ -20,5 +20,6 @@
   "latestText": "Hold deg oppdatert på de aller siste opplastingene fra artistene på Artportable",
   "topListText": "De mest likte kunstverkene på Artportable",
   "myLikedArtText": "Dine likte bilder på Artportable",
-  "nothingFound": "Ingenting funnet med de valgte filtrene"
+  "nothingFound": "Ingenting funnet med de valgte filtrene",
+  "loadMore": "Last mer"
 }
