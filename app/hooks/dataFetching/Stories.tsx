@@ -50,22 +50,51 @@ export function useGetStory(id: string, myUsername: string = null) {
   };
 }
 
-export function usePostStory(
+// export async function usePostStory(
+//   story: StoryForCreation,
+//   socialId: string,
+//   token: string
+// ) {
+//   const response = await fetch(`${apiBaseUrl}/api/stories?mySocialId=${socialId}`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify(story),
+//   })
+//     .then((res) => {
+//       console.log(res.ok)
+//       return res.json();
+//     })
+//     .catch((e) => console.log(e));
+// }
+
+export async function usePostStory(
   story: StoryForCreation,
   socialId: string,
   token: string
 ) {
-  fetch(`${apiBaseUrl}/api/stories?mySocialId=${socialId}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(story),
-  })
-    .then((res) => {
-      return res.ok;
-    })
-    .catch((e) => console.log(e));
-}
+  try {
+    const response = await fetch(`${apiBaseUrl}/api/stories?mySocialId=${socialId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(story),
+    });
 
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const data = await response.json();
+    console.log(data); // Log the parsed response data
+
+    return data; // Return the data if needed
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    throw error;
+  }
+}
