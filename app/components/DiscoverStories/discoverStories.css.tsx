@@ -5,7 +5,9 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     grid: {
       flexBasis: 'auto', 
-      marginRight: '1.5rem',
+      [theme.breakpoints.up("md")]: {
+        marginRight: '1.5rem',
+      }
     },
     lastGrid: { //prob not needed
       flexBasis: 'auto',
