@@ -55,11 +55,13 @@ export default function StoryComponent({ story, isIndex }: StoryComponentProps) 
 
             <Link href={`/story/${story.Id}`}>
                 <a>
+                    <div className={s.imageContainer}>
                     <img
                         className={s.image}
                         alt={`${story?.Title ? story?.Title : 'story image'}`}
                         src={`${bucketUrl}${story?.PrimaryFile?.Name}`}
-                    />
+                        />
+                    </div>
                     <div className={s.textTitle}>
                         <header>
                             <time dateTime={date.toISOString()} className={s.datePublished}>

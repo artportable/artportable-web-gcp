@@ -26,6 +26,10 @@ export const styles = makeStyles((theme: Theme) =>
             justifyContent:'center',
             alignItems:' center'
         },
+        imageContainer: {
+            display:'flex',
+            justifyContent:'center',
+        },
         image: {
             maxWidth: '100%',
         },
