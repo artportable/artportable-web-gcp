@@ -34,8 +34,8 @@ export function useGetStories(owner = null, myUsername: string = null) {
 }
 
 export function useGetLatestStories(page: number) {
-  const stories = 12;
-  const url = new URL(`${apiBaseUrl}/api/stories/latest?page=${page}&pageSize=${stories}`);
+  const amount = 12;
+  const url = new URL(`${apiBaseUrl}/api/stories/latest?page=${page}&pageSize=${amount}`);
   const { data, error, mutate } = useSWR(url.toString(), fetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
@@ -101,16 +101,16 @@ export async function usePostStory(
       body: JSON.stringify(story),
     });
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+    // if (!response.ok) {
+    //   throw new Error('Network response was not ok');
+    // }
 
     const data = await response.json();
-    console.log(data); // Log the parsed response data
+    console.log(data);
 
-    return data; // Return the data if needed
+    return data;
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    throw error;
+    console.error(error);
+    //throw error;
   }
 }
