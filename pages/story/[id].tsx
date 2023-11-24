@@ -5,14 +5,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import Main from '../../app/components/Main/Main'
 import { useGetStory } from '../../app/hooks/dataFetching/Stories'
-import { Avatar } from '@material-ui/core'
+import { Avatar, IconButton } from '@material-ui/core'
 import { styles } from '../../styles/story.css'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack' //could be good
 import Button from "../../app/components/Button/Button";
 import { LoadingContext } from "../../app/contexts/loading-context";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-
 import Link from 'next/link'
+import ShareSharpIcon from '@mui/icons-material/ShareSharp';
 import { UserContext } from '../../app/contexts/user-context'
 import {
     ActionType,
@@ -23,6 +23,8 @@ import { getNavBarItems } from '../../app/utils/getNavBarItems'
 import { Story } from '../../app/models/Story'
 import EditStoryDialog from '../../app/components/EditStoryDialog/EditStoryDialog'
 import Carousel from "react-material-ui-carousel";
+import { RWebShare } from 'react-web-share'
+import { SiteError } from 'getstream'
 
 interface StoryProps {
     navBarItems: any,
@@ -89,7 +91,8 @@ export default function StoryPage(props: StoryProps) {
         ));
     }
 
-    const storyUrl = `https://artportable.com/stories/${storyData?.data?.Id}`
+    const sites: string[] = ["facebook, linkedin, copy, mail, twitter, whatsapp, "];
+    const storyUrl = `https://artportable.com/story/${storyData?.data?.Id}`
     const shareStoryTitle = storyData?.data?.Title
         ? `${t('common:share')}"${storyData?.data?.Title}"`
         : `${t('common:share')}`
@@ -158,32 +161,50 @@ export default function StoryPage(props: StoryProps) {
                                 alt={`${story.Title ? story.Title : 'story image'}`}
                             />
                         )}
-                        <time dateTime={date.toISOString()} className={s.published}>
-                            {t("published")} {date.toLocaleDateString()}
-                        </time>
+                        <div className={s.publishShare}>
+                            <time dateTime={date.toISOString()} className={s.published}>
+                                {t("published")} {date.toLocaleDateString()}
+                            </time>
+                            <RWebShare
+                                sites={["facebook", "linkedin", "copy", "mail"]}
+                                data={{
+                                    text: shareStoryText,
+                                    url: storyUrl,
+                                    title: shareStoryTitle
+                                }}>
+                                <Button
+                                    className={s.shareButton}
+                                    endIcon={<ShareSharpIcon />}
+                                    variant='contained'
+                                    rounded
+                                    color=''>
+                                    {t('common:share')}
+                                </Button>
+                            </RWebShare>
+                        </div>
                         <h1 className={s.title}>{story.Title}</h1>
                         <p className={s.text}>{renderWithLineBreaks(story.Description)}</p>
 
-                        {isMyStory ? (
+                        {isMyStory && (
                             <>
-                            <div className={s.btnContainer}>
-                                <Button
-                                    aria-label="edit"
-                                    className={s.editButton}
-                                    variant="contained"
-                                    rounded
-                                    onClick={() =>
-                                        openEditStoryDialog()
-                                    }
-                                >{t("editStory")}</Button>
-                            </div>
+                                <div className={s.btnContainer}>
+                                    <Button
+                                        aria-label="edit"
+                                        className={s.editButton}
+                                        variant="contained"
+                                        rounded
+                                        onClick={() =>
+                                            openEditStoryDialog()
+                                        }
+                                    >{t("editStory")}</Button>
+                                </div>
                                 <EditStoryDialog
                                     story={story}
                                     open={editStoryOpen}
                                     onClose={onEditStoryClose}
                                 />
                             </>
-                        ) : (<> </>)}
+                        )}
                         <div className={s.writerContainer}>
                             {story?.ProfilePicture ? (
                                 <Link href={`/profile/@${story.Username}`}>
