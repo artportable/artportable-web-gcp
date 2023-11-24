@@ -7,7 +7,7 @@ import Main from '../../app/components/Main/Main'
 import { useGetStory } from '../../app/hooks/dataFetching/Stories'
 import { Avatar, IconButton } from '@material-ui/core'
 import { styles } from '../../styles/story.css'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack' //could be good
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import Button from "../../app/components/Button/Button";
 import { LoadingContext } from "../../app/contexts/loading-context";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -91,7 +91,6 @@ export default function StoryPage(props: StoryProps) {
         ));
     }
 
-    const sites: string[] = ["facebook, linkedin, copy, mail, twitter, whatsapp, "];
     const storyUrl = `https://artportable.com/story/${storyData?.data?.Id}`
     const shareStoryTitle = storyData?.data?.Title
         ? `${t('common:share')}"${storyData?.data?.Title}"`
@@ -184,7 +183,9 @@ export default function StoryPage(props: StoryProps) {
                         </div>
                         <h1 className={s.title}>{story.Title}</h1>
                         <p className={s.text}>{renderWithLineBreaks(story.Description)}</p>
-
+                        <IconButton onClick={() => router.back()}>
+                            <ArrowBackIcon />
+                        </IconButton>
                         {isMyStory && (
                             <>
                                 <div className={s.btnContainer}>

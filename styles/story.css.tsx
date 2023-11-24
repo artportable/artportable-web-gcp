@@ -32,7 +32,6 @@ export const styles = makeStyles((theme: Theme) =>
     btnContainer: {
         display:'flex', 
         justifyContent:'center',
-        gap: 20
     },
     editButton: {
         backgroundColor: "#ffd700",
