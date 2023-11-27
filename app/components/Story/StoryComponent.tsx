@@ -33,7 +33,7 @@ export default function StoryComponent({ story, isIndex }: StoryComponentProps) 
                                 <Avatar
                                     src={`${bucketUrl}${story?.ProfilePicture}`}
                                     alt="Profile picture"
-                                    style={{ height: "50px", width: "50px", marginRight: '10px' }}
+                                    className={s.avatar}
                                 />
                             </a>
                         </Link>

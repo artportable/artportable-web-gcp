@@ -21,5 +21,7 @@
   "topListText": "De mest gillade verken på Artportable",
   "myLikedArtText": "Här samlas alla verk du gillar på Artportable",
   "nothingFound": "Inget resultat med valda filter",
-  "loadMore": "Visa Fler"
+  "loadMore": "Visa Fler",
+  "stories": "Nyhetsrum",
+  "uploadStory": "Ladda upp en nyhet"
 }
