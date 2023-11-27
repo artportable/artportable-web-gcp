@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { styles } from "./discoverStoriesTab.css";
 import { useTranslation } from "next-i18next";
 import { Story } from "../../models/Story";
 import { useGetLatestStories } from "../../hooks/dataFetching/Stories";
 import Button from "../Button/Button";
 import DiscoverStories from "../DiscoverStories/DiscoverStories";
+import Link from "next/link";
+import { UserContext } from "../../contexts/user-context";
+import { Membership } from "../../models/Membership";
 
 export default function DiscoverStoriesTab() {
   const s = styles();
@@ -26,10 +29,34 @@ export default function DiscoverStoriesTab() {
     setPage(page + 1);
   };
 
+  const {membership} = useContext(UserContext);
+
   const isButtonDisabled = currentStories.length < storiesPerPage;
 
   return (
     <>
+      {membership.value > Membership.Base && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "20px",
+          }}
+        >
+          <Link href="/upload-story">
+            <a>
+              <Button
+                aria-label="upload story"
+                variant="contained"
+                style={{ backgroundColor: "#ffd700" }}
+                rounded
+              >
+                {t("discover:uploadStory")}
+              </Button>
+            </a>
+          </Link>
+        </div>
+      )}
       <DiscoverStories stories={allStories} />
       {!isButtonDisabled && (
         <div className={s.btnContainer}>

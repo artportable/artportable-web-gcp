@@ -22,5 +22,6 @@
   "myLikedArtText": "Your liked images on Artportable",
   "nothingFound" : "Nothing Found with the chosen filters",
   "loadMore": "Load More",
-  "stories": "Stories"
+  "stories": "Stories",
+  "uploadStory": "Upload a story"
 }
