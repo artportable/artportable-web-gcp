@@ -85,9 +85,9 @@ export default function IndexHero() {
   const images = [
     {
       name: "Hans-Olof Dahlgren",
-      username: "maria.nehlin",
-      image: "/images/underytan.jpg",
-      imageLink: "art/5b50b80f-eaaf-4d5f-9de0-182d3849f79b",
+      username: "hans-o",
+      image: "/images/olof.png",
+      imageLink: "art/4de0b420-30b0-4966-b98c-0f9ac8253f92",
     },
   ];
 
