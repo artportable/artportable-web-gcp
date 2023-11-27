@@ -76,14 +76,15 @@ export default function IndexHero() {
   useEffect(() => {
     setLoading(randomImage === null);
     const isDefaultLocale = router.locale == router.defaultLocale;
-    const redirectHref = `${window.origin}${isDefaultLocale ? "" : `/${router.locale}`
-      }/plans`;
+    const redirectHref = `${window.origin}${
+      isDefaultLocale ? "" : `/${router.locale}`
+    }/plans`;
     setSignUpRedirectHref(redirectHref);
   }, [randomImage, router.locale, router.defaultLocale]);
   //List with current promoted artists
   const images = [
     {
-      name: "Maria Nehlin",
+      name: "Hans-Olof Dahlgren",
       username: "maria.nehlin",
       image: "/images/underytan.jpg",
       imageLink: "art/5b50b80f-eaaf-4d5f-9de0-182d3849f79b",
