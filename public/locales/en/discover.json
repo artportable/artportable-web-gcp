@@ -21,5 +21,6 @@
   "topListText": "The most liked artworks on Artportable",
   "myLikedArtText": "Your liked images on Artportable",
   "nothingFound" : "Nothing Found with the chosen filters",
-  "loadMore": "Load More"
+  "loadMore": "Load More",
+  "stories": "Stories"
 }
