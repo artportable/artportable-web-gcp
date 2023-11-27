@@ -23,8 +23,16 @@ export const styles = makeStyles((theme: Theme) =>
         writerContainer: {
             display:'flex',
             padding:'10px',
-            justifyContent:'center',
-            alignItems:' center'
+            marginLeft:'5px',
+            alignItems:' center',
+            textTransform:'uppercase',
+            fontSize:'8px',
+            letterSpacing:'1px'
+        },
+        avatar: {
+            height: "30px", 
+            width: "30px", 
+            marginRight: '10px'
         },
         imageContainer: {
             display:'flex',
