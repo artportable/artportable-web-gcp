@@ -11,9 +11,14 @@ export const styles = makeStyles((theme: Theme) =>
         width: '100%',
         height: 'auto',
     },
+    publishShare: {
+        display: 'flex', 
+        alignItems: 'center'
+    },
     published: {
         color: '#999999',
         fontSize: '16px',
+        marginRight:'10px'
     },
     title: {
         fontSize: '38px',
@@ -26,7 +31,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     btnContainer: {
         display:'flex', 
-        justifyContent:'center'
+        justifyContent:'center',
     },
     editButton: {
         backgroundColor: "#ffd700",
@@ -43,7 +48,14 @@ export const styles = makeStyles((theme: Theme) =>
     writerImage: {
         height: "120px", 
         width: "120px"
-    }
+    },
+    shareButton: {
+        height:'28px', 
+        backgroundColor:'#ffd700',
+        '&:hover': {
+            backgroundColor:'#ffd700'
+        }
+      },
 
   }),
 );

@@ -96,8 +96,14 @@ export default function UploadStoryPage({ navBarItems }) {
         };
         setRefresh(true);
         setUploadSnackbarOpen(true);
-        const res = usePostStory(story, socialId.value, token);
-        router.push("/profile/@" + username.value);
+        const res = await usePostStory(story, socialId.value, token);
+        console.log(res)
+        if(res){
+          router.push("/story/" + res.Id);
+        }
+        else{
+          router.push("/profile/@" + username.value);
+        }
       }
     } else {
       const name = await uploadImage(
@@ -115,8 +121,14 @@ export default function UploadStoryPage({ navBarItems }) {
           TertiaryFile: nameTertiary,
         };
         setUploadSnackbarOpen(true);
-        usePostStory(story, socialId.value, token);
-        router.push("/profile/@" + username.value);
+        const res  = await usePostStory(story, socialId.value, token)
+        console.log(res)
+        if(res){
+          router.push("/story/" + res.Id);
+        }
+        else{
+          router.push("/profile/@" + username.value);
+        }
       }
     }
   };

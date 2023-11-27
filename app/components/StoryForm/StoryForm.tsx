@@ -29,6 +29,9 @@ export default function StoryForm({
         label={t("description")}
         multiline
         fullWidth
+        inputProps={{
+          style: { minHeight: '530px', textAlign: 'start' },
+        }}
         onChange={(event) => setDescription(event.target.value)}
       />
     </Box>
