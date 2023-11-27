@@ -40,7 +40,7 @@ export default function DiscoverStoriesTab() {
           style={{
             display: "flex",
             justifyContent: "center",
-            margin: "20px",
+            marginBottom: "3em",
           }}
         >
           <Link href="/upload-story">
