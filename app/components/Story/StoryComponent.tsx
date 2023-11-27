@@ -40,7 +40,7 @@ export default function StoryComponent({ story, isIndex }: StoryComponentProps) 
                     ) : (
                         <Link href={`/profile/@${story.Username}`}>
                             <a>
-                                <AccountCircleIcon color="secondary" style={{ fontSize: 50 }} />
+                                <AccountCircleIcon color="secondary" style={{ fontSize: 30, marginRight:'10px' }} />
                             </a>
                         </Link>
                     )}
