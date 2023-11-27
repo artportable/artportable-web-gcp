@@ -607,7 +607,7 @@ export default function Profile(props) {
                     {
                       <>
                         {isMyProfile &&
-                          membership.value === Membership.PortfolioPremium && (
+                          membership.value > Membership.Base && (
                             <div
                               style={{
                                 display: "flex",
@@ -629,7 +629,8 @@ export default function Profile(props) {
                               </Link>
                             </div>
                           )}
-                        {isMyProfile &&
+                        {/* Upgrade to premium button if Portfolio */}
+                        {/* {isMyProfile &&
                           membership.value === Membership.Portfolio && (
                             <div
                               style={{
@@ -654,7 +655,7 @@ export default function Profile(props) {
                                 {t("profile:upgradeButton")}
                               </Button>
                             </div>
-                          )}
+                          )} */}
                         <Grid justifyContent="center" container spacing={2}>
                           {!smPlusOrSmaller ? (
                             <>
