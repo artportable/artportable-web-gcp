@@ -20,5 +20,6 @@
   "latestText": "Keep track of the very latest uploads from Artportable's artists",
   "topListText": "The most liked artworks on Artportable",
   "myLikedArtText": "Your liked images on Artportable",
-  "nothingFound" : "Nothing Found with the chosen filters"
+  "nothingFound" : "Nothing Found with the chosen filters",
+  "loadMore": "Load More"
 }

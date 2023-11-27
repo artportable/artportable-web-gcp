@@ -1,14 +1,22 @@
 import Link from 'next/link';
 import { styles } from './storyComponent.css';
 import { Story } from '../../models/Story';
+
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { Avatar } from '@material-ui/core';
+import Button from '../Button/Button'
+
 import { useTranslation } from "next-i18next";
+
 
 interface StoryComponentProps {
     story: Story;
+    isIndex: boolean
 }
 
-export default function StoryComponent({ story }: StoryComponentProps) {
-    const { t } = useTranslation(["common",]);
+
+export default function StoryComponent({ story, isIndex }: StoryComponentProps) {
+    const { t } = useTranslation(["common"]);
     const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
     const s = styles();
     const date: Date = new Date(story?.Published);
@@ -17,13 +25,43 @@ export default function StoryComponent({ story }: StoryComponentProps) {
 
     return (
         <article className={s.story}>
+            {isIndex && (
+                <div className={s.writerContainer}>
+                    {story?.ProfilePicture ? (
+                        <Link href={`/profile/@${story.Username}`}>
+                            <a>
+                                <Avatar
+                                    src={`${bucketUrl}${story?.ProfilePicture}`}
+                                    alt="Profile picture"
+                                    style={{ height: "50px", width: "50px", marginRight: '10px' }}
+                                />
+                            </a>
+                        </Link>
+                    ) : (
+                        <Link href={`/profile/@${story.Username}`}>
+                            <a>
+                                <AccountCircleIcon color="secondary" style={{ fontSize: 50 }} />
+                            </a>
+                        </Link>
+                    )}
+                    <Link href={`/profile/@${story.Username}`}>
+                        <a>
+                            <h2>{story.Name}{" "}{story.Surname}</h2>
+                        </a>
+                    </Link>
+                </div>
+            )}
+
+
             <Link href={`/story/${story.Id}`}>
                 <a>
+                    <div className={s.imageContainer}>
                     <img
                         className={s.image}
                         alt={`${story?.Title ? story?.Title : 'story image'}`}
                         src={`${bucketUrl}${story?.PrimaryFile?.Name}`}
-                    />
+                        />
+                    </div>
                     <div className={s.textTitle}>
                         <header>
                             <time dateTime={date.toISOString()} className={s.datePublished}>

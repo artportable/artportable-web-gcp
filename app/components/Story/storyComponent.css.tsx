@@ -8,14 +8,27 @@ export const styles = makeStyles((theme: Theme) =>
             marginBottom: '1.5rem',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
             [theme.breakpoints.up('md')]: {
-                maxWidth: '300px'
-            },
-            [theme.breakpoints.up('mdPlus')]: {
                 maxWidth: '380px'
             },
-            [theme.breakpoints.up('lg')]: {
-                maxWidth: '460px'
+            [theme.breakpoints.up('mdPlus')]: {
+                maxWidth: '450px'
             },
+            [theme.breakpoints.up('lg')]: {
+                maxWidth: '290px'
+            },
+            [theme.breakpoints.up('lgPlus')]: {
+                maxWidth:'350px'
+            }
+        },
+        writerContainer: {
+            display:'flex',
+            padding:'10px',
+            justifyContent:'center',
+            alignItems:' center'
+        },
+        imageContainer: {
+            display:'flex',
+            justifyContent:'center',
         },
         image: {
             maxWidth: '100%',

@@ -667,20 +667,14 @@ export default function Profile(props) {
                               >
                                 <div className={s.stories}>
                                   {oddStories?.map((story: Story) => (
-                                    <StoryComponent
-                                      story={story}
-                                      key={story.Id}
-                                    />
+                                    <StoryComponent isIndex={false} story={story} key={story.Id} />
                                   ))}
                                 </div>
                               </Grid>
                               <Grid item style={{ flexBasis: "auto" }}>
                                 <div className={s.stories}>
                                   {evenStories?.map((story: Story) => (
-                                    <StoryComponent
-                                      story={story}
-                                      key={story.Id}
-                                    />
+                                    <StoryComponent isIndex={false} story={story} key={story.Id} />
                                   ))}
                                 </div>
                               </Grid>
@@ -690,10 +684,7 @@ export default function Profile(props) {
                               <Grid item xs={12}>
                                 <div className={s.stories}>
                                   {stories?.data?.map((story: Story) => (
-                                    <StoryComponent
-                                      story={story}
-                                      key={story.Id}
-                                    />
+                                    <StoryComponent isIndex={false} story={story} key={story.Id} />
                                   ))}
                                 </div>
                               </Grid>

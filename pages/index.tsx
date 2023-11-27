@@ -46,6 +46,7 @@ import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
+import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -204,7 +205,8 @@ export default function DiscoverPage({ navBarItems }) {
           {!isSignedIn.value &&
             activeTab != 1 &&
             activeTab != 2 &&
-            activeTab != 3 && <IndexHero></IndexHero>}
+            activeTab != 3 &&
+            activeTab != 4 && <IndexHero></IndexHero>}
           {/* {<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
@@ -238,6 +240,11 @@ export default function DiscoverPage({ navBarItems }) {
                   className={s.text}
                   label={t("discover:artists")}
                   {...a11yProps(t("discover:artists"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:stories")}
+                  {...a11yProps(t("discover:stories"))}
                 />
                 {isSignedIn.value && (
                   <Tab
@@ -304,6 +311,9 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
+                  <DiscoverStoriesTab />
+              </TabPanel>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
