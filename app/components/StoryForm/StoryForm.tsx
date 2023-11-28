@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@material-ui/core/Box";
 
 import { styles } from "./storyForm.css";
@@ -17,20 +17,20 @@ export default function StoryForm({
   return (
     <Box className={s.container}>
       <TextField
-        id="title"
-        label={t("title")}
+        id="headline"
+        label={t("headline")}
         required
         error={title ? false : true}
         onChange={(event) => setTitle(event.target.value)}
         fullWidth
       />
       <TextField
+        placeholder={t("placeholder")}
         id="description"
-        label={t("description")}
         multiline
         fullWidth
         inputProps={{
-          style: { minHeight: '530px', textAlign: 'start' },
+          style: { minHeight: '500px', textAlign: 'start' },
         }}
         onChange={(event) => setDescription(event.target.value)}
       />
