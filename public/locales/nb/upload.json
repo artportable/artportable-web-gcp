@@ -24,5 +24,7 @@
   "yourWelcome": "Du er alltid velkommen til å kontakte oss hvis du har spørsmål om tjenesten eller ønsker å komme i kontakt med oss.",
   "openingHours": "Åpningstider: ",
   "8-17": "Mandag - fredag, kl. 8:00 - 17:00",
-  "deviating": "Avvikende åpningstider i forbindelse med helligdager og åpninger av kunstutstillinger."
+  "deviating": "Avvikende åpningstider i forbindelse med helligdager og åpninger av kunstutstillinger.",
+  "headline": "Overskrift",
+  "placeholder": "Skriv en tekst om en utstilling, del et glimt fra studioet ditt, eller fortell noe annet spennende om din kunstneriske reise for øyeblikket..."
 }
