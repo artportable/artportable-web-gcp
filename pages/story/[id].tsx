@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -56,8 +56,13 @@ export default function StoryPage(props: StoryProps) {
     const filteredImages: string[] = images.filter((image) => image !== undefined) as string[];
 
     //const profileUser = useGetProfileUser();
-    const isMyStory = story?.Username === username?.value;
+    const isMyStory = story?.Username.toLocaleLowerCase() === username?.value.toLocaleLowerCase();
     //const token = useContext(TokenContext)
+
+    useEffect(() => {
+        console.log(username?.value);
+        console.log(story?.Username)
+    })
 
     const [editStoryOpen, setEditStoryOpen] = useState(false);
     const { setLoading } = useContext(LoadingContext);
