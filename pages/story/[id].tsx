@@ -56,11 +56,14 @@ export default function StoryPage(props: StoryProps) {
     const filteredImages: string[] = images.filter((image) => image !== undefined) as string[];
 
     //const profileUser = useGetProfileUser();
-    const isMyStory = story?.Username.toLowerCase() === username?.value.toLowerCase();
     //const token = useContext(TokenContext)
-
-    const [editStoryOpen, setEditStoryOpen] = useState(false);
-    const { setLoading } = useContext(LoadingContext);
+  
+  const [editStoryOpen, setEditStoryOpen] = useState(false);
+  const { setLoading } = useContext(LoadingContext);
+  
+  const myUsername = username?.value;
+  const storyUsername = story?.Username;
+  const isMyStory = storyUsername?.toLowerCase() === myUsername?.toLowerCase();
 
     const openEditStoryDialog = () => {
         setEditStoryOpen(true);
