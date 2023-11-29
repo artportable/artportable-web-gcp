@@ -62,8 +62,10 @@ export default function StoryPage(props: StoryProps) {
   //const token = useContext(TokenContext)
   const [editStoryOpen, setEditStoryOpen] = useState(false);
   const { setLoading } = useContext(LoadingContext);
-  const myUsername = username?.value === "CRS" ? "crs" : username?.value;
-  const isMyStory = story?.Username === myUsername;
+  
+  const myUsername = username?.value;
+  const storyUsername = story?.Username;
+  const isMyStory = storyUsername?.toLowerCase() === myUsername?.toLowerCase();
 
   useEffect(() => {}, [username?.value]);
 
