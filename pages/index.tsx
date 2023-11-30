@@ -195,10 +195,7 @@ export default function DiscoverPage({ navBarItems }) {
           property="twitter:image"
           content="/images/artportable_tv_commercial.png"
         />
-        <link
-          rel="canonical"
-          href={`${publicUrl}/${locale}`}
-        />
+        <link rel="canonical" href={`${publicUrl}/${locale}`} />
       </Head>
       {!loading && (
         <>
@@ -303,6 +300,7 @@ export default function DiscoverPage({ navBarItems }) {
                   tagPlaceholder={""}
                   fetchType={""}
                 />
+              </TabPanel>
               <TabPanel value={activeTab} index={3}>
                 <DiscoverArtistsTab
                   username={username.value}
@@ -310,7 +308,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                  <DiscoverStoriesTab />
+                <DiscoverStoriesTab />
               </TabPanel>
               <TabPanel value={activeTab} index={5}>
                 <DiscoverMyLikedArtTab
