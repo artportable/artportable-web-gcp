@@ -47,6 +47,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down("sm")]: {
         fontSize: "12px",
       },
+
     },
 
     [theme.breakpoints.up("lg")]: {

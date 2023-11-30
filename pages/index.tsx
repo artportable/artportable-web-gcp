@@ -195,7 +195,10 @@ export default function DiscoverPage({ navBarItems }) {
           property="twitter:image"
           content="/images/artportable_tv_commercial.png"
         />
-        <link rel="canonical" href={`${publicUrl}/${locale}`} />
+        <link
+          rel="canonical"
+          href={`${publicUrl}/${locale}`}
+        />
       </Head>
       {!loading && (
         <>
@@ -230,11 +233,6 @@ export default function DiscoverPage({ navBarItems }) {
                 />
                 <Tab
                   className={s.text}
-                  label={t("discover:stories")}
-                  {...a11yProps(t("discover:stories"))}
-                />
-                <Tab
-                  className={s.text}
                   label={t("discover:highlights")}
                   {...a11yProps(t("discover:artists"))}
                 />
@@ -243,7 +241,11 @@ export default function DiscoverPage({ navBarItems }) {
                   label={t("discover:artists")}
                   {...a11yProps(t("discover:artists"))}
                 />
-
+                <Tab
+                  className={s.text}
+                  label={t("discover:stories")}
+                  {...a11yProps(t("discover:stories"))}
+                />
                 {isSignedIn.value && (
                   <Tab
                     className={s.text}
@@ -290,9 +292,6 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
-                <DiscoverStoriesTab />
-              </TabPanel>
-              <TabPanel value={activeTab} index={3}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -304,14 +303,15 @@ export default function DiscoverPage({ navBarItems }) {
                   tagPlaceholder={""}
                   fetchType={""}
                 />
-              </TabPanel>
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-
+              <TabPanel value={activeTab} index={4}>
+                  <DiscoverStoriesTab />
+              </TabPanel>
               <TabPanel value={activeTab} index={5}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
