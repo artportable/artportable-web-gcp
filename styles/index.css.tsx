@@ -44,6 +44,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     text: {
       minWidth: 0,
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "12px",
+      },
+
     },
 
     [theme.breakpoints.up("lg")]: {
