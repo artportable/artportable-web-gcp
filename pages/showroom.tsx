@@ -27,50 +27,24 @@ export default function Exhibition({ navBarItems }) {
   const { locale } = useRouter();
 
   const cafes = {
-    STOCKHOLM_FISK: [
+    MELANDERS: [
       {
-        period: "9 JANUARI - 9 APRIL",
+        period: "17 JANUARI - 17 APRIL",
         artists: [
-          { name: "Tobbe Ekman", username: "tobbe.ekman" },
-          { name: "Helena Petersson", username: "helena.petersson" },
-          { name: "Daniel Lundvall", username: "daniel.lundvall" },
-          { name: "Lisbeth Olofsdotter", username: "lisbeth.olofsdotter" },
+          { name: "Bitte Brun", username: "Bitte.Brun" },
+          { name: "Linda Lundin", username: "linda" },
+          { name: "Lo Fehrling", username: "lo" },
         ],
-        site: "www.stockholmfisk.se",
+        site: "www.melanders.se/restauranger/melanders-sodermalm/",
       },
       {
-        period: "11 APRIL - 11 JULI",
+        period: "17 APRIL - 17 JULI",
         artists: [
-          { name: "Marcus Boman", username: "marcus.boman" },
-          { name: "Maria Biederbeck", username: "maria.biederbeck" },
-          { name: "Örjan Sätre", username: "orjan.satre" },
-          { name: "Sofie Ohlsson", username: "sofie.ohlsson" },
-          { name: "Hesho Serray", username: "hesho.serray" },
-          { name: "Nathalie Tsikritea", username: "nattiz_t" },
-        ],
-        site: "www.stockholmfisk.se",
-      },
-      {
-        period: "11 JULI - 11 OKTOBER",
-        artists: [
-          { name: "Torill Roselin", username: "torill.roselin" },
-          { name: "Ulrika Hegårdh", username: "ulrikahegardh" },
-          { name: "Jason Andersson", username: "jasonandersson" },
-          { name: "Harriet Ström", username: "haje" },
-          { name: "Karin Grönlund", username: "karin.gronlund" },
-        ],
-        site: "www.stockholmfisk.se",
-      },
-      {
-        period: "11 OKTOBER - 11 JANUARI",
-        artists: [
-          { name: "Marie Sandell", username: "marie.sandell" },
-          { name: "Johan Thunberg", username: "johanthunberg52" },
-          { name: "Åsa Schick", username: "asa.schick" },
-          { name: "Felix Oppenheim", username: "felix.oppenheim" },
+          { name: "Annica Hallman", username: "Annica.b" },
+          { name: "Annika Berglöf", username: "annika.berglof" },
           { name: "Yvonne Marténg", username: "yvonne" },
         ],
-        site: "www.stockholmfisk.se",
+        site: "www.melanders.se/restauranger/melanders-sodermalm/",
       },
     ],
     PS_MATSAL: [
@@ -425,10 +399,7 @@ export default function Exhibition({ navBarItems }) {
 
           <meta name="description" content={t("artportableExhibition")} />
           <meta name="url" content="https://artportable.com/showroom" />
-          <link
-            rel="canonical"
-            href={`${publicUrl}/${locale}/showroom`}
-          />
+          <link rel="canonical" href={`${publicUrl}/${locale}/showroom`} />
         </Head>
         <div className={s.flexContainer}>
           <div className={s.left}>
@@ -439,9 +410,9 @@ export default function Exhibition({ navBarItems }) {
               {t("exhibitionText")}
               <a
                 style={{ color: "#c67777" }}
-                href="https://www.stockholmfisk.se/"
+                href="https://melanders.se/restauranger/melanders-sodermalm/"
               >
-                Stockholm Fisk,{" "}
+                Melanders,{" "}
               </a>
               <a
                 style={{ color: "#c67777" }}
