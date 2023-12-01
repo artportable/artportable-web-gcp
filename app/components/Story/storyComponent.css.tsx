@@ -59,6 +59,7 @@ export const styles = makeStyles((theme: Theme) =>
             lineHeight: '1.7em',
             textTransform: 'none',
             letterSpacing: '0px',
+            wordBreak:'break-word'
         },
         datePublished: {
             display: 'inline-block',
