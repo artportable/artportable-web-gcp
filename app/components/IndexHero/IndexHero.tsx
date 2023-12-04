@@ -84,10 +84,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Hans-Olof Dahlgren",
-      username: "hans-o",
-      image: "/images/olof.png",
-      imageLink: "art/4de0b420-30b0-4966-b98c-0f9ac8253f92",
+      name: "Ann-Britt Farmare",
+      username: "ann-britt.farmare",
+      image: "/images/ann-britt.jpg",
+      imageLink: "art/cea7002a-9b06-48d4-819b-6299d632dce1",
     },
   ];
 
