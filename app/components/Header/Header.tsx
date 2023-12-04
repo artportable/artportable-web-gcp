@@ -135,13 +135,13 @@ export default function Header({ navBarItems }) {
                   </MuiButton>
                 </>
               )}
-              <Link href={`/${t("header:storiesSlug")}`} passHref>
+              {/*      <Link href={`/${t("header:storiesSlug")}`} passHref>
                 <a>
                   <MuiButton color="default" size="large">
                     {t("stories").toUpperCase()}
                   </MuiButton>
                 </a>
-              </Link>
+              </Link> */}
               <Link href="/showroom" passHref>
                 <a>
                   <MuiButton color="default" size="large">
