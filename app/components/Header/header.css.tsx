@@ -78,6 +78,17 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         backgroundColor: "var(--color-green-darker)",
         color: "var(--header-color-lighter)",
+        border: "1px solid black",
+      },
+    },
+    uploadStoryButton: {
+      backgroundColor: "#ffda79",
+      border: "none",
+      color: "black",
+      whiteSpace: "nowrap",
+      "&:hover": {
+        backgroundColor: "#ffd15a",
+        color: "black",
       },
     },
     singleNotificationButton: {
