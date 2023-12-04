@@ -86,8 +86,8 @@ export default function IndexHero() {
     {
       name: "Ann-Britt Farmare",
       username: "ann-britt.farmare",
-      image: "/images/ann-britt.jpg",
-      imageLink: "art/cea7002a-9b06-48d4-819b-6299d632dce1",
+      image: "/images/ann-britt2.jpg",
+      imageLink: "art/7058704e-7cf8-489b-9ba7-5ffc3f3d9316",
     },
   ];
 
