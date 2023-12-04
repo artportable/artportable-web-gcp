@@ -44,6 +44,7 @@ import UpgradePortfolio from "../UpgradePortfolio/UpgradPortfolio";
 import { RWebShare } from "react-web-share";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -135,13 +136,13 @@ export default function Header({ navBarItems }) {
                   </MuiButton>
                 </>
               )}
-              <Link href={`/${t("header:storiesSlug")}`} passHref>
+              {/*      <Link href={`/${t("header:storiesSlug")}`} passHref>
                 <a>
                   <MuiButton color="default" size="large">
                     {t("stories").toUpperCase()}
                   </MuiButton>
                 </a>
-              </Link>
+              </Link> */}
               <Link href="/showroom" passHref>
                 <a>
                   <MuiButton color="default" size="large">
@@ -211,6 +212,30 @@ export default function Header({ navBarItems }) {
                   {membership.value === Membership.PortfolioPremium && (
                     <div className={s.premiumEmblem}>
                       <p className={s.premiumText}>Premium</p>
+                    </div>
+                  )}
+                  {membership.value > Membership.Base && (
+                    <div className={s.upload}>
+                      <Link href="/upload-story">
+                        <a>
+                          <Button
+                            onClick={() =>
+                              trackGoogleAnalytics(
+                                ActionType.UPLOAD_IMAGE_HEADER,
+                                CategoryType.INTERACTIVE
+                              )
+                            }
+                            className={s.uploadStoryButton}
+                            size="small"
+                            variant="outlined"
+                            disableElevation
+                            rounded
+                            endIcon={<FeedOutlinedIcon />}
+                          >
+                            {t("uploadStory")}
+                          </Button>
+                        </a>
+                      </Link>
                     </div>
                   )}
                   {membership.value > Membership.Base && (
