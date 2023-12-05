@@ -259,7 +259,13 @@ export default function EditProfileDialog({ userProfile }) {
               />
 
               <select className={s.selectInfo} onChange={handleCountryChange}>
-                <option hidden>{t("country")}</option>
+                <option hidden>
+                  {userProfile.Country ? (
+                    userProfile.Country
+                  ) : (
+                    <>{t("country")}</>
+                  )}
+                </option>
                 <option disabled></option>
                 {countries.map((country, index) => (
                   <option
@@ -273,7 +279,10 @@ export default function EditProfileDialog({ userProfile }) {
               </select>
 
               <select className={s.selectInfo} onChange={handleStateChange}>
-                <option hidden>{t("state")}</option>
+                <option hidden>
+                  {" "}
+                  {userProfile.State ? userProfile.State : <>{t("state")}</>}
+                </option>
                 <option disabled></option>
                 {states.map((state, index) => (
                   <option
@@ -287,7 +296,10 @@ export default function EditProfileDialog({ userProfile }) {
               </select>
 
               <select className={s.selectInfo} onChange={handleCityChange}>
-                <option hidden>{t("city")}</option>
+                <option hidden>
+                  {" "}
+                  {userProfile.City ? userProfile.City : <>{t("city")}</>}
+                </option>
                 <option disabled></option>
                 {cities.map((city, index) => (
                   <option
@@ -302,8 +314,10 @@ export default function EditProfileDialog({ userProfile }) {
 
               <TextField
                 label={t("aboutMe")}
-                defaultValue={profile.about}
+                defaultValue={profile?.about}
                 multiline
+                minRows={3}
+                style={{ marginBottom: "20px" }}
                 onChange={(event) =>
                   setProfile({ ...profile, about: event.target.value })
                 }
