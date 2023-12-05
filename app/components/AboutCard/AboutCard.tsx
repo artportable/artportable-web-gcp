@@ -171,9 +171,7 @@ export default function AboutCard({
                           {data?.Location ? (
                             <Typography>{`${data?.Location}`}</Typography>
                           ) : (
-                            <div>
-                              <Typography>""</Typography>
-                            </div>
+                            <div></div>
                           )}
                         </div>
                       )}
