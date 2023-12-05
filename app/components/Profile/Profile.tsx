@@ -283,7 +283,7 @@ export default function Profile({
               {/* {membership.value < Membership.Portfolio && (
                       <UpgradePortfolio />
                     )} */}
-              <EditProfileDialog userProfile={userProfile.data} />
+              <EditProfileDialog userProfile={getUserProfile?.data} />
             </div>
           </>
         )}
