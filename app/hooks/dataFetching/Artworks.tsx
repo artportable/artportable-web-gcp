@@ -123,77 +123,49 @@ export function getTimePassed(publishDate, t) {
     };
   }
 
-  if (seconds < 3600) {
-    var interval = seconds / 60;
+  var interval = seconds / 60;
+  if (interval < 60) {
     return {
       Time: Math.floor(interval),
       Unit: t("feed:minutes"),
     };
   }
 
-  if (
-    seconds < 86400 &&
-    now.getDate() == publishDate.getDate() &&
-    now.getMonth() == publishDate.getMonth() &&
-    now.getFullYear() == publishDate.getFullYear()
-  ) {
-    var interval = seconds / 3600;
+  interval = interval / 60;
+  if (interval < 24) {
     return {
       Time: Math.floor(interval),
       Unit: t("feed:hours"),
     };
   }
 
-  var interval = seconds / 31536000;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:year"),
-    };
-  }
-
-  interval = seconds / 2592000;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:months"),
-    };
-  }
-
-  interval = seconds / 604800;
-  if (interval > 1) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:weeks"),
-    };
-  }
-
-  interval = seconds / 86400;
-  if (interval > 1) {
+  interval = interval / 24;
+  if (interval < 7) {
     return {
       Time: Math.floor(interval),
       Unit: t("feed:days"),
     };
   }
 
-  interval = seconds / 3600;
-  if (interval > 1) {
+  interval = interval / 7;
+  if (interval < 4) {
     return {
       Time: Math.floor(interval),
-      Unit: t("feed:hours"),
+      Unit: t("feed:weeks"),
     };
   }
 
-  interval = seconds / 60;
-  if (interval > 1) {
+  interval = interval / 4;
+  if (interval < 12) {
     return {
       Time: Math.floor(interval),
-      Unit: t("feed:minutes"),
+      Unit: t("feed:months"),
     };
   }
 
+  interval = interval / 12;
   return {
-    Time: Math.floor(seconds),
-    Unit: t("feed:seconds"),
+    Time: Math.floor(interval),
+    Unit: t("feed:years"),
   };
 }
