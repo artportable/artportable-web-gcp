@@ -229,11 +229,7 @@ export default function DiscoverPage({ navBarItems }) {
                   label={t("discover:stories")}
                   {...a11yProps(t("discover:stories"))}
                 />
-                <Tab
-                  className={s.text}
-                  label={t("discover:showroom")}
-                  {...a11yProps(t("discover:showroom"))}
-                />
+
                 <Tab
                   className={s.text}
                   label={t("discover:latestArt")}
@@ -244,6 +240,11 @@ export default function DiscoverPage({ navBarItems }) {
                   className={s.text}
                   label={t("discover:highlights")}
                   {...a11yProps(t("discover:artists"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:showroom")}
+                  {...a11yProps(t("discover:showroom"))}
                 />
                 <Tab
                   className={s.text}
@@ -286,10 +287,8 @@ export default function DiscoverPage({ navBarItems }) {
               <TabPanel value={activeTab} index={1}>
                 <DiscoverStoriesTab />
               </TabPanel>
+
               <TabPanel value={activeTab} index={2}>
-                <Showroom />
-              </TabPanel>
-              <TabPanel value={activeTab} index={3}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -302,7 +301,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
 
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -314,6 +313,9 @@ export default function DiscoverPage({ navBarItems }) {
                   tagPlaceholder={""}
                   fetchType={""}
                 />
+              </TabPanel>
+              <TabPanel value={activeTab} index={4}>
+                <Showroom />
               </TabPanel>
               <TabPanel value={activeTab} index={5}>
                 <DiscoverArtistsTab
