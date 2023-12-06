@@ -143,13 +143,13 @@ export default function Header({ navBarItems }) {
                   </MuiButton>
                 </a>
               </Link> */}
-              <Link href="/showroom" passHref>
+              {/*    <Link href="/showroom" passHref>
                 <a>
                   <MuiButton color="default" size="large">
                     {t("exhibition").toUpperCase()}
                   </MuiButton>
                 </a>
-              </Link>
+              </Link> */}
             </nav>
             {/* <RWebShare
               data={{

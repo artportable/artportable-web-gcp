@@ -204,7 +204,8 @@ export default function DiscoverPage({ navBarItems }) {
             activeTab != 1 &&
             activeTab != 2 &&
             activeTab != 3 &&
-            activeTab != 4 && <IndexHero></IndexHero>}
+            activeTab != 4 &&
+            activeTab != 5 && <IndexHero></IndexHero>}
           {/* {<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
