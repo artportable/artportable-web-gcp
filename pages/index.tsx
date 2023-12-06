@@ -47,6 +47,7 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
+import Showroom from "../app/components/Showroom/Showroom";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -230,6 +231,11 @@ export default function DiscoverPage({ navBarItems }) {
                 />
                 <Tab
                   className={s.text}
+                  label={t("discover:showroom")}
+                  {...a11yProps(t("discover:showroom"))}
+                />
+                <Tab
+                  className={s.text}
                   label={t("discover:latestArt")}
                   {...a11yProps(t("discover:latestArt"))}
                 />
@@ -281,6 +287,9 @@ export default function DiscoverPage({ navBarItems }) {
                 <DiscoverStoriesTab />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
+                <Showroom />
+              </TabPanel>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -293,7 +302,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
 
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={4}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -306,13 +315,13 @@ export default function DiscoverPage({ navBarItems }) {
                   fetchType={""}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -349,6 +358,7 @@ export async function getStaticProps({ locale }) {
         "support",
         "articles",
         "feed",
+        "exhibitions",
       ])),
     },
     revalidate: 60,

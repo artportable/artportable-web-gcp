@@ -3,17 +3,24 @@ import { columnGap } from "../app/utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) => {
   return createStyles({
+    fullContainer: {
+      [theme.breakpoints.up("mdPlus")]: {
+        width: "85%",
+        margin: "0 auto", // To center horizontally
+      },
+    },
     flexContainer: {
       position: "relative",
       display: "flex",
       flexDirection: "column-reverse",
       marginLeft: "auto",
       marginRight: "auto",
-      ...columnGap(theme.spacing(2)),
+      ...columnGap(theme.spacing(1)),
       alignItems: "center",
       flexWrap: "nowrap",
       padding: "0, 5px",
       [theme.breakpoints.up("mdPlus")]: {
+        width: "70%",
         padding: "0",
         flexDirection: "row",
         ...columnGap(0),
@@ -100,10 +107,10 @@ export const styles = makeStyles((theme: Theme) => {
       flexDirection: "column",
       flexBasis: "100%",
       alignItems: "flex-end",
-      height: "70%",
+      height: "50%",
       [theme.breakpoints.up("md")]: {
         marginTop: "25px",
-        height: "70%",
+        height: "50%",
       },
     },
     welcomeText: {
@@ -114,8 +121,8 @@ export const styles = makeStyles((theme: Theme) => {
       textAlign: "left",
     },
     image: {
-      width: "100%",
-      height: "100%",
+      width: "60%",
+      height: "60%",
       marginTop: "0px",
       marginBottom: "0px",
       borderStyle: "solid",

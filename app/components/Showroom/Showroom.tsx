@@ -1,5 +1,3 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { styles } from "../../../styles/exhibitions.css";
 import { useRouter } from "next/router";
@@ -391,124 +389,103 @@ export default function Showroom() {
 
   return (
     <>
-      <Typography variant="h4" style={{ marginBottom: "40px" }} align="center">
-        {t("title")}
-      </Typography>
-      <TabContext value={String(value)}>
-        <Tabs
-          ref={tabsRef}
-          value={String(value)}
-          onChange={handleChange}
-          variant="scrollable"
-          scrollButtons="on"
+      <div className={s.fullContainer}>
+        <Typography
+          variant="h4"
+          style={{ marginBottom: "40px" }}
+          align="center"
         >
-          {monthNames.map((month, index) => (
-            <Tab label={month} key={index} />
-          ))}
-        </Tabs>
-        {Object.keys(showrooms).map((month, index) => (
-          <TabPanel value={String(index)} key={index}>
-            <Grid container spacing={4}>
-              {showrooms[month].map((showroom, i) => {
-                return (
-                  <Grid item xs={12} sm={4} key={i}>
-                    <Card
-                      className={s.card}
-                      style={{ backgroundColor: "#faf3ee" }}
-                    >
-                      <CardContent style={{ padding: "20px" }}>
-                        <Typography
-                          variant="h6"
-                          style={{ marginBottom: "15px" }}
-                        >
-                          {showroom.week}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                          style={{ fontStyle: "italic", marginTop: "10px" }}
-                        >
-                          <a
-                            href={`https://artportable.com/profile/@${showroom.username}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              textDecoration: "underline",
-
-                              cursor: "pointer",
-                            }}
+          {t("title")}
+        </Typography>
+        <TabContext value={String(value)}>
+          <Tabs
+            ref={tabsRef}
+            value={String(value)}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            {monthNames.map((month, index) => (
+              <Tab label={month} key={index} />
+            ))}
+          </Tabs>
+          {Object.keys(showrooms).map((month, index) => (
+            <TabPanel value={String(index)} key={index}>
+              <Grid container spacing={4}>
+                {showrooms[month].map((showroom, i) => {
+                  return (
+                    <Grid item xs={12} sm={4} key={i}>
+                      <Card
+                        className={s.card}
+                        style={{ backgroundColor: "#faf3ee" }}
+                      >
+                        <CardContent style={{ padding: "20px" }}>
+                          <Typography
+                            variant="h6"
+                            style={{ marginBottom: "15px" }}
                           >
-                            {showroom.artist}
-                          </a>
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </TabPanel>
-        ))}
-      </TabContext>
-      <div className={s.divider} />
-      {/* Cafe Tabs */}
-      <TabContext value={selectedCafe}>
-        <Tabs
-          value={selectedCafe}
-          onChange={(event, newCafe) => setSelectedCafe(newCafe)}
-          variant="scrollable"
-          scrollButtons="on"
-        >
-          {Object.keys(cafes).map((cafe) => (
-            <Tab
-              label={cafe
-                .split("_")
-                .map((word) => word.charAt(0) + word.slice(1).toLowerCase())
-                .join(" ")}
-              value={cafe}
-              key={cafe}
-            />
+                            {showroom.week}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                            style={{ fontStyle: "italic", marginTop: "10px" }}
+                          >
+                            <a
+                              href={`https://artportable.com/profile/@${showroom.username}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                textDecoration: "underline",
+
+                                cursor: "pointer",
+                              }}
+                            >
+                              {showroom.artist}
+                            </a>
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </TabPanel>
           ))}
-        </Tabs>
+        </TabContext>
+        <div className={s.divider} />
+        {/* Cafe Tabs */}
+        <TabContext value={selectedCafe}>
+          <Tabs
+            value={selectedCafe}
+            onChange={(event, newCafe) => setSelectedCafe(newCafe)}
+            variant="scrollable"
+            scrollButtons="on"
+          >
+            {Object.keys(cafes).map((cafe) => (
+              <Tab
+                label={cafe
+                  .split("_")
+                  .map((word) => word.charAt(0) + word.slice(1).toLowerCase())
+                  .join(" ")}
+                value={cafe}
+                key={cafe}
+              />
+            ))}
+          </Tabs>
 
-        <Grid container spacing={4}>
-          {selectedCafe &&
-            cafes[selectedCafe] &&
-            cafes[selectedCafe].map((exhibition, i) => (
-              <Grid item xs={12} sm={4} key={i}>
-                <Card className={s.card} style={{ backgroundColor: "#faf3ee" }}>
-                  <CardHeader
-                    title={
-                      <a
-                        href={`https://${exhibition.site}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          textDecoration: "underline",
-
-                          cursor: "pointer",
-                        }}
-                      >
-                        {selectedCafe.replace("_", " ")}
-                      </a>
-                    }
-                  />
-                  <CardContent style={{ padding: "20px" }}>
-                    <Typography
-                      variant="h6"
-                      style={{
-                        marginBottom: "15px",
-                      }}
-                    >
-                      {exhibition.period}
-                    </Typography>
-                    {exhibition.artists.map((artist, j) => (
-                      <Typography
-                        variant="body1"
-                        key={j}
-                        style={{ fontStyle: "italic", marginTop: "10px" }}
-                      >
+          <Grid container spacing={4}>
+            {selectedCafe &&
+              cafes[selectedCafe] &&
+              cafes[selectedCafe].map((exhibition, i) => (
+                <Grid item xs={12} sm={4} key={i}>
+                  <Card
+                    className={s.card}
+                    style={{ backgroundColor: "#faf3ee" }}
+                  >
+                    <CardHeader
+                      title={
                         <a
-                          href={`https://artportable.com/profile/@${artist.username}`}
+                          href={`https://${exhibition.site}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
@@ -517,70 +494,93 @@ export default function Showroom() {
                             cursor: "pointer",
                           }}
                         >
-                          {artist.name}
+                          {selectedCafe.replace("_", " ")}
                         </a>
+                      }
+                    />
+                    <CardContent style={{ padding: "20px" }}>
+                      <Typography
+                        variant="h6"
+                        style={{
+                          marginBottom: "15px",
+                        }}
+                      >
+                        {exhibition.period}
                       </Typography>
-                    ))}
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-        </Grid>
-      </TabContext>
+                      {exhibition.artists.map((artist, j) => (
+                        <Typography
+                          variant="body1"
+                          key={j}
+                          style={{ fontStyle: "italic", marginTop: "10px" }}
+                        >
+                          <a
+                            href={`https://artportable.com/profile/@${artist.username}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              textDecoration: "underline",
 
-      <div className={s.divider} />
-      <div className={s.flexContainer}>
-        <div className={s.left}>
-          <Typography variant="h1" className={s.headline}>
-            {t("artportableExhibition")}
-          </Typography>
-          <Typography variant="h4" className={s.description}>
-            {t("exhibitionText")}
-            <a
-              style={{ color: "#c67777" }}
-              href="https://melanders.se/restauranger/melanders-sodermalm/"
-            >
-              Melanders,{" "}
-            </a>
-            <a
-              style={{ color: "#c67777" }}
-              href="https://psmatsal.com/new-startpage/"
-            >
-              PS Matsal,{" "}
-            </a>
-            <a style={{ color: "#c67777" }} href="https://artbakery.se/">
-              Art Bakery,{" "}
-            </a>
-            <a
-              style={{ color: "#c67777" }}
-              href="https://www.nk.se/avdelningar/stockholm/art-cafe?ssw=1"
-            >
-              NK CAFE,{" "}
-            </a>
-            <a style={{ color: "#c67777" }} href="https://angbatsbryggan.com/">
-              ÅNGBÅTSBRYGGAN,{" "}
-            </a>
-            <a
-              style={{ color: "#c67777" }}
-              href="https://www.lapiazzadjursholm.se/"
-            >
-              LA PIAZZA
-            </a>
-          </Typography>
+                              cursor: "pointer",
+                            }}
+                          >
+                            {artist.name}
+                          </a>
+                        </Typography>
+                      ))}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
+        </TabContext>
 
-          <Typography variant="h4" className={s.welcomeText}>
-            {t("exhibitQuestion")} {""}
-            <a href="mailto: hello@artportable.com">{t("email")}</a>
-          </Typography>
-        </div>
+        <div className={s.divider} />
+        <div className={s.flexContainer}>
+          <div className={s.left}>
+            <Typography variant="h1" className={s.headline}>
+              {t("artportableExhibition")}
+            </Typography>
+            <Typography variant="h4" className={s.description}>
+              {t("exhibitionText")}
+              <a
+                style={{ color: "#c67777" }}
+                href="https://melanders.se/restauranger/melanders-sodermalm/"
+              >
+                Melanders,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://psmatsal.com/new-startpage/"
+              >
+                PS Matsal,{" "}
+              </a>
+              <a style={{ color: "#c67777" }} href="https://artbakery.se/">
+                Art Bakery,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://www.nk.se/avdelningar/stockholm/art-cafe?ssw=1"
+              >
+                NK CAFE,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://angbatsbryggan.com/"
+              >
+                ÅNGBÅTSBRYGGAN,{" "}
+              </a>
+              <a
+                style={{ color: "#c67777" }}
+                href="https://www.lapiazzadjursholm.se/"
+              >
+                LA PIAZZA
+              </a>
+            </Typography>
 
-        <div className={s.right}>
-          <div className={s.frame}>
-            <img
-              src={`/images/mingel.jpeg`}
-              alt="showRoom image"
-              className={s.image}
-            />
+            <Typography variant="h4" className={s.welcomeText}>
+              {t("exhibitQuestion")} {""}
+              <a href="mailto: hello@artportable.com">{t("email")}</a>
+            </Typography>
           </div>
         </div>
       </div>
