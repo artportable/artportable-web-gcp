@@ -47,6 +47,7 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
+import Showroom from "../app/components/Showroom/Showroom";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -203,7 +204,8 @@ export default function DiscoverPage({ navBarItems }) {
             activeTab != 1 &&
             activeTab != 2 &&
             activeTab != 3 &&
-            activeTab != 4 && <IndexHero></IndexHero>}
+            activeTab != 4 &&
+            activeTab != 5 && <IndexHero></IndexHero>}
           {/* {<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
@@ -228,6 +230,7 @@ export default function DiscoverPage({ navBarItems }) {
                   label={t("discover:stories")}
                   {...a11yProps(t("discover:stories"))}
                 />
+
                 <Tab
                   className={s.text}
                   label={t("discover:latestArt")}
@@ -238,6 +241,11 @@ export default function DiscoverPage({ navBarItems }) {
                   className={s.text}
                   label={t("discover:highlights")}
                   {...a11yProps(t("discover:artists"))}
+                />
+                <Tab
+                  className={s.text}
+                  label={t("discover:showroom")}
+                  {...a11yProps(t("discover:showroom"))}
                 />
                 <Tab
                   className={s.text}
@@ -280,6 +288,7 @@ export default function DiscoverPage({ navBarItems }) {
               <TabPanel value={activeTab} index={1}>
                 <DiscoverStoriesTab />
               </TabPanel>
+
               <TabPanel value={activeTab} index={2}>
                 <DiscoverLatestArtTab
                   username={username.value}
@@ -307,12 +316,15 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
+                <Showroom />
+              </TabPanel>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -349,6 +361,7 @@ export async function getStaticProps({ locale }) {
         "support",
         "articles",
         "feed",
+        "exhibitions",
       ])),
     },
     revalidate: 60,
