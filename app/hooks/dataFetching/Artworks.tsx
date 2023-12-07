@@ -124,7 +124,12 @@ export function getTimePassed(publishDate, t) {
   }
 
   var interval = seconds / 60;
-  if (interval < 60) {
+  if (interval < 1) {
+    return {
+      Time: Math.floor(seconds),
+      Unit: t("feed:seconds"),
+    };
+  } else if (interval < 60) {
     return {
       Time: Math.floor(interval),
       Unit: t("feed:minutes"),
