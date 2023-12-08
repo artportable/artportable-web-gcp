@@ -1,0 +1,48 @@
+{
+  "welcomeTo": "Willkommen bei der größten Kunst-Community in Skandinavien",
+  "artPortableDescription": "Ihr Artportable-Portfolio ist ein Werkzeug, um Ihre Kunst professionell zu präsentieren. Artportable ist ein Treffpunkt für Künstler:innen, Kunstliebhaber:innen und Sammler:innen.",
+  "ourMemberships": "Unsere Mitgliedschaften",
+  "youCanAlwaysUpdateYourMembership": "Sie können Ihr Mitgliedschaftspaket jederzeit aktualisieren",
+  "yearlyPayment": "Jährliche Zahlung",
+  "monthlyPayment": "Monatliche Zahlung",
+  "sek": "SEK",
+  "signUp": "Registrieren",
+  "plans": {
+    "free": {
+      "name": "Kostenlos",
+      "subtitle": "Kunstinteressierte – Erhalten Sie heute ein kostenloses Konto und entdecken Sie Originalkunstwerke für Ihr Zuhause.",
+      "listTexts": [
+        "Folgen Sie Künstler:innen",
+        "Finden Sie Kunstwerke für Ihr Zuhause",
+        "Chatten Sie und senden Sie Anfragen zu Kunstwerken",
+        "Lesen Sie Artikel und erhalten Sie Updates zu Ausstellungen"
+      ]
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "subtitle": "Für Künstler:innen, die ihre Werke präsentieren und verkaufen möchten",
+      "listTexts": [
+        "Veröffentlichen Sie Ihre Werke",
+        "Chatten Sie und erhalten Sie Anfragen zu Ihren Kunstwerken",
+        "Zahlen Sie 0 % Provision für verkaufte Werke",
+        "Folgen Sie und interagieren Sie mit anderen Künstler:innen"
+      ]
+    },
+    "portfolioPremium": {
+      "name": "Premium-Portfolio",
+      "subtitle": "Für Künstler:innen, die priorisiert werden möchten und Zugang zu weiteren Vorteilen wünschen.",
+      "listTexts": [
+        "Alles im Portfolio enthalten",
+        "Priorisierte Sichtbarkeit im Feed",
+        "Zahlen Sie 0 % Provision für verkaufte Werke",
+        "Unterstützung",
+        "Persönlicher Kunstkoordinator",
+        "Hilfe bei der Erstellung eines professionellen Portfolios"
+      ]
+    }
+  },
+  "joinTheCommunity": "Treten Sie der Community bei",
+  "Endast siffror": "Nur Zahlen",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "Um mit Ihrem Upgrade fortzufahren, geben Sie bitte Ihre Telefonnummer ein",
+  "Telefonnummer": "Telefonnummer"
+}

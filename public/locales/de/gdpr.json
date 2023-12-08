@@ -1,0 +1,25 @@
+{
+  "title": "Datenschutzrichtlinie",
+  "privacyPartOne": "<strong>Diese Richtlinie beschreibt, wie wir bei Artportable AB personenbezogene Daten sammeln, verwenden und schützen.</strong><br/><br/>Es kann vorkommen, dass wir Informationen sammeln, die uns dabei helfen, Ihnen einen Service zur Verfügung zu stellen. Dazu können gehören:",
+  "privacyList": ["E-Mail", "Name", "Kontaktdaten", "IP-Adresse", "Bilder"],
+  "privacyTexts": [
+    "Die Informationen werden verwendet, um Ihnen Informationen, Zahlungsinformationen und Statistiken gemäß unserer allgemeinen Richtlinie bereitzustellen. Wir sammeln nicht mehr Informationen, als wir benötigen, um unsere Dienste für Sie bereitzustellen.",
+    "Wir haben gesetzliche Anforderungen, die es erforderlich machen, dass wir einen Teil Ihrer Informationen aufbewahren. Wenn wir sie nicht mehr benötigen, werden sie gelöscht. Informationen, die wir für den Newsletter-Versand verwenden, werden bis zu dem Zeitpunkt aufbewahrt, an dem Sie sich dafür entscheiden, sich abzumelden.",
+    "Ihre personenbezogenen Daten können von Mitarbeitern in Schweden verarbeitet werden. Keine Drittpartei hat Zugriff auf Ihre personenbezogenen Daten, und wir werden solche Informationen niemals verkaufen oder weitergeben, es sei denn, es wird gesetzlich gefordert.",
+    "Die von uns gespeicherten Informationen werden in Rechenzentren innerhalb der Europäischen Union gespeichert. Aus technischen Gründen können unsere Unterauftragnehmer Informationen möglicherweise in andere Länder außerhalb der EU übertragen. In diesem Fall werden angemessene Schutzmaßnahmen und standardisierte Datenschutzbestimmungen verwendet, die von der EU-Kommission genehmigt wurden.",
+    "Wir haben Verfahren implementiert, um sicherzustellen, dass Ihre personenbezogenen Daten gemäß den geltenden Gesetzen sicher und geschützt behandelt werden. Weitere Informationen erhalten Sie, wenn Sie uns per E-Mail kontaktieren.",
+    "<strong>Eingebettete Inhalte von anderen Websites</strong>",
+    "Artikel auf dieser Website können eingebettete Inhalte enthalten (z. B. Videos, Bilder, Artikel usw.). Eingebettete Inhalte von anderen Websites verhalten sich genauso, als hätte der Besucher die andere Website besucht.",
+    "Diese Websites können Informationen über Sie sammeln, Cookies verwenden, zusätzliche Verfolgung durch Dritte einbetten und Ihre Interaktion mit diesen eingebetteten Inhalten überwachen, einschließlich der Verfolgung Ihrer Interaktion mit diesen eingebetteten Inhalten, wenn Sie ein Konto haben und auf der betreffenden Website eingeloggt sind.",
+    "<strong>Folgende Rechte haben Sie als Nutzer dieser Plattform:</strong>",
+    "<strong>Recht auf Information:</strong> Sie können eine Kopie der personenbezogenen Daten, die wir über Sie haben, anfordern.<br/><strong>Recht auf Berichtigung:</strong> Wir möchten sicherstellen, dass Ihre Informationen aktuell und korrekt sind. Sie können die Berichtigung oder Löschung Ihrer Informationen beantragen, wenn Sie der Meinung sind, dass sie inkorrekt sind.<br/><strong>Recht auf Löschung:</strong> Sie können beantragen, dass wir Ihre personenbezogenen Daten löschen. Wir dürfen Daten, die gesetzlich aufbewahrt werden müssen, nicht löschen.",
+    "<strong>Datenübertragbarkeit:</strong> Sie können uns auffordern, Ihre personenbezogenen Daten aus unserer IT-Umgebung an jemand anderen, sei es ein anderes Unternehmen oder an Sie selbst, zu übertragen. Dies gilt nicht für Daten, die gesetzlich aufbewahrt werden müssen.",
+    "<strong>Widerruf der Einwilligung:</strong> Sie können Ihre Einwilligung zur Weitergabe Ihrer Informationen oder zum Erhalt von Marketingmaterial/Newslettern jederzeit widerrufen. Entweder durch Abbestellen der Nachricht oder per E-Mail-Kontakt.",
+    "<strong>Beschwerde:</strong> Wenn Sie der Meinung sind, dass wir Ihre personenbezogenen Daten in Verletzung der Datenschutz-Grundverordnung verarbeiten, können Sie eine Beschwerde bei der Datenschutzbehörde einreichen.",
+    "<strong>So können Sie Ihre Rechte ausüben:</strong><br/>Wenn Sie Ihre Rechte ausüben möchten, kontaktieren Sie uns per E-Mail, wie unten in dieser Richtlinie angegeben.<br/>Wenn Sie eine Beschwerde bei der Datenschutzbehörde einreichen möchten, müssen Sie diese kontaktieren.",
+    "<strong>Aktualisierungen dieser Richtlinie:</strong><br/>Wir können diese Richtlinie aktualisieren und werden sie auf dieser Webseite veröffentlichen. Diese Richtlinie wurde zuletzt am 19. August 2021 aktualisiert.",
+    "<strong>So können Sie uns kontaktieren:</strong><br/>Wenn Sie Fragen zu dieser Richtlinie oder zur Verwendung Ihrer Informationen oder zu Ihren Rechten haben, können Sie uns unter folgender Adresse kontaktieren:",
+    "Artportable AB<br/>Åsögatan 176<br/>116 32 Stockholm",
+    "In Ihrem Schreiben bitten wir Sie, Ihren Namen, Ihre Adresse, Ihre E-Mail-Adresse, Ihre Telefonnummer und Ihre Personnummer sowie Ihren Anlass anzugeben. Fügen Sie auch eine Kopie Ihres Ausweises bei. Die Antwort wird an Ihre zuletzt angegebene Meldeadresse gesendet."
+  ]
+}
