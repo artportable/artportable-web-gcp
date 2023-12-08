@@ -1,0 +1,4 @@
+{
+  "pleaseTryAgain": "Beim Öffnen des Kanals ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+  "referToArtwork": "Kaufanfrage\n[{{artwork.title}}]({{artwork.url}})"
+}

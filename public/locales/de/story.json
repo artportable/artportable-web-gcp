@@ -1,0 +1,22 @@
+{
+  "editStory": "Geschichte bearbeiten",
+  "storyTitle": "Titel",
+  "storyDescription": "Beschreibung",
+  "deleteStory": "Geschichte löschen?",
+  "storyUploadedSuccessfully": "Geschichte erfolgreich hochgeladen!",
+  "title": "Titel",
+  "description": "Beschreibung",
+  "upload": "Hochladen",
+  "previewText": "Wählen Sie ein Bild für die Vorschau aus",
+  "selectImage": "Bild auswählen",
+  "dragandDropOrClick": "Ziehen Sie ein Bild hierher oder klicken Sie darauf",
+  "informationOne": "Sie tragen die volle Verantwortung für den von Ihnen hochgeladenen Benutzerinhalt.",
+  "informationTwo": "Sie bestätigen, dass Sie alleiniger Urheber des Benutzerinhalts sind oder über alle erforderlichen Rechte verfügen, um den Benutzerinhalt verfügbar zu machen.",
+  "informationThree": "Sie bestätigen weiterhin, dass der Benutzerinhalt nicht obszön, belästigend oder anderweitig illegal ist.",
+  "addmoreImages": "Hier können Sie weitere Bilder des Werks hinzufügen, z. B. aus einem anderen Blickwinkel oder vom Entstehungsprozess.",
+  "publish": "Veröffentlichen",
+  "doneCropping": "Wenn Sie mit dem Zuschneiden fertig sind, klicken Sie auf die grüne Schaltfläche.",
+  "published": "Veröffentlicht",
+  "deleteStoryWarningTitle": "Sind Sie sicher, dass Sie die Geschichte löschen möchten?",
+  "deleteStoryWarningText": "Bitte bestätigen Sie, dass Sie die Geschichte löschen möchten"
+}

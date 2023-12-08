@@ -4,6 +4,7 @@ export enum Locales {
   nb = "nb",
   da = "da",
   is = "is",
+  de = "de",
 }
 
 export enum DisplayLocales {
@@ -12,4 +13,5 @@ export enum DisplayLocales {
   nb = "Norsk",
   da = "Danska",
   is = "Íslenska",
+  de = "Deutsch",
 }
