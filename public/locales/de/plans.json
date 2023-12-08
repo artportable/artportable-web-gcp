@@ -1,48 +1,48 @@
 {
-  "welcomeTo": "Välkommen till Nordens största community för konst",
-  "artPortableDescription": "Din Artportable-portfolio är ett verktyg som hjälper dig att presentera ditt konstnärskap på ett professionellt sätt. Artportable är en mötesplats för konstnärer, konstköpare och konstentusiaster",
-  "ourMemberships": "Våra olika medlemsskap",
-  "youCanAlwaysUpdateYourMembership": "Du kan alltid uppdatera ditt medlemspaket",
-  "yearlyPayment": "Årsvis",
-  "monthlyPayment": "Månadsvis",
-  "sek": "kr",
-  "signUp": "Bli medlem",
+  "welcomeTo": "Willkommen bei der größten Kunst-Community in Skandinavien",
+  "artPortableDescription": "Ihr Artportable-Portfolio ist ein Werkzeug, um Ihre Kunst professionell zu präsentieren. Artportable ist ein Treffpunkt für Künstler:innen, Kunstliebhaber:innen und Sammler:innen.",
+  "ourMemberships": "Unsere Mitgliedschaften",
+  "youCanAlwaysUpdateYourMembership": "Sie können Ihr Mitgliedschaftspaket jederzeit aktualisieren",
+  "yearlyPayment": "Jährliche Zahlung",
+  "monthlyPayment": "Monatliche Zahlung",
+  "sek": "SEK",
+  "signUp": "Registrieren",
   "plans": {
     "free": {
-      "name": "Gratis",
-      "subtitle": "Konstintresserad – skaffa ett gratiskonto idag och hitta originalkonst till hemmet.",
+      "name": "Kostenlos",
+      "subtitle": "Kunstinteressierte – Erhalten Sie heute ein kostenloses Konto und entdecken Sie Originalkunstwerke für Ihr Zuhause.",
       "listTexts": [
-        "Följ konstnärer",
-        "Hitta konstverk till ditt hem",
-        "Chatta och skicka förfrågan om konstverk",
-        "Läs artiklar och få uppdateringar om utställningar"
+        "Folgen Sie Künstler:innen",
+        "Finden Sie Kunstwerke für Ihr Zuhause",
+        "Chatten Sie und senden Sie Anfragen zu Kunstwerken",
+        "Lesen Sie Artikel und erhalten Sie Updates zu Ausstellungen"
       ]
     },
     "portfolio": {
       "name": "Portfolio",
-      "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
+      "subtitle": "Für Künstler:innen, die ihre Werke präsentieren und verkaufen möchten",
       "listTexts": [
-        "Publicera dina verk",
-        "Chatta och få förfrågningar om dina konstverk",
-        "Betala 0 % i provision på sålda verk",
-        "Följ och interagera med andra konstnärer"
+        "Veröffentlichen Sie Ihre Werke",
+        "Chatten Sie und erhalten Sie Anfragen zu Ihren Kunstwerken",
+        "Zahlen Sie 0 % Provision für verkaufte Werke",
+        "Folgen Sie und interagieren Sie mit anderen Künstler:innen"
       ]
     },
     "portfolioPremium": {
-      "name": "Portfolio Premium",
-      "subtitle": "För dig som är konstnär och vill bli prioriterad samt få tillgång till fler förmåner.",
+      "name": "Premium-Portfolio",
+      "subtitle": "Für Künstler:innen, die priorisiert werden möchten und Zugang zu weiteren Vorteilen wünschen.",
       "listTexts": [
-        "Allt från Portfolio",
-        "Bli prioriterad i flödet",
-        "Betala 0 % i provision på sålda verk",
-        "Support",
-        "Personlig konstkoordinator",
-        "Hjälp att skapa en professionell portfolio"
+        "Alles im Portfolio enthalten",
+        "Priorisierte Sichtbarkeit im Feed",
+        "Zahlen Sie 0 % Provision für verkaufte Werke",
+        "Unterstützung",
+        "Persönlicher Kunstkoordinator",
+        "Hilfe bei der Erstellung eines professionellen Portfolios"
       ]
-    } 
+    }
   },
-  "joinTheCommunity": "Gå med i gemenskapen",
-  "Endast siffror": "Endast siffror",
-  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer",
+  "joinTheCommunity": "Treten Sie der Community bei",
+  "Endast siffror": "Nur Zahlen",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "Um mit Ihrem Upgrade fortzufahren, geben Sie bitte Ihre Telefonnummer ein",
   "Telefonnummer": "Telefonnummer"
 }
