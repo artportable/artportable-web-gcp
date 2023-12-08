@@ -1,0 +1,4 @@
+{
+  "pleaseTryAgain" : "Något gick fel när kanalen skulle öppnas, var vänlig försök igen senare",
+  "referToArtwork" : "Köpförfrågan\n[{{artwork.title}}]({{artwork.url}})"
+}
