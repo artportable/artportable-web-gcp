@@ -84,10 +84,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Ann-Britt Farmare",
-      username: "ann-britt.farmare",
-      image: "/images/ann-britt2.jpg",
-      imageLink: "art/7058704e-7cf8-489b-9ba7-5ffc3f3d9316",
+      name: "Victor Sköld",
+      username: "wiehre",
+      image: "/images/skold.jpeg",
+      imageLink: "art/9d79d401-f82c-45e0-bf39-886636b6647c",
     },
   ];
 
