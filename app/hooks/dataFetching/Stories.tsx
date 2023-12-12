@@ -35,7 +35,9 @@ export function useGetStories(owner = null, myUsername: string = null) {
 
 export function useGetLatestStories(page: number) {
   const amount = 12;
-  const url = new URL(`${apiBaseUrl}/api/stories/latest?page=${page}&pageSize=${amount}`);
+  const url = new URL(
+    `${apiBaseUrl}/api/stories/latest?page=${page}&pageSize=${amount}`
+  );
   const { data, error, mutate } = useSWR(url.toString(), fetcher, {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
@@ -52,6 +54,23 @@ export function useGetLatestStories(page: number) {
 export function useGetStory(id: string, myUsername: string = null) {
   const url = new URL(
     `${apiBaseUrl}/api/stories/${id}?myUsername=${myUsername}`
+  );
+
+  const { data, error } = useSWR(url.href, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
+export function useGetStoryBySlug(slug: string, myUsername: string = null) {
+  const url = new URL(
+    `${apiBaseUrl}/api/stories/story/${slug}?myUsername=${myUsername}`
   );
 
   const { data, error } = useSWR(url.href, fetcher, {
@@ -92,14 +111,17 @@ export async function usePostStory(
   token: string
 ) {
   try {
-    const response = await fetch(`${apiBaseUrl}/api/stories?mySocialId=${socialId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(story),
-    });
+    const response = await fetch(
+      `${apiBaseUrl}/api/stories?mySocialId=${socialId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(story),
+      }
+    );
 
     // if (!response.ok) {
     //   throw new Error('Network response was not ok');
