@@ -62,7 +62,7 @@ export default function StoryComponent({
 
       <Link
         href={
-          story.Slug != null ? `/stories/${story.Slug}` : `/story/${story.Id}`
+          story?.Slug != null ? `/stories/${story.Slug}` : `/story/${story.Id}`
         }
       >
         <a>
