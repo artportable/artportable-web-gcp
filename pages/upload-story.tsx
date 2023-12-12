@@ -47,7 +47,7 @@ export default function UploadStoryPage({ navBarItems }) {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  
+
   const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
   const [cropperActive, setCropperActive] = useState(false);
@@ -97,11 +97,10 @@ export default function UploadStoryPage({ navBarItems }) {
         setRefresh(true);
         setUploadSnackbarOpen(true);
         const res = await usePostStory(story, socialId.value, token);
-        console.log(res)
-        if(res){
-          router.push("/story/" + res.Id);
-        }
-        else{
+        console.log(res);
+        if (res) {
+          router.push("/stories/" + res.Slug);
+        } else {
           router.push("/profile/@" + username.value);
         }
       }
@@ -121,12 +120,11 @@ export default function UploadStoryPage({ navBarItems }) {
           TertiaryFile: nameTertiary,
         };
         setUploadSnackbarOpen(true);
-        const res  = await usePostStory(story, socialId.value, token)
-        console.log(res)
-        if(res){
+        const res = await usePostStory(story, socialId.value, token);
+        console.log(res);
+        if (res) {
           router.push("/story/" + res.Id);
-        }
-        else{
+        } else {
           router.push("/profile/@" + username.value);
         }
       }
@@ -207,7 +205,6 @@ export default function UploadStoryPage({ navBarItems }) {
     setDeletedFile(true);
   };
 
-
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
       .then(() =>
@@ -259,152 +256,151 @@ export default function UploadStoryPage({ navBarItems }) {
     <Main navBarItems={navBarItems}>
       <>
         {" "}
-          <div className={s.mainGrid}>
-            {isDesktop ? (
-              <>
-                <div className={s.uploadBox}>
-                  <DropzoneArea
-                    classes={{
-                      root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
-                    }}
-                    acceptedFiles={["image/*"]}
-                    dropzoneText={text}
-                    onChange={onFilesChanged}
-                    showPreviews={false}
-                    showPreviewsInDropzone={true}
-                    filesLimit={3}
-                    maxFileSize={2000000000}
-                  />
-                </div>
-                <div className={s.cropperBox}>
-                  <Cropper
-                    className={clsx(s.cropper, !cropperActive && s.hide)}
-                    src={cropperImageUrl}
-                    onInitialized={onCropperInitialized}
-                    initialAspectRatio={1}
-                    autoCropArea={1}
-                    // preview={`.${s.cropperPreview}`}
-                    ref={cropperRef}
-                    background={true}
-                    // style={{ backgroundColor: color}}
-                  />
-                </div>
-                <CropperOptions
-                  show={cropperActive}
-                  cropper={cropper}
-                  onCrop={onCrop}
-                  onDiscard={onDiscard}
-                ></CropperOptions>
-                {cropperActive && (
-                  <Typography className={s.instructionsTypo}>
-                    {t("story:doneCropping")}
-                  </Typography>
-                )}
-              </>
-            ) : (
-              <div>
-                <div>
-                  {mobileImg === "" ? (
-                    <div className={clsx(s.mobilePreview, s.noImgPreview)}>
-                      <span>{t("story:previewText")}</span>
-                    </div>
-                  ) : (
-                    <img
-                      className={s.mobilePreview}
-                      src={mobileImg}
-                      ref={mobilePreviewImageRef}
-                      alt="mobile image"
-                    ></img>
-                  )}
-                </div>
-                <input
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  id="icon-button-file"
-                  type="file"
-                  onChange={onMobileUpload}
+        <div className={s.mainGrid}>
+          {isDesktop ? (
+            <>
+              <div className={s.uploadBox}>
+                <DropzoneArea
+                  classes={{
+                    root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
+                  }}
+                  acceptedFiles={["image/*"]}
+                  dropzoneText={text}
+                  onChange={onFilesChanged}
+                  showPreviews={false}
+                  showPreviewsInDropzone={true}
+                  filesLimit={3}
+                  maxFileSize={2000000000}
                 />
-                <label htmlFor="icon-button-file">
-                  <ArtButton
-                    className={s.mobileUploadResetButton}
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    startIcon={<AddPhotoAlternateIcon />}
-                    rounded
-                    aria-label="upload picture"
-                    component="span"
-                  >
-                    {t("story:selectImage")}
-                  </ArtButton>
-                </label>
+              </div>
+              <div className={s.cropperBox}>
+                <Cropper
+                  className={clsx(s.cropper, !cropperActive && s.hide)}
+                  src={cropperImageUrl}
+                  onInitialized={onCropperInitialized}
+                  initialAspectRatio={1}
+                  autoCropArea={1}
+                  // preview={`.${s.cropperPreview}`}
+                  ref={cropperRef}
+                  background={true}
+                  // style={{ backgroundColor: color}}
+                />
+              </div>
+              <CropperOptions
+                show={cropperActive}
+                cropper={cropper}
+                onCrop={onCrop}
+                onDiscard={onDiscard}
+              ></CropperOptions>
+              {cropperActive && (
+                <Typography className={s.instructionsTypo}>
+                  {t("story:doneCropping")}
+                </Typography>
+              )}
+            </>
+          ) : (
+            <div>
+              <div>
+                {mobileImg === "" ? (
+                  <div className={clsx(s.mobilePreview, s.noImgPreview)}>
+                    <span>{t("story:previewText")}</span>
+                  </div>
+                ) : (
+                  <img
+                    className={s.mobilePreview}
+                    src={mobileImg}
+                    ref={mobilePreviewImageRef}
+                    alt="mobile image"
+                  ></img>
+                )}
+              </div>
+              <input
+                accept="image/*"
+                style={{ display: "none" }}
+                id="icon-button-file"
+                type="file"
+                onChange={onMobileUpload}
+              />
+              <label htmlFor="icon-button-file">
+                <ArtButton
+                  className={s.mobileUploadResetButton}
+                  size="small"
+                  variant="contained"
+                  color="primary"
+                  startIcon={<AddPhotoAlternateIcon />}
+                  rounded
+                  aria-label="upload picture"
+                  component="span"
+                >
+                  {t("story:selectImage")}
+                </ArtButton>
+              </label>
+            </div>
+          )}
+
+          <div className={s.previewsContainer}>
+            {croppedPrimary && (
+              <div className={s.previewItem}>
+                <img src={croppedPrimary} alt="primary image" />
               </div>
             )}
-
-            <div className={s.previewsContainer}>
-              {croppedPrimary && (
-                <div className={s.previewItem}>
-                  <img src={croppedPrimary} alt="primary image"/>
-                </div>
-              )}
-              {croppedSecondary && (
-                <div className={s.previewItem}>
-                  <img src={croppedSecondary} alt="secondary image"/>
-                </div>
-              )}
-              {croppedTertiary && (
-                <div className={s.previewItem}>
-                  <img src={croppedTertiary} alt="tertiary image"/>
-                </div>
-              )}
-              {!croppedTertiary && cropperActive && (
-                <div className={s.previewItem}>
-                  <div className={s.cropperPreview}></div>
-                </div>
-              )}
-            </div>
-            <div className={s.form}>
-                <StoryForm
-                  title={title}
-                  setTitle={setTitle}
-                  setDescription={setDescription}
-                ></StoryForm>
-              <div>
-                <ArtButton
-                  className={`${
-                    !croppedPrimary && mobileImg === ""
-                      ? s.disabledButton
-                      : s.uploadButton
-                  }`}
-                  rounded
-                  onClick={() => {
-                    uploadStory();
-                    trackGoogleAnalytics(
-                      ActionType.UPLOAD_IMAGE_CONFIRM,
-                      CategoryType.INTERACTIVE
-                    );
-                  }}
-                >
-                  {t("story:publish")}
-                </ArtButton>
+            {croppedSecondary && (
+              <div className={s.previewItem}>
+                <img src={croppedSecondary} alt="secondary image" />
               </div>
-              <WarningMessage />
-            </div>
-            <Snackbar
-              open={uploadSnackbarOpen}
-              autoHideDuration={6000}
-              onClose={handleSnackbarClose}
-            >
-              <Alert
-                onClose={handleSnackbarClose}
-                variant="filled"
-                severity="success"
-              >
-                {t("story:storyUploadedSuccessfully")}
-              </Alert>
-            </Snackbar>
+            )}
+            {croppedTertiary && (
+              <div className={s.previewItem}>
+                <img src={croppedTertiary} alt="tertiary image" />
+              </div>
+            )}
+            {!croppedTertiary && cropperActive && (
+              <div className={s.previewItem}>
+                <div className={s.cropperPreview}></div>
+              </div>
+            )}
           </div>
-
+          <div className={s.form}>
+            <StoryForm
+              title={title}
+              setTitle={setTitle}
+              setDescription={setDescription}
+            ></StoryForm>
+            <div>
+              <ArtButton
+                className={`${
+                  !croppedPrimary && mobileImg === ""
+                    ? s.disabledButton
+                    : s.uploadButton
+                }`}
+                rounded
+                onClick={() => {
+                  uploadStory();
+                  trackGoogleAnalytics(
+                    ActionType.UPLOAD_IMAGE_CONFIRM,
+                    CategoryType.INTERACTIVE
+                  );
+                }}
+              >
+                {t("story:publish")}
+              </ArtButton>
+            </div>
+            <WarningMessage />
+          </div>
+          <Snackbar
+            open={uploadSnackbarOpen}
+            autoHideDuration={6000}
+            onClose={handleSnackbarClose}
+          >
+            <Alert
+              onClose={handleSnackbarClose}
+              variant="filled"
+              severity="success"
+            >
+              {t("story:storyUploadedSuccessfully")}
+            </Alert>
+          </Snackbar>
+        </div>
       </>
     </Main>
   );
@@ -422,7 +418,7 @@ export async function getStaticProps({ locale }) {
         "support",
         "common",
         "plans",
-        "story"
+        "story",
       ])),
     },
     revalidate: 60,
