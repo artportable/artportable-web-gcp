@@ -25,5 +25,6 @@
   "stories": "Fréttaherbergi",
   "uploadStory": "Hlaða upp frétt",
   "showroom": "Sýningar",
-  "likedArt": "Likað verk"
+  "likedArt": "Likað verk",
+  "toggleLikeArt": "Sýndu mælta listaverk"
 }

@@ -25,5 +25,6 @@
   "stories": "Nyhetsrom",
   "uploadStory": "Last opp en nyhet",
   "showroom": "Utstillinger",
-  "likedArt": "Likte verk"
+  "likedArt": "Likte verk",
+  "toggleLikeArt": "Vis likte verk"
 }

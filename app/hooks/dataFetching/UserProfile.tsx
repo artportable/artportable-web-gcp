@@ -1,26 +1,28 @@
-import useSWR from 'swr'
-import { getFetcher, isNullOrUndefined } from '../../utils/util'
+import useSWR from "swr";
+import { getFetcher, isNullOrUndefined } from "../../utils/util";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export const getUserProfileSummaryUri = (user: string) => `${apiBaseUrl}/api/profile/${user}/summary`;
+export const getUserProfileSummaryUri = (user: string) =>
+  `${apiBaseUrl}/api/profile/${user}/summary`;
 export function useGetUserProfileSummary(user) {
   const { data, error } = useSWR(
     getUserProfileSummaryUri(user),
     getFetcher(user),
-    { 
+    {
       revalidateOnFocus: true,
       revalidateOnReconnect: false,
-    });
+    }
+  );
 
   return {
     data: data,
     isLoading: !error && !data,
-    isError: error
-  }
+    isError: error,
+  };
 }
 
-export const getUserProfileUri = (user: string, myUsername: string) => 
+export const getUserProfileUri = (user: string, myUsername: string) =>
   !user ? null : `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
 export function useGetUserProfile(user, myUsername) {
   const { data, error, mutate } = useSWR(
@@ -29,30 +31,32 @@ export function useGetUserProfile(user, myUsername) {
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    });
+    }
+  );
 
   return {
     data: data,
     isLoading: !error && !data,
     isError: error,
-    mutate
-  }
+    mutate,
+  };
 }
 
 export function useGetSimilarPortfolios(user) {
   const { data, error } = useSWR(
     `${apiBaseUrl}/api/profile/${user}/similar`,
     getFetcher(user),
-    { 
+    {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    });
+    }
+  );
 
   return {
     data: data,
     isLoading: !error && !data,
-    isError: error
-  }
+    isError: error,
+  };
 }
 
 export function useGetUserProfileTags(user) {
@@ -62,28 +66,30 @@ export function useGetUserProfileTags(user) {
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    });
+    }
+  );
 
   return {
     data: data,
     isLoading: !error && !data,
-    isError: error
-  }
+    isError: error,
+  };
 }
 
 export function useGetUserProfilePicture(user) {
   const { data, error } = useSWR(
     user !== null ? `${apiBaseUrl}/api/profile/${user}/profilepicture` : null,
-    getFetcher(user, 'text'),
+    getFetcher(user, "text"),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    });
+    }
+  );
   return {
     data: data,
     isLoading: !error && isNullOrUndefined(data),
-    isError: error
-  }
+    isError: error,
+  };
 }
 
 // export function useUpdateProfilePicture(filename: string, username: string) {
