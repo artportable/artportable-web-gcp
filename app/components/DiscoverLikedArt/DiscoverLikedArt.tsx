@@ -35,7 +35,10 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
   const { like } = usePostLike();
   const token = useContext(TokenContext);
   const tags = useGetTags();
-  const [checked, setChecked] = useState(false);
+  const profileUser = useGetProfileUser();
+  const userProfileSummary = useGetUserProfileSummary(profileUser);
+  const likedArt: boolean = userProfileSummary?.data?.HideLikedArtworks;
+  const [checked, setChecked] = useState(likedArt);
   const { t } = useTranslation(["index", "discover"]);
 
   const handleChange = () => {
@@ -67,10 +70,6 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
     redirectIfNotLoggedIn();
     like(artworkId, isLike, socialId, token);
   }
-
-  const profileUser = useGetProfileUser();
-  const userProfileSummary = useGetUserProfileSummary(profileUser);
-  const likedArt = userProfileSummary?.data?.HideLikedArtworks;
 
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
@@ -108,7 +107,7 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
         <div>
           {t("discover:toggleLikeArt")}
           <Switch
-            defaultChecked={likedArt ? false : true}
+            checked={!checked}
             onChange={handleChange}
             inputProps={{ "aria-label": "controlled" }}
           />
