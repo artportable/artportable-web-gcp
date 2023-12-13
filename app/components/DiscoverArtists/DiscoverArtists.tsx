@@ -13,9 +13,7 @@ export default function DiscoverArtists({
   isLoading,
   loadMore,
 }) {
-  const { t } = useTranslation([
-    "discover",
-  ]);
+  const { t } = useTranslation(["discover"]);
   const s = styles();
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -23,26 +21,23 @@ export default function DiscoverArtists({
 
   const [monthlyArtist, setMonthlyArtist] = useState(null);
 
-
   const getMonthlyArtists = async () => {
-    const getData = await axios.get(`${apiBaseUrl}/api/discover/monthlyArtists`);
+    const getData = await axios.get(
+      `${apiBaseUrl}/api/discover/monthlyArtists`
+    );
     setMonthlyArtist(getData.data);
-
-  }
+  };
 
   useEffect(() => {
     getMonthlyArtists();
   }, []);
-
-  useEffect(() => {
-  }, [monthlyArtist]);
 
   return (
     <Box>
       <Artists />
       <div className={s.titleEmblem}>
         <Typography className={s.title}>
-          {t('discover:monthlyArtist')}
+          {t("discover:monthlyArtist")}
         </Typography>
       </div>
       <div className={s.discoverArtistWrapper}>
