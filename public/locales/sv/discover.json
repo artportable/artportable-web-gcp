@@ -25,5 +25,6 @@
   "stories": "Nyhetsrum",
   "uploadStory": "Ladda upp en nyhet",
   "showroom": "Utställningar",
-  "likedArt": "Gillade verk"
+  "likedArt": "Gillade verk",
+  "toggleLikeArt": "Visa gillade verk"
 }

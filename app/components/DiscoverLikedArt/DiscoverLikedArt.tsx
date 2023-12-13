@@ -6,11 +6,13 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
-import { styles } from "./discoverLikedArtTab.css";
-import { useTranslation } from "next-i18next";
 
 import { UserContext } from "../../contexts/user-context";
 import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
+import Switch from "@material-ui/core/Switch";
+import axios from "axios";
+import { useGetUserProfileSummary } from "../../hooks/dataFetching/UserProfile";
+import { useTranslation } from "next-i18next";
 
 interface DiscoverLikedArtTabProps {
   socialId?: string;
@@ -19,6 +21,7 @@ interface DiscoverLikedArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  isMyProfile: boolean;
 }
 
 export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
@@ -32,6 +35,27 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
   const { like } = usePostLike();
   const token = useContext(TokenContext);
   const tags = useGetTags();
+  const [checked, setChecked] = useState(false);
+  const { t } = useTranslation(["index", "discover"]);
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+    axios
+      .patch(
+        `http://localhost:5001/api/Profile/${profileUser}/toggleHideLikedArtworks?hideLikedArtworks=${!checked}`
+      )
+      .then((response) => {
+        // Handle the response if needed
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Revert to the previous state if the request fails
+        setChecked((prev) => !prev);
+
+        // Handle errors
+        console.error("Error toggling hideLikedArtworks:", error);
+      });
+  };
 
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
@@ -45,6 +69,8 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
   }
 
   const profileUser = useGetProfileUser();
+  const userProfileSummary = useGetUserProfileSummary(profileUser);
+  const likedArt = userProfileSummary?.data?.HideLikedArtworks;
 
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
@@ -78,17 +104,29 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
 
   return (
     <>
-      <DiscoverArt
-        artworks={artworks}
-        tags={tags?.data}
-        onFilter={filter}
-        onLike={likeArtwork}
-        rowWidth={rowWidth}
-        loadMoreElementRef={loadMoreArtworksElementRef}
-        isLoading={isLoadingArtWorks}
-        loadMore={props.loadMore}
-        activeTab={props.activeTab}
-      />
+      {props?.isMyProfile && (
+        <div>
+          {t("discover:toggleLikeArt")}
+          <Switch
+            defaultChecked={likedArt ? false : true}
+            onChange={handleChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        </div>
+      )}
+      {!likedArt && (
+        <DiscoverArt
+          artworks={artworks}
+          tags={tags?.data}
+          onFilter={filter}
+          onLike={likeArtwork}
+          rowWidth={rowWidth}
+          loadMoreElementRef={loadMoreArtworksElementRef}
+          isLoading={isLoadingArtWorks}
+          loadMore={props.loadMore}
+          activeTab={props.activeTab}
+        />
+      )}
     </>
   );
 });
