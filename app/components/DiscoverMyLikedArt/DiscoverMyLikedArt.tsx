@@ -57,7 +57,7 @@ export const DiscoverMyLikedArtTab = memo(
           if (pageIndex == 0) {
             let url;
             url = new URL(`${apiBaseUrl}/api/Discover/artworks/likedbyme`);
-           
+
             selectedTags.forEach((tag) => {
               url.searchParams.append("tag", tag);
             });
@@ -78,17 +78,17 @@ export const DiscoverMyLikedArtTab = memo(
 
     return (
       <>
-          <DiscoverArt
-            artworks={artworks}
-            tags={tags?.data}
-            onFilter={filter}
-            onLike={likeArtwork}
-            rowWidth={rowWidth}
-            loadMoreElementRef={loadMoreArtworksElementRef}
-            isLoading={isLoadingArtWorks}
-            loadMore={props.loadMore}
-            activeTab={props.activeTab}
-          />
+        <DiscoverArt
+          artworks={artworks}
+          tags={tags?.data}
+          onFilter={filter}
+          onLike={likeArtwork}
+          rowWidth={rowWidth}
+          loadMoreElementRef={loadMoreArtworksElementRef}
+          isLoading={isLoadingArtWorks}
+          loadMore={props.loadMore}
+          activeTab={props.activeTab}
+        />
       </>
     );
   }
