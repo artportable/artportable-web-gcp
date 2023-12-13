@@ -56,16 +56,24 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
         }
         if (pageIndex == 0) {
           let url;
-          url = new URL(`${apiBaseUrl}/api/Discover/artworks/likedbyme`);
+          url = new URL(`${apiBaseUrl}/api/Discover/artworks/likedart`);
+
+          selectedTags.forEach((tag) => {
+            url.searchParams.append("tag", tag);
+          });
 
           url.searchParams.append("myUsername", profileUser);
 
+          if (searchQueryArt) {
+            url.searchParams.append("q", searchQueryArt);
+          }
           url.searchParams.append("page", (pageIndex + 1).toString());
           url.searchParams.append("pageSize", "20");
           return url.href;
         }
         return previousPageData.next;
-      }
+      },
+      username.value
     );
 
   return (
