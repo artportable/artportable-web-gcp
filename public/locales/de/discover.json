@@ -25,5 +25,6 @@
   "stories": "Geschichten",
   "uploadStory": "Geschichte hochladen",
   "showroom": "Ausstellungen",
-  "likedArt": "Geliebte Kunstwerke"
+  "likedArt": "Geliebte Kunstwerke",
+  "toggleLikeArt": "Zeige gemalte Kunstwerke"
 }

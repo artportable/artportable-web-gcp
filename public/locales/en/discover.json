@@ -25,5 +25,6 @@
   "stories": "Stories",
   "uploadStory": "Upload a story",
   "showroom": "Showroom",
-  "likedArt": "Liked art"
+  "likedArt": "Liked art",
+  "toggleLikeArt": "Show liked artworks"
 }

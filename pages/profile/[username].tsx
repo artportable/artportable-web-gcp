@@ -140,6 +140,8 @@ export default function Profile(props) {
     imageurl: "",
   });
 
+  const likedArt = userProfileSummary?.data?.HideLikedArtworks;
+
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
@@ -509,6 +511,7 @@ export default function Profile(props) {
                     label={t("profile:stories")}
                     {...a11yProps(t("profile:stories"))}
                   />
+
                   <Tab
                     className={s.tab}
                     label={t("discover:likedArt")}
@@ -737,6 +740,7 @@ export default function Profile(props) {
                       loadImages={loadImages}
                       stopLoadImages={stopLoadImages}
                       activeTab={activeTab}
+                      isMyProfile={isMyProfile}
                     />
                   </TabPanel>
                   <TabPanel value={activeTab} index={4}>
