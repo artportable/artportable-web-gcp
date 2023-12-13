@@ -65,6 +65,7 @@ import { useGetStories } from "../../app/hooks/dataFetching/Stories";
 import StoryComponent from "../../app/components/Story/StoryComponent";
 import { Story } from "../../app/models/Story";
 import { Membership } from "../../app/models/Membership";
+import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 
 function a11yProps(index: any) {
   return {
@@ -74,7 +75,13 @@ function a11yProps(index: any) {
 }
 
 export default function Profile(props) {
-  const { t } = useTranslation(["common", "profile", "upload", "header"]);
+  const { t } = useTranslation([
+    "common",
+    "profile",
+    "upload",
+    "header",
+    "discover",
+  ]);
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
   const theme: Theme = useTheme();
@@ -122,7 +129,7 @@ export default function Profile(props) {
 
   const { like } = usePostLike();
   const { refreshToken } = useRefreshToken();
-
+  const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
   const [purchaseRequestDialogData, setPurchaseRequestDialogData] = useState({
@@ -374,6 +381,14 @@ export default function Profile(props) {
 
   const userProfileUrl = `https://artportable.com/profile/@${staticUserProfile?.Username}`;
 
+  const loadImages = () => {
+    setLoadMoreArtworks(true);
+  };
+
+  const stopLoadImages = () => {
+    setLoadMoreArtworks(false);
+  };
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -429,7 +444,10 @@ export default function Profile(props) {
           }
         />
 
-        <link rel="canonical" href={`${publicUrl}/${props.locale}${router.asPath}`} />
+        <link
+          rel="canonical"
+          href={`${publicUrl}/${props.locale}${router.asPath}`}
+        />
       </Head>
       {isReady && (
         <>
@@ -490,6 +508,11 @@ export default function Profile(props) {
                     className={s.tab}
                     label={t("profile:stories")}
                     {...a11yProps(t("profile:stories"))}
+                  />
+                  <Tab
+                    className={s.tab}
+                    label={t("discover:likedArt")}
+                    {...a11yProps(t("discover:likedArt"))}
                   />
                   {
                     articles && articles.length > 0 && (
@@ -606,29 +629,28 @@ export default function Profile(props) {
                   <TabPanel value={activeTab} index={2}>
                     {
                       <>
-                        {isMyProfile &&
-                          membership.value > Membership.Base && (
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "20px",
-                              }}
-                            >
-                              <Link href="/upload-story">
-                                <a>
-                                  <Button
-                                    aria-label="upload story"
-                                    variant="contained"
-                                    style={{ backgroundColor: "#ffd700" }}
-                                    rounded
-                                  >
-                                    {t("profile:uploadStory")}
-                                  </Button>
-                                </a>
-                              </Link>
-                            </div>
-                          )}
+                        {isMyProfile && membership.value > Membership.Base && (
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              margin: "20px",
+                            }}
+                          >
+                            <Link href="/upload-story">
+                              <a>
+                                <Button
+                                  aria-label="upload story"
+                                  variant="contained"
+                                  style={{ backgroundColor: "#ffd700" }}
+                                  rounded
+                                >
+                                  {t("profile:uploadStory")}
+                                </Button>
+                              </a>
+                            </Link>
+                          </div>
+                        )}
                         {/* Upgrade to premium button if Portfolio */}
                         {/* {isMyProfile &&
                           membership.value === Membership.Portfolio && (
@@ -668,14 +690,22 @@ export default function Profile(props) {
                               >
                                 <div className={s.stories}>
                                   {oddStories?.map((story: Story) => (
-                                    <StoryComponent isIndex={false} story={story} key={story.Id} />
+                                    <StoryComponent
+                                      isIndex={false}
+                                      story={story}
+                                      key={story.Id}
+                                    />
                                   ))}
                                 </div>
                               </Grid>
                               <Grid item style={{ flexBasis: "auto" }}>
                                 <div className={s.stories}>
                                   {evenStories?.map((story: Story) => (
-                                    <StoryComponent isIndex={false} story={story} key={story.Id} />
+                                    <StoryComponent
+                                      isIndex={false}
+                                      story={story}
+                                      key={story.Id}
+                                    />
                                   ))}
                                 </div>
                               </Grid>
@@ -685,7 +715,11 @@ export default function Profile(props) {
                               <Grid item xs={12}>
                                 <div className={s.stories}>
                                   {stories?.data?.map((story: Story) => (
-                                    <StoryComponent isIndex={false} story={story} key={story.Id} />
+                                    <StoryComponent
+                                      isIndex={false}
+                                      story={story}
+                                      key={story.Id}
+                                    />
                                   ))}
                                 </div>
                               </Grid>
@@ -696,6 +730,16 @@ export default function Profile(props) {
                     }
                   </TabPanel>
                   <TabPanel value={activeTab} index={3}>
+                    <DiscoverLikedArtTab
+                      socialId={socialId.value}
+                      rowWidth={rowWidth}
+                      loadMore={loadMoreArtworks}
+                      loadImages={loadImages}
+                      stopLoadImages={stopLoadImages}
+                      activeTab={activeTab}
+                    />
+                  </TabPanel>
+                  <TabPanel value={activeTab} index={4}>
                     {
                       articles && (
                         <div className={s.flex}>
@@ -878,6 +922,7 @@ export async function getServerSideProps({ locale, params }) {
           "upload",
           "support",
           "plans",
+          "discover",
         ])),
       },
     };
