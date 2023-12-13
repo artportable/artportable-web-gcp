@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import { styles } from "./avatarCard.css";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst } from "../../utils/util";
 
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from "@material-ui/icons/Add";
 import Button from "../Button/Button";
 import { UserContext } from "../../contexts/user-context";
-import { ActionType, CategoryType, trackGoogleAnalytics } from '../../utils/googleAnalytics'
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
 
 export default function AvatarCard({ artist, onFollowClick }) {
-  const { t } = useTranslation(['tags']);
+  const { t } = useTranslation(["tags"]);
   const s = styles();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
@@ -35,23 +39,29 @@ export default function AvatarCard({ artist, onFollowClick }) {
           </div>
         </a>
       </Link>
-      <span
-        className={s.location}>
-          {artist.Location}
-        {isSignedIn &&
+      <span className={s.location}>
+        {isSignedIn && (
           <Button
             size="small"
             variant={!isFollowed ? "contained" : "outlined"}
             startIcon={!isFollowed ? <AddIcon /> : null}
             rounded
             className={s.button}
-            onClick={() => { toggleFollow(); trackGoogleAnalytics(ActionType.FOLLOW_DISCOVER, CategoryType.INTERACTIVE); }}>
+            onClick={() => {
+              toggleFollow();
+              trackGoogleAnalytics(
+                ActionType.FOLLOW_DISCOVER,
+                CategoryType.INTERACTIVE
+              );
+            }}
+          >
             {capitalizeFirst(
-              !isFollowed ?
-                t('common:words.follow') :
-                t('common:words.following')
+              !isFollowed
+                ? t("common:words.follow")
+                : t("common:words.following")
             )}
-          </Button>}
+          </Button>
+        )}
       </span>
     </div>
   );
