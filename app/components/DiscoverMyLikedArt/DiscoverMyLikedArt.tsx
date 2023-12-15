@@ -88,6 +88,8 @@ export const DiscoverMyLikedArtTab = memo(
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          trendingArtTab={false}
+          likedArtTab={false}
         />
       </>
     );
