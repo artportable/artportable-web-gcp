@@ -26,5 +26,6 @@
   "uploadStory": "Geschichte hochladen",
   "showroom": "Ausstellungen",
   "likedArt": "Geliebte Kunstwerke",
-  "toggleLikeArt": "Zeige gemalte Kunstwerke"
+  "toggleLikeArt": "Zeige gemalte Kunstwerke",
+  "notLiked": "Der Künstler hat noch keine Werke gemocht."
 }

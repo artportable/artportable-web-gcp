@@ -26,5 +26,6 @@
   "uploadStory": "Last opp en nyhet",
   "showroom": "Utstillinger",
   "likedArt": "Likte verk",
-  "toggleLikeArt": "Vis likte verk"
+  "toggleLikeArt": "Vis likte verk",
+  "notLiked": "Kunstneren har ikke likt noen verk ennå."
 }
