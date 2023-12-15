@@ -19,6 +19,7 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: "100%",
       margin: "0 auto",
       zIndex: 10,
+
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
         left: 0,
@@ -46,18 +47,13 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 700,
       margin: "0.5rem 0",
       color: "#333",
-
-      "&:hover": {
-        color: "var(--primary-color)",
-        transform: "scale(1.095)",
-      },
     },
     letterList: {
       fontWeight: 600,
       margin: "2px",
       width: "100%",
+      color: "var(--dark-hover)",
       [theme.breakpoints.up("smPlus")]: {
-        margin: "2px",
         alignItems: "center",
       },
     },
