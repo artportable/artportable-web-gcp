@@ -18,8 +18,6 @@ interface DiscoverHighLightsTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  tagPlaceholder: string;
-  fetchType: string;
 }
 
 const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
@@ -56,9 +54,8 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
         }
 
         if (pageIndex == 0) {
-
           let url = new URL(`${apiBaseUrl}/api/Discover/artworks/curated`);
-          
+
           selectedTags.forEach((tag) => {
             url.searchParams.append("tag", tag);
           });
@@ -79,15 +76,6 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
 
   return (
     <>
-      {" "}
-      <div className={s.displayTitle}>
-        {{
-          curated: t("discover:highlights"),
-        }[props.fetchType] || props.fetchType.toUpperCase()}
-      </div>
-      {props.fetchType === "curated" && (
-        <div className={s.displayText}>{t("discover:curatedArtText")}</div>
-      )}
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <>
           <DiscoverArt
