@@ -23,10 +23,11 @@ interface DiscoverLikedArtTabProps {
   activeTab: number;
   isMyProfile: boolean;
 }
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
   const { socialId, rowWidth } = props;
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const loadMoreArtworksElementRef = useRef(null);
   const [selectedTags, setSelectedTags] = useState(null);
   const [searchQueryArt, setSearchQueryArt] = useState(null);
@@ -103,7 +104,7 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
 
   return (
     <>
-      {props?.isMyProfile && (
+      {props.isMyProfile && (
         <div>
           {t("discover:toggleLikeArt")}
           <Switch
@@ -113,7 +114,8 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
           />
         </div>
       )}
-      {!likedArt && (
+
+      {!checked && (
         <DiscoverArt
           artworks={artworks}
           tags={tags?.data}
