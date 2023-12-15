@@ -26,5 +26,6 @@
   "uploadStory": "Ladda upp en nyhet",
   "showroom": "Utställningar",
   "likedArt": "Gillade verk",
-  "toggleLikeArt": "Visa gillade verk"
+  "toggleLikeArt": "Visa gillade verk",
+  "notLiked": "Konstnären har inte gillat några verk ännu."
 }

@@ -613,6 +613,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         isLoading={isLoadingArtWorks}
         loadMore={props.loadMore}
         activeTab={props.activeTab}
+        trendingArtTab={true}
+        likedArtTab={false}
       />
     </>
   );

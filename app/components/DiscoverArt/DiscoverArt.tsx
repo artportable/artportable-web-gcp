@@ -38,6 +38,8 @@ interface InputProps {
   isLoading: boolean;
   loadMore: boolean;
   activeTab: number;
+  trendingArtTab: boolean;
+  likedArtTab: boolean;
 }
 
 export default function DiscoverArt({
@@ -48,6 +50,8 @@ export default function DiscoverArt({
   loadMoreElementRef,
   isLoading,
   loadMore,
+  trendingArtTab = null,
+  likedArtTab = null,
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
@@ -55,13 +59,11 @@ export default function DiscoverArt({
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (artworks && artworks.length === 0) {
+    if (artworks && artworks.length === 0 && !likedArtTab) {
       setLoading(true);
-
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 8000);
-
+      }, 5000);
       return () => {
         clearTimeout(timer);
       };
@@ -294,7 +296,9 @@ export default function DiscoverArt({
                 <LinearProgress color="secondary" />
               </Stack>
             ) : (
-              <div>{t("nothingFound")}</div>
+              <div>
+                {likedArtTab ? <>{t("notLiked")}</> : <>{t("nothingFound")}</>}
+              </div>
             )}
           </div>
         )

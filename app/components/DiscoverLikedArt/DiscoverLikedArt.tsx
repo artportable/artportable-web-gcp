@@ -125,6 +125,8 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          trendingArtTab={false}
+          likedArtTab={true}
         />
       )}
     </>

@@ -26,5 +26,6 @@
   "uploadStory": "Upload en nyhed",
   "showroom": "Udstillinger",
   "likedArt": "Likede værk",
-  "toggleLikeArt": "Vis foretrukne kunstværker"
+  "toggleLikeArt": "Vis foretrukne kunstværker",
+  "notLiked": "Kunstneren har endnu ikke kunne lide nogen værker."
 }

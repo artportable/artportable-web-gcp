@@ -88,6 +88,8 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
             isLoading={isLoadingArtWorks}
             loadMore={props.loadMore}
             activeTab={props.activeTab}
+            trendingArtTab={false}
+            likedArtTab={false}
           />
         </>
       )}
