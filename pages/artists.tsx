@@ -5,18 +5,11 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function artists({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(["header"]);
   const { locale } = useRouter();
-
-  useEffect(() => {
-    console.log(publicUrl);
-    console.log(locale)
-    console.log(`${publicUrl}/${locale}/artists`)
-  })
 
   return (
     <>
@@ -24,10 +17,7 @@ export default function artists({ navBarItems }) {
         <Head>
           <title>{t("artists")}</title>
           <meta name="description" content={t("artistsPageDescripton")} />
-          <link
-            rel="canonical"
-            href={`${publicUrl}/${locale}/artists`}
-          />
+          <link rel="canonical" href={`${publicUrl}/${locale}/artists`} />
         </Head>
         <Artists />
       </Main>

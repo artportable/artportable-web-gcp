@@ -60,13 +60,10 @@ const DiscoverArtistsTab = memo((props: DiscoverArtistsTabProps) => {
 
   return (
     <DiscoverArtists
-      artists={artists}
       onFollowClick={followArtist}
-      onFilter={filterArtist}
       loadMoreElementRef={loadMoreArtistsElementRef}
       isLoading={isLoadingArtists}
       loadMore={loadMoreArtists}
-      tagPlaceholder={t("discover:artists")}
     />
   );
 });
