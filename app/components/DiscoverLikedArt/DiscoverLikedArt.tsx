@@ -45,7 +45,7 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
     setChecked((prev) => !prev);
     axios
       .patch(
-        `http://localhost:5001/api/Profile/${profileUser}/toggleHideLikedArtworks?hideLikedArtworks=${!checked}`
+        `${apiBaseUrl}/api/Profile/${profileUser}/toggleHideLikedArtworks?hideLikedArtworks=${!checked}`
       )
       .then((response) => {
         // Handle the response if needed
