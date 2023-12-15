@@ -72,7 +72,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "var(--dark-hover)",
       "&:hover": {
         color: "var(--black-absolute)",
-        fontSize: "1.095rem",
+        fontWeight: "600",
       },
     },
 
