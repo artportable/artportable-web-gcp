@@ -114,7 +114,7 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
         </div>
       )}
 
-      {!checked && (
+      {!likedArt && !checked && (
         <DiscoverArt
           artworks={artworks}
           tags={tags?.data}
