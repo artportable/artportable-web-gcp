@@ -298,7 +298,6 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
-                  tagPlaceholder={""}
                 />
               </TabPanel>
 
@@ -311,8 +310,6 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
-                  tagPlaceholder={""}
-                  fetchType={""}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>

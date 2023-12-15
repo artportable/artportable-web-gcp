@@ -16,7 +16,6 @@ interface DiscoverLatestArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  tagPlaceholder: string;
 }
 
 const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
@@ -51,9 +50,8 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
           return null;
         }
         if (pageIndex == 0) {
-
           let url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
-          
+
           selectedTags.forEach((tag) => {
             url.searchParams.append("tag", tag);
           });
