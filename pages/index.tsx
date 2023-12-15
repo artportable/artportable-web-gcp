@@ -263,8 +263,8 @@ export default function DiscoverPage({ navBarItems }) {
             </div>
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
-                {isMobile ? (
-                  <DiscoverTrendingArtTab
+                {!isMobile ? (
+                  <DiscoverTrendingArtTabDesktop
                     username={username.value}
                     socialId={socialId.value}
                     rowWidth={rowWidth}
@@ -274,7 +274,7 @@ export default function DiscoverPage({ navBarItems }) {
                     activeTab={activeTab}
                   />
                 ) : (
-                  <DiscoverTrendingArtTabDesktop
+                  <DiscoverTrendingArtTab
                     username={username.value}
                     socialId={socialId.value}
                     rowWidth={rowWidth}
