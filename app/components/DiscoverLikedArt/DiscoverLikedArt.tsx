@@ -50,7 +50,6 @@ export const DiscoverLikedArtTab = memo((props: DiscoverLikedArtTabProps) => {
       )
       .then((response) => {
         // Handle the response if needed
-        console.log(response.data);
       })
       .catch((error) => {
         // Revert to the previous state if the request fails
