@@ -297,7 +297,11 @@ export default function DiscoverArt({
               </Stack>
             ) : (
               <div>
-                {likedArtTab ? <>{t("notLiked")}</> : <>{t("nothingFound")}</>}
+                {likedArtTab && !loading ? (
+                  <>{t("notLiked")}</>
+                ) : (
+                  <>{t("nothingFound")}</>
+                )}
               </div>
             )}
           </div>
