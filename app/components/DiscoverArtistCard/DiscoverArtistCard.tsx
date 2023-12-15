@@ -19,10 +19,6 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const s = styles();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
-  useEffect(() => {
-    console.log(artist);
-  }, []);
-
   return (
     <div>
       <Paper variant="outlined" className={s.card}>
@@ -82,6 +78,8 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                     alt="Portfolio image"
                     layout="fill"
                     quality={20}
+                    loading="lazy" // Lazy loading
+                    placeholder="empty" // Use a low-quality placeholder
                   />
                 </div>
               )}
