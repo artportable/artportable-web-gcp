@@ -11,15 +11,21 @@ export const styles = makeStyles((theme: Theme) =>
     alphabetcontainer: {
       marginBottom: "20px",
       color: "black",
-      width: "100%",
-      fontSize: "16px",
-      textAlign: "center",
+      minWidth: "100%",
+      fontSize: "14px",
+      display: "flex",
+      flexDirection: "row",
+      overflowX: "auto", // Enable horizontal scrolling
+      maxWidth: "100%",
+      margin: "0 auto",
+      zIndex: 10,
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
         left: 0,
         fontSize: "20px",
       },
     },
+
     searchBar: {
       marginBottom: "20px",
       left: 30,
@@ -37,24 +43,29 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#AC606B",
     },
     letter: {
-      fontSize: "2rem", 
-      fontWeight: 700, 
+      fontWeight: 700,
       margin: "0.5rem 0",
       color: "#333",
+
+      "&:hover": {
+        color: "var(--primary-color)",
+        transform: "scale(1.095)",
+      },
     },
     letterList: {
       fontWeight: 600,
       margin: "2px",
+      width: "100%",
       [theme.breakpoints.up("smPlus")]: {
-        margin: "4px",
-        alignItems: "center"
+        margin: "2px",
+        alignItems: "center",
       },
     },
     container: {
       display: "flex",
       justifyContent: "center",
       flexDirection: "column",
-      width: "100%",
+      minWidth: "100%",
     },
     groupDiv: {
       columns: "1 auto",
@@ -66,6 +77,7 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         color: "var(--primary-color)",
         transform: "scale(1.095)",
+        "-webkit-transform": "scale(1.095)", // Add the -webkit-transform property
       },
     },
 
@@ -85,7 +97,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around",
-       
+        minWidth: "100%",
       },
       alphabeticTypo: {
         fontweight: 600,
