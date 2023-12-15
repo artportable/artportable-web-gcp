@@ -25,8 +25,8 @@ import { UserContext } from "../../../app/contexts/user-context";
 import { useRouter } from "next/router";
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
 import { ActionType } from "../../utils/googleAnalytics";
-import Stack from '@mui/material/Stack';
-import LinearProgress from '@mui/material/LinearProgress';
+import Stack from "@mui/material/Stack";
+import LinearProgress from "@mui/material/LinearProgress";
 
 interface InputProps {
   artworks: Artwork[];
@@ -48,7 +48,6 @@ export default function DiscoverArt({
   loadMoreElementRef,
   isLoading,
   loadMore,
-
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
@@ -56,12 +55,12 @@ export default function DiscoverArt({
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if(artworks && artworks.length === 0) {
+    if (artworks && artworks.length === 0) {
       setLoading(true);
 
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 4000);
+      }, 8000);
 
       return () => {
         clearTimeout(timer);
@@ -89,8 +88,6 @@ export default function DiscoverArt({
     referTo: "",
     imageurl: "",
   });
-
-
 
   const theme: Theme = useTheme();
   const skeletonImages = [
@@ -189,12 +186,71 @@ export default function DiscoverArt({
 
   return (
     <>
-    {artworks ? (
-      artworks.length > 0 ? (
+      {artworks ? (
+        artworks.length > 0 ? (
           <Box className={s.rowsContainer}>
-          {showFilterLoadingSkeleton && (
-            <>
-              <div className={s.row}>
+            {showFilterLoadingSkeleton && (
+              <>
+                <div className={s.row}>
+                  {skeletonRows && skeletonRows.length > 0 && (
+                    <div className={s.row}>
+                      {skeletonRows[0].map((image) => {
+                        return (
+                          <DiscoverArtSkeleton
+                            key={image.Name}
+                            width={image.Width}
+                            height={image.Height}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+                <div className={s.row}>
+                  {skeletonRows && skeletonRows.length > 0 && (
+                    <div className={s.row}>
+                      {skeletonRows[1].map((image) => {
+                        return (
+                          <DiscoverArtSkeleton
+                            key={image.Name}
+                            width={image.Width}
+                            height={image.Height}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+            {imageRows &&
+              imageRows.map((row: Image[], i) => (
+                <div className={s.row} key={i}>
+                  {row.map((image) => {
+                    let artwork = artworks.find(
+                      (a) => a.PrimaryFile.Name === image.Name
+                    );
+                    if (artwork) {
+                      return (
+                        <ArtworkListItemDefined
+                          key={image.Name}
+                          width={smScreenOrSmaller ? "100%" : image.Width}
+                          height={smScreenOrSmaller ? "auto" : image.Height}
+                          artwork={artwork}
+                          onPurchaseRequestClick={onPurchaseRequestClick}
+                          purchaseRequestAction={
+                            ActionType.PURCHASE_REQUEST_LIST_DISCOVER
+                          }
+                          onLikeClick={onLike}
+                          indexPage={true}
+                        />
+                      );
+                    }
+                  })}
+                </div>
+              ))}
+            {!isLoading && loadMore && (
+              <div className={s.row} ref={loadMoreElementRef}>
                 {skeletonRows && skeletonRows.length > 0 && (
                   <div className={s.row}>
                     {skeletonRows[0].map((image) => {
@@ -209,105 +265,52 @@ export default function DiscoverArt({
                   </div>
                 )}
               </div>
-              <div className={s.row}>
+            )}
+            <PurchaseRequestDialog
+              open={purchaseRequestDialogOpen}
+              onClose={togglePurchaseRequestDialog}
+              props={{
+                pathname: "/messages",
+                title: purchaseRequestDialogData.title,
+                creator: purchaseRequestDialogData.creator,
+                url: purchaseRequestDialogData.url,
+                referTo: purchaseRequestDialogData.referTo,
+                imageUrl: purchaseRequestDialogData.imageurl,
+              }}
+            />
+          </Box>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {loading ? (
+              <div>
                 {skeletonRows && skeletonRows.length > 0 && (
                   <div className={s.row}>
-                    {skeletonRows[1].map((image) => {
+                    {skeletonRows[0].map((image) => {
                       return (
                         <DiscoverArtSkeleton
                           key={image.Name}
                           width={image.Width}
-                          height={image.Height}
+                          height={200}
                         />
                       );
                     })}
                   </div>
                 )}
               </div>
-            </>
-          )}
-          {imageRows &&
-            imageRows.map((row: Image[], i) => (
-              <div className={s.row} key={i}>
-                {row.map((image) => {
-                  let artwork = artworks.find(
-                    (a) => a.PrimaryFile.Name === image.Name
-                  );
-                  if (artwork) {
-                    return (
-                      <ArtworkListItemDefined
-                        key={image.Name}
-                        width={smScreenOrSmaller ? "100%" : image.Width}
-                        height={smScreenOrSmaller ? "auto" : image.Height}
-                        artwork={artwork}
-                        onPurchaseRequestClick={onPurchaseRequestClick}
-                        purchaseRequestAction={
-                          ActionType.PURCHASE_REQUEST_LIST_DISCOVER
-                        }
-                        onLikeClick={onLike}
-                        indexPage={true}
-                      />
-                    );
-                  }
-                })}
-              </div>
-            ))}
-          {!isLoading && loadMore && (
-            <div className={s.row} ref={loadMoreElementRef}>
-              {skeletonRows && skeletonRows.length > 0 && (
-                <div className={s.row}>
-                  {skeletonRows[0].map((image) => {
-                    return (
-                      <DiscoverArtSkeleton
-                        key={image.Name}
-                        width={image.Width}
-                        height={image.Height}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
-          <PurchaseRequestDialog
-            open={purchaseRequestDialogOpen}
-            onClose={togglePurchaseRequestDialog}
-            props={{
-              pathname: "/messages",
-              title: purchaseRequestDialogData.title,
-              creator: purchaseRequestDialogData.creator,
-              url: purchaseRequestDialogData.url,
-              referTo: purchaseRequestDialogData.referTo,
-              imageUrl: purchaseRequestDialogData.imageurl,
-            }}
-          />
-        </Box>
-      ): (
-        <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100px",
-              width: "100%",
-            }}
-          >
-            {loading ? (
-               <Stack sx={{ width: '100%', color: 'grey.500' }}>
-               <LinearProgress color="secondary" />
-             </Stack>
             ) : (
-              <div>{t('nothingFound')}</div>
+              <div>{t("nothingFound")}</div>
             )}
           </div>
-
-      )
-    ) : (
-    <Box className={s.rowsContainer}>
-
-  </Box>
-        )}
-
+        )
+      ) : (
+        <Box className={s.rowsContainer}></Box>
+      )}
     </>
   );
 }

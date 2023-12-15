@@ -1,6 +1,4 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { max } from "date-fns/esm";
-import { rowGap } from "../../utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,7 +17,6 @@ export const styles = makeStyles((theme: Theme) =>
       maxWidth: "100%",
       margin: "0 auto",
       zIndex: 10,
-
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
         left: 0,
