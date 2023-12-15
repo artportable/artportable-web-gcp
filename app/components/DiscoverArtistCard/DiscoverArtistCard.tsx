@@ -13,6 +13,7 @@ import { UserContext } from "../../contexts/user-context";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import Image from "next/image";
 
 export default function DiscoverArtistCard({ artist, onFollowClick }) {
   const s = styles();
@@ -31,46 +32,56 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
             <div className={s.imageGrid}>
               {artist.Artworks[0] && (
                 <div className={s.first}>
-                  <img
+                  <Image
                     className={s.image}
                     src={`${bucketUrl}${artist.Artworks[0].PrimaryFile.Name}`}
                     alt="Portfolio image"
+                    layout="fill"
+                    quality={20}
                   />
                 </div>
               )}
               {artist.Artworks[1] && (
                 <div className={s.second}>
-                  <img
+                  <Image
                     className={s.image}
                     src={`${bucketUrl}${artist.Artworks[1].PrimaryFile.Name}`}
                     alt="Portfolio image"
+                    layout="fill"
+                    quality={20}
                   />
                 </div>
               )}
               {artist.Artworks[2] && (
                 <div className={s.third}>
-                  <img
+                  <Image
                     className={s.image}
                     src={`${bucketUrl}${artist.Artworks[2].PrimaryFile.Name}`}
                     alt="Portfolio image"
+                    layout="fill"
+                    quality={20}
                   />
                 </div>
               )}
               {artist.Artworks[3] && (
                 <div className={s.forth}>
-                  <img
+                  <Image
                     className={s.image}
                     src={`${bucketUrl}${artist.Artworks[3].PrimaryFile.Name}`}
                     alt="Portfolio image"
+                    layout="fill"
+                    quality={20}
                   />
                 </div>
               )}
               {artist.Artworks[4] && (
                 <div className={s.fifth}>
-                  <img
+                  <Image
                     className={s.image}
                     src={`${bucketUrl}${artist.Artworks[4].PrimaryFile.Name}`}
                     alt="Portfolio image"
+                    layout="fill"
+                    quality={20}
                   />
                 </div>
               )}
