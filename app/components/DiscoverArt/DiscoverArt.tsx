@@ -285,24 +285,14 @@ export default function DiscoverArt({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              height: "100px",
+              width: "100%",
             }}
           >
             {loading ? (
-              <div>
-                {skeletonRows && skeletonRows.length > 0 && (
-                  <div className={s.row}>
-                    {skeletonRows[0].map((image) => {
-                      return (
-                        <DiscoverArtSkeleton
-                          key={image.Name}
-                          width={image.Width}
-                          height={200}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+              <Stack sx={{ width: "100%", color: "grey.500" }}>
+                <LinearProgress color="secondary" />
+              </Stack>
             ) : (
               <div>{t("nothingFound")}</div>
             )}
