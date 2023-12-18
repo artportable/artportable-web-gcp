@@ -60,6 +60,12 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+    <url>
+    <loc>https://artportable.com/stories</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
   <url>
     <loc>https://artportable.com/artiklar/eric-ravn-wenstrom-malar-livet-utan-censur-%22for-mig-ar-konsten-som-en-kroppsdel%22</loc>
     <lastmod>2022-02-21</lastmod>
@@ -171,6 +177,24 @@
   <url>
     <loc>https://artportable.com/en</loc>
     <lastmod>2022-02-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://artportable.com/nb</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+    <url>
+    <loc>https://artportable.com/da</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://artportable.com/de</loc>
+    <lastmod>2023-12-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
