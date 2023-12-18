@@ -260,7 +260,7 @@ export default function EditProfileDialog({ userProfile }) {
 
               <select className={s.selectInfo} onChange={handleCountryChange}>
                 <option hidden>
-                  {userProfile.Country ? userProfile.Country : t("country")}
+                  {userProfile?.Country ? userProfile?.Country : t("country")}
                 </option>
                 <option disabled></option>
                 {countries.map((country, index) => (
@@ -276,7 +276,7 @@ export default function EditProfileDialog({ userProfile }) {
 
               <select className={s.selectInfo} onChange={handleStateChange}>
                 <option hidden>
-                  {userProfile.State ? userProfile.State : t("state")}
+                  {userProfile?.State ? userProfile?.State : t("state")}
                 </option>
                 <option disabled></option>
                 {states.map((state, index) => (
@@ -292,7 +292,7 @@ export default function EditProfileDialog({ userProfile }) {
 
               <select className={s.selectInfo} onChange={handleCityChange}>
                 <option hidden>
-                  {userProfile.City ? userProfile.city : t("city")}
+                  {userProfile?.City ? userProfile?.city : t("city")}
                 </option>
                 <option disabled></option>
                 {cities.map((city, index) => (
