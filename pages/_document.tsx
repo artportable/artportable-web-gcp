@@ -1,7 +1,7 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { ServerStyleSheets } from '@material-ui/styles'
-import React from 'react';
-import Script from 'next/script';
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ServerStyleSheets } from "@material-ui/styles";
+import React from "react";
+import Script from "next/script";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -9,7 +9,7 @@ class MyDocument extends Document {
     const originalRenderPage = ctx.renderPage;
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: App => props => sheets.collect(<App {...props} />)
+        enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
@@ -20,9 +20,9 @@ class MyDocument extends Document {
         <React.Fragment key="styles">
           {initialProps.styles}
           {sheets.getStyleElement()}
-        </React.Fragment>
-      ]
-    }
+        </React.Fragment>,
+      ],
+    };
   }
 
   render() {
@@ -45,7 +45,6 @@ class MyDocument extends Document {
             `,
             }}
           />
-          <script src='id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js")' />
           <script src="https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js" />
           <link
             rel="preload"
@@ -65,8 +64,8 @@ class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
