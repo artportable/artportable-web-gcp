@@ -52,7 +52,7 @@ const styles = makeStyles((theme: Theme) =>
       //   opacity: '1',
       // },
       [theme.breakpoints.down("sm")]: {
-        backgroundColor: "red",
+        backgroundColor: "transparent",
         height: "300px",
         width: "100%",
         marginBottom: "10px",
