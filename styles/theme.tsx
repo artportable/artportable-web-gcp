@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, createTheme } from "@material-ui/core/styles";
 
 const breakpointMainWidths = {
   xs: { breakpoint: "xs", regular: 0, wide: 0 },
@@ -17,7 +17,7 @@ interface Breakpoint {
   wide: number;
 }
 
-declare module "@material-ui/core/styles/createMuiTheme" {
+declare module "@material-ui/core/styles/createTheme" {
   interface Theme {
     breakpointMainWidths: {
       xs: Breakpoint;
@@ -70,7 +70,7 @@ const breakpoints = {
   },
 };
 
-const breakpointsTheme = createMuiTheme({
+const breakpointsTheme = createTheme({
   breakpointMainWidths,
   breakpoints,
 });
@@ -128,7 +128,7 @@ const palette = {
   },
 };
 
-export const theme = createMuiTheme({
+export const theme = createTheme({
   palette,
   typography,
   breakpointMainWidths,
