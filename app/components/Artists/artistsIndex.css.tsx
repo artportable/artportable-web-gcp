@@ -1,6 +1,4 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { max } from "date-fns/esm";
-import { rowGap } from "../../utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -9,36 +7,72 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
     },
     alphabetcontainer: {
+      marginBottom: "20px",
+      color: "black",
+      minWidth: "100%",
+      fontSize: "14px",
       display: "flex",
-      flexDirection: "column",
-      position: "fixed",
-      justifyContent: "space-between",
-      right: 8,
-      height: "50%",
-      alignItems: "center",
+      flexDirection: "row",
+      overflowX: "auto", // Enable horizontal scrolling
+      maxWidth: "100%",
+      margin: "0 auto",
+      zIndex: 10,
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        left: 0,
+        fontSize: "20px",
+      },
+    },
+
+    searchBar: {
+      marginBottom: "20px",
+      left: 30,
+      color: "black",
+      width: "100%",
+      fontSize: "16px",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        left: 0,
+        fontSize: "20px",
+      },
+    },
+    highlight: {
+      backgroundColor: "#AC606B",
+      color: "#AC606B",
     },
     letter: {
-      fontSize: "300%",
-      fontWeight: 800,
-      alignContent: "space-around",
+      fontWeight: 700,
+      margin: "0.5rem 0",
+      color: "#333",
     },
     letterList: {
       fontWeight: 600,
+      margin: "2px",
+      width: "100%",
+      color: "var(--dark-hover)",
+      [theme.breakpoints.up("smPlus")]: {
+        alignItems: "center",
+      },
     },
     container: {
       display: "flex",
       justifyContent: "center",
       flexDirection: "column",
-      width: "100%",
+      minWidth: "100%",
     },
     groupDiv: {
       columns: "1 auto",
       width: "50%",
     },
     artistName: {
-      fontSize: "0.925rem",
-      marginBottom: "10%",
+      fontSize: "0.975rem",
+      color: "var(--dark-hover)",
+      "&:hover": {
+        color: "var(--black-absolute)",
+        fontWeight: "600",
+      },
     },
+
     [theme.breakpoints.up("smPlus")]: {
       groupDiv: {
         columns: "2 auto",
@@ -55,11 +89,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around",
-        position: "fixed",
-        width: "100%",
-        backgroundColor: "#FDF9F7",
-        top: "70px",
-        height: "var(--header-height, 70px)",
+        minWidth: "100%",
       },
       alphabeticTypo: {
         fontweight: 600,
