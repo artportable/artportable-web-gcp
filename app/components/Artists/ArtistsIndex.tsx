@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Typography, Input } from "@material-ui/core";
-import { styles } from "./artists.css";
+import { styles } from "./artistsIndex.css";
 import { useTranslation } from "next-i18next";
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
