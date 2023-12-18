@@ -6,6 +6,7 @@ import DiscoverArtistSkeletonCard from "../DiscoverArtistSkeletonCard/DiscoverAr
 import axios from "axios";
 import Artists from "../Artists/Artists";
 import { useTranslation } from "next-i18next";
+import ArtistsIndex from "../Artists/ArtistsIndex";
 
 export default function DiscoverArtists({
   onFollowClick,
@@ -34,7 +35,7 @@ export default function DiscoverArtists({
 
   return (
     <Box>
-      <Artists />
+      <ArtistsIndex />
       <div className={s.titleEmblem}>
         <Typography className={s.title}>
           {t("discover:monthlyArtist")}
