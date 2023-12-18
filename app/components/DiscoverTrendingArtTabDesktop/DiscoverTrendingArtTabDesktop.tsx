@@ -15,14 +15,8 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ClearIcon from "@mui/icons-material/Clear";
 import Divider from "@mui/material/Divider";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { ListItemButton } from "@mui/material";
-import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
-import AspectRatioIcon from "@mui/icons-material/AspectRatio";
-import PhotoSizeSelectLargeIcon from "@mui/icons-material/PhotoSizeSelectLarge";
-import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
 
 interface DiscoverTrendingArtTabProps {
   username?: string;

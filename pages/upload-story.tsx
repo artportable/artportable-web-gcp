@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Main from "../app/components/Main/Main";
 import { usePostStory } from "../app/hooks/dataFetching/Stories";
-import styles from "../styles/upload.css";
+import styles from "../styles/uploadStory.css";
 import { DropzoneArea } from "material-ui-dropzone";
 import ArtButton from "../app/components/Button/Button";
 import { useTranslation } from "next-i18next";
@@ -29,7 +29,6 @@ import {
 } from "../app/utils/googleAnalytics";
 import useRefreshToken from "../app/hooks/useRefreshToken";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-import Link from "next/link";
 import StoryForm from "../app/components/StoryForm/StoryForm";
 
 export default function UploadStoryPage({ navBarItems }) {
