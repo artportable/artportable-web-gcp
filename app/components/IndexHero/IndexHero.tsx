@@ -448,7 +448,7 @@ export default function IndexHero() {
         <div className={s.right}>
           <div className={s.paintingContainer}>
             {!randomImage ? (
-              <Skeleton variant="rect" width={320} height={320} />
+              <Skeleton variant="rect" width={120} height={120} />
             ) : (
               <>
                 <Link href={`/${randomImage.imageLink}`}>
