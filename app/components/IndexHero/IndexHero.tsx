@@ -84,10 +84,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Victor Sköld",
-      username: "wiehre",
-      image: "/images/skold.jpeg",
-      imageLink: "art/9d79d401-f82c-45e0-bf39-886636b6647c",
+      name: "Daniel Lundvall",
+      username: "daniel.lundvall",
+      image: "/images/daniel.jpg",
+      imageLink: "art/b88d46aa-5782-4c3e-9a32-54bacda56d42",
     },
   ];
 
