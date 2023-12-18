@@ -60,8 +60,6 @@ export default function ArtworkListItemDefined({
 
   const isMyProfile = profileUser === username.value;
 
-
-
   function getFormatter(
     languageCode: string,
     currency: string | null
@@ -448,7 +446,6 @@ export default function ArtworkListItemDefined({
                       ? s.purchaseRequestButtonSv
                       : s.purchaseRequestButtonEn
                   }
-                  purchaseRequestButton
                   onClick={() => {
                     onPurchaseRequestClick(
                       artwork.Title,
