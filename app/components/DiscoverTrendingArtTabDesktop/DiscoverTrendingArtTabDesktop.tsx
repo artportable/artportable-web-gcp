@@ -201,10 +201,6 @@ const DiscoverTrendingArtTabDesktop = memo(
 
     useEffect(() => {}, [artworks]);
 
-    useEffect(() => {
-      console.log(loading);
-    }, []);
-
     return (
       <>
         <div className={s.desktopContainer}>
@@ -544,6 +540,8 @@ const DiscoverTrendingArtTabDesktop = memo(
           isLoading={isLoadingArtWorks}
           loadMore={props.loadMore}
           activeTab={props.activeTab}
+          trendingArtTab={true}
+          likedArtTab={false}
         />
       </>
     );
