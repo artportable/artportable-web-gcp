@@ -3,19 +3,16 @@ import { rowGap, columnGap } from "../app/utils/styleUtils";
 
 const styles = makeStyles((theme: Theme) =>
   createStyles({
-    mainGrid: {
-      [theme.breakpoints.up("mdPlus")]: {
-        display: "grid",
-        gap: "16px",
-        gridTemplate:
-          '"upload   form" minmax(0, 2fr)' +
-          '"pickBackgroundColor   form" auto' +
-          '"options   form" auto' +
-          '"instructions   form" auto' +
-          '"previews form" minmax(0, 1fr)' +
-          "/  3fr      1fr",
-        alignItems: "stretch",
+    fullContainer: {
+      display: "flex", flexDirection: "column",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
+        flexDirection: "row"
       },
+    },
+    mainGrid: {
+      display: "flex",
+      flexDirection: "column",
     },
     uploadBox: {
       gridArea: "upload",
@@ -103,9 +100,16 @@ const styles = makeStyles((theme: Theme) =>
         objectFit: "contain",
       },
     },
+    discardbutton: {
+      marginTop: "10px",
+      height: "25px",
+      width: "15px",
+      color: "white",
+      backgroundColor: "#3e3e3e"
+    },
     mobilePreview: {
       maxWidth: "100%",
-      height: "400px",
+      maxHeight: "400px",
       objectFit: "contain",
     },
     noImgPreview: {
@@ -118,14 +122,16 @@ const styles = makeStyles((theme: Theme) =>
       borderRadius: "4px",
     },
     mobileUploadResetButton: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(0),
+      color: "black",
+      backgroundColor: "var(--yellow-darker)"
     },
     form: {
       gridArea: "form",
     },
     uploadButton: {
-      width: "100%",
-      marginTop: "20px",
+      
+      marginTop: "0px",
       backgroundColor: "var(--color-green)",
       color: "var(--absolute-black)",
       "&.MuiButton-root:hover": {
@@ -133,8 +139,8 @@ const styles = makeStyles((theme: Theme) =>
       },
     },
     disabledButton: {
-      width: "100%",
-      marginTop: "20px",
+
+      marginTop: "0px",
       backgroundColor: "var(--disabled)",
       color: "#b3b1b1",
       "&.MuiButton-root:hover": {
