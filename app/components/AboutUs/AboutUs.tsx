@@ -20,7 +20,7 @@ export default function AboutMe() {
   const staff = [
     {
       name: "Tony Lidén",
-      title: "Senior Art Coordinator",
+      title: "Art Coordinator",
       image: "/staff/artportable_tony.jpg",
       email: "tony@artportable.com",
     },
