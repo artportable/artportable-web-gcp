@@ -5,14 +5,9 @@ import { styles } from "./storyForm.css";
 import { useTranslation } from "next-i18next";
 import { TextField } from "@material-ui/core";
 
-export default function StoryForm({
-  title,
-  setTitle,
-  setDescription,
-}) {
+export default function StoryForm({ title, setTitle, setDescription }) {
   const s = styles();
   const { t } = useTranslation("upload");
-
 
   return (
     <Box className={s.container}>
@@ -23,6 +18,7 @@ export default function StoryForm({
         error={title ? false : true}
         onChange={(event) => setTitle(event.target.value)}
         fullWidth
+        inputProps={{ maxLength: 70 }}
       />
       <TextField
         placeholder={t("placeholder")}
@@ -30,7 +26,7 @@ export default function StoryForm({
         multiline
         fullWidth
         inputProps={{
-          style: { minHeight: '500px', textAlign: 'start' },
+          style: { minHeight: "500px", textAlign: "start" },
         }}
         onChange={(event) => setDescription(event.target.value)}
       />

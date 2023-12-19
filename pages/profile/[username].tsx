@@ -552,7 +552,7 @@ export default function Profile(props) {
                                     }
                                     artwork={artwork}
                                     topActions={
-                                      isMyProfile ? (
+                                      isMyProfile && (
                                         <>
                                           <Button
                                             aria-label="edit"
@@ -566,7 +566,7 @@ export default function Profile(props) {
                                             startIcon={<BrushSharpIcon />}
                                           ></Button>
                                         </>
-                                      ) : undefined
+                                      )
                                     }
                                     onPurchaseRequestClick={
                                       onPurchaseRequestClick

@@ -1,6 +1,4 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import grey from "@material-ui/core/colors/grey";
-import { relative } from "node:path";
 import { rowGap, columnGap } from "../app/utils/styleUtils";
 
 const styles = makeStyles((theme: Theme) =>
@@ -24,9 +22,12 @@ const styles = makeStyles((theme: Theme) =>
       display: "flex",
       borderRadius: "6px",
       fontFamily: "GT-America-Standard",
+      height: "50%",
+      width: "70%",
+      marginRight: "0px",
       [theme.breakpoints.down("sm")]: {
-        background: "transparent",
         width: "100%",
+        height: "10%",
         marginBottom: "10px",
         justifyContent: "center",
       },
@@ -76,8 +77,8 @@ const styles = makeStyles((theme: Theme) =>
         },
       },
       [theme.breakpoints.down("sm")]: {
-        background: "transparent",
-        height: "400px",
+        backgroundColor: "transparent",
+        height: "100px",
         width: "100%",
         marginBottom: "10px",
         justifyContent: "center",
