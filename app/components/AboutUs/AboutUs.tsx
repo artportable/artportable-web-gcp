@@ -19,22 +19,10 @@ export default function AboutMe() {
 
   const staff = [
     {
-      name: "Richard Leppänen",
-      title: "Senior Art Coordinator",
-      image: "/staff/artportable_richard.jpg",
-      email: "richard@artportable.com",
-    },
-    {
       name: "Tony Lidén",
-      title: "Art Coordinator",
+      title: "Senior Art Coordinator",
       image: "/staff/artportable_tony.jpg",
       email: "tony@artportable.com",
-    },
-    {
-      name: "Linus Gustin",
-      title: "Art Coordinator",
-      image: "/staff/artportable_linus.jpg",
-      email: "linus@artportable.com",
     },
     {
       name: "Oliver Karlsson",
@@ -47,18 +35,6 @@ export default function AboutMe() {
       title: "Art Coordinator",
       image: "/staff/artportable_ola.png",
       email: "ola@artportable.com",
-    },
-    {
-      name: "Filippa Flood",
-      title: "Journalist",
-      image: "/staff/artportable_filippa_flood.jpg",
-      email: "filippa@artportable.com",
-    },
-    {
-      name: "Nannie Höök",
-      title: "Content Creator",
-      image: "/staff/artportable_nannie.jpg",
-      email: "",
     },
     {
       name: "Patrik Söderberg",
@@ -131,7 +107,12 @@ export default function AboutMe() {
         {staff.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <div className={s.frame}>
-              <img className={s.image} src={person?.image} alt="staff image" title="" />
+              <img
+                className={s.image}
+                src={person?.image}
+                alt="staff image"
+                title=""
+              />
             </div>
             <Typography className={s.bold}>{person?.name}</Typography>
             <Typography>{person?.title}</Typography>
@@ -146,7 +127,12 @@ export default function AboutMe() {
         {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
             <div className={s.frame}>
-              <img className={s.image} src={person?.image} alt="staff image" title="" />
+              <img
+                className={s.image}
+                src={person?.image}
+                alt="staff image"
+                title=""
+              />
             </div>
             <Typography className={s.bold}>{person?.name}</Typography>
             <Typography>{person?.title}</Typography>
