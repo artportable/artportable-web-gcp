@@ -193,6 +193,10 @@ export default function DiscoverPage({ navBarItems }) {
         <meta property="twitter:type" content="website" />
         <meta property="twitter:url" content="https://artportable.com/" />
         <meta
+          name="google-site-verification"
+          content="pnoyk134Ulrd9ic98fcyAa-MW6zDtr8EklOyRNtONSQ"
+        />
+        <meta
           property="twitter:image"
           content="/images/artportable_tv_commercial.png"
         />
