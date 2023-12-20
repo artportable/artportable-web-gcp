@@ -18,7 +18,7 @@ export default function StoryForm({ title, setTitle, setDescription }) {
         id="headline"
         placeholder={t("headline")}
         required
-
+        error={title ? false : true}
         onChange={(event) => setTitle(event.target.value)}
         fullWidth
         inputProps={{ maxLength: 70 }}
