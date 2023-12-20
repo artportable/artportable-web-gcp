@@ -311,7 +311,6 @@ export default function UploadStoryPage({ navBarItems }) {
         <div style={{margin: "20px"}}>
           {mobileImg === "" ? (
             <div>
-              <span>{t("story:previewText")}</span>
                 </div>
                   ) : (
                   <div style={{display: "flex", flexDirection: "column"}}>
