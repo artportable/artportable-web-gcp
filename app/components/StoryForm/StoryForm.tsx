@@ -13,19 +13,18 @@ export default function StoryForm({ title, setTitle, setDescription }) {
   return (
     
       <Box className={s.container}>
-        <Typography variant="h3" style={{ padding: "10px", marginBottom: "10px"}}>
-          Rubrik
-        </Typography>
+      <Paper style={{marginBottom: "20px"}}>
       <TextField
         id="headline"
         placeholder={t("headline")}
         required
-        error={title ? false : true}
+
         onChange={(event) => setTitle(event.target.value)}
         fullWidth
         inputProps={{ maxLength: 70 }}
         style={{ padding: "10px", marginBottom: "10px"}}
       />
+      </Paper>
      <Paper style={{marginBottom: "20px"}}>
       <TextField
         placeholder={t("placeholder")}
