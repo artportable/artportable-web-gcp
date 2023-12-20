@@ -37,7 +37,7 @@ export default function UploadStoryPage({ navBarItems }) {
   const router = useRouter();
 
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("xs"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("xl"));
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -84,26 +84,6 @@ export default function UploadStoryPage({ navBarItems }) {
   });
 
   const uploadStory = async () => {
-    if (isDesktop) {
-      if (title) {
-        const story: StoryForCreation = {
-          Title: title,
-          Description: description,
-          PrimaryFile: namePrimary,
-          SecondaryFile: nameSecondary,
-          TertiaryFile: nameTertiary,
-        };
-        setRefresh(true);
-        setUploadSnackbarOpen(true);
-        const res = await usePostStory(story, socialId.value, token);
-        console.log(res);
-        if (res) {
-          router.push("/stories/" + res.Slug);
-        } else {
-          router.push("/profile/@" + username.value);
-        }
-      }
-    } else {
       const name = await uploadImage(
         mobileImgBlob,
         mobilePreviewImageRef.current.naturalWidth,
@@ -126,7 +106,7 @@ export default function UploadStoryPage({ navBarItems }) {
         } else {
           router.push("/profile/@" + username.value);
         }
-      }
+      
     }
   };
   useEffect(() => {
@@ -195,14 +175,17 @@ export default function UploadStoryPage({ navBarItems }) {
   };
 
   const onDiscard = () => {
-    setCropperActive(false);
-    const uploadedImgButtons: NodeListOf<HTMLButtonElement> =
-      document.querySelectorAll(".MuiDropzonePreviewList-removeButton");
+    setMobileImgBlob(null);
+    setMobileImg("");
 
-    //Click the last button to remove image from dropzone component
-    uploadedImgButtons[uploadedImgButtons.length - 1].click();
+    console.log(mobileImgBlob);
+    console.log(mobilePreviewImageRef);
+
     setDeletedFile(true);
   };
+
+
+  useEffect(() => {}, [onDiscard])
 
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
@@ -254,66 +237,19 @@ export default function UploadStoryPage({ navBarItems }) {
   return (
     <Main navBarItems={navBarItems}>
       <>
-        {" "}
+      <div className={s.fullContainer}>
         <div className={s.mainGrid}>
-          {isDesktop ? (
-            <>
-              <div className={s.uploadBox}>
-                <DropzoneArea
-                  classes={{
-                    root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
-                  }}
-                  acceptedFiles={["image/*"]}
-                  dropzoneText={text}
-                  onChange={onFilesChanged}
-                  showPreviews={false}
-                  showPreviewsInDropzone={true}
-                  filesLimit={3}
-                  maxFileSize={2000000000}
-                />
-              </div>
-              <div className={s.cropperBox}>
-                <Cropper
-                  className={clsx(s.cropper, !cropperActive && s.hide)}
-                  src={cropperImageUrl}
-                  onInitialized={onCropperInitialized}
-                  initialAspectRatio={1}
-                  autoCropArea={1}
-                  // preview={`.${s.cropperPreview}`}
-                  ref={cropperRef}
-                  background={true}
-                  // style={{ backgroundColor: color}}
-                />
-              </div>
-              <CropperOptions
-                show={cropperActive}
-                cropper={cropper}
-                onCrop={onCrop}
-                onDiscard={onDiscard}
-              ></CropperOptions>
-              {cropperActive && (
-                <Typography className={s.instructionsTypo}>
-                  {t("story:doneCropping")}
-                </Typography>
-              )}
-            </>
-          ) : (
-            <div>
-              <div>
-                {mobileImg === "" ? (
-                  <div className={clsx(s.mobilePreview, s.noImgPreview)}>
-                    <span>{t("story:previewText")}</span>
-                  </div>
-                ) : (
-                  <img
-                    className={s.mobilePreview}
-                    src={mobileImg}
-                    ref={mobilePreviewImageRef}
-                    alt="mobile image"
-                  ></img>
-                )}
-              </div>
-              <input
+          <div className={s.form}>
+            <StoryForm
+              title={title}
+              setTitle={setTitle}
+              setDescription={setDescription}
+            />
+          </div>  
+              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+              {!mobileImg && (
+                <div>
+                  <input
                 accept="image/*"
                 style={{ display: "none" }}
                 id="icon-button-file"
@@ -333,59 +269,31 @@ export default function UploadStoryPage({ navBarItems }) {
                 >
                   {t("story:selectImage")}
                 </ArtButton>
+                
               </label>
-            </div>
-          )}
+                </div>
+              )}
+             <ArtButton
+              className={`${!title || !mobileImg || !mobileImgBlob ? s.disabledButton : s.uploadButton}`}
+              rounded
+              disabled={!title || !mobileImg || !mobileImgBlob}
+              onClick={() => {
+                uploadStory();
+                trackGoogleAnalytics(
+                  ActionType.UPLOAD_IMAGE_CONFIRM,
+                  CategoryType.INTERACTIVE
+                );
+              }}
+            >
+              {t("story:publish")}
+            </ArtButton>
 
-          <div className={s.previewsContainer}>
-            {croppedPrimary && (
-              <div className={s.previewItem}>
-                <img src={croppedPrimary} alt="primary image" />
+
               </div>
-            )}
-            {croppedSecondary && (
-              <div className={s.previewItem}>
-                <img src={croppedSecondary} alt="secondary image" />
-              </div>
-            )}
-            {croppedTertiary && (
-              <div className={s.previewItem}>
-                <img src={croppedTertiary} alt="tertiary image" />
-              </div>
-            )}
-            {!croppedTertiary && cropperActive && (
-              <div className={s.previewItem}>
-                <div className={s.cropperPreview}></div>
-              </div>
-            )}
-          </div>
-          <div className={s.form}>
-            <StoryForm
-              title={title}
-              setTitle={setTitle}
-              setDescription={setDescription}
-            ></StoryForm>
-            <div>
-              <ArtButton
-                className={`${
-                  !croppedPrimary && mobileImg === ""
-                    ? s.disabledButton
-                    : s.uploadButton
-                }`}
-                rounded
-                onClick={() => {
-                  uploadStory();
-                  trackGoogleAnalytics(
-                    ActionType.UPLOAD_IMAGE_CONFIRM,
-                    CategoryType.INTERACTIVE
-                  );
-                }}
-              >
-                {t("story:publish")}
-              </ArtButton>
+              <div>
+   
             </div>
             <WarningMessage />
-          </div>
           <Snackbar
             open={uploadSnackbarOpen}
             autoHideDuration={6000}
@@ -399,6 +307,24 @@ export default function UploadStoryPage({ navBarItems }) {
               {t("story:storyUploadedSuccessfully")}
             </Alert>
           </Snackbar>
+        </div>
+        <div style={{margin: "20px"}}>
+          {mobileImg === "" ? (
+            <div>
+              <span>{t("story:previewText")}</span>
+                </div>
+                  ) : (
+                  <div style={{display: "flex", flexDirection: "column"}}>
+                    <img
+                    className={s.mobilePreview}
+                    src={mobileImg}
+                    ref={mobilePreviewImageRef}
+                    alt="mobile image"
+                  ></img>
+                  <ArtButton rounded className={s.discardbutton} onClick={onDiscard}>X</ArtButton>
+                  </div>
+                )}
+        </div>
         </div>
       </>
     </Main>
