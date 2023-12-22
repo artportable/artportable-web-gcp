@@ -231,21 +231,20 @@ export default function DiscoverPage({ navBarItems }) {
                 />
                 <Tab
                   className={s.text}
-                  label={t("discover:stories")}
-                  {...a11yProps(t("discover:stories"))}
+                  label={t("discover:highlights")}
+                  {...a11yProps(t("discover:artists"))}
                 />
-
                 <Tab
                   className={s.text}
                   label={t("discover:latestArt")}
                   {...a11yProps(t("discover:latestArt"))}
                 />
-
                 <Tab
                   className={s.text}
-                  label={t("discover:highlights")}
-                  {...a11yProps(t("discover:artists"))}
+                  label={t("discover:stories")}
+                  {...a11yProps(t("discover:stories"))}
                 />
+
                 <Tab
                   className={s.text}
                   label={t("discover:showroom")}
@@ -289,7 +288,7 @@ export default function DiscoverPage({ navBarItems }) {
                   />
                 )}
               </TabPanel>
-              <TabPanel value={activeTab} index={1}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverStoriesTab />
               </TabPanel>
 
@@ -305,7 +304,7 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
 
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={1}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
