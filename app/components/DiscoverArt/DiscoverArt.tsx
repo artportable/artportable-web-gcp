@@ -28,6 +28,8 @@ import { ActionType } from "../../utils/googleAnalytics";
 import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 
+import { Skeleton } from "@material-ui/lab";
+
 interface InputProps {
   artworks: Artwork[];
   tags: string[];
@@ -63,7 +65,7 @@ export default function DiscoverArt({
       setLoading(true);
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 5000);
+      }, 20000);
       return () => {
         clearTimeout(timer);
       };
@@ -292,9 +294,32 @@ export default function DiscoverArt({
             }}
           >
             {loading ? (
-              <Stack sx={{ width: "100%", color: "grey.500" }}>
-                <LinearProgress color="secondary" />
-              </Stack>
+              <Box className={s.skeletonContainer}>
+                <div className={s.rowSkeleton}>
+                  <Skeleton
+                    variant="rect"
+                    width={200}
+                    height={100}
+                    className={s.skeletonColor}
+                  />
+                </div>
+                <div className={s.rowSkeleton}>
+                  <Skeleton
+                    variant="rect"
+                    width={200}
+                    height={100}
+                    className={s.skeletonColorTwo}
+                  />
+                </div>
+                <div className={s.rowSkeleton}>
+                  <Skeleton
+                    variant="rect"
+                    width={200}
+                    height={100}
+                    className={s.skeletonColorThree}
+                  />
+                </div>
+              </Box>
             ) : (
               <div>
                 {likedArtTab ? <>{t("notLiked")}</> : <>{t("nothingFound")}</>}

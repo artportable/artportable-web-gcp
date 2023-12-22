@@ -14,6 +14,31 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "flex-start",
       overflow: "hidden",
     },
+    rowSkeleton: {
+      display: "flex",
+      margin: "10px",
+      overflow: "hidden",
+    },
+    skeletonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "row",
+      },
+    },
+
+    skeletonColor: {
+      backgroundColor: "transparent",
+      [theme.breakpoints.up("smPlus")]: {
+        backgroundColor: "var(--background-color-darker)",
+      },
+    },
+    skeletonColorTwo: {
+      backgroundColor: "var(--header-color)",
+    },
+    skeletonColorThree: {
+      backgroundColor: "var(--skeleton-color)",
+    },
     selected: {
       "& .MuiChip-root": {
         background: theme.palette.primary.dark,
