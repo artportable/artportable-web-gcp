@@ -65,7 +65,7 @@ export default function DiscoverArt({
       setLoading(true);
       const timer = setTimeout(() => {
         setLoading(false);
-      }, 20000);
+      }, 5000);
       return () => {
         clearTimeout(timer);
       };
