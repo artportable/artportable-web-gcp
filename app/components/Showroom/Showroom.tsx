@@ -190,43 +190,53 @@ export default function Showroom() {
         username: "birgitta.lindfors",
       },
       {
+        week: "Vecka 12",
+        artist: "Vera Stubergh",
+        username: "vera.stubergh1940",
+      },
+      {
         week: "Vecka 13",
-        artist: "Olle Brandqvist",
-        username: "olle.brandqvist",
+        artist: "Hans ström",
+        username: "hans.strom",
       },
     ],
     APRIL: [
       {
+        week: "Vecka 14",
+        artist: "Zanna Guldbrandsson",
+        username: "zannaguldbrandsson",
+      },
+      {
         week: "Vecka 15",
-        artist: "Erik Mofjell",
-        username: "erik.mofjell",
+        artist: "Lars Dahlström",
+        username: "lars.dahlstrom",
       },
       {
         week: "Vecka 16",
-        artist: "Anna-Karin Otherhals",
-        username: "anna-karin.oterhals",
+        artist: "Erika Holm Petre",
+        username: "erikaholmpetre",
       },
       {
         week: "Vecka 17",
-        artist: "Viveca Berg",
-        username: "viveca.berg",
+        artist: "Göran billingskog",
+        username: "gorito",
       },
     ],
     MAJ: [
       {
-        week: "Vecka 18",
-        artist: "Keya Eriksson",
-        username: "keya.eriksson",
-      },
-      {
         week: "Vecka 19",
-        artist: "Annica Hallman",
-        username: "Annica.b",
+        artist: "Ebba kristina wikgård",
+        username: "ebba_kristina",
       },
       {
         week: "Vecka 20",
-        artist: "Anna Solberg",
-        username: "anna.solberg",
+        artist: "Ulrika ritter",
+        username: "ulrika.ritter",
+      },
+      {
+        week: "Vecka 21",
+        artist: "Marina bonnevier",
+        username: "mabon",
       },
       {
         week: "Vecka 21",
