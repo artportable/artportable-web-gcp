@@ -141,9 +141,19 @@ export default function Exhibition({ navBarItems }) {
   const showrooms = {
     JANUARI: [
       {
-        week: "Vecka 5",
-        artist: "Zlatko Gradholt",
-        username: "zlatkogradholt",
+        week: "Vecka 2",
+        artist: "Torleiv Agdestein",
+        username: "torleiv.agdestein",
+      },
+      {
+        week: "Vecka 3",
+        artist: "Torleiv Agdestein",
+        username: "torleiv.agdestein",
+      },
+      {
+        week: "Vecka 4",
+        artist: "Elaine Hillerström",
+        username: "elaine.hillerstrom",
       },
     ],
     FEBRUARI: [
