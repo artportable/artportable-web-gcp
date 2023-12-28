@@ -239,11 +239,6 @@ export default function Showroom() {
         username: "mabon",
       },
       {
-        week: "Vecka 21",
-        artist: "AnnCatrin Pettersson",
-        username: "frifararen",
-      },
-      {
         week: "Vecka 22",
         artist: "Mieszko Tyszkiewicz",
         username: "mieszko.tyszkiewicz",
@@ -252,23 +247,23 @@ export default function Showroom() {
     JUNI: [
       {
         week: "Vecka 23",
-        artist: "Magnus Christiansson",
-        username: "magnus.christiansson",
+        artist: "Janet Westman",
+        username: "janetwestman",
       },
       {
         week: "Vecka 24",
+        artist: "Anna-Maria Andersson",
+        username: "anna-maria.andersson",
+      },
+      {
+        week: "Vecka 25",
         artist: "Cina Fundin",
         username: "cina.fundin",
       },
       {
-        week: "Vecka 25",
-        artist: "Henrik Sjöström",
-        username: "henrik.sjostrom",
-      },
-      {
         week: "Vecka 26",
-        artist: "Maria Biederbeck",
-        username: "maria.biederbeck",
+        artist: "Mona-Lisa Eriksson",
+        username: "gladiator",
       },
     ],
     JULI: [
@@ -281,114 +276,94 @@ export default function Showroom() {
     AUGUSTI: [
       {
         week: "Vecka 31",
-        artist: "Hanne Linnes",
-        username: "hannelinnes",
+        artist: "Luidmilla Kerdman",
+        username: "lucykerdman",
       },
       {
         week: "Vecka 32",
-        artist: "Tove Gulliksrud",
-        username: "tove.gulliksrud",
+        artist: "Mona Anita Eriksen",
+        username: "mona.anita.eriksen",
       },
       {
         week: "Vecka 33",
-        artist: "Sofia Lagerblad",
-        username: "sofia.lagerblad",
+        artist: "Sandra Gustavsson",
+        username: "sandra.gustavsson",
       },
       {
         week: "Vecka 34",
-        artist: "Serguei Zlenko",
-        username: "sergueizlenko",
+        artist: "ARTS Beyond ART",
+        username: "artsbeyondart",
       },
       {
         week: "Vecka 35",
-        artist: "Camilla Karlsson",
-        username: "Camilla.Karlsson",
+        artist: "Gunilla Svärd",
+        username: "gunilla.svard",
       },
     ],
     SEPTEMBER: [
       {
         week: "Vecka 36",
-        artist: "Pia Håland Anveden",
-        username: "piahd53",
+        artist: "Christina Danielsson",
+        username: "christina.danielsson",
       },
       {
         week: "Vecka 37",
-        artist: "Lo Fehrling",
-        username: "lo",
+        artist: "Henrik Sjöström",
+        username: "henrik.sjostrom",
       },
       {
         week: "Vecka 38",
-        artist: "Örjan Sätre",
-        username: "orjan.satre",
+        artist: "Robban Galli",
+        username: "",
       },
       {
         week: "Vecka 39",
-        artist: "Sirpa Jokela",
-        username: "jokela-art",
+        artist: "Catharina Lundh",
+        username: "sickan64",
       },
     ],
     OKTOBER: [
       {
         week: "Vecka 40",
-        artist: "Jason Andersson",
-        username: "jasonandersson",
+        artist: "Inger Bernholdsson",
+        username: "inger.bernholdsson",
       },
       {
         week: "Vecka 41",
-        artist: "Mary Myntti",
-        username: "marymyntti",
+        artist: "Pia Bark",
+        username: "piabark",
       },
       {
         week: "Vecka 42",
-        artist: "Anna-Carin Jansson",
-        username: "Anna-Carin.Jansson",
+        artist: "Gina Axlund",
+        username: "gina.axlund",
       },
       {
         week: "Vecka 43",
-        artist: "Kari Malm",
-        username: "kamidas",
-      },
-      {
-        week: "Vecka 44",
-        artist: "Ilias Maniouras",
-        username: "ilias.maniouras",
+        artist: "Camilla Thelin",
+        username: "",
       },
     ],
     NOVEMBER: [
       {
-        week: "Vecka 45",
-        artist: "Lars Henrik Milert",
-        username: "milert",
+        week: "Vecka 44",
+        artist: "Jessica Elert",
+        username: "Jessicaelert",
       },
       {
         week: "Vecka 46",
-        artist: "Jakob Fogelquist",
-        username: "jakob.fogelquist",
+        artist: "Helen Sjöstrand",
+        username: "sjostrandhelen",
       },
       {
         week: "Vecka 47",
-        artist: "Maria Nehlin",
-        username: "maria.nehlin",
-      },
-      {
-        week: "Vecka 48",
-        artist: "Hans-Olof Dahlgren",
-        username: "hans-o",
+        artist: "Angelica Diehn",
+        username: "angelica.diehn",
       },
     ],
     DECEMBER: [
       {
-        week: "Vecka 49",
-        artist: "Ann-Britt Farmare",
-        username: "ann-britt.farmare",
-      },
-      {
-        week: "Vecka 50",
-        artist: "Victor Sköld",
-        username: "wiehre",
-      },
-      {
-        week: "Vecka 51",
+        week: "Vecka 51 - 54",
         artist: "Daniel Lundvall",
         username: "daniel.lundvall",
       },
