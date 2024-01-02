@@ -26,5 +26,6 @@
   "8-17": "Måndag - fredag, 8 - 17.",
   "deviating": "Avvikande öppettider vid röda dagar och vernissager.",
   "headline": "Rubrik",
-  "placeholder": "Skriv en text om en utställning, ge en inblick från din ateljé eller berätta något annat spännande kring ditt konstnärskap just nu..."
+  "placeholder": "Skriv en text om en utställning, ge en inblick från din ateljé eller berätta något annat spännande kring ditt konstnärskap just nu...",
+  "story-description": "Här skriver du texten till din artikel. Skriv så informativt som möjligt och se till att språket är korrekt. Artiklar som innehåller mer text och är uppdelade i flera stycken skapar en bättre upplevelse för läsaren."
 }
