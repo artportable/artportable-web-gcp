@@ -11,34 +11,32 @@ export default function StoryForm({ title, setTitle, setDescription }) {
   const { t } = useTranslation("upload");
 
   return (
-    
-      <Box className={s.container}>
-      <Paper style={{marginBottom: "20px"}}>
-      <TextField
-        id="headline"
-        placeholder={t("headline")}
-        required
-        error={title ? false : true}
-        onChange={(event) => setTitle(event.target.value)}
-        fullWidth
-        inputProps={{ maxLength: 70 }}
-        style={{ padding: "10px", marginBottom: "10px"}}
-      />
+    <Box className={s.container}>
+      <Paper style={{ marginBottom: "20px" }}>
+        <TextField
+          id="headline"
+          placeholder={t("headline")}
+          required
+          error={title ? false : true}
+          onChange={(event) => setTitle(event.target.value)}
+          fullWidth
+          inputProps={{ maxLength: 70 }}
+          style={{ padding: "10px", marginBottom: "10px" }}
+        />
       </Paper>
-     <Paper style={{marginBottom: "20px"}}>
-      <TextField
-        placeholder={t("placeholder")}
-        id="description"
-        multiline
-        fullWidth
-        inputProps={{
-          style: { minHeight: "500px", textAlign: "start" },
-        }}
-        onChange={(event) => setDescription(event.target.value)}
-        style={{ padding: "10px", marginBottom: "10px"}}
-      />
-       </Paper>
+      <Paper style={{ marginBottom: "20px" }}>
+        <TextField
+          placeholder={t("story-description")}
+          id="description"
+          multiline
+          fullWidth
+          inputProps={{
+            style: { minHeight: "500px", textAlign: "start" },
+          }}
+          onChange={(event) => setDescription(event.target.value)}
+          style={{ padding: "10px", marginBottom: "10px" }}
+        />
+      </Paper>
     </Box>
-   
   );
 }
