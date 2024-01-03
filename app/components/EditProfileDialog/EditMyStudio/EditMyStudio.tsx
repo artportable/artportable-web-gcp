@@ -11,7 +11,7 @@ export const EditMyStudio = ({ profile, setProfile }) => {
   const s = styles();
   const { t } = useTranslation("profile");
 
-  const [hasStudio, setHasStudio] = useState(profile?.studio);
+  const [hasStudio, setHasStudio] = useState(false);
 
   const setStudioName = (newName: string) => {
     setProfile({
@@ -52,7 +52,7 @@ export const EditMyStudio = ({ profile, setProfile }) => {
           {t("myArtStudio")}
         </Typography>
 
-        {!profile.studio.Location && !profile.studio.Text ? (
+        {!hasStudio ? (
           <Button
             variant="text"
             color="primary"
