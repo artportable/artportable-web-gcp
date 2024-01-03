@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@material-ui/core/Box";
 import MyArtStudioCard from "../MyArtStudioCard/MyArtStudioCard";
 import TagsCard from "../TagsCard/TagsCard";
@@ -22,6 +22,10 @@ export default function AboutMe({
 
   const data = userProfile.data;
 
+  useEffect(() => {
+    console.log(data.Studio);
+  }, []);
+
   return (
     // TODO: Handle potential errors
     <Box className={s.container}>
@@ -33,7 +37,7 @@ export default function AboutMe({
         onUpdateProfilePicture={onUpdateProfilePicture}
       ></AboutCard>
       <Box className={s.rightCol}>
-        {data?.Studio && (
+        {(data?.Studio?.Location || data?.Studio?.Text) && (
           <MyArtStudioCard data={data?.Studio}></MyArtStudioCard>
         )}
         {tags?.length > 0 && <TagsCard tags={tags}></TagsCard>}
