@@ -378,7 +378,8 @@ export default function Showroom() {
   const monthNames = Object.keys(showrooms);
   const currentMonthIndex = monthNames.indexOf(currentMonth);
 
-  const [value, setValue] = useState(currentMonthIndex);
+  const januaryIndex = monthNames.indexOf("JANUARI");
+  const [value, setValue] = useState(januaryIndex !== -1 ? januaryIndex : 0);
   const [selectedCafe, setSelectedCafe] = useState(Object.keys(cafes)[0]);
 
   const handleChange = (event, newValue) => {
