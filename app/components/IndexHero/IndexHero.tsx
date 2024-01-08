@@ -470,7 +470,9 @@ export default function IndexHero() {
                   <div className={s.createdBy}>
                     <Chip
                       onClick={(_) =>
-                        router.push(`/profile/@${randomImage.username}`)
+                        router.push(
+                          `https://artportable.com/en/stories/utstallning-artportable-showroom-1`
+                        )
                       }
                       size="small"
                       classes={{
