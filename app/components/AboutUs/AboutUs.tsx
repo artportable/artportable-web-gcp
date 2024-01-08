@@ -37,6 +37,12 @@ export default function AboutMe() {
       email: "ola@artportable.com",
     },
     {
+      name: "Ulrika Melin",
+      title: "Art Curator",
+      image: "/staff/artportable_ulrika.jpg",
+      email: "ulrika@artportable.com",
+    },
+    {
       name: "Patrik Söderberg",
       title: "IT Manager",
       image: "/staff/artportable_patrik.jpg",
