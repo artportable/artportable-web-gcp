@@ -28,6 +28,7 @@ interface RandomImageProps {
   username: string;
   imageLink: string;
   name: string;
+  showroom: string;
 }
 
 export default function IndexHero() {
@@ -88,6 +89,7 @@ export default function IndexHero() {
       username: "torleiv.agdestein",
       image: "/images/torleiv.jpeg",
       imageLink: "art/750fd375-231f-45ce-8e0e-e1487e077480",
+      showroom: `${t("showroom")}`,
     },
   ];
 
@@ -98,6 +100,7 @@ export default function IndexHero() {
       username: images[randomImageIndex].username,
       imageLink: images[randomImageIndex].imageLink,
       name: images[randomImageIndex].name,
+      showroom: images[randomImageIndex].showroom,
     });
   }, []);
 
@@ -465,6 +468,18 @@ export default function IndexHero() {
                 </Link>
                 {randomImage.username && (
                   <div className={s.createdBy}>
+                    <Chip
+                      onClick={(_) =>
+                        router.push(
+                          `https://artportable.com/en/stories/utstallning-artportable-showroom-1`
+                        )
+                      }
+                      size="small"
+                      classes={{
+                        root: s.chip,
+                      }}
+                      label={randomImage.showroom}
+                    />
                     <Chip
                       onClick={(_) =>
                         router.push(`/profile/@${randomImage.username}`)
