@@ -321,9 +321,7 @@ export default function DiscoverArt({
                 </div>
               </Box>
             ) : (
-              <div>
-                {likedArtTab ? <>{t("notLiked")}</> : <>{t("nothingFound")}</>}
-              </div>
+              <div>{likedArtTab ? <>{t("notLiked")}</> : <>{}</>}</div>
             )}
           </div>
         )
