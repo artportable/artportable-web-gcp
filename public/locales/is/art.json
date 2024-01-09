@@ -31,5 +31,7 @@
   "request": "Kaupbeiðni",
   "new": "Nýtt!",
   "fillInYourEmail": "Fylltu út tölvupóstinn þinn",
-  "currency": "Gjaldmiðill"
+  "currency": "Gjaldmiðill",
+  "moreInfo": "More info",
+  "viewPortfolio": "View portfolio"
 }

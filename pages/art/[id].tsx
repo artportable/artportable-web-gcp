@@ -1,68 +1,88 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Head from 'next/head'
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
-import Main from '../../app/components/Main/Main'
-import { useGetArtwork } from '../../app/hooks/dataFetching/Artworks'
-import { Badge, Box, IconButton, Paper, Typography } from '@material-ui/core'
-import { styles } from '../../styles/art.css'
-import { capitalizeFirst, fetchWithTimeout } from '../../app/utils/util'
-import Button from '../../app/components/Button/Button'
-import AvatarCard from '../../app/components/AvatarCard/AvatarCard'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import TagChip from '../../app/components/TagChip/TagChip'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import SendIcon from '@material-ui/icons/Send'
-import Link from 'next/link'
-import { TokenContext } from '../../app/contexts/token-context'
-import { UserContext } from '../../app/contexts/user-context'
-import { useRedirectToLoginIfNotLoggedIn } from '../../app/hooks/useRedirectToLoginIfNotLoggedIn'
+import React, { useContext, useEffect, useState } from "react";
+import Head from "next/head";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import Main from "../../app/components/Main/Main";
+import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
+import {
+  Badge,
+  Box,
+  IconButton,
+  Paper,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@material-ui/core";
+import { styles } from "../../styles/art.css";
+import { capitalizeFirst } from "../../app/utils/util";
+import Button from "../../app/components/Button/Button";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import SendIcon from "@material-ui/icons/Send";
+import Link from "next/link";
+import { TokenContext } from "../../app/contexts/token-context";
+import { UserContext } from "../../app/contexts/user-context";
+import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import {
   ActionType,
   CategoryType,
-  trackGoogleAnalytics
-} from '../../app/utils/googleAnalytics'
-import { UrlObject } from 'url'
-import Divider from '@mui/material/Divider'
-import PurchaseRequestDialog from '../../app/components/PurchaseRequestDialog/PurchaseRequestDialog'
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined'
-import usePostLike from '../../app/hooks/dataFetching/usePostLike'
-import usePostFollow from '../../app/hooks/dataFetching/usePostFollow'
-import { getNavBarItems } from '../../app/utils/getNavBarItems'
-import ChatIcon from '@material-ui/icons/Chat'
-import { RWebShare } from 'react-web-share'
-import ShareIcon from '@material-ui/icons/Share'
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline'
+  trackGoogleAnalytics,
+} from "../../app/utils/googleAnalytics";
+import { UrlObject } from "url";
+import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+import usePostLike from "../../app/hooks/dataFetching/usePostLike";
+import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
+import { getNavBarItems } from "../../app/utils/getNavBarItems";
+import { RWebShare } from "react-web-share";
+
+import AboutCardArtwork from "../../app/components/AboutCardArtwork/AboutCardArtwork";
+import { useGetUserProfileArtwork } from "../../app/hooks/dataFetching/UserProfile";
+import Carousel from "react-material-ui-carousel";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Divider from "@mui/material/Divider";
 
 export default function ArtworkPage(props) {
-  const s = styles()
-  const { t } = useTranslation(['art', 'common', 'tags'])
-  const router = useRouter()
-  const publicUrl = process.env.NEXT_PUBLIC_URL
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-  const staticArtwork = props.artwork
-  const navBarItems = props.navBarItems
-  const canonicalURL = publicUrl + router.asPath
+  const s = styles();
+  const { t } = useTranslation(["art", "common", "tags"]);
+  const router = useRouter();
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const staticArtwork = props.artwork;
+  const navBarItems = props.navBarItems;
+  const canonicalURL = publicUrl + router.asPath;
 
-  const { id } = router.query
-  const { username, socialId } = useContext(UserContext)
-  const artwork = useGetArtwork(id as string, username.value)
-  const token = useContext(TokenContext)
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn()
+  const { id } = router.query;
+  const { username, socialId } = useContext(UserContext);
+  const artwork = useGetArtwork(id as string, username.value);
+  const token = useContext(TokenContext);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
-  const { like } = usePostLike()
-  const { follow } = usePostFollow()
+  const { like } = usePostLike();
+  const { follow } = usePostFollow();
 
-  const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe) // TODO: Fetch and initialize with FollowedByMe
-  const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe)
+  const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
+  const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
   /*   const [currency, setCurrency] = useState(null); */
 
-  const { isSignedIn } = useContext(UserContext)
+  const { isSignedIn } = useContext(UserContext);
+  const [artworkOwner, setArtworkOwner] = useState(
+    artwork?.data?.Owner?.Username
+  );
+
+  const userProfile = useGetUserProfileArtwork(artworkOwner);
+
+  useEffect(() => {
+    setArtworkOwner(
+      (prevUsername) => artwork?.data?.Owner?.Username || prevUsername
+    );
+  }, [artwork, username.value]);
 
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
-    useState(false)
+    useState(false);
 
   /*  const formatter = new Intl.NumberFormat(props.locale, {
     style: "currency",
@@ -72,15 +92,15 @@ export default function ArtworkPage(props) {
   }); */
 
   useEffect(() => {
-    setFollow(artwork?.data?.Owner?.FollowedByMe)
-  }, [artwork?.data?.Owner?.FollowedByMe])
+    setFollow(artwork?.data?.Owner?.FollowedByMe);
+  }, [artwork?.data?.Owner?.FollowedByMe]);
 
   useEffect(() => {
-    setIsLiked(artwork?.data?.LikedByMe)
-  }, [artwork?.data])
+    setIsLiked(artwork?.data?.LikedByMe);
+  }, [artwork?.data]);
 
   function togglePurchaseRequestDialog() {
-    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen)
+    setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
   }
 
   function purchaseRequest(originalRedirect?: UrlObject | string) {
@@ -89,36 +109,30 @@ export default function ArtworkPage(props) {
     //     router.push(originalRedirect);
     //   }
     // } else {
-    togglePurchaseRequestDialog()
+    togglePurchaseRequestDialog();
   }
   // }
 
   function toggleFollow() {
-    redirectIfNotLoggedIn()
-    follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token)
-    setFollow(!isFollowed)
+    redirectIfNotLoggedIn();
+    follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token);
+    setFollow(!isFollowed);
   }
 
   function likeArtwork(isLike) {
-    redirectIfNotLoggedIn()
-    like(artwork.data.Id, isLike, socialId.value, token)
+    redirectIfNotLoggedIn();
+    like(artwork.data.Id, isLike, socialId.value, token);
   }
 
   function toggleLike(event) {
-    event.stopPropagation()
-    likeArtwork(!isLiked)
-    setIsLiked(!isLiked)
-    !isLiked ? artwork.data.Likes++ : artwork.data.Likes--
+    event.stopPropagation();
+    likeArtwork(!isLiked);
+    setIsLiked(!isLiked);
+    !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
     !isLiked
       ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
-      : null
+      : null;
   }
-
-  useEffect(() => {
-    console.log(`${publicUrl}/${props.locale}${router.asPath}`)
-  
-    console.log(canonicalURL)
-  })
 
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />
@@ -126,36 +140,67 @@ export default function ArtworkPage(props) {
     <FavoriteIcon color="primary" />
   ) : (
     <FavoriteBorderOutlinedIcon color="primary" />
-  )
+  );
 
-  const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`
+  const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`;
   const shareArtworkTitle = artwork?.data?.Title
-    ? `${t('common:share')}"${artwork?.data?.Title}"`
-    : `${t('common:share')}`
-  const shareArtworkText = `${t('common:checkThisArtwork')}"${
+    ? `${t("common:share")}"${artwork?.data?.Title}"`
+    : `${t("common:share")}`;
+  const shareArtworkText = `${t("common:checkThisArtwork")}"${
     artwork?.data?.Title
-  }"${t('common:atArtportable')}`
+  }"${t("common:atArtportable")}`;
+
+  const images: (string | undefined)[] = [
+    artwork?.data?.PrimaryFile?.Name,
+    artwork?.data?.SecondaryFile?.Name,
+    artwork?.data?.TertiaryFile?.Name,
+  ];
+
+  const filteredImages: string[] = images.filter(
+    (image) => image !== undefined
+  ) as string[];
+
+  function renderWithLineBreaks(text) {
+    if (!text) {
+      return null;
+    }
+
+    return text.split("\n").map((str, index, array) => (
+      <>
+        {str}
+        {index === array.length - 1 ? null : <br />}
+      </>
+    ));
+  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
-        <title>{staticArtwork?.Title ?? 'Artportable'}</title>
+        <title>{staticArtwork?.Title ?? "Artportable"}</title>
         <meta
           name="title"
           content={
-            staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname ??
-            'Artportable'
+            staticArtwork?.Owner?.Name + " " + staticArtwork?.Owner?.Surname ??
+            "Artportable"
           }
         />
-        <meta name="description" content={staticArtwork?.Title ?? ''} />
+        <meta name="description" content={staticArtwork?.Title ?? ""} />
         <meta
           property="og:title"
           content={
-            staticArtwork?.Owner?.Name + ' ' + staticArtwork?.Owner?.Surname ??
-            'Artportable'
+            staticArtwork?.Owner?.Name + " " + staticArtwork?.Owner?.Surname ??
+            "Artportable"
           }
         />
-        <meta property="og:description" content={staticArtwork?.Title ?? ''} />
+        <meta property="og:description" content={staticArtwork?.Title ?? ""} />
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
@@ -166,276 +211,409 @@ export default function ArtworkPage(props) {
           content={`${bucketUrl}${staticArtwork?.PrimaryFile?.Name}`}
         />
 
-        <link rel="canonical" href={`${publicUrl}/${props.locale}${router.asPath}`} />
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {/* // if den prop, visa kompontent, annars visa det andra */}
 
-      <div className={s.container}>
-        {artwork.isLoading && <div>loading...</div>}
-        {artwork.isError && <div>error...</div>}
+      {artwork && artwork.data && (
+        <>
+          <div>
+            <Paper
+              style={{
+                backgroundColor: "transparent",
+              }}
+            >
+              <div className={s.artworkWrapper}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "relative",
+                      maxWidth: "100%",
+                    }}
+                  >
+                    {artwork?.data?.SecondaryFile ? (
+                      <div>
+                        <Carousel autoPlay={false}>
+                          {filteredImages.map((image, i) => {
+                            return (
+                              <img
+                                key={i}
+                                className={s.primaryImage}
+                                src={`${bucketUrl}${image}`}
+                                alt={`${
+                                  artwork?.data?.Title
+                                    ? artwork?.data?.Title
+                                    : "artwork image"
+                                }`}
+                              />
+                            );
+                          })}
+                        </Carousel>
+                      </div>
+                    ) : (
+                      <img
+                        className={s.primaryImage}
+                        src={`${bucketUrl}${artwork?.data?.PrimaryFile.Name}`}
+                        alt={`${
+                          artwork?.data?.Title
+                            ? artwork?.data?.Title
+                            : "artwork image"
+                        }`}
+                      />
+                    )}
+                  </div>
 
-        {artwork && artwork.data && (
-          <>
-            <Paper classes={{ root: s.paper }}>
-              <div className={s.imageInfoContainer}>
-                <div className={s.imageContainer}>
-                  <img
-                    src={`${bucketUrl}${artwork.data.PrimaryFile.Name}`}
-                    className={s.primaryImage}
-                    alt={`${artwork?.data.Title ? artwork?.data.Title : 'artwork'}`}
-                  />
-                    <div className={s.flexMessageLike}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <div>
+                      <IconButton onClick={() => router.back()}>
+                        <ArrowBackIcon />
+                      </IconButton>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "10px",
+                      }}
+                    >
+                      {artwork.data.Width > 0 && artwork.data.Height > 0 && (
+                        <div>
+                          <a href={`/tool/${artwork.data.Id}`}>
+                            <Button style={{ fontWeight: "400" }}>
+                              {t("room")}
+                            </Button>
+                          </a>
+                        </div>
+                      )}
+                      <div>
+                        <RWebShare
+                          data={{
+                            text: shareArtworkText,
+                            url: artworkUrl,
+                            title: shareArtworkTitle,
+                          }}
+                          onClick={() =>
+                            trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
+                          }
+                        >
+                          <Button style={{ fontWeight: "400" }}>
+                            {t("art:share")}
+                          </Button>
+                        </RWebShare>
+                      </div>
                       <div
                         style={{
-                          display:'flex',
+                          display: "flex",
+                          alignItems: "center",
+                          flexDirection: "row",
                         }}
                       >
-                        <IconButton onClick={() => router.back()}>
-                          <ArrowBackIcon />
-                        </IconButton>
-                      </div>
-                      <Button
-                          className={`${s.followButton} ${
-                            isFollowed ? s.following : ''
-                          }`}
-                          variant={!isFollowed ? 'contained' : 'outlined'}
-                          disableElevation
-                          rounded
-                          onClick={() => {
-                            toggleFollow()
-                            !isFollowed
-                              ? trackGoogleAnalytics(
-                                  ActionType.FOLLOW_ARTWORK,
-                                  CategoryType.INTERACTIVE
-                                )
-                              : null
-                          }}
-                        >
-                          {capitalizeFirst(
-                            !isFollowed
-                              ? t('common:words.follow')
-                              : t('common:words.following')
-                          )}
-                        </Button>
-                      <RWebShare
-                        data={{
-                          text: shareArtworkText,
-                          url: artworkUrl,
-                          title: shareArtworkTitle
-                        }}
-                        onClick={() =>
-                          trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
-                        }
-                      >
-                        <IconButton className={s.shareButton}>
-                          {t('art:share')}
-                        </IconButton>
-                      </RWebShare>
-
-                      <div>
-                        <IconButton
-                          className={s.likeButton}
-                          disableRipple
-                          disableFocusRipple
-                          onClick={toggleLike}
-                          aria-label="like button"
-                        >
-                          {likedFilled}
-                        </IconButton>
-                      </div>
-                      <div className={s.likeCounter}>
-                        {artwork.data.Likes > 0 && (
-                          <div>{artwork.data.Likes}</div>
-                        )}
-                      </div>
-                    </div>
-                </div>
-                <div className={s.infoBar}>
-                  <div className={s.infoContainer}>
-                    <div className={s.titleAndSizeContainer}>
-                        <p className={s.artistName}>
-                          {artwork.data.Owner.Name +
-                            ' ' +
-                            artwork.data.Owner.Surname}
-                        </p>
-                      <i className={s.titleSpace}>
-                        {artwork.data.Title && (
-                          <span>{artwork.data.Title}</span>
-                        )}
-                      </i>
-                      <div className={s.textSpace}>
-                        {artwork.data.Description && (
-                          <Typography
-                            variant="body1"
-                            id="artwork-modal-description"
+                        <div>
+                          <IconButton
+                            className={s.likeButton}
+                            disableRipple
+                            disableFocusRipple
+                            onClick={toggleLike}
+                            aria-label="like button"
                           >
-                            {artwork.data.Description}
-                          </Typography>
-                        )}
+                            {likedFilled}
+                          </IconButton>
+                        </div>
+                        <div className={s.likeCounter}>
+                          {artwork.data.Likes > 0 && (
+                            <div>{artwork.data.Likes}</div>
+                          )}
+                        </div>
                       </div>
-                      {t('art:size')}:
-                      {artwork.data.MultipleSizes
-                        ? ' (' +
-                          t('common:words.multipleSizes').toLowerCase() +
-                          ')'
-                        : artwork.data.Width &&
-                          artwork.data.Height &&
-                          artwork.data.Depth
-                        ? ' (' +
-                          artwork.data.Width +
-                          'x' +
-                          artwork.data.Height +
-                          'x' +
-                          artwork.data.Depth +
-                          'cm)'
-                        : artwork.data.Width && artwork.data.Height
-                        ? ' (' +
-                          artwork.data.Width +
-                          'x' +
-                          artwork.data.Height +
-                          'cm)'
-                        : null}
                     </div>
-                    <div style={{ marginBottom: '0.6vh' }}></div>
+                  </div>
+                </div>
+
+                {/* INFO HERE */}
+
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <div className={s.artInfo}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Link
+                        href={`/profile/@${artwork?.data?.Owner?.Username}`}
+                      >
+                        <a>
+                          <div className={s.text}>
+                            <span className={s.username}>
+                              {`${artwork?.data?.Owner?.Name.toUpperCase()} ${artwork?.data?.Owner?.Surname.toUpperCase()}`}
+                            </span>
+                          </div>
+                        </a>
+                      </Link>
+                    </div>
+                    <div>
+                      <Typography className={s.text}>
+                        {artwork?.data?.Title && (
+                          <span className={s.title}>
+                            {artwork?.data?.Title}
+                          </span>
+                        )}
+                      </Typography>
+                    </div>
+                    <div className={s.text}>
+                      <div className={s.sizes}>
+                        {artwork.data.MultipleSizes
+                          ? `${t("art:size")}:  (` +
+                            t("common:words.multipleSizes").toLowerCase() +
+                            ")"
+                          : artwork.data.Width &&
+                            artwork.data.Height &&
+                            artwork.data.Depth
+                          ? `${t("art:size")}:  (` +
+                            artwork.data.Width +
+                            "x" +
+                            artwork.data.Height +
+                            "x" +
+                            artwork.data.Depth +
+                            "cm)"
+                          : artwork?.data?.Width && artwork?.data?.Height
+                          ? `${t("art:size")}:  (` +
+                            artwork.data.Width +
+                            "x" +
+                            artwork.data.Height +
+                            "cm)"
+                          : null}
+                      </div>
+                    </div>
+
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? (
-                        <>
-                          <div className={s.soldMark} />
-                          {t('common:words.sold')}{' '}
-                        </>
-                      ) : artwork.data.Price && artwork.data.Price != '0' ? (
+                        <>{t("common:words.sold")} </>
+                      ) : artwork.data.Price && artwork.data.Price != "0" ? (
                         <span>
-                          {t('art:artworkPrice')}:{' ' + artwork.data.Price}{' '}
+                          {t("art:artworkPrice")}:{" " + artwork.data.Price}{" "}
                           {artwork.data.Currency !== null
                             ? artwork.data.Currency
-                            : 'SEK'}{' '}
+                            : "SEK"}{" "}
                         </span>
                       ) : (
-                        <span>{t('priceOnRequest')}</span>
+                        <span>{t("priceOnRequest")}</span>
                       )}
                     </div>
+                    <div>
+                      <div>
+                        {username.value !== artwork.data.Owner.Username &&
+                          !artwork.data.SoldOut && (
+                            <Box>
+                              <Button
+                                className={s.purchaseRequestButton}
+                                variant="contained"
+                                rounded
+                                disableElevation
+                                onClick={() => {
+                                  purchaseRequest({
+                                    pathname: "/messages",
+                                    query: {
+                                      artwork: encodeURIComponent(
+                                        JSON.stringify({
+                                          title: artwork.data.Title,
+                                          creator: artwork.data.Owner.Username,
+                                          url: window.location.href,
+                                        })
+                                      ),
+                                      referTo: artwork.data.Owner.SocialId,
+                                    },
+                                  });
+                                  trackGoogleAnalytics(
+                                    ActionType.PURCHASE_REQUEST_ARTWORK,
+                                    CategoryType.BUY
+                                  );
+                                }}
+                                endIcon={<SendIcon color={"inherit"} />}
+                              >
+                                {capitalizeFirst(t("common:purchaseRequest"))}
+                              </Button>
 
-                    <Box className={s.tagsContainer} marginBottom={2}>
-                      {Array.from(artwork.data.Tags).map((tag: string) => {
-                        return (
-                          <TagChip
-                            key={tag}
-                            title={tag}
-                            onChipClick={null}
-                            limitReached={true}
-                            variant="outlined"
-                            isSmall={true}
-                          ></TagChip>
-                        )
-                      })}
-                    </Box>
-                    {username.value !== artwork.data.Owner.Username &&
-                      !artwork.data.SoldOut && (
-                        <Box className={s.purchaseAndRoom}>
-                          <Button
-                            className={s.purchaseRequestButton}
-                            variant="contained"
-                            rounded
-                            disableElevation
-                            onClick={() => {
-                              purchaseRequest({
-                                pathname: '/messages',
-                                query: {
-                                  artwork: encodeURIComponent(
-                                    JSON.stringify({
-                                      title: artwork.data.Title,
-                                      creator: artwork.data.Owner.Username,
-                                      url: window.location.href
-                                    })
-                                  ),
-                                  referTo: artwork.data.Owner.SocialId
-                                }
-                              })
-                              trackGoogleAnalytics(
-                                ActionType.PURCHASE_REQUEST_ARTWORK,
-                                CategoryType.BUY
-                              )
-                            }}
-                            startIcon={<SendIcon color={'inherit'} />}
+                              <PurchaseRequestDialog
+                                open={purchaseRequestDialogOpen}
+                                onClose={togglePurchaseRequestDialog}
+                                props={{
+                                  pathname: "/messages",
+                                  title: artwork.data.Title,
+                                  creator: artwork.data.Owner.Username,
+                                  url: window.location.href,
+                                  referTo: artwork.data.Owner.SocialId,
+                                  imageUrl:
+                                    bucketUrl + artwork.data.PrimaryFile.Name,
+                                }}
+                              />
+                            </Box>
+                          )}
+                      </div>
+                    </div>
+
+                    {artwork?.data?.Description && (
+                      <div className={s.accordionDiv}>
+                        <Accordion elevation={0} className={s.infoAccordion}>
+                          <AccordionSummary
+                            className={s.accordionSummary}
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
                           >
-                            {capitalizeFirst(t('common:purchaseRequest'))}
-                          </Button>
-                          {artwork.data.Width > 0 &&
-                            artwork.data.Height > 0 && (
-                              <div className={s.roomDiv}>
-                                <a href={`/tool/${artwork.data.Id}`}>
-                                  <Button className={s.roomButton} rounded>
-                                    {t('room')}
-                                  </Button>
-                                </a>
-                              </div>
-                            )}
-                          <PurchaseRequestDialog
-                            open={purchaseRequestDialogOpen}
-                            onClose={togglePurchaseRequestDialog}
-                            props={{
-                              pathname: '/messages',
-                              title: artwork.data.Title,
-                              creator: artwork.data.Owner.Username,
-                              url: window.location.href,
-                              referTo: artwork.data.Owner.SocialId,
-                              imageUrl:
-                                bucketUrl + artwork.data.PrimaryFile.Name
-                            }}
-                          />
-                        </Box>
-                      )}
-                    <Link href={`/profile/@${artwork.data.Owner.Username}`}>
-                      <a className={s.linkName}>{t('art:goToPortfolio')}</a>
-                    </Link>
+                            <Typography>{t("art:moreInfo")}</Typography>
+                          </AccordionSummary>
+
+                          <AccordionDetails className={s.accordionDetails}>
+                            <Typography className={s.typography}>
+                              {artwork?.data?.Description}
+                            </Typography>
+                          </AccordionDetails>
+                        </Accordion>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-              <Box className={s.extraImages}>
-                {artwork.data.SecondaryFile && (
-                  <div className={s.imageContainer}>
-                    <Divider />
-                    <img
-                      src={`${bucketUrl}${artwork.data.SecondaryFile.Name}`}
-                      className={s.extraImage}
-                      style={{marginTop: '25px', marginBottom:'20px'}}
-                      alt={`${artwork?.data?.Title ? artwork?.data?.Title : 'secondary artwork'}`}
-                    />
-                  </div>
-                )}
-                {artwork.data.TertiaryFile && (
-                  <div className={s.imageContainer}>
-                    <Divider sx={{ m: 4 }} />
-                    <img
-                      src={`${bucketUrl}${artwork.data.TertiaryFile.Name}`}
-                      className={s.extraImage}
-                      style={{marginTop: '25px'}}
-                      alt={`${artwork?.data?.Title ? artwork?.data?.Title : 'tertiary artwork'}`}
-                    />
-                  </div>
-                )}
-              </Box>
             </Paper>
-          </>
-        )}
-      </div>
+
+            {/* TABS HERE*/}
+
+            <div>
+              {/*  */}
+              {/*  */}
+              {/*  */}
+              {/* <Paper style={{ backgroundColor: "transparent" }}>
+                <div>
+                  <Typography className={s.text}>
+                    {artwork?.data?.Description && (
+                      <div className={s.description}>
+                        Description: <span>{artwork?.data?.Description}</span>
+                      </div>
+                    )}
+                  </Typography>
+                </div>
+              </Paper> */}
+              {/*  */}
+              {/* About the artist */}
+              {/* About the artist */}
+              {/* About the artist */}
+              {/* About the artist */}
+              {/* About the artist */}
+              {/* About the artist */}
+              {/* About the artist */}
+              <div className={s.tabPanel}>
+                <div style={{ backgroundColor: "transparent" }}>
+                  <div>
+                    <Paper
+                      style={{
+                        background: "transparent",
+                        margin: "0px",
+                      }}
+                    >
+                      <div className={s.artistSection}>
+                        <div className={s.left}>
+                          <div
+                            style={{
+                              padding: "0px",
+                              background: "transparent",
+                              margin: "10px",
+                            }}
+                          >
+                            <div>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                <Link
+                                  href={`/profile/@${artwork?.data?.Owner?.Username}`}
+                                >
+                                  <a>
+                                    <div className={s.fullnameArtist}>
+                                      <div>
+                                        {userProfile?.data?.ProfilePicture && (
+                                          <img
+                                            alt="profile picture"
+                                            className={s.imgClass}
+                                            src={`${bucketUrl}${userProfile?.data?.ProfilePicture}`}
+                                          ></img>
+                                        )}
+                                      </div>
+                                      <div className={s.nameSurname}>
+                                        {userProfile?.data?.Name?.toUpperCase()}{" "}
+                                        {""}
+                                        {userProfile?.data?.Surname?.toUpperCase()}
+                                        {userProfile?.data?.Country &&
+                                          userProfile?.data?.City && (
+                                            <div style={{ fontSize: "10px" }}>
+                                              {userProfile?.data?.Country}
+                                              {", "}
+                                              {userProfile?.data?.City}
+                                            </div>
+                                          )}
+                                      </div>
+                                    </div>
+                                  </a>
+                                </Link>
+                              </div>
+                            </div>
+                            <div
+                              style={{ marginTop: "20px", fontStyle: "italic" }}
+                            >
+                              {renderWithLineBreaks(userProfile?.data?.About)}
+                              <Divider style={{ marginTop: "20px" }}></Divider>
+                            </div>
+                          </div>
+                        </div>
+                        <div className={s.right}>
+                          <AboutCardArtwork
+                            data={artwork?.data}
+                          ></AboutCardArtwork>
+                        </div>
+                      </div>
+                    </Paper>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </Main>
-  )
+  );
 }
 
 export async function getServerSideProps({ locale, params }) {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const url = new URL(
     `${apiBaseUrl}/api/artworks/${encodeURIComponent(params.id)}`
-  )
-  const navBarItems = await getNavBarItems()
+  );
+  const navBarItems = await getNavBarItems();
 
   try {
     const artworkResponse = await fetch(url.href, {
       // timeout: 11000
       //fail return prop som sätts till true
-    })
-    const artwork = await artworkResponse.json()
+    });
+    const artwork = await artworkResponse.json();
 
     return {
       props: {
@@ -444,18 +622,18 @@ export async function getServerSideProps({ locale, params }) {
         artwork,
         locale: locale,
         ...(await serverSideTranslations(locale, [
-          'header',
-          'footer',
-          'art',
-          'common',
-          'tags',
-          'support',
-          'plans'
-        ]))
-      }
-    }
+          "header",
+          "footer",
+          "art",
+          "common",
+          "tags",
+          "support",
+          "plans",
+        ])),
+      },
+    };
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 
   return {
@@ -465,14 +643,14 @@ export async function getServerSideProps({ locale, params }) {
       artwork: { Id: params.id },
       locale: locale,
       ...(await serverSideTranslations(locale, [
-        'header',
-        'footer',
-        'art',
-        'common',
-        'tags',
-        'support',
-        'plans'
-      ]))
-    }
-  }
+        "header",
+        "footer",
+        "art",
+        "common",
+        "tags",
+        "support",
+        "plans",
+      ])),
+    },
+  };
 }

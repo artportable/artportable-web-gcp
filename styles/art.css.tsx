@@ -1,301 +1,318 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import { rowGap, columnGap } from '../app/utils/styleUtils'
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { rowGap, columnGap } from "../app/utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     backBtnContainer: {
-      alignSelf: 'flex-start',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      [theme.breakpoints.up('mdPlus')]: {
-        marginTop: '3vh'
-      }
+      alignSelf: "flex-start",
     },
-    imageInfoContainer: {
-      [theme.breakpoints.up('mdPlus')]: {
-        display: 'flex',
-        flexDirection: 'row',
-        // maxWidth: '80%'
-      }
-    },
-    flexContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifySelf: 'center',
-      maxWidth: '100%'
-    },
-    paper: {
-      maxWidth: '100%',
-      [theme.breakpoints.up('mdPlus')]: {
-        display: 'flex',
-        flexDirection: 'column'
-      }
-    },
+    flexContainer: {},
 
-    artistName: {
-      [theme.breakpoints.up('mdPlus')]: {
-        fontSize: '22.4px',
-        marginBottom: '1.8vh'
-      }
-    },
-
-    followButton: {
-      maxHeight: '30px',
-      width:'75px',
-      margin: '10px',
-      backgroundColor: '#fadf87',
-      border: '1px solid #fadf87',
-      color: 'black',
-      padding: '5px',
-      '&:hover': {
-        backgroundColor: '#fadf87',
-        color: 'white'
-      }
-    },
-
-    following: {
-      maxHeight: '30px',
-      margin: '10px',
-      backgroundColor: '#49cc90',
-      border: '1px solid #49cc90',
-      color: 'white',
-      '&:hover': {
-        backgroundColor: 'transparent',
-        color: 'black'
-      }
-    },
-
-    linkName: {
-      textAlign: 'center',
-      display: 'flex',
-      justifyContent: 'center',
-      textDecoration: 'underline',
-      margin: '2vh',
-      [theme.breakpoints.up('mdPlus')]: {
-        fontWeight: '500',
-        marginTop: '3vh'
+    overrides: {
+      MuiExpansionPanel: {
+        root: {
+          "&:before": {
+            display: "none",
+          },
+        },
       },
-      '&:hover': {
-        opacity: '70%'
-      }
     },
 
+    paper: {
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      maxWidth: "calc(100vw)",
+      minHeight: "calc(50vh)",
+      borderRadius: "5px",
+      backgroundColor: "white",
+      padding: "20px",
+    },
+    fullContainer: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+    },
     imageContainer: {
-      position: 'relative',
-      maxWidth: '100%',
-      borderRadius: theme.spacing(1),
-      overflow: 'hidden',
-      textAlign: 'center'
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      maxWidth: "100%",
+      alignItems: "center",
     },
     primaryImage: {
-      minWidth: '100%',
-      width: '100%',
-      maxWidth: 'calc(100vw - 36px)',
-      maxHeight: 'calc(100vh - var(--header-plus-box-shadow-padding) - 16px)',
-      objectFit: 'contain',
-      [theme.breakpoints.up('mdPlus')]: {
-        maxWidth: 'calc(80vw)',
-      }
-    },
-    infoBar: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      marginLeft: theme.spacing(1.6),
-      marginRight: theme.spacing(1.6),
-      [theme.breakpoints.up('mdPlus')]: {
-        alignItems: 'center',
-        textAlign: 'center',
-        minWidth:'20vw',
-        maxWidth:'25vw',
-      }
-    },
-    infoContainer: {
-      fontSize: '0.95rem',
-      overflow: 'hidden',
-      flexGrow: 1,
-      textOverflow: 'ellipsis'
+      maxWidth: "100%",
+      minWidth: "calc(50vw)",
+      maxHeight: "calc(70vh)",
+      objectFit: "contain",
+      width: "100%",
+      height: "auto",
     },
 
-    titleSpace: {
-      marginBottom: '5px',
-      [theme.breakpoints.up('mdPlus')]: {
-        marginBottom: '2vh',
-        fontSize: '1.4rem'
-      }
+    infoAccordion: {
+      background: "transparent",
+      marginTop: "10px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      "&:not(:last-child)": {
+        borderBottom: 0,
+      },
+      "&::before": {
+        display: "none",
+      },
+    },
+    accordionSummary: {
+      display: "flex",
+      minWidth: "15%",
+      alignItems: "center",
+
+      "& .MuiAccordionSummary-content": {
+        margin: 0,
+        padding: 0,
+        display: "flex",
+        alignItems: "center",
+      },
+      "& .MuiTypography-body1": {
+        margin: 0,
+      },
+      "& .MuiIconButton-root": {
+        marginLeft: "auto", // Push the icon to the right edge
+        padding: 0, // Remove any additional padding
+      },
+    },
+    accordionDetails: {
+      width: "100%",
     },
 
-    textSpace: {
-      marginBottom: '5px',
-      overflowWrap: 'break-word',
-      [theme.breakpoints.up('mdPlus')]: {
-        marginBottom: '2vh',
-      }
+    artInfo: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      alignItems: "center",
+      marginTop: "24px",
+      marginBottom: "25px",
+      [theme.breakpoints.up("md")]: {},
     },
+    followButton: {
+      maxHeight: "30px",
+    },
+
+    infoBar: {},
+    infoContainer: {},
     titleAndSizeContainer: {
-      display: 'flex',
-      flexDirection: 'column'
+      display: "flex",
+      flexDirection: "column",
+      margin: theme.spacing(0, 0, 0, 0.4),
+      padding: theme.spacing(0.75, 0, 0, 0),
+    },
+
+    artworkWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-evenly",
+      alignItems: "center",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+      },
+    },
+    title: {
+      textAlign: "center",
+      fontWeight: 400,
+      letterSpacing: "2px",
+      fontSize: "12px",
+    },
+    fullnameArtist: {
+      fontSize: "14px",
+      letterSpacing: "4px",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    description: {
+      fontStyle: "italic",
+      textAlign: "center",
+      fontWeight: 400,
+      letterSpacing: "2px",
+      fontSize: "12px",
+    },
+    tabs: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: "20px",
+    },
+
+    tabPanel: {
+      marginTop: "10px",
+    },
+    imgClass: {
+      width: "40px",
+      height: "40px",
+      borderRadius: "50%",
+      objectFit: "cover",
+    },
+    nameSurname: { margin: "10px" },
+    artistSection: {
+      display: "flex",
+      flexDirection: "column",
+      padding: "0px 10px 10px 10px",
+      alignItems: "center",
+    },
+    left: {
+      display: "flex",
+      justifyContent: "",
+      width: "100%",
+      [theme.breakpoints.up("md")]: {},
+    },
+    right: {
+      marginTop: "20px",
+      justifyContent: "flex-end",
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        justifyContent: "center",
+        alignItems: "center",
+      },
+    },
+    sizes: {
+      fontWeight: 400,
+      letterSpacing: "2px",
+      fontSize: "12px",
+    },
+    narrowDescription: {
+      maxWidth: "20%",
+      whiteSpace: "pre-line",
+      // Add any other styles you need for the narrow description
     },
     priceContainer: {
+      margin: theme.spacing(0, 0, 0, 0.0),
       fontWeight: theme.typography.fontWeightMedium,
-      paddingBottom: theme.spacing(1),
-      display: 'flex',
-      alignItems: 'center',
-      [theme.breakpoints.up('mdPlus')]: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: '1vh 0'
-      }
+      paddingBottom: theme.spacing(0),
+      display: "flex",
+      alignItems: "center",
+      marginBottom: "20px",
     },
     purchaseRequestButton: {
-      backgroundColor: '#fadf87',
-      color: 'black',
-      '&.MuiButton-root .MuiButton-startIcon ': {
-        margin: theme.spacing(0, 0.4, 0, 0)
+      backgroundColor: "#fadf87",
+      color: "black",
+      width: "auto",
+      "&:hover": {
+        backgroundColor: "#fee19c",
+        color: "black",
+        boxShadow: "5px 5px 10px #e5e6e4",
       },
-      [theme.breakpoints.up('mdPlus')]: {
-        marginTop: '3vh'
-      },
-      '&:hover': {
-        backgroundColor: '#fee19c',
-        color: 'black',
-        boxShadow: '5px 5px 10px #e5e6e4'
-      }
+    },
+    flexLikeRoom: {
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
     },
     flexMessageLike: {
-      alignItems: 'center',
-      display: 'grid',
-      gridTemplateColumns: '1fr 0fr 0fr 0fr 0fr',
-      [theme.breakpoints.up('mdPlus')]: {
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'center',
-      },
+      display: "flex",
+      alignItems: "center",
+      alignSelf: "flex-end",
     },
 
     likeCounter: {
-      marginLeft: '4px',
-      marginRight: '17px',
+      marginLeft: "4px",
+      marginRight: "0",
 
       fontWeight: 500,
-      color: '#000000'
+      color: "#000000",
     },
     likeButton: {
       padding: theme.spacing(0.2, 0, 0.4, 0.5),
-      fontSize: '0.5rem',
-
-      '&:hover': {
-        backgroundColor: 'transparent'
-      }
+      fontSize: "0.5rem",
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
+    },
+    chatButton: {
+      padding: theme.spacing(0.5, 0, 0.4, 0.5),
+      fontSize: "0.5rem",
+      color: "#000000",
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
     },
     shareButton: {
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
-      fontSize: '0.9rem',
-      color: '#000000',
-      [theme.breakpoints.up('mdPlus')]: {
-        marginRight: '15px',
-        marginLeft: '15px'
+      fontSize: "0.5rem",
+      color: "#000000",
+      "&:hover": {
+        backgroundColor: "transparent",
       },
-      '&:hover': {
-        backgroundColor: 'transparent'
-      },
-      position: 'relative',
-      textDecoration: 'none',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        width: 0,
-        height: '1px',
-        backgroundColor: '#000',
-        transition: 'width 0.3s ease'
-      },
-      '&:hover::before': {
-        width: '100%',
-        left: 0,
-        right: 'auto'
-      }
     },
     text: {
-      marginLeft: '10px',
-      marginRight: '10px',
-      paddingBottom: '10px'
+      marginLeft: "0px",
+
+      paddingBottom: "10px",
     },
     extraImages: {
-      //flexBasis:'100%',
-      // display: 'flex',
-      // flexFlow: 'row wrap',
-      // justifyContent: 'space-around',
-      // alignItems: 'center',
-      // '& :not(:first-child)': {
-      //   marginLeft: theme.spacing(2)
-      // }
+      display: "flex",
+      flexFlow: "row wrap",
+      justifyContent: "space-around",
+      alignItems: "center",
+      "& :not(:first-child)": {
+        marginLeft: theme.spacing(2),
+      },
     },
     extraImage: {
-      maxWidth: 'calc(100vw - 32px)',
-      maxHeight: '50vh'
+      maxWidth: "calc(100vw - 32px)",
+      maxHeight: "50vh",
       // width: '100%'
     },
+    ownderText: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      marginLeft: "0px",
+    },
+    username: {
+      textAlign: "center",
+      fontWeight: 600,
+      letterSpacing: "5px",
+      fontSize: "14px",
+    },
     tagsContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      [theme.breakpoints.up('mdPlus')]: {
-        margin: '1vh'
-      }
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      margin: "10px",
     },
     chip: {
-      marginRight: '5px'
+      marginRight: "5px",
     },
     soldMark: {
-      background: '#C67777',
-      borderRadius: '50%',
-      width: '15px',
-      height: '15px',
-      marginRight: '5px'
-    },
-    purchaseAndRoom: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'column'
+      background: "#C67777",
+      borderRadius: "50%",
+      width: "15px",
+      height: "15px",
+      marginRight: "5px",
     },
     roomDiv: {
-      [theme.breakpoints.up('smPlus')]: {
-        marginTop: '20px'
-      }
+      placeSelf: "flex-end",
+      marginTop: "42px",
+      [theme.breakpoints.up("smPlus")]: {
+        marginTop: "20px",
+      },
     },
     roomButton: {
-      border: '1px solid black',
-      color: 'black',
-      marginTop: '1vh',
-      padding: '4px 15px'
+      marginTop: "5px",
+      fontWeight: theme.typography.fontWeightMedium,
+      border: "1px solid black",
+      color: "black",
     },
-
     flexPurchaseRoom: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: '100%'
+      display: "flex",
+      justifyContent: "space-between",
+      width: "100%",
     },
-
-    imageDivider: {
-
+    [theme.breakpoints.up("smPlus")]: {
+      titleAndSizeContainer: {
+        flexDirection: "row",
+      },
     },
-    // [theme.breakpoints.up('smPlus')]: {
-    //   titleAndSizeContainer: {
-    //     flexDirection: 'column'
-    //   }
-    // }
   })
-)
+);
