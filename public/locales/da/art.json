@@ -31,5 +31,7 @@
   "request": "Anmodning",
   "new": "Nyt!",
   "fillInYourEmail": "Udfyld din e-mail",
-  "currency": "Valuta"
+  "currency": "Valuta",
+  "moreInfo": "More info",
+  "viewPortfolio": "View portfolio"
 }
