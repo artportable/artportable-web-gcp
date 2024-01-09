@@ -31,5 +31,7 @@
   "request": "Forespørsel",
   "new": "Nytt!",
   "fillInYourEmail": "Fyll inn din e-post",
-  "currency": "Valuta"
+  "currency": "Valuta",
+  "moreInfo": "More info",
+  "viewPortfolio": "View portfolio"
 }

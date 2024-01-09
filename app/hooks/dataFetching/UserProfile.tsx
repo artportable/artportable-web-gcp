@@ -22,6 +22,24 @@ export function useGetUserProfileSummary(user) {
   };
 }
 
+export function useGetUserProfileArtwork(user, myUsername = null) {
+  const { data, error, mutate } = useSWR(
+    getUserProfileUri(user, myUsername),
+    getFetcher(user),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+    mutate,
+  };
+}
+
 export const getUserProfileUri = (user: string, myUsername: string) =>
   !user ? null : `${apiBaseUrl}/api/profile/${user}?myUsername=${myUsername}`;
 export function useGetUserProfile(user, myUsername) {

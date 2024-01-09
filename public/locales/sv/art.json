@@ -31,5 +31,7 @@
   "request": "Köpförfrågan",
   "new": "Ny!",
   "fillInYourEmail": "Fyll i din email",
-  "currency": "Valuta"
+  "currency": "Valuta",
+  "moreInfo": "Visa mer",
+  "viewPortfolio": "Visa portfolio"
 }

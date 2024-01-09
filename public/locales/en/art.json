@@ -31,5 +31,7 @@
   "request": "Request",
   "new": "New!",
   "fillInYourEmail": "Fill in your email",
-  "currency": "Currency"
+  "currency": "Currency",
+  "moreInfo": "More info",
+  "viewPortfolio": "View portfolio"
 }
