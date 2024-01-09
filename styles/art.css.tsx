@@ -45,8 +45,10 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: "calc(50vw)",
       maxHeight: "calc(70vh)",
       objectFit: "contain",
-      width: "100%",
       height: "auto",
+      [theme.breakpoints.up("smPlus")]: {
+        maxWidth: "100%",
+      },
     },
 
     infoAccordion: {
@@ -90,9 +92,11 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       width: "100%",
       alignItems: "center",
-      marginTop: "24px",
+      marginTop: "20px",
       marginBottom: "25px",
-      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("md")]: {
+        width: "100%",
+      },
     },
     followButton: {
       maxHeight: "30px",
