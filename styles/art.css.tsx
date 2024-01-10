@@ -39,15 +39,18 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       maxWidth: "100%",
       alignItems: "center",
+      margin: "10px",
     },
+
     primaryImage: {
-      maxWidth: "100%",
+      maxWidth: "80%",
       minWidth: "calc(50vw)",
       maxHeight: "calc(70vh)",
       objectFit: "contain",
       height: "auto",
       [theme.breakpoints.up("smPlus")]: {
         maxWidth: "100%",
+        maxHeight: "calc(80vh)",
       },
     },
 
@@ -125,6 +128,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       letterSpacing: "2px",
       fontSize: "12px",
+      fontStyle: "italic",
     },
     fullnameArtist: {
       fontSize: "14px",
