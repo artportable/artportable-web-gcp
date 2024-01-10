@@ -231,12 +231,7 @@ export default function ArtworkPage(props) {
                     alignItems: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      position: "relative",
-                      maxWidth: "100%",
-                    }}
-                  >
+                  <div className={s.imageContainer}>
                     {artwork?.data?.SecondaryFile ? (
                       <div>
                         <Carousel autoPlay={false}>
@@ -346,7 +341,13 @@ export default function ArtworkPage(props) {
 
                 {/* INFO HERE */}
 
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "50%",
+                  }}
+                >
                   <div className={s.artInfo}>
                     <div
                       style={{
