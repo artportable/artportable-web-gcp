@@ -834,7 +834,7 @@ export default function Profile(props) {
                 </Box>
               </div>
             )}
-            {/* 
+
             {similarPortfolios?.data && !similarPortfolios?.isError && (
               <>
                 <Divider className={s.secondDivider}></Divider>
@@ -844,7 +844,7 @@ export default function Profile(props) {
                   ></SimilarPortfoliosSection>
                 </div>
               </>
-            )} */}
+            )}
           </div>
           <Snackbar
             open={uploadSnackbarOpen}
