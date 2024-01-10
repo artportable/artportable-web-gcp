@@ -98,6 +98,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginTop: "20px",
       marginBottom: "25px",
+
       [theme.breakpoints.up("md")]: {
         width: "100%",
       },
@@ -118,18 +119,29 @@ export const styles = makeStyles((theme: Theme) =>
     artworkWrapper: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-evenly",
       alignItems: "center",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+      },
+    },
+
+    artworkInfoWrapper: {
+      display: "flex",
+      flexDirection: "row",
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "50%",
       },
     },
     title: {
       textAlign: "center",
       fontWeight: 400,
       letterSpacing: "2px",
-      fontSize: "12px",
+      fontSize: "11px",
       fontStyle: "italic",
+      width: "100%",
     },
     fullnameArtist: {
       fontSize: "14px",
@@ -281,7 +293,7 @@ export const styles = makeStyles((theme: Theme) =>
     username: {
       fontWeight: 600,
       letterSpacing: "4px",
-      fontSize: "11px",
+      fontSize: "13px",
       [theme.breakpoints.up("md")]: {
         fontWeight: 500,
         letterSpacing: "5px",

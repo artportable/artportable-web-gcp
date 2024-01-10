@@ -341,13 +341,7 @@ export default function ArtworkPage(props) {
 
                 {/* INFO HERE */}
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    width: "50%",
-                  }}
-                >
+                <div className={s.artworkInfoWrapper}>
                   <div className={s.artInfo}>
                     <div
                       style={{
@@ -368,7 +362,7 @@ export default function ArtworkPage(props) {
                         </a>
                       </Link>
                     </div>
-                    <Divider></Divider>
+
                     <div>
                       <Typography className={s.text}>
                         {artwork?.data?.Title && (
