@@ -128,6 +128,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       letterSpacing: "2px",
       fontSize: "12px",
+      fontStyle: "italic",
     },
     fullnameArtist: {
       fontSize: "14px",
