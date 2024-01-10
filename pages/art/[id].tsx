@@ -368,6 +368,7 @@ export default function ArtworkPage(props) {
                         </a>
                       </Link>
                     </div>
+                    <Divider></Divider>
                     <div>
                       <Typography className={s.text}>
                         {artwork?.data?.Title && (

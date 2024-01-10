@@ -43,11 +43,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     primaryImage: {
-      maxWidth: "80%",
+      maxWidth: "100%",
       minWidth: "calc(50vw)",
       maxHeight: "calc(70vh)",
       objectFit: "contain",
       height: "auto",
+      alignItems: "center",
       [theme.breakpoints.up("smPlus")]: {
         maxWidth: "100%",
         maxHeight: "calc(80vh)",
@@ -278,10 +279,14 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "0px",
     },
     username: {
-      textAlign: "center",
       fontWeight: 600,
-      letterSpacing: "5px",
-      fontSize: "14px",
+      letterSpacing: "4px",
+      fontSize: "11px",
+      [theme.breakpoints.up("md")]: {
+        fontWeight: 500,
+        letterSpacing: "5px",
+        fontSize: "14px",
+      },
     },
     tagsContainer: {
       display: "flex",
