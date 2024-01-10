@@ -22,10 +22,6 @@ export default function AboutMe({
 
   const data = userProfile.data;
 
-  useEffect(() => {
-    console.log(data.Studio);
-  }, []);
-
   return (
     // TODO: Handle potential errors
     <Box className={s.container}>
