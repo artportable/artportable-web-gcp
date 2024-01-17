@@ -229,7 +229,7 @@ export default function Profile({
               )}
             </Button>
 
-            {/* <Button rounded className={s.buyBottom} onClick={handleOpen}>
+            <Button rounded className={s.buyBottom} onClick={handleOpen}>
               {t("profile:buyingArt")}
             </Button>
             <Modal open={open} onClose={handleClose}>
@@ -249,7 +249,7 @@ export default function Profile({
                 </Typography>
                 <Typography>{t("profile:buyingArtBodyTwo")}</Typography>
               </Box>
-            </Modal> */}
+            </Modal>
           </div>
         )}
       </div>
