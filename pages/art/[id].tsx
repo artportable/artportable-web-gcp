@@ -43,6 +43,7 @@ import { useGetUserProfileArtwork } from "../../app/hooks/dataFetching/UserProfi
 import Carousel from "react-material-ui-carousel";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Divider from "@mui/material/Divider";
+import TagChip from "../../app/components/TagChip/TagChip";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -213,7 +214,6 @@ export default function ArtworkPage(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
-      {/* // if den prop, visa kompontent, annars visa det andra */}
 
       {artwork && artwork.data && (
         <>
@@ -463,7 +463,20 @@ export default function ArtworkPage(props) {
                           )}
                       </div>
                     </div>
-
+                    <Box className={s.tagsContainer}>
+                      {Array.from(artwork?.data?.Tags).map((tag: string) => {
+                        return (
+                          <TagChip
+                            key={tag}
+                            title={tag}
+                            onChipClick={null}
+                            limitReached={true}
+                            variant="outlined"
+                            isSmall={true}
+                          />
+                        );
+                      })}
+                    </Box>
                     {artwork?.data?.Description && (
                       <div className={s.accordionDiv}>
                         <Accordion elevation={0} className={s.infoAccordion}>
@@ -488,32 +501,7 @@ export default function ArtworkPage(props) {
                 </div>
               </div>
             </Paper>
-
-            {/* TABS HERE*/}
-
             <div>
-              {/*  */}
-              {/*  */}
-              {/*  */}
-              {/* <Paper style={{ backgroundColor: "transparent" }}>
-                <div>
-                  <Typography className={s.text}>
-                    {artwork?.data?.Description && (
-                      <div className={s.description}>
-                        Description: <span>{artwork?.data?.Description}</span>
-                      </div>
-                    )}
-                  </Typography>
-                </div>
-              </Paper> */}
-              {/*  */}
-              {/* About the artist */}
-              {/* About the artist */}
-              {/* About the artist */}
-              {/* About the artist */}
-              {/* About the artist */}
-              {/* About the artist */}
-              {/* About the artist */}
               <div className={s.tabPanel}>
                 <div style={{ backgroundColor: "transparent" }}>
                   <div>
@@ -605,10 +593,7 @@ export async function getServerSideProps({ locale, params }) {
   const navBarItems = await getNavBarItems();
 
   try {
-    const artworkResponse = await fetch(url.href, {
-      // timeout: 11000
-      //fail return prop som sätts till true
-    });
+    const artworkResponse = await fetch(url.href, {});
     const artwork = await artworkResponse.json();
 
     return {
