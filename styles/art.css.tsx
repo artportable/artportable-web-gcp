@@ -306,6 +306,7 @@ export const styles = makeStyles((theme: Theme) =>
     tagsContainer: {
       display: "flex",
       flexDirection: "row",
+      justifyContent: "center",
       flexWrap: "wrap",
       marginTop: "30px",
     },
