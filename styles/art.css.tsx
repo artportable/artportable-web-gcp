@@ -89,6 +89,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     accordionDetails: {
       width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
 
     artInfo: {
@@ -304,7 +307,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-      margin: "10px",
+      marginTop: "30px",
     },
     chip: {
       marginRight: "5px",
