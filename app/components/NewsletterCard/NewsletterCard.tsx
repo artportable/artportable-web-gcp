@@ -67,12 +67,7 @@ export default function Newsletter() {
               placeholder="info@artportable.com"
               className={iS.TextField}
             />
-            <FormButton
-              type="submit"
-            >
-              {" "}
-              {t("subscribe")}{" "}
-            </FormButton>
+            <FormButton type="submit"> {t("subscribe")} </FormButton>
           </form>
           {status === "success" && (
             <div className={s.newsletterTextBottom}>
