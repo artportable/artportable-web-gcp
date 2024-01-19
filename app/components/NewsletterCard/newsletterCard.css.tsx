@@ -8,7 +8,6 @@ export const styles = makeStyles((theme: Theme) =>
       maxHeight: "900px",
       height: "100%",
       width: "100%",
-      border: "1px solid rgba(0, 0, 0, 0.5)",
       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
       borderRadius: "5px",
       [theme.breakpoints.up("smPlus")]: {
@@ -22,7 +21,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     divBackground: {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "transparent",
       width: "fit-content",
     },
 
@@ -103,7 +102,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     imageBox: {
-    [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("md")]: {
         width: "100%",
       },
     },
