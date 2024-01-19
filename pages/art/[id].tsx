@@ -65,9 +65,8 @@ export default function ArtworkPage(props) {
   const { like } = usePostLike();
   const { follow } = usePostFollow();
 
-  const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe); // TODO: Fetch and initialize with FollowedByMe
+  const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe);
   const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
-  /*   const [currency, setCurrency] = useState(null); */
 
   const { isSignedIn } = useContext(UserContext);
   const [artworkOwner, setArtworkOwner] = useState(
@@ -85,13 +84,6 @@ export default function ArtworkPage(props) {
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
 
-  /*  const formatter = new Intl.NumberFormat(props.locale, {
-    style: "currency",
-    currency: currency === null ? 'SEK' : currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }); */
-
   useEffect(() => {
     setFollow(artwork?.data?.Owner?.FollowedByMe);
   }, [artwork?.data?.Owner?.FollowedByMe]);
@@ -105,14 +97,8 @@ export default function ArtworkPage(props) {
   }
 
   function purchaseRequest(originalRedirect?: UrlObject | string) {
-    // if (isSignedIn.value) {
-    //   if (originalRedirect !== undefined) {
-    //     router.push(originalRedirect);
-    //   }
-    // } else {
     togglePurchaseRequestDialog();
   }
-  // }
 
   function toggleFollow() {
     redirectIfNotLoggedIn();
@@ -173,14 +159,6 @@ export default function ArtworkPage(props) {
       </>
     ));
   }
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
 
   return (
     <Main wide navBarItems={navBarItems}>
