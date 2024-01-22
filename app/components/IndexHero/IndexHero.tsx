@@ -85,10 +85,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "Torleiv Agdestein",
-      username: "torleiv.agdestein",
-      image: "/images/torleiv.jpeg",
-      imageLink: "art/750fd375-231f-45ce-8e0e-e1487e077480",
+      name: "ELAINE HILLERSTRÖM",
+      username: "elaine.hillerstrom",
+      image: "/images/elaine.jpg",
+      imageLink: "art/5ec4f2da-d914-4652-877c-4ad19ea25df0",
       showroom: `${t("showroom")}`,
     },
   ];
@@ -471,7 +471,7 @@ export default function IndexHero() {
                     <Chip
                       onClick={(_) =>
                         router.push(
-                          `https://artportable.com/en/stories/utstallning-artportable-showroom-1`
+                          `https://artportable.com/stories/exhibition-artportable-showroom---elementen`
                         )
                       }
                       size="small"
