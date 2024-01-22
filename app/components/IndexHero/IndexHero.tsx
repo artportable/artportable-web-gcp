@@ -471,7 +471,7 @@ export default function IndexHero() {
                     <Chip
                       onClick={(_) =>
                         router.push(
-                          `https://artportable.com/en/stories/utstallning-artportable-showroom-1`
+                          `https://artportable.com/story/b0252560-7b68-4df1-ba00-111d8da2bf9a`
                         )
                       }
                       size="small"
