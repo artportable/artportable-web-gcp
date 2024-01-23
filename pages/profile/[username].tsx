@@ -413,8 +413,24 @@ export default function Profile(props) {
         />
         <meta name="description" content={staticUserProfile?.Headline ?? ""} />
 
-        <meta property="og:title" content={t("common:title")} />
-        <meta property="og:description" content={t("common:description")} />
+        <meta
+          property="og:title"
+          content={
+            staticUserProfile &&
+            staticUserProfile.Name &&
+            staticUserProfile.Surname
+              ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
+              : `${t("common:title")}`
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            staticUserProfile
+              ? staticUserProfile?.Headline
+              : `${t("common:description")}`
+          }
+        />
         <meta property="og:type" content="profile" />
         <meta
           property="og:url"
@@ -423,7 +439,7 @@ export default function Profile(props) {
         <meta
           property="og:image"
           content={
-            `${bucketUrl}${staticUserProfile?.CoverPhoto}` ??
+            `${bucketUrl}${staticUserProfile?.ProfilePicture}` ??
             "/images/artportable_tv_commercial.png"
           }
         />
