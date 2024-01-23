@@ -439,8 +439,9 @@ export default function Profile(props) {
         <meta
           property="og:image"
           content={
-            `${bucketUrl}${staticUserProfile?.ProfilePicture}` ??
-            "/images/artportable_tv_commercial.png"
+            staticUserProfile?.ProfilePicture
+              ? `${bucketUrl}${staticUserProfile?.ProfilePicture}`
+              : "/images/artportable_tv_commercial.png"
           }
         />
 
