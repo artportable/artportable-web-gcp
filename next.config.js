@@ -21,6 +21,8 @@ module.exports = {
     domains: [
       "artportabletest.blob.core.windows.net",
       "artportableprod.blob.core.windows.net",
+      "artportabletest-cdn.azureedge.net",
+      "https://artportableprod-azurecdn.azureedge.net",
     ],
   },
   i18n,
