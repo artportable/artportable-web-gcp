@@ -34,6 +34,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                     alt="Portfolio image"
                     layout="fill"
                     quality={20}
+                    loading="lazy"
                   />
                 </div>
               )}
@@ -45,41 +46,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                     alt="Portfolio image"
                     layout="fill"
                     quality={20}
-                  />
-                </div>
-              )}
-              {artist.Artworks[2] && (
-                <div className={s.third}>
-                  <Image
-                    className={s.image}
-                    src={`${bucketUrl}${artist.Artworks[2].PrimaryFile.Name}`}
-                    alt="Portfolio image"
-                    layout="fill"
-                    quality={20}
-                  />
-                </div>
-              )}
-              {artist.Artworks[3] && (
-                <div className={s.forth}>
-                  <Image
-                    className={s.image}
-                    src={`${bucketUrl}${artist.Artworks[3].PrimaryFile.Name}`}
-                    alt="Portfolio image"
-                    layout="fill"
-                    quality={20}
-                  />
-                </div>
-              )}
-              {artist.Artworks[4] && (
-                <div className={s.fifth}>
-                  <Image
-                    className={s.image}
-                    src={`${bucketUrl}${artist.Artworks[4].PrimaryFile.Name}`}
-                    alt="Portfolio image"
-                    layout="fill"
-                    quality={20}
-                    loading="lazy" // Lazy loading
-                    placeholder="empty" // Use a low-quality placeholder
+                    loading="lazy"
                   />
                 </div>
               )}
