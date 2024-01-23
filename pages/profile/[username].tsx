@@ -197,19 +197,6 @@ export default function Profile(props) {
       }
     }
     setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
-
-    if (artworks?.data && artworks?.data.length > 0) {
-      const firstArtworkImage = artworks.data[0]?.PrimaryFile?.Name;
-      const ogImageUrl = `${bucketUrl}${firstArtworkImage}`;
-
-      const ogImageMetaTag = document.querySelector(
-        'meta[property="og:image"]'
-      ) as HTMLMetaElement;
-
-      if (ogImageMetaTag) {
-        ogImageMetaTag.content = ogImageUrl;
-      }
-    }
   }, [artworks.data, imageRows]);
 
   useEffect(() => {
@@ -426,8 +413,24 @@ export default function Profile(props) {
         />
         <meta name="description" content={staticUserProfile?.Headline ?? ""} />
 
-        <meta property="og:title" content={t("common:title")} />
-        <meta property="og:description" content={t("common:description")} />
+        <meta
+          property="og:title"
+          content={
+            staticUserProfile &&
+            staticUserProfile.Name &&
+            staticUserProfile.Surname
+              ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
+              : `${t("common:title")}`
+          }
+        />
+        <meta
+          property="og:description"
+          content={
+            staticUserProfile
+              ? staticUserProfile?.Headline
+              : `${t("common:description")}`
+          }
+        />
         <meta property="og:type" content="profile" />
         <meta
           property="og:url"
@@ -436,7 +439,7 @@ export default function Profile(props) {
         <meta
           property="og:image"
           content={
-            `${bucketUrl}${staticUserProfile?.CoverPhoto}` ??
+            `${bucketUrl}${staticUserProfile?.ProfilePicture}` ??
             "/images/artportable_tv_commercial.png"
           }
         />
