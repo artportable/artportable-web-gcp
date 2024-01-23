@@ -27,9 +27,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "grid",
       gap: "0px 0px",
       gridTemplate:
-        '"first first second forth" 100px ' +
-        '"first first third fifth" 100px ' +
-        "/ 25% 25% 25% 25%",
+        '"first second" 100px ' + '"first second" 100px ' + "/ 50% 50%",
     },
     image: {
       objectFit: "cover",
