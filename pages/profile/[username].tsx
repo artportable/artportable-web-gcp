@@ -197,6 +197,19 @@ export default function Profile(props) {
       }
     }
     setHasArtwork(artworks?.data !== null && artworks?.data?.length > 0);
+
+    if (artworks?.data && artworks?.data.length > 0) {
+      const firstArtworkImage = artworks.data[0]?.PrimaryFile?.Name;
+      const ogImageUrl = `${bucketUrl}${firstArtworkImage}`;
+
+      const ogImageMetaTag = document.querySelector(
+        'meta[property="og:image"]'
+      ) as HTMLMetaElement;
+
+      if (ogImageMetaTag) {
+        ogImageMetaTag.content = ogImageUrl;
+      }
+    }
   }, [artworks.data, imageRows]);
 
   useEffect(() => {
