@@ -458,6 +458,8 @@ export default function Profile(props) {
           property="twitter:url"
           content={`${publicUrl}/profile/@${staticUserProfile?.Username}`}
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <meta
           property="twitter:image"
           content={
