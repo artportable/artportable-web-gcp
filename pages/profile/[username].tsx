@@ -471,10 +471,7 @@ export default function Profile(props) {
           }
         />
 
-        <link
-          rel="canonical"
-          href={`${publicUrl}/${props.locale}${router.asPath}`}
-        />
+        <link rel="canonical" href={canonicalURL} />
       </Head>
       {isReady && (
         <>
