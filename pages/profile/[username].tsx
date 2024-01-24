@@ -430,7 +430,7 @@ export default function Profile(props) {
           property="og:description"
           content={
             staticUserProfile
-              ? staticUserProfile?.Headline
+              ? staticUserProfile?.AboutMe
               : `${t("common:description")}`
           }
         />
@@ -447,7 +447,7 @@ export default function Profile(props) {
           content={
             staticUserProfile?.ProfilePicture
               ? `${bucketUrl}${staticUserProfile?.ProfilePicture}`
-              : "/images/facebookshare.png"
+              : "/images/artportableFacebook.png"
           }
         />
 
