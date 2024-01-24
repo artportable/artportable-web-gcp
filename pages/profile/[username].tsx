@@ -447,7 +447,7 @@ export default function Profile(props) {
           content={
             staticUserProfile?.ProfilePicture
               ? `${bucketUrl}${staticUserProfile?.ProfilePicture}`
-              : "/images/artportableFacebook.png"
+              : "/images/portfolio.jpg"
           }
         />
 
