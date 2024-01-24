@@ -419,7 +419,10 @@ export default function Profile(props) {
             staticUserProfile &&
             staticUserProfile.Name &&
             staticUserProfile.Surname
-              ? staticUserProfile?.Name + " " + staticUserProfile?.Surname
+              ? "Portfolio | " +
+                staticUserProfile?.Name +
+                " " +
+                staticUserProfile?.Surname
               : `${t("common:title")}`
           }
         />
@@ -444,7 +447,7 @@ export default function Profile(props) {
           content={
             staticUserProfile?.ProfilePicture
               ? `${bucketUrl}${staticUserProfile?.ProfilePicture}`
-              : "/images/artportable_tv_commercial.png"
+              : "/images/facebookshare.png"
           }
         />
 
@@ -464,7 +467,7 @@ export default function Profile(props) {
           property="twitter:image"
           content={
             `${bucketUrl}${staticUserProfile?.CoverPhoto}` ??
-            "/images/artportable_tv_commercial.png"
+            "/images/facebookshare.png"
           }
         />
 
