@@ -411,7 +411,10 @@ export default function Profile(props) {
               : "Artportable"
           }
         />
-        <meta name="description" content={staticUserProfile?.Headline ?? ""} />
+        <meta
+          name="description"
+          content={staticUserProfile?.About ?? "Visit Portfolio"}
+        />
 
         <meta
           property="og:title"
