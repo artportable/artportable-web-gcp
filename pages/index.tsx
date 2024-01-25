@@ -202,6 +202,7 @@ export default function DiscoverPage({ navBarItems }) {
         />
         <link rel="canonical" href={`${publicUrl}/${locale}`} />
       </Head>
+      {!isSignedIn.value && <IndexHero></IndexHero>}
       {!loading && (
         <>
           {!isSignedIn.value &&
@@ -209,7 +210,7 @@ export default function DiscoverPage({ navBarItems }) {
             activeTab != 2 &&
             activeTab != 3 &&
             activeTab != 4 &&
-            activeTab != 5 && <IndexHero></IndexHero>}
+            activeTab != 5}
           {/* {<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
