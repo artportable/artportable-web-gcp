@@ -476,33 +476,24 @@ export default function Profile(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
+      <div>
+        <ProfileComponent
+          userProfile={userProfileSummary}
+          userProfilePicture={
+            isMyProfile
+              ? profilePicture
+              : userProfileSummary.data?.ProfilePicture
+          }
+          onUpdateProfilePicture={updateImage}
+          isMyProfile={isMyProfile}
+          linkToProfile={false}
+          isFollowed={isFollowed}
+          userProfileUrl={userProfileUrl}
+        ></ProfileComponent>
+      </div>
       {isReady && (
         <>
           <div>
-            <div>
-              <ProfileComponent
-                userProfile={userProfileSummary}
-                userProfilePicture={
-                  isMyProfile
-                    ? profilePicture
-                    : userProfileSummary.data?.ProfilePicture
-                }
-                onUpdateProfilePicture={updateImage}
-                isMyProfile={isMyProfile}
-                linkToProfile={false}
-                isFollowed={isFollowed}
-                userProfileUrl={userProfileUrl}
-              ></ProfileComponent>
-            </div>
-            {/* {userProfile.data?.MonthlyArtist && (
-              <div className={s.catalogued}>
-                <img
-                  src="/Artportable_Emblem_Gold.svg"
-                  alt="Logo Artportable"
-                  className={s.emblem}
-                />
-              </div>
-            )} */}
             <DialogMonthlyUser
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
@@ -542,17 +533,13 @@ export default function Profile(props) {
                     label={t("discover:likedArt")}
                     {...a11yProps(t("discover:likedArt"))}
                   />
-                  {
-                    articles && articles.length > 0 && (
-                      <Tab
-                        className={s.tab}
-                        label={t("profile:articles")}
-                        {...a11yProps(t("profile:articles"))}
-                      />
-                    )
-
-                    // Grid i första div sen flexbox i nästa
-                  }
+                  {articles && articles.length > 0 && (
+                    <Tab
+                      className={s.tab}
+                      label={t("profile:articles")}
+                      {...a11yProps(t("profile:articles"))}
+                    />
+                  )}
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
@@ -679,33 +666,6 @@ export default function Profile(props) {
                             </Link>
                           </div>
                         )}
-                        {/* Upgrade to premium button if Portfolio */}
-                        {/* {isMyProfile &&
-                          membership.value === Membership.Portfolio && (
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                margin: "20px",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <Typography
-                                style={{ margin: "20px", fontSize: "16px" }}
-                              >
-                                {t("profile:upgradePremiumStory")}
-                              </Typography>
-                              <Button
-                                style={{ backgroundColor: "#ffd700" }}
-                                aria-label="upgrade"
-                                variant="contained"
-                                rounded
-                                onClick={redirectToPremiumUpgrade}
-                              >
-                                {t("profile:upgradeButton")}
-                              </Button>
-                            </div>
-                          )} */}
                         <Grid justifyContent="center" container spacing={2}>
                           {!smPlusOrSmaller ? (
                             <>
