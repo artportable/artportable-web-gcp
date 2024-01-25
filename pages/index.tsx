@@ -203,68 +203,69 @@ export default function DiscoverPage({ navBarItems }) {
         <link rel="canonical" href={`${publicUrl}/${locale}`} />
       </Head>
       {!isSignedIn.value && <IndexHero></IndexHero>}
-      {!loading && (
-        <>
-          {!isSignedIn.value &&
-            activeTab != 1 &&
-            activeTab != 2 &&
-            activeTab != 3 &&
-            activeTab != 4 &&
-            activeTab != 5}
-          {/* {<AdDialog
+
+      <>
+        {!isSignedIn.value &&
+          activeTab != 1 &&
+          activeTab != 2 &&
+          activeTab != 3 &&
+          activeTab != 4 &&
+          activeTab != 5}
+        {/* {<AdDialog
             openAdDialog={openAdDialog}
             setOpenAdDialog={setOpenAdDialog}
             onClose={toggleAdDialog}
           />} */}
-          <div ref={scrollToDiscoverRef} className={s.discoverContainer}>
-            <div className={s.tabContainer}>
-              <Tabs
-                className={s.artTabs}
-                value={activeTab}
-                onChange={(_, newValue) => setTab(newValue)}
-                variant={"scrollable"}
-                scrollButtons={"on"}
-              >
-                <Tab
-                  className={s.text}
-                  label={t("discover:topArt")}
-                  {...a11yProps(t("discover:topArt"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:highlights")}
-                  {...a11yProps(t("discover:artists"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:latestArt")}
-                  {...a11yProps(t("discover:latestArt"))}
-                />
-                <Tab
-                  className={s.text}
-                  label={t("discover:stories")}
-                  {...a11yProps(t("discover:stories"))}
-                />
+        <div ref={scrollToDiscoverRef} className={s.discoverContainer}>
+          <div className={s.tabContainer}>
+            <Tabs
+              className={s.artTabs}
+              value={activeTab}
+              onChange={(_, newValue) => setTab(newValue)}
+              variant={"scrollable"}
+              scrollButtons={"on"}
+            >
+              <Tab
+                className={s.text}
+                label={t("discover:topArt")}
+                {...a11yProps(t("discover:topArt"))}
+              />
+              <Tab
+                className={s.text}
+                label={t("discover:highlights")}
+                {...a11yProps(t("discover:artists"))}
+              />
+              <Tab
+                className={s.text}
+                label={t("discover:latestArt")}
+                {...a11yProps(t("discover:latestArt"))}
+              />
+              <Tab
+                className={s.text}
+                label={t("discover:stories")}
+                {...a11yProps(t("discover:stories"))}
+              />
 
+              <Tab
+                className={s.text}
+                label={t("discover:showroom")}
+                {...a11yProps(t("discover:showroom"))}
+              />
+              <Tab
+                className={s.text}
+                label={t("discover:artists")}
+                {...a11yProps(t("discover:artists"))}
+              />
+              {isSignedIn.value && (
                 <Tab
                   className={s.text}
-                  label={t("discover:showroom")}
-                  {...a11yProps(t("discover:showroom"))}
+                  label={t("discover:myLikedArt")}
+                  {...a11yProps(t("discover:myLikedArt"))}
                 />
-                <Tab
-                  className={s.text}
-                  label={t("discover:artists")}
-                  {...a11yProps(t("discover:artists"))}
-                />
-                {isSignedIn.value && (
-                  <Tab
-                    className={s.text}
-                    label={t("discover:myLikedArt")}
-                    {...a11yProps(t("discover:myLikedArt"))}
-                  />
-                )}
-              </Tabs>
-            </div>
+              )}
+            </Tabs>
+          </div>
+          {!loading && (
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
                 {!isMobile ? (
@@ -337,9 +338,9 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
             </Box>
-          </div>
-        </>
-      )}
+          )}
+        </div>
+      </>
     </Main>
   );
 }
