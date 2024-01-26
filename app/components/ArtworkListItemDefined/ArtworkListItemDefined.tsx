@@ -31,7 +31,7 @@ import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
-import Image from "next/image";
+
 export default function ArtworkListItemDefined({
   artwork,
   onLikeClick,
@@ -191,13 +191,12 @@ export default function ArtworkListItemDefined({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <Image
+            <img
               width={width}
               height={height}
               alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-              quality={40}
             />
 
             {/* om man inte är på indexsidan, utan på profilsidan */}
