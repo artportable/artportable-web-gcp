@@ -66,6 +66,7 @@ import StoryComponent from "../../app/components/Story/StoryComponent";
 import { Story } from "../../app/models/Story";
 import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
+import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 
 function a11yProps(index: any) {
   return {
@@ -554,7 +555,7 @@ export default function Profile(props) {
 
                               if (artwork) {
                                 return (
-                                  <ArtworkListItemDefined
+                                  <ArtworkListItemDefinedProfile
                                     key={image.Name}
                                     width={
                                       smScreenOrSmaller ? "100%" : image.Width
