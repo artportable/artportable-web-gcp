@@ -1,7 +1,7 @@
 import { createMuiTheme, createTheme } from "@material-ui/core/styles";
 
 const breakpointMainWidths = {
-  xs: { breakpoint: "xs", regular: 0, wide: 0 },
+  xs: { breakpoint: "xs", regular: 415, wide: 390 },
   sm: { breakpoint: "sm", regular: 430, wide: 450 },
   smPlus: { breakpoint: "smPlus", regular: 460, wide: 660 },
   md: { breakpoint: "md", regular: 669, wide: 860 },

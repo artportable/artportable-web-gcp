@@ -18,7 +18,7 @@ import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutline
 import TagChip from "../TagChip/TagChip";
 import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
-
+import Image from "next/image";
 export default function ArtworkListItemDefinedProfile({
   artwork,
   onLikeClick,
@@ -128,12 +128,13 @@ export default function ArtworkListItemDefinedProfile({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <img
+            <Image
               width={width}
               height={height}
               alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+              quality={30}
             />
             {!indexPage && (
               <div className={s.infoHover}>
