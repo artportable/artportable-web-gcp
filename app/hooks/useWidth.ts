@@ -56,6 +56,6 @@ export function useMainWidth(): {
     case "xl":
       return theme.breakpointMainWidths.xl;
     default:
-      break;
+      return theme.breakpointMainWidths.sm;
   }
 }

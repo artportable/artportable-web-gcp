@@ -557,12 +557,8 @@ export default function Profile(props) {
                                 return (
                                   <ArtworkListItemDefinedProfile
                                     key={image.Name}
-                                    width={
-                                      smScreenOrSmaller ? "100%" : image.Width
-                                    }
-                                    height={
-                                      smScreenOrSmaller ? "auto" : image.Height
-                                    }
+                                    width={image.Width}
+                                    height={image.Height}
                                     artwork={artwork}
                                     topActions={
                                       isMyProfile && (
