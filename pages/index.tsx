@@ -48,7 +48,7 @@ import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 import Showroom from "../app/components/Showroom/Showroom";
-
+import Hotjar from "@hotjar/browser";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -113,6 +113,15 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, []);
   const { locale } = router;
+
+  const siteId = 1968208;
+  const hotjarVersion = 6;
+
+  Hotjar.init(siteId, hotjarVersion);
+
+  Hotjar.init(siteId, hotjarVersion, {
+    debug: true,
+  });
 
   const useWideLayout =
     activeTab === 0 ||
