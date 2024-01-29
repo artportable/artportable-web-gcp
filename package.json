@@ -55,6 +55,7 @@
     "react-web-share": "^1.1.6",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
+    "sharp": "^0.33.2",
     "stream-chat": "^3.1.0",
     "stream-chat-react": "^5.1.7",
     "styled-components": "^5.3.0",

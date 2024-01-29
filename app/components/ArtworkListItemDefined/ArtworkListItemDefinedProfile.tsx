@@ -135,6 +135,8 @@ export default function ArtworkListItemDefinedProfile({
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
               quality={30}
+              loading="eager"
+              priority={true}
             />
             {!indexPage && (
               <div className={s.infoHover}>
