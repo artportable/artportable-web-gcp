@@ -144,9 +144,7 @@ export default function Profile({
           </Typography>
 
           <Typography variant="h5" className={s.headline}>
-            {userProfile?.data?.Headline ||
-              userProfile?.data?.Title ||
-              "Artportable Portfolio"}
+            {userProfile?.data?.Headline || userProfile?.data?.Title}
           </Typography>
         </div>
 
