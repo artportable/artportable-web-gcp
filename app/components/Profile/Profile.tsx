@@ -128,15 +128,28 @@ export default function Profile({
     window.open(rocketLink);
   };
 
+  useEffect(() => {
+    console.log(userProfile?.data?.Headline);
+  }, []);
+
   return (
     <Box>
       {divider && <Divider></Divider>}
       <div className={s.fullNameCounter}>
-        <Typography variant="h5" className={s.fullName}>
-          {userProfile?.data?.Name.toUpperCase()}{" "}
-          {userProfile?.data?.Surname &&
-            userProfile?.data?.Surname.toUpperCase()}{" "}
-        </Typography>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Typography variant="h5" className={s.fullName}>
+            {userProfile?.data?.Name.toUpperCase()}{" "}
+            {userProfile?.data?.Surname &&
+              userProfile?.data?.Surname.toUpperCase()}{" "}
+          </Typography>
+
+          <Typography variant="h5" className={s.headline}>
+            {userProfile?.data?.Headline ||
+              userProfile?.data?.Title ||
+              "Artportable Portfolio"}
+          </Typography>
+        </div>
+
         <Box className={s.counterBox}>
           <Button
             className={s.followersButton}
@@ -333,7 +346,6 @@ export default function Profile({
               />
             </Button>
           </div>
-
           <div>
             <Modal
               open={open}

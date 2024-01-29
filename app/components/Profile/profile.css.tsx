@@ -1,26 +1,22 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
-
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     followFollowersArtworks: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center"
+      alignItems: "center",
     },
     counterBox: {
-      display: 'flex',
-     
-      paddingTop: theme.spacing(1),
-      '& > *': {
-        width: '33.3%'
-      },
-      [theme.breakpoints.up("smPlus")]: {
+      display: "flex",
 
+      paddingTop: theme.spacing(1),
+      "& > *": {
+        width: "33.3%",
       },
+      [theme.breakpoints.up("smPlus")]: {},
       [theme.breakpoints.up("md")]: {
-        alignItems: "center"
+        alignItems: "center",
       },
     },
 
@@ -31,29 +27,26 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "4px",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
-        justifyContent: "flex-end",  
-        margin: "0",  
-        width: "25%"
+        justifyContent: "flex-end",
+        margin: "0",
+        width: "25%",
       },
     },
 
     modal: {
-      position: 'absolute' as 'absolute',
-      top: '30%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      border: '2px solid #000',
+      position: "absolute" as "absolute",
+      top: "30%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      border: "2px solid #000",
       backgroundColor: "white",
       width: "80%",
       padding: "20px",
       borderRadius: "20px",
       borderColor: "transparent",
       [theme.breakpoints.up("md")]: {
-         
-        width: "45%"
+        width: "45%",
       },
-
-    
     },
 
     followButton: {
@@ -106,44 +99,52 @@ export const styles = makeStyles((theme: Theme) =>
         color: "white",
         border: "#49cc90",
       },
-
     },
     fullNameCounter: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-between", 
+      justifyContent: "space-between",
       width: "100% !important",
-      [theme.breakpoints.up("smPlus")]: {
-        
-      },
+      [theme.breakpoints.up("smPlus")]: {},
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
-        alignItems: "flex-end"
-    
+        alignItems: "flex-end",
       },
     },
     fullName: {
       disaply: "flex",
-      textAlign: 'center', // centers text horizontally
+      textAlign: "center", // centers text horizontally
       fontWeight: 600,
-      fontSize: '25px',
-      letterSpacing: '6px',
-
+      fontSize: "25px",
+      letterSpacing: "6px",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "20px",
-        textAlign: 'flex-start',
+        textAlign: "flex-start",
       },
       [theme.breakpoints.up("md")]: {
         fontSize: "30px",
       },
     },
+
+    headline: {
+      disaply: "flex",
+      textAlign: "center",
+      fontWeight: 400,
+      fontSize: "20px",
+      letterSpacing: "2px",
+      fontStyle: "italic",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "20px",
+        textAlign: "left",
+      },
+    },
     followersButton: {
-      display: 'block',
+      display: "block",
       padding: 0,
     },
     followeesButton: {
-      display: 'block',
+      display: "block",
       padding: 0,
     },
     editActions: {
@@ -155,8 +156,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifySelf: "flex-end",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
-        justifyContent: "flex-end",  
-        margin: "0",  
+        justifyContent: "flex-end",
+        margin: "0",
       },
     },
     editUploadButtons: {
@@ -167,7 +168,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: "10px",
       [theme.breakpoints.up("md")]: {
         marginBottom: "0px",
-        flexDirection:"column",
+        flexDirection: "column",
       },
     },
     uploadButton: {
@@ -175,10 +176,10 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#FFD700",
       display: "flex",
       margin: "0 auto",
-      padding:'7px',
-      
+      padding: "7px",
+
       [theme.breakpoints.up("md")]: {
-        display:'flex',
+        display: "flex",
       },
       "&:hover": {
         backgroundColor: "#D6A407",
@@ -193,7 +194,6 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         display: "none",
       },
-      
     },
     hovs: {
       "& :hover": {
@@ -242,16 +242,16 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     modalContainer: {
-      display: 'flex',
-      justifyContent: 'center', 
-      alignItems: 'center',     
-      height: '100vh',         
-      position: 'relative',    
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      position: "relative",
     },
     modalOffers: {
-      position: 'absolute' as 'absolute',
+      position: "absolute" as "absolute",
       overflowY: "scroll",
-      border: '2px solid #000',
+      border: "2px solid #000",
       backgroundColor: "white",
       width: "100%",
       height: "100%",
@@ -259,16 +259,14 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "20px",
       borderColor: "transparent",
       [theme.breakpoints.up("md")]: {
-        
         width: "50%",
-        height: "60%"
+        height: "60%",
       },
 
-    offersButton: {
-      backgroundColor: "red",
-      margin: "20px"
+      offersButton: {
+        backgroundColor: "red",
+        margin: "20px",
+      },
     },
-    },
-
-  }),
+  })
 );
