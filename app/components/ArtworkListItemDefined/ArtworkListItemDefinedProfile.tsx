@@ -128,15 +128,12 @@ export default function ArtworkListItemDefinedProfile({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <Image
+            <img
               width={width}
               height={height}
               alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-              quality={30}
-              loading="eager"
-              priority={true}
             />
             {!indexPage && (
               <div className={s.infoHover}>
