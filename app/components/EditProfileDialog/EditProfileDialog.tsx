@@ -175,9 +175,8 @@ export default function EditProfileDialog({ userProfile }) {
 
       setProfile(populateProfileObject(userProfile));
     } catch (error) {
-      // Handle errors gracefully and provide feedback to the user
       console.error("Error updating profile:", error);
-      // You may set a state to display an error message to the user
+      console.log("Error updating profile:", error);
     }
   };
 
