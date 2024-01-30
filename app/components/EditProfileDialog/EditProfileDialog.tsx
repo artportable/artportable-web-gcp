@@ -173,8 +173,12 @@ export default function EditProfileDialog({ userProfile }) {
 
       mutate(getUserProfileSummaryUri(username.value));
 
-      window.location.reload();
-    } catch (error) {}
+      setProfile(populateProfileObject(userProfile));
+    } catch (error) {
+      // Handle errors gracefully and provide feedback to the user
+      console.error("Error updating profile:", error);
+      // You may set a state to display an error message to the user
+    }
   };
 
   const validate = (p) => {
