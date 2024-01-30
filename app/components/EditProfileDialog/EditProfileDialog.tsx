@@ -150,6 +150,9 @@ export default function EditProfileDialog({ userProfile }) {
     populateProfileObject(userProfile)
   );
 
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const makeChanges = async () => {
     setOpenEdit(false);
     try {
@@ -174,9 +177,15 @@ export default function EditProfileDialog({ userProfile }) {
       mutate(getUserProfileSummaryUri(username.value));
 
       setProfile(populateProfileObject(userProfile));
+
+      setSuccessMessage("Profile updated successfully!");
     } catch (error) {
       console.error("Error updating profile:", error);
-      console.log("Error updating profile:", error);
+      // Set error message
+      setErrorMessage(
+        "An error occurred while updating the profile. Please try again " +
+          { error }
+      );
     }
   };
 
@@ -230,6 +239,10 @@ export default function EditProfileDialog({ userProfile }) {
           )}
         </div>
       </div>
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
 
       <Dialog
         open={openEdit}
