@@ -128,10 +128,6 @@ export default function Profile({
     window.open(rocketLink);
   };
 
-  useEffect(() => {
-    console.log(userProfile?.data?.Headline);
-  }, []);
-
   return (
     <Box>
       {divider && <Divider></Divider>}
