@@ -41,9 +41,9 @@ interface Profile {
   title: string;
   headline: string;
   location: string;
-  country: string;
-  state: string;
-  city: string;
+  country?: string;
+  state?: string;
+  city?: string;
   about: string;
   studio: Studio;
   inspiredBy: string;
