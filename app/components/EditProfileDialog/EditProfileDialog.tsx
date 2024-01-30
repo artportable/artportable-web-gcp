@@ -36,7 +36,7 @@ import { theme } from "../../../styles/theme";
 import useTheme from "@mui/material/styles/useTheme";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-
+import axios from "axios";
 interface Profile {
   title: string;
   headline: string;
@@ -155,8 +155,10 @@ export default function EditProfileDialog({ userProfile }) {
 
   const makeChanges = async () => {
     setOpenEdit(false);
+
     try {
       validate(profile);
+
       mutate(
         getUserProfileUri(username.value, null),
         { ...userProfile, ...createOriginalProfileObject(profile) },
@@ -164,28 +166,20 @@ export default function EditProfileDialog({ userProfile }) {
       );
 
       await refreshToken().then(() =>
-        fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
-          method: "PUT",
+        axios.put(`${apiBaseUrl}/api/profile/${username.value}`, profile, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(profile),
         })
       );
 
       mutate(getUserProfileSummaryUri(username.value));
 
       setProfile(populateProfileObject(userProfile));
-
-      setSuccessMessage("Profile updated successfully!");
     } catch (error) {
       console.error("Error updating profile:", error);
-      // Set error message
-      setErrorMessage(
-        "An error occurred while updating the profile. Please try again " +
-          { error }
-      );
+      console.log("Error updating profile:", error);
     }
   };
 
