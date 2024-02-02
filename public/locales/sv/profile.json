@@ -68,7 +68,7 @@
   "addProfilePicture": "Lägg till din profilbild",
   "noBioSet": "Ingen biografi än",
   "NoProfilePicSet": "Profilbild saknas",
-  "buyingArt": "Köpa verk",
+  "buyingArt": "Köpinfo",
   "buyingArtTitle": "Så köper du ett verk av konstnären",
   "buyingArtBody": "Som köpare av konst på Artportable skickar du en förfrågan direkt till konstnären. Klicka på ett verk och välj knappen ''Köpförfrågan''.",
   "buyingArtBodyTwo": "Konstnären svarar i regel inom 1-3 dagar. Efter att en kommunikation upprättats är det upp till konstnären och köparen att göra upp affären samt eventuella fraktkostnader eller upphämtning av verket. Du kan självklart också i samma förfrågan höra efter om andra verk. Men skicka endast frågor om konsten tack!",
@@ -80,5 +80,7 @@
   "country": "Land",
   "state": "Län",
   "city": "Stad",
-  "fillInCountry": "Fyll i land och stad"
+  "fillInCountry": "Fyll i land och stad",
+  "readMore": "Läs mer",
+  "readLess": "Stäng"
 }
