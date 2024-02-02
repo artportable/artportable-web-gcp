@@ -5,7 +5,6 @@ import {
   DialogTitle,
   DialogActions,
   TextField,
-  Select,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import Button from "../Button/Button";
@@ -28,22 +27,11 @@ import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import { capitalizeFirst } from "../../utils/util";
 import useRefreshToken from "../../hooks/useRefreshToken";
-import { Country, State, City } from "country-state-city";
 
-import { allCountriesData } from "../../../public/countries/allCountries";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { theme } from "../../../styles/theme";
-import useTheme from "@mui/material/styles/useTheme";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import axios from "axios";
 interface Profile {
   title: string;
   headline: string;
   location: string;
-  country?: string;
-  state?: string;
-  city?: string;
   about: string;
   studio: Studio;
   inspiredBy: string;
@@ -86,79 +74,16 @@ export default function EditProfileDialog({ userProfile }) {
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
-  const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
-  const [states, setStates] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedCountryName, setSelectedCountryName] = useState("");
-  const [selectedCity, setSeletedCity] = useState("");
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-  useEffect(() => {
-    const countries = allCountriesData.map((country) => ({
-      name: country.name,
-      isoCode: country.isoCode,
-    }));
-    setCountries(countries);
-  }, []);
-
-  const handleCountryChange = (event) => {
-    const selectedCountryString = event.target.value;
-    const selectedCountry = JSON.parse(selectedCountryString);
-    const selectedCountryCode = selectedCountry.isoCode;
-    const selectedCountryName = selectedCountry.name;
-    setSelectedCountryName(selectedCountryName);
-
-    setProfile({
-      ...userProfile,
-      country: selectedCountryName,
-    });
-
-    setSelectedCountry(selectedCountryCode);
-    setStates(State.getStatesOfCountry(selectedCountryCode));
-  };
-
-  const handleStateChange = (event) => {
-    const selectedStateString = event.target.value;
-    const selectedState = JSON.parse(selectedStateString);
-    const selectedStateName = selectedState?.name;
-
-    setProfile({
-      ...profile,
-      state: selectedStateName,
-    });
-
-    const citiesOfState = City.getCitiesOfState(
-      selectedCountry,
-      selectedState.isoCode
-    );
-    setCities(citiesOfState);
-  };
-
-  const handleCityChange = (event) => {
-    const selectedCityName = event.target.value;
-    setSeletedCity(selectedCityName);
-
-    setProfile({
-      ...profile,
-      city: selectedCityName,
-    });
-  };
 
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(
     populateProfileObject(userProfile)
   );
 
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const makeChanges = async () => {
+  const makeChanges = async (_) => {
     setOpenEdit(false);
-
     try {
       validate(profile);
-
       mutate(
         getUserProfileUri(username.value, null),
         { ...userProfile, ...createOriginalProfileObject(profile) },
@@ -166,40 +91,35 @@ export default function EditProfileDialog({ userProfile }) {
       );
 
       await refreshToken().then(() =>
-        axios.put(`${apiBaseUrl}/api/profile/${username.value}`, profile, {
+        fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify(profile),
         })
       );
 
       mutate(getUserProfileSummaryUri(username.value));
-
-      setProfile(populateProfileObject(userProfile));
-    } catch (error) {
-      console.error("Error updating profile:", error);
-      console.log("Error updating profile:", error);
-    }
+    } catch (error) {}
   };
 
   const validate = (p) => {
-    // Check educations for null 'from' and 'to'
-    profile?.educations?.forEach((e) => {
-      if (e.from === undefined || e.from === null) {
+    profile?.educations?.map((e) => {
+      if (!e.from) {
         e.from = null;
       }
-      if (e.to === undefined || e.to === null) {
+      if (!e.to) {
         e.to = null;
       }
     });
 
-    // Check exhibitions for null 'from' and 'to'
-    profile?.exhibitions?.forEach((e) => {
-      if (e.from === undefined || e.from === null) {
+    profile?.exhibitions?.map((e) => {
+      if (!e.from) {
         e.from = null;
       }
-      if (e.to === undefined || e.to === null) {
+      if (!e.to) {
         e.to = null;
       }
     });
@@ -223,26 +143,14 @@ export default function EditProfileDialog({ userProfile }) {
           startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}
         >
-          <div>{t("editProfile")}</div>
+          <div> {t("editProfile")}</div>
         </Button>
-        <div>
-          {userProfile?.City ? (
-            ""
-          ) : (
-            <div className={s.fillIn}> {t("fillInCountry")}</div>
-          )}
-        </div>
       </div>
-      {successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
 
       <Dialog
         open={openEdit}
         onClose={cancel}
-        fullScreen={fullScreen}
-        maxWidth={fullScreen ? false : "md"}
+        maxWidth="md"
         aria-labelledby="artwork-modal-title"
         aria-describedby="artwork-modal-description"
       >
@@ -258,6 +166,7 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 140 }}
               />
+
               <TextField
                 label={t("headline")}
                 defaultValue={profile.headline}
@@ -268,60 +177,19 @@ export default function EditProfileDialog({ userProfile }) {
                 inputProps={{ maxLength: 140 }}
               />
 
-              <select className={s.selectInfo} onChange={handleCountryChange}>
-                <option hidden>
-                  {userProfile?.Country ? userProfile?.Country : t("country")}
-                </option>
-                <option disabled></option>
-                {countries.map((country, index) => (
-                  <option
-                    key={index}
-                    value={JSON.stringify(country)}
-                    className={s.optionStyle}
-                  >
-                    {country?.name}
-                  </option>
-                ))}
-              </select>
-
-              <select className={s.selectInfo} onChange={handleStateChange}>
-                <option hidden>
-                  {userProfile?.State ? userProfile?.State : t("state")}
-                </option>
-                <option disabled></option>
-                {states.map((state, index) => (
-                  <option
-                    key={index}
-                    value={JSON.stringify(state)}
-                    className={s.optionStyle}
-                  >
-                    {state.name}
-                  </option>
-                ))}
-              </select>
-
-              <select className={s.selectInfo} onChange={handleCityChange}>
-                <option hidden>
-                  {userProfile?.City ? userProfile?.city : t("city")}
-                </option>
-                <option disabled></option>
-                {cities.map((city, index) => (
-                  <option
-                    key={index}
-                    value={city.name}
-                    className={s.optionStyle}
-                  >
-                    {city.name}
-                  </option>
-                ))}
-              </select>
+              <TextField
+                label={t("location")}
+                defaultValue={profile.location}
+                onChange={(event) =>
+                  setProfile({ ...profile, location: event.target.value })
+                }
+                inputProps={{ maxLength: 280 }}
+              />
 
               <TextField
                 label={t("aboutMe")}
-                defaultValue={profile?.about}
+                defaultValue={profile.about}
                 multiline
-                minRows={3}
-                style={{ marginBottom: "20px" }}
                 onChange={(event) =>
                   setProfile({ ...profile, about: event.target.value })
                 }
@@ -389,9 +257,6 @@ const populateProfileObject = (userProfile): Profile => {
     title: userProfile?.Title,
     headline: userProfile?.Headline,
     location: userProfile?.Location,
-    country: userProfile?.Country,
-    state: userProfile?.State,
-    city: userProfile?.City,
     about: userProfile?.About,
     studio: userProfile?.Studio,
     inspiredBy: userProfile?.InspiredBy,
@@ -424,9 +289,6 @@ const createOriginalProfileObject = (userProfile: Profile) => {
     Title: userProfile?.title,
     Headline: userProfile?.headline,
     Location: userProfile?.location,
-    Country: userProfile?.country,
-    State: userProfile?.state,
-    City: userProfile?.city,
     About: userProfile?.about,
     Studio: userProfile?.studio,
     InspiredBy: userProfile?.inspiredBy,
