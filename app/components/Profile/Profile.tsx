@@ -34,6 +34,7 @@ import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import UploadIcon from "@material-ui/icons/Publish";
 import { RWebShare } from "react-web-share";
 import Offers from "../ExclusiveOffers/Offers";
+import { CSSProperties } from "react";
 
 export default function Profile({
   userProfileUrl,
@@ -45,12 +46,14 @@ export default function Profile({
   divider = false,
   isMyProfile = false,
   linkToProfile = true,
+  staticUserProfile,
 }) {
   const s = styles();
   const { t } = useTranslation(["common", "profile", "upload", "header"]);
   const data = userProfile?.data;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const theme: Theme = useTheme();
+  const downtheme = useTheme();
 
   const [followingOpen, setFollowingOpen] = useState(false);
   const [followersOpen, setFollowersOpen] = useState(false);
@@ -127,6 +130,32 @@ export default function Profile({
   const redirectToRocketUpgrade = () => {
     window.open(rocketLink);
   };
+  const initialText = staticUserProfile?.About || "";
+  const [showMore, setShowMore] = useState(false);
+
+  const handleReadMoreClick = () => {
+    setShowMore(!showMore);
+  };
+
+  const headlineStyle: CSSProperties = {
+    textAlign: "left",
+    fontWeight: 500,
+    fontSize: "11px",
+    letterSpacing: "1px",
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden",
+    WebkitLineClamp: showMore ? "unset" : 1,
+  };
+
+  function renderWithLineBreaks(text) {
+    return text.split("\n").map((str, index, array) => (
+      <>
+        {str}
+        {index === array.length - 1 ? null : <br />}
+      </>
+    ));
+  }
 
   return (
     <Box>
@@ -137,10 +166,6 @@ export default function Profile({
             {userProfile?.data?.Name.toUpperCase()}{" "}
             {userProfile?.data?.Surname &&
               userProfile?.data?.Surname.toUpperCase()}{" "}
-          </Typography>
-
-          <Typography variant="h5" className={s.headline}>
-            {userProfile?.data?.Headline || userProfile?.data?.Title}
           </Typography>
         </div>
 
@@ -295,6 +320,20 @@ export default function Profile({
           </>
         )}
       </div>
+      {!isMyProfile && (
+        <div className={s.readMore}>
+          <div>
+            <div style={headlineStyle}>{renderWithLineBreaks(initialText)}</div>
+          </div>
+          <div className={s.expandButton}>
+            {initialText.length > 2 && (
+              <div onClick={handleReadMoreClick}>
+                {showMore ? t("profile:readLess") : t("profile:readMore")}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       {isMyProfile && (
         <div className={s.friends}>
           <RWebShare
@@ -311,6 +350,7 @@ export default function Profile({
           </RWebShare>
         </div>
       )}
+
       {isMyProfile && (
         <div>
           <div className={s.hovs}>

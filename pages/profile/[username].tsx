@@ -490,6 +490,7 @@ export default function Profile(props) {
           linkToProfile={false}
           isFollowed={isFollowed}
           userProfileUrl={userProfileUrl}
+          staticUserProfile={staticUserProfile}
         ></ProfileComponent>
       </div>
       {isReady && (
