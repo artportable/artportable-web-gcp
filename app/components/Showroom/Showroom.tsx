@@ -63,34 +63,42 @@ export default function Showroom() {
     ],
     ART_BAKERY: [
       {
-        period: "7 MARS - 7 JUNI",
-        artists: [
-          { name: "Stina G Olsson", username: "stina.g.olsson.art" },
-          { name: "Ralph Castellan", username: "rc-art" },
-        ],
-        site: "www.artbakery.se/",
-      },
-      {
-        period: "8 JUNI - 8 SEPTEMBER",
-        artists: [
-          { name: "Angelica Diehn", username: "angelica.diehn" },
-          { name: "Carl Bennerstedt", username: "cabem" },
-        ],
-        site: "www.artbakery.se/",
-      },
-      {
-        period: "11 SEPTEMBER - 11 DECEMBER",
-        artists: [
-          { name: "Göran Billingskog", username: "gorito" },
-          { name: "Håkan Lindskog", username: "hakan" },
-        ],
-        site: "www.artbakery.se/",
-      },
-      {
-        period: "10 DECEMBER - 10 MARS",
+        period: "10 DECEMBER - 12 MARS",
         artists: [
           { name: "Sara Bergman", username: "s_bergman1" },
           { name: "Ola Lanteli", username: "ola" },
+        ],
+        site: "www.artbakery.se/",
+      },
+      {
+        period: "12 MARS - 12 JUNI",
+        artists: [
+          { name: "ManiPopArt", username: "manipopart" },
+          { name: "Annica Hallman", username: "annica.b" },
+        ],
+        site: "www.artbakery.se/",
+      },
+      {
+        period: "12 MARS - 12 JUNI",
+        artists: [
+          { name: "ManiPopArt", username: "manipopart" },
+          { name: "Annica Hallman", username: "annica.b" },
+        ],
+        site: "www.artbakery.se/",
+      },
+      {
+        period: "14 JUNI - 14 SEPTEMBER",
+        artists: [
+          { name: "Anna Ygdevik Burma", username: "annaburma" },
+          { name: "Kajsa Bergström", username: "kajsaheer" },
+        ],
+        site: "www.artbakery.se/",
+      },
+      {
+        period: "14 SEPTEMBER - 14 DECEMBER",
+        artists: [
+          { name: "Cecilia Hällström", username: "cecilia.hallstrom" },
+          { name: "Linda Brodin", username: "mab2001" },
         ],
         site: "www.artbakery.se/",
       },
