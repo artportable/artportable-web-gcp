@@ -90,9 +90,8 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#49cc90",
       color: "black",
       border: "#49cc90",
-      marginRight: "2px",
       [theme.breakpoints.up("md")]: {
-        width: "75%",
+        width: "100%",
       },
       "&:hover": {
         backgroundColor: "black",
@@ -114,13 +113,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
     fullName: {
       disaply: "flex",
-      textAlign: "center", // centers text horizontally
+      textAlign: "center",
       fontWeight: 600,
       fontSize: "25px",
       letterSpacing: "6px",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "20px",
-        textAlign: "flex-start",
+        textAlign: "left",
       },
       [theme.breakpoints.up("md")]: {
         fontSize: "30px",
@@ -131,14 +130,33 @@ export const styles = makeStyles((theme: Theme) =>
       disaply: "flex",
       textAlign: "center",
       fontWeight: 400,
-      fontSize: "20px",
+      fontSize: "14px",
       letterSpacing: "2px",
       fontStyle: "italic",
       [theme.breakpoints.up("md")]: {
-        fontSize: "20px",
+        fontSize: "12px",
         textAlign: "left",
+        width: "70%",
       },
     },
+    expandButton: {
+      marginTop: "4px",
+      textAlign: "right",
+      border: "none",
+      cursor: "pointer",
+      fontWeight: 500,
+      fontSize: "8px",
+      letterSpacing: "1px",
+    },
+
+    readMore: {
+      marginTop: "10px",
+      alignItems: "center",
+      [theme.breakpoints.up("md")]: {
+        width: "50%",
+      },
+    },
+
     followersButton: {
       display: "block",
       padding: 0,
