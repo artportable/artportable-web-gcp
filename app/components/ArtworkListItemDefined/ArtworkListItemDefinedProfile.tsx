@@ -199,8 +199,7 @@ export default function ArtworkListItemDefinedProfile({
       ) : (
         !indexPage &&
         isMyProfile && (
-          <div className={s.desktopLikeTitle}>
-            <div></div>
+          <div className={s.desktopEditButton}>
             {topActions && (
               <div className={s.likeButton}>
                 <div>{topActions}</div>

@@ -1,5 +1,5 @@
-import { red } from '@material-ui/core/colors'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { red } from "@material-ui/core/colors";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -10,370 +10,373 @@ export const styles = makeStyles((theme: Theme) =>
         smPlus: 820,
         md: 960,
         lg: 1280,
-        xl: 1920
-      }
+        xl: 1920,
+      },
     },
     container: {
-      display: 'inline-block',
+      display: "inline-block",
 
-      position: 'relative',
+      position: "relative",
 
-      '&:hover $title': {
-        visibility: 'hidden',
-        opacity: 1
+      "&:hover $title": {
+        visibility: "hidden",
+        opacity: 1,
       },
-      '&:hover $tagsContainer': {
-        visibility: 'visible',
-        opacity: 1
+      "&:hover $tagsContainer": {
+        visibility: "visible",
+        opacity: 1,
       },
 
-      '&:hover $newUser': {
-        visibility: 'hidden',
-        opacity: 0
+      "&:hover $newUser": {
+        visibility: "hidden",
+        opacity: 0,
       },
-      [theme.breakpoints.up('md')]: {
-        '&:hover $chatButton': {
-          visibility: 'visible',
-          opacity: 1
+      [theme.breakpoints.up("md")]: {
+        "&:hover $chatButton": {
+          visibility: "visible",
+          opacity: 1,
         },
-        '&:hover $shareButton': {
-          visibility: 'visible',
-          opacity: 1
+        "&:hover $shareButton": {
+          visibility: "visible",
+          opacity: 1,
         },
-           '&:hover $desktopLikeTitle': {
-          visibility: 'visible',
-          opacity: 1
-        }
-      }
+        "&:hover $desktopLikeTitle": {
+          visibility: "visible",
+          opacity: 1,
+        },
+      },
     },
 
     desktopLikeTitle: {
-      display: 'flex',
+      display: "flex",
       zIndex: 10,
       justifyContent: "space-between",
       alignItems: "center",
-      [theme.breakpoints.up('md')]: {
-          visibility: "hidden",
-          opacity: 0,
-          zIndex: 10,
-          position: 'absolute',
-          transform: '(50%, 50%)',
-          bottom: '10px',
-          right: '10px'
-      }
+      [theme.breakpoints.up("md")]: {
+        visibility: "hidden",
+        opacity: 0,
+        zIndex: 10,
+        position: "absolute",
+        transform: "(50%, 50%)",
+        bottom: "10px",
+        right: "10px",
+      },
+    },
+
+    desktopEditButton: {
+      display: "flex",
+      zIndex: 10,
+      justifyContent: "space-between",
+      alignItems: "center",
     },
 
     titleMobile: {
-        fontSize: '16px',
-        fontStyle: "italic",
-        [theme.breakpoints.up('md')]: {
-          visibility: "hidden",
-          opacity: 0,
-      }
-
+      fontSize: "16px",
+      fontStyle: "italic",
+      [theme.breakpoints.up("md")]: {
+        visibility: "hidden",
+        opacity: 0,
+      },
     },
-    
+
     likeMobile: {
       color: "black",
       fontSize: "14px",
       fontFamily: "Gotham",
-      marginLeft: "4px"
+      marginLeft: "4px",
     },
 
-
     imageContainer: {
-      borderRadius: '2px',
-      position: 'relative',
-      overflow: 'hidden',
-      textAlign: 'center',
+      borderRadius: "2px",
+      position: "relative",
+      overflow: "hidden",
+      textAlign: "center",
       [theme.breakpoints.up(960)]: {
         //"md" is broken
-        '& > div:not($newUserWrapper)': {
+        "& > div:not($newUserWrapper)": {
           // Denna släcker hjärta och likes
-          visibility: 'hidden',
-          opacity: 0
+          visibility: "hidden",
+          opacity: 0,
           //transition: "opacity 0.3s linear",
-        }
+        },
       },
-      '& > $newUserWrapper $newUser': {
-        visibility: 'visible',
-        opacity: 1
+      "& > $newUserWrapper $newUser": {
+        visibility: "visible",
+        opacity: 1,
       },
-      '&:hover > div:not($newUserWrapper)': {
-        display: 'none'
+      "&:hover > div:not($newUserWrapper)": {
+        display: "none",
         //visibility: "visible",
         //opacity: 1,
       },
-      '&:hover $newUser': {
-        visibility: 'hidden',
-        opacity: 0
+      "&:hover $newUser": {
+        visibility: "hidden",
+        opacity: 0,
       },
-      '&:hover $infoHover': {
-        visibility: 'hidden',
-        opacity: 0
+      "&:hover $infoHover": {
+        visibility: "hidden",
+        opacity: 0,
       },
-      [theme.breakpoints.up('md')]: {
-        '&:hover $infoHover': {
-          visibility: 'visible',
-          opacity: 1
+      [theme.breakpoints.up("md")]: {
+        "&:hover $infoHover": {
+          visibility: "visible",
+          opacity: 1,
         },
-     
-      }
+      },
     },
     infoHover: {
-      visibility: 'hidden',
+      visibility: "hidden",
       opacity: 0,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#ffffffc2',
-      position: 'absolute',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#ffffffc2",
+      position: "absolute",
       top: 0,
       bottom: 0,
       left: 0,
-      right: 0
+      right: 0,
     },
     infoWrapper: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     },
     titleHover: {
-      color: 'black',
-      fontSize: '20px',
-      fontStyle: 'italic'
+      color: "black",
+      fontSize: "20px",
+      fontStyle: "italic",
     },
     priceHover: {
-      color: 'black',
-      fontSize: '16px'
+      color: "black",
+      fontSize: "16px",
     },
     tagsWrapper: {},
 
     titleAndLike: {
-      display: 'flex',
+      display: "flex",
       marginTop: theme.spacing(0.4),
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
+      justifyContent: "space-between",
+      alignItems: "flex-start",
       flexGrow: 2,
       fontWeight: theme.typography.fontWeightRegular,
-      fontSize: theme.typography.h6.fontSize
+      fontSize: theme.typography.h6.fontSize,
       // placeItems: 'center'
     },
     nameTitleLike: {},
     likeInline: {
-      display: 'inline-block',
-      float: 'right',
-      height: '12px'
+      display: "inline-block",
+      float: "right",
+      height: "12px",
     },
     likeContainer: {
-      display: 'flex',
-      marginLeft: '10px',
-      marginBottom: '5px',
+      display: "flex",
+      marginLeft: "10px",
+      marginBottom: "5px",
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary,
-      placeItems: 'center'
+      placeItems: "center",
     },
     newUserWrapper: {},
     newUser: {
-      position: 'absolute',
-      visibility: 'visible',
+      position: "absolute",
+      visibility: "visible",
       opacity: 1,
       top: 10,
       right: 10,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '10px',
-      backgroundColor: 'rgb(0 0 0 / 57%)',
-      borderRadius: '20px',
-      fontWeight: '500',
-      color: 'white',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: "10px",
+      backgroundColor: "rgb(0 0 0 / 57%)",
+      borderRadius: "20px",
+      fontWeight: "500",
+      color: "white",
       flexShrink: 0,
       flexGrow: 0,
-      padding: '10px 15px 10px 15px',
+      padding: "10px 15px 10px 15px",
       boxShadow:
-        '4px 2px 4px rgba(0, 0, 0, 0.5), 4px 2px 8px rgba(0, 0, 0, 0.5)'
+        "4px 2px 4px rgba(0, 0, 0, 0.5), 4px 2px 8px rgba(0, 0, 0, 0.5)",
     },
 
     info: {
       flexGrow: 2,
       width: 0,
       padding: theme.spacing(0.4, 0, 0, 0),
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      flexWrap: 'wrap',
-      flexShrink: 1
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      flexWrap: "wrap",
+      flexShrink: 1,
     },
     name: {
-      fontSize: '0.95rem',
+      fontSize: "0.95rem",
       fontWeight: 400,
-      textOverflow: 'ellipsis',
-      lineClamp: 2
+      textOverflow: "ellipsis",
+      lineClamp: 2,
     },
     title: {
-      fontStyle: 'italic',
-      fontSize: '0.95rem',
-      height: '1.3rem',
-      marginBottom: '5px',
+      fontStyle: "italic",
+      fontSize: "0.95rem",
+      height: "1.3rem",
+      marginBottom: "5px",
 
-      [theme.breakpoints.down('sm')]: {
-        visibility: 'hidden',
-        opacity: 0
-      }
+      [theme.breakpoints.down("sm")]: {
+        visibility: "hidden",
+        opacity: 0,
+      },
     },
 
-
     sizesArt: {
-      fontStyle: 'normal',
-      fontSize: '0.75rem',
+      fontStyle: "normal",
+      fontSize: "0.75rem",
       flexShrink: 0,
-      flexGrow: 0
+      flexGrow: 0,
     },
 
     price: {
-      fontSize: '0.8rem',
-      lineHeight: '1rem',
+      fontSize: "0.8rem",
+      lineHeight: "1rem",
       fontWeight: theme.typography.fontWeightMedium,
-      display: 'flex'
+      display: "flex",
     },
 
     soldMark: {
-      background: '#C67777',
-      borderRadius: '50%',
-      width: '15px',
-      height: '15px',
-      marginRight: '5px',
-      display: 'flex'
+      background: "#C67777",
+      borderRadius: "50%",
+      width: "15px",
+      height: "15px",
+      marginRight: "5px",
+      display: "flex",
     },
     likeCounter: {
-      marginLeft: '4px',
-      marginRight: '0',
+      marginLeft: "4px",
+      marginRight: "0",
 
       padding: theme.spacing(0.9, 0, 0, 0),
       fontWeight: 500,
-      color: '#000000'
+      color: "#000000",
     },
     flexLikeCount: {
-      display: 'flex'
+      display: "flex",
     },
     likeButton: {
       padding: theme.spacing(0.2, 0, 0.4, 0.5),
-      fontSize: '0.5rem',
-      color: 'red !important',
-      '&:hover': {
-        backgroundColor: 'transparent'
-      }
+      fontSize: "0.5rem",
+      color: "red !important",
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
     },
     chatButton: {
-      visibility: 'hidden',
+      visibility: "hidden",
       opacity: 0,
-      transition: 'opacity 0.4s linear, visibility 0.9s linear',
+      transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
-      fontSize: '0.5rem',
-      color: '016A70',
-      '&:hover': {
-        backgroundColor: 'transparent'
-      }
+      fontSize: "0.5rem",
+      color: "016A70",
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
     },
     shareButton: {
-      visibility: 'hidden',
+      visibility: "hidden",
       opacity: 0,
-      transition: 'opacity 0.4s linear, visibility 0.9s linear',
+      transition: "opacity 0.4s linear, visibility 0.9s linear",
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
-      fontSize: '0.5rem',
-      color: '016A70',
-      '&:hover': {
-        backgroundColor: 'transparent'
-      }
+      fontSize: "0.5rem",
+      color: "016A70",
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
     },
     purchaseRequestButtonSv: {
-      minWidth: '100px',
-      maxWidth: '100px',
-      maxHeight: '28px',
-      minHeight: '28px',
-      whiteSpace: 'nowrap',
+      minWidth: "100px",
+      maxWidth: "100px",
+      maxHeight: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
-      margin: '1px 1px 1px 1px',
-      border: '1px solid #ffda79',
-      backgroundColor: '#ffda79',
-      color: '#3d3d4e',
-      filter: 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))',
-      fontSize: '12px',
-      fontFamily: 'gotham',
-      '&:hover': {
-        filter: 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))',
-        backgroundColor: '#ffda79',
-        color: 'black'
-      }
+      margin: "1px 1px 1px 1px",
+      border: "1px solid #ffda79",
+      backgroundColor: "#ffda79",
+      color: "#3d3d4e",
+      filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+      fontSize: "12px",
+      fontFamily: "gotham",
+      "&:hover": {
+        filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+        backgroundColor: "#ffda79",
+        color: "black",
+      },
     },
     infoContainer: {
-      maxHeight: '100px',
-      minHeight: '100px'
+      maxHeight: "100px",
+      minHeight: "100px",
     },
 
     purchaseRequestButtonEn: {
-      minWidth: '100px',
-      maxWidth: '100px',
-      maxHeight: '28px',
-      minHeight: '28px',
-      whiteSpace: 'nowrap',
+      minWidth: "100px",
+      maxWidth: "100px",
+      maxHeight: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
-      margin: '1px 1px 1px 1px',
-      border: '1px solid #ffda79',
-      backgroundColor: '#ffda79',
-      color: '#3d3d4e',
-      filter: 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))',
-      fontSize: '12px',
-      fontFamily: 'gotham',
-      '&:hover': {
-        filter: 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))',
-        backgroundColor: '#ffda79',
-        color: 'black'
-      }
+      margin: "1px 1px 1px 1px",
+      border: "1px solid #ffda79",
+      backgroundColor: "#ffda79",
+      color: "#3d3d4e",
+      filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+      fontSize: "12px",
+      fontFamily: "gotham",
+      "&:hover": {
+        filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
+        backgroundColor: "#ffda79",
+        color: "black",
+      },
     },
     inLine: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginTop: '5px',
-      position: 'relative'
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: "5px",
+      position: "relative",
     },
 
     titleTagsContainer: {
-      position: 'relative',
-      maxWidth: '100%',
+      position: "relative",
+      maxWidth: "100%",
       flexGrow: 1,
       flexShrink: 0,
-      textOverflow: 'ellipsis',
-      overflow: 'hidden'
+      textOverflow: "ellipsis",
+      overflow: "hidden",
     },
 
     tagsContainer: {
-      position: 'absolute',
+      position: "absolute",
       top: 0,
       left: 0,
-      display: 'flex',
-      visibility: 'hidden',
+      display: "flex",
+      visibility: "hidden",
       opacity: 0,
-      transition: 'opacity 0.3s, visibility 0.3s',
-      flexWrap: 'wrap',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      maxWidth: '100%',
-      overFlow: 'hidden',
-      [theme.breakpoints.down('sm')]: {
-        visibility: 'visible',
-        opacity: 1
-      }
+      transition: "opacity 0.3s, visibility 0.3s",
+      flexWrap: "wrap",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      maxWidth: "100%",
+      overFlow: "hidden",
+      [theme.breakpoints.down("sm")]: {
+        visibility: "visible",
+        opacity: 1,
+      },
     },
     rum: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: '5px'
-    }
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "5px",
+    },
   })
-)
+);

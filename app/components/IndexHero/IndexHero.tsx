@@ -85,10 +85,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "DANIEL ZAUSNIG",
-      username: "danielzausnig",
-      image: "/images/danielzausnig.jpg",
-      imageLink: "art/847ae512-28ee-4eb7-adb7-f38b14a5966f",
+      name: "ANNE PERSSON LUCENIUS",
+      username: "perssonanne",
+      image: "/images/lucenius.jpg",
+      imageLink: "art/de9e4cc6-a02e-47bb-a939-aec74657722a",
       showroom: `${t("showroom")}`,
     },
   ];
@@ -445,7 +445,6 @@ export default function IndexHero() {
               </AccordionDetails>
             </Accordion>
           </div>
-          {/* start here */}
         </div>
 
         <div className={s.right}>
@@ -468,18 +467,6 @@ export default function IndexHero() {
                 </Link>
                 {randomImage.username && (
                   <div className={s.createdBy}>
-                    {/*<Chip
-                      onClick={(_) =>
-                        router.push(
-                          `https://artportable.com/stories/exhibition-artportable-showroom---elementen`
-                        )
-                      }
-                      size="small"
-                      classes={{
-                        root: s.chip,
-                      }}
-                      label={randomImage.showroom}
-                    />*/}
                     <Chip
                       onClick={(_) =>
                         router.push(`/profile/@${randomImage.username}`)
