@@ -163,7 +163,7 @@ export default function Showroom() {
       {
         week: "Vecka 5",
         artist: "Anne Hörnell",
-        username: "annika.berglof",
+        username: "marion",
       },
       {
         week: "Vecka 6",
