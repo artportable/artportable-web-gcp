@@ -42,6 +42,19 @@ export default function Showroom() {
         ],
         site: "www.melanders.se/restauranger/melanders-sodermalm/",
       },
+      {
+        period: "17 JULI - 17 OKTOBER",
+        artists: [
+          { name: "Karl-Erik Svensson", username: "karl-erik.svensson" },
+          { name: "Harriet Haake", username: "haakeart" },
+        ],
+        site: "www.melanders.se/restauranger/melanders-sodermalm/",
+      },
+      {
+        period: "17 OKTOBER - 17 JANUARI",
+        artists: [{ name: "Anette Brekke", username: "anetteb_art" }],
+        site: "www.melanders.se/restauranger/melanders-sodermalm/",
+      },
     ],
     PS_MATSAL: [
       {
