@@ -27,6 +27,7 @@ import { TokenContext } from "../../contexts/token-context";
 import { UserContext } from "../../contexts/user-context";
 import { capitalizeFirst } from "../../utils/util";
 import useRefreshToken from "../../hooks/useRefreshToken";
+import { EditLocation } from "./EditLocation/EditLocation";
 
 interface Profile {
   title: string;
@@ -100,7 +101,7 @@ export default function EditProfileDialog({ userProfile }) {
           body: JSON.stringify(profile),
         })
       );
-
+      window.location.reload();
       mutate(getUserProfileSummaryUri(username.value));
     } catch (error) {}
   };
@@ -185,6 +186,11 @@ export default function EditProfileDialog({ userProfile }) {
                 }
                 inputProps={{ maxLength: 280 }}
               />
+
+              <EditLocation
+                profile={profile}
+                setProfile={setProfile}
+              ></EditLocation>
 
               <TextField
                 label={t("aboutMe")}

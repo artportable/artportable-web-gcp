@@ -312,9 +312,6 @@ export default function Profile({
                   )}
                 </div>
               )}
-              {/* {membership.value < Membership.Portfolio && (
-                      <UpgradePortfolio />
-                    )} */}
               <EditProfileDialog userProfile={getUserProfile?.data} />
             </div>
           </>
