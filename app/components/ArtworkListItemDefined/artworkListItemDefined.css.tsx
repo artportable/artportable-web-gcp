@@ -124,6 +124,39 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
+    sortableImageContainer: {
+      position: "relative",
+      marginRight: "20px",
+      marginBottom: "16px",
+      cursor: "pointer",
+      touchAction: "none",
+      "&:hover $infoHover:not(.is-dragging)": {
+        visibility: "visible",
+        opacity: 1,
+      },
+    },
+    sortableImageContent: {
+      position: "relative",
+      height: "100%",
+      width: "100%",
+    },
+    sortableImage: {
+      // height: "auto !important",
+      // width: "auto !important",
+      // maxHeight: "380px !important",
+      // maxWidth: "100% !important",
+
+      height: "auto",
+      width: "auto",
+      maxHeight: "300px",
+      maxWidth: "100%",
+      // marginRight: "20px",
+
+      // maxWidth: "50%",
+      [theme.breakpoints.up("md")]: {
+        // maxWidth: "33.33%",
+      },
+    },
     infoHover: {
       visibility: "hidden",
       opacity: 0,

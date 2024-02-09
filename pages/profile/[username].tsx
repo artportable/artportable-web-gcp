@@ -67,6 +67,7 @@ import { Story } from "../../app/models/Story";
 import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
+import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
 
 function a11yProps(index: any) {
   return {
@@ -140,6 +141,8 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
+
+  // const [imageOrder, setImageOrder] = useState([])
 
   const likedArt = userProfileSummary?.data?.HideLikedArtworks;
 
@@ -392,6 +395,73 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
+  const updateImageOrder = (itemIds) => {
+    // setImageOrder(itemIds)
+  }
+
+  const saveImageOrder = async (itemIds, items) => {
+    // console.log('saveImageOrder', itemIds);
+    // console.log('items', items);
+    const indexedItems = {}
+    
+    itemIds.forEach((id, index) => {
+      // console.log('id', id);
+      
+      const item = items.find(item => item.Id === id)
+      // console.log(item.Title, item.Id);
+      if (item) {
+        indexedItems[item.Id] = {
+          index,
+          title: item.Title,
+        };
+      }
+    })
+
+    console.log('indexedItems', indexedItems);
+    
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('Do return after timeout');
+        
+        resolve({
+          success: true,
+        })
+      }, 2000)
+    })
+    
+    // return refreshToken()
+    //   .then(() =>
+    //     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "image/jpeg",
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //       body: blob,
+    //     })
+    //   )
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       console.log(response.statusText);
+    //       throw response;
+    //     }
+    //     return response.text();
+    //   })
+    //   .then((name) => {
+    //     // if (namePrimary == null) {
+    //     //   setNamePrimary(name);
+    //     // } else if (nameSecondary == null) {
+    //     //   setNameSecondary(name);
+    //     // } else if (nameTertiary == null) {
+    //     //   setNameTertiary(name);
+    //     // }
+    //     return name;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -545,6 +615,17 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
+                    <div>
+                    {/*<div className={s.portfolioContainer + ' ' + s.portfolioContainerSorted}
+                    style={{ marginBottom: '200px' }}>*/}
+                    { isMyProfile && artworks.data &&
+                        <ArtworkListSortable
+                          items={artworks.data}
+                          saveOrder={saveImageOrder}
+                          editAction={isMyProfile ? openEditArtworkDialog : () => {}}
+                          />
+                    }
+                    </div>
                     <div className={s.portfolioContainer}>
                       {imageRows &&
                         imageRows.map((row: Image[], i) => (
