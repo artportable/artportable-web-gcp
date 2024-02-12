@@ -80,5 +80,9 @@
   "country": "Land",
   "state": "Bundesland",
   "city": "Stadt",
-  "fillInCountry": "Land und Stadt angeben"
+  "fillInCountry": "Land und Stadt angeben",
+  "readMore": "Mehr lesen",
+  "readLess": "Schließen",
+  "saveSort": "Speichern",
+  "resetSort": "Abbrechen"
 }

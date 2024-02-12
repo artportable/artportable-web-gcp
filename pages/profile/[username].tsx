@@ -68,6 +68,7 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
+import { log } from "console";
 
 function a11yProps(index: any) {
   return {
@@ -141,8 +142,8 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
-
-  // const [imageOrder, setImageOrder] = useState([])
+  
+  const isPremium = membership.value === 3
 
   const likedArt = userProfileSummary?.data?.HideLikedArtworks;
 
@@ -395,24 +396,14 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
-  const updateImageOrder = (itemIds) => {
-    // setImageOrder(itemIds)
-  }
-
   const saveImageOrder = async (itemIds, items) => {
-    // console.log('saveImageOrder', itemIds);
-    // console.log('items', items);
     const indexedItems = {}
     
     itemIds.forEach((id, index) => {
-      // console.log('id', id);
-      
       const item = items.find(item => item.Id === id)
-      // console.log(item.Title, item.Id);
       if (item) {
         indexedItems[item.Id] = {
-          index,
-          title: item.Title,
+          orderIndex: index,
         };
       }
     })
@@ -460,7 +451,7 @@ export default function Profile(props) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-  };
+  };  
 
   return (
     <Main navBarItems={navBarItems}>
@@ -615,101 +606,107 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    <div>
-                    {/*<div className={s.portfolioContainer + ' ' + s.portfolioContainerSorted}
-                    style={{ marginBottom: '200px' }}>*/}
-                    { isMyProfile && artworks.data &&
+                    { isMyProfile && isPremium &&
+                      <div style={{ marginBottom: '0px' }}>
                         <ArtworkListSortable
                           items={artworks.data}
                           saveOrder={saveImageOrder}
                           editAction={isMyProfile ? openEditArtworkDialog : () => {}}
-                          />
+                          t={t}
+                        />
+                        <EditArtworkDialog
+                          artwork={artworkToEdit}
+                          open={editArtworkOpen}
+                          onClose={onEditArtworkClose}
+                        />
+                      </div>
                     }
-                    </div>
-                    <div className={s.portfolioContainer}>
-                      {imageRows &&
-                        imageRows.map((row: Image[], i) => (
-                          <div className={s.portfolioRow} key={i}>
-                            {row.map((image) => {
-                              let artwork = artworks.data?.find(
-                                (a) => a.PrimaryFile.Name === image.Name
-                              );
-
-                              if (artwork) {
-                                return (
-                                  <ArtworkListItemDefinedProfile
-                                    key={image.Name}
-                                    width={
-                                      smScreenOrSmaller ? "100%" : image.Width
-                                    }
-                                    height={
-                                      smScreenOrSmaller ? "auto" : image.Height
-                                    }
-                                    artwork={artwork}
-                                    topActions={
-                                      isMyProfile && (
-                                        <>
-                                          <Button
-                                            aria-label="edit"
-                                            className={s.editButton}
-                                            variant="contained"
-                                            color="red"
-                                            rounded
-                                            onClick={() =>
-                                              openEditArtworkDialog(artwork)
-                                            }
-                                            startIcon={<BrushSharpIcon />}
-                                          ></Button>
-                                        </>
-                                      )
-                                    }
-                                    onPurchaseRequestClick={
-                                      onPurchaseRequestClick
-                                    }
-                                    purchaseRequestAction={
-                                      ActionType.PURCHASE_REQUEST_LIST_PROFILE
-                                    }
-                                    onLikeClick={onLikeClick}
-                                    indexPage={false}
-                                  />
+                    { (!isMyProfile || !isPremium) &&
+                      <div className={s.portfolioContainer}>
+                        {imageRows &&
+                          imageRows.map((row: Image[], i) => (
+                            <div className={s.portfolioRow} key={i}>
+                              {row.map((image) => {
+                                let artwork = artworks.data?.find(
+                                  (a) => a.PrimaryFile.Name === image.Name
                                 );
-                              }
-                            })}
-                          </div>
-                        ))}
-                      <PurchaseRequestDialog
-                        open={purchaseRequestDialogOpen}
-                        onClose={togglePurchaseRequestDialog}
-                        props={{
-                          pathname: "/messages",
-                          title: purchaseRequestDialogData.title,
-                          creator: purchaseRequestDialogData.creator,
-                          url: purchaseRequestDialogData.url,
-                          referTo: purchaseRequestDialogData.referTo,
-                          imageUrl: purchaseRequestDialogData.imageurl,
-                        }}
-                      />
-                      <EditArtworkDialog
-                        artwork={artworkToEdit}
-                        open={editArtworkOpen}
-                        onClose={onEditArtworkClose}
-                      />
-                      {artworks.isLoading && (
-                        <>
-                          <div className={s.portfolioRow}>
-                            <ArtworkListItemDefinedSkeleton grow={1} />
-                            <ArtworkListItemDefinedSkeleton grow={3} />
-                            <ArtworkListItemDefinedSkeleton grow={2} />
-                            <ArtworkListItemDefinedSkeleton grow={1} />
-                          </div>
-                          <div className={s.portfolioRow}>
-                            <ArtworkListItemDefinedSkeleton grow={2} />
-                            <ArtworkListItemDefinedSkeleton grow={4} />
-                            <ArtworkListItemDefinedSkeleton grow={3} />
-                          </div>
-                        </>
-                      )}
-                    </div>
+
+                                if (artwork) {
+                                  return (
+                                    <ArtworkListItemDefinedProfile
+                                      key={image.Name}
+                                      width={
+                                        smScreenOrSmaller ? "100%" : image.Width
+                                      }
+                                      height={
+                                        smScreenOrSmaller ? "auto" : image.Height
+                                      }
+                                      artwork={artwork}
+                                      topActions={
+                                        isMyProfile && (
+                                          <>
+                                            <Button
+                                              aria-label="edit"
+                                              className={s.editButton}
+                                              variant="contained"
+                                              color="red"
+                                              rounded
+                                              onClick={() =>
+                                                openEditArtworkDialog(artwork)
+                                              }
+                                              startIcon={<BrushSharpIcon />}
+                                            ></Button>
+                                          </>
+                                        )
+                                      }
+                                      onPurchaseRequestClick={
+                                        onPurchaseRequestClick
+                                      }
+                                      purchaseRequestAction={
+                                        ActionType.PURCHASE_REQUEST_LIST_PROFILE
+                                      }
+                                      onLikeClick={onLikeClick}
+                                      indexPage={false}
+                                    />
+                                  );
+                                }
+                              })}
+                            </div>
+                          ))}
+                        <PurchaseRequestDialog
+                          open={purchaseRequestDialogOpen}
+                          onClose={togglePurchaseRequestDialog}
+                          props={{
+                            pathname: "/messages",
+                            title: purchaseRequestDialogData.title,
+                            creator: purchaseRequestDialogData.creator,
+                            url: purchaseRequestDialogData.url,
+                            referTo: purchaseRequestDialogData.referTo,
+                            imageUrl: purchaseRequestDialogData.imageurl,
+                          }}
+                        />
+                        <EditArtworkDialog
+                          artwork={artworkToEdit}
+                          open={editArtworkOpen}
+                          onClose={onEditArtworkClose}
+                        />
+                        {artworks.isLoading && (
+                          <>
+                            <div className={s.portfolioRow}>
+                              <ArtworkListItemDefinedSkeleton grow={1} />
+                              <ArtworkListItemDefinedSkeleton grow={3} />
+                              <ArtworkListItemDefinedSkeleton grow={2} />
+                              <ArtworkListItemDefinedSkeleton grow={1} />
+                            </div>
+                            <div className={s.portfolioRow}>
+                              <ArtworkListItemDefinedSkeleton grow={2} />
+                              <ArtworkListItemDefinedSkeleton grow={4} />
+                              <ArtworkListItemDefinedSkeleton grow={3} />
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    }
                   </TabPanel>
                   <TabPanel value={activeTab} index={1}>
                     <AboutMe

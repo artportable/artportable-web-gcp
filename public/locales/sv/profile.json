@@ -82,5 +82,7 @@
   "city": "Stad",
   "fillInCountry": "Fyll i land och stad",
   "readMore": "Läs mer",
-  "readLess": "Stäng"
+  "readLess": "Stäng",
+  "saveSort": "Spara",
+  "resetSort": "Avbryt"
 }

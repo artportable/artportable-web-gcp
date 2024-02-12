@@ -80,5 +80,9 @@
   "country": "Land",
   "state": "Hérað",
   "city": "Bær",
-  "fillInCountry": "Vinsamlegast fyllið út land og borg"
+  "fillInCountry": "Vinsamlegast fyllið út land og borg",
+  "readMore": "Lesa meira",
+  "readLess": "Loka",
+  "saveSort": "Vista",
+  "resetSort": "Hætta við"
 }

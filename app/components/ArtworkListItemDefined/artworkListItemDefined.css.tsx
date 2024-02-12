@@ -141,21 +141,10 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     sortableImage: {
-      // height: "auto !important",
-      // width: "auto !important",
-      // maxHeight: "380px !important",
-      // maxWidth: "100% !important",
-
       height: "auto",
       width: "auto",
       maxHeight: "300px",
       maxWidth: "100%",
-      // marginRight: "20px",
-
-      // maxWidth: "50%",
-      [theme.breakpoints.up("md")]: {
-        // maxWidth: "33.33%",
-      },
     },
     infoHover: {
       visibility: "hidden",
@@ -411,5 +400,22 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginBottom: "5px",
     },
+    sortButtons: {
+      position: "sticky",
+      top: '100px',
+      left: "0px",
+      marginBottom: '10px',
+      zIndex: 100,
+      opacity: 1,
+    },
+    sortButtonsHidden: {
+      opacity: 0,
+    },
+    saveSortChangesButton: {
+      marginRight: '20px',
+    },
+    discardSortChangesButton: {
+
+    }
   })
 );

@@ -14,27 +14,28 @@ import {
   SortableContext,
   sortableKeyboardCoordinates,
   rectSortingStrategy,
-  // verticalListSortingStrategy,
-  // horizontalListSortingStrategy,
-  // rectSwappingStrategy,
 } from '@dnd-kit/sortable';
+import clsx from 'clsx'
 import {SortableItem} from './SortableItem';
-import { log } from 'console';
+import Button from "../../../app/components/Button/Button";
+import { styles } from "./artworkListItemDefined.css";
 
 export default function ArtworkListSortable({
   items,
   saveOrder,
   editAction,
+  t,
 }) {
+  const s = styles();
   const router = useRouter();
   const [itemIds, setItemIds] = useState<string[]>([]);
-  // Saving original order to check if order has changed.
+  // Saving original order to be able to reset sort changes.
   const [itemIdsOriginal, setItemIdsOriginal] = useState<string[]>([]);
   const [ordersHasChanged, setOrderHasChanged] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   useEffect(() => {
-    console.log('USE EFFECT');
-    // setItems(artworks.data.map(artwork => artwork.Id))
-    const ids = items.map(item => item.Id)
+    console.log('useEffect ArtworkListSortable');
+    const ids = items ? items.map(item => item.Id) : []
     setItemIds(ids)
     setItemIdsOriginal(ids)
   }, items)
@@ -56,47 +57,56 @@ export default function ArtworkListSortable({
 
   const saveOrderClicked = async () => {
     console.log('saveOrderClicked');
+    setIsSaving(true)
+
     
     let result = null
     try {
       result = await saveOrder(itemIds, items)
       console.log('saveOrderClicked result:', result);
       setOrderHasChanged(false)
+      // Should not have to set original here, should be updated when saved art returned in new order from db.
+      setItemIdsOriginal(itemIds)
     } catch(err) {
       console.log('Error in saveOrderClicked:', err);
     }
+
+    setIsSaving(false)
   }
 
-  // const checkOrderHasChanged = () => {
-    // if (itemIds.length !== itemIdsOriginal.length) return true
-  // }
-
-  // console.log('');
-  // console.log('saveOrder', saveOrder);
-  // console.log('items', items);
-  // items.forEach(item => {
-  //   console.log(item.Id);
-  // })
-  // console.log('itemIds', itemIds);
-  // itemIds.forEach(id => {
-  //   console.log(id);
-  // })
-
-  // const arr = [0,1,2,3,4]
-  // const arr2 = arrayMove(arr, 2, 1);
-  // console.log('arr', arr);
-  // console.log('arr2', arr2);
+  const resetOrder = () => {
+    setItemIds(itemIdsOriginal)
+    setOrderHasChanged(false)
+  }
 
   return (
     <div>
-      <button
-        onClick={() => saveOrderClicked()}
-        style={{
-          // color: ordersHasChanged ? 'red' : 'green',
-          marginBottom: "20px",
-        }}
-        disabled={!ordersHasChanged}
-        >Spara ordning</button>
+      <div className={clsx(s.sortButtons, {
+        [s.sortButtonsHidden]: !ordersHasChanged,
+      })}>
+      <Button
+          aria-label="edit"
+          className={s.saveSortChangesButton}
+          variant="contained"
+          color="red"
+          rounded
+          disabled={!ordersHasChanged || isSaving}
+          onClick={() =>
+            saveOrderClicked()
+          }
+        >{t('profile:saveSort')}</Button>
+        <Button
+          aria-label="edit"
+          className={s.discardSortChangesButton}
+          variant="contained"
+          color="red"
+          rounded
+          disabled={!ordersHasChanged || isSaving}
+          onClick={() =>
+            resetOrder()
+          }
+        >{t('profile:resetSort')}</Button>
+      </div>
       <div style={{
         display: 'flex',
         flexFlow: 'row wrap',
@@ -125,6 +135,7 @@ export default function ArtworkListSortable({
                   editAction={editAction}
                   isDragging={isDragging}
                   router={router}
+                  dragDisabled={isSaving}
                 />
               )
             }
