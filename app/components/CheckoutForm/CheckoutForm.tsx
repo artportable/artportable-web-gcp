@@ -139,7 +139,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   // Create subscription
   function createSubscription({ customerId, paymentMethodId, priceId }) {
-    return fetch(`${apiBaseUrl}/api/payments/subscriptions`, {
+    return fetch(`${apiBaseUrl}/api/payments/upgrade`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

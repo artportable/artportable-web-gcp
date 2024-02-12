@@ -56,7 +56,7 @@ export default function PlanSelector({
   //   },
   // ];
 
-  const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
+  const plans = getDistinct(priceData?.sort(compareAmounts), (p) => p.product);
   // plans.push("portfolioPremium");
 
   function compareAmounts(a, b) {
