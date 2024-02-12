@@ -36,7 +36,7 @@ import { getNavBarItems } from "../app/utils/getNavBarItems";
 import axios from "axios";
 import { FeedItem } from "../app/models/FeedItem";
 import { useGetTrendingArtworks } from "../app/hooks/dataFetching/Artworks";
-
+import { Router } from "next/router";
 export default function FeedPage({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation(["feed", "common"]);
