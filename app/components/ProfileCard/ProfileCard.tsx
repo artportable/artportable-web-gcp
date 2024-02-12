@@ -19,7 +19,7 @@ import UserListDialog from "../UserListDialog/UserListDialog";
 import { useGetFollowers } from "../../hooks/dataFetching/useGetFollowers";
 import { useGetFollowing } from "../../hooks/dataFetching/useGetFollowing";
 import { useGetConnectionsCount } from "../../hooks/dataFetching/userGetConnectionsCount";
-
+import { Router, useRouter } from "next/router";
 export default function ProfileCard({
   userProfile,
   userProfilePicture,
@@ -41,7 +41,7 @@ export default function ProfileCard({
   const followersData = useGetFollowers(data?.Username, followersOpen);
   const followingData = useGetFollowing(data?.Username, followingOpen);
   const connectionscountData = useGetConnectionsCount(data?.Username);
-
+  const router = useRouter();
   const handleFileUpload = (event) => {
     if (isNullOrUndefined(event?.target?.files[0])) {
       return;
@@ -230,7 +230,7 @@ export default function ProfileCard({
               <div className={s.hovs}>
                 <Button
                   className={s.upgradeButton}
-                  onClick={redirectToPremiumUpgrade}
+                  onClick={() => router.push("/upgrade")}
                 >
                   <Typography className={s.headerButtonUpgrade}>
                     {t("upgradePremium")}
