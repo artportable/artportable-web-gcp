@@ -230,7 +230,7 @@ export default function ProfileCard({
               <div className={s.hovs}>
                 <Button
                   className={s.upgradeButton}
-                  onClick={router.push("/upgrade")}
+                  onClick={() => router.push("/upgrade")}
                 >
                   <Typography className={s.headerButtonUpgrade}>
                     {t("upgradePremium")}
