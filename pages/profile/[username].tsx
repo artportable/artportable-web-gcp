@@ -68,7 +68,6 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import { log } from "console";
 
 function a11yProps(index: any) {
   return {
@@ -142,8 +141,8 @@ export default function Profile(props) {
     referTo: "",
     imageurl: "",
   });
-  
-  const isPremium = membership.value === 3
+
+  const isPremium = membership.value === 3;
 
   const likedArt = userProfileSummary?.data?.HideLikedArtworks;
 
@@ -396,54 +395,6 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
-  const saveImageOrder = async (itemIds, items) => {
-    const indexedItems = {}
-    
-    itemIds.forEach((id, index) => {
-      const item = items.find(item => item.Id === id)
-      if (item) {
-        indexedItems[item.Id] = {
-          orderIndex: index,
-          // title: item.Title,
-        };
-      }
-    })
-
-    console.log('indexedItems', indexedItems);
-    
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log('Do return after timeout');
-        
-        resolve({
-          success: true,
-        })
-      }, 2000)
-    })
-    
-    // return refreshToken()
-    //   .then(() =>
-    //     fetch(`${apiBaseUrl}/api/artworks/${username.value}`, {
-    //       method: "PUT",
-    //       headers: {
-    //         "Content-Type": "image/jpeg",
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //       body: JSON.stringify(indexedItems),
-    //     })
-    //   )
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       console.log(response.statusText);
-    //       throw response;
-    //     }
-    //     return response.text();
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  };  
-
   return (
     <Main navBarItems={navBarItems}>
       <Head>
@@ -597,12 +548,13 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    { (isMyProfile && isPremium) ?
-                      <div style={{ marginBottom: '0px' }}>
+                    {isMyProfile && isPremium ? (
+                      <div style={{ marginBottom: "0px" }}>
                         <ArtworkListSortable
                           items={artworks.data}
-                          saveOrder={saveImageOrder}
-                          editAction={isMyProfile ? openEditArtworkDialog : () => {}}
+                          editAction={
+                            isMyProfile ? openEditArtworkDialog : () => {}
+                          }
                           t={t}
                         />
                         <EditArtworkDialog
@@ -611,7 +563,7 @@ export default function Profile(props) {
                           onClose={onEditArtworkClose}
                         />
                       </div>
-                      :
+                    ) : (
                       <div className={s.portfolioContainer}>
                         {imageRows &&
                           imageRows.map((row: Image[], i) => (
@@ -629,7 +581,9 @@ export default function Profile(props) {
                                         smScreenOrSmaller ? "100%" : image.Width
                                       }
                                       height={
-                                        smScreenOrSmaller ? "auto" : image.Height
+                                        smScreenOrSmaller
+                                          ? "auto"
+                                          : image.Height
                                       }
                                       artwork={artwork}
                                       topActions={
@@ -696,7 +650,7 @@ export default function Profile(props) {
                           </>
                         )}
                       </div>
-                    }
+                    )}
                   </TabPanel>
                   <TabPanel value={activeTab} index={1}>
                     <AboutMe
