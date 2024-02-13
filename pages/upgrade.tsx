@@ -106,7 +106,7 @@ export default function Upgrade({ navBarItems, priceData }) {
             )}
             <div className={s.planCards}>
               {plans.map((plan) => {
-                if (plan === "portfolioPremium") {
+                if (plan === "Portfolio Premium") {
                   const p = priceData.find(
                     (pd) =>
                       pd.product === plan &&
