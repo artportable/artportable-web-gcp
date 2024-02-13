@@ -85,10 +85,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "ANNE PERSSON LUCENIUS",
-      username: "perssonanne",
-      image: "/images/lucenius.jpg",
-      imageLink: "art/de9e4cc6-a02e-47bb-a939-aec74657722a",
+      name: "MARIA ANDERSSON",
+      username: "maria.andersson",
+      image: "/images/mariaandersson.jpg",
+      imageLink: "art/6df8a618-a074-4bdd-adde-71cda7599e01",
       showroom: `${t("showroom")}`,
     },
   ];
