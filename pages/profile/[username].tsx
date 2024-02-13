@@ -404,6 +404,7 @@ export default function Profile(props) {
       if (item) {
         indexedItems[item.Id] = {
           orderIndex: index,
+          // title: item.Title,
         };
       }
     })
@@ -422,13 +423,13 @@ export default function Profile(props) {
     
     // return refreshToken()
     //   .then(() =>
-    //     fetch(`${apiBaseUrl}/api/images?w=${width}&h=${height}`, {
-    //       method: "POST",
+    //     fetch(`${apiBaseUrl}/api/artworks/${username.value}`, {
+    //       method: "PUT",
     //       headers: {
     //         "Content-Type": "image/jpeg",
     //         Authorization: `Bearer ${token}`,
     //       },
-    //       body: blob,
+    //       body: JSON.stringify(indexedItems),
     //     })
     //   )
     //   .then((response) => {
@@ -437,16 +438,6 @@ export default function Profile(props) {
     //       throw response;
     //     }
     //     return response.text();
-    //   })
-    //   .then((name) => {
-    //     // if (namePrimary == null) {
-    //     //   setNamePrimary(name);
-    //     // } else if (nameSecondary == null) {
-    //     //   setNameSecondary(name);
-    //     // } else if (nameTertiary == null) {
-    //     //   setNameTertiary(name);
-    //     // }
-    //     return name;
     //   })
     //   .catch((error) => {
     //     console.log(error);
@@ -606,7 +597,7 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    { isMyProfile && isPremium &&
+                    { (isMyProfile && isPremium) ?
                       <div style={{ marginBottom: '0px' }}>
                         <ArtworkListSortable
                           items={artworks.data}
@@ -620,8 +611,7 @@ export default function Profile(props) {
                           onClose={onEditArtworkClose}
                         />
                       </div>
-                    }
-                    { (!isMyProfile || !isPremium) &&
+                      :
                       <div className={s.portfolioContainer}>
                         {imageRows &&
                           imageRows.map((row: Image[], i) => (

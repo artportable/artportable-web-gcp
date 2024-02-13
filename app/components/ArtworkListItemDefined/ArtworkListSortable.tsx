@@ -63,7 +63,6 @@ export default function ArtworkListSortable({
     let result = null
     try {
       result = await saveOrder(itemIds, items)
-      console.log('saveOrderClicked result:', result);
       setOrderHasChanged(false)
       // Should not have to set original here, should be updated when saved art returned in new order from db.
       setItemIdsOriginal(itemIds)
