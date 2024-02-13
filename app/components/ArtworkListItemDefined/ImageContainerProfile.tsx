@@ -9,12 +9,14 @@ import TagChip from "../TagChip/TagChip";
 import { getPriceFormatter } from "../../utils/formatUtils";
 import { styles } from "./artworkListItemDefined.css";
 import { profileStyles } from "../../../styles/[username]";
+import ArtworkListItemDefinedSkeleton from "../../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton";
 
 export default function ImageContainer({
   artwork,
   editAction,
   isDragging,
   router,
+  isSaving,
 }) {
   const s = styles();
   const ps = profileStyles();
@@ -56,6 +58,9 @@ export default function ImageContainer({
           key={1}
           src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
           className={s.sortableImage}
+          style={{
+            opacity: !isSaving ? 1 : 0,
+          }}
         />
         <div className={clsx(s.infoHover, {
           'is-dragging': isDragging,
@@ -96,6 +101,17 @@ export default function ImageContainer({
               ))}
           </div>
         </div>
+        { isSaving &&
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}>
+            <ArtworkListItemDefinedSkeleton grow={1} />
+          </div>
+        }
       </div>
       <div className={s.desktopEditButton}>
         {topActions && (
