@@ -70,12 +70,15 @@ export default function Upgrade({ navBarItems, priceData }) {
     return () => abortCont.abort();
   }, []);
 
+  useEffect(() => {
+    console.log();
+  }, [priceData]);
+
   return (
     <Main isShow={false} navBarItems={navBarItems}>
       <div style={{ backgroundColor: "", width: "100%", height: "100%" }}>
         {membership?.value >= 2 ? (
           <div>
-            {" "}
             {hideTabs === false && (
               <div className={s.paymentOptions}>
                 <Tabs
@@ -103,7 +106,7 @@ export default function Upgrade({ navBarItems, priceData }) {
             )}
             <div className={s.planCards}>
               {plans.map((plan) => {
-                if (plan === "PortfolioPremium") {
+                if (plan === "portfolioPremium") {
                   const p = priceData.find(
                     (pd) =>
                       pd.product === plan &&
