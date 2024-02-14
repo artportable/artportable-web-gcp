@@ -86,6 +86,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       ...columnGap(16),
     },
+    portfolioContainerSorted: {
+      flexFlow: 'row wrap',
+    },
     portfolioRow: {
       display: "flex",
       ...rowGap(16),

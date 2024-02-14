@@ -81,5 +81,7 @@
   "city": "City",
   "fillInCountry": "Please fill in Country and City",
   "readMore": "Read more",
-  "readLess": "Close"
+  "readLess": "Close",
+  "saveSort": "Save",
+  "resetSort": "Reset"
 }

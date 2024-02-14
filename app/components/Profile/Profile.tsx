@@ -163,7 +163,7 @@ export default function Profile({
       <div className={s.fullNameCounter}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Typography variant="h5" className={s.fullName}>
-            {userProfile?.data?.Name.toUpperCase()}{" "}
+            {userProfile?.data?.Name?.toUpperCase()}{" "}
             {userProfile?.data?.Surname &&
               userProfile?.data?.Surname.toUpperCase()}{" "}
           </Typography>
