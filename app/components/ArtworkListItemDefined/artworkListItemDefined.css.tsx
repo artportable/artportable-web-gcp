@@ -124,6 +124,31 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
+    sortableImageContainer: {
+      position: "relative",
+      marginRight: "20px",
+      marginBottom: "16px",
+      cursor: "pointer",
+      touchAction: "none",
+      "&:hover $infoHover:not(.is-dragging)": {
+        visibility: "visible",
+        opacity: 1,
+      },
+    },
+    sortIsSaving: {
+      cursor: "default",
+    },
+    sortableImageContent: {
+      position: "relative",
+      height: "100%",
+      width: "100%",
+    },
+    sortableImage: {
+      height: "auto",
+      width: "auto",
+      maxHeight: "300px",
+      maxWidth: "100%",
+    },
     infoHover: {
       visibility: "hidden",
       opacity: 0,
@@ -378,5 +403,22 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginBottom: "5px",
     },
+    sortButtons: {
+      position: "sticky",
+      top: '100px',
+      left: "0px",
+      marginBottom: '10px',
+      zIndex: 100,
+      opacity: 1,
+    },
+    sortButtonsHidden: {
+      opacity: 0,
+    },
+    saveSortChangesButton: {
+      marginRight: '20px',
+    },
+    discardSortChangesButton: {
+
+    }
   })
 );

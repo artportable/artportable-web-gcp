@@ -79,5 +79,9 @@
   "country": "Land",
   "state": "Stat",
   "city": "By",
-  "fillInCountry": "Vennligst fyll inn Land og By"
+  "fillInCountry": "Vennligst fyll inn Land og By",
+  "readMore": "Les mer",
+  "readLess": "Steng",
+  "saveSort": "Lagre",
+  "resetSort": "Avbryt"
 }

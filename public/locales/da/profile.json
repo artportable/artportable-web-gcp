@@ -79,5 +79,9 @@
   "country": "Land",
   "state": "Stat",
   "city": "By",
-  "fillInCountry": "Udfyld venligst land og by"
+  "fillInCountry": "Udfyld venligst land og by",
+  "readMore": "Læs mere",
+  "readLess": "Luk",
+  "saveSort": "Gem",
+  "resetSort": "Annuller"
 }

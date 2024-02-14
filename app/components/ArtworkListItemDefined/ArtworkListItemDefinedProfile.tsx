@@ -43,6 +43,7 @@ export default function ArtworkListItemDefinedProfile({
 
   const isMyProfile = profileUser === username.value;
 
+  // TODO: Use getFormatter function in utils/formatUtils.tsx instead.
   function getFormatter(
     languageCode: string,
     currency: string | null
