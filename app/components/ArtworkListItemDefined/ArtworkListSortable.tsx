@@ -34,8 +34,8 @@ export default function ArtworkListSortable({ items, editAction, t }) {
     setItemIds(ids);
     setItemIdsOriginal(ids);
   }, items);
-
   const [isDragging, setIsDragging] = useState(false);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   // Set distance on PointerSensor so it does not start dragging immediately.
   // Makes onClick on ImageContainerProfile possible.
@@ -55,7 +55,7 @@ export default function ArtworkListSortable({ items, editAction, t }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/Artworks/updateOrderIndices",
+        `${apiBaseUrl}/api/Artworks/updateOrderIndices`,
         {
           method: "PUT",
           headers: {
