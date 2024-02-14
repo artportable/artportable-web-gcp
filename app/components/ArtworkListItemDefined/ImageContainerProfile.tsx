@@ -34,6 +34,7 @@ export default function ImageContainer({
       variant="contained"
       color="red"
       rounded
+      disabled={isSaving}
       onClick={() =>
         editAction(artwork)
       }
@@ -43,11 +44,15 @@ export default function ImageContainer({
 
   // Putting Link around SortableItem does not work, use click instead.
   const cardClicked = (evt) => {
-    router.push(`/art/${artwork.Id}`)
+    if (!isSaving) {
+      router.push(`/art/${artwork.Id}`)
+    }
   }
 
   return (
-    <div className={s.sortableImageContainer}>
+    <div className={clsx(s.sortableImageContainer, {
+      [s.sortIsSaving]: isSaving,
+    })}>
       <div
         className={s.sortableImageContent}
         onClick={cardClicked}>

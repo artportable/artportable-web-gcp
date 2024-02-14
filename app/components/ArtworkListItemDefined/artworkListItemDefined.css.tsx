@@ -135,6 +135,9 @@ export const styles = makeStyles((theme: Theme) =>
         opacity: 1,
       },
     },
+    sortIsSaving: {
+      cursor: "default",
+    },
     sortableImageContent: {
       position: "relative",
       height: "100%",
