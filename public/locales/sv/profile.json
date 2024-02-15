@@ -84,5 +84,6 @@
   "readMore": "Läs mer",
   "readLess": "Stäng",
   "saveSort": "Spara",
-  "resetSort": "Avbryt"
+  "resetSort": "Avbryt",
+  "enterUserName": "Det räcker med användarnamnet"
 }

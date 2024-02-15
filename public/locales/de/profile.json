@@ -84,5 +84,6 @@
   "readMore": "Mehr lesen",
   "readLess": "Schließen",
   "saveSort": "Speichern",
-  "resetSort": "Abbrechen"
+  "resetSort": "Abbrechen",
+  "enterUserName": "Es reicht der Benutzername"
 }

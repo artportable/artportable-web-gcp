@@ -83,5 +83,6 @@
   "readMore": "Read more",
   "readLess": "Close",
   "saveSort": "Save",
-  "resetSort": "Reset"
+  "resetSort": "Reset",
+  "enterUserName": "The username is enough"
 }

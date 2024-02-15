@@ -34,7 +34,7 @@ import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import UploadIcon from "@material-ui/icons/Publish";
 import { RWebShare } from "react-web-share";
 import Offers from "../ExclusiveOffers/Offers";
-import { CSSProperties } from "react";
+import { CSSProperties, Fragment } from "react";
 
 export default function Profile({
   userProfileUrl,
@@ -150,10 +150,10 @@ export default function Profile({
 
   function renderWithLineBreaks(text) {
     return text.split("\n").map((str, index, array) => (
-      <>
+      <Fragment key={index}>
         {str}
         {index === array.length - 1 ? null : <br />}
-      </>
+      </Fragment>
     ));
   }
 
