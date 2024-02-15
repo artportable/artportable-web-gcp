@@ -83,5 +83,6 @@
   "readMore": "Læs mere",
   "readLess": "Luk",
   "saveSort": "Gem",
-  "resetSort": "Annuller"
+  "resetSort": "Annuller",
+  "enterUserName": "Brugernavnet er tilstrækkeligt"
 }

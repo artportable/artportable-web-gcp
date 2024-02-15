@@ -29,7 +29,6 @@ export default function ArtworkListSortable({ items, editAction, t }) {
   const [ordersHasChanged, setOrderHasChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   useEffect(() => {
-    console.log("useEffect ArtworkListSortable");
     const ids = items ? items.map((item) => item.Id) : [];
     setItemIds(ids);
     setItemIdsOriginal(ids);
@@ -97,7 +96,6 @@ export default function ArtworkListSortable({ items, editAction, t }) {
           aria-label="edit"
           className={s.saveSortChangesButton}
           variant="contained"
-          color="red"
           rounded
           disabled={!ordersHasChanged || isSaving}
           onClick={() => saveOrderClicked()}
@@ -108,7 +106,6 @@ export default function ArtworkListSortable({ items, editAction, t }) {
           aria-label="edit"
           className={s.discardSortChangesButton}
           variant="contained"
-          color="red"
           rounded
           disabled={!ordersHasChanged || isSaving}
           onClick={() => resetOrder()}
@@ -153,42 +150,17 @@ export default function ArtworkListSortable({ items, editAction, t }) {
     </div>
   );
 
-  return (
-    <div>
-      <Typography component="h2" variant={"h2"}>
-        {"START"}
-      </Typography>
-      {items.data &&
-        items.data.map((item) => {
-          console.log("item", item);
-
-          return <h4>{item.Title}</h4>;
-        })}
-      <Typography component="h2" variant={"h2"}>
-        {"END"}
-      </Typography>
-    </div>
-  );
-
   function handleDragStart(event) {
-    // console.log('handleDragStart', event);
     setIsDragging(true);
   }
 
   function handleDragEnd(event) {
     const { active, over } = event;
-    // console.log('handleDragEnd');
-    // console.log('active', active);
-    // console.log('over', over);
 
     if (active.id !== over.id) {
-      // console.log('UPDAte ORDER');
-
       setItemIds((items) => {
         const oldIndex = items.indexOf(active.id);
         const newIndex = items.indexOf(over.id);
-        // console.log('oldIndex', oldIndex);
-        // console.log('newIndex', newIndex);
 
         return arrayMove(items, oldIndex, newIndex);
       });
@@ -196,18 +168,5 @@ export default function ArtworkListSortable({ items, editAction, t }) {
       setOrderHasChanged(true);
     }
     setIsDragging(false);
-    // checkOrderHasChanged()
   }
-  /*function handleDragEnd(event) {
-    const {active, over} = event;
-    
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
-        
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  }*/
 }
