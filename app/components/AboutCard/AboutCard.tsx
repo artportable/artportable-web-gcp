@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState, Fragment } from "react";
 import {
   Avatar,
   Box,
@@ -31,10 +31,10 @@ export default function AboutCard({
 
   function renderWithLineBreaks(text) {
     return text.split("\n").map((str, index, array) => (
-      <>
+      <Fragment key={index}>
         {str}
         {index === array.length - 1 ? null : <br />}
-      </>
+      </Fragment>
     ));
   }
 

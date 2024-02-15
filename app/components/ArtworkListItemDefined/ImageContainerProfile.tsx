@@ -32,7 +32,6 @@ export default function ImageContainer({
       aria-label="edit"
       className={ps.editButton}
       variant="contained"
-      color="red"
       rounded
       disabled={isSaving}
       onClick={() =>

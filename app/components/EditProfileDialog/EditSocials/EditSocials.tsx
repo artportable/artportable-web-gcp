@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { TextField, IconButton, InputAdornment } from "@material-ui/core";
 import { EditDialogSection } from "../EditDialogSection/EditDialogSection";
 import { useTranslation } from "next-i18next";
@@ -8,6 +9,7 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import LanguageIcon from "@material-ui/icons/Language";
 import ClearIcon from "@material-ui/icons/Clear";
 import Icon from "@material-ui/core/Icon";
+import { log } from 'console';
 
 export const EditSocials = ({ profile, setProfile }) => {
   const { t } = useTranslation("profile");
@@ -36,13 +38,35 @@ export const EditSocials = ({ profile, setProfile }) => {
     );
   };
 
+  const INSTAGRAM_URL = 'https://www.instagram.com/'
+  const updateInstagram = (event) => {
+    let newValue = event.target.value
+
+    if (newValue.length < 1) {
+      return setSocialMediaProp(newValue, "instagram")
+    }
+    
+    const index = INSTAGRAM_URL.indexOf(newValue.slice(0, INSTAGRAM_URL.length))
+    
+    // If what user entered does not start with the instagram url https://...
+    if (index !== 0) {
+      // Only keep user input that is after any entered ":" or "/".
+      const addressAfterSlash = newValue.split(':').pop().split('/').pop()
+      
+      newValue = INSTAGRAM_URL + addressAfterSlash
+    }
+    
+    setSocialMediaProp(newValue, "instagram")
+  }
+
   return (
     <EditDialogSection title={t("socialNetworks")}>
-      <TextField
+
+    <TextField
         label={t("instagram")}
         value={profile?.socialMedia?.instagram}
         onChange={(event) =>
-          setSocialMediaProp(event.target.value, "instagram")
+          updateInstagram(event)
         }
         inputProps={{ maxLength: 280 }}
         InputProps={{
@@ -62,6 +86,7 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>
           ),
         }}
+        placeholder={t("enterUserName")}
         helperText={
           profile.socialMedia?.instagram &&
           profile.socialMedia.instagram != "" &&
