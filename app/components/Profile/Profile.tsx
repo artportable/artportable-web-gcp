@@ -51,9 +51,8 @@ export default function Profile({
   const s = styles();
   const { t } = useTranslation(["common", "profile", "upload", "header"]);
   const data = userProfile?.data;
-  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+
   const theme: Theme = useTheme();
-  const downtheme = useTheme();
 
   const [followingOpen, setFollowingOpen] = useState(false);
   const [followersOpen, setFollowersOpen] = useState(false);
@@ -66,9 +65,7 @@ export default function Profile({
   const token = useContext(TokenContext);
   const profileUser = useGetProfileUser();
   const getUserProfile = useGetUserProfile(profileUser, username?.value);
-  const [isUserFollowed, setUserFollow] = useState(
-    getUserProfile?.data?.FollowedByMe
-  );
+  const [isUserFollowed, setUserFollow] = useState(isFollowed);
   const { follow } = usePostFollow();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const userProfileSummary = useGetUserProfileSummary(profileUser);
@@ -101,8 +98,8 @@ export default function Profile({
   function toggleFollow() {
     redirectIfNotLoggedIn();
     follow(
-      userProfileSummary.data?.SocialId,
-      !isUserFollowed,
+      userProfileSummary?.data?.SocialId,
+      !isFollowed,
       socialId.value,
       token
     );
@@ -115,8 +112,10 @@ export default function Profile({
   }
 
   useEffect(() => {
-    setUserFollow(isUserFollowed);
-  }, [isUserFollowed]);
+    setUserFollow(isFollowed);
+  }, [isFollowed]);
+
+  useEffect(() => {}, [isUserFollowed]);
 
   useEffect(() => {
     setFollowers(connectionscountData?.data?.followers);
@@ -158,7 +157,7 @@ export default function Profile({
   }
 
   return (
-    <Box>
+    <div>
       {divider && <Divider></Divider>}
       <div className={s.fullNameCounter}>
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -169,7 +168,7 @@ export default function Profile({
           </Typography>
         </div>
 
-        <Box className={s.counterBox}>
+        <div className={s.counterBox}>
           <Button
             className={s.followersButton}
             onClick={() => setFollowersOpen(true)}
@@ -207,14 +206,14 @@ export default function Profile({
             onClose={() => setFollowingOpen(false)}
           />
           {data?.Artworks > 0 && (
-            <Box className={s.followFollowersArtworks}>
+            <div className={s.followFollowersArtworks}>
               <Typography variant="body2">{data?.Artworks}</Typography>
               <Typography variant="caption">
                 {capitalizeFirst(t("words.worksOfArt"))}
               </Typography>
-            </Box>
+            </div>
           )}
-        </Box>
+        </div>
         {!isMyProfile && (
           <div className={s.chatFollowWrapper}>
             {
@@ -265,7 +264,7 @@ export default function Profile({
               {t("profile:buyingArt")}
             </Button>
             <Modal open={open} onClose={handleClose}>
-              <Box className={s.modal}>
+              <div className={s.modal}>
                 <Typography
                   style={{
                     marginBottom: "10px",
@@ -280,7 +279,7 @@ export default function Profile({
                   {t("profile:buyingArtBody")}
                 </Typography>
                 <Typography>{t("profile:buyingArtBodyTwo")}</Typography>
-              </Box>
+              </div>
             </Modal>
           </div>
         )}
@@ -383,7 +382,7 @@ export default function Profile({
               onClose={handleClose}
               className={s.modalContainer}
             >
-              <Box className={s.modalOffers}>
+              <div className={s.modalOffers}>
                 <Button
                   onClick={handleClose}
                   style={{
@@ -398,11 +397,11 @@ export default function Profile({
                   {t("profile:closeButton")}
                 </Button>
                 <Offers></Offers>
-              </Box>
+              </div>
             </Modal>
           </div>
         </div>
       )}
-    </Box>
+    </div>
   );
 }
