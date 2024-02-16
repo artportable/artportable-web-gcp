@@ -33,6 +33,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                     src={`${bucketUrl}${artist.Artworks[0].PrimaryFile.Name}`}
                     alt="Portfolio image"
                     layout="fill"
+                    sizes="(max-width: 900px) 50vw, 25vw"
                     quality={20}
                     loading="lazy"
                   />
@@ -45,6 +46,7 @@ export default function DiscoverArtistCard({ artist, onFollowClick }) {
                     src={`${bucketUrl}${artist.Artworks[1].PrimaryFile.Name}`}
                     alt="Portfolio image"
                     layout="fill"
+                    sizes="(max-width: 900px) 50vw, 25vw"
                     quality={20}
                     loading="lazy"
                   />
