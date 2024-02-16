@@ -144,8 +144,6 @@ export default function Profile(props) {
 
   const isPremium = membership.value === 3;
 
-  const likedArt = userProfileSummary?.data?.HideLikedArtworks;
-
   useEffect(() => {
     if (!isReady) {
       setLoading(true);
@@ -153,7 +151,7 @@ export default function Profile(props) {
     if (isReady) {
       setLoading(false);
     }
-  }, [isReady]);
+  }, [isReady, userProfile?.data]);
 
   useEffect(() => {
     if (!isSignedIn.isPending && !userProfile.isLoading) {

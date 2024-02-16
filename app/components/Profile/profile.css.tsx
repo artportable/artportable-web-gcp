@@ -69,7 +69,7 @@ export const styles = makeStyles((theme: Theme) =>
     following: {
       maxHeight: "27px",
       width: "40%",
-      margin: "0 auto",
+      margin: "1 auto",
       marginBottom: "10px",
       backgroundColor: "#49cc90",
       border: "1px solid #49cc90",
