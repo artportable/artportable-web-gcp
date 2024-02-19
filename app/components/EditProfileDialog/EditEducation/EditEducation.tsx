@@ -49,7 +49,7 @@ export const EditEducation = ({ profile, setProfile }) => {
       {profile?.educations?.map((e, i) => (
         <Badge
           key={e.key}
-          overlap="rectangle"
+          overlap="rectangular"
           anchorOrigin={{
             vertical: "top",
             horizontal: "right",

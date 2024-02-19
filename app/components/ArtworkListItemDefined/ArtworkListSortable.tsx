@@ -140,6 +140,7 @@ export default function ArtworkListSortable({ items, editAction, t }) {
                     router={router}
                     dragDisabled={isSaving}
                     isSaving={isSaving}
+                    isSorting={ordersHasChanged}
                   />
                 );
               }
