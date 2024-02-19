@@ -60,7 +60,7 @@ export const EditExhibitions = ({ profile, setProfile }) => {
       {profile?.exhibitions?.map((e, i) => (
         <Badge
           key={e.key}
-          overlap="rectangle"
+          overlap="rectangular"
           anchorOrigin={{
             vertical: "top",
             horizontal: "right",
