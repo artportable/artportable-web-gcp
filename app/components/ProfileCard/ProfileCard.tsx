@@ -88,7 +88,7 @@ export default function ProfileCard({
               multiple={false}
             />
             <Badge
-              overlap="circle"
+              overlap="circular"
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",

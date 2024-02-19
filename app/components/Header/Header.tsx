@@ -174,7 +174,6 @@ export default function Header({ navBarItems }) {
                   className={s.createButton}
                   size="medium"
                   variant="contained"
-                  color="black"
                   rounded
                   onClick={() =>
                     keycloak.register({
