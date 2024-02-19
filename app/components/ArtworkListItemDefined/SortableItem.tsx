@@ -3,7 +3,7 @@ import {CSS} from '@dnd-kit/utilities';
 import ImageContainerProfile from './ImageContainerProfile'
 
 export function SortableItem(props) {
-  const { item, editAction, router, isDragging, dragDisabled, isSaving } = props
+  const { item, editAction, router, isDragging, dragDisabled, isSaving, isSorting } = props
   const {
     attributes,
     listeners,
@@ -31,6 +31,7 @@ export function SortableItem(props) {
         isDragging={isDragging}
         router={router}
         isSaving={isSaving}
+        isSorting={isSorting}
         />
     </div>
   );

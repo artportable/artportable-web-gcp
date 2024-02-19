@@ -17,6 +17,7 @@ export default function ImageContainer({
   isDragging,
   router,
   isSaving,
+  isSorting,
 }) {
   const s = styles();
   const ps = profileStyles();
@@ -43,7 +44,9 @@ export default function ImageContainer({
 
   // Putting Link around SortableItem does not work, use click instead.
   const cardClicked = (evt) => {
-    if (!isSaving) {
+    // If order has changed (isSorting), don't let users click on a card. They will go to that artworks page
+    // and when they return to sorting page the sort order has been reset.
+    if (!isSaving && !isSorting) {
       router.push(`/art/${artwork.Id}`)
     }
   }
