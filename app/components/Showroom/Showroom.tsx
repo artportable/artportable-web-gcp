@@ -152,6 +152,18 @@ export default function Showroom() {
         site: "www.lapiazzadjursholm.se/",
       },
     ],
+    SJÖPAVILJONGEN: [
+      {
+        period: "29 NOVEMBER - 29 FEBRUARI",
+        artists: [{ name: "Anette Brekke", username: "anetteb_art" }],
+        site: "www.sjopaviljongen.se/",
+      },
+      {
+        period: "29 FEBRUARI - 29 MAJ",
+        artists: [{ name: "Kirsten Johansson", username: "kjdesign" }],
+        site: "www.sjopaviljongen.se/",
+      },
+    ],
   };
 
   const showrooms = {
