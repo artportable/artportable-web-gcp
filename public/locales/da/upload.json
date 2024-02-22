@@ -15,6 +15,7 @@
   "height": "Højde",
   "depth": "Dybde",
   "addmoreImages": "Du er velkommen til at uploade yderligere billeder af det samme kunstværk. Det kan være fra en anden vinkel eller fra studiet, hvor kunstværket blev skabt.",
+  "allImagesUploaded": "Du kan uploade tre billeder per kunstværk",
   "publish": "Publicér",
   "doneCropping": "Når du er færdig med beskæringen, skal du trykke på den grønne knap.",
   "limitArtwork": "Uploadgrænsen er nået, ",
@@ -27,5 +28,14 @@
   "deviating": "Afvigende åbningstider i forbindelse med helligdage og kunstudstillingsåbninger.",
   "headline": "Overskrift",
   "placeholder": "Skriv en tekst om en udstilling, del et glimt fra dit studie, eller fortæl noget andet spændende om din kunstneriske rejse i øjeblikket...",
-  "story-description": "Her skriver du teksten til din artikel. Skriv så informativt som muligt, og sørg for, at sproget er korrekt. Artikler, der indeholder mere tekst og er opdelt i flere afsnit, skaber en bedre oplevelse for læseren."
+  "story-description": "Her skriver du teksten til din artikel. Skriv så informativt som muligt, og sørg for, at sproget er korrekt. Artikler, der indeholder mere tekst og er opdelt i flere afsnit, skaber en bedre oplevelse for læseren.",
+  "fieldsMissing": "Udfyld venligst alle påkrævede felter",
+  "free": "Valgfri",
+  "zoomOut": "Formindske",
+  "zoomIn": "Forstørre",
+  "rotate": "Roter",
+  "horizontal": "Horisontal",
+  "vertical": "Vertikal",
+  "reset": "Nulstil",
+  "throw": "Smid væk"
 }

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { TextField, IconButton, InputAdornment } from "@material-ui/core";
 import { EditDialogSection } from "../EditDialogSection/EditDialogSection";
 import { useTranslation } from "next-i18next";
+import clsx from 'clsx'
+import { styles } from './editSocials.css'
 
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -12,6 +14,7 @@ import Icon from "@material-ui/core/Icon";
 import { log } from 'console';
 
 export const EditSocials = ({ profile, setProfile }) => {
+  const s = styles();
   const { t } = useTranslation("profile");
 
   const setSocialMediaProp = (newText: string, propName: string) => {
@@ -38,36 +41,53 @@ export const EditSocials = ({ profile, setProfile }) => {
     );
   };
 
-  const INSTAGRAM_URL = 'https://www.instagram.com/'
-  const updateInstagram = (event) => {
-    let newValue = event.target.value
-
-    if (newValue.length < 1) {
-      return setSocialMediaProp(newValue, "instagram")
-    }
-    
-    const index = INSTAGRAM_URL.indexOf(newValue.slice(0, INSTAGRAM_URL.length))
-    
-    // If what user entered does not start with the instagram url https://...
-    if (index !== 0) {
-      // Only keep user input that is after any entered ":" or "/".
-      const addressAfterSlash = newValue.split(':').pop().split('/').pop()
-      
-      newValue = INSTAGRAM_URL + addressAfterSlash
-    }
-    
-    setSocialMediaProp(newValue, "instagram")
+  enum SocialMediaSite {
+    INSTAGRAM = 'instagram',
+    FACEBOOK = 'facebook',
+    LINKEDIN = 'linkedIn',
+    DRIBBBLE = 'dribbble',
+    BEHANCE = 'behance',
+    WEBSITE = 'website',
   }
+
+  const DefaultURLs = {
+    'instagram': 'https://www.instagram.com/',
+    'facebook': 'https://www.facebook.com/',
+    'linkedIn': 'https://linkedin.com/',
+    'dribbble': 'https://dribbble.com/',
+    'behance': 'https://www.behance.net/',
+    'website': 'https://',
+  }
+  
+  const updateAndValidate = (newValue, siteName) => {
+    const defaultURL = DefaultURLs[siteName]
+
+    if (newValue !== defaultURL) {
+      setSocialMediaProp(newValue, siteName)
+    } else {
+      // If deleting so only default url is left, set url on profile as empty.
+      setSocialMediaProp('', siteName)
+    }
+  }
+  
+  let instagramInput = profile?.socialMedia?.instagram || DefaultURLs.instagram
+  let facebookInput = profile?.socialMedia?.facebook || DefaultURLs.facebook
+  let linkedInInput = profile?.socialMedia?.linkedIn || DefaultURLs.linkedIn
+  let dribbbleInput = profile?.socialMedia?.dribbble || DefaultURLs.dribbble
+  let behanceInput = profile?.socialMedia?.behance || DefaultURLs.behance
+  let websiteInput = profile?.socialMedia?.website || DefaultURLs.website
+
+  console.log('profile?.socialMedia', profile?.socialMedia ?? 'nope');
+  
 
   return (
     <EditDialogSection title={t("socialNetworks")}>
 
     <TextField
         label={t("instagram")}
-        value={profile?.socialMedia?.instagram}
-        onChange={(event) =>
-          updateInstagram(event)
-        }
+        value={instagramInput}
+        onChange={(event) => updateAndValidate(event.target.value, SocialMediaSite.INSTAGRAM)}
+        onFocus={() => {}}
         inputProps={{ maxLength: 280 }}
         InputProps={{
           startAdornment: (
@@ -79,14 +99,17 @@ export const EditSocials = ({ profile, setProfile }) => {
             <InputAdornment position="end">
               <IconButton
                 aria-label="close"
-                onClick={(e) => resetSocialMediaProp("instagram", e)}
+                onClick={(e) => resetSocialMediaProp(SocialMediaSite.INSTAGRAM, e)}
               >
                 <ClearIcon></ClearIcon>
               </IconButton>
             </InputAdornment>
           ),
         }}
-        placeholder={t("enterUserName")}
+        // placeholder={t("enterUserName")}
+        className={clsx(s.socialUrlField, {
+          [s.grayedOut]: instagramInput === DefaultURLs.instagram,
+        })}
         helperText={
           profile.socialMedia?.instagram &&
           profile.socialMedia.instagram != "" &&
@@ -100,8 +123,8 @@ export const EditSocials = ({ profile, setProfile }) => {
 
       <TextField
         label={t("facebook")}
-        value={profile?.socialMedia?.facebook}
-        onChange={(event) => setSocialMediaProp(event.target.value, "facebook")}
+        value={facebookInput}
+        onChange={(event) => updateAndValidate(event.target.value, SocialMediaSite.FACEBOOK)}
         inputProps={{ maxLength: 280 }}
         InputProps={{
           startAdornment: (
@@ -110,9 +133,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <ResetAdornment socialMedia="facebook"></ResetAdornment>
+            <ResetAdornment socialMedia={SocialMediaSite.FACEBOOK}></ResetAdornment>
           ),
         }}
+        className={clsx(s.socialUrlField, {
+          [s.grayedOut]: facebookInput === DefaultURLs.facebook,
+        })}
         helperText={
           profile.socialMedia?.facebook &&
           profile.socialMedia?.facebook != "" &&
@@ -126,8 +152,8 @@ export const EditSocials = ({ profile, setProfile }) => {
 
       <TextField
         label={t("linkedIn")}
-        value={profile?.socialMedia?.linkedIn}
-        onChange={(event) => setSocialMediaProp(event.target.value, "linkedIn")}
+        value={linkedInInput}
+        onChange={(event) => updateAndValidate(event.target.value, SocialMediaSite.LINKEDIN)}
         inputProps={{ maxLength: 280 }}
         InputProps={{
           startAdornment: (
@@ -136,16 +162,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="close"
-                onClick={(e) => resetSocialMediaProp("linkedIn", e)}
-              >
-                <ClearIcon></ClearIcon>
-              </IconButton>
-            </InputAdornment>
+            <ResetAdornment socialMedia={SocialMediaSite.LINKEDIN}></ResetAdornment>
           ),
         }}
+        className={clsx(s.socialUrlField, {
+          [s.grayedOut]: linkedInInput === DefaultURLs.linkedIn,
+        })}
         helperText={
           profile.socialMedia?.linkedIn &&
           profile.socialMedia.linkedIn != "" &&
@@ -157,10 +179,11 @@ export const EditSocials = ({ profile, setProfile }) => {
         }
       />
 
-      <TextField
+      {/* Saving Dribble address does not work. */}
+      {/*<TextField
         label={t("dribbble")}
-        value={profile?.socialMedia?.dribbble}
-        onChange={(event) => setSocialMediaProp(event.target.value, "dribbble")}
+        value={dribbbleInput}
+        onChange={(event) => updateAndValidate(event.target.value, SocialMediaSite.DRIBBBLE)}
         inputProps={{ maxLength: 280 }}
         InputProps={{
           startAdornment: (
@@ -169,16 +192,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="clear"
-                onClick={(e) => resetSocialMediaProp("dribbble", e)}
-              >
-                <ClearIcon></ClearIcon>
-              </IconButton>
-            </InputAdornment>
+            <ResetAdornment socialMedia={SocialMediaSite.DRIBBBLE}></ResetAdornment>
           ),
         }}
+        className={clsx(s.socialUrlField, {
+          [s.grayedOut]: dribbbleInput === DefaultURLs.dribbble,
+        })}
         helperText={
           profile.socialMedia?.dribble &&
           profile.socialMedia.dribble != "" &&
@@ -188,12 +207,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             ? t("dribbleUrl")
             : ""
         }
-      />
+      />*/}
 
       <TextField
         label={t("behance")}
-        value={profile?.socialMedia?.behance}
-        onChange={(event) => setSocialMediaProp(event.target.value, "behance")}
+        value={behanceInput}
+        onChange={(event) => updateAndValidate(event.target.value, SocialMediaSite.BEHANCE)}
         inputProps={{ maxLength: 280 }}
         InputProps={{
           startAdornment: (
@@ -202,16 +221,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="clear"
-                onClick={(e) => resetSocialMediaProp("behance", e)}
-              >
-                <ClearIcon></ClearIcon>
-              </IconButton>
-            </InputAdornment>
+            <ResetAdornment socialMedia={SocialMediaSite.BEHANCE}></ResetAdornment>
           ),
         }}
+        className={clsx(s.socialUrlField, {
+          [s.grayedOut]: behanceInput === DefaultURLs.behance,
+        })}
         helperText={
           profile.socialMedia?.behance &&
           profile.socialMedia.behance != "" &&
@@ -225,8 +240,8 @@ export const EditSocials = ({ profile, setProfile }) => {
 
       <TextField
         label={t("website")}
-        value={profile?.socialMedia?.website}
-        onChange={(event) => setSocialMediaProp(event.target.value, "website")}
+        value={websiteInput}
+        onChange={(event) => updateAndValidate(event.target.value, SocialMediaSite.WEBSITE)}
         inputProps={{ maxLength: 280 }}
         InputProps={{
           startAdornment: (
@@ -235,16 +250,12 @@ export const EditSocials = ({ profile, setProfile }) => {
             </InputAdornment>
           ),
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="clear"
-                onClick={(e) => resetSocialMediaProp("website", e)}
-              >
-                <ClearIcon></ClearIcon>
-              </IconButton>
-            </InputAdornment>
+            <ResetAdornment socialMedia={SocialMediaSite.WEBSITE}></ResetAdornment>
           ),
         }}
+        className={clsx(s.socialUrlField, {
+          [s.grayedOut]: websiteInput === DefaultURLs.website,
+        })}
         helperText={
           profile.socialMedia?.website &&
           profile.socialMedia?.website != "" &&

@@ -4,7 +4,11 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
-      flexDirection: 'column',
+      flexFlow: 'column nowrap',
+      [theme.breakpoints.up("mdPlus")]: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
     },
     titleText: {
       gridArea: 'rightCol',
@@ -12,13 +16,25 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       gap: theme.spacing(2),
     },
+    formFields: {
+      [theme.breakpoints.up("mdPlus")]: {
+        width: '47%',
+        paddingRight: '10px',
+      },
+    },
     tags: {
       marginTop: '20px',
-      textAlign: 'center'
+      textAlign: 'center',
+      [theme.breakpoints.up("mdPlus")]: {
+        width: '47%',
+      },
     },
     tagTitle: {
-      textAlign:'left',
-      marginBottom: '10px'
+      textAlign: 'left',
+      marginBottom: '10px',
+      [theme.breakpoints.up("mdPlus")]: {
+        textAlign: 'center',
+      },
     }
   }),
 );

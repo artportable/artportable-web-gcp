@@ -15,6 +15,7 @@
   "height": "Hæð",
   "depth": "Dýpt",
   "addmoreImages": "Hér getur þú bætt við fleiri myndum af verkum, t.d. frá öðrum sjónarhorni eða mynd frá því þegar verk varð til.",
+  "allImagesUploaded": "Þú getur hlaðið upp þremur myndum fyrir hverja listaverk",
   "publish": "Birta",
   "doneCropping": "Þegar þú ert búinn að skera, smelltu á græna takkann.",
   "limitArtwork": "Takmarkið fyrir upphleðslur hefur náðs, ",
@@ -27,5 +28,14 @@
   "deviating": "Afbrigðilegir opnunartímar á rauðum dögum og opnunum.",
   "headline": "Fyrirsögn",
   "placeholder": "Skrifaðu texta um sýningu, deildu glæsilegum stundum úr verkstæði þínu eða segðu eitthvað annað spennandi um listferilinn þinn í augnablikinu...",
-  "story-description": "Hér skrifar þú textann fyrir greinina þína. Skrifaðu sem upplýsandi eins og mögulegt og tryggðu þér að tungumálið sé rétt. Greinar sem innifela meira texta og eru skiptar í nokkrar kafla skapa betri upplifun fyrir lesandann."
+  "story-description": "Hér skrifar þú textann fyrir greinina þína. Skrifaðu sem upplýsandi eins og mögulegt og tryggðu þér að tungumálið sé rétt. Greinar sem innifela meira texta og eru skiptar í nokkrar kafla skapa betri upplifun fyrir lesandann.",
+  "fieldsMissing": "Vinsamlegast fylltu út öll nauðsynleg reiti",
+  "free": "Valfrjáls",
+  "zoomOut": "Mínka",
+  "zoomIn": "Stækka",
+  "rotate": "Snúa",
+  "horizontal": "Lárétt",
+  "vertical": "Lóðrétt",
+  "reset": "Endurstilla",
+  "throw": "Henda"
 }

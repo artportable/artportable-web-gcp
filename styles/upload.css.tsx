@@ -6,18 +6,21 @@ import { rowGap, columnGap } from "../app/utils/styleUtils";
 const styles = makeStyles((theme: Theme) =>
   createStyles({
     mainGrid: {
-      [theme.breakpoints.up("mdPlus")]: {
-        display: "grid",
-        gap: "16px",
-        gridTemplate:
-          '"upload   form" minmax(0, 2fr)' +
-          '"pickBackgroundColor   form" auto' +
-          '"options   form" auto' +
-          '"instructions   form" auto' +
-          '"previews form" minmax(0, 1fr)' +
-          "/  3fr      1fr",
-        alignItems: "stretch",
-      },
+      // [theme.breakpoints.up("mdPlus")]: {
+      //   display: "grid",
+      //   gap: "16px",
+      //   gridTemplate:
+      //     '"upload   form" minmax(0, 2fr)' +
+      //     '"pickBackgroundColor   form" auto' +
+      //     '"options   form" auto' +
+      //     '"instructions   form" auto' +
+      //     '"previews form" minmax(0, 1fr)' +
+      //     "/  3fr      1fr",
+      //   alignItems: "stretch",
+      // },
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      alignItems: 'center',
     },
     uploadBox: {
       gridArea: "upload",
@@ -36,8 +39,8 @@ const styles = makeStyles((theme: Theme) =>
       display: "flex",
       borderRadius: "6px",
       fontFamily: "GT-America-Standard",
+      marginBottom: "10px",
       [theme.breakpoints.down("sm")]: {
-        marginBottom: "10px",
         justifyContent: "center",
       },
     },
@@ -66,6 +69,7 @@ const styles = makeStyles((theme: Theme) =>
         display: "none",
       },
       "& .MuiDropzoneArea-text": {
+        padding: "0 20px",
         fontWeight: 500,
         marginLeft: "100px",
         marginRight: "100px",
@@ -77,7 +81,7 @@ const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.down("sm")]: {
         background: "transparent",
-        height: "400px",
+        // height: "400px",
         width: "100%",
         marginBottom: "10px",
         justifyContent: "center",
@@ -124,7 +128,7 @@ const styles = makeStyles((theme: Theme) =>
     },
     uploadButton: {
       width: "100%",
-      marginTop: "20px",
+      marginTop: "10px",
       backgroundColor: "var(--color-green)",
       color: "var(--absolute-black)",
       "&.MuiButton-root:hover": {
@@ -133,7 +137,7 @@ const styles = makeStyles((theme: Theme) =>
     },
     disabledButton: {
       width: "100%",
-      marginTop: "20px",
+      marginTop: "10px",
       backgroundColor: "var(--disabled)",
       color: "#b3b1b1",
       "&.MuiButton-root:hover": {
@@ -173,6 +177,7 @@ const styles = makeStyles((theme: Theme) =>
       textAlign: "right",
       fontWeight: 500,
       marginTop: "3px",
+      marginBottom: "20px",
     },
     zendeskForm: {
       marginTop: theme.spacing(4),
@@ -249,6 +254,17 @@ const styles = makeStyles((theme: Theme) =>
     },
     clickMe: {
       fontWeight: 600,
+    },
+    publishErrorMessage: {
+      minHeight: '25px',
+      marginTop: "10px",
+      color: 'red',
+    },
+    clampedContainer: {
+      width: '100%',
+      [theme.breakpoints.up("mdPlus")]: {
+        maxWidth: '750px',
+      }
     },
   })
 );

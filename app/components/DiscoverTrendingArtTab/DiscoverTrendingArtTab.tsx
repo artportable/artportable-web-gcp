@@ -338,7 +338,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     </AccordionSummary>
                     <div className={s.mobileOverflow}>
                       {Object.keys(THEME_TAGS).map((key) => (
-                        <div>
+                        <div key={key}>
                           <ListItem
                             button
                             onClick={() => handleThemeChangeMobile(key)}
@@ -373,7 +373,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                     </AccordionSummary>
                     <div className={s.mobileOverflow}>
                       {Object.keys(TECHNIQUE_TAGS).map((key) => (
-                        <div>
+                        <div key={key}>
                           <ListItem
                             button
                             onClick={() => handleTechniqueChangeMobile(key)}
