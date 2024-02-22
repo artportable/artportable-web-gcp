@@ -15,6 +15,7 @@
   "height": "Height",
   "depth": "Depth",
   "addmoreImages": "Feel free to upload additional images of the same artwork. It can be from a different angle or from the studio when the artwork was created.",
+  "allImagesUploaded": "You can upload three images per artwork",
   "publish": "Publish",
   "doneCropping": "When you are done cropping, press the green button.",
   "limitArtwork": "Upload limit reached, ",
@@ -27,5 +28,14 @@
   "deviating": "Deviating opening hours during bank holidays and art exhibitions openings.",
   "headline": "Headline",
   "placeholder": "Write a text about an exhibition, share a glimpse from your studio, or tell something else exciting about your artistic journey at the moment...",
-  "story-description": "Here you write the text for your article. Write as informatively as possible and make sure the language is correct. Articles that contain more text and are divided into several paragraphs create a better experience for the reader."
+  "story-description": "Here you write the text for your article. Write as informatively as possible and make sure the language is correct. Articles that contain more text and are divided into several paragraphs create a better experience for the reader.",
+  "fieldsMissing": "Please fill out all required fields",
+  "free": "Free",
+  "zoomOut": "Zoom out",
+  "zoomIn": "Zoom in",
+  "rotate": "Rotate",
+  "horizontal": "Horizontal",
+  "vertical": "Vertical",
+  "reset": "Reset",
+  "throw": "Delete"
 }
