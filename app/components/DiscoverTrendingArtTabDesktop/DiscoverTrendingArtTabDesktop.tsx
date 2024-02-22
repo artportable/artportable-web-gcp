@@ -289,7 +289,7 @@ const DiscoverTrendingArtTabDesktop = memo(
               </AccordionSummary>
               <AccordionDetails className={s.filterDetailsTags}>
                 {Object.keys(TECHNIQUE_TAGS).map((key) => (
-                  <div>
+                  <div key={key}>
                     <ListItemButton
                       className={s.filterItemTags}
                       onClick={() => handleTechniqueTagChange(`${key}`)}
@@ -324,7 +324,7 @@ const DiscoverTrendingArtTabDesktop = memo(
               </AccordionSummary>
               <AccordionDetails className={s.filterDetailsTags}>
                 {Object.keys(THEME_TAGS).map((key) => (
-                  <div>
+                  <div key={key}>
                     <ListItemButton
                       className={s.filterItemTags}
                       onClick={() => handleThemeTagChange(`${key}`)}

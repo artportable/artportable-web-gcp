@@ -15,6 +15,7 @@
   "height": "Höhe",
   "depth": "Tiefe",
   "addmoreImages": "Hier können Sie weitere Bilder des Kunstwerks hinzufügen, z. B. aus einem anderen Blickwinkel oder ein Bild vom Entstehungsprozess des Werks.",
+  "allImagesUploaded": "Du kannst drei Bilder pro Kunstwerk hochladen",
   "publish": "Veröffentlichen",
   "doneCropping": "Wenn Sie mit dem Zuschneiden fertig sind, klicken Sie auf die grüne Schaltfläche.",
   "limitArtwork": "Die Upload-Grenze wurde erreicht. ",
@@ -27,5 +28,14 @@
   "deviating": "Abweichende Öffnungszeiten an Feiertagen und Ausstellungseröffnungen.",
   "headline": "Überschrift",
   "placeholder": "Schreiben Sie über eine Ausstellung, geben Sie einen Einblick in Ihr Atelier oder erzählen Sie etwas Spannendes über Ihre aktuelle künstlerische Arbeit...",
-  "story-description": "Hier schreiben Sie den Text für Ihren Artikel. Schreiben Sie so informativ wie möglich und achten Sie darauf, dass die Sprache korrekt ist. Artikel, die mehr Text enthalten und in mehrere Abschnitte unterteilt sind, schaffen ein besseres Erlebnis für den Leser."
+  "story-description": "Hier schreiben Sie den Text für Ihren Artikel. Schreiben Sie so informativ wie möglich und achten Sie darauf, dass die Sprache korrekt ist. Artikel, die mehr Text enthalten und in mehrere Abschnitte unterteilt sind, schaffen ein besseres Erlebnis für den Leser.",
+  "fieldsMissing": "Bitte füllen Sie alle erforderlichen Felder aus",
+  "free": "Beliebig",
+  "zoomOut": "Verkleinern",
+  "zoomIn": "Vergrößern",
+  "rotate": "Drehen",
+  "horizontal": "Horizontal",
+  "vertical": "Vertikal",
+  "reset": "Zurücksetzen",
+  "throw": "Wegwerfen"
 }

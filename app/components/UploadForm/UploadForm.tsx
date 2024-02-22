@@ -50,7 +50,7 @@ export default function UploadForm({
 
   return (
     <Box className={s.container}>
-      <Box>
+      <Box className={s.formFields}>
         <TextField
           id="title"
           label={t("title")}
@@ -63,42 +63,10 @@ export default function UploadForm({
           id="description"
           label={t("description")}
           multiline
-          rows={4}
+          minRows={4}
+          maxRows={4}
           fullWidth
           onChange={(event) => setDescription(event.target.value)}
-        />
-        <TextField
-          id="price"
-          label={t("price")}
-          onChange={(event) => setPrice(parseInt(event.target.value))}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <Select
-                  value={currency}
-                  onChange={(event) => setCurrency(event.target.value)}
-                  label={t("currency")}
-                >
-                  <MenuItem value="SEK">SEK</MenuItem>
-                  <MenuItem value="NOK">NOK</MenuItem>
-                  <MenuItem value="DKK">DKK</MenuItem>
-                  <MenuItem value="EUR">EUR</MenuItem>
-                  <MenuItem value="USD">USD</MenuItem>
-                  <MenuItem value="GBP">GBP</MenuItem>
-                </Select>
-              </InputAdornment>
-            ),
-          }}
-          fullWidth
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={soldOutChecked}
-              onChange={(event) => setSoldOutChecked(event.target.checked)}
-            />
-          }
-          label={t("common:words.soldOut")}
         />
 
         {!multipleSizesChecked ? (
@@ -163,6 +131,40 @@ export default function UploadForm({
             label={t("common:words.multipleSizes")}
           />
         </Grid>
+
+        <TextField
+          id="price"
+          label={t("price")}
+          onChange={(event) => setPrice(parseInt(event.target.value))}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Select
+                  value={currency}
+                  onChange={(event) => setCurrency(event.target.value)}
+                  label={t("currency")}
+                >
+                  <MenuItem value="SEK">SEK</MenuItem>
+                  <MenuItem value="NOK">NOK</MenuItem>
+                  <MenuItem value="DKK">DKK</MenuItem>
+                  <MenuItem value="EUR">EUR</MenuItem>
+                  <MenuItem value="USD">USD</MenuItem>
+                  <MenuItem value="GBP">GBP</MenuItem>
+                </Select>
+              </InputAdornment>
+            ),
+          }}
+          fullWidth
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={soldOutChecked}
+              onChange={(event) => setSoldOutChecked(event.target.checked)}
+            />
+          }
+          label={t("common:words.soldOut")}
+        />
       </Box>
       <Box className={s.tags}>
         <Typography variant="h4" className={s.tagTitle}>
@@ -175,6 +177,7 @@ export default function UploadForm({
               title={tag}
               onChipClick={onChipClick}
               limitReached={selectedTags.length >= 5}
+              isSmall={false}
             ></TagChip>
           );
         })}

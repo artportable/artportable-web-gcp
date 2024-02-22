@@ -96,6 +96,17 @@ export default function UploadArtworkPage({ navBarItems }) {
     }
   });
 
+  // Which section user is on: 1 = Only upload image section visible, 2 = Fill in details about the artwork and publish
+  const [progress, setProgress] = useState(1)
+  const [showPublishError, setShowPublishError] = useState(false)
+  const formDetailsRef = useRef(null)
+  
+  useEffect(() => {
+    if (croppedPrimary) {
+      setProgress(2)
+    }
+  }, [croppedPrimary])
+
   const uploadArtwork = async () => {
     if (isDesktop) {
       if (title && ((width && height) || multipleSizesChecked)) {
@@ -213,6 +224,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     } else if (croppedTertiary === null) {
       setCroppedTertiary(dataUrl);
     }
+    
     setText(t("addmoreImages"));
     setCropperActive(false);
   };
@@ -302,83 +314,102 @@ export default function UploadArtworkPage({ navBarItems }) {
     fr.readAsDataURL(event.target.files[0]);
   };
 
+  const requiredDetailsCompleted = title && ((width && height) || multipleSizesChecked) ? true : false
+
+  const publishButtonDisabled = (!croppedPrimary && mobileImg === "") || !requiredDetailsCompleted
+
+  const maximumImagesUploaded = croppedPrimary && croppedSecondary && croppedTertiary ? true : false
+
+  if (artworkLimitReached) {
+    return (
+      <Main navBarItems={navBarItems}>
+        {" "}
+        <div className={s.flexPaper}>
+          <Paper className={s.paperLeft} elevation={1}>
+            <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
+              {t("limitArtwork")}
+              <a href="https://buy.stripe.com/aEUeVngcS7ZPcda4h9" target="_blank">{t("clickHere")}</a>
+              {t("uploadUnlimited")}
+            </Typography>
+            <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
+              {t("yourWelcome")}
+            </Typography>
+            <div className={s.iconTextFlex}>
+              <MailOutlineIcon className={s.icon} />
+              <Typography className={s.linkText}>
+                <a href="mailto:hello@artportable.com">
+                  hello@artportable.com
+                </a>
+              </Typography>
+            </div>
+            <div className={s.iconTextFlex}>
+              <PhoneIphoneIcon className={s.icon} />
+              <Typography className={s.linkText}>
+                <a href="tel:+46855766120">08 - 557 661 20</a>
+              </Typography>
+            </div>
+            <div className={s.textBlock}>
+              <Typography className={s.typoBold}>
+                {t("openingHours")}
+              </Typography>
+              <Typography>{t("8-17")}</Typography>
+              <Typography>{t("deviating")}</Typography>
+            </div>
+            <div className={s.zendeskForm}>
+              <ZendeskForm />
+            </div>
+          </Paper>
+          <Paper className={s.paperRight} elevation={1}>
+            <div>
+              <img
+                className={s.logo}
+                src="/Artportable_Logotyp_Black.svg"
+                alt="Logo Artportable"
+              />
+              <Typography className={s.bold}>Artportable AB</Typography>
+              <Typography>559113-1171</Typography>
+              <div className={s.textBlockRight}>
+                <Typography>Åsögatan 176</Typography>
+                <Typography>116 32 Stockholm</Typography>
+              </div>
+              <Typography>
+                Tel: <a href="tel:+4685576612">08 - 557 661 20</a>
+              </Typography>
+            </div>
+          </Paper>
+        </div>
+      </Main>
+    )
+  }
+
   return (
     <Main navBarItems={navBarItems}>
       <>
         {" "}
-        {artworkLimitReached ? (
-          <div className={s.flexPaper}>
-            <Paper className={s.paperLeft} elevation={1}>
-              <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
-                {t("limitArtwork")}
-                <a href="https://buy.stripe.com/aEUeVngcS7ZPcda4h9" target="_blank">{t("clickHere")}</a>
-                {t("uploadUnlimited")}
-              </Typography>
-              <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
-                {t("yourWelcome")}
-              </Typography>
-              <div className={s.iconTextFlex}>
-                <MailOutlineIcon className={s.icon} />
-                <Typography className={s.linkText}>
-                  <a href="mailto:hello@artportable.com">
-                    hello@artportable.com
-                  </a>
-                </Typography>
-              </div>
-              <div className={s.iconTextFlex}>
-                <PhoneIphoneIcon className={s.icon} />
-                <Typography className={s.linkText}>
-                  <a href="tel:+4685576612">08 - 557 661 20</a>
-                </Typography>
-              </div>
-              <div className={s.textBlock}>
-                <Typography className={s.typoBold}>
-                  {t("openingHours")}
-                </Typography>
-                <Typography>{t("8-17")}</Typography>
-                <Typography>{t("deviating")}</Typography>
-              </div>
-              <div className={s.zendeskForm}>
-                <ZendeskForm />
-              </div>
-            </Paper>
-            <Paper className={s.paperRight} elevation={1}>
-              <div>
-                <img
-                  className={s.logo}
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="Logo Artportable"
-                />
-                <Typography className={s.bold}>Artportable AB</Typography>
-                <Typography>559113-1171</Typography>
-                <div className={s.textBlockRight}>
-                  <Typography>Åsögatan 176</Typography>
-                  <Typography>116 32 Stockholm</Typography>
-                </div>
-                <Typography>
-                  Tel: <a href="tel:+4685576612">08 - 557 661 20</a>
-                </Typography>
-              </div>
-            </Paper>
-          </div>
-        ) : (
-          <div className={s.mainGrid}>
+        <div className={s.mainGrid}>
+          <div className={s.clampedContainer}>
             {isDesktop ? (
               <>
-                <div className={s.uploadBox}>
-                  <DropzoneArea
-                    classes={{
-                      root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
-                    }}
-                    acceptedFiles={["image/*"]}
-                    dropzoneText={text}
-                    onChange={onFilesChanged}
-                    showPreviews={false}
-                    showPreviewsInDropzone={true}
-                    filesLimit={3}
-                    maxFileSize={2000000000}
-                  />
-                </div>
+                { !maximumImagesUploaded ?
+                  <div className={s.uploadBox}>
+                    <DropzoneArea
+                      classes={{
+                        root: `${s.dropzone} ${cropperActive ? s.hide : ""}`,
+                      }}
+                      acceptedFiles={["image/*"]}
+                      dropzoneText={text}
+                      onChange={onFilesChanged}
+                      showPreviews={false}
+                      showPreviewsInDropzone={true}
+                      filesLimit={3}
+                      maxFileSize={2000000000}
+                      />
+                  </div>
+                :
+                  <Typography>
+                    {t('allImagesUploaded')}
+                  </Typography>
+                }
                 <div className={s.cropperBox}>
                   <Cropper
                     className={clsx(s.cropper, !cropperActive && s.hide)}
@@ -389,7 +420,7 @@ export default function UploadArtworkPage({ navBarItems }) {
                     // preview={`.${s.cropperPreview}`}
                     ref={cropperRef}
                     background={true}
-                    // style={{ backgroundColor: color}}
+                  // style={{ backgroundColor: color}}
                   />
                 </div>
                 {/* <div className={s.backgroundColorFlex}>
@@ -456,17 +487,17 @@ export default function UploadArtworkPage({ navBarItems }) {
             <div className={s.previewsContainer}>
               {croppedPrimary && (
                 <div className={s.previewItem}>
-                  <img src={croppedPrimary} alt="primary image"/>
+                  <img src={croppedPrimary} alt="primary image" />
                 </div>
               )}
               {croppedSecondary && (
                 <div className={s.previewItem}>
-                  <img src={croppedSecondary} alt="secondary image"/>
+                  <img src={croppedSecondary} alt="secondary image" />
                 </div>
               )}
               {croppedTertiary && (
                 <div className={s.previewItem}>
-                  <img src={croppedTertiary} alt="tertiary image"/>
+                  <img src={croppedTertiary} alt="tertiary image" />
                 </div>
               )}
               {!croppedTertiary && cropperActive && (
@@ -475,7 +506,11 @@ export default function UploadArtworkPage({ navBarItems }) {
                 </div>
               )}
             </div>
-            <div className={s.form}>
+          </div>{/* clampedContainer */}
+
+          {/* After uploading an image: */}
+          {progress > 1 &&
+            <div className={s.form} ref={formDetailsRef}>
               {tags.isLoading && <div>loading...</div>}
               {tags.isError && <div>error...</div>}
               {tags.data && !tags.isLoading && !tags.isError && (
@@ -500,27 +535,38 @@ export default function UploadArtworkPage({ navBarItems }) {
                   tags={tags.data}
                 ></UploadForm>
               )}
-              <div>
-                <ArtButton
-                  className={`${
-                    !croppedPrimary && mobileImg === ""
-                      ? s.disabledButton
-                      : s.uploadButton
-                  }`}
-                  rounded
-                  onClick={() => {
-                    uploadArtwork();
-                    trackGoogleAnalytics(
-                      ActionType.UPLOAD_IMAGE_CONFIRM,
-                      CategoryType.INTERACTIVE
-                    );
-                  }}
-                >
-                  {t("publish")}
-                </ArtButton>
-              </div>
-              <WarningMessage />
             </div>
+          }
+
+          {progress > 1 &&
+            <div className={s.clampedContainer}>
+              {/* Don't show error message until user has clicked the publish button at least once. */}
+              <Typography className={s.publishErrorMessage}>
+                {(showPublishError && !requiredDetailsCompleted) ? t("fieldsMissing") : ' '}
+              </Typography>
+              <ArtButton
+                className={`${publishButtonDisabled
+                    ? s.disabledButton
+                    : s.uploadButton
+                  }`}
+                rounded
+                onClick={!publishButtonDisabled ? () => {
+                  uploadArtwork();
+                  trackGoogleAnalytics(
+                    ActionType.UPLOAD_IMAGE_CONFIRM,
+                    CategoryType.INTERACTIVE
+                  );
+                } : () => {
+                  setShowPublishError(true)
+                }}
+              >
+                {t("publish")}
+              </ArtButton>
+            </div>
+          }
+          <div className={s.clampedContainer}>
+            {/* Show warning message regardless of what "progress" user is on. */}
+            <WarningMessage />
             <Snackbar
               open={uploadSnackbarOpen}
               autoHideDuration={6000}
@@ -534,9 +580,8 @@ export default function UploadArtworkPage({ navBarItems }) {
                 {t("artworkUploadedSuccessfully")}
               </Alert>
             </Snackbar>
-            {/* </div> */}
           </div>
-        )}
+        </div>
       </>
     </Main>
   );

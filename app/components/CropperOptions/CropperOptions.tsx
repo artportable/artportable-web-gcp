@@ -12,10 +12,12 @@ import Replay5Icon from '@material-ui/icons/Replay5';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import SwapVertIcon from '@material-ui/icons/SwapVert';
 import LoopIcon from '@material-ui/icons/Loop';
+import { useTranslation } from "next-i18next";
 import clsx from 'clsx';
 
 export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
   const s = styles();
+  const { t } = useTranslation(["upload"]);
 
   const [aspectRatio, setAspectRatio] = useState("free");
   const [scaleX, setScaleX] = useState(-1);
@@ -38,11 +40,11 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
 
   return (
     <div className={clsx(s.cropperOptions, !show && s.hide)}>
-      <ButtonGroup disableElevation variant="outlined" color="primary">
+      <ButtonGroup disableElevation variant="outlined" color="primary" className={s.fiveButtons}>
         <Button
           variant={getButtonVariant("free")}
           onClick={() => changeAspectRatio("free", true)}>
-          Free
+          {t('free')}
         </Button>
         <Button
           variant={getButtonVariant("16:9")}
@@ -65,55 +67,56 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           1:1
         </Button>
       </ButtonGroup>
-      <ButtonGroup disableElevation variant="outlined" color="primary">
+      <ButtonGroup disableElevation variant="outlined" color="primary" className={s.twoButtons}>
         <Button
           aria-label='Zoom out'
           classes={{ startIcon: s.startIcon }}
           onClick={() => cropper.zoom(-0.1)}
-          startIcon={<ZoomOutIcon />}>
+          startIcon={<ZoomOutIcon />}>{t('zoomOut')}
         </Button>
         <Button
           aria-label='Zoom in'
           classes={{ startIcon: s.startIcon }}
           onClick={() => cropper.zoom(0.1)}
-          startIcon={<ZoomInIcon />}>
+          startIcon={<ZoomInIcon />}>{t('zoomIn')}
         </Button>
       </ButtonGroup>
-      <ButtonGroup disableElevation variant="outlined" color="primary">
+      <ButtonGroup disableElevation variant="outlined" color="primary" className={s.twoButtons}>
         <Button
           aria-label='Rotate left'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
           onClick={() => cropper.rotate(-45)}
-          startIcon={<RotateLeftIcon />}>
+          startIcon={<RotateLeftIcon />}>{t('rotate')}
         </Button>
-        <Button
+        {/* Buttons for rotating 0.3 degrees at a time: */}
+        {/*<Button
           aria-label='Rotate left'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
           onClick={() => cropper.rotate(-0.3)}
           startIcon={<Replay5Icon />}>
-        </Button>
-        <Button
+        </Button>*/}
+        {/*<Button
           aria-label='Rotate right'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
           onClick={() => cropper.rotate(0.3)}
           startIcon={<Forward5Icon />}>
-        </Button>
+        </Button>*/}
         <Button
           aria-label='Rotate right'
           classes={{ startIcon: s.startIcon }}
           variant="outlined"
           color="primary"
           onClick={() => cropper.rotate(45)}
-          startIcon={<RotateRightIcon />}>
+          startIcon={<RotateRightIcon />}>{t('rotate')}
         </Button>
       </ButtonGroup>
-      <ButtonGroup disableElevation variant="outlined" color="primary">
+      <ButtonGroup disableElevation variant="outlined" color="primary" className={s.twoButtons}>
         <Button
           aria-label='Flip horizontal'
           classes={{ startIcon: s.startIcon }}
@@ -123,7 +126,7 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
             cropper.scaleX(scaleX);
             setScaleX(scaleX * -1);
           }}
-          startIcon={<SwapHorizIcon />}>
+          startIcon={<SwapHorizIcon />}>{t('horizontal')}
         </Button>
         <Button
           aria-label='Flip vertical'
@@ -134,15 +137,15 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
             cropper.scaleY(scaleY);
             setScaleY(scaleY * -1);
           }}
-          startIcon={<SwapVertIcon />}>
+          startIcon={<SwapVertIcon />}>{t('vertical')}
         </Button>
       </ButtonGroup>
-      <ButtonGroup disableElevation color="primary">
+      <ButtonGroup disableElevation color="primary" className={s.twoButtons}>
         <Button
           aria-label='Reset'
           classes={{ startIcon: s.startIcon }}
           startIcon={<LoopIcon />}
-          onClick={() => { cropper.reset() }}>
+          onClick={() => { cropper.reset() }}>{t('reset')}
         </Button>
         <Button
           aria-label='Delete'
@@ -150,17 +153,19 @@ export default function CropperOptions({ show, cropper, onCrop, onDiscard }) {
           // classes={{ startIcon: s.startIcon, root: s.deleteIconButton }}
           startIcon={<DeleteIcon />}
           onClick={onDiscard}
-            variant="outlined">
+            variant="outlined">{t('throw')}
         </Button>
-        <Button 
-          aria-label='Done'
-          classes={{ startIcon: s.startIcon }}
-          startIcon={<DoneIcon />}
-          onClick={onCrop}
-          className={s.done}
-          // color="primary"
-          // variant="contained">
-          >
+      </ButtonGroup>
+      <ButtonGroup disableElevation color="primary">
+        <Button
+            aria-label='Done'
+            classes={{ startIcon: s.startIcon }}
+            startIcon={<DoneIcon />}
+            onClick={onCrop}
+            className={s.done}
+            // color="primary"
+            // variant="contained">
+            >
         </Button>
       </ButtonGroup>
     </div>

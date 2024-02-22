@@ -15,6 +15,7 @@
   "height": "Höjd",
   "depth": "Djup",
   "addmoreImages": "Här kan du lägga till ytterligare bild på verket, exempelvis annan vinkel eller bild från när verket skapades.",
+  "allImagesUploaded": "Du kan ladda upp tre bilder per konstverk",
   "publish": "Publicera",
   "doneCropping": "När du är klar med beskärningen, tryck på den gröna knappen.",
   "limitArtwork": "Uppladdningsgränsen har nåtts, ",
@@ -27,5 +28,14 @@
   "deviating": "Avvikande öppettider vid röda dagar och vernissager.",
   "headline": "Rubrik",
   "placeholder": "Skriv en text om en utställning, ge en inblick från din ateljé eller berätta något annat spännande kring ditt konstnärskap just nu...",
-  "story-description": "Här skriver du texten till din artikel. Skriv så informativt som möjligt och se till att språket är korrekt. Artiklar som innehåller mer text och är uppdelade i flera stycken skapar en bättre upplevelse för läsaren."
+  "story-description": "Här skriver du texten till din artikel. Skriv så informativt som möjligt och se till att språket är korrekt. Artiklar som innehåller mer text och är uppdelade i flera stycken skapar en bättre upplevelse för läsaren.",
+  "fieldsMissing": "Vänligen fyll i alla obligatoriska fält ovan",
+  "free": "Valfri",
+  "zoomOut": "Förminska",
+  "zoomIn": "Förstora",
+  "rotate": "Rotera",
+  "horizontal": "Horisontell",
+  "vertical": "Vertikal",
+  "reset": "Återställ",
+  "throw": "Släng"
 }
