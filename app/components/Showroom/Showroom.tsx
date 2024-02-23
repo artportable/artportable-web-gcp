@@ -531,7 +531,7 @@ export default function Showroom() {
         <div
           style={{ display: "flex", justifyContent: "center", margin: "20px" }}
         >
-          <h2>HOS ARTPORTABLE</h2>
+          <h2>ARTPORTABLE SHOWROOM</h2>
         </div>
         <div className={s.fullContainer}>
           <TabContext value={String(value)}>
