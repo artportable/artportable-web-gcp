@@ -404,7 +404,7 @@ export default function Exhibition({ navBarItems }) {
 
   return (
     <>
-      <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
+      <Main fullWidth={true} navBarItems={navBarItems}>
         <Head>
           <title>{t("title")}</title>
 

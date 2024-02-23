@@ -128,8 +128,9 @@ export default function DiscoverPage({ navBarItems }) {
     activeTab === 1 ||
     activeTab === 2 ||
     activeTab === 3 ||
-    activeTab === 4 ||
-    activeTab === 8;
+    activeTab === 5;
+
+  const fullWidth = activeTab === 4;
 
   function setTab(value) {
     setActiveTab(value);
@@ -182,6 +183,7 @@ export default function DiscoverPage({ navBarItems }) {
       wide={useWideLayout}
       isShow={false}
       navBarItems={navBarItems}
+      fullWidth={fullWidth}
     >
       <Head>
         <meta name="title" content={t("index:title")} />
