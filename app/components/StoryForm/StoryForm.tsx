@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@material-ui/core/Box";
 
 import { styles } from "./storyForm.css";
 import { useTranslation } from "next-i18next";
-import { TextField, Typography } from "@material-ui/core";
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { Paper } from "@mui/material";
 
-export default function StoryForm({ title, setTitle, setDescription }) {
+export default function StoryForm({
+  title,
+  setTitle,
+  setDescription,
+  setExhibition,
+}) {
   const s = styles();
   const { t } = useTranslation("upload");
 
@@ -37,6 +48,21 @@ export default function StoryForm({ title, setTitle, setDescription }) {
           style={{ padding: "10px", marginBottom: "10px" }}
         />
       </Paper>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "40px",
+          marginBottom: "40px",
+        }}
+      >
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox onChange={() => setExhibition(true)} />}
+            label={t("exhibition")}
+          />
+        </FormGroup>
+      </div>
     </Box>
   );
 }
