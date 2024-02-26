@@ -29,7 +29,7 @@ export default function DiscoverStoriesTab() {
     setPage(page + 1);
   };
 
-  const {membership} = useContext(UserContext);
+  const { membership } = useContext(UserContext);
 
   const isButtonDisabled = currentStories.length < storiesPerPage;
 

@@ -136,3 +136,20 @@ export async function usePostStory(
     //throw error;
   }
 }
+
+export function useGetUserExhibitions(page: number, pageSize: number) {
+  const url = new URL(
+    `${apiBaseUrl}/api/stories/userExhibitions?page=${page}&pageSize=${pageSize}`
+  );
+  const { data, error, mutate } = useSWR(url.toString(), fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+    mutate: mutate,
+  };
+}

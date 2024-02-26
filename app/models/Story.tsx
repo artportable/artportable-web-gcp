@@ -13,6 +13,7 @@ export interface Story {
   Surname: string;
   Username: string;
   ProfilePicture: string;
+  Exhibition: boolean;
 }
 
 export interface StoryForCreation {
@@ -21,4 +22,5 @@ export interface StoryForCreation {
   PrimaryFile: Image;
   SecondaryFile: Image;
   TertiaryFile: Image;
+  Exhibition: boolean;
 }
