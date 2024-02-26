@@ -61,6 +61,7 @@ export default function UploadStoryPage({ navBarItems }) {
   const [nameSecondary, setNameSecondary] = useState(null);
   const [croppedTertiary, setCroppedTertiary] = useState(null);
   const [nameTertiary, setNameTertiary] = useState(null);
+  const [exhibition, setExhibition] = useState(false);
 
   const [mobileImg, setMobileImg] = useState("");
   const [mobileImgBlob, setMobileImgBlob] = useState(null);
@@ -84,29 +85,29 @@ export default function UploadStoryPage({ navBarItems }) {
   });
 
   const uploadStory = async () => {
-      const name = await uploadImage(
-        mobileImgBlob,
-        mobilePreviewImageRef.current.naturalWidth,
-        mobilePreviewImageRef.current.naturalHeight
-      );
+    const name = await uploadImage(
+      mobileImgBlob,
+      mobilePreviewImageRef.current.naturalWidth,
+      mobilePreviewImageRef.current.naturalHeight
+    );
 
-      if (name !== null && title) {
-        const story: StoryForCreation = {
-          Title: title,
-          Description: description,
-          PrimaryFile: name as any,
-          SecondaryFile: nameSecondary,
-          TertiaryFile: nameTertiary,
-        };
-        setUploadSnackbarOpen(true);
-        const res = await usePostStory(story, socialId.value, token);
-        console.log(res);
-        if (res) {
-          router.push("/story/" + res.Id);
-        } else {
-          router.push("/profile/@" + username.value);
-        }
-      
+    if (name !== null && title) {
+      const story: StoryForCreation = {
+        Title: title,
+        Description: description,
+        PrimaryFile: name as any,
+        SecondaryFile: nameSecondary,
+        TertiaryFile: nameTertiary,
+        Exhibition: exhibition,
+      };
+      setUploadSnackbarOpen(true);
+      const res = await usePostStory(story, socialId.value, token);
+      console.log(res);
+      if (res) {
+        router.push("/story/" + res.Id);
+      } else {
+        router.push("/profile/@" + username.value);
+      }
     }
   };
   useEffect(() => {
@@ -184,8 +185,7 @@ export default function UploadStoryPage({ navBarItems }) {
     setDeletedFile(true);
   };
 
-
-  useEffect(() => {}, [onDiscard])
+  useEffect(() => {}, [onDiscard]);
 
   const uploadImage = async (blob, width: number, height: number) => {
     return refreshToken()
@@ -237,93 +237,104 @@ export default function UploadStoryPage({ navBarItems }) {
   return (
     <Main navBarItems={navBarItems}>
       <>
-      <div className={s.fullContainer}>
-        <div className={s.mainGrid}>
-          <div className={s.form}>
-            <StoryForm
-              title={title}
-              setTitle={setTitle}
-              setDescription={setDescription}
-            />
-          </div>  
-              <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+        <div className={s.fullContainer}>
+          <div className={s.mainGrid}>
+            <div className={s.form}>
+              <StoryForm
+                title={title}
+                setTitle={setTitle}
+                setDescription={setDescription}
+                setExhibition={setExhibition}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
               {!mobileImg && (
                 <div>
                   <input
-                accept="image/*"
-                style={{ display: "none" }}
-                id="icon-button-file"
-                type="file"
-                onChange={onMobileUpload}
-              />
-              <label htmlFor="icon-button-file">
-                <ArtButton
-                  className={s.mobileUploadResetButton}
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  startIcon={<AddPhotoAlternateIcon />}
-                  rounded
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  {t("story:selectImage")}
-                </ArtButton>
-                
-              </label>
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    id="icon-button-file"
+                    type="file"
+                    onChange={onMobileUpload}
+                  />
+                  <label htmlFor="icon-button-file">
+                    <ArtButton
+                      className={s.mobileUploadResetButton}
+                      size="small"
+                      variant="contained"
+                      color="primary"
+                      startIcon={<AddPhotoAlternateIcon />}
+                      rounded
+                      aria-label="upload picture"
+                      component="span"
+                    >
+                      {t("story:selectImage")}
+                    </ArtButton>
+                  </label>
                 </div>
               )}
-             <ArtButton
-              className={`${!title || !mobileImg || !mobileImgBlob ? s.disabledButton : s.uploadButton}`}
-              rounded
-              disabled={!title || !mobileImg || !mobileImgBlob}
-              onClick={() => {
-                uploadStory();
-                trackGoogleAnalytics(
-                  ActionType.UPLOAD_IMAGE_CONFIRM,
-                  CategoryType.INTERACTIVE
-                );
-              }}
-            >
-              {t("story:publish")}
-            </ArtButton>
-
-
-              </div>
-              <div>
-   
+              <ArtButton
+                className={`${
+                  !title || !mobileImg || !mobileImgBlob
+                    ? s.disabledButton
+                    : s.uploadButton
+                }`}
+                rounded
+                disabled={!title || !mobileImg || !mobileImgBlob}
+                onClick={() => {
+                  uploadStory();
+                  trackGoogleAnalytics(
+                    ActionType.UPLOAD_IMAGE_CONFIRM,
+                    CategoryType.INTERACTIVE
+                  );
+                }}
+              >
+                {t("story:publish")}
+              </ArtButton>
             </div>
+            <div></div>
             <WarningMessage />
-          <Snackbar
-            open={uploadSnackbarOpen}
-            autoHideDuration={6000}
-            onClose={handleSnackbarClose}
-          >
-            <Alert
+            <Snackbar
+              open={uploadSnackbarOpen}
+              autoHideDuration={6000}
               onClose={handleSnackbarClose}
-              variant="filled"
-              severity="success"
             >
-              {t("story:storyUploadedSuccessfully")}
-            </Alert>
-          </Snackbar>
-        </div>
-        <div style={{margin: "20px"}}>
-          {mobileImg === "" ? (
-            <div>
-                </div>
-                  ) : (
-                  <div style={{display: "flex", flexDirection: "column"}}>
-                    <img
-                    className={s.mobilePreview}
-                    src={mobileImg}
-                    ref={mobilePreviewImageRef}
-                    alt="mobile image"
-                  ></img>
-                  <ArtButton rounded className={s.discardbutton} onClick={onDiscard}>X</ArtButton>
-                  </div>
-                )}
-        </div>
+              <Alert
+                onClose={handleSnackbarClose}
+                variant="filled"
+                severity="success"
+              >
+                {t("story:storyUploadedSuccessfully")}
+              </Alert>
+            </Snackbar>
+          </div>
+          <div style={{ margin: "20px" }}>
+            {mobileImg === "" ? (
+              <div></div>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <img
+                  className={s.mobilePreview}
+                  src={mobileImg}
+                  ref={mobilePreviewImageRef}
+                  alt="mobile image"
+                ></img>
+                <ArtButton
+                  rounded
+                  className={s.discardbutton}
+                  onClick={onDiscard}
+                >
+                  X
+                </ArtButton>
+              </div>
+            )}
+          </div>
         </div>
       </>
     </Main>

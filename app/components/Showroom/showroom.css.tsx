@@ -49,6 +49,14 @@ export const styles = makeStyles((theme: Theme) => {
       [theme.breakpoints.up("md")]: {},
     },
 
+    cafeWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      backgroundColor: "#FAF3EE",
+      padding: "10px",
+      borderRadius: "2px",
+    },
+
     title: {
       marginTop: "10px",
       fontSize: "1.2rem",
@@ -61,6 +69,28 @@ export const styles = makeStyles((theme: Theme) => {
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "center",
+      },
+    },
+
+    titleUserExhibition: {
+      marginTop: "10px",
+      fontSize: "1.1rem",
+
+      fontWeight: 600,
+      color: "black",
+
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "1.4rem",
+      },
+    },
+
+    news: {
+      display: "flex",
+      justifyContent: "center",
+      fontSize: "1.8rem",
+      margin: "20px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "2.4em",
       },
     },
 
@@ -77,6 +107,13 @@ export const styles = makeStyles((theme: Theme) => {
       [theme.breakpoints.up("md")]: {
         textAlign: "center",
       },
+    },
+
+    exhibitionsWrapperDiv: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+      gap: "10px",
+      gridTemplateRows: "auto",
     },
 
     artistTwo: {

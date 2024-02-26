@@ -37,5 +37,6 @@
   "horizontal": "Horizontal",
   "vertical": "Vertical",
   "reset": "Reset",
-  "throw": "Delete"
+  "throw": "Delete",
+  "exhibition": "Check only in the box if your news is about a current exhibition.."
 }
