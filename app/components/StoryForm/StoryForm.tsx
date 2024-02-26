@@ -48,7 +48,14 @@ export default function StoryForm({
           style={{ padding: "10px", marginBottom: "10px" }}
         />
       </Paper>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "40px",
+          marginBottom: "40px",
+        }}
+      >
         <FormGroup>
           <FormControlLabel
             control={<Checkbox onChange={() => setExhibition(true)} />}
