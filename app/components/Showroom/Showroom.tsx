@@ -27,14 +27,10 @@ export default function Showroom() {
   };
 
   useEffect(() => {
-    console.log(storiesData);
-  }, []);
-
-  useEffect(() => {
     if (currentStories.length > 0) {
       setAllStories([...allStories, ...currentStories]);
     }
-  }, [currentStories]);
+  }, [currentStories, page]);
 
   const [backgroundImages, setBackgroundImages] = useState([]);
   const monthNames = Object.keys(showrooms);
@@ -94,8 +90,6 @@ export default function Showroom() {
   }, [value]);
 
   const [selectedCafe, setSelectedCafe] = useState(Object.keys(cafes)[0]);
-
-  const [profilePictureIds, setProfilePictureIds] = useState({});
 
   return (
     <>
@@ -300,7 +294,7 @@ export default function Showroom() {
                 >
                   <div style={{ marginBottom: "10px" }}>
                     <img
-                      src={`${bucketUrl}/${exhibition?.PrimaryFile?.Name}`}
+                      src={`${bucketUrl}${exhibition?.PrimaryFile?.Name}`}
                       alt="exhibition Image"
                       className={s.img}
                     />
