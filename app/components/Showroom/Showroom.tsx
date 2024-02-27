@@ -303,7 +303,11 @@ export default function Showroom() {
                     <div className={s.titleUserExhibition}>
                       {exhibition?.Title}
                     </div>
-                    <div>{exhibition?.Description}</div>
+                    <div>
+                      {exhibition?.Description &&
+                        exhibition.Description.slice(0, 150)}
+                      {"..."}
+                    </div>
                   </div>
                 </a>
               </div>
