@@ -27,14 +27,10 @@ export default function Showroom() {
   };
 
   useEffect(() => {
-    console.log(storiesData);
-  }, []);
-
-  useEffect(() => {
     if (currentStories.length > 0) {
       setAllStories([...allStories, ...currentStories]);
     }
-  }, [currentStories]);
+  }, [currentStories, page]);
 
   const [backgroundImages, setBackgroundImages] = useState([]);
   const monthNames = Object.keys(showrooms);
@@ -95,48 +91,10 @@ export default function Showroom() {
 
   const [selectedCafe, setSelectedCafe] = useState(Object.keys(cafes)[0]);
 
-  const [profilePictureIds, setProfilePictureIds] = useState({});
-
-  useEffect(() => {
-    const fetchProfilePictureIds = async () => {
-      const ids = {};
-      const selectedCafeData = cafes[selectedCafe]; // Fetch data only for the selected cafe
-
-      if (selectedCafeData) {
-        for (const exhibition of selectedCafeData) {
-          for (const artist of exhibition.artists) {
-            try {
-              const response = await fetch(
-                `https://api.artportable.com/api/Profile/${artist.username}/profilepicture`
-              );
-              const data = await response.text(); // Use text() instead of json()
-
-              // Check if the response is not empty before updating the state
-              if (data) {
-                ids[artist.username] = data;
-              } else {
-                console.error(`Empty response for ${artist.username}`);
-              }
-            } catch (error) {
-              console.error(
-                `Error fetching profile picture for ${artist.username}:`,
-                error
-              );
-            }
-          }
-        }
-      }
-
-      setProfilePictureIds(ids);
-    };
-
-    fetchProfilePictureIds();
-  }, [selectedCafe]);
-
   return (
     <>
       <div>
-        <div className={s.flexContainer}>
+        <div className={s.bannerContainer}>
           <div className={s.textContainer}>
             <Typography className={s.title}>{t("title")}</Typography>
             <p className={s.description}>
@@ -263,45 +221,45 @@ export default function Showroom() {
               ))}
             </div>
           </TabContext>
+        </div>
 
-          {/* Cafe Tabs */}
-          <div className={s.cafeWrapper}>
-            <TabContext value={selectedCafe}>
-              <div style={{}}>
-                <Tabs
-                  value={selectedCafe}
-                  onChange={(event, newCafe) => setSelectedCafe(newCafe)}
-                  variant="scrollable"
-                  scrollButtons="on"
-                  TabIndicatorProps={{
-                    style: {
-                      backgroundColor: "rgb(0 0 0)",
-                    },
-                  }}
-                >
-                  {Object.keys(cafes).map((cafe) => (
-                    <Tab
-                      label={cafe
-                        .split("_")
-                        .map(
-                          (word) => word.charAt(0) + word.slice(1).toLowerCase()
-                        )
-                        .join(" ")}
-                      value={cafe}
-                      key={cafe}
-                    />
-                  ))}
-                </Tabs>
+        <div className={s.cafeWrapper}>
+          <TabContext value={selectedCafe}>
+            <div className={s.tabContainer}>
+              <Tabs
+                value={selectedCafe}
+                onChange={(event, newCafe) => setSelectedCafe(newCafe)}
+                variant="scrollable"
+                scrollButtons="on"
+                className={s.tabs}
+                TabIndicatorProps={{
+                  style: {
+                    backgroundColor: "rgb(0 0 0)",
+                  },
+                }}
+              >
+                {Object.keys(cafes).map((cafe) => (
+                  <Tab
+                    label={cafe
+                      .split("_")
+                      .map(
+                        (word) => word.charAt(0) + word.slice(1).toLowerCase()
+                      )
+                      .join(" ")}
+                    value={cafe}
+                    key={cafe}
+                  />
+                ))}
+              </Tabs>
 
-                <div className={s.dateArtist}>
-                  {selectedCafe &&
-                    cafes[selectedCafe] &&
-                    cafes[selectedCafe].map((exhibition, i) => (
-                      <div key={i}>
-                        <div style={{ marginTop: "40px", fontSize: "24px" }}>
-                          {exhibition?.period}
-                        </div>
-                        <div className={s.exhibitionsWrapper}>
+              <div className={s.exhibitionContainer}>
+                {selectedCafe &&
+                  cafes[selectedCafe] &&
+                  cafes[selectedCafe].map((exhibition, i) => (
+                    <div key={i} className={s.exhibitionItem}>
+                      <div className={s.periodArtist}>
+                        <div className={s.period}>{exhibition?.period}</div>
+                        <div>
                           {exhibition.artists.map((artist, j) => (
                             <div key={j} className={s.dateArtist}>
                               <a
@@ -309,71 +267,67 @@ export default function Showroom() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                <div className={s.imgAndName}>
-                                  <div>
-                                    <img
-                                      src={`https://artportableprod-azurecdn.azureedge.net/artportable-prod/images/${
-                                        profilePictureIds[artist.username] ||
-                                        "7f97243b-4c74-4b95-a720-ae66574f4270.jpg"
-                                      }`}
-                                      alt="profile picture"
-                                      className={s.img}
-                                    />
-                                  </div>
-                                  <div className={s.artistTwo}>
-                                    {artist.name}
-                                  </div>
-                                </div>
+                                <div className={s.artistTwo}>{artist.name}</div>
                               </a>
                             </div>
                           ))}
                         </div>
                       </div>
-                    ))}
-                </div>
+                    </div>
+                  ))}
               </div>
-            </TabContext>
-          </div>
-          <div>
-            <div className={s.news}>{t("news")}</div>
-            <div className={s.exhibitionsWrapperDiv}>
-              {allStories?.map((exhibition) => (
-                <div key={exhibition.Id} style={{ margin: "10px" }}>
-                  <a href={`/stories/${exhibition?.Slug}`}>
-                    <div>
-                      <img
-                        src={`${bucketUrl}/${exhibition?.PrimaryFile?.Name}`}
-                        alt="exhibition Image"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxHeight: "400px",
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <div className={s.titleUserExhibition}>
-                        {exhibition?.Title}
-                      </div>
-                      <div>{exhibition?.Description}</div>
-                    </div>
-                  </a>
-                </div>
-              ))}
             </div>
-            {!isButtonDisabled && (
-              <div>
-                <Button
-                  color="primary"
-                  aria-label="load more"
-                  variant="contained"
-                  onClick={loadMore}
+          </TabContext>
+        </div>
+
+        <div>
+          <div className={s.news}>{t("news")}</div>
+          <div className={s.exhibitionsWrapperDiv}>
+            {allStories?.map((exhibition) => (
+              <div
+                key={exhibition.Id}
+                style={{ flex: "1 0 48%", margin: "2%", maxWidth: "38%" }}
+              >
+                <a
+                  href={`/stories/${exhibition?.Slug}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  {t("loadMore")}
-                </Button>
+                  <div style={{ marginBottom: "10px" }}>
+                    <img
+                      src={`${bucketUrl}${exhibition?.PrimaryFile?.Name}`}
+                      alt="exhibition Image"
+                      className={s.img}
+                    />
+                  </div>
+                  <div>
+                    <div className={s.titleUserExhibition}>
+                      {exhibition?.Title}
+                    </div>
+                    <div>{exhibition?.Description}</div>
+                  </div>
+                </a>
               </div>
-            )}
+            ))}
           </div>
+
+          {!isButtonDisabled && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "10px",
+              }}
+            >
+              <Button
+                color="primary"
+                aria-label="load more"
+                variant="contained"
+                onClick={loadMore}
+              >
+                {t("loadMore")}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </>

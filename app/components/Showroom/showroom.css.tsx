@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) => {
       margin: "0 auto",
       marginTop: "30px",
     },
-    flexContainer: {
+    bannerContainer: {
       margin: "0 auto",
       position: "relative",
       width: "100%",
@@ -33,6 +33,11 @@ export const styles = makeStyles((theme: Theme) => {
 
     wrapper: {},
 
+    newsContainer: {
+      width: "85%",
+      margin: "0 auto",
+    },
+
     textContainer: {
       fontWeight: 600,
       color: "white",
@@ -55,6 +60,68 @@ export const styles = makeStyles((theme: Theme) => {
       backgroundColor: "#FAF3EE",
       padding: "10px",
       borderRadius: "2px",
+      margin: "0 auto",
+      [theme.breakpoints.up("smPlus")]: {
+        padding: "20px",
+      },
+    },
+
+    tabContainer: {
+      [theme.breakpoints.up("md")]: {
+        margin: "0 auto",
+      },
+    },
+    tabs: {
+      width: "100%",
+      justifyContent: "center",
+    },
+    exhibitionContainer: {
+      display: "flex",
+      flexWrap: "wrap",
+
+      [theme.breakpoints.up("sm")]: {
+        flexDirection: "column",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "column",
+        margin: "0 auto",
+      },
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "column",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        flexDirection: "row",
+      },
+    },
+    exhibitionItem: {
+      flex: "1 0 100%",
+      margin: "1%",
+      [theme.breakpoints.up("sm")]: {
+        flex: "1 0 48%",
+      },
+      [theme.breakpoints.up("md")]: {
+        flex: "1 0 48%",
+      },
+    },
+    periodArtist: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: "40px",
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "column",
+      },
+    },
+    dateArtist: {
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      marginTop: "6px",
+      [theme.breakpoints.up("smPlus")]: {
+        marginTop: "20px",
+      },
+      [theme.breakpoints.up("md")]: {},
     },
 
     title: {
@@ -74,7 +141,7 @@ export const styles = makeStyles((theme: Theme) => {
 
     titleUserExhibition: {
       marginTop: "10px",
-      fontSize: "1.1rem",
+      fontSize: "0.8rem",
 
       fontWeight: 600,
       color: "black",
@@ -110,10 +177,14 @@ export const styles = makeStyles((theme: Theme) => {
     },
 
     exhibitionsWrapperDiv: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-      gap: "10px",
-      gridTemplateRows: "auto",
+      display: "flex",
+      flexWrap: "wrap",
+      width: "100%",
+      justifyContent: "center",
+      margin: "0 auto",
+      [theme.breakpoints.up("md")]: {
+        width: "80%",
+      },
     },
 
     artistTwo: {
@@ -169,17 +240,14 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
     period: {
-      marginTop: "20px",
-      fontSize: "24px",
+      marginTop: "6spx",
+      fontSize: "20px",
       display: "flex",
       justifyContent: "center",
       [theme.breakpoints.up("smPlus")]: {
         justifyContent: "flex-start",
+        fontSize: "24px",
       },
-    },
-    periodArtist: {
-      display: "flex",
-      flexDirection: "column",
     },
 
     flexImage: {
@@ -196,13 +264,14 @@ export const styles = makeStyles((theme: Theme) => {
     },
 
     img: {
-      width: "60px",
-      height: "60px",
-      borderRadius: "50%",
+      width: "100%",
+      height: "auto",
+      maxHeight: "400px",
+      maxWidth: "100%",
       objectFit: "cover",
-      [theme.breakpoints.up("smPlus")]: {
-        width: "150px",
-        height: "150px",
+
+      [theme.breakpoints.up("mdPlus")]: {
+        height: "30vh",
       },
     },
 
@@ -236,23 +305,6 @@ export const styles = makeStyles((theme: Theme) => {
       },
       [theme.breakpoints.up("md")]: {
         width: "100%",
-      },
-    },
-    dateArtist: {
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      marginLeft: "0px",
-
-      marginTop: "20px",
-      [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
-        alignItems: "flex-start",
-      },
-      [theme.breakpoints.up("md")]: {
-        width: "50%",
-        marginLeft: "70px",
-        alignItems: "flex-start",
       },
     },
 
