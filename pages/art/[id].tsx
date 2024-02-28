@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, Fragment } from "react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -153,10 +153,10 @@ export default function ArtworkPage(props) {
     }
 
     return text.split("\n").map((str, index, array) => (
-      <>
+      <Fragment key={index}>
         {str}
         {index === array.length - 1 ? null : <br />}
-      </>
+      </Fragment>
     ));
   }
 

@@ -109,6 +109,16 @@ export default function Footer() {
             </Typography>
           </a>
         </Link>
+          <a href="https://artworks.se/" target="_blank">
+            <Typography variant="body2" component="div">
+              {t("artAtArtworks")}
+            </Typography>
+          </a>
+          <a href="https://selectedprints.se/" target="_blank">
+            <Typography variant="body2" component="div">
+              {t("artAtSelectedprints")}
+            </Typography>
+          </a>
       </div>
 
       <div className={clsx(s.hide, s.flexItem)}>

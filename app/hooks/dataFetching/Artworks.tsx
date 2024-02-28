@@ -63,12 +63,12 @@ export function useGetTags() {
   };
 }
 
-export function usePostArtwork(
+export async function usePostArtwork(
   artwork: ArtworkForCreation,
   socialId: string,
   token: string
 ) {
-  fetch(`${apiBaseUrl}/api/artworks?mySocialId=${socialId}`, {
+  return await fetch(`${apiBaseUrl}/api/artworks?mySocialId=${socialId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -77,9 +77,12 @@ export function usePostArtwork(
     body: JSON.stringify(artwork),
   })
     .then((res) => {
-      return res.ok;
+      return res.json();
     })
-    .catch((e) => console.log(e));
+    .catch((e) => {
+      console.log(e)
+      return false;
+    });
 }
 
 export function useGetArtworksForStartPage() {
