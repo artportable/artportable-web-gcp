@@ -14,5 +14,7 @@
   "register": "Gerast meðlimur",
   "aboutUs": "Um okkur",
   "cookies": "Þessi vefur notar vafrakökur.",
-  "integrity": "Persónuverndarstefna"
+  "integrity": "Persónuverndarstefna",
+  "artAtArtworks": "List á Artworks",
+  "artAtSelectedprints": "List á Selectedprints"
 }

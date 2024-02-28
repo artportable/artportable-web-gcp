@@ -127,8 +127,11 @@ export default function UploadArtworkPage({ navBarItems }) {
         };
         setRefresh(true);
         setUploadSnackbarOpen(true);
-        const res = usePostArtwork(artwork, socialId.value, token);
-        router.push("/profile/@" + username.value);
+        const res = await usePostArtwork(artwork, socialId.value, token);
+        
+        if (res && res.Id) {
+          router.push("/art/" + res.Id);
+        }
       }
     } else {
       const name = await uploadImage(
@@ -158,8 +161,11 @@ export default function UploadArtworkPage({ navBarItems }) {
           TertiaryFile: nameTertiary,
         };
         setUploadSnackbarOpen(true);
-        usePostArtwork(artwork, socialId.value, token);
-        router.push("/profile/@" + username.value);
+        const res = await usePostArtwork(artwork, socialId.value, token);
+
+        if (res && res.Id) {
+          router.push("/art/" + res.Id);
+        }
       }
     }
   };
