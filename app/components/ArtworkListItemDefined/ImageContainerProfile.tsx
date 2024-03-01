@@ -11,7 +11,7 @@ import { styles } from "./artworkListItemDefined.css";
 import { profileStyles } from "../../../styles/[username]";
 import ArtworkListItemDefinedSkeleton from "../../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton";
 
-export default function ImageContainer({
+export default function ImageContainerProfile({
   artwork,
   editAction,
   isDragging,

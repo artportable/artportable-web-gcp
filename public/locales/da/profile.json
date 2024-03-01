@@ -82,6 +82,8 @@
   "fillInCountry": "Udfyld venligst land og by",
   "readMore": "Læs mere",
   "readLess": "Luk",
+  "beginSort": "Begynd at sortere",
+  "endSort": "Stop med at sortere",
   "saveSort": "Gem",
   "resetSort": "Annuller",
   "enterUserName": "Brugernavnet er tilstrækkeligt"

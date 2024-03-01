@@ -410,9 +410,12 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: '10px',
       zIndex: 100,
       opacity: 1,
+      display: 'flex',
+      justifyContent: 'center',
     },
     sortButtonsHidden: {
       opacity: 0,
+      display: 'none',
     },
     saveSortChangesButton: {
       marginRight: '20px',
