@@ -198,11 +198,16 @@ export default function DiscoverArt({
   // }
 
   let imageRowsWithElements: (Image[]|React.ReactElement)[] = [];
-  if (imageRows.length > 0) {
+  if (imageRows.length > 1) {
     imageRowsWithElements = imageRows;
 
     if (insertElements.length > 0) {
       insertElements.forEach(insert => {
+        // If the item in the array is not an array, then an insert has already been added there. Check this to avoid duplicates.
+        if (imageRows[insert.position] && !Array.isArray(imageRows[insert.position])) {
+          return
+        }
+        
         imageRowsWithElements.splice(insert.position, 0, insert.element)
       })
     }
