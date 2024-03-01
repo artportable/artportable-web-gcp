@@ -83,6 +83,8 @@
   "fillInCountry": "Fyll i land och stad",
   "readMore": "Läs mer",
   "readLess": "Stäng",
+  "beginSort": "Börja sortera",
+  "endSort": "Sluta sortera",
   "saveSort": "Spara",
   "resetSort": "Avbryt",
   "enterUserName": "Det räcker med användarnamnet"

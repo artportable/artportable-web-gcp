@@ -142,6 +142,34 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   )
 }
 
+const formatApArtworkForEmbla = (prints) => {
+  const formatted = []
+  // prints.forEach(print => {
+  //   const artworkImage = findFirstFramedImage(print.images)
+  //   const environmentImage = findFirstNotFramedImage(print.images)
+  //   const imageSrc = artworkImage.src
+  //   const thumbnailSrc = ''
+  //   const hoverSrc = environmentImage.src
+    
+    
+  //   if (artworkImage && environmentImage) {
+  //     formatted.push({
+  //       imageSrc,
+  //       thumbnailSrc,
+  //       hoverSrc,
+  //       width: artworkImage.width,
+  //       height: artworkImage.height,
+  //       hoverCenter: environmentImage.center,
+  //       artistName: print.artistMod ? print.artistMod.name : print.artistName,
+  //       title: print.title,
+  //       linkURL: `https://selectedprints.se/print/${print.slug}`,
+  //     })
+  //   }
+  // })
+
+  return formatted
+}
+
 const formatAwArtworkForEmbla = (prints) => {
   const formatted = []
   prints.forEach(print => {
@@ -171,4 +199,4 @@ const formatAwArtworkForEmbla = (prints) => {
 }
 
 export default EmblaCarousel
-export { formatAwArtworkForEmbla }
+export { formatAwArtworkForEmbla, formatApArtworkForEmbla }

@@ -83,6 +83,8 @@
   "fillInCountry": "Vinsamlegast fyllið út land og borg",
   "readMore": "Lesa meira",
   "readLess": "Loka",
+  "beginSort": "Byrja að flokka",
+  "endSort": "Hætta að flokka",
   "saveSort": "Vista",
   "resetSort": "Hætta við",
   "enterUserName": "Það nægir með notendanafnið"

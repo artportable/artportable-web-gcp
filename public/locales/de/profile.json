@@ -83,6 +83,8 @@
   "fillInCountry": "Land und Stadt angeben",
   "readMore": "Mehr lesen",
   "readLess": "Schließen",
+  "beginSort": "Anfangen zu sortieren",
+  "endSort": "Aufhören zu sortieren",
   "saveSort": "Speichern",
   "resetSort": "Abbrechen",
   "enterUserName": "Es reicht der Benutzername"
