@@ -37,6 +37,8 @@
     "cookie": "^0.4.1",
     "country-state-city": "^3.2.1",
     "date-fns": "^2.23.0",
+    "embla-carousel-autoplay": "^8.0.0",
+    "embla-carousel-react": "^8.0.0",
     "env-cmd": "^10.1.0",
     "fg-loadcss": "^3.1.0",
     "getstream": "^7.2.10",

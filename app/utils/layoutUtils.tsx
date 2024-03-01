@@ -58,3 +58,15 @@ function setFinalRowDimensions(row, adjustBy) {
   }));
 }
 
+// Create an array of indexes in sequence with random start, 0,1,2,3... etc.
+export function getRandomSequentialIndexes(arrayLength, resultCount) {
+  const startIndex = Math.floor(Math.random() * arrayLength)
+
+  let randomIndexes = []
+  for (let i = startIndex; i < startIndex + resultCount; i++) {
+    // If next value to push is off the end of the array, push values from the beginning instead, 0,1,2...
+    randomIndexes.push(i < arrayLength ? i : i - arrayLength)
+  }
+
+  return randomIndexes
+}
