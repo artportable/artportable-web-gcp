@@ -26,6 +26,7 @@ export default function ArtworkListSortable({ items, editAction, t }) {
   const [itemIds, setItemIds] = useState<string[]>([]);
   // Saving original order to be able to reset sort changes.
   const [itemIdsOriginal, setItemIdsOriginal] = useState<string[]>([]);
+  const [sortActive, setSortActive] = useState(false)
   const [ordersHasChanged, setOrderHasChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   useEffect(() => {
@@ -78,15 +79,33 @@ export default function ArtworkListSortable({ items, editAction, t }) {
     }
 
     setIsSaving(false);
+    setSortActive(false);
   };
 
   const resetOrder = () => {
     setItemIds(itemIdsOriginal);
     setOrderHasChanged(false);
+    setSortActive(false);
   };
 
   return (
     <div>
+      <div
+        className={clsx(s.sortButtons, {
+          [s.sortButtonsHidden]: ordersHasChanged,
+        })}
+      >
+        <Button
+          aria-label="edit"
+          className={s.saveSortChangesButton}
+          variant="contained"
+          rounded
+          disabled={false}
+          onClick={() => setSortActive(!sortActive)}
+        >
+          {!sortActive ? t("profile:beginSort") : t("profile:endSort")}
+        </Button>
+      </div>
       <div
         className={clsx(s.sortButtons, {
           [s.sortButtonsHidden]: !ordersHasChanged,
@@ -138,7 +157,7 @@ export default function ArtworkListSortable({ items, editAction, t }) {
                     editAction={editAction}
                     isDragging={isDragging}
                     router={router}
-                    dragDisabled={isSaving}
+                    dragDisabled={!sortActive || isSaving}
                     isSaving={isSaving}
                     isSorting={ordersHasChanged}
                   />

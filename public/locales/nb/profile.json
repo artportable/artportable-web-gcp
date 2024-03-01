@@ -82,6 +82,8 @@
   "fillInCountry": "Vennligst fyll inn Land og By",
   "readMore": "Les mer",
   "readLess": "Steng",
+  "beginSort": "Begynn å sortere",
+  "endSort": "Slutt å sortere",
   "saveSort": "Lagre",
   "resetSort": "Avbryt",
   "enterUserName": "Det er nok med brukernavnet"

@@ -82,6 +82,8 @@
   "fillInCountry": "Please fill in Country and City",
   "readMore": "Read more",
   "readLess": "Close",
+  "beginSort": "Start sorting",
+  "endSort": "Stop sorting",
   "saveSort": "Save",
   "resetSort": "Reset",
   "enterUserName": "The username is enough"

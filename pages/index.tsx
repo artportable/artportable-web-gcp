@@ -48,6 +48,7 @@ import { useRouter } from "next/router";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 import Showroom from "../app/components/Showroom/Showroom";
+// import RocketCarousel from "../app/components/Carousel/RocketCarousel"
 import Hotjar from "@hotjar/browser";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -216,6 +217,8 @@ export default function DiscoverPage({ navBarItems }) {
       {!isSignedIn.value && <IndexHero></IndexHero>}
 
       <>
+        {/*<RocketCarousel forDesktop={!isMobile} />*/}
+
         {!isSignedIn.value &&
           activeTab != 1 &&
           activeTab != 2 &&
