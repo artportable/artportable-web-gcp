@@ -23,6 +23,7 @@ module.exports = {
       "artportableprod.blob.core.windows.net",
       "artportabletest-cdn.azureedge.net",
       "artportableprod-azurecdn.azureedge.net",
+      "images.artworksapp.com",
     ],
   },
   i18n,

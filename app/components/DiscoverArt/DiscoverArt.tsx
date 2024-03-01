@@ -16,6 +16,7 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { Artwork } from "../../models/Artwork";
 import { getImageAsRows } from "../../utils/layoutUtils";
+import { findFirstFramedImage, findFirstNotFramedImage } from "../../utils/imageUtils";
 import Image from "../../models/Image";
 import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
@@ -30,6 +31,11 @@ import LinearProgress from "@mui/material/LinearProgress";
 
 import { Skeleton } from "@material-ui/lab";
 
+interface InsertElement {
+  element: React.ReactElement,
+  position: number,
+}
+
 interface InputProps {
   artworks: Artwork[];
   tags: string[];
@@ -42,6 +48,7 @@ interface InputProps {
   activeTab: number;
   trendingArtTab: boolean;
   likedArtTab: boolean;
+  insertElements: InsertElement[];
 }
 
 export default function DiscoverArt({
@@ -54,6 +61,7 @@ export default function DiscoverArt({
   loadMore,
   trendingArtTab = null,
   likedArtTab = null,
+  insertElements = [],
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
@@ -138,6 +146,7 @@ export default function DiscoverArt({
   useEffect(() => {
     const primaryImages = artworks.map((a) => a.PrimaryFile);
     const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
+
     setImageRows(rows);
     const skeletonRows = getImageAsRows(
       skeletonImages,
@@ -188,6 +197,22 @@ export default function DiscoverArt({
   }
   // }
 
+  let imageRowsWithElements: (Image[]|React.ReactElement)[] = [];
+  if (imageRows.length > 1) {
+    imageRowsWithElements = imageRows;
+
+    if (insertElements.length > 0) {
+      insertElements.forEach(insert => {
+        // If the item in the array is not an array, then an insert has already been added there. Check this to avoid duplicates.
+        if (imageRows[insert.position] && !Array.isArray(imageRows[insert.position])) {
+          return
+        }
+        
+        imageRowsWithElements.splice(insert.position, 0, insert.element)
+      })
+    }
+  }
+
   return (
     <>
       {artworks ? (
@@ -227,8 +252,8 @@ export default function DiscoverArt({
                 </div>
               </>
             )}
-            {imageRows &&
-              imageRows.map((row: Image[], i) => (
+            {imageRowsWithElements &&
+              imageRowsWithElements.map((row: Image[], i) => Array.isArray(row) ? (
                 <div className={s.row} key={i}>
                   {row.map((image) => {
                     let artwork = artworks.find(
@@ -252,7 +277,14 @@ export default function DiscoverArt({
                     }
                   })}
                 </div>
-              ))}
+              )
+                :
+                <div key={i}>
+                  {/* This row is not a row but a React Element to insert between the rows. */}
+                  {row}
+                </div>
+              )}
+
             {!isLoading && loadMore && (
               <div className={s.row} ref={loadMoreElementRef}>
                 {skeletonRows && skeletonRows.length > 0 && (

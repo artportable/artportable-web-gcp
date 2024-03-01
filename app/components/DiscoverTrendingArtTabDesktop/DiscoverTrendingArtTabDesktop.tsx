@@ -9,6 +9,9 @@ import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { THEME_TAGS, TECHNIQUE_TAGS } from "../DiscoverTrendingArtTab/tags";
 import { styles } from "./discoverTrendingArtTabDesktop.css";
+import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
+import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
+import SELECTED_PRINTS from "../../../data/selectedPrintsData";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Accordion from "@mui/material/Accordion";
@@ -194,6 +197,19 @@ const DiscoverTrendingArtTabDesktop = memo(
       );
 
     useEffect(() => {}, [artworks]);
+
+    const [printsIndexes, setPrintIndexes] = useState<number[]>([])
+    const maxPrintCount = 10
+    useEffect(() => {
+      if (printsIndexes.length > 0) return;
+      // Decide randomly which prints to show in carousel.
+      const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
+      setPrintIndexes(randomIndexes)
+    }, [artworks])
+    
+    const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
+    const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
+    
 
     return (
       <>
@@ -536,6 +552,30 @@ const DiscoverTrendingArtTabDesktop = memo(
           activeTab={props.activeTab}
           trendingArtTab={true}
           likedArtTab={false}
+          insertElements={[
+            { element: (
+              <div style={{
+                margin: '3rem 0',
+              }}>
+                <Typography
+                  variant="h2"
+                  style={{
+                    paddingBottom: '10px',
+                  }}>
+                  Selected Prints
+                </Typography>
+                <EmblaCarousel
+                  slides={printsDataForCarousel}
+                  options={{
+                    align: 'start',
+                    loop: true,
+                  }}
+                  forDesktop={true}
+                  />
+              </div>),
+              position: 4,
+            }
+          ]}
         />
       </>
     );
