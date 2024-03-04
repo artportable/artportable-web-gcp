@@ -9,7 +9,8 @@ import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { THEME_TAGS, TECHNIQUE_TAGS } from "./tags";
 import { styles } from "./discoverTrendingArtTab.css";
-import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
+// import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
+import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel"
 import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
 import SELECTED_PRINTS from "../../../data/selectedPrintsData";
 import Button from "@material-ui/core/Button";
@@ -223,17 +224,17 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   useEffect(() => {}, [artworks]);
 
-  const [printsIndexes, setPrintIndexes] = useState<number[]>([])
-    const maxPrintCount = 10
-    useEffect(() => {
-      if (printsIndexes.length > 0) return;
-      // Decide randomly which prints to show in carousel.
-      const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
-      setPrintIndexes(randomIndexes)
-    }, [artworks])
+  // const [printsIndexes, setPrintIndexes] = useState<number[]>([])
+  //   const maxPrintCount = 10
+  //   useEffect(() => {
+  //     if (printsIndexes.length > 0) return;
+  //     // Decide randomly which prints to show in carousel.
+  //     const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
+  //     setPrintIndexes(randomIndexes)
+  //   }, [artworks])
     
-    const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
-    const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
+  //   const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
+  //   const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
 
   return (
     <>
@@ -642,17 +643,12 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 }}>
                 Selected Prints
               </Typography>
-              <EmblaCarousel
-                slides={printsDataForCarousel}
-                options={{
-                  align: 'start',
-                  loop: true,
-                }}
+              <SelectedprintsCarousel
                 forDesktop={false}
-                />
-            </div>),
-            position: 4,
-          }
+              />
+          </div>),
+          position: 4,
+          },
         ]}
       />
     </>

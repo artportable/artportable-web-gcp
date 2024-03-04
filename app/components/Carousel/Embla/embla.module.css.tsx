@@ -35,6 +35,12 @@ export const styles = makeStyles((theme: Theme) =>
     embla__slide__desktop: {
       flex: '0 0 var(--slide-size-desktop)',
     },
+    // Set dynamic_width after embla__slide__desktop so flex don't get overwritten.
+    dynamic_width: {
+      flex: '0 0 auto',
+      minWidth: 0,
+      maxWidth: '100%',
+    },
     embla__slide__image: {
       position: 'relative',
       // boxShadow: 'inset 0 0 0 0.2rem var(--detail-medium-contrast)',
@@ -48,11 +54,27 @@ export const styles = makeStyles((theme: Theme) =>
       '& img': {
         // height: 'var(--slide-height)',
       },
+      '&:hover': {
+        '& > *': {
+          opacity: 1,
+        }
+      },
+    },
+    image__container: {
+      position: 'relative',
     },
     image__element: {
       maxWidth: '100%',
       maxHeight: '100%',
       objectFit: 'contain',
+    },
+    overlay_content: {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      padding: '20px',
     },
     hover__image: {
       position: 'absolute',
@@ -61,14 +83,14 @@ export const styles = makeStyles((theme: Theme) =>
       left: 0,
       right: 0,
       opacity: 0,
-      '&:hover': {
-        opacity: 1,
-      },
+      // '&:hover': {
+      //   opacity: 1,
+      // },
       '& img': {
         objectFit: 'cover',
       },
     },
-    hover__overlay: {
+    hover__overlay_content: {
       position: 'absolute',
       top: 0,
       bottom: 0,
@@ -76,10 +98,14 @@ export const styles = makeStyles((theme: Theme) =>
       right: 0,
       padding: '20px',
       backgroundColor: 'rgba(0, 0, 0, .3)',
-      display: 'flex',
-      flexFlow: 'column nowrap',
-      justifyContent: 'flex-end',
-      alignItems: 'flex-start',
+      // flexFlow: 'column nowrap',
+      // display: 'flex',
+      // justifyContent: 'flex-end',
+      // alignItems: 'flex-start',
+      // display: 'none',
+      opacity: 0,
+      // '&:hover': {
+      // },
     },
     embla__controls: {
       // display: 'grid',
