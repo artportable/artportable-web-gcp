@@ -79,16 +79,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     If we want to use slide.thumbnailSrc as src, but fall back to imageSrc if thumbnail fails:
                     onError={elem => (elem.target as HTMLImageElement).src = slide.imageSrc}
                   */}
+                  <img
+                    className={s.image__element}
+                    src={slide.imageSrc}
+                    alt={slide.artistName}
+                    />
+                  {/* Do not put img inside a div. Won't be "contained". */}
                   <div className={s.image__container}>
-                    <img
-                      className={s.image__element}
-                      src={slide.imageSrc}
-                      alt={slide.artistName}
-                      />
                     { slide.overlayContent &&
-                        <div className={s.overlay_content}>
-                          {slide.overlayContent}
-                        </div>
+                      <div className={s.overlay_content}>
+                        {slide.overlayContent}
+                      </div>
                     }
                   </div>
                   { slide.hoverSrc &&
