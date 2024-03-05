@@ -85,10 +85,10 @@ export default function IndexHero() {
   //List with current promoted artists
   const images = [
     {
-      name: "MARIA ANDERSSON",
-      username: "maria.andersson",
-      image: "/images/mariaandersson.jpg",
-      imageLink: "art/6df8a618-a074-4bdd-adde-71cda7599e01",
+      name: "STEPHAN NICOLAUS HÖRHAMMER",
+      username: "stephannicolaushoerhammer",
+      image: "/images/hoehammer.jpg",
+      imageLink: "art/4f3d12c0-2f85-4b51-9957-fdd8d92363bd",
       showroom: `${t("showroom")}`,
     },
   ];
