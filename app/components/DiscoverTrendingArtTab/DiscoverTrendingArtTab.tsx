@@ -649,7 +649,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 forDesktop={false}
               />
             </div>),
-            position: 4,
+            position: 2,
           },
           {
             element: header ? (
@@ -657,7 +657,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 Topplistan index
               </Typography>
             ) : null,
-            position: 5,
+            position: 3,
           },
         ]}
       />
