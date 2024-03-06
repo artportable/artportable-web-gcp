@@ -44,6 +44,13 @@ import Carousel from "react-material-ui-carousel";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Divider from "@mui/material/Divider";
 import TagChip from "../../app/components/TagChip/TagChip";
+import usePromoteArtwork from "../../app/hooks/dataFetching/Artworks";
+import { Membership } from "../../app/models/Membership";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -57,7 +64,7 @@ export default function ArtworkPage(props) {
   const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query;
-  const { username, socialId } = useContext(UserContext);
+  const { username, socialId, membership } = useContext(UserContext);
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -72,6 +79,19 @@ export default function ArtworkPage(props) {
   const [artworkOwner, setArtworkOwner] = useState(
     artwork?.data?.Owner?.Username
   );
+
+  const { promoteArtwork } = usePromoteArtwork();
+
+  const [showPromoteDialog, setShowPromoteDialog] = useState(false);
+
+  const togglePromoteDialog = () => {
+    setShowPromoteDialog(!showPromoteDialog);
+  };
+
+  const handlePromote = async () => {
+    if (!token) return;
+    const result = await promoteArtwork(artwork?.data?.Id, token, true);
+  };
 
   const userProfile = useGetUserProfileArtwork(artworkOwner);
 
@@ -209,6 +229,31 @@ export default function ArtworkPage(props) {
                     alignItems: "center",
                   }}
                 >
+                  <Dialog
+                    open={showPromoteDialog}
+                    onClose={togglePromoteDialog}
+                  >
+                    <DialogTitle>Confirm Promotion</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        Är du säker på att du vill skicka verket till hus&hem? "
+                        {artwork?.data?.Title}"?
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={togglePromoteDialog}>Cancel</Button>
+                      <Button
+                        onClick={() => {
+                          handlePromote();
+                          togglePromoteDialog();
+                        }}
+                        color="primary"
+                        autoFocus
+                      >
+                        Confirm
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                   <div className={s.imageContainer}>
                     {artwork?.data?.SecondaryFile ? (
                       <div>
@@ -321,6 +366,17 @@ export default function ArtworkPage(props) {
 
                 <div className={s.artworkInfoWrapper}>
                   <div className={s.artInfo}>
+                    {membership.value > 4 && (
+                      <div style={{ margin: "20px" }}>
+                        <Button
+                          onClick={togglePromoteDialog}
+                          variant="contained"
+                          color="secondary"
+                        >
+                          Hus&Hem
+                        </Button>
+                      </div>
+                    )}
                     <div
                       style={{
                         display: "flex",
