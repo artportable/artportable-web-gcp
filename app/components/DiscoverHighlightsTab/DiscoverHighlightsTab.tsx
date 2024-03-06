@@ -18,11 +18,12 @@ interface DiscoverHighLightsTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  header?: header;
 }
 
 const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
   const { t } = useTranslation(["header", "common", "support"]);
-  const { username, socialId, rowWidth } = props;
+  const { username, socialId, rowWidth, header } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -90,6 +91,7 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
             activeTab={props.activeTab}
             trendingArtTab={false}
             likedArtTab={false}
+            header={header}
           />
         </>
       )}

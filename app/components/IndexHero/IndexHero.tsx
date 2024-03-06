@@ -10,18 +10,21 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { styles } from "./indexHero.css";
+import { styles as sharedStyles } from "../../../styles/shared.css";
 import { useTranslation } from "next-i18next";
 import { useKeycloak } from "@react-keycloak/ssr";
 import type { KeycloakInstance } from "keycloak-js";
 import { useRouter } from "next/router";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Link from "next/link";
+import Image from "next/image"
 import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
 import Button from "../Button/Button";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import VideoDialog from "../VideoDialog/VideoDialog";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import clsx from 'clsx'
 
 interface RandomImageProps {
   artwork: string;
@@ -33,6 +36,7 @@ interface RandomImageProps {
 
 export default function IndexHero() {
   const s = styles();
+  const sShared = sharedStyles();
   const { t } = useTranslation("index");
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
@@ -116,19 +120,20 @@ export default function IndexHero() {
 
   return (
     <div className={s.container}>
-      <div className={s.flexContainer}>
+      <div className={clsx(s.flexContainer, s.fullWidthContainer)}>
         <div className={s.left}>
           <Typography variant="h1" className={s.headline}>
             {t("Hitta originalkonst")}
           </Typography>
           <Typography variant="h4" className={s.description}>
-            {t("Ta en titt i galleriet med över 37000 konstverk")}
+            {t("nordensLargestArena")}<br />{t("forArtistsAndArtLovers")}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
-              className={s.becomeMemberButton}
+              // className={s.becomeMemberButton}
+              className={clsx(s.becomeMemberButton, sShared.largeButton, sShared.yellowButton)}
               size="medium"
-              variant="contained"
+              // variant="contained"
               color="primary"
               rounded
               onClick={() =>
@@ -141,9 +146,10 @@ export default function IndexHero() {
               {t("signUp")}
             </Button>
             <Button
-              className={s.buttonLabel}
+              // className={s.buttonLabel}
+              className={clsx(sShared.largeButton, sShared.greenButton)}
               size="small"
-              variant="contained"
+              // variant="contained"
               color="primary"
               rounded
               onClick={() => keycloak.login({ locale: router.locale })}
@@ -448,7 +454,7 @@ export default function IndexHero() {
         </div>
 
         <div className={s.right}>
-          <div className={s.paintingContainer}>
+          {/*<div className={s.paintingContainer}>
             {!randomImage ? (
               <Skeleton variant="rect" width={120} height={120} />
             ) : (
@@ -481,10 +487,59 @@ export default function IndexHero() {
                 )}
               </>
             )}
+          </div>*/}
+          <div className={s.fullWidthImage}>
+            <img
+              src={'/images/paintedhands.jpg'}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: '50% 0%',
+              }}
+              />
           </div>
-          <div></div>
         </div>
       </div>
     </div>
   );
 }
+
+/*
+<div style={{
+        gridColumn: '1 / 4',
+        height: '60vh',
+        // display: 'flex',
+        // flexFlow: 'column nowrap',
+        }}>
+          <img
+            src={'/images/paintedhands.jpg'}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: '50% 0%',
+            }}
+            />
+        </div>
+        <div style={{
+          gridColumn: '2 / 3',
+          textAlign: 'center',
+        }}>
+          <Typography
+            variant="h1"
+            style={{
+              // color: 'white',
+              fontWeight: '600',
+            }}>
+            {'Hitta originalkonst'}
+          </Typography>
+          <Typography
+            variant="h4"
+            style={{
+              // fontWeight: 'normal',
+            }}>
+            {'Nordens största mötesplats för konstnärer och konstälskare'}
+          </Typography>
+        </div>
+        */

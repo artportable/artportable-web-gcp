@@ -5,7 +5,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { i18n, useTranslation } from "next-i18next";
 import { styles } from "./artworkListItemDefined.css";
+import { styles as sharedStyles } from '../../../styles/shared.css'
 import { useEffect } from "react";
+import clsx from 'clsx'
 import { UserContext } from "../../contexts/user-context";
 import {
   ActionType,
@@ -43,6 +45,7 @@ export default function ArtworkListItemDefined({
   indexPage,
 }) {
   const s = styles();
+  const sShared = sharedStyles();
   const { t } = useTranslation(["art", "common"]);
 
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
@@ -442,11 +445,12 @@ export default function ArtworkListItemDefined({
             <div className={s.rum}>
               {username.value != artwork.Owner.Username && !artwork.SoldOut && (
                 <Button
-                  className={
-                    router.locale === Locales.sv
-                      ? s.purchaseRequestButtonSv
-                      : s.purchaseRequestButtonEn
-                  }
+                  className={clsx(sShared.smallButton, sShared.yellowButton)}
+                  // className={
+                  //   router.locale === Locales.sv
+                  //     ? s.purchaseRequestButtonSv
+                  //     : s.purchaseRequestButtonEn
+                  // }
                   onClick={() => {
                     onPurchaseRequestClick(
                       artwork.Title,

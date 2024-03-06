@@ -45,10 +45,11 @@ import {
 import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
+import Typography from "@material-ui/core/Typography";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 import Showroom from "../app/components/Showroom/Showroom";
-// import RocketCarousel from "../app/components/Carousel/RocketCarousel"
+import RocketCarousel from "../app/components/Carousel/RocketCarousel"
 import Hotjar from "@hotjar/browser";
 import DiscoverPromotedArtTab from "../app/components/DiscoverPromotedArt/DiscoverPromotedArt";
 export default function DiscoverPage({ navBarItems }) {
@@ -71,6 +72,7 @@ export default function DiscoverPage({ navBarItems }) {
   const { loading, setLoading } = useContext(LoadingContext);
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [openAdDialog, setOpenAdDialog] = useState(true);
+  // const [artHeader, setArtHeader] = useState('HEADER')
   const { keycloak } = useKeycloak();
 
   const router = useRouter();
@@ -179,6 +181,16 @@ export default function DiscoverPage({ navBarItems }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const labelMapping = {
+    0: t("discover:topArt"),
+    1: t("discover:highlights"),
+    2: t("discover:latestArt"),
+    3: t("discover:stories"),
+    4: t("discover:showroom"),
+    5: t("discover:artists"),
+    6: t("discover:myLikedArt"),
+  }
+
   return (
     <Main
       noHeaderPadding
@@ -217,9 +229,23 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!isSignedIn.value && <IndexHero></IndexHero>}
 
-      <>
-        {/*<RocketCarousel forDesktop={!isMobile} />*/}
+        <RocketCarousel
+          forDesktop={!isMobile}
+          containerStyle={{
+            margin: '50px 0 75px 0',
+          }}
+          />
+        {/*
+              <Typography
+            variant="h1"
+            style={{
+              // color: 'white',
+            }}>
+            {activeTab}
+          </Typography>
+          */}
 
+      <>
         {!isSignedIn.value &&
           activeTab != 1 &&
           activeTab != 2 &&
@@ -299,6 +325,7 @@ export default function DiscoverPage({ navBarItems }) {
                     loadImages={loadImages}
                     stopLoadImages={stopLoadImages}
                     activeTab={activeTab}
+                    header={labelMapping[activeTab]}
                   />
                 ) : (
                   <DiscoverTrendingArtTab
@@ -309,6 +336,7 @@ export default function DiscoverPage({ navBarItems }) {
                     loadImages={loadImages}
                     stopLoadImages={stopLoadImages}
                     activeTab={activeTab}
+                    header={labelMapping[activeTab]}
                   />
                 )}
               </TabPanel>
@@ -332,6 +360,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
+                  header={labelMapping[activeTab]}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
@@ -343,6 +372,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
+                  header={labelMapping[activeTab]}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
@@ -368,6 +398,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
+                  header={labelMapping[activeTab]}
                 />
               </TabPanel>
              */}

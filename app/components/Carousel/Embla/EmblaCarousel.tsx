@@ -17,6 +17,8 @@ import { styles } from './embla.module.css'
 type PropType = {
   slides: Slide[]
   options?: EmblaOptionsType
+  autoPlay: boolean,
+  useDynamicSlideWidth: boolean
   forDesktop: boolean
 }
 
@@ -27,15 +29,17 @@ type Slide = {
   width: number,
   height: number,
   hoverCenter: string,
+  overlayContent: React.ReactElement,
+  hoverOverlayContent: React.ReactElement,
   artistName: string,
   title: string,
   linkURL: string,
+  roundedCorners?: boolean,
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options, forDesktop } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
-  // const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const { slides, options, autoPlay, useDynamicSlideWidth = false, forDesktop } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, autoPlay ? [Autoplay()] : [])
   const s = styles()
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
@@ -68,6 +72,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className={s.embla__container}>
           {slides.map((slide, index) => (
             <div className={clsx(s.embla__slide, {
+              [s.dynamic_width]: useDynamicSlideWidth,
               [s.embla__slide__desktop]: forDesktop,
             })} key={index}>
               <a href={slide.linkURL} target="_blank">
@@ -77,12 +82,22 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     onError={elem => (elem.target as HTMLImageElement).src = slide.imageSrc}
                   */}
                   <img
-                    className={s.image__element}
+                    className={clsx(s.image__element, {
+                      [s.dynamic_image]: useDynamicSlideWidth,
+                      [s.rounded__corners]: slide.roundedCorners,
+                    })}
                     src={slide.imageSrc}
                     alt={slide.artistName}
                     />
-                  <div className={s.hover__image}>
-                    {slide.hoverSrc &&
+                    { slide.overlayContent &&
+                      <div className={s.overlay_content}>
+                        {slide.overlayContent}
+                      </div>
+                    }
+                        {/* <div className={s.image__container}>
+                  </div> */}
+                  { slide.hoverSrc &&
+                    <div className={s.hover__image}>
                       <Image
                         src={slide.hoverSrc}
                         layout="fill"
@@ -90,26 +105,13 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         objectPosition={convertImagePosition(slide.hoverCenter)}
                         alt=""
                       />
-                    }
-                    <div className={s.hover__overlay}>
-                      <Typography
-                        variant="body2"
-                        style={{
-                          color: 'white',
-                          // paddingBottom: '10px',
-                        }}>
-                        { slide.title }
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        style={{
-                          color: 'white',
-                          // paddingBottom: '10px',
-                        }}>
-                        { slide.artistName }
-                      </Typography>
                     </div>
-                  </div>
+                  }
+                  { slide.hoverOverlayContent &&
+                    <div className={s.hover__overlay_content}>
+                      {slide.hoverOverlayContent}
+                    </div>
+                  }
                 </div>
               </a>
             </div>
@@ -142,61 +144,4 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   )
 }
 
-const formatApArtworkForEmbla = (prints) => {
-  const formatted = []
-  // prints.forEach(print => {
-  //   const artworkImage = findFirstFramedImage(print.images)
-  //   const environmentImage = findFirstNotFramedImage(print.images)
-  //   const imageSrc = artworkImage.src
-  //   const thumbnailSrc = ''
-  //   const hoverSrc = environmentImage.src
-    
-    
-  //   if (artworkImage && environmentImage) {
-  //     formatted.push({
-  //       imageSrc,
-  //       thumbnailSrc,
-  //       hoverSrc,
-  //       width: artworkImage.width,
-  //       height: artworkImage.height,
-  //       hoverCenter: environmentImage.center,
-  //       artistName: print.artistMod ? print.artistMod.name : print.artistName,
-  //       title: print.title,
-  //       linkURL: `https://selectedprints.se/print/${print.slug}`,
-  //     })
-  //   }
-  // })
-
-  return formatted
-}
-
-const formatAwArtworkForEmbla = (prints) => {
-  const formatted = []
-  prints.forEach(print => {
-    const artworkImage = findFirstFramedImage(print.images)
-    const environmentImage = findFirstNotFramedImage(print.images)
-    const imageSrc = artworkImage.src
-    const thumbnailSrc = ''
-    const hoverSrc = environmentImage.src
-    
-    
-    if (artworkImage && environmentImage) {
-      formatted.push({
-        imageSrc,
-        thumbnailSrc,
-        hoverSrc,
-        width: artworkImage.width,
-        height: artworkImage.height,
-        hoverCenter: environmentImage.center,
-        artistName: print.artistMod ? print.artistMod.name : print.artistName,
-        title: print.title,
-        linkURL: `https://selectedprints.se/print/${print.slug}`,
-      })
-    }
-  })
-
-  return formatted
-}
-
 export default EmblaCarousel
-export { formatAwArtworkForEmbla, formatApArtworkForEmbla }

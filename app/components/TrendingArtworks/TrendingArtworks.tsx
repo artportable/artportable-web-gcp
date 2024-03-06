@@ -1,4 +1,5 @@
 import { styles } from "./trendingArtworks.css";
+import { styles as sharedStyles } from '../../../styles/shared.css'
 import { useTranslation } from "next-i18next";
 import React, { useContext, useEffect, useState } from "react";
 import {
@@ -36,6 +37,7 @@ export default function TrendingArtworks({ artwork }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const s = styles();
+  const sShared = sharedStyles();
   const { t } = useTranslation(["feed", "common"]);
   const [isLiked, setLike] = useState(artwork.LikedByMe);
   const router = useRouter();
@@ -236,7 +238,7 @@ export default function TrendingArtworks({ artwork }) {
           {!isSoldOut && (
             <>
               <Button
-                className={s.purchaseRequestButton}
+                className={clsx(sShared.smallButton, sShared.yellowButton)}
                 onClick={() => {
                   onPurchaseRequestClick(
                     artwork.Title,

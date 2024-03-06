@@ -11,10 +11,12 @@ import MuiButton from "@material-ui/core/Button";
 import { LinearProgress } from "@material-ui/core";
 
 import { useTranslation } from "next-i18next";
+import clsx from 'clsx'
 import Button from "../Button/Button";
 import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import I18nSelector from "../I18nSelector/I18nSelector";
 import { styles } from "./header.css";
+import { styles as sharedStyles } from "../../../styles/shared.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useGetActivityToken } from "../../hooks/useGetActivityClient";
 import ProfileIconButton from "../ProfileIconButton/ProfileIconButton";
@@ -49,6 +51,7 @@ import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
   const s = styles();
+  const sShared = sharedStyles();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const { socialId, username, isSignedIn, membership } =
     useContext(UserContext);
@@ -171,9 +174,10 @@ export default function Header({ navBarItems }) {
             {!isSignedIn.value && (
               <div className={s.login}>
                 <Button
-                  className={s.createButton}
+                  // className={s.createButton}
+                  className={clsx(sShared.largeButton, sShared.yellowButton)}
                   size="medium"
-                  variant="contained"
+                  // variant="contained"
                   rounded
                   onClick={() =>
                     keycloak.register({
@@ -224,7 +228,8 @@ export default function Header({ navBarItems }) {
                                 CategoryType.INTERACTIVE
                               )
                             }
-                            className={s.uploadStoryButton}
+                            // className={s.uploadStoryButton}
+                            className={clsx(sShared.smallButton, sShared.yellowButton)}
                             size="small"
                             variant="outlined"
                             disableElevation
@@ -248,7 +253,8 @@ export default function Header({ navBarItems }) {
                                 CategoryType.INTERACTIVE
                               )
                             }
-                            className={s.uploadButton}
+                            // className={s.uploadButton}
+                            className={clsx(sShared.smallButton, sShared.greenButton)}
                             size="small"
                             variant="outlined"
                             disableElevation

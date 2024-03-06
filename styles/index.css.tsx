@@ -26,6 +26,15 @@ export const styles = makeStyles((theme: Theme) =>
       },
       justifyContent: "center",
       width: "100%",
+      '& span': {
+        // Prevent tab automatically being upper case.
+        textTransform: 'none',
+        // Same look as header set in DiscoverArt.tsx.
+        fontWeight: 400,
+        [theme.breakpoints.up("sm")]: {
+          fontSize: '1.35rem',
+        },
+      },
     },
     artistTab: {
       "& .MuiTabs-scroller": {

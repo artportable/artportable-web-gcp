@@ -18,11 +18,12 @@ interface DiscoverMyLikedArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  header?: string,
 }
 
 export const DiscoverMyLikedArtTab = memo(
   (props: DiscoverMyLikedArtTabProps) => {
-    const { socialId, rowWidth } = props;
+    const { socialId, rowWidth, header } = props;
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     const loadMoreArtworksElementRef = useRef(null);
     const [selectedTags, setSelectedTags] = useState(null);
@@ -90,6 +91,7 @@ export const DiscoverMyLikedArtTab = memo(
           activeTab={props.activeTab}
           trendingArtTab={false}
           likedArtTab={false}
+          header={header}
         />
       </>
     );
