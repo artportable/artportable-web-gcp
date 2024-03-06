@@ -71,7 +71,7 @@ export default function AboutMe() {
     },
     {
       name: "Erik Nordlander",
-      title: "CPO & Founder",
+      title: "CEO & Founder",
       image: "/staff/artportable_erik.jpg",
       email: "erik@artportable.com",
     },
