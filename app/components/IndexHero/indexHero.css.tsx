@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       gridColumn: "1/4",
-      padding: theme.spacing(1, 1, 0, 1),
+      // padding: theme.spacing(1, 1, 0, 1),
       background: theme.palette.grey[200],
       backgroundColor: "var(--background-color-darker)",
     },
@@ -18,7 +18,7 @@ export const styles = makeStyles((theme: Theme) =>
       ...columnGap(theme.spacing(4)),
       alignItems: "center",
       flexWrap: "nowrap",
-      padding: "0, 5px",
+      padding: "0 5px",
 
       [theme.breakpoints.up("mdPlus")]: {
         padding: "0",
@@ -27,46 +27,57 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     left: {
+      // border: '1px solid red',
       textAlign: "left",
       flexBasis: "100%",
       flexGrow: 2,
-      width: "90&",
+      width: "90%",
       display: "flex",
       justifyContent: "center",
       alignContent: "center",
       flexDirection: "column",
-      ...columnGap(theme.spacing(1)),
+      // ...columnGap(theme.spacing(1)),
       marginRight: "16px",
       marginLeft: "16px",
       marginTop: "12px",
       margin: theme.spacing(0, 0, 4, 0),
 
       [theme.breakpoints.up("smPlus")]: {
-        margin: theme.spacing(0, 0, 2, 0),
-        width: "567px",
-        marginTop: "2px",
+        // margin: theme.spacing(0, 0, 2, 0),
+        // width: "567px",
+        // marginTop: "2px",
       },
       [theme.breakpoints.up("md")]: {
-        textAlign: "initial",
-        margin: theme.spacing(0, 0, 4, 4),
-        placeItems: "center",
+        // textAlign: "initial",
+        // margin: theme.spacing(0, 0, 4, 4),
+        // placeItems: "center",
       },
       [theme.breakpoints.up("mdPlus")]: {
-        textAlign: "initial",
+        // textAlign: "initial",
         margin: theme.spacing(0, 0, 4, 4),
-        placeItems: "flex-start",
+        // placeItems: "flex-start",
       },
     },
     headline: {
       fontWeight: 600,
-      fontSize: "1.6rem",
+      fontSize: "2rem",
       textAlign: "center",
       [theme.breakpoints.up("sm")]: {
-        fontSize: "2.5rem",
+        fontSize: "3.5rem",
       },
       [theme.breakpoints.up("md")]: {
+        fontSize: "5rem",
         textAlign: "left",
       },
+      // fontWeight: 600,
+      // fontSize: "1.6rem",
+      // textAlign: "center",
+      // [theme.breakpoints.up("sm")]: {
+      //   fontSize: "2.5rem",
+      // },
+      // [theme.breakpoints.up("md")]: {
+      //   textAlign: "left",
+      // },
     },
     subHeadline: {
       "& span": {
@@ -83,6 +94,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     description: {
+      marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
       fontSize: "14px",
       lineHeight: "1.18",
@@ -97,15 +109,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("md")]: {
         marginBottom: theme.spacing(3),
-        textAlign: "center",
+        // textAlign: "center",
+        textAlign: "left",
       },
       [theme.breakpoints.up("mdPlus")]: {
-        textAlign: "left",
       },
     },
     right: {
+      marginBottom: '16px',
+      /*
       display: "none",
-
       [theme.breakpoints.up("smPlus")]: {
         display: "flex",
         flexDirection: "column",
@@ -115,6 +128,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         marginTop: "20px",
       },
+      */
     },
     flexheaderButton: {
       display: "flex",
@@ -133,7 +147,8 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginBottom: theme.spacing(4),
       justifyContent: "center",
-      [theme.breakpoints.up("smPlus")]: {
+      [theme.breakpoints.up("md")]: {
+      // [theme.breakpoints.up("smPlus")]: {
         marginBottom: theme.spacing(2),
         justifyContent: "flex-start",
       },
@@ -147,7 +162,7 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: "0",
       },
     },
-
+    /*
     paintingContainer: {
       display: "flex",
       flexDirection: "column",
@@ -225,6 +240,7 @@ export const styles = makeStyles((theme: Theme) =>
     signupButtonContainer: {
       marginTop: theme.spacing(1),
     },
+    */
     videoDiv: {
       display: "none",
 
@@ -261,31 +277,31 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "5px",
     },
     buttonLabel: {
-      whiteSpace: "nowrap",
-      backgroundColor: "#ffffff00",
-      color: "black",
-      "&:hover": {
-        backgroundColor: "#00e196",
-        color: "black",
-      },
-      fontSize: "0.9rem",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "initial",
-        margin: theme.spacing(0, 0),
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "initial",
-        margin: theme.spacing(0, 0),
-      },
+      // whiteSpace: "nowrap",
+      // backgroundColor: "#ffffff00",
+      // color: "black",
+      // "&:hover": {
+      //   backgroundColor: "#00e196",
+      //   color: "black",
+      // },
+      // fontSize: "0.9rem",
+      // [theme.breakpoints.up("sm")]: {
+      //   fontSize: "initial",
+      //   margin: theme.spacing(0, 0),
+      // },
+      // [theme.breakpoints.up("smPlus")]: {
+      //   fontSize: "initial",
+      //   margin: theme.spacing(0, 0),
+      // },
     },
     becomeMemberButton: {
-      whiteSpace: "nowrap",
-      backgroundColor: "var(--yellow-darker)",
-      color: "black",
-      "&:hover": {
-        backgroundColor: "#ffda79b3",
-        color: "black",
-      },
+      // whiteSpace: "nowrap",
+      // backgroundColor: "var(--yellow-darker)",
+      // color: "black",
+      // "&:hover": {
+      //   backgroundColor: "#ffda79b3",
+      //   color: "black",
+      // },
       marginRight: theme.spacing(1),
       [theme.breakpoints.up("sm")]: {
         marginRight: theme.spacing(2),
@@ -439,6 +455,24 @@ export const styles = makeStyles((theme: Theme) =>
       },
       paintingContainer: {
         width: "600px",
+      },
+    },
+    fullWidthContainer: {
+      width: '100vw',
+      flexDirection: 'column-reverse',
+    },
+    fullWidthImage: {
+      // gridColumn: '1 / 4',
+      width: '100vw',
+      height: '50vh',
+      [theme.breakpoints.up("smPlus")]: {
+        height: '60vh',
+      },
+      '& img': {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        objectPosition: '50% 0%',
       },
     },
   })

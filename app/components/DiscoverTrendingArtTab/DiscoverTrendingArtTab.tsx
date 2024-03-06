@@ -9,7 +9,8 @@ import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { THEME_TAGS, TECHNIQUE_TAGS } from "./tags";
 import { styles } from "./discoverTrendingArtTab.css";
-import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
+// import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
+import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel"
 import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
 import SELECTED_PRINTS from "../../../data/selectedPrintsData";
 import Button from "@material-ui/core/Button";
@@ -40,12 +41,13 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  header?: string,
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const { t } = useTranslation(["header", "common", "support"]);
   const s = styles();
-  const { username, socialId, rowWidth } = props;
+  const { username, socialId, rowWidth, header } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -223,17 +225,17 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
 
   useEffect(() => {}, [artworks]);
 
-  const [printsIndexes, setPrintIndexes] = useState<number[]>([])
-    const maxPrintCount = 10
-    useEffect(() => {
-      if (printsIndexes.length > 0) return;
-      // Decide randomly which prints to show in carousel.
-      const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
-      setPrintIndexes(randomIndexes)
-    }, [artworks])
+  // const [printsIndexes, setPrintIndexes] = useState<number[]>([])
+  //   const maxPrintCount = 10
+  //   useEffect(() => {
+  //     if (printsIndexes.length > 0) return;
+  //     // Decide randomly which prints to show in carousel.
+  //     const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
+  //     setPrintIndexes(randomIndexes)
+  //   }, [artworks])
     
-    const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
-    const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
+  //   const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
+  //   const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
 
   return (
     <>
@@ -630,6 +632,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         activeTab={props.activeTab}
         trendingArtTab={true}
         likedArtTab={false}
+        header={header}
         insertElements={[
           { element: (
             <div style={{
@@ -642,17 +645,20 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                 }}>
                 Selected Prints
               </Typography>
-              <EmblaCarousel
-                slides={printsDataForCarousel}
-                options={{
-                  align: 'start',
-                  loop: true,
-                }}
+              <SelectedprintsCarousel
                 forDesktop={false}
-                />
+              />
             </div>),
             position: 4,
-          }
+          },
+          {
+            element: header ? (
+              <Typography variant="h4">
+                Topplistan index
+              </Typography>
+            ) : null,
+            position: 5,
+          },
         ]}
       />
     </>

@@ -28,6 +28,7 @@ import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialo
 import { ActionType } from "../../utils/googleAnalytics";
 import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
+import Typography from "@material-ui/core/Typography";
 
 import { Skeleton } from "@material-ui/lab";
 
@@ -48,7 +49,8 @@ interface InputProps {
   activeTab: number;
   trendingArtTab: boolean;
   likedArtTab: boolean;
-  insertElements: InsertElement[];
+  header?: string,
+  insertElements?: InsertElement[];
 }
 
 export default function DiscoverArt({
@@ -62,6 +64,7 @@ export default function DiscoverArt({
   trendingArtTab = null,
   likedArtTab = null,
   insertElements = [],
+  header = '',
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
@@ -199,16 +202,16 @@ export default function DiscoverArt({
 
   let imageRowsWithElements: (Image[]|React.ReactElement)[] = [];
   if (imageRows.length > 1) {
-    imageRowsWithElements = imageRows;
+    // Use slice to avoid duplicates being added.
+    imageRowsWithElements = imageRows.slice();
 
     if (insertElements.length > 0) {
       insertElements.forEach(insert => {
         // If the item in the array is not an array, then an insert has already been added there. Check this to avoid duplicates.
-        if (imageRows[insert.position] && !Array.isArray(imageRows[insert.position])) {
-          return
-        }
-        
-        imageRowsWithElements.splice(insert.position, 0, insert.element)
+        // if (imageRows[insert.position] && !Array.isArray(imageRows[insert.position])) {
+        //   return
+        // }
+        if (insert.element) imageRowsWithElements.splice(insert.position, 0, insert.element)
       })
     }
   }
@@ -218,6 +221,11 @@ export default function DiscoverArt({
       {artworks ? (
         artworks.length > 0 ? (
           <Box className={s.rowsContainer}>
+            { header &&
+              <Typography variant="h4">
+                { header }
+              </Typography>
+            }
             {showFilterLoadingSkeleton && (
               <>
                 <div className={s.row}>
@@ -274,6 +282,8 @@ export default function DiscoverArt({
                           indexPage={true}
                         />
                       );
+                    } else {
+                      return null;
                     }
                   })}
                 </div>

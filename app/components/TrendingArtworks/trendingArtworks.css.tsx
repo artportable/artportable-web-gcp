@@ -119,16 +119,16 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
     },
-    purchaseRequestButton: {
-      color: "#a35d5d",
-      padding: "0px 16px",
-      backgroundColor: "inherit",
-      border: "1px solid #a35d5d",
-      borderRadius: "20px",
-      marginTop: "4px",
-      '& .MuiButton-label': {
-        width: 'auto',
-      }
-    },
+    // purchaseRequestButton: {
+    //   color: "#a35d5d",
+    //   padding: "0px 16px",
+    //   backgroundColor: "inherit",
+    //   border: "1px solid #a35d5d",
+    //   borderRadius: "20px",
+    //   marginTop: "4px",
+    //   '& .MuiButton-label': {
+    //     width: 'auto',
+    //   }
+    // },
   })
 );
