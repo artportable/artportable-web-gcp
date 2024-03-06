@@ -30,13 +30,14 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  header?: string,
 }
 
 const DiscoverTrendingArtTabDesktop = memo(
   (props: DiscoverTrendingArtTabProps) => {
     const { t } = useTranslation(["header", "common", "support"]);
     const s = styles();
-    const { username, socialId, rowWidth } = props;
+    const { username, socialId, rowWidth, header } = props;
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
     const [searchQuery, setSearchQuery] = useState<string>();
     const loadMoreArtworksElementRef = useRef(null);
@@ -553,6 +554,7 @@ const DiscoverTrendingArtTabDesktop = memo(
           activeTab={props.activeTab}
           trendingArtTab={true}
           likedArtTab={false}
+          header={header}
           insertElements={[
             { element: (
               <div style={{
@@ -568,8 +570,16 @@ const DiscoverTrendingArtTabDesktop = memo(
                 <SelectedprintsCarousel
                   forDesktop={true}
                 />
-            </div>),
-            position: 4,
+              </div>),
+              position: 4,
+            },
+            {
+              element: header ? (
+                <Typography variant="h4">
+                  { header }
+                </Typography>
+              ) : null,
+              position: 5,
             },
           ]}
         />

@@ -35,6 +35,7 @@ export default function SelectedprintsCarousel(props) {
           align: 'start',
           loop: true,
         }}
+        autoPlay={true}
         forDesktop={forDesktop}
         useDynamicSlideWidth={false}
         />

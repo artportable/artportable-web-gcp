@@ -36,10 +36,12 @@ export const styles = makeStyles((theme: Theme) =>
       flex: '0 0 var(--slide-size-desktop)',
     },
     // Set dynamic_width after embla__slide__desktop so flex don't get overwritten.
+    // Dynamic images will get object-fit:cover.
     dynamic_width: {
       flex: '0 0 auto',
       minWidth: 0,
-      maxWidth: '100%',
+      maxWidth: '75%',
+      height: '100%',
     },
     embla__slide__image: {
       position: 'relative',
@@ -60,13 +62,25 @@ export const styles = makeStyles((theme: Theme) =>
         }
       },
     },
-    image__container: {
-      position: 'relative',
-    },
+    // image__container: {
+    //   position: 'relative',
+    //   // Must set height to contain image.
+    //   height: '100%',
+    // },
     image__element: {
       maxWidth: '100%',
       maxHeight: '100%',
       objectFit: 'contain',
+    },
+    dynamic_image: {
+      // Make image as high as slide, so overlay and image have the same height.
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      objectPosition: 'center',
+    },
+    rounded__corners: {
+      borderRadius: '15px',
     },
     overlay_content: {
       position: 'absolute',

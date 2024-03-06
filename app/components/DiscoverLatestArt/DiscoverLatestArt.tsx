@@ -16,11 +16,12 @@ interface DiscoverLatestArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
+  header?: string,
 }
 
 const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
   const { t } = useTranslation(["header", "common", "support"]);
-  const { username, socialId, rowWidth } = props;
+  const { username, socialId, rowWidth, header } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState<string>();
   const loadMoreArtworksElementRef = useRef(null);
@@ -85,6 +86,7 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
           activeTab={props.activeTab}
           trendingArtTab={false}
           likedArtTab={false}
+          header={header}
         />
       )}
     </>

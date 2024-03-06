@@ -17,6 +17,7 @@ import { styles } from './embla.module.css'
 type PropType = {
   slides: Slide[]
   options?: EmblaOptionsType
+  autoPlay: boolean,
   useDynamicSlideWidth: boolean
   forDesktop: boolean
 }
@@ -33,11 +34,12 @@ type Slide = {
   artistName: string,
   title: string,
   linkURL: string,
+  roundedCorners?: boolean,
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options, useDynamicSlideWidth = false, forDesktop } = props
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const { slides, options, autoPlay, useDynamicSlideWidth = false, forDesktop } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, autoPlay ? [Autoplay()] : [])
   const s = styles()
 
   const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
@@ -80,18 +82,20 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     onError={elem => (elem.target as HTMLImageElement).src = slide.imageSrc}
                   */}
                   <img
-                    className={s.image__element}
+                    className={clsx(s.image__element, {
+                      [s.dynamic_image]: useDynamicSlideWidth,
+                      [s.rounded__corners]: slide.roundedCorners,
+                    })}
                     src={slide.imageSrc}
                     alt={slide.artistName}
                     />
-                  {/* Do not put img inside a div. Won't be "contained". */}
-                  <div className={s.image__container}>
                     { slide.overlayContent &&
                       <div className={s.overlay_content}>
                         {slide.overlayContent}
                       </div>
                     }
-                  </div>
+                        {/* <div className={s.image__container}>
+                  </div> */}
                   { slide.hoverSrc &&
                     <div className={s.hover__image}>
                       <Image
