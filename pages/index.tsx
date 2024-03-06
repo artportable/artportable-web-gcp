@@ -51,6 +51,7 @@ import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverSto
 import Showroom from "../app/components/Showroom/Showroom";
 import RocketCarousel from "../app/components/Carousel/RocketCarousel"
 import Hotjar from "@hotjar/browser";
+import DiscoverPromotedArtTab from "../app/components/DiscoverPromotedArt/DiscoverPromotedArt";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -277,6 +278,11 @@ export default function DiscoverPage({ navBarItems }) {
               />
               <Tab
                 className={s.text}
+                label={t("discover:HUS&HEM")}
+                {...a11yProps(t("discover:HUS&HEM"))}
+              />
+              <Tab
+                className={s.text}
                 label={t("discover:latestArt")}
                 {...a11yProps(t("discover:latestArt"))}
               />
@@ -296,13 +302,15 @@ export default function DiscoverPage({ navBarItems }) {
                 label={t("discover:artists")}
                 {...a11yProps(t("discover:artists"))}
               />
-              {isSignedIn.value && (
+              {/* 
+               {isSignedIn.value && (
                 <Tab
                   className={s.text}
                   label={t("discover:myLikedArt")}
                   {...a11yProps(t("discover:myLikedArt"))}
                 />
               )}
+             */}
             </Tabs>
           </div>
           {!loading && (
@@ -332,11 +340,30 @@ export default function DiscoverPage({ navBarItems }) {
                   />
                 )}
               </TabPanel>
-              <TabPanel value={activeTab} index={3}>
-                <DiscoverStoriesTab />
+              <TabPanel value={activeTab} index={1}>
+                <DiscoverHighLightsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
+                />
               </TabPanel>
-
               <TabPanel value={activeTab} index={2}>
+                <DiscoverPromotedArtTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
+                  header={labelMapping[activeTab]}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -348,29 +375,21 @@ export default function DiscoverPage({ navBarItems }) {
                   header={labelMapping[activeTab]}
                 />
               </TabPanel>
-
-              <TabPanel value={activeTab} index={1}>
-                <DiscoverHighLightsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                  header={labelMapping[activeTab]}
-                />
-              </TabPanel>
               <TabPanel value={activeTab} index={4}>
+                <DiscoverStoriesTab />
+              </TabPanel>
+
+              <TabPanel value={activeTab} index={5}>
                 <Showroom />
               </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={6}>
+              {/*
+               <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
@@ -382,6 +401,7 @@ export default function DiscoverPage({ navBarItems }) {
                   header={labelMapping[activeTab]}
                 />
               </TabPanel>
+             */}
             </Box>
           )}
         </div>

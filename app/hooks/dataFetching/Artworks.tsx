@@ -80,7 +80,7 @@ export async function usePostArtwork(
       return res.json();
     })
     .catch((e) => {
-      console.log(e)
+      console.log(e);
       return false;
     });
 }
@@ -113,6 +113,64 @@ export function useGetTrendingArtworks() {
     isError: error,
   };
 }
+export function useGetPromotedArtworks(
+  myUsername: string = null,
+  page: number = null,
+  pageSize: number = null
+) {
+  const url = new URL(`${apiBaseUrl}/api/Discover/artworks/promoted`);
+
+  const { data, error, mutate } = useSWR(url.toString(), fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+    mutate: mutate,
+  };
+}
+
+import { useCallback } from "react";
+
+const usePromoteArtwork = () => {
+  const promoteArtwork = useCallback(
+    async (artworkId, token, promote = true) => {
+      const url = `${apiBaseUrl}/api/Artworks/promote/${artworkId}`;
+      const options = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ Promoted: promote }),
+      };
+
+      try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Error promoting artwork:", errorData);
+          return false;
+        }
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Error promoting artwork:", error);
+        return false;
+      }
+    },
+    []
+  );
+
+  return { promoteArtwork };
+};
+
+export default usePromoteArtwork;
 
 export function getTimePassed(publishDate, t) {
   var now = new Date();
