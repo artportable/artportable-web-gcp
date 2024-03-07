@@ -222,7 +222,7 @@ export default function DiscoverPage({ navBarItems }) {
         <RocketCarousel
           forDesktop={!isMobile}
           containerStyle={{
-            margin: '50px 0 75px 0',
+            margin: '50px 0 25px 0',
           }}
           />
 

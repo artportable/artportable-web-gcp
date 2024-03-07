@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Typography,
   Chip,
@@ -49,6 +49,7 @@ export default function IndexHero() {
   const [toggleButton, setToggleButton] = useState(false);
   const [toggleButtonReviews, setToggleButtonReviews] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const expandButtonRef = useRef<HTMLInputElement>();
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.up("smPlus"));
@@ -119,14 +120,23 @@ export default function IndexHero() {
     setOpenVideoDialog(true);
   };
 
+  const expandAccordion = () => {
+    // console.log('expandAccordion');
+    // console.log('expandButtonRef', expandButtonRef);
+    
+    expandButtonRef?.current?.click();
+    // if (expandButtonRef && expandButtonRef.current) {
+    // }
+  }
+
   return (
     <div className={s.container}>
       <div className={clsx(s.flexContainer, s.fullWidthContainer)}>
         <div className={s.left}>
-          <Typography variant="h2" className={s.description}>
+          {/*<Typography variant="h2" className={s.description}>
             {t("Hitta originalkonst") + '!'}
-          </Typography>
-          <div className={s.headerButtonArtlover}>
+          </Typography>*/}
+          {/*<div className={s.headerButtonArtlover}>
             <Button
               // className={s.becomeMemberButton}
               className={clsx(sShared.largeButton, sShared.alwaysYellowButton)}
@@ -154,7 +164,7 @@ export default function IndexHero() {
             >
               {t("logIn")}
             </Button>
-          </div>
+          </div>*/}
           {/* 
           <div className={s.videoDiv}>
             <PlayCircleFilledIcon />
@@ -172,16 +182,18 @@ export default function IndexHero() {
           */}
           <div className={s.accordionDiv}>
             <Accordion className={s.accordion} elevation={0}>
+              {/* AccordionSummary used for clicking with button through expandButtonRef. */}
               <AccordionSummary
                 className={s.accordionSummary}
+                style={{ display: 'none' }}
                 onClick={() => setToggleButton(!toggleButton)}
+                ref={expandButtonRef}
               >
-                <div style={{
+                {/*<div style={{
                   width: '100%',
                   display: 'flex',
                   justifyContent: 'center',
                 }}>
-                  <div className={s.buttonDiv}>
                     {toggleButton ? (
                       <Button
                         className={s.button}
@@ -206,7 +218,7 @@ export default function IndexHero() {
                       </Button>
                     )}
                   </div>
-                </div>
+                    </div>*/}
               </AccordionSummary>
               <AccordionDetails>
                 <div className={s.detailsText}>
@@ -498,12 +510,42 @@ export default function IndexHero() {
               }}
             />
             <div className={s.headlineContainer}>
+              <div
+                className={s.desktopHeaderButtons}
+                style={{
+                  // marginBottom: '60px',
+                  marginTop: '40px',
+                }}>
+                <Button
+                  className={clsx(sShared.largeButton, sShared.colorAnimatedButton, sShared.noBorder)}
+                  size="medium"
+                  // variant="contained"
+                  color="primary"
+                  rounded
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                >
+                  {t("header:artistsHaveChosenAp")}
+                </Button>
+              </div>
               <Typography variant="h1" className={s.headline}>
                 {t("nordensLargestArena")}{' '}<span><br /></span>{t("forArtistsAndArtLovers")}
               </Typography>
-              <div className={s.desktopHeaderButtons}>
+              <div
+                className={s.desktopHeaderButtons}
+                style={{
+                  // marginTop: '60px',
+                  marginBottom: '40px',
+                }}>
                 <Button
-                  className={clsx(sShared.largeButton, sShared.alwaysYellowButton)}
+                  className={clsx(sShared.largeButton, sShared.yellowButton, sShared.noBorder)}
+                  style={{
+                    minWidth: '200px',
+                  }}
                   size="medium"
                   // variant="contained"
                   color="primary"
@@ -517,9 +559,9 @@ export default function IndexHero() {
                 >
                   {t("signUp")}
                 </Button>
-                <Button
+                {/*<Button
                   // className={s.buttonLabel}
-                  className={clsx(sShared.largeButton, sShared.greenButton)}
+                  className={clsx(sShared.hugeButton, sShared.greenButton, sShared.noBorder)}
                   size="small"
                   // variant="contained"
                   color="primary"
@@ -527,6 +569,26 @@ export default function IndexHero() {
                   onClick={() => keycloak.login({ locale: router.locale })}
                 >
                   {t("logIn")}
+                </Button>*/}
+              </div>
+            </div>
+            <div style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+            }}>
+              <div className={s.readMoreButton}>
+                <Button
+                  size="small"
+                  onClick={() => {
+                    setToggleButton(!toggleButton)
+                    expandAccordion()
+                  }}
+                  variant="outlined"
+                  rounded
+                  startIcon={toggleButton ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                >
+                  {toggleButton ? t("readLess") : t("readMoreOnly")}
                 </Button>
               </div>
             </div>

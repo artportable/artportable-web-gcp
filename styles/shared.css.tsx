@@ -4,7 +4,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     smallButton: {
       minWidth: "100px",
-      maxHeight: "28px",
+      height: "28px",
       minHeight: "28px",
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
@@ -13,21 +13,39 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "12px",
       fontWeight: "normal",
       fontFamily: "gotham",
-      borderRadius: '20px',
+      borderRadius: '14px',
       "&:hover": {
         color: "black",
       },
     },
     largeButton: {
       minWidth: "100px",
-      maxHeight: "36px",
+      height: "36px",
       minHeight: "36px",
       whiteSpace: "nowrap",
-      padding: theme.spacing(0, 2, 0, 2),
+      padding: theme.spacing(0, 3, 0, 3),
       color: "#3d3d4e",
       fontSize: "0.9rem",
+      borderRadius: '18px',
       [theme.breakpoints.up("sm")]: {
         fontSize: "initial",
+      },
+      "&:hover": {
+        color: "black",
+      },
+    },
+    hugeButton: {
+      minWidth: "100px",
+      height: "40px",
+      minHeight: "40px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 4, 0, 4),
+      color: "#3d3d4e",
+      fontSize: "1.1rem",
+      borderRadius: '30px',
+      [theme.breakpoints.up("sm")]: {
+        height: "60px",
+        fontSize: "1.6rem",
       },
       "&:hover": {
         color: "black",
@@ -56,6 +74,32 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         backgroundColor: "#6AC6A8",
       },
-    }
+    },
+    blackButton: {
+      border: "1px solid black",
+      color: 'white',
+      backgroundColor: "black",
+      "&:hover": {
+        color: 'black',
+        backgroundColor: "white",
+      },
+    },
+    colorAnimatedButton: {
+      fontSize: '12px',
+      border: "none",
+      color: 'black',
+      backgroundColor: "#F2D9D6",
+      "&:hover": {
+        color: 'black',
+        backgroundColor: "#EFC4B7",
+      },
+    },
+    noBorder: {
+      border: 'none',
+    },
+    // wrapTextButton: {
+    //   whiteSpace: 'pre-wrap',
+    //   height: 'auto',
+    // }
   })
 )
