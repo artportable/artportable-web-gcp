@@ -52,6 +52,7 @@ export default function IndexHero() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.up("smPlus"));
+  const isTinyDevice = useMediaQuery(theme.breakpoints.down("xs"));
 
   const reviews = [
     {
@@ -122,16 +123,13 @@ export default function IndexHero() {
     <div className={s.container}>
       <div className={clsx(s.flexContainer, s.fullWidthContainer)}>
         <div className={s.left}>
-          <Typography variant="h1" className={s.headline}>
-            {t("Hitta originalkonst")}
-          </Typography>
-          <Typography variant="h4" className={s.description}>
-            {t("nordensLargestArena")}<br />{t("forArtistsAndArtLovers")}
+          <Typography variant="h2" className={s.description}>
+            {t("Hitta originalkonst") + '!'}
           </Typography>
           <div className={s.headerButtonArtlover}>
             <Button
               // className={s.becomeMemberButton}
-              className={clsx(s.becomeMemberButton, sShared.largeButton, sShared.yellowButton)}
+              className={clsx(sShared.largeButton, sShared.alwaysYellowButton)}
               size="medium"
               // variant="contained"
               color="primary"
@@ -178,7 +176,11 @@ export default function IndexHero() {
                 className={s.accordionSummary}
                 onClick={() => setToggleButton(!toggleButton)}
               >
-                <div>
+                <div style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}>
                   <div className={s.buttonDiv}>
                     {toggleButton ? (
                       <Button
@@ -200,7 +202,7 @@ export default function IndexHero() {
                         rounded
                         startIcon={<KeyboardArrowDownIcon />}
                       >
-                        {t("readMore")}
+                        {t("readMoreOnly")}
                       </Button>
                     )}
                   </div>
@@ -490,14 +492,44 @@ export default function IndexHero() {
           </div>*/}
           <div className={s.fullWidthImage}>
             <img
-              src={'/images/paintedhands.jpg'}
+              src={ isTinyDevice ? '/images/not_logged_in.jpg' : '/images/not_logged_in.jpg' }
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: '50% 0%',
+                objectPosition: isTinyDevice ? '50% 50%' : '50% 50%',
               }}
-              />
+            />
+            <div className={s.headlineContainer}>
+              <Typography variant="h1" className={s.headline}>
+                {t("nordensLargestArena")}{' '}<span><br /></span>{t("forArtistsAndArtLovers")}
+              </Typography>
+              <div className={s.desktopHeaderButtons}>
+                <Button
+                  className={clsx(sShared.largeButton, sShared.alwaysYellowButton)}
+                  size="medium"
+                  // variant="contained"
+                  color="primary"
+                  rounded
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                >
+                  {t("signUp")}
+                </Button>
+                <Button
+                  // className={s.buttonLabel}
+                  className={clsx(sShared.largeButton, sShared.greenButton)}
+                  size="small"
+                  // variant="contained"
+                  color="primary"
+                  rounded
+                  onClick={() => keycloak.login({ locale: router.locale })}
+                >
+                  {t("logIn")}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

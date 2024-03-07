@@ -571,7 +571,7 @@ const DiscoverTrendingArtTabDesktop = memo(
                   forDesktop={true}
                 />
               </div>),
-              position: 4,
+              position: 2,
             },
             {
               element: header ? (
@@ -579,7 +579,7 @@ const DiscoverTrendingArtTabDesktop = memo(
                   { header }
                 </Typography>
               ) : null,
-              position: 5,
+              position: 3,
             },
           ]}
         />

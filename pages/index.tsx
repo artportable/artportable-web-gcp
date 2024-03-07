@@ -166,38 +166,28 @@ export default function DiscoverPage({ navBarItems }) {
   const scrollToDiscoverRef = useRef(null);
   const [clickedTabOnce, setClickedTabOnce] = useState(false);
 
-  useEffect(() => {
-    if (scrollToDiscoverRef.current && activeTab === 0 && clickedTabOnce) {
-      setTimeout(() => {
-        scrollToDiscoverRef.current.scrollIntoView();
-        window.scrollBy(0, -70);
-      }, 0);
-    }
-    if (activeTab !== 0) {
-      setClickedTabOnce(true);
-    }
-  }, [activeTab]);
+  // useEffect(() => {
+  //   if (scrollToDiscoverRef.current && activeTab === 0 && clickedTabOnce) {
+  //     setTimeout(() => {
+  //       scrollToDiscoverRef.current.scrollIntoView();
+  //       window.scrollBy(0, -70);
+  //     }, 0);
+  //   }
+  //   if (activeTab !== 0) {
+  //     setClickedTabOnce(true);
+  //   }
+  // }, [activeTab]);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const labelMapping = {
-    0: t("discover:topArt"),
-    1: t("discover:highlights"),
-    2: t("discover:latestArt"),
-    3: t("discover:stories"),
-    4: t("discover:showroom"),
-    5: t("discover:artists"),
-    6: t("discover:myLikedArt"),
-  }
-
   return (
     <Main
       noHeaderPadding
-      wide={useWideLayout}
+      wide={useWideLayout || true}
       isShow={false}
       navBarItems={navBarItems}
-      fullWidth={fullWidth}
+      fullWidth={fullWidth && false}
     >
       <Head>
         <meta name="title" content={t("index:title")} />
@@ -235,15 +225,6 @@ export default function DiscoverPage({ navBarItems }) {
             margin: '50px 0 75px 0',
           }}
           />
-        {/*
-              <Typography
-            variant="h1"
-            style={{
-              // color: 'white',
-            }}>
-            {activeTab}
-          </Typography>
-          */}
 
       <>
         {!isSignedIn.value &&
@@ -278,8 +259,8 @@ export default function DiscoverPage({ navBarItems }) {
               />
               <Tab
                 className={s.text}
-                label={t("discover:HUS&HEM")}
-                {...a11yProps(t("discover:HUS&HEM"))}
+                label={t("discover:Hus & Hem")}
+                {...a11yProps(t("discover:Hus & Hem"))}
               />
               <Tab
                 className={s.text}
@@ -302,7 +283,6 @@ export default function DiscoverPage({ navBarItems }) {
                 label={t("discover:artists")}
                 {...a11yProps(t("discover:artists"))}
               />
-              {/* 
                {isSignedIn.value && (
                 <Tab
                   className={s.text}
@@ -310,7 +290,6 @@ export default function DiscoverPage({ navBarItems }) {
                   {...a11yProps(t("discover:myLikedArt"))}
                 />
               )}
-             */}
             </Tabs>
           </div>
           {!loading && (
@@ -325,7 +304,7 @@ export default function DiscoverPage({ navBarItems }) {
                     loadImages={loadImages}
                     stopLoadImages={stopLoadImages}
                     activeTab={activeTab}
-                    header={labelMapping[activeTab]}
+                    header={t("discover:topArt")}
                   />
                 ) : (
                   <DiscoverTrendingArtTab
@@ -336,7 +315,7 @@ export default function DiscoverPage({ navBarItems }) {
                     loadImages={loadImages}
                     stopLoadImages={stopLoadImages}
                     activeTab={activeTab}
-                    header={labelMapping[activeTab]}
+                    header={t("discover:topArt")}
                   />
                 )}
               </TabPanel>
@@ -349,6 +328,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
+                  header={t("discover:highlights")}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={2}>
@@ -360,7 +340,6 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
-                  header={labelMapping[activeTab]}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={3}>
@@ -372,7 +351,7 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
-                  header={labelMapping[activeTab]}
+                  header={t("discover:latestArt")}
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
@@ -388,7 +367,6 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                 />
               </TabPanel>
-              {/*
                <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
@@ -398,10 +376,9 @@ export default function DiscoverPage({ navBarItems }) {
                   loadImages={loadImages}
                   stopLoadImages={stopLoadImages}
                   activeTab={activeTab}
-                  header={labelMapping[activeTab]}
+                  header={t("discover:myLikedArt")}
                 />
               </TabPanel>
-             */}
             </Box>
           )}
         </div>

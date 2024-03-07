@@ -74,7 +74,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     dynamic_image: {
       // Make image as high as slide, so overlay and image have the same height.
-      width: '100%',
+      // width: '100%', // This makes image too wide on safari.
       height: '100%',
       objectFit: 'cover',
       objectPosition: 'center',
