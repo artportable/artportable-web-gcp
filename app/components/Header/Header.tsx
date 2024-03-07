@@ -175,7 +175,7 @@ export default function Header({ navBarItems }) {
               <div className={s.login}>
                 <Button
                   // className={s.createButton}
-                  className={clsx(sShared.largeButton, sShared.yellowButton)}
+                  className={clsx(sShared.largeButton, sShared.blackButton)}
                   size="medium"
                   // variant="contained"
                   rounded
@@ -186,7 +186,7 @@ export default function Header({ navBarItems }) {
                     })
                   }
                 >
-                  {t("createPortfolio")}
+                  {t("login")}
                 </Button>
               </div>
             )}

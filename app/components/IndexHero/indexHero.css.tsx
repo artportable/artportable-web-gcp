@@ -39,8 +39,10 @@ export const styles = makeStyles((theme: Theme) =>
       // ...columnGap(theme.spacing(1)),
       marginRight: "16px",
       marginLeft: "16px",
-      marginTop: "12px",
-      margin: theme.spacing(0, 0, 4, 0),
+      // marginTop: "12px",
+      // margin: theme.spacing(0, 0, 4, 0),
+      marginTop: 0,
+      marginBottom: 0,
       placeItems: "center",
 
       [theme.breakpoints.up("smPlus")]: {
@@ -55,7 +57,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("mdPlus")]: {
         // textAlign: "initial",
-        margin: theme.spacing(0, 0, 4, 4),
+        // margin: theme.spacing(0, 0, 4, 4),
         // placeItems: "flex-start",
       },
     },
@@ -95,7 +97,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     right: {
-      marginBottom: '16px',
+      marginBottom: 0,
       /*
       display: "none",
       [theme.breakpoints.up("smPlus")]: {
@@ -458,7 +460,7 @@ export const styles = makeStyles((theme: Theme) =>
       height: '60vh',
       minHeight: '400px',
       [theme.breakpoints.up("sm")]: {
-        height: '75vh',
+        height: 'calc(100vh - 70px)',
       },
       '& img': {
         position: 'absolute',
@@ -476,12 +478,9 @@ export const styles = makeStyles((theme: Theme) =>
       right: '20px',
       display: 'flex',
       flexFlow: 'column nowrap',
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       alignItems: 'center',
       // textAlign: 'center',
-      [theme.breakpoints.up("sm")]: {
-        top: '96px', // To center headline vertically, height of headerButtons.
-      },
     },
     headline: {
       // fontWeight: 600,
@@ -495,6 +494,7 @@ export const styles = makeStyles((theme: Theme) =>
       //   textAlign: "left",
       // },
       position: 'relative',
+      // marginTop: '100px', // To center headline vertically, height of headerButtons.
       fontWeight: 600,
       fontSize: "1.6rem",
       textAlign: "center",
@@ -504,6 +504,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: 'none',
       },
       [theme.breakpoints.up("sm")]: {
+        // marginTop: '120px',
         fontSize: "2.5rem",
       },
       [theme.breakpoints.up("md")]: {
@@ -517,16 +518,35 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     desktopHeaderButtons: {
-      display: 'none',
-      marginTop: '60px',
+      display: 'flex',
+      // marginTop: '60px',
       zIndex: 20,
-      flexFlow: 'row wrap',
-      [theme.breakpoints.up("sm")]: {
-        display: 'flex',
-      },
+      flexFlow: 'row nowrap',
+      // [theme.breakpoints.up("sm")]: {
+      //   flexDirection: 'row',
+      // },
       '& button': {
         minWidth: '150px',
-        margin: '0 10px',
+        // margin: '0 10px',
+      },
+    },
+    readMoreButton: {
+      position: 'absolute',
+      bottom: '20px',
+      right: '40px',
+      zIndex: 20,
+      '& button': {
+        border: 'none',
+        backgroundColor: 'rgba(255, 255, 255, .75)',
+      },
+      '&:hover': {
+        '& button': {
+          backgroundColor: 'white',
+        },
+      },
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "inline",
       },
     },
   })
