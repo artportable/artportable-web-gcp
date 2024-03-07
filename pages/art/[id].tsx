@@ -83,14 +83,24 @@ export default function ArtworkPage(props) {
   const { promoteArtwork } = usePromoteArtwork();
 
   const [showPromoteDialog, setShowPromoteDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const togglePromoteDialog = () => {
     setShowPromoteDialog(!showPromoteDialog);
   };
 
+  const toggleDeleteDialog = () => {
+    setShowDeleteDialog(!showDeleteDialog);
+  };
+
   const handlePromote = async () => {
     if (!token) return;
-    const result = await promoteArtwork(artwork?.data?.Id, token, true);
+    await promoteArtwork(artwork?.data?.Id, token, true);
+  };
+
+  const handleDelete = async () => {
+    if (!token) return;
+    await promoteArtwork(artwork?.data?.Id, token, false);
   };
 
   const userProfile = useGetUserProfileArtwork(artworkOwner);
@@ -254,6 +264,34 @@ export default function ArtworkPage(props) {
                       </Button>
                     </DialogActions>
                   </Dialog>
+                  <Dialog open={showDeleteDialog} onClose={toggleDeleteDialog}>
+                    <DialogTitle>Bekräfta borttagning</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        Är du säker på att du vill ta bort verket{" "}
+                        {`${artwork?.data?.Title}`} som tillhör{" "}
+                        {`${
+                          artwork?.data?.Owner.Name +
+                          " " +
+                          artwork?.data?.Owner?.Surname
+                        }`}{" "}
+                        från hus&hem? "
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={toggleDeleteDialog}>Cancel</Button>
+                      <Button
+                        onClick={() => {
+                          handleDelete();
+                          toggleDeleteDialog();
+                        }}
+                        color="primary"
+                        autoFocus
+                      >
+                        Confirm
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
                   <div className={s.imageContainer}>
                     {artwork?.data?.SecondaryFile ? (
                       <div>
@@ -368,13 +406,24 @@ export default function ArtworkPage(props) {
                   <div className={s.artInfo}>
                     {membership.value > 4 && (
                       <div style={{ margin: "20px" }}>
-                        <Button
-                          onClick={togglePromoteDialog}
-                          variant="contained"
-                          color="secondary"
-                        >
-                          Hus&Hem
-                        </Button>
+                        {!artwork?.data?.Promoted && (
+                          <Button
+                            onClick={togglePromoteDialog}
+                            variant="contained"
+                            color="secondary"
+                          >
+                            Till Hus&Hem
+                          </Button>
+                        )}
+                        {artwork?.data?.Promoted && (
+                          <Button
+                            onClick={toggleDeleteDialog}
+                            variant="contained"
+                            color="secondary"
+                          >
+                            Ta bort
+                          </Button>
+                        )}
                       </div>
                     )}
                     <div
