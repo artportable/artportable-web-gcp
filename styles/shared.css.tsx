@@ -43,6 +43,13 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#F7E2A8",
       },
     },
+    alwaysYellowButton: {
+      border: "1px solid #3d3d4e",
+      backgroundColor: "#F7E2A8",
+      "&:hover": {
+        backgroundColor: "#FEDD65",
+      },
+    },
     greenButton: {
       border: "1px solid #3d3d4e",
       backgroundColor: "#FDF9F7",

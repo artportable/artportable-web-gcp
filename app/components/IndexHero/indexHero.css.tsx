@@ -41,6 +41,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "16px",
       marginTop: "12px",
       margin: theme.spacing(0, 0, 4, 0),
+      placeItems: "center",
 
       [theme.breakpoints.up("smPlus")]: {
         // margin: theme.spacing(0, 0, 2, 0),
@@ -58,27 +59,6 @@ export const styles = makeStyles((theme: Theme) =>
         // placeItems: "flex-start",
       },
     },
-    headline: {
-      fontWeight: 600,
-      fontSize: "2rem",
-      textAlign: "center",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "3.5rem",
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "5rem",
-        textAlign: "left",
-      },
-      // fontWeight: 600,
-      // fontSize: "1.6rem",
-      // textAlign: "center",
-      // [theme.breakpoints.up("sm")]: {
-      //   fontSize: "2.5rem",
-      // },
-      // [theme.breakpoints.up("md")]: {
-      //   textAlign: "left",
-      // },
-    },
     subHeadline: {
       "& span": {
         fontSize: "1.3rem",
@@ -95,17 +75,16 @@ export const styles = makeStyles((theme: Theme) =>
 
     description: {
       marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2),
-      fontSize: "14px",
+      marginBottom: theme.spacing(4),
+      // fontSize: "14px",
+      fontWeight: 500,
       lineHeight: "1.18",
-      textAlign: "center",
-      fontStyle: "italic",
-
+      // textAlign: "center",
       [theme.breakpoints.up("xs")]: {
-        fontSize: "15px",
+        // fontSize: "15px",
       },
       [theme.breakpoints.up("sm")]: {
-        fontSize: "22px",
+        // fontSize: "22px",
       },
       [theme.breakpoints.up("md")]: {
         marginBottom: theme.spacing(3),
@@ -143,14 +122,24 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headerButtonArtlover: {
       display: "flex",
+      flexFlow: 'column nowrap',
       alignContent: "flex-start",
       alignItems: "center",
-      marginBottom: theme.spacing(4),
-      justifyContent: "center",
-      [theme.breakpoints.up("md")]: {
-      // [theme.breakpoints.up("smPlus")]: {
-        marginBottom: theme.spacing(2),
-        justifyContent: "flex-start",
+      // marginBottom: theme.spacing(4),
+      // justifyContent: "center",
+      justifyContent: "flex-start",
+      [theme.breakpoints.up("sm")]: {
+        display: 'none',
+      },
+      // [theme.breakpoints.up("md")]: {
+      // // [theme.breakpoints.up("smPlus")]: {
+      //   marginBottom: theme.spacing(2),
+      //   // justifyContent: "flex-start",
+      // },
+      '& button': {
+        width: '250px',
+        maxWidth: '80vw',
+        marginBottom: '20px',
       },
     },
     headerButtonArtist: {
@@ -294,19 +283,19 @@ export const styles = makeStyles((theme: Theme) =>
       //   margin: theme.spacing(0, 0),
       // },
     },
-    becomeMemberButton: {
-      // whiteSpace: "nowrap",
-      // backgroundColor: "var(--yellow-darker)",
-      // color: "black",
-      // "&:hover": {
-      //   backgroundColor: "#ffda79b3",
-      //   color: "black",
-      // },
-      marginRight: theme.spacing(1),
-      [theme.breakpoints.up("sm")]: {
-        marginRight: theme.spacing(2),
-      },
-    },
+    // becomeMemberButton: {
+    //   // whiteSpace: "nowrap",
+    //   // backgroundColor: "var(--yellow-darker)",
+    //   // color: "black",
+    //   // "&:hover": {
+    //   //   backgroundColor: "#ffda79b3",
+    //   //   color: "black",
+    //   // },
+    //   marginRight: theme.spacing(1),
+    //   [theme.breakpoints.up("sm")]: {
+    //     marginRight: theme.spacing(2),
+    //   },
+    // },
     accordion: {
       backgroundColor: "var(--header-color)",
       width: "100%",
@@ -329,6 +318,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
     },
     button: {
+      border: 'none',
       marginTop: "-50px",
       [theme.breakpoints.up("smPlus")]: {
         marginTop: "-5px",
@@ -462,17 +452,81 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: 'column-reverse',
     },
     fullWidthImage: {
+      position: 'relative',
       // gridColumn: '1 / 4',
       width: '100vw',
-      height: '50vh',
-      [theme.breakpoints.up("smPlus")]: {
-        height: '60vh',
+      height: '60vh',
+      minHeight: '400px',
+      [theme.breakpoints.up("sm")]: {
+        height: '75vh',
       },
       '& img': {
+        position: 'absolute',
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        objectPosition: '50% 0%',
+        zIndex: 10,
+      },
+    },
+    headlineContainer: {
+      position: 'absolute',
+      top: '20px',
+      bottom: '20px',
+      left: '20px',
+      right: '20px',
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      justifyContent: 'center',
+      alignItems: 'center',
+      // textAlign: 'center',
+      [theme.breakpoints.up("sm")]: {
+        top: '96px', // To center headline vertically, height of headerButtons.
+      },
+    },
+    headline: {
+      // fontWeight: 600,
+      // fontSize: "2rem",
+      // textAlign: "center",
+      // [theme.breakpoints.up("sm")]: {
+      //   fontSize: "3.5rem",
+      // },
+      // [theme.breakpoints.up("md")]: {
+      //   fontSize: "5rem",
+      //   textAlign: "left",
+      // },
+      position: 'relative',
+      fontWeight: 600,
+      fontSize: "1.6rem",
+      textAlign: "center",
+      color: 'white',
+      zIndex: 20,
+      '& span': {
+        display: 'none',
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "2.5rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        textAlign: "left",
+        '& span': {
+          display: 'inline',
+        },
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "3.5rem",
+      },
+    },
+    desktopHeaderButtons: {
+      display: 'none',
+      marginTop: '60px',
+      zIndex: 20,
+      flexFlow: 'row wrap',
+      [theme.breakpoints.up("sm")]: {
+        display: 'flex',
+      },
+      '& button': {
+        minWidth: '150px',
+        margin: '0 10px',
       },
     },
   })
