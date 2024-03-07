@@ -49,7 +49,7 @@ import Typography from "@material-ui/core/Typography";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 import Showroom from "../app/components/Showroom/Showroom";
-import RocketCarousel from "../app/components/Carousel/RocketCarousel"
+import RocketCarousel from "../app/components/Carousel/RocketCarousel";
 import Hotjar from "@hotjar/browser";
 import DiscoverPromotedArtTab from "../app/components/DiscoverPromotedArt/DiscoverPromotedArt";
 export default function DiscoverPage({ navBarItems }) {
@@ -219,12 +219,12 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!isSignedIn.value && <IndexHero></IndexHero>}
 
-        <RocketCarousel
-          forDesktop={!isMobile}
-          containerStyle={{
-            margin: '50px 0 75px 0',
-          }}
-          />
+      <RocketCarousel
+        forDesktop={!isMobile}
+        containerStyle={{
+          margin: "50px 0 25px 0",
+        }}
+      />
 
       <>
         {!isSignedIn.value &&
@@ -283,7 +283,7 @@ export default function DiscoverPage({ navBarItems }) {
                 label={t("discover:artists")}
                 {...a11yProps(t("discover:artists"))}
               />
-               {isSignedIn.value && (
+              {isSignedIn.value && (
                 <Tab
                   className={s.text}
                   label={t("discover:myLikedArt")}
@@ -367,7 +367,7 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                 />
               </TabPanel>
-               <TabPanel value={activeTab} index={6}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}

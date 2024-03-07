@@ -55,7 +55,7 @@ export default function RocketCarousel(props: Data) {
       <EmblaCarousel
         slides={artworks}
         options={{
-          align: 'start',
+          align: 'center',
           loop: true,
         }}
         autoPlay={true}

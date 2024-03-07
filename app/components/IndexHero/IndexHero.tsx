@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Typography,
   Chip,
@@ -17,14 +17,16 @@ import type { KeycloakInstance } from "keycloak-js";
 import { useRouter } from "next/router";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
 import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
 import Button from "../Button/Button";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import VideoDialog from "../VideoDialog/VideoDialog";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import clsx from 'clsx'
+import clsx from "clsx";
+
+import { styled } from "@mui/system";
 
 interface RandomImageProps {
   artwork: string;
@@ -49,10 +51,30 @@ export default function IndexHero() {
   const [toggleButton, setToggleButton] = useState(false);
   const [toggleButtonReviews, setToggleButtonReviews] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const expandButtonRef = useRef<HTMLInputElement>();
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.up("smPlus"));
   const isTinyDevice = useMediaQuery(theme.breakpoints.down("xs"));
+
+  const colors = [
+    "#FFD18D",
+    "#F5E8AC",
+    "#DDB8F0",
+    "#DBCFEA",
+    "#DF958E",
+    "#E8E9DD",
+    "#EFC4B7",
+  ];
+  const [colorIndex, setColorIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setColorIndex((current) => (current + 1) % colors.length);
+    }, 800);
+
+    return () => clearInterval(intervalId);
+  }, [colors.length]);
 
   const reviews = [
     {
@@ -119,14 +141,23 @@ export default function IndexHero() {
     setOpenVideoDialog(true);
   };
 
+  const expandAccordion = () => {
+    // console.log('expandAccordion');
+    // console.log('expandButtonRef', expandButtonRef);
+
+    expandButtonRef?.current?.click();
+    // if (expandButtonRef && expandButtonRef.current) {
+    // }
+  };
+
   return (
     <div className={s.container}>
       <div className={clsx(s.flexContainer, s.fullWidthContainer)}>
         <div className={s.left}>
-          <Typography variant="h2" className={s.description}>
+          {/*<Typography variant="h2" className={s.description}>
             {t("Hitta originalkonst") + '!'}
-          </Typography>
-          <div className={s.headerButtonArtlover}>
+          </Typography>*/}
+          {/*<div className={s.headerButtonArtlover}>
             <Button
               // className={s.becomeMemberButton}
               className={clsx(sShared.largeButton, sShared.alwaysYellowButton)}
@@ -154,7 +185,7 @@ export default function IndexHero() {
             >
               {t("logIn")}
             </Button>
-          </div>
+          </div>*/}
           {/* 
           <div className={s.videoDiv}>
             <PlayCircleFilledIcon />
@@ -172,16 +203,18 @@ export default function IndexHero() {
           */}
           <div className={s.accordionDiv}>
             <Accordion className={s.accordion} elevation={0}>
+              {/* AccordionSummary used for clicking with button through expandButtonRef. */}
               <AccordionSummary
                 className={s.accordionSummary}
+                style={{ display: "none" }}
                 onClick={() => setToggleButton(!toggleButton)}
+                ref={expandButtonRef}
               >
-                <div style={{
+                {/*<div style={{
                   width: '100%',
                   display: 'flex',
                   justifyContent: 'center',
                 }}>
-                  <div className={s.buttonDiv}>
                     {toggleButton ? (
                       <Button
                         className={s.button}
@@ -206,7 +239,7 @@ export default function IndexHero() {
                       </Button>
                     )}
                   </div>
-                </div>
+                    </div>*/}
               </AccordionSummary>
               <AccordionDetails>
                 <div className={s.detailsText}>
@@ -492,18 +525,71 @@ export default function IndexHero() {
           </div>*/}
           <div className={s.fullWidthImage}>
             <img
-              src={ isTinyDevice ? '/images/not_logged_in.jpg' : '/images/not_logged_in.jpg' }
+              src={
+                isTinyDevice
+                  ? "/images/not_logged_in.jpg"
+                  : "/images/not_logged_in.jpg"
+              }
               style={{
-                objectPosition: isTinyDevice ? '50% 50%' : '50% 50%',
+                objectPosition: isTinyDevice ? "50% 50%" : "50% 50%",
               }}
             />
             <div className={s.headlineContainer}>
-              <Typography variant="h1" className={s.headline}>
-                {t("nordensLargestArena")}{' '}<span><br /></span>{t("forArtistsAndArtLovers")}
-              </Typography>
-              <div className={s.desktopHeaderButtons}>
+              <div
+                className={s.desktopHeaderButtons}
+                style={{
+                  // marginBottom: '60px',
+                  marginTop: "40px",
+                }}
+              >
                 <Button
-                  className={clsx(sShared.largeButton, sShared.alwaysYellowButton)}
+                  className={clsx(
+                    sShared.largeButton,
+                    sShared.colorAnimatedButton,
+                    sShared.noBorder
+                  )}
+                  style={{
+                    backgroundColor: colors[colorIndex],
+                    transition: "background-color 3s linear",
+                    color: "#000",
+                  }}
+                  size="medium"
+                  // variant="contained"
+                  color="primary"
+                  rounded
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                >
+                  {t("header:artistsHaveChosenAp")}
+                </Button>
+              </div>
+              <Typography variant="h1" className={s.headline}>
+                {t("nordensLargestArena")}{" "}
+                <span>
+                  <br />
+                </span>
+                {t("forArtistsAndArtLovers")}
+              </Typography>
+              <div
+                className={s.desktopHeaderButtons}
+                style={{
+                  // marginTop: '60px',
+                  marginBottom: "40px",
+                }}
+              >
+                <Button
+                  className={clsx(
+                    sShared.largeButton,
+                    sShared.yellowButton,
+                    sShared.noBorder
+                  )}
+                  style={{
+                    minWidth: "200px",
+                  }}
                   size="medium"
                   // variant="contained"
                   color="primary"
@@ -517,9 +603,9 @@ export default function IndexHero() {
                 >
                   {t("signUp")}
                 </Button>
-                <Button
+                {/*<Button
                   // className={s.buttonLabel}
-                  className={clsx(sShared.largeButton, sShared.greenButton)}
+                  className={clsx(sShared.hugeButton, sShared.greenButton, sShared.noBorder)}
                   size="small"
                   // variant="contained"
                   color="primary"
@@ -527,6 +613,34 @@ export default function IndexHero() {
                   onClick={() => keycloak.login({ locale: router.locale })}
                 >
                   {t("logIn")}
+                </Button>*/}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <div className={s.readMoreButton}>
+                <Button
+                  size="small"
+                  onClick={() => {
+                    setToggleButton(!toggleButton);
+                    expandAccordion();
+                  }}
+                  variant="outlined"
+                  rounded
+                  startIcon={
+                    toggleButton ? (
+                      <KeyboardArrowUpIcon />
+                    ) : (
+                      <KeyboardArrowDownIcon />
+                    )
+                  }
+                >
+                  {toggleButton ? t("readLess") : t("readMoreOnly")}
                 </Button>
               </div>
             </div>

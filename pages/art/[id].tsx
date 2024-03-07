@@ -190,6 +190,8 @@ export default function ArtworkPage(props) {
     ));
   }
 
+  console.log(artwork?.data);
+
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
@@ -416,13 +418,29 @@ export default function ArtworkPage(props) {
                           </Button>
                         )}
                         {artwork?.data?.Promoted && (
-                          <Button
-                            onClick={toggleDeleteDialog}
-                            variant="contained"
-                            color="secondary"
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                            }}
                           >
-                            Ta bort
-                          </Button>
+                            <Button
+                              onClick={toggleDeleteDialog}
+                              variant="contained"
+                              color="secondary"
+                            >
+                              Ta bort
+                            </Button>
+                            <div>
+                              Publicerad på hus&hem{" "}
+                              {
+                                new Date(artwork?.data?.PromotedAt)
+                                  .toISOString()
+                                  .split("T")[0]
+                              }
+                            </div>
+                          </div>
                         )}
                       </div>
                     )}
