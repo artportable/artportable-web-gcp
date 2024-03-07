@@ -406,7 +406,7 @@ export default function ArtworkPage(props) {
 
                 <div className={s.artworkInfoWrapper}>
                   <div className={s.artInfo}>
-                    {membership.value > 1 && (
+                    {membership.value > 4 && (
                       <div style={{ margin: "20px" }}>
                         {!artwork?.data?.Promoted && (
                           <Button
