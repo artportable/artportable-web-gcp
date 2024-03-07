@@ -103,7 +103,7 @@ const formatApArtworkForEmbla = (items, s, sShared, t) => {
       artistName: '',
       title: item.Title,
       linkURL: `/art/${item.Id}`,
-      roundedCorners: true,
+      roundedCorners: false,
     })
   })
 
