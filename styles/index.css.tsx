@@ -14,13 +14,22 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
     },
     artTabs: {
+      "& .MuiTab-root": {
+        minWidth: 0,
+        color: "black",
+        opacity: 1,
+      },
+      "& .Mui-selected": {
+        color: "black",
+        opacity: 1,
+      },
+      
+      
       margin: "0 auto",
       "& .MuiTabs-scroller": {
         flexGrow: "0",
       },
-      "& .MuiTab-root": {
-        minWidth: 0,
-      },
+  
       "& .MuiTabScrollButton-root": {
         width: "unset",
         opacity: "0.8",
@@ -39,12 +48,19 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     artistTab: {
+      "& .MuiTab-root": {
+        minWidth: 0,
+        color: "black",
+        opacity: 1,
+      },
+      "& .Mui-selected": {
+        color: "black",
+        opacity: 1,
+      },
       "& .MuiTabs-scroller": {
         flexGrow: "0",
       },
-      "& .MuiTab-root": {
-        minWidth: 0,
-      },
+    
       "& .MuiTabScrollButton-root": {
         width: "unset",
         opacity: "0.8",
@@ -63,7 +79,7 @@ export const styles = makeStyles((theme: Theme) =>
         margin: 0,
       },
       '&:hover': {
-        opacity: 0.7,
+        opacity: 0.4,
       },
     },
 
