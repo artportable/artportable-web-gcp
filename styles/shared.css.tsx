@@ -85,8 +85,13 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     colorAnimatedButton: {
-      fontSize: '12px',
+      minHeight: '40px',
+      fontSize: '16px',
+      fontWeight: 500,
+      lineHeight: 1,
+      // letterSpacing: '-0.2px',
       border: "none",
+      borderRadius: '100px',
       color: 'black',
       backgroundColor: "#F2D9D6",
       "&:hover": {

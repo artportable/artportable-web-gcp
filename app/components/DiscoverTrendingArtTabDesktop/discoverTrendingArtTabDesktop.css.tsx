@@ -8,8 +8,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     filterSummary: {
-      fontSize: "14px",
-      fontWeight: 300,
+      fontSize: "20px",
+      fontWeight: 500,
+      opacity: 0.7,
     },
 
     filterDetailsTags: {
@@ -103,8 +104,10 @@ export const styles = makeStyles((theme: Theme) =>
     desktopContainer: {
       display: "flex",
       flexDirection: "row",
-      marginTop: "-40px",
-      marginBottom: "10px",
+      // marginTop: "-40px",
+      // marginBottom: "10px",
+      marginTop: "-10px",
+      marginBottom: "40px",
       width: "100%",
       height: "60px",
       justifyContent: "center",

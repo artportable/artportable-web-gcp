@@ -222,7 +222,7 @@ export default function DiscoverArt({
         artworks.length > 0 ? (
           <Box className={s.rowsContainer}>
             { header &&
-              <Typography variant="h4">
+              <Typography variant="h4" style={{ fontWeight: 500 }}>
                 { header }
               </Typography>
             }

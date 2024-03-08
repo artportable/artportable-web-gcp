@@ -31,9 +31,10 @@ export const styles = makeStyles((theme: Theme) =>
         // Prevent tab automatically being upper case.
         textTransform: 'none',
         // Same look as header set in DiscoverArt.tsx.
-        fontWeight: 400,
+        fontWeight: 500,
         [theme.breakpoints.up("sm")]: {
-          fontSize: '1.35rem',
+          // fontSize: '1.35rem',
+          fontSize: '1.9rem',
         },
       },
     },
@@ -54,8 +55,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     text: {
       minWidth: 0,
+      marginRight: theme.spacing(2),
+      marginLeft: theme.spacing(2),
       [theme.breakpoints.down("sm")]: {
         fontSize: "12px",
+        margin: 0,
       },
 
     },
