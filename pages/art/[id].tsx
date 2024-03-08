@@ -432,13 +432,9 @@ export default function ArtworkPage(props) {
                             >
                               Ta bort
                             </Button>
-                            <div>
+                            <div style={{ margin: "10px 0px 10px 0px" }}>
                               Publicerad på hus&hem{" "}
-                              {
-                                new Date(artwork?.data?.PromotedAt)
-                                  .toISOString()
-                                  .split("T")[0]
-                              }
+                              {artwork?.data?.PromotedAt.slice(0, 10)}
                             </div>
                           </div>
                         )}
