@@ -34,7 +34,7 @@ export const styles = makeStyles((theme: Theme) =>
         fontWeight: 500,
         [theme.breakpoints.up("sm")]: {
           // fontSize: '1.35rem',
-          fontSize: '1.9rem',
+          fontSize: '1.5rem',
         },
       },
     },
@@ -57,17 +57,21 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: 0,
       marginRight: theme.spacing(2),
       marginLeft: theme.spacing(2),
+      opacity: 1,
       [theme.breakpoints.down("sm")]: {
         fontSize: "12px",
         margin: 0,
       },
-
+      '&:hover': {
+        opacity: 0.7,
+      },
     },
 
     [theme.breakpoints.up("lg")]: {
       artTabs: {
         "& .MuiTabScrollButton-root": {
-          display: "none",
+          // When tabs were smaller, they could all fit on desktop, so hid scroll buttons then.
+          // display: "none",
         },
       },
       artistTab: {

@@ -230,9 +230,9 @@ const DiscoverTrendingArtTabDesktop = memo(
                 >
                   <Typography className={s.filterSummary}>
                     {selectedTrending ? (
-                      <div style={{ fontWeight: "bold" }}>
+                      <span style={{ fontWeight: "bold" }}>
                         {t(`common:selectOptions:trending${selectedTrending}`)}
-                      </div>
+                      </span>
                     ) : (
                       t("common:selectOptions:trending")
                     )}
@@ -297,11 +297,11 @@ const DiscoverTrendingArtTabDesktop = memo(
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={s.filterSummary}>
                   {selectedTechnique ? (
-                    <div style={{ fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold" }}>
                       {t(`common:techniques:${selectedTechnique}`)}
-                    </div>
+                    </span>
                   ) : (
-                    <div>{t("common:selectOptions:technique")}</div>
+                    <span>{t("common:selectOptions:technique")}</span>
                   )}
                 </Typography>
               </AccordionSummary>
@@ -332,9 +332,9 @@ const DiscoverTrendingArtTabDesktop = memo(
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={s.filterSummary}>
                   {selectedTheme ? (
-                    <div style={{ fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold" }}>
                       {t(`common:themes:${selectedTheme}`)}
-                    </div>
+                    </span>
                   ) : (
                     <>{t("common:selectOptions:theme")}</>
                   )}
@@ -367,9 +367,9 @@ const DiscoverTrendingArtTabDesktop = memo(
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={s.filterSummary}>
                   {selectedOrientation ? (
-                    <div style={{ fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold" }}>
                       {t(`common:selectOptions:${selectedOrientation}`)}
-                    </div>
+                    </span>
                   ) : (
                     t("common:selectOptions:format")
                   )}
@@ -405,9 +405,9 @@ const DiscoverTrendingArtTabDesktop = memo(
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={s.filterSummary}>
                   {selectedSize ? (
-                    <div style={{ fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold" }}>
                       {t(`common:selectOptions:${selectedSize}`)}
-                    </div>
+                    </span>
                   ) : (
                     t("common:selectOptions:size")
                   )}
@@ -457,9 +457,9 @@ const DiscoverTrendingArtTabDesktop = memo(
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <Typography className={s.filterSummary}>
                   {selectedPrice ? (
-                    <div style={{ fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold" }}>
                       {t(`common:selectOptions:${selectedPrice}`)}
-                    </div>
+                    </span>
                   ) : (
                     t("common:selectOptions:price")
                   )}

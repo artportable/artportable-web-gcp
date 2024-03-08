@@ -62,6 +62,9 @@ export const styles = makeStyles((theme: Theme) =>
         }
       },
     },
+    has_footer: {
+      marginBottom: '33px',
+    },
     // image__container: {
     //   position: 'relative',
     //   // Must set height to contain image.
@@ -120,6 +123,13 @@ export const styles = makeStyles((theme: Theme) =>
       opacity: 0,
       // '&:hover': {
       // },
+    },
+    slide__footer: {
+      // Relative positioning stretches image, use absolute.
+      position: 'absolute',
+      top: '100%',
+      left: 0,
+      right: 0,
     },
     embla__controls: {
       // display: 'grid',
