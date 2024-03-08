@@ -179,12 +179,13 @@ export default function Header({ navBarItems }) {
                   size="medium"
                   // variant="contained"
                   rounded
-                  onClick={() =>
-                    keycloak.register({
-                      locale: router.locale,
-                      redirectUri: signUpRedirectHref,
-                    })
-                  }
+                  onClick={() => keycloak.login({ locale: router.locale })}
+                  // onClick={() =>
+                  //   keycloak.register({
+                  //     locale: router.locale,
+                  //     redirectUri: signUpRedirectHref,
+                  //   })
+                  // }
                 >
                   {t("login")}
                 </Button>

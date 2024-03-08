@@ -24,7 +24,6 @@ export default function RocketCarousel(props: Data) {
   const s = styles();
   const sShared = sharedStyles();
 
-
   const fetchData = async () => {
     const pageUrl = process.env.NEXT_PUBLIC_URL
     let newData = [];
@@ -39,7 +38,7 @@ export default function RocketCarousel(props: Data) {
       newData = PLACEHOLDER_ARTWORKS;
     }
 
-    const formattedArtworks = formatApArtworkForEmbla(newData, s, sShared, t)
+    const formattedArtworks = formatApArtworkForEmbla(newData, s, sShared, t, forDesktop)
 
     setArtworks(formattedArtworks)
   }
@@ -60,13 +59,13 @@ export default function RocketCarousel(props: Data) {
         }}
         autoPlay={true}
         useDynamicSlideWidth={true}
-        forDesktop={props.forDesktop}
+        forDesktop={forDesktop}
       />
     </div>
   )
 }
 
-const formatApArtworkForEmbla = (items, s, sShared, t) => {
+const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const formatted = []
 
@@ -86,9 +85,11 @@ const formatApArtworkForEmbla = (items, s, sShared, t) => {
             }}
           />
         </div>
-        <div className={s.seeMoreButton + ' displayOnHover'}>
-          <Button className={clsx(sShared.smallButton, sShared.yellowButton, sShared.buttonShadow)}>{(t("common:seeMore"))}</Button>
-        </div>
+        { forDesktop &&
+          <div className={s.seeMoreButton + ' displayOnHover'}>
+            <Button className={clsx(sShared.smallButton, sShared.yellowButton, sShared.buttonShadow)}>{(t("common:seeMore"))}</Button>
+          </div>
+        }
       </div>
     )
 

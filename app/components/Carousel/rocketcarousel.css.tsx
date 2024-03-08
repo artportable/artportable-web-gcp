@@ -40,6 +40,11 @@ export const styles = makeStyles((theme: Theme) =>
       transform: 'translate(-50%, -50%)',
       opacity: 0,
       transition: 'opacity .25s ease-out',
+      display: 'none',
+      // Hide on mobile or slide require double click on iphone before redirecting.
+      [theme.breakpoints.up("md")]: {
+        display: 'inline',
+      },
       // '&:hover': {
       //   opacity: 1,
       // }

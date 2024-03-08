@@ -653,8 +653,8 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
           },
           {
             element: header ? (
-              <Typography variant="h4">
-                Topplistan index
+              <Typography variant="h4" style={{ fontWeight: 500 }}>
+                { header }
               </Typography>
             ) : null,
             position: 4,

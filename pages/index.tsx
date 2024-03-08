@@ -238,7 +238,12 @@ export default function DiscoverPage({ navBarItems }) {
             setOpenAdDialog={setOpenAdDialog}
             onClose={toggleAdDialog}
           />} */}
-        <div ref={scrollToDiscoverRef} className={s.discoverContainer}>
+        <div
+          ref={scrollToDiscoverRef}
+          className={s.discoverContainer}
+          // Set minHeight to avoid page jumping when switching tabs.
+          style={{ minHeight: '100vh' }}
+          >
           <div className={s.tabContainer}>
             <Tabs
               className={s.artTabs}
@@ -246,6 +251,12 @@ export default function DiscoverPage({ navBarItems }) {
               onChange={(_, newValue) => setTab(newValue)}
               variant={"scrollable"}
               scrollButtons={"on"}
+              // Change underline color throigh TabIndicatorProps:
+              TabIndicatorProps={{
+                style: {
+                  backgroundColor: "black",
+                }
+              }}
             >
               <Tab
                 className={s.text}
