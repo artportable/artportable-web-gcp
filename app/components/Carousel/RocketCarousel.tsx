@@ -105,6 +105,19 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
       title: item.Title,
       linkURL: `/art/${item.Id}`,
       roundedCorners: false,
+      footer: (
+        <div style={{
+          marginTop: '10px',
+          fontSize: '0.95rem',
+          fontWeight: 400,
+          width: '100%',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}>
+          {`${item.Owner.Name} ${item.Owner.Surname}`}
+        </div>
+      )
     })
   })
 
