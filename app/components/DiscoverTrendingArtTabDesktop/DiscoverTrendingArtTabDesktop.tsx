@@ -575,7 +575,7 @@ const DiscoverTrendingArtTabDesktop = memo(
             },
             {
               element: header ? (
-                <Typography variant="h4">
+                <Typography variant="h4" style={{ fontWeight: 500 }}>
                   { header }
                 </Typography>
               ) : null,

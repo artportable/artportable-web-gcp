@@ -258,6 +258,12 @@ export default function IndexHero() {
                               variant="outlined"
                               rounded
                               endIcon={<KeyboardArrowUpIcon />}
+                              // Style for moving button down a bit.
+                              style={{
+                                position: 'absolute',
+                                top: '40px',
+                                left: 0,
+                              }}
                             >
                               {t("readLess")}
                             </Button>
@@ -544,7 +550,6 @@ export default function IndexHero() {
               >
                 <Button
                   className={clsx(
-                    sShared.largeButton,
                     sShared.colorAnimatedButton,
                     sShared.noBorder
                   )}

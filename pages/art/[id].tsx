@@ -190,7 +190,11 @@ export default function ArtworkPage(props) {
     ));
   }
 
-  console.log(artwork?.data);
+  // Assuming PromotedAt is a string in the format "YYYY-MM-DDTHH:MM:SS.sss"
+  const dateString = artwork?.data?.PromotedAt;
+
+  // Extract the first 10 characters to get the date in 'YYYY-MM-DD' format
+  const formattedDate = dateString ? dateString.slice(0, 10) : null;
 
   return (
     <Main wide navBarItems={navBarItems}>
@@ -433,8 +437,7 @@ export default function ArtworkPage(props) {
                               Ta bort
                             </Button>
                             <div style={{ margin: "10px 0px 10px 0px" }}>
-                              Publicerad på hus&hem{" "}
-                              {artwork?.data?.PromotedAt.slice(0, 10)}
+                              Publicerad på hus&hem {formattedDate}
                             </div>
                           </div>
                         )}
