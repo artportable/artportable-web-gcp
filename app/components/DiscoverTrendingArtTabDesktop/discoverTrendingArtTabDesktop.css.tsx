@@ -10,7 +10,9 @@ export const styles = makeStyles((theme: Theme) =>
     filterSummary: {
       fontSize: "20px",
       fontWeight: 500,
-      opacity: 0.7,
+      '&:hover': {
+        opacity: 0.7,
+      }
     },
 
     filterDetailsTags: {

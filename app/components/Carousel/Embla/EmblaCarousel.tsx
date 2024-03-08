@@ -35,6 +35,7 @@ type Slide = {
   title: string,
   linkURL: string,
   roundedCorners?: boolean,
+  footer?: React.ReactElement,
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
@@ -76,7 +77,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               [s.embla__slide__desktop]: forDesktop,
             })} key={index}>
               <a href={slide.linkURL} target="_blank">
-                <div className={s.embla__slide__image}>
+                <div className={clsx(s.embla__slide__image, {
+                  [s.has_footer]: slide.footer,
+                })}>
                   {/*
                     If we want to use slide.thumbnailSrc as src, but fall back to imageSrc if thumbnail fails:
                     onError={elem => (elem.target as HTMLImageElement).src = slide.imageSrc}
@@ -110,6 +113,11 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   { slide.hoverOverlayContent &&
                     <div className={s.hover__overlay_content}>
                       {slide.hoverOverlayContent}
+                    </div>
+                  }
+                  { slide.footer &&
+                    <div className={s.slide__footer}>
+                      { slide.footer }
                     </div>
                   }
                 </div>

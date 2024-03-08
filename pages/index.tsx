@@ -251,7 +251,7 @@ export default function DiscoverPage({ navBarItems }) {
               onChange={(_, newValue) => setTab(newValue)}
               variant={"scrollable"}
               scrollButtons={"on"}
-              // Change underline color throigh TabIndicatorProps:
+              // Change underline color through TabIndicatorProps:
               TabIndicatorProps={{
                 style: {
                   backgroundColor: "black",

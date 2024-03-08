@@ -274,11 +274,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                         <TrendingUpIcon className={s.mobileIcon} />
                         <Typography>
                           {tempSelectedTrending ? (
-                            <div className={s.mobileTemp}>
+                            <span className={s.mobileTemp}>
                               {t(
                                 `common:selectOptions:trending${tempSelectedTrending}`
                               )}
-                            </div>
+                            </span>
                           ) : (
                             t("common:selectOptions:trending")
                           )}
@@ -344,11 +344,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                         <PaletteOutlinedIcon className={s.mobileIcon} />
                         <Typography>
                           {selectedTheme ? (
-                            <div style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold" }}>
                               {t(`common:themes:${selectedTheme}`)}
-                            </div>
+                            </span>
                           ) : (
-                            <div>{t("common:selectOptions:theme")}</div>
+                            <span>{t("common:selectOptions:theme")}</span>
                           )}
                         </Typography>
                       </div>
@@ -379,11 +379,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                         <PaletteOutlinedIcon className={s.mobileIcon} />
                         <Typography>
                           {selectedTechnique ? (
-                            <div style={{ fontWeight: "bold" }}>
+                            <span style={{ fontWeight: "bold" }}>
                               {t(`common:techniques:${selectedTechnique}`)}
-                            </div>
+                            </span>
                           ) : (
-                            <div>{t("common:selectOptions:technique")}</div>
+                            <span>{t("common:selectOptions:technique")}</span>
                           )}
                         </Typography>
                       </div>
@@ -444,9 +444,9 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                         />
                         <Typography>
                           {selectedTempSize ? (
-                            <div className={s.mobileTemp}>
+                            <span className={s.mobileTemp}>
                               {t(`common:selectOptions:${selectedTempSize}`)}
-                            </div>
+                            </span>
                           ) : (
                             t("common:selectOptions:size")
                           )}
@@ -492,11 +492,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                         <AspectRatioOutlinedIcon className={s.mobileIcon} />
                         <Typography>
                           {tempSelectedOrientation ? (
-                            <div className={s.mobileTemp}>
+                            <span className={s.mobileTemp}>
                               {t(
                                 `common:selectOptions:${tempSelectedOrientation}`
                               )}
-                            </div>
+                            </span>
                           ) : (
                             t("common:selectOptions:format")
                           )}
@@ -538,11 +538,11 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
                         <PaymentOutlinedIcon className={s.mobileIcon} />
                         <Typography>
                           {tempSelectedPrice ? (
-                            <div className={s.mobileTemp}>
+                            <span className={s.mobileTemp}>
                               {t(
                                 `common:selectOptions:upTo${tempSelectedPrice}`
                               )}
-                            </div>
+                            </span>
                           ) : (
                             t("common:selectOptions:price")
                           )}
