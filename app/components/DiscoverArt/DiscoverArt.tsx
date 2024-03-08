@@ -148,7 +148,11 @@ export default function DiscoverArt({
 
   useEffect(() => {
     const primaryImages = artworks.map((a) => a.PrimaryFile);
-    const rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
+    let rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
+    // First item in rows can be an empty array. Remove it.
+    if (rows[0] && rows[0].length === 0) {
+      rows = rows.slice(1)
+    }
 
     setImageRows(rows);
     const skeletonRows = getImageAsRows(
