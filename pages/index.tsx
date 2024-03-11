@@ -378,7 +378,7 @@ export default function DiscoverPage({ navBarItems }) {
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={6}>
+              <TabPanel value={activeTab} index={7}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
