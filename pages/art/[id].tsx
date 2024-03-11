@@ -51,6 +51,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -84,6 +86,7 @@ export default function ArtworkPage(props) {
 
   const [showPromoteDialog, setShowPromoteDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [promotionDuration, setPromotionDuration] = useState(3);
 
   const togglePromoteDialog = () => {
     setShowPromoteDialog(!showPromoteDialog);
@@ -95,12 +98,12 @@ export default function ArtworkPage(props) {
 
   const handlePromote = async () => {
     if (!token) return;
-    await promoteArtwork(artwork?.data?.Id, token, true);
+    await promoteArtwork(artwork?.data?.Id, token, true, promotionDuration);
   };
 
   const handleDelete = async () => {
     if (!token) return;
-    await promoteArtwork(artwork?.data?.Id, token, false);
+    await promoteArtwork(artwork?.data?.Id, token, false, promotionDuration);
   };
 
   const userProfile = useGetUserProfileArtwork(artworkOwner);
@@ -190,11 +193,10 @@ export default function ArtworkPage(props) {
     ));
   }
 
-  // Assuming PromotedAt is a string in the format "YYYY-MM-DDTHH:MM:SS.sss"
   const dateString = artwork?.data?.PromotedAt;
-
-  // Extract the first 10 characters to get the date in 'YYYY-MM-DD' format
+  const dateStringEnd = artwork?.data?.PromotionEndDate;
   const formattedDate = dateString ? dateString.slice(0, 10) : null;
+  const formattedDateEnd = dateStringEnd ? dateStringEnd.slice(0, 10) : null;
 
   return (
     <Main wide navBarItems={navBarItems}>
@@ -252,9 +254,22 @@ export default function ArtworkPage(props) {
                     <DialogTitle>Confirm Promotion</DialogTitle>
                     <DialogContent>
                       <DialogContentText>
-                        Är du säker på att du vill skicka verket till hus&hem? "
-                        {artwork?.data?.Title}"?
+                        Är du säker på att du vill skicka verket "
+                        {artwork?.data?.Title}" till husohem?
                       </DialogContentText>
+
+                      <Select
+                        value={promotionDuration}
+                        onChange={(e) =>
+                          setPromotionDuration(Number(e.target.value))
+                        }
+                        fullWidth
+                      >
+                        <MenuItem value={1}>1 Månad</MenuItem>
+                        <MenuItem value={3}>3 Månader</MenuItem>
+                        <MenuItem value={6}>6 Månader</MenuItem>
+                        <MenuItem value={12}>1 år</MenuItem>
+                      </Select>
                     </DialogContent>
                     <DialogActions>
                       <Button onClick={togglePromoteDialog}>Cancel</Button>
@@ -270,6 +285,7 @@ export default function ArtworkPage(props) {
                       </Button>
                     </DialogActions>
                   </Dialog>
+
                   <Dialog open={showDeleteDialog} onClose={toggleDeleteDialog}>
                     <DialogTitle>Bekräfta borttagning</DialogTitle>
                     <DialogContent>
@@ -437,7 +453,10 @@ export default function ArtworkPage(props) {
                               Ta bort
                             </Button>
                             <div style={{ margin: "10px 0px 10px 0px" }}>
-                              Publicerad på hus&hem {formattedDate}
+                              Startdatum hus&hem {formattedDate}
+                            </div>
+                            <div style={{ margin: "0px 0px 10px 0px" }}>
+                              Slutdatum {formattedDateEnd}
                             </div>
                           </div>
                         )}
