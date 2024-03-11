@@ -78,8 +78,8 @@ export const showrooms = {
     },
     {
       week: "Vecka 17",
-      artist: "Göran billingskog",
-      username: "gorito",
+      artist: "Susanne Körnvik",
+      username: "artbykornvik",
     },
   ],
   MAJ: [
