@@ -137,7 +137,7 @@ import { useCallback } from "react";
 
 const usePromoteArtwork = () => {
   const promoteArtwork = useCallback(
-    async (artworkId, token, promote = true) => {
+    async (artworkId, token, promote = true, promotionDuration) => {
       const url = `${apiBaseUrl}/api/Artworks/promote/${artworkId}`;
       const options = {
         method: "PUT",
@@ -145,7 +145,10 @@ const usePromoteArtwork = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ Promoted: promote }),
+        body: JSON.stringify({
+          Promoted: promote,
+          PromotionDurationInMonths: promotionDuration,
+        }),
       };
 
       try {
@@ -158,6 +161,8 @@ const usePromoteArtwork = () => {
         }
 
         const data = await response.json();
+        console.log(data);
+
         return data;
       } catch (error) {
         console.error("Error promoting artwork:", error);
