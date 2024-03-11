@@ -453,10 +453,10 @@ export default function ArtworkPage(props) {
                               Ta bort
                             </Button>
                             <div style={{ margin: "10px 0px 10px 0px" }}>
-                              Startdatum hus&hem {formattedDate}
+                              Startdatum hus&hem: {formattedDate}
                             </div>
                             <div style={{ margin: "0px 0px 10px 0px" }}>
-                              Slutdatum {formattedDateEnd}
+                              Slutdatum: {formattedDateEnd}
                             </div>
                           </div>
                         )}
