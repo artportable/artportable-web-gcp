@@ -417,6 +417,7 @@ export async function getStaticProps({ locale }) {
         "articles",
         "feed",
         "exhibitions",
+        "forms",
       ])),
     },
     revalidate: 60,

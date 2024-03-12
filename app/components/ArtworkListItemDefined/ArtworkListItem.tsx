@@ -204,7 +204,7 @@ export default function ArtworkListItem({
         </Link>
 
         <div className={clsx(s.infoRow, s.topInfoRow)}>
-          <div className={s.topLeft}>
+          {/*<div className={s.topLeft}>
             {username.value != artwork.Owner.Username && !artwork.SoldOut && (
               <Button
                 className={clsx(sShared.smallButton, sShared.alwaysYellowButton, sShared.noBorder, sShared.mediumThickness, s.requestButton)}
@@ -229,7 +229,7 @@ export default function ArtworkListItem({
                 {t("request")}
               </Button>
             )}
-          </div>
+          </div>*/}
 
           <div className={clsx(s.topRight, s.likeInline)}>
             <div className={s.likeContainer}>
