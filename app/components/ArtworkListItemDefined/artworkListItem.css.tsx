@@ -54,6 +54,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     topInfoRow: {
       top: 'var(--image-padding)',
+      justifyContent: 'flex-end',
     },
     bottomInfoRow: {
       bottom: 'var(--image-padding)',

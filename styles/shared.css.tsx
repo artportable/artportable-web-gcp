@@ -84,6 +84,15 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "white",
       },
     },
+    whiteButton: {
+      border: "1px solid black",
+      color: 'black',
+      backgroundColor: "white",
+      "&:hover": {
+        color: 'white',
+        backgroundColor: "black",
+      },
+    },
     colorAnimatedButton: {
       minHeight: '40px',
       fontSize: '16px',

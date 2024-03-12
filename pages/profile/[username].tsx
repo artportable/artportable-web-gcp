@@ -83,6 +83,7 @@ export default function Profile(props) {
     "upload",
     "header",
     "discover",
+    "forms",
   ]);
   const s = profileStyles();
   const rowWidth = useMainWidth().regular;
@@ -923,6 +924,7 @@ export async function getServerSideProps({ locale, params }) {
           "support",
           "plans",
           "discover",
+          "forms",
         ])),
       },
     };
@@ -944,6 +946,7 @@ export async function getServerSideProps({ locale, params }) {
         "upload",
         "support",
         "plans",
+        "forms",
       ])),
     },
   };

@@ -1,3 +1,50 @@
+export const REAL_ROCKET_ARTWORKS = [
+  {
+    "Id": "4ee89d81-3510-40ad-aa53-005e85f58f99",
+    "Owner": {
+        "Username": "Ciara",
+        "SocialId": "bfacc57c-3384-4cc1-89e3-f445deb288b4",
+        "ProfilePicture": "dd834e71-f5c2-4ba9-b3da-761a093d3c69.jpg",
+        "Name": "Ciara",
+        "Surname": "Zelmerlöw",
+        "Location": null,
+        "FollowedByMe": false,
+        "MonthlyArtist": false
+    },
+    "Title": "Khloé",
+    "Description": "Gliclée Fine Art Print",
+    "Published": "2024-02-27T04:07:06.1145256",
+    "Name": null,
+    "Surname": null,
+    "Username": null,
+    "Price": null,
+    "Currency": "SEK",
+    "SoldOut": false,
+    "MultipleSizes": false,
+    "CuratedImage": false,
+    "Height": 50.00,
+    "Width": 70.00,
+    "Depth": 0.00,
+    "PrimaryFile": {
+        "Name": "ff0640b4-b045-4897-884b-07fd62ca12f5.jpg",
+        "Width": 1398,
+        "Height": 1049
+    },
+    "SecondaryFile": null,
+    "TertiaryFile": null,
+    "Tags": [
+        "acrylic",
+        "abstract"
+    ],
+    "Likes": 7,
+    "LikedByMe": false,
+    "OrderIndex": 7,
+    "Promoted": false,
+    "PromotedAt": null,
+    "PromotionEndDate": null
+}
+]
+
 const PLACEHOLDER_ARTWORKS = [
   {
     "Id": "cd72af05-285e-4869-84d5-f50b0220be5d",
