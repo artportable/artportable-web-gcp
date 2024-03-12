@@ -60,12 +60,12 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: 'flex-end',
     },
     topLeft: {
-      flexBasis: 'calc(50% - var(--image-padding)))',
+      // flexBasis: 'calc(50% - var(--image-padding))',
       textAlign: 'left',
       paddingBottom: '10px',
     },
     topRight: {
-      flexBasis: 'calc(50% - var(--image-padding))',
+      // flexBasis: 'calc(50% - var(--image-padding))',
       textAlign: 'right',
     },
     bottomLeft: {
@@ -93,7 +93,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeContainer: {
       display: "flex",
-      marginLeft: "10px",
+      // marginLeft: "10px",
       marginBottom: "5px",
       fontWeight: theme.typography.fontWeightRegular as number,
       fontSize: theme.typography.caption.fontSize,
@@ -105,11 +105,14 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
     },
     likeButton: {
-      padding: theme.spacing(0.2, 0, 0.4, 0.5),
+      // padding: theme.spacing(0.2, 0, 0.4, 0.5),
+      padding: '2px',
       fontSize: "0.5rem",
-      color: "red !important",
+      borderRadius: '50%',
+      // color: "red !important",
+      backgroundColor: 'rgba(100, 100, 100, .25)',
       "&:hover": {
-        backgroundColor: "transparent",
+        backgroundColor: 'rgba(100, 100, 100, .5)',
       },
       '& svg': {
         color: 'white',
