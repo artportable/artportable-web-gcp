@@ -252,6 +252,10 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "transparent",
       },
     },
+    chatButtonContainer: {
+      position: 'relative',
+      margin: '3px 12px 0 0',
+    },
     chatButton: {
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
       fontSize: "0.5rem",

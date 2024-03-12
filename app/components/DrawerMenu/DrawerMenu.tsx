@@ -148,7 +148,7 @@ export default function DrawerMenu({
         <Divider />
         <ListItem button onClick={handleClickLanguage}>
           <ListItemIcon>
-            <Badge max={99} color="primary">
+            <Badge max={99} color="primary" overlap="rectangular">
               <LanguageRoundedIcon color="secondary" style={{ fontSize: 30 }} />
             </Badge>
           </ListItemIcon>

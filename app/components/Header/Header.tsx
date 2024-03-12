@@ -3,6 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
+// import Badge from '@mui/material/Badge';
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -294,6 +295,7 @@ export default function Header({ navBarItems }) {
                             badgeContent={unreadChatMessages}
                             max={99}
                             color="primary"
+                            overlap="rectangular"
                           >
                             <MessageRoundedIcon style={{ fontSize: "30px" }} />
                           </Badge>
@@ -320,6 +322,7 @@ export default function Header({ navBarItems }) {
                   badgeContent={unreadChatMessages}
                   max={99}
                   color="primary"
+                  overlap="rectangular"
                 >
                   <MenuIcon style={{ fontSize: "30px" }} />
                 </Badge>

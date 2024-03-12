@@ -87,7 +87,9 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
         </div>
         { forDesktop &&
           <div className={s.seeMoreButton + ' displayOnHover'}>
-            <Button className={clsx(sShared.smallButton, sShared.yellowButton, sShared.buttonShadow)}>{(t("common:seeMore"))}</Button>
+            <Button className={clsx(
+              sShared.smallButton, sShared.yellowButton, sShared.noBorder, sShared.mediumThickness
+              )}>{(t("common:seeMore"))}</Button>
           </div>
         }
       </div>

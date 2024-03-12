@@ -1,0 +1,342 @@
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { useContext, useState } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { i18n, useTranslation } from "next-i18next";
+import { useEffect } from "react";
+import clsx from 'clsx'
+import { UserContext } from "../../contexts/user-context";
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
+import Button from "../Button/Button";
+import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+// import { Locales } from "../../models/i18n/locales";
+import { useRedirectToLoginIfNotLoggedIn } from "../../../app/hooks/useRedirectToLoginIfNotLoggedIn";
+import { RWebShare } from "react-web-share";
+import ShareIcon from "@material-ui/icons/Share";
+import TagChip from "../TagChip/TagChip";
+import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
+import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
+import { getTimePassed } from "../../hooks/dataFetching/Artworks";
+import { styles } from "./artworkListItem.css";
+import { styles as sharedStyles } from '../../../styles/shared.css'
+import be from "date-fns/locale/be";
+
+export default function ArtworkListItem({
+  artwork,
+  onLikeClick,
+  onPurchaseRequestClick,
+  purchaseRequestAction,
+  height,
+  width,
+  topActions = undefined,
+}) {
+  const s = styles();
+  const sShared = sharedStyles();
+  const { t } = useTranslation(["art", "common", "tags"]);
+  
+
+  const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
+  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+
+  const { isSignedIn, username } = useContext(UserContext);
+  const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
+  const publicUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const timePassed = getTimePassed(artwork?.Published, t);
+
+  const router = useRouter();
+  const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
+
+  const profileUser = useGetProfileUser();
+
+  // TODO: Use getFormatter function in utils/formatUtils.tsx instead.
+  function getFormatter(
+    languageCode: string,
+    currency: string | null
+  ): Intl.NumberFormat {
+    if (currency === null) {
+      return new Intl.NumberFormat(languageCode, {
+        style: "currency",
+        currency: "SEK",
+        currencyDisplay: "code",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    }
+    if (languageCode === "sv") {
+      return new Intl.NumberFormat("sv", {
+        style: "currency",
+        currency: artwork.Currency,
+        currencyDisplay: "code",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    } else {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: artwork.Currency,
+        currencyDisplay: "code",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+    }
+  }
+  const languageCode = i18n.language;
+  const formatter = getFormatter(languageCode, artwork.Currency);
+
+  let priceFormatter = {
+    format: (value: number) => formatter.format(value),
+  };
+  if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
+    priceFormatter = {
+      format: (value: number) => formatter.format(value),
+    };
+  } else {
+    priceFormatter = {
+      format: (value: number) => `${value} ${artwork.Currency || "SEK"}`,
+    };
+  }
+
+  const formattedPrice = priceFormatter.format(artwork.Price);
+
+  useEffect(() => {
+    setIsLiked(artwork?.LikedByMe);
+  }, [artwork?.LikedByMe]);
+
+  function toggleLike(event) {
+    event.stopPropagation();
+
+    if (isSignedIn.value) {
+      setIsLiked(!isLiked);
+      artwork.LikedByMe = !isLiked;
+      !isLiked ? artwork.Likes++ : artwork.Likes--;
+      !isLiked
+        ? trackGoogleAnalytics(
+          ActionType.LIKE_PORTFOLIO_DISCOVER,
+          CategoryType.INTERACTIVE
+        )
+        : null;
+    }
+    onLikeClick(artwork.Id, !isLiked);
+  }
+  const artworkUrl = `https://artportable.com/art/${artwork?.Id}`;
+  const shareArtworkTitle = artwork?.Title
+    ? `${t("common:share")}"${artwork?.Title}"`
+    : `${t("common:share")}`;
+  const shareArtworkText = `${t("common:checkThisArtwork")}"${artwork?.Title
+    }"${t("common:atArtportable")}`;
+
+  const likedFilled = !isSignedIn.value ? (
+    <FavoriteBorderOutlinedIcon color="primary" />
+  ) : isLiked ? (
+    <FavoriteIcon color="primary" />
+  ) : (
+    <FavoriteBorderOutlinedIcon color="primary" />
+  );
+
+  if (width === null || height === null) return <></>;
+
+  const [isNew, setIsNew] = useState(false);
+
+  function isNewUser(createdDate) {
+    if (!createdDate) return false;
+
+    const truncatedDate = createdDate.slice(0, 23) + "Z";
+
+    const oneMonthInMilliseconds = 30 * 24 * 60 * 60 * 1000;
+    const currentDate = new Date();
+    const parsedDate = new Date(truncatedDate);
+    const dateDifference = currentDate.getTime() - parsedDate.getTime();
+
+    return dateDifference <= oneMonthInMilliseconds;
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `${publicUrl}/api/artists/${artwork?.Username}`
+        );
+        if (response.ok) {
+          const jsonData = await response.json();
+          if (isNewUser(jsonData.Created)) {
+            setIsNew(true);
+          }
+        } else {
+          console.error(response.statusText);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
+  }, [artwork?.Username]);
+  
+  const sortTagsByLength = (a, b) => {
+    // Sort tags from smallest to longest. Translate tags before sorting.
+    const translatedA = t(`tags:${a}`)
+    const translatedB = t(`tags:${b}`)
+    
+    if (translatedA.length < translatedB.length) return -1
+    if (translatedA.length > translatedB.length) return 1
+    return 0
+  }
+
+  return (
+    <div className={s.container}>
+      <div className={s.imageContainer}>
+        <Link href={`/art/${artwork.Id}`}>
+          <a>
+            <img
+              width={width}
+              height={height}
+              alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
+              key={artwork?.PrimaryFile}
+              src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+            />
+          </a>
+        </Link>
+
+        <div className={clsx(s.infoRow, s.topInfoRow)}>
+          <div className={s.topLeft}>
+            {username.value != artwork.Owner.Username && !artwork.SoldOut && (
+              <Button
+                className={clsx(sShared.smallButton, sShared.alwaysYellowButton, sShared.noBorder, sShared.mediumThickness, s.requestButton)}
+                onClick={() => {
+                  onPurchaseRequestClick(
+                    artwork.Title,
+                    artwork.Owner.Username,
+                    artwork.Id,
+                    artwork.Owner.SocialId,
+                    bucketUrl + artwork.PrimaryFile.Name
+                  );
+                  trackGoogleAnalytics(
+                    purchaseRequestAction
+                      ? purchaseRequestAction
+                      : ActionType.PURCHASE_REQUEST_LIST,
+                    CategoryType.BUY
+                  );
+                }}
+                variant="outlined"
+                rounded
+              >
+                {t("request")}
+              </Button>
+            )}
+          </div>
+
+          <div className={clsx(s.topRight, s.likeInline)}>
+            <div className={s.likeContainer}>
+              <div className={s.flexLikeCount}>
+                {/* Share and chat on each individual artworks page. */}
+                {/*<RWebShare
+                  data={{
+                    text: shareArtworkText,
+                    url: artworkUrl,
+                    title: shareArtworkTitle,
+                  }}
+                  onClick={() =>
+                    trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
+                  }
+                >
+                  <IconButton aria-label="share" className={s.shareButton}>
+                    <ShareIcon style={{ fontSize: "21px" }} />
+                  </IconButton>
+                </RWebShare>*/}
+                {/*<div title={t("common:sendMessage")}>
+                  <IconButton
+                    className={s.chatButton}
+                    aria-label="account"
+                    onClick={() => {
+                      redirectIfNotLoggedIn({
+                        pathname: "/messages",
+                        query: {
+                          referTo: artwork.Owner.SocialId,
+                        },
+                      });
+                      trackGoogleAnalytics(
+                        ActionType.SEND_MESSAGE,
+                        CategoryType.INTERACTIVE
+                      );
+                    }}
+                  >
+                    <MessageRoundedIcon style={{ fontSize: "23px" }} />
+                  </IconButton>
+                </div>*/}
+
+                <IconButton
+                  aria-label="like"
+                  className={s.likeButton}
+                  disableRipple
+                  onClick={toggleLike}
+                >
+                  {likedFilled}
+                </IconButton>
+                <div className={s.likeCounter}>
+                  {artwork.Likes > 0 ? artwork.Likes : ""}
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div className={clsx(s.infoRow, s.bottomInfoRow)}>
+          <div className={clsx(s.bottomLeft, s.tagsContainer, {
+            [s.fullWidthInfo]: !isNew,
+          })}>
+            {Array.from(artwork.Tags)
+              .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
+              .sort(sortTagsByLength)
+              .map((tag: string) => {
+                return (
+                  <TagChip
+                    key={tag}
+                    title={tag}
+                    onChipClick={null}
+                    limitReached={true}
+                    variant="outlined"
+                    isSmall={true}
+                    grayChip={true}
+                  ></TagChip>
+                );
+              })}
+          </div>
+        
+          <div className={s.bottomRight}>
+            {isNew && <div className={s.newUser}>{t("common:newMember")}</div>}
+          </div>
+        </div>
+      </div>
+
+      <div className={s.footer}>
+        <div className={s.footerRow}>
+          <Link href={`/profile/@${artwork.Username}`}>
+            <a>
+              <div className={s.name}>
+                {`${artwork.Name} ${artwork.Surname}`}
+              </div>
+            </a>
+          </Link>
+          <div className={s.price}>
+            {artwork.SoldOut ? (
+              <>
+                <div className={s.soldMark} />
+                {t("common:words.sold")}{" "}
+              </>
+            ) : artwork.Price && artwork.Price != "0" ? (
+              formattedPrice.replace(/,/g, "")
+            ) : (
+              t("priceOnRequest")
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
