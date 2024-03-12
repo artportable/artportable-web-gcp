@@ -1,33 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
 import {
-  Box,
-  Checkbox,
-  Chip,
-  TextField,
+  // Checkbox,
+  // Chip,
+  // TextField,
   Theme,
   useTheme,
 } from "@material-ui/core";
+import Box from '@mui/material/Box';
 import { styles } from "./discoverArt.css";
+import ArtworkListItem from "../ArtworkListItemDefined/ArtworkListItem";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { capitalizeFirst } from "../../utils/util";
+// import Autocomplete from "@material-ui/lab/Autocomplete";
+// import { capitalizeFirst } from "../../utils/util";
 import { useTranslation } from "next-i18next";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
+// import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+// import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { Artwork } from "../../models/Artwork";
 import { getImageAsRows } from "../../utils/layoutUtils";
-import { findFirstFramedImage, findFirstNotFramedImage } from "../../utils/imageUtils";
+// import { findFirstFramedImage, findFirstNotFramedImage } from "../../utils/imageUtils";
 import Image from "../../models/Image";
 import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
-import SearchField from "../SearchField/SearchField";
+// import SearchField from "../SearchField/SearchField";
 import { debounce } from "@material-ui/core/utils";
-import { UserContext } from "../../../app/contexts/user-context";
-import { useRouter } from "next/router";
+// import { UserContext } from "../../../app/contexts/user-context";
+// import { useRouter } from "next/router";
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
 import { ActionType } from "../../utils/googleAnalytics";
-import Stack from "@mui/material/Stack";
-import LinearProgress from "@mui/material/LinearProgress";
+// import Stack from "@mui/material/Stack";
+// import LinearProgress from "@mui/material/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 
 import { Skeleton } from "@material-ui/lab";
@@ -273,7 +274,7 @@ export default function DiscoverArt({
                     );
                     if (artwork) {
                       return (
-                        <ArtworkListItemDefined
+                        <ArtworkListItem
                           key={image.Name}
                           width={smScreenOrSmaller ? "100%" : image.Width}
                           height={smScreenOrSmaller ? "auto" : image.Height}
@@ -283,9 +284,22 @@ export default function DiscoverArt({
                             ActionType.PURCHASE_REQUEST_LIST_DISCOVER
                           }
                           onLikeClick={onLike}
-                          indexPage={true}
                         />
                       );
+                      // return (
+                      //   <ArtworkListItemDefined
+                      //     key={image.Name}
+                      //     width={smScreenOrSmaller ? "100%" : image.Width}
+                      //     height={smScreenOrSmaller ? "auto" : image.Height}
+                      //     artwork={artwork}
+                      //     onPurchaseRequestClick={onPurchaseRequestClick}
+                      //     purchaseRequestAction={
+                      //       ActionType.PURCHASE_REQUEST_LIST_DISCOVER
+                      //     }
+                      //     onLikeClick={onLike}
+                      //     indexPage={true}
+                      //   />
+                      // );
                     } else {
                       return null;
                     }

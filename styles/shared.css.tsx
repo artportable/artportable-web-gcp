@@ -102,6 +102,9 @@ export const styles = makeStyles((theme: Theme) =>
     noBorder: {
       border: 'none',
     },
+    mediumThickness: {
+      fontWeight: 500,
+    },
     // wrapTextButton: {
     //   whiteSpace: 'pre-wrap',
     //   height: 'auto',

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Chip } from "@material-ui/core";
 import { LocalOffer } from "@material-ui/icons";
+import clsx from 'clsx'
 
 import { styles } from "./tagChip.css";
 import { useTranslation } from "next-i18next";
@@ -10,6 +11,7 @@ export default function TagChip({
   onChipClick,
   limitReached,
   isSmall,
+  grayChip = false,
   ...muiButtonProps
 }) {
   const s = styles();
@@ -30,7 +32,9 @@ export default function TagChip({
       {...muiButtonProps}
       label={t(title)}
       key={title}
-      className={chipClass}
+      className={clsx(chipClass, {
+        [s.isGray]: grayChip,
+      })}
       size="small"
       color={
         onChipClick === null ? "primary" : isSelected ? "primary" : "default"

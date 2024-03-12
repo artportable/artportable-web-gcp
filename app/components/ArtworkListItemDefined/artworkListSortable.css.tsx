@@ -186,7 +186,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "flex-start",
       flexGrow: 2,
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: theme.typography.fontWeightRegular as number,
       fontSize: theme.typography.h6.fontSize,
       // placeItems: 'center'
     },
@@ -200,7 +200,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       marginLeft: "10px",
       marginBottom: "5px",
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: theme.typography.fontWeightRegular as number,
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary,
       placeItems: "center",
@@ -218,7 +218,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "10px",
       backgroundColor: "rgb(0 0 0 / 57%)",
       borderRadius: "20px",
-      fontWeight: "500",
+      fontWeight: 500,
       color: "white",
       flexShrink: 0,
       flexGrow: 0,
@@ -264,7 +264,7 @@ export const styles = makeStyles((theme: Theme) =>
     price: {
       fontSize: "0.8rem",
       lineHeight: "1rem",
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: theme.typography.fontWeightMedium as number,
       display: "flex",
     },
 
@@ -362,5 +362,25 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       marginBottom: "5px",
     },
+    sortButtons: {
+      position: "sticky",
+      top: '100px',
+      left: "0px",
+      marginBottom: '10px',
+      zIndex: 100,
+      opacity: 1,
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    sortButtonsHidden: {
+      opacity: 0,
+      display: 'none',
+    },
+    saveSortChangesButton: {
+      marginRight: '20px',
+    },
+    discardSortChangesButton: {
+
+    }
   })
 );

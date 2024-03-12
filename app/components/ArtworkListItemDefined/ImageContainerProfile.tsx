@@ -7,7 +7,8 @@ import clsx from "clsx";
 import Button from "../Button/Button";
 import TagChip from "../TagChip/TagChip";
 import { getPriceFormatter } from "../../utils/formatUtils";
-import { styles } from "./artworkListItemDefined.css";
+// import { styles } from "./artworkListSortable.css";
+import { styles } from "./artworkListSortable.css";
 import { profileStyles } from "../../../styles/[username]";
 import ArtworkListItemDefinedSkeleton from "../../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton";
 
