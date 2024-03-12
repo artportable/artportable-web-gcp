@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import clsx from 'clsx'
 import EmblaCarousel from "./Embla/EmblaCarousel"
 import LikeButton from '../Button/LikeButton'
-import PLACEHOLDER_ARTWORKS, { PLACEHOLDER_ARTWORKS_STAGING } from "../../../data/rocketPlaceholderArtworks";
+import PLACEHOLDER_ARTWORKS, { REAL_ROCKET_ARTWORKS, PLACEHOLDER_ARTWORKS_STAGING } from "../../../data/rocketPlaceholderArtworks";
 import { styles } from './rocketcarousel.css'
 import { styles as sharedStyles } from "../../../styles/shared.css";
 
@@ -26,6 +26,7 @@ export default function RocketCarousel(props: Data) {
 
   const fetchData = async () => {
     const pageUrl = process.env.NEXT_PUBLIC_URL
+    let realData = [];
     let newData = [];
 
     if (pageUrl === 'http://localhost:3000') {
@@ -35,10 +36,13 @@ export default function RocketCarousel(props: Data) {
     } else if (pageUrl === 'https://beta.artportable.com') {
       newData = PLACEHOLDER_ARTWORKS_STAGING;
     } else if (pageUrl === 'https://artportable.com') {
+      realData = REAL_ROCKET_ARTWORKS;
       newData = PLACEHOLDER_ARTWORKS;
     }
 
-    const formattedArtworks = formatApArtworkForEmbla(newData, s, sShared, t, forDesktop)
+    const combinedData = REAL_ROCKET_ARTWORKS.concat(newData).slice(0, 10)
+
+    const formattedArtworks = formatApArtworkForEmbla(combinedData, s, sShared, t, forDesktop)
 
     setArtworks(formattedArtworks)
   }

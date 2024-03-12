@@ -57,7 +57,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 export default function ArtworkPage(props) {
   const s = styles();
-  const { t } = useTranslation(["art", "common", "tags"]);
+  const { t } = useTranslation(["art", "common", "tags", "forms"]);
   const router = useRouter();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -754,6 +754,7 @@ export async function getServerSideProps({ locale, params }) {
           "tags",
           "support",
           "plans",
+          "forms",
         ])),
       },
     };
@@ -775,6 +776,7 @@ export async function getServerSideProps({ locale, params }) {
         "tags",
         "support",
         "plans",
+        "forms",
       ])),
     },
   };
