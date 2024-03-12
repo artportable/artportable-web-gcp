@@ -18,7 +18,7 @@ import {
 import clsx from "clsx";
 import { SortableItem } from "./SortableItem";
 import Button from "../../../app/components/Button/Button";
-import { styles } from "./artworkListItemDefined.css";
+import { styles } from "./artworkListSortable.css";
 
 export default function ArtworkListSortable({ items, editAction, t }) {
   const s = styles();

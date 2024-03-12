@@ -4,48 +4,48 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
 import {
-  Box,
-  MenuItem,
+  // MenuItem,
   Tab,
   Tabs,
-  TextField,
+  // TextField,
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
+import Box from '@mui/material/Box';
 import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
-import { useGetTags } from "../app/hooks/dataFetching/Artworks";
+// import { useGetTags } from "../app/hooks/dataFetching/Artworks";
 import { useMainWidth } from "../app/hooks/useWidth";
 import IndexHero from "../app/components/IndexHero/IndexHero";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
-import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
-import DiscoverTopArtistsTab from "../app/components/DiscoverTopArtistTab/DiscoverTopArtistsTab";
-import { Artwork } from "../app/models/Artwork";
-import Artist from "../app/models/Artist";
-import { id } from "date-fns/locale";
+// import DiscoverTopArtTab from "../app/components/DiscoverTopArtTab/DiscoverTopArtTab";
+// import DiscoverTopArtistsTab from "../app/components/DiscoverTopArtistTab/DiscoverTopArtistsTab";
+// import { Artwork } from "../app/models/Artwork";
+// import Artist from "../app/models/Artist";
+// import { id } from "date-fns/locale";
 import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
 import Head from "next/head";
-import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
-import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
+// import DiscoverMonthlyArtistsTab from "../app/components/DiscoverMonthlyArtistTab/DiscoverMonthlyArtistTab";
+// import DiscoverArtTab from "../app/components/DiscoverArtTab/DiscoverArtTab";
 import DiscoverTrendingArtTab from "../app/components/DiscoverTrendingArtTab/DiscoverTrendingArtTab";
 import DiscoverTrendingArtTabDesktop from "../app/components/DiscoverTrendingArtTabDesktop/DiscoverTrendingArtTabDesktop";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { DiscoverMyLikedArtTab } from "../app/components/DiscoverMyLikedArt/DiscoverMyLikedArt";
-import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
+// import { useRedirectToLoginIfNotLoggedIn } from "../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import DiscoverLatestArtTab from "../app/components/DiscoverLatestArt/DiscoverLatestArt";
-import AdDialog from "../app/components/AdDialog/AdDialog";
+// import AdDialog from "../app/components/AdDialog/AdDialog";
 import {
   ActionType,
   CategoryType,
   trackGoogleAnalytics,
 } from "../app/utils/googleAnalytics";
-import router from "next/router";
+// import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 import Showroom from "../app/components/Showroom/Showroom";

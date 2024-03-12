@@ -21,6 +21,7 @@ import Button from "../../app/components/Button/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import SendIcon from "@material-ui/icons/Send";
+import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import Link from "next/link";
 import { TokenContext } from "../../app/contexts/token-context";
 import { UserContext } from "../../app/contexts/user-context";
@@ -345,7 +346,7 @@ export default function ArtworkPage(props) {
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "row",
+                        flexFlow: "row wrap",
                         gap: "10px",
                       }}
                     >
@@ -374,6 +375,30 @@ export default function ArtworkPage(props) {
                           </Button>
                         </RWebShare>
                       </div>
+                      { artwork?.data?.Owner?.SocialId &&
+                        <div
+                          title={t("common:sendMessage")}
+                          className={s.chatButtonContainer}>
+                          <IconButton
+                            className={s.chatButton}
+                            aria-label="account"
+                            onClick={() => {
+                              redirectIfNotLoggedIn({
+                                pathname: "/messages",
+                                query: {
+                                  referTo: artwork?.data?.Owner?.SocialId,
+                                },
+                              });
+                              trackGoogleAnalytics(
+                                ActionType.SEND_MESSAGE,
+                                CategoryType.INTERACTIVE
+                                );
+                              }}
+                              >
+                            <MessageRoundedIcon style={{ fontSize: "23px" }} />
+                          </IconButton>
+                        </div>
+                      }
                       <div
                         style={{
                           display: "flex",

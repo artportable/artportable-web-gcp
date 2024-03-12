@@ -1,7 +1,7 @@
 import Main, { FullWidthBlock } from "../../app/components/Main/Main";
 import Head from "next/head";
 import AboutMe from "../../app/components/AboutMe/AboutMe";
-import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
+// import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
 import {
   Tabs,
   Tab,
@@ -10,10 +10,10 @@ import {
   Paper,
   Grid,
 } from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
+// import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import ProfileComponent from "../../app/components/Profile/Profile";
-import ArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefined";
+// import ArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefined";
 import Image from "../../app/models/Image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import EditArtworkDialog from "../../app/components/EditArtworkDialog/EditArtworkDialog";
@@ -31,7 +31,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import TabPanel from "../../app/components/TabPanel/TabPanel";
 import { useGetProfileUser } from "../../app/hooks/dataFetching/useGetProfileUser";
-import SimilarPortfoliosSection from "../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection";
+// import SimilarPortfoliosSection from "../../app/components/SimilarPortfoliosSection/SimilarPortfoliosSection";
 import { useMainWidth } from "../../app/hooks/useWidth";
 import { getImageAsRows } from "../../app/utils/layoutUtils";
 import { useTheme, Theme } from "@material-ui/core";
@@ -49,8 +49,8 @@ import { UserContext } from "../../app/contexts/user-context";
 import { useRedirectToLoginIfNotLoggedIn } from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
 import {
   ActionType,
-  CategoryType,
-  trackGoogleAnalytics,
+  // CategoryType,
+  // trackGoogleAnalytics,
 } from "../../app/utils/googleAnalytics";
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";

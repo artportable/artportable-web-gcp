@@ -17,5 +17,15 @@ export const styles = makeStyles((theme: Theme) =>
       width: "auto",
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.2))",
     },
+    isGray: {
+      fontSize: '12px',
+      fontWeight: 500,
+      backgroundColor: '#F6F3F3',
+      borderColor: '#F6F3F3',
+      filter: 'none',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      maxWidth: '100%',
+    },
   })
 );
