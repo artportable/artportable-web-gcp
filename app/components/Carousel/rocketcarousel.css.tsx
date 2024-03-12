@@ -1,3 +1,4 @@
+import { red } from "@material-ui/core/colors";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
@@ -32,6 +33,16 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'absolute',
       top: '10px',
       right: '10px',
+      '& button': {
+        padding: '2px',
+        borderRadius: '50%',
+        backgroundColor: 'rgba(100, 100, 100, .25)',
+      },
+      "&:hover": {
+        '& button': {
+          backgroundColor: 'rgba(100, 100, 100, .5)',
+        },
+      },
     },
     seeMoreButton: {
       position: "absolute",
