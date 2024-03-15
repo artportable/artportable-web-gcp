@@ -284,10 +284,7 @@ export default function Showroom() {
           <div className={s.news}>{t("news")}</div>
           <div className={s.exhibitionsWrapperDiv}>
             {allStories?.map((exhibition) => (
-              <div
-                key={exhibition.Id}
-                style={{ flex: "1 0 48%", margin: "2%", maxWidth: "38%" }}
-              >
+              <div key={exhibition.Id} className={s.newsCard}>
                 <a
                   href={`/stories/${exhibition?.Slug}`}
                   style={{ textDecoration: "none", color: "inherit" }}
