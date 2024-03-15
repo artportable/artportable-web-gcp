@@ -89,10 +89,17 @@ export default function ArtworkPage(props) {
   const [showPromoteDialog, setShowPromoteDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [promotionDuration, setPromotionDuration] = useState(3);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   const togglePromoteDialog = () => {
     setShowPromoteDialog(!showPromoteDialog);
   };
+
+  useEffect(() => {
+    if (refreshTrigger) {
+      window.location.reload();
+    }
+  }, [refreshTrigger]);
 
   const toggleDeleteDialog = () => {
     setShowDeleteDialog(!showDeleteDialog);
@@ -101,11 +108,13 @@ export default function ArtworkPage(props) {
   const handlePromote = async () => {
     if (!token) return;
     await promoteArtwork(artwork?.data?.Id, token, true, promotionDuration);
+    setRefreshTrigger(true);
   };
 
   const handleDelete = async () => {
     if (!token) return;
     await promoteArtwork(artwork?.data?.Id, token, false, promotionDuration);
+    setRefreshTrigger(true);
   };
 
   const userProfile = useGetUserProfileArtwork(artworkOwner);
