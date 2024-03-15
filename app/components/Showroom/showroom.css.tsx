@@ -57,12 +57,11 @@ export const styles = makeStyles((theme: Theme) => {
     cafeWrapper: {
       display: "flex",
       flexDirection: "column",
-      backgroundColor: "#FAF3EE",
       padding: "10px",
       borderRadius: "2px",
       margin: "0 auto",
       [theme.breakpoints.up("smPlus")]: {
-        padding: "20px",
+        padding: "0px",
       },
     },
 
@@ -182,8 +181,21 @@ export const styles = makeStyles((theme: Theme) => {
       width: "100%",
       justifyContent: "center",
       margin: "0 auto",
+
       [theme.breakpoints.up("md")]: {
-        width: "80%",
+        width: "100%",
+      },
+    },
+
+    newsCard: {
+      flex: "1 0 48%",
+      margin: "2%",
+      maxWidth: "100%",
+      boxShadow: "0px 1px 1px rgba(0, 0, 0, 0.1)",
+      padding: "12px",
+      borderRadius: "5px",
+      [theme.breakpoints.up("md")]: {
+        maxWidth: "28%",
       },
     },
 

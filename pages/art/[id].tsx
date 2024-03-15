@@ -14,6 +14,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  MenuItem,
 } from "@material-ui/core";
 import { styles } from "../../styles/art.css";
 import { capitalizeFirst } from "../../app/utils/util";
@@ -52,8 +53,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
+
+import { Select } from "@mui/material";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -395,10 +396,11 @@ export default function ArtworkPage(props) {
                           </Button>
                         </RWebShare>
                       </div>
-                      { artwork?.data?.Owner?.SocialId &&
+                      {artwork?.data?.Owner?.SocialId && (
                         <div
                           title={t("common:sendMessage")}
-                          className={s.chatButtonContainer}>
+                          className={s.chatButtonContainer}
+                        >
                           <IconButton
                             className={s.chatButton}
                             aria-label="account"
@@ -412,13 +414,13 @@ export default function ArtworkPage(props) {
                               trackGoogleAnalytics(
                                 ActionType.SEND_MESSAGE,
                                 CategoryType.INTERACTIVE
-                                );
-                              }}
-                              >
+                              );
+                            }}
+                          >
                             <MessageRoundedIcon style={{ fontSize: "23px" }} />
                           </IconButton>
                         </div>
-                      }
+                      )}
                       <div
                         style={{
                           display: "flex",
