@@ -65,13 +65,12 @@ export default function CheckoutForm({ email, fullName, plan }) {
     style: {
       base: {
         color: "#32325d",
-        fontFamily: "Arial, sans-serif",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
-        fontSize: "16px",
+        fontSize: "18px",
         "::placeholder": {
-          color: "#32325d",
+          color: "#aab7c4",
         },
-        fontStyle: "italic",
       },
       invalid: {
         color: "#fa755a",
@@ -139,7 +138,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   // Create subscription
   function createSubscription({ customerId, paymentMethodId, priceId }) {
-    return fetch(`${apiBaseUrl}/api/payments/subscriptions`, {
+    return fetch(`${apiBaseUrl}/api/Payments/subscriptions`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
