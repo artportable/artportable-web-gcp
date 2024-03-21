@@ -36,5 +36,9 @@
   "discoverArt": "Entdecken",
   "exhibition": "Ausstellungen",
   "artistsPageDescripton": "Entdecken Sie Künstler aus dem ganzen Norden!",
-  "artistsHaveChosenAp": "Künstler in 12 Ländern haben Artportable gewählt!"
+  "artistsHaveChosenAp": "Künstler in 12 Ländern haben Artportable gewählt!",
+  "artportableTrial": "Starte dein Portfolio heute! Probiere es 10 Tage lang kostenlos aus!",
+  "trialLeft": "The trial period expires in ",
+  "days": "days",
+  "managePayment": "Manage payment"
 }

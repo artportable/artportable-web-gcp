@@ -381,7 +381,7 @@ export default function DrawerMenu({
                   }}
                 >
                   <ListItem button divider onClick={() => close()}>
-                    <ListItemText primary="Hantera provperiod" />
+                    <ListItemText primary={t("managePayment")} />
                   </ListItem>
                 </div>
               </div>

@@ -14,6 +14,10 @@ export const styles = makeStyles((theme: Theme) =>
       gap: "0 16px",
       alignItems: "center",
     },
+    trialBanner: {
+      backgroundColor: "black",
+      textAlign: "center",
+    },
 
     logoContainer: {
       flexGrow: 1,
