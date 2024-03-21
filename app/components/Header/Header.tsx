@@ -12,7 +12,7 @@ import MuiButton from "@material-ui/core/Button";
 import { LinearProgress } from "@material-ui/core";
 
 import { useTranslation } from "next-i18next";
-import clsx from 'clsx'
+import clsx from "clsx";
 import Button from "../Button/Button";
 import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import I18nSelector from "../I18nSelector/I18nSelector";
@@ -71,6 +71,11 @@ export default function Header({ navBarItems }) {
 
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const [stripeId, setStripeId] = useState("");
+  const [customerStatus, setCustomerStatus] = useState("");
+  const [daysRemaining, setDaysRemaining] = useState(0);
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -79,6 +84,76 @@ export default function Header({ navBarItems }) {
       setglobalIsLoading(false);
     }
   }, [loadingFromContext]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const customerId = await fetchCustomerId();
+        setStripeId(customerId);
+        const customerData = await fetchCustomerData(customerId);
+        const currentPeriodEnd =
+          customerData?.subscriptions.data[0]?.current_period_end;
+
+        if (currentPeriodEnd) {
+          const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+          const secondsRemaining = currentPeriodEnd - currentTimeInSeconds;
+          setDaysRemaining(Math.ceil(secondsRemaining / (60 * 60 * 24)));
+        }
+
+        setCustomerStatus(customerData?.subscriptions.data[0]?.status);
+      } catch (error) {
+        console.error("There was a problem fetching the data:", error);
+      }
+    };
+
+    if (username?.value) fetchData();
+  }, [username?.value]);
+
+  const fetchCustomerId = async () => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/User/${username?.value}/customerid`
+      );
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      return await response.text();
+    } catch (error) {
+      console.error("There was a problem fetching the customer ID:", error);
+      throw error;
+    }
+  };
+
+  const fetchCustomerData = async (customerId) => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/Admin/UsersByStripeSubscription/${customerId}`
+      );
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem fetching the customer data:", error);
+      throw error;
+    }
+  };
+
+  const fetchCustomerPortalSession = async (customerId) => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/Payments/customers/${customerId}/portal-session`
+      );
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data.Url;
+    } catch (error) {
+      console.error("There was a problem with your fetch operation:", error);
+      throw error;
+    }
+  };
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
@@ -106,6 +181,17 @@ export default function Header({ navBarItems }) {
   return (
     <>
       <AppBar classes={{ root: s.toolbar }} elevation={0}>
+        {!isSignedIn.value && (
+          <>
+            <div className={s.trialBanner}>
+              <p>
+                <a href="https://www.artportable.com/register">
+                  {t("artportableTrial")}
+                </a>
+              </p>
+            </div>
+          </>
+        )}
         <Toolbar>
           <div className={s.container}>
             <div className={s.logoContainer}>
@@ -219,6 +305,37 @@ export default function Header({ navBarItems }) {
                       <p className={s.premiumText}>Premium</p>
                     </div>
                   )}
+                  {customerStatus === "trialing" ? (
+                    <div style={{ color: "black", marginRight: "10px" }}>
+                      {t("trialLeft")} {daysRemaining} {t("days")}
+                      <Button
+                        onClick={async () => {
+                          try {
+                            const customerId = await fetchCustomerId();
+                            if (customerId) {
+                              const portalUrl =
+                                await fetchCustomerPortalSession(customerId);
+                              if (portalUrl) {
+                                window.location.href = portalUrl;
+                              } else {
+                                console.error(
+                                  "Customer portal URL not received."
+                                );
+                              }
+                            } else {
+                              console.error("Customer ID not received.");
+                            }
+                          } catch (error) {
+                            console.error("Error in processing:", error);
+                          }
+                        }}
+                      >
+                        {t("managePayment")}
+                      </Button>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
                   {membership.value > Membership.Base && (
                     <div className={s.upload}>
                       <Link href="/upload-story">
@@ -231,7 +348,10 @@ export default function Header({ navBarItems }) {
                               )
                             }
                             // className={s.uploadStoryButton}
-                            className={clsx(sShared.smallButton, sShared.yellowButton)}
+                            className={clsx(
+                              sShared.smallButton,
+                              sShared.yellowButton
+                            )}
                             size="small"
                             variant="outlined"
                             disableElevation
@@ -256,7 +376,10 @@ export default function Header({ navBarItems }) {
                               )
                             }
                             // className={s.uploadButton}
-                            className={clsx(sShared.smallButton, sShared.greenButton)}
+                            className={clsx(
+                              sShared.smallButton,
+                              sShared.greenButton
+                            )}
                             size="small"
                             variant="outlined"
                             disableElevation

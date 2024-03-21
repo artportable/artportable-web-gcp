@@ -10,6 +10,7 @@ import {
   Badge,
   Collapse,
   Divider,
+  Button,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -30,7 +31,7 @@ import { useRouter } from "next/router";
 import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
 import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
 import { UserContext } from "../../contexts/user-context";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
 import { Membership } from "../../models/Membership";
 import DialogConstruction from "../ContactDialog/contactDialog";
@@ -57,6 +58,10 @@ export default function DrawerMenu({
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
   const [openLanguage, setOpenopenLanguage] = useState(false);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const [stripeId, setStripeId] = useState("");
+  const [customerStatus, setCustomerStatus] = useState("");
+  const [daysRemaining, setDaysRemaining] = useState(0);
   const displayLocale = (() => {
     switch (router.locale) {
       case Locales.sv:
@@ -92,6 +97,76 @@ export default function DrawerMenu({
     setOpenopenLanguage(!openLanguage);
     event.stopPropagation();
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const customerId = await fetchCustomerId();
+        setStripeId(customerId);
+        const customerData = await fetchCustomerData(customerId);
+        const currentPeriodEnd =
+          customerData?.subscriptions.data[0]?.current_period_end;
+
+        if (currentPeriodEnd) {
+          const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+          const secondsRemaining = currentPeriodEnd - currentTimeInSeconds;
+          setDaysRemaining(Math.ceil(secondsRemaining / (60 * 60 * 24)));
+        }
+
+        setCustomerStatus(customerData?.subscriptions.data[0]?.status);
+      } catch (error) {
+        console.error("There was a problem fetching the data:", error);
+      }
+    };
+
+    if (username?.value) fetchData();
+  }, [username?.value]);
+
+  const fetchCustomerId = async () => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/User/${username?.value}/customerid`
+      );
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      return await response.text();
+    } catch (error) {
+      console.error("There was a problem fetching the customer ID:", error);
+      throw error;
+    }
+  };
+
+  const fetchCustomerData = async (customerId) => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/Admin/UsersByStripeSubscription/${customerId}`
+      );
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("There was a problem fetching the customer data:", error);
+      throw error;
+    }
+  };
+
+  const fetchCustomerPortalSession = async (customerId) => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/Payments/customers/${customerId}/portal-session`
+      );
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data.Url;
+    } catch (error) {
+      console.error("There was a problem with your fetch operation:", error);
+      throw error;
+    }
+  };
 
   function handleCloseLanguage(_, locale?: Locales) {
     if (locale !== undefined) {
@@ -266,6 +341,7 @@ export default function DrawerMenu({
                 <ListItemText primary={t("messages")} />
               </ListItem>
             </Link>
+
             {membership.value > Membership.Base && (
               <>
                 <Link href="/upload" passHref>
@@ -280,6 +356,37 @@ export default function DrawerMenu({
                   </ListItem>
                 </Link>
               </>
+            )}
+            {customerStatus === "trialing" ? (
+              <div style={{ color: "black", marginRight: "10px" }}>
+                <div
+                  onClick={async () => {
+                    try {
+                      const customerId = await fetchCustomerId();
+                      if (customerId) {
+                        const portalUrl = await fetchCustomerPortalSession(
+                          customerId
+                        );
+                        if (portalUrl) {
+                          window.location.href = portalUrl;
+                        } else {
+                          console.error("Customer portal URL not received.");
+                        }
+                      } else {
+                        console.error("Customer ID not received.");
+                      }
+                    } catch (error) {
+                      console.error("Error in processing:", error);
+                    }
+                  }}
+                >
+                  <ListItem button divider onClick={() => close()}>
+                    <ListItemText primary={t("managePayment")} />
+                  </ListItem>
+                </div>
+              </div>
+            ) : (
+              <div></div>
             )}
           </>
         ) : (
@@ -364,6 +471,7 @@ export default function DrawerMenu({
             <Divider />
           </div>
         )}
+
         <Link href="/artists" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
