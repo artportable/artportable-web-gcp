@@ -181,6 +181,17 @@ export default function Header({ navBarItems }) {
   return (
     <>
       <AppBar classes={{ root: s.toolbar }} elevation={0}>
+        {!isSignedIn.value && (
+          <>
+            <div className={s.trialBanner}>
+              <p>
+                <a href="https://www.artportable.com/register">
+                  {t("artportableTrial")}
+                </a>
+              </p>
+            </div>
+          </>
+        )}
         <Toolbar>
           <div className={s.container}>
             <div className={s.logoContainer}>
@@ -296,7 +307,7 @@ export default function Header({ navBarItems }) {
                   )}
                   {customerStatus === "trialing" ? (
                     <div style={{ color: "black", marginRight: "10px" }}>
-                      Provperioden löper ut om {daysRemaining} dagar
+                      {t("trialLeft")} {daysRemaining} {t("days")}
                       <Button
                         onClick={async () => {
                           try {
@@ -319,7 +330,7 @@ export default function Header({ navBarItems }) {
                           }
                         }}
                       >
-                        Hantera
+                        {t("managePayment")}
                       </Button>
                     </div>
                   ) : (
