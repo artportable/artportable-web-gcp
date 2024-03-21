@@ -306,8 +306,17 @@ export default function Header({ navBarItems }) {
                     </div>
                   )}
                   {customerStatus === "trialing" ? (
-                    <div style={{ color: "black", marginRight: "10px" }}>
-                      {t("trialLeft")} {daysRemaining} {t("days")}
+                    <div
+                      style={{
+                        color: "black",
+                        display: "flex",
+                        flexDirection: "column-reverse",
+                        alignItems: "center",
+                      }}
+                    >
+                      <p style={{ fontSize: "9px" }}>
+                        {t("trialLeft")} {daysRemaining} {t("days")}
+                      </p>
                       <Button
                         onClick={async () => {
                           try {
