@@ -19,6 +19,9 @@
   "takeMeThereNow": "Smelltu til að fara áfram",
   "tryAgain": "Reyndu aftur",
   "cardDetails": "Fylltu út kortagögnin þín",
-  "fewSeconds": "Þú ert núna nokkrum sekúndum frá því að byrja að hlaða upp verkum þínum...",
-  "pleaseFill": "Vinsamlegast fylltu út upplýsingarnar þínar"
+  "fewSeconds": "Try free for 10 days!",
+  "zeroSek": "0 eur",
+  "moreSeconds": "Try for 10 days, thereafter 9 eur/month",
+  "pleaseFill": "Vinsamlegast fylltu út upplýsingarnar þínar",
+  "newPlan": "0 eur for 10 days"
 }

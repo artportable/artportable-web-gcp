@@ -57,6 +57,9 @@ export default function Checkout() {
               <Typography variant="h1" className={s.headline}>
                 {t("fewSeconds")}
               </Typography>
+              <Typography variant="h3" className={s.headlineText}>
+                <strong>{t("zeroSek")}</strong> {t("moreSeconds")}
+              </Typography>
               {/* <Typography variant="h1" className={s.headline}>
               några sekunder från att börja
             </Typography>
@@ -76,6 +79,7 @@ export default function Checkout() {
             <Typography variant="h1" className={s.headlineMobile}>
               {t("fewSeconds")}
             </Typography>
+            <Typography variant="h5">{t("moreSeconds")}</Typography>
           </div>
           <Typography className={s.fillInText}>{t("pleaseFill")}</Typography>
           <Card className={s.card}>

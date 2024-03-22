@@ -17,6 +17,9 @@
   "takeMeThereNow": "Click to enter",
   "tryAgain": "Try again",
   "cardDetails": "Fill in your card details",
-  "fewSeconds": "You are only a few seconds from uploading your artworks…",
-  "pleaseFill": "Please fill in your details"
+  "fewSeconds": "Try free for 10 days!",
+  "zeroSek": "0 eur",
+  "moreSeconds": "Try for 10 days, thereafter 9 eur/month",
+  "pleaseFill": "Please fill in your details",
+  "newPlan": "0 eur for 10 days"
 }
