@@ -19,7 +19,10 @@
   "takeMeThereNow": "Klicka för gå vidare",
   "tryAgain": "Försök igen",
   "cardDetails": "Fyll i dina kortuppgifter",
-  "fewSeconds": "Nu är du några sekunder från att börja ladda upp dina verk...",
-  "pleaseFill": "Vänligen fyll i dina uppgifter"
-
+  "fewSeconds": "Prova gratis i 10 dagar!",
+  "zeroSek": "0 kr",
+  "moreSeconds": "i 10 dagar, därefter 99 kr/månad",
+  "pleaseFill": "Vänligen fyll i dina uppgifter",
+  "newPlan": "0 SEK i 10 dagar",
+  "fewSecondsPremium": "Nu är du några sekunder från att börja ladda upp dina verk..."
 }

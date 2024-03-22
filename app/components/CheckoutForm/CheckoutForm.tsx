@@ -34,6 +34,10 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const { t } = useTranslation(["checkout", "common"]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
+  useEffect(() => {
+    console.log(plan);
+  }, []);
+
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
@@ -239,9 +243,12 @@ export default function CheckoutForm({ email, fullName, plan }) {
           {t("total")}
         </Box>
         <Box>
-          {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
+          {plan?.product === "Portfolio"
+            ? `${t("newPlan")}`
+            : `${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
         </Box>
       </Box>
+
       <Box className={styles.divider}></Box>
       <Box
         display="flex"
