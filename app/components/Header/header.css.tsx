@@ -15,8 +15,12 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     trialBanner: {
+      display: "flex",
       backgroundColor: "black",
-      textAlign: "center",
+      justifyContent: "center",
+      alignItems: "center",
+
+      height: "25px",
     },
 
     logoContainer: {
