@@ -1,32 +1,29 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     paymentOptions: {
-      gridArea: 'paymentOptions',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
+      gridArea: "paymentOptions",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
     planCards: {
-      display: 'grid',
-      gridAutoFlow: 'row',
-      margin: theme.spacing(4, 2, 0, 2),
+      display: "flex",
+      flexDirection: "column",
+      margin: theme.spacing(4, 0, 0, 0),
       gap: theme.spacing(4),
-      justifyContent: 'center',
-      alignItems: 'stretch',
-      [theme.breakpoints.up('md')]: {
-        gridAutoFlow: 'column',
-      },
+      justifyContent: "center",
+      alignItems: "stretch",
     },
     joinCommunityButton: {
       margin: theme.spacing(4),
-      display: 'flex',
-      justifyContent: 'center',
-      '& button': {
+      display: "flex",
+      justifyContent: "center",
+      "& button": {
         flexGrow: 1,
-        maxWidth: '280px',
-      }
-    }
-  }),
+        maxWidth: "280px",
+      },
+    },
+  })
 );

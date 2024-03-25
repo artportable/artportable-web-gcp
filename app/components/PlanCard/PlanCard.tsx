@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Box, Card, CardContent, Typography, TextField, Tabs } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  Tabs,
+} from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -13,9 +20,17 @@ import clsx from "clsx";
 import PremiumApply from "../PremiumApply/PremiumApply";
 import { PriceData } from "../../../pages/plans";
 import Dialog from "@material-ui/core/Dialog";
-import { ActionType, CategoryType, trackGoogleAnalytics } from "../../utils/googleAnalytics";
+import {
+  ActionType,
+  CategoryType,
+  trackGoogleAnalytics,
+} from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import { Lead, zapierLeadFreemium, zapierLeadBasic } from "../../utils/zapierLead";
+import {
+  Lead,
+  zapierLeadFreemium,
+  zapierLeadBasic,
+} from "../../utils/zapierLead";
 
 interface Props {
   plan: PriceData;
@@ -29,10 +44,15 @@ interface FormData {
 
 interface FormValue {
   value: string;
-  error: boolean
+  error: boolean;
 }
 
-export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props) {
+export default function PlanCard({
+  plan,
+  hideButtons,
+  lead,
+  setHideTabs,
+}: Props) {
   const { t } = useTranslation(["plans", "common", "checkout"]);
   const s = styles();
   const dispatch = useDispatch();
@@ -41,19 +61,31 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   // const [isHref, setIsHref] = useState(true);
   // const [isPremiumSignupDialogOpen, setIsPremiumSignupDialogOpen] = useState(false);
 
-  const planName = t(`plans.${plan.productKey}.name`, `${capitalizeFirst(plan.product)}`);
-  const planSubtitle = t(`plans.${plan.productKey}.subtitle`, `${capitalizeFirst(plan.product)}`);
-  const { email, family_name, given_name, phone, user_type } = useContext(UserContext);
+  const planName = t(
+    `plans.${plan.productKey}.name`,
+    `${capitalizeFirst(plan.product)}`
+  );
+  const planSubtitle = t(
+    `plans.${plan.productKey}.subtitle`,
+    `${capitalizeFirst(plan.product)}`
+  );
+
+  const planTrial = t(
+    `plans.${plan.productKey}.trial`,
+    `${capitalizeFirst(plan.product)}`
+  );
+  const { email, family_name, given_name, phone, user_type } =
+    useContext(UserContext);
   const [numberExists, setNumberExists] = useState(true);
 
   const [formData, setFormData] = useState<FormData>({
-    phone: { value: '', error: false },
+    phone: { value: "", error: false },
   });
   const [formHasErrors, setFormHasErrors] = useState(false);
   const [formUntouched, setFormUntouched] = useState(true);
 
   useEffect(() => {
-    if (Object.keys(formData).some(key => formData[key].error)) {
+    if (Object.keys(formData).some((key) => formData[key].error)) {
       setFormHasErrors(true);
     } else {
       setFormHasErrors(false);
@@ -61,16 +93,16 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   }, [formData]);
 
   const handleChange = (event, key: keyof FormData) => {
-    validateFormValue(event.target.value, 'phone');
+    validateFormValue(event.target.value, "phone");
     const newValue: FormValue = {
       value: event.target.value,
       error: false,
-    }
-    setFormData(prevValue => ({
+    };
+    setFormData((prevValue) => ({
       ...prevValue,
-      [key]: newValue
+      [key]: newValue,
     }));
-  }
+  };
 
   const validateFormValue = (value, key: keyof FormData) => {
     if (formUntouched) {
@@ -81,38 +113,38 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
 
     const newFormValue: FormValue = {
       value: value,
-      error: isInvalid
-    }
+      error: isInvalid,
+    };
 
-    setFormData(prevValue => ({
+    setFormData((prevValue) => ({
       ...prevValue,
-      [key]: newFormValue
+      [key]: newFormValue,
     }));
-  }
+  };
 
   const validatePhone = (newValue: string): boolean => {
     if (/^[0-9]*$/.test(newValue)) {
       return false;
     }
     return true;
-  }
+  };
 
   const checkIsInvalid = (newValue: string, key: keyof FormData): boolean => {
     switch (key) {
-      case 'phone':
+      case "phone":
         return validatePhone(newValue);
     }
-  }
+  };
 
   const validateAllFields = () => {
-    const phoneError = checkIsInvalid(formData.phone.value, 'phone');
+    const phoneError = checkIsInvalid(formData.phone.value, "phone");
 
     const phoneFormValue = {
       phone: {
         ...formData.phone,
-        error: phoneError
-      }
-    }
+        error: phoneError,
+      },
+    };
 
     setFormData(phoneFormValue);
 
@@ -122,7 +154,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
     } else {
       return true;
     }
-  }
+  };
 
   // useEffect(() => {
   //   if (plan.product === "portfolioPremium") {
@@ -133,11 +165,11 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   function getPriceText() {
     if (plan.product === "free") {
       return "-";
-    // } else if (
-    //   plan.product === "portfolioPremium" &&
-    //   plan.amount === undefined
-    // ) {
-    //   return "premium";
+      // } else if (
+      //   plan.product === "portfolioPremium" &&
+      //   plan.amount === undefined
+      // ) {
+      //   return "premium";
     }
 
     return (
@@ -155,7 +187,7 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
   };
 
   const upgradeWithPhone = (event) => {
-     //console.log(numberExists)
+    //console.log(numberExists)
     if (!phone.value) {
       setNumberExists(false);
       event.stopPropagation();
@@ -207,7 +239,9 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
         <div>
           <div className={s.h3}>
             <Typography>
-              {t("För att gå vidare med din uppgradering behöver du ange ditt telefonnummer")}
+              {t(
+                "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer"
+              )}
             </Typography>
           </div>
           <div>
@@ -219,9 +253,9 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
               required
               variant="outlined"
               error={formData.phone.error}
-              onChange={(e) => handleChange(e, 'phone')}
-              onBlur={(e) => validateFormValue(e.target.value, 'phone')}
-              helperText={formData.phone.error ? t('Endast siffror') : ''}
+              onChange={(e) => handleChange(e, "phone")}
+              onBlur={(e) => validateFormValue(e.target.value, "phone")}
+              helperText={formData.phone.error ? t("Endast siffror") : ""}
             />
             <Link passHref href={href}>
               <a>
@@ -241,97 +275,72 @@ export default function PlanCard({ plan, hideButtons, lead, setHideTabs }: Props
           </div>
         </div>
       ) : (
-        <Card
+        <div
           className={clsx(
             s.cardRoot,
             plan.productKey === "portfolio" && s.primaryCard
           )}
         >
-          <CardContent>
-            <Typography variant="h6" component="h2">
-              <Box
-                className={s.header}
-                textAlign="center"
-              >
-                {planName}
-              </Box>
-            </Typography>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              backgroundColor: "#ffe36b4a",
+              borderRadius: "4px",
+            }}
+          >
+            <CardContent>
+              <Typography variant="h6" component="h2">
+                <Box className={s.header} textAlign="center">
+                  {planName}
+                </Box>
+              </Typography>
+              <Typography variant="body1">{planSubtitle}</Typography>
+              <Typography variant="h3" style={{ textAlign: "center" }}>
+                <Box>{planTrial}</Box>
+              </Typography>
 
-            <Typography variant="body1">
-              <Box
-                textAlign="center"
-              >
-                {planSubtitle}
+              <Box className={s.planPrice}>
+                <PaymentInfo
+                  priceText={getPriceText()}
+                  secondaryText={t("youCanAlwaysUpdateYourMembership")}
+                />
               </Box>
-            </Typography>
-            <Box className={s.planPrice}>
-            <PaymentInfo
-              priceText={getPriceText()}
-              secondaryText={t("youCanAlwaysUpdateYourMembership")}
-            />
-            </Box>
-            <PlansInfoList
-              texts={t(`plans.${plan.productKey}.listTexts`, "", {
-                returnObjects: true,
-              })}
-            />
-
-            {!hideButtons && (
-              <div className={s.button}>
-                {/* {isHref ? ( */}
+              <PlansInfoList
+                texts={t(`plans.${plan.productKey}.listTexts`, "", {
+                  returnObjects: true,
+                })}
+              />
+              {!hideButtons && (
+                <div className={s.button}>
+                  {/* {isHref ? ( */}
                   <Link passHref href={href}>
                     <a>
                       <Button
-                        size="small"
+                        size="large"
                         variant="contained"
-                        color="primary"
-                        disableElevation
                         rounded
+                        style={{
+                          borderRadius: 35,
+                          backgroundColor: "black",
+                          color: "white",
+                        }}
                         onClick={(event) => upgradeWithPhone(event)}
                       >
                         {plan.product === "free"
                           ? t("signUp")
                           : `${capitalizeFirst(
-                            t("common:words.choose")
-                          )} ${planName}`}
+                              t("common:words.choose")
+                            )} ${planName}`}
                       </Button>
                     </a>
                   </Link>
-                {/* ) : (
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    disableElevation
-                    rounded
-                    onClick={() => {
-                      setIsPremiumSignupDialogOpen(true);
-                      trackGoogleAnalytics(
-                        ActionType.SIGN_UP_PREMIUM,
-                        CategoryType.BUY
-                      );
-                    }}
-                  >
-                    {plan.product === "free"
-                      ? t("signUp")
-                      : `${capitalizeFirst(
-                        t("common:words.choose")
-                      )} ${planName}`}
-                  </Button>
-                )} */}
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                </div>
+              )}
+            </CardContent>
+          </div>
+        </div>
       )}
-      {/* <Dialog
-        fullWidth
-        maxWidth="md"
-        open={isPremiumSignupDialogOpen}
-        onClose={() => setIsPremiumSignupDialogOpen(false)}
-      >
-        <PremiumApply />
-      </Dialog> */}
     </div>
   );
 }

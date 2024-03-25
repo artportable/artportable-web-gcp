@@ -21,11 +21,14 @@
     "portfolio": {
       "name": "Portfolio",
       "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
+      "trial": "Prova i 10 dagar gratis!",
       "listTexts": [
         "Publicera dina verk",
         "Chatta och få förfrågningar om dina konstverk",
         "Betala 0 % i provision på sålda verk",
-        "Följ och interagera med andra konstnärer"
+        "Följ och interagera med andra konstnärer",
+        "SEO-anpassad portfolio",
+        "Mobilanpassad sida"
       ]
     },
     "portfolioPremium": {
@@ -36,6 +39,8 @@
         "Bli prioriterad i flödet",
         "Publicera upp till 1500 verk",
         "Betala 0 % i provision på sålda verk",
+        "Sortera konstverk",
+        "Publicera nyheter",
         "Support",
         "Personlig konstkoordinator",
         "Hjälp att skapa en professionell portfolio",

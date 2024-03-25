@@ -3,12 +3,10 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      padding: theme.spacing(2),
-      maxWidth: "40rem",
-      margin: "auto",
+      padding: theme.spacing(1),
     },
     cardRoot: {
-      border: '1px solid #000',
+      backgroundColor: "#fffffff0",
       "& .MuiCardContent-root": {
         height: "100%",
         display: "flex",
@@ -29,9 +27,18 @@ export const styles = makeStyles((theme: Theme) =>
     },
     header: {
       fontWeight: 500,
+      fontSize: "1.5rem",
+      backgroundColor: "#F7E2A8",
+      height: "50px",
+      display: "flex",
+      justifyContent: "center",
+
+      alignItems: "center",
+      borderRadius: "6px",
+      margin: "10px",
     },
     planPrice: {
-      color: 'var(--primary-color)',
+      color: "black",
     },
     primaryCard: {
       margin: theme.spacing(0, 0),
@@ -54,7 +61,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       margin: "auto",
       marginTop: theme.spacing(3),
-      float: 'right'
+      float: "right",
     },
     h3: {
       textAlign: "left",
