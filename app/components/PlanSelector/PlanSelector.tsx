@@ -35,7 +35,7 @@ export default function PlanSelector({
 
   // requirePhone ? <PhoneInput /> : null
 
-  const [paymentInterval, setPaymentInterval] = useState("year");
+  const [paymentInterval, setPaymentInterval] = useState("month");
 
   // const priceDataWithPremium: PriceData[] = [
   //   ...priceData,
@@ -89,6 +89,7 @@ export default function PlanSelector({
           </div>
         )}
       </div>
+
       <div className={s.planCards}>
         {plans
           .filter((plan) => {

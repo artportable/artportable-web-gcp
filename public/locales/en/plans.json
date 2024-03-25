@@ -21,12 +21,15 @@
     "portfolio": {
       "name": "Portfolio",
       "subtitle": "Artist - boost your art career and get inquiries using Portfolio.",
+      "trial": "10-day free trial!",
       "listTexts": [
         "Upload your artwork",
         "Chat and get inquiries about your artwork",
         "Pay 0 % in commission on sold artwork",
         "Follow and interact with other artists",
-        "Read articles and get updates about exhibitions"
+        "Read articles and get updates about exhibitions",
+        "SEO-optimized portfolio",
+        "Mobile-optimized page"
       ]
     },
     "portfolioPremium": {
@@ -37,6 +40,9 @@
         "Be prioritized in the feed",
         "Publish up to 1500 artworks",
         "Pay 0% commission on sold artworks",
+        "Publish stories",
+        "Sort artworks",
+        "Increased visibility on Artportable",
         "Support",
         "Personal art coordinator",
         "Assistance in creating a professional portfolio",
