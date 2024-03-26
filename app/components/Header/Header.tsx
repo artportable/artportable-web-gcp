@@ -75,7 +75,6 @@ export default function Header({ navBarItems }) {
 
   const [stripeId, setStripeId] = useState("");
   const [customerStatus, setCustomerStatus] = useState("");
-  const [daysRemaining, setDaysRemaining] = useState(0);
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -90,16 +89,10 @@ export default function Header({ navBarItems }) {
       try {
         const customerId = await fetchCustomerId();
         setStripeId(customerId);
-        const customerData = await fetchCustomerData(customerId);
-        const currentPeriodEnd =
-          customerData?.subscriptions.data[0]?.current_period_end;
 
-        if (currentPeriodEnd) {
-          const currentTimeInSeconds = Math.floor(Date.now() / 1000);
-          const secondsRemaining = currentPeriodEnd - currentTimeInSeconds;
-          setDaysRemaining(Math.ceil(secondsRemaining / (60 * 60 * 24)));
-        }
+        const customerDataPromise = fetchCustomerData(customerId);
 
+        const [customerData] = await Promise.all([customerDataPromise]);
         setCustomerStatus(customerData?.subscriptions.data[0]?.status);
       } catch (error) {
         console.error("There was a problem fetching the data:", error);
@@ -314,9 +307,6 @@ export default function Header({ navBarItems }) {
                         alignItems: "center",
                       }}
                     >
-                      <p style={{ fontSize: "9px" }}>
-                        {t("trialLeft")} {daysRemaining} {t("days")}
-                      </p>
                       <Button
                         onClick={async () => {
                           try {
