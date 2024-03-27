@@ -58,7 +58,7 @@ import { Select } from "@mui/material";
 
 export default function ArtworkPage(props) {
   const s = styles();
-  const { t } = useTranslation(["art", "common", "tags", "forms"]);
+  const { t } = useTranslation(["art", "common", "tags", "forms", "upload"]);
   const router = useRouter();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -552,6 +552,28 @@ export default function ArtworkPage(props) {
                           : null}
                       </div>
                     </div>
+                    {artwork?.data?.SignedByArtist && (
+                      <div className={s.text}>
+                        <div className={s.sizes}>
+                          {" "}
+                          {t("upload:signature")}:{" "}
+                          {t(`upload:${artwork?.data?.SignedByArtist}`)}
+                        </div>
+                      </div>
+                    )}
+                    {artwork?.data?.FrameIncluded === true ? (
+                      <div className={s.text}>
+                        <div className={s.sizes}>
+                          {t("upload:frame")}: {t("upload:included")}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={s.text}>
+                        <div className={s.sizes}>
+                          {t("upload:frame")}: {t("upload:notIncluded")}
+                        </div>
+                      </div>
+                    )}
 
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? (
@@ -766,6 +788,7 @@ export async function getServerSideProps({ locale, params }) {
           "support",
           "plans",
           "forms",
+          "upload",
         ])),
       },
     };
@@ -788,6 +811,7 @@ export async function getServerSideProps({ locale, params }) {
         "support",
         "plans",
         "forms",
+        "upload",
       ])),
     },
   };

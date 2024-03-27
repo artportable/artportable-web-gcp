@@ -58,6 +58,8 @@ export default function UploadArtworkPage({ navBarItems }) {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const [depth, setDepth] = useState(0);
+  const [signedByArtist, setSignedByArtist] = useState("");
+  const [frameIncluded, setFrameIncluded] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
   const [cropper, setCropper] = useState<any>();
   const [cropperImageUrl, setCropperImageUrl] = useState<any>();
@@ -97,15 +99,15 @@ export default function UploadArtworkPage({ navBarItems }) {
   });
 
   // Which section user is on: 1 = Only upload image section visible, 2 = Fill in details about the artwork and publish
-  const [progress, setProgress] = useState(1)
-  const [showPublishError, setShowPublishError] = useState(false)
-  const formDetailsRef = useRef(null)
-  
+  const [progress, setProgress] = useState(1);
+  const [showPublishError, setShowPublishError] = useState(false);
+  const formDetailsRef = useRef(null);
+
   useEffect(() => {
     if (croppedPrimary) {
-      setProgress(2)
+      setProgress(2);
     }
-  }, [croppedPrimary])
+  }, [croppedPrimary]);
 
   const uploadArtwork = async () => {
     if (isDesktop) {
@@ -120,6 +122,8 @@ export default function UploadArtworkPage({ navBarItems }) {
           Width: width,
           Height: height,
           Depth: depth,
+          FrameIncluded: frameIncluded,
+          SignedByArtist: signedByArtist,
           Tags: selectedTags,
           PrimaryFile: namePrimary,
           SecondaryFile: nameSecondary,
@@ -128,7 +132,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         setRefresh(true);
         setUploadSnackbarOpen(true);
         const res = await usePostArtwork(artwork, socialId.value, token);
-        
+
         if (res && res.Id) {
           router.push("/art/" + res.Id);
         }
@@ -155,6 +159,8 @@ export default function UploadArtworkPage({ navBarItems }) {
           Width: width,
           Height: height,
           Depth: depth,
+          FrameIncluded: frameIncluded,
+          SignedByArtist: signedByArtist,
           Tags: selectedTags,
           PrimaryFile: name as any,
           SecondaryFile: nameSecondary,
@@ -230,7 +236,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     } else if (croppedTertiary === null) {
       setCroppedTertiary(dataUrl);
     }
-    
+
     setText(t("addmoreImages"));
     setCropperActive(false);
   };
@@ -320,11 +326,14 @@ export default function UploadArtworkPage({ navBarItems }) {
     fr.readAsDataURL(event.target.files[0]);
   };
 
-  const requiredDetailsCompleted = title && ((width && height) || multipleSizesChecked) ? true : false
+  const requiredDetailsCompleted =
+    title && ((width && height) || multipleSizesChecked) ? true : false;
 
-  const publishButtonDisabled = (!croppedPrimary && mobileImg === "") || !requiredDetailsCompleted
+  const publishButtonDisabled =
+    (!croppedPrimary && mobileImg === "") || !requiredDetailsCompleted;
 
-  const maximumImagesUploaded = croppedPrimary && croppedSecondary && croppedTertiary ? true : false
+  const maximumImagesUploaded =
+    croppedPrimary && croppedSecondary && croppedTertiary ? true : false;
 
   if (artworkLimitReached) {
     return (
@@ -334,7 +343,12 @@ export default function UploadArtworkPage({ navBarItems }) {
           <Paper className={s.paperLeft} elevation={1}>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
               {t("limitArtwork")}
-              <a href="https://buy.stripe.com/aEUeVngcS7ZPcda4h9" target="_blank">{t("clickHere")}</a>
+              <a
+                href="https://buy.stripe.com/aEUeVngcS7ZPcda4h9"
+                target="_blank"
+              >
+                {t("clickHere")}
+              </a>
               {t("uploadUnlimited")}
             </Typography>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
@@ -343,9 +357,7 @@ export default function UploadArtworkPage({ navBarItems }) {
             <div className={s.iconTextFlex}>
               <MailOutlineIcon className={s.icon} />
               <Typography className={s.linkText}>
-                <a href="mailto:hello@artportable.com">
-                  hello@artportable.com
-                </a>
+                <a href="mailto:hello@artportable.com">hello@artportable.com</a>
               </Typography>
             </div>
             <div className={s.iconTextFlex}>
@@ -385,7 +397,7 @@ export default function UploadArtworkPage({ navBarItems }) {
           </Paper>
         </div>
       </Main>
-    )
+    );
   }
 
   return (
@@ -396,7 +408,7 @@ export default function UploadArtworkPage({ navBarItems }) {
           <div className={s.clampedContainer}>
             {isDesktop ? (
               <>
-                { !maximumImagesUploaded ?
+                {!maximumImagesUploaded ? (
                   <div className={s.uploadBox}>
                     <DropzoneArea
                       classes={{
@@ -409,13 +421,11 @@ export default function UploadArtworkPage({ navBarItems }) {
                       showPreviewsInDropzone={true}
                       filesLimit={3}
                       maxFileSize={2000000000}
-                      />
+                    />
                   </div>
-                :
-                  <Typography>
-                    {t('allImagesUploaded')}
-                  </Typography>
-                }
+                ) : (
+                  <Typography>{t("allImagesUploaded")}</Typography>
+                )}
                 <div className={s.cropperBox}>
                   <Cropper
                     className={clsx(s.cropper, !cropperActive && s.hide)}
@@ -426,7 +436,7 @@ export default function UploadArtworkPage({ navBarItems }) {
                     // preview={`.${s.cropperPreview}`}
                     ref={cropperRef}
                     background={true}
-                  // style={{ backgroundColor: color}}
+                    // style={{ backgroundColor: color}}
                   />
                 </div>
                 {/* <div className={s.backgroundColorFlex}>
@@ -512,10 +522,11 @@ export default function UploadArtworkPage({ navBarItems }) {
                 </div>
               )}
             </div>
-          </div>{/* clampedContainer */}
+          </div>
+          {/* clampedContainer */}
 
           {/* After uploading an image: */}
-          {progress > 1 &&
+          {progress > 1 && (
             <div className={s.form} ref={formDetailsRef}>
               {tags.isLoading && <div>loading...</div>}
               {tags.isError && <div>error...</div>}
@@ -532,6 +543,10 @@ export default function UploadArtworkPage({ navBarItems }) {
                   multipleSizesChecked={multipleSizesChecked}
                   setMultipleSizesChecked={setMultipleSizesChecked}
                   width={width}
+                  signedByArtist={signedByArtist}
+                  setSignedByArtist={setSignedByArtist}
+                  frameIncluded={frameIncluded}
+                  setFrameIncluded={setFrameIncluded}
                   setWidth={setWidth}
                   height={height}
                   setHeight={setHeight}
@@ -542,34 +557,39 @@ export default function UploadArtworkPage({ navBarItems }) {
                 ></UploadForm>
               )}
             </div>
-          }
+          )}
 
-          {progress > 1 &&
+          {progress > 1 && (
             <div className={s.clampedContainer}>
               {/* Don't show error message until user has clicked the publish button at least once. */}
               <Typography className={s.publishErrorMessage}>
-                {(showPublishError && !requiredDetailsCompleted) ? t("fieldsMissing") : ' '}
+                {showPublishError && !requiredDetailsCompleted
+                  ? t("fieldsMissing")
+                  : " "}
               </Typography>
               <ArtButton
-                className={`${publishButtonDisabled
-                    ? s.disabledButton
-                    : s.uploadButton
-                  }`}
+                className={`${
+                  publishButtonDisabled ? s.disabledButton : s.uploadButton
+                }`}
                 rounded
-                onClick={!publishButtonDisabled ? () => {
-                  uploadArtwork();
-                  trackGoogleAnalytics(
-                    ActionType.UPLOAD_IMAGE_CONFIRM,
-                    CategoryType.INTERACTIVE
-                  );
-                } : () => {
-                  setShowPublishError(true)
-                }}
+                onClick={
+                  !publishButtonDisabled
+                    ? () => {
+                        uploadArtwork();
+                        trackGoogleAnalytics(
+                          ActionType.UPLOAD_IMAGE_CONFIRM,
+                          CategoryType.INTERACTIVE
+                        );
+                      }
+                    : () => {
+                        setShowPublishError(true);
+                      }
+                }
               >
                 {t("publish")}
               </ArtButton>
             </div>
-          }
+          )}
           <div className={s.clampedContainer}>
             {/* Show warning message regardless of what "progress" user is on. */}
             <WarningMessage />

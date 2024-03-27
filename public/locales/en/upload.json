@@ -38,5 +38,15 @@
   "vertical": "Vertical",
   "reset": "Reset",
   "throw": "Delete",
-  "exhibition": "Check only in the box if your news is about a current exhibition.."
+  "exhibition": "Check only in the box if your news is about a current exhibition..",
+  "frameIncluded": "Frame included",
+  "frameNotIncluded": "Not Included",
+  "signature": "Signature",
+  "notSigned": "Not Signed",
+  "handSigned": "Hand-signed by Artist",
+  "signatureOnReverse": "Signature on the Reverse",
+  "digitallySigned": "Digitally Signed by Artist",
+  "frame": "Frame",
+  "notIncluded": "Not included",
+  "included": "Included"
 }
