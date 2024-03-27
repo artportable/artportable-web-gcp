@@ -14,6 +14,8 @@ export interface Artwork {
   Width: number;
   Height: number;
   Depth: number;
+  FrameIncluded: boolean;
+  SignedByArtist: string;
   PrimaryFile: Image;
   SecondaryFile: Image;
   TertiaryFile: Image;
@@ -36,6 +38,8 @@ export interface ArtworkForCreation {
   Width: number;
   Height: number;
   Depth: number;
+  FrameIncluded: boolean;
+  SignedByArtist: string;
   PrimaryFile: Image;
   SecondaryFile: Image;
   TertiaryFile: Image;

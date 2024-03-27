@@ -37,5 +37,15 @@
   "horizontal": "Lárétt",
   "vertical": "Lóðrétt",
   "reset": "Endurstilla",
-  "throw": "Henda"
+  "throw": "Henda",
+  "frameIncluded": "Rammi innifalinn",
+  "frameNotIncluded": "Ekki innifalið",
+  "signature": "Undirskrift",
+  "notSigned": "Óundirritað",
+  "handSigned": "Handritað af listamanni",
+  "signatureOnReverse": "Undirskrift á bakhlið",
+  "digitallySigned": "Rafrænt undirritað af listamanni",
+  "frame": "Rammi",
+  "notIncluded": "Ekki innifalið",
+  "included": "Innifalið"
 }
