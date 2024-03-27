@@ -38,5 +38,15 @@
   "vertical": "Vertikal",
   "reset": "Tilbakestill",
   "throw": "Kast",
-  "exhibition": "Kryss bare i boksen hvis nyheten din handler om en pågående utstilling."
+  "exhibition": "Kryss bare i boksen hvis nyheten din handler om en pågående utstilling.",
+  "frameIncluded": "Ramme inkludert",
+  "frameNotIncluded": "Ikke inkludert",
+  "signature": "Signatur",
+  "notSigned": "Ikke signert",
+  "handSigned": "Håndsignert av kunstner",
+  "signatureOnReverse": "Signatur på baksiden",
+  "digitallySigned": "Digitalt signert av kunstner",
+  "frame": "Ramme",
+  "notIncluded": "Ikke inkludert",
+  "included": "Inkludert"
 }

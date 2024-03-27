@@ -37,5 +37,15 @@
   "horizontal": "Horisontal",
   "vertical": "Vertikal",
   "reset": "Nulstil",
-  "throw": "Smid væk"
+  "throw": "Smid væk",
+  "frameIncluded": "Ramme inkluderet",
+  "frameNotIncluded": "Ikke inkluderet",
+  "signature": "Signatur",
+  "notSigned": "Ikke signeret",
+  "handSigned": "Håndsigneret af kunstner",
+  "signatureOnReverse": "Signatur på bagsiden",
+  "digitallySigned": "Digitalt signeret af kunstner",
+  "frame": "Ramme",
+  "notIncluded": "Ikke inkluderet",
+  "included": "Inkluderet"
 }

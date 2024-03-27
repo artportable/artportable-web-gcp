@@ -14,6 +14,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import TagChip from "../TagChip/TagChip";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 
 export default function UploadForm({
   title,
@@ -22,6 +24,10 @@ export default function UploadForm({
   currency,
   setPrice,
   setCurrency,
+  signedByArtist,
+  setSignedByArtist,
+  frameIncluded,
+  setFrameIncluded,
   soldOutChecked,
   setSoldOutChecked,
   multipleSizesChecked,
@@ -143,6 +149,7 @@ export default function UploadForm({
                   value={currency}
                   onChange={(event) => setCurrency(event.target.value)}
                   label={t("currency")}
+                  MenuProps={{ disableScrollLock: true }}
                 >
                   <MenuItem value="SEK">SEK</MenuItem>
                   <MenuItem value="NOK">NOK</MenuItem>
@@ -165,7 +172,37 @@ export default function UploadForm({
           }
           label={t("common:words.soldOut")}
         />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={frameIncluded}
+              onChange={(event) => setFrameIncluded(event.target.checked)}
+            />
+          }
+          label={"Frame included"}
+        />
+
+        <div style={{ marginTop: "20px" }}>
+          <InputLabel>{t("signature")}</InputLabel>
+          <Select
+            value={signedByArtist}
+            onChange={(event) => {
+              event.stopPropagation();
+              setSignedByArtist(event.target.value);
+            }}
+            MenuProps={{ disableScrollLock: true }}
+            fullWidth
+          >
+            <MenuItem value="handSigned">{t("handSigned")}</MenuItem>
+            <MenuItem value="signatureOnReverse">
+              {t("signatureOnReverse")}
+            </MenuItem>
+            <MenuItem value="digitallySigned">{t("digitallySigned")}</MenuItem>
+            <MenuItem value="notSigned">{t("notSigned")}</MenuItem>
+          </Select>
+        </div>
       </Box>
+
       <Box className={s.tags}>
         <Typography variant="h4" className={s.tagTitle}>
           {t("tags")}

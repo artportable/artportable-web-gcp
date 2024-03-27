@@ -38,5 +38,13 @@
   "vertical": "Vertikal",
   "reset": "Återställ",
   "throw": "Släng",
-  "exhibition": "Kryssa enbart i rutan om din nyhet handlar om en aktuell utställning."
+  "exhibition": "Kryssa enbart i rutan om din nyhet handlar om en aktuell utställning.",
+  "signature": "Signatur",
+  "notSigned": "Inte signerad",
+  "handSigned": "Handsignerad av konstnären",
+  "signatureOnReverse": "Signatur på baksidan",
+  "digitallySigned": "Digitalt signerad av konstnären",
+  "frame": "Ram",
+  "notIncluded": "Ingår ej",
+  "included": "Ingår"
 }

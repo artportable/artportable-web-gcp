@@ -37,5 +37,15 @@
   "horizontal": "Horizontal",
   "vertical": "Vertikal",
   "reset": "Zurücksetzen",
-  "throw": "Wegwerfen"
+  "throw": "Wegwerfen",
+  "frameIncluded": "Rahmen inbegriffen",
+  "frameNotIncluded": "Nicht inbegriffen",
+  "signature": "Signatur",
+  "notSigned": "Nicht signiert",
+  "handSigned": "Von Künstler handsigniert",
+  "signatureOnReverse": "Signatur auf der Rückseite",
+  "digitallySigned": "Digital von Künstler signiert",
+  "frame": "Rahmen",
+  "notIncluded": "Nicht inbegriffen",
+  "included": "Inbegriffen"
 }
