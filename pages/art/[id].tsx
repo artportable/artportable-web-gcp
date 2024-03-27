@@ -561,19 +561,20 @@ export default function ArtworkPage(props) {
                         </div>
                       </div>
                     )}
-                    {artwork?.data?.FrameIncluded === true ? (
-                      <div className={s.text}>
-                        <div className={s.sizes}>
-                          {t("upload:frame")}: {t("upload:included")}
+                    {artwork?.data?.FrameIncluded !== null &&
+                      (artwork?.data?.FrameIncluded === true ? (
+                        <div className={s.text}>
+                          <div className={s.sizes}>
+                            {t("upload:frame")}: {t("upload:included")}
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <div className={s.text}>
-                        <div className={s.sizes}>
-                          {t("upload:frame")}: {t("upload:notIncluded")}
+                      ) : (
+                        <div className={s.text}>
+                          <div className={s.sizes}>
+                            {t("upload:frame")}: {t("upload:notIncluded")}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      ))}
 
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? (
