@@ -11,7 +11,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import TabPanel from "../app/components/TabPanel/TabPanel";
 import { useDispatch, useStore } from "react-redux";
 import { SET_TAB } from "../app/redux/actions/discoverActions";
@@ -242,8 +242,8 @@ export default function DiscoverPage({ navBarItems }) {
           ref={scrollToDiscoverRef}
           className={s.discoverContainer}
           // Set minHeight to avoid page jumping when switching tabs.
-          style={{ minHeight: '100vh' }}
-          >
+          style={{ minHeight: "100vh" }}
+        >
           <div className={s.tabContainer}>
             <Tabs
               className={s.artTabs}
@@ -255,7 +255,7 @@ export default function DiscoverPage({ navBarItems }) {
               TabIndicatorProps={{
                 style: {
                   backgroundColor: "black",
-                }
+                },
               }}
             >
               <Tab

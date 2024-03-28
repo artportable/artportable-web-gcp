@@ -561,7 +561,7 @@ export default function ArtworkPage(props) {
                         </div>
                       </div>
                     )}
-                    {artwork?.data?.FrameIncluded !== null &&
+                    {/*  {artwork?.data?.FrameIncluded !== null &&
                       (artwork?.data?.FrameIncluded === true ? (
                         <div className={s.text}>
                           <div className={s.sizes}>
@@ -574,7 +574,7 @@ export default function ArtworkPage(props) {
                             {t("upload:frame")}: {t("upload:notIncluded")}
                           </div>
                         </div>
-                      ))}
+                      ))}*/}
 
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? (
