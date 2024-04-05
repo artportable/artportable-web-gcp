@@ -62,7 +62,12 @@ export const styles = makeStyles((theme: Theme) =>
         right: "10px",
       },
     },
-
+    boostButton: {
+      minWidth: "36px",
+      backgroundColor: "transparent",
+      color: "black",
+      fontSize: "9px",
+    },
     desktopEditButton: {
       display: "flex",
       zIndex: 10,
@@ -364,23 +369,21 @@ export const styles = makeStyles((theme: Theme) =>
     },
     sortButtons: {
       position: "sticky",
-      top: '100px',
+      top: "100px",
       left: "0px",
-      marginBottom: '10px',
+      marginBottom: "10px",
       zIndex: 100,
       opacity: 1,
-      display: 'flex',
-      justifyContent: 'center',
+      display: "flex",
+      justifyContent: "center",
     },
     sortButtonsHidden: {
       opacity: 0,
-      display: 'none',
+      display: "none",
     },
     saveSortChangesButton: {
-      marginRight: '20px',
+      marginRight: "20px",
     },
-    discardSortChangesButton: {
-
-    }
+    discardSortChangesButton: {},
   })
 );
