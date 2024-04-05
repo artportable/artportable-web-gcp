@@ -63,12 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
-    desktopEditButton: {
-      display: "flex",
-      zIndex: 10,
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
+    desktopEditButton: {},
 
     titleMobile: {
       fontSize: "16px",

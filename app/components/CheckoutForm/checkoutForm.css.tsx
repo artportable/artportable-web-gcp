@@ -1,31 +1,30 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const checkoutFormStyles = makeStyles((theme: Theme) =>
   createStyles({
     resultMessage: {
-      color: 'var(--ion-color-success)'
+      color: "var(--ion-color-success)",
     },
     cardElementContainer: {
-      height: '32px',
-      paddingTop: '2px',
-      paddingLeft: '1px',
+      height: "32px",
+      paddingTop: "2px",
+      paddingLeft: "1px",
     },
     cardErrorContainer: {
-      height: '20px',
-      color: 'var(--ion-color-danger)'
+      height: "20px",
+      color: "var(--ion-color-danger)",
     },
     subtotal: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      marginBottom: '20px'
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "20px",
     },
     product: {
-      display: 'flex',
-      justifyContent: 'space-between',
+      display: "flex",
+      justifyContent: "space-between",
     },
     divider: {
-      borderBottom: 'solid 1px var(--ion-color-medium)',
-      marginTop: '50px'
-    }
-  }),
+      borderBottom: "solid 1px black",
+    },
+  })
 );

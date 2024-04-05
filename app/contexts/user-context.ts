@@ -1,11 +1,10 @@
 import React from "react";
-import { Membership } from '../models/Membership'
+import { Membership } from "../models/Membership";
 
 interface AsyncValue<T> {
   value: T;
   isPending: boolean;
 }
-
 
 export interface ContextUser {
   isSignedIn: AsyncValue<boolean>;
@@ -65,7 +64,7 @@ export const defaultContextUser = {
   isTyping: {
     value: false,
     isPending: true,
-  }
-}
+  },
+};
 
 export const UserContext = React.createContext<ContextUser>(defaultContextUser);
