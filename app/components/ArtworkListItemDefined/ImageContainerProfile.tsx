@@ -11,7 +11,7 @@ import { getPriceFormatter } from "../../utils/formatUtils";
 import { styles } from "./artworkListSortable.css";
 import { profileStyles } from "../../../styles/[username]";
 import ArtworkListItemDefinedSkeleton from "../../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton";
-
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 export default function ImageContainerProfile({
   artwork,
   editAction,
@@ -22,11 +22,11 @@ export default function ImageContainerProfile({
 }) {
   const s = styles();
   const ps = profileStyles();
-  
+
   const { t } = useTranslation(["art", "common"]);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const languageCode = i18n.language;
-  const priceFormatter = getPriceFormatter(artwork, languageCode)
+  const priceFormatter = getPriceFormatter(artwork, languageCode);
   const formattedPrice = priceFormatter.format(artwork.Price);
 
   const topActions = editAction ? (
@@ -36,33 +36,31 @@ export default function ImageContainerProfile({
       variant="contained"
       rounded
       disabled={isSaving}
-      onClick={() =>
-        editAction(artwork)
-      }
+      onClick={() => editAction(artwork)}
       startIcon={<BrushSharpIcon />}
     ></Button>
-  ) : null
+  ) : null;
 
   // Putting Link around SortableItem does not work, use click instead.
   const cardClicked = (evt) => {
     // If order has changed (isSorting), don't let users click on a card. They will go to that artworks page
     // and when they return to sorting page the sort order has been reset.
     if (!isSaving && !isSorting) {
-      router.push(`/art/${artwork.Id}`)
+      router.push(`/art/${artwork.Id}`);
     }
-  }
+  };
 
   return (
-    <div className={clsx(s.sortableImageContainer, {
-      [s.sortIsSaving]: isSaving,
-    })}>
-      <div
-        className={s.sortableImageContent}
-        onClick={cardClicked}>
+    <div
+      className={clsx(s.sortableImageContainer, {
+        [s.sortIsSaving]: isSaving,
+      })}
+    >
+      <div className={s.sortableImageContent} onClick={cardClicked}>
         <img
           width={artwork.PrimaryFile.Width}
           height={artwork.PrimaryFile.Height}
-          alt={'Title'}
+          alt={"Title"}
           key={1}
           src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
           className={s.sortableImage}
@@ -70,9 +68,11 @@ export default function ImageContainerProfile({
             opacity: !isSaving ? 1 : 0,
           }}
         />
-        <div className={clsx(s.infoHover, {
-          'is-dragging': isDragging,
-        })}>
+        <div
+          className={clsx(s.infoHover, {
+            "is-dragging": isDragging,
+          })}
+        >
           <div className={s.infoWrapper}>
             <div className={s.titleHover}>
               {artwork.Title ? artwork.Title : t("untitled")}
@@ -93,10 +93,7 @@ export default function ImageContainerProfile({
           </div>
           <div className={s.tagsWrapper}>
             {Array.from(artwork.Tags)
-              .slice(
-                0,
-                artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4
-              )
+              .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
               .map((tag: string) => (
                 <TagChip
                   key={tag}
@@ -109,25 +106,48 @@ export default function ImageContainerProfile({
               ))}
           </div>
         </div>
-        { isSaving &&
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}>
+        {isSaving && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+            }}
+          >
             <ArtworkListItemDefinedSkeleton grow={1} />
           </div>
-        }
+        )}
       </div>
       <div className={s.desktopEditButton}>
         {topActions && (
           <div className={s.likeButton}>
             <div>{topActions}</div>
+            {artwork?.IsBoosted === false ? (
+              <Button
+                aria-label="boost"
+                className={s.boostButton}
+                onClick={() => {
+                  router.push(`/checkoutboost?${artwork.Id}`);
+                }}
+                startIcon={<RocketLaunchIcon />}
+              >
+                Marknadsför
+              </Button>
+            ) : (
+              <Button
+                aria-label="boost"
+                className={s.boostButton}
+                disabled
+                startIcon={<RocketLaunchIcon />}
+              >
+                Marknadsförs
+              </Button>
+            )}
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
