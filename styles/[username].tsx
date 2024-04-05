@@ -62,9 +62,9 @@ export const profileStyles = makeStyles((theme: Theme) =>
       width: "100%",
     },
     tab: {
-      fontSize:'8px',
-      [theme.breakpoints.up("sm")] : {
-        fontSize: '14px',
+      fontSize: "8px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "14px",
       },
     },
     catalogued: {
@@ -87,7 +87,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       ...columnGap(16),
     },
     portfolioContainerSorted: {
-      flexFlow: 'row wrap',
+      flexFlow: "row wrap",
     },
     portfolioRow: {
       display: "flex",
@@ -103,17 +103,16 @@ export const profileStyles = makeStyles((theme: Theme) =>
       marginBottom: "100px",
     },
     editButton: {
-      width: "38px",
-      minWidth: "36px",
-      color: "white",
-      backgroundColor: "var(--yellow-darker)",
-      "& .MuiButton-startIcon": {
-        margin: "0 0",
-      },
+      backgroundColor: "transparent",
+      color: "black",
+      fontSize: "9px",
     },
 
-    stories: {
-      
+    boostButton: {
+      minWidth: "36px",
+      backgroundColor: "transparent",
+      color: "black",
+      fontSize: "9px",
     },
 
     [theme.breakpoints.up("sm")]: {

@@ -1,64 +1,67 @@
-import React, { useState, useEffect } from 'react'
-import Button from "@material-ui/core/Button"
+import React, { useState, useEffect, useRef } from "react";
+import Button from "@material-ui/core/Button";
 import { useTranslation } from "next-i18next";
-import clsx from 'clsx'
-import EmblaCarousel from "./Embla/EmblaCarousel"
-import LikeButton from '../Button/LikeButton'
-import PLACEHOLDER_ARTWORKS, { REAL_ROCKET_ARTWORKS, PLACEHOLDER_ARTWORKS_STAGING } from "../../../data/rocketPlaceholderArtworks";
-import { styles } from './rocketcarousel.css'
+import clsx from "clsx";
+import EmblaCarousel from "./Embla/EmblaCarousel";
+import LikeButton from "../Button/LikeButton";
+
+import { styles } from "./rocketcarousel.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
+import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
+import { Artwork } from "../../models/Artwork";
 
 type Data = {
-  forDesktop: boolean,
-  containerStyle?: any,
+  forDesktop: boolean;
+  containerStyle?: any;
   // artists: Artist[],
-}
+};
 
 export default function RocketCarousel(props: Data) {
   // const [artists, setArtists] = useState<Artist[]>([])
   // const [artworks, setArtworks] = useState<Artwork[]>([])
-  const [artworks, setArtworks] = useState([])
-  const { forDesktop, containerStyle = {} } = props
+
+  const { forDesktop, containerStyle = {} } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { t } = useTranslation(["common"]);
   const s = styles();
   const sShared = sharedStyles();
+  const loadMoreArtworksElementRef = useRef(null);
 
-  const fetchData = async () => {
-    const pageUrl = process.env.NEXT_PUBLIC_URL
-    let realData = [];
-    let newData = [];
+  const { data: artworks, isLoading: isLoadingArtWorks } =
+    useInfiniteScrollWithKey<Artwork>(
+      loadMoreArtworksElementRef,
+      (pageIndex, previousPageData) => {
+        if (pageIndex == 0) {
+          let url = new URL(`${apiBaseUrl}/api/Discover/artworks/boosted`);
 
-    if (pageUrl === 'http://localhost:3000') {
-      // Fetch ten random unsold artworks until we can fetch rocker artworks.
-      const response = await fetch(`${apiBaseUrl}/api/Discover/artworks/unsold`);
-      newData = await response.json();
-    } else if (pageUrl === 'https://beta.artportable.com') {
-      newData = PLACEHOLDER_ARTWORKS_STAGING;
-    } else if (pageUrl === 'https://artportable.com') {
-      realData = REAL_ROCKET_ARTWORKS;
-      newData = PLACEHOLDER_ARTWORKS;
-    }
-
-    const combinedData = REAL_ROCKET_ARTWORKS.concat(newData).slice(0, 10)
-
-    const formattedArtworks = formatApArtworkForEmbla(combinedData, s, sShared, t, forDesktop)
-
-    setArtworks(formattedArtworks)
-  }
+          url.searchParams.append("page", (pageIndex + 1).toString());
+          url.searchParams.append("pageSize", "100");
+          return url.href;
+        }
+        return previousPageData.next;
+      }
+    );
 
   useEffect(() => {
-    fetchData();
+    console.log(artworks);
   }, []);
 
-  if (artworks.length < 1) return null
+  if (artworks.length < 1) return null;
+
+  const formattedSlides = formatApArtworkForEmbla(
+    artworks,
+    s,
+    sShared,
+    t,
+    forDesktop
+  );
 
   return (
     <div style={containerStyle}>
       <EmblaCarousel
-        slides={artworks}
+        slides={formattedSlides} // Use the formatted slides here
         options={{
-          align: 'center',
+          align: "center",
           loop: true,
         }}
         autoPlay={true}
@@ -66,21 +69,18 @@ export default function RocketCarousel(props: Data) {
         forDesktop={forDesktop}
       />
     </div>
-  )
+  );
 }
 
 const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
-  const formatted = []
+  const formatted = [];
 
-  items.forEach(item => {
+  items.forEach((item) => {
     const overlayContent = (
       <div className={s.rocketOverlay}>
         <div className={s.rocketIcon}>
-          <img
-            src="/rocket-white.png"
-            alt="Rocket Icon"
-          />
+          <img src="/rocket-white.png" alt="Rocket Icon" />
         </div>
         <div className={s.likeButton}>
           <LikeButton
@@ -89,43 +89,52 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
             }}
           />
         </div>
-        { forDesktop &&
-          <div className={s.seeMoreButton + ' displayOnHover'}>
-            <Button className={clsx(
-              sShared.smallButton, sShared.yellowButton, sShared.noBorder, sShared.mediumThickness
-              )}>{(t("common:seeMore"))}</Button>
+        {forDesktop && (
+          <div className={s.seeMoreButton + " displayOnHover"}>
+            <Button
+              className={clsx(
+                sShared.smallButton,
+                sShared.yellowButton,
+                sShared.noBorder,
+                sShared.mediumThickness
+              )}
+            >
+              {t("common:seeMore")}
+            </Button>
           </div>
-        }
+        )}
       </div>
-    )
+    );
 
     formatted.push({
       overlayContent,
       imageSrc: `${bucketUrl}${item.PrimaryFile.Name}`,
-      thumbnailSrc: '',
-      hoverSrc: '',
+      thumbnailSrc: "",
+      hoverSrc: "",
       width: item.PrimaryFile.Width,
       height: item.PrimaryFile.Height,
-      hoverCenter: 'center',
-      artistName: '',
+      hoverCenter: "center",
+      artistName: "",
       title: item.Title,
       linkURL: `/art/${item.Id}`,
       roundedCorners: false,
       footer: (
-        <div style={{
-          marginTop: '10px',
-          fontSize: '0.95rem',
-          fontWeight: 400,
-          width: '100%',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        }}>
+        <div
+          style={{
+            marginTop: "10px",
+            fontSize: "0.95rem",
+            fontWeight: 400,
+            width: "100%",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           {`${item.Owner.Name} ${item.Owner.Surname}`}
         </div>
-      )
-    })
-  })
+      ),
+    });
+  });
 
-  return formatted
-}
+  return formatted;
+};

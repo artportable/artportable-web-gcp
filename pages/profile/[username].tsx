@@ -60,7 +60,7 @@ import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUs
 import DialogPortfolioPremium from "../../app/components/PortfolioPremiumUpgrade/PortfolioPremiumUpgrade";
 import Offers from "../../app/components/ExclusiveOffers/Offers";
 import BrushSharpIcon from "@mui/icons-material/BrushSharp";
-
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { useGetStories } from "../../app/hooks/dataFetching/Stories";
 import StoryComponent from "../../app/components/Story/StoryComponent";
 import { Story } from "../../app/models/Story";
@@ -588,17 +588,58 @@ export default function Profile(props) {
                                       topActions={
                                         isMyProfile && (
                                           <>
-                                            <Button
-                                              aria-label="edit"
-                                              className={s.editButton}
-                                              variant="contained"
-                                              color="red"
-                                              rounded
-                                              onClick={() =>
-                                                openEditArtworkDialog(artwork)
-                                              }
-                                              startIcon={<BrushSharpIcon />}
-                                            ></Button>
+                                            <div
+                                              style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                justifyContent: "space-evenly",
+                                              }}
+                                            >
+                                              <div>
+                                                <Button
+                                                  aria-label="edit"
+                                                  className={s.editButton}
+                                                  onClick={() =>
+                                                    openEditArtworkDialog(
+                                                      artwork
+                                                    )
+                                                  }
+                                                  startIcon={<BrushSharpIcon />}
+                                                >
+                                                  Redigera
+                                                </Button>
+                                              </div>
+                                              <div>
+                                                {artwork?.IsBoosted ===
+                                                false ? (
+                                                  <Button
+                                                    aria-label="boost"
+                                                    className={s.boostButton}
+                                                    onClick={() => {
+                                                      router.push(
+                                                        `/checkoutboost?${artwork.Id}`
+                                                      );
+                                                    }}
+                                                    startIcon={
+                                                      <RocketLaunchIcon />
+                                                    }
+                                                  >
+                                                    Marknadsför
+                                                  </Button>
+                                                ) : (
+                                                  <Button
+                                                    aria-label="boost"
+                                                    className={s.boostButton}
+                                                    disabled
+                                                    startIcon={
+                                                      <RocketLaunchIcon />
+                                                    }
+                                                  >
+                                                    Marknadsförs
+                                                  </Button>
+                                                )}
+                                              </div>
+                                            </div>
                                           </>
                                         )
                                       }
@@ -633,6 +674,7 @@ export default function Profile(props) {
                           open={editArtworkOpen}
                           onClose={onEditArtworkClose}
                         />
+
                         {artworks.isLoading && (
                           <>
                             <div className={s.portfolioRow}>

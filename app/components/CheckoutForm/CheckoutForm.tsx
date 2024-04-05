@@ -34,10 +34,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const { t } = useTranslation(["checkout", "common"]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
-  useEffect(() => {
-    console.log(plan);
-  }, []);
-
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
@@ -69,12 +65,13 @@ export default function CheckoutForm({ email, fullName, plan }) {
     style: {
       base: {
         color: "#32325d",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontFamily: "Arial, sans-serif",
         fontSmoothing: "antialiased",
-        fontSize: "18px",
+        fontSize: "16px",
         "::placeholder": {
-          color: "#aab7c4",
+          color: "#32325d",
         },
+        fontStyle: "italic",
       },
       invalid: {
         color: "#fa755a",
@@ -142,7 +139,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   // Create subscription
   function createSubscription({ customerId, paymentMethodId, priceId }) {
-    return fetch(`${apiBaseUrl}/api/Payments/subscriptions`, {
+    return fetch(`${apiBaseUrl}/api/payments/subscriptions`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -243,12 +240,9 @@ export default function CheckoutForm({ email, fullName, plan }) {
           {t("total")}
         </Box>
         <Box>
-          {plan?.product === "Portfolio"
-            ? `${t("newPlan")}`
-            : `${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
+          {`${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
         </Box>
       </Box>
-
       <Box className={styles.divider}></Box>
       <Box
         display="flex"
