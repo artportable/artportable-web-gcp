@@ -48,37 +48,22 @@ export default function Checkout() {
     }
   }, [initialized]);
 
-  useEffect(() => {
-    console.log(plan);
-  }, []);
-
   return (
     <>
       <Box className={s.root}>
         <div className={s.left}>
           <div className={s.leftContent}>
-            {plan?.product === "Portfolio" ? (
-              <div className={s.headlineDiv}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("fewSeconds")}
-                </Typography>
-                <Typography variant="h3" className={s.headlineText}>
-                  <strong>{t("zeroSek")}</strong> {t("moreSeconds")}
-                </Typography>
-                {/* <Typography variant="h1" className={s.headline}>
+            <div className={s.headlineDiv}>
+              <Typography variant="h1" className={s.headline}>
+                {t("fewSeconds")}
+              </Typography>
+              {/* <Typography variant="h1" className={s.headline}>
               några sekunder från att börja
             </Typography>
             <Typography variant="h1" className={s.headline}>
               ladda upp dina verk
             </Typography> */}
-              </div>
-            ) : (
-              <div className={s.headlineDiv}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("fewSecondsPremium")}
-                </Typography>
-              </div>
-            )}
+            </div>
             {/* <img
               className={s.image}
               src="/images/majadror.png"
@@ -87,23 +72,11 @@ export default function Checkout() {
           </div>
         </div>
         <div className={s.right}>
-          {plan?.product === "Portfolio" ? (
-            <div className={s.headlineDivMobile}>
-              <Typography variant="h1" className={s.headlineMobile}>
-                {t("fewSeconds")}
-              </Typography>
-              <Typography variant="h3" className={s.headlineText}>
-                <strong>{t("zeroSek")}</strong> {t("moreSeconds")}
-              </Typography>
-            </div>
-          ) : (
-            <div className={s.headlineDivMobile}>
-              <Typography variant="h1" className={s.headlineMobile}>
-                {t("fewSecondsPremium")}
-              </Typography>
-              <Typography variant="h5">{t("moreSeconds")}</Typography>
-            </div>
-          )}
+          <div className={s.headlineDivMobile}>
+            <Typography variant="h1" className={s.headlineMobile}>
+              {t("fewSeconds")}
+            </Typography>
+          </div>
           <Typography className={s.fillInText}>{t("pleaseFill")}</Typography>
           <Card className={s.card}>
             <img
