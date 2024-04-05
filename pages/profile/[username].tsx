@@ -394,10 +394,6 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
-  useEffect(() => {
-    console.log(artworks?.data);
-  }, []);
-
   return (
     <Main navBarItems={navBarItems}>
       <Head>

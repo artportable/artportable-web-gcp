@@ -77,15 +77,17 @@ export default function Boost(props) {
                 {" "}
                 <div className={s.imgText}>
                   <Typography variant="h4" className={s.textOne}>
-                    Marknadsför ditt verk!
+                    {t("promoteYourArt")}
                   </Typography>
                 </div>
               </div>
             </div>
             <div className={s.downMobile}>
-              <div className={s.contentPointHeader}>Öka din synlighet</div>
+              <div className={s.contentPointHeader}>
+                {t("increaseVisibility")}
+              </div>
 
-              <div className={s.priceNow}>Just nu 399 SEK</div>
+              <div className={s.priceNow}>{t("priceNow")}</div>
               <div
                 style={{
                   display: "flex",
@@ -95,20 +97,16 @@ export default function Boost(props) {
               >
                 <div className={s.contentPoint}>
                   <CheckIcon />
-                  <div className={s.contentDiv}>Nå en bredare publik</div>
+                  <div className={s.contentDiv}>{t("broaderPublic")}</div>
                 </div>
                 <div className={s.contentPoint}>
                   <CheckIcon />
-                  <div className={s.contentDiv}>
-                    Skapa möjlighet till ökad försäljning
-                  </div>
+                  <div className={s.contentDiv}>{t("moreSale")}</div>
                 </div>
               </div>
 
               <div>
-                <div className={s.contentText}>
-                  Ditt verk syns högst upp på Artportables startsida i 10 dagar!
-                </div>
+                <div className={s.contentText}>{t("startPage")}</div>
               </div>
             </div>
           </div>

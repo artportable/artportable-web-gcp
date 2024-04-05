@@ -590,9 +590,7 @@ export default function ArtworkPage(props) {
                         <span>{t("priceOnRequest")}</span>
                       )}
                     </div>
-                    <div>
-                      {artwork?.data?.IsBoosted && <div>Booosted ROCKET</div>}
-                    </div>
+
                     <div>
                       <div>
                         {username.value !== artwork.data.Owner.Username &&
