@@ -41,10 +41,6 @@ export default function Boost(props) {
   const s = styles();
 
   useEffect(() => {
-    console.log(props?.artworkId);
-  }, []);
-
-  useEffect(() => {
     if (!isReady) {
       setLoading(true);
     }

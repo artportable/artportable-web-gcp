@@ -32,13 +32,13 @@ export default function ImageContainerProfile({
   const topActions = editAction ? (
     <Button
       aria-label="edit"
-      className={ps.editButton}
-      variant="contained"
-      rounded
+      className={s.boostButton}
       disabled={isSaving}
       onClick={() => editAction(artwork)}
       startIcon={<BrushSharpIcon />}
-    ></Button>
+    >
+      Edit
+    </Button>
   ) : null;
 
   // Putting Link around SortableItem does not work, use click instead.
@@ -120,31 +120,41 @@ export default function ImageContainerProfile({
           </div>
         )}
       </div>
-      <div className={s.desktopEditButton}>
+      <div>
         {topActions && (
           <div className={s.likeButton}>
-            <div>{topActions}</div>
-            {artwork?.IsBoosted === false ? (
-              <Button
-                aria-label="boost"
-                className={s.boostButton}
-                onClick={() => {
-                  router.push(`/checkoutboost?${artwork.Id}`);
-                }}
-                startIcon={<RocketLaunchIcon />}
-              >
-                Marknadsför
-              </Button>
-            ) : (
-              <Button
-                aria-label="boost"
-                className={s.boostButton}
-                disabled
-                startIcon={<RocketLaunchIcon />}
-              >
-                Marknadsförs
-              </Button>
-            )}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <div>{topActions}</div>
+              <div>
+                {artwork?.IsBoosted === false ? (
+                  <Button
+                    aria-label="boost"
+                    className={s.boostButton}
+                    onClick={() => {
+                      router.push(`/checkoutboost?${artwork.Id}`);
+                    }}
+                    startIcon={<RocketLaunchIcon />}
+                  >
+                    Marknadsför
+                  </Button>
+                ) : (
+                  <Button
+                    aria-label="boost"
+                    className={s.boostButton}
+                    disabled
+                    startIcon={<RocketLaunchIcon />}
+                  >
+                    Marknadsförs
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>
