@@ -65,10 +65,6 @@ export default function CheckoutFormRocket({ email, fullName, artworkId }) {
     }
   }, [email, fullName]);
 
-  useEffect(() => {
-    console.log(customerId);
-  }, [customerId]);
-
   const cardStyle = {
     style: {
       base: {
@@ -178,12 +174,12 @@ export default function CheckoutFormRocket({ email, fullName, artworkId }) {
     if (countdown === 0) {
       clearInterval(countdownRef.current);
 
-      router.push(`/art/${artworkId}`);
+      router.push(`/`);
     }
   }, [countdown]);
 
   const handleSuccessClose = () => {
-    router.push(`/art/${artworkId}`);
+    router.push(`/`);
   };
 
   return (

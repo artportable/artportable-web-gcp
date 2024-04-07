@@ -26,7 +26,7 @@ export default function ArtworkListSortable({ items, editAction, t }) {
   const [itemIds, setItemIds] = useState<string[]>([]);
   // Saving original order to be able to reset sort changes.
   const [itemIdsOriginal, setItemIdsOriginal] = useState<string[]>([]);
-  const [sortActive, setSortActive] = useState(false)
+  const [sortActive, setSortActive] = useState(false);
   const [ordersHasChanged, setOrderHasChanged] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function ArtworkListSortable({ items, editAction, t }) {
         console.error("Failed to save order:", response.statusText);
       }
     } catch (err) {
-      console.log("Error in saveOrderClicked:", err);
+      console.error("Error in saveOrderClicked:", err);
     }
 
     setIsSaving(false);
