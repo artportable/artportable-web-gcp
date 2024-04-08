@@ -76,7 +76,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "30px",
       letterSpacing: "1px",
       marginTop: "20px",
-      marginBottom: "30px",
+      marginBottom: "10px",
       textAlign: "center",
       [theme.breakpoints.up("smPlus")]: {},
     },
