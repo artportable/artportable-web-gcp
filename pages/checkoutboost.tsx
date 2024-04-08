@@ -143,15 +143,11 @@ export default function Boost(props) {
 }
 
 export async function getServerSideProps({ locale, query }) {
-  // Directly extract the UUID as the first query parameter key
   const artworkId = Object.keys(query)[0] || null;
 
   if (!artworkId) {
     return { props: { error: "Artwork ID is missing", locale } };
   }
-
-  // Rest of your fetching logic here, if necessary
-  // For now, we'll directly pass the artworkId to the page
 
   return {
     props: {
