@@ -34,7 +34,7 @@ export default function Showroom() {
 
   const [backgroundImages, setBackgroundImages] = useState([]);
   const monthNames = Object.keys(showrooms);
-  const januaryIndex = monthNames.indexOf("MARS");
+  const januaryIndex = monthNames.indexOf("APRIL");
 
   const [value, setValue] = useState(januaryIndex !== -1 ? januaryIndex : 0);
 
