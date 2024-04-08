@@ -121,12 +121,12 @@ export default function Boost(props) {
                 title=""
               />
               <div>
-                <Typography>Vänligen fyll i dina uppgifter</Typography>
+                <Typography>{t("fillInDetails")}</Typography>
               </div>
             </div>
             <CardContent className={s.cardContentWidth}>
               <InputLabel>{t("paymentDetails")}</InputLabel>
-              {/* Stripe checkout HERE */}
+
               <Elements stripe={promise}>
                 <CheckoutFormRocket
                   email={email}
