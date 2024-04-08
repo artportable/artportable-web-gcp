@@ -216,7 +216,10 @@ export default function CheckoutFormRocket({ email, fullName, artworkId }) {
       >
         <Button
           variant="contained"
-          color="primary"
+          style={{
+            backgroundColor: "#FFDA7A",
+            color: "black",
+          }}
           rounded
           onClick={createPaymentMethod}
           disabled={processing || disabled || succeeded}
