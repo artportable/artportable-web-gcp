@@ -20,11 +20,14 @@ import { useGetUserProfile } from "../app/hooks/dataFetching/UserProfile";
 import { useGetProfileUser } from "../app/hooks/dataFetching/useGetProfileUser";
 import { LoadingContext } from "../app/contexts/loading-context";
 import CheckIcon from "@mui/icons-material/Check";
-import flowers from "../public/images/flowers.png";
+import { useGetArtwork } from "../app/hooks/dataFetching/Artworks";
+
 export default function Boost(props) {
   const stripeKey = process.env.NEXT_PUBLIC_STRIPE_KEY;
   const promise = loadStripe(stripeKey);
   const router = useRouter();
+
+  const artwork = useGetArtwork(props?.artworkId);
 
   const { isSignedIn, username, socialId, membership, phone } =
     useContext(UserContext);
@@ -74,6 +77,9 @@ export default function Boost(props) {
                 <div className={s.imgText}>
                   <Typography variant="h4" className={s.textOne}>
                     {t("promoteYourArt")}
+                  </Typography>
+                  <Typography variant="h5" className={s.textOne}>
+                    "{artwork?.data?.Title}"
                   </Typography>
                 </div>
               </div>
