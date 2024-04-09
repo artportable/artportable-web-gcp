@@ -23,7 +23,7 @@ export default function ImageContainerProfile({
   const s = styles();
   const ps = profileStyles();
 
-  const { t } = useTranslation(["art", "common"]);
+  const { t } = useTranslation(["art", "common", "profile"]);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const languageCode = i18n.language;
   const priceFormatter = getPriceFormatter(artwork, languageCode);
@@ -37,7 +37,7 @@ export default function ImageContainerProfile({
       onClick={() => editAction(artwork)}
       startIcon={<BrushSharpIcon />}
     >
-      Edit
+      {t("profile:editButton")}
     </Button>
   ) : null;
 
@@ -141,7 +141,7 @@ export default function ImageContainerProfile({
                     }}
                     startIcon={<RocketLaunchIcon />}
                   >
-                    Marknadsför
+                    {t("profile:promoteArtwork")}
                   </Button>
                 ) : (
                   <Button
@@ -150,7 +150,7 @@ export default function ImageContainerProfile({
                     disabled
                     startIcon={<RocketLaunchIcon />}
                   >
-                    Marknadsförs
+                    {t("profile:promotedArtwork")}
                   </Button>
                 )}
               </div>

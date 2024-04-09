@@ -87,5 +87,8 @@
   "endSort": "Sluta sortera",
   "saveSort": "Spara",
   "resetSort": "Avbryt",
-  "enterUserName": "Det räcker med användarnamnet"
+  "enterUserName": "Det räcker med användarnamnet",
+  "editButton": "Redigera",
+  "promoteArtwork": "Marknadsför",
+  "promotedArtwork": "Marknadsförs"
 }
