@@ -191,11 +191,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     uploadButton: {
       marginTop: "20px",
-      backgroundColor: "#FFD700",
+      backgroundColor: "#FFDA7A",
       display: "flex",
       margin: "0 auto",
-      padding: "7px",
-
+      fontSize: "16px",
+      borderRadius: "33px",
       [theme.breakpoints.up("md")]: {
         display: "flex",
       },
