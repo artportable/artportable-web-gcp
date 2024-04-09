@@ -280,6 +280,11 @@ export default function DiscoverPage({ navBarItems }) {
               />
               <Tab
                 className={s.text}
+                label={t("discover:artists")}
+                {...a11yProps(t("discover:artists"))}
+              />
+              <Tab
+                className={s.text}
                 label={t("discover:stories")}
                 {...a11yProps(t("discover:stories"))}
               />
@@ -289,11 +294,7 @@ export default function DiscoverPage({ navBarItems }) {
                 label={t("discover:showroom")}
                 {...a11yProps(t("discover:showroom"))}
               />
-              <Tab
-                className={s.text}
-                label={t("discover:artists")}
-                {...a11yProps(t("discover:artists"))}
-              />
+
               {isSignedIn.value && (
                 <Tab
                   className={s.text}
@@ -366,18 +367,19 @@ export default function DiscoverPage({ navBarItems }) {
                 />
               </TabPanel>
               <TabPanel value={activeTab} index={4}>
-                <DiscoverStoriesTab />
-              </TabPanel>
-
-              <TabPanel value={activeTab} index={5}>
-                <Showroom />
-              </TabPanel>
-              <TabPanel value={activeTab} index={6}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
+              <TabPanel value={activeTab} index={5}>
+                <DiscoverStoriesTab />
+              </TabPanel>
+
+              <TabPanel value={activeTab} index={6}>
+                <Showroom />
+              </TabPanel>
+
               <TabPanel value={activeTab} index={7}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}

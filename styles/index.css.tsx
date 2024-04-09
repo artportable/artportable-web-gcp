@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
     discoverContainer: {
       position: "relative",
       paddingTop: theme.spacing(0),
-      marginTop: '50px',
+      marginTop: "50px",
     },
     tabContainer: {
       display: "flex",
@@ -23,27 +23,26 @@ export const styles = makeStyles((theme: Theme) =>
         color: "black",
         opacity: 1,
       },
-      
-      
+
       margin: "0 auto",
       "& .MuiTabs-scroller": {
         flexGrow: "0",
       },
-  
+
       "& .MuiTabScrollButton-root": {
         width: "unset",
         opacity: "0.8",
       },
       justifyContent: "center",
       width: "100%",
-      '& span': {
+      "& span": {
         // Prevent tab automatically being upper case.
-        textTransform: 'none',
+        textTransform: "none",
         // Same look as header set in DiscoverArt.tsx.
         fontWeight: 500,
         [theme.breakpoints.up("sm")]: {
           // fontSize: '1.35rem',
-          fontSize: '1.5rem',
+          fontSize: "1.1rem",
         },
       },
     },
@@ -60,7 +59,7 @@ export const styles = makeStyles((theme: Theme) =>
       "& .MuiTabs-scroller": {
         flexGrow: "0",
       },
-    
+
       "& .MuiTabScrollButton-root": {
         width: "unset",
         opacity: "0.8",
@@ -78,7 +77,7 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: "12px",
         margin: 0,
       },
-      '&:hover': {
+      "&:hover": {
         opacity: 0.4,
       },
     },
