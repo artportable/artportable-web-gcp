@@ -345,47 +345,6 @@ export default function Profile({
           </RWebShare>
         </div>
       )}
-
-      {isMyProfile && (
-        <div>
-          <div className={s.hovs}>
-            <Button rounded className={s.offersButton} onClick={handleOpen}>
-              <div>
-                <Typography
-                  style={{ fontSize: "11px" }}
-                  className={s.headerButtonOffers}
-                >
-                  {t("profile:exclusiveOffers").toLocaleUpperCase()}
-                </Typography>
-              </div>
-            </Button>
-          </div>
-          <div>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              className={s.modalContainer}
-            >
-              <div className={s.modalOffers}>
-                <Button
-                  onClick={handleClose}
-                  style={{
-                    backgroundColor: "#000000",
-                    borderRadius: "20px",
-                    color: "#f7f7f7",
-                    marginTop: "20px",
-                    marginBottom: "20px",
-                    display: "flex",
-                  }}
-                >
-                  {t("profile:closeButton")}
-                </Button>
-                <Offers></Offers>
-              </div>
-            </Modal>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
