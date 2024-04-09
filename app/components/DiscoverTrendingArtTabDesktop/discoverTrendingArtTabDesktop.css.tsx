@@ -8,11 +8,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     filterSummary: {
-      fontSize: "20px",
+      fontSize: "16px",
+      margin: "0px 10px 0px 10px",
       fontWeight: 500,
-      '&:hover': {
+      "&:hover": {
         opacity: 0.7,
-      }
+      },
     },
 
     filterDetailsTags: {
