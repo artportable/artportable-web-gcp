@@ -301,7 +301,6 @@ export default function Profile({
                               CategoryType.INTERACTIVE
                             )
                           }
-                          startIcon={<UploadIcon />}
                           rounded
                         >
                           {t("upload:upload")}
@@ -359,21 +358,6 @@ export default function Profile({
                   {t("profile:exclusiveOffers").toLocaleUpperCase()}
                 </Typography>
               </div>
-            </Button>
-            <Button
-              rounded
-              className={s.monthlyArtistButton}
-              onClick={redirectToRocketUpgrade}
-              style={{ marginBottom: "20px" }}
-            >
-              <Typography className={s.headerButtonRocket}>
-                {t("profile:rocket")}
-              </Typography>
-              <img
-                src="/rocket-white.png"
-                alt="Rocket Icon"
-                className={s.rocketIcon}
-              />
             </Button>
           </div>
           <div>
