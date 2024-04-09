@@ -86,5 +86,8 @@
   "endSort": "Slutt å sortere",
   "saveSort": "Lagre",
   "resetSort": "Avbryt",
-  "enterUserName": "Det er nok med brukernavnet"
+  "enterUserName": "Det er nok med brukernavnet",
+  "editButton": "redigere",
+  "promoteArtwork": "Markedsfør",
+  "promotedArtwork": "Markedsføres"
 }

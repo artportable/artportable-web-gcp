@@ -606,7 +606,7 @@ export default function Profile(props) {
                                                   }
                                                   startIcon={<BrushSharpIcon />}
                                                 >
-                                                  Redigera
+                                                  {t("profile:editButton")}
                                                 </Button>
                                               </div>
                                               <div>
@@ -624,7 +624,9 @@ export default function Profile(props) {
                                                       <RocketLaunchIcon />
                                                     }
                                                   >
-                                                    Marknadsför
+                                                    {t(
+                                                      "profile:promoteArtwork"
+                                                    )}
                                                   </Button>
                                                 ) : (
                                                   <Button
@@ -635,7 +637,9 @@ export default function Profile(props) {
                                                       <RocketLaunchIcon />
                                                     }
                                                   >
-                                                    Marknadsförs
+                                                    {t(
+                                                      "profile:promotedArtwork"
+                                                    )}
                                                   </Button>
                                                 )}
                                               </div>
