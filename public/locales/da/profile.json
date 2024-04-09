@@ -86,5 +86,8 @@
   "endSort": "Stop med at sortere",
   "saveSort": "Gem",
   "resetSort": "Annuller",
-  "enterUserName": "Brugernavnet er tilstrækkeligt"
+  "enterUserName": "Brugernavnet er tilstrækkeligt",
+  "editButton": "redigere",
+  "promoteArtwork": "Markedsfør",
+  "promotedArtwork": "Markedsføres"
 }
