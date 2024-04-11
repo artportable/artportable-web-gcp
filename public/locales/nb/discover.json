@@ -27,5 +27,9 @@
   "showroom": "Utstillinger",
   "likedArt": "Likte verk",
   "toggleLikeArt": "Vis likte verk",
-  "notLiked": "Kunstneren har ikke likt noen verk ennå."
+  "notLiked": "Kunstneren har ikke likt noen verk ennå.",
+  "close": "Lukk",
+  "loggedLike": "Du må logge inn for å kunne like verket",
+  "createAccount": "Opprett konto",
+  "logIn": "Logg inn"
 }

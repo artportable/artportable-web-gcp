@@ -27,5 +27,9 @@
   "showroom": "Udstillinger",
   "likedArt": "Likede værk",
   "toggleLikeArt": "Vis foretrukne kunstværker",
-  "notLiked": "Kunstneren har endnu ikke kunne lide nogen værker."
+  "notLiked": "Kunstneren har endnu ikke kunne lide nogen værker.",
+  "close": "Luk",
+  "loggedLike": "Du skal logge ind for at kunne lide værket",
+  "createAccount": "Opret konto",
+  "logIn": "Log ind"
 }
