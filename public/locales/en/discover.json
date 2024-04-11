@@ -27,5 +27,9 @@
   "showroom": "Showroom",
   "likedArt": "Liked art",
   "toggleLikeArt": "Show liked artworks",
-  "notLiked": "The artist hasn't liked any artworks yet."
+  "notLiked": "The artist hasn't liked any artworks yet.",
+  "close": "Close",
+  "loggedLike": "You need to log in to like the artwork",
+  "createAccount": "Create account",
+  "logIn": "Log in"
 }

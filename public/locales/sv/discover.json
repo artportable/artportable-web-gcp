@@ -27,5 +27,9 @@
   "showroom": "Utställningar",
   "likedArt": "Gillade verk",
   "toggleLikeArt": "Visa gillade verk",
-  "notLiked": "Konstnären har inte gillat några verk ännu."
+  "notLiked": "Konstnären har inte gillat några verk ännu.",
+  "close": "Stäng",
+  "loggedLike": "Du behöver logga in för att kunna gilla verket",
+  "createAccount": "Skapa konto",
+  "logIn": "Logga in"
 }
