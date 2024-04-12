@@ -36,28 +36,6 @@ export default function DiscoverArtists({
   return (
     <Box>
       <ArtistsIndex />
-      <div className={s.titleEmblem}>
-        <Typography className={s.title}>
-          {t("discover:monthlyArtist")}
-        </Typography>
-      </div>
-      <div className={s.discoverArtistWrapper}>
-        {monthlyArtist &&
-          monthlyArtist?.map((artist, index) => (
-            <div>
-              <DiscoverArtistCard
-                key={index}
-                artist={artist}
-                onFollowClick={onFollowClick}
-              />
-            </div>
-          ))}
-      </div>
-      {isLoading && loadMore && (
-        <div ref={loadMoreElementRef}>
-          <DiscoverArtistSkeletonCard />
-        </div>
-      )}
     </Box>
   );
 }
