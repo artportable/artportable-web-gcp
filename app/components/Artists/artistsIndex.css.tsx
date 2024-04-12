@@ -13,7 +13,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       display: "flex",
       flexDirection: "row",
-      overflowX: "auto", // Enable horizontal scrolling
+      overflowX: "auto",
       maxWidth: "100%",
       margin: "0 auto",
       zIndex: 10,
