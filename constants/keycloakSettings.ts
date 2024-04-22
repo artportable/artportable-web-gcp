@@ -13,6 +13,14 @@ export const getCurrentLanguage = () => {
       return "en";
     } else if (languageCode === "nb") {
       return "nb";
+    } else if (languageCode === "da") {
+      return "da";
+    } else if (languageCode === "fi") {
+      return "fi";
+    } else if (languageCode === "is") {
+      return "is";
+    } else if (languageCode === "de") {
+      return "de";
     } else {
       return "sv";
     }

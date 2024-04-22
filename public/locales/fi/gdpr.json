@@ -1,0 +1,46 @@
+{
+
+  "gdpr": {
+    "privacyPolicy": {
+      "title": "Tietosuojakäytäntö",
+      "lastUpdated": "Viimeksi päivitetty: 22. syyskuuta 2021",
+      "texts": [
+        "Tämä tietosuojakäytäntö kuvaa käytäntöjämme ja menettelytapojamme tietojesi keräämisessä, käytössä ja luovuttamisessa, kun käytät palvelua, ja kertoo sinulle yksityisyytesi oikeuksista ja siitä, miten laki suojelee sinua.",
+        "Käytämme henkilökohtaisia tietojasi palvelun tarjoamiseen ja parantamiseen. Käyttämällä palvelua hyväksyt tietojesi keräämisen ja käytön tämän tietosuojakäytännön mukaisesti."
+      ]
+    },
+    "sections": [
+      {
+        "title": "Tulkinta ja määritelmät",
+        "interpretation": {
+          "title": "Tulkinta",
+          "description": "Suurella alkukirjaimella kirjoitetut sanat ovat määriteltyjä seuraavissa olosuhteissa. Seuraavilla määritelmillä on sama merkitys riippumatta siitä, esiintyvätkö ne yksikössä vai monikossa."
+        },
+        "definitions": {
+          "title": "Määritelmät",
+          "description": "Tämän tietosuojakäytännön tarkoituksia varten:",
+          "list": [
+            "<strong>Tili</strong> tarkoittaa sinulle luotua yksilöllistä tiliä, jolla voit käyttää palveluamme tai sen osia.",
+            "<strong>Yritys</strong> (tässä sopimuksessa mainittuna joko 'Yritys', 'Me', 'Meidän' tai 'Meidän' nimellä) viittaa Artportable AB:hen, osoitteessa Åsögatan 176, Tukholma, Ruotsi.",
+            "<strong>Evästeet</strong> ovat pieniä tiedostoja, jotka verkkosivusto asettaa tietokoneellesi, matkapuhelimeesi tai mihin tahansa muuhun laitteeseen, sisältäen selailuhistoriasi yksityiskohdat kyseisellä verkkosivustolla monissa käyttötarkoituksissaan.",
+            "<strong>Maa</strong> tarkoittaa: Ruotsi.",
+            "<strong>Laite</strong> tarkoittaa mitä tahansa laitetta, joka voi käyttää palvelua, kuten tietokonetta, matkapuhelinta tai digitaalista tablettia.",
+            "<strong>Henkilötiedot</strong> ovat tietoja, jotka liittyvät tunnistettuun tai tunnistettavissa olevaan yksilöön.",
+            "<strong>Palvelu</strong> viittaa verkkosivustoon.",
+            "<strong>Palveluntarjoaja</strong> tarkoittaa mitä tahansa luonnollista tai oikeushenkilöä, joka käsittelee tietoja Yrityksen puolesta. Se viittaa kolmannen osapuolen yrityksiin tai yksilöihin, joita Yritys käyttää palvelun helpottamiseksi, palvelun tarjoamiseksi Yrityksen puolesta, palveluun liittyvien palveluiden suorittamiseksi tai Yrityksen auttamiseksi analysoimaan, miten palvelua käytetään.",
+            "<strong>Kolmannen osapuolen sosiaalisen median palvelu</strong> viittaa mihin tahansa verkkosivustoon tai mihin tahansa sosiaalisen verkoston verkkosivustoon, jonka kautta käyttäjä voi kirjautua sisään tai luoda tilin palvelun käyttämiseksi.",
+            "<strong>Käyttötiedot</strong> viittaa automaattisesti kerättyihin tietoihin, jotka on luotu joko palvelun käytöstä tai itse palvelun infrastruktuurista (esimerkiksi sivustovierailun kestosta).",
+            "<strong>Verkkosivusto</strong> viittaa Artportableen, joka on saatavilla osoitteessa https://artportable.com.",
+            "<strong>Sinä</strong> tarkoittaa yksilöä, joka käyttää palvelua tai yritystä tai muuta oikeushenkilöä, joka käyttää palvelua, kulloinkin sovellettavan lain mukaan."
+            ]
+        }
+      },
+      {
+        "title": "Henkilötietojesi kerääminen ja käyttö",
+        "typesOfData": {
+          
+        }
+      }
+    ]
+  }
+}
