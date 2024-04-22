@@ -1,0 +1,22 @@
+{
+    "editStory": "Muokkaa tarinaa",
+    "storyTitle": "Otsikko",
+    "storyDescription": "Kuvaus",
+    "deleteStory": "Poista tarina?",
+    "storyUploadedSuccessfully": "Tarina ladattu!",
+    "title": "Otsikko",
+    "description": "Kuvaus",
+    "upload": "Lataa",
+    "previewText": "Valitse esikatseluun kuva",
+    "selectImage": "Valitse kuva",
+    "dragandDropOrClick": "Raahaa ja pudota kuva tähän tai klikkaa",
+    "informationOne": "Olet yksin vastuussa lataamastasi käyttäjäsisällöstä.",
+    "informationTwo": "Vahvistat, että olet ainoa käyttäjäsisällön tekijä tai sinulla on kaikki tarvittavat oikeudet tehdä käyttäjäsisältö saataville.",
+    "informationThree": "Vakuutat lisäksi, että käyttäjäsisältö ei ole obsceenia, häiritsevää tai muuten laitonta.",
+    "addmoreImages": "Täällä voit lisätä lisäkuvia teoksesta, esimerkiksi toisesta kulmasta tai kuvan teoksen luomisvaiheesta.",
+    "publish": "Julkaise",
+    "doneCropping": "Kun olet valmis rajauksen kanssa, paina vihreää painiketta.",
+    "published": "Julkaistu",
+    "deleteStoryWarningTitle": "Oletko varma, että haluat poistaa tarinan?",
+    "deleteStoryWarningText": "Vahvista, että haluat poistaa tarinan"
+}

@@ -1,0 +1,4 @@
+{
+  "pleaseTryAgain" : "Kanavan avaaminen epäonnistui, yritä uudelleen myöhemmin",
+  "referToArtwork" : "Ostopyyntö\n[{{artwork.title}}]({{artwork.url}})"
+}

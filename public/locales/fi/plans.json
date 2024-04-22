@@ -1,0 +1,62 @@
+{
+  "welcomeTo": "Tervetuloa Pohjoismaiden suurimpaan taideyhteisöön",
+  "artPortableDescription": "Artportablen portfolion avulla voit esitellä taidettasi ammattimaisella tavalla. Artportable on kohtaamispaikka taiteilijoille, taiteen ostajille ja taiteen ystäville.",
+  "ourMemberships": "Jäsenyytemme",
+  "youCanAlwaysUpdateYourMembership": "Voit aina päivittää jäsenyytesi pakettia",
+  "yearlyPayment": "Vuotuinen maksu",
+  "monthlyPayment": "Kuukausimaksu",
+  "sek": "SEK",
+  "signUp": "Rekisteröidy",
+  "plans": {
+    "free": {
+      "name": "Ilmainen",
+      "subtitle": "Taiteen ystävä - hanki ilmainen tili tänään ja löydä alkuperäistä taidetta.",
+      "listTexts": [
+        "Seuraa taiteilijoita",
+        "Löydä taidetta kotiisi",
+        "Juttele ja lähetä tiedusteluja taideteoksista",
+        "Lue artikkeleita ja saat päivityksiä näyttelyistä"
+      ]
+    },
+    "portfolio": {
+      "name": "Portfolio",
+      "subtitle": "Taiteilija - lisää taideuraasi ja saa kyselyitä käyttämällä Portfolioa.",
+      "trial": "10 päivän ilmainen kokeilu!",
+      "listTexts": [
+        "Lataa taideteoksesi",
+        "Juttele ja saa kyselyitä taideteoksestasi",
+        "Maksa 0 % provisio myydyistä taideteoksista",
+        "Seuraa ja vuorovaikutusta muiden taiteilijoiden kanssa",
+        "Lue artikkeleita ja saat päivityksiä näyttelyistä",
+        "SEO-optimoitu portfolio",
+        "Mobiilioptimoitu sivu"
+      ]
+    },
+    "portfolioPremium": {
+      "name": "Portfolio Premium",
+      "subtitle": "Taiteilija - saat oman taidekoordinaattorin ja olet etusijalla syötteessä.",
+      "listTexts": [
+        "Kaikki Portfolioon sisältyvä",
+        "Ole etusijalla syötteessä",
+        "Julkaise jopa 1500 taideteosta",
+        "Ei provisiota myydyistä taideteoksista",
+        "Julkaise tarinoita",
+        "Lajittele taideteokset",
+        "Lisääntynyt näkyvyys Artportablessa",
+        "Tuki",
+        "Henkilökohtainen taidekoordinaattori",
+        "Apu ammattimaisen portfolion luomisessa",
+        "Julkaise uutisia",
+        "Lisääntynyt näkyvyys Artportablessa",
+        "Henkilökohtainen opastus ostoaiheissa",
+        "30% alennus näyttelyistä Artportablen Showroomissa",
+        "Yhteys Artportablen markkinointiosastoon",
+        "Tuki"
+      ]
+    }
+  },
+  "joinTheCommunity": "Liity yhteisöön",
+  "Endast siffror": "Vain numerot",
+  "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer": "Jatkaaksesi päivitystä, sinun on annettava puhelinnumerosi",
+  "Telefonnummer": "Puhelinnumero"
+}
