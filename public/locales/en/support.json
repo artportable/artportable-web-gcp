@@ -22,7 +22,10 @@
   "yourWelcome": "You are always welcome to contact us if you have any questions about the service or want to get in touch with us.",
   "openingHours": "Opening Hours: ",
   "8-17": "Monday - Friday, 8 a.m - 5 p.m",
-  "deviating": "Deviating opening hours during bank holidays and art exhibitions openings."
-
-
+  "deviating": "Deviating opening hours during bank holidays and art exhibitions openings.",
+  "unsubscribe": {
+    "artworkUploadedEmail": "I do not want to receive emails when an artist I follow uploads a new artwork.",
+    "logIn": "Log in from the menu",
+    "stopReceivingEmails": "Accept"
+  }
 }

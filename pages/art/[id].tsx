@@ -17,7 +17,10 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { styles } from "../../styles/art.css";
-import { capitalizeFirst } from "../../app/utils/util";
+import {
+  capitalizeFirst,
+  formatUserName,
+} from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -53,6 +56,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
+import {
+  sendArtworkLikedEmail,
+  sendInformFollowersEmail,
+} from '../../app/utils/emailUtil';
+import { config } from '../../config';
 
 import { Select } from "@mui/material";
 
@@ -68,10 +76,16 @@ export default function ArtworkPage(props) {
   const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query;
-  const { username, socialId, membership } = useContext(UserContext);
+  const { username, socialId, membership, email: userEmail, given_name, family_name } = useContext(UserContext);
+  
+  const USER_FULL = useContext(UserContext);
+  // console.log('USER_FULL', USER_FULL);
+  // console.log('userEmail', userEmail);
+  
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
+  // console.log('artwork', artwork);
 
   const { like } = usePostLike();
   const { follow } = usePostFollow();
@@ -161,9 +175,53 @@ export default function ArtworkPage(props) {
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
     !isLiked
-      ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
-      : null;
+    ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
+    : null;
+    
+    /*
+    if (!isLiked) {
+      console.log('TOGGLE LIKE');
+      console.log('artwork', artwork);
+      console.log('username', username);
+      const artistName = artwork?.data?.Owner?.Username;
+      console.log('artistName', artistName);
+      const likedByArtist = username.value && username.value === artistName;
+      console.log('likedByArtist', likedByArtist);
+      if (!likedByArtist) {
+        // Email the artist that an artwork has been liked.
+        sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value));
+      }
+    }
+    */
   }
+
+  const informFollowers = async (data) => {
+    console.log('informFollowers', data);
+    console.log('process', process);
+    console.log('process.env', process.env);
+    console.log('USER_FULL', USER_FULL);
+    console.log('token', token);
+
+    try {
+      const result = await sendInformFollowersEmail(data, token)//, userEmail.value)
+      console.log('Send result:', result);
+    } catch(err) {
+      console.log('sendInformFollowersEmail error:', err);
+    }
+    // console.log('After informFollowers');
+    
+
+    // .then(result => {
+    // })
+    // .catch(err => {
+    // })
+    // setTimeout(() => {
+      // console.log('Timeout over!');
+    // }, 0)
+    // console.log('Do push!');
+    // router.push("/");
+  }
+
 
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />
@@ -241,6 +299,10 @@ export default function ArtworkPage(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
+
+      {/* {artwork && artwork?.data?.Owner?.Username === 'larsf' &&
+        <button onClick={() => informFollowers(artwork.data)}>TEST EMAIL</button>
+      } */}
 
       {artwork && artwork.data && (
         <>
@@ -669,7 +731,7 @@ export default function ArtworkPage(props) {
                           </AccordionSummary>
 
                           <AccordionDetails className={s.accordionDetails}>
-                            <Typography className={s.typography}>
+                            <Typography className={s.typography} style={{ whiteSpace: 'pre-wrap-?' }}>
                               {artwork?.data?.Description}
                             </Typography>
                           </AccordionDetails>

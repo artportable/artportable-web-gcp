@@ -100,3 +100,9 @@ export async function fetchWithTimeout(resource, options, _Timeout = {}) {
   clearTimeout(id);
   return response;
 }
+
+export const formatUserName = (givenName, familyName, placeholder = '') => {
+  if (!givenName || !familyName) return placeholder
+
+  return `${givenName} ${familyName}`
+}

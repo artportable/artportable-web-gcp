@@ -22,5 +22,10 @@
   "yourWelcome": "Du er altid velkommen til at kontakte os, hvis du har spørgsmål om tjenesten eller ønsker at komme i kontakt med os.",
   "openingHours": "Åbningstider: ",
   "8-17": "Mandag - fredag, kl. 8.00 - 17.00",
-  "deviating": "Afvigende åbningstider i forbindelse med helligdage og åbning af kunstudstillinger."
+  "deviating": "Afvigende åbningstider i forbindelse med helligdage og åbning af kunstudstillinger.",
+  "unsubscribe": {
+    "artworkUploadedEmail": "Jeg ønsker ikke at modtage e-mails, når en kunstner, jeg følger, uploader et nyt værk.",
+    "logIn": "Log ind i menuen",
+    "stopReceivingEmails": "Accepter"
+  }
 }

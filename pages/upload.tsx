@@ -34,6 +34,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import Link from "next/link";
+import { sendInformFollowersEmail} from '../app/utils/emailUtil';
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
@@ -86,6 +87,13 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   const cropperRef = useRef(null);
 
+  // const followersData = useGetFollowers(data?.Username, followersOpen);
+  // console.log('followersData', followersData);
+  // name: "Jimmy"
+  // profilePicture: "3653ade3-9e5d-4efa-becb-08569d760c6b.jpg"
+  // surname: "Lord"
+  // username: "jimpa"
+
   const { refreshToken } = useRefreshToken();
 
   useEffect(() => {
@@ -134,6 +142,8 @@ export default function UploadArtworkPage({ navBarItems }) {
         const res = await usePostArtwork(artwork, socialId.value, token);
 
         if (res && res.Id) {
+          // console.log('SEND INFORMED');
+          // sendInformFollowersEmail(res, 'lf@artworks.io');
           router.push("/art/" + res.Id);
         }
       }
@@ -170,6 +180,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         const res = await usePostArtwork(artwork, socialId.value, token);
 
         if (res && res.Id) {
+          // sendInformFollowersEmail(res);
           router.push("/art/" + res.Id);
         }
       }
@@ -180,6 +191,25 @@ export default function UploadArtworkPage({ navBarItems }) {
       sessionStorage.setItem("refresh", "false");
     }
   }, [uploadArtwork]);
+
+  const informFollowers = (res) => {
+    fetch("/api/informFollowers", res)
+    .then(result => {
+      console.log('result', result);
+    })
+    .catch(err => {
+      console.log('err', err);
+    })
+    // fetch("/api/informFollowers", {
+    //   body: JSON.stringify({
+    //     artwork: res,
+    //   }),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   method: "POST",
+    // });
+  }
 
   const handleSnackbarClose = (
     event?: React.SyntheticEvent,

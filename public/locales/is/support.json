@@ -22,5 +22,10 @@
   "yourWelcome": "Þú ert alltaf velkomin til að hafa samband við okkur ef þú hefur einhverjar spurningar um þjónustuna eða vilt komast í samband við okkur.",
   "openingHours": "Opnunartími: ",
   "8-17": "Mánudagur - föstudagur, 8 - 17.",
-  "deviating": "Afvíkandi opnunartími á rauðum dagum og opnunardögum."
+  "deviating": "Afvíkandi opnunartími á rauðum dagum og opnunardögum.",
+  "unsubscribe": {
+    "artworkUploadedEmail": "Ég vil ekki fá tölvupóst þegar listamaður sem ég fylgi setur upp nýtt verk.",
+    "logIn": "Skrá inn í valmyndinni",
+    "stopReceivingEmails": "Samþykkja"
+  }
 }
