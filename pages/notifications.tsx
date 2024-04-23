@@ -36,11 +36,16 @@ export default function Support({ navBarItems }) {
   console.log('username', username);
   console.log('isSignedIn', isSignedIn);
 
-  let mailType = ''
+  // let mailType = ''
+  let description = '', accept = '', decline = '';
   if (type === MailTypes.ARTWORK) {
-
+    description = t('unsubscribe.artworkUploadedEmail')
+    accept = ''
+    decline = ''
   } else if (type === MailTypes.LIKE) {
-
+    return null;
+  } else {
+    return null;
   }
 
   return (
@@ -72,21 +77,40 @@ export default function Support({ navBarItems }) {
           }
           <Button variant="outlined" disabled={!isSignedIn.value}>{t("unsubscribe.stopReceivingEmails")}</Button>
         </div> */}
-        <div className={s.paddingWidth}>
+      <div style={{
+        minHeight: '50vh',
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        // border: '1px solid red',
+      }}>
         { !isSignedIn.value &&
-            <Typography variant="body1">
-              {t("unsubscribe.logIn")}
-            </Typography>
-          }
-          <Typography variant="body1" className={s.headerTypo}>
-            {t("Jag vill inte få mail när en konstnär jag följer lägger upp ett nytt verk (en gång om dagen max).")}
+          <Typography variant="body1" style={{ marginBottom: '30px' }}>
+            {t("unsubscribe.logIn")}
           </Typography>
-          <Button variant="outlined" disabled={!isSignedIn.value}>{t("unsubscribe.stopReceivingEmails")}</Button>
-          <Typography variant="body1" className={s.headerTypo}>
-            {t("Jag vill få mail när någon likear ett av mina verk (en gång om dagen max).")}
-          </Typography>
-          <Button variant="outlined" disabled={!isSignedIn.value}>{t("Ja")}</Button><Button variant="outlined" disabled={!isSignedIn.value}>{t("Nej")}</Button>
+        }
+        <Typography variant="h4" className={s.headerTypo}>
+          {description}
+        </Typography>
+        <div style={{
+          display: 'flex',
+          flexFlow: 'row wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          // border: '1px solid blue',
+        }}>
+          <Button variant="outlined" disabled={!isSignedIn.value} style={{ margin: '0 10px 10px 10px' }}>
+            {t('unsubscribe.startReceivingEmails')}
+          </Button>
+          <Button variant="outlined" disabled={!isSignedIn.value} style={{ margin: '0 10px 10px 10px' }}>
+            {t('unsubscribe.stopReceivingEmails')}
+          </Button>
         </div>
+      </div>
+      <div className={s.paddingWidth}>
+      </div>
     </Main>
   )
   return (

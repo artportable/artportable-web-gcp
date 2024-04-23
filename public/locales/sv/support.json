@@ -24,8 +24,10 @@
   "8-17": "Måndag - fredag, 8 - 17.",
   "deviating": "Avvikande öppettider vid röda dagar och vernissager.",
   "unsubscribe": {
-    "artworkUploadedEmail": "Jag vill inte få mail när en konstnär jag följer lägger upp ett nytt verk.",
+    "artworkUploadedEmail": "Vill du få mail när en konstnär du följer lägger upp ett nytt verk?",
+    "artworkLikedEmail": "Vill du få mail när någon gillar ett av dina verk?",
     "logIn": "Logga in i menyn",
-    "stopReceivingEmails": "Acceptera"
+    "startReceivingEmails": "Ja, jag vill få mail",
+    "stopReceivingEmails": "Nej, jag vill inte få mail"
   }
 }

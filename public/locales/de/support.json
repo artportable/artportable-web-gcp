@@ -24,8 +24,10 @@
   "8-17": "Montag bis Freitag von 8 bis 17 Uhr.",
   "deviating": "Abweichende Öffnungszeiten an Feiertagen und bei Vernissagen.",
   "unsubscribe": {
-    "artworkUploadedEmail": "Ich möchte keine E-Mails erhalten, wenn ein Künstler, dem ich folge, ein neues Werk hochlädt.",
+    "artworkUploadedEmail": "Möchtest du per E-Mail benachrichtigt werden, wenn ein Künstler, dem du folgst, ein neues Kunstwerk hochlädt?",
+    "artworkLikedEmail": "Möchtest du eine E-Mail erhalten, wenn jemand eines deiner Werke mag?",
     "logIn": "Einloggen im Menü",
-    "stopReceivingEmails": "Akzeptieren"
+    "startReceivingEmails": "Ja, ich möchte E-Mails erhalten",
+    "stopReceivingEmails": "Nein, ich möchte keine E-Mails erhalten"
   }
 }

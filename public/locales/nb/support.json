@@ -24,8 +24,10 @@
   "8-17": "Mandag - fredag, kl. 8:00 - 17:00",
   "deviating": "Avvikende åpningstider i forbindelse med helligdager og åpning av kunstutstillinger.",
   "unsubscribe": {
-    "artworkUploadedEmail": "Jeg ønsker ikke å motta e-post når en kunstner jeg følger legger ut et nytt verk.",
+    "artworkUploadedEmail": "Vil du motta e-post når en kunstner du følger legger ut et nytt verk?",
+    "artworkLikedEmail": "Vil du få e-post når noen liker en av verkene dine?",
     "logIn": "Logg inn i menyen",
-    "stopReceivingEmails": "Godta"
+    "startReceivingEmails": "Ja, jeg vil motta e-post",
+    "stopReceivingEmails": "Nei, jeg vil ikke motta e-post"
   }
 }

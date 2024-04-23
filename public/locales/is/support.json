@@ -24,8 +24,10 @@
   "8-17": "Mánudagur - föstudagur, 8 - 17.",
   "deviating": "Afvíkandi opnunartími á rauðum dagum og opnunardögum.",
   "unsubscribe": {
-    "artworkUploadedEmail": "Ég vil ekki fá tölvupóst þegar listamaður sem ég fylgi setur upp nýtt verk.",
+    "artworkUploadedEmail": "Viltu fá tölvupóst þegar listamaður sem þú fylgir bætir við nýrri verkun?",
+    "artworkLikedEmail": "Viltu fá póst þegar einhver líkar við eitt af verkum þínum?",
     "logIn": "Skrá inn í valmyndinni",
-    "stopReceivingEmails": "Samþykkja"
+    "startReceivingEmails": "Já, ég vil fá tölvupóst",
+    "stopReceivingEmails": "Nei, ég vil ekki fá tölvupóst"
   }
 }

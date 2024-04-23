@@ -24,8 +24,10 @@
   "8-17": "Monday - Friday, 8 a.m - 5 p.m",
   "deviating": "Deviating opening hours during bank holidays and art exhibitions openings.",
   "unsubscribe": {
-    "artworkUploadedEmail": "I do not want to receive emails when an artist I follow uploads a new artwork.",
+    "artworkUploadedEmail": "Do you want to receive emails when an artist you follow uploads a new artwork?",
+    "artworkLikedEmail": "Do you want to receive an email when someone likes one of your artworks?",
     "logIn": "Log in from the menu",
-    "stopReceivingEmails": "Accept"
+    "startReceivingEmails": "Yes, I want to receive emails",
+    "stopReceivingEmails": "No, I don't want to receive emails"
   }
 }
