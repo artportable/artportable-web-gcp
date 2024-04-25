@@ -14,6 +14,7 @@
     "worksOfArt": "Kunstverk",
     "cancel": "Avbryt",
     "save": "Lagre",
+    "saved": "Lagret",
     "confirm": "Bekreft",
     "send": "Send",
     "add": "Legg til",
@@ -23,7 +24,8 @@
     "soldOut": "Utsolgt",
     "multipleSizes": "Flere størrelser",
     "or": "eller",
-    "email": "E-post"
+    "email": "E-post",
+    "thanks": "Takk!"
   },
   "timeUnit": {
     "year": "år",

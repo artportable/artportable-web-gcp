@@ -1,9 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Main from "../app/components/Main/Main";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/support.css";
-import { Paper, Typography, Button } from "@material-ui/core";
+import {
+  Paper,
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -12,10 +18,19 @@ import Head from "next/head";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { UserContext } from "../app/contexts/user-context";
+import {
+  updateUser,
+} from '../app/utils/emailUtil';
 
 enum MailTypes {
   ARTWORK = 'artwork',
   LIKE = 'like',
+}
+
+enum StateTypes {
+  INITIAL = 'initial',
+  SUCCESS = 'success',
+  ERROR = 'error',
 }
 
 export default function Support({ navBarItems }) {
@@ -23,6 +38,27 @@ export default function Support({ navBarItems }) {
   const { t } = useTranslation(["support"]);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { locale, query: { type } } = useRouter();
+  const theme = useTheme();
+  const largeDevice = useMediaQuery(theme.breakpoints.up("smPlus"));
+  const { username, isSignedIn } = useContext(UserContext);
+
+  const [pageState, setPageState] = useState(StateTypes.INITIAL);
+  const sendAnswer = async (wantEmails) => {
+    let updatedUser = null;
+    try {
+      // updatedUser = await updateUser(params, username, token);
+      // setPageState(StateTypes.SUCCESS);
+    } catch(err) {
+      console.error('updateUser failed in notifications:', err);
+      // setPageState(StateTypes.ERROR);
+    }
+
+    if (wantEmails) {
+      setPageState(StateTypes.SUCCESS);
+    } else {
+      setPageState(StateTypes.ERROR);
+    }
+  }
 
   // type for unsubscribing to different kind of emails.
   // artwork (inform followers when uploading a new artwork)
@@ -32,34 +68,118 @@ export default function Support({ navBarItems }) {
   console.log('type', type);
   // console.log('useRouter()', useRouter());
   console.log('useContext(UserContext);', useContext(UserContext));
-  const { username, isSignedIn } = useContext(UserContext);
   console.log('username', username);
   console.log('isSignedIn', isSignedIn);
 
   // let mailType = ''
-  let description = '', accept = '', decline = '';
+  let description = '' //, accept = '', decline = '';
   if (type === MailTypes.ARTWORK) {
     description = t('unsubscribe.artworkUploadedEmail')
-    accept = ''
-    decline = ''
+    // accept = ''
+    // decline = ''
   } else if (type === MailTypes.LIKE) {
-    return null;
+    description = t('unsubscribe.artworkLikedEmail')
   } else {
     return null;
   }
 
+  const initialContent = ([
+    <Typography variant="body1" style={{
+      height: '20px',
+      marginBottom: '30px',
+    }} key="login">
+      {!isSignedIn.value ? t("support:unsubscribe.logIn") : ''}
+    </Typography>,
+    <div key="header">
+      {!largeDevice ?
+        <Typography component="h1" variant="body1" style={{
+          marginBottom: '30px',
+          fontSize: '16px',
+        }}>
+          {description}
+        </Typography>
+        :
+        <Typography component="h1" variant="h4" style={{
+          marginBottom: '30px',
+          fontWeight: 600,
+        }}>
+          {description}
+        </Typography>
+      }
+    </div>,
+    <div style={{
+      display: 'flex',
+      flexFlow: 'row wrap',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }} key="buttons">
+      <Button variant="outlined" disabled={!isSignedIn.value}
+        onClick={() => sendAnswer(true)}
+        style={{
+          margin: '0 10px 10px 10px',
+          borderRadius: '20px',
+        }}
+      >
+        {t('support:unsubscribe.startReceivingEmails')}
+      </Button>
+      <Button variant="outlined" disabled={!isSignedIn.value}
+        onClick={() => sendAnswer(false)}
+        style={{
+          margin: '0 10px 10px 10px',
+          borderRadius: '20px',
+        }}
+      >
+        {t('support:unsubscribe.stopReceivingEmails')}
+      </Button>
+    </div>,
+  ])
+
+  const successContent = ([
+    <div key="header">
+      {!largeDevice ?
+        <Typography component="h1" variant="body1" style={{
+          marginBottom: '30px',
+          fontSize: '16px',
+        }}>
+          {t('common:words.thanks')}
+        </Typography>
+        :
+        <Typography component="h1" variant="h4" style={{
+          marginBottom: '30px',
+          fontWeight: 600,
+        }}>
+          {t('common:words.thanks')}
+        </Typography>
+      }
+    </div>,
+    <Button variant="outlined" disabled={true} style={{
+      margin: '0 10px 10px 10px',
+      borderRadius: '20px',
+    }} key="button">
+      {t('common:words.saved')}
+    </Button>,
+  ])
+
+  const errorContent = ([
+    <Typography component="h1" variant="body1" style={{
+      marginBottom: '30px',
+      fontSize: '16px',
+    }} key="title">
+      {t('common:somethingWentWrongTitle')}
+    </Typography>,
+    <Typography variant="body1" style={{
+      marginBottom: '30px',
+      fontSize: '16px',
+    }} key="body">
+      {t('common:somethinWentWrongText')}
+    </Typography>,
+  ])
+
   return (
     <Main navBarItems={navBarItems}>
       <Head>
-        <meta name="title" content={t("contactUs")} />
-        <meta name="description" content={t("yourWelcome")} />
-        {/* <meta property="og:title" content={t("contactUs")} />
-        <meta property="og:description" content={t("yourWelcome")} />
-        <meta property="og:url" content="https://artportable.com/support" /> */}
-        <meta
-          property="og:image"
-          content="/images/artportable_tv_commercial.png"
-        />
+        <meta name="title" content={t("support:contactUs")} />
+        <meta name="description" content={t("support:yourWelcome")} />
         <meta name="robots" content="noindex,nofollow" />
         <link
           rel="canonical"
@@ -68,14 +188,14 @@ export default function Support({ navBarItems }) {
       </Head>
         {/* <div className={s.paddingWidth}>
           <Typography variant="body1" className={s.headerTypo}>
-            {t("unsubscribe.artworkUploadedEmail")}
+            {t("support:unsubscribe.artworkUploadedEmail")}
           </Typography>
           { !isSignedIn.value &&
             <Typography variant="body1">
-              {t("unsubscribe.logIn")}
+              {t("support:unsubscribe.logIn")}
             </Typography>
           }
-          <Button variant="outlined" disabled={!isSignedIn.value}>{t("unsubscribe.stopReceivingEmails")}</Button>
+          <Button variant="outlined" disabled={!isSignedIn.value}>{t("support:unsubscribe.stopReceivingEmails")}</Button>
         </div> */}
       <div style={{
         minHeight: '50vh',
@@ -86,31 +206,12 @@ export default function Support({ navBarItems }) {
         textAlign: 'center',
         // border: '1px solid red',
       }}>
-        { !isSignedIn.value &&
-          <Typography variant="body1" style={{ marginBottom: '30px' }}>
-            {t("unsubscribe.logIn")}
-          </Typography>
-        }
-        <Typography variant="h4" className={s.headerTypo}>
-          {description}
-        </Typography>
-        <div style={{
-          display: 'flex',
-          flexFlow: 'row wrap',
-          justifyContent: 'center',
-          alignItems: 'center',
-          // border: '1px solid blue',
-        }}>
-          <Button variant="outlined" disabled={!isSignedIn.value} style={{ margin: '0 10px 10px 10px' }}>
-            {t('unsubscribe.startReceivingEmails')}
-          </Button>
-          <Button variant="outlined" disabled={!isSignedIn.value} style={{ margin: '0 10px 10px 10px' }}>
-            {t('unsubscribe.stopReceivingEmails')}
-          </Button>
-        </div>
+        { pageState === StateTypes.INITIAL && initialContent }
+        { pageState === StateTypes.SUCCESS && successContent }
+        { pageState === StateTypes.ERROR && errorContent }
       </div>
-      <div className={s.paddingWidth}>
-      </div>
+      {/* <div className={s.paddingWidth}>
+      </div> */}
     </Main>
   )
   return (
@@ -193,7 +294,7 @@ export async function getStaticProps({ locale }) {
         // "support",
         // "footer",
         "support",
-        // "common",
+        "common",
         // "plans",
       ])),
     },

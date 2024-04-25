@@ -200,7 +200,7 @@ export default function ArtworkPage(props) {
     console.log('process', process);
     console.log('process.env', process.env);
     console.log('USER_FULL', USER_FULL);
-    console.log('token', token);
+    // console.log('token', token);
 
     try {
       const result = await sendInformFollowersEmail(data, token)//, userEmail.value)
@@ -300,7 +300,7 @@ export default function ArtworkPage(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      {/* {artwork && artwork?.data?.Owner?.Username === 'larsf' &&
+      {/* {artwork && username.value === 'larsf' && // artwork?.data?.Owner?.Username === 'larsf' &&
         <button onClick={() => informFollowers(artwork.data)}>TEST EMAIL</button>
       } */}
 

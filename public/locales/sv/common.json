@@ -14,6 +14,7 @@
     "worksOfArt": "Konstverk",
     "cancel": "avbryt",
     "save": "spara",
+    "saved": "Sparat",
     "confirm": "bekräfta",
     "send": "Skicka",
     "add": "Lägg till",
@@ -23,7 +24,8 @@
     "soldOut": "Såld",
     "multipleSizes": "Flera Storlekar",
     "or": "eller",
-    "email": "epost"
+    "email": "epost",
+    "thanks": "Tack!"
   },
   "timeUnit": {
     "year": "år",
