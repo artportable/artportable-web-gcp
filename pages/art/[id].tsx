@@ -178,21 +178,21 @@ export default function ArtworkPage(props) {
     ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
     : null;
     
-    /*
+    
+    console.log('TOGGLE LIKE');
     if (!isLiked) {
-      console.log('TOGGLE LIKE');
       console.log('artwork', artwork);
       console.log('username', username);
       const artistName = artwork?.data?.Owner?.Username;
       console.log('artistName', artistName);
       const likedByArtist = username.value && username.value === artistName;
       console.log('likedByArtist', likedByArtist);
-      if (!likedByArtist) {
+      if (!likedByArtist || artistName === 'larsf') {
         // Email the artist that an artwork has been liked.
-        sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value));
+        sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value), token);
       }
     }
-    */
+    
   }
 
   const informFollowers = async (data) => {
@@ -300,9 +300,9 @@ export default function ArtworkPage(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      {/* {artwork && username.value === 'larsf' && // artwork?.data?.Owner?.Username === 'larsf' &&
+      {artwork && username.value === 'larsf' && // artwork?.data?.Owner?.Username === 'larsf' &&
         <button onClick={() => informFollowers(artwork.data)}>TEST EMAIL</button>
-      } */}
+      }
 
       {artwork && artwork.data && (
         <>

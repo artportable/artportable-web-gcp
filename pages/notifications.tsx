@@ -18,6 +18,7 @@ import Head from "next/head";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { UserContext } from "../app/contexts/user-context";
+import { TokenContext } from "../app/contexts/token-context";
 import {
   updateUser,
 } from '../app/utils/emailUtil';
@@ -33,32 +34,16 @@ enum StateTypes {
   ERROR = 'error',
 }
 
-export default function Support({ navBarItems }) {
+export default function Notifications({ navBarItems }) {
   const s = styles();
-  const { t } = useTranslation(["support"]);
+  const { t } = useTranslation(["support", "common"]);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const token = useContext(TokenContext);
   const { locale, query: { type } } = useRouter();
   const theme = useTheme();
   const largeDevice = useMediaQuery(theme.breakpoints.up("smPlus"));
   const { username, isSignedIn } = useContext(UserContext);
-
   const [pageState, setPageState] = useState(StateTypes.INITIAL);
-  const sendAnswer = async (wantEmails) => {
-    let updatedUser = null;
-    try {
-      // updatedUser = await updateUser(params, username, token);
-      // setPageState(StateTypes.SUCCESS);
-    } catch(err) {
-      console.error('updateUser failed in notifications:', err);
-      // setPageState(StateTypes.ERROR);
-    }
-
-    if (wantEmails) {
-      setPageState(StateTypes.SUCCESS);
-    } else {
-      setPageState(StateTypes.ERROR);
-    }
-  }
 
   // type for unsubscribing to different kind of emails.
   // artwork (inform followers when uploading a new artwork)
@@ -71,16 +56,43 @@ export default function Support({ navBarItems }) {
   console.log('username', username);
   console.log('isSignedIn', isSignedIn);
 
-  // let mailType = ''
+  let updateValue = ''
   let description = '' //, accept = '', decline = '';
   if (type === MailTypes.ARTWORK) {
-    description = t('unsubscribe.artworkUploadedEmail')
+    updateValue = 'ReceiveArtworkUploadedMail';
+    description = t('unsubscribe.artworkUploadedEmail');
     // accept = ''
     // decline = ''
   } else if (type === MailTypes.LIKE) {
-    description = t('unsubscribe.artworkLikedEmail')
+    updateValue = 'ReceiveLikeMail';
+    description = t('unsubscribe.artworkLikedEmail');
   } else {
     return null;
+  }
+
+  // updateValue = 'TestBool';
+
+  const sendAnswer = async (wantEmail) => {
+    let params = { [updateValue]: wantEmail }
+
+    // params = { InspiredBy: 'Naturen och skogen' }
+
+    let updatedUser = null;
+    try {
+      updatedUser = await updateUser(params, username.value, token);
+      // setPageState(StateTypes.SUCCESS);
+    } catch(err) {
+      console.error('updateUser failed in notifications:', err);
+      // setPageState(StateTypes.ERROR);
+    }
+    console.log('updatedUser', updatedUser);
+    
+
+    // if (wantEmails) {
+    //   setPageState(StateTypes.SUCCESS);
+    // } else {
+    //   setPageState(StateTypes.ERROR);
+    // }
   }
 
   const initialContent = ([
