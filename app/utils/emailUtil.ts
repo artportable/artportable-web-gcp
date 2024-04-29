@@ -9,56 +9,14 @@ async function sendInformFollowersEmail(data, token) {
   // public bool EmailReceiveArtworkUploaded { get; set; }  // For user, if they have not declined to receive email when a new artwork is uploaded.
   
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  
-  /*
-  const userName = data?.Owner?.Username;
-  if (!userName) return;
-  // Fetch artist
-  const artistEndpoint = `${apiBaseUrl}/api/artists/${userName}`
-  let artist = null;
-  try {
-    await fetch(artistEndpoint)
-    .then((res) => res.clone().json())
-    .then((response) => {
-      artist = response;
-    })
-  } catch(err) {
-    return console.error(err);
-  }
-
-  const artistEmail = artist?.Email;  
-  if (!artistEmail) return;
-  */
 
   const userName = data?.Owner?.Username;
   const artistEmail = data?.Owner?.Email;
   const emailInformedFollowersDate = data?.Owner?.EmailInformedFollowersDate;
   if (!artistEmail) return;
-
-  // console.log('Fetched artist:', artist);
-  // return;
-
-  // artist['followersEmailedDate'] = new Date();
-  // console.log('Artist with date:', artist);
-
-  // console.log('yesterday', yesterday);
-  
-  // TODO: Use a real value.
-  // const followersAlreadyEmailedToday = false;
-  
-  // const yesterday = sub(new Date(), { days: 1 })
-  // console.log('Yesterady before start of today', compareAsc(yesterday, startOfToday));
-  
   
   // If artist was already emailed today, return.
   const startOfToday = startOfDay(new Date());
-  // console.log('emailInformedFollowersDate', emailInformedFollowersDate);
-  // console.log('new Date(emailInformedFollowersDate)', new Date(emailInformedFollowersDate));
-  // console.log('startOfToday', startOfToday);
-  // console.log('After start of day', isAfter(new Date(emailInformedFollowersDate), startOfToday));
-  // console.log('Before start of day', isBefore(new Date(emailInformedFollowersDate), startOfToday));
-  // console.log('Only today', isAfter(startOfToday, startOfToday));
-  // console.log('Only db date', isAfter(new Date(emailInformedFollowersDate), new Date(emailInformedFollowersDate)));
   // Is the first date after the second one:
   if (emailInformedFollowersDate && isAfter(new Date(emailInformedFollowersDate), startOfToday)) {
     console.log('Followers already received email today.');
@@ -82,8 +40,6 @@ async function sendInformFollowersEmail(data, token) {
     return;
   }
   console.log('updatedArtist', updatedArtist);
-
-  // return { test: true }
 
   // Fetch followers
   let endpoint = `${apiBaseUrl}/api/user/${userName}/followers`
@@ -159,34 +115,11 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
   
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   
-  /*
-  const userName = data?.Owner?.Username;
-  if (!userName) return;
-  // Fetch artist
-  let endpoint = `${apiBaseUrl}/api/artists/${userName}`
-  let artist = null;
-  try {
-    await fetch(endpoint)
-    .then((res) => res.clone().json())
-    .then((result) => {
-      artist = result;
-    })
-  } catch(err) {
-    return console.error(err);
-  }
-
-  const artistEmail = artist?.Email;  
-  if (!artistEmail) return;
-  */
-
- // Including email data in Owner, no need to fetch artist
   const artistEmail = data?.Owner?.Email;
   const emailReceiveLike = data?.Owner?.EmailReceiveLike;
   const emailReceivedLikeDate = data?.Owner?.EmailReceivedLikeDate;
   console.log('artistEmail', artistEmail);
   if (!artistEmail || !emailReceiveLike) return;
-
-  // const EmailReceiveLike = data?.Owner?.Username;
 
   const startOfToday = startOfDay(new Date());
   // Is the first date after the second one:
@@ -255,30 +188,20 @@ const updateUser = async (params, userName = 'larsf', token) => {
   console.log('userName', userName);
   console.log('has token', !!token);
 
-  // return { name: 'Kalle' }
-  
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   console.log('apiBaseUrl', apiBaseUrl);
-  // CoverPhotoFileId = 91,
-  // cover_photo_file_id: 91,
-  // inspired_by: "Naturen",
-  // const update = {
-  //   InspiredBy: "Naturen och databasen",
-  // }
 
   const updateUserEndpoint = `${apiBaseUrl}/api/profile/${userName}`;
   let updatedUser = null;
   try {
     await fetch(updateUserEndpoint,
       {
-        // body: JSON.stringify(params),
         body: JSON.stringify(params),
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
         method: "PUT",
-        // method: "GET",
       })
     .then((res) => {
       console.log('RES', res);
@@ -288,8 +211,6 @@ const updateUser = async (params, userName = 'larsf', token) => {
     .then((response) => {
       console.log('updateUserEndpoint response', response);
       updatedUser = response;
-      // console.log('Artist was updated.');
-      // return response;
     })
   } catch(err) {
     return console.error('updateUser failed in emailUtil:', err);

@@ -179,15 +179,10 @@ export default function ArtworkPage(props) {
     : null;
     
     
-    console.log('TOGGLE LIKE');
     if (!isLiked) {
-      console.log('artwork', artwork);
-      console.log('username', username);
       const artistName = artwork?.data?.Owner?.Username;
-      console.log('artistName', artistName);
       const likedByArtist = username.value && username.value === artistName;
-      console.log('likedByArtist', likedByArtist);
-      if (!likedByArtist || artistName === 'larsf') {
+      if (!likedByArtist) {
         // Email the artist that an artwork has been liked.
         sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value), token);
       }
@@ -196,30 +191,12 @@ export default function ArtworkPage(props) {
   }
 
   const informFollowers = async (data) => {
-    console.log('informFollowers', data);
-    console.log('process', process);
-    console.log('process.env', process.env);
-    console.log('USER_FULL', USER_FULL);
-    // console.log('token', token);
-
     try {
       const result = await sendInformFollowersEmail(data, token)//, userEmail.value)
       console.log('Send result:', result);
     } catch(err) {
       console.log('sendInformFollowersEmail error:', err);
     }
-    // console.log('After informFollowers');
-    
-
-    // .then(result => {
-    // })
-    // .catch(err => {
-    // })
-    // setTimeout(() => {
-      // console.log('Timeout over!');
-    // }, 0)
-    // console.log('Do push!');
-    // router.push("/");
   }
 
 
