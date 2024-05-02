@@ -78,14 +78,9 @@ export default function ArtworkPage(props) {
   const { id } = router.query;
   const { username, socialId, membership, email: userEmail, given_name, family_name } = useContext(UserContext);
   
-  const USER_FULL = useContext(UserContext);
-  // console.log('USER_FULL', USER_FULL);
-  // console.log('userEmail', userEmail);
-  
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
-  // console.log('artwork', artwork);
 
   const { like } = usePostLike();
   const { follow } = usePostFollow();
@@ -178,7 +173,7 @@ export default function ArtworkPage(props) {
     ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
     : null;
     
-    
+    /*
     if (!isLiked) {
       const artistName = artwork?.data?.Owner?.Username;
       const likedByArtist = username.value && username.value === artistName;
@@ -187,18 +182,18 @@ export default function ArtworkPage(props) {
         sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value), token);
       }
     }
-    
+    */
   }
 
-  const informFollowers = async (data) => {
+  const informFollowers = async (res) => {
     try {
-      const result = await sendInformFollowersEmail(data, token)//, userEmail.value)
+      const fullName = `${given_name.value} ${family_name.value}`;
+      const result = await sendInformFollowersEmail(token, res, username.value, userEmail.value, fullName);
       console.log('Send result:', result);
     } catch(err) {
       console.log('sendInformFollowersEmail error:', err);
     }
   }
-
 
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />

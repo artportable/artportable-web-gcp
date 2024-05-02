@@ -34,7 +34,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import Link from "next/link";
-import { sendInformFollowersEmail} from '../app/utils/emailUtil';
+import { sendInformFollowersEmail } from '../app/utils/emailUtil';
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
@@ -46,7 +46,7 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { username, socialId, isSignedIn, membership } =
+  const { username, socialId, isSignedIn, membership, email: userEmail, given_name, family_name } =
     useContext(UserContext);
   const tags = useGetTags();
 
@@ -142,8 +142,8 @@ export default function UploadArtworkPage({ navBarItems }) {
         const res = await usePostArtwork(artwork, socialId.value, token);
 
         if (res && res.Id) {
-          // console.log('SEND INFORMED');
-          // sendInformFollowersEmail(res, 'lf@artworks.io');
+          const fullName = `${given_name.value} ${family_name.value}`;
+          sendInformFollowersEmail(token, res, username.value, userEmail.value, fullName);
           router.push("/art/" + res.Id);
         }
       }
@@ -180,7 +180,8 @@ export default function UploadArtworkPage({ navBarItems }) {
         const res = await usePostArtwork(artwork, socialId.value, token);
 
         if (res && res.Id) {
-          // sendInformFollowersEmail(res);
+          const fullName = `${given_name.value} ${family_name.value}`;
+          sendInformFollowersEmail(token, res, username.value, userEmail.value, fullName);
           router.push("/art/" + res.Id);
         }
       }
