@@ -22,5 +22,12 @@
   "yourWelcome": "Du är alltid välkommen att höra av dig till oss om du har några frågor kring tjänsten eller vill komma i kontakt med oss.",
   "openingHours": "Öppettider: ",
   "8-17": "Måndag - fredag, 8 - 17.",
-  "deviating": "Avvikande öppettider vid röda dagar och vernissager."
+  "deviating": "Avvikande öppettider vid röda dagar och vernissager.",
+  "unsubscribe": {
+    "artworkUploadedEmail": "Vill du få mail när en konstnär du följer lägger upp ett nytt verk?",
+    "artworkLikedEmail": "Vill du få mail när någon gillar ett av dina verk?",
+    "logIn": "Logga in i menyn",
+    "startReceivingEmails": "Ja, jag vill få mail",
+    "stopReceivingEmails": "Nej, jag vill inte få mail"
+  }
 }
