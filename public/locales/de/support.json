@@ -22,5 +22,12 @@
   "yourWelcome": "Sie können sich jederzeit bei uns melden, wenn Sie Fragen zur Dienstleistung haben oder uns kontaktieren möchten.",
   "openingHours": "Öffnungszeiten: ",
   "8-17": "Montag bis Freitag von 8 bis 17 Uhr.",
-  "deviating": "Abweichende Öffnungszeiten an Feiertagen und bei Vernissagen."
+  "deviating": "Abweichende Öffnungszeiten an Feiertagen und bei Vernissagen.",
+  "unsubscribe": {
+    "artworkUploadedEmail": "Möchtest du per E-Mail benachrichtigt werden, wenn ein Künstler, dem du folgst, ein neues Kunstwerk hochlädt?",
+    "artworkLikedEmail": "Möchtest du eine E-Mail erhalten, wenn jemand eines deiner Werke mag?",
+    "logIn": "Einloggen im Menü",
+    "startReceivingEmails": "Ja, ich möchte E-Mails erhalten",
+    "stopReceivingEmails": "Nein, ich möchte keine E-Mails erhalten"
+  }
 }

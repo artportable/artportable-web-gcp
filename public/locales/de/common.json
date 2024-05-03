@@ -14,6 +14,7 @@
     "worksOfArt": "Kunstwerke",
     "cancel": "stornieren",
     "save": "speichern",
+    "saved": "Gespeichert",
     "confirm": "bestätigen",
     "send": "senden",
     "add": "hinzufügen",
@@ -23,7 +24,8 @@
     "soldOut": "Ausverkauft",
     "multipleSizes": "Mehrere Größen",
     "or": "oder",
-    "email": "E-Mail"
+    "email": "E-Mail",
+    "thanks": "Danke!"
   },
   "timeUnit": {
     "year": "Jahr",

@@ -14,6 +14,7 @@
     "worksOfArt": "Listaverk",
     "cancel": "hætta við",
     "save": "vista",
+    "saved": "Vistað",
     "confirm": "staðfesta",
     "send": "Senda",
     "add": "Bæta við",
@@ -23,7 +24,8 @@
     "soldOut": "Selt",
     "multipleSizes": "Fleiri Stærðir",
     "or": "eða",
-    "email": "tölvupóstur"
+    "email": "tölvupóstur",
+    "thanks": "Takk!"
   },
   "timeUnit": {
     "year": "ár",

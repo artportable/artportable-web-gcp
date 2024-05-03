@@ -22,5 +22,12 @@
   "yourWelcome": "Olet aina tervetullut ottamaan meihin yhteyttä, jos sinulla on kysyttävää palvelusta tai haluat ottaa meihin yhteyttä.",
   "openingHours": "Aukioloajat: ",
   "8-17": "Maanantai - Perjantai, klo 8 - 17",
-  "deviating": "Poikkeavat aukioloajat pyhäpäivinä ja taidenäyttelyiden avajaisissa."
+  "deviating": "Poikkeavat aukioloajat pyhäpäivinä ja taidenäyttelyiden avajaisissa.",
+  "unsubscribe": {
+    "artworkUploadedEmail": "Haluatko vastaanottaa sähköpostia, kun seuraamasi taiteilija lähettää uuden taideteoksen?",
+    "artworkLikedEmail": "Haluatko vastaanottaa sähköpostia, kun joku tykkää yhdestä taideteoksistasi?",
+    "logIn": "Kirjaudu sisään valikosta",
+    "startReceivingEmails": "Kyllä, haluan vastaanottaa sähköpostia",
+    "stopReceivingEmails": "Ei, en halua vastaanottaa sähköpostia"
+    }
 }
