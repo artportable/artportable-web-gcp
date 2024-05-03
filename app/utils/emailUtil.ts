@@ -1,7 +1,7 @@
 import { config } from '../../config';
 import { isAfter, startOfDay, sub } from "date-fns";
 
-async function sendInformFollowersEmail(token, data, username, artistEmail, fullName) {
+async function sendInformFollowersEmail(token, data, username, artistEmail) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   if (!artistEmail) return;
   
@@ -18,18 +18,20 @@ async function sendInformFollowersEmail(token, data, username, artistEmail, full
   } catch(err) {
     return console.error(err);
   }
-
+  console.log('artist', artist);
+  
+  if (!artist) return;
+  const fullName = `${artist.Name} ${artist.Surname}`;
+  console.log('fullName', fullName);
+  
   
   const emailInformedFollowersDate = artist?.EmailInformedFollowersDate;
-  console.log('emailInformedFollowersDate', emailInformedFollowersDate);
   // If artist was already emailed today, return.
   const startOfToday = startOfDay(new Date());
   // Is the first date after the second one:
   if (emailInformedFollowersDate && isAfter(new Date(emailInformedFollowersDate), startOfToday)) {
     console.log('Followers already received email today.');
-    if (apiBaseUrl !== 'http://localhost:5001') {
-      return;
-    }
+    return;
   } else {
     console.log('Followers not emailed today.');
   }
@@ -44,8 +46,10 @@ async function sendInformFollowersEmail(token, data, username, artistEmail, full
     updatedArtist = await updateUser(params, username, token);
   } catch(err) {
     console.error('updateUser failed in sendInformFollowersEmail:', err);
+    return;
   }
   console.log('updatedArtist', updatedArtist);
+  
   
   // Fetch followers
   let endpoint = `${apiBaseUrl}/api/user/${username}/followers`
@@ -63,17 +67,15 @@ async function sendInformFollowersEmail(token, data, username, artistEmail, full
   } catch(err) {
     return console.error(err);
   }
-  console.log('followers before', followers);
+  console.log('followers', followers);
+  
 
   // Remove followers who do not want artwork added emails.
-  followers = followers.filter(follower => follower.Email && follower.EmailReceiveArtworkUploaded === false);
+  followers = followers.filter(follower => follower.Email && follower.EmailDeclinedArtworkUpload !== true);
   if (followers.length < 1) {
     return;
   }
-  console.log('followers after', followers);
   const receivers = followers.map(follower => follower.Email)
-
-  return;
 
   const imageURL = config.BUCKET_URL + data.PrimaryFile.Name
   const webbURL = config.WEBB_URL + '/art/' + data.Id
@@ -107,6 +109,8 @@ async function sendInformFollowersEmail(token, data, username, artistEmail, full
   } catch(err) {
     return console.error(err);
   }
+  console.log('mailResult', mailResult);
+  
 
   return mailResult;
 }
@@ -115,6 +119,8 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
 
   // Function not finished.
   return;
+
+  // EmailDeclinedLike
 
   console.log('sendArtworkLikedEmail', data);
   // If user is not logged in.
@@ -190,9 +196,6 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
 
 const updateUser = async (params, username, token) => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-  console.log('params', params);
-  
 
   const updateUserEndpoint = `${apiBaseUrl}/api/profile/${username}`;
   let updatedUser = null;

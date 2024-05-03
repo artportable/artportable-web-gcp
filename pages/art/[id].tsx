@@ -185,16 +185,6 @@ export default function ArtworkPage(props) {
     */
   }
 
-  const informFollowers = async (res) => {
-    try {
-      const fullName = `${given_name.value} ${family_name.value}`;
-      const result = await sendInformFollowersEmail(token, res, username.value, userEmail.value, fullName);
-      console.log('Send result:', result);
-    } catch(err) {
-      console.log('sendInformFollowersEmail error:', err);
-    }
-  }
-
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />
   ) : isLiked ? (
@@ -271,10 +261,6 @@ export default function ArtworkPage(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
-
-      {artwork && username.value === 'larsf' && // artwork?.data?.Owner?.Username === 'larsf' &&
-        <button onClick={() => informFollowers(artwork.data)}>TEST EMAIL</button>
-      }
 
       {artwork && artwork.data && (
         <>

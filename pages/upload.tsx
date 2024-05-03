@@ -142,8 +142,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         const res = await usePostArtwork(artwork, socialId.value, token);
 
         if (res && res.Id) {
-          const fullName = `${given_name.value} ${family_name.value}`;
-          sendInformFollowersEmail(token, res, username.value, userEmail.value, fullName);
+          sendInformFollowersEmail(token, res, username.value, userEmail.value);
           router.push("/art/" + res.Id);
         }
       }
@@ -180,8 +179,7 @@ export default function UploadArtworkPage({ navBarItems }) {
         const res = await usePostArtwork(artwork, socialId.value, token);
 
         if (res && res.Id) {
-          const fullName = `${given_name.value} ${family_name.value}`;
-          sendInformFollowersEmail(token, res, username.value, userEmail.value, fullName);
+          sendInformFollowersEmail(token, res, username.value, userEmail.value);
           router.push("/art/" + res.Id);
         }
       }

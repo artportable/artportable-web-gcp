@@ -47,10 +47,11 @@ export default function Notifications({ navBarItems }) {
   let updateValue = ''
   let description = ''
   if (type === MailTypes.ARTWORK) {
-    updateValue = 'EmailReceiveArtworkUploaded';
+    updateValue = 'EmailDeclinedArtworkUpload';
     description = t('unsubscribe.artworkUploadedEmail');
   } else if (type === MailTypes.LIKE) {
-    updateValue = 'EmailReceiveLike';
+    return null;
+    updateValue = 'EmailReceiveLike'; // EmailDeclineLike
     description = t('unsubscribe.artworkLikedEmail');
   } else {
     return null;
@@ -100,7 +101,7 @@ export default function Notifications({ navBarItems }) {
       alignItems: 'center',
     }} key="buttons">
       <Button variant="outlined" disabled={!isSignedIn.value}
-        onClick={() => sendAnswer(true)}
+        onClick={() => sendAnswer(false)}
         style={{
           margin: '0 10px 10px 10px',
           borderRadius: '20px',
@@ -109,7 +110,7 @@ export default function Notifications({ navBarItems }) {
         {t('support:unsubscribe.startReceivingEmails')}
       </Button>
       <Button variant="outlined" disabled={!isSignedIn.value}
-        onClick={() => sendAnswer(false)}
+        onClick={() => sendAnswer(true)}
         style={{
           margin: '0 10px 10px 10px',
           borderRadius: '20px',
