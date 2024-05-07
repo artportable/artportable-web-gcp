@@ -57,10 +57,18 @@ export default function Notifications({ navBarItems }) {
     return null;
   }
 
-  const sendAnswer = async (wantEmail) => {
-    let params = { [updateValue]: wantEmail }
+  const sendAnswer = async (declineEmail) => {
+    let params = { [updateValue]: declineEmail }
 
     let updatedUser = null;
+    try {
+      updatedUser = await updateUser(params, username.value, token);
+      setPageState(StateTypes.SUCCESS);
+    } catch(err) {
+      console.error('updateUser failed in notifications:', err);
+      setPageState(StateTypes.ERROR);
+    }
+
     try {
       updatedUser = await updateUser(params, username.value, token);
       setPageState(StateTypes.SUCCESS);

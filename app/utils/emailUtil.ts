@@ -18,13 +18,11 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   } catch(err) {
     return console.error(err);
   }
-  console.log('artist', artist);
   
   if (!artist) return;
   const fullName = `${artist.Name} ${artist.Surname}`;
-  console.log('fullName', fullName);
   
-  
+  // Only send max one artwork uploaded email per day.
   const emailInformedFollowersDate = artist?.EmailInformedFollowersDate;
   // If artist was already emailed today, return.
   const startOfToday = startOfDay(new Date());
@@ -48,14 +46,13 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
     console.error('updateUser failed in sendInformFollowersEmail:', err);
     return;
   }
-  console.log('updatedArtist', updatedArtist);
   
   
   // Fetch followers
   let endpoint = `${apiBaseUrl}/api/user/${username}/followers`
 
   // Fetch test followers
-  if (username === 'larsf' && apiBaseUrl === 'http://localhost:5001') endpoint = `${apiBaseUrl}/api/user/erikart/followers`
+  // if (username === 'larsf' && apiBaseUrl === 'http://localhost:5001') endpoint = `${apiBaseUrl}/api/user/erikart/followers`
   
   let followers = [];
   try {
@@ -67,8 +64,6 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   } catch(err) {
     return console.error(err);
   }
-  console.log('followers', followers);
-  
 
   // Remove followers who do not want artwork added emails.
   followers = followers.filter(follower => follower.Email && follower.EmailDeclinedArtworkUpload !== true);
@@ -109,8 +104,6 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   } catch(err) {
     return console.error(err);
   }
-  console.log('mailResult', mailResult);
-  
 
   return mailResult;
 }
@@ -125,15 +118,38 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
   console.log('sendArtworkLikedEmail', data);
   // If user is not logged in.
   if (!likedByUser) return;
+
+  const artistUserName = data?.Owner?.Username;
+  console.log('artistUserName', artistUserName);
+  if (!artistUserName) return;
+
+  // return;
   
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  
-  const artistEmail = data?.Owner?.Email;
-  const emailReceiveLike = data?.Owner?.EmailReceiveLike;
-  const emailReceivedLikeDate = data?.Owner?.EmailReceivedLikeDate;
-  console.log('artistEmail', artistEmail);
-  if (!artistEmail || !emailReceiveLike) return;
 
+  const artistEndpoint = `${apiBaseUrl}/api/profile/${artistUserName}`
+  let artist = null;
+  try {
+    await fetch(artistEndpoint)
+    .then((res) => res.clone().json())
+    .then((response) => {
+      artist = response;
+    })
+  } catch(err) {
+    return console.error(err);
+  }
+  console.log('artist', artist);
+  
+  const artistEmail = data?.Owner?.Email; // Email not set on fetched artist, get from data.Owner.
+  console.log('artistEmail', artistEmail);
+  // Like email data not set on data.Owner, get from fetched artist.
+  const emailDeclinedLike = artist?.EmailReceiveLike; // data?.Owner?.EmailReceiveLike;
+  const emailReceivedLikeDate = artist?.EmailReceivedLikeDate; // data?.Owner?.EmailReceivedLikeDate;
+  console.log('emailDeclinedLike', emailDeclinedLike);
+  console.log('emailDeclinedLikeDate', emailReceivedLikeDate);
+  if (!artistEmail || emailDeclinedLike) return;
+
+  // Only send max one artwork liked email per day.
   const startOfToday = startOfDay(new Date());
   // Is the first date after the second one:
   if (emailReceivedLikeDate && isAfter(new Date(emailReceivedLikeDate), startOfToday)) {
