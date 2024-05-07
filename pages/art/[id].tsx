@@ -17,7 +17,10 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { styles } from "../../styles/art.css";
-import { capitalizeFirst } from "../../app/utils/util";
+import {
+  capitalizeFirst,
+  formatUserName,
+} from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -53,6 +56,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
+import {
+  sendArtworkLikedEmail,
+  sendInformFollowersEmail,
+} from '../../app/utils/emailUtil';
+import { config } from '../../config';
 
 import { Select } from "@mui/material";
 
@@ -68,7 +76,8 @@ export default function ArtworkPage(props) {
   const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query;
-  const { username, socialId, membership } = useContext(UserContext);
+  const { username, socialId, membership, email: userEmail, given_name, family_name } = useContext(UserContext);
+  
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -161,8 +170,18 @@ export default function ArtworkPage(props) {
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
     !isLiked
-      ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
-      : null;
+    ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
+    : null;
+    
+    // if (!isLiked) {
+    //   const artistName = artwork?.data?.Owner?.Username;
+    //   const likedByArtist = username.value && username.value === artistName;
+    //   if (!likedByArtist || true) {
+    //     // Email the artist that an artwork has been liked.
+    //     sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value), token);
+    //   }
+    // }
+    
   }
 
   const likedFilled = !isSignedIn.value ? (
@@ -669,7 +688,7 @@ export default function ArtworkPage(props) {
                           </AccordionSummary>
 
                           <AccordionDetails className={s.accordionDetails}>
-                            <Typography className={s.typography}>
+                            <Typography className={s.typography} style={{ whiteSpace: 'pre-wrap-?' }}>
                               {artwork?.data?.Description}
                             </Typography>
                           </AccordionDetails>

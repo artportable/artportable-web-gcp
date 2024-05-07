@@ -14,6 +14,7 @@
     "worksOfArt": "artworks",
     "cancel": "cancel",
     "save": "save",
+    "saved": "Saved",
     "confirm": "confirm",
     "send": "Send",
     "add": "Add",
@@ -23,7 +24,8 @@
     "soldOut": "Sold",
     "multipleSizes": "Multiple Sizes",
     "or": "or",
-    "email": "email"
+    "email": "email",
+    "thanks": "Thanks!"
   },
   "timeUnit": {
     "year": "y",
