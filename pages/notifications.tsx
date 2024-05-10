@@ -31,7 +31,7 @@ enum StateTypes {
 
 export default function Notifications({ navBarItems }) {
   const s = styles();
-  const { t } = useTranslation(["support", "common"]);
+  const { t } = useTranslation(["header", "support", "footer", "common", "plans"]);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const token = useContext(TokenContext);
   const { locale, query: { type } } = useRouter();
@@ -48,11 +48,11 @@ export default function Notifications({ navBarItems }) {
   let description = ''
   if (type === MailTypes.ARTWORK) {
     updateValue = 'EmailDeclinedArtworkUpload';
-    description = t('unsubscribe.artworkUploadedEmail');
+    description = t('support:unsubscribe.artworkUploadedEmail');
   } else if (type === MailTypes.LIKE) {
     return null;
     updateValue = 'EmailReceiveLike'; // EmailDeclineLike
-    description = t('unsubscribe.artworkLikedEmail');
+    description = t('support:unsubscribe.artworkLikedEmail');
   } else {
     return null;
   }
@@ -203,12 +203,11 @@ export async function getStaticProps({ locale }) {
     props: {
       navBarItems: navBarItems,
       ...(await serverSideTranslations(locale, [
-        // "header",
-        // "support",
-        // "footer",
+        "header",
         "support",
+        "footer",
         "common",
-        // "plans",
+        "plans",
       ])),
     },
     revalidate: 60,
