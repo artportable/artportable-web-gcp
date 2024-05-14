@@ -42,9 +42,9 @@ export default function RocketCarousel(props: Data) {
       }
     );
 
-  useEffect(() => {
-    console.log(artworks);
-  }, []);
+  // useEffect(() => {
+  //   console.log(artworks);
+  // }, []);
 
   if (artworks.length < 1) return null;
 
@@ -67,6 +67,7 @@ export default function RocketCarousel(props: Data) {
         autoPlay={true}
         useDynamicSlideWidth={true}
         forDesktop={forDesktop}
+        externalLink={false}
       />
     </div>
   );

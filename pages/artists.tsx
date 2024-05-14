@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Main from "../app/components/Main/Main";
-import Artists from "../app/components/Artists/Artists";
+import ArtistsIndex from "../app/components/Artists/ArtistsIndex";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
@@ -19,7 +19,7 @@ export default function artists({ navBarItems }) {
           <meta name="description" content={t("artistsPageDescripton")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/artists`} />
         </Head>
-        <Artists />
+        <ArtistsIndex showAllFromStart={true} />
       </Main>
     </>
   );
