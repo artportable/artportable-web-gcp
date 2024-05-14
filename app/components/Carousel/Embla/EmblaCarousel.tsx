@@ -19,7 +19,8 @@ type PropType = {
   options?: EmblaOptionsType
   autoPlay: boolean,
   useDynamicSlideWidth: boolean
-  forDesktop: boolean
+  forDesktop: boolean,
+  externalLink: boolean,
 }
 
 type Slide = {
@@ -39,7 +40,7 @@ type Slide = {
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options, autoPlay, useDynamicSlideWidth = false, forDesktop } = props
+  const { slides, options, autoPlay, useDynamicSlideWidth = false, forDesktop, externalLink = false } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options, autoPlay ? [Autoplay()] : [])
   const s = styles()
 
@@ -76,7 +77,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               [s.dynamic_width]: useDynamicSlideWidth,
               [s.embla__slide__desktop]: forDesktop,
             })} key={index}>
-              <a href={slide.linkURL} target="_blank">
+              <a href={slide.linkURL} target={ externalLink ? '_blank' : '_self' }>{/* _self is default */}
                 <div className={clsx(s.embla__slide__image, {
                   [s.has_footer]: slide.footer,
                 })}>

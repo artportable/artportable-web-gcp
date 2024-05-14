@@ -1,6 +1,7 @@
 import { TokenContext } from './token-context'
 import { LoadingContext } from './loading-context'
 import { UserContext, ContextUser, defaultContextUser } from './user-context';
+import { NavigationContextComponent } from './NavigationContextComponent';
 import { useEffect, useRef, useState } from 'react';
 import { AuthClientEvent } from '@react-keycloak/core';
 import { useKeycloak } from '@react-keycloak/ssr'
@@ -38,7 +39,9 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userContext, setUserContext] = useState<ContextUser>(defaultContextUser);
   const [snackbar, setSnackbar] = useState<Snackbar>({ open: false, message: '', severity: 'warning' });
+  
   const { data: profilePicture, isLoading : isProfilePictureLoading } = useGetUserProfilePicture(userContext.username.value);
+
   const chatClientRef = useRef<StreamChat<
     AttachmentType,
     ChannelType,
@@ -277,14 +280,16 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
       <UserContext.Provider value={userContext}>
         <LoadingContext.Provider value={{ loading: isLoading, setLoading: setIsLoading}}>
           <ChatClientContext.Provider value={chatClient}>
-            <>
-              {children}
-              <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
-                <Alert onClose={handleSnackbarClose} variant="filled" severity={snackbar.severity}>
-                  {snackbar.message}
-                </Alert>
-              </Snackbar>
-            </>
+            <NavigationContextComponent>
+              <>
+                {children}
+                <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                  <Alert onClose={handleSnackbarClose} variant="filled" severity={snackbar.severity}>
+                    {snackbar.message}
+                  </Alert>
+                </Snackbar>
+              </>
+            </NavigationContextComponent>
           </ChatClientContext.Provider>
         </LoadingContext.Provider>
       </UserContext.Provider>

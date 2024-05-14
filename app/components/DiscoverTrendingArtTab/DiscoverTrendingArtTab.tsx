@@ -1,6 +1,7 @@
 import { useTranslation } from "next-i18next";
 import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
+import { NavigationContext } from "../../contexts/navigation-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
@@ -56,27 +57,20 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const token = useContext(TokenContext);
   const { like } = usePostLike();
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedTheme, setSelectedTheme] = useState(null);
-  const [selectedTechnique, setSelectedTechnique] = useState(null);
-  const [selectedTempTags, setTempSelectedTags] = useState<string[]>([]);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
-  const [selectedTempSize, setTempSelectedSize] = useState<string | null>(null);
-  const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
-  const [selectedTrending, setSelectedTrending] = useState<string | null>(null);
-  const [selectedOrientation, setSelectedOrientation] = useState<string | null>(
-    null
-  );
-
-  const [tempSelectedTrending, setTempSelectedTrending] = useState<
-    string | null
-  >(null);
-  const [tempSelectedOrientation, setTempSelectedOrientation] = useState<
-    string | null
-  >(null);
-  const [tempSelectedPrice, setTempSelectedPrice] = useState<string | null>(
-    null
-  );
+  const {
+    selectedTags, setSelectedTags,
+    selectedTheme, setSelectedTheme,
+    selectedTechnique, setSelectedTechnique,
+    selectedSize, setSelectedSize,
+    selectedPrice, setSelectedPrice,
+    selectedTrending, setSelectedTrending,
+    selectedOrientation, setSelectedOrientation,
+    selectedTempTags, setTempSelectedTags,
+    selectedTempSize, setTempSelectedSize,
+    tempSelectedTrending, setTempSelectedTrending,
+    tempSelectedOrientation, setTempSelectedOrientation,
+    tempSelectedPrice, setTempSelectedPrice,
+  } = useContext(NavigationContext);
 
   const [open, setOpen] = useState(false);
 

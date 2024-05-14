@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import { Typography, Input } from "@material-ui/core";
 import { styles } from "./artistsIndex.css";
@@ -6,14 +6,24 @@ import { useTranslation } from "next-i18next";
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { NavigationContext } from "../../contexts/navigation-context";
 
-export default function artistsIndex() {
+interface Props {
+  showAllFromStart: boolean,
+}
+
+export default function artistsIndex(props: Props) {
+  // For SEO reasons, on /artists page we want to show all artists as default:
+  const { showAllFromStart } = props;
   const s = styles();
   const { t } = useTranslation(["common"]);
   const [artists, setArtists] = useState([]);
   const [letters, setLetters] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedLetter, setSelectedLetter] = useState(null);
+
+  const {
+    searchQuery, setSearchQuery,
+    selectedLetter, setSelectedLetter,
+  } = useContext(NavigationContext);
 
   const handleLetterClick = (letter, event) => {
     event.preventDefault();
@@ -187,7 +197,7 @@ export default function artistsIndex() {
         </div>
         <div className={s.alphabetcontainer}>{listLetters()}</div>
         <div className={s.groupDiv}>
-          {((searchQuery && searchQuery.length > 0) || selectedLetter) && (
+          {((searchQuery && searchQuery.length > 0) || selectedLetter || showAllFromStart) && (
             <div>{listArtists()}</div>
           )}
         </div>

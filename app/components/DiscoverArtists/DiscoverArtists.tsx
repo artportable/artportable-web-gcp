@@ -35,7 +35,7 @@ export default function DiscoverArtists({
 
   return (
     <Box>
-      <ArtistsIndex />
+      <ArtistsIndex showAllFromStart={false} />
     </Box>
   );
 }
