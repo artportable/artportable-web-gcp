@@ -38,6 +38,7 @@ export default function SelectedprintsCarousel(props) {
         autoPlay={true}
         forDesktop={forDesktop}
         useDynamicSlideWidth={false}
+        externalLink={true}
         />
     </div>
   )

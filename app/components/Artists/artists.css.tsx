@@ -24,6 +24,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     letterList: {
       fontWeight: 600,
+      cursor: "pointer",
     },
     container: {
       display: "flex",
@@ -58,7 +59,7 @@ export const styles = makeStyles((theme: Theme) =>
         position: "fixed",
         width: "100%",
         backgroundColor: "#FDF9F7",
-        top: "70px",
+        top: "95px",
         height: "var(--header-height, 70px)",
       },
       alphabeticTypo: {

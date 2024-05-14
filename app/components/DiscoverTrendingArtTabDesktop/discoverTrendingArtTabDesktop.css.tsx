@@ -5,6 +5,17 @@ export const styles = makeStyles((theme: Theme) =>
     filter: {
       backgroundColor: "transparent !important",
       margin: "10px !important",
+      "& .MuiAccordionSummary-root.Mui-expanded": {
+        minHeight: "auto", // Prevent filter header from changing position when open.
+      },
+      "& .MuiAccordionSummary-content.Mui-expanded": {
+        margin: "12px 0", // Prevent filter header from changing position when open.
+      },
+      [theme.breakpoints.down('lg')]: {
+        "& .MuiAccordionSummary-root": {
+          padding: "0 12px", // Prevent last item to be alone on second row on medium devices.
+        },
+      },
     },
 
     filterSummary: {
@@ -66,7 +77,6 @@ export const styles = makeStyles((theme: Theme) =>
     },
     filterClearBtn: {
       margin: "6px",
-      marginTop: "10px",
       borderRadius: "20px",
       height: "30px",
       width: "100px",
@@ -106,14 +116,15 @@ export const styles = makeStyles((theme: Theme) =>
     },
     desktopContainer: {
       display: "flex",
-      flexDirection: "row",
+      flexFlow: "row wrap",
       // marginTop: "-40px",
       // marginBottom: "10px",
       marginTop: "-10px",
       marginBottom: "40px",
       width: "100%",
-      height: "60px",
+      // height: "60px",
       justifyContent: "center",
+      alignItems: "center", // Make clear filters button aligned.
       [theme.breakpoints.down("smPlus")]: {
         display: "none",
       },

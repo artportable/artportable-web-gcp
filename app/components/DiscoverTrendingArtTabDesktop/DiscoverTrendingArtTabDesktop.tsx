@@ -1,6 +1,7 @@
 import { useTranslation } from "next-i18next";
 import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import { TokenContext } from "../../contexts/token-context";
+import { NavigationContext } from "../../contexts/navigation-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
 import usePostLike from "../../hooks/dataFetching/usePostLike";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
@@ -46,17 +47,15 @@ const DiscoverTrendingArtTabDesktop = memo(
     const token = useContext(TokenContext);
     const { like } = usePostLike();
 
-    const [selectedTags, setSelectedTags] = useState<string[]>([]);
-    const [selectedTheme, setSelectedTheme] = useState<string>(null);
-    const [selectedTechnique, setSelectedTechnique] = useState<string>(null);
-    const [selectedSize, setSelectedSize] = useState<string | null>(null);
-    const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
-    const [selectedTrending, setSelectedTrending] = useState<string | null>(
-      null
-    );
-    const [selectedOrientation, setSelectedOrientation] = useState<
-      string | null
-    >(null);
+    const {
+      selectedTags, setSelectedTags,
+      selectedTheme, setSelectedTheme,
+      selectedTechnique, setSelectedTechnique,
+      selectedSize, setSelectedSize,
+      selectedPrice, setSelectedPrice,
+      selectedTrending, setSelectedTrending,
+      selectedOrientation, setSelectedOrientation,
+    } = useContext(NavigationContext);
 
     const [expandedAccordion, setExpandedAccordion] = useState(null);
 
