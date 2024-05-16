@@ -136,8 +136,6 @@ export default function Profile(props) {
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
-  const adminRegExp = RegExp('^.+@artportable.com$');
-  const isAdmin = adminRegExp.test(email.value);
   
   const { setAsMonthlyArtist } = usePutMonthlyArtist();
 
@@ -163,6 +161,7 @@ export default function Profile(props) {
   const [openLoginDialog, setOpenLoginDialog] = useState(false);
 
   const isPremium = membership.value === 3;
+  const isAdmin = membership.value > 9;
 
   useEffect(() => {
     if (!isReady) {
