@@ -204,72 +204,9 @@ export default function ArtworkListItem({
         </Link>
 
         <div className={clsx(s.infoRow, s.topInfoRow)}>
-          {/*<div className={s.topLeft}>
-            {username.value != artwork.Owner.Username && !artwork.SoldOut && (
-              <Button
-                className={clsx(sShared.smallButton, sShared.alwaysYellowButton, sShared.noBorder, sShared.mediumThickness, s.requestButton)}
-                onClick={() => {
-                  onPurchaseRequestClick(
-                    artwork.Title,
-                    artwork.Owner.Username,
-                    artwork.Id,
-                    artwork.Owner.SocialId,
-                    bucketUrl + artwork.PrimaryFile.Name
-                  );
-                  trackGoogleAnalytics(
-                    purchaseRequestAction
-                      ? purchaseRequestAction
-                      : ActionType.PURCHASE_REQUEST_LIST,
-                    CategoryType.BUY
-                  );
-                }}
-                variant="outlined"
-                rounded
-              >
-                {t("request")}
-              </Button>
-            )}
-          </div>*/}
-
           <div className={clsx(s.topRight, s.likeInline)}>
             <div className={s.likeContainer}>
               <div className={s.flexLikeCount}>
-                {/* Share and chat on each individual artworks page. */}
-                {/*<RWebShare
-                  data={{
-                    text: shareArtworkText,
-                    url: artworkUrl,
-                    title: shareArtworkTitle,
-                  }}
-                  onClick={() =>
-                    trackGoogleAnalytics(ActionType.SHARE_ARTWORK)
-                  }
-                >
-                  <IconButton aria-label="share" className={s.shareButton}>
-                    <ShareIcon style={{ fontSize: "21px" }} />
-                  </IconButton>
-                </RWebShare>*/}
-                {/*<div title={t("common:sendMessage")}>
-                  <IconButton
-                    className={s.chatButton}
-                    aria-label="account"
-                    onClick={() => {
-                      redirectIfNotLoggedIn({
-                        pathname: "/messages",
-                        query: {
-                          referTo: artwork.Owner.SocialId,
-                        },
-                      });
-                      trackGoogleAnalytics(
-                        ActionType.SEND_MESSAGE,
-                        CategoryType.INTERACTIVE
-                      );
-                    }}
-                  >
-                    <MessageRoundedIcon style={{ fontSize: "23px" }} />
-                  </IconButton>
-                </div>*/}
-
                 <IconButton
                   aria-label="like"
                   className={s.likeButton}
@@ -284,9 +221,9 @@ export default function ArtworkListItem({
               </div>
             </div>
           </div>
-          </div>
+        </div>
 
-          <div className={clsx(s.infoRow, s.bottomInfoRow)}>
+        <div className={clsx(s.infoRow, s.bottomInfoRow)}>
           <div className={clsx(s.bottomLeft, s.tagsContainer, {
             [s.fullWidthInfo]: !isNew,
           })}>
@@ -320,6 +257,17 @@ export default function ArtworkListItem({
             <a>
               <div className={s.name}>
                 {`${artwork.Name} ${artwork.Surname}`}
+                <span
+                  style={{
+                    marginLeft: "5px",
+                    color: "gray",
+                    fontSize: "12px",
+                    fontFamily: "Gotham",
+                  }}
+                >
+                  {"•"} {timePassed.Time}
+                  {timePassed.Unit}
+                </span>
               </div>
             </a>
           </Link>

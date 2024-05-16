@@ -1,5 +1,7 @@
 import useSWR from "swr";
+import { useCallback } from "react";
 import { getFetcher, isNullOrUndefined } from "../../utils/util";
+import useRefreshToken from "../useRefreshToken";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -123,3 +125,32 @@ export function useGetUserProfilePicture(user) {
 //   })
 //   .catch(e => console.log(e));
 // }
+
+export const usePutMonthlyArtist = () => {
+  const { refreshToken } = useRefreshToken();
+
+  const setAsMonthlyArtist = useCallback((token, username, setAsMonthly) => {
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+    refreshToken().then(() =>
+      fetch(`${apiBaseUrl}/api/profile/${username}/monthlyartist?isMonthlyArtist=${setAsMonthly}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }))
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.statusText);
+          throw response;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  return {
+    setAsMonthlyArtist,
+  };
+};

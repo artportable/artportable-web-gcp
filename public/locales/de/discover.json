@@ -27,5 +27,10 @@
   "showroom": "Ausstellungen",
   "likedArt": "Geliebte Kunstwerke",
   "toggleLikeArt": "Zeige gemalte Kunstwerke",
-  "notLiked": "Der Künstler hat noch keine Werke gemocht."
+  "notLiked": "Der Künstler hat noch keine Werke gemocht.",
+  "close": "Schließen",
+  "loggedLike": "Sie müssen sich anmelden, um das Werk zu mögen",
+  "createAccount": "Konto erstellen",
+  "logIn": "Einloggen",
+  "popularProfiles": "Beliebte Profile"
 }

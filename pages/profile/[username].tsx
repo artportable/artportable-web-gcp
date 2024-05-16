@@ -27,6 +27,8 @@ import {
   useGetUserProfile,
   useGetUserProfileSummary,
   useGetUserProfilePicture,
+  useGetUser,
+  usePutMonthlyArtist,
 } from "../../app/hooks/dataFetching/UserProfile";
 import React, { useContext, useEffect, useState } from "react";
 import TabPanel from "../../app/components/TabPanel/TabPanel";
@@ -100,8 +102,8 @@ export default function Profile(props) {
   const router = useRouter();
   const smScreenOrSmaller = useBreakpointDown("sm");
   const smPlusOrSmaller = useBreakpointDown("smPlus");
-  const { isSignedIn, username, socialId, membership, phone } =
-    useContext(UserContext);
+  const { isSignedIn, username, socialId, membership, phone, email } = useContext(UserContext);
+  
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -121,6 +123,7 @@ export default function Profile(props) {
   const [editArtworkOpen, setEditArtworkOpen] = useState(false);
   const [artworkToEdit, setArtworkToEdit] = useState(null);
   const [isReady, setIsReady] = useState(false);
+  const [isMonthlyUser, setIsMonthlyUser] = useState(false);
 
   const [hasStories, setHasStories] = useState(false);
   const stories = useGetStories(profileUser, username.value);
@@ -133,6 +136,10 @@ export default function Profile(props) {
   const tags = useGetUserProfileTags(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
+  const adminRegExp = RegExp('^.+@artportable.com$');
+  const isAdmin = adminRegExp.test(email.value);
+  
+  const { setAsMonthlyArtist } = usePutMonthlyArtist();
 
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
@@ -171,6 +178,40 @@ export default function Profile(props) {
       setIsReady(true);
     }
   }, [isSignedIn, userProfile.isLoading]);
+
+  // Only runs once, after that isMonthlyUser is only updated through setAsMonthlyUser function.
+  useEffect(() => {
+    fetch(`${apiBaseUrl}/api/user/${profileUser}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw response;
+      }
+      return response.json();
+    })
+    .then(data => {
+      const monthlyUser = data?.MonthlyUser;
+      if (monthlyUser !== isMonthlyUser) {
+        setIsMonthlyUser(monthlyUser);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }, [profileUser])
+
+  async function setAsMonthlyUser(username, setAsMonthlyUser) {
+    try {
+      await setAsMonthlyArtist(token, username, setAsMonthlyUser);
+      setIsMonthlyUser(setAsMonthlyUser);
+    } catch(err) {
+      console.error('setAsMonthlyUser result:', err.message);
+    }
+  }
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -722,6 +763,9 @@ export default function Profile(props) {
                       isMyProfile={isMyProfile}
                       tags={tags.data}
                       onUpdateProfilePicture={updateImage}
+                      setAsMonthlyUser={setAsMonthlyUser}
+                      isMonthlyUser={isMonthlyUser}
+                      isAdmin={isAdmin}
                     ></AboutMe>
                   </TabPanel>
                   <TabPanel value={activeTab} index={2}>
@@ -892,6 +936,9 @@ export default function Profile(props) {
                       tags={tags.data}
                       onUpdateProfilePicture={updateImage}
                       isMyProfile={isMyProfile}
+                      userEmail={email.value}
+                      setAsMonthlyUser={setAsMonthlyUser}
+                      isMonthlyUser={isMonthlyUser}
                     ></AboutMe>
                   </TabPanel>
                   {isMyProfile && (

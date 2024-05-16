@@ -31,5 +31,6 @@
   "close": "Sulje",
   "loggedLike": "Sinun täytyy kirjautua sisään tykätäksesi taideteoksesta",
   "createAccount": "Luo tili",
-  "logIn": "Kirjaudu sisään"
+  "logIn": "Kirjaudu sisään",
+  "popularProfiles": "Suositut profiilit"
 }

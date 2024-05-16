@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import MyArtStudioCard from "../MyArtStudioCard/MyArtStudioCard";
 import TagsCard from "../TagsCard/TagsCard";
 import InspiredByCard from "../InspiredByCard/InspiredByCard";
@@ -16,6 +17,9 @@ export default function AboutMe({
   tags,
   isMyProfile,
   onUpdateProfilePicture,
+  setAsMonthlyUser,
+  isMonthlyUser,
+  isAdmin,
 }) {
   const s = styles();
   const { t } = useTranslation(["profile", "tags"]);
@@ -46,6 +50,13 @@ export default function AboutMe({
           <EducationCard educations={data?.Educations}></EducationCard>
         )}
       </Box>
+      { isAdmin && setAsMonthlyUser &&
+        <Box style={{ marginTop: 50 }}>
+          <Button variant="outlined" onClick={() => setAsMonthlyUser(data.Username, !isMonthlyUser)}>
+            { isMonthlyUser ? 'Remove from monthly artists' : 'Add to monthly artists' }
+          </Button>
+        </Box>
+      }
     </Box>
   );
 }

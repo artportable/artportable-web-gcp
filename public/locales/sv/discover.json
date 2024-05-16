@@ -31,5 +31,6 @@
   "close": "Stäng",
   "loggedLike": "Du behöver logga in för att kunna gilla verket",
   "createAccount": "Skapa konto",
-  "logIn": "Logga in"
+  "logIn": "Logga in",
+  "popularProfiles": "Populära profiler"
 }

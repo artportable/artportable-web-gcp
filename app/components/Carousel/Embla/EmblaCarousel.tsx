@@ -26,6 +26,7 @@ type PropType = {
 type Slide = {
   imageSrc: string,
   thumbnailSrc: string,
+  backupSrc?: string,
   hoverSrc: string,
   width: number,
   height: number,
@@ -84,6 +85,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   {/*
                     If we want to use slide.thumbnailSrc as src, but fall back to imageSrc if thumbnail fails:
                     onError={elem => (elem.target as HTMLImageElement).src = slide.imageSrc}
+                    If we want to use a backup src:
+                    onError={elem => (elem.target as HTMLImageElement).src = slide.backupSrc || ''}
                   */}
                   <img
                     className={clsx(s.image__element, {
@@ -98,8 +101,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                         {slide.overlayContent}
                       </div>
                     }
-                        {/* <div className={s.image__container}>
-                  </div> */}
+                  {/* <div className={s.image__container}></div> */}
                   { slide.hoverSrc &&
                     <div className={s.hover__image}>
                       <Image
