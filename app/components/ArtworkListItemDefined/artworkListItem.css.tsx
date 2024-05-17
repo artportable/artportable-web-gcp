@@ -73,13 +73,14 @@ export const styles = makeStyles((theme: Theme) =>
       flexBasis: 'calc(50% - var(--image-padding))',
       textAlign: 'left',
       flexGrow: 1,
+      flexFlow: 'row wrap-reverse !important', // Override value in tagsContainer.
       maxWidth: '100%',
     },
     bottomRight: {
-      flexBasis: 'calc(50% - var(--image-padding))',
+      // flexBasis: 'calc(50% - var(--image-padding))',
+      // flexGrow: 1,
       textAlign: 'right',
-      flexGrow: 1,
-      paddingTop: '10px',
+      padding: '10px 0 0 10px',
     },
     fullWidthInfo: {
       flexBasis: 'calc(100% - 2 * (var(--image-padding)))',

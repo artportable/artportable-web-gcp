@@ -12,6 +12,7 @@ import { THEME_TAGS, TECHNIQUE_TAGS } from "../DiscoverTrendingArtTab/tags";
 import { styles } from "./discoverTrendingArtTabDesktop.css";
 // import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
 import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel"
+import ArtistCarousel from "../Carousel/ArtistCarousel";
 // import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
 // import SELECTED_PRINTS from "../../../data/selectedPrintsData";
 import Button from "@material-ui/core/Button";
@@ -36,7 +37,7 @@ interface DiscoverTrendingArtTabProps {
 
 const DiscoverTrendingArtTabDesktop = memo(
   (props: DiscoverTrendingArtTabProps) => {
-    const { t } = useTranslation(["header", "common", "support"]);
+    const { t } = useTranslation(["header", "common", "support", "discover"]);
     const s = styles();
     const { username, socialId, rowWidth, header } = props;
     const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -564,13 +565,30 @@ const DiscoverTrendingArtTabDesktop = memo(
                   style={{
                     paddingBottom: '10px',
                   }}>
+                  {t('discover:popularProfiles')}
+                </Typography>
+                <ArtistCarousel
+                  forDesktop={true}
+                />
+              </div>),
+              position: 2,
+            },
+            { element: (
+              <div style={{
+                margin: '3rem 0',
+              }}>
+                <Typography
+                  variant="h2"
+                  style={{
+                    paddingBottom: '10px',
+                  }}>
                   Selected Prints
                 </Typography>
                 <SelectedprintsCarousel
                   forDesktop={true}
                 />
               </div>),
-              position: 2,
+              position: 5,
             },
             {
               element: header ? (
@@ -578,7 +596,7 @@ const DiscoverTrendingArtTabDesktop = memo(
                   { header }
                 </Typography>
               ) : null,
-              position: 3,
+              position: 6,
             },
           ]}
         />
