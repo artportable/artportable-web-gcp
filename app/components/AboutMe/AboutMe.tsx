@@ -17,9 +17,6 @@ export default function AboutMe({
   tags,
   isMyProfile,
   onUpdateProfilePicture,
-  setAsMonthlyUser,
-  isMonthlyUser,
-  isAdmin,
 }) {
   const s = styles();
   const { t } = useTranslation(["profile", "tags"]);
@@ -50,13 +47,6 @@ export default function AboutMe({
           <EducationCard educations={data?.Educations}></EducationCard>
         )}
       </Box>
-      { isAdmin && setAsMonthlyUser &&
-        <Box style={{ marginTop: 50 }}>
-          <Button variant="outlined" onClick={() => setAsMonthlyUser(data.Username, !isMonthlyUser)}>
-            { isMonthlyUser ? 'Remove from monthly artists' : 'Add to monthly artists' }
-          </Button>
-        </Box>
-      }
     </Box>
   );
 }

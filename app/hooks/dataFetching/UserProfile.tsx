@@ -126,31 +126,56 @@ export function useGetUserProfilePicture(user) {
 //   .catch(e => console.log(e));
 // }
 
-export const usePutMonthlyArtist = () => {
-  const { refreshToken } = useRefreshToken();
+export const useGetUser = (username: string) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const setAsMonthlyArtist = useCallback((token, username, setAsMonthly) => {
-    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-    refreshToken().then(() =>
-      fetch(`${apiBaseUrl}/api/profile/${username}/monthlyartist?isMonthlyArtist=${setAsMonthly}`, {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }))
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.statusText);
-          throw response;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const { data, error } = useSWR(
+    username ? `${apiBaseUrl}/api/User/${username}` : null,
+    fetcher,
+    {
+      revalidateOnFocus: true,
+      revalidateOnReconnect: false,
+    }
+  );
 
   return {
-    setAsMonthlyArtist,
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+export const useSetMonthlyArtist = () => {
+  const { refreshToken } = useRefreshToken();
+
+  const setMonthlyArtist = useCallback(
+    (token, username, isMonthlyArtist) => {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+      return refreshToken().then(() =>
+        fetch(
+          `${apiBaseUrl}/api/Profile/${username}/monthlyartist?isMonthlyArtist=${isMonthlyArtist}`,
+          {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        ).then((response) => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+      );
+    },
+    [refreshToken]
+  );
+
+  return {
+    setMonthlyArtist,
   };
 };
