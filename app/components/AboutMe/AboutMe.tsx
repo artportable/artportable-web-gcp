@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
 import MyArtStudioCard from "../MyArtStudioCard/MyArtStudioCard";
 import TagsCard from "../TagsCard/TagsCard";
 import InspiredByCard from "../InspiredByCard/InspiredByCard";

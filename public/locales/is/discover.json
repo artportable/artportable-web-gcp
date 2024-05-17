@@ -27,5 +27,10 @@
   "showroom": "Sýningar",
   "likedArt": "Likað verk",
   "toggleLikeArt": "Sýndu mælta listaverk",
-  "notLiked": "The artist hasn't liked any artworks yet."
+  "notLiked": "The artist hasn't liked any artworks yet.",
+  "close": "Loka",
+  "loggedLike": "Þú verður að skrá þig inn til að líka við verk",
+  "createAccount": "Búa til reikning",
+  "logIn": "Skrá inn",
+  "popularProfiles": "Vinsælir prófílar"
 }

@@ -27,6 +27,8 @@ import {
   useGetUserProfile,
   useGetUserProfileSummary,
   useGetUserProfilePicture,
+  useGetUser,
+  useSetMonthlyArtist,
 } from "../../app/hooks/dataFetching/UserProfile";
 import React, { useContext, useEffect, useState } from "react";
 import TabPanel from "../../app/components/TabPanel/TabPanel";
@@ -100,8 +102,9 @@ export default function Profile(props) {
   const router = useRouter();
   const smScreenOrSmaller = useBreakpointDown("sm");
   const smPlusOrSmaller = useBreakpointDown("smPlus");
-  const { isSignedIn, username, socialId, membership, phone } =
+  const { isSignedIn, username, socialId, membership, phone, email } =
     useContext(UserContext);
+
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -131,6 +134,7 @@ export default function Profile(props) {
   const artworks = useGetArtworks(profileUser, username.value);
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const tags = useGetUserProfileTags(profileUser);
+  const userData = useGetUser(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
 
@@ -153,9 +157,30 @@ export default function Profile(props) {
     imageurl: "",
   });
 
+  const { setMonthlyArtist } = useSetMonthlyArtist();
+  const [isMonthlyUser, setIsMonthlyUser] = useState(
+    userData?.data?.MonthlyUser
+  );
+
+  const handleSetMonthlyArtist = async (isMonthly) => {
+    try {
+      await setMonthlyArtist(token, profileUser, isMonthly);
+      setIsMonthlyUser(isMonthly);
+    } catch (error) {
+      console.error("Failed to set monthly artist:", error);
+    }
+  };
+
   const [openLoginDialog, setOpenLoginDialog] = useState(false);
 
   const isPremium = membership.value === 3;
+  const isAdmin = membership.value > 9;
+
+  useEffect(() => {
+    if (userData?.data?.MonthlyUser !== undefined) {
+      setIsMonthlyUser(userData.data.MonthlyUser);
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (!isReady) {
@@ -359,21 +384,7 @@ export default function Profile(props) {
   ) {
     const url = publicUrl + "/art/" + artworkId;
     referTo = userProfileSummary.data.SocialId;
-    // if (isSignedIn.value) {
-    //   const originalRedirect = {
-    //     pathname: "/messages",
-    //     query: {
-    //       artwork: encodeURIComponent(JSON.stringify({
-    //         title: title,
-    //         creator: creator,
-    //         url: url,
-    //         imageurl: imageurl
-    //       })),
-    //       referTo: referTo
-    //     }
-    //   }
-    //   router.push(originalRedirect);
-    // } else {
+
     setPurchaseRequestDialogData({
       title: title,
       creator: creator,
@@ -521,7 +532,17 @@ export default function Profile(props) {
               onClose={togglePortfolioPremiumDialog}
               numberExists={numberExists}
             />
-
+            {isAdmin && (
+              <Button
+                variant="contained"
+                color={isMonthlyUser ? "secondary" : "primary"}
+                onClick={() => handleSetMonthlyArtist(!isMonthlyUser)}
+              >
+                {isMonthlyUser
+                  ? "Remove Monthly Artist"
+                  : "Set as Monthly Artist"}
+              </Button>
+            )}
             {hasArtwork ? (
               <div className={s.tabsContainer}>
                 <Tabs
@@ -892,7 +913,7 @@ export default function Profile(props) {
                       tags={tags.data}
                       onUpdateProfilePicture={updateImage}
                       isMyProfile={isMyProfile}
-                    ></AboutMe>
+                    />
                   </TabPanel>
                   {isMyProfile && (
                     <TabPanel value={activeTab} index={1}>

@@ -31,5 +31,6 @@
   "close": "Close",
   "loggedLike": "You need to log in to like the artwork",
   "createAccount": "Create account",
-  "logIn": "Log in"
+  "logIn": "Log in",
+  "popularProfiles": "Popular profiles"
 }

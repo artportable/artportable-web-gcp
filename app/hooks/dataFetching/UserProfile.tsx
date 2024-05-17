@@ -1,5 +1,7 @@
 import useSWR from "swr";
+import { useCallback } from "react";
 import { getFetcher, isNullOrUndefined } from "../../utils/util";
+import useRefreshToken from "../useRefreshToken";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -123,3 +125,57 @@ export function useGetUserProfilePicture(user) {
 //   })
 //   .catch(e => console.log(e));
 // }
+
+export const useGetUser = (username: string) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+  const { data, error } = useSWR(
+    username ? `${apiBaseUrl}/api/User/${username}` : null,
+    fetcher,
+    {
+      revalidateOnFocus: true,
+      revalidateOnReconnect: false,
+    }
+  );
+
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+export const useSetMonthlyArtist = () => {
+  const { refreshToken } = useRefreshToken();
+
+  const setMonthlyArtist = useCallback(
+    (token, username, isMonthlyArtist) => {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+      return refreshToken().then(() =>
+        fetch(
+          `${apiBaseUrl}/api/Profile/${username}/monthlyartist?isMonthlyArtist=${isMonthlyArtist}`,
+          {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        ).then((response) => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+      );
+    },
+    [refreshToken]
+  );
+
+  return {
+    setMonthlyArtist,
+  };
+};
