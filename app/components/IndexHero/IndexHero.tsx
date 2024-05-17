@@ -260,8 +260,8 @@ export default function IndexHero() {
                               endIcon={<KeyboardArrowUpIcon />}
                               // Style for moving button down a bit.
                               style={{
-                                position: 'absolute',
-                                top: '40px',
+                                position: "absolute",
+                                top: "40px",
                                 left: 0,
                               }}
                             >
@@ -541,37 +541,6 @@ export default function IndexHero() {
               }}
             />
             <div className={s.headlineContainer}>
-              <div
-                className={s.desktopHeaderButtons}
-                style={{
-                  // marginBottom: '60px',
-                  marginTop: "40px",
-                }}
-              >
-                <Button
-                  className={clsx(
-                    sShared.colorAnimatedButton,
-                    sShared.noBorder
-                  )}
-                  style={{
-                    backgroundColor: colors[colorIndex],
-                    transition: "background-color 3s linear",
-                    color: "#000",
-                  }}
-                  size="medium"
-                  // variant="contained"
-                  color="primary"
-                  rounded
-                  onClick={() =>
-                    keycloak.register({
-                      locale: router.locale,
-                      redirectUri: signUpRedirectHref,
-                    })
-                  }
-                >
-                  {t("header:artistsHaveChosenAp")}
-                </Button>
-              </div>
               <Typography variant="h1" className={s.headline}>
                 {t("nordensLargestArena")}{" "}
                 <span>
@@ -579,13 +548,7 @@ export default function IndexHero() {
                 </span>
                 {t("forArtistsAndArtLovers")}
               </Typography>
-              <div
-                className={s.desktopHeaderButtons}
-                style={{
-                  // marginTop: '60px',
-                  marginBottom: "40px",
-                }}
-              >
+              <div className={s.desktopHeaderButtons}>
                 <Button
                   className={clsx(
                     sShared.largeButton,

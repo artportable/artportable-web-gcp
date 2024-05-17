@@ -93,8 +93,7 @@ export const styles = makeStyles((theme: Theme) =>
         // textAlign: "center",
         textAlign: "left",
       },
-      [theme.breakpoints.up("mdPlus")]: {
-      },
+      [theme.breakpoints.up("mdPlus")]: {},
     },
     right: {
       marginBottom: 0,
@@ -124,24 +123,24 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headerButtonArtlover: {
       display: "flex",
-      flexFlow: 'column nowrap',
+      flexFlow: "column nowrap",
       alignContent: "flex-start",
       alignItems: "center",
       // marginBottom: theme.spacing(4),
       // justifyContent: "center",
       justifyContent: "flex-start",
       [theme.breakpoints.up("sm")]: {
-        display: 'none',
+        display: "none",
       },
       // [theme.breakpoints.up("md")]: {
       // // [theme.breakpoints.up("smPlus")]: {
       //   marginBottom: theme.spacing(2),
       //   // justifyContent: "flex-start",
       // },
-      '& button': {
-        width: '250px',
-        maxWidth: '80vw',
-        marginBottom: '20px',
+      "& button": {
+        width: "250px",
+        maxWidth: "80vw",
+        marginBottom: "20px",
       },
     },
     headerButtonArtist: {
@@ -320,7 +319,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
     },
     button: {
-      border: 'none',
+      border: "none",
       marginTop: "-50px",
       [theme.breakpoints.up("smPlus")]: {
         marginTop: "-5px",
@@ -450,98 +449,85 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     fullWidthContainer: {
-      width: '100vw',
-      flexDirection: 'column-reverse',
+      width: "100vw",
+      flexDirection: "column-reverse",
     },
     fullWidthImage: {
-      position: 'relative',
+      position: "relative",
       // gridColumn: '1 / 4',
-      width: '100vw',
-      height: '60vh',
-      minHeight: '400px',
+      width: "100vw",
+      height: "50vh",
+      minHeight: "400px",
       [theme.breakpoints.up("sm")]: {
-        height: 'calc(100vh - 70px)',
+        height: "calc(100vh - 70px)",
       },
-      '& img': {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
+      "& img": {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
         zIndex: 10,
       },
     },
     headlineContainer: {
-      position: 'absolute',
-      top: '20px',
-      bottom: '20px',
-      left: '20px',
-      right: '20px',
-      display: 'flex',
-      flexFlow: 'column nowrap',
-      justifyContent: 'space-around',
-      alignItems: 'center',
+      position: "absolute",
+      top: "20px",
+      bottom: "20px",
+      left: "20px",
+      right: "20px",
+      display: "flex",
+      flexFlow: "column nowrap",
+      justifyContent: "space-around",
+      alignItems: "center",
       // textAlign: 'center',
     },
     headline: {
-      // fontWeight: 600,
-      // fontSize: "2rem",
-      // textAlign: "center",
-      // [theme.breakpoints.up("sm")]: {
-      //   fontSize: "3.5rem",
-      // },
-      // [theme.breakpoints.up("md")]: {
-      //   fontSize: "5rem",
-      //   textAlign: "left",
-      // },
-      position: 'relative',
-      // marginTop: '100px', // To center headline vertically, height of headerButtons.
+      position: "relative",
+
       fontWeight: 600,
       fontSize: "1.6rem",
       textAlign: "center",
-      color: 'white',
+      color: "white",
       zIndex: 20,
-      '& span': {
-        display: 'none',
+      "& span": {
+        display: "none",
       },
       [theme.breakpoints.up("sm")]: {
-        // marginTop: '120px',
-        fontSize: "2.5rem",
+        fontSize: "2.2rem",
       },
       [theme.breakpoints.up("md")]: {
-        textAlign: "left",
-        '& span': {
-          display: 'inline',
-        },
+        textAlign: "center",
       },
       [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "3.5rem",
+        fontSize: "3.0rem",
+        width: "70%",
       },
     },
     desktopHeaderButtons: {
-      display: 'flex',
+      display: "flex",
       // marginTop: '60px',
       zIndex: 20,
-      flexFlow: 'row nowrap',
+      flexFlow: "row nowrap",
       // [theme.breakpoints.up("sm")]: {
       //   flexDirection: 'row',
       // },
-      '& button': {
-        minWidth: '150px',
+      "& button": {
+        minWidth: "150px",
         // margin: '0 10px',
       },
     },
     readMoreButton: {
-      position: 'absolute',
-      bottom: '20px',
-      right: '40px',
+      position: "absolute",
+      bottom: "20px",
+      right: "40px",
       zIndex: 20,
-      '& button': {
-        border: 'none',
-        backgroundColor: 'rgba(255, 255, 255, .75)',
+      "& button": {
+        border: "none",
+        backgroundColor: "rgba(255, 255, 255, .75)",
       },
-      '&:hover': {
-        '& button': {
-          backgroundColor: 'white',
+      "&:hover": {
+        "& button": {
+          backgroundColor: "white",
         },
       },
       display: "none",
