@@ -40,6 +40,7 @@ export default function Notifications({ navBarItems }) {
   const { username, isSignedIn } = useContext(UserContext);
   const [pageState, setPageState] = useState(StateTypes.INITIAL);
 
+  // Using same decline value for all emails.
   // type for unsubscribing to different kind of emails.
   // artwork (inform followers when uploading a new artwork)
   // like (inform artist when someone likes one of their artworks)
@@ -50,8 +51,7 @@ export default function Notifications({ navBarItems }) {
     updateValue = 'EmailDeclinedArtworkUpload';
     description = t('support:unsubscribe.artworkUploadedEmail');
   } else if (type === MailTypes.LIKE) {
-    return null;
-    updateValue = 'EmailReceiveLike'; // EmailDeclineLike
+    updateValue = 'EmailDeclinedArtworkUpload';
     description = t('support:unsubscribe.artworkLikedEmail');
   } else {
     return null;
