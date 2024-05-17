@@ -561,9 +561,10 @@ const DiscoverTrendingArtTabDesktop = memo(
                 margin: '3rem 0',
               }}>
                 <Typography
-                  variant="h2"
+                  variant="h4"
                   style={{
                     paddingBottom: '10px',
+                    fontWeight: 500,
                   }}>
                   {t('discover:popularProfiles')}
                 </Typography>
@@ -578,9 +579,10 @@ const DiscoverTrendingArtTabDesktop = memo(
                 margin: '3rem 0',
               }}>
                 <Typography
-                  variant="h2"
+                  variant="h4"
                   style={{
                     paddingBottom: '10px',
+                    fontWeight: 500,
                   }}>
                   Selected Prints
                 </Typography>
