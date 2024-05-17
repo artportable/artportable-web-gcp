@@ -177,8 +177,10 @@ export default function Profile(props) {
   const isAdmin = membership.value > 9;
 
   useEffect(() => {
-    console.log(isMonthlyUser);
-  }, [userData, isMonthlyUser]);
+    if (userData?.data?.MonthlyUser !== undefined) {
+      setIsMonthlyUser(userData.data.MonthlyUser);
+    }
+  }, [userData]);
 
   useEffect(() => {
     if (!isReady) {
