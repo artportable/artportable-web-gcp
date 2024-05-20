@@ -39,6 +39,7 @@ import { UrlObject } from "url";
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import usePostLike from "../../app/hooks/dataFetching/usePostLike";
+import usePostLikeEmail from "../../app/hooks/dataFetching/usePostLikeEmail";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import { RWebShare } from "react-web-share";
@@ -83,6 +84,7 @@ export default function ArtworkPage(props) {
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   const { like } = usePostLike();
+  const { likeEmail } = usePostLikeEmail();
   const { follow } = usePostFollow();
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe);
@@ -162,6 +164,12 @@ export default function ArtworkPage(props) {
   function likeArtwork(isLike) {
     redirectIfNotLoggedIn();
     like(artwork.data.Id, isLike, socialId.value, token);
+    likeEmail(artwork.data.Id, isLike, socialId.value, token);
+    sendArtworkLikedEmail(!isLiked, artwork.data, {
+      likedByFirstName: given_name.value,
+      likedByLastName: family_name.value,
+      likedByUsername: username.value,
+    });
   }
 
   function toggleLike(event) {
@@ -172,15 +180,6 @@ export default function ArtworkPage(props) {
     !isLiked
     ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
     : null;
-    
-    if (!isLiked) {
-      const artistName = artwork?.data?.Owner?.Username;
-      const likedByArtist = username.value && username.value === artistName;
-      if (!likedByArtist) {
-        // Email the artist that an artwork has been liked.
-        sendArtworkLikedEmail(token, artwork.data, formatUserName(given_name.value, family_name.value), username.value);
-      }
-    }
   }
 
   const likedFilled = !isSignedIn.value ? (

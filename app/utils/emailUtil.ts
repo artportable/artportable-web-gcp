@@ -1,5 +1,8 @@
-import { config } from '../../config';
 import { isAfter, startOfDay, sub } from "date-fns";
+import { config } from '../../config';
+import {
+  formatUserName,
+} from "../../app/utils/util";
 
 async function sendInformFollowersEmail(token, data, username, artistEmail) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -109,15 +112,15 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   return mailResult;
 }
 
-async function sendArtworkLikedEmail(token, data, likedByFullName, likedByUsername) {
+async function sendArtworkLikedEmail(doLike, data, likedByUser) {
   // Artists can only receive max one artwork liked email per day.
   // Checking for it in artworks api.
-  
-  // If user is not logged in.
-  if (!likedByFullName) return;
+  const { likedByFirstName, likedByLastName, likedByUsername } = likedByUser;
+  if (!likedByUsername || !doLike) return;
 
   const artistUserName = data?.Owner?.Username;
-  if (!artistUserName) return;
+  const likedByArtist = artistUserName === likedByUsername;
+  if (!artistUserName || likedByArtist) return;
   
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -146,7 +149,7 @@ async function sendArtworkLikedEmail(token, data, likedByFullName, likedByUserna
     ImageURL: imageURL,
     WebbURL: webbURL,
     UnsubscribeURL: unsubscribeURL,
-    LikedByUser: likedByFullName,
+    LikedByUser: formatUserName(likedByFirstName, likedByLastName),
     LikedByURL: likedByURL,
   }}
   
@@ -156,7 +159,10 @@ async function sendArtworkLikedEmail(token, data, likedByFullName, likedByUserna
   try {
     await fetch(mailEndpoint,
       {
-        body: JSON.stringify({ artwork, artistEmail, likedByFullName }),
+        body: JSON.stringify({
+          artwork,
+          artistEmail,
+        }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -165,12 +171,11 @@ async function sendArtworkLikedEmail(token, data, likedByFullName, likedByUserna
       .then((res) => res.clone().json())
       .then((response) => {
         mailResult = response;
-        
+
       })
-    } catch(err) {
-      return console.error(err);
-    }
-    
+  } catch (err) {
+    return console.error(err);
+  }
   // console.log('emailUtil sendArtworkLikedEmail mailResult:', mailResult);
 
   return mailResult;
