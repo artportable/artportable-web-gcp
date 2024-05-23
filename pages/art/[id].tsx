@@ -155,7 +155,7 @@ export default function ArtworkPage(props) {
   }
 
   function likeArtwork(isLike) {
-    likeEmail(isLike, artwork.data);
+    likeEmail(artwork.data, isLike);
   }
 
   function toggleLike(event) {
