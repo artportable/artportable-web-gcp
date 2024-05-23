@@ -9,6 +9,7 @@ import { useGetUserExhibitions } from "../../hooks/dataFetching/Stories";
 import Button from "@mui/material/Button";
 import { Story } from "../../models/Story";
 import { cafes, showrooms } from "./showroomData";
+import juliImage from "../../../public/images/juli1.png";
 
 export default function Showroom() {
   const s = styles();
@@ -35,6 +36,105 @@ export default function Showroom() {
   const [backgroundImages, setBackgroundImages] = useState([]);
   const monthNames = Object.keys(showrooms);
   const januaryIndex = monthNames.indexOf("MAJ");
+  const [agneta, setAgneta] = useState(false);
+
+  const isCurrentMonthJuly = () => {
+    const currentMonth = new Date().getMonth();
+    return currentMonth === 6;
+  };
+
+  const renderRegularShowroomContent = () => {
+    return (
+      <div>
+        {Object.keys(showrooms).map((month, index) => (
+          <TabPanel value={String(index)} key={index}>
+            <Grid container spacing={10}>
+              {showrooms[month].map((showroom, i) => (
+                <Grid item xs={6} sm={6} key={i}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <a
+                      href={`https://artportable.com/profile/@${showroom.username}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <Card
+                        className={s.card}
+                        style={{
+                          backgroundImage: `url('${backgroundImages[i]}')`,
+                          backgroundRepeat: "no-repeat",
+                          backgroundSize: "contain",
+                        }}
+                      />
+                    </a>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        margin: "10px",
+                      }}
+                    >
+                      <div>
+                        <Typography className={s.artist}>
+                          <a
+                            href={`https://artportable.com/profile/@${showroom.username}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              cursor: "pointer",
+                            }}
+                          >
+                            {showroom.artist.toUpperCase()}
+                          </a>
+                        </Typography>
+                      </div>
+                      <div>
+                        <Typography>{showroom?.week?.toUpperCase()}</Typography>
+                      </div>
+                    </div>
+                  </div>
+                </Grid>
+              ))}
+            </Grid>
+          </TabPanel>
+        ))}
+      </div>
+    );
+  };
+
+  const renderShowroomContent = () => {
+    const selectedMonth = monthNames[value];
+    if (selectedMonth === "JULI") {
+      return renderSpecialShowroomForJuly();
+    } else {
+      return renderRegularShowroomContent();
+    }
+  };
+
+  const renderSpecialShowroomForJuly = () => {
+    return (
+      <a href={`https://artportable.com/en/profile/@agnetastrindinger`}>
+        <div
+          className={s.cardJuli}
+          style={{
+            backgroundImage: `url(${"/images/1.png"})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        />
+      </a>
+    );
+  };
 
   const [value, setValue] = useState(januaryIndex !== -1 ? januaryIndex : 0);
 
@@ -60,6 +160,7 @@ export default function Showroom() {
             if (!response.ok) {
               console.error(`Failed to fetch data for ${showroom.username}`);
               imagePromises.push("/images/artportableCommercial.jpg");
+              setAgneta(true);
               continue;
             }
 
@@ -150,75 +251,9 @@ export default function Showroom() {
               </Tabs>
             </div>
             <div style={{ alignContent: "center" }}>
-              {Object.keys(showrooms).map((month, index) => (
-                <TabPanel value={String(index)} key={index}>
-                  <Grid container spacing={10}>
-                    {showrooms[month].map((showroom, i) => (
-                      <Grid item xs={6} sm={6} key={i}>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                          }}
-                        >
-                          <a
-                            href={`https://artportable.com/profile/@${showroom.username}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              textDecoration: "underline",
-                              cursor: "pointer",
-                            }}
-                          >
-                            <Card
-                              className={s.card}
-                              style={{
-                                backgroundImage: `url('${backgroundImages[i]}')`,
-                                backgroundRepeat: "no-repeat",
-                                backgroundSize: "cover",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "flex-start",
-
-                                padding: "20px",
-                              }}
-                            />
-                          </a>
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                              margin: "10px",
-                            }}
-                          >
-                            <div>
-                              <Typography className={s.artist}>
-                                <a
-                                  href={`https://artportable.com/profile/@${showroom.username}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  style={{
-                                    cursor: "pointer",
-                                  }}
-                                >
-                                  {showroom.artist.toUpperCase()}
-                                </a>
-                              </Typography>
-                            </div>
-                            <div>
-                              <Typography>
-                                {showroom?.week?.toUpperCase()}
-                              </Typography>
-                            </div>
-                          </div>
-                        </div>
-                      </Grid>
-                    ))}
-                  </Grid>
-                </TabPanel>
-              ))}
+              <div style={{ alignContent: "center" }}>
+                {renderShowroomContent()}
+              </div>
             </div>
           </TabContext>
         </div>

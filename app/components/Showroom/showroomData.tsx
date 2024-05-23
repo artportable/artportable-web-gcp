@@ -128,7 +128,7 @@ export const showrooms = {
   ],
   JULI: [
     {
-      week: "Sommarstängt",
+      week: "",
       artist: "",
       username: "",
     },
