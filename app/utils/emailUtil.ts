@@ -22,7 +22,8 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   if (!artist) return;
   const fullName = `${artist.Name} ${artist.Surname}`;
   
-  // Only send max one artwork uploaded email per day.
+  // Only send max one artwork uploaded email per day per artist.
+  // In artworks api, also checks that a user does not get more than one follower email per day, even if they follow multiple artists.
   const emailInformedFollowersDate = artist?.EmailInformedFollowersDate;
   // If artist was already emailed today, return.
   const startOfToday = startOfDay(new Date());
@@ -108,22 +109,15 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   return mailResult;
 }
 
-async function sendArtworkLikedEmail(data, likedByUser, token) {
-
-  // Function not finished.
-  return;
-
-  // EmailDeclinedLike
-
-  console.log('sendArtworkLikedEmail', data);
+async function sendArtworkLikedEmail(token, data, likedByFullName, likedByUsername) {
+  // Artists can only receive max one artwork liked email per day.
+  // Checking for it in artworks api.
+  
   // If user is not logged in.
-  if (!likedByUser) return;
+  if (!likedByFullName) return;
 
   const artistUserName = data?.Owner?.Username;
-  console.log('artistUserName', artistUserName);
   if (!artistUserName) return;
-
-  // return;
   
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -138,50 +132,22 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
   } catch(err) {
     return console.error(err);
   }
-  console.log('artist', artist);
-  
+
   const artistEmail = data?.Owner?.Email; // Email not set on fetched artist, get from data.Owner.
-  console.log('artistEmail', artistEmail);
-  // Like email data not set on data.Owner, get from fetched artist.
-  const emailDeclinedLike = artist?.EmailReceiveLike; // data?.Owner?.EmailReceiveLike;
-  const emailReceivedLikeDate = artist?.EmailReceivedLikeDate; // data?.Owner?.EmailReceivedLikeDate;
-  console.log('emailDeclinedLike', emailDeclinedLike);
-  console.log('emailDeclinedLikeDate', emailReceivedLikeDate);
-  if (!artistEmail || emailDeclinedLike) return;
-
-  // Only send max one artwork liked email per day.
-  const startOfToday = startOfDay(new Date());
-  // Is the first date after the second one:
-  if (emailReceivedLikeDate && isAfter(new Date(emailReceivedLikeDate), startOfToday)) {
-    console.log('Artist already received like-email today.');
-    return;
-  } else {
-    console.log('Artist not emailed today.');
-  }
-
-  // Update artist with send-date in artportable api.
-  // artist.followersEmailedDate
-  let updatedArtist = null;
-  try {
-    // updatedArtist = await updateUser(userBody, userName, token);
-  } catch(err) {
-    console.error(err)
-    // If like emailed data can not be set on artist, don't send emails.
-    return;
-  }
-  console.log('updatedArtist', updatedArtist);
-  // TODO:
-  // Update artist with received-like-mail-date in artportable api.
+  const emailDeclinedArtworkUpload = artist?.EmailDeclinedArtworkUpload; // Email declined data not set on data.Owner, get from fetched artist.
+  if (!artistEmail || emailDeclinedArtworkUpload) return;
 
   const imageURL = config.BUCKET_URL + data.PrimaryFile.Name
   const webbURL = config.WEBB_URL + '/art/' + data.Id
+  const likedByURL = config.WEBB_URL + '/profile/@' + likedByUsername
   const unsubscribeURL = config.WEBB_URL + '/notifications?type=like';
 
   const artwork = {...data, ...{
     ImageURL: imageURL,
     WebbURL: webbURL,
     UnsubscribeURL: unsubscribeURL,
-    LikedByUser: likedByUser,
+    LikedByUser: likedByFullName,
+    LikedByURL: likedByURL,
   }}
   
   // Send email to artist
@@ -190,7 +156,7 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
   try {
     await fetch(mailEndpoint,
       {
-        body: JSON.stringify({ artwork, artistEmail, likedByUser }),
+        body: JSON.stringify({ artwork, artistEmail, likedByFullName }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -205,7 +171,7 @@ async function sendArtworkLikedEmail(data, likedByUser, token) {
       return console.error(err);
     }
     
-  console.log('emailUtil sendArtworkLikedEmail mailResult:', mailResult);
+  // console.log('emailUtil sendArtworkLikedEmail mailResult:', mailResult);
 
   return mailResult;
 }

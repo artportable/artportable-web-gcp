@@ -173,15 +173,14 @@ export default function ArtworkPage(props) {
     ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
     : null;
     
-    // if (!isLiked) {
-    //   const artistName = artwork?.data?.Owner?.Username;
-    //   const likedByArtist = username.value && username.value === artistName;
-    //   if (!likedByArtist || true) {
-    //     // Email the artist that an artwork has been liked.
-    //     sendArtworkLikedEmail(artwork.data, formatUserName(given_name.value, family_name.value), token);
-    //   }
-    // }
-    
+    if (!isLiked) {
+      const artistName = artwork?.data?.Owner?.Username;
+      const likedByArtist = username.value && username.value === artistName;
+      if (!likedByArtist) {
+        // Email the artist that an artwork has been liked.
+        sendArtworkLikedEmail(token, artwork.data, formatUserName(given_name.value, family_name.value), username.value);
+      }
+    }
   }
 
   const likedFilled = !isSignedIn.value ? (

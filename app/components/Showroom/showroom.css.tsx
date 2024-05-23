@@ -251,6 +251,29 @@ export const styles = makeStyles((theme: Theme) => {
         height: "50vh",
       },
     },
+
+    cardJuli: {
+      marginTop: "40px",
+      marginBottom: "40px",
+      width: "400px",
+      height: "300px",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginLeft: "auto",
+      marginRight: "auto",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "500px",
+        height: "400px",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "500px",
+        height: "400px",
+      },
+    },
+    cardAgneta: {},
     period: {
       marginTop: "6spx",
       fontSize: "20px",
