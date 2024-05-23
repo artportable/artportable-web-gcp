@@ -9,7 +9,7 @@ import { UserContext } from "../../contexts/user-context";
 type FeedProps = {
   user: string;
   index: number;
-  onLikeClick: (id: string) => void;
+  onLikeClick: (id: string, isLike: boolean) => void;
   fetchMorePosts: boolean;
   setFetchMorePosts: (fetchMore: boolean) => void;
   entriesCount: number;

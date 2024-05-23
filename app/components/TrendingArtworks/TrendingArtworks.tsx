@@ -25,9 +25,7 @@ import {
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
 import { capitalizeFirst } from "../../utils/util";
-import usePostLike from "../../hooks/dataFetching/usePostLike";
-import { TokenContext } from "../../contexts/token-context";
-import { UserContext } from "../../contexts/user-context";
+import usePostLikeEmail from "../../hooks/dataFetching/usePostLikeEmail";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import axios from "axios";
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
@@ -44,8 +42,7 @@ export default function TrendingArtworks({ artwork }) {
   const isDefaultLocale = router.locale === router.defaultLocale;
   const [totalLikes, setTotalLikes] = useState(artwork.Likes);
   const timePassed = getTimePassed(artwork?.Published, t);
-  const { like } = usePostLike();
-  const token = useContext(TokenContext);
+  const { likeEmail } = usePostLikeEmail();
   const [artworkData, setArtworkData] = useState(null);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const userProfileSummary = useGetUserProfileSummary(artwork?.Owner?.Username);
@@ -101,8 +98,8 @@ export default function TrendingArtworks({ artwork }) {
     togglePurchaseRequestDialog();
   }
 
-  function likePost(artworkId, isLike) {
-    like(artworkId, isLike, artwork.Owner.SocialId, token);
+  function likePost(artwork, isLike) {
+    likeEmail(artwork, isLike);
   }
 
   const mediaClasses = clsx(
@@ -211,7 +208,7 @@ export default function TrendingArtworks({ artwork }) {
             }
             onClick={(event) => {
               event.preventDefault();
-              likePost(artwork.Id, !isLiked);
+              likePost(artwork, !isLiked);
               setLike(!isLiked);
               setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
             }}

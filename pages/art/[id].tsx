@@ -38,7 +38,7 @@ import {
 import { UrlObject } from "url";
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import usePostLike from "../../app/hooks/dataFetching/usePostLike";
+import usePostLikeEmail from "../../app/hooks/dataFetching/usePostLikeEmail";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import { RWebShare } from "react-web-share";
@@ -56,11 +56,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {
-  sendArtworkLikedEmail,
-  sendInformFollowersEmail,
-} from '../../app/utils/emailUtil';
-import { config } from '../../config';
 
 import { Select } from "@mui/material";
 
@@ -76,13 +71,13 @@ export default function ArtworkPage(props) {
   const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query;
-  const { username, socialId, membership, email: userEmail, given_name, family_name } = useContext(UserContext);
+  const { username, socialId, membership } = useContext(UserContext);
   
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
-  const { like } = usePostLike();
+  const { likeEmail } = usePostLikeEmail();
   const { follow } = usePostFollow();
 
   const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe);
@@ -160,8 +155,7 @@ export default function ArtworkPage(props) {
   }
 
   function likeArtwork(isLike) {
-    redirectIfNotLoggedIn();
-    like(artwork.data.Id, isLike, socialId.value, token);
+    likeEmail(isLike, artwork.data);
   }
 
   function toggleLike(event) {
@@ -172,15 +166,6 @@ export default function ArtworkPage(props) {
     !isLiked
     ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
     : null;
-    
-    if (!isLiked) {
-      const artistName = artwork?.data?.Owner?.Username;
-      const likedByArtist = username.value && username.value === artistName;
-      if (!likedByArtist) {
-        // Email the artist that an artwork has been liked.
-        sendArtworkLikedEmail(token, artwork.data, formatUserName(given_name.value, family_name.value), username.value);
-      }
-    }
   }
 
   const likedFilled = !isSignedIn.value ? (
@@ -807,6 +792,7 @@ export async function getServerSideProps({ locale, params }) {
           "tags",
           "support",
           "plans",
+          "discover",
           "forms",
           "upload",
         ])),
@@ -830,6 +816,7 @@ export async function getServerSideProps({ locale, params }) {
         "tags",
         "support",
         "plans",
+        "discover",
         "forms",
         "upload",
       ])),

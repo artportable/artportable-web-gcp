@@ -49,16 +49,12 @@ import { TokenContext } from "../../app/contexts/token-context";
 import { LoadingContext } from "../../app/contexts/loading-context";
 import { UserContext } from "../../app/contexts/user-context";
 import {
-  useRedirectToLoginIfNotLoggedIn,
-  useRedirectToRegisterIfNotLoggedIn,
-} from "../../app/hooks/useRedirectToLoginIfNotLoggedIn";
-import {
   ActionType,
   // CategoryType,
   // trackGoogleAnalytics,
 } from "../../app/utils/googleAnalytics";
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
-import usePostLike from "../../app/hooks/dataFetching/usePostLike";
+import usePostLikeEmail from "../../app/hooks/dataFetching/usePostLikeEmail";
 import useRefreshToken from "../../app/hooks/useRefreshToken";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import DialogMonthlyUser from "../../app/components/MonthlyUserUpgrade/MonthlyUserUpgrade";
@@ -73,13 +69,6 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@material-ui/core";
-import CloseIcon from "@mui/icons-material/Close";
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -107,8 +96,6 @@ export default function Profile(props) {
 
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
-  const redirectIfNotRegistered = useRedirectToRegisterIfNotLoggedIn();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -144,7 +131,7 @@ export default function Profile(props) {
   const [isFollowed, setFollow] = useState(userProfile?.data?.FollowedByMe);
   const { setLoading } = useContext(LoadingContext);
 
-  const { like } = usePostLike();
+  const { likeEmail } = usePostLikeEmail();
   const { refreshToken } = useRefreshToken();
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
@@ -170,8 +157,6 @@ export default function Profile(props) {
       console.error("Failed to set monthly artist:", error);
     }
   };
-
-  const [openLoginDialog, setOpenLoginDialog] = useState(false);
 
   const isPremium = membership.value === 3;
   const isAdmin = membership.value > 9;
@@ -249,17 +234,9 @@ export default function Profile(props) {
     }
   }, [rowWidth]);
 
-  function onLikeClick(artworkId, isLike) {
-    if (!isSignedIn.value) {
-      setOpenLoginDialog(true);
-    } else {
-      like(artworkId, isLike, socialId.value, token);
-    }
+  function onLikeClick(artwork, isLike) {
+    likeEmail(artwork, isLike);
   }
-
-  const handleCloseLoginDialog = () => {
-    setOpenLoginDialog(false);
-  };
 
   function handleTabChange(_, newValue) {
     setActiveTab(newValue);
@@ -924,69 +901,6 @@ export default function Profile(props) {
               </div>
             )}
           </div>
-          <Dialog open={openLoginDialog} onClose={handleCloseLoginDialog}>
-            <DialogContent>
-              <div
-                style={{
-                  padding: "20px",
-                  textAlign: "center",
-                }}
-              >
-                <Button
-                  onClick={handleCloseLoginDialog}
-                  endIcon={<CloseIcon />}
-                  style={{
-                    position: "absolute",
-                    top: "0px",
-                    right: "10px",
-                    marginBottom: "20px",
-                    padding: "20px",
-                    fontSize: "14px",
-                    color: "black",
-                    fontWeight: "400",
-                  }}
-                >
-                  {t("discover:close")}
-                </Button>
-                <div style={{ marginTop: "50px" }}>
-                  <div style={{ fontWeight: "500" }}>
-                    {t("discover:loggedLike")}
-                  </div>
-                  <div style={{ marginTop: "30px", fontWeight: "500" }}>
-                    <Button
-                      onClick={redirectIfNotRegistered}
-                      style={{
-                        color: "black",
-                        backgroundColor: "#FFDA7A",
-                        width: "212px",
-                        height: "44px",
-                        borderRadius: "20px",
-                      }}
-                    >
-                      {t("discover:createAccount")}
-                    </Button>
-                  </div>
-                  <div style={{ marginTop: "10px" }}>
-                    <Button
-                      onClick={redirectIfNotLoggedIn}
-                      style={{
-                        color: "black",
-                        backgroundColor: "transparent",
-                        width: "212px",
-                        height: "44px",
-                        borderRadius: "20px",
-                        border: "1px solid",
-                        marginBottom: "40px",
-                      }}
-                    >
-                      {t("discover:logIn")}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
-
           <Snackbar
             open={uploadSnackbarOpen}
             autoHideDuration={6000}
@@ -1090,6 +1004,7 @@ export async function getServerSideProps({ locale, params }) {
         "upload",
         "support",
         "plans",
+        "discover",
         "forms",
       ])),
     },

@@ -1,10 +1,7 @@
 import { useTranslation } from "next-i18next";
 import React, { memo, useContext, useRef, useState } from "react";
-import { TokenContext } from "../../contexts/token-context";
 import { useGetTags } from "../../hooks/dataFetching/Artworks";
-import usePostLike from "../../hooks/dataFetching/usePostLike";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
-import { useRedirectToLoginIfNotLoggedIn } from "../../hooks/useRedirectToLoginIfNotLoggedIn";
 import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 
@@ -27,19 +24,11 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
   const loadMoreArtworksElementRef = useRef(null);
   const [selectedTags, setSelectedTags] = useState(null);
   const tags = useGetTags();
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
-  const token = useContext(TokenContext);
-  const { like } = usePostLike();
 
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
     setSelectedTags(tags);
     setSearchQuery(searchQuery);
-  }
-
-  function likeArtwork(artworkId, isLike) {
-    redirectIfNotLoggedIn();
-    like(artworkId, isLike, socialId, token);
   }
 
   const { data: artworks, isLoading: isLoadingArtWorks } =
@@ -78,7 +67,6 @@ const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {
           artworks={artworks}
           tags={tags?.data}
           onFilter={filter}
-          onLike={likeArtwork}
           rowWidth={rowWidth}
           loadMoreElementRef={loadMoreArtworksElementRef}
           isLoading={isLoadingArtWorks}

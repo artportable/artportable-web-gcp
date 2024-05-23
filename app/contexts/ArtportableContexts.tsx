@@ -10,6 +10,7 @@ import { Snackbar } from '@material-ui/core'
 import { Alert, AlertProps } from '@material-ui/lab';
 import { useTranslation } from "next-i18next";
 import { ChatClientContext } from './chat-context';
+import { LoginContext } from './login-context';
 
 import { ConnectionOpen, StreamChat } from 'stream-chat';
 import { AttachmentType, ChannelType, CommandType, EventType, MessageType, ReactionType, UserType } from '../components/Messaging/MessagingTypes';
@@ -275,21 +276,31 @@ export const ArtportableContexts = ({ children, accessToken, keycloakState }: Pr
     setSnackbar({ open: false, message: '', severity: 'warning' });
   }
 
+  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
+  const handleOpenLoginDialog = () => {
+    setLoginDialogOpen(true);
+  };
+  const handleCloseLoginDialog = () => {
+    setLoginDialogOpen(false);
+  };
+
   return (
     <TokenContext.Provider value={accessToken}>
       <UserContext.Provider value={userContext}>
         <LoadingContext.Provider value={{ loading: isLoading, setLoading: setIsLoading}}>
           <ChatClientContext.Provider value={chatClient}>
-            <NavigationContextComponent>
-              <>
-                {children}
-                <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
-                  <Alert onClose={handleSnackbarClose} variant="filled" severity={snackbar.severity}>
-                    {snackbar.message}
-                  </Alert>
-                </Snackbar>
-              </>
-            </NavigationContextComponent>
+            <LoginContext.Provider value={{ loginDialogOpen, openLoginDialog: handleOpenLoginDialog, closeLoginDialog: handleCloseLoginDialog }}>
+              <NavigationContextComponent>
+                <>
+                  {children}
+                  <Snackbar open={snackbar.open} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                    <Alert onClose={handleSnackbarClose} variant="filled" severity={snackbar.severity}>
+                      {snackbar.message}
+                    </Alert>
+                  </Snackbar>
+                </>
+              </NavigationContextComponent>
+            </LoginContext.Provider>
           </ChatClientContext.Provider>
         </LoadingContext.Provider>
       </UserContext.Provider>
