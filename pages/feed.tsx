@@ -30,7 +30,7 @@ import {
   CategoryType,
   trackGoogleAnalytics,
 } from "../app/utils/googleAnalytics";
-import usePostLike from "../app/hooks/dataFetching/usePostLike";
+import usePostLikeEmail from "../app/hooks/dataFetching/usePostLikeEmail";
 import usePostFollow from "../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import axios from "axios";
@@ -61,7 +61,7 @@ export default function FeedPage({ navBarItems }) {
   const { isSignedIn } = useContext(UserContext);
   const { loading, setLoading } = useContext(LoadingContext);
 
-  const { like } = usePostLike();
+  const { likeEmail } = usePostLikeEmail();
   const { follow } = usePostFollow();
   const { data, isLoading, isError } = useGetTrendingArtworks();
 
@@ -112,8 +112,8 @@ export default function FeedPage({ navBarItems }) {
     follow(userSocialId, isFollow, socialId.value, token);
   }
 
-  function likePost(contentId, isLike) {
-    like(contentId, isLike, socialId.value, token);
+  function likePost(content, isLike) {
+    likeEmail(content, isLike);
   }
 
   return (

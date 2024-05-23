@@ -38,6 +38,7 @@ import ArtportableContexts from "../app/contexts/ArtportableContexts";
 import Router from "next/router";
 import { useTranslation } from "next-i18next";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
+import GlobalComponents from '../app/components/GlobalComponents/GlobalComponents';
 library.add(faDribbble, faBehanceSquare);
 interface InitialProps {
   cookies: unknown;
@@ -109,6 +110,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       });
   }, [router.events]);
   const { t } = useTranslation(["header"]);
+
   return (
     <>
       <Head>
@@ -138,6 +140,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <Component {...pageProps} />
+              <GlobalComponents />
               <CookieConsentBar />
             </ThemeProvider>
           </ArtportableContexts>

@@ -38,7 +38,6 @@ import {
 import { UrlObject } from "url";
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import usePostLike from "../../app/hooks/dataFetching/usePostLike";
 import usePostLikeEmail from "../../app/hooks/dataFetching/usePostLikeEmail";
 import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
@@ -57,11 +56,6 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {
-  sendArtworkLikedEmail,
-  sendInformFollowersEmail,
-} from '../../app/utils/emailUtil';
-import { config } from '../../config';
 
 import { Select } from "@mui/material";
 
@@ -77,13 +71,12 @@ export default function ArtworkPage(props) {
   const canonicalURL = publicUrl + router.asPath;
 
   const { id } = router.query;
-  const { username, socialId, membership, email: userEmail, given_name, family_name } = useContext(UserContext);
+  const { username, socialId, membership } = useContext(UserContext);
   
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
-  const { like } = usePostLike();
   const { likeEmail } = usePostLikeEmail();
   const { follow } = usePostFollow();
 
@@ -162,14 +155,7 @@ export default function ArtworkPage(props) {
   }
 
   function likeArtwork(isLike) {
-    redirectIfNotLoggedIn();
-    like(artwork.data.Id, isLike, socialId.value, token);
-    likeEmail(artwork.data.Id, isLike, socialId.value, token);
-    sendArtworkLikedEmail(!isLiked, artwork.data, {
-      likedByFirstName: given_name.value,
-      likedByLastName: family_name.value,
-      likedByUsername: username.value,
-    });
+    likeEmail(isLike, artwork.data);
   }
 
   function toggleLike(event) {
@@ -806,6 +792,7 @@ export async function getServerSideProps({ locale, params }) {
           "tags",
           "support",
           "plans",
+          "discover",
           "forms",
           "upload",
         ])),
@@ -829,6 +816,7 @@ export async function getServerSideProps({ locale, params }) {
         "tags",
         "support",
         "plans",
+        "discover",
         "forms",
         "upload",
       ])),

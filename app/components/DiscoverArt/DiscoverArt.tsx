@@ -21,6 +21,7 @@ import { getImageAsRows } from "../../utils/layoutUtils";
 import Image from "../../models/Image";
 import DiscoverArtSkeleton from "../DiscoverArtSkeletonCard/DiscoverArtSkeleton";
 import { useBreakpointDown } from "../../hooks/useBreakpointDown";
+import usePostLikeEmail from "../../hooks/dataFetching/usePostLikeEmail";
 // import SearchField from "../SearchField/SearchField";
 import { debounce } from "@material-ui/core/utils";
 // import { UserContext } from "../../../app/contexts/user-context";
@@ -42,7 +43,6 @@ interface InputProps {
   artworks: Artwork[];
   tags: string[];
   onFilter?: any;
-  onLike: any;
   rowWidth: number;
   loadMoreElementRef: any;
   isLoading: boolean;
@@ -57,7 +57,6 @@ interface InputProps {
 export default function DiscoverArt({
   artworks,
   onFilter = null,
-  onLike,
   rowWidth,
   loadMoreElementRef,
   isLoading,
@@ -71,6 +70,7 @@ export default function DiscoverArt({
   const { t } = useTranslation(["discover", "tags"]);
   const smScreenOrSmaller = useBreakpointDown("sm");
   const [loading, setLoading] = useState(false);
+  const { likeEmail } = usePostLikeEmail();
 
   useEffect(() => {
     if (artworks && artworks.length === 0 && !likedArtTab) {
@@ -167,6 +167,10 @@ export default function DiscoverArt({
   useEffect(() => {
     if (onFilter) onFilter([]);
   }, []);
+  
+  function likeArtwork(artwork, isLike) {
+    likeEmail(artwork, isLike);
+  }
 
   function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
@@ -283,7 +287,7 @@ export default function DiscoverArt({
                           purchaseRequestAction={
                             ActionType.PURCHASE_REQUEST_LIST_DISCOVER
                           }
-                          onLikeClick={onLike}
+                          onLikeClick={likeArtwork}
                         />
                       );
                       // return (

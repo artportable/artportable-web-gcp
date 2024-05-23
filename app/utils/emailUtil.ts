@@ -1,8 +1,5 @@
 import { isAfter, startOfDay, sub } from "date-fns";
 import { config } from '../../config';
-import {
-  formatUserName,
-} from "../../app/utils/util";
 
 async function sendInformFollowersEmail(token, data, username, artistEmail) {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -112,75 +109,6 @@ async function sendInformFollowersEmail(token, data, username, artistEmail) {
   return mailResult;
 }
 
-async function sendArtworkLikedEmail(doLike, data, likedByUser) {
-  // Artists can only receive max one artwork liked email per day.
-  // Checking for it in artworks api.
-  const { likedByFirstName, likedByLastName, likedByUsername } = likedByUser;
-  if (!likedByUsername || !doLike) return;
-
-  const artistUserName = data?.Owner?.Username;
-  const likedByArtist = artistUserName === likedByUsername;
-  if (!artistUserName || likedByArtist) return;
-  
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-  const artistEndpoint = `${apiBaseUrl}/api/profile/${artistUserName}`
-  let artist = null;
-  try {
-    await fetch(artistEndpoint)
-    .then((res) => res.clone().json())
-    .then((response) => {
-      artist = response;
-    })
-  } catch(err) {
-    return console.error(err);
-  }
-
-  const artistEmail = data?.Owner?.Email; // Email not set on fetched artist, get from data.Owner.
-  const emailDeclinedArtworkUpload = artist?.EmailDeclinedArtworkUpload; // Email declined data not set on data.Owner, get from fetched artist.
-  if (!artistEmail || emailDeclinedArtworkUpload) return;
-
-  const imageURL = config.BUCKET_URL + data.PrimaryFile.Name
-  const webbURL = config.WEBB_URL + '/art/' + data.Id
-  const likedByURL = config.WEBB_URL + '/profile/@' + likedByUsername
-  const unsubscribeURL = config.WEBB_URL + '/notifications?type=like';
-
-  const artwork = {...data, ...{
-    ImageURL: imageURL,
-    WebbURL: webbURL,
-    UnsubscribeURL: unsubscribeURL,
-    LikedByUser: formatUserName(likedByFirstName, likedByLastName),
-    LikedByURL: likedByURL,
-  }}
-  
-  // Send email to artist
-  const mailEndpoint = `${config.ARTWORKS_API_BASE}/artportable/artwork-liked-ap`;
-  let mailResult = null;
-  try {
-    await fetch(mailEndpoint,
-      {
-        body: JSON.stringify({
-          artwork,
-          artistEmail,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-      })
-      .then((res) => res.clone().json())
-      .then((response) => {
-        mailResult = response;
-
-      })
-  } catch (err) {
-    return console.error(err);
-  }
-  // console.log('emailUtil sendArtworkLikedEmail mailResult:', mailResult);
-
-  return mailResult;
-}
-
 const updateUser = async (params, username, token) => {
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -215,5 +143,5 @@ const updateUser = async (params, username, token) => {
 }
 
 export {
-  sendInformFollowersEmail, sendArtworkLikedEmail, updateUser,
+  sendInformFollowersEmail, updateUser,
 }

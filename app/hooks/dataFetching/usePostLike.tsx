@@ -1,8 +1,5 @@
 import { useCallback } from "react";
 import useRefreshToken from "../useRefreshToken";
-import {
-  sendArtworkLikedEmail,
-} from '../../../app/utils/emailUtil';
 
 const usePostLike = () => {
   const { refreshToken } = useRefreshToken();
@@ -21,20 +18,6 @@ const usePostLike = () => {
         if (!response.ok) {
           console.log(response.statusText);
           throw response;
-        }
-
-        if (isLiked) {
-          // sendArtworkLikedEmail(isLiked, {}, {
-          //   likedByFirstName: '',
-          //   likedByLastName: '',
-          //   likedByUsername: '',
-          // });
-
-          // sendArtworkLikedEmail(!isLiked, artwork.data, {
-          //   likedByFirstName: given_name.value,
-          //   likedByLastName: family_name.value,
-          //   likedByUsername: username.value,
-          // });
         }
       })
       .catch((error) => {

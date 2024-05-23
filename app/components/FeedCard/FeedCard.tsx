@@ -36,7 +36,7 @@ import {
 } from "../../hooks/dataFetching/UserProfile";
 interface FeedCardProps {
   content: FeedItem;
-  onLikeClick: any;
+  onLikeClick: Function;
 }
 function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const s = styles();
@@ -198,7 +198,7 @@ function FeedCard({ content, onLikeClick }: FeedCardProps) {
               )
             }
             onClick={() => {
-              onLikeClick(content.Item.Id, !isLiked);
+              onLikeClick(artworkData, !isLiked);
               setLike(!isLiked);
               setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
             }}

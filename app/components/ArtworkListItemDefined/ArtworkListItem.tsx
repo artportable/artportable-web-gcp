@@ -44,7 +44,7 @@ export default function ArtworkListItem({
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
-  const { isSignedIn, username } = useContext(UserContext);
+  const { isSignedIn } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const publicUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const timePassed = getTimePassed(artwork?.Published, t);
@@ -122,7 +122,7 @@ export default function ArtworkListItem({
         )
         : null;
     }
-    onLikeClick(artwork.Id, !isLiked);
+    onLikeClick(artwork, !isLiked);
   }
   const artworkUrl = `https://artportable.com/art/${artwork?.Id}`;
   const shareArtworkTitle = artwork?.Title

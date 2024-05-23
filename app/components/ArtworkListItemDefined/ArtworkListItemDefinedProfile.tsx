@@ -111,7 +111,7 @@ export default function ArtworkListItemDefinedProfile({
           )
         : null;
     }
-    onLikeClick(artwork.Id, !isLiked);
+    onLikeClick(artwork, !isLiked);
   }
 
   const likedFilled = !isSignedIn.value ? (
