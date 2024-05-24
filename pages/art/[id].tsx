@@ -17,10 +17,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { styles } from "../../styles/art.css";
-import {
-  capitalizeFirst,
-  formatUserName,
-} from "../../app/utils/util";
+import { capitalizeFirst, formatUserName } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -58,6 +55,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 
 import { Select } from "@mui/material";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import { useGetProfileUser } from "../../app/hooks/dataFetching/useGetProfileUser";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -72,7 +71,7 @@ export default function ArtworkPage(props) {
 
   const { id } = router.query;
   const { username, socialId, membership } = useContext(UserContext);
-  
+
   const artwork = useGetArtwork(id as string, username.value);
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -98,6 +97,7 @@ export default function ArtworkPage(props) {
   const togglePromoteDialog = () => {
     setShowPromoteDialog(!showPromoteDialog);
   };
+  const isMyArt = artwork?.data?.Owner?.Username === username.value;
 
   useEffect(() => {
     if (refreshTrigger) {
@@ -164,8 +164,8 @@ export default function ArtworkPage(props) {
     setIsLiked(!isLiked);
     !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
     !isLiked
-    ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
-    : null;
+      ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
+      : null;
   }
 
   const likedFilled = !isSignedIn.value ? (
@@ -392,6 +392,7 @@ export default function ArtworkPage(props) {
                           </a>
                         </div>
                       )}
+
                       <div>
                         <RWebShare
                           data={{
@@ -593,6 +594,33 @@ export default function ArtworkPage(props) {
                         <span>{t("priceOnRequest")}</span>
                       )}
                     </div>
+                    {isMyArt && (
+                      <>
+                        {artwork?.data?.IsBoosted === false ? (
+                          <Button
+                            aria-label="boost"
+                            className={s.boostButton}
+                            onClick={() => {
+                              router.push(
+                                `/checkoutboost?${artwork?.data?.Id}`
+                              );
+                            }}
+                            startIcon={<RocketLaunchIcon />}
+                          >
+                            {t("promoteArtwork")}
+                          </Button>
+                        ) : (
+                          <Button
+                            aria-label="boost"
+                            className={s.boostButton}
+                            disabled
+                            startIcon={<RocketLaunchIcon />}
+                          >
+                            {t("promotedArtwork")}
+                          </Button>
+                        )}
+                      </>
+                    )}
 
                     <div>
                       <div>
@@ -672,7 +700,10 @@ export default function ArtworkPage(props) {
                           </AccordionSummary>
 
                           <AccordionDetails className={s.accordionDetails}>
-                            <Typography className={s.typography} style={{ whiteSpace: 'pre-wrap-?' }}>
+                            <Typography
+                              className={s.typography}
+                              style={{ whiteSpace: "pre-wrap-?" }}
+                            >
                               {artwork?.data?.Description}
                             </Typography>
                           </AccordionDetails>
