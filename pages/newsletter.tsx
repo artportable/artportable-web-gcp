@@ -6,10 +6,9 @@ import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useTranslation } from "next-i18next";
 import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
 
-
-export default function Newsletter({navBarItems}) {
-    const mdPlusScreenOrDown = useBreakpointDown('mdPlus')
-    const { t } = useTranslation(["feed"]);
+export default function Newsletter({ navBarItems }) {
+  const mdPlusScreenOrDown = useBreakpointDown("mdPlus");
+  const { t } = useTranslation(["feed"]);
 
   return (
     <>
@@ -18,20 +17,20 @@ export default function Newsletter({navBarItems}) {
       </Main>
     </>
   );
-  }
+}
 
-  export async function getStaticProps({ locale }) {
-    const navBarItems = await getNavBarItems();
-    return {
-      props: {
-        navBarItems: navBarItems,
-        ...(await serverSideTranslations(locale, [
-          "header",
-          "footer",
-          "support",
-          "feed",
-        ])),
-      },
-      revalidate: 60,
-    };
-  }
+export async function getStaticProps({ locale }) {
+  const navBarItems = await getNavBarItems();
+  return {
+    props: {
+      navBarItems: navBarItems,
+      ...(await serverSideTranslations(locale, [
+        "header",
+        "footer",
+        "support",
+        "feed",
+      ])),
+    },
+    revalidate: 60,
+  };
+}
