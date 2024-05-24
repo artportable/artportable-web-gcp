@@ -410,7 +410,7 @@ export default function Header({ navBarItems }) {
                         </IconButton>
                       )}
                     </div>
-                    <Link href="/messages">
+                    {/* <Link href="/messages">
                       <a>
                         <IconButton color="secondary" aria-label="account">
                           <Badge
@@ -423,7 +423,7 @@ export default function Header({ navBarItems }) {
                           </Badge>
                         </IconButton>
                       </a>
-                    </Link>
+                    </Link> */}
 
                     <ProfileIconButton
                       profilePicture={profilePicture}

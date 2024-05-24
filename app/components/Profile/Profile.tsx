@@ -216,7 +216,7 @@ export default function Profile({
         </div>
         {!isMyProfile && (
           <div className={s.chatFollowWrapper}>
-            {
+            {/* {
               <Button
                 onClick={() => {
                   redirectIfNotLoggedIn({
@@ -236,7 +236,7 @@ export default function Profile({
               >
                 Chat
               </Button>
-            }
+            } */}
             <Button
               className={`${s.followButton} ${
                 isUserFollowed ? s.following : ""
