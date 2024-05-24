@@ -255,8 +255,8 @@ export const styles = makeStyles((theme: Theme) => {
     cardJuli: {
       marginTop: "40px",
       marginBottom: "40px",
-      width: "400px",
-      height: "300px",
+      width: "300px",
+      height: "250px",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
       display: "flex",
