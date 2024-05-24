@@ -333,7 +333,7 @@ export default function DrawerMenu({
                 <ListItemText primary={t("myArtNetwork")} />
               </ListItem>
             </Link>
-            <Link href="/messages" passHref>
+            {/* <Link href="/messages" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
                   <Badge
@@ -349,7 +349,7 @@ export default function DrawerMenu({
                 </ListItemIcon>
                 <ListItemText primary={t("messages")} />
               </ListItem>
-            </Link>
+            </Link> */}
 
             {membership.value > Membership.Base && (
               <>
