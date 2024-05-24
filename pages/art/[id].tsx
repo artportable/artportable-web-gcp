@@ -158,10 +158,6 @@ export default function ArtworkPage(props) {
     likeEmail(artwork.data, isLike);
   }
 
-  useEffect(() => {
-    console.log(artwork?.data?.Id);
-  }, []);
-
   function toggleLike(event) {
     event.stopPropagation();
     likeArtwork(!isLiked);
