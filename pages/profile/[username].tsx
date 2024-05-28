@@ -69,6 +69,8 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
+import Preferences from '../../app/components/Profile/Preferences';
+import ArtworkMasonry from '../../app/components/Profile/ArtworkMasonry';
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -124,6 +126,11 @@ export default function Profile(props) {
   const userData = useGetUser(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
+
+  // console.log('userProfileSummary', userProfileSummary);
+  // console.log('userData', userData);
+  // console.log('userProfile', userProfile);
+  
 
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
@@ -481,6 +488,11 @@ export default function Profile(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
+
+      { isMyProfile && (
+        <Preferences userProfile={userProfile.data} />
+      )}
+              
       <div>
         <ProfileComponent
           userProfile={userProfileSummary}
@@ -559,6 +571,9 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
+                    <ArtworkMasonry
+                      items={artworks.data}
+                      />
                     {isMyProfile && isPremium ? (
                       <div style={{ marginBottom: "0px" }}>
                         <ArtworkListSortable
