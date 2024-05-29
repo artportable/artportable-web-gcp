@@ -238,41 +238,7 @@ export default function ProfileCard({
                 </Button>
               </div>
             )}
-            {membership.value === Membership.Portfolio && (
-              <div className={s.hovs}>
-                <Button
-                  className={s.rocketButton}
-                  onClick={redirectToRocketUpgrade}
-                >
-                  <Typography className={s.headerButtonRocket}>
-                    {t("rocket")}
-                  </Typography>
-                  <img
-                    src="/rocket-white.png"
-                    alt="Rocket Icon"
-                    className={s.rocketIcon}
-                  />
-                </Button>
-              </div>
-            )}
           </div>
-          {membership.value === Membership.PortfolioPremium && (
-            <div className={s.hovsPremium}>
-              <Button
-                className={s.rocketButtonPremium}
-                onClick={redirectToRocketUpgrade}
-              >
-                <Typography className={s.headerButtonRocket}>
-                  {t("rocket")}
-                </Typography>
-                <img
-                  src="/rocket-white.png"
-                  alt="Rocket Icon"
-                  className={s.rocketIcon}
-                />
-              </Button>
-            </div>
-          )}
         </div>
       </CardContent>
     </Card>
