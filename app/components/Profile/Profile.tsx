@@ -126,9 +126,6 @@ export default function Profile({
 
   const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
 
-  const redirectToRocketUpgrade = () => {
-    window.open(rocketLink);
-  };
   const initialText = staticUserProfile?.About || "";
   const [showMore, setShowMore] = useState(false);
 
