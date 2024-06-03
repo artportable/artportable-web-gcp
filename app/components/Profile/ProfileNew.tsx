@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Divider from "@material-ui/core/Divider";
-import { styles } from "./profile.css";
+import { styles } from "./profilenew.css";
 import { Typography, Box } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
@@ -36,7 +36,7 @@ import { RWebShare } from "react-web-share";
 import Offers from "../ExclusiveOffers/Offers";
 import { CSSProperties, Fragment } from "react";
 
-export default function Profile({
+export default function ProfileNew({
   userProfileUrl,
   userProfile,
   isFollowed,

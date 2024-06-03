@@ -20,12 +20,13 @@ export const styles = makeStyles((theme: Theme) =>
       margin: '0 10px 14px 10px',
       boxSizing: 'content-box',
       backgroundColor: 'white',
-      boxShadow: '0px 5px 10px #e5e6e4',
+      // boxShadow: '0px 5px 10px #e5e6e4',
+      boxShadow: '-3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)',
       cursor: 'pointer',
     },
     layoutPickerItemSelected: {
       // Inset box shadow instead of border, easier to make same size as not selected items.
-      boxShadow: 'inset 0 0 0 4px black, 0px 5px 10px #e5e6e4',
+      boxShadow: 'inset 0 0 0 4px black, -3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)',
     },
   })
 )

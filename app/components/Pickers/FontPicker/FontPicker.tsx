@@ -25,6 +25,7 @@ export default function FontPicker(props: Props) {
             className={clsx(s.fontPickerItem, {
               [s.fontPickerItemSelected]: isSelected,
             })}
+            key={font.value}
           >
             <span
               className={s.fontExample}

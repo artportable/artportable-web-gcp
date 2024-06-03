@@ -24,6 +24,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderColor: 'transparent',
       borderRadius: '50%',
       boxSizing: 'content-box',
+      boxShadow: '-3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)',
       cursor: 'pointer',
       // WebkitTapHighlightColor: 'transparent', // Avoid blue square on mobile click, item is round.
       [theme.breakpoints.up("md")]: {
@@ -32,7 +33,7 @@ export const styles = makeStyles((theme: Theme) =>
       }
     },
     colorPickerItemSelected: {
-      boxShadow: 'inset 0 0 0 4px white', // Inner white border.
+      boxShadow: 'inset 0 0 0 4px white, -3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)', // Inner white border.
     },
   })
 )

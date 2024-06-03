@@ -13,6 +13,7 @@ import {
 // import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import ProfileComponent from "../../app/components/Profile/Profile";
+// import ProfileComponent from "../../app/components/Profile/Profile";
 // import ArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefined";
 import Image from "../../app/models/Image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";

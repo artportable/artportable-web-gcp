@@ -11,30 +11,114 @@ import {
 } from "@material-ui/core";
 import IconButton from '@mui/material/IconButton';
 import ArrowBack from '@mui/icons-material/ArrowBackIosNew';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Divider from '@mui/material/Divider';
 import Button from '../Button/Button';
 import Spacer from "../LayoutComponents/Spacer";
 import ColorPicker from "../Pickers/ColorPicker/ColorPicker";
 import FontPicker from "../Pickers/FontPicker/FontPicker";
 import LayoutPicker from '../Pickers/LayoutPicker/LayoutPicker';
+import TooltipPopup from "../Popups/TooltipPopup";
 import { styles } from './preferences.css';
 
 export default function Preferences({ userProfile }) {
   const s = styles();
+  const { t } = useTranslation(["profile"]);
   const theme = useTheme();
+  const anchor = 'left';
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const largeDevice = useMediaQuery(theme.breakpoints.up("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const anchor = 'left';
-  const { t } = useTranslation(["profile"]);
+  const [selectedColor, setSelectedColor] = useState('#FFFFFF');
+  const [selectedLayout, setSelectedLayout] = useState('dynamic-grid');
+  const [selectedFont, setSelectedFont] = useState('gotham');
+  const [selectedShadow, setSelectedShadow] = useState('none');
+  const [selectedCorners, setSelectedCorners] = useState('none');
+  const [selectedFrame, setSelectedFrame] = useState('none');
+  const [prefsHasChanges, setPrefsHasChanges] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
+  const layoutContainerStyle = {
+    height: 150,
+    padding: '0 10px',
+    boxSizing: 'border-box',
+    display: 'flex',
+  }
+  const layoutStyle = {
+    backgroundColor: '#D9D9D9',
+  }
+  const evenRowStyle = {
+    ...layoutStyle,
+    height: 'calc(33.33% - 8px)',
+    width: 'calc(50% - 5px)',
+  }
+  const dynamicGridStyle = {
+    ...layoutStyle,
+    width: 'calc(50% - 5px)',
+  }
+  const oneTwoStyle = {
+    ...layoutStyle,
+  }
+  const LAYOUTS = [
+    {
+      value: 'even-rows', localeName: 'layoutEvenRows', elements: (
+        <div style={{
+          ...layoutContainerStyle as React.CSSProperties, // Cast to prevent linting error.
+          // boxSizing: sizingBox,
+          flexFlow: 'row wrap',
+          justifyContent: 'space-between',
+        }}>
+          <div style={evenRowStyle}></div>
+          <div style={evenRowStyle}></div>
+          <div style={evenRowStyle}></div>
+          <div style={evenRowStyle}></div>
+          <div style={evenRowStyle}></div>
+          <div style={evenRowStyle}></div>
+        </div>
+      )
+    },
+    {
+      value: 'dynamic-grid', localeName: 'layoutDynamicGrid', elements: (
+        <div style={{
+          ...layoutContainerStyle as React.CSSProperties, // Cast to prevent linting error.
+          flexFlow: 'column wrap',
+        }}>
+          <div style={{ ...dynamicGridStyle, height: 'calc(66.66% - 6px)' }}></div>
+          <div style={{ ...dynamicGridStyle, height: 'calc(33.33% - 10px)', marginTop: 6, }}></div>
+          <div style={{ ...dynamicGridStyle, height: 'calc(33.33% - 6px)', marginLeft: 10, }}></div>
+          <div style={{ ...dynamicGridStyle, height: 'calc(66.66% - 10px)', marginLeft: 10, marginTop: 6, }}></div>
+        </div>
+      )
+    },
+    {
+      value: 'two-one', localeName: 'layoutTwoOne', elements: (
+        <div style={{
+          ...layoutContainerStyle as React.CSSProperties, // Cast to prevent linting error.
+          flexFlow: 'row wrap',
+          justifyContent: 'space-between',
+        }}>
+          <div style={{ ...layoutStyle, height: 'calc(33.33% - 6px)', width: 'calc(50% - 5px)' }}></div>
+          <div style={{ ...layoutStyle, height: 'calc(33.33% - 6px)', width: 'calc(50% - 5px)' }}></div>
+          <div style={{ ...layoutStyle, height: 'calc(66.66% - 10px)', width: '100%' }}></div>
+        </div>
+      )
+    },
+    {
+      value: 'one-large', localeName: 'layoutOneLarge', elements: (
+        <div style={layoutContainerStyle as React.CSSProperties}>{/* Cast to prevent linting error. */}
+          <div style={{ ...layoutStyle, height: 'calc(100% - 10px)', width: '100%' }}></div>
+        </div>
+      )
+    },
+  ]
 
   const COLORS = [
-    { value: '#BCDFAE' }, // Green
-    { value: '#C26D6D' }, // Red
-    { value: '#34498A' }, // Blue
-    { value: '#F7D0AE' }, // Beige
-    { value: '#F8F3E6' }, // White
-    { value: '#292929' }, // Black
+    { value: '#000000' }, // Black
+    { value: '#FFFFFF' }, // White
+    { value: '#A9D8D8' }, // Turquoise
+    { value: '#9EBD9F' }, // Green
+    { value: '#ED9C62' }, // Orange
+    { value: '#BEA0CD' }, // Purple
   ];
   const SHADOWS = [
     { value: 'shadow', localeName: 'shadowsYes' },
@@ -58,22 +142,27 @@ export default function Preferences({ userProfile }) {
     { value: 'jura', localeName: 'Jura', family: 'Jura' },
   ]
 
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedLayout, setSelectedLayout] = useState('');
-  const [selectedShadow, setSelectedShadow] = useState('none');
-  const [selectedCorners, setSelectedCorners] = useState('none');
-  const [selectedFrame, setSelectedFrame] = useState('none');
-  const [selectedFont, setSelectedFont] = useState('none');
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
+  // Initialize preferences with value from user.
   useEffect(() => {
-    if (!selectedColor && userProfile?.ChosenColor) setSelectedColor(userProfile.ChosenColor);
-    if (!selectedLayout && userProfile?.ChosenLayout) setSelectedLayout(userProfile.ChosenLayout);
-    if (!selectedShadow && userProfile?.ChosenShadow) setSelectedShadow(userProfile.ChosenShadow);
-    if (!selectedCorners && userProfile?.ChosenCorners) setSelectedCorners(userProfile.ChosenCorners);
-    if (!selectedFrame && userProfile?.ChosenFrame) setSelectedFrame(userProfile.ChosenFrame);
-    if (!selectedFont && userProfile?.ChosenFont) setSelectedFont(userProfile.ChosenFrame);
+    if (!userProfile) return;
+    if (userProfile?.ChosenColor)   setSelectedColor(userProfile.ChosenColor);
+    if (userProfile?.ChosenLayout)  setSelectedLayout(userProfile.ChosenLayout);
+    if (userProfile?.ChosenFont)    setSelectedFont(userProfile.ChosenFrame);
+    if (userProfile?.ChosenShadow)  setSelectedShadow(userProfile.ChosenShadow);
+    if (userProfile?.ChosenCorners) setSelectedCorners(userProfile.ChosenCorners);
+    if (userProfile?.ChosenFrame)   setSelectedFrame(userProfile.ChosenFrame);
   }, [userProfile])
+
+  /*
+  // Activate Save-button if values changes.
+  useEffect(() => {
+    if (true) {
+      setPrefsHasChanges(true);
+    } else {
+      setPrefsHasChanges(false);
+    }
+  }, [selectedColor, selectedLayout, selectedShadow, selectedCorners, selectedFrame, selectedFont])
+  */
 
   const saveAndClose = async () => {
     let updateBody = {};
@@ -149,6 +238,7 @@ export default function Preferences({ userProfile }) {
               variant="outlined" rounded={true}
               className={clsx(s.profileButton, s.saveButtonDesktop)}
               onClick={() => saveAndClose()}
+              disabled={!prefsHasChanges && false}
             >
               {t('preferences.save')}
             </Button>
@@ -161,21 +251,46 @@ export default function Preferences({ userProfile }) {
             </Typography>
             <Spacer y={!largeDevice ? 24 : 40} />
             <LayoutPicker
+              LAYOUTS={LAYOUTS}
               selectedLayout={selectedLayout}
               setSelectedLayout={setSelectedLayout}
               t={t}
             />
-
+      
             <Spacer y={!largeDevice ? 24 : 80} />
-            <Typography variant="h2">
-              {t('preferences.color')}
-            </Typography>
+            <div style={{
+              position: 'relative',
+              alignSelf: 'flex-start',
+            }}>
+              <Typography variant="h2">
+                {t('preferences.color')}
+              </Typography>
+              <IconButton
+                aria-label="close"
+                onClick={() => setTooltipOpen(true)}
+                style={{
+                  position: 'absolute',
+                  left: 'calc(100% + 10px)',
+                  top: '-15px',
+                }}
+              >
+                <InfoOutlinedIcon />
+              </IconButton>
+            </div>
             <Spacer y={!largeDevice ? 24 : 40} />
             <ColorPicker
               COLORS={COLORS}
               selectedColor={selectedColor}
               setSelectedColor={setSelectedColor}
-              popupText="*Den färg du väljer visas som rubrikbakgrund högst upp på din konstportfolio och ger den en personlig touch.*"
+            />
+            <TooltipPopup
+              isOpen={tooltipOpen}
+              doClose={() => setTooltipOpen(false)}
+              content={(
+                <p style={{
+                  margin: '0 0 12px 0',
+                }}>{t('preferences.colorTooltip')}</p>
+              )}
             />
 
             <Spacer y={!largeDevice ? 32 : 80} />
@@ -253,6 +368,7 @@ export default function Preferences({ userProfile }) {
               rounded={true}
               className={clsx(s.profileButton, s.saveButtonMobile)}
               onClick={() => saveAndClose()}
+              disabled={!prefsHasChanges && false}
             >
               {t('preferences.saveAndClose')}
             </Button>
