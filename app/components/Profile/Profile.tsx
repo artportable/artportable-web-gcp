@@ -156,24 +156,6 @@ export default function Profile({
     ));
   }
 
-  // Find then first period before maxLenght of a string, and return the part before the period.
-  const createExcerpt = (text, maxLength = 0) => {
-    let excerpt = text || ''
-
-    if (excerpt && excerpt.length > maxLength) {
-      excerpt = excerpt.slice(0, maxLength);
-      const lastPeriodIndex = excerpt.lastIndexOf('.');
-      
-      if (lastPeriodIndex > 0) {
-        return excerpt.substring(0, lastPeriodIndex + 1);
-      } else {
-        return excerpt + '...';
-      }
-    } else {
-      return excerpt;
-    }
-  }
-
   return (
     <div>
       {divider && <Divider></Divider>}
@@ -223,14 +205,14 @@ export default function Profile({
             open={followingOpen}
             onClose={() => setFollowingOpen(false)}
           />
-          {/* {data?.Artworks > 0 && (
+          {data?.Artworks > 0 && (
             <div className={s.followFollowersArtworks}>
               <Typography variant="body2">{data?.Artworks}</Typography>
               <Typography variant="caption">
                 {capitalizeFirst(t("words.worksOfArt"))}
               </Typography>
             </div>
-          )} */}
+          )}
         </div>
         {!isMyProfile && (
           <div className={s.chatFollowWrapper}>
@@ -333,12 +315,7 @@ export default function Profile({
           </>
         )}
       </div>
-      <div className={s.readMore}>
-          <div>
-            <div>{renderWithLineBreaks(createExcerpt(staticUserProfile?.About, 100))}</div>
-          </div>
-      </div>
-      {/* {!isMyProfile && ( */}
+      {!isMyProfile && (
         <div className={s.readMore}>
           <div>
             <div style={headlineStyle}>{renderWithLineBreaks(initialText)}</div>
@@ -351,8 +328,8 @@ export default function Profile({
             )}
           </div>
         </div>
-      {/* )} */}
-      {/* {isMyProfile && (
+      )}
+      {isMyProfile && (
         <div className={s.friends}>
           <RWebShare
             data={{
@@ -367,7 +344,7 @@ export default function Profile({
             </Button>
           </RWebShare>
         </div>
-      )} */}
+      )}
     </div>
   );
 }

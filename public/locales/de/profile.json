@@ -87,5 +87,34 @@
   "endSort": "Aufhören zu sortieren",
   "saveSort": "Speichern",
   "resetSort": "Abbrechen",
-  "enterUserName": "Es reicht der Benutzername"
+  "enterUserName": "Es reicht der Benutzername",
+  "editButton": "Bearbeiten",
+  "promoteArtwork": "Werben",
+  "promotedArtwork": "Beworben",
+  "preferences": {
+    "designPortfolio": "Portfolio gestalten",
+    "designYourPortfolio": "Gestalte dein Portfolio",
+    "imageLayout": "Bildlayout",
+    "layoutEvenRows": "Gleiche Reihen",
+    "layoutDynamicGrid": "Dynamisches Raster",
+    "layoutTwoOne": "Zwei eins",
+    "layoutOneLarge": "Ein groß",
+    "color": "Farbe",
+    "colorTooltip": "Die von dir gewählte Farbe wird als Hintergrundfarbe oben in deinem Kunstportfolio angezeigt und verleiht ihm eine persönliche Note.",
+    "imageStyle": "Bildstil",
+    "shadows": "Schatten",
+    "shadowsYes": "Ja",
+    "shadowsNo": "Nein",
+    "corners": "Abgerundete Ecken",
+    "cornersYes": "Ja",
+    "cornersNo": "Nein",
+    "frame": "Rahmen",
+    "frameThin": "Dünn",
+    "frameThick": "Dick",
+    "frameNone": "Keiner",
+    "font": "Schriftart",
+    "saveAndClose": "Speichern und schließen",
+    "save": "Speichern"
+  }
+
 }

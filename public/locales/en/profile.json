@@ -89,5 +89,30 @@
   "enterUserName": "The username is enough",
   "editButton": "Edit",
   "promoteArtwork": "Promote",
-  "promotedArtwork": "Being Promoted"
+  "promotedArtwork": "Being Promoted",
+  "preferences": {
+    "designPortfolio": "Design portfolio",
+    "designYourPortfolio": "Design your portfolio",
+    "imageLayout": "Image layout",
+    "layoutEvenRows": "Even rows",
+    "layoutDynamicGrid": "Dynamic grid",
+    "layoutTwoOne": "Two one",
+    "layoutOneLarge": "One large",
+    "color": "Color",
+    "colorTooltip": "The color you choose will appear as the header background at the top of your art portfolio, giving it a personal touch.",
+    "imageStyle": "Image style",
+    "shadows": "Shadows",
+    "shadowsYes": "Yes",
+    "shadowsNo": "No",
+    "corners": "Rounded corners",
+    "cornersYes": "Yes",
+    "cornersNo": "No",
+    "frame": "Frame",
+    "frameThin": "Thin",
+    "frameThick": "Thick",
+    "frameNone": "None",
+    "font": "Font",
+    "saveAndClose": "Save and close",
+    "save": "Save"
+  }
 }

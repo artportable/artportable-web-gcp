@@ -71,6 +71,8 @@ import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemD
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
 import Preferences from '../../app/components/Profile/Preferences';
 import ArtworkMasonry from '../../app/components/Profile/ArtworkMasonry';
+// import Spacer from "../../app/components/LayoutComponents/Spacer";
+
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -113,6 +115,7 @@ export default function Profile(props) {
   const [editArtworkOpen, setEditArtworkOpen] = useState(false);
   const [artworkToEdit, setArtworkToEdit] = useState(null);
   const [isReady, setIsReady] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
 
   const [hasStories, setHasStories] = useState(false);
   const stories = useGetStories(profileUser, username.value);
@@ -489,7 +492,7 @@ export default function Profile(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      { isMyProfile && (
+      { isMyProfile && email.value && email.value.indexOf('artportable.com') > 0 && (
         <Preferences userProfile={userProfile.data} />
       )}
               
@@ -571,10 +574,13 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    <ArtworkMasonry
-                      items={artworks.data}
+                    {/*<Button onClick={() => setSortOpen(!sortOpen)} variant="outlined">*Sortera*</Button>
+                    {isMyProfile && isPremium && !sortOpen && (
+                      <ArtworkMasonry
+                        items={artworks.data}
                       />
-                    {isMyProfile && isPremium ? (
+                    )*/}
+                    {isMyProfile && isPremium && (
                       <div style={{ marginBottom: "0px" }}>
                         <ArtworkListSortable
                           items={artworks.data}
@@ -589,7 +595,8 @@ export default function Profile(props) {
                           onClose={onEditArtworkClose}
                         />
                       </div>
-                    ) : (
+                    )}
+                    {(!isMyProfile || !isPremium) && (
                       <div className={s.portfolioContainer}>
                         {imageRows &&
                           imageRows.map((row: Image[], i) => (

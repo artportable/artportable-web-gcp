@@ -89,5 +89,30 @@
   "enterUserName": "Käyttäjänimi riittää",
   "editButton": "Muokkaa",
   "promoteArtwork": "Mainosta",
-  "promotedArtwork": "Mainostettava taideteos"
+  "promotedArtwork": "Mainostettava taideteos",
+  "preferences": {
+    "designPortfolio": "Suunnittele portfolio",
+    "designYourPortfolio": "Suunnittele portfoliosi",
+    "imageLayout": "Kuvien asettelu",
+    "layoutEvenRows": "Tasaiset rivit",
+    "layoutDynamicGrid": "Dynaaminen ruudukko",
+    "layoutTwoOne": "Kaksi yksi",
+    "layoutOneLarge": "Yksi suuri",
+    "color": "Väri",
+    "colorTooltip": "Valitsemasi väri näkyy taustavärinä portfolioosi yläosassa ja antaa sille persoonallisen ilmeen.",
+    "imageStyle": "Kuvien tyyli",
+    "shadows": "Varjot",
+    "shadowsYes": "Kyllä",
+    "shadowsNo": "Ei",
+    "corners": "Pyöristetyt kulmat",
+    "cornersYes": "Kyllä",
+    "cornersNo": "Ei",
+    "frame": "Kehys",
+    "frameThin": "Ohut",
+    "frameThick": "Paksu",
+    "frameNone": "Ei mitään",
+    "font": "Fontti",
+    "saveAndClose": "Tallenna ja sulje",
+    "save": "Tallenna"
   }
+}

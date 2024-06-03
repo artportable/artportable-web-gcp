@@ -90,5 +90,30 @@
   "enterUserName": "Det räcker med användarnamnet",
   "editButton": "Redigera",
   "promoteArtwork": "Marknadsför",
-  "promotedArtwork": "Marknadsförs"
+  "promotedArtwork": "Marknadsförs",
+  "preferences": {
+    "designPortfolio": "Designa portfolio",
+    "designYourPortfolio": "Designa din portfolio",
+    "imageLayout": "Bildlayout",
+    "layoutEvenRows": "Jämna rader",
+    "layoutDynamicGrid": "Dynamiskt rutnät",
+    "layoutTwoOne": "Två ett",
+    "layoutOneLarge": "En stor",
+    "color": "Färg",
+    "colorTooltip": "Den färg du väljer visas som rubrikbakgrund högst upp på din konstportfolio och ger den en personlig touch.",
+    "imageStyle": "Bildstil",
+    "shadows": "Skuggor",
+    "shadowsYes": "Ja",
+    "shadowsNo": "Nej",
+    "corners": "Rundade hörn",
+    "cornersYes": "Ja",
+    "cornersNo": "Nej",
+    "frame": "Ram",
+    "frameThin": "Tunn",
+    "frameThick": "Tjock",
+    "frameNone": "Ingen",
+    "font": "Typsnitt",
+    "saveAndClose": "Spara och stäng",
+    "save": "Spara"
+  }
 }

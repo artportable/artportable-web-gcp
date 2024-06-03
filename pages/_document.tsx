@@ -58,6 +58,36 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
+          <link
+            rel="preload"
+            href="/fonts/Jura-VariableFont_wght.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Barrio-Regular.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/KellySlabRegular.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Gluten-VariableFont_wght.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Caveat-VariableFont_wght.ttf"
+            as="font"
+            crossOrigin=""
+          />
         </Head>
         <body>
           <Main />
