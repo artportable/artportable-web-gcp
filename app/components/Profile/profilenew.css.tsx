@@ -2,6 +2,16 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
+    profile: {
+      width: '100%',
+    },
+    profileContent: {
+      maxWidth: 600,
+      margin: '0 auto',
+    },
+    lightText: {
+      color: 'white',
+    },
     followFollowersArtworks: {
       display: "flex",
       flexDirection: "column",

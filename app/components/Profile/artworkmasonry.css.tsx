@@ -3,6 +3,9 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
+      padding: '0 20px',
+    },
+    flexContainer: {
       width: '100%',
       display: 'flex',
       flexFlow: 'row wrap',

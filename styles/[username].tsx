@@ -60,12 +60,16 @@ export const profileStyles = makeStyles((theme: Theme) =>
       },
       justifyContent: "center",
       width: "100%",
+      paddingBottom: 20,
     },
     tab: {
       fontSize: "8px",
       [theme.breakpoints.up("sm")]: {
         fontSize: "14px",
       },
+    },
+    tabLight: {
+      color: 'white',
     },
     catalogued: {
       gridRow: "3/4",

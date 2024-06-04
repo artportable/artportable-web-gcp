@@ -9,7 +9,6 @@ import TagChip from "../TagChip/TagChip";
 import { getPriceFormatter } from "../../utils/formatUtils";
 // import { styles } from "./artworkListSortable.css";
 import { styles } from "./artworkListSortable.css";
-import { profileStyles } from "../../../styles/[username]";
 import ArtworkListItemDefinedSkeleton from "../../../app/components/ArtworkListItemDefinedSkeleton/ArtworkListItemDefinedSkeleton";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 export default function ImageContainerProfile({
@@ -21,7 +20,6 @@ export default function ImageContainerProfile({
   isSorting,
 }) {
   const s = styles();
-  const ps = profileStyles();
 
   const { t } = useTranslation(["art", "common", "profile"]);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;

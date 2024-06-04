@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     openerSection: {
-      borderBottom: '1px solid #D9D9D9',
+      // borderBottom: '1px solid #D9D9D9',
       textAlign: 'center',
       '& button': {
         margin: '0 auto',
@@ -73,6 +73,10 @@ export const styles = makeStyles((theme: Theme) =>
       padding: '7px 34px',
       border: '1px solid black',
       fontSize: '16px',
+      backgroundColor: 'white',
+      '&:hover': {
+        backgroundColor: 'lightgrey',
+      },
     },
     saveButtonMobile: {
       display: 'inline',

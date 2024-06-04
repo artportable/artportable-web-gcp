@@ -11,6 +11,7 @@ import Button from "../Button/Button";
 
 import { useTranslation } from "next-i18next";
 import { mutate } from "swr";
+import clsx from 'clsx';
 import { styles } from "./editProfileDialog.css";
 import { EditMyStudio } from "./EditMyStudio/EditMyStudio";
 import { EditInspiredBy } from "./EditInspiredBy/EditInspiredBy";
@@ -75,6 +76,7 @@ export default function EditProfileDialog({ userProfile }) {
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
+  const useLightStyle = userProfile?.ChosenColor === '#000000';
 
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(
@@ -139,7 +141,9 @@ export default function EditProfileDialog({ userProfile }) {
     <>
       <div className={s.buttonPosition}>
         <Button
-          className={s.editProfileButton}
+          className={clsx(s.editProfileButton, {
+            [s.lightButton]: useLightStyle,
+          })}
           rounded
           startIcon={<EditIcon className={s.editProfileIcon} />}
           onClick={() => setOpenEdit(true)}

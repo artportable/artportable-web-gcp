@@ -21,7 +21,7 @@ import LayoutPicker from '../Pickers/LayoutPicker/LayoutPicker';
 import TooltipPopup from "../Popups/TooltipPopup";
 import { styles } from './preferences.css';
 
-export default function Preferences({ userProfile }) {
+export default function Preferences({ userProfile, mutate }) {
   const s = styles();
   const { t } = useTranslation(["profile"]);
   const theme = useTheme();
@@ -37,6 +37,7 @@ export default function Preferences({ userProfile }) {
   const [selectedFrame, setSelectedFrame] = useState('none');
   const [prefsHasChanges, setPrefsHasChanges] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const chosenColor = userProfile?.ChosenColor || '#FDF9F7';
 
   const layoutContainerStyle = {
     height: 150,
@@ -61,7 +62,7 @@ export default function Preferences({ userProfile }) {
   }
   const LAYOUTS = [
     {
-      value: 'even-rows', localeName: 'layoutEvenRows', elements: (
+      value: 'evenRows', localeName: 'layoutEvenRows', elements: (
         <div style={{
           ...layoutContainerStyle as React.CSSProperties, // Cast to prevent linting error.
           // boxSizing: sizingBox,
@@ -78,7 +79,7 @@ export default function Preferences({ userProfile }) {
       )
     },
     {
-      value: 'dynamic-grid', localeName: 'layoutDynamicGrid', elements: (
+      value: 'dynamicGrid', localeName: 'layoutDynamicGrid', elements: (
         <div style={{
           ...layoutContainerStyle as React.CSSProperties, // Cast to prevent linting error.
           flexFlow: 'column wrap',
@@ -91,7 +92,7 @@ export default function Preferences({ userProfile }) {
       )
     },
     {
-      value: 'two-one', localeName: 'layoutTwoOne', elements: (
+      value: 'twoOne', localeName: 'layoutTwoOne', elements: (
         <div style={{
           ...layoutContainerStyle as React.CSSProperties, // Cast to prevent linting error.
           flexFlow: 'row wrap',
@@ -104,7 +105,7 @@ export default function Preferences({ userProfile }) {
       )
     },
     {
-      value: 'one-large', localeName: 'layoutOneLarge', elements: (
+      value: 'oneLarge', localeName: 'layoutOneLarge', elements: (
         <div style={layoutContainerStyle as React.CSSProperties}>{/* Cast to prevent linting error. */}
           <div style={{ ...layoutStyle, height: 'calc(100% - 10px)', width: '100%' }}></div>
         </div>
@@ -147,12 +148,21 @@ export default function Preferences({ userProfile }) {
     if (!userProfile) return;
     if (userProfile?.ChosenColor)   setSelectedColor(userProfile.ChosenColor);
     if (userProfile?.ChosenLayout)  setSelectedLayout(userProfile.ChosenLayout);
-    if (userProfile?.ChosenFont)    setSelectedFont(userProfile.ChosenFrame);
+    if (userProfile?.ChosenFont)    setSelectedFont(userProfile.ChosenFont);
     if (userProfile?.ChosenShadow)  setSelectedShadow(userProfile.ChosenShadow);
     if (userProfile?.ChosenCorners) setSelectedCorners(userProfile.ChosenCorners);
     if (userProfile?.ChosenFrame)   setSelectedFrame(userProfile.ChosenFrame);
   }, [userProfile])
 
+  // console.log('');
+  // console.log('userProfile', userProfile);
+  // console.log('selectedColor', selectedColor, userProfile?.ChosenColor);
+  // console.log('selectedLayout', selectedLayout, userProfile?.ChosenLayout);
+  // console.log('selectedFont', selectedFont, userProfile?.ChosenFont);
+  // console.log('selectedShadow', selectedShadow, userProfile?.ChosenShadow);
+  // console.log('selectedCorners', selectedCorners, userProfile?.ChosenCorners);
+  // console.log('selectedFrame', selectedFrame, userProfile?.ChosenFrame);
+  
   /*
   // Activate Save-button if values changes.
   useEffect(() => {
@@ -189,6 +199,11 @@ export default function Preferences({ userProfile }) {
         if (!response.ok) {
           throw "Failed to save preferences: " + response.statusText
         }
+
+        console.log('mutate', mutate);
+        
+        mutate('larsf');
+
       } catch (err) {
         console.error("Error in saveOrderClicked:", err);
       }
@@ -200,7 +215,7 @@ export default function Preferences({ userProfile }) {
 
   return (
     <React.Fragment key={anchor}>
-      <div className={s.openerSection}>
+      <div className={s.openerSection} style={{ backgroundColor: chosenColor }}>
         <Spacer y={12} />
         <Button
           variant="outlined"
