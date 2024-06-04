@@ -2,21 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ChannelSort } from "stream-chat";
-import {
-  Channel,
-  ChannelList,
-  Chat,
-  MessageInput,
-  MessageList,
-  Window,
-} from "stream-chat-react";
-import MessagingChannelHeader from "../app/components/Messaging/MessagingChannelHeader/MessagingChannelHeader";
-import MessagingChannelList from "../app/components/Messaging/MessagingChannelList/MessagingChannelList";
-import MessagingChannelPreview from "../app/components/Messaging/MessagingChannelPreview/MessagingChannelPreview";
-import CreateChannel from "../app/components/Messaging/CreateChannel/CreateChannel";
-import CustomMessage from "../app/components/Messaging/CustomMessage/CustomMessage";
-import MessagingInput from "../app/components/Messaging/MessagingInput/MessagingInput";
+// import { ChannelSort } from "stream-chat";
+// import {
+//   Channel,
+//   ChannelList,
+//   Chat,
+//   MessageInput,
+//   MessageList,
+//   Window,
+// } from "stream-chat-react";
+// import MessagingChannelHeader from "../app/components/Messaging/MessagingChannelHeader/MessagingChannelHeader";
+// import MessagingChannelList from "../app/components/Messaging/MessagingChannelList/MessagingChannelList";
+// import MessagingChannelPreview from "../app/components/Messaging/MessagingChannelPreview/MessagingChannelPreview";
+// import CreateChannel from "../app/components/Messaging/CreateChannel/CreateChannel";
+// import CustomMessage from "../app/components/Messaging/CustomMessage/CustomMessage";
+// import MessagingInput from "../app/components/Messaging/MessagingInput/MessagingInput";
 import { Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { UserContext } from "../app/contexts/user-context";
