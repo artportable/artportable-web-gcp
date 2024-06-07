@@ -139,7 +139,7 @@ export async function getServerSideProps({ locale, params }) {
         navBarItems: navBarItems,
         artwork,
         locale: locale,
-        ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
+        ...(await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans'])),
       }
     };
   } catch (error) {
@@ -153,7 +153,7 @@ export async function getServerSideProps({ locale, params }) {
       navBarItems: navBarItems,
       artwork: { Id: params.id },
       locale: locale,
-      ...await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans']),
+      ...(await serverSideTranslations(locale, ['header', 'footer', 'art', 'common', 'tags', 'support', 'plans'])),
     }
   };
 }

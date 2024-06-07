@@ -29,8 +29,8 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       navBarItems: navBarItems,
-      ...await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans', 'payment', 'checkout']),
+      ...(await serverSideTranslations(locale, ['common', 'footer', 'header', 'gdpr', 'support', 'plans', 'payment', 'checkout'])),
     },
     revalidate: 60,
-  }
+  };
 }
