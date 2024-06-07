@@ -118,14 +118,14 @@ export default function DiscoverPage({ navBarItems }) {
   }, []);
   const { locale } = router;
 
-  const siteId = 1968208;
-  const hotjarVersion = 6;
+  // const siteId = 1968208;
+  // const hotjarVersion = 6;
 
-  Hotjar.init(siteId, hotjarVersion);
+  // Hotjar.init(siteId, hotjarVersion);
 
-  Hotjar.init(siteId, hotjarVersion, {
-    debug: true,
-  });
+  // Hotjar.init(siteId, hotjarVersion, {
+  //   debug: true,
+  // });
 
   const useWideLayout =
     activeTab === 0 ||
