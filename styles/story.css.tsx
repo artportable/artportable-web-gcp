@@ -39,7 +39,11 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "1.2rem",
       padding: "1rem 0px",
       lineHeight: "1.6",
+      whiteSpace: "pre-line",
       color: "#555",
+      "& a": {
+        textDecoration: "underline",
+      },
     },
     btnContainer: {
       display: "flex",
