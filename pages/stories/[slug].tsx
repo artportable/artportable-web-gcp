@@ -28,6 +28,7 @@ import EditStoryDialog from "../../app/components/EditStoryDialog/EditStoryDialo
 import Carousel from "react-material-ui-carousel";
 import { RWebShare } from "react-web-share";
 import { SiteError } from "getstream";
+import { insertLinks } from "../../app/utils/textUtils";
 
 interface StoryProps {
   navBarItems: any;
@@ -190,7 +191,12 @@ export default function StoryPage(props: StoryProps) {
               </RWebShare>
             </div>
             <h1 className={s.title}>{story.Title}</h1>
-            <p className={s.text}>{renderWithLineBreaks(story.Description)}</p>
+            <p
+              className={s.text}
+              dangerouslySetInnerHTML={{
+                __html: `${insertLinks(story.Description)}`,
+              }}
+            ></p>
             <IconButton onClick={() => router.back()}>
               <ArrowBackIcon />
             </IconButton>
