@@ -52,6 +52,7 @@ import Showroom from "../app/components/Showroom/Showroom";
 import RocketCarousel from "../app/components/Carousel/RocketCarousel";
 import Hotjar from "@hotjar/browser";
 import DiscoverPromotedArtTab from "../app/components/DiscoverPromotedArt/DiscoverPromotedArt";
+import CataloguedByArtportable from "../app/components/CataloguedByArtportable/CataloguedByArtportable";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -225,7 +226,7 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "50px 0 25px 0",
         }}
       />
-
+      <CataloguedByArtportable></CataloguedByArtportable>
       <>
         {!isSignedIn.value &&
           activeTab != 1 &&
