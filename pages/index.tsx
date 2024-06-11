@@ -226,7 +226,7 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "50px 0 25px 0",
         }}
       />
-      <CataloguedByArtportable></CataloguedByArtportable>
+      {!isSignedIn.value && <CataloguedByArtportable></CataloguedByArtportable>}
       <>
         {!isSignedIn.value &&
           activeTab != 1 &&
