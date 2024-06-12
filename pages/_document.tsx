@@ -46,6 +46,9 @@ class MyDocument extends Document {
             }}
           />
           <script src="https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js" />
+
+          {/* <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> */}
+          
           <link
             rel="preload"
             href="/fonts/GT-America-Standard-Regular.woff2"
@@ -55,6 +58,36 @@ class MyDocument extends Document {
           <link
             rel="preload"
             href="/fonts/GT-America-Standard-Medium.woff2"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Jura-VariableFont_wght.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Barrio-Regular.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/KellySlabRegular.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Gluten-VariableFont_wght.ttf"
+            as="font"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/Caveat-VariableFont_wght.ttf"
             as="font"
             crossOrigin=""
           />

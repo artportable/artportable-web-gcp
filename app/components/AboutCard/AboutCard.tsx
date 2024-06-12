@@ -156,9 +156,12 @@ export default function AboutCard({
                         <Typography>{`${data?.Title}`}</Typography>
                       )}
                       <div>
+                        {/*
+                        Headline now displayed in the Hero ProfileNew.tsx
                         {data?.Headline && (
                           <Typography>{`${data?.Headline}`}</Typography>
                         )}
+                        */}
                       </div>
 
                       {data?.City ? (

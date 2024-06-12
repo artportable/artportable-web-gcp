@@ -70,3 +70,9 @@ export function getRandomSequentialIndexes(arrayLength, resultCount) {
 
   return randomIndexes
 }
+
+// export const sortArtworkByOrderIndex = (a, b) => {
+//   if (a.index > b.index) return 1
+//   if (a.index < b.index) return -1
+//   return 0
+// }

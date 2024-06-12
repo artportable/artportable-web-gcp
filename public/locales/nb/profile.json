@@ -89,5 +89,32 @@
   "enterUserName": "Det er nok med brukernavnet",
   "editButton": "redigere",
   "promoteArtwork": "Markedsfør",
-  "promotedArtwork": "Markedsføres"
+  "promotedArtwork": "Markedsføres",
+  "clickToEditIntro": "Klikk her for å skrive en kort introduksjon",
+  "editHeadline": "Rediger introduksjon",
+  "preferences": {
+    "designPortfolio": "Design portfolio",
+    "designYourPortfolio": "Design din portfolio",
+    "imageLayout": "Bildelayout",
+    "layoutEvenRows": "Jevene rader",
+    "layoutDynamicGrid": "Dynamisk rutenett",
+    "layoutTwoOne": "To en",
+    "layoutOneLarge": "En stor",
+    "color": "Farge",
+    "colorTooltip": "Fargen du velger vises som overskriftsbakgrunn øverst på din kunstportfolio og gir den et personlig preg.",
+    "imageStyle": "Bildestil",
+    "shadows": "Skygger",
+    "shadowsYes": "Ja",
+    "shadowsNo": "Nei",
+    "corners": "Rundede hjørner",
+    "cornersYes": "Ja",
+    "cornersNo": "Nei",
+    "frame": "Ramme",
+    "frameThin": "Tynn",
+    "frameThick": "Tykk",
+    "frameNone": "Ingen",
+    "font": "Skrift",
+    "saveAndClose": "Lagre og lukk",
+    "save": "Lagre"
+  }
 }

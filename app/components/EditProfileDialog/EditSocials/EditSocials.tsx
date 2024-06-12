@@ -77,7 +77,7 @@ export const EditSocials = ({ profile, setProfile }) => {
   let behanceInput = profile?.socialMedia?.behance || DefaultURLs.behance
   let websiteInput = profile?.socialMedia?.website || DefaultURLs.website
 
-  console.log('profile?.socialMedia', profile?.socialMedia ?? 'nope');
+  // console.log('profile?.socialMedia', profile?.socialMedia ?? 'nope');
   
 
   return (
