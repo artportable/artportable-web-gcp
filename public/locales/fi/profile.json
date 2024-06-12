@@ -90,6 +90,8 @@
   "editButton": "Muokkaa",
   "promoteArtwork": "Mainosta",
   "promotedArtwork": "Mainostettava taideteos",
+  "clickToEditIntro": "Klikkaa tästä kirjoittaaksesi lyhyen esittelyn",
+  "editHeadline": "Muokkaa esittelyä",
   "preferences": {
     "designPortfolio": "Suunnittele portfolio",
     "designYourPortfolio": "Suunnittele portfoliosi",

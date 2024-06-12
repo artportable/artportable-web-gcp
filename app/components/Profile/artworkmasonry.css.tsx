@@ -12,21 +12,26 @@ export const styles = makeStyles((theme: Theme) =>
     },
     masonryCardTwoOne: {
       width: '50%',
-      height: '100px',
-      marginBottom: 10,
+      marginBottom: 28,
       '&:nth-child(3n + 1)': {
         width: 'calc(50% - 5px)',
-        height: 150,
-        marginRight: 5,
+        marginRight: 4,
+        '& .ratioDummy': {
+          marginTop: '65%',
+        },
       },
       '&:nth-child(3n + 2)': {
         width: 'calc(50% - 5px)',
-        height: 150,
-        marginLeft: 5,
+        marginLeft: 4,
+        '& .ratioDummy': {
+          marginTop: '65%',
+        },
       },
       '&:nth-child(3n)': {
         width: '100%',
-        height: 300,
+        '& .ratioDummy': {
+          marginTop: '50%',
+        },
       },
     },
     masonryCardImage: {
@@ -36,6 +41,9 @@ export const styles = makeStyles((theme: Theme) =>
       width: '50%',
       height: '100px',
       marginBottom: 10,
+      '& .ratioDummy': {
+        marginTop: '65%',
+      },
       '&:nth-child(2n + 1)': {
         width: 'calc(50% - 5px)',
         height: 150,
@@ -54,8 +62,17 @@ export const styles = makeStyles((theme: Theme) =>
     masonryCard4: {
       width: '100%',
     },
-    dummy: {
-      marginTop: '100%',
-    }
+    thinBorder: {
+      border: '1px solid black',
+    },
+    thickBorder: {
+      border: '5px solid black',
+    },
+    roundedCorners: {
+      borderRadius: 10,
+    },
+    shadow: {
+      boxShadow: '-3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)',
+    },
   })
 );

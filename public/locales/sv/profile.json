@@ -91,6 +91,8 @@
   "editButton": "Redigera",
   "promoteArtwork": "Marknadsför",
   "promotedArtwork": "Marknadsförs",
+  "clickToEditIntro": "Klicka här för att skriva en kort introduktion",
+  "editHeadline": "Redigera introduktion",
   "preferences": {
     "designPortfolio": "Designa portfolio",
     "designYourPortfolio": "Designa din portfolio",

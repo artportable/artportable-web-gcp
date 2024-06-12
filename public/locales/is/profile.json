@@ -91,6 +91,8 @@
   "editButton": "Breyta",
   "promoteArtwork": "Auglýsa",
   "promotedArtwork": "Auglýst",
+  "clickToEditIntro": "Smelltu hér til að skrifa stutta kynningu",
+  "editHeadline": "Breyta kynningu",
   "preferences": {
     "designPortfolio": "Hannaðu ferilskrá",
     "designYourPortfolio": "Hannaðu ferilskrána þína",

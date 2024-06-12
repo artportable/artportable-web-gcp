@@ -6,12 +6,16 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import {
   Typography,
+  TextField,
   useTheme,
   useMediaQuery,
 } from "@material-ui/core";
 import IconButton from '@mui/material/IconButton';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowBack from '@mui/icons-material/ArrowBackIosNew';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import EditIcon from "@material-ui/icons/Edit";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import Divider from '@mui/material/Divider';
 import Button from '../Button/Button';
 import Spacer from "../LayoutComponents/Spacer";
@@ -19,6 +23,7 @@ import ColorPicker from "../Pickers/ColorPicker/ColorPicker";
 import FontPicker from "../Pickers/FontPicker/FontPicker";
 import LayoutPicker from '../Pickers/LayoutPicker/LayoutPicker';
 import TooltipPopup from "../Popups/TooltipPopup";
+import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import { styles } from './preferences.css';
 
 export default function Preferences({ userProfile, mutate }) {
@@ -37,6 +42,7 @@ export default function Preferences({ userProfile, mutate }) {
   const [selectedFrame, setSelectedFrame] = useState('none');
   const [prefsHasChanges, setPrefsHasChanges] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [shareMenuOpen, setShareMenuOpen] = useState(false);
   const chosenColor = userProfile?.ChosenColor || '#FDF9F7';
 
   const layoutContainerStyle = {
@@ -115,7 +121,7 @@ export default function Preferences({ userProfile, mutate }) {
 
   const COLORS = [
     { value: '#000000' }, // Black
-    { value: '#FFFFFF' }, // White
+    { value: '#FDF9F7' }, // Beige, same as rest of page
     { value: '#A9D8D8' }, // Turquoise
     { value: '#9EBD9F' }, // Green
     { value: '#ED9C62' }, // Orange
@@ -131,27 +137,28 @@ export default function Preferences({ userProfile, mutate }) {
   ]
   const FRAMES = [
     { value: 'none', localeName: 'frameNone' },
-    { value: 'this', localeName: 'frameThin' },
+    { value: 'thin', localeName: 'frameThin' },
     { value: 'thick', localeName: 'frameThick' },
   ]
+  // Value is same family names as in globals.css
   const FONTS = [
-    { value: 'gotham', localeName: 'Gotham', family: 'Gotham' },
-    { value: 'gluten', localeName: 'Gluten', family: 'Gluten' },
-    { value: 'kellySlab', localeName: 'KellySlab', family: 'KellySlab' },
-    { value: 'barrio', localeName: 'Barrio', family: 'Barrio' },
-    { value: 'caveat', localeName: 'Caveat', family: 'Caveat' },
-    { value: 'jura', localeName: 'Jura', family: 'Jura' },
+    { value: 'Gotham', localeName: 'Gotham' },
+    { value: 'Gluten', localeName: 'Gluten' },
+    { value: 'KellySlab', localeName: 'KellySlab' },
+    { value: 'Barrio', localeName: 'Barrio' },
+    { value: 'Caveat', localeName: 'Caveat' },
+    { value: 'Jura', localeName: 'Jura' },
   ]
 
   // Initialize preferences with value from user.
   useEffect(() => {
     if (!userProfile) return;
-    if (userProfile?.ChosenColor)   setSelectedColor(userProfile.ChosenColor);
-    if (userProfile?.ChosenLayout)  setSelectedLayout(userProfile.ChosenLayout);
-    if (userProfile?.ChosenFont)    setSelectedFont(userProfile.ChosenFont);
-    if (userProfile?.ChosenShadow)  setSelectedShadow(userProfile.ChosenShadow);
+    if (userProfile?.ChosenColor) setSelectedColor(userProfile.ChosenColor);
+    if (userProfile?.ChosenLayout) setSelectedLayout(userProfile.ChosenLayout);
+    if (userProfile?.ChosenFont) setSelectedFont(userProfile.ChosenFont);
+    if (userProfile?.ChosenShadow) setSelectedShadow(userProfile.ChosenShadow);
     if (userProfile?.ChosenCorners) setSelectedCorners(userProfile.ChosenCorners);
-    if (userProfile?.ChosenFrame)   setSelectedFrame(userProfile.ChosenFrame);
+    if (userProfile?.ChosenFrame) setSelectedFrame(userProfile.ChosenFrame);
   }, [userProfile])
 
   // console.log('');
@@ -162,7 +169,7 @@ export default function Preferences({ userProfile, mutate }) {
   // console.log('selectedShadow', selectedShadow, userProfile?.ChosenShadow);
   // console.log('selectedCorners', selectedCorners, userProfile?.ChosenCorners);
   // console.log('selectedFrame', selectedFrame, userProfile?.ChosenFrame);
-  
+
   /*
   // Activate Save-button if values changes.
   useEffect(() => {
@@ -201,7 +208,7 @@ export default function Preferences({ userProfile, mutate }) {
         }
 
         console.log('mutate', mutate);
-        
+
         mutate('larsf');
 
       } catch (err) {
@@ -215,16 +222,60 @@ export default function Preferences({ userProfile, mutate }) {
 
   return (
     <React.Fragment key={anchor}>
-      <div className={s.openerSection} style={{ backgroundColor: chosenColor }}>
+      <div
+        className={clsx(s.openerSection, {
+          [s.openerDarkBackground]: chosenColor === '#000000',
+        })}
+        style={{
+          backgroundColor: chosenColor,
+          // borderBottom: `1px inset ${chosenColor}`,
+        }}>
         <Spacer y={12} />
         <Button
           variant="outlined"
           rounded={true}
           className={s.profileButton}
           onClick={() => setDrawerOpen(true)}
-          >
+        >
           {t('preferences.designPortfolio')}
         </Button>
+
+        {/* Later will have three dots open a Drawer with edit profile / share portfolio / qr code.
+        For now put put three dots button in EditPorfileDialog and open profile edit only. */}
+        {/* <MoreHorizIcon
+          onClick={() => setShareMenuOpen(true)}
+          style={{
+            position: 'absolute',
+            top: 23,
+            right: 20,
+            zIndex: 10,
+            cursor: 'pointer',
+          }}
+        />
+        <Drawer
+          // classes={{ paper: s.container }}
+          anchor="top"
+          open={shareMenuOpen}
+          onClose={() => setShareMenuOpen(false)}
+          ModalProps={{ keepMounted: true }}
+        >
+          <EditProfileDialog userProfile={userProfile} isMenuItem={true} closeMenu={() => setShareMenuOpen(false)} />
+          <MenuItem onClick={() => setShareMenuOpen(false)}>*Dela portfolio*</MenuItem>
+          <MenuItem onClick={() => setShareMenuOpen(false)}>*QR-kod <QrCodeIcon/></MenuItem>
+        </Drawer> */}
+        <EditProfileDialog
+          userProfile={userProfile}
+          isButton={false}
+          isDotsButton={true}
+          buttonStyle={{
+            position: 'absolute',
+            top: 23,
+            right: 20,
+            zIndex: 10,
+            cursor: 'pointer',
+          }}
+        />
+
         <Spacer y={12} />
       </div>
       <Drawer
@@ -260,7 +311,8 @@ export default function Preferences({ userProfile, mutate }) {
           </div>
 
           <div className={s.content}>
-            <Spacer y={!largeDevice ? 24 : 80} />
+            {/* Select Layout */}
+            {/* <Spacer y={!largeDevice ? 24 : 80} />
             <Typography variant="h2">
               {t('preferences.imageLayout')}
             </Typography>
@@ -270,8 +322,8 @@ export default function Preferences({ userProfile, mutate }) {
               selectedLayout={selectedLayout}
               setSelectedLayout={setSelectedLayout}
               t={t}
-            />
-      
+            /> */}
+
             <Spacer y={!largeDevice ? 24 : 80} />
             <div style={{
               position: 'relative',
@@ -308,6 +360,8 @@ export default function Preferences({ userProfile, mutate }) {
               )}
             />
 
+            {/* Select Image Style with shadows/corners/frame. */}
+            {/*
             <Spacer y={!largeDevice ? 32 : 80} />
             <Typography variant="h2">
               {t('preferences.imageStyle')}
@@ -369,13 +423,19 @@ export default function Preferences({ userProfile, mutate }) {
                 })}
               </Select>
             </div>
+            */}
 
             <Spacer y={!largeDevice ? 32 : 80} />
             <Typography variant="h2">
               {t('preferences.font')}
             </Typography>
             <Spacer y={!largeDevice ? 24 : 40} />
-            <FontPicker FONTS={FONTS} selectedFont={selectedFont} setSelectedFont={setSelectedFont} />
+            <FontPicker
+              FONTS={FONTS}
+              selectedFont={selectedFont}
+              setSelectedFont={setSelectedFont}
+              userProfile={userProfile}
+            />
 
             <Spacer y={40} />
             <Button

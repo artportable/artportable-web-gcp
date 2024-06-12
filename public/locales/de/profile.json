@@ -91,6 +91,8 @@
   "editButton": "Bearbeiten",
   "promoteArtwork": "Werben",
   "promotedArtwork": "Beworben",
+  "clickToEditIntro": "Klicken Sie hier, um eine kurze Einführung zu schreiben",
+  "editHeadline": "Einführung bearbeiten",
   "preferences": {
     "designPortfolio": "Portfolio gestalten",
     "designYourPortfolio": "Gestalte dein Portfolio",

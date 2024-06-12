@@ -102,6 +102,9 @@ export default function Profile(props) {
 
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
+  
+  // const isMyProfile = username?.value === 'larsf' ? false : profileUser === username.value;
+
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -385,7 +388,7 @@ export default function Profile(props) {
     });
     togglePurchaseRequestDialog();
   }
-  // }
+  
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
   function toggleMonthlyDialog() {
@@ -410,10 +413,8 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
-  const [layout, setLayout] = useState(2); // evenRows dynamicGrid twoOne oneLarge
-
   return (
-    <Main navBarItems={navBarItems} fullWidth={true} noHeaderPadding={true}>
+    <Main navBarItems={navBarItems} fullWidth={false} noHeaderPadding={true} paddingForTrialBanner={!isSignedIn.value}>
       <Head>
         <title>
           {staticUserProfile &&
@@ -546,16 +547,18 @@ export default function Profile(props) {
             )}
             {hasArtwork ? (
               <div className={s.tabsContainer}>
+                {/* If changing height of Tabs component, also change height of id="CoverTabs" element in ProfileNew.tsx */}
                 <Tabs
                   className={s.tabs}
                   value={activeTab}
                   onChange={handleTabChange}
                   centered
+                  variant="scrollable"
                   style={{
                     backgroundColor: chosenColor,
                   }}
                   TabIndicatorProps={{ style: {
-                    backgroundColor: !useLightText ? 'grey' : 'white',
+                    backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
                   }}}
                 >
                   <Tab
@@ -599,20 +602,20 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    <Button onClick={() => setSortOpen(!sortOpen)} variant="outlined">*Sortera*</Button>
-                    {isMyProfile && isPremium && !sortOpen && (
-                      <>
-                        <Button onClick={() => setLayout(layout - 1)}>-</Button>
-                        <span>{layout}</span>
-                        <Button onClick={() => setLayout(layout + 1)}>+</Button>
+                    {/* <Button onClick={() => setSortOpen(!sortOpen)} variant="outlined">*Sortera*</Button> */}
+                    {/* {isMyProfile && isPremium && !sortOpen && (
+                      <div className={s.masonryContainer}>
                         <ArtworkMasonry
                           items={artworks.data}
-                          layout={layout}
+                          layout={userProfile?.data?.ChosenLayout}
+                          frame={userProfile?.data?.ChosenFrame}
+                          corners={userProfile?.data?.ChosenCorners}
+                          shadow={userProfile?.data?.ChosenShadow}
                           isMyProfile={isMyProfile}
                         />
-                      </>
-                    )}
-                    {isMyProfile && isPremium && sortOpen && (
+                      </div>
+                    )} */}
+                    {isMyProfile && isPremium && (
                       <div style={{ marginBottom: "0px" }}>
                         <ArtworkListSortable
                           items={artworks.data}

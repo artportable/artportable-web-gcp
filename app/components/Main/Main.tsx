@@ -9,20 +9,26 @@ interface Props {
   children: any;
   wide?: boolean;
   noHeaderPadding?: boolean;
+  paddingForTrialBanner?: boolean,
   fullWidth?: boolean;
   isShow?: boolean;
   navBarItems?: NavBarItem[];
 }
 
 
-export default function Main({ children, wide = false, noHeaderPadding = false, fullWidth = false, isShow = true, navBarItems}: Props) {
+export default function Main({ children, wide = false, noHeaderPadding = false, paddingForTrialBanner = false, fullWidth = false, isShow = true, navBarItems}: Props) {
   const s = styles();
   isShow ? <Footer /> : null;
 
   return (
     <>
       <Header navBarItems={navBarItems}></Header>
-      <div className={clsx(s.container, wide && s.wide, noHeaderPadding && s.noHeaderPadding, fullWidth && s.fullWidth)}>
+      <div className={clsx(s.container, {
+        [s.wide]: wide,
+        [s.noHeaderPadding]: noHeaderPadding,
+        [s.paddingForTrialBanner]: paddingForTrialBanner,
+        [s.fullWidth]: fullWidth,
+      })}>
         {children}
       </div>
       {isShow ? <Footer /> : null}

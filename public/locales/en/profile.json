@@ -90,6 +90,8 @@
   "editButton": "Edit",
   "promoteArtwork": "Promote",
   "promotedArtwork": "Being Promoted",
+  "clickToEditIntro": "Click here to write a short introduction",
+  "editHeadline": "Edit introduction",
   "preferences": {
     "designPortfolio": "Design portfolio",
     "designYourPortfolio": "Design your portfolio",

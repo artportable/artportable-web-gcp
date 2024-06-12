@@ -90,6 +90,8 @@
   "editButton": "redigere",
   "promoteArtwork": "Markedsfør",
   "promotedArtwork": "Markedsføres",
+  "clickToEditIntro": "Klikk her for å skrive en kort introduksjon",
+  "editHeadline": "Rediger introduksjon",
   "preferences": {
     "designPortfolio": "Design portfolio",
     "designYourPortfolio": "Design din portfolio",

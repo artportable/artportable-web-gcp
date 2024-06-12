@@ -3,11 +3,17 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     openerSection: {
-      // borderBottom: '1px solid #D9D9D9',
+      position: 'relative',
+      gridColumn: '1/4', // Cover whole width of page.
+      // borderBottom: '1px inset #D9D9D9',
+      borderBottom: '1px inset rgba(0, 0, 0, .5)',
       textAlign: 'center',
       '& button': {
         margin: '0 auto',
       },
+    },
+    openerDarkBackground: {
+      borderBottom: '1px inset rgba(255, 255, 255, .5)',
     },
     root: {
       height: "100%",
@@ -70,10 +76,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     profileButton: {
-      padding: '7px 34px',
+      padding: '7px 20px',
       border: '1px solid black',
       fontSize: '16px',
       backgroundColor: 'white',
+      zIndex: 20,
       '&:hover': {
         backgroundColor: 'lightgrey',
       },

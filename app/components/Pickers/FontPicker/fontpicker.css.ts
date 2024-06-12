@@ -2,9 +2,15 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-fontPicker: {
+    fontPicker: {
+      position: 'relative',
+      display: 'flex',
+      flexFlow: 'column wrap',
+    },
+    fontPickerItems: {
       position: 'relative',
       width: 300,
+      marginBottom: 6,
       display: 'flex',
       flexFlow: 'row wrap',
       justifyContent: 'center',
@@ -18,7 +24,7 @@ fontPicker: {
       position: 'relative',
       width: 70,
       height: 70,
-      margin: '0 4px 32px 4px',
+      margin: '0 4px 8px 4px',
       border: '1px solid black',
       boxSizing: 'content-box',
       backgroundColor: 'transparent',
