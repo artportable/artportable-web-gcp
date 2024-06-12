@@ -200,6 +200,7 @@ export default function EditProfileDialog({
 
               {/*
               Headline now edited in ProfileNew.tsx
+            */}
               <TextField
                 label={t("headline")}
                 defaultValue={profile.headline}
@@ -207,9 +208,8 @@ export default function EditProfileDialog({
                 onChange={(event) =>
                   setProfile({ ...profile, headline: event.target.value })
                 }
-                inputProps={{ maxLength: 140 }}
+                inputProps={{ maxLength: 100 }}
               />
-              */}
 
               <TextField
                 label={t("location")}
