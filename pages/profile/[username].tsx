@@ -1,5 +1,6 @@
 import Main, { FullWidthBlock } from "../../app/components/Main/Main";
 import Head from "next/head";
+import clsx from 'clsx';
 import AboutMe from "../../app/components/AboutMe/AboutMe";
 // import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
 import {
@@ -12,7 +13,8 @@ import {
 } from "@material-ui/core";
 // import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
-import ProfileComponent from "../../app/components/Profile/Profile";
+// import ProfileComponent from "../../app/components/Profile/Profile";
+import ProfileComponent from "../../app/components/Profile/ProfileNew";
 // import ArtworkListItemDefined from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefined";
 import Image from "../../app/models/Image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -69,6 +71,10 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
+import Preferences from '../../app/components/Profile/Preferences';
+import ArtworkMasonry from '../../app/components/Profile/ArtworkMasonry';
+// import Spacer from "../../app/components/LayoutComponents/Spacer";
+
 function a11yProps(index: any) {
   return {
     id: `nav-tab-${index}`,
@@ -96,6 +102,9 @@ export default function Profile(props) {
 
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
+  
+  // const isMyProfile = username?.value === 'larsf' ? false : profileUser === username.value;
+
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -111,6 +120,7 @@ export default function Profile(props) {
   const [editArtworkOpen, setEditArtworkOpen] = useState(false);
   const [artworkToEdit, setArtworkToEdit] = useState(null);
   const [isReady, setIsReady] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
 
   const [hasStories, setHasStories] = useState(false);
   const stories = useGetStories(profileUser, username.value);
@@ -124,6 +134,13 @@ export default function Profile(props) {
   const userData = useGetUser(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
+  const chosenColor = userProfile?.data?.ChosenColor || '#FDF9F7';
+  const chosenFont = userProfile?.data?.ChosenFont || 'Gotham';
+  const useLightText = chosenColor === '#000000';
+  // console.log('chosenColor', chosenColor);
+  // console.log('userProfileSummary', userProfileSummary);
+  // console.log('userData', userData);
+  // console.log('userProfile', userProfile);
 
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
@@ -371,7 +388,7 @@ export default function Profile(props) {
     });
     togglePurchaseRequestDialog();
   }
-  // }
+  
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
   function toggleMonthlyDialog() {
@@ -397,7 +414,7 @@ export default function Profile(props) {
   };
 
   return (
-    <Main navBarItems={navBarItems}>
+    <Main navBarItems={navBarItems} fullWidth={false} noHeaderPadding={true} paddingForTrialBanner={!isSignedIn.value}>
       <Head>
         <title>
           {staticUserProfile &&
@@ -481,22 +498,29 @@ export default function Profile(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
-      <div>
-        <ProfileComponent
-          userProfile={userProfileSummary}
-          userProfilePicture={
-            isMyProfile
-              ? profilePicture
-              : userProfileSummary.data?.ProfilePicture
-          }
-          onUpdateProfilePicture={updateImage}
-          isMyProfile={isMyProfile}
-          linkToProfile={false}
-          isFollowed={isFollowed}
-          userProfileUrl={userProfileUrl}
-          staticUserProfile={staticUserProfile}
-        ></ProfileComponent>
-      </div>
+
+      { isMyProfile && isPremium && (
+        <Preferences userProfile={userProfile.data} mutate={userProfile.mutate} />
+      )}
+      
+      <ProfileComponent
+      userProfile={userProfileSummary}
+      userProfilePicture={
+        isMyProfile
+        ? profilePicture
+        : userProfileSummary.data?.ProfilePicture
+      }
+      onUpdateProfilePicture={updateImage}
+      isMyProfile={isMyProfile}
+      linkToProfile={false}
+      isFollowed={isFollowed}
+      userProfileUrl={userProfileUrl}
+      staticUserProfile={staticUserProfile}
+      chosenColor={chosenColor}
+      chosenFont={chosenFont}
+      useLightText={useLightText}
+      ></ProfileComponent>
+
       {isReady && (
         <>
           <div>
@@ -522,36 +546,54 @@ export default function Profile(props) {
             )}
             {hasArtwork ? (
               <div className={s.tabsContainer}>
+                {/* If changing height of Tabs component, also change height of id="CoverTabs" element in ProfileNew.tsx */}
                 <Tabs
                   className={s.tabs}
                   value={activeTab}
                   onChange={handleTabChange}
                   centered
+                  variant="scrollable"
+                  style={{
+                    backgroundColor: chosenColor,
+                  }}
+                  TabIndicatorProps={{ style: {
+                    backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
+                  }}}
                 >
                   <Tab
-                    className={s.tab}
+                    className={clsx(s.tab, {
+                      [s.tabLight]: useLightText,
+                    })}
                     label={t("profile:portfolio")}
                     {...a11yProps(t("profile:portfolio"))}
                   />
                   <Tab
-                    className={s.tab}
+                    className={clsx(s.tab, {
+                      [s.tabLight]: useLightText,
+                    })}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
                   <Tab
-                    className={s.tab}
+                    className={clsx(s.tab, {
+                      [s.tabLight]: useLightText,
+                    })}
                     label={t("profile:stories")}
                     {...a11yProps(t("profile:stories"))}
                   />
 
                   <Tab
-                    className={s.tab}
+                    className={clsx(s.tab, {
+                      [s.tabLight]: useLightText,
+                    })}
                     label={t("discover:likedArt")}
                     {...a11yProps(t("discover:likedArt"))}
                   />
                   {articles && articles.length > 0 && (
                     <Tab
-                      className={s.tab}
+                      className={clsx(s.tab, {
+                        [s.tabLight]: useLightText,
+                      })}
                       label={t("profile:articles")}
                       {...a11yProps(t("profile:articles"))}
                     />
@@ -559,7 +601,20 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    {isMyProfile && isPremium ? (
+                    {/* <Button onClick={() => setSortOpen(!sortOpen)} variant="outlined">*Sortera*</Button> */}
+                    {/* {isMyProfile && isPremium && !sortOpen && (
+                      <div className={s.masonryContainer}>
+                        <ArtworkMasonry
+                          items={artworks.data}
+                          layout={userProfile?.data?.ChosenLayout}
+                          frame={userProfile?.data?.ChosenFrame}
+                          corners={userProfile?.data?.ChosenCorners}
+                          shadow={userProfile?.data?.ChosenShadow}
+                          isMyProfile={isMyProfile}
+                        />
+                      </div>
+                    )} */}
+                    {isMyProfile && isPremium && (
                       <div style={{ marginBottom: "0px" }}>
                         <ArtworkListSortable
                           items={artworks.data}
@@ -574,7 +629,8 @@ export default function Profile(props) {
                           onClose={onEditArtworkClose}
                         />
                       </div>
-                    ) : (
+                    )}
+                    {(!isMyProfile || !isPremium) && (
                       <div className={s.portfolioContainer}>
                         {imageRows &&
                           imageRows.map((row: Image[], i) => (
@@ -872,8 +928,14 @@ export default function Profile(props) {
                   centered
                   className={s.tabs}
                   onChange={handleTabChange}
+                  TabIndicatorProps={{ style: {
+                    backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
+                  }}}
                 >
                   <Tab
+                    className={clsx(s.tab, {
+                      [s.tabLight]: useLightText,
+                    })}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />

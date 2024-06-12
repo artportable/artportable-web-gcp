@@ -6,11 +6,14 @@ import {
   DialogActions,
   TextField,
 } from "@material-ui/core";
+import MenuItem from '@mui/material/MenuItem';
 import EditIcon from "@material-ui/icons/Edit";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Button from "../Button/Button";
 
 import { useTranslation } from "next-i18next";
 import { mutate } from "swr";
+import clsx from 'clsx';
 import { styles } from "./editProfileDialog.css";
 import { EditMyStudio } from "./EditMyStudio/EditMyStudio";
 import { EditInspiredBy } from "./EditInspiredBy/EditInspiredBy";
@@ -68,13 +71,21 @@ export interface Socials {
   website: string;
 }
 
-export default function EditProfileDialog({ userProfile }) {
+export default function EditProfileDialog({
+  userProfile,
+  isButton = true,
+  isDotsButton = false,
+  isMenuItem = false,
+  closeMenu = () => {},
+  buttonStyle = {},
+}) {
   const s = styles();
   const { t } = useTranslation(["profile", "common"]);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
+  const useLightStyle = userProfile?.ChosenColor === '#000000';
 
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(
@@ -137,16 +148,35 @@ export default function EditProfileDialog({ userProfile }) {
 
   return (
     <>
-      <div className={s.buttonPosition}>
-        <Button
-          className={s.editProfileButton}
-          rounded
-          startIcon={<EditIcon className={s.editProfileIcon} />}
+      {isButton && (
+        <div className={s.buttonPosition}>
+          <Button
+            className={clsx(s.editProfileButton, {
+              [s.lightButton]: useLightStyle,
+            })}
+            rounded
+            startIcon={<EditIcon className={s.editProfileIcon} />}
+            onClick={() => setOpenEdit(true)}
+            >
+            <div> {t("editProfile")}</div>
+          </Button>
+        </div>
+      )}
+      {isDotsButton && (
+        <MoreHorizIcon
           onClick={() => setOpenEdit(true)}
-        >
-          <div> {t("editProfile")}</div>
-        </Button>
-      </div>
+          style={{
+            ...buttonStyle,
+            color: useLightStyle ? 'white' : 'black',
+          }}
+        />
+      )}
+      {isMenuItem && (
+        <MenuItem onClick={() => {
+          closeMenu();
+          setOpenEdit(true);
+        }}>{t("editProfile")}<EditIcon /></MenuItem>
+      )}
 
       <Dialog
         open={openEdit}
@@ -168,6 +198,9 @@ export default function EditProfileDialog({ userProfile }) {
                 inputProps={{ maxLength: 140 }}
               />
 
+              {/*
+              Headline now edited in ProfileNew.tsx
+            */}
               <TextField
                 label={t("headline")}
                 defaultValue={profile.headline}
@@ -175,7 +208,7 @@ export default function EditProfileDialog({ userProfile }) {
                 onChange={(event) =>
                   setProfile({ ...profile, headline: event.target.value })
                 }
-                inputProps={{ maxLength: 140 }}
+                inputProps={{ maxLength: 100 }}
               />
 
               <TextField

@@ -8,7 +8,7 @@ const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 export const getUserProfileSummaryUri = (user: string) =>
   `${apiBaseUrl}/api/profile/${user}/summary`;
 export function useGetUserProfileSummary(user) {
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     getUserProfileSummaryUri(user),
     getFetcher(user),
     {
@@ -21,6 +21,7 @@ export function useGetUserProfileSummary(user) {
     data: data,
     isLoading: !error && !data,
     isError: error,
+    mutate,
   };
 }
 

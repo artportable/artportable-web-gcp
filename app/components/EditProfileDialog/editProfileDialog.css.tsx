@@ -18,6 +18,12 @@ export const styles = makeStyles((theme: Theme) =>
       marginLeft: "20px",
       border: "1px solid black",
     },
+    lightButton: {
+      backgroundColor: 'white',
+      '&:hover': {
+        backgroundColor: 'lightgrey',
+      },
+    },
     editProfileIcon: {
       position: "relative",
       right: "-5px",
