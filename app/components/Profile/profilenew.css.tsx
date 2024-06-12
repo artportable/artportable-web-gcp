@@ -93,12 +93,10 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#49cc90",
       border: "1px solid white",
       color: "white",
-      [theme.breakpoints.up("md")]: {
-        width: "45%",
-      },
       "&:hover": {
         backgroundColor: "transparent",
         color: "black",
+        borderColor: '#49cc90',
       },
     },
   })
