@@ -68,6 +68,9 @@ export const styles = makeStyles((theme: Theme) =>
     noHeaderPadding: {
       paddingTop: 'var(--header-height)',
     },
+    paddingForTrialBanner: {
+      paddingTop: 'calc(25px + var(--header-height))',
+    },
     fullWidthBlock: {
       gridColumn: '1/4'
     }
