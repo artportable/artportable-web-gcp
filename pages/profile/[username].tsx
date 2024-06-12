@@ -499,29 +499,28 @@ export default function Profile(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      { isMyProfile && email.value && email.value.indexOf('artportable.com') > 0 && (
+      { isMyProfile && isPremium && (
         <Preferences userProfile={userProfile.data} mutate={userProfile.mutate} />
       )}
-              
-      {/* <div style={{ backgroundColor: chosenColor }}> */}
-        <ProfileComponent
-          userProfile={userProfileSummary}
-          userProfilePicture={
-            isMyProfile
-              ? profilePicture
-              : userProfileSummary.data?.ProfilePicture
-          }
-          onUpdateProfilePicture={updateImage}
-          isMyProfile={isMyProfile}
-          linkToProfile={false}
-          isFollowed={isFollowed}
-          userProfileUrl={userProfileUrl}
-          staticUserProfile={staticUserProfile}
-          chosenColor={chosenColor}
-          chosenFont={chosenFont}
-          useLightText={useLightText}
-        ></ProfileComponent>
-      {/* </div> */}
+      
+      <ProfileComponent
+      userProfile={userProfileSummary}
+      userProfilePicture={
+        isMyProfile
+        ? profilePicture
+        : userProfileSummary.data?.ProfilePicture
+      }
+      onUpdateProfilePicture={updateImage}
+      isMyProfile={isMyProfile}
+      linkToProfile={false}
+      isFollowed={isFollowed}
+      userProfileUrl={userProfileUrl}
+      staticUserProfile={staticUserProfile}
+      chosenColor={chosenColor}
+      chosenFont={chosenFont}
+      useLightText={useLightText}
+      ></ProfileComponent>
+
       {isReady && (
         <>
           <div>
@@ -929,8 +928,14 @@ export default function Profile(props) {
                   centered
                   className={s.tabs}
                   onChange={handleTabChange}
+                  TabIndicatorProps={{ style: {
+                    backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
+                  }}}
                 >
                   <Tab
+                    className={clsx(s.tab, {
+                      [s.tabLight]: useLightText,
+                    })}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
