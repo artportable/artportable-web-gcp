@@ -101,13 +101,12 @@ export default function ProfileNew({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [editHeadlineOpen, setEditHeadlineOpen] = useState(null);
-  const [headline, setHeadline] = useState(null);
+  const [editHeadlineOpen, setEditHeadlineOpen] = useState(false);
+  const [headline, setHeadline] = useState('');
   const toggleEditHeadline = () => setEditHeadlineOpen(!editHeadlineOpen);
   useEffect(() => {
     setHeadline(userProfileSummary.data?.Headline || '');
   }, [userProfileSummary?.data?.Headline]);
-
 
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
