@@ -151,9 +151,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } else if (isStoryCarousel) {
     slideElements = slides.map((slide, index) => (
       <div
-        className={clsx(s.embla__slide, "has-shadow", {
+        className={clsx(s.embla__slide__story, "has-shadow", {
           [s.dynamic_width]: useDynamicSlideWidth,
-          [s.embla__slide__desktop]: forDesktop,
+          [s.embla__slide__desktopStory]: forDesktop,
         })}
         key={index}
       >

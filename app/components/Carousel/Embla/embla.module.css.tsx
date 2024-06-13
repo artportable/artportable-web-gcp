@@ -32,7 +32,7 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: 0,
       // maxWidth: '100%',
       // paddingLeft: 'var(--slide-spacing)',
-      marginLeft: "var(--slide-spacing)", // margin instead of padding, so box-shadow not too large
+      marginLeft: "var(--slide-spacing)",
       "&.has-shadow": {
         marginTop: 4,
         marginBottom: 6,
@@ -41,6 +41,21 @@ export const styles = makeStyles((theme: Theme) =>
     },
     embla__slide__desktop: {
       flex: "0 0 var(--slide-size-desktop)",
+    },
+    embla__slide__desktopStory: {
+      flex: "0 0 var(--slide-size-desktop)",
+      backgroundColor: "transparent",
+    },
+    embla__slide__story: {
+      flex: "0 0 var(--slide-size)",
+      minWidth: 0,
+      // maxWidth: '100%',
+      // paddingLeft: 'var(--slide-spacing)',
+      marginLeft: "var(--slide-spacing)", // margin instead of padding, so box-shadow not too large
+      "&.has-shadow": {
+        marginTop: 4,
+        marginBottom: 2,
+      },
     },
     // Set dynamic_width after embla__slide__desktop so flex don't get overwritten.
     // Dynamic images will get object-fit:cover.
