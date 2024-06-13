@@ -499,8 +499,12 @@ export default function Profile(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      { isMyProfile && isPremium && (
-        <Preferences userProfile={userProfileSummary.data} mutate={userProfileSummary.mutate} />
+      { isMyProfile && (
+        <Preferences
+          isPremium={isPremium}
+          userProfile={userProfileSummary.data}
+          mutate={userProfileSummary.mutate}
+        />
       )}
       {/* Preferences and ProfileComponent must use the same data for userProfile, so changing Headline updates on both. */}
       <ProfileComponent
