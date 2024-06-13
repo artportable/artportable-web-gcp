@@ -500,25 +500,25 @@ export default function Profile(props) {
       </Head>
 
       { isMyProfile && isPremium && (
-        <Preferences userProfile={userProfile.data} mutate={userProfile.mutate} />
+        <Preferences userProfile={userProfileSummary.data} mutate={userProfileSummary.mutate} />
       )}
-      
+      {/* Preferences and ProfileComponent must use the same data for userProfile, so changing Headline updates on both. */}
       <ProfileComponent
-      userProfile={userProfileSummary}
-      userProfilePicture={
-        isMyProfile
-        ? profilePicture
-        : userProfileSummary.data?.ProfilePicture
-      }
-      onUpdateProfilePicture={updateImage}
-      isMyProfile={isMyProfile}
-      linkToProfile={false}
-      isFollowed={isFollowed}
-      userProfileUrl={userProfileUrl}
-      staticUserProfile={staticUserProfile}
-      chosenColor={chosenColor}
-      chosenFont={chosenFont}
-      useLightText={useLightText}
+        userProfile={userProfileSummary}
+        userProfilePicture={
+          isMyProfile
+            ? profilePicture
+            : userProfileSummary.data?.ProfilePicture
+        }
+        onUpdateProfilePicture={updateImage}
+        isMyProfile={isMyProfile}
+        linkToProfile={false}
+        isFollowed={isFollowed}
+        userProfileUrl={userProfileUrl}
+        staticUserProfile={staticUserProfile}
+        chosenColor={chosenColor}
+        chosenFont={chosenFont}
+        useLightText={useLightText}
       ></ProfileComponent>
 
       {isReady && (
