@@ -31,7 +31,7 @@ export default function BoostStory(props) {
 
   const artwork = useGetArtwork(props?.artworkId);
 
-  const story = useGetStory(props.sto);
+  const story = useGetStory(props?.storyId);
 
   const { isSignedIn, username, socialId, membership, phone } =
     useContext(UserContext);
@@ -80,10 +80,10 @@ export default function BoostStory(props) {
                 {" "}
                 <div className={s.imgText}>
                   <Typography variant="h4" className={s.textOne}>
-                    {t("promoteYourArt")}
+                    {t("promoteYourExhibition")}
                   </Typography>
-                  <Typography variant="h5" className={s.textOne}>
-                    "{artwork?.data?.Title}"
+                  <Typography variant="h5" className={s.textTwo}>
+                    "{story?.data?.Title}"
                   </Typography>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function BoostStory(props) {
               </div>
 
               <div>
-                <div className={s.contentText}>{t("startPage")}</div>
+                <div className={s.contentText}>{t("startPageExhibition")}</div>
               </div>
             </div>
           </div>
