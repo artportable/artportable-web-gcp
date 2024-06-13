@@ -2,73 +2,73 @@ import React, {
   PropsWithChildren,
   useCallback,
   useEffect,
-  useState
-} from 'react'
-import { EmblaCarouselType } from 'embla-carousel'
-import clsx from 'clsx'
-import { styles } from './embla.module.css'
+  useState,
+} from "react";
+import { EmblaCarouselType } from "embla-carousel";
+import clsx from "clsx";
+import { styles } from "./embla.module.css";
 
 type UsePrevNextButtonsType = {
-  prevBtnDisabled: boolean
-  nextBtnDisabled: boolean
-  onPrevButtonClick: () => void
-  onNextButtonClick: () => void
-}
+  prevBtnDisabled: boolean;
+  nextBtnDisabled: boolean;
+  onPrevButtonClick: () => void;
+  onNextButtonClick: () => void;
+};
 
 export const usePrevNextButtons = (
   emblaApi: EmblaCarouselType | undefined,
   onButtonClick?: (emblaApi: EmblaCarouselType) => void
 ): UsePrevNextButtonsType => {
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
   const onPrevButtonClick = useCallback(() => {
-    if (!emblaApi) return
-    emblaApi.scrollPrev()
-    if (onButtonClick) onButtonClick(emblaApi)
-  }, [emblaApi, onButtonClick])
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+    if (onButtonClick) onButtonClick(emblaApi);
+  }, [emblaApi, onButtonClick]);
 
   const onNextButtonClick = useCallback(() => {
-    if (!emblaApi) return
-    emblaApi.scrollNext()
-    if (onButtonClick) onButtonClick(emblaApi)
-  }, [emblaApi, onButtonClick])
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+    if (onButtonClick) onButtonClick(emblaApi);
+  }, [emblaApi, onButtonClick]);
 
   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setPrevBtnDisabled(!emblaApi.canScrollPrev())
-    setNextBtnDisabled(!emblaApi.canScrollNext())
-  }, [])
+    setPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, []);
 
   useEffect(() => {
-    if (!emblaApi) return
+    if (!emblaApi) return;
 
-    onSelect(emblaApi)
-    emblaApi.on('reInit', onSelect)
-    emblaApi.on('select', onSelect)
-  }, [emblaApi, onSelect])
+    onSelect(emblaApi);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
+  }, [emblaApi, onSelect]);
 
   return {
     prevBtnDisabled,
     nextBtnDisabled,
     onPrevButtonClick,
-    onNextButtonClick
-  }
-}
+    onNextButtonClick,
+  };
+};
 
 type PropType = PropsWithChildren<
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   >
->
+>;
 
 export const PrevButton: React.FC<PropType> = (props) => {
-  const { children, ...restProps } = props
-  const s = styles()
+  const { children, ...restProps } = props;
+  const s = styles();
 
   return (
     <button
-      className={clsx(s.embla__button, s.embla__button__prev)}
+      className={clsx(s.embla__button, s.embla__button__prev, "arrow-button")}
       type="button"
       {...restProps}
     >
@@ -80,16 +80,16 @@ export const PrevButton: React.FC<PropType> = (props) => {
       </svg>
       {children}
     </button>
-  )
-}
+  );
+};
 
 export const NextButton: React.FC<PropType> = (props) => {
-  const { children, ...restProps } = props
-  const s = styles()
+  const { children, ...restProps } = props;
+  const s = styles();
 
   return (
     <button
-      className={clsx(s.embla__button, s.embla__button__next)}
+      className={clsx(s.embla__button, s.embla__button__next, "arrow-button")}
       type="button"
       {...restProps}
     >
@@ -101,5 +101,5 @@ export const NextButton: React.FC<PropType> = (props) => {
       </svg>
       {children}
     </button>
-  )
-}
+  );
+};

@@ -53,6 +53,8 @@ import RocketCarousel from "../app/components/Carousel/RocketCarousel";
 import Hotjar from "@hotjar/browser";
 import DiscoverPromotedArtTab from "../app/components/DiscoverPromotedArt/DiscoverPromotedArt";
 import CataloguedByArtportable from "../app/components/CataloguedByArtportable/CataloguedByArtportable";
+import StoryCarousel from "../app/components/Carousel/StoryCarousel";
+import Typography from "@mui/material/Typography";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -227,6 +229,24 @@ export default function DiscoverPage({ navBarItems }) {
         }}
       />
       {!isSignedIn.value && <CataloguedByArtportable></CataloguedByArtportable>}
+
+      <Typography
+        variant="h4"
+        style={{
+          marginTop: 50,
+          paddingBottom: 10,
+          fontWeight: 500,
+        }}
+      >
+        {t("header:boostedExhibition")}
+      </Typography>
+      <StoryCarousel
+        forDesktop={!isMobile}
+        containerStyle={{
+          margin: "0px 0 25px 0",
+        }}
+      />
+
       <>
         {!isSignedIn.value &&
           activeTab != 1 &&
