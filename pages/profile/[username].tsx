@@ -412,7 +412,7 @@ export default function Profile(props) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
-
+  
   return (
     <Main navBarItems={navBarItems} fullWidth={false} noHeaderPadding={true} paddingForTrialBanner={!isSignedIn.value}>
       <Head>
@@ -506,9 +506,8 @@ export default function Profile(props) {
           mutate={userProfileSummary.mutate}
         />
       )}
-      {/* Preferences and ProfileComponent must use the same data for userProfile, so changing Headline updates on both. */}
       <ProfileComponent
-        userProfile={userProfileSummary}
+        userProfile={userProfile}
         userProfilePicture={
           isMyProfile
             ? profilePicture

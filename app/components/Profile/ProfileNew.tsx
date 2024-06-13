@@ -105,8 +105,8 @@ export default function ProfileNew({
   const [headline, setHeadline] = useState('');
   const toggleEditHeadline = () => setEditHeadlineOpen(!editHeadlineOpen);
   useEffect(() => {
-    setHeadline(userProfileSummary.data?.Headline || '');
-  }, [userProfileSummary?.data?.Headline]);
+    setHeadline(getUserProfile.data?.Headline || '');
+  }, [getUserProfile?.data?.Headline]);
 
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
@@ -173,7 +173,8 @@ export default function ProfileNew({
         })
       );
       toggleEditHeadline();
-      userProfileSummary.mutate();
+      // Update with mutate on getUserProfile which is also used in EditProfileDialog, so they are synced.
+      getUserProfile.mutate();
     } catch (error) { }
   };
 
