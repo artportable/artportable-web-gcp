@@ -81,7 +81,6 @@ const formatStoryForEmbla = (stories, s, sShared, t, forDesktop) => {
   });
 
   filteredStories.forEach((story) => {
-    // If no date in db, will be returned as 0001-01-01, in that case do not show date.
     let startDate: Date =
       story.StartDate && parseISO(story.StartDate).getFullYear() > 1
         ? new Date(story?.StartDate)
@@ -122,18 +121,6 @@ const formatStoryForEmbla = (stories, s, sShared, t, forDesktop) => {
         <Link href={`/profile/@${story.Username}`}>
           <a>
             <div className={s.writerContainer}>
-              {story.ProfilePicture ? (
-                <Avatar
-                  src={`${bucketUrl}${story.ProfilePicture}`}
-                  alt="Profile picture"
-                  className={s.avatar}
-                />
-              ) : (
-                <AccountCircleIcon
-                  color="secondary"
-                  style={{ fontSize: 30, marginRight: "10px" }}
-                />
-              )}
               <h2>
                 {story.Name} {story.Surname}
               </h2>
