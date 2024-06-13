@@ -55,7 +55,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         backgroundColor: "#fbebd0d4",
         width: "440px",
-        height: "158px",
+        height: "auto",
       },
     },
     imgText: {
@@ -68,19 +68,27 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         backgroundColor: "#fbebd07a",
         width: "440px",
-        height: "158px",
+        height: "auto",
       },
     },
     textOne: {
       fontWeight: 600,
-      fontSize: "30px",
+      fontSize: "22px",
       letterSpacing: "1px",
       marginTop: "20px",
       marginBottom: "10px",
       textAlign: "center",
       [theme.breakpoints.up("smPlus")]: {},
     },
-    textTwo: {},
+    textTwo: {
+      fontWeight: 600,
+      fontSize: "18px",
+      letterSpacing: "1px",
+      marginTop: "20px",
+      marginBottom: "20px",
+      textAlign: "center",
+      [theme.breakpoints.up("smPlus")]: {},
+    },
     right: {
       backgroundColor: "#FFFFFF",
       width: "100vw",

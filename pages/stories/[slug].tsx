@@ -222,29 +222,31 @@ export default function StoryPage(props: StoryProps) {
               </>
             )}
 
-            {isMyStory && (
-              <>
-                {story?.IsBoosted === false ? (
-                  <Button
-                    aria-label="boost"
-                    onClick={() => {
-                      router.push(`/checkoutstory?${story.Id}`);
-                    }}
-                    startIcon={<RocketLaunchIcon />}
-                  >
-                    {t("promoteArtwork")}
-                  </Button>
-                ) : (
-                  <Button
-                    aria-label="boost"
-                    disabled
-                    startIcon={<RocketLaunchIcon />}
-                  >
-                    {t("promotedArtwork")}
-                  </Button>
-                )}
-              </>
-            )}
+            <div className={s.btnContainer} style={{ marginTop: "20px" }}>
+              {isMyStory && story.Exhibition && (
+                <>
+                  {story?.IsBoosted === false ? (
+                    <Button
+                      aria-label="boost"
+                      onClick={() => {
+                        router.push(`/checkouts?${story.Id}`);
+                      }}
+                      startIcon={<RocketLaunchIcon />}
+                    >
+                      {t("promoteArtwork")}
+                    </Button>
+                  ) : (
+                    <Button
+                      aria-label="boost"
+                      disabled
+                      startIcon={<RocketLaunchIcon />}
+                    >
+                      {t("promotedArtwork")}
+                    </Button>
+                  )}
+                </>
+              )}
+            </div>
             <div className={s.writerContainer}>
               {story?.ProfilePicture ? (
                 <Link href={`/profile/@${story.Username}`}>
