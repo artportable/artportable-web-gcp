@@ -29,6 +29,7 @@ import Carousel from "react-material-ui-carousel";
 import { RWebShare } from "react-web-share";
 import { SiteError } from "getstream";
 import { insertLinks } from "../../app/utils/textUtils";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 interface StoryProps {
   navBarItems: any;
@@ -218,6 +219,30 @@ export default function StoryPage(props: StoryProps) {
                   open={editStoryOpen}
                   onClose={onEditStoryClose}
                 />
+              </>
+            )}
+
+            {isMyStory && (
+              <>
+                {story?.IsBoosted === false ? (
+                  <Button
+                    aria-label="boost"
+                    onClick={() => {
+                      router.push(`/checkoutstory?${story.Id}`);
+                    }}
+                    startIcon={<RocketLaunchIcon />}
+                  >
+                    {t("promoteArtwork")}
+                  </Button>
+                ) : (
+                  <Button
+                    aria-label="boost"
+                    disabled
+                    startIcon={<RocketLaunchIcon />}
+                  >
+                    {t("promotedArtwork")}
+                  </Button>
+                )}
               </>
             )}
             <div className={s.writerContainer}>
