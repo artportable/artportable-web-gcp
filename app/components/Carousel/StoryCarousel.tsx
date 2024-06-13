@@ -64,6 +64,7 @@ export default function StoryCarousel(props: Data) {
         useDynamicSlideWidth={true}
         forDesktop={forDesktop}
         externalLink={false}
+        dotsVisible={false}
       />
     </div>
   );
