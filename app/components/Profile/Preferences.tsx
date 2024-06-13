@@ -24,15 +24,22 @@ import FontPicker from "../Pickers/FontPicker/FontPicker";
 import LayoutPicker from '../Pickers/LayoutPicker/LayoutPicker';
 import TooltipPopup from "../Popups/TooltipPopup";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
+import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
+import {
+  useGetUserProfile,
+} from "../../hooks/dataFetching/UserProfile";
+import { UserContext } from "../../contexts/user-context";
 import { styles } from './preferences.css';
 
-export default function Preferences({ userProfile, mutate }) {
+export default function Preferences({ getUserProfile, isPremium }) {
   const s = styles();
   const { t } = useTranslation(["profile"]);
   const theme = useTheme();
   const anchor = 'left';
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const largeDevice = useMediaQuery(theme.breakpoints.up("md"));
+  const { username } = useContext(UserContext);
+  const profileUser = useGetProfileUser();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState('#FFFFFF');
   const [selectedLayout, setSelectedLayout] = useState('dynamic-grid');
@@ -43,6 +50,7 @@ export default function Preferences({ userProfile, mutate }) {
   const [prefsHasChanges, setPrefsHasChanges] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
+  const userProfile = getUserProfile?.data;
   const chosenColor = userProfile?.ChosenColor || '#FDF9F7';
 
   const layoutContainerStyle = {
@@ -207,9 +215,7 @@ export default function Preferences({ userProfile, mutate }) {
           throw "Failed to save preferences: " + response.statusText
         }
 
-        console.log('mutate', mutate);
-
-        mutate('larsf');
+        getUserProfile.mutate();
 
       } catch (err) {
         console.error("Error in saveOrderClicked:", err);
@@ -220,6 +226,35 @@ export default function Preferences({ userProfile, mutate }) {
     setDrawerOpen(false);
   }
 
+  if (!isPremium) {
+    return (
+      <div
+        className={clsx(s.openerSection, {
+          [s.openerDarkBackground]: chosenColor === '#000000',
+        })}
+        style={{
+          textAlign: 'right',
+          paddingRight: 35,
+          backgroundColor: chosenColor,
+        }}>
+        <Spacer y={4} />
+        <EditProfileDialog
+          userProfile={getUserProfile?.data}
+          isButton={true}
+          buttonStyle={{
+            position: 'absolute',
+            top: 23,
+            right: 20,
+            zIndex: 10,
+            cursor: 'pointer',
+          }}
+        />
+        <Spacer y={12} />
+      </div>
+    )
+  }
+
+  // For Premium
   return (
     <React.Fragment key={anchor}>
       <div
@@ -264,7 +299,7 @@ export default function Preferences({ userProfile, mutate }) {
           <MenuItem onClick={() => setShareMenuOpen(false)}>*QR-kod <QrCodeIcon/></MenuItem>
         </Drawer> */}
         <EditProfileDialog
-          userProfile={userProfile}
+          userProfile={getUserProfile?.data}
           isButton={false}
           isDotsButton={true}
           buttonStyle={{
@@ -275,7 +310,6 @@ export default function Preferences({ userProfile, mutate }) {
             cursor: 'pointer',
           }}
         />
-
         <Spacer y={12} />
       </div>
       <Drawer

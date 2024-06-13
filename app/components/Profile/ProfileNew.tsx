@@ -21,6 +21,7 @@ import UploadIcon from "@material-ui/icons/Publish";
 import EditIcon from "@material-ui/icons/Edit";
 import { RWebShare } from "react-web-share";
 import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
+import { createExcerpt } from '../../utils/textUtils';
 import UserListDialog from "../UserListDialog/UserListDialog";
 import { UserContext } from "../../contexts/user-context";
 import { TokenContext } from "../../contexts/token-context";
@@ -45,6 +46,7 @@ import { Membership } from "../../models/Membership";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import Offers from "../ExclusiveOffers/Offers";
 import Spacer from "../LayoutComponents/Spacer";
+import Preferences from './Preferences';
 import { styles } from "./profilenew.css";
 
 export default function ProfileNew({
@@ -56,6 +58,7 @@ export default function ProfileNew({
   hideAddBtn = false,
   divider = false,
   isMyProfile = false,
+  isPremium = false,
   linkToProfile = true,
   staticUserProfile,
   chosenColor,
@@ -105,8 +108,10 @@ export default function ProfileNew({
   const [headline, setHeadline] = useState('');
   const toggleEditHeadline = () => setEditHeadlineOpen(!editHeadlineOpen);
   useEffect(() => {
-    setHeadline(userProfileSummary.data?.Headline || '');
-  }, [userProfileSummary?.data?.Headline]);
+    setHeadline(getUserProfile.data?.Headline || '');
+  }, [getUserProfile?.data?.Headline]);
+  // If user has no headline but has About text, show first part of About.
+  const headlineBackup = createExcerpt(getUserProfile?.data?.About, 100) || t('profile:clickToEditIntro');
 
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
@@ -173,7 +178,8 @@ export default function ProfileNew({
         })
       );
       toggleEditHeadline();
-      userProfileSummary.mutate();
+      // Update with mutate on getUserProfile which is also used in EditProfileDialog, so they are synced.
+      getUserProfile.mutate();
     } catch (error) { }
   };
 
@@ -204,6 +210,12 @@ export default function ProfileNew({
       })}
       style={{ backgroundColor: chosenColor }}
     >
+      { isMyProfile && (
+        <Preferences
+          isPremium={isPremium}
+          getUserProfile={getUserProfile}
+        />
+      )}
       <div className={s.profileContent}>
         <Spacer y={isMobile ? 24 : 80} />
         <Typography
@@ -302,7 +314,7 @@ export default function ProfileNew({
                   }}
                   onClick={toggleEditHeadline}
                   >
-                  {headline ? headline : t('profile:clickToEditIntro')}
+                  {headline ? headline : headlineBackup}
                   <EditIcon style={{
                     position: 'absolute',
                     top: -16,

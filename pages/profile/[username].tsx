@@ -71,7 +71,6 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import Preferences from '../../app/components/Profile/Preferences';
 import ArtworkMasonry from '../../app/components/Profile/ArtworkMasonry';
 // import Spacer from "../../app/components/LayoutComponents/Spacer";
 
@@ -412,7 +411,7 @@ export default function Profile(props) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
-
+  
   return (
     <Main navBarItems={navBarItems} fullWidth={false} noHeaderPadding={true} paddingForTrialBanner={!isSignedIn.value}>
       <Head>
@@ -499,12 +498,8 @@ export default function Profile(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      { isMyProfile && isPremium && (
-        <Preferences userProfile={userProfileSummary.data} mutate={userProfileSummary.mutate} />
-      )}
-      {/* Preferences and ProfileComponent must use the same data for userProfile, so changing Headline updates on both. */}
       <ProfileComponent
-        userProfile={userProfileSummary}
+        userProfile={userProfile}
         userProfilePicture={
           isMyProfile
             ? profilePicture
@@ -512,6 +507,7 @@ export default function Profile(props) {
         }
         onUpdateProfilePicture={updateImage}
         isMyProfile={isMyProfile}
+        isPremium={isPremium}
         linkToProfile={false}
         isFollowed={isFollowed}
         userProfileUrl={userProfileUrl}

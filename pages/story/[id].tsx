@@ -25,6 +25,7 @@ import EditStoryDialog from "../../app/components/EditStoryDialog/EditStoryDialo
 import Carousel from "react-material-ui-carousel";
 import { RWebShare } from "react-web-share";
 import { SiteError } from "getstream";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 interface StoryProps {
   navBarItems: any;
@@ -215,6 +216,31 @@ export default function StoryPage(props: StoryProps) {
                 />
               </>
             )}
+            <div className={s.btnContainer} style={{ marginTop: "20px" }}>
+              {isMyStory && story?.Exhibition && (
+                <>
+                  {story?.IsBoosted === false ? (
+                    <Button
+                      aria-label="boost"
+                      onClick={() => {
+                        router.push(`/checkoutstory?${story.Id}`);
+                      }}
+                      startIcon={<RocketLaunchIcon />}
+                    >
+                      {t("promoteArtwork")}
+                    </Button>
+                  ) : (
+                    <Button
+                      aria-label="boost"
+                      disabled
+                      startIcon={<RocketLaunchIcon />}
+                    >
+                      {t("promotedArtwork")}
+                    </Button>
+                  )}
+                </>
+              )}
+            </div>
             <div className={s.writerContainer}>
               {story?.ProfilePicture ? (
                 <Link href={`/profile/@${story.Username}`}>
