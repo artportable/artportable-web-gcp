@@ -243,7 +243,7 @@ export default function DiscoverPage({ navBarItems }) {
       <StoryCarousel
         forDesktop={!isMobile}
         containerStyle={{
-          margin: "0px 0 25px 0",
+          margin: 0,
         }}
       />
 
