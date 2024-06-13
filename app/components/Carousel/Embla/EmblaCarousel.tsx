@@ -26,6 +26,7 @@ type PropType = {
   forDesktop: boolean;
   externalLink: boolean;
   isStoryCarousel?: boolean;
+  dotsVisible?: boolean,
 };
 
 type Slide = {
@@ -57,6 +58,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     forDesktop,
     externalLink = false,
     isStoryCarousel = false,
+    dotsVisible = true,
   } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(
     options,
@@ -219,19 +221,21 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className={s.embla__container}>{slideElements}</div>
       </div>
 
-      <div className={s.embla__controls}>
-        <div className={s.embla__dots}>
-          {scrollSnaps.map((_, index) => (
-            <DotButton
+      {dotsVisible &&
+        <div className={s.embla__controls}>
+          <div className={s.embla__dots}>
+            {scrollSnaps.map((_, index) => (
+              <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
               className={clsx(s.embla__dot, {
                 [s.embla__dot__selected]: index === selectedIndex,
               })}
-            />
-          ))}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      }
       {forDesktop && (
         <>
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
