@@ -62,7 +62,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: "absolute",
       top: "100%",
       left: 0,
-      height: 90,
+      height: 75,
       width: "100%",
       padding: "0 0% 0%",
     },

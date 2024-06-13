@@ -165,7 +165,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             style={{
               position: "relative",
               marginTop: 60, // Make room for header.
-              marginBottom: 150, // Make room for footer.
+              marginBottom: 75, // Make room for footer.
             }}
           >
             {slide.header && slide.header}
