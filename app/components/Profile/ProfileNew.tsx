@@ -21,6 +21,7 @@ import UploadIcon from "@material-ui/icons/Publish";
 import EditIcon from "@material-ui/icons/Edit";
 import { RWebShare } from "react-web-share";
 import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
+import { createExcerpt } from '../../utils/textUtils';
 import UserListDialog from "../UserListDialog/UserListDialog";
 import { UserContext } from "../../contexts/user-context";
 import { TokenContext } from "../../contexts/token-context";
@@ -107,6 +108,8 @@ export default function ProfileNew({
   useEffect(() => {
     setHeadline(getUserProfile.data?.Headline || '');
   }, [getUserProfile?.data?.Headline]);
+  // If user has no headline but has About text, show first part of About.
+  const headlineBackup = createExcerpt(getUserProfile?.data?.About, 100) || t('profile:clickToEditIntro');
 
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
@@ -303,7 +306,7 @@ export default function ProfileNew({
                   }}
                   onClick={toggleEditHeadline}
                   >
-                  {headline ? headline : t('profile:clickToEditIntro')}
+                  {headline ? headline : headlineBackup}
                   <EditIcon style={{
                     position: 'absolute',
                     top: -16,
