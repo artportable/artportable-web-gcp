@@ -24,6 +24,11 @@ import FontPicker from "../Pickers/FontPicker/FontPicker";
 import LayoutPicker from '../Pickers/LayoutPicker/LayoutPicker';
 import TooltipPopup from "../Popups/TooltipPopup";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
+import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
+import {
+  useGetUserProfile,
+} from "../../hooks/dataFetching/UserProfile";
+import { UserContext } from "../../contexts/user-context";
 import { styles } from './preferences.css';
 
 export default function Preferences({ userProfile, mutate, isPremium }) {
@@ -33,6 +38,9 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
   const anchor = 'left';
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const largeDevice = useMediaQuery(theme.breakpoints.up("md"));
+  const { username } = useContext(UserContext);
+  const profileUser = useGetProfileUser();
+  const getUserProfile = useGetUserProfile(profileUser, username?.value);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState('#FFFFFF');
   const [selectedLayout, setSelectedLayout] = useState('dynamic-grid');
@@ -207,9 +215,7 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
           throw "Failed to save preferences: " + response.statusText
         }
 
-        console.log('mutate', mutate);
-
-        mutate('larsf');
+        mutate();
 
       } catch (err) {
         console.error("Error in saveOrderClicked:", err);
@@ -233,7 +239,7 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
         }}>
         <Spacer y={4} />
         <EditProfileDialog
-          userProfile={userProfile}
+          userProfile={getUserProfile?.data}
           isButton={true}
           buttonStyle={{
             position: 'absolute',
@@ -293,7 +299,7 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
           <MenuItem onClick={() => setShareMenuOpen(false)}>*QR-kod <QrCodeIcon/></MenuItem>
         </Drawer> */}
         <EditProfileDialog
-          userProfile={userProfile}
+          userProfile={getUserProfile?.data}
           isButton={false}
           isDotsButton={true}
           buttonStyle={{
