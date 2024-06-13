@@ -31,7 +31,7 @@ import {
 import { UserContext } from "../../contexts/user-context";
 import { styles } from './preferences.css';
 
-export default function Preferences({ userProfile, mutate, isPremium }) {
+export default function Preferences({ getUserProfile, isPremium }) {
   const s = styles();
   const { t } = useTranslation(["profile"]);
   const theme = useTheme();
@@ -40,7 +40,6 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
   const largeDevice = useMediaQuery(theme.breakpoints.up("md"));
   const { username } = useContext(UserContext);
   const profileUser = useGetProfileUser();
-  const getUserProfile = useGetUserProfile(profileUser, username?.value);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedColor, setSelectedColor] = useState('#FFFFFF');
   const [selectedLayout, setSelectedLayout] = useState('dynamic-grid');
@@ -51,6 +50,7 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
   const [prefsHasChanges, setPrefsHasChanges] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [shareMenuOpen, setShareMenuOpen] = useState(false);
+  const userProfile = getUserProfile?.data;
   const chosenColor = userProfile?.ChosenColor || '#FDF9F7';
 
   const layoutContainerStyle = {
@@ -215,7 +215,7 @@ export default function Preferences({ userProfile, mutate, isPremium }) {
           throw "Failed to save preferences: " + response.statusText
         }
 
-        mutate();
+        getUserProfile.mutate();
 
       } catch (err) {
         console.error("Error in saveOrderClicked:", err);
