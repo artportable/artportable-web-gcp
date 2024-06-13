@@ -26,7 +26,7 @@ import TooltipPopup from "../Popups/TooltipPopup";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import { styles } from './preferences.css';
 
-export default function Preferences({ userProfile, mutate }) {
+export default function Preferences({ userProfile, mutate, isPremium }) {
   const s = styles();
   const { t } = useTranslation(["profile"]);
   const theme = useTheme();
@@ -220,6 +220,35 @@ export default function Preferences({ userProfile, mutate }) {
     setDrawerOpen(false);
   }
 
+  if (!isPremium) {
+    return (
+      <div
+        className={clsx(s.openerSection, {
+          [s.openerDarkBackground]: chosenColor === '#000000',
+        })}
+        style={{
+          textAlign: 'right',
+          paddingRight: 35,
+          backgroundColor: chosenColor,
+        }}>
+        <Spacer y={4} />
+        <EditProfileDialog
+          userProfile={userProfile}
+          isButton={true}
+          buttonStyle={{
+            position: 'absolute',
+            top: 23,
+            right: 20,
+            zIndex: 10,
+            cursor: 'pointer',
+          }}
+        />
+        <Spacer y={12} />
+      </div>
+    )
+  }
+
+  // For Premium
   return (
     <React.Fragment key={anchor}>
       <div
@@ -275,7 +304,6 @@ export default function Preferences({ userProfile, mutate }) {
             cursor: 'pointer',
           }}
         />
-
         <Spacer y={12} />
       </div>
       <Drawer
