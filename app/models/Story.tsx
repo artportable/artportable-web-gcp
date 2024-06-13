@@ -14,6 +14,7 @@ export interface Story {
   Username: string;
   ProfilePicture: string;
   Exhibition: boolean;
+  IsBoosted: boolean;
 }
 
 export interface StoryForCreation {
