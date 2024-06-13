@@ -46,6 +46,7 @@ import { Membership } from "../../models/Membership";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import Offers from "../ExclusiveOffers/Offers";
 import Spacer from "../LayoutComponents/Spacer";
+import Preferences from './Preferences';
 import { styles } from "./profilenew.css";
 
 export default function ProfileNew({
@@ -57,6 +58,7 @@ export default function ProfileNew({
   hideAddBtn = false,
   divider = false,
   isMyProfile = false,
+  isPremium = false,
   linkToProfile = true,
   staticUserProfile,
   chosenColor,
@@ -208,6 +210,12 @@ export default function ProfileNew({
       })}
       style={{ backgroundColor: chosenColor }}
     >
+      { isMyProfile && (
+        <Preferences
+          isPremium={isPremium}
+          getUserProfile={getUserProfile}
+        />
+      )}
       <div className={s.profileContent}>
         <Spacer y={isMobile ? 24 : 80} />
         <Typography

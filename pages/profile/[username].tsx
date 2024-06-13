@@ -71,7 +71,6 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import Preferences from '../../app/components/Profile/Preferences';
 import ArtworkMasonry from '../../app/components/Profile/ArtworkMasonry';
 // import Spacer from "../../app/components/LayoutComponents/Spacer";
 
@@ -499,13 +498,6 @@ export default function Profile(props) {
         <link rel="canonical" href={canonicalURL} />
       </Head>
 
-      { isMyProfile && (
-        <Preferences
-          isPremium={isPremium}
-          userProfile={userProfileSummary.data}
-          mutate={userProfileSummary.mutate}
-        />
-      )}
       <ProfileComponent
         userProfile={userProfile}
         userProfilePicture={
@@ -515,6 +507,7 @@ export default function Profile(props) {
         }
         onUpdateProfilePicture={updateImage}
         isMyProfile={isMyProfile}
+        isPremium={isPremium}
         linkToProfile={false}
         isFollowed={isFollowed}
         userProfileUrl={userProfileUrl}
