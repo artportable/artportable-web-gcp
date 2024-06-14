@@ -432,7 +432,8 @@ export default function ProfileNew({
       </div>
 
       {/* Div for covering whole page width with chosen color beneath Tabs component in [username].tsx */}
-      <div
+      {/* Not working on some devices/browsers. */}
+      {/* <div
         id="CoverTabs"
         style={{
           position: 'absolute',
@@ -443,7 +444,7 @@ export default function ProfileNew({
           backgroundColor: chosenColor,
           pointerEvents: 'none',
         }}
-      />
+      /> */}
     </div>
   )
 }
