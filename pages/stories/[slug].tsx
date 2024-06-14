@@ -229,7 +229,7 @@ export default function StoryPage(props: StoryProps) {
                     <Button
                       aria-label="boost"
                       onClick={() => {
-                        router.push(`/checkouts?${story.Id}`);
+                        router.push(`/checkoutstory?${story.Id}`);
                       }}
                       startIcon={<RocketLaunchIcon />}
                     >
