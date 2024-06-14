@@ -6,6 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: 'relative',
       width: '100%',
       gridColumn: '1/4', // Cover whole width of page.
+      marginBottom: 20,
     },
     profileContent: {
       margin: '0 auto',
