@@ -13,6 +13,16 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
     },
+    exhibitionBoost: {
+      marginTop: 40,
+      paddingBottom: 0,
+      fontWeight: 500,
+      fontSize: "1.4rem",
+      [theme.breakpoints.up("smPlus")]: {
+        // fontSize: '1.35rem',
+        fontSize: "1.6rem",
+      },
+    },
     artTabs: {
       "& .MuiTab-root": {
         minWidth: 0,

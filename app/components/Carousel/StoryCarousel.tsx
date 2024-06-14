@@ -12,6 +12,7 @@ import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { Story } from "../../models/Story";
 import { styles } from "./storycarousel.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
+("");
 
 type Data = {
   forDesktop: boolean;
