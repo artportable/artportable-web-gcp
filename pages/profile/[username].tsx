@@ -550,7 +550,7 @@ export default function Profile(props) {
                   centered
                   variant="scrollable"
                   style={{
-                    backgroundColor: chosenColor,
+                    // backgroundColor: chosenColor, // Not filling full width of screen.
                   }}
                   TabIndicatorProps={{ style: {
                     backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
