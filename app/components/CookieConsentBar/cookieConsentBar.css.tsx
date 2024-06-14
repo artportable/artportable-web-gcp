@@ -24,6 +24,11 @@ export const styles = makeStyles((theme: Theme) =>
         textDecoration: "underline",
       },
     },
+    cookieConsentBarContainerButtons: {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'flex-start',
+    },
     cookieConsentBarButton: {
       backgroundColor: "#000000",
       color: theme.palette.primary.contrastText,
