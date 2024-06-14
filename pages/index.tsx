@@ -230,14 +230,7 @@ export default function DiscoverPage({ navBarItems }) {
       />
       {!isSignedIn.value && <CataloguedByArtportable></CataloguedByArtportable>}
 
-      <Typography
-        variant="h4"
-        style={{
-          marginTop: 50,
-          paddingBottom: 10,
-          fontWeight: 500,
-        }}
-      >
+      <Typography className={s.exhibitionBoost}>
         {t("header:boostedExhibition")}
       </Typography>
       <StoryCarousel
