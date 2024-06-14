@@ -10,10 +10,14 @@ export default function CookieConsentBar() {
     <CookieConsent
       disableStyles={true}
       buttonText={t("acceptCookies")}
+      declineButtonText={t('acceptNecessaryCookies')}
       buttonWrapperClasses={s.cookieConsentBarContainerButtons}
       containerClasses={s.cookieConsentBarContainer}
       contentClasses={s.cookieConsentBarContent}
       buttonClasses={s.cookieConsentBarButton}
+      declineButtonClasses={s.cookieConsentBarButton}
+      enableDeclineButton={true}
+      flipButtons
     >
       <div>
         <img
