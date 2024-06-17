@@ -219,14 +219,13 @@ export default function ProfileNew({
       <div className={s.profileContent}>
         <Spacer y={isMobile ? 24 : 80} />
         <Typography
-          variant="h5"
           component="h1"
           className={s.fullName}
           style={{
             fontFamily: chosenFont + ', Gotham',
             marginBottom: -1, // Avoid line sometimes visible to item below.
           }}>
-          {userProfile?.data?.Name || ''}{" "}{userProfile?.data?.Surname || ''}
+          {userProfile?.data?.Name ? userProfile?.data?.Name.toUpperCase() : ''}{" "}{userProfile?.data?.Surname ? userProfile?.data?.Surname.toUpperCase() : ''}
         </Typography>
         <Spacer y={20} />
         <div className={s.counterBox}>
