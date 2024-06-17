@@ -56,9 +56,9 @@ export default function FontPicker(props: Props) {
           fontFamily: selectedFont,
           wordWrap: 'break-word',
         }}>
-        {userProfile?.Name?.toUpperCase()}{" "}
+        {userProfile?.Name}{" "}
         {userProfile?.Surname &&
-          userProfile?.Surname.toUpperCase()}{" "}
+          userProfile?.Surname}{" "}
       </Typography>
     </div>
   )
