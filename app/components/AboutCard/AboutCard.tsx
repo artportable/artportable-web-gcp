@@ -203,9 +203,9 @@ export default function AboutCard({
                 <div className={s.bioText}>
                   <b>
                     {t("profile:aboutArtist")}{" "}
-                    <a>
+                    <span>
                       {data?.Name} {data?.Surname && data?.Surname}
-                    </a>
+                    </span>
                     :
                   </b>
                   <Divider></Divider>
