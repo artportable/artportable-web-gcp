@@ -98,6 +98,9 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "transparent",
         color: "black",
         borderColor: '#49cc90',
+        '&.light-text': {
+          color: 'white', // Use white text when black background.
+        },
       },
     },
   })

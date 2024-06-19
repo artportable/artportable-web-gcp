@@ -405,6 +405,7 @@ export default function ProfileNew({
               <Button
                 className={clsx(s.actionButton, {
                   [s.following]: isUserFollowed,
+                  "light-text": useLightText,
                 })}
                 rounded
                 disabled={!isSignedIn}
