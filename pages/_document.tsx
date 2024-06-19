@@ -75,7 +75,7 @@ class MyDocument extends Document {
           />
           <link
             rel="preload"
-            href="/fonts/KellySlabRegular.ttf"
+            href="/fonts/KellySlab-Regular.ttf"
             as="font"
             crossOrigin=""
           />
