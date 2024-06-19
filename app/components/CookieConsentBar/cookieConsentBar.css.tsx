@@ -17,6 +17,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "0px 4px 4px",
     },
     cookieConsentBarContent: {
+      paddingBottom: 20,
       "& a": {
         color: "#000000",
         fontWeight: 700,
@@ -26,6 +27,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     cookieConsentBarContainerButtons: {
       display: 'flex',
+      flexFlow: 'row wrap',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
     },
@@ -40,11 +42,12 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "8px 16px",
       width: "100%",
       maxWidth: "328px",
-      height: "56px",
+      minHeight: "56px",
       fontSize: "16px",
       fontWeight: 350,
       textTransform: "uppercase",
       fontFamily: "Gotham",
+      wordBreak: 'break-word',
     },
     cookieConsentBarHeadingClass: {
       marginTop: 0,
