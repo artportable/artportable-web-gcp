@@ -43,32 +43,13 @@ export default function AboutMe() {
       email: "ulrika@artportable.com",
     },
     {
-      name: "Patrik Söderberg",
-      title: "IT Manager",
-      image: "/staff/artportable_patrik.jpg",
-      email: "",
-    },
-    {
-      name: "Massi Wararoodi",
-      title: "Software Developer",
-      image: "/staff/artportable_grey.jpg",
-      email: "",
-    },
-    {
       name: "Cosmo",
-      title: "Avant-garde creator",
       image: "/staff/artportable_cosmo.jpg",
       email: "hello@artportable.com",
     },
   ];
 
   const board = [
-    {
-      name: "Carl Nyberg",
-      title: "COO",
-      image: "/staff/artportable_carl.jpg",
-      email: "carl@artportable.com",
-    },
     {
       name: "Erik Nordlander",
       title: "CEO & Founder",
