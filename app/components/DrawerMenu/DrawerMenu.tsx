@@ -428,13 +428,13 @@ export default function DrawerMenu({
             </Link>
           </>
         )}
-        <Link href="/" passHref>
+        {/* <Link href="/" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("discover")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
         {/* <Link href="https://artportable.store/" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -495,20 +495,20 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <Link href="/kurser" passHref>
+        {/* <Link href="/kurser" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("courses")} />
             </ListItem>
           </a>
-        </Link>
-        <Link href="/kampanj" passHref>
+        </Link> */}
+        {/* <Link href="/kampanj" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("offers")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
         {isSignedIn.value && (
           <Link href="/medlemserbjudanden" passHref>
             <a>
