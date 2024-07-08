@@ -24,7 +24,7 @@ export default function ArtistNavbar({ username }) {
     <>
       <AppBar
         position="fixed"
-        elevation={1}
+        elevation={0}
         sx={{ top: "auto", bottom: 0 }}
         style={{ top: "auto", bottom: 0 }} // When on start page and reloading, gets sent to /feed, sx style disappears and navbar ends up on top of page. Set style instead of sx.
         className={s.appbar}

@@ -41,5 +41,9 @@
   "trialLeft": "The trial period expires in ",
   "days": "days",
   "managePayment": "Manage payment",
-  "boostedExhibition": "Upcoming exhibitions"
+  "boostedExhibition": "Upcoming exhibitions",
+  "startPage": "Home",
+  "flow": "Feed",
+  "uploadArtwork": "Upload",
+  "portfolio": "Portfolio"
 }
