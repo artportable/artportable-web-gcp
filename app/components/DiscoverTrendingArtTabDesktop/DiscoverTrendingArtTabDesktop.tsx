@@ -8,7 +8,7 @@ import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { THEME_TAGS, TECHNIQUE_TAGS } from "../DiscoverTrendingArtTab/tags";
 import { styles } from "./discoverTrendingArtTabDesktop.css";
 // import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
-import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel"
+import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel";
 import ArtistCarousel from "../Carousel/ArtistCarousel";
 // import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
 // import SELECTED_PRINTS from "../../../data/selectedPrintsData";
@@ -29,7 +29,7 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  header?: string,
+  header?: string;
 }
 
 const DiscoverTrendingArtTabDesktop = memo(
@@ -43,13 +43,20 @@ const DiscoverTrendingArtTabDesktop = memo(
     const tags = useGetTags();
 
     const {
-      selectedTags, setSelectedTags,
-      selectedTheme, setSelectedTheme,
-      selectedTechnique, setSelectedTechnique,
-      selectedSize, setSelectedSize,
-      selectedPrice, setSelectedPrice,
-      selectedTrending, setSelectedTrending,
-      selectedOrientation, setSelectedOrientation,
+      selectedTags,
+      setSelectedTags,
+      selectedTheme,
+      setSelectedTheme,
+      selectedTechnique,
+      setSelectedTechnique,
+      selectedSize,
+      setSelectedSize,
+      selectedPrice,
+      setSelectedPrice,
+      selectedTrending,
+      setSelectedTrending,
+      selectedOrientation,
+      setSelectedOrientation,
     } = useContext(NavigationContext);
 
     const [expandedAccordion, setExpandedAccordion] = useState(null);
@@ -197,10 +204,9 @@ const DiscoverTrendingArtTabDesktop = memo(
     //   const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
     //   setPrintIndexes(randomIndexes)
     // }, [artworks])
-    
+
     // const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
     // const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
-    
 
     return (
       <>
@@ -544,46 +550,32 @@ const DiscoverTrendingArtTabDesktop = memo(
           likedArtTab={false}
           header={header}
           insertElements={[
-            { element: (
-              <div style={{
-                margin: '3rem 0',
-              }}>
-                <Typography
-                  variant="h4"
+            {
+              element: (
+                <div
                   style={{
-                    paddingBottom: '10px',
-                    fontWeight: 500,
-                  }}>
-                  {t('discover:popularProfiles')}
-                </Typography>
-                <ArtistCarousel
-                  forDesktop={true}
-                />
-              </div>),
+                    margin: "3rem 0",
+                  }}
+                >
+                  <Typography
+                    variant="h4"
+                    style={{
+                      paddingBottom: "10px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {t("discover:popularProfiles")}
+                  </Typography>
+                  <ArtistCarousel forDesktop={true} />
+                </div>
+              ),
               position: 2,
             },
-            { element: (
-              <div style={{
-                margin: '3rem 0',
-              }}>
-                <Typography
-                  variant="h4"
-                  style={{
-                    paddingBottom: '10px',
-                    fontWeight: 500,
-                  }}>
-                  Selected Prints
-                </Typography>
-                <SelectedprintsCarousel
-                  forDesktop={true}
-                />
-              </div>),
-              position: 5,
-            },
+
             {
               element: header ? (
                 <Typography variant="h4" style={{ fontWeight: 500 }}>
-                  { header }
+                  {header}
                 </Typography>
               ) : null,
               position: 6,
