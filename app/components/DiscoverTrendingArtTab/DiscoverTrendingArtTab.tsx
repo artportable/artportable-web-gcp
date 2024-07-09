@@ -8,7 +8,7 @@ import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { THEME_TAGS, TECHNIQUE_TAGS } from "./tags";
 import { styles } from "./discoverTrendingArtTab.css";
 // import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
-import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel"
+import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel";
 import ArtistCarousel from "../Carousel/ArtistCarousel";
 import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
 import SELECTED_PRINTS from "../../../data/selectedPrintsData";
@@ -40,7 +40,7 @@ interface DiscoverTrendingArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  header?: string,
+  header?: string;
 }
 
 const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
@@ -53,18 +53,30 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   const tags = useGetTags();
 
   const {
-    selectedTags, setSelectedTags,
-    selectedTheme, setSelectedTheme,
-    selectedTechnique, setSelectedTechnique,
-    selectedSize, setSelectedSize,
-    selectedPrice, setSelectedPrice,
-    selectedTrending, setSelectedTrending,
-    selectedOrientation, setSelectedOrientation,
-    selectedTempTags, setTempSelectedTags,
-    selectedTempSize, setTempSelectedSize,
-    tempSelectedTrending, setTempSelectedTrending,
-    tempSelectedOrientation, setTempSelectedOrientation,
-    tempSelectedPrice, setTempSelectedPrice,
+    selectedTags,
+    setSelectedTags,
+    selectedTheme,
+    setSelectedTheme,
+    selectedTechnique,
+    setSelectedTechnique,
+    selectedSize,
+    setSelectedSize,
+    selectedPrice,
+    setSelectedPrice,
+    selectedTrending,
+    setSelectedTrending,
+    selectedOrientation,
+    setSelectedOrientation,
+    selectedTempTags,
+    setTempSelectedTags,
+    selectedTempSize,
+    setTempSelectedSize,
+    tempSelectedTrending,
+    setTempSelectedTrending,
+    tempSelectedOrientation,
+    setTempSelectedOrientation,
+    tempSelectedPrice,
+    setTempSelectedPrice,
   } = useContext(NavigationContext);
 
   const [open, setOpen] = useState(false);
@@ -217,7 +229,7 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
   //     const randomIndexes = getRandomSequentialIndexes(SELECTED_PRINTS.length, maxPrintCount)
   //     setPrintIndexes(randomIndexes)
   //   }, [artworks])
-    
+
   //   const randomPrints = printsIndexes.map(index => SELECTED_PRINTS[index])
   //   const printsDataForCarousel = formatAwArtworkForEmbla(randomPrints)
 
@@ -617,49 +629,26 @@ const DiscoverTrendingArtTab = memo((props: DiscoverTrendingArtTabProps) => {
         likedArtTab={false}
         header={header}
         insertElements={[
-          { element: (
-            <div style={{
-              margin: '3rem 0',
-            }}>
-              <Typography
-                variant="h4"
-                style={{
-                  paddingBottom: '10px',
-                  fontWeight: 500,
-                }}>
-                {t('discover:popularProfiles')}
-              </Typography>
-              <ArtistCarousel
-                forDesktop={false}
-              />
-            </div>),
-            position: 2,
-          },
-          { element: (
-            <div style={{
-              margin: '3rem 0',
-            }}>
-              <Typography
-                variant="h4"
-                style={{
-                  paddingBottom: '10px',
-                  fontWeight: 500,
-                }}>
-                Selected Prints
-              </Typography>
-              <SelectedprintsCarousel
-                forDesktop={false}
-              />
-            </div>),
-            position: 5,
-          },
           {
-            element: header ? (
-              <Typography variant="h4" style={{ fontWeight: 500 }}>
-                { header }
-              </Typography>
-            ) : null,
-            position: 6,
+            element: (
+              <div
+                style={{
+                  margin: "3rem 0",
+                }}
+              >
+                <Typography
+                  variant="h4"
+                  style={{
+                    paddingBottom: "10px",
+                    fontWeight: 500,
+                  }}
+                >
+                  {t("discover:popularProfiles")}
+                </Typography>
+                <ArtistCarousel forDesktop={false} />
+              </div>
+            ),
+            position: 2,
           },
         ]}
       />
