@@ -228,7 +228,7 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "50px 0 25px 0",
         }}
       />
-      {!isSignedIn.value && <CataloguedByArtportable></CataloguedByArtportable>}
+      {/* {!isSignedIn.value && <CataloguedByArtportable></CataloguedByArtportable>} */}
 
       <div className={s.exhibitionBoost}>{t("header:boostedExhibition")}</div>
       <StoryCarousel
