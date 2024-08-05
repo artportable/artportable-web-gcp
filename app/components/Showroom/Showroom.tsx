@@ -35,7 +35,7 @@ export default function Showroom() {
 
   const [backgroundImages, setBackgroundImages] = useState([]);
   const monthNames = Object.keys(showrooms);
-  const januaryIndex = monthNames.indexOf("JUNI");
+  const januaryIndex = monthNames.indexOf("AUGUSTI");
   const [agneta, setAgneta] = useState(false);
 
   const isCurrentMonthJuly = () => {

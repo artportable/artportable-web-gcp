@@ -34,10 +34,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const { t } = useTranslation(["checkout", "common"]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
-  useEffect(() => {
-    console.log(plan);
-  }, []);
-
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
