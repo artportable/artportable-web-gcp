@@ -238,13 +238,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
         <Box fontSize="1rem" fontWeight="bold">
           {t("total")}
         </Box>
-        <Box>
-          {plan?.product === "Portfolio"
-            ? `${t("newPlan")}`
-            : `${plan?.amount} ${plan?.currency.toUpperCase()} / ${interval}`}
-        </Box>
+        <Box>{t("newPlan")}`</Box>
       </Box>
-
       <Box className={styles.divider}></Box>
       <Box
         display="flex"
