@@ -143,6 +143,10 @@ export default function Header({ navBarItems }) {
     }
   };
 
+  useEffect(() => {
+    console.log(membership.isPending);
+  }, []);
+
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
@@ -310,7 +314,8 @@ export default function Header({ navBarItems }) {
                   ) : (
                     <div></div>
                   )}
-                  {membership.value >= Membership.PortfolioPremium && (
+
+                  {!membership.isPending && membership.value === 3 ? (
                     <div className={s.upload}>
                       <Link href="/upload-story">
                         <a>
@@ -337,7 +342,35 @@ export default function Header({ navBarItems }) {
                         </a>
                       </Link>
                     </div>
+                  ) : (
+                    <div className={s.upload}>
+                      <Link href="/upgrade">
+                        <a>
+                          <Button
+                            onClick={() =>
+                              trackGoogleAnalytics(
+                                ActionType.UPLOAD_IMAGE_HEADER,
+                                CategoryType.INTERACTIVE
+                              )
+                            }
+                            // className={s.uploadStoryButton}
+                            className={clsx(
+                              sShared.smallButton,
+                              sShared.yellowButton
+                            )}
+                            size="small"
+                            variant="outlined"
+                            disableElevation
+                            rounded
+                            endIcon={<FeedOutlinedIcon />}
+                          >
+                            {t("uploadStory")}
+                          </Button>
+                        </a>
+                      </Link>
+                    </div>
                   )}
+
                   {membership.value > Membership.Base && (
                     <div className={s.upload}>
                       <Link href="/upload">

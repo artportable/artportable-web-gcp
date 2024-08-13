@@ -43,7 +43,7 @@ import {
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
 import ManageSubscriptionsDialog from "../ManageSubscriptions/ManageSubscriptionsDialog";
-
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 export default function DrawerMenu({
   open,
   setOpen,
@@ -351,7 +351,7 @@ export default function DrawerMenu({
               </ListItem>
             </Link> */}
 
-            {membership.value >= Membership.PortfolioPremium && (
+            {membership.value > Membership.Base && (
               <>
                 <Link href="/upload" passHref>
                   <ListItem button divider onClick={() => close()}>
@@ -366,6 +366,37 @@ export default function DrawerMenu({
                 </Link>
               </>
             )}
+
+            {!membership.isPending && membership.value === 3 ? (
+              <div className={s.upload}>
+                <Link href="/upload-story">
+                  <ListItem button divider onClick={() => close()}>
+                    <ListItemIcon>
+                      <InsertPhotoIcon
+                        color="primary"
+                        style={{ fontSize: 30 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={t("uploadStory")} />
+                  </ListItem>
+                </Link>
+              </div>
+            ) : (
+              <div className={s.upload}>
+                <Link href="/upgrade">
+                  <ListItem button divider onClick={() => close()}>
+                    <ListItemIcon>
+                      <FeedOutlinedIcon
+                        color="secondary"
+                        style={{ fontSize: 30 }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText primary={t("uploadStory")} />
+                  </ListItem>
+                </Link>
+              </div>
+            )}
+
             {customerStatus === "trialing" ? (
               <div style={{ color: "black", marginRight: "10px" }}>
                 <div
