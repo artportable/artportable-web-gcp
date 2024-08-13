@@ -31,13 +31,18 @@
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
-      "subtitle": "Kunstner - få din egen kunstkoordinator og bliv prioriteret i feedet.",
+      "subtitle": "For dig der er kunstner og gerne vil prioriteres samt få adgang til flere fordele.",
+      "trial": "Prøv gratis i 10 dage!",
       "listTexts": [
-        "Bliv prioriteret i feedet",
-        "Personlig kunstkoordinator",
-        "Betal 0 % i kommission på solgte kunstværker",
-        "Kundestøtte",
-        "Alt fra Portfolio"
+        "Alt fra Portfolio",
+        "Mulighed for at blive udvalgt og vist på Artportables forside og sociale medier",
+        "Publicer op til 1.500 værker",
+        "Sorter kunstværker",
+        "Publicer nyheder",
+        "Øget synlighed på Artportable",
+        "Personlig rådgivning ved købsforespørgsler",
+        "30% rabat på udstillinger i Artportable Showroom",
+        "Kontakt med Artportables marketingafdeling"
       ]
     }
   },
