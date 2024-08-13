@@ -32,12 +32,7 @@ import { LoadingContext } from "../../contexts/loading-context";
 import { UserContext } from "../../contexts/user-context";
 import { ChatClientContext } from "../../contexts/chat-context";
 import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
-import { OwnUserResponse } from "stream-chat";
-import {
-  ChannelType,
-  CommandType,
-  UserType,
-} from "../Messaging/MessagingTypes";
+
 import {
   ActionType,
   CategoryType,
@@ -150,26 +145,6 @@ export default function Header({ navBarItems }) {
 
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
-
-  useEffect(() => {
-    if (chatClient) {
-      setUnreadChatMessages(
-        (chatClient.user as OwnUserResponse<ChannelType, CommandType, UserType>)
-          .total_unread_count
-      );
-      chatClient.on((event) => {
-        if (event.total_unread_count !== undefined) {
-          setUnreadChatMessages(event.total_unread_count);
-        }
-      });
-    }
-
-    return () => {
-      if (chatClient) {
-        chatClient.off((_) => {});
-      }
-    };
-  }, [chatClient]);
 
   return (
     <>
@@ -335,7 +310,7 @@ export default function Header({ navBarItems }) {
                   ) : (
                     <div></div>
                   )}
-                  {membership.value > Membership.Base && (
+                  {membership.value >= Membership.PortfolioPremium && (
                     <div className={s.upload}>
                       <Link href="/upload-story">
                         <a>

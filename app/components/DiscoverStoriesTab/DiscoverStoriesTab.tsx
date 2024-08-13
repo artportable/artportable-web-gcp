@@ -35,7 +35,7 @@ export default function DiscoverStoriesTab() {
 
   return (
     <>
-      {membership.value > Membership.Base && (
+      {membership.value >= Membership.PortfolioPremium && (
         <div
           style={{
             display: "flex",

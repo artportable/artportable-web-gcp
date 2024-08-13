@@ -75,7 +75,7 @@ export default function UploadStoryPage({ navBarItems }) {
   const { refreshToken } = useRefreshToken();
 
   useEffect(() => {
-    if (!isSignedIn.value || membership.value < Membership.Base) {
+    if (!isSignedIn.value || membership.value < Membership.PortfolioPremium) {
       router.push("/");
     }
 
