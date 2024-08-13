@@ -1,6 +1,6 @@
 import Main, { FullWidthBlock } from "../../app/components/Main/Main";
 import Head from "next/head";
-import clsx from 'clsx';
+import clsx from "clsx";
 import AboutMe from "../../app/components/AboutMe/AboutMe";
 // import ProfileCoverPhoto from "../../app/components/ProfileCoverPhoto/ProfileCoverPhoto";
 import {
@@ -71,7 +71,7 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import ArtworkMasonry from '../../app/components/Profile/ArtworkMasonry';
+import ArtworkMasonry from "../../app/components/Profile/ArtworkMasonry";
 // import Spacer from "../../app/components/LayoutComponents/Spacer";
 
 function a11yProps(index: any) {
@@ -101,7 +101,7 @@ export default function Profile(props) {
 
   const profileUser = useGetProfileUser();
   const isMyProfile = profileUser === username.value;
-  
+
   // const isMyProfile = username?.value === 'larsf' ? false : profileUser === username.value;
 
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -133,9 +133,9 @@ export default function Profile(props) {
   const userData = useGetUser(profileUser);
   const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
-  const chosenColor = userProfile?.data?.ChosenColor || '#FDF9F7';
-  const chosenFont = userProfile?.data?.ChosenFont || 'Gotham';
-  const useLightText = chosenColor === '#000000';
+  const chosenColor = userProfile?.data?.ChosenColor || "#FDF9F7";
+  const chosenFont = userProfile?.data?.ChosenFont || "Gotham";
+  const useLightText = chosenColor === "#000000";
   // console.log('chosenColor', chosenColor);
   // console.log('userProfileSummary', userProfileSummary);
   // console.log('userData', userData);
@@ -387,7 +387,7 @@ export default function Profile(props) {
     });
     togglePurchaseRequestDialog();
   }
-  
+
   const [openMonthlyDialogOpen, setOpenMonthlyDialogOpen] = useState(false);
 
   function toggleMonthlyDialog() {
@@ -411,9 +411,14 @@ export default function Profile(props) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
-  
+
   return (
-    <Main navBarItems={navBarItems} fullWidth={false} noHeaderPadding={true} paddingForTrialBanner={!isSignedIn.value}>
+    <Main
+      navBarItems={navBarItems}
+      fullWidth={false}
+      noHeaderPadding={true}
+      paddingForTrialBanner={!isSignedIn.value}
+    >
       <Head>
         <title>
           {staticUserProfile &&
@@ -501,9 +506,7 @@ export default function Profile(props) {
       <ProfileComponent
         userProfile={userProfile}
         userProfilePicture={
-          isMyProfile
-            ? profilePicture
-            : userProfileSummary.data?.ProfilePicture
+          isMyProfile ? profilePicture : userProfileSummary.data?.ProfilePicture
         }
         onUpdateProfilePicture={updateImage}
         isMyProfile={isMyProfile}
@@ -549,12 +552,16 @@ export default function Profile(props) {
                   onChange={handleTabChange}
                   centered
                   variant="scrollable"
-                  style={{
-                    // backgroundColor: chosenColor, // Not filling full width of screen.
+                  style={
+                    {
+                      // backgroundColor: chosenColor, // Not filling full width of screen.
+                    }
+                  }
+                  TabIndicatorProps={{
+                    style: {
+                      backgroundColor: !useLightText ? "#000000DE" : "white", // Same dark color as selected tab text.
+                    },
                   }}
-                  TabIndicatorProps={{ style: {
-                    backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
-                  }}}
                 >
                   <Tab
                     className={clsx(s.tab, {
@@ -777,28 +784,29 @@ export default function Profile(props) {
                   <TabPanel value={activeTab} index={2}>
                     {
                       <>
-                        {isMyProfile && membership.value > Membership.Base && (
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              margin: "20px",
-                            }}
-                          >
-                            <Link href="/upload-story">
-                              <a>
-                                <Button
-                                  aria-label="upload story"
-                                  variant="contained"
-                                  style={{ backgroundColor: "#ffd700" }}
-                                  rounded
-                                >
-                                  {t("profile:uploadStory")}
-                                </Button>
-                              </a>
-                            </Link>
-                          </div>
-                        )}
+                        {isMyProfile &&
+                          membership.value >= Membership.PortfolioPremium && (
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "20px",
+                              }}
+                            >
+                              <Link href="/upload-story">
+                                <a>
+                                  <Button
+                                    aria-label="upload story"
+                                    variant="contained"
+                                    style={{ backgroundColor: "#ffd700" }}
+                                    rounded
+                                  >
+                                    {t("profile:uploadStory")}
+                                  </Button>
+                                </a>
+                              </Link>
+                            </div>
+                          )}
                         <Grid justifyContent="center" container spacing={2}>
                           {!smPlusOrSmaller ? (
                             <>
@@ -924,9 +932,11 @@ export default function Profile(props) {
                   centered
                   className={s.tabs}
                   onChange={handleTabChange}
-                  TabIndicatorProps={{ style: {
-                    backgroundColor: !useLightText ? '#000000DE' : 'white', // Same dark color as selected tab text.
-                  }}}
+                  TabIndicatorProps={{
+                    style: {
+                      backgroundColor: !useLightText ? "#000000DE" : "white", // Same dark color as selected tab text.
+                    },
+                  }}
                 >
                   <Tab
                     className={clsx(s.tab, {
