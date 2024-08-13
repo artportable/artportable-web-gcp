@@ -26,6 +26,7 @@ import Tab from "@mui/material/Tab";
 import PlanCard from "../app/components/PlanCard/PlanCard";
 import { styles } from "../styles/upgrade.css";
 import PlanSelector from "../app/components/PlanSelector/PlanSelector";
+import { LOGIN_USER } from "../app/redux/actions/userActions";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function Upgrade({ navBarItems, priceData }) {
@@ -39,6 +40,13 @@ export default function Upgrade({ navBarItems, priceData }) {
   const plans = getDistinct(priceData?.sort(compareAmounts), (p) => p.product);
   const { isSignedIn, username, socialId, membership, phone, user_type } =
     useContext(UserContext);
+
+  useEffect(() => {
+    // Only redirect if the state is no longer pending and the user is not signed in
+    if (!isSignedIn.isPending && !isSignedIn.value) {
+      router.push("/");
+    }
+  }, [isSignedIn, router]);
 
   function compareAmounts(a, b) {
     if (a.amount < b.amount) {

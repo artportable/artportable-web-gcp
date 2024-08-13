@@ -1,6 +1,6 @@
 import { Tab, Tabs } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { getDistinct } from "../../utils/util";
 import PlanCard from "../PlanCard/PlanCard";
 import Button from "../Button/Button";
@@ -9,9 +9,7 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import type { KeycloakInstance } from "keycloak-js";
 import { useRouter } from "next/router";
 import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
-import clsx from "clsx";
 import { PriceData } from "../../../pages/plans";
-import { UserContext } from "../../contexts/user-context";
 
 interface Props {
   priceData: PriceData[];
@@ -33,46 +31,19 @@ export default function PlanSelector({
   const signUpRedirectHref = useSignupRedirectHref();
   const [hideTabs, setHideTabs] = useState(false);
 
-  // requirePhone ? <PhoneInput /> : null
-
+  // Set default to "month"
   const [paymentInterval, setPaymentInterval] = useState("month");
 
-  // const priceDataWithPremium: PriceData[] = [
-  //   ...priceData,
-  //   {
-  //     id: "premium",
-  //     product: "portfolioPremium",
-  //     productKey: "portfolioPremium",
-  //     currency: "sek",
-  //     recurringInterval: "month",
-  //   },
-  //   {
-  //     id: "premium",
-  //     product: "portfolioPremium",
-  //     productKey: "portfolioPremium",
-  //     currency: "sek",
-  //     recurringInterval: "year",
-  //     amount: 4500,
-  //   },
-  // ];
-
   const plans = getDistinct(priceData?.sort(compareAmounts), (p) => p.product);
-  // plans.push("portfolioPremium");
 
   function compareAmounts(a, b) {
-    if (a.amount < b.amount) {
-      return -1;
-    }
-    if (a.amount > b.amount) {
-      return 1;
-    }
-    return 0;
+    return a.amount - b.amount;
   }
 
   return (
     <div>
       <div>
-        {hideTabs === false && (
+        {!hideTabs && (
           <div className={s.paymentOptions}>
             <Tabs
               TabIndicatorProps={{
@@ -92,9 +63,7 @@ export default function PlanSelector({
 
       <div className={s.planCards}>
         {plans
-          .filter((plan) => {
-            return showAll || (!showAll && plan === "Portfolio");
-          })
+          .filter((plan) => showAll || (!showAll && plan === "Portfolio"))
           .map((plan) => {
             const p = priceData.find(
               (pd) =>
@@ -106,12 +75,11 @@ export default function PlanSelector({
                 plan={p}
                 key={p.id}
                 setHideTabs={true}
-              ></PlanCard>
-            ) : (
-              <></>
-            );
+              />
+            ) : null;
           })}
       </div>
+
       {landingPageMode && (
         <div className={s.joinCommunityButton}>
           <Button
