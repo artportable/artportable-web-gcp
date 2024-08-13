@@ -34,22 +34,17 @@
     "portfolioPremium": {
       "name": "Portfolio Premium",
       "subtitle": "För dig som är konstnär och vill bli prioriterad samt få tillgång till fler förmåner.",
+      "trial": "Prova i 10 dagar gratis!",
       "listTexts": [
         "Allt från Portfolio",
-        "Bli prioriterad i flödet",
+        "Möjlighet att bli utvald och visas på Artportables förstasida och sociala medier",
         "Publicera upp till 1500 verk",
-        "Betala 0 % i provision på sålda verk",
         "Sortera konstverk",
-        "Publicera nyheter",
-        "Support",
-        "Personlig konstkoordinator",
-        "Hjälp att skapa en professionell portfolio",
         "Publicera nyheter",
         "Ökad synlighet på Artportable",
         "Personlig rådgivnig vid köpförfrågningar",
         "30% rabatt på utställningar i Artportable Showroom",
-        "Kontakt med Artportables marknadsavdelning",
-        "Support"
+        "Kontakt med Artportables marknadsavdelning"
       ]
     }
   },

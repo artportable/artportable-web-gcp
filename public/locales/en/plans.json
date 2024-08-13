@@ -34,24 +34,18 @@
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
-      "subtitle": "Artist - get your own art coordinator and be prioritized in the feed.",
+      "subtitle": "For artists who want to be prioritized and gain access to more benefits.",
+      "trial": "Try it for 10 days free!",
       "listTexts": [
         "Everything from Portfolio",
-        "Be prioritized in the feed",
-        "Publish up to 1500 artworks",
-        "Pay 0% commission on sold artworks",
-        "Publish stories",
+        "Chance to be selected and featured on Artportable's homepage and social media",
+        "Publish up to 1,500 works",
         "Sort artworks",
-        "Increased visibility on Artportable",
-        "Support",
-        "Personal art coordinator",
-        "Assistance in creating a professional portfolio",
         "Publish news",
         "Increased visibility on Artportable",
-        "Personal guidance on purchase inquiries",
-        "30% discount on exhibitions in Artportable Showroom",
-        "Contact with Artportable's marketing department",
-        "Support"
+        "Personal advice for purchase inquiries",
+        "30% discount on exhibitions in the Artportable Showroom",
+        "Contact with Artportable's marketing department"
       ]
     }
   },
