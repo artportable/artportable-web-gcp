@@ -193,6 +193,7 @@ export default function DiscoverPage({ navBarItems }) {
       fullWidth={fullWidth && false}
     >
       <Head>
+        <title>{t("index:title")}</title>
         <meta name="title" content={t("index:title")} />
         <meta name="description" content={t("index:description")} />
         <meta name="url" content="https://artportable.com/" />

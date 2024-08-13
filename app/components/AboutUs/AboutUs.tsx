@@ -19,30 +19,6 @@ export default function AboutMe() {
 
   const staff = [
     {
-      name: "Tony Lidén",
-      title: "Art Coordinator",
-      image: "/staff/artportable_tony.jpg",
-      email: "tony@artportable.com",
-    },
-    {
-      name: "Oliver Karlsson",
-      title: "Art Coordinator",
-      image: "/staff/artportable_oliver.jpeg",
-      email: "oliver@artportable.com",
-    },
-    {
-      name: "Ola Söderlind ",
-      title: "Art Coordinator",
-      image: "/staff/artportable_ola.png",
-      email: "ola@artportable.com",
-    },
-    {
-      name: "Ulrika Melin",
-      title: "Art Curator",
-      image: "/staff/artportable_ulrika.jpg",
-      email: "ulrika@artportable.com",
-    },
-    {
       name: "Cosmo",
       image: "/staff/artportable_cosmo.jpg",
       email: "hello@artportable.com",
@@ -61,6 +37,12 @@ export default function AboutMe() {
       title: "Business Development & Founder",
       image: "/staff/artportable_johan.jpg",
       email: "johan@artportable.com",
+    },
+    {
+      name: "Ulrika Melin",
+      title: "Art Curator",
+      image: "/staff/artportable_ulrika.jpg",
+      email: "ulrika@artportable.com",
     },
   ];
   const applyEn = [
@@ -89,25 +71,6 @@ export default function AboutMe() {
           allowFullScreen
           title="Artportable commercial"
         ></iframe>
-      </div>
-      <div className={s.staffDiv}>
-        {staff.map((person) => (
-          <div key={person.name} className={s.wrapper}>
-            <div className={s.frame}>
-              <img
-                className={s.image}
-                src={person?.image}
-                alt="staff image"
-                title=""
-              />
-            </div>
-            <Typography className={s.bold}>{person?.name}</Typography>
-            <Typography>{person?.title}</Typography>
-            <Typography>
-              <a href={`mailto:${person?.email}`}>{person?.email}</a>
-            </Typography>
-          </div>
-        ))}
       </div>
 
       <div className={clsx(s.bottomDiv, s.staffDiv)}>
