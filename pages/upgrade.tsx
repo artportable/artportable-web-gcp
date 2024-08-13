@@ -70,10 +70,6 @@ export default function Upgrade({ navBarItems, priceData }) {
     return () => abortCont.abort();
   }, []);
 
-  useEffect(() => {
-    console.log();
-  }, [priceData]);
-
   return (
     <Main isShow={false} navBarItems={navBarItems}>
       <div style={{ backgroundColor: "", width: "100%", height: "100%" }}>
