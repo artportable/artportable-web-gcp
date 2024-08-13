@@ -351,7 +351,7 @@ export default function DrawerMenu({
               </ListItem>
             </Link> */}
 
-            {membership.value > Membership.Base && (
+            {membership.value >= Membership.PortfolioPremium && (
               <>
                 <Link href="/upload" passHref>
                   <ListItem button divider onClick={() => close()}>
