@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState, Fragment } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  Fragment,
+  useRef,
+} from "react";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -41,7 +47,10 @@ import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import { RWebShare } from "react-web-share";
 
 import AboutCardArtwork from "../../app/components/AboutCardArtwork/AboutCardArtwork";
-import { useGetUserProfileArtwork } from "../../app/hooks/dataFetching/UserProfile";
+import {
+  useGetUser,
+  useGetUserProfileArtwork,
+} from "../../app/hooks/dataFetching/UserProfile";
 import Carousel from "react-material-ui-carousel";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Divider from "@mui/material/Divider";
@@ -212,6 +221,18 @@ export default function ArtworkPage(props) {
   const formattedDate = dateString ? dateString.slice(0, 10) : null;
   const formattedDateEnd = dateStringEnd ? dateStringEnd.slice(0, 10) : null;
 
+  const [productType, setProductType] = useState(null);
+
+  const usernameArtworkOwner = useGetUser(userProfile?.data?.Username);
+  const effectRan = useRef(false);
+
+  useEffect(() => {
+    if (!effectRan.current && usernameArtworkOwner.data) {
+      setProductType(usernameArtworkOwner?.data?.ProductId);
+      effectRan.current = true;
+    }
+  }, [usernameArtworkOwner.data]);
+
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
@@ -328,6 +349,7 @@ export default function ArtworkPage(props) {
                       </Button>
                     </DialogActions>
                   </Dialog>
+
                   <div className={s.imageContainer}>
                     {artwork?.data?.SecondaryFile ? (
                       <div>
@@ -467,6 +489,20 @@ export default function ArtworkPage(props) {
                 <div className={s.artworkInfoWrapper}>
                   <div className={s.artInfo}>
                     {membership.value > 4 && (
+                      <div>
+                        {productType === 1 ? (
+                          <div style={{ fontSize: "20px", color: "gray" }}>
+                            Bas medlem
+                          </div>
+                        ) : (
+                          <div style={{ fontSize: "20px", color: "orange" }}>
+                            {" "}
+                            Premium användare
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {membership.value > 4 && (
                       <div style={{ margin: "20px" }}>
                         {!artwork?.data?.Promoted && (
                           <Button
@@ -477,6 +513,7 @@ export default function ArtworkPage(props) {
                             Till Hus&Hem
                           </Button>
                         )}
+
                         {artwork?.data?.Promoted && (
                           <div
                             style={{
