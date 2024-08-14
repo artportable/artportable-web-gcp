@@ -50,6 +50,7 @@ import AboutCardArtwork from "../../app/components/AboutCardArtwork/AboutCardArt
 import {
   useGetUser,
   useGetUserProfileArtwork,
+  useGetUserProfileSummary,
 } from "../../app/hooks/dataFetching/UserProfile";
 import Carousel from "react-material-ui-carousel";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -225,6 +226,19 @@ export default function ArtworkPage(props) {
 
   const usernameArtworkOwner = useGetUser(userProfile?.data?.Username);
   const effectRan = useRef(false);
+
+  const [totalArtworks, setTotalArtworks] = useState();
+
+  const getTotalArtworks = useGetUserProfileSummary(
+    userProfile?.data?.Username
+  );
+
+  useEffect(() => {
+    if (getTotalArtworks?.data?.Artworks) {
+      setTotalArtworks(getTotalArtworks.data.Artworks);
+      console.log(getTotalArtworks.data.Artworks);
+    }
+  }, [getTotalArtworks?.data?.Artworks]);
 
   useEffect(() => {
     if (!effectRan.current && usernameArtworkOwner.data) {
@@ -491,13 +505,46 @@ export default function ArtworkPage(props) {
                     {membership.value > 4 && (
                       <div>
                         {productType === 1 ? (
-                          <div style={{ fontSize: "20px", color: "gray" }}>
-                            Bas medlem
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              textAlign: "center",
+                              fontSize: "20px ",
+                            }}
+                          >
+                            <div>Bas medlem</div>
+                            <div>
+                              Antal verk: {getTotalArtworks?.data?.Artworks}
+                            </div>
+                            <div>
+                              Medlem sedan:{" "}
+                              {usernameArtworkOwner?.data?.Created?.slice(
+                                0,
+                                10
+                              )}
+                            </div>
                           </div>
                         ) : (
-                          <div style={{ fontSize: "20px", color: "orange" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              textAlign: "center",
+                              fontSize: "20px ",
+                              color: "#c0a067",
+                            }}
+                          >
                             {" "}
                             Premium användare
+                            <div>Antal verk: {totalArtworks}</div>
+                            <div>
+                              Medlem sedan:{" "}
+                              {usernameArtworkOwner?.data?.Created?.slice(
+                                0,
+                                10
+                              )}
+                            </div>
                           </div>
                         )}
                       </div>
