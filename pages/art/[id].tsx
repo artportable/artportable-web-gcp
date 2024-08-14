@@ -504,7 +504,7 @@ export default function ArtworkPage(props) {
                   <div className={s.artInfo}>
                     {membership.value > 4 && (
                       <div>
-                        {productType === 1 ? (
+                        {productType === 2 ? (
                           <div
                             style={{
                               display: "flex",
