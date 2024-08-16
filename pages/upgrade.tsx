@@ -35,14 +35,13 @@ export default function Upgrade({ navBarItems, priceData }) {
   const router = useRouter();
   const [hideTabs, setHideTabs] = useState(false);
 
-  const [paymentInterval, setPaymentInterval] = useState("year");
+  const [paymentInterval, setPaymentInterval] = useState("month");
 
   const plans = getDistinct(priceData?.sort(compareAmounts), (p) => p.product);
   const { isSignedIn, username, socialId, membership, phone, user_type } =
     useContext(UserContext);
 
   useEffect(() => {
-    // Only redirect if the state is no longer pending and the user is not signed in
     if (!isSignedIn.isPending && !isSignedIn.value) {
       router.push("/");
     }
