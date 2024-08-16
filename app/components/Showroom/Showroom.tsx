@@ -8,7 +8,7 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import { useGetUserExhibitions } from "../../hooks/dataFetching/Stories";
 import Button from "@mui/material/Button";
 import { Story } from "../../models/Story";
-import { cafes, showrooms } from "./showroomData";
+import { cafes } from "./showroomData";
 import juliImage from "../../../public/images/juli1.png";
 
 export default function Showroom() {
@@ -32,11 +32,6 @@ export default function Showroom() {
       setAllStories([...allStories, ...currentStories]);
     }
   }, [currentStories, page]);
-
-  const [backgroundImages, setBackgroundImages] = useState([]);
-  const monthNames = Object.keys(showrooms);
-  const januaryIndex = monthNames.indexOf("AUGUSTI");
-  const [agneta, setAgneta] = useState(false);
 
   const [selectedCafe, setSelectedCafe] = useState(Object.keys(cafes)[0]);
 
