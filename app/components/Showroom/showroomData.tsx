@@ -1,235 +1,3 @@
-export const showrooms = {
-  JANUARI: [
-    {
-      week: "Vecka 2",
-      artist: "Torleiv Agdestein",
-      username: "torleiv.agdestein",
-    },
-    {
-      week: "Vecka 3",
-      artist: "Torleiv Agdestein",
-      username: "torleiv.agdestein",
-    },
-    {
-      week: "Vecka 4",
-      artist: "Elaine Hillerström",
-      username: "elaine.hillerstrom",
-    },
-  ],
-  FEBRUARI: [
-    {
-      week: "Vecka 6",
-      artist: "Anne Persson",
-      username: "perssonanne",
-    },
-    {
-      week: "Vecka 7",
-      artist: "Maria Andersson",
-      username: "maria.andersson",
-    },
-    {
-      week: "Vecka 8",
-      artist: "monir sarmi",
-      username: "monir.moslemi",
-    },
-  ],
-  MARS: [
-    {
-      week: "Vecka 9",
-      artist: "Ida Widman",
-      username: "konstigheter",
-    },
-    {
-      week: "Vecka 10",
-      artist: "Stephan nicholas hoerhammer",
-      username: "stephannicolaushoerhammer",
-    },
-    {
-      week: "Vecka 11",
-      artist: "Birgitta Lindfors",
-      username: "birgitta.lindfors",
-    },
-    {
-      week: "Vecka 12",
-      artist: "Vera Stubergh",
-      username: "vera.stubergh1940",
-    },
-    {
-      week: "Vecka 13",
-      artist: "Hans ström",
-      username: "hans.strom",
-    },
-  ],
-  APRIL: [
-    {
-      week: "Vecka 14",
-      artist: "Zanna Guldbrandsson",
-      username: "zannaguldbrandsson",
-    },
-    {
-      week: "Vecka 15",
-      artist: "Lars Dahlström",
-      username: "lars.dahlstrom",
-    },
-    {
-      week: "Vecka 16",
-      artist: "Erika Holm Petre",
-      username: "erikaholmpetre",
-    },
-    {
-      week: "Vecka 17",
-      artist: "Susanne Körnvik",
-      username: "artbykornvik",
-    },
-  ],
-  MAJ: [
-    {
-      week: "Vecka 19",
-      artist: "Ebba kristina wikgård",
-      username: "ebba_kristina",
-    },
-    {
-      week: "Vecka 20",
-      artist: "Ulrika ritter",
-      username: "ulrika.ritter",
-    },
-    {
-      week: "Vecka 21",
-      artist: "Marina bonnevier",
-      username: "mabon",
-    },
-    {
-      week: "Vecka 22",
-      artist: "Mieszko Tyszkiewicz",
-      username: "mieszko.tyszkiewicz",
-    },
-  ],
-  JUNI: [
-    {
-      week: "Vecka 23",
-      artist: "Janet Westman",
-      username: "janetwestman",
-    },
-    {
-      week: "Vecka 24",
-      artist: "Anna-Maria Andersson",
-      username: "anna-maria.andersson",
-    },
-    {
-      week: "Vecka 25",
-      artist: "Cina Fundin",
-      username: "cina.fundin",
-    },
-    {
-      week: "Vecka 26",
-      artist: "Mona-Lisa Eriksson",
-      username: "gladiator",
-    },
-  ],
-  JULI: [
-    {
-      week: "",
-      artist: "",
-      username: "",
-    },
-  ],
-  AUGUSTI: [
-    {
-      week: "Vecka 31",
-      artist: "Luidmilla Kerdman",
-      username: "lucykerdman",
-    },
-    {
-      week: "Vecka 32",
-      artist: "Mona Anita Eriksen",
-      username: "mona.anita.eriksen",
-    },
-    {
-      week: "Vecka 33",
-      artist: "Sandra Gustavsson",
-      username: "sandra.gustavsson",
-    },
-    {
-      week: "Vecka 34",
-      artist: "ARTS Beyond ART",
-      username: "artsbeyondart",
-    },
-    {
-      week: "Vecka 35",
-      artist: "Gunilla Svärd",
-      username: "gunilla.svard",
-    },
-  ],
-  SEPTEMBER: [
-    {
-      week: "Vecka 36",
-      artist: "Christina Danielsson",
-      username: "christina.danielsson",
-    },
-    {
-      week: "Vecka 37",
-      artist: "Henrik Sjöström",
-      username: "henrik.sjostrom",
-    },
-    {
-      week: "Vecka 38",
-      artist: "Robban Galli",
-      username: "",
-    },
-    {
-      week: "Vecka 39",
-      artist: "Catharina Lundh",
-      username: "sickan64",
-    },
-  ],
-  OKTOBER: [
-    {
-      week: "Vecka 40",
-      artist: "Inger Bernholdsson",
-      username: "inger.bernholdsson",
-    },
-    {
-      week: "Vecka 41",
-      artist: "Pia Bark",
-      username: "piabark",
-    },
-    {
-      week: "Vecka 42",
-      artist: "Gina Axlund",
-      username: "gina.axlund",
-    },
-    {
-      week: "Vecka 43",
-      artist: "Camilla Thelin",
-      username: "",
-    },
-  ],
-  NOVEMBER: [
-    {
-      week: "Vecka 44",
-      artist: "Jessica Elert",
-      username: "Jessicaelert",
-    },
-    {
-      week: "Vecka 46",
-      artist: "Helen Sjöstrand",
-      username: "sjostrandhelen",
-    },
-    {
-      week: "Vecka 47",
-      artist: "Angelica Diehn",
-      username: "angelica.diehn",
-    },
-  ],
-  DECEMBER: [
-    {
-      week: "Vecka 51 - 54",
-      artist: "Daniel Lundvall",
-      username: "daniel.lundvall",
-    },
-  ],
-};
-
 export const cafes = {
   MELANDERS: [
     {
@@ -264,6 +32,7 @@ export const cafes = {
       site: "www.melanders.se/restauranger/melanders-sodermalm/",
     },
   ],
+
   PS_MATSAL: [
     {
       period: "4 APRIL - 4 OKTOBER",
@@ -282,6 +51,36 @@ export const cafes = {
       site: "www.psmatsal.com/new-startpage/",
     },
   ],
+  SCANDIC_ANGLAIS: [
+    {
+      period: "15 AUGUSTI - 15 OKTOBER",
+      artists: [
+        { name: "Christer Andersson", username: "fotomannen" },
+        { name: "Martina Orlop", username: "martinaorlop" },
+        { name: "Carina Wetterlöf", username: "carinawetterlof" },
+      ],
+      site: "www.scandichotels.se/hotell/sverige/stockholm/scandic-anglais?utm_source=google&utm_medium=cpc&utm_campaign=SE_Brand_Generic&utm_id=710750127&&cmpid=ppc_BH2d&s_kwcid=AL!7589!3!644340980799!e!!g!!scandic%20anglais&gad_source=1&gclid=CjwKCAjw8fu1BhBsEiwAwDrsjIPf67_R8H4EIr7HPG008rkjoQLFoKfW2QRKexTEfR0dTJdftgsDuhoCiXgQAvD_BwE&gclsrc=aw.ds/",
+    },
+    {
+      period: "16 OKTOBER - 16 DECEMBER",
+      artists: [
+        { name: "Inger Spåman", username: "spaman.inger" },
+        { name: "Aase Fagervik", username: "aase_fagervik" },
+        { name: "Anette Öhman", username: "anetteohman" },
+      ],
+      site: "www.scandichotels.se/hotell/sverige/stockholm/scandic-anglais?utm_source=google&utm_medium=cpc&utm_campaign=SE_Brand_Generic&utm_id=710750127&&cmpid=ppc_BH2d&s_kwcid=AL!7589!3!644340980799!e!!g!!scandic%20anglais&gad_source=1&gclid=CjwKCAjw8fu1BhBsEiwAwDrsjIPf67_R8H4EIr7HPG008rkjoQLFoKfW2QRKexTEfR0dTJdftgsDuhoCiXgQAvD_BwE&gclsrc=aw.ds",
+    },
+    {
+      period: "17 DECEMBER - 17 FEBRUARI",
+      artists: [
+        { name: "Marte Heitmann", username: "" },
+        { name: "Annelie Haeffele", username: "anneli.haeffele" },
+        { name: "Annica Hallman", username: "Annica.b" },
+      ],
+      site: "www.scandichotels.se/hotell/sverige/stockholm/scandic-anglais?utm_source=google&utm_medium=cpc&utm_campaign=SE_Brand_Generic&utm_id=710750127&&cmpid=ppc_BH2d&s_kwcid=AL!7589!3!644340980799!e!!g!!scandic%20anglais&gad_source=1&gclid=CjwKCAjw8fu1BhBsEiwAwDrsjIPf67_R8H4EIr7HPG008rkjoQLFoKfW2QRKexTEfR0dTJdftgsDuhoCiXgQAvD_BwE&gclsrc=aw.ds",
+    },
+  ],
+
   ART_BAKERY: [
     {
       period: "10 DECEMBER - 12 MARS",
