@@ -6,7 +6,7 @@ import {
   Theme,
   useTheme,
 } from "@material-ui/core";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import { styles } from "./discoverArt.css";
 import ArtworkListItem from "../ArtworkListItemDefined/ArtworkListItem";
 import ArtworkListItemDefined from "../ArtworkListItemDefined/ArtworkListItemDefined";
@@ -35,8 +35,8 @@ import Typography from "@material-ui/core/Typography";
 import { Skeleton } from "@material-ui/lab";
 
 interface InsertElement {
-  element: React.ReactElement,
-  position: number,
+  element: React.ReactElement;
+  position: number;
 }
 
 interface InputProps {
@@ -50,7 +50,7 @@ interface InputProps {
   activeTab: number;
   trendingArtTab: boolean;
   likedArtTab: boolean;
-  header?: string,
+  header?: string;
   insertElements?: InsertElement[];
 }
 
@@ -64,7 +64,7 @@ export default function DiscoverArt({
   trendingArtTab = null,
   likedArtTab = null,
   insertElements = [],
-  header = '',
+  header = "",
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
@@ -152,7 +152,7 @@ export default function DiscoverArt({
     let rows = getImageAsRows(primaryImages, theme.spacing(2), rowWidth);
     // First item in rows can be an empty array. Remove it.
     if (rows[0] && rows[0].length === 0) {
-      rows = rows.slice(1)
+      rows = rows.slice(1);
     }
 
     setImageRows(rows);
@@ -167,7 +167,7 @@ export default function DiscoverArt({
   useEffect(() => {
     if (onFilter) onFilter([]);
   }, []);
-  
+
   function likeArtwork(artwork, isLike) {
     likeEmail(artwork, isLike);
   }
@@ -209,19 +209,20 @@ export default function DiscoverArt({
   }
   // }
 
-  let imageRowsWithElements: (Image[]|React.ReactElement)[] = [];
+  let imageRowsWithElements: (Image[] | React.ReactElement)[] = [];
   if (imageRows.length > 1) {
     // Use slice to avoid duplicates being added.
     imageRowsWithElements = imageRows.slice();
 
     if (insertElements.length > 0) {
-      insertElements.forEach(insert => {
+      insertElements.forEach((insert) => {
         // If the item in the array is not an array, then an insert has already been added there. Check this to avoid duplicates.
         // if (imageRows[insert.position] && !Array.isArray(imageRows[insert.position])) {
         //   return
         // }
-        if (insert.element) imageRowsWithElements.splice(insert.position, 0, insert.element)
-      })
+        if (insert.element)
+          imageRowsWithElements.splice(insert.position, 0, insert.element);
+      });
     }
   }
 
@@ -230,11 +231,11 @@ export default function DiscoverArt({
       {artworks ? (
         artworks.length > 0 ? (
           <Box className={s.rowsContainer}>
-            { header &&
+            {header && (
               <Typography variant="h4" style={{ fontWeight: 500 }}>
-                { header }
+                {header}
               </Typography>
-            }
+            )}
             {showFilterLoadingSkeleton && (
               <>
                 <div className={s.row}>
@@ -270,51 +271,52 @@ export default function DiscoverArt({
               </>
             )}
             {imageRowsWithElements &&
-              imageRowsWithElements.map((row: Image[], i) => Array.isArray(row) ? (
-                <div className={s.row} key={i}>
-                  {row.map((image) => {
-                    let artwork = artworks.find(
-                      (a) => a.PrimaryFile.Name === image.Name
-                    );
-                    if (artwork) {
-                      return (
-                        <ArtworkListItem
-                          key={image.Name}
-                          width={smScreenOrSmaller ? "100%" : image.Width}
-                          height={smScreenOrSmaller ? "auto" : image.Height}
-                          artwork={artwork}
-                          onPurchaseRequestClick={onPurchaseRequestClick}
-                          purchaseRequestAction={
-                            ActionType.PURCHASE_REQUEST_LIST_DISCOVER
-                          }
-                          onLikeClick={likeArtwork}
-                        />
+              imageRowsWithElements.map((row: Image[], i) =>
+                Array.isArray(row) ? (
+                  <div className={s.row} key={i}>
+                    {row.map((image) => {
+                      let artwork = artworks.find(
+                        (a) => a.PrimaryFile.Name === image.Name
                       );
-                      // return (
-                      //   <ArtworkListItemDefined
-                      //     key={image.Name}
-                      //     width={smScreenOrSmaller ? "100%" : image.Width}
-                      //     height={smScreenOrSmaller ? "auto" : image.Height}
-                      //     artwork={artwork}
-                      //     onPurchaseRequestClick={onPurchaseRequestClick}
-                      //     purchaseRequestAction={
-                      //       ActionType.PURCHASE_REQUEST_LIST_DISCOVER
-                      //     }
-                      //     onLikeClick={onLike}
-                      //     indexPage={true}
-                      //   />
-                      // );
-                    } else {
-                      return null;
-                    }
-                  })}
-                </div>
-              )
-                :
-                <div key={i}>
-                  {/* This row is not a row but a React Element to insert between the rows. */}
-                  {row}
-                </div>
+                      if (artwork) {
+                        return (
+                          <ArtworkListItem
+                            key={image.Name}
+                            width={smScreenOrSmaller ? "100%" : image.Width}
+                            height={smScreenOrSmaller ? "auto" : image.Height}
+                            artwork={artwork}
+                            onPurchaseRequestClick={onPurchaseRequestClick}
+                            purchaseRequestAction={
+                              ActionType.PURCHASE_REQUEST_LIST_DISCOVER
+                            }
+                            onLikeClick={likeArtwork}
+                          />
+                        );
+                        // return (
+                        //   <ArtworkListItemDefined
+                        //     key={image.Name}
+                        //     width={smScreenOrSmaller ? "100%" : image.Width}
+                        //     height={smScreenOrSmaller ? "auto" : image.Height}
+                        //     artwork={artwork}
+                        //     onPurchaseRequestClick={onPurchaseRequestClick}
+                        //     purchaseRequestAction={
+                        //       ActionType.PURCHASE_REQUEST_LIST_DISCOVER
+                        //     }
+                        //     onLikeClick={onLike}
+                        //     indexPage={true}
+                        //   />
+                        // );
+                      } else {
+                        return null;
+                      }
+                    })}
+                  </div>
+                ) : (
+                  <div key={i}>
+                    {/* This row is not a row but a React Element to insert between the rows. */}
+                    {row}
+                  </div>
+                )
               )}
 
             {!isLoading && loadMore && (
@@ -356,38 +358,7 @@ export default function DiscoverArt({
               height: "100px",
               width: "100%",
             }}
-          >
-            {loading ? (
-              <Box className={s.skeletonContainer}>
-                <div className={s.rowSkeleton}>
-                  <Skeleton
-                    variant="rect"
-                    width={200}
-                    height={100}
-                    className={s.skeletonColor}
-                  />
-                </div>
-                <div className={s.rowSkeleton}>
-                  <Skeleton
-                    variant="rect"
-                    width={200}
-                    height={100}
-                    className={s.skeletonColorTwo}
-                  />
-                </div>
-                <div className={s.rowSkeleton}>
-                  <Skeleton
-                    variant="rect"
-                    width={200}
-                    height={100}
-                    className={s.skeletonColorThree}
-                  />
-                </div>
-              </Box>
-            ) : (
-              <div>{likedArtTab ? <>{t("notLiked")}</> : <>{}</>}</div>
-            )}
-          </div>
+          ></div>
         )
       ) : (
         <Box className={s.rowsContainer}></Box>
