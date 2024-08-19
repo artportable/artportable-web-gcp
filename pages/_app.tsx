@@ -38,7 +38,7 @@ import ArtportableContexts from "../app/contexts/ArtportableContexts";
 import Router from "next/router";
 import { useTranslation } from "next-i18next";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
-import GlobalComponents from '../app/components/GlobalComponents/GlobalComponents';
+import GlobalComponents from "../app/components/GlobalComponents/GlobalComponents";
 library.add(faDribbble, faBehanceSquare);
 interface InitialProps {
   cookies: unknown;
@@ -69,10 +69,10 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
         router.asPath === "/sv" ||
         router.asPath === "/nb"
       ) {
-        router.push("/" + getCurrentLanguage() + "/feed");
+        router.push("/" + getCurrentLanguage());
       }
     }
-    //console.log(event);
+
     setKeycloakState(event);
   };
   const router = useRouter();

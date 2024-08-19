@@ -82,7 +82,7 @@ export default function DiscoverPage({ navBarItems }) {
   useEffect(() => {
     if (keycloak?.authenticated && !sessionStorage.getItem("loggedIn")) {
       sessionStorage.setItem("loggedIn", "true");
-      router.push("/" + getCurrentLanguage() + "/feed");
+      router.push("/" + getCurrentLanguage());
     } else if (!keycloak?.authenticated) {
       sessionStorage.removeItem("loggedIn");
     }
