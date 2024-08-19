@@ -106,7 +106,7 @@ export default function Showroom() {
           </TabContext>
         </div>
 
-        <div>
+        <>
           <div className={s.news}>{t("news")}</div>
           <div className={s.exhibitionsWrapperDiv}>
             {allStories?.map((exhibition) => (
@@ -155,7 +155,7 @@ export default function Showroom() {
               </Button>
             </div>
           )}
-        </div>
+        </>
       </div>
     </>
   );
