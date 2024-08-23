@@ -23,6 +23,21 @@ export default function StoryForm({
 
   return (
     <Box className={s.container}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          marginTop: "40px",
+          marginBottom: "40px",
+        }}
+      >
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox onChange={() => setExhibition(true)} />}
+            label={t("exhibition")}
+          />
+        </FormGroup>
+      </div>
       <Paper style={{ marginBottom: "20px" }}>
         <TextField
           id="headline"
@@ -48,21 +63,6 @@ export default function StoryForm({
           style={{ padding: "10px", marginBottom: "10px" }}
         />
       </Paper>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "40px",
-          marginBottom: "40px",
-        }}
-      >
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox onChange={() => setExhibition(true)} />}
-            label={t("exhibition")}
-          />
-        </FormGroup>
-      </div>
     </Box>
   );
 }
