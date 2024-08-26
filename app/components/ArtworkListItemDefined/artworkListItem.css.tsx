@@ -14,7 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     container: {
-      '--image-padding': '15px',
+      "--image-padding": "15px",
       display: "inline-block",
       position: "relative",
       "&:hover $tagsContainer": {
@@ -45,48 +45,48 @@ export const styles = makeStyles((theme: Theme) =>
 
     // },
     infoRow: {
-      position: 'absolute',
-      left: 'var(--image-padding)',
-      right: 'var(--image-padding)',
-      display: 'flex',
-      flexFlow: 'row wrap',
-      justifyContent: 'space-between',
+      position: "absolute",
+      left: "var(--image-padding)",
+      right: "var(--image-padding)",
+      display: "flex",
+      flexFlow: "row wrap",
+      justifyContent: "space-between",
     },
     topInfoRow: {
-      top: 'var(--image-padding)',
-      justifyContent: 'flex-end',
+      top: "var(--image-padding)",
+      justifyContent: "flex-end",
     },
     bottomInfoRow: {
-      bottom: 'var(--image-padding)',
-      alignItems: 'flex-end',
+      bottom: "var(--image-padding)",
+      alignItems: "flex-end",
     },
     topLeft: {
       // flexBasis: 'calc(50% - var(--image-padding))',
-      textAlign: 'left',
-      paddingBottom: '10px',
+      textAlign: "left",
+      paddingBottom: "10px",
     },
     topRight: {
       // flexBasis: 'calc(50% - var(--image-padding))',
-      textAlign: 'right',
+      textAlign: "right",
     },
     bottomLeft: {
-      flexBasis: 'calc(50% - var(--image-padding))',
-      textAlign: 'left',
+      flexBasis: "calc(50% - var(--image-padding))",
+      textAlign: "left",
       flexGrow: 1,
-      flexFlow: 'row wrap-reverse !important', // Override value in tagsContainer.
-      maxWidth: '100%',
+      flexFlow: "row wrap-reverse !important", // Override value in tagsContainer.
+      maxWidth: "100%",
     },
     bottomRight: {
       // flexBasis: 'calc(50% - var(--image-padding))',
       // flexGrow: 1,
-      textAlign: 'right',
-      padding: '10px 0 0 10px',
+      textAlign: "right",
+      padding: "10px 0 0 10px",
     },
     fullWidthInfo: {
-      flexBasis: 'calc(100% - 2 * (var(--image-padding)))',
+      flexBasis: "calc(100% - 2 * (var(--image-padding)))",
     },
     requestButton: {
-      position: 'relative',
+      position: "relative",
     },
     likeInline: {
       display: "inline-block",
@@ -101,23 +101,28 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.secondary,
       placeItems: "center",
-      justifyContent: 'flex-end',
+      justifyContent: "space-between",
     },
     flexLikeCount: {
       display: "flex",
     },
     likeButton: {
       // padding: theme.spacing(0.2, 0, 0.4, 0.5),
-      padding: '2px',
+      padding: "2px",
       fontSize: "0.5rem",
-      borderRadius: '50%',
-      // color: "red !important",
-      backgroundColor: 'rgba(100, 100, 100, .25)',
+      borderRadius: "50%",
+
+      color: "red !important",
       "&:hover": {
-        backgroundColor: 'rgba(100, 100, 100, .5)',
+        backgroundColor: "transparent",
+        color: "#ff8383",
       },
-      '& svg': {
-        color: 'white',
+      "& svg": {
+        color: "black",
+        "&:hover": {
+          backgroundColor: "transparent",
+          color: "#ff8383",
+        },
       },
     },
     likeCounter: {
@@ -158,7 +163,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     newUser: {
-      display: 'inline-block',
+      display: "inline-block",
       fontSize: "10px",
       backgroundColor: "rgb(0 0 0 / 57%)",
       borderRadius: "20px",
@@ -170,13 +175,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     footer: {
-      position: 'relative',
-      marginBottom: '10px',
+      position: "relative",
+      marginBottom: "10px",
     },
     footerRow: {
-      display: 'flex',
-      flexFlow: 'row nowrap',
-      justifyContent: 'space-between',
+      display: "flex",
+      flexFlow: "row nowrap",
+      justifyContent: "space-between",
     },
     name: {
       fontSize: "0.95rem",
@@ -190,9 +195,9 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: theme.typography.fontWeightMedium as number,
       display: "flex",
       // Padding top instead of align items center, looks better if artist name is multiple rows.
-      paddingTop: '3px',
-      paddingLeft: '20px',
-      whiteSpace: 'nowrap',
+      paddingTop: "3px",
+      paddingLeft: "20px",
+      whiteSpace: "nowrap",
     },
     soldMark: {
       background: "#C67777",
