@@ -30,16 +30,17 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeButton: {
       position: "absolute",
-      top: "10px",
+
+      top: "5px",
       right: "10px",
       "& button": {
-        padding: "2px",
+        padding: "0px",
         borderRadius: "50%",
-        backgroundColor: "rgba(100, 100, 100, .25)",
+        backgroundColor: "transparent",
       },
       "&:hover": {
         "& button": {
-          backgroundColor: "rgba(100, 100, 100, .5)",
+          backgroundColor: "transparent",
         },
       },
     },
