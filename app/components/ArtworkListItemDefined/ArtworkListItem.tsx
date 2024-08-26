@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { i18n, useTranslation } from "next-i18next";
 import { useEffect } from "react";
-import clsx from 'clsx'
+import clsx from "clsx";
 import { UserContext } from "../../contexts/user-context";
 import {
   ActionType,
@@ -24,7 +24,7 @@ import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
 import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import { styles } from "./artworkListItem.css";
-import { styles as sharedStyles } from '../../../styles/shared.css'
+import { styles as sharedStyles } from "../../../styles/shared.css";
 import be from "date-fns/locale/be";
 
 export default function ArtworkListItem({
@@ -39,7 +39,6 @@ export default function ArtworkListItem({
   const s = styles();
   const sShared = sharedStyles();
   const { t } = useTranslation(["art", "common", "tags"]);
-  
 
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
@@ -117,9 +116,9 @@ export default function ArtworkListItem({
       !isLiked ? artwork.Likes++ : artwork.Likes--;
       !isLiked
         ? trackGoogleAnalytics(
-          ActionType.LIKE_PORTFOLIO_DISCOVER,
-          CategoryType.INTERACTIVE
-        )
+            ActionType.LIKE_PORTFOLIO_DISCOVER,
+            CategoryType.INTERACTIVE
+          )
         : null;
     }
     onLikeClick(artwork, !isLiked);
@@ -128,8 +127,9 @@ export default function ArtworkListItem({
   const shareArtworkTitle = artwork?.Title
     ? `${t("common:share")}"${artwork?.Title}"`
     : `${t("common:share")}`;
-  const shareArtworkText = `${t("common:checkThisArtwork")}"${artwork?.Title
-    }"${t("common:atArtportable")}`;
+  const shareArtworkText = `${t("common:checkThisArtwork")}"${
+    artwork?.Title
+  }"${t("common:atArtportable")}`;
 
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />
@@ -177,16 +177,16 @@ export default function ArtworkListItem({
 
     fetchData();
   }, [artwork?.Username]);
-  
+
   const sortTagsByLength = (a, b) => {
     // Sort tags from smallest to longest. Translate tags before sorting.
-    const translatedA = t(`tags:${a}`)
-    const translatedB = t(`tags:${b}`)
-    
-    if (translatedA.length < translatedB.length) return -1
-    if (translatedA.length > translatedB.length) return 1
-    return 0
-  }
+    const translatedA = t(`tags:${a}`);
+    const translatedB = t(`tags:${b}`);
+
+    if (translatedA.length < translatedB.length) return -1;
+    if (translatedA.length > translatedB.length) return 1;
+    return 0;
+  };
 
   return (
     <div className={s.container}>
@@ -203,30 +203,12 @@ export default function ArtworkListItem({
           </a>
         </Link>
 
-        <div className={clsx(s.infoRow, s.topInfoRow)}>
-          <div className={clsx(s.topRight, s.likeInline)}>
-            <div className={s.likeContainer}>
-              <div className={s.flexLikeCount}>
-                <IconButton
-                  aria-label="like"
-                  className={s.likeButton}
-                  disableRipple
-                  onClick={toggleLike}
-                >
-                  {likedFilled}
-                </IconButton>
-                <div className={s.likeCounter}>
-                  {artwork.Likes > 0 ? artwork.Likes : ""}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className={clsx(s.infoRow, s.bottomInfoRow)}>
-          <div className={clsx(s.bottomLeft, s.tagsContainer, {
-            [s.fullWidthInfo]: !isNew,
-          })}>
+          <div
+            className={clsx(s.bottomLeft, s.tagsContainer, {
+              [s.fullWidthInfo]: !isNew,
+            })}
+          >
             {Array.from(artwork.Tags)
               .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
               .sort(sortTagsByLength)
@@ -244,7 +226,7 @@ export default function ArtworkListItem({
                 );
               })}
           </div>
-        
+
           <div className={s.bottomRight}>
             {isNew && <div className={s.newUser}>{t("common:newMember")}</div>}
           </div>
@@ -282,6 +264,22 @@ export default function ArtworkListItem({
             ) : (
               t("priceOnRequest")
             )}
+          </div>
+        </div>
+        <div className={s.likeContainer}>
+          <div style={{ fontSize: "12px" }}>{artwork?.Title}</div>
+          <div className={s.flexLikeCount}>
+            <IconButton
+              aria-label="like"
+              className={s.likeButton}
+              disableRipple
+              onClick={toggleLike}
+            >
+              {likedFilled}
+            </IconButton>
+            <div className={s.likeCounter}>
+              {artwork.Likes > 0 ? artwork.Likes : ""}
+            </div>
           </div>
         </div>
       </div>
