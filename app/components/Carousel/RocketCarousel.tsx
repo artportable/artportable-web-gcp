@@ -13,13 +13,9 @@ import { Artwork } from "../../models/Artwork";
 type Data = {
   forDesktop: boolean;
   containerStyle?: any;
-  // artists: Artist[],
 };
 
 export default function RocketCarousel(props: Data) {
-  // const [artists, setArtists] = useState<Artist[]>([])
-  // const [artworks, setArtworks] = useState<Artwork[]>([])
-
   const { forDesktop, containerStyle = {} } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { t } = useTranslation(["common"]);
@@ -41,10 +37,6 @@ export default function RocketCarousel(props: Data) {
         return previousPageData.next;
       }
     );
-
-  // useEffect(() => {
-  //   console.log(artworks);
-  // }, []);
 
   if (artworks.length < 1) return null;
 
@@ -83,13 +75,7 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
         <div className={s.rocketIcon}>
           <img src="/rocket-white.png" alt="Rocket Icon" />
         </div>
-        <div className={s.likeButton}>
-          <LikeButton
-            content={{
-              Item: item,
-            }}
-          />
-        </div>
+
         {forDesktop && (
           <div className={s.seeMoreButton + " displayOnHover"}>
             <Button
@@ -120,18 +106,28 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
       linkURL: `/art/${item.Id}`,
       roundedCorners: false,
       footer: (
-        <div
-          style={{
-            marginTop: "10px",
-            fontSize: "0.95rem",
-            fontWeight: 400,
-            width: "100%",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {`${item.Owner.Name} ${item.Owner.Surname}`}
+        <div>
+          <div
+            style={{
+              marginTop: "10px",
+              fontSize: "0.95rem",
+              fontWeight: 400,
+              width: "100%",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {" "}
+            {`${item.Owner.Name} ${item.Owner.Surname}`}
+            <div className={s.likeButton}>
+              <LikeButton
+                content={{
+                  Item: item,
+                }}
+              />
+            </div>
+          </div>
         </div>
       ),
     });
