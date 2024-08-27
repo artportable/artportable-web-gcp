@@ -415,7 +415,7 @@ export default function Profile(props) {
   const storiesTabIndex = stories?.data?.length > 0 ? 2 : -1;
   const likedArtTabIndex = storiesTabIndex !== -1 ? storiesTabIndex + 1 : 2;
   const articlesTabIndex =
-    articles && articles.length > 0
+    articles && articles?.length > 0
       ? likedArtTabIndex + 1
       : likedArtTabIndex !== 2
       ? likedArtTabIndex
