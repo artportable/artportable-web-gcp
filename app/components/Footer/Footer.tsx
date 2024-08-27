@@ -29,7 +29,7 @@ export default function Footer() {
             </a>
           </Link>
           <Typography variant="body2" component="div" className={s.reserved}>
-            © 2024 Artportable AB. All rights reserved.
+            © 2024 Höök & Nordlander AB. All rights reserved.
           </Typography>
           <Typography variant="body2" component="div" className={s.cookies}>
             {t("cookies")}
