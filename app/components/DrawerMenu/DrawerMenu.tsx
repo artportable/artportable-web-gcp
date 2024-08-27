@@ -549,13 +549,13 @@ export default function DrawerMenu({
             </a>
           </Link>
         )}
-        <Link href="/showroom" passHref>
+        {/* <Link href="/showroom" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("exhibition")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
         <Link href="/about-us" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
