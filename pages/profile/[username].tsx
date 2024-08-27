@@ -412,6 +412,15 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
+  const storiesTabIndex = stories?.data?.length > 0 ? 2 : -1;
+  const likedArtTabIndex = storiesTabIndex !== -1 ? storiesTabIndex + 1 : 2;
+  const articlesTabIndex =
+    articles && articles?.length > 0
+      ? likedArtTabIndex + 1
+      : likedArtTabIndex !== 2
+      ? likedArtTabIndex
+      : 3;
+
   return (
     <Main
       navBarItems={navBarItems}
@@ -577,28 +586,34 @@ export default function Profile(props) {
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
-                  <Tab
-                    className={clsx(s.tab, {
-                      [s.tabLight]: useLightText,
-                    })}
-                    label={t("profile:stories")}
-                    {...a11yProps(t("profile:stories"))}
-                  />
 
+                  {stories?.data?.length > 0 && (
+                    <Tab
+                      className={clsx(s.tab, {
+                        [s.tabLight]: useLightText,
+                      })}
+                      label={t("profile:stories")}
+                      {...a11yProps(storiesTabIndex)}
+                    />
+                  )}
+
+                  {/* Liked Art tab */}
                   <Tab
                     className={clsx(s.tab, {
                       [s.tabLight]: useLightText,
                     })}
                     label={t("discover:likedArt")}
-                    {...a11yProps(t("discover:likedArt"))}
+                    {...a11yProps(likedArtTabIndex)}
                   />
+
+                  {/* Conditionally render the articles tab */}
                   {articles && articles.length > 0 && (
                     <Tab
                       className={clsx(s.tab, {
                         [s.tabLight]: useLightText,
                       })}
                       label={t("profile:articles")}
-                      {...a11yProps(t("profile:articles"))}
+                      {...a11yProps(articlesTabIndex)}
                     />
                   )}
                 </Tabs>
@@ -781,32 +796,34 @@ export default function Profile(props) {
                       onUpdateProfilePicture={updateImage}
                     ></AboutMe>
                   </TabPanel>
-                  <TabPanel value={activeTab} index={2}>
-                    {
-                      <>
-                        {isMyProfile &&
-                          membership.value >= Membership.PortfolioPremium && (
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                margin: "20px",
-                              }}
-                            >
-                              <Link href="/upload-story">
-                                <a>
-                                  <Button
-                                    aria-label="upload story"
-                                    variant="contained"
-                                    style={{ backgroundColor: "#ffd700" }}
-                                    rounded
-                                  >
-                                    {t("profile:uploadStory")}
-                                  </Button>
-                                </a>
-                              </Link>
-                            </div>
-                          )}
+                  {/* TabPanels */}
+                  {stories?.data?.length > 0 && (
+                    <TabPanel value={activeTab} index={storiesTabIndex}>
+                      {/* Content for stories */}
+                      {isMyProfile &&
+                        membership.value >= Membership.PortfolioPremium && (
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              margin: "20px",
+                            }}
+                          >
+                            <Link href="/upload-story">
+                              <a>
+                                <Button
+                                  aria-label="upload story"
+                                  variant="contained"
+                                  style={{ backgroundColor: "#ffd700" }}
+                                  rounded
+                                >
+                                  {t("profile:uploadStory")}
+                                </Button>
+                              </a>
+                            </Link>
+                          </div>
+                        )}
+                      {stories?.data?.length > 0 ? (
                         <Grid justifyContent="center" container spacing={2}>
                           {!smPlusOrSmaller ? (
                             <>
@@ -855,10 +872,13 @@ export default function Profile(props) {
                             </>
                           )}
                         </Grid>
-                      </>
-                    }
-                  </TabPanel>
-                  <TabPanel value={activeTab} index={3}>
+                      ) : (
+                        <div></div>
+                      )}
+                    </TabPanel>
+                  )}
+                  {/* Liked Art TabPanel */}
+                  <TabPanel value={activeTab} index={likedArtTabIndex}>
                     <DiscoverLikedArtTab
                       socialId={socialId.value}
                       rowWidth={rowWidth}
@@ -869,60 +889,55 @@ export default function Profile(props) {
                       isMyProfile={isMyProfile}
                     />
                   </TabPanel>
-                  <TabPanel value={activeTab} index={4}>
-                    {
-                      articles && (
+                  {articles && articles?.length > 0 && (
+                    <TabPanel value={activeTab} index={articlesTabIndex}>
+                      {articles && (
                         <div className={s.flex}>
-                          {articles.map((article, key) => {
-                            return (
-                              <Link
-                                href={`/konstnaersportraett/${article.slug}`}
-                                key={key}
-                              >
-                                <a>
-                                  <Paper className={s.wrapper}>
+                          {articles.map((article, key) => (
+                            <Link
+                              href={`/konstnaersportraett/${article.slug}`}
+                              key={key}
+                            >
+                              <a>
+                                <Paper className={s.wrapper}>
+                                  <div>
+                                    <img
+                                      src={
+                                        article?.coverImage?.formats?.small?.url
+                                      }
+                                      className={s.coverImage}
+                                      alt="cover image"
+                                    />
+                                  </div>
+                                  <div className={s.textContent}>
                                     <div>
-                                      <img
-                                        src={
-                                          article?.coverImage?.formats?.small
-                                            ?.url
-                                        }
-                                        className={s.coverImage}
-                                        alt="cover image"
-                                      />
+                                      {article.published_at.slice(0, -14)}
                                     </div>
-                                    <div className={s.textContent}>
-                                      <div>
-                                        {article.published_at.slice(0, -14)}
-                                      </div>
-
-                                      <Typography component="h2" variant={"h2"}>
-                                        <Box
-                                          fontFamily="LyonDisplay"
-                                          fontWeight="fontWeightMedium"
-                                          className={s.headline}
-                                        >
-                                          {article.title}{" "}
-                                          {router.locale !== article.locale
-                                            ? "(In Swedish)"
-                                            : ""}
-                                        </Box>
-                                      </Typography>
-                                      <Typography variant={"subtitle1"}>
-                                        {article.description}
-                                      </Typography>
-                                    </div>
-                                    <div className={s.line}></div>
-                                  </Paper>
-                                </a>
-                              </Link>
-                            );
-                          })}
+                                    <Typography component="h2" variant={"h2"}>
+                                      <Box
+                                        fontFamily="LyonDisplay"
+                                        fontWeight="fontWeightMedium"
+                                        className={s.headline}
+                                      >
+                                        {article.title}{" "}
+                                        {router.locale !== article.locale
+                                          ? "(In Swedish)"
+                                          : ""}
+                                      </Box>
+                                    </Typography>
+                                    <Typography variant={"subtitle1"}>
+                                      {article.description}
+                                    </Typography>
+                                  </div>
+                                  <div className={s.line}></div>
+                                </Paper>
+                              </a>
+                            </Link>
+                          ))}
                         </div>
-                      )
-                      // Grid i första div sen flexbox i nästa
-                    }
-                  </TabPanel>
+                      )}
+                    </TabPanel>
+                  )}
                 </Box>
               </div>
             ) : (
