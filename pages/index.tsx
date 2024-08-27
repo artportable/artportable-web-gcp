@@ -302,11 +302,11 @@ export default function DiscoverPage({ navBarItems }) {
                 {...a11yProps(t("discover:stories"))}
               />
 
-              <Tab
+              {/*     <Tab
                 className={s.text}
                 label={t("discover:showroom")}
                 {...a11yProps(t("discover:showroom"))}
-              />
+              /> */}
 
               {isSignedIn.value && (
                 <Tab
