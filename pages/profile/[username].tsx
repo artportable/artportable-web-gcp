@@ -889,7 +889,7 @@ export default function Profile(props) {
                       isMyProfile={isMyProfile}
                     />
                   </TabPanel>
-                  {articles && articles.length > 0 && (
+                  {articles && articles?.length > 0 && (
                     <TabPanel value={activeTab} index={articlesTabIndex}>
                       {articles && (
                         <div className={s.flex}>
