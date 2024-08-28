@@ -30,9 +30,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     likeButton: {
       position: "absolute",
-
       top: "5px",
       right: "10px",
+      fontSize: "0.85rem",
       "& button": {
         padding: "0px",
         borderRadius: "50%",

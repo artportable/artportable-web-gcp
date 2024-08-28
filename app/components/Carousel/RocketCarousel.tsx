@@ -109,13 +109,10 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
         <div>
           <div
             style={{
-              marginTop: "10px",
+              marginTop: "2px",
               fontSize: "0.95rem",
               fontWeight: 400,
               width: "100%",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
             }}
           >
             {" "}
@@ -126,7 +123,17 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                   Item: item,
                 }}
               />
+              {item?.Likes}
             </div>
+            <p
+              style={{
+                fontSize: "0.70rem",
+                fontStyle: "italic",
+                marginTop: "0px",
+              }}
+            >
+              {item?.Title}
+            </p>
           </div>
         </div>
       ),
