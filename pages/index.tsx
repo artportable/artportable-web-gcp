@@ -389,11 +389,11 @@ export default function DiscoverPage({ navBarItems }) {
                 <DiscoverStoriesTab />
               </TabPanel>
 
-              <TabPanel value={activeTab} index={6}>
+              {/*        <TabPanel value={activeTab} index={6}>
                 <Showroom />
-              </TabPanel>
+              </TabPanel> */}
 
-              <TabPanel value={activeTab} index={7}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
