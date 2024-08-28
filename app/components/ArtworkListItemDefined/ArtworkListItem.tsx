@@ -267,7 +267,9 @@ export default function ArtworkListItem({
           </div>
         </div>
         <div className={s.likeContainer}>
-          <div style={{ fontSize: "12px" }}>{artwork?.Title}</div>
+          <div style={{ fontSize: "12px", fontStyle: "italic" }}>
+            {artwork?.Title}
+          </div>
           <div className={s.flexLikeCount}>
             <IconButton
               aria-label="like"

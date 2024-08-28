@@ -89,7 +89,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     has_footer: {
-      marginBottom: "33px",
+      marginBottom: "55px",
     },
     // image__container: {
     //   position: 'relative',
