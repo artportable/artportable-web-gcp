@@ -1,13 +1,16 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
-export const styles = makeStyles((theme: Theme) =>
+// Define the type for the props that will be passed to the styles function
+interface LikeButtonStylesProps {
+  isLiked: boolean;
+}
+
+export const styles = makeStyles<Theme, LikeButtonStylesProps>((theme: Theme) =>
   createStyles({
     likeButton: {
       position: "relative",
-      // width: '24px',
-      // height: '24px',
       "& svg": {
-        color: "black",
+        color: (props) => (props.isLiked ? "#ff8383" : "black"), // Conditionally apply color based on isLiked
         "&:hover": {
           color: "#ff8383",
         },
