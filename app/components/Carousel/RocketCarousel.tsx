@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { useTranslation } from "next-i18next";
 import clsx from "clsx";
@@ -9,6 +9,7 @@ import { styles } from "./rocketcarousel.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { Artwork } from "../../models/Artwork";
+import { UserContext } from "../../contexts/user-context";
 
 type Data = {
   forDesktop: boolean;
@@ -22,7 +23,7 @@ export default function RocketCarousel(props: Data) {
   const s = styles();
   const sShared = sharedStyles();
   const loadMoreArtworksElementRef = useRef(null);
-
+  const { username } = useContext(UserContext);
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
       loadMoreArtworksElementRef,
@@ -32,6 +33,9 @@ export default function RocketCarousel(props: Data) {
 
           url.searchParams.append("page", (pageIndex + 1).toString());
           url.searchParams.append("pageSize", "100");
+          if (username.value != null && username.value != "") {
+            url.searchParams.append("myUsername", username.value);
+          }
           return url.href;
         }
         return previousPageData.next;
@@ -121,9 +125,10 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
               <LikeButton
                 content={{
                   Item: item,
+                  LikedByMe: item.LikedByMe,
+                  Likes: item.Likes,
                 }}
               />
-              {item?.Likes}
             </div>
             <p
               style={{

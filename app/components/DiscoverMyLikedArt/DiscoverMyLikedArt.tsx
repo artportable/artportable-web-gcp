@@ -15,7 +15,7 @@ interface DiscoverMyLikedArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  header?: string,
+  header?: string;
 }
 
 export const DiscoverMyLikedArtTab = memo(
