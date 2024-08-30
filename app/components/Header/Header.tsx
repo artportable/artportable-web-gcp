@@ -143,10 +143,6 @@ export default function Header({ navBarItems }) {
     }
   };
 
-  useEffect(() => {
-    console.log(membership.isPending);
-  }, []);
-
   //TODO: On logout or refresh perhaps, unsubscribe to events to avoid memory leak
   // https://getstream.io/chat/docs/react/event_listening/?language=javascript#stop-listening-for-events
 
