@@ -77,10 +77,10 @@ export default function DiscoverPage({ navBarItems }) {
   const [activeTab, setActiveTab] = useState(discoverTopArtTab);
   const { loading, setLoading } = useContext(LoadingContext);
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
-  const [openAdDialog, setOpenAdDialog] = useState(true);
+  const [openAdDialog, setOpenAdDialog] = useState(false);
   // const [artHeader, setArtHeader] = useState('HEADER')
   const { keycloak } = useKeycloak();
-
+  const AD_INTERVAL = 300000; // Ad Dialog
   const router = useRouter();
   useEffect(() => {
     if (keycloak?.authenticated && !sessionStorage.getItem("loggedIn")) {
@@ -90,6 +90,32 @@ export default function DiscoverPage({ navBarItems }) {
       sessionStorage.removeItem("loggedIn");
     }
   }, [keycloak?.authenticated, router]);
+
+  function toggleAdDialog() {
+    setOpenAdDialog(false);
+    // Save the current time when the dialog is closed (converted to string)
+    sessionStorage.setItem("lastShownTime", Date.now().toString());
+  }
+
+  useEffect(() => {
+    const lastShownTime = sessionStorage.getItem("lastShownTime");
+
+    // Check if the ad was shown more than 5 minutes ago
+    if (!lastShownTime || Date.now() - Number(lastShownTime) >= AD_INTERVAL) {
+      setOpenAdDialog(true);
+    }
+
+    // Set up a timer to automatically show the ad again after 5 minutes
+    const adTimer = setInterval(() => {
+      const lastShownTime = sessionStorage.getItem("lastShownTime");
+
+      if (!lastShownTime || Date.now() - Number(lastShownTime) >= AD_INTERVAL) {
+        setOpenAdDialog(true);
+      }
+    }, 1000); // Check every second
+
+    return () => clearInterval(adTimer); // Cleanup the interval on unmount
+  }, []);
 
   useEffect(() => {
     if (!isSignedIn.isPending) {
@@ -101,23 +127,6 @@ export default function DiscoverPage({ navBarItems }) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("dialog")) {
-      setOpenAdDialog(true);
-    } else if (openAdDialog) {
-      trackGoogleAnalytics(
-        ActionType.SHOW_FIRST_PAGE_AD,
-        CategoryType.INTERACTIVE
-      );
-    }
-  }, []);
-
-  useEffect(() => {
-    if (openAdDialog === false) {
-      sessionStorage.setItem("dialog", "false");
-    }
-  }, [toggleAdDialog]);
 
   useEffect(() => {
     if (sessionStorage.getItem("payment")) {
@@ -167,10 +176,6 @@ export default function DiscoverPage({ navBarItems }) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
-
-  function toggleAdDialog() {
-    setOpenAdDialog(false);
-  }
 
   const scrollToDiscoverRef = useRef(null);
   const [clickedTabOnce, setClickedTabOnce] = useState(false);

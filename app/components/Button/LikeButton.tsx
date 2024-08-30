@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
@@ -17,7 +17,10 @@ export default function LikeButton({ content }: { content: any }) {
   const handleLikeClick = (e) => {
     e.preventDefault();
 
-    if (!isSignedIn.value) return; // Prevent action if not signed in
+    if (!isSignedIn.value) {
+      likeEmail(content.Item, content.isLike);
+      return;
+    }
 
     const newLikeState = !isLiked;
     setLike(newLikeState);
