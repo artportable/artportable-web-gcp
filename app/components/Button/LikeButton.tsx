@@ -8,7 +8,6 @@ import { styles } from "./likebutton.css";
 
 export default function LikeButton({ content }: { content: any }) {
   const [isLiked, setLike] = useState(content.LikedByMe);
-  console.log(isLiked);
 
   const [totalLikes, setTotalLikes] = useState(content.Likes);
   const { likeEmail } = usePostLikeEmail();

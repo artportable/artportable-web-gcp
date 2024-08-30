@@ -27,6 +27,7 @@ import PlanCard from "../app/components/PlanCard/PlanCard";
 import { styles } from "../styles/upgrade.css";
 import PlanSelector from "../app/components/PlanSelector/PlanSelector";
 import { LOGIN_USER } from "../app/redux/actions/userActions";
+import { Locales } from "../app/models/i18n/locales";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 export default function Upgrade({ navBarItems, priceData }) {
@@ -116,7 +117,21 @@ export default function Upgrade({ navBarItems, priceData }) {
                       pd.recurringInterval === paymentInterval
                   );
                   return p ? (
-                    <PlanCard plan={p} key={p.id} setHideTabs={true}></PlanCard>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div>
+                        <PlanCard
+                          plan={p}
+                          key={p.id}
+                          setHideTabs={true}
+                        ></PlanCard>
+                      </div>
+                    </div>
                   ) : (
                     <></>
                   );
