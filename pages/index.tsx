@@ -55,6 +55,8 @@ import DiscoverPromotedArtTab from "../app/components/DiscoverPromotedArt/Discov
 import CataloguedByArtportable from "../app/components/CataloguedByArtportable/CataloguedByArtportable";
 import StoryCarousel from "../app/components/Carousel/StoryCarousel";
 import Typography from "@mui/material/Typography";
+import AdDialog from "../app/components/AdDialog/AdDialog";
+import { Membership } from "../app/models/Membership";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -65,7 +67,8 @@ export default function DiscoverPage({ navBarItems }) {
   ]);
   const s = styles();
   const store = useStore();
-  const { username, socialId, isSignedIn } = useContext(UserContext);
+  const { username, socialId, isSignedIn, membership } =
+    useContext(UserContext);
   const dispatch = useDispatch();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const discoverTab = store.getState()?.discover?.tab ?? 1;
@@ -98,9 +101,10 @@ export default function DiscoverPage({ navBarItems }) {
       setActiveTab(discoverTab);
     }
   }, [isSignedIn]);
+
   useEffect(() => {
     if (sessionStorage.getItem("dialog")) {
-      setOpenAdDialog(false);
+      setOpenAdDialog(true);
     } else if (openAdDialog) {
       trackGoogleAnalytics(
         ActionType.SHOW_FIRST_PAGE_AD,
@@ -108,11 +112,13 @@ export default function DiscoverPage({ navBarItems }) {
       );
     }
   }, []);
+
   useEffect(() => {
     if (openAdDialog === false) {
       sessionStorage.setItem("dialog", "false");
     }
   }, [toggleAdDialog]);
+
   useEffect(() => {
     if (sessionStorage.getItem("payment")) {
       router.reload();
@@ -223,13 +229,31 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!isSignedIn.value && <IndexHero></IndexHero>}
 
+      {isSignedIn.value && (
+        <>
+          {membership.value === Membership.Portfolio ? (
+            <AdDialog
+              openAdDialog={openAdDialog}
+              setOpenAdDialog={setOpenAdDialog}
+              onClose={toggleAdDialog}
+            />
+          ) : (
+            <></>
+          )}
+        </>
+      )}
+
+      <AdDialog
+        openAdDialog={openAdDialog}
+        setOpenAdDialog={setOpenAdDialog}
+        onClose={toggleAdDialog}
+      />
       <RocketCarousel
         forDesktop={!isMobile}
         containerStyle={{
           margin: "50px 0 25px 0",
         }}
       />
-      {/* {!isSignedIn.value && <CataloguedByArtportable></CataloguedByArtportable>} */}
 
       <div className={s.exhibitionBoost}>{t("header:boostedExhibition")}</div>
       <StoryCarousel

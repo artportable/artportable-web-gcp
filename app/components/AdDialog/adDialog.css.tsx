@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { BorderColor } from "@material-ui/icons";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +24,28 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         right: theme.spacing(0),
         top: theme.spacing(0),
+      },
+    },
+
+    offerButton: {
+      zIndex: 9999,
+      position: "absolute",
+      right: "20px",
+      bottom: "0px",
+      color: "#000000",
+      margin: "0 0 10px 10px",
+      fontSize: "9px",
+      padding: "6px",
+      backgroundColor: "#fadf87",
+      borderRadius: "20px",
+      [theme.breakpoints.up("smPlus")]: {
+        right: "40px",
+        bottom: "6px",
+        padding: "10px",
+        fontSize: "13px",
+      },
+      "&:hover": {
+        backgroundColor: "#fce599",
       },
     },
     closeIcon: {

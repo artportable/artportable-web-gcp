@@ -34,7 +34,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import Link from "next/link";
-import { sendInformFollowersEmail } from '../app/utils/emailUtil';
+import { sendInformFollowersEmail } from "../app/utils/emailUtil";
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
@@ -46,8 +46,15 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { username, socialId, isSignedIn, membership, email: userEmail, given_name, family_name } =
-    useContext(UserContext);
+  const {
+    username,
+    socialId,
+    isSignedIn,
+    membership,
+    email: userEmail,
+    given_name,
+    family_name,
+  } = useContext(UserContext);
   const tags = useGetTags();
 
   const [title, setTitle] = useState("");
@@ -193,12 +200,12 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   const informFollowers = (res) => {
     fetch("/api/informFollowers", res)
-    .then(result => {
-      console.log('result', result);
-    })
-    .catch(err => {
-      console.log('err', err);
-    })
+      .then((result) => {
+        console.log("result", result);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
     // fetch("/api/informFollowers", {
     //   body: JSON.stringify({
     //     artwork: res,
@@ -208,7 +215,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     //   },
     //   method: "POST",
     // });
-  }
+  };
 
   const handleSnackbarClose = (
     event?: React.SyntheticEvent,
