@@ -243,11 +243,6 @@ export default function DiscoverPage({ navBarItems }) {
         </>
       )}
 
-      <AdDialog
-        openAdDialog={openAdDialog}
-        setOpenAdDialog={setOpenAdDialog}
-        onClose={toggleAdDialog}
-      />
       <RocketCarousel
         forDesktop={!isMobile}
         containerStyle={{
