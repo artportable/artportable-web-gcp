@@ -36,8 +36,8 @@ export default function IndexHeroRenewed() {
           hide: false,
         }}
         autoplay={{
-          delay: 3500,
-          disableOnInteraction: true,
+          delay: 3000,
+          disableOnInteraction: false,
         }}
       >
         <div className={clsx(s.fullWidthContainer)}>
@@ -88,12 +88,8 @@ export default function IndexHeroRenewed() {
               <div className={s.fullWidthImageTwo}>
                 <a href="https://affordableartfair.com/gallery/artportable/">
                   <img
-                    src={
-                      isTinyDevice
-                        ? "/images/AAF_2.jpg"
-                        : "/images/art_fair.jpg"
-                    }
-                    alt={"slide"}
+                    src={"/images/art_fair.jpg"}
+                    alt={"affordable art fair image"}
                   />
                 </a>
                 <div className={s.headlineContainerTwo}>
