@@ -312,8 +312,12 @@ export const styles = makeStyles((theme: Theme) =>
     "@global": {
       ".swiper-scrollbar": {
         position: "absolute", // Changed from static to absolute
+        color: "rgb(147 111 111 / 0%)",
+        backgroundColor: "rgb(0 0 0 / 0%)",
       },
-      ".swiper-scrollbar-drag": {},
+      ".swiper-scrollbar-drag": {
+        backgroundColor: "#00000024",
+      },
     },
   })
 );
