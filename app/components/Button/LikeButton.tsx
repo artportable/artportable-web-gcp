@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
@@ -8,7 +8,7 @@ import { styles } from "./likebutton.css";
 
 export default function LikeButton({ content }: { content: any }) {
   const [isLiked, setLike] = useState(content.LikedByMe);
-
+  const [isHovered, setHovered] = useState(false); // New state for hover effect
   const [totalLikes, setTotalLikes] = useState(content.Likes);
   const { likeEmail } = usePostLikeEmail();
   const { isSignedIn } = useContext(UserContext);
@@ -34,8 +34,13 @@ export default function LikeButton({ content }: { content: any }) {
 
   return (
     <div>
-      <IconButton className={s.likeButton} onClick={handleLikeClick}>
-        {isLiked ? (
+      <IconButton
+        className={s.likeButton}
+        onClick={handleLikeClick}
+        onMouseEnter={() => setHovered(true)} // Set hover state to true on mouse enter
+        onMouseLeave={() => setHovered(false)} // Set hover state to false on mouse leave
+      >
+        {isLiked || isHovered ? ( // Show filled icon if liked or hovered
           <FavoriteIcon /> // Filled heart icon
         ) : (
           <FavoriteBorderOutlinedIcon /> // Outlined heart icon
