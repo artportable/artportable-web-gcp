@@ -10,10 +10,8 @@ export const styles = makeStyles<Theme, LikeButtonStylesProps>((theme: Theme) =>
     likeButton: {
       position: "relative",
       "& svg": {
-        color: (props) => (props.isLiked ? "#ff8383" : "black"), // Conditionally apply color based on isLiked
-        "&:hover": {
-          color: "#ff8383",
-        },
+        color: "#ff8383",
+        transition: "color 0.9s ease",
       },
     },
   })
