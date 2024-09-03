@@ -45,7 +45,11 @@ export default function IndexHeroRenewed() {
             <div className={s.fullWidthImage}>
               <img
                 width={500}
-                src={"/images/not_logged_in.jpg"}
+                src={
+                  isTinyDevice
+                    ? "/images/not_logged_in.jpg"
+                    : "/images/ulrikaMelin1.jpg"
+                }
                 alt={"konst image"}
               />
               <div className={s.headlineContainer}>
@@ -81,6 +85,36 @@ export default function IndexHeroRenewed() {
                   </Button>
                 </div>
               </div>
+              {!isTinyDevice ? (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div className={s.readMoreButton}>
+                    <a
+                      href="https://artportable.com/profile/@ulrikaart"
+                      style={{ display: "inline" }}
+                    >
+                      Ulrika Melin, {""}
+                    </a>
+                    <a
+                      href="https://artportable.com/art/6501d6bb-4eef-4c84-8804-05910e4b7cd0"
+                      style={{
+                        fontStyle: "italic",
+                        display: "inline",
+                        textDecoration: "underline",
+                      }}
+                    >
+                      "Sälen 1:1"
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </SwiperSlide>
 
