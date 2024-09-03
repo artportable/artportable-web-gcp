@@ -36,7 +36,7 @@ export default function IndexHeroRenewed() {
           hide: false,
         }}
         autoplay={{
-          delay: 5000,
+          delay: 6000,
           disableOnInteraction: false,
         }}
       >
