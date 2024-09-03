@@ -91,6 +91,7 @@ export default function IndexHeroRenewed() {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
+                    color: "#636363",
                   }}
                 >
                   <div className={s.readMoreButton}>
