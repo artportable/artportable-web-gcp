@@ -36,7 +36,7 @@ export default function IndexHeroRenewed() {
           hide: false,
         }}
         autoplay={{
-          delay: 6000,
+          delay: 7000,
           disableOnInteraction: false,
         }}
       >
@@ -91,6 +91,7 @@ export default function IndexHeroRenewed() {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
+                    color: "#636363",
                   }}
                 >
                   <div className={s.readMoreButton}>
