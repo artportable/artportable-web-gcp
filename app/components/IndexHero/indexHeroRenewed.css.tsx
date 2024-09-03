@@ -69,7 +69,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexFlow: "column nowrap",
       justifyContent: "space-around",
-      alignItems: "flex-start",
+      alignItems: "center",
+      [theme.breakpoints.up("sm")]: {
+        alignItems: "flex-start",
+      },
     },
     headline: {
       position: "relative",

@@ -57,6 +57,7 @@ import StoryCarousel from "../app/components/Carousel/StoryCarousel";
 import Typography from "@mui/material/Typography";
 import AdDialog from "../app/components/AdDialog/AdDialog";
 import { Membership } from "../app/models/Membership";
+import IndexHeroRenewed from "../app/components/IndexHero/IndexHeroRenewed";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -232,7 +233,7 @@ export default function DiscoverPage({ navBarItems }) {
         />
         <link rel="canonical" href={`${publicUrl}/${locale}`} />
       </Head>
-      {!isSignedIn.value && <IndexHero></IndexHero>}
+      {!isSignedIn.value && <IndexHeroRenewed></IndexHeroRenewed>}
 
       {isSignedIn.value && (
         <>
