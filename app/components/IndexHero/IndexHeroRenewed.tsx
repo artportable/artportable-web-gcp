@@ -36,7 +36,7 @@ export default function IndexHeroRenewed() {
           hide: false,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
       >
@@ -83,64 +83,21 @@ export default function IndexHeroRenewed() {
               </div>
             </div>
           </SwiperSlide>
-          {!isTinyDevice ? (
-            <SwiperSlide>
-              <div className={s.fullWidthImageTwo}>
-                <a href="https://affordableartfair.com/gallery/artportable/">
-                  <img
-                    src={"/images/art_fair.jpg"}
-                    alt={"affordable art fair image"}
-                  />
-                </a>
-                <div className={s.headlineContainerTwo}>
-                  {isTinyDevice ? (
-                    <>
-                      <Typography variant="h3" className={s.headlineTwo}>
-                        Vi är otroligt glada att representera 12 konstnärer från
-                        Artportable.com under årets Affordable Art Fair. Besök
-                        Artportable under mässan i Stand E1. Läs mer
-                      </Typography>
-                    </>
-                  ) : (
-                    <>
-                      {" "}
-                      <Typography
-                        variant="h3"
-                        className={s.headlineTwo}
-                      ></Typography>
-                    </>
-                  )}
 
-                  {/*    <div className={s.desktopHeaderButtons}>
-                      <Button
-                        className={clsx(
-                          sShared.largeButton,
-                          sShared.yellowButton,
-                          sShared.noBorder
-                        )}
-                        style={{
-                          minWidth: "200px",
-                        }}
-                        size="medium"
-                        // variant="contained"
-                        color="primary"
-                        rounded
-                        onClick={() =>
-                          keycloak.register({
-                            locale: router.locale,
-                            redirectUri: signUpRedirectHref,
-                          })
-                        }
-                      >
-                        {t("signUp")}
-                      </Button>
-                    </div> */}
-                </div>
-              </div>
-            </SwiperSlide>
-          ) : (
-            <></>
-          )}
+          <SwiperSlide>
+            <div className={s.fullWidthImageTwo}>
+              <a href="https://affordableartfair.com/gallery/artportable/">
+                <img
+                  src={
+                    isTinyDevice
+                      ? "/images/desktopAAF.png"
+                      : "/images/art_fair.jpg"
+                  }
+                  alt={"affordable art fair image"}
+                />
+              </a>
+            </div>
+          </SwiperSlide>
         </div>
       </Swiper>
     </div>
