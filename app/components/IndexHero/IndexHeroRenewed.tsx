@@ -36,7 +36,7 @@ export default function IndexHeroRenewed() {
           hide: false,
         }}
         autoplay={{
-          delay: 4000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
       >
@@ -45,7 +45,11 @@ export default function IndexHeroRenewed() {
             <div className={s.fullWidthImage}>
               <img
                 width={500}
-                src={"/images/not_logged_in.jpg"}
+                src={
+                  isTinyDevice
+                    ? "/images/ackeberg2.jpeg"
+                    : "/images/ulrikaMelin1.jpg"
+                }
                 alt={"konst image"}
               />
               <div className={s.headlineContainer}>
@@ -81,6 +85,63 @@ export default function IndexHeroRenewed() {
                   </Button>
                 </div>
               </div>
+              {!isTinyDevice ? (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div className={s.readMoreButton}>
+                    <a
+                      href="https://artportable.com/profile/@ulrikaart"
+                      style={{ display: "inline" }}
+                    >
+                      Ulrika Melin, {""}
+                    </a>
+                    <a
+                      href="https://artportable.com/art/6501d6bb-4eef-4c84-8804-05910e4b7cd0"
+                      style={{
+                        fontStyle: "italic",
+                        display: "inline",
+                        textDecoration: "underline",
+                      }}
+                    >
+                      "Sälen 1:1"
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    color: "white",
+                    fontSize: "14px",
+                  }}
+                >
+                  <div className={s.readMoreButton}>
+                    <a
+                      href="https://artportable.com/profile/@magdalena.ackeberg"
+                      style={{ display: "inline" }}
+                    >
+                      Magdalena Ekblad Ackeberg, {""}
+                    </a>
+                    <a
+                      href="https://artportable.com/art/b6343f99-cf91-4d5a-9a9c-b65c60ec40fe"
+                      style={{
+                        fontStyle: "italic",
+                        display: "inline",
+                        textDecoration: "underline",
+                      }}
+                    >
+                      "At dawn"
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </SwiperSlide>
 

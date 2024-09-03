@@ -56,7 +56,7 @@ export const styles = makeStyles((theme: Theme) =>
       right: "20px",
       display: "flex",
       flexFlow: "column nowrap",
-      justifyContent: "space-around",
+      justifyContent: "center",
       alignItems: "center",
       // textAlign: 'center',
     },
@@ -78,7 +78,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
 
       fontWeight: 600,
-      fontSize: "1.6rem",
+      fontSize: "1.3rem",
       textAlign: "center",
       color: "white",
       zIndex: 20,
@@ -119,7 +119,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     desktopHeaderButtons: {
       display: "flex",
-      // marginTop: '60px',
+      marginTop: "20px",
       zIndex: 20,
       flexFlow: "row nowrap",
       // [theme.breakpoints.up("sm")]: {
@@ -133,18 +133,15 @@ export const styles = makeStyles((theme: Theme) =>
     readMoreButton: {
       position: "absolute",
       bottom: "20px",
-      right: "40px",
+      right: "20px",
       zIndex: 20,
-      "& button": {
-        border: "none",
-        backgroundColor: "rgba(255, 255, 255, .75)",
-      },
+      "& button": {},
       "&:hover": {
         "& button": {
           backgroundColor: "white",
         },
       },
-      display: "none",
+
       [theme.breakpoints.up("smPlus")]: {
         display: "inline",
       },
