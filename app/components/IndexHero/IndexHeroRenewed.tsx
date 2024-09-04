@@ -36,7 +36,7 @@ export default function IndexHeroRenewed() {
           hide: false,
         }}
         autoplay={{
-          delay: 188000,
+          delay: 7000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
