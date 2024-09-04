@@ -44,8 +44,8 @@ export default function IndexHeroRenewed() {
         <div className={clsx(s.fullWidthContainer)}>
           <SwiperSlide>
             <div className={s.fullWidthImage}>
-              <img
-                width={500}
+              <Image
+                layout="fill"
                 src={
                   isTinyDevice
                     ? "/images/ackeberg2.jpeg"
@@ -154,7 +154,8 @@ export default function IndexHeroRenewed() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <img
+                <Image
+                  layout="fill"
                   src={
                     isTinyDevice
                       ? "/images/desktopAAF.png"
