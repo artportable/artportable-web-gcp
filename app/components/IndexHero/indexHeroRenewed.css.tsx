@@ -308,15 +308,80 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: "32px",
       fontFamily: "Gotham !important",
     },
+    headlineCurated: {
+      position: "relative",
+      fontWeight: 400,
+      fontSize: "1.2rem",
+      textAlign: "center",
+      color: "white",
+      zIndex: 20,
+      "& span": {
+        display: "none",
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "2.0rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        textAlign: "center",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "2.4rem",
+        width: "70%",
+      },
+    },
+    fullWidthImageCurated: {
+      position: "relative",
+      width: "100vw",
+      height: "70vh",
+      minHeight: "400px",
+      [theme.breakpoints.up("sm")]: {
+        height: "calc(100vh - 90px)",
+      },
+      "& img": {
+        position: "relative", // Change to relative
+        width: "100%", // Adjust width to ensure it takes the space correctly
+        height: "100%", // Maintain aspect ratio
+        objectFit: "cover",
+        zIndex: 1, // Lower z-index to avoid overlap
+      },
+    },
 
     "@global": {
-      ".swiper-scrollbar": {
-        position: "absolute", // Changed from static to absolute
-        color: "rgb(147 111 111 / 0%)",
-        backgroundColor: "rgb(0 0 0 / 0%)",
+      ".swiper-button-prev, .swiper-button-next": {
+        position: "absolute",
+        transition: "color 0.3s ease",
+        color: "transparent",
+        zIndex: 10,
       },
-      ".swiper-scrollbar-drag": {
-        backgroundColor: "#00000024",
+
+      ".swiper-button-prev": {
+        left: "85%", // Adjust to the left of the center (with proper offset)
+        height: "75vh",
+        width: "6vw",
+      },
+      ".swiper-button-prev::after, .swiper-button-next::after": {
+        fontSize: "3.0rem", // Increase arrow size
+        fontWeight: "bold",
+      },
+      ".swiper-button-next": {
+        left: "94%", // Adjust to the right of the center (with proper offset)
+        width: "6vw",
+        height: "75vh",
+        padding: "8px 16px",
+      },
+
+      // Active state for buttons
+      ".swiper-button-prev:not(.swiper-button-disabled), .swiper-button-next:not(.swiper-button-disabled)":
+        {
+          color: "white", // Active color
+        },
+      // Optional: Hover effect
+      ".swiper-button-prev:hover, .swiper-button-next:hover": {
+        color: "#fadf87", // Hover color
+        transform: "scale(1.1)", // Slightly enlarge on hover
+      },
+      ".swiper-button-prev:active, .swiper-button-next:active": {
+        transform: "scale(0.95)", // Shrink slightly on click for a button press effect
       },
     },
   })
