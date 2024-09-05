@@ -383,6 +383,14 @@ export const styles = makeStyles((theme: Theme) =>
       ".swiper-button-prev:active, .swiper-button-next:active": {
         transform: "scale(0.95)", // Shrink slightly on click for a button press effect
       },
+
+      ".swiper-scrollbar": {
+        backgroundColor: "transparent",
+      },
+
+      ".swiper-scrollbar-drag": {
+        backgroundColor: "#5555552b",
+      },
     },
   })
 );
