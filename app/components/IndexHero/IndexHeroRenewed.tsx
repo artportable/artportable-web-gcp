@@ -18,8 +18,9 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function IndexHeroRenewed() {
+export default function IndexHeroRenewed({ onScrollDown }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const { t } = useTranslation("index");
@@ -83,6 +84,26 @@ export default function IndexHeroRenewed() {
                     }
                   >
                     {t("signUp")}
+                  </Button>
+                </div>
+                <div className={s.desktopHeaderButtons}>
+                  <Button
+                    className={clsx(
+                      sShared.largeButton,
+                      sShared.findArtButton,
+                      sShared.noBorder
+                    )}
+                    style={{
+                      minWidth: "200px",
+                    }}
+                    size="medium"
+                    // variant="contained"
+                    color="primary"
+                    rounded
+                    onClick={onScrollDown}
+                    endIcon={<ArrowDropDownIcon />}
+                  >
+                    {t("findArt")}
                   </Button>
                 </div>
               </div>
@@ -166,140 +187,6 @@ export default function IndexHeroRenewed() {
               </a>
             </div>
           </SwiperSlide>
-          {/* <SwiperSlide>
-            <div className={s.fullWidthImageCurated}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  width: "100vw",
-                  height: "100vh",
-                }}
-              >
-                <div style={{ flex: 1 }}>
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src={
-                      isTinyDevice
-                        ? "/images/akvarell.jpg"
-                        : "/images/ulrikaMelin1.jpg"
-                    }
-                    alt="konst image"
-                  />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <img
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    src={
-                      isTinyDevice
-                        ? "/images/ulrikaMelin1.jpg"
-                        : "/images/ulrikaMelin1.jpg"
-                    }
-                    alt="konst image"
-                  />
-                </div>
-              </div>
-
-              <div className={s.headlineContainer}>
-                <Typography variant="h4" className={s.headlineCurated}>
-                  Kurerad samling
-                </Typography>
-                <Typography variant="h1" className={s.headline}>
-                  Akvarell
-                </Typography>
-                <div className={s.desktopHeaderButtons}>
-                  <Button
-                    className={clsx(
-                      sShared.largeButton,
-                      sShared.yellowButton,
-                      sShared.noBorder
-                    )}
-                    style={{
-                      minWidth: "200px",
-                    }}
-                    size="medium"
-                    // variant="contained"
-                    color="primary"
-                    rounded
-                    onClick={() =>
-                      keycloak.register({
-                        locale: router.locale,
-                        redirectUri: signUpRedirectHref,
-                      })
-                    }
-                  >
-                    {t("signUp")}
-                  </Button>
-                </div>
-              </div>
-              {!isTinyDevice ? (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    color: "#636363",
-                  }}
-                >
-                  <div className={s.readMoreButton}>
-                    <a
-                      href="https://artportable.com/profile/@ulrikaart"
-                      style={{ display: "inline" }}
-                    >
-                      Ulrika Melin, {""}
-                    </a>
-                    <a
-                      href="https://artportable.com/art/6501d6bb-4eef-4c84-8804-05910e4b7cd0"
-                      style={{
-                        fontStyle: "italic",
-                        display: "inline",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      "Sälen 1:1"
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    color: "white",
-                    fontSize: "14px",
-                  }}
-                >
-                  <div className={s.readMoreButton}>
-                    <a
-                      href="https://artportable.com/profile/@magdalena.ackeberg"
-                      style={{ display: "inline" }}
-                    >
-                      Magdalena Ekblad Ackeberg, {""}
-                    </a>
-                    <a
-                      href="https://artportable.com/art/b6343f99-cf91-4d5a-9a9c-b65c60ec40fe"
-                      style={{
-                        fontStyle: "italic",
-                        display: "inline",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      "At dawn"
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-          </SwiperSlide> */}
         </div>
       </Swiper>
     </div>

@@ -13,7 +13,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "12px",
       fontWeight: "normal",
       fontFamily: "gotham",
-      borderRadius: '14px',
+      borderRadius: "14px",
       "&:hover": {
         color: "black",
       },
@@ -26,7 +26,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 3, 0, 3),
       color: "#3d3d4e",
       fontSize: "0.9rem",
-      borderRadius: '18px',
+      borderRadius: "18px",
       [theme.breakpoints.up("sm")]: {
         fontSize: "initial",
       },
@@ -42,7 +42,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 4, 0, 4),
       color: "#3d3d4e",
       fontSize: "1.1rem",
-      borderRadius: '30px',
+      borderRadius: "30px",
       [theme.breakpoints.up("sm")]: {
         height: "60px",
         fontSize: "1.6rem",
@@ -61,6 +61,13 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#F7E2A8",
       },
     },
+    findArtButton: {
+      border: "1px solid #3d3d4e",
+      backgroundColor: "#F7E2A8",
+      "&:hover": {
+        backgroundColor: "#e4ca84",
+      },
+    },
     alwaysYellowButton: {
       border: "1px solid #3d3d4e",
       backgroundColor: "#F7E2A8",
@@ -77,39 +84,39 @@ export const styles = makeStyles((theme: Theme) =>
     },
     blackButton: {
       border: "1px solid black",
-      color: 'white',
+      color: "white",
       backgroundColor: "black",
       "&:hover": {
-        color: 'black',
+        color: "black",
         backgroundColor: "white",
       },
     },
     whiteButton: {
       border: "1px solid black",
-      color: 'black',
+      color: "black",
       backgroundColor: "white",
       "&:hover": {
-        color: 'white',
+        color: "white",
         backgroundColor: "black",
       },
     },
     colorAnimatedButton: {
-      minHeight: '40px',
-      fontSize: '16px',
+      minHeight: "40px",
+      fontSize: "16px",
       fontWeight: 500,
       lineHeight: 1,
       // letterSpacing: '-0.2px',
       border: "none",
-      borderRadius: '100px',
-      color: 'black',
+      borderRadius: "100px",
+      color: "black",
       backgroundColor: "#F2D9D6",
       "&:hover": {
-        color: 'black',
+        color: "black",
         backgroundColor: "#EFC4B7",
       },
     },
     noBorder: {
-      border: 'none',
+      border: "none",
     },
     mediumThickness: {
       fontWeight: 500,
@@ -119,4 +126,4 @@ export const styles = makeStyles((theme: Theme) =>
     //   height: 'auto',
     // }
   })
-)
+);
