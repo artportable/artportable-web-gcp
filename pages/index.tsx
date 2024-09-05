@@ -58,6 +58,7 @@ import Typography from "@mui/material/Typography";
 import AdDialog from "../app/components/AdDialog/AdDialog";
 import { Membership } from "../app/models/Membership";
 import IndexHeroRenewed from "../app/components/IndexHero/IndexHeroRenewed";
+import { block } from "sharp";
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -196,6 +197,23 @@ export default function DiscoverPage({ navBarItems }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const nextSectionRef = useRef(null); // Create a reference to the target div
+
+  const scrollToNextSection = () => {
+    if (nextSectionRef.current) {
+      // Calculate the top position of the element
+      const topPosition =
+        nextSectionRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const headerOffset = 50; // Adjust this value if you have a fixed header (set to 0 if none)
+
+      // Scroll to the top of the target section, minus any offset
+      window.scrollTo({
+        top: topPosition - headerOffset, // Scroll to the top minus header height if needed
+        behavior: "smooth", // Smooth scrolling
+      });
+    }
+  };
+
   return (
     <Main
       noHeaderPadding
@@ -233,7 +251,9 @@ export default function DiscoverPage({ navBarItems }) {
         />
         <link rel="canonical" href={`${publicUrl}/${locale}`} />
       </Head>
-      {!isSignedIn.value && <IndexHeroRenewed></IndexHeroRenewed>}
+      {!isSignedIn.value && (
+        <IndexHeroRenewed onScrollDown={scrollToNextSection} />
+      )}
 
       {isSignedIn.value && (
         <>
@@ -248,7 +268,7 @@ export default function DiscoverPage({ navBarItems }) {
           )}
         </>
       )}
-
+      <div ref={nextSectionRef}></div>
       <RocketCarousel
         forDesktop={!isMobile}
         containerStyle={{
@@ -256,13 +276,13 @@ export default function DiscoverPage({ navBarItems }) {
         }}
       />
 
-      <div className={s.exhibitionBoost}>{t("header:boostedExhibition")}</div>
+      {/*   <div className={s.exhibitionBoost}>{t("header:boostedExhibition")}</div>
       <StoryCarousel
         forDesktop={!isMobile}
         containerStyle={{
           margin: 0,
         }}
-      />
+      /> */}
 
       <>
         {!isSignedIn.value &&

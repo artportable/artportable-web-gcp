@@ -20,6 +20,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Divider from "@mui/material/Divider";
 import { ListItemButton } from "@mui/material";
+import StoryCarousel from "../Carousel/StoryCarousel";
 
 interface DiscoverTrendingArtTabProps {
   username?: string;
@@ -567,6 +568,13 @@ const DiscoverTrendingArtTabDesktop = memo(
                     {t("discover:popularProfiles")}
                   </Typography>
                   <ArtistCarousel forDesktop={true} />
+
+                  <StoryCarousel
+                    forDesktop={true}
+                    containerStyle={{
+                      margin: 0,
+                    }}
+                  />
                 </div>
               ),
               position: 2,
