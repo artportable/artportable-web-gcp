@@ -19,8 +19,11 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "black",
       justifyContent: "center",
       alignItems: "center",
-
+      fontSize: "12px",
       height: "25px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
     },
 
     logoContainer: {
