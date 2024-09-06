@@ -49,7 +49,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/ackeberg2.jpeg"
+                    ? "/images/ackeberg3.jpg"
                     : "/images/barbaramansson.jpg"
                 }
                 alt={"konst"}
@@ -89,7 +89,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.desktopHeaderButtons}>
                   <Button
                     className={clsx(
-                      sShared.largeButton,
+                      sShared.largeButtonFindArt,
                       sShared.findArtButton,
                       sShared.noBorder
                     )}
@@ -126,7 +126,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textDecoration: "underline",
                       }}
                     >
                       "Parallelismi"
@@ -155,10 +154,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textDecoration: "underline",
                       }}
                     >
-                      "At dawn"
+                      "On my way home"
                     </a>
                   </div>
                 </div>
