@@ -346,6 +346,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
+    arrowDown: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+
     "@global": {
       ".swiper-button-prev, .swiper-button-next": {
         position: "absolute",

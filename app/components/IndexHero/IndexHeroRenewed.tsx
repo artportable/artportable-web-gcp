@@ -18,7 +18,7 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 
 export default function IndexHeroRenewed({ onScrollDown }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -37,7 +37,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 8000,
+          delay: 10000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -52,7 +52,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     ? "/images/ackeberg2.jpeg"
                     : "/images/ulrikaMelin1.jpg"
                 }
-                alt={"konst image"}
+                alt={"konst"}
               />
               <div className={s.headlineContainer}>
                 <Typography variant="h1" className={s.headline}>
@@ -90,20 +90,18 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <Button
                     className={clsx(
                       sShared.largeButton,
-                      sShared.findArtButton,
+
                       sShared.noBorder
                     )}
-                    style={{
-                      minWidth: "200px",
-                    }}
                     size="medium"
-                    // variant="contained"
                     color="primary"
                     rounded
                     onClick={onScrollDown}
-                    endIcon={<ArrowDropDownIcon />}
                   >
-                    {t("findArt")}
+                    <div className={s.arrowDown}>
+                      {t("findArt")}
+                      <KeyboardDoubleArrowDownIcon />
+                    </div>
                   </Button>
                 </div>
               </div>
