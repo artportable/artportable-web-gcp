@@ -50,7 +50,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 src={
                   isTinyDevice
                     ? "/images/ackeberg2.jpeg"
-                    : "/images/ulrikaMelin1.jpg"
+                    : "/images/barbaramansson.jpg"
                 }
                 alt={"konst"}
               />
@@ -90,11 +90,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <Button
                     className={clsx(
                       sShared.largeButton,
-
+                      sShared.findArtButton,
                       sShared.noBorder
                     )}
                     size="medium"
-                    color="primary"
                     rounded
                     onClick={onScrollDown}
                   >
@@ -111,25 +110,26 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    color: "#636363",
+                    color: "black",
+                    fontSize: "10px",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/profile/@ulrikaart"
+                      href="https://artportable.com/art/b0c18fa3-b96d-423c-ad0a-2bc9ec6dd6ab"
                       style={{ display: "inline" }}
                     >
-                      Ulrika Melin, {""}
+                      Barbara Månsson, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/6501d6bb-4eef-4c84-8804-05910e4b7cd0"
+                      href="https://artportable.com/art/b0c18fa3-b96d-423c-ad0a-2bc9ec6dd6ab"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                         textDecoration: "underline",
                       }}
                     >
-                      "Sälen 1:1"
+                      "Parallelismi"
                     </a>
                   </div>
                 </div>

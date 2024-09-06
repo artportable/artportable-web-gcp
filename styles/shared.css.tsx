@@ -62,11 +62,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     findArtButton: {
-      border: "1px solid #3d3d4e",
-      backgroundColor: "#F7E2A8",
-      "&:hover": {
-        backgroundColor: "#e4ca84",
-      },
+      color: "white",
+      "&:hover": {},
     },
     alwaysYellowButton: {
       border: "1px solid #3d3d4e",
