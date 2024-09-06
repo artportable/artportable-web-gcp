@@ -53,6 +53,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     : "/images/barbaramansson.jpg"
                 }
                 alt={"konst"}
+                objectFit="fill"
               />
               <div className={s.headlineContainer}>
                 <Typography variant="h1" className={s.headline}>
@@ -144,13 +145,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/profile/@magdalena.ackeberg"
+                      href="https://artportable.com/art/af11206f-9a8b-43f3-9e57-42d6accc6119"
                       style={{ display: "inline" }}
                     >
                       Magdalena Ekblad Ackeberg, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/b6343f99-cf91-4d5a-9a9c-b65c60ec40fe"
+                      href="https://artportable.com/art/af11206f-9a8b-43f3-9e57-42d6accc6119"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
