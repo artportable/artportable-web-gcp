@@ -49,10 +49,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/ackeberg2.jpeg"
-                    : "/images/ulrikaMelin1.jpg"
+                    ? "/images/ackeberg3.jpg"
+                    : "/images/barbaramansson.jpg"
                 }
                 alt={"konst"}
+                objectFit="fill"
               />
               <div className={s.headlineContainer}>
                 <Typography variant="h1" className={s.headline}>
@@ -89,12 +90,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.desktopHeaderButtons}>
                   <Button
                     className={clsx(
-                      sShared.largeButton,
-
+                      sShared.largeButtonFindArt,
+                      sShared.findArtButton,
                       sShared.noBorder
                     )}
                     size="medium"
-                    color="primary"
                     rounded
                     onClick={onScrollDown}
                   >
@@ -111,25 +111,25 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    color: "#636363",
+                    color: "black",
+                    fontSize: "10px",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/profile/@ulrikaart"
+                      href="https://artportable.com/art/b0c18fa3-b96d-423c-ad0a-2bc9ec6dd6ab"
                       style={{ display: "inline" }}
                     >
-                      Ulrika Melin, {""}
+                      Barbara Månsson, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/6501d6bb-4eef-4c84-8804-05910e4b7cd0"
+                      href="https://artportable.com/art/b0c18fa3-b96d-423c-ad0a-2bc9ec6dd6ab"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textDecoration: "underline",
                       }}
                     >
-                      "Sälen 1:1"
+                      "Parallelismi"
                     </a>
                   </div>
                 </div>
@@ -145,20 +145,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/profile/@magdalena.ackeberg"
+                      href="https://artportable.com/art/af11206f-9a8b-43f3-9e57-42d6accc6119"
                       style={{ display: "inline" }}
                     >
                       Magdalena Ekblad Ackeberg, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/b6343f99-cf91-4d5a-9a9c-b65c60ec40fe"
+                      href="https://artportable.com/art/af11206f-9a8b-43f3-9e57-42d6accc6119"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textDecoration: "underline",
                       }}
                     >
-                      "At dawn"
+                      "On my way home"
                     </a>
                   </div>
                 </div>

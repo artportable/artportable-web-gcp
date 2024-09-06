@@ -62,10 +62,29 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     findArtButton: {
-      border: "1px solid #3d3d4e",
-      backgroundColor: "#F7E2A8",
+      color: "white",
+      [theme.breakpoints.up("sm")]: {
+        height: "60px",
+        fontSize: "1.6rem",
+      },
+      "&:hover": {},
+    },
+    largeButtonFindArt: {
+      minWidth: "100px",
+      height: "36px",
+      minHeight: "36px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 3, 0, 3),
+
+      fontSize: "0.9rem",
+      borderRadius: "18px",
+      color: "white",
+      [theme.breakpoints.up("smPlus")]: {
+        color: "black",
+      },
       "&:hover": {
-        backgroundColor: "#e4ca84",
+        color: "#252525",
+        backgroundColor: "transparent",
       },
     },
     alwaysYellowButton: {
