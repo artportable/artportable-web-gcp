@@ -40,8 +40,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
-  const [recaptchaToken, setRecaptchaToken] = useState(null); // Store recaptcha token
-
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const { email, phone, given_name, family_name, isSignedIn } =
     useContext(UserContext);
 
@@ -83,11 +82,12 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
     setCustomMessage("");
     setSignUpRedirectHref("");
     setMessageResponse("");
-    setRecaptchaToken(null); // Reset reCAPTCHA token
+    setRecaptchaToken(null);
   };
 
   return (
     <Dialog
+      fullScreen
       open={open}
       onClose={onCloseClick}
       maxWidth={messageResponse ? "sm" : "md"}
@@ -181,7 +181,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
               </Grid>
             </Grid>
 
-            {/* Add ReCAPTCHA widget */}
+            {/* ReCAPTCHA widget */}
             <ReCAPTCHA
               sitekey={google_captcha}
               onChange={(token) => setRecaptchaToken(token)}
