@@ -25,7 +25,6 @@ import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import { styles } from "./artworkListItem.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
-import be from "date-fns/locale/be";
 
 export default function ArtworkListItem({
   artwork,
