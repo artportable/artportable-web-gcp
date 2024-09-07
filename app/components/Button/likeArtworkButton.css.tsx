@@ -9,6 +9,9 @@ export const styles = makeStyles<Theme, LikeButtonStylesProps>((theme: Theme) =>
       top: "5px",
       right: "10px",
       fontSize: "0.85rem",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
       "& button": {
         padding: "0px",
         borderRadius: "50%",

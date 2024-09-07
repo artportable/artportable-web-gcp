@@ -32,19 +32,21 @@ export default function LikeArtworkButton({ artwork }: { artwork: any }) {
 
   return (
     <div className={s.likeButtonParent}>
-      <IconButton
-        className={s.likeButton}
-        onClick={handleLike}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        {isLiked || isHovered ? (
-          <FavoriteIcon />
-        ) : (
-          <FavoriteBorderOutlinedIcon />
-        )}
-      </IconButton>
-      <span>{totalLikes}</span>
+      <div>
+        <IconButton
+          className={s.likeButton}
+          onClick={handleLike}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          {isLiked || isHovered ? (
+            <FavoriteIcon />
+          ) : (
+            <FavoriteBorderOutlinedIcon />
+          )}
+        </IconButton>
+      </div>
+      <div>{totalLikes}</div>
     </div>
   );
 }
