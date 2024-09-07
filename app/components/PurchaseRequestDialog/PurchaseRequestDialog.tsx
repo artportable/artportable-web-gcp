@@ -6,6 +6,7 @@ import {
   FormControlLabel,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
 import Grid from "@mui/material/Grid";
 import IconButton from "@material-ui/core/IconButton";
@@ -24,7 +25,8 @@ import {
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import ReCAPTCHA from "react-google-recaptcha"; // Import reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha";
+import { theme } from "../../../styles/theme";
 
 export default function PurchaseRequestDialog({ open, onClose, props }) {
   const { t } = useTranslation(["common", "art", "forms"]);
@@ -33,7 +35,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
   const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const google_captcha = process.env.NEXT_PUBLIC_CAPTCHA_KEY;
-
+  const isTinyDevice = useMediaQuery(theme.breakpoints.up("smPlus"));
   const [messageResponse, setMessageResponse] = useState("");
   const [customMessage, setCustomMessage] = useState("");
   const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
@@ -87,7 +89,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
 
   return (
     <Dialog
-      fullScreen
+      fullScreen={isTinyDevice ? false : true}
       open={open}
       onClose={onCloseClick}
       maxWidth={messageResponse ? "sm" : "md"}
