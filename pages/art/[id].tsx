@@ -398,7 +398,7 @@ export default function ArtworkPage(props) {
                           </Button>
                         </RWebShare>
                       </div>
-                      {artwork?.data?.Owner?.SocialId && (
+                      {/*     {artwork?.data?.Owner?.SocialId && (
                         <div
                           title={t("common:sendMessage")}
                           className={s.chatButtonContainer}
@@ -422,7 +422,7 @@ export default function ArtworkPage(props) {
                             <MessageRoundedIcon style={{ fontSize: "23px" }} />
                           </IconButton>
                         </div>
-                      )}
+                      )} */}
                     </div>
                     <LikeArtworkButton
                       artwork={artwork?.data}
