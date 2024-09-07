@@ -46,7 +46,7 @@ export default function LikeArtworkButton({ artwork }: { artwork: any }) {
           )}
         </IconButton>
       </div>
-      <div>
+      <div style={{ marginLeft: "2px" }}>
         <span>{totalLikes}</span>
       </div>
     </div>

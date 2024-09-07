@@ -255,10 +255,7 @@ export default function ArtworkListItem({
           </Link>
           <div className={s.price}>
             {artwork.SoldOut ? (
-              <>
-                <div className={s.soldMark} />
-                {t("common:words.sold")}{" "}
-              </>
+              <>{t("common:words.sold")} </>
             ) : artwork.Price && artwork.Price != "0" ? (
               formattedPrice.replace(/,/g, "")
             ) : (
