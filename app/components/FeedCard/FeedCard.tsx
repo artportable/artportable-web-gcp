@@ -34,6 +34,7 @@ import {
   useGetUserProfileSummary,
   useGetUserProfilePicture,
 } from "../../hooks/dataFetching/UserProfile";
+import LikeArtworkButton from "../Button/LikeArtworkButton";
 interface FeedCardProps {
   content: FeedItem;
   onLikeClick: Function;
@@ -53,6 +54,9 @@ function FeedCard({ content, onLikeClick }: FeedCardProps) {
   const userProfileSummary = useGetUserProfileSummary(content?.User);
   const [isLoading, setIsLoading] = useState(true);
   const [isSoldOut, setIsSoldOut] = useState(false);
+  useEffect(() => {
+    console.log(content);
+  }, []);
 
   useEffect(() => {
     if (userProfileSummary) {
@@ -187,31 +191,11 @@ function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-        <div>
-          <Button
-            className={s.likeButton}
-            startIcon={
-              isLiked ? (
-                <FavoriteIcon color="primary" />
-              ) : (
-                <FavoriteBorderOutlinedIcon color="primary" />
-              )
-            }
-            onClick={() => {
-              onLikeClick(artworkData, !isLiked);
-              setLike(!isLiked);
-              setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
-            }}
-          >
-            {/*{capitalizeFirst(t("common:like"))}*/}
-          </Button>
-          <div className={s.likeInline}>{totalLikes > 0 ? totalLikes : ""}</div>
-        </div>
+        <LikeArtworkButton artwork={content}></LikeArtworkButton>
         <div className={s.pricePurchase}>
           <div className={s.priceTag}>
             {artworkData?.SoldOut ? (
               <>
-                <div className={s.soldMark}></div>
                 <div>{t("common:words.sold")} </div>
               </>
             ) : artworkData?.Price && artworkData?.Price != "0" ? (

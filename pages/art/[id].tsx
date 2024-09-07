@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 import Main from "../../app/components/Main/Main";
 import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
 import {
-  Badge,
   Box,
   IconButton,
   Paper,
@@ -25,7 +24,6 @@ import {
 import { styles } from "../../styles/art.css";
 import { capitalizeFirst, formatUserName } from "../../app/utils/util";
 import Button from "../../app/components/Button/Button";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import SendIcon from "@material-ui/icons/Send";
 import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
@@ -40,9 +38,6 @@ import {
 } from "../../app/utils/googleAnalytics";
 import { UrlObject } from "url";
 import PurchaseRequestDialog from "../../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
-import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import usePostLikeEmail from "../../app/hooks/dataFetching/usePostLikeEmail";
-import usePostFollow from "../../app/hooks/dataFetching/usePostFollow";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import { RWebShare } from "react-web-share";
 
@@ -66,7 +61,8 @@ import DialogActions from "@mui/material/DialogActions";
 
 import { Select } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import { useGetProfileUser } from "../../app/hooks/dataFetching/useGetProfileUser";
+
+import LikeArtworkButton from "../../app/components/Button/LikeArtworkButton";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -86,13 +82,6 @@ export default function ArtworkPage(props) {
   const token = useContext(TokenContext);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
-  const { likeEmail } = usePostLikeEmail();
-  const { follow } = usePostFollow();
-
-  const [isFollowed, setFollow] = useState(artwork?.data?.Owner?.FollowedByMe);
-  const [isLiked, setIsLiked] = useState(artwork?.data?.LikedByMe);
-
-  const { isSignedIn } = useContext(UserContext);
   const [artworkOwner, setArtworkOwner] = useState(
     artwork?.data?.Owner?.Username
   );
@@ -142,14 +131,6 @@ export default function ArtworkPage(props) {
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
 
-  useEffect(() => {
-    setFollow(artwork?.data?.Owner?.FollowedByMe);
-  }, [artwork?.data?.Owner?.FollowedByMe]);
-
-  useEffect(() => {
-    setIsLiked(artwork?.data?.LikedByMe);
-  }, [artwork?.data]);
-
   function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
   }
@@ -157,34 +138,6 @@ export default function ArtworkPage(props) {
   function purchaseRequest(originalRedirect?: UrlObject | string) {
     togglePurchaseRequestDialog();
   }
-
-  function toggleFollow() {
-    redirectIfNotLoggedIn();
-    follow(artwork.data.Owner.SocialId, !isFollowed, socialId.value, token);
-    setFollow(!isFollowed);
-  }
-
-  function likeArtwork(isLike) {
-    likeEmail(artwork.data, isLike);
-  }
-
-  function toggleLike(event) {
-    event.stopPropagation();
-    likeArtwork(!isLiked);
-    setIsLiked(!isLiked);
-    !isLiked ? artwork.data.Likes++ : artwork.data.Likes--;
-    !isLiked
-      ? trackGoogleAnalytics(ActionType.LIKE_ARTWORK, CategoryType.INTERACTIVE)
-      : null;
-  }
-
-  const likedFilled = !isSignedIn.value ? (
-    <FavoriteBorderOutlinedIcon color="primary" />
-  ) : isLiked ? (
-    <FavoriteIcon color="primary" />
-  ) : (
-    <FavoriteBorderOutlinedIcon color="primary" />
-  );
 
   const artworkUrl = `https://artportable.com/art/${artwork?.data?.Id}`;
   const shareArtworkTitle = artwork?.data?.Title
@@ -470,31 +423,10 @@ export default function ArtworkPage(props) {
                           </IconButton>
                         </div>
                       )}
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          flexDirection: "row",
-                        }}
-                      >
-                        <div>
-                          <IconButton
-                            className={s.likeButton}
-                            disableRipple
-                            disableFocusRipple
-                            onClick={toggleLike}
-                            aria-label="like button"
-                          >
-                            {likedFilled}
-                          </IconButton>
-                        </div>
-                        <div className={s.likeCounter}>
-                          {artwork.data.Likes > 0 && (
-                            <div>{artwork.data.Likes}</div>
-                          )}
-                        </div>
-                      </div>
                     </div>
+                    <LikeArtworkButton
+                      artwork={artwork?.data}
+                    ></LikeArtworkButton>
                   </div>
                 </div>
 
