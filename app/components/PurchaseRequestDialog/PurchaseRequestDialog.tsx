@@ -6,6 +6,7 @@ import {
   FormControlLabel,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
 import Grid from "@mui/material/Grid";
 import IconButton from "@material-ui/core/IconButton";
@@ -24,7 +25,8 @@ import {
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
 import { UserContext } from "../../contexts/user-context";
-import ReCAPTCHA from "react-google-recaptcha"; // Import reCAPTCHA
+import ReCAPTCHA from "react-google-recaptcha";
+import { theme } from "../../../styles/theme";
 
 export default function PurchaseRequestDialog({ open, onClose, props }) {
   const { t } = useTranslation(["common", "art", "forms"]);
@@ -33,15 +35,14 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
   const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const google_captcha = process.env.NEXT_PUBLIC_CAPTCHA_KEY;
-
+  const isTinyDevice = useMediaQuery(theme.breakpoints.up("smPlus"));
   const [messageResponse, setMessageResponse] = useState("");
   const [customMessage, setCustomMessage] = useState("");
   const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
-  const [recaptchaToken, setRecaptchaToken] = useState(null); // Store recaptcha token
-
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const { email, phone, given_name, family_name, isSignedIn } =
     useContext(UserContext);
 
@@ -83,11 +84,12 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
     setCustomMessage("");
     setSignUpRedirectHref("");
     setMessageResponse("");
-    setRecaptchaToken(null); // Reset reCAPTCHA token
+    setRecaptchaToken(null);
   };
 
   return (
     <Dialog
+      fullScreen={isTinyDevice ? false : true}
       open={open}
       onClose={onCloseClick}
       maxWidth={messageResponse ? "sm" : "md"}
@@ -181,7 +183,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
               </Grid>
             </Grid>
 
-            {/* Add ReCAPTCHA widget */}
+            {/* ReCAPTCHA widget */}
             <ReCAPTCHA
               sitekey={google_captcha}
               onChange={(token) => setRecaptchaToken(token)}
