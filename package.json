@@ -54,6 +54,7 @@
     "react-cropper": "^2.1.7",
     "react-dom": "^17.0.2",
     "react-facebook-pixel": "^1.0.4",
+    "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.42.1",
     "react-material-ui-carousel": "^2.2.4",
     "react-redux": "^7.2.2",
