@@ -25,6 +25,7 @@ import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import { styles } from "./artworkListItem.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
+import LikeArtworkButton from "../Button/LikeArtworkButton";
 
 export default function ArtworkListItem({
   artwork,
@@ -269,19 +270,7 @@ export default function ArtworkListItem({
           <div style={{ fontSize: "12px", fontStyle: "italic" }}>
             {artwork?.Title}
           </div>
-          <div className={s.flexLikeCount}>
-            <IconButton
-              aria-label="like"
-              className={s.likeButton}
-              disableRipple
-              onClick={toggleLike}
-            >
-              {likedFilled}
-            </IconButton>
-            <div className={s.likeCounter}>
-              {artwork.Likes > 0 ? artwork.Likes : ""}
-            </div>
-          </div>
+          <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
         </div>
       </div>
     </div>
