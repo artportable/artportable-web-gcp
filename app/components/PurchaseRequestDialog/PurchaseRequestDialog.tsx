@@ -32,6 +32,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const google_captcha = process.env.NEXT_PUBLIC_CAPTCHA_KEY;
 
   const [messageResponse, setMessageResponse] = useState("");
   const [customMessage, setCustomMessage] = useState("");
@@ -182,7 +183,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
 
             {/* Add ReCAPTCHA widget */}
             <ReCAPTCHA
-              sitekey="6LcJCDkqAAAAAPuGcN1YjJYD5FflFYoE53k27Jld"
+              sitekey={google_captcha}
               onChange={(token) => setRecaptchaToken(token)}
             />
 
