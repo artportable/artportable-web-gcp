@@ -34,7 +34,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const google_captcha = process.env.NEXT_PUBLIC_CAPTCHA_KEY;
+  const google_captcha = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("smPlus"));
   const [messageResponse, setMessageResponse] = useState("");
   const [customMessage, setCustomMessage] = useState("");
