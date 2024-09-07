@@ -569,12 +569,12 @@ const DiscoverTrendingArtTabDesktop = memo(
                   </Typography>
                   <ArtistCarousel forDesktop={true} />
 
-                  <StoryCarousel
+                  {/*    <StoryCarousel
                     forDesktop={true}
                     containerStyle={{
                       margin: 0,
                     }}
-                  />
+                  /> */}
                 </div>
               ),
               position: 2,

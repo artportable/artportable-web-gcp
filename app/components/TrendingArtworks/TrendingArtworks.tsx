@@ -1,5 +1,5 @@
 import { styles } from "./trendingArtworks.css";
-import { styles as sharedStyles } from '../../../styles/shared.css'
+import { styles as sharedStyles } from "../../../styles/shared.css";
 import { useTranslation } from "next-i18next";
 import React, { useContext, useEffect, useState } from "react";
 import {
@@ -30,6 +30,7 @@ import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import axios from "axios";
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
 import { useGetUserProfileSummary } from "../../hooks/dataFetching/UserProfile";
+import LikeArtworkButton from "../Button/LikeArtworkButton";
 
 export default function TrendingArtworks({ artwork }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -169,7 +170,7 @@ export default function TrendingArtworks({ artwork }) {
                 className={s.image}
                 src={`${bucketUrl}${artwork?.PrimaryFile.Name}`}
                 key={artwork?.PrimaryFile}
-                alt={`${artwork?.Title ? artwork?.Title : 'artwork'}`}
+                alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
               />
             </div>
             {artwork.SecondaryFile && (
@@ -194,27 +195,7 @@ export default function TrendingArtworks({ artwork }) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-        <div className={s.likeCountContainer}>
-          <Button
-            aria-label="like button"
-            className={s.likeButton}
-            type="button"
-            startIcon={
-              isLiked ? (
-                <FavoriteIcon color="primary" />
-              ) : (
-                <FavoriteBorderOutlinedIcon color="primary" />
-              )
-            }
-            onClick={(event) => {
-              event.preventDefault();
-              likePost(artwork, !isLiked);
-              setLike(!isLiked);
-              setTotalLikes(!isLiked ? totalLikes + 1 : totalLikes - 1);
-            }}
-          ></Button>
-          <div className={s.likeInline}>{totalLikes > 0 ? totalLikes : ""}</div>
-        </div>
+        <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
         <div className={s.pricePurchase}>
           <div className={s.priceTag}>
             {artworkData?.SoldOut ? (
