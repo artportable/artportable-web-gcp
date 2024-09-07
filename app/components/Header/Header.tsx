@@ -148,7 +148,13 @@ export default function Header({ navBarItems }) {
 
   return (
     <>
-      <AppBar classes={{ root: s.toolbar }} elevation={0}>
+      <AppBar
+        elevation={0}
+        style={{
+          backgroundColor: "#fdf9f7",
+          borderBottom: "1px solid #cecece6b",
+        }}
+      >
         {!isSignedIn.value && (
           <>
             <div className={s.trialBanner}>

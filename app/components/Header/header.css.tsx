@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: "var(--header-color)",
+      backgroundColor: "var(--background-color)",
       // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
       // width: 'calc(100% + 10px)',
     },
