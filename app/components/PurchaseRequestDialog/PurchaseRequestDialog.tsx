@@ -147,6 +147,7 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
                   {t("forms:aboutRequests")}
                 </Typography>
               </Grid>
+
               <Grid container item xs={12} sm={6} direction="column">
                 <Typography
                   variant="h4"
@@ -184,16 +185,22 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
             </Grid>
 
             {/* ReCAPTCHA widget */}
-            <ReCAPTCHA
-              sitekey={google_captcha}
-              onChange={(token) => setRecaptchaToken(token)}
-            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "20px",
+              }}
+            >
+              <ReCAPTCHA
+                sitekey={google_captcha}
+                onChange={(token) => setRecaptchaToken(token)}
+              />
+            </div>
 
             <FormGroup style={{ alignItems: "center" }}>
               <Button
                 variant="contained"
-                color="primary"
-                disableElevation
                 rounded
                 className={s.messageButton}
                 onClick={onPurchaseRequestClick}
