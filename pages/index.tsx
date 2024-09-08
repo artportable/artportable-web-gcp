@@ -138,15 +138,6 @@ export default function DiscoverPage({ navBarItems }) {
   }, []);
   const { locale } = router;
 
-  // const siteId = 1968208;
-  // const hotjarVersion = 6;
-
-  // Hotjar.init(siteId, hotjarVersion);
-
-  // Hotjar.init(siteId, hotjarVersion, {
-  //   debug: true,
-  // });
-
   const useWideLayout =
     activeTab === 0 ||
     activeTab === 1 ||
@@ -180,19 +171,6 @@ export default function DiscoverPage({ navBarItems }) {
   };
 
   const scrollToDiscoverRef = useRef(null);
-  const [clickedTabOnce, setClickedTabOnce] = useState(false);
-
-  // useEffect(() => {
-  //   if (scrollToDiscoverRef.current && activeTab === 0 && clickedTabOnce) {
-  //     setTimeout(() => {
-  //       scrollToDiscoverRef.current.scrollIntoView();
-  //       window.scrollBy(0, -70);
-  //     }, 0);
-  //   }
-  //   if (activeTab !== 0) {
-  //     setClickedTabOnce(true);
-  //   }
-  // }, [activeTab]);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
