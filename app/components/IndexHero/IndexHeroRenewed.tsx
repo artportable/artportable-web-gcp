@@ -50,7 +50,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 src={
                   isTinyDevice
                     ? "/images/ackeberg3.jpg"
-                    : "/images/barbaramansson.jpg"
+                    : "/images/andersOlsson.jpeg"
                 }
                 alt={"konst"}
                 objectFit="fill"
@@ -112,25 +112,25 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    color: "black",
-                    fontSize: "10px",
+                    color: "white",
+                    fontSize: "11px",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/art/b0c18fa3-b96d-423c-ad0a-2bc9ec6dd6ab"
+                      href="https://artportable.com/art/ac6cf305-9b60-4b51-b75b-afc3a765ca80"
                       style={{ display: "inline" }}
                     >
-                      Barbara Månsson, {""}
+                      Anders Olsson, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/b0c18fa3-b96d-423c-ad0a-2bc9ec6dd6ab"
+                      href="https://artportable.com/art/ac6cf305-9b60-4b51-b75b-afc3a765ca80"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                       }}
                     >
-                      "Parallelismi"
+                      "Regn"
                     </a>
                   </div>
                 </div>
