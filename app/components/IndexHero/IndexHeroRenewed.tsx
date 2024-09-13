@@ -37,7 +37,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 10000,
+          delay: 111110000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -49,7 +49,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/ackeberg3.jpg"
+                    ? "/images/olejensen.jpeg"
                     : "/images/andersOlsson.jpeg"
                 }
                 alt={"konst"}
@@ -146,19 +146,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/art/af11206f-9a8b-43f3-9e57-42d6accc6119"
+                      href="https://artportable.com/art/f9312eae-cdb7-4570-9351-83382246221c"
                       style={{ display: "inline" }}
                     >
-                      Magdalena Ekblad Ackeberg, {""}
+                      Ole Jensen, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/af11206f-9a8b-43f3-9e57-42d6accc6119"
+                      href="https://artportable.com/art/f9312eae-cdb7-4570-9351-83382246221c"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                       }}
                     >
-                      "On my way home"
+                      "Röd lada"
                     </a>
                   </div>
                 </div>

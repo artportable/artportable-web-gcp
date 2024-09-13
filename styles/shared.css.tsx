@@ -80,7 +80,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "18px",
       color: "white",
       [theme.breakpoints.up("smPlus")]: {
-        color: "black",
+        color: "white",
       },
       "&:hover": {
         color: "#252525",
