@@ -138,22 +138,6 @@ export default function Footer() {
         </Typography>
       </div>
 
-      <div className={clsx(s.hide2, s.flexItem)}>
-        <Typography
-          variant="subtitle2"
-          component="div"
-          className={clsx(s.hereWeAreLink, s.links)}
-        >
-          {t("hereWeAre")}
-        </Typography>
-        <Typography variant="body2" component="div">
-          Åsögatan 176
-        </Typography>
-        <Typography variant="body2" component="div">
-          116 32 Stockholm
-        </Typography>
-      </div>
-
       <div className={clsx(s.getInTouch, s.flexItem)}>
         <Typography variant="subtitle2" component="div" className={s.links}>
           {t("getInTouch")}
@@ -180,32 +164,13 @@ export default function Footer() {
         </Typography>
         <div className={s.flexSocialMedia}>
           <Link href="https://www.instagram.com/artportable/">
-            <a>
-              <img
-                src={"/images/instagram.svg"}
-                alt="Link to artportables instagram"
-                title="instagram logo"
-              />
-            </a>
+            <a>Instagram</a>
           </Link>
           <Link href="https://www.facebook.com/artportable/">
-            <a>
-              <img
-                src={"/images/facebook.svg"}
-                alt="Link to artportables facebook"
-                title="facebook logo"
-              />
-            </a>
+            <a>Facebook</a>
           </Link>
           <Link href="https://www.tiktok.com/@artportable">
-            <a>
-              <img
-                className={s.tiktok}
-                src={"/images/TIK-TOK.svg"}
-                alt="Link to artportables tiktok"
-                title="tiktok logo"
-              />
-            </a>
+            <a>Tiktok</a>
           </Link>
         </div>
       </div>
