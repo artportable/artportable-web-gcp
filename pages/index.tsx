@@ -296,14 +296,15 @@ export default function DiscoverPage({ navBarItems }) {
             >
               <Tab
                 className={s.text}
-                label={t("discover:topArt")}
-                {...a11yProps(t("discover:topArt"))}
-              />
-              <Tab
-                className={s.text}
                 label={t("discover:highlights")}
                 {...a11yProps(t("discover:artists"))}
               />
+              <Tab
+                className={s.text}
+                label={t("discover:topArt")}
+                {...a11yProps(t("discover:topArt"))}
+              />
+
               <Tab
                 className={s.text}
                 label={t("discover:Hus & Hem")}
@@ -343,6 +344,18 @@ export default function DiscoverPage({ navBarItems }) {
           {!loading && (
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
+                <DiscoverHighLightsTab
+                  username={username.value}
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
+                  header={t("discover:highlights")}
+                />
+              </TabPanel>
+              <TabPanel value={activeTab} index={1}>
                 {!isMobile ? (
                   <DiscoverTrendingArtTabDesktop
                     username={username.value}
@@ -352,7 +365,7 @@ export default function DiscoverPage({ navBarItems }) {
                     loadImages={loadImages}
                     stopLoadImages={stopLoadImages}
                     activeTab={activeTab}
-                    header={t("discover:topArt")}
+                    header={t("discover:trendingArt")}
                   />
                 ) : (
                   <DiscoverTrendingArtTab
@@ -367,18 +380,7 @@ export default function DiscoverPage({ navBarItems }) {
                   />
                 )}
               </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                <DiscoverHighLightsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                  header={t("discover:highlights")}
-                />
-              </TabPanel>
+
               <TabPanel value={activeTab} index={2}>
                 <DiscoverPromotedArtTab
                   username={username.value}
