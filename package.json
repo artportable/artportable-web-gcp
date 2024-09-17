@@ -29,6 +29,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.15.0",
     "@mui/styles": "^5.15.0",
+    "@next/font": "^14.2.11",
     "@react-keycloak/core": "^3.2.0",
     "@react-keycloak/ssr": "^3.3.0",
     "@stripe/react-stripe-js": "^1.4.0",
