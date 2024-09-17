@@ -365,7 +365,7 @@ export default function DiscoverPage({ navBarItems }) {
                     loadImages={loadImages}
                     stopLoadImages={stopLoadImages}
                     activeTab={activeTab}
-                    header={t("discover:topArt")}
+                    header={t("discover:trendingArt")}
                   />
                 ) : (
                   <DiscoverTrendingArtTab
