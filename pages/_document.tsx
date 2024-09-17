@@ -33,8 +33,8 @@ class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
-          <link rel="preload" as="image" href="/images/ackeberg3.jpg" />
-          <link rel="preload" as="image" href="/images/andersOlsson.jpeg" />
+          <link rel="preload" as="image" href="/images/essman2.jpg" />
+          <link rel="preload" as="image" href="/images/cina.jpeg" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -91,6 +91,10 @@ class MyDocument extends Document {
             href="/fonts/Caveat-VariableFont_wght.ttf"
             as="font"
             crossOrigin=""
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>

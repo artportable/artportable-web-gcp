@@ -47,13 +47,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <div className={s.fullWidthImage}>
               <Image
                 layout="fill"
-                src={
-                  isTinyDevice
-                    ? "/images/olejensen.jpeg"
-                    : "/images/andersOlsson.jpeg"
-                }
+                src={isTinyDevice ? "/images/essman2.jpg" : "/images/cina.jpeg"}
                 alt={"konst"}
-                objectFit="fill"
+                objectFit="cover"
                 loading="lazy"
               />
               <div className={s.headlineContainer}>
@@ -118,19 +114,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/art/ac6cf305-9b60-4b51-b75b-afc3a765ca80"
+                      href="https://artportable.com/en/art/2c56d875-62b9-4c96-b4f0-3485922f7683"
                       style={{ display: "inline" }}
                     >
-                      Anders Olsson, {""}
+                      Cina Fundin, {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/ac6cf305-9b60-4b51-b75b-afc3a765ca80"
+                      href="https://artportable.com/en/art/2c56d875-62b9-4c96-b4f0-3485922f7683"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                       }}
                     >
-                      "Regn"
+                      "Monday Morning"
                     </a>
                   </div>
                 </div>
@@ -146,19 +142,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/art/f9312eae-cdb7-4570-9351-83382246221c"
+                      href="https://artportable.com/en/art/45d7479b-8f20-42ae-9c5f-96fb730815e6"
                       style={{ display: "inline" }}
                     >
-                      Ole Jensen, {""}
+                      JM ESSMAN {""}
                     </a>
                     <a
-                      href="https://artportable.com/art/f9312eae-cdb7-4570-9351-83382246221c"
+                      href="https://artportable.com/en/art/45d7479b-8f20-42ae-9c5f-96fb730815e6"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                       }}
                     >
-                      "Röd lada"
+                      "Dagar vid sjön"
                     </a>
                   </div>
                 </div>
