@@ -6,7 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       gridColumn: "1/4",
       background: theme.palette.grey[200],
-      backgroundColor: "var(--background-color-darker)",
+      backgroundColor: "white",
       overflow: "visible", // Ensure this is set to visible to not clip the scrollbar
       marginTop: "20px",
     },
@@ -31,6 +31,28 @@ export const styles = makeStyles((theme: Theme) =>
         zIndex: 10,
       },
     },
+    fullWidthPortrait: {
+      display: "flex",
+      flexDirection: "row",
+      position: "relative",
+      width: "100vw",
+      height: "70vh",
+      minHeight: "400px",
+      [theme.breakpoints.up("sm")]: {
+        height: "calc(100vh - 90px)",
+      },
+    },
+    childDiv: {
+      flex: 1,
+      height: "100%",
+      backgroundColor: "#ddd1fd",
+      alignItems: "center",
+    },
+    childDivTwo: {
+      flex: 1,
+      height: "100%",
+    },
+
     fullWidthImageTwo: {
       position: "relative",
       width: "100vw",
