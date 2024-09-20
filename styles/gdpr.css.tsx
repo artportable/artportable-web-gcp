@@ -1,5 +1,4 @@
-
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -8,18 +7,18 @@ export const styles = makeStyles((theme: Theme) =>
       // flexDirection: 'column',
       // alignItems: 'center',
       // justifySelf: 'center',
-      width: '100%',
-      maxWidth: '1080px',
-      padding: theme.spacing(10),
-      '& p': {
-        marginBottom: theme.spacing(2)
-      }
+      width: "100%",
+      maxWidth: "1080px",
+
+      "& p": {
+        marginBottom: theme.spacing(2),
+      },
     },
-    title : {
-      textAlign: "center"
+    title: {
+      textAlign: "center",
     },
-    text : {
-      textAlign: "left"
-    }
-  }),
+    text: {
+      textAlign: "left",
+    },
+  })
 );
