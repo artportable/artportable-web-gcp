@@ -27,7 +27,7 @@ export default function GdprPage({ navBarItems }) {
   return (
     <>
       <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
-        <Paper title={t("title")} className={s.gdprContainer}>
+        <section title={t("title")} className={s.gdprContainer}>
           {/* <Box>
             {Object.entries(gdpr).map(([key, value]) =>   
               <>
@@ -643,7 +643,7 @@ export default function GdprPage({ navBarItems }) {
           <ul>
             <li>By email: hello@artportable.com</li>
           </ul>
-        </Paper>
+        </section>
       </Main>
     </>
   );
