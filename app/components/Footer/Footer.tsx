@@ -33,9 +33,6 @@ export default function Footer() {
           </Typography>
           <Typography variant="body2" component="div" className={s.cookies}>
             {t("cookies")}
-            <Link href={"/gdpr"}>
-              <a>{t("integrity")}</a>
-            </Link>
           </Typography>
         </div>
         {/* <div className={s.socialMediaFlex}>
@@ -155,6 +152,9 @@ export default function Footer() {
               {t("aboutUs")}
             </Typography>
           </a>
+        </Link>
+        <Link href={"/gdpr"}>
+          <a style={{ textDecoration: "underline" }}>{t("integrity")}</a>
         </Link>
       </div>
 

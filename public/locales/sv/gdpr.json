@@ -1,13 +1,7 @@
 {
   "title": "Integritetspolicy",
   "privacyPartOne": "<strong>Denna policy beskriver hur vi på Artportable AB samlar in, använder och skyddar personuppgifter.</strong><br/><br/>Det förekommer att vi samlar in information som hjälper oss att tillhandahålla en tjänst till dig, det kan inkludera:",
-  "privacyList": [
-    "Email",
-    "Namn",
-    "Kontaktuppgifter",
-    "IP-nummer",
-    "Bilder"
-  ],
+  "privacyList": ["Email", "Namn", "Kontaktuppgifter", "IP-nummer", "Bilder"],
   "privacyTexts": [
     "Informationen används för att kunna förse dig med informationsutskick, betalningsinformation och statistik i linje med vår övergripande policy. Vi samlar inte in mer information än vi behöver för att tillhandahålla våra tjänster till dig.",
     "Vi har redovisningskrav som gör att vi behöver behålla en del av din information. När vi inte behöver den längre så kommer den att raderas. Information som vi använder för nyhetsbrevsutskick kommer att behållas fram tills den tidpunkt då du själv väljer att avprenumerera från den.",
@@ -23,7 +17,7 @@
     "<strong>Ta tillbaka samtycke:</strong> Du kan ta tillbaka ditt samtycke till att dela din information eller att ta emot marknadsföring / utskick när som helst. Antingen genom att avprenumerera från meddelandet eller kontakta oss via e-post.",
     "<strong>Klagomål:</strong> Du kan kan lämna ett klagomål till datainspektionen om du anser att vi behandlar dina personuppgifter i strid med dataskyddsförordningen.",
     "<strong>Så här kan du använda dina rättigheter:</strong><br/>Om du vill använda någon av dina rättigheter så kontaktar du oss via e-post som finns längst ned i denna policy.<br/>Om du vill lämna ett klagomål till datainspektionen så behöver du kontakta dem.",
-    "<strong>Uppdateringar till denna policy:</strong><br/>Vi kan komma att uppdatera denna policy och kommer då publicera dem på denna webbsida. Denna policy uppdaterades senast den 19 augusti 2021.",
+    "<strong>Uppdateringar till denna policy:</strong><br/>Vi kan komma att uppdatera denna policy och kommer då publicera dem på denna webbsida. Denna policy uppdaterades senast den 20 september 2024.",
     "<strong>Hur du kan kontakta oss:</strong><br/>Om du har några frågor angående denna policy eller hur vi använder din information, eller dina rättigheter så kan du kontakta oss på följande adress:",
     "Artportable AB<br/>Åsögatan 176<br/>116 32 Stockholm",
     "I brevet önskar vi att du uppger ditt namn, adress, e-post, telefonnummer samt personnummer i tillägg till ditt ärende. Bifoga även en kopia av din legitimation. Svar kommer att skickas till din senast angivna folkbokföringsadress."
