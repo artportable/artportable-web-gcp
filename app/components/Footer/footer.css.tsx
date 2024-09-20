@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       padding: theme.spacing(0, 2, 2, 2),
       background: theme.palette.grey[200],
-      backgroundColor: "#ffdd84",
+      backgroundColor: "#ffdd84c9",
       boxShadow:
         "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
       flexDirection: "column",
@@ -24,7 +24,7 @@ export const styles = makeStyles((theme: Theme) =>
         padding: theme.spacing(0, 8, 2, 8),
       },
       [theme.breakpoints.up("lg")]: {
-        padding: theme.spacing(0, 16, 2, 16),
+        padding: theme.spacing(0, 0, 0, 0),
       },
     },
     flexItem: {
@@ -52,7 +52,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#999999",
     },
     cookies: {
-      color: "#999999",
+      color: "black",
       marginBottom: theme.spacing(2),
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "0",

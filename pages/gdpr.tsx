@@ -106,7 +106,7 @@ export default function GdprPage({ navBarItems }) {
           </Box> */}
 
           <h1>Privacy Policy</h1>
-          <p>Last updated: September 22, 2021</p>
+          <p>Last updated: September 20, 2024</p>
           <p>
             This Privacy Policy describes Our policies and procedures on the
             collection, use and disclosure of Your information when You use the
@@ -139,8 +139,7 @@ export default function GdprPage({ navBarItems }) {
               <p>
                 <strong>Company</strong> (referred to as either &quot;the
                 Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot;
-                in this Agreement) refers to Artportable AB, Åsögatan 176,
-                Stockholm, Sweden
+                in this Agreement) refers to Höök & Nordlander AB
               </p>
             </li>
             <li>

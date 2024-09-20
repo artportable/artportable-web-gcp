@@ -29,17 +29,14 @@ export default function Support({ navBarItems }) {
           property="og:image"
           content="/images/artportable_tv_commercial.png"
         />
-        <link
-          rel="canonical"
-          href={`${publicUrl}/${locale}/support`}
-        />
+        <link rel="canonical" href={`${publicUrl}/${locale}/support`} />
       </Head>
       <div className={s.paddingWidth}>
         <Typography variant="h1" className={s.headerTypo}>
           {t("contactUs")}
         </Typography>
         <div className={s.flexPaper}>
-          <Paper className={s.paperLeft} elevation={1}>
+          <Paper className={s.paperLeft} elevation={0}>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
               {t("yourWelcome")}
             </Typography>
@@ -59,21 +56,6 @@ export default function Support({ navBarItems }) {
             </div>
             <div className={s.zendeskForm}>
               <ZendeskForm />
-            </div>
-          </Paper>
-          <Paper className={s.paperRight} elevation={1}>
-            <div>
-              <img
-                className={s.logo}
-                src="/Artportable_Logotyp_Black.svg"
-                alt="Logo Artportable"
-              />
-              <Typography className={s.bold}>Artportable AB</Typography>
-              <Typography>559113-1171</Typography>
-              <div className={s.textBlockRight}>
-                <Typography>Åsögatan 176</Typography>
-                <Typography>116 32 Stockholm</Typography>
-              </div>
             </div>
           </Paper>
         </div>

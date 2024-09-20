@@ -34,7 +34,7 @@ export default function Footer() {
           <Typography variant="body2" component="div" className={s.cookies}>
             {t("cookies")}
             <Link href={"/gdpr"}>
-              <a>{t("integrity")}</a>
+              <a style={{ textDecoration: "underline" }}>{t("integrity")}</a>
             </Link>
           </Typography>
         </div>
