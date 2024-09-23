@@ -49,7 +49,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/essman2.jpg"
+                    ? "/images/torleiv.jpg"
                     : "/images/torleivMobile.jpg"
                 }
                 alt={"konst"}
@@ -146,19 +146,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/45d7479b-8f20-42ae-9c5f-96fb730815e6"
+                      href="https://artportable.com/en/art/bd9b97d7-6efc-455a-b960-c223d471466f"
                       style={{ display: "inline" }}
                     >
-                      JM ESSMAN {""}
+                      Torleiv Agdestein {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/45d7479b-8f20-42ae-9c5f-96fb730815e6"
+                      href="https://artportable.com/en/art/bd9b97d7-6efc-455a-b960-c223d471466f"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                       }}
                     >
-                      "Dagar vid sjön"
+                      "Vårkveld ved Akershus II"
                     </a>
                   </div>
                 </div>
