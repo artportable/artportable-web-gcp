@@ -47,7 +47,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <div className={s.fullWidthImage}>
               <Image
                 layout="fill"
-                src={isTinyDevice ? "/images/essman2.jpg" : "/images/cina.jpeg"}
+                src={
+                  isTinyDevice
+                    ? "/images/essman2.jpg"
+                    : "/images/torleivMobile.jpg"
+                }
                 alt={"konst"}
                 objectFit="cover"
                 loading="lazy"
@@ -114,19 +118,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/2c56d875-62b9-4c96-b4f0-3485922f7683"
+                      href="https://artportable.com/en/art/cc3e7501-e7c9-4c51-ae6b-4fb3c7c1f816"
                       style={{ display: "inline" }}
                     >
-                      Cina Fundin, {""}
+                      Torleiv Agdestien, {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/2c56d875-62b9-4c96-b4f0-3485922f7683"
+                      href="https://artportable.com/en/art/cc3e7501-e7c9-4c51-ae6b-4fb3c7c1f816"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                       }}
                     >
-                      "Monday Morning"
+                      "Bella Notte i Trastevere"
                     </a>
                   </div>
                 </div>
