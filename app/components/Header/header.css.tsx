@@ -127,6 +127,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "54px",
       display: "flex",
       order: 1,
+      color: "blue",
       [theme.breakpoints.up("smPlus")]: {
         order: "initial",
       },

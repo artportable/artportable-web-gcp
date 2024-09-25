@@ -373,7 +373,7 @@ export default function Header({ navBarItems }) {
                     </div>
                   )}
 
-                  {membership.value > Membership.Base && (
+                  {membership.value >= Membership.Base && (
                     <div className={s.upload}>
                       <Link href="/upload">
                         <a>
@@ -415,7 +415,9 @@ export default function Header({ navBarItems }) {
                         <IconButton aria-label="account" disabled aria-disabled>
                           <NotificationsIcon
                             classes={{ root: s.notificationIcon }}
-                            style={{ fontSize: "30px" }}
+                            style={{
+                              fontSize: "30px",
+                            }}
                           />
                         </IconButton>
                       )}

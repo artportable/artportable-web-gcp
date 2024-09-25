@@ -104,7 +104,7 @@ export default function UploadArtworkPage({ navBarItems }) {
   const { refreshToken } = useRefreshToken();
 
   useEffect(() => {
-    if (!isSignedIn.value || membership.value < Membership.Portfolio) {
+    if (!isSignedIn.value) {
       router.push("/");
     }
 
@@ -310,6 +310,9 @@ export default function UploadArtworkPage({ navBarItems }) {
     fetchUserData();
   }, [userCreated, userTotalArtworks]);
 
+  const artworkLimitReachedStarter =
+    userTotalArtworks >= 3 && membership.value === 1;
+
   const artworkLimitReached =
     userTotalArtworks >= 10 &&
     membership.value === 2 &&
@@ -371,7 +374,7 @@ export default function UploadArtworkPage({ navBarItems }) {
   const maximumImagesUploaded =
     croppedPrimary && croppedSecondary && croppedTertiary ? true : false;
 
-  if (artworkLimitReached) {
+  if (artworkLimitReached || artworkLimitReachedStarter) {
     return (
       <Main navBarItems={navBarItems}>
         {" "}
@@ -379,12 +382,10 @@ export default function UploadArtworkPage({ navBarItems }) {
           <Paper className={s.paperLeft} elevation={1}>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
               {t("limitArtwork")}
-              <a
-                href="https://buy.stripe.com/aEUeVngcS7ZPcda4h9"
-                target="_blank"
-              >
+              <a href="/upgrade" target="_self">
                 {t("clickHere")}
               </a>
+
               {t("uploadUnlimited")}
             </Typography>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
