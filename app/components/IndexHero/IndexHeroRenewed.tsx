@@ -121,7 +121,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       href="https://artportable.com/en/art/cc3e7501-e7c9-4c51-ae6b-4fb3c7c1f816"
                       style={{ display: "inline" }}
                     >
-                      Torleiv Agdestien, {""}
+                      Torleiv Agdestein, {""}
                     </a>
                     <a
                       href="https://artportable.com/en/art/cc3e7501-e7c9-4c51-ae6b-4fb3c7c1f816"
