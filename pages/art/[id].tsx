@@ -200,6 +200,14 @@ export default function ArtworkPage(props) {
     }
   }, [usernameArtworkOwner.data]);
 
+  const userTypes = {
+    1: { label: "Portfolio starter", color: undefined },
+    2: { label: "Bas medlem", color: undefined },
+    default: { label: "Premium användare", color: "#c0a067" },
+  };
+
+  const userType = userTypes[productType] || userTypes.default;
+
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
@@ -436,49 +444,25 @@ export default function ArtworkPage(props) {
                   <div className={s.artInfo}>
                     {membership.value > 4 && (
                       <div>
-                        {productType === 2 ? (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              textAlign: "center",
-                              fontSize: "20px ",
-                            }}
-                          >
-                            <div>Bas medlem</div>
-                            <div>
-                              Antal verk: {getTotalArtworks?.data?.Artworks}
-                            </div>
-                            <div>
-                              Medlem sedan:{" "}
-                              {usernameArtworkOwner?.data?.Created?.slice(
-                                0,
-                                10
-                              )}
-                            </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            textAlign: "center",
+                            fontSize: "20px",
+                            color: userType.color,
+                          }}
+                        >
+                          <div>{userType.label}</div>
+                          <div>
+                            Antal verk:{" "}
+                            {getTotalArtworks?.data?.Artworks || totalArtworks}
                           </div>
-                        ) : (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              textAlign: "center",
-                              fontSize: "20px ",
-                              color: "#c0a067",
-                            }}
-                          >
-                            {" "}
-                            Premium användare
-                            <div>Antal verk: {totalArtworks}</div>
-                            <div>
-                              Medlem sedan:{" "}
-                              {usernameArtworkOwner?.data?.Created?.slice(
-                                0,
-                                10
-                              )}
-                            </div>
+                          <div>
+                            Medlem sedan:{" "}
+                            {usernameArtworkOwner?.data?.Created?.slice(0, 10)}
                           </div>
-                        )}
+                        </div>
                       </div>
                     )}
                     {membership.value > 4 && (
