@@ -351,21 +351,14 @@ export default function DrawerMenu({
               </ListItem>
             </Link> */}
 
-            {membership.value > Membership.Base && (
-              <>
-                <Link href="/upload" passHref>
-                  <ListItem button divider onClick={() => close()}>
-                    <ListItemIcon>
-                      <InsertPhotoIcon
-                        color="secondary"
-                        style={{ fontSize: 30 }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={t("upload")} />
-                  </ListItem>
-                </Link>
-              </>
-            )}
+            <Link href="/upload" passHref>
+              <ListItem button divider onClick={() => close()}>
+                <ListItemIcon>
+                  <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
+                </ListItemIcon>
+                <ListItemText primary={t("upload")} />
+              </ListItem>
+            </Link>
 
             {!membership.isPending && membership.value === 3 ? (
               <div className={s.upload}>
