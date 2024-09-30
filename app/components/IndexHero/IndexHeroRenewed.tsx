@@ -37,7 +37,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 10000,
+          delay: 1000000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -49,8 +49,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/torleiv.jpg"
-                    : "/images/torleivMobile.jpg"
+                    ? "/images/barbaradesktop.jpeg"
+                    : "/images/barbaraMobile.jpeg"
                 }
                 alt={"konst"}
                 objectFit="cover"
@@ -113,24 +113,26 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     display: "flex",
                     justifyContent: "center",
                     color: "white",
-                    fontSize: "11px",
+                    fontSize: "14px",
+                    textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/cc3e7501-e7c9-4c51-ae6b-4fb3c7c1f816"
+                      href="https://artportable.com/en/art/9d5f7fc7-df2c-4f8f-8b95-8141e583ecaa"
                       style={{ display: "inline" }}
                     >
-                      Torleiv Agdestein, {""}
+                      Barbara Månsson, {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/cc3e7501-e7c9-4c51-ae6b-4fb3c7c1f816"
+                      href="https://artportable.com/en/art/9d5f7fc7-df2c-4f8f-8b95-8141e583ecaa"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
+                        textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
                       }}
                     >
-                      "Bella Notte i Trastevere"
+                      "Candy Blast "
                     </a>
                   </div>
                 </div>
@@ -142,23 +144,25 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     justifyContent: "center",
                     color: "white",
                     fontSize: "14px",
+                    textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/bd9b97d7-6efc-455a-b960-c223d471466f"
+                      href="https://artportable.com/en/art/3be9e003-1a09-40b3-ae08-b3417b04e740"
                       style={{ display: "inline" }}
                     >
-                      Torleiv Agdestein {""}
+                      Barbara Månsson {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/bd9b97d7-6efc-455a-b960-c223d471466f"
+                      href="https://artportable.com/en/art/3be9e003-1a09-40b3-ae08-b3417b04e740"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
+                        textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
                       }}
                     >
-                      "Vårkveld ved Akershus II"
+                      "Pensieri Irrilevanti"
                     </a>
                   </div>
                 </div>
