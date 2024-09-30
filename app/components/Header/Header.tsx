@@ -456,7 +456,16 @@ export default function Header({ navBarItems }) {
                 </div>
               </>
             )}
-
+            {isSignedIn.value && membership.value > 4 && (
+              <a
+                style={{ color: "red" }}
+                href="/admin"
+                target="_self"
+                rel="noopener noreferrer"
+              >
+                ADMIN
+              </a>
+            )}
             <div className={s.menuDrawer}>
               <IconButton
                 aria-label="menu"
@@ -479,6 +488,7 @@ export default function Header({ navBarItems }) {
               </IconButton>
             </div>
           </div>
+
           <DrawerMenu
             open={openMenu}
             setOpen={setOpenMenu}
