@@ -404,6 +404,18 @@ export default function Header({ navBarItems }) {
                   {membership.value < Membership.Portfolio && (
                     <UpgradePortfolio />
                   )}
+                  {membership.value > 4 && (
+                    <div style={{ color: "blue" }}>
+                      <a
+                        style={{ color: "blue" }}
+                        href="/admin"
+                        target="_self"
+                        rel="noopener noreferrer"
+                      >
+                        ADMIN
+                      </a>
+                    </div>
+                  )}
                   <div className={s.iconButtons}>
                     <div className={s.notificationButton}>
                       {activityToken && !isError && !isLoading ? (
