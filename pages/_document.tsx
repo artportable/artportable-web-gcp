@@ -33,8 +33,8 @@ class MyDocument extends Document {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
-          <link rel="preload" as="image" href="/images/torleiv.jpg" />
-          <link rel="preload" as="image" href="/images/torleivMobile.jpg" />
+          <link rel="preload" as="image" href="/images/barbaradesktop.jpeg" />
+          <link rel="preload" as="image" href="/images/barbaraMobile.jpeg" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
