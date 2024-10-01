@@ -1,6 +1,6 @@
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import Avatar from '@material-ui/core/Avatar'
-import { styles } from './profileAvatar.css'
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Avatar from "@material-ui/core/Avatar";
+import { styles } from "./profileAvatar.css";
 
 const ProfileAvatar = ({ size, profilePicture }) => {
   const s = styles();
@@ -13,28 +13,31 @@ const ProfileAvatar = ({ size, profilePicture }) => {
   return (
     <>
       {profilePicture ? (
-        <Avatar src={`${bucketUrl}${profilePicture}`}
+        <Avatar
+          src={`${bucketUrl}${profilePicture}`}
           alt="Profile picture"
           style={style}
         />
       ) : (
         <>
-        <div style={{ position: 'relative'}}>
-          <div style={style} className={s.iconBackground}></div>
-          <div style={style}>
-            <AccountCircleIcon 
-              style={{ 
-                position: 'relative', 
-                bottom: `${iconAdjustment/2}px`, 
-                right: `${iconAdjustment/2}px`, 
-                fontSize: size + iconAdjustment }} 
-              color="secondary"></AccountCircleIcon>
+          <div style={{ position: "relative" }}>
+            <div style={style} className={s.iconBackground}></div>
+            <div style={style}>
+              <AccountCircleIcon
+                style={{
+                  position: "relative",
+                  bottom: `${iconAdjustment / 2}px`,
+                  right: `${iconAdjustment / 2}px`,
+                  fontSize: size + iconAdjustment,
+                }}
+                color="primary"
+              ></AccountCircleIcon>
+            </div>
           </div>
-        </div>
         </>
       )}
     </>
   );
-}
+};
 
 export default ProfileAvatar;

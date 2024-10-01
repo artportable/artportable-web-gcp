@@ -226,7 +226,7 @@ export default function DrawerMenu({
         <ListItem button onClick={handleClickLanguage}>
           <ListItemIcon>
             <Badge max={99} color="primary" overlap="rectangular">
-              <LanguageRoundedIcon color="secondary" style={{ fontSize: 30 }} />
+              <LanguageRoundedIcon color="primary" style={{ fontSize: 30 }} />
             </Badge>
           </ListItemIcon>
           <ListItemText primary={displayLocale} />
@@ -309,6 +309,21 @@ export default function DrawerMenu({
                 />
               </div>
             )}
+            {isSignedIn.value && membership.value > 4 && (
+              <ListItem button divider>
+                <ListItemIcon>
+                  <Badge max={99} color="primary">
+                    <SupervisorAccountSharpIcon
+                      color="primary"
+                      style={{ fontSize: 30 }}
+                    />
+                  </Badge>
+                </ListItemIcon>
+                <a href="/admin" target="_self" rel="noopener noreferrer">
+                  ADMIN
+                </a>
+              </ListItem>
+            )}
             <Link href={`/profile/@${username.value}`} passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemAvatar>
@@ -325,7 +340,7 @@ export default function DrawerMenu({
                 <ListItemIcon>
                   <Badge max={99} color="primary">
                     <SupervisorAccountSharpIcon
-                      color="secondary"
+                      color="primary"
                       style={{ fontSize: 30 }}
                     />
                   </Badge>
@@ -354,7 +369,7 @@ export default function DrawerMenu({
             <Link href="/upload" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
-                  <InsertPhotoIcon color="secondary" style={{ fontSize: 30 }} />
+                  <InsertPhotoIcon color="primary" style={{ fontSize: 30 }} />
                 </ListItemIcon>
                 <ListItemText primary={t("upload")} />
               </ListItem>
@@ -380,7 +395,7 @@ export default function DrawerMenu({
                   <ListItem button divider onClick={() => close()}>
                     <ListItemIcon>
                       <FeedOutlinedIcon
-                        color="secondary"
+                        color="primary"
                         style={{ fontSize: 30 }}
                       />
                     </ListItemIcon>
