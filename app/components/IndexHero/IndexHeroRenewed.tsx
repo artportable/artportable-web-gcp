@@ -50,7 +50,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 src={
                   isTinyDevice
                     ? "/images/barbaradesktop.jpeg"
-                    : "/images/barbaraMobile.jpeg"
+                    : "/images/barbaraMobile.jpg"
                 }
                 alt={"konst"}
                 objectFit="cover"
@@ -112,27 +112,27 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    color: "white",
+                    color: "black",
                     fontSize: "14px",
-                    textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
+                    textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/9d5f7fc7-df2c-4f8f-8b95-8141e583ecaa"
+                      href="https://artportable.com/en/art/cc5cd21c-9d7e-4fed-bd07-d56982262199"
                       style={{ display: "inline" }}
                     >
                       Barbara Månsson, {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/9d5f7fc7-df2c-4f8f-8b95-8141e583ecaa"
+                      href="https://artportable.com/en/art/cc5cd21c-9d7e-4fed-bd07-d56982262199"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
+                        textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
                       }}
                     >
-                      "Candy Blast "
+                      "Ruthless Head"
                     </a>
                   </div>
                 </div>
