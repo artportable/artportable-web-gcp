@@ -34,7 +34,7 @@ class MyDocument extends Document {
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
           <link rel="preload" as="image" href="/images/barbaradesktop.jpeg" />
-          <link rel="preload" as="image" href="/images/barbaraMobile.jpeg" />
+          <link rel="preload" as="image" href="/images/barbaraMobile.jpg" />
           <script
             dangerouslySetInnerHTML={{
               __html: `
