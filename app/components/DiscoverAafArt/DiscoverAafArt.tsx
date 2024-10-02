@@ -66,6 +66,7 @@ const DiscoverAafArtTab = memo((props: DiscoverAafArtTabProps) => {
     <>
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <div>
+          <div className={s.text}>{t("common:aaf")}</div>
           <DiscoverArt
             artworks={artworks}
             tags={tags?.data}

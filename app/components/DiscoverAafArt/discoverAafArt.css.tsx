@@ -40,13 +40,14 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     text: {
-      width: "90%",
+      width: "100%",
       textAlign: "center",
       marginBottom: "20px",
       fontSize: "16px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "70%",
+        width: "100%",
         fontSize: "24px",
+        marginBottom: "30px",
       },
     },
   })
