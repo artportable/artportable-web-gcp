@@ -75,7 +75,7 @@ export default function DialogConstruction() {
           variant="outlined"
           style={{
             borderRadius: 35,
-            backgroundColor: "rgb(111 135 118)",
+            backgroundColor: "black",
             color: "white",
           }}
           onClick={() => {

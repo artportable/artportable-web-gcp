@@ -21,7 +21,6 @@ const ProfileAvatar = ({ size, profilePicture }) => {
       ) : (
         <>
           <div style={{ position: "relative" }}>
-            <div style={style} className={s.iconBackground}></div>
             <div style={style}>
               <AccountCircleIcon
                 style={{
@@ -30,7 +29,6 @@ const ProfileAvatar = ({ size, profilePicture }) => {
                   right: `${iconAdjustment / 2}px`,
                   fontSize: size + iconAdjustment,
                 }}
-                color="primary"
               ></AccountCircleIcon>
             </div>
           </div>
