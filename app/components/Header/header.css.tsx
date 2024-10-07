@@ -161,11 +161,11 @@ export const styles = makeStyles((theme: Theme) =>
       WebkitTextFillColor: "transparent",
     },
     premiumText: {
-      color: "#FFFFFF",
+      color: "#fadf87",
       textTransform: "uppercase",
       fontWeight: 500,
-      fontSize: "8px",
-      marginRight: "12px",
+      fontSize: "14px",
+      marginRight: "6px",
     },
 
     [theme.breakpoints.up("sm")]: {
