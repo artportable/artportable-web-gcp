@@ -328,14 +328,7 @@ export default function Header({ navBarItems }) {
                                 CategoryType.INTERACTIVE
                               )
                             }
-                            // className={s.uploadStoryButton}
-                            className={clsx(
-                              sShared.smallButton,
-                              sShared.yellowButton
-                            )}
-                            size="small"
-                            variant="outlined"
-                            disableElevation
+                            className={s.uploadStoryButton}
                             rounded
                             endIcon={<FeedOutlinedIcon />}
                           >
