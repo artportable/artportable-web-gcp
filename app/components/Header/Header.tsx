@@ -355,14 +355,7 @@ export default function Header({ navBarItems }) {
                                 CategoryType.INTERACTIVE
                               )
                             }
-                            // className={s.uploadStoryButton}
-                            className={clsx(
-                              sShared.smallButton,
-                              sShared.yellowButton
-                            )}
-                            size="small"
-                            variant="outlined"
-                            disableElevation
+                            className={s.uploadStoryButton}
                             rounded
                             endIcon={<FeedOutlinedIcon />}
                           >
@@ -384,14 +377,7 @@ export default function Header({ navBarItems }) {
                                 CategoryType.INTERACTIVE
                               )
                             }
-                            // className={s.uploadButton}
-                            className={clsx(
-                              sShared.smallButton,
-                              sShared.greenButton
-                            )}
-                            size="small"
-                            variant="outlined"
-                            disableElevation
+                            className={s.uploadButton}
                             rounded
                             endIcon={<ColorLensIcon />}
                           >
