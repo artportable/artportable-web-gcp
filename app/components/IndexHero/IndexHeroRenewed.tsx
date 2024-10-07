@@ -50,7 +50,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 src={
                   isTinyDevice
                     ? "/images/onnebyDesktop.jpeg"
-                    : "/images/onnebyMobile2.jpeg"
+                    : "/images/onnebyMobile3.jpg"
                 }
                 alt={"konst"}
                 objectFit="cover"
@@ -119,20 +119,20 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/dc501153-fd05-46fe-9398-de69d7b26677"
+                      href="https://artportable.com/en/art/517f0b7a-96ed-4208-b936-15c053d1657c"
                       style={{ display: "inline" }}
                     >
                       Anneli Önneby, {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/dc501153-fd05-46fe-9398-de69d7b26677"
+                      href="https://artportable.com/en/art/517f0b7a-96ed-4208-b936-15c053d1657c"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                         textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
                       }}
                     >
-                      "Röd Tröja"
+                      "Catnap och skata"
                     </a>
                   </div>
                 </div>
