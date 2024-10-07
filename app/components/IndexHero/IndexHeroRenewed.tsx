@@ -50,7 +50,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 src={
                   isTinyDevice
                     ? "/images/barbaradesktop.jpeg"
-                    : "/images/barbaraMobile.jpg"
+                    : "/images/onnebyMobile2.jpeg"
                 }
                 alt={"konst"}
                 objectFit="cover"
@@ -112,27 +112,27 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    color: "black",
+                    color: "white",
                     fontSize: "14px",
                     textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/cc5cd21c-9d7e-4fed-bd07-d56982262199"
+                      href="https://artportable.com/en/art/dc501153-fd05-46fe-9398-de69d7b26677"
                       style={{ display: "inline" }}
                     >
-                      Barbara Månsson, {""}
+                      Anneli Önneby, {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/cc5cd21c-9d7e-4fed-bd07-d56982262199"
+                      href="https://artportable.com/en/art/dc501153-fd05-46fe-9398-de69d7b26677"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                         textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
                       }}
                     >
-                      "Ruthless Head"
+                      "Röd Tröja"
                     </a>
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       href="https://artportable.com/en/art/3be9e003-1a09-40b3-ae08-b3417b04e740"
                       style={{ display: "inline" }}
                     >
-                      Barbara Månsson {""}
+                      Anneli {""}
                     </a>
                     <a
                       href="https://artportable.com/en/art/3be9e003-1a09-40b3-ae08-b3417b04e740"
@@ -167,27 +167,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   </div>
                 </div>
               )}
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <div className={s.fullWidthImageTwo}>
-              <a
-                href="https://affordableartfair.com/fairs/stockholm/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  loading="lazy"
-                  layout="fill"
-                  src={
-                    isTinyDevice
-                      ? "/images/desktopAAF.png"
-                      : "/images/art_fair.jpg"
-                  }
-                  alt={"affordable art fair image"}
-                />
-              </a>
             </div>
           </SwiperSlide>
         </div>

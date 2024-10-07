@@ -297,11 +297,6 @@ export default function DiscoverPage({ navBarItems }) {
             >
               <Tab
                 className={s.text}
-                label={t("discover:AffordableArtFair")}
-                {...a11yProps(t("discover:artists"))}
-              />
-              <Tab
-                className={s.text}
                 label={t("discover:highlights")}
                 {...a11yProps(t("discover:artists"))}
               />
@@ -350,17 +345,6 @@ export default function DiscoverPage({ navBarItems }) {
           {!loading && (
             <Box paddingTop={4}>
               <TabPanel value={activeTab} index={0}>
-                <DiscoverAafArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
                 <DiscoverHighLightsTab
                   username={username.value}
                   socialId={socialId.value}
@@ -372,7 +356,7 @@ export default function DiscoverPage({ navBarItems }) {
                   header={t("discover:highlights")}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={2}>
+              <TabPanel value={activeTab} index={1}>
                 {!isMobile ? (
                   <DiscoverTrendingArtTabDesktop
                     username={username.value}
@@ -398,7 +382,7 @@ export default function DiscoverPage({ navBarItems }) {
                 )}
               </TabPanel>
 
-              <TabPanel value={activeTab} index={3}>
+              <TabPanel value={activeTab} index={2}>
                 <DiscoverPromotedArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -409,7 +393,7 @@ export default function DiscoverPage({ navBarItems }) {
                   activeTab={activeTab}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={4}>
+              <TabPanel value={activeTab} index={3}>
                 <DiscoverLatestArtTab
                   username={username.value}
                   socialId={socialId.value}
@@ -421,13 +405,13 @@ export default function DiscoverPage({ navBarItems }) {
                   header={t("discover:latestArt")}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={5}>
+              <TabPanel value={activeTab} index={4}>
                 <DiscoverArtistsTab
                   username={username.value}
                   socialId={socialId.value}
                 />
               </TabPanel>
-              <TabPanel value={activeTab} index={6}>
+              <TabPanel value={activeTab} index={5}>
                 <DiscoverStoriesTab />
               </TabPanel>
 
@@ -435,7 +419,7 @@ export default function DiscoverPage({ navBarItems }) {
                 <Showroom />
               </TabPanel> */}
 
-              <TabPanel value={activeTab} index={7}>
+              <TabPanel value={activeTab} index={6}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}
