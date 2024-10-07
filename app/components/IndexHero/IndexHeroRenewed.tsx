@@ -49,7 +49,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/barbaradesktop.jpeg"
+                    ? "/images/onnebyDesktop.jpeg"
                     : "/images/onnebyMobile2.jpeg"
                 }
                 alt={"konst"}
@@ -149,20 +149,20 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/3be9e003-1a09-40b3-ae08-b3417b04e740"
+                      href="https://artportable.com/en/art/5fadd34d-bf2a-4c18-82ae-122f01fe7ae5"
                       style={{ display: "inline" }}
                     >
-                      Anneli {""}
+                      Anneli Önneby{""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/3be9e003-1a09-40b3-ae08-b3417b04e740"
+                      href="https://artportable.com/en/art/5fadd34d-bf2a-4c18-82ae-122f01fe7ae5"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                         textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
                       }}
                     >
-                      "Pensieri Irrilevanti"
+                      "Cat nap"
                     </a>
                   </div>
                 </div>
