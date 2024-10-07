@@ -221,68 +221,6 @@ export default function DrawerMenu({
         </IconButton>
       </div>
 
-      <div className={s.languageElement} style={{ marginTop: "10px" }}>
-        <Divider />
-        <ListItem button onClick={handleClickLanguage}>
-          <ListItemText primary={displayLocale} />
-          {openLanguage ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={openLanguage} timeout="auto">
-          <List component="div" disablePadding>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.sv)}
-            >
-              <ListItemText primary={t("Swedish")} />
-            </ListItem>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.en)}
-            >
-              <ListItemText primary={t("english")} />
-            </ListItem>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.nb)}
-            >
-              <ListItemText primary={t("Norsk")} />
-            </ListItem>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.da)}
-            >
-              <ListItemText primary={t("Danska")} />
-            </ListItem>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.fi)}
-            >
-              <ListItemText primary={t("Suomi")} />
-            </ListItem>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.is)}
-            >
-              <ListItemText primary={t("Íslenska")} />
-            </ListItem>
-            <ListItem
-              button
-              className={s.nested}
-              onClick={(_) => handleCloseLanguage(_, Locales.de)}
-            >
-              <ListItemText primary={t("Deutsch")} />
-            </ListItem>
-          </List>
-        </Collapse>
-        <Divider />
-      </div>
-
       <List>
         {isSignedIn.value ? (
           <>
@@ -307,11 +245,8 @@ export default function DrawerMenu({
             {isSignedIn.value && membership.value > 4 && (
               <ListItem button divider>
                 <ListItemIcon>
-                  <Badge max={99} color="primary">
-                    <SupervisorAccountSharpIcon
-                      color="primary"
-                      style={{ fontSize: 30 }}
-                    />
+                  <Badge max={99}>
+                    <SupervisorAccountSharpIcon style={{ fontSize: 30 }} />
                   </Badge>
                 </ListItemIcon>
                 <a href="/admin" target="_self" rel="noopener noreferrer">
@@ -333,10 +268,9 @@ export default function DrawerMenu({
             <Link href="/feed" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
-                  <Badge max={99} color="primary">
+                  <Badge max={99}>
                     <SupervisorAccountSharpIcon
-                      color="primary"
-                      style={{ fontSize: 30 }}
+                      style={{ fontSize: 30, color: "#343a40" }}
                     />
                   </Badge>
                 </ListItemIcon>
@@ -364,7 +298,7 @@ export default function DrawerMenu({
             <Link href="/upload" passHref>
               <ListItem button divider onClick={() => close()}>
                 <ListItemIcon>
-                  <InsertPhotoIcon color="primary" style={{ fontSize: 30 }} />
+                  <InsertPhotoIcon style={{ fontSize: 30, color: "#6f42c1" }} />
                 </ListItemIcon>
                 <ListItemText primary={t("upload")} />
               </ListItem>
@@ -376,8 +310,7 @@ export default function DrawerMenu({
                   <ListItem button divider onClick={() => close()}>
                     <ListItemIcon>
                       <InsertPhotoIcon
-                        color="primary"
-                        style={{ fontSize: 30 }}
+                        style={{ fontSize: 30, color: "#ffc107" }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={t("uploadStory")} />
@@ -390,8 +323,7 @@ export default function DrawerMenu({
                   <ListItem button divider onClick={() => close()}>
                     <ListItemIcon>
                       <FeedOutlinedIcon
-                        color="primary"
-                        style={{ fontSize: 30 }}
+                        style={{ fontSize: 30, color: "#e83e8c" }}
                       />
                     </ListItemIcon>
                     <ListItemText primary={t("uploadStory")} />
@@ -573,6 +505,66 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
+        <div>
+          <ListItem button onClick={handleClickLanguage}>
+            <ListItemText primary={displayLocale} />
+            {openLanguage ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={openLanguage} timeout="auto">
+            <List component="div" disablePadding>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.sv)}
+              >
+                <ListItemText primary={t("Swedish")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.en)}
+              >
+                <ListItemText primary={t("english")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.nb)}
+              >
+                <ListItemText primary={t("Norsk")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.da)}
+              >
+                <ListItemText primary={t("Danska")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.fi)}
+              >
+                <ListItemText primary={t("Suomi")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.is)}
+              >
+                <ListItemText primary={t("Íslenska")} />
+              </ListItem>
+              <ListItem
+                button
+                className={s.nested}
+                onClick={(_) => handleCloseLanguage(_, Locales.de)}
+              >
+                <ListItemText primary={t("Deutsch")} />
+              </ListItem>
+            </List>
+          </Collapse>
+          <Divider />
+        </div>
 
         {isSignedIn.value ? (
           <>

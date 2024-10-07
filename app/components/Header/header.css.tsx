@@ -94,8 +94,8 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "gotham",
       borderRadius: "14px",
       "&:hover": {
-        backgroundColor: "#fadf87",
-        color: "black",
+        backgroundColor: "#e83e8c",
+        color: "white",
       },
     },
     uploadStoryButton: {
@@ -110,6 +110,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: "normal",
       fontFamily: "gotham",
       borderRadius: "14px",
+
       "&:hover": {
         backgroundColor: "#fadf87",
         color: "black",
@@ -161,11 +162,11 @@ export const styles = makeStyles((theme: Theme) =>
       WebkitTextFillColor: "transparent",
     },
     premiumText: {
-      color: "#FFFFFF",
+      color: "#fadf87",
       textTransform: "uppercase",
       fontWeight: 500,
-      fontSize: "8px",
-      marginRight: "12px",
+      fontSize: "14px",
+      marginRight: "6px",
     },
 
     [theme.breakpoints.up("sm")]: {
