@@ -224,11 +224,6 @@ export default function DrawerMenu({
       <div className={s.languageElement} style={{ marginTop: "10px" }}>
         <Divider />
         <ListItem button onClick={handleClickLanguage}>
-          <ListItemIcon>
-            <Badge max={99} color="primary" overlap="rectangular">
-              <LanguageRoundedIcon color="primary" style={{ fontSize: 30 }} />
-            </Badge>
-          </ListItemIcon>
           <ListItemText primary={displayLocale} />
           {openLanguage ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
