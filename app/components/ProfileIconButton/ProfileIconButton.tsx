@@ -25,7 +25,7 @@ const ProfileIconButton = ({ profilePicture = null }) => {
   return (
     <>
       <IconButton
-        color="primary"
+        className={s.iconColor}
         aria-label="account"
         onClick={(event) => setPopoverAnchorEl(event.currentTarget)}
       >

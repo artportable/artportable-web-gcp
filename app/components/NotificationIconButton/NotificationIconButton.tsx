@@ -31,6 +31,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
   const { activityToken, socialId } = props;
   const [unreadNotificationsCount, setUnreadNotificationsCount] =
     useState<number>(0);
+
   const [unreadNotifications, setUnreadNotifications] = useState<
     NotificationActivity[]
   >([]);
@@ -73,6 +74,10 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
       }
     };
   }, [socialId, activityToken]);
+
+  useEffect(() => {
+    console.log(unreadNotificationsCount);
+  }, [unreadNotifications]);
 
   const onLoadMore = async () => {
     if (readNotifications.length > 0 || unreadNotifications.length > 0) {
@@ -143,13 +148,24 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
   return (
     <>
       <IconButton
-        color="primary"
         aria-label="account"
         onClick={(event) => setPopoverAnchorEl(event.currentTarget)}
       >
-        <Badge badgeContent={unreadNotificationsCount} max={99} color="primary">
-          <NotificationsIcon style={{ fontSize: "30px" }} />
-        </Badge>
+        {unreadNotificationsCount ? (
+          <div>
+            <Badge badgeContent={unreadNotificationsCount} max={99}>
+              <NotificationsIcon
+                style={{ fontSize: "30px", color: "#ff8383" }}
+              />
+            </Badge>
+          </div>
+        ) : (
+          <div>
+            <Badge badgeContent={unreadNotificationsCount} max={99}>
+              <NotificationsIcon style={{ fontSize: "30px" }} />
+            </Badge>
+          </div>
+        )}
       </IconButton>
       <div ref={containerRef}>
         <Popover
