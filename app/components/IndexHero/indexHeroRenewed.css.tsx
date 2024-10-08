@@ -346,6 +346,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
+    sectionWrapper: {},
+
     arrowDown: {
       display: "flex",
       flexDirection: "column",

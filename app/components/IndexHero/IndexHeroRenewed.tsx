@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { styles } from "./indexHeroRenewed.css";
 import clsx from "clsx";
-import { Typography, useMediaQuery } from "@material-ui/core";
+import { Link, Typography, useMediaQuery } from "@material-ui/core";
 import { theme } from "../../../styles/theme";
 import { useEffect, useState } from "react";
 import { styles as sharedStyles } from "../../../styles/shared.css";
@@ -37,7 +37,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 1000000,
+          delay: 8000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -168,6 +168,158 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 </div>
               )}
             </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            {isTinyDevice ? (
+              <section
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  height: "calc(100vh - 90px)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    height: "100%",
+                    textAlign: "center",
+                    color: "white",
+                    backgroundColor: "rgb(21 20 19)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "50%",
+                      alignContent: "center",
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontSize: "38px",
+                        fontWeight: "normal",
+                      }}
+                    >
+                      Konstutställning med vernissage
+                    </h2>
+                    <h2
+                      style={{
+                        fontSize: "24px",
+                      }}
+                    >
+                      <Link
+                        style={{ color: "white" }}
+                        href="https://artportable.com/profile/@petra.risberg"
+                      >
+                        PETRA RISBERG
+                      </Link>
+                    </h2>
+                    <p>Utställning 9 - 17 november kl. 13 - 17</p>
+                    <p>Vernissage lördag 9 november kl. 14 - 20</p>
+                    <h3>
+                      <Link
+                        style={{ color: "white" }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://galleririsberg.se/"
+                      >
+                        Galleri Risberg
+                      </Link>
+                    </h3>
+                    <p>Bergsgatan 36, Stockholm</p>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    height: "100%",
+                    textAlign: "center",
+                    backgroundImage: `url("/images/risberg1.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+              </section>
+            ) : (
+              <section
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  height: "calc(70vh)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    height: "100%",
+                    textAlign: "center",
+                    backgroundImage: `url("/images/risberg1.jpg")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "bottom",
+                    backgroundRepeat: "no-repeat",
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {" "}
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "50%",
+                      alignContent: "center",
+                      backgroundColor: "#0000006b",
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontSize: "22px",
+                        fontWeight: "normal",
+                      }}
+                    >
+                      Konstutställning med vernissage
+                    </h2>
+                    <h2
+                      style={{
+                        fontSize: "24px",
+                      }}
+                    >
+                      <Link
+                        style={{ color: "white", textDecoration: "underline" }}
+                        href="https://artportable.com/profile/@petra.risberg"
+                      >
+                        PETRA RISBERG
+                      </Link>
+                    </h2>
+                    <div>Utställning 9 - 17 november kl. 13 - 17</div>
+                    <div>Vernissage lördag 9 november kl. 14 - 20</div>
+                    <h3>
+                      <Link
+                        style={{ color: "white", textDecoration: "underline" }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://galleririsberg.se/"
+                      >
+                        Galleri Risberg
+                      </Link>
+                    </h3>
+                    <p>Bergsgatan 36, Stockholm</p>
+                  </div>
+                </div>
+              </section>
+            )}
           </SwiperSlide>
         </div>
       </Swiper>
