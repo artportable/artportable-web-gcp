@@ -129,7 +129,7 @@ export default function ArtworkListItemDefinedProfile({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <Image
+            <img
               width={width}
               height={height}
               alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
