@@ -71,11 +71,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     largeButtonFindArt: {
       minWidth: "100px",
-      height: "36px",
+      height: "50px",
       minHeight: "36px",
       whiteSpace: "nowrap",
-      padding: theme.spacing(0, 3, 0, 3),
-
+      padding: theme.spacing(2, 2, 2, 2),
       fontSize: "0.9rem",
       borderRadius: "18px",
       color: "white",
@@ -83,8 +82,7 @@ export const styles = makeStyles((theme: Theme) =>
         color: "white",
       },
       "&:hover": {
-        color: "#252525",
-        backgroundColor: "transparent",
+        backgroundColor: "#00000036",
       },
     },
     alwaysYellowButton: {

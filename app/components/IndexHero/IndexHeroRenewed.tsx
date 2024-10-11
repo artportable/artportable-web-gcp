@@ -37,13 +37,64 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 8000,
+          delay: 800000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
       >
         <div className={clsx(s.fullWidthContainer)}>
           <SwiperSlide>
+            <div className={s.headlineContainer}>
+              <Typography variant="h1" className={s.headline}>
+                {t("nordensLargestArena")}{" "}
+                <span>
+                  <br />
+                </span>
+                {t("forArtistsAndArtLovers")}
+              </Typography>
+              <div className={s.desktopHeaderButtons}>
+                <Button
+                  className={clsx(
+                    sShared.largeButton,
+                    sShared.yellowButton,
+                    sShared.noBorder
+                  )}
+                  style={{
+                    minWidth: "200px",
+                  }}
+                  size="medium"
+                  // variant="contained"
+                  color="primary"
+                  rounded
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                >
+                  {t("signUp")}
+                </Button>
+              </div>
+              <div className={s.desktopHeaderButtons}>
+                <Button
+                  className={clsx(
+                    sShared.largeButtonFindArt,
+                    sShared.findArtButton,
+                    sShared.noBorder
+                  )}
+                  size="medium"
+                  rounded
+                  onClick={onScrollDown}
+                  style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
+                >
+                  <div className={s.arrowDown}>
+                    {t("findArt")}
+                    <KeyboardDoubleArrowDownIcon />
+                  </div>
+                </Button>
+              </div>
+            </div>
             <div className={s.fullWidthImage}>
               <Image
                 layout="fill"
@@ -56,56 +107,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 objectFit="cover"
                 loading="lazy"
               />
-              <div className={s.headlineContainer}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("nordensLargestArena")}{" "}
-                  <span>
-                    <br />
-                  </span>
-                  {t("forArtistsAndArtLovers")}
-                </Typography>
-                <div className={s.desktopHeaderButtons}>
-                  <Button
-                    className={clsx(
-                      sShared.largeButton,
-                      sShared.yellowButton,
-                      sShared.noBorder
-                    )}
-                    style={{
-                      minWidth: "200px",
-                    }}
-                    size="medium"
-                    // variant="contained"
-                    color="primary"
-                    rounded
-                    onClick={() =>
-                      keycloak.register({
-                        locale: router.locale,
-                        redirectUri: signUpRedirectHref,
-                      })
-                    }
-                  >
-                    {t("signUp")}
-                  </Button>
-                </div>
-                <div className={s.desktopHeaderButtons}>
-                  <Button
-                    className={clsx(
-                      sShared.largeButtonFindArt,
-                      sShared.findArtButton,
-                      sShared.noBorder
-                    )}
-                    size="medium"
-                    rounded
-                    onClick={onScrollDown}
-                  >
-                    <div className={s.arrowDown}>
-                      {t("findArt")}
-                      <KeyboardDoubleArrowDownIcon />
-                    </div>
-                  </Button>
-                </div>
-              </div>
+
               {!isTinyDevice ? (
                 <div
                   style={{
@@ -114,7 +116,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     justifyContent: "center",
                     color: "white",
                     fontSize: "14px",
-                    textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
                   }}
                 >
                   <div className={s.readMoreButton}>
@@ -129,7 +131,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textShadow: "6px 6px 8px rgba(0, 0, 0, 0.3)",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
                       }}
                     >
                       "Catnap och skata"
@@ -144,7 +146,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     justifyContent: "center",
                     color: "white",
                     fontSize: "14px",
-                    textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
                   }}
                 >
                   <div className={s.readMoreButton}>
@@ -159,7 +161,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textShadow: "6px 6px 8px rgba(0, 0, 0, 0.9)",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
                       }}
                     >
                       "Cat nap"

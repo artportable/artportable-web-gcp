@@ -76,12 +76,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       position: "relative",
-
       fontWeight: 600,
       fontSize: "1.3rem",
       textAlign: "center",
       color: "white",
       zIndex: 20,
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // Add this line
       "& span": {
         display: "none",
       },
@@ -96,6 +96,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "70%",
       },
     },
+
     headlineTwo: {
       position: "relative",
       fontWeight: 400,
