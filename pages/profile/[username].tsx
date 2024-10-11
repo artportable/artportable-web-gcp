@@ -573,25 +573,19 @@ export default function Profile(props) {
                   }}
                 >
                   <Tab
-                    className={clsx(s.tab, {
-                      [s.tabLight]: useLightText,
-                    })}
+                    className={clsx(s.tab, {})}
                     label={t("profile:portfolio")}
                     {...a11yProps(t("profile:portfolio"))}
                   />
                   <Tab
-                    className={clsx(s.tab, {
-                      [s.tabLight]: useLightText,
-                    })}
+                    className={clsx(s.tab, {})}
                     label={t("profile:aboutMe")}
                     {...a11yProps(t("profile:aboutMe"))}
                   />
 
                   {stories?.data?.length > 0 && (
                     <Tab
-                      className={clsx(s.tab, {
-                        [s.tabLight]: useLightText,
-                      })}
+                      className={clsx(s.tab, {})}
                       label={t("profile:stories")}
                       {...a11yProps(storiesTabIndex)}
                     />
@@ -599,9 +593,7 @@ export default function Profile(props) {
 
                   {/* Liked Art tab */}
                   <Tab
-                    className={clsx(s.tab, {
-                      [s.tabLight]: useLightText,
-                    })}
+                    className={clsx(s.tab, {})}
                     label={t("discover:likedArt")}
                     {...a11yProps(likedArtTabIndex)}
                   />
@@ -609,9 +601,7 @@ export default function Profile(props) {
                   {/* Conditionally render the articles tab */}
                   {articles && articles.length > 0 && (
                     <Tab
-                      className={clsx(s.tab, {
-                        [s.tabLight]: useLightText,
-                      })}
+                      className={clsx(s.tab, {})}
                       label={t("profile:articles")}
                       {...a11yProps(articlesTabIndex)}
                     />
