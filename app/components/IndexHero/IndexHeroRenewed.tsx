@@ -201,14 +201,14 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       alignContent: "center",
                     }}
                   >
-                    <h2
+                    <Typography
                       style={{
                         fontSize: "38px",
                         fontWeight: "normal",
                       }}
                     >
                       Konstutställning med vernissage
-                    </h2>
+                    </Typography>
                     <h2
                       style={{
                         fontSize: "24px",
@@ -282,42 +282,68 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       width: "100%",
                       height: "50%",
                       alignContent: "center",
-                      backgroundColor: "#0000006b",
+                      backgroundColor: "rgb(0 0 0 / 78%)",
                     }}
                   >
-                    <h2
-                      style={{
-                        fontSize: "22px",
-                        fontWeight: "normal",
-                      }}
+                    <Typography
+                      variant="h2"
+                      className={s.headline}
+                      style={{ marginBottom: "20px" }}
                     >
                       Konstutställning med vernissage
-                    </h2>
-                    <h2
+                    </Typography>
+                    <Typography
+                      className={s.headline}
                       style={{
-                        fontSize: "24px",
+                        marginBottom: "10px",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
                       }}
                     >
                       <Link
-                        style={{ color: "white", textDecoration: "underline" }}
+                        style={{ color: "white" }}
                         href="https://artportable.com/profile/@petra.risberg"
                       >
                         PETRA RISBERG
                       </Link>
-                    </h2>
-                    <div>Utställning 9 - 17 november kl. 13 - 17</div>
-                    <div>Vernissage lördag 9 november kl. 14 - 20</div>
-                    <h3>
+                    </Typography>
+                    <Typography
+                      style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+                    >
+                      Utställning 9 - 17 november kl. 13 - 17
+                    </Typography>
+                    <Typography
+                      style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+                    >
+                      Vernissage lördag 9 november kl. 14 - 20
+                    </Typography>
+                    <Typography
+                      variant="h3"
+                      style={{
+                        marginTop: "20px",
+                        color: "white",
+                        marginBottom: "20px",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                      }}
+                    >
                       <Link
-                        style={{ color: "white", textDecoration: "underline" }}
                         target="_blank"
                         rel="noopener noreferrer"
                         href="https://galleririsberg.se/"
+                        style={{
+                          color: "white",
+                        }}
                       >
                         Galleri Risberg
                       </Link>
-                    </h3>
-                    <p>Bergsgatan 36, Stockholm</p>
+                    </Typography>
+                    <Typography
+                      style={{
+                        marginTop: "20px",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                      }}
+                    >
+                      Bergsgatan 36, Stockholm
+                    </Typography>
                   </div>
                 </div>
               </section>
