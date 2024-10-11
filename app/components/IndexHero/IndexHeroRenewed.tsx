@@ -283,6 +283,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       height: "50%",
                       alignContent: "center",
                       backgroundColor: "rgb(0 0 0 / 78%)",
+                      padding: "10px",
+                      paddingBottom: "20px",
+                      paddingTop: "20px",
                     }}
                   >
                     <Typography
