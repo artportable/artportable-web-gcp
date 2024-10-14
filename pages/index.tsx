@@ -1,5 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/index.css";
+import { styles as sharedStyles } from "../styles/shared.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
@@ -44,6 +45,7 @@ import {
 } from "../app/utils/googleAnalytics";
 // import router from "next/router";
 import { useKeycloak } from "@react-keycloak/ssr";
+
 import { useRouter } from "next/router";
 // import Typography from "@material-ui/core/Typography";
 import { getCurrentLanguage } from "../constants/keycloakSettings";
@@ -60,6 +62,10 @@ import { Membership } from "../app/models/Membership";
 import IndexHeroRenewed from "../app/components/IndexHero/IndexHeroRenewed";
 import { block } from "sharp";
 import DiscoverAafArtTab from "../app/components/DiscoverAafArt/DiscoverAafArt";
+import Button from "../app/components/Button/Button";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import { KeycloakInstance } from "keycloak-js";
+
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
     "index",
@@ -69,7 +75,9 @@ export default function DiscoverPage({ navBarItems }) {
     "discover",
   ]);
   const s = styles();
+  const sShared = sharedStyles();
   const store = useStore();
+
   const { username, socialId, isSignedIn, membership } =
     useContext(UserContext);
   const dispatch = useDispatch();
@@ -83,8 +91,11 @@ export default function DiscoverPage({ navBarItems }) {
   const [openAdDialog, setOpenAdDialog] = useState(false);
   // const [artHeader, setArtHeader] = useState('HEADER')
   const { keycloak } = useKeycloak();
+
   const AD_INTERVAL = 300000; // Ad Dialog
   const router = useRouter();
+  const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
+
   useEffect(() => {
     if (keycloak?.authenticated && !sessionStorage.getItem("loggedIn")) {
       sessionStorage.setItem("loggedIn", "true");
@@ -193,6 +204,10 @@ export default function DiscoverPage({ navBarItems }) {
     }
   };
 
+  function clsx(largeButtonFindArt: any, findArtButton: any, noBorder: any) {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <Main
       noHeaderPadding
@@ -232,6 +247,61 @@ export default function DiscoverPage({ navBarItems }) {
       </Head>
       {!isSignedIn.value && (
         <IndexHeroRenewed onScrollDown={scrollToNextSection} />
+      )}
+
+      {!isSignedIn.value && (
+        <div style={{ display: "block", gridColumn: "1/3" }}>
+          {isMobile && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                backgroundColor: "#fdf9f700",
+                width: "100vw",
+              }}
+            >
+              <div>
+                <Typography variant="h1" className={s.headline}>
+                  {t("nordensLargestArena")}{" "}
+                  <span>
+                    <br />
+                  </span>
+                  {t("forArtistsAndArtLovers")}
+                </Typography>
+              </div>
+              <div>
+                <Button
+                  className={s.desktopHeaderButtons}
+                  style={{
+                    minWidth: "200px",
+                  }}
+                  rounded
+                  onClick={() => router.push("/register")}
+                >
+                  {t("signUp")}
+                </Button>
+              </div>
+
+              <Button
+                className={s.artButton}
+                size="medium"
+                rounded
+                onClick={scrollToNextSection}
+                style={{
+                  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
+                  marginBottom: "10px",
+                  color: "black",
+                }}
+              >
+                <div className={s.arrowDown}>
+                  {t("findArt")}
+                  <KeyboardDoubleArrowDownIcon />
+                </div>
+              </Button>
+            </div>
+          )}
+        </div>
       )}
 
       {isSignedIn.value && (
