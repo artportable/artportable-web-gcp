@@ -60,6 +60,18 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       // textAlign: 'center',
     },
+    headlineContainerMobile: {
+      position: "absolute",
+      top: "20px",
+      bottom: "20px",
+      left: "20px",
+      right: "20px",
+      display: "flex",
+      flexFlow: "column nowrap",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+
     headlineContainerTwo: {
       position: "absolute",
       top: "0px",

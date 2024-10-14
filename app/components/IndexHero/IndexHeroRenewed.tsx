@@ -37,71 +37,134 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 800000,
+          delay: 8000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
       >
         <div className={clsx(s.fullWidthContainer)}>
           <SwiperSlide>
-            <div className={s.headlineContainer}>
-              <Typography variant="h1" className={s.headline}>
-                {t("nordensLargestArena")}{" "}
-                <span>
-                  <br />
-                </span>
-                {t("forArtistsAndArtLovers")}
-              </Typography>
-              <div className={s.desktopHeaderButtons}>
-                <Button
-                  className={clsx(
-                    sShared.largeButton,
-                    sShared.yellowButton,
-                    sShared.noBorder
-                  )}
+            {!isTinyDevice ? (
+              <div className={s.headlineContainerMobile}>
+                <Typography variant="h1" className={s.headline}>
+                  {t("nordensLargestArena")}{" "}
+                  <span>
+                    <br />
+                  </span>
+                  {t("forArtistsAndArtLovers")}
+                </Typography>
+                <div
                   style={{
-                    minWidth: "200px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                  size="medium"
-                  // variant="contained"
-                  color="primary"
-                  rounded
-                  onClick={() =>
-                    keycloak.register({
-                      locale: router.locale,
-                      redirectUri: signUpRedirectHref,
-                    })
-                  }
                 >
-                  {t("signUp")}
-                </Button>
-              </div>
-              <div className={s.desktopHeaderButtons}>
-                <Button
-                  className={clsx(
-                    sShared.largeButtonFindArt,
-                    sShared.findArtButton,
-                    sShared.noBorder
-                  )}
-                  size="medium"
-                  rounded
-                  onClick={onScrollDown}
-                  style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
-                >
-                  <div className={s.arrowDown}>
-                    {t("findArt")}
-                    <KeyboardDoubleArrowDownIcon />
+                  <div className={s.desktopHeaderButtons}>
+                    <Button
+                      className={clsx(
+                        sShared.largeButton,
+                        sShared.yellowButton,
+                        sShared.noBorder
+                      )}
+                      style={{
+                        minWidth: "200px",
+                      }}
+                      size="medium"
+                      // variant="contained"
+                      color="primary"
+                      rounded
+                      onClick={() =>
+                        keycloak.register({
+                          locale: router.locale,
+                          redirectUri: signUpRedirectHref,
+                        })
+                      }
+                    >
+                      {t("signUp")}
+                    </Button>
                   </div>
-                </Button>
+                  <div className={s.desktopHeaderButtons}>
+                    <Button
+                      className={clsx(
+                        sShared.largeButtonFindArt,
+                        sShared.findArtButton,
+                        sShared.noBorder
+                      )}
+                      size="medium"
+                      rounded
+                      onClick={onScrollDown}
+                      style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
+                    >
+                      <div className={s.arrowDown}>
+                        {t("findArt")}
+                        <KeyboardDoubleArrowDownIcon />
+                      </div>
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className={s.headlineContainer}>
+                <Typography variant="h1" className={s.headline}>
+                  {t("nordensLargestArena")}{" "}
+                  <span>
+                    <br />
+                  </span>
+                  {t("forArtistsAndArtLovers")}
+                </Typography>
+                <div className={s.desktopHeaderButtons}>
+                  <Button
+                    className={clsx(
+                      sShared.largeButton,
+                      sShared.yellowButton,
+                      sShared.noBorder
+                    )}
+                    style={{
+                      minWidth: "200px",
+                    }}
+                    size="medium"
+                    // variant="contained"
+                    color="primary"
+                    rounded
+                    onClick={() =>
+                      keycloak.register({
+                        locale: router.locale,
+                        redirectUri: signUpRedirectHref,
+                      })
+                    }
+                  >
+                    {t("signUp")}
+                  </Button>
+                </div>
+                <div className={s.desktopHeaderButtons}>
+                  <Button
+                    className={clsx(
+                      sShared.largeButtonFindArt,
+                      sShared.findArtButton,
+                      sShared.noBorder
+                    )}
+                    size="medium"
+                    rounded
+                    onClick={onScrollDown}
+                    style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
+                  >
+                    <div className={s.arrowDown}>
+                      {t("findArt")}
+                      <KeyboardDoubleArrowDownIcon />
+                    </div>
+                  </Button>
+                </div>
+              </div>
+            )}
             <div className={s.fullWidthImage}>
               <Image
                 layout="fill"
                 src={
                   isTinyDevice
-                    ? "/images/onnebyDesktop.jpeg"
-                    : "/images/onnebyMobile3.jpg"
+                    ? "/images/yellowfields.jpg"
+                    : "/images/loMobile.jpg"
                 }
                 alt={"konst"}
                 objectFit="cover"
@@ -121,20 +184,20 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/517f0b7a-96ed-4208-b936-15c053d1657c"
+                      href="https://artportable.com/en/art/07789129-9f95-491f-8914-bb25675da490"
                       style={{ display: "inline" }}
                     >
-                      Anneli Önneby, {""}
+                      Lo Fehrling, {""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/517f0b7a-96ed-4208-b936-15c053d1657c"
+                      href="https://artportable.com/en/art/07789129-9f95-491f-8914-bb25675da490"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
                         textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
                       }}
                     >
-                      "Catnap och skata"
+                      Landfall
                     </a>
                   </div>
                 </div>
@@ -144,27 +207,27 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
-                    color: "white",
+                    color: "black",
                     fontSize: "14px",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
                   }}
                 >
                   <div className={s.readMoreButton}>
                     <a
-                      href="https://artportable.com/en/art/5fadd34d-bf2a-4c18-82ae-122f01fe7ae5"
+                      href="https://artportable.com/en/art/69abf98c-a847-4560-a42b-2ad3bc7cc5b7"
                       style={{ display: "inline" }}
                     >
-                      Anneli Önneby{""}
+                      Lo Fehrling{""}
                     </a>
                     <a
-                      href="https://artportable.com/en/art/5fadd34d-bf2a-4c18-82ae-122f01fe7ae5"
+                      href="https://artportable.com/en/art/69abf98c-a847-4560-a42b-2ad3bc7cc5b7"
                       style={{
                         fontStyle: "italic",
                         display: "inline",
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
                       }}
                     >
-                      "Cat nap"
+                      Yellow Fields
                     </a>
                   </div>
                 </div>
