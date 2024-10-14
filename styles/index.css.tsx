@@ -56,6 +56,73 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
+    artButton: {
+      minWidth: "100px",
+      height: "50px",
+      minHeight: "36px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(2, 2, 2, 2),
+      fontSize: "0.9rem",
+      borderRadius: "18px",
+      color: "white",
+      [theme.breakpoints.up("smPlus")]: {
+        color: "white",
+      },
+      "&:hover": {
+        backgroundColor: "#00000036",
+      },
+    },
+    arrowDown: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      textTransform: "uppercase",
+    },
+    desktopHeaderButtons: {
+      minWidth: "100px",
+      height: "36px",
+      minHeight: "36px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 3, 0, 3),
+      color: "#3d3d4e",
+      fontSize: "0.9rem",
+      borderRadius: "18px",
+      marginTop: "10px",
+      marginBottom: "20px",
+      backgroundColor: "#fadf87",
+      textTransform: "uppercase",
+      "&:hover": {
+        backgroundColor: "#F7E2A8",
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "initial",
+      },
+    },
+    headline: {
+      position: "relative",
+      fontWeight: 500,
+      fontSize: "1.1rem",
+      textAlign: "center",
+      color: "black",
+      zIndex: 20,
+      padding: "20px",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
+      textTransform: "uppercase",
+      "& span": {
+        display: "none",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "2.2rem",
+        color: "white",
+      },
+      [theme.breakpoints.up("md")]: {
+        textAlign: "center",
+      },
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "3.0rem",
+        width: "70%",
+      },
+    },
     artistTab: {
       "& .MuiTab-root": {
         minWidth: 0,

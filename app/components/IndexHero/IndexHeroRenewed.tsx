@@ -37,7 +37,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 8000,
+          delay: 888000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -45,66 +45,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
         <div className={clsx(s.fullWidthContainer)}>
           <SwiperSlide>
             {!isTinyDevice ? (
-              <div className={s.headlineContainerMobile}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("nordensLargestArena")}{" "}
-                  <span>
-                    <br />
-                  </span>
-                  {t("forArtistsAndArtLovers")}
-                </Typography>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <div className={s.desktopHeaderButtons}>
-                    <Button
-                      className={clsx(
-                        sShared.largeButton,
-                        sShared.yellowButton,
-                        sShared.noBorder
-                      )}
-                      style={{
-                        minWidth: "200px",
-                      }}
-                      size="medium"
-                      // variant="contained"
-                      color="primary"
-                      rounded
-                      onClick={() =>
-                        keycloak.register({
-                          locale: router.locale,
-                          redirectUri: signUpRedirectHref,
-                        })
-                      }
-                    >
-                      {t("signUp")}
-                    </Button>
-                  </div>
-                  <div className={s.desktopHeaderButtons}>
-                    <Button
-                      className={clsx(
-                        sShared.largeButtonFindArt,
-                        sShared.findArtButton,
-                        sShared.noBorder
-                      )}
-                      size="medium"
-                      rounded
-                      onClick={onScrollDown}
-                      style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
-                    >
-                      <div className={s.arrowDown}>
-                        {t("findArt")}
-                        <KeyboardDoubleArrowDownIcon />
-                      </div>
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <div></div>
             ) : (
               <div className={s.headlineContainer}>
                 <Typography variant="h1" className={s.headline}>
@@ -320,7 +261,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  height: "calc(70vh)",
+                  height: "calc(50vh)",
                 }}
               >
                 <div
@@ -343,25 +284,23 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <div
                     style={{
                       width: "100%",
-                      height: "50%",
+                      height: "60%",
                       alignContent: "center",
                       backgroundColor: "rgb(0 0 0 / 78%)",
-                      padding: "10px",
-                      paddingBottom: "20px",
+
                       paddingTop: "20px",
                     }}
                   >
                     <Typography
                       variant="h2"
                       className={s.headline}
-                      style={{ marginBottom: "20px" }}
+                      style={{ marginBottom: "20px", color: "white" }}
                     >
                       Konstutställning med vernissage
                     </Typography>
                     <Typography
                       className={s.headline}
                       style={{
-                        marginBottom: "10px",
                         textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
                       }}
                     >

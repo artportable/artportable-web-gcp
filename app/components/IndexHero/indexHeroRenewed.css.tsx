@@ -18,7 +18,7 @@ export const styles = makeStyles((theme: Theme) =>
     fullWidthImage: {
       position: "relative",
       width: "100vw",
-      height: "70vh",
+      height: "50vh",
       minHeight: "400px",
       [theme.breakpoints.up("sm")]: {
         height: "calc(100vh - 90px)",
@@ -88,17 +88,19 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       position: "relative",
-      fontWeight: 600,
-      fontSize: "1.3rem",
+      fontWeight: 500,
+      fontSize: "1.1rem",
       textAlign: "center",
-      color: "white",
+      color: "black",
       zIndex: 20,
-      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // Add this line
+      padding: "20px",
+
       "& span": {
         display: "none",
       },
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("smPlus")]: {
         fontSize: "2.2rem",
+        color: "white",
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "center",
