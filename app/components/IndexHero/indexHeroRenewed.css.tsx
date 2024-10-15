@@ -20,7 +20,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100vw",
       height: "50vh",
       minHeight: "400px",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("smPlus")]: {
         height: "calc(100vh - 90px)",
       },
       "& img": {

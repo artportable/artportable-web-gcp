@@ -257,11 +257,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               </section>
             ) : (
               <section
+                className={s.fullWidthImage}
                 style={{
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  height: "calc(50vh)",
                 }}
               >
                 <div
@@ -276,25 +276,21 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     backgroundSize: "cover",
                     backgroundPosition: "bottom",
                     backgroundRepeat: "no-repeat",
-                    color: "white",
-                    fontWeight: "bold",
                   }}
                 >
-                  {" "}
                   <div
                     style={{
                       width: "100%",
-                      height: "60%",
+                      height: "auto",
                       alignContent: "center",
                       backgroundColor: "rgb(0 0 0 / 78%)",
-
-                      paddingTop: "20px",
+                      paddingTop: "10px",
                     }}
                   >
                     <Typography
                       variant="h2"
                       className={s.headline}
-                      style={{ marginBottom: "20px", color: "white" }}
+                      style={{ color: "white" }}
                     >
                       Konstutställning med vernissage
                     </Typography>
@@ -312,12 +308,18 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       </Link>
                     </Typography>
                     <Typography
-                      style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+                      style={{
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                        color: "white",
+                      }}
                     >
                       Utställning 9 - 17 november kl. 13 - 17
                     </Typography>
                     <Typography
-                      style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
+                      style={{
+                        color: "white",
+                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                      }}
                     >
                       Vernissage lördag 9 november kl. 14 - 20
                     </Typography>
@@ -343,8 +345,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     </Typography>
                     <Typography
                       style={{
-                        marginTop: "20px",
+                        marginBottom: "10px",
                         textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
+                        color: "white",
                       }}
                     >
                       Bergsgatan 36, Stockholm
