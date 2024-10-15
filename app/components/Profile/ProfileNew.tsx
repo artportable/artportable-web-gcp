@@ -413,7 +413,7 @@ export default function ProfileNew({
               </DialogContent>
             </Dialog>
             <Button onClick={handleClick} className={s.annonsera}>
-              {t("Annonsera")}
+              {t("common:words.Annonsera")}
             </Button>
             <Spacer y={isMobile ? 24 : 80} />
           </>
