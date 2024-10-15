@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import clsx from 'clsx';
-import { styles } from './artworkmasonry.css';
+import clsx from "clsx";
+import { styles } from "./artworkmasonry.css";
 
 export default function ArtworkMasonry({
   layout,
@@ -20,10 +20,10 @@ export default function ArtworkMasonry({
   const [sortedItems, setSortedItems] = useState([]);
 
   const sortArtworkByOrderIndex = (a, b) => {
-    if (a.OrderIndex > b.OrderIndex) return 1
-    if (a.OrderIndex < b.OrderIndex) return -1
-    return 0
-  }
+    if (a.OrderIndex > b.OrderIndex) return 1;
+    if (a.OrderIndex < b.OrderIndex) return -1;
+    return 0;
+  };
 
   useEffect(() => {
     // items && setSortedItems(items.map((item, index) => {
@@ -54,13 +54,7 @@ export default function ArtworkMasonry({
 
   // console.log('items', items);
   // console.log('sortedItems', sortedItems);
-  
-  
 
-  console.log('layout', layout);
-  console.log('frame', frame);
-  console.log('corners', corners);
-  console.log('shadow', shadow);
   const imageStyle = {
     // width: '100%',
     // height: 'auto',
@@ -68,7 +62,7 @@ export default function ArtworkMasonry({
     // border: '5px solid black', // Thick border
     // borderRadius: 10,
     // boxShadow: '-3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)',
-  }
+  };
   // const borderColor = 'black';
   // if (frame === 'thin') imageStyle['border'] = `1px solid ${borderColor}`;
   // else if (frame === 'thick') imageStyle['border'] = `5px solid ${borderColor}`;
@@ -76,139 +70,154 @@ export default function ArtworkMasonry({
   // if (shadow === 'shadow') imageStyle['boxShadow'] = '-3px 3px 8px rgba(0, 0, 0, .2), 3px 3px 8px rgba(0, 0, 0, .2)';
 
   const imageClasses = clsx({
-    [s.thinBorder]: frame === 'thin',
-    [s.thickBorder]: frame === 'thick',
-    [s.roundedCorners]: corners === 'rounded',
-    [s.shadow]: shadow === 'shadow',
-  })
-  console.log('imageClasses', imageClasses);
-
+    [s.thinBorder]: frame === "thin",
+    [s.thickBorder]: frame === "thick",
+    [s.roundedCorners]: corners === "rounded",
+    [s.shadow]: shadow === "shadow",
+  });
+  console.log("imageClasses", imageClasses);
 
   const createFooter = () => {
     return (
-      <div style={{
-        width: '100%',
-        height: 50,
-        border: '2px solid red',
-      }}></div>
-    )
-  }
+      <div
+        style={{
+          width: "100%",
+          height: 50,
+          border: "2px solid red",
+        }}
+      ></div>
+    );
+  };
 
-  if (layout === 'evenRows') {
+  if (layout === "evenRows") {
     return (
       <Masonry
         columnsCount={2}
-        gutter={'8px'}
+        gutter={"8px"}
         style={{
-          width: '100%',
+          width: "100%",
           maxWidth: 600,
-          margin: '0 auto',
-        }}>
-        {items.map(item => {
+          margin: "0 auto",
+        }}
+      >
+        {items.map((item) => {
           return (
-            <div style={{
-              marginBottom: 20, // + gutter = 28
-              display: 'flex',
-              flexFlow: 'column nowrap',
-            }}>
+            <div
+              style={{
+                marginBottom: 20, // + gutter = 28
+                display: "flex",
+                flexFlow: "column nowrap",
+              }}
+            >
               <div
                 // className={s.masonryCardSameSize}
                 className={imageClasses}
                 style={{
-                  width: '100%',
+                  width: "100%",
                   backgroundImage: `url(${bucketUrl + item.PrimaryFile.Name})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}>
-                  <div style={{ marginTop: '65%' }} />{/* Make image width/height ratio always the same. */}
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div style={{ marginTop: "65%" }} />
+                {/* Make image width/height ratio always the same. */}
               </div>
-                {isMyProfile && createFooter()}
+              {isMyProfile && createFooter()}
             </div>
-          )
+          );
         })}
       </Masonry>
-    )
-  } else if (layout === 'twoOne') {
+    );
+  } else if (layout === "twoOne") {
     return (
-      <div style={{
-        width: '100%',
-        maxWidth: 600,
-        margin: '0 auto',
-        display: 'flex',
-        flexFlow: 'row wrap',
-      }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 600,
+          margin: "0 auto",
+          display: "flex",
+          flexFlow: "row wrap",
+        }}
+      >
         {items.slice(0, 20).map((item, index) => {
           return (
             <div
               className={clsx(s.masonryCardTwoOne, imageClasses)}
               style={{
                 backgroundImage: `url(${bucketUrl + item.PrimaryFile.Name})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-            }}>
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
               <div className="ratioDummy" />
             </div>
-          )
+          );
         })}
       </div>
-    )
-  } else if (layout === 'oneLarge') {
+    );
+  } else if (layout === "oneLarge") {
     return (
       <Masonry
         columnsCount={1}
-        gutter={'10px'}
+        gutter={"10px"}
         style={{
-          width: '100%',
+          width: "100%",
           maxWidth: 600,
-          margin: '0 auto',
-        }}>
-        {sortedItems.map(item => {
+          margin: "0 auto",
+        }}
+      >
+        {sortedItems.map((item) => {
           return (
-            <div style={{
-              width: '100%',
-            }}>
+            <div
+              style={{
+                width: "100%",
+              }}
+            >
               <img
                 src={bucketUrl + item.PrimaryFile.Name}
                 className={imageClasses}
                 style={{
-                  width: '100%',
-                  height: 'auto',
+                  width: "100%",
+                  height: "auto",
                   marginBottom: 10, // ≈28px to card below
                 }}
-                />
+              />
             </div>
-          )
+          );
         })}
       </Masonry>
-    )
+    );
   } else {
     return (
       <Masonry
         columnsCount={2}
-        gutter={'8px'}
+        gutter={"8px"}
         style={{
-          width: '100%',
+          width: "100%",
           maxWidth: 600,
-          margin: '0 auto',
-        }}>
-        {items.map(item => {
+          margin: "0 auto",
+        }}
+      >
+        {items.map((item) => {
           return (
-            <div style={{
-              width: '100%',
-            }}>
+            <div
+              style={{
+                width: "100%",
+              }}
+            >
               <img
                 src={bucketUrl + item.PrimaryFile.Name}
                 className={imageClasses}
                 style={{
-                  width: '100%',
-                  height: 'auto',
+                  width: "100%",
+                  height: "auto",
                   marginBottom: 16, // ≈28px to card below
                 }}
-                />
+              />
             </div>
-          )
+          );
         })}
       </Masonry>
-    )
+    );
   }
 }
