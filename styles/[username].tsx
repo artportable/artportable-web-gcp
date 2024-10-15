@@ -53,7 +53,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       "& .MuiTab-root": {
         minWidth: "60px",
       },
-      '& .MuiTabs-scrollable': {
+      "& .MuiTabs-scrollable": {
         flexGrow: 0, // Center tabs on screen.
       },
       [theme.breakpoints.up("md")]: {
@@ -68,11 +68,11 @@ export const profileStyles = makeStyles((theme: Theme) =>
     tab: {
       minHeight: 0,
       padding: 0,
-      margin: '0 12px',
+      margin: "0 12px",
       // fontSize: "8px",
       fontSize: "12px",
-      textTransform: 'none', // Prevent Tab from automatically being capitalized.
-      minWidth: 'auto !important',
+      textTransform: "none", // Prevent Tab from automatically being capitalized.
+      minWidth: "auto !important",
       [theme.breakpoints.up("sm")]: {
         fontSize: "14px",
       },
@@ -81,7 +81,7 @@ export const profileStyles = makeStyles((theme: Theme) =>
       },
     },
     tabLight: {
-      color: 'white',
+      color: "white",
     },
     catalogued: {
       gridRow: "3/4",
@@ -126,9 +126,10 @@ export const profileStyles = makeStyles((theme: Theme) =>
 
     boostButton: {
       minWidth: "36px",
-      backgroundColor: "transparent",
+      backgroundColor: "#fadf87",
+      borderRadius: "20px",
       color: "black",
-      fontSize: "9px",
+      fontSize: "10px",
     },
 
     [theme.breakpoints.up("sm")]: {
