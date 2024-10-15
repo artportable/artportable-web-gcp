@@ -6,14 +6,14 @@ import {
   DialogActions,
   TextField,
 } from "@material-ui/core";
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem from "@mui/material/MenuItem";
 import EditIcon from "@material-ui/icons/Edit";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Button from "../Button/Button";
 
 import { useTranslation } from "next-i18next";
 import { mutate } from "swr";
-import clsx from 'clsx';
+import clsx from "clsx";
 import { styles } from "./editProfileDialog.css";
 import { EditMyStudio } from "./EditMyStudio/EditMyStudio";
 import { EditInspiredBy } from "./EditInspiredBy/EditInspiredBy";
@@ -85,7 +85,7 @@ export default function EditProfileDialog({
   const { username } = useContext(UserContext);
   const token = useContext(TokenContext);
   const { refreshToken } = useRefreshToken();
-  const useLightStyle = userProfile?.ChosenColor === '#000000';
+  const useLightStyle = userProfile?.ChosenColor === "#000000";
 
   const [openEdit, setOpenEdit] = useState(false);
   const [profile, setProfile] = useState<Profile>(
@@ -157,7 +157,7 @@ export default function EditProfileDialog({
             rounded
             startIcon={<EditIcon className={s.editProfileIcon} />}
             onClick={() => setOpenEdit(true)}
-            >
+          >
             <div> {t("editProfile")}</div>
           </Button>
         </div>
@@ -167,15 +167,20 @@ export default function EditProfileDialog({
           onClick={() => setOpenEdit(true)}
           style={{
             ...buttonStyle,
-            color: useLightStyle ? 'white' : 'black',
+            color: useLightStyle ? "white" : "black",
           }}
         />
       )}
       {isMenuItem && (
-        <MenuItem onClick={() => {
-          closeMenu();
-          setOpenEdit(true);
-        }}>{t("editProfile")}<EditIcon /></MenuItem>
+        <MenuItem
+          onClick={() => {
+            closeMenu();
+            setOpenEdit(true);
+          }}
+        >
+          {t("editProfile")}
+          <EditIcon />
+        </MenuItem>
       )}
 
       <Dialog

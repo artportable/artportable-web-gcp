@@ -1,8 +1,15 @@
-import { useContext, useEffect, useRef, useState, CSSProperties, Fragment } from "react";
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  CSSProperties,
+  Fragment,
+} from "react";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import axios from "axios";
-import clsx from 'clsx';
+import clsx from "clsx";
 import Divider from "@material-ui/core/Divider";
 import {
   useTheme,
@@ -16,12 +23,12 @@ import {
 import Modal from "@mui/material/Modal";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CircularProgress from "@mui/material/CircularProgress";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import UploadIcon from "@material-ui/icons/Publish";
 import EditIcon from "@material-ui/icons/Edit";
 import { RWebShare } from "react-web-share";
 import { capitalizeFirst, isNullOrUndefined } from "../../utils/util";
-import { createExcerpt } from '../../utils/textUtils';
+import { createExcerpt } from "../../utils/textUtils";
 import UserListDialog from "../UserListDialog/UserListDialog";
 import { UserContext } from "../../contexts/user-context";
 import { TokenContext } from "../../contexts/token-context";
@@ -46,9 +53,9 @@ import { Membership } from "../../models/Membership";
 import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 import Offers from "../ExclusiveOffers/Offers";
 import Spacer from "../LayoutComponents/Spacer";
-import Preferences from './Preferences';
+import Preferences from "./Preferences";
 import { styles } from "./profilenew.css";
-
+import router, { useRouter } from "next/router";
 export default function ProfileNew({
   userProfileUrl,
   userProfile,
@@ -78,7 +85,9 @@ export default function ProfileNew({
   const followersData = useGetFollowers(data?.Username, followersOpen);
   const followingData = useGetFollowing(data?.Username, followingOpen);
   const connectionscountData = useGetConnectionsCount(data?.Username);
-
+  const handleClick = () => {
+    router.push("https://payment.artportable.com/b/aEU6oRd0Gfsh5OM6rD");
+  };
   const { isSignedIn, username, socialId, membership, phone } =
     useContext(UserContext);
   const token = useContext(TokenContext);
@@ -105,13 +114,15 @@ export default function ProfileNew({
   const handleClose = () => setOpen(false);
 
   const [editHeadlineOpen, setEditHeadlineOpen] = useState(false);
-  const [headline, setHeadline] = useState('');
+  const [headline, setHeadline] = useState("");
   const toggleEditHeadline = () => setEditHeadlineOpen(!editHeadlineOpen);
   useEffect(() => {
-    setHeadline(getUserProfile.data?.Headline || '');
+    setHeadline(getUserProfile.data?.Headline || "");
   }, [getUserProfile?.data?.Headline]);
   // If user has no headline but has About text, show first part of About.
-  const headlineBackup = createExcerpt(getUserProfile?.data?.About, 100) || t('profile:clickToEditIntro');
+  const headlineBackup =
+    createExcerpt(getUserProfile?.data?.About, 100) ||
+    t("profile:clickToEditIntro");
 
   async function getUserFullname() {
     const userData = await axios.get(`${url}/api/artists/${profileUser}`);
@@ -143,7 +154,7 @@ export default function ProfileNew({
     setUserFollow(isFollowed);
   }, [isFollowed]);
 
-  useEffect(() => { }, [isUserFollowed]);
+  useEffect(() => {}, [isUserFollowed]);
 
   useEffect(() => {
     setFollowers(connectionscountData?.data?.followers);
@@ -166,7 +177,6 @@ export default function ProfileNew({
 
   const updateUser = async (values) => {
     try {
-
       await refreshToken().then(() =>
         fetch(`${apiBaseUrl}/api/profile/${username.value}`, {
           method: "PUT",
@@ -180,7 +190,7 @@ export default function ProfileNew({
       toggleEditHeadline();
       // Update with mutate on getUserProfile which is also used in EditProfileDialog, so they are synced.
       getUserProfile.mutate();
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const headlineStyle: CSSProperties = {
@@ -210,11 +220,8 @@ export default function ProfileNew({
       })}
       style={{ backgroundColor: chosenColor }}
     >
-      { isMyProfile && (
-        <Preferences
-          isPremium={isPremium}
-          getUserProfile={getUserProfile}
-        />
+      {isMyProfile && (
+        <Preferences isPremium={isPremium} getUserProfile={getUserProfile} />
       )}
       <div className={s.profileContent}>
         <Spacer y={isMobile ? 24 : 80} />
@@ -222,10 +229,14 @@ export default function ProfileNew({
           component="h1"
           className={s.fullName}
           style={{
-            fontFamily: chosenFont + ', Gotham',
+            fontFamily: chosenFont + ", Gotham",
             marginBottom: -1, // Avoid line sometimes visible to item below.
-          }}>
-          {userProfile?.data?.Name ? userProfile?.data?.Name.toUpperCase() : ''}{" "}{userProfile?.data?.Surname ? userProfile?.data?.Surname.toUpperCase() : ''}
+          }}
+        >
+          {userProfile?.data?.Name ? userProfile?.data?.Name.toUpperCase() : ""}{" "}
+          {userProfile?.data?.Surname
+            ? userProfile?.data?.Surname.toUpperCase()
+            : ""}
         </Typography>
         <Spacer y={20} />
         <div className={s.counterBox}>
@@ -234,12 +245,18 @@ export default function ProfileNew({
             onClick={() => setFollowersOpen(true)}
             style={{ paddingRight: 5 }}
           >
-            <Typography variant="caption" className={clsx(s.followFollowersArtworks, {
-              [s.lightText]: useLightText,
-            })}>
+            <Typography
+              variant="caption"
+              className={clsx(s.followFollowersArtworks, {
+                [s.lightText]: useLightText,
+              })}
+            >
               {capitalizeFirst(t("words.followers"))}
             </Typography>
-            <Typography variant="body2" className={clsx({ [s.lightText]: useLightText })}>
+            <Typography
+              variant="body2"
+              className={clsx({ [s.lightText]: useLightText })}
+            >
               {connectionscountData?.loading && <CircularProgress size={10} />}
               {followers}
             </Typography>
@@ -255,74 +272,81 @@ export default function ProfileNew({
             className={s.followersButton}
             style={{ paddingLeft: 5 }}
           >
-            <Typography variant="caption" className={clsx(s.followFollowersArtworks, {
-              [s.lightText]: useLightText,
-            })}>
+            <Typography
+              variant="caption"
+              className={clsx(s.followFollowersArtworks, {
+                [s.lightText]: useLightText,
+              })}
+            >
               {capitalizeFirst(t("words.following"))}
             </Typography>
-            <Typography variant="body2" className={clsx({ [s.lightText]: useLightText })}>
+            <Typography
+              variant="body2"
+              className={clsx({ [s.lightText]: useLightText })}
+            >
               {connectionscountData.loading && <CircularProgress size={10} />}
               {following}
             </Typography>
           </Button>
+
           <UserListDialog
             title={capitalizeFirst(t("words.following"))}
             users={followingData}
             open={followingOpen}
             onClose={() => setFollowingOpen(false)}
           />
-          {/* {data?.Artworks > 0 && (
-              <div className={s.followFollowersArtworks}>
-                <Typography variant="body2">{data?.Artworks}</Typography>
-                <Typography variant="caption">
-                  {capitalizeFirst(t("words.worksOfArt"))}
-                </Typography>
-              </div>
-            )} */}
         </div>
+
         <Spacer y={20} />
 
-        {!isMyProfile && headline &&
+        {!isMyProfile && headline && (
           <>
             <Typography>
-              <span style={{
-                display: 'inline-block',
-                maxWidth: isMobile ? 261 : 371,
-                wordBreak: 'break-word',
-              }}>
+              <span
+                style={{
+                  display: "inline-block",
+                  maxWidth: isMobile ? 261 : 371,
+                  wordBreak: "break-word",
+                }}
+              >
                 {headline}
               </span>
             </Typography>
             <Spacer y={24} />
           </>
-        }
+        )}
 
-        {isMyProfile &&
+        {isMyProfile && (
           <>
-            <Typography style={{
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-                <span
+            <Typography
+              style={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span
+                style={{
+                  position: "relative",
+                  maxWidth: isMobile ? 261 : 371,
+                  cursor: "pointer",
+                }}
+                onClick={toggleEditHeadline}
+              >
+                {headline ? headline : headlineBackup}
+                <EditIcon
                   style={{
-                    position: 'relative',
-                    maxWidth: isMobile ? 261 : 371,
-                    cursor: 'pointer',
-                  }}
-                  onClick={toggleEditHeadline}
-                  >
-                  {headline ? headline : headlineBackup}
-                  <EditIcon style={{
-                    position: 'absolute',
+                    position: "absolute",
                     top: -16,
                     right: -16,
-                    width: '.8em',
-                    height: 'auto',
-                  }} />
-                </span>
+                    width: ".8em",
+                    height: "auto",
+                  }}
+                />
+              </span>
             </Typography>
+
             <Dialog
               className={s.headlineModal}
               open={editHeadlineOpen}
@@ -331,18 +355,22 @@ export default function ProfileNew({
               aria-labelledby="artwork-modal-title"
               aria-describedby="artwork-modal-description"
             >
-              <div style={{
-                display: 'flex',
-                flexFlow: 'row wrap',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexFlow: "row wrap",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
                 <DialogTitle>{t("profile:editHeadline")}</DialogTitle>
-                <DialogContent style={{
-                  textAlign: 'right',
-                }}>
+                <DialogContent
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
                   {`${headline.length < 100 ? headline.length : 100}/100`}
-                </DialogContent>{/* If previously created headline is longer than 100, show as 100/100. */}
+                </DialogContent>
               </div>
               <DialogContent>
                 <TextField
@@ -352,28 +380,44 @@ export default function ProfileNew({
                   multiline={false} // Allow only one line, no line breaks.
                   style={{
                     width: 360,
-                    maxWidth: '100%',
+                    maxWidth: "100%",
                   }}
                 />
                 <Spacer y={24} />
-                <div style={{
-                  width: '100%',
-                  display: 'flex',
-                  flexFlow: 'row nowrap',
-                  justifyContent: 'space-between',
-                }}>
-                  <Button variant="text" onClick={() => {
-                    setHeadline(userProfileSummary.data?.Headline || ''); // Reset headline
-                    toggleEditHeadline();
-                  }}>{capitalizeFirst(t("common:words.cancel"))}</Button>
-                  <Button variant="outlined" onClick={() => updateUser({ Headline: headline })}>{capitalizeFirst(t("common:words.save"))}</Button>
+
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexFlow: "row nowrap",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    onClick={() => {
+                      setHeadline(userProfileSummary.data?.Headline || ""); // Reset headline
+                      toggleEditHeadline();
+                    }}
+                  >
+                    {capitalizeFirst(t("common:words.cancel"))}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() => updateUser({ Headline: headline })}
+                  >
+                    {capitalizeFirst(t("common:words.save"))}
+                  </Button>
                 </div>
                 <Spacer y={24} />
               </DialogContent>
             </Dialog>
+            <Button onClick={handleClick} className={s.annonsera}>
+              {t("Annonsera")}
+            </Button>
             <Spacer y={isMobile ? 24 : 80} />
           </>
-        }
+        )}
 
         {isMyProfile && membership.value > Membership.Base && isMobile && (
           <>
@@ -413,9 +457,9 @@ export default function ProfileNew({
                   toggleFollow();
                   !isUserFollowed
                     ? trackGoogleAnalytics(
-                      ActionType.FOLLOW_PROFILE,
-                      CategoryType.INTERACTIVE
-                    )
+                        ActionType.FOLLOW_PROFILE,
+                        CategoryType.INTERACTIVE
+                      )
                     : null;
                 }}
               >
@@ -430,21 +474,6 @@ export default function ProfileNew({
           </>
         )}
       </div>
-
-      {/* Div for covering whole page width with chosen color beneath Tabs component in [username].tsx */}
-      {/* Not working on some devices/browsers. */}
-      {/* <div
-        id="CoverTabs"
-        style={{
-          position: 'absolute',
-          top: '100%',
-          height: 48,
-          left: 0,
-          right: 0,
-          backgroundColor: chosenColor,
-          pointerEvents: 'none',
-        }}
-      /> */}
     </div>
-  )
+  );
 }
