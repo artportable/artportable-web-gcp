@@ -101,7 +101,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       fontWeight: 400,
-      fontSize: "14px",
+      fontSize: "12px",
       textAlign: "center",
       color: "black",
       zIndex: 20,
