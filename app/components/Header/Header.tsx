@@ -354,27 +354,26 @@ export default function Header({ navBarItems }) {
                     </div>
                   )}
 
-                  {membership.value >= Membership.Base && (
-                    <div className={s.upload}>
-                      <Link href="/upload">
-                        <a>
-                          <Button
-                            onClick={() =>
-                              trackGoogleAnalytics(
-                                ActionType.UPLOAD_IMAGE_HEADER,
-                                CategoryType.INTERACTIVE
-                              )
-                            }
-                            className={s.uploadButton}
-                            rounded
-                            endIcon={<ColorLensIcon />}
-                          >
-                            {t("upload")}
-                          </Button>
-                        </a>
-                      </Link>
-                    </div>
-                  )}
+                  <div className={s.upload}>
+                    <Link href="/upload">
+                      <a>
+                        <Button
+                          onClick={() =>
+                            trackGoogleAnalytics(
+                              ActionType.UPLOAD_IMAGE_HEADER,
+                              CategoryType.INTERACTIVE
+                            )
+                          }
+                          className={s.uploadButton}
+                          rounded
+                          endIcon={<ColorLensIcon />}
+                        >
+                          {t("upload")}
+                        </Button>
+                      </a>
+                    </Link>
+                  </div>
+
                   {membership.value < Membership.Portfolio && (
                     <UpgradePortfolio />
                   )}
