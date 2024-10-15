@@ -262,13 +262,13 @@ export default function DiscoverPage({ navBarItems }) {
               }}
             >
               <div>
-                <Typography className={s.headline}>
+                <div className={s.headline}>
                   {t("nordensLargestArena")}{" "}
                   <span>
                     <br />
                   </span>
                   {t("forArtistsAndArtLovers")}
-                </Typography>
+                </div>
               </div>
               <div>
                 <Button
