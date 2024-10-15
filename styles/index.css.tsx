@@ -101,19 +101,14 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       fontWeight: 400,
-      fontSize: "18px",
+      fontSize: "14px",
       textAlign: "center",
       color: "black",
       zIndex: 20,
       padding: "20px",
-
       textTransform: "uppercase",
       "& span": {
         display: "none",
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "2.2rem",
-        color: "white",
       },
       [theme.breakpoints.up("md")]: {
         textAlign: "center",

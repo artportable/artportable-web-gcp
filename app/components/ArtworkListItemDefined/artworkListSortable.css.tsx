@@ -64,9 +64,22 @@ export const styles = makeStyles((theme: Theme) =>
     },
     boostButton: {
       minWidth: "36px",
-      backgroundColor: "transparent",
       color: "black",
-      fontSize: "9px",
+      fontSize: "12px",
+      backgrundColor: "#fadf87",
+    },
+    boostButtonBoost: {
+      minWidth: "36px",
+      color: "black",
+      fontSize: "12px",
+      backgroundColor: "#fadf87",
+
+      borderRadius: "20px",
+      backgrundColor: "#fadf87",
+      "&:hover": {
+        backgroundColor: "#ffcb20",
+        color: "black",
+      },
     },
     desktopEditButton: {
       display: "flex",

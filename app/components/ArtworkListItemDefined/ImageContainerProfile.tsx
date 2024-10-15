@@ -49,112 +49,118 @@ export default function ImageContainerProfile({
   };
 
   return (
-    <div
-      className={clsx(s.sortableImageContainer, {
-        [s.sortIsSaving]: isSaving,
-      })}
-    >
-      <div className={s.sortableImageContent} onClick={cardClicked}>
-        <img
-          width={artwork.PrimaryFile.Width}
-          height={artwork.PrimaryFile.Height}
-          alt={"Title"}
-          key={1}
-          src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-          className={s.sortableImage}
-          style={{
-            opacity: !isSaving ? 1 : 0,
-          }}
-        />
-        <div
-          className={clsx(s.infoHover, {
-            "is-dragging": isDragging,
-          })}
-        >
-          <div className={s.infoWrapper}>
-            <div className={s.titleHover}>
-              {artwork.Title ? artwork.Title : t("untitled")}
-            </div>
-            <div className={s.priceHover}>
-              {artwork.SoldOut ? (
-                <>
-                  <div />
-                  {t("common:words.sold")}{" "}
-                </>
-              ) : artwork.Price && artwork.Price !== "0" ? (
-                formattedPrice.replace(/,/g, "")
-              ) : (
-                t("priceOnRequest")
-              )}
-            </div>
-            <EastOutlinedIcon style={{ marginBottom: "12px" }} />
-          </div>
-          <div className={s.tagsWrapper}>
-            {Array.from(artwork.Tags)
-              .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
-              .map((tag: string) => (
-                <TagChip
-                  key={tag}
-                  title={tag}
-                  onChipClick={null}
-                  limitReached
-                  variant="outlined"
-                  isSmall
-                />
-              ))}
-          </div>
-        </div>
-        {isSaving && (
-          <div
+    <div>
+      <div
+        className={clsx(s.sortableImageContainer, {
+          [s.sortIsSaving]: isSaving,
+        })}
+      >
+        <div className={s.sortableImageContent} onClick={cardClicked}>
+          <img
+            width={artwork.PrimaryFile.Width}
+            height={artwork.PrimaryFile.Height}
+            alt={"Title"}
+            key={1}
+            src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+            className={s.sortableImage}
             style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              right: 0,
+              opacity: !isSaving ? 1 : 0,
             }}
+          />
+          <div
+            className={clsx(s.infoHover, {
+              "is-dragging": isDragging,
+            })}
           >
-            <ArtworkListItemDefinedSkeleton grow={1} />
-          </div>
-        )}
-      </div>
-      <div>
-        {topActions && (
-          <div className={s.likeButton}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <div>{topActions}</div>
-              <div>
-                {artwork?.IsBoosted === false ? (
-                  <Button
-                    aria-label="boost"
-                    className={s.boostButton}
-                    onClick={() => {
-                      router.push(`/checkoutboost?${artwork.Id}`);
-                    }}
-                    startIcon={<RocketLaunchIcon />}
-                  >
-                    {t("profile:promoteArtwork")}
-                  </Button>
+            <div className={s.infoWrapper}>
+              <div className={s.titleHover}>
+                {artwork.Title ? artwork.Title : t("untitled")}
+              </div>
+              <div className={s.priceHover}>
+                {artwork.SoldOut ? (
+                  <>
+                    <div />
+                    {t("common:words.sold")}{" "}
+                  </>
+                ) : artwork.Price && artwork.Price !== "0" ? (
+                  formattedPrice.replace(/,/g, "")
                 ) : (
-                  <Button
-                    aria-label="boost"
-                    className={s.boostButton}
-                    disabled
-                    startIcon={<RocketLaunchIcon />}
-                  >
-                    {t("profile:promotedArtwork")}
-                  </Button>
+                  t("priceOnRequest")
                 )}
               </div>
+              <EastOutlinedIcon style={{ marginBottom: "12px" }} />
+            </div>
+            <div className={s.tagsWrapper}>
+              {Array.from(artwork.Tags)
+                .slice(0, artwork.Tags.some((tag) => tag.length > 8) ? 2 : 4)
+                .map((tag: string) => (
+                  <TagChip
+                    key={tag}
+                    title={tag}
+                    onChipClick={null}
+                    limitReached
+                    variant="outlined"
+                    isSmall
+                  />
+                ))}
+            </div>
+          </div>
+          {isSaving && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+              }}
+            >
+              <ArtworkListItemDefinedSkeleton grow={1} />
+            </div>
+          )}
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: "10px",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
+        {topActions && (
+          <div className={s.likeButton}>
+            <div>
+              <div>{topActions}</div>
             </div>
           </div>
         )}
+        <div>
+          {artwork?.IsBoosted === false ? (
+            <Button
+              className={s.boostButtonBoost}
+              aria-label="boost"
+              startIcon={<RocketLaunchIcon></RocketLaunchIcon>}
+              onClick={() => {
+                router.push(`/checkoutboost?${artwork.Id}`);
+              }}
+            >
+              {t("profile:promoteArtwork")}
+            </Button>
+          ) : (
+            <Button
+              style={{
+                color: "black",
+                borderRadius: "20px",
+              }}
+              aria-label="boost"
+              disabled
+            >
+              {t("profile:promotedArtwork")}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
