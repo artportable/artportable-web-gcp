@@ -312,9 +312,7 @@ export default function Preferences({ getUserProfile, isPremium }) {
         }}
       >
         <Spacer y={12} />
-        <Button variant="outlined" rounded={true} className={s.profileButton}>
-          {t("Annonsera")}
-        </Button>
+
         <Button
           variant="outlined"
           rounded={true}
