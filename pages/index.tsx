@@ -262,7 +262,7 @@ export default function DiscoverPage({ navBarItems }) {
               }}
             >
               <div>
-                <Typography variant="h1" className={s.headline}>
+                <Typography className={s.headline}>
                   {t("nordensLargestArena")}{" "}
                   <span>
                     <br />

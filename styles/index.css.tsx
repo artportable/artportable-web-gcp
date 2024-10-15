@@ -101,11 +101,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headline: {
       fontWeight: 400,
-      fontSize: "12px",
+      fontSize: "14px",
       textAlign: "center",
       color: "black",
       zIndex: 20,
       padding: "20px",
+      textTransform: "uppercase",
       "& span": {
         display: "none",
       },
