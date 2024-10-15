@@ -106,7 +106,6 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       zIndex: 20,
       padding: "20px",
-      textTransform: "uppercase",
       "& span": {
         display: "none",
       },
