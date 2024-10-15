@@ -77,6 +77,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       alignItems: "center",
       textTransform: "uppercase",
+      fontSize: "14px",
     },
     desktopHeaderButtons: {
       minWidth: "100px",
@@ -85,7 +86,7 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 3, 0, 3),
       color: "#3d3d4e",
-      fontSize: "0.9rem",
+      fontSize: "14px",
       borderRadius: "18px",
       marginTop: "10px",
       marginBottom: "20px",
@@ -99,14 +100,13 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     headline: {
-      position: "relative",
-      fontWeight: 500,
-      fontSize: "1.1rem",
+      fontWeight: 400,
+      fontSize: "18px",
       textAlign: "center",
       color: "black",
       zIndex: 20,
       padding: "20px",
-      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
+
       textTransform: "uppercase",
       "& span": {
         display: "none",

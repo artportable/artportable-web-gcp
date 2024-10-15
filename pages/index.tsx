@@ -277,7 +277,11 @@ export default function DiscoverPage({ navBarItems }) {
                     minWidth: "200px",
                   }}
                   rounded
-                  onClick={() => router.push("/register")}
+                  onClick={() =>
+                    router.push(
+                      "https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=WZcZ_WOUSR4&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=sv"
+                    )
+                  }
                 >
                   {t("signUp")}
                 </Button>
@@ -289,7 +293,6 @@ export default function DiscoverPage({ navBarItems }) {
                 rounded
                 onClick={scrollToNextSection}
                 style={{
-                  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
                   marginBottom: "10px",
                   color: "black",
                 }}
