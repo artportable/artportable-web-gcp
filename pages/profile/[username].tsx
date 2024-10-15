@@ -667,8 +667,9 @@ export default function Profile(props) {
                                             <div
                                               style={{
                                                 display: "flex",
-                                                flexDirection: "row",
-                                                justifyContent: "space-evenly",
+                                                flexDirection: "column",
+
+                                                alignItems: "center",
                                               }}
                                             >
                                               <div>
