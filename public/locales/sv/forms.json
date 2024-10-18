@@ -6,5 +6,10 @@
   "phone": "Mobilnummer",
   "messageToArtist": "Meddelande till konstnären",
   "sendRequest": "Skicka förfrågan",
-  "aboutRequests": "Som köpare av konst på Artportable skickar du en förfrågan direkt till konstnären. Konstnären svarar vanligtvis inom 1-3 dagar. Du kommer överens om betal- och leveransvillkor tillsammans med konstnären efter att du skickat din förfrågan."
+  "aboutRequests": "Som köpare av konst på Artportable skickar du en förfrågan direkt till konstnären. Konstnären svarar vanligtvis inom 1-3 dagar. Du kommer överens om betal- och leveransvillkor tillsammans med konstnären efter att du skickat din förfrågan.",
+  "aboutMessages": "Konstnären svarar oftast inom 1-3 dagar. Vid köp av konst bestämmer du tillsammans med konstnären hur betalning sker och hur konsten levereras.",
+  "messageRequest": "Skicka",
+  "invalidEmail": "Vänligen ange en giltig e-postadress.",
+  "requiredMessage": "Vänligen ange ett meddelande.",
+  "sendMessageTo": "Skicka meddelande till"
 }

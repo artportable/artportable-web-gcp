@@ -56,6 +56,9 @@ import Spacer from "../LayoutComponents/Spacer";
 import Preferences from "./Preferences";
 import { styles } from "./profilenew.css";
 import router, { useRouter } from "next/router";
+import MessageRequestDialog from "../MessageRequestDialog/MessageRequestDialog";
+import { UrlObject } from "url";
+
 export default function ProfileNew({
   userProfileUrl,
   userProfile,
@@ -88,7 +91,7 @@ export default function ProfileNew({
   const handleClick = () => {
     router.push("https://payment.artportable.com/b/aEU6oRd0Gfsh5OM6rD");
   };
-  const { isSignedIn, username, socialId, membership, phone } =
+  const { isSignedIn, email, username, socialId, membership, phone } =
     useContext(UserContext);
   const token = useContext(TokenContext);
   const profileUser = useGetProfileUser();
@@ -97,6 +100,10 @@ export default function ProfileNew({
   const { follow } = usePostFollow();
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const userProfileSummary = useGetUserProfileSummary(profileUser);
+
+  useEffect(() => {
+    console.log(userProfile?.data?.Username);
+  }, [userProfile]);
 
   const [followers, setFollowers] = useState(
     connectionscountData?.data?.followers
@@ -108,10 +115,23 @@ export default function ProfileNew({
   const url = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
+  useEffect(() => {
+    if (refreshTrigger) {
+      window.location.reload();
+    }
+  }, [refreshTrigger]);
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [messageRequestDialogOpen, setMessageRequestDialogOpen] =
+    useState(false);
+
+  function toggleMessageRequestDialog() {
+    setMessageRequestDialogOpen(!messageRequestDialogOpen);
+  }
+
+  function messageRequest(originalRedirect?: UrlObject | string) {
+    toggleMessageRequestDialog();
+  }
 
   const [editHeadlineOpen, setEditHeadlineOpen] = useState(false);
   const [headline, setHeadline] = useState("");
@@ -163,18 +183,6 @@ export default function ProfileNew({
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const rocketLink = "https://buy.stripe.com/28oeVn5ye6VLcdacNE";
-
-  const redirectToRocketUpgrade = () => {
-    window.open(rocketLink);
-  };
-  const initialText = staticUserProfile?.About || "";
-  const [showMore, setShowMore] = useState(false);
-
-  const handleReadMoreClick = () => {
-    setShowMore(!showMore);
-  };
-
   const updateUser = async (values) => {
     try {
       await refreshToken().then(() =>
@@ -192,26 +200,6 @@ export default function ProfileNew({
       getUserProfile.mutate();
     } catch (error) {}
   };
-
-  const headlineStyle: CSSProperties = {
-    textAlign: "left",
-    fontWeight: 500,
-    fontSize: "11px",
-    letterSpacing: "1px",
-    display: "-webkit-box",
-    WebkitBoxOrient: "vertical",
-    overflow: "hidden",
-    WebkitLineClamp: showMore ? "unset" : 1,
-  };
-
-  function renderWithLineBreaks(text) {
-    return text.split("\n").map((str, index, array) => (
-      <Fragment key={index}>
-        {str}
-        {index === array.length - 1 ? null : <br />}
-      </Fragment>
-    ));
-  }
 
   return (
     <div
@@ -469,6 +457,27 @@ export default function ProfileNew({
                     : t("common:words.following")
                 )}
               </Button>
+              <Button
+                className={clsx(s.messageButton)}
+                rounded
+                onClick={() => {
+                  messageRequest({
+                    query: {
+                      referTo: userProfile?.data?.Username,
+                    },
+                  });
+                }}
+              >
+                {capitalizeFirst(t("common:contact"))}
+              </Button>
+              <MessageRequestDialog
+                open={messageRequestDialogOpen}
+                onClose={toggleMessageRequestDialog}
+                props={{
+                  referTo: userProfile?.data?.Username,
+                  userProfile,
+                }}
+              />
             </div>
             <Spacer y={24} />
           </>
