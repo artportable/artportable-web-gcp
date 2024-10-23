@@ -6,9 +6,15 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       gridColumn: "1/4",
       background: theme.palette.grey[200],
-      backgroundColor: "var(--background-color-darker)",
+      // backgroundColor: "var(--background-color-darker)",
       overflow: "visible", // Ensure this is set to visible to not clip the scrollbar
       marginTop: "20px",
+      height: "80vh",
+      backgroundColor: "blue",
+      width: "100%",
+      [theme.breakpoints.up("sm")]: {
+        height: "70vh",
+      },
     },
 
     fullWidthContainer: {
@@ -86,52 +92,176 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: "flex-start",
       },
     },
+    sectionWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      height: "80vh",
+      [theme.breakpoints.up("sm")]: {
+        display: "flex",
+        flexDirection: "row",
+        height: "70vh",
+      },
+    },
+
+    imgWrapper: {
+      backgroundColor: "white",
+      width: "100vw",
+      height: "50%",
+      [theme.breakpoints.up("sm")]: {
+        backgroundColor: "white",
+        width: "50vw",
+        height: "100%",
+      },
+    },
+
+    headlineWrapper: {
+      backgroundColor: "#ebebeb",
+      height: "50%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      padding: "10px 10px 10px 10px",
+      [theme.breakpoints.up("sm")]: {
+        height: "100%",
+        width: "50vw",
+        padding: "0px",
+        alignItems: "center",
+        backgroundColor: "#ebebeb",
+      },
+    },
     headline: {
       position: "relative",
-      fontWeight: 500,
-      fontSize: "1.1rem",
-      textAlign: "center",
+      fontWeight: 400,
+      fontSize: "22px",
       color: "black",
       zIndex: 20,
-      padding: "20px",
-
-      "& span": {
-        display: "none",
+      textAlign: "center",
+      marginBottom: "10px",
+      padding: "0px 0px 0px 0px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "24px",
+        color: "black",
+        textAlign: "left",
+        padding: "0px",
       },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "2.2rem",
-        color: "white",
-      },
-      [theme.breakpoints.up("md")]: {
-        textAlign: "center",
-      },
+      [theme.breakpoints.up("md")]: {},
       [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "3.0rem",
-        width: "70%",
+        fontSize: "40px",
+        width: "80%",
+      },
+    },
+    headlineTitle: {
+      position: "relative",
+      fontWeight: 400,
+      fontSize: "22px",
+      color: "black",
+      zIndex: 20,
+      textAlign: "center",
+      marginBottom: "10px",
+      padding: "0px 0px 0px 0px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "22px",
+        color: "black",
+        textAlign: "left",
+        padding: "0px",
+      },
+      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "28px",
+        width: "80%",
       },
     },
 
     headlineTwo: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "1.2rem",
+      fontSize: "20px",
+      color: "#00000078",
       textAlign: "center",
-      color: "white",
       zIndex: 20,
-      "& span": {
-        display: "none",
-      },
+      width: "100%",
+      marginBottom: "40px",
+      padding: "0px 0px 0px 0px",
       [theme.breakpoints.up("sm")]: {
         fontSize: "2.2rem",
+        textAlign: "left",
+        padding: "0px",
       },
-      [theme.breakpoints.up("md")]: {
-        textAlign: "center",
-      },
+      [theme.breakpoints.up("md")]: {},
       [theme.breakpoints.up("mdPlus")]: {
         fontSize: "1.4rem",
-        width: "40%",
+        width: "80%",
       },
     },
+    headlineThree: {
+      position: "relative",
+      fontWeight: 400,
+      fontSize: "16px",
+      color: "#00000078",
+      textAlign: "center",
+      zIndex: 20,
+      width: "100%",
+      padding: "0px 0px 0px 0px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "2.2rem",
+        textAlign: "left",
+        padding: "0px",
+      },
+      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "1.4rem",
+        width: "80%",
+      },
+    },
+    buttonWrapper: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      width: "100%",
+      [theme.breakpoints.up("mdPlus")]: {
+        justifyContent: "left",
+        position: "relative",
+        width: "80%",
+        marginTop: "20px",
+      },
+    },
+
+    buttonRegister: {
+      border: "1px solid #99999987",
+      borderRadius: "40px",
+      marginRight: "10px",
+      padding: "10px 10px 10px 10px",
+      fontSize: "12px",
+      fontWeight: 300,
+      [theme.breakpoints.up("sm")]: {
+        padding: "10px 20px 10px 20px",
+
+        fontSize: "16px",
+      },
+      "&:hover": {
+        backgroundColor: "#289528",
+        color: "white",
+
+        border: "none",
+      },
+    },
+    buttonFindArt: {
+      border: "1px solid #99999987",
+      borderRadius: "40px",
+      marginRight: "10px",
+      padding: "10px 10px 10px 10px",
+      fontSize: "12px",
+      fontWeight: 300,
+      [theme.breakpoints.up("sm")]: {
+        padding: "10px 20px 10px 20px",
+        fontSize: "16px",
+      },
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
+      },
+    },
+
     desktopHeaderButtons: {
       display: "flex",
       marginTop: "20px",
@@ -147,10 +277,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     readMoreButton: {
       position: "absolute",
-      bottom: "20px",
-      right: "20px",
+      bottom: "320px",
+      left: "20px",
       zIndex: 20,
-      "& button": {},
+      color: "white",
       "&:hover": {
         "& button": {
           backgroundColor: "white",
@@ -159,6 +289,8 @@ export const styles = makeStyles((theme: Theme) =>
 
       [theme.breakpoints.up("smPlus")]: {
         display: "inline",
+        bottom: "20px",
+        left: "20px",
       },
     },
     imageContainter: {
@@ -361,12 +493,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
-    sectionWrapper: {},
-
     arrowDown: {
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "row",
       alignItems: "center",
+      padding: "5px 20px 5px 20px",
+      zIndex: 10,
     },
 
     "@global": {
@@ -379,32 +511,31 @@ export const styles = makeStyles((theme: Theme) =>
 
       ".swiper-button-prev": {
         left: "85%", // Adjust to the left of the center (with proper offset)
-        height: "75vh",
+        height: "60vh",
         width: "6vw",
       },
       ".swiper-button-prev::after, .swiper-button-next::after": {
-        fontSize: "3.0rem", // Increase arrow size
+        fontSize: "3.0rem",
         fontWeight: "bold",
       },
       ".swiper-button-next": {
-        left: "94%", // Adjust to the right of the center (with proper offset)
+        left: "94%",
         width: "6vw",
-        height: "75vh",
+        height: "60vh",
         padding: "8px 16px",
       },
 
-      // Active state for buttons
       ".swiper-button-prev:not(.swiper-button-disabled), .swiper-button-next:not(.swiper-button-disabled)":
         {
-          color: "white", // Active color
+          color: "#fadf87", // Active color
         },
-      // Optional: Hover effect
+
       ".swiper-button-prev:hover, .swiper-button-next:hover": {
-        color: "#fadf87", // Hover color
-        transform: "scale(1.1)", // Slightly enlarge on hover
+        color: "#fadf87",
+        transform: "scale(1.1)",
       },
       ".swiper-button-prev:active, .swiper-button-next:active": {
-        transform: "scale(0.95)", // Shrink slightly on click for a button press effect
+        transform: "scale(0.95)",
       },
 
       ".swiper-scrollbar": {

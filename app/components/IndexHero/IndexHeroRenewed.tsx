@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export default function IndexHeroRenewed({ onScrollDown }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -37,38 +38,34 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 888000,
+          delay: 8000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
       >
-        <div className={clsx(s.fullWidthContainer)}>
+        <div>
           <SwiperSlide>
-            {!isTinyDevice ? (
-              <div></div>
-            ) : (
-              <div className={s.headlineContainer}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("nordensLargestArena")}{" "}
-                  <span>
-                    <br />
-                  </span>
-                  {t("forArtistsAndArtLovers")}
-                </Typography>
-                <div className={s.desktopHeaderButtons}>
+            <section className={s.sectionWrapper}>
+              <div className={s.imgWrapper}>
+                <a href="https://artportable.com/en/art/f35a11fb-6434-4ee8-8702-dacd07fbd7ab">
+                  <img
+                    src={
+                      isTinyDevice
+                        ? "/images/intoTheSunset.png"
+                        : "/images/intoTheSunset.png"
+                    }
+                    alt={"konst"}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </a>
+              </div>
+              <div className={s.headlineWrapper}>
+                <div className={s.headline}>{t("nordensLargestArena")}</div>
+                <div className={s.headlineTwo}>{t("underTitle")}</div>
+                <div className={s.buttonWrapper}>
                   <Button
-                    className={clsx(
-                      sShared.largeButton,
-                      sShared.yellowButton,
-                      sShared.noBorder
-                    )}
-                    style={{
-                      minWidth: "200px",
-                    }}
-                    size="medium"
-                    // variant="contained"
-                    color="primary"
-                    rounded
+                    className={s.buttonRegister}
                     onClick={() =>
                       keycloak.register({
                         locale: router.locale,
@@ -78,284 +75,63 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     {t("signUp")}
                   </Button>
-                </div>
-                <div className={s.desktopHeaderButtons}>
-                  <Button
-                    className={clsx(
-                      sShared.largeButtonFindArt,
-                      sShared.findArtButton,
-                      sShared.noBorder
-                    )}
-                    size="medium"
-                    rounded
-                    onClick={onScrollDown}
-                    style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 1)" }}
-                  >
-                    <div className={s.arrowDown}>
-                      {t("findArt")}
-                      <KeyboardDoubleArrowDownIcon />
-                    </div>
+                  <Button className={s.buttonFindArt} onClick={onScrollDown}>
+                    {t("findArt")}
                   </Button>
                 </div>
               </div>
-            )}
-            <div className={s.fullWidthImage}>
-              <Image
-                layout="fill"
-                src={
-                  isTinyDevice
-                    ? "/images/yellowfields.jpg"
-                    : "/images/loMobile.jpg"
-                }
-                alt={"konst"}
-                objectFit="cover"
-                loading="lazy"
-              />
-
-              {!isTinyDevice ? (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    color: "white",
-                    fontSize: "14px",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
-                  }}
-                >
-                  <div className={s.readMoreButton}>
-                    <a
-                      href="https://artportable.com/en/art/07789129-9f95-491f-8914-bb25675da490"
-                      style={{ display: "inline" }}
-                    >
-                      Lo Fehrling, {""}
-                    </a>
-                    <a
-                      href="https://artportable.com/en/art/07789129-9f95-491f-8914-bb25675da490"
-                      style={{
-                        fontStyle: "italic",
-                        display: "inline",
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
-                      }}
-                    >
-                      Landfall
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    color: "black",
-                    fontSize: "14px",
-                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
-                  }}
-                >
-                  <div className={s.readMoreButton}>
-                    <a
-                      href="https://artportable.com/en/art/69abf98c-a847-4560-a42b-2ad3bc7cc5b7"
-                      style={{ display: "inline" }}
-                    >
-                      Lo Fehrling{""}
-                    </a>
-                    <a
-                      href="https://artportable.com/en/art/69abf98c-a847-4560-a42b-2ad3bc7cc5b7"
-                      style={{
-                        fontStyle: "italic",
-                        display: "inline",
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
-                      }}
-                    >
-                      Yellow Fields
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
+            </section>
           </SwiperSlide>
           <SwiperSlide>
-            {isTinyDevice ? (
-              <section
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  height: "calc(100vh - 90px)",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    height: "100%",
-                    textAlign: "center",
-                    color: "white",
-                    backgroundColor: "rgb(21 20 19)",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "50%",
-                      alignContent: "center",
-                    }}
+            <section className={s.sectionWrapper}>
+              <div className={s.imgWrapper}>
+                <a href="https://artportable.com/art/9a32dd35-f4ce-49fe-a98e-3d14e0cda4b1">
+                  <img
+                    src={
+                      isTinyDevice
+                        ? "/images/risberg3.jpeg"
+                        : "/images/risberg3.jpeg"
+                    }
+                    alt={"konst"}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </a>
+              </div>
+              <div className={s.headlineWrapper}>
+                <div className={s.headline}>
+                  Konstutställning med vernissage
+                </div>
+                <div className={s.headlineTitle}>
+                  <a
+                    style={{ textDecoration: "underline" }}
+                    href="https://artportable.com/profile/@petra.risberg"
                   >
-                    <Typography
-                      style={{
-                        fontSize: "38px",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      Konstutställning med vernissage
-                    </Typography>
-                    <h2
-                      style={{
-                        fontSize: "24px",
-                      }}
-                    >
-                      <Link
-                        style={{ color: "white" }}
-                        href="https://artportable.com/profile/@petra.risberg"
-                      >
-                        PETRA RISBERG
-                      </Link>
-                    </h2>
-                    <p>Utställning 9 - 17 november kl. 13 - 17</p>
-                    <p>Vernissage lördag 9 november kl. 14 - 20</p>
-                    <h3>
-                      <Link
-                        style={{ color: "white" }}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://galleririsberg.se/"
-                      >
-                        Galleri Risberg
-                      </Link>
-                    </h3>
-                    <p>Bergsgatan 36, Stockholm</p>
+                    Petra Risberg
+                  </a>
+                </div>
+                <div className={s.headlineThree}>
+                  Utställning 9 - 17 november kl. 13 - 17
+                  <br />
+                  <div className={s.headlineThree}>
+                    Vernissage lördag 9 november kl. 14 - 20
+                  </div>
+                  <br />
+                  <div>
+                    <a href="https://galleririsberg.se/">Galleri Risberg</a>
+                    <br />
+                    Bergsgatan 36, Stockholm
+                  </div>
+                  <br />
+                  <div style={{ fontSize: "12px" }}>
+                    Vill du synas här?{" "}
+                    <a href="mailto:hello@artportable.com">
+                      hello@artportable.com
+                    </a>
                   </div>
                 </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    height: "100%",
-                    textAlign: "center",
-                    backgroundImage: `url("/images/risberg1.jpg")`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "bottom",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-              </section>
-            ) : (
-              <section
-                className={s.fullWidthImage}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    height: "100%",
-                    textAlign: "center",
-                    backgroundImage: `url("/images/risberg1.jpg")`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "bottom",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      alignContent: "center",
-                      backgroundColor: "rgb(0 0 0 / 78%)",
-                      paddingTop: "10px",
-                    }}
-                  >
-                    <Typography
-                      variant="h2"
-                      className={s.headline}
-                      style={{ color: "white" }}
-                    >
-                      Konstutställning med vernissage
-                    </Typography>
-                    <Typography
-                      className={s.headline}
-                      style={{
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                      }}
-                    >
-                      <Link
-                        style={{ color: "white" }}
-                        href="https://artportable.com/profile/@petra.risberg"
-                      >
-                        PETRA RISBERG
-                      </Link>
-                    </Typography>
-                    <Typography
-                      style={{
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                        color: "white",
-                      }}
-                    >
-                      Utställning 9 - 17 november kl. 13 - 17
-                    </Typography>
-                    <Typography
-                      style={{
-                        color: "white",
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                      }}
-                    >
-                      Vernissage lördag 9 november kl. 14 - 20
-                    </Typography>
-                    <Typography
-                      variant="h3"
-                      style={{
-                        marginTop: "20px",
-                        color: "white",
-                        marginBottom: "20px",
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                      }}
-                    >
-                      <Link
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://galleririsberg.se/"
-                        style={{
-                          color: "white",
-                        }}
-                      >
-                        Galleri Risberg
-                      </Link>
-                    </Typography>
-                    <Typography
-                      style={{
-                        marginBottom: "10px",
-                        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-                        color: "white",
-                      }}
-                    >
-                      Bergsgatan 36, Stockholm
-                    </Typography>
-                  </div>
-                </div>
-              </section>
-            )}
+              </div>
+            </section>
           </SwiperSlide>
         </div>
       </Swiper>

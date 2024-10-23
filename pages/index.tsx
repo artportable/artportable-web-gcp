@@ -249,64 +249,6 @@ export default function DiscoverPage({ navBarItems }) {
         <IndexHeroRenewed onScrollDown={scrollToNextSection} />
       )}
 
-      {!isSignedIn.value && (
-        <div style={{ display: "block", gridColumn: "1/3" }}>
-          {isMobile && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                backgroundColor: "#fdf9f700",
-                width: "100vw",
-              }}
-            >
-              <div>
-                <div className={s.headline}>
-                  {t("nordensLargestArena")}{" "}
-                  <span>
-                    <br />
-                  </span>
-                  {t("forArtistsAndArtLovers")}
-                </div>
-              </div>
-              <div>
-                <Button
-                  className={s.desktopHeaderButtons}
-                  style={{
-                    minWidth: "200px",
-                  }}
-                  rounded
-                  onClick={() =>
-                    router.push(
-                      "https://idp.artportable.com/auth/realms/prod/login-actions/registration?client_id=artportable-web&tab_id=WZcZ_WOUSR4&execution=c5726b3b-1c22-443d-9d16-bfc237ce2ae4&kc_locale=sv"
-                    )
-                  }
-                >
-                  {t("signUp")}
-                </Button>
-              </div>
-
-              <Button
-                className={s.artButton}
-                size="medium"
-                rounded
-                onClick={scrollToNextSection}
-                style={{
-                  marginBottom: "10px",
-                  color: "black",
-                }}
-              >
-                <div className={s.arrowDown}>
-                  {t("findArt")}
-                  <KeyboardDoubleArrowDownIcon />
-                </div>
-              </Button>
-            </div>
-          )}
-        </div>
-      )}
-
       {isSignedIn.value && (
         <>
           {membership.value === Membership.Portfolio ? (
