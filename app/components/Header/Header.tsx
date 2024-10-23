@@ -155,17 +155,6 @@ export default function Header({ navBarItems }) {
           borderBottom: "1px solid #cecece6b",
         }}
       >
-        {!isSignedIn.value && (
-          <>
-            <div className={s.trialBanner}>
-              <p>
-                <a href="https://www.artportable.com/register">
-                  {t("artportableTrial")}
-                </a>
-              </p>
-            </div>
-          </>
-        )}
         <Toolbar>
           <div className={s.container}>
             <div className={s.logoContainer}>

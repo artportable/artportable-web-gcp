@@ -31,7 +31,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 12000,
+          delay: 222000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -75,6 +75,34 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           </SwiperSlide>
           <SwiperSlide>
             <section className={s.sectionWrapper}>
+              <div className={s.imgWrapperRest}>
+                <a href="https://artportable.com/art/8997e46a-8620-4f61-90d5-2ae857eabace">
+                  <img
+                    src={isTinyDevice ? "/images/otsa.png" : "/images/otsa.png"}
+                    alt={"konst"}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </a>
+              </div>
+              <div className={s.headlineWrapperRest}>
+                <div className={s.headline}>{t("artistTitle")}</div>
+                <div className={s.headlineThree}>
+                  {t("artistDescription")}
+                </div>{" "}
+                <br />
+                <a
+                  className={s.headlineThree}
+                  style={{ color: "black" }}
+                  href="https://artportable.com/profile/@vivianne"
+                >
+                  {t("seeMore")}
+                </a>
+              </div>
+            </section>
+          </SwiperSlide>
+          <SwiperSlide>
+            <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
                 <a href="https://artportable.com/art/9a32dd35-f4ce-49fe-a98e-3d14e0cda4b1">
                   <img
@@ -90,17 +118,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 </a>
               </div>
               <div className={s.headlineWrapper}>
-                <div className={s.headline}>
+                <div className={s.headlineVernissage}>
                   Konstutställning med vernissage
                 </div>
-                <div className={s.headlineTitle}>
-                  <a
-                    style={{ textDecoration: "underline" }}
-                    href="https://artportable.com/profile/@petra.risberg"
-                  >
-                    Petra Risberg
-                  </a>
-                </div>
+
                 <div className={s.headlineThree}>
                   Utställning 9-17 november kl. 13-17
                   <br />
@@ -112,6 +133,17 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <a href="https://galleririsberg.se/">Galleri Risberg</a>
                     <br />
                     Bergsgatan 36, Stockholm
+                  </div>
+                  <br />
+                  <div
+                    style={{
+                      color: "black",
+                    }}
+                    className={s.headlineThree}
+                  >
+                    <a href="https://artportable.com/profile/@petra.risberg">
+                      Se fler verk
+                    </a>
                   </div>
                   <br />
                   <div

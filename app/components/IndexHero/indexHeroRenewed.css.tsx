@@ -8,9 +8,8 @@ export const styles = makeStyles((theme: Theme) =>
       background: theme.palette.grey[200],
       // backgroundColor: "var(--background-color-darker)",
       overflow: "visible", // Ensure this is set to visible to not clip the scrollbar
-      marginTop: "20px",
-      height: "80vh",
-      backgroundColor: "blue",
+      marginTop: "0px",
+      height: "70vh",
       width: "100%",
       [theme.breakpoints.up("sm")]: {
         height: "70vh",
@@ -95,7 +94,7 @@ export const styles = makeStyles((theme: Theme) =>
     sectionWrapper: {
       display: "flex",
       flexDirection: "column",
-      height: "80vh",
+      height: "70vh",
       [theme.breakpoints.up("lg")]: {
         display: "flex",
         flexDirection: "row",
@@ -120,7 +119,34 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      padding: "10px 10px 10px 10px",
+      padding: "10px 20px 10px 20px",
+      [theme.breakpoints.up("lg")]: {
+        height: "100%",
+        width: "50vw",
+        padding: "0px",
+        alignItems: "center",
+        backgroundColor: "#ebebeb",
+      },
+    },
+
+    imgWrapperRest: {
+      backgroundColor: "white",
+      width: "100vw",
+      height: "70%",
+      [theme.breakpoints.up("lg")]: {
+        backgroundColor: "white",
+        width: "50vw",
+        height: "100%",
+      },
+    },
+
+    headlineWrapperRest: {
+      backgroundColor: "#ebebeb",
+      height: "30%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("lg")]: {
         height: "100%",
         width: "50vw",
@@ -135,11 +161,32 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "22px",
       color: "black",
       zIndex: 20,
-      textAlign: "center",
+      textAlign: "left",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
       [theme.breakpoints.up("lg")]: {
-        fontSize: "24px",
+        fontSize: "40px",
+        color: "black",
+        textAlign: "left",
+        padding: "0px",
+      },
+
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "40px",
+        width: "80%",
+      },
+    },
+    headlineVernissage: {
+      position: "relative",
+      fontWeight: 400,
+      fontSize: "20px",
+      color: "black",
+      zIndex: 20,
+      textAlign: "left",
+      marginBottom: "10px",
+      padding: "0px 0px 0px 0px",
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "40px",
         color: "black",
         textAlign: "left",
         padding: "0px",
@@ -171,15 +218,15 @@ export const styles = makeStyles((theme: Theme) =>
     headlineTwo: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "20px",
+      fontSize: "13px",
       color: "#00000078",
-      textAlign: "center",
+      textAlign: "left",
       zIndex: 20,
       width: "100%",
       marginBottom: "40px",
       padding: "0px 0px 0px 0px",
       [theme.breakpoints.up("lg")]: {
-        fontSize: "24px",
+        fontSize: "22px",
         textAlign: "left",
         padding: "0px",
         width: "80%",
@@ -190,12 +237,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "12px",
       color: "#00000078",
-      textAlign: "center",
+      textAlign: "left",
       zIndex: 20,
       width: "100%",
       padding: "0px 0px 0px 0px",
       [theme.breakpoints.up("lg")]: {
-        fontSize: "16px",
+        fontSize: "22px",
         textAlign: "left",
         padding: "0px",
         width: "80%",
@@ -204,7 +251,7 @@ export const styles = makeStyles((theme: Theme) =>
     buttonWrapper: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "center",
+      justifyContent: "flex-start",
       width: "100%",
       [theme.breakpoints.up("lg")]: {
         justifyContent: "left",
@@ -224,6 +271,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
+        border: "1px solid #99999987",
       },
       "&:hover": {
         backgroundColor: "#289528",
@@ -299,7 +347,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       ".swiper-scrollbar-drag": {
-        backgroundColor: "#5555552b",
+        backgroundColor: "#555555e8",
+        height: "1px",
       },
     },
   })

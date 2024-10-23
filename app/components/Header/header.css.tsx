@@ -16,11 +16,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     trialBanner: {
       display: "flex",
-      backgroundColor: "black",
+      backgroundColor: "white",
       justifyContent: "center",
       alignItems: "center",
       fontSize: "12px",
       height: "25px",
+      color: "black",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "14px",
       },
