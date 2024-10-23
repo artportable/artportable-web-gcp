@@ -109,7 +109,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   </a>
                 </div>
                 <div className={s.headlineThree}>
-                  Utställning 9 - 17 november kl. 13-17
+                  Utställning 9-17 november kl. 13-17
                   <br />
                   <div className={s.headlineThree}>
                     Vernissage lördag 9 november kl. 14-20
