@@ -155,17 +155,6 @@ export default function Header({ navBarItems }) {
           borderBottom: "1px solid #cecece6b",
         }}
       >
-        {!isSignedIn.value && (
-          <>
-            <div className={s.trialBanner}>
-              <p>
-                <a href="https://www.artportable.com/register">
-                  {t("artportableTrial")}
-                </a>
-              </p>
-            </div>
-          </>
-        )}
         <Toolbar>
           <div className={s.container}>
             <div className={s.logoContainer}>
@@ -235,11 +224,7 @@ export default function Header({ navBarItems }) {
             {!isSignedIn.value && (
               <div className={s.login}>
                 <Button
-                  // className={s.createButton}
-                  className={clsx(sShared.largeButton, sShared.blackButton)}
-                  size="medium"
-                  // variant="contained"
-                  rounded
+                  className={s.loginButton}
                   onClick={() => keycloak.login({ locale: router.locale })}
                   // onClick={() =>
                   //   keycloak.register({

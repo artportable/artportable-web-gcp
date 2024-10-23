@@ -16,11 +16,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     trialBanner: {
       display: "flex",
-      backgroundColor: "black",
+      backgroundColor: "white",
       justifyContent: "center",
       alignItems: "center",
       fontSize: "12px",
       height: "25px",
+      color: "black",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "14px",
       },
@@ -76,6 +77,15 @@ export const styles = makeStyles((theme: Theme) =>
 
     login: {
       display: "none",
+    },
+    loginButton: {
+      borderRadius: "40px",
+      border: "1px solid #99999987",
+      fontWeight: 300,
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
+      },
     },
     upload: {
       display: "none",
@@ -134,9 +144,7 @@ export const styles = makeStyles((theme: Theme) =>
         color: "black",
       },
     },
-    loginButton: {
-      whiteSpace: "nowrap",
-    },
+
     notificationButton: {
       width: "54px",
       display: "flex",
