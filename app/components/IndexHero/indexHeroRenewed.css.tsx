@@ -120,7 +120,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      padding: "0px 10px 0px 10px",
+      padding: "10px 10px 10px 10px",
       [theme.breakpoints.up("sm")]: {
         height: "100%",
         width: "50vw",
@@ -232,10 +232,33 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: "10px",
       padding: "10px 10px 10px 10px",
       fontSize: "12px",
+      fontWeight: 300,
       [theme.breakpoints.up("sm")]: {
         padding: "10px 20px 10px 20px",
 
         fontSize: "16px",
+      },
+      "&:hover": {
+        backgroundColor: "#289528",
+        color: "white",
+
+        border: "none",
+      },
+    },
+    buttonFindArt: {
+      border: "1px solid #99999987",
+      borderRadius: "40px",
+      marginRight: "10px",
+      padding: "10px 10px 10px 10px",
+      fontSize: "12px",
+      fontWeight: 300,
+      [theme.breakpoints.up("sm")]: {
+        padding: "10px 20px 10px 20px",
+        fontSize: "16px",
+      },
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
       },
     },
 

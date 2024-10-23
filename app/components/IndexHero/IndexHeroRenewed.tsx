@@ -52,7 +52,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     src={
                       isTinyDevice
                         ? "/images/intoTheSunset.png"
-                        : "/images/intoTheSunsetMobile.png"
+                        : "/images/intoTheSunset.png"
                     }
                     alt={"konst"}
                     loading="lazy"
@@ -75,7 +75,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     {t("signUp")}
                   </Button>
-                  <Button className={s.buttonRegister} onClick={onScrollDown}>
+                  <Button className={s.buttonFindArt} onClick={onScrollDown}>
                     {t("findArt")}
                   </Button>
                 </div>
@@ -121,6 +121,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <a href="https://galleririsberg.se/">Galleri Risberg</a>
                     <br />
                     Bergsgatan 36, Stockholm
+                  </div>
+                  <br />
+                  <div style={{ fontSize: "12px" }}>
+                    Vill du synas här?{" "}
+                    <a href="mailto:hello@artportable.com">
+                      hello@artportable.com
+                    </a>
                   </div>
                 </div>
               </div>
