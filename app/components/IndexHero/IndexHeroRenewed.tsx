@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination, Scrollbar } from "swiper/modules";
 
@@ -8,25 +6,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { styles } from "./indexHeroRenewed.css";
-import clsx from "clsx";
-import { Link, Typography, useMediaQuery } from "@material-ui/core";
+import { useMediaQuery } from "@material-ui/core";
 import { theme } from "../../../styles/theme";
-import { useEffect, useState } from "react";
-import { styles as sharedStyles } from "../../../styles/shared.css";
+import { useState } from "react";
 import { KeycloakInstance } from "keycloak-js";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export default function IndexHeroRenewed({ onScrollDown }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const { t } = useTranslation("index");
   const s = styles();
-  const sShared = sharedStyles();
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
   const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
 

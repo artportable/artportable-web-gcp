@@ -15,13 +15,8 @@ import { useTranslation } from "next-i18next";
 import { useKeycloak } from "@react-keycloak/ssr";
 import type { KeycloakInstance } from "keycloak-js";
 import { useRouter } from "next/router";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Link from "next/link";
-import Image from "next/image";
-import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
+
 import Button from "../Button/Button";
-import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
-import VideoDialog from "../VideoDialog/VideoDialog";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import clsx from "clsx";
