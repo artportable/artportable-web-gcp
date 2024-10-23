@@ -123,7 +123,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     Bergsgatan 36, Stockholm
                   </div>
                   <br />
-                  <div style={{ fontSize: "12px" }}>
+                  <div style={{ fontSize: "12px", fontWeight: "bold" }}>
                     Vill du synas här?{" "}
                     <a href="mailto:hello@artportable.com">
                       hello@artportable.com
