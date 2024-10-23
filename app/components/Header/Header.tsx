@@ -235,11 +235,7 @@ export default function Header({ navBarItems }) {
             {!isSignedIn.value && (
               <div className={s.login}>
                 <Button
-                  // className={s.createButton}
-                  className={clsx(sShared.largeButton, sShared.blackButton)}
-                  size="medium"
-                  // variant="contained"
-                  rounded
+                  className={s.loginButton}
                   onClick={() => keycloak.login({ locale: router.locale })}
                   // onClick={() =>
                   //   keycloak.register({
