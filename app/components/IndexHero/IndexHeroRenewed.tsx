@@ -27,7 +27,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
   const { t } = useTranslation("index");
   const s = styles();
   const sShared = sharedStyles();
-  const isTinyDevice = useMediaQuery(theme.breakpoints.up("sm"));
+  const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
   const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
 
   return (
@@ -38,7 +38,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 8000,
+          delay: 12000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -47,12 +47,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/en/art/f35a11fb-6434-4ee8-8702-dacd07fbd7ab">
+                <a href="https://artportable.com/art/a033365e-9901-426e-b770-797990d23a3d">
                   <img
                     src={
-                      isTinyDevice
-                        ? "/images/intoTheSunset.png"
-                        : "/images/intoTheSunset.png"
+                      isTinyDevice ? "/images/lars2.png" : "/images/lars2.png"
                     }
                     alt={"konst"}
                     loading="lazy"
@@ -111,10 +109,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   </a>
                 </div>
                 <div className={s.headlineThree}>
-                  Utställning 9 - 17 november kl. 13 - 17
+                  Utställning 9-17 november kl. 13-17
                   <br />
                   <div className={s.headlineThree}>
-                    Vernissage lördag 9 november kl. 14 - 20
+                    Vernissage lördag 9 november kl. 14-20
                   </div>
                   <br />
                   <div>
@@ -123,7 +121,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     Bergsgatan 36, Stockholm
                   </div>
                   <br />
-                  <div style={{ fontSize: "12px" }}>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      color: "black",
+                    }}
+                  >
                     Vill du synas här?{" "}
                     <a href="mailto:hello@artportable.com">
                       hello@artportable.com
