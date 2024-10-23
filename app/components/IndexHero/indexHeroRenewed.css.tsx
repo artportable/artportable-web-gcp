@@ -525,18 +525,17 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "8px 16px",
       },
 
-      // Active state for buttons
       ".swiper-button-prev:not(.swiper-button-disabled), .swiper-button-next:not(.swiper-button-disabled)":
         {
           color: "#fadf87", // Active color
         },
-      // Optional: Hover effect
+
       ".swiper-button-prev:hover, .swiper-button-next:hover": {
-        color: "#fadf87", // Hover color
-        transform: "scale(1.1)", // Slightly enlarge on hover
+        color: "#fadf87",
+        transform: "scale(1.1)",
       },
       ".swiper-button-prev:active, .swiper-button-next:active": {
-        transform: "scale(0.95)", // Shrink slightly on click for a button press effect
+        transform: "scale(0.95)",
       },
 
       ".swiper-scrollbar": {
