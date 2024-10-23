@@ -47,12 +47,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/en/art/f35a11fb-6434-4ee8-8702-dacd07fbd7ab">
+                <a href="https://artportable.com/art/a033365e-9901-426e-b770-797990d23a3d">
                   <img
                     src={
-                      isTinyDevice
-                        ? "/images/intoTheSunset.png"
-                        : "/images/intoTheSunset.png"
+                      isTinyDevice ? "/images/lars2.png" : "/images/lars2.png"
                     }
                     alt={"konst"}
                     loading="lazy"
