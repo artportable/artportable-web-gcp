@@ -23,7 +23,8 @@ export default function RocketCarousel(props: Data) {
   const s = styles();
   const sShared = sharedStyles();
   const loadMoreArtworksElementRef = useRef(null);
-  const { username } = useContext(UserContext);
+
+  const { username, isSignedIn } = useContext(UserContext);
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
       loadMoreArtworksElementRef,
@@ -72,7 +73,7 @@ export default function RocketCarousel(props: Data) {
 const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const formatted = [];
-
+  const { username, isSignedIn } = useContext(UserContext);
   items.forEach((item) => {
     const overlayContent = (
       <div className={s.rocketOverlay}>
@@ -121,15 +122,17 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
           >
             {" "}
             {`${item.Owner.Name} ${item.Owner.Surname}`}
-            <div className={s.likeButton}>
-              <LikeButton
-                content={{
-                  Item: item,
-                  LikedByMe: item.LikedByMe,
-                  Likes: item.Likes,
-                }}
-              />
-            </div>
+            {isSignedIn.value && (
+              <div className={s.likeButton}>
+                <LikeButton
+                  content={{
+                    Item: item,
+                    LikedByMe: item.LikedByMe,
+                    Likes: item.Likes,
+                  }}
+                />
+              </div>
+            )}
             <p
               style={{
                 fontSize: "0.70rem",
