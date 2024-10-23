@@ -51,7 +51,6 @@ export const styles = makeStyles((theme: Theme) =>
         zIndex: 10,
       },
     },
-
     headlineContainer: {
       position: "absolute",
       top: "20px",
@@ -75,7 +74,6 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-around",
       alignItems: "center",
     },
-
     headlineContainerTwo: {
       position: "absolute",
       top: "0px",
@@ -111,7 +109,6 @@ export const styles = makeStyles((theme: Theme) =>
         height: "100%",
       },
     },
-
     headlineWrapper: {
       backgroundColor: "#ebebeb",
       height: "50%",
@@ -127,7 +124,6 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#ebebeb",
       },
     },
-
     imgWrapperRest: {
       backgroundColor: "white",
       width: "100vw",
@@ -254,7 +250,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       [theme.breakpoints.up("lg")]: {
         justifyContent: "left",
-        position: "relative",
+
         width: "80%",
         marginTop: "20px",
       },
@@ -287,6 +283,25 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "12px",
       fontWeight: 300,
       [theme.breakpoints.up("lg")]: {
+        padding: "10px 20px 10px 20px",
+        fontSize: "16px",
+      },
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
+      },
+    },
+    seeMoreButton: {
+      borderRadius: "40px",
+      marginRight: "10px",
+
+      fontSize: "12px",
+      fontWeight: 300,
+      display: "flex",
+      justifyContent: "left",
+      color: "black",
+      [theme.breakpoints.up("lg")]: {
+        border: "1px solid #99999987",
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },

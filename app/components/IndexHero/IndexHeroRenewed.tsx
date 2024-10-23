@@ -31,7 +31,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 222000,
+          delay: 12000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -91,13 +91,14 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   {t("artistDescription")}
                 </div>{" "}
                 <br />
-                <a
-                  className={s.headlineThree}
-                  style={{ color: "black" }}
-                  href="https://artportable.com/profile/@vivianne"
-                >
-                  {t("seeMore")}
-                </a>
+                <div className={s.buttonWrapper}>
+                  <a
+                    className={s.seeMoreButton}
+                    href="https://artportable.com/profile/@vivianne"
+                  >
+                    {t("seeMore")}
+                  </a>
+                </div>
               </div>
             </section>
           </SwiperSlide>
@@ -135,14 +136,12 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     Bergsgatan 36, Stockholm
                   </div>
                   <br />
-                  <div
-                    style={{
-                      color: "black",
-                    }}
-                    className={s.headlineThree}
-                  >
-                    <a href="https://artportable.com/profile/@petra.risberg">
-                      Se fler verk
+                  <div className={s.buttonWrapper}>
+                    <a
+                      className={s.seeMoreButton}
+                      href="https://artportable.com/profile/@petra.risberg"
+                    >
+                      {t("seeMore")}
                     </a>
                   </div>
                   <br />
