@@ -96,7 +96,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       height: "80vh",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         display: "flex",
         flexDirection: "row",
         height: "70vh",
@@ -107,7 +107,7 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "white",
       width: "100vw",
       height: "50%",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         backgroundColor: "white",
         width: "50vw",
         height: "100%",
@@ -121,7 +121,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       padding: "10px 10px 10px 10px",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         height: "100%",
         width: "50vw",
         padding: "0px",
@@ -138,13 +138,13 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: "center",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         fontSize: "24px",
         color: "black",
         textAlign: "left",
         padding: "0px",
       },
-      [theme.breakpoints.up("md")]: {},
+
       [theme.breakpoints.up("mdPlus")]: {
         fontSize: "40px",
         width: "80%",
@@ -159,14 +159,10 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: "center",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "22px",
+      [theme.breakpoints.up("lg")]: {
         color: "black",
         textAlign: "left",
         padding: "0px",
-      },
-      [theme.breakpoints.up("md")]: {},
-      [theme.breakpoints.up("mdPlus")]: {
         fontSize: "28px",
         width: "80%",
       },
@@ -182,34 +178,26 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       marginBottom: "40px",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "2.2rem",
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "24px",
         textAlign: "left",
         padding: "0px",
-      },
-      [theme.breakpoints.up("md")]: {},
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "1.4rem",
         width: "80%",
       },
     },
     headlineThree: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "16px",
+      fontSize: "12px",
       color: "#00000078",
       textAlign: "center",
       zIndex: 20,
       width: "100%",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "2.2rem",
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "16px",
         textAlign: "left",
         padding: "0px",
-      },
-      [theme.breakpoints.up("md")]: {},
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "1.4rem",
         width: "80%",
       },
     },
@@ -218,7 +206,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       justifyContent: "center",
       width: "100%",
-      [theme.breakpoints.up("mdPlus")]: {
+      [theme.breakpoints.up("lg")]: {
         justifyContent: "left",
         position: "relative",
         width: "80%",
@@ -233,9 +221,8 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px 10px 10px 10px",
       fontSize: "12px",
       fontWeight: 300,
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
-
         fontSize: "16px",
       },
       "&:hover": {
@@ -252,244 +239,13 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px 10px 10px 10px",
       fontSize: "12px",
       fontWeight: 300,
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },
       "&:hover": {
         backgroundColor: "black",
         color: "white",
-      },
-    },
-
-    desktopHeaderButtons: {
-      display: "flex",
-      marginTop: "20px",
-      zIndex: 20,
-      flexFlow: "row nowrap",
-      // [theme.breakpoints.up("sm")]: {
-      //   flexDirection: 'row',
-      // },
-      "& button": {
-        minWidth: "150px",
-        // margin: '0 10px',
-      },
-    },
-    readMoreButton: {
-      position: "absolute",
-      bottom: "320px",
-      left: "20px",
-      zIndex: 20,
-      color: "white",
-      "&:hover": {
-        "& button": {
-          backgroundColor: "white",
-        },
-      },
-
-      [theme.breakpoints.up("smPlus")]: {
-        display: "inline",
-        bottom: "20px",
-        left: "20px",
-      },
-    },
-    imageContainter: {
-      [theme.breakpoints.up("sm")]: {
-        width: "50%",
-        height: "50%",
-      },
-      "& img": {
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        zIndex: 1,
-      },
-    },
-
-    left: {
-      // border: '1px solid red',
-      textAlign: "left",
-      flexBasis: "100%",
-      flexGrow: 2,
-      width: "90%",
-      display: "flex",
-      justifyContent: "center",
-      alignContent: "center",
-      flexDirection: "column",
-      // ...columnGap(theme.spacing(1)),
-      marginRight: "16px",
-      marginLeft: "16px",
-      // marginTop: "12px",
-      // margin: theme.spacing(0, 0, 4, 0),
-      marginTop: 0,
-      marginBottom: 0,
-      placeItems: "center",
-
-      [theme.breakpoints.up("smPlus")]: {
-        // margin: theme.spacing(0, 0, 2, 0),
-        // width: "567px",
-        // marginTop: "2px",
-      },
-      [theme.breakpoints.up("md")]: {
-        // textAlign: "initial",
-        // margin: theme.spacing(0, 0, 4, 4),
-        // placeItems: "center",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        // textAlign: "initial",
-        // margin: theme.spacing(0, 0, 4, 4),
-        // placeItems: "flex-start",
-      },
-    },
-
-    accordion: {
-      backgroundColor: "var(--header-color)",
-      width: "100%",
-    },
-    accordionDiv: {
-      display: "none",
-      [theme.breakpoints.up("smPlus")]: {
-        display: "flex",
-        paddingRight: theme.spacing(0),
-        margin: "0 0",
-        marginLeft: "-15px",
-      },
-    },
-
-    detailsText: {
-      ...columnGap(theme.spacing(1)),
-      margin: "20px 0",
-      marginTop: "-20px",
-      fontFamily: "Gotham !important",
-      fontSizeAdjust: 0.5,
-    },
-
-    textDiv: {
-      display: "flex",
-      placeContent: "center",
-      marginBottom: "20px",
-    },
-    buttonDiv: {
-      justifyContent: "center",
-    },
-    button: {
-      border: "none",
-      marginTop: "-50px",
-      [theme.breakpoints.up("smPlus")]: {
-        marginTop: "-5px",
-      },
-    },
-    buttonReview: {
-      backgroundColor: "green",
-      marginTop: "-50px",
-      [theme.breakpoints.up("smPlus")]: {
-        marginTop: "-5px",
-      },
-    },
-
-    buttonDivReview: {
-      display: "flex",
-      justifyContent: "flex-start",
-      marginTop: theme.spacing(2), // adjust as per your design needs
-    },
-    reviewDiv: {
-      display: "flex",
-      flexDirection: "column", // This sets the children to stack vertically
-      alignItems: "start",
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(5),
-
-      [theme.breakpoints.up("smPlus")]: {
-        marginBottom: theme.spacing(2),
-      },
-    },
-    allReviews: {
-      display: "flex",
-      flexDirection: "column", // This sets the children to stack vertically
-    },
-
-    headingReview: {
-      fontWeight: 500,
-      fontSize: "18px",
-      lineHeight: "32px",
-      fontFamily: "Gotham !important",
-      margin: "10px",
-      [theme.breakpoints.down("sm")]: {
-        fontWeight: 500,
-        lineHeight: "18px",
-        fontSize: "10px",
-        margin: "5px",
-      },
-      [theme.breakpoints.down("smPlus")]: {
-        fontSize: "14px",
-        lineHeight: "18px",
-        margin: "5px",
-      },
-    },
-    firstReview: {
-      fontWeight: 500,
-      fontSize: "12px",
-      lineHeight: "32px",
-      fontFamily: "Gotham !important",
-      margin: "0px",
-      [theme.breakpoints.down("sm")]: {
-        fontWeight: 400,
-        lineHeight: "15px",
-        fontSize: "12px",
-        margin: "5px",
-      },
-      [theme.breakpoints.down("smPlus")]: {
-        fontSize: "14px",
-        lineHeight: "18px",
-        margin: "5px",
-      },
-    },
-    accDescription: {
-      fontFamily: "Gotham !important",
-      marginTop: "10px",
-      marginBottom: "10px",
-    },
-    heading: {
-      fontWeight: 600,
-      lineHeight: "32px",
-      fontFamily: "Gotham !important",
-    },
-    headlineCurated: {
-      position: "relative",
-      fontWeight: 400,
-      fontSize: "1.2rem",
-      textAlign: "center",
-      color: "white",
-      zIndex: 20,
-      "& span": {
-        display: "none",
-      },
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "2.0rem",
-      },
-      [theme.breakpoints.up("md")]: {
-        textAlign: "center",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "2.4rem",
-        width: "70%",
-      },
-    },
-    fullWidthImageCurated: {
-      position: "relative",
-      width: "100vw",
-      height: "70vh",
-      minHeight: "400px",
-      [theme.breakpoints.up("sm")]: {
-        height: "calc(100vh - 90px)",
-      },
-      "& img": {
-        position: "relative", // Change to relative
-        width: "100%", // Adjust width to ensure it takes the space correctly
-        height: "100%", // Maintain aspect ratio
-        objectFit: "cover",
-        zIndex: 1, // Lower z-index to avoid overlap
       },
     },
 

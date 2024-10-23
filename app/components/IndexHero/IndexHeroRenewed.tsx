@@ -27,7 +27,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
   const { t } = useTranslation("index");
   const s = styles();
   const sShared = sharedStyles();
-  const isTinyDevice = useMediaQuery(theme.breakpoints.up("sm"));
+  const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
   const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
 
   return (
