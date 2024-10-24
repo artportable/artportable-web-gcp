@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useRef, useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { useTranslation } from "next-i18next";
 import clsx from "clsx";
@@ -52,8 +52,6 @@ export default function RocketCarousel(props: Data) {
     t,
     forDesktop
   );
-
-  console.log(artworks);
 
   return (
     <div style={containerStyle}>
