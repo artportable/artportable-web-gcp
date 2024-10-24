@@ -199,10 +199,6 @@ export default function DrawerMenu({
     setOpenUpgrade(false);
   };
 
-  const forceReload = () => {
-    router.reload();
-  };
-
   return (
     <Drawer
       classes={{ paper: s.container }}
@@ -428,7 +424,6 @@ export default function DrawerMenu({
                       <Link href={"/" + item.slug} passHref key={index}>
                         {/* onClick={(_) => router.push(`/${item.slug}`)} */}
                         <a>
-                          {/* <a onClick={(_) =>  { router.push(`/${item.slug}`); forceReload();}}> */}
                           <ListItem
                             button
                             className={s.nested}
