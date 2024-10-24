@@ -348,6 +348,9 @@ export const styles = makeStyles((theme: Theme) =>
       ".swiper-scrollbar-drag": {
         backgroundColor: "#555555e8",
         height: "1px",
+        [theme.breakpoints.up("lg")]: {
+          display: "none",
+        },
       },
     },
   })

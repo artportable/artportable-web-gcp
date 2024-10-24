@@ -29,9 +29,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     likeButton: {
-      position: "absolute",
-      top: "5px",
-      right: "10px",
       fontSize: "0.85rem",
       "& button": {
         padding: "0px",
@@ -42,6 +39,17 @@ export const styles = makeStyles((theme: Theme) =>
         "& button": {
           backgroundColor: "transparent",
         },
+      },
+    },
+    buyButton: {
+      border: "1px solid #99999987",
+      borderRadius: "20px",
+      padding: "5px 10px 5px 10px",
+      backgroundColor: "transparent",
+      color: "black",
+      "&:hover": {
+        backgroundColor: "black",
+        color: "white",
       },
     },
     seeMoreButton: {

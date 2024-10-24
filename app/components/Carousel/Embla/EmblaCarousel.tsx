@@ -143,11 +143,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 {slide.hoverOverlayContent}
               </div>
             )}
-            {slide.footer && (
-              <div className={s.slide__footer}>{slide.footer}</div>
-            )}
           </div>
         </a>
+        {slide.footer && <div className={s.slide__footer}>{slide.footer}</div>}
       </div>
     ));
   } else if (isStoryCarousel) {

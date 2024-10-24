@@ -71,7 +71,9 @@ export const styles = makeStyles((theme: Theme) =>
       // borderRadius: '1.8rem',
       // fontSize: '4rem',
       // fontWeight: 600,
+
       display: "flex",
+      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
       height: "var(--slide-height)",
@@ -89,7 +91,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     has_footer: {
-      marginBottom: "55px",
+      marginBottom: "0px",
     },
     // image__container: {
     //   position: 'relative',
@@ -151,11 +153,8 @@ export const styles = makeStyles((theme: Theme) =>
       // },
     },
     slide__footer: {
-      // Relative positioning stretches image, use absolute.
-      position: "absolute",
-      top: "100%",
-      left: 0,
-      right: 0,
+      display: "flex",
+      flexDirection: "column",
     },
     embla__controls: {
       // display: 'grid',
