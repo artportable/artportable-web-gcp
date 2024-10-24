@@ -56,7 +56,7 @@ export default function RocketCarousel(props: Data) {
   return (
     <div style={containerStyle}>
       <EmblaCarousel
-        slides={formattedSlides} // Use the formatted slides here
+        slides={formattedSlides}
         options={{
           align: "center",
           loop: true,
