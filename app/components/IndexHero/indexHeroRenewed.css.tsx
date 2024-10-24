@@ -8,7 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       // backgroundColor: "var(--background-color-darker)",
       overflow: "visible", // Ensure this is set to visible to not clip the scrollbar
       marginTop: "0px",
-      height: "70vh",
+      height: "65vh",
       width: "100%",
       [theme.breakpoints.up("sm")]: {
         height: "70vh",
@@ -91,7 +91,7 @@ export const styles = makeStyles((theme: Theme) =>
     sectionWrapper: {
       display: "flex",
       flexDirection: "column",
-      height: "70vh",
+      height: "65vh",
       [theme.breakpoints.up("lg")]: {
         display: "flex",
         flexDirection: "row",
@@ -114,12 +114,13 @@ export const styles = makeStyles((theme: Theme) =>
       height: "50%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
+      justifyContent: "flex-start",
       padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("lg")]: {
         height: "100%",
         width: "50vw",
         padding: "0px",
+        justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#ebebeb",
       },
@@ -127,7 +128,7 @@ export const styles = makeStyles((theme: Theme) =>
     imgWrapperRest: {
       backgroundColor: "white",
       width: "100vw",
-      height: "70%",
+      height: "50%",
       [theme.breakpoints.up("lg")]: {
         backgroundColor: "white",
         width: "50vw",
@@ -137,16 +138,17 @@ export const styles = makeStyles((theme: Theme) =>
 
     headlineWrapperRest: {
       backgroundColor: "#ebebeb",
-      height: "30%",
+      height: "50%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
+      justifyContent: "flex-start",
       padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("lg")]: {
         height: "100%",
         width: "50vw",
         padding: "0px",
         alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "#ebebeb",
       },
     },
@@ -218,7 +220,7 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: "left",
       zIndex: 20,
       width: "100%",
-      marginBottom: "40px",
+      marginBottom: "30px",
       padding: "0px 0px 0px 0px",
       [theme.breakpoints.up("lg")]: {
         fontSize: "22px",
@@ -246,7 +248,19 @@ export const styles = makeStyles((theme: Theme) =>
     buttonWrapper: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "flex-start",
+      justifyContent: "center",
+      width: "100%",
+      [theme.breakpoints.up("lg")]: {
+        justifyContent: "left",
+
+        width: "80%",
+        marginTop: "20px",
+      },
+    },
+    buttonWrapperSeeMore: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "left",
       width: "100%",
       [theme.breakpoints.up("lg")]: {
         justifyContent: "left",
@@ -294,7 +308,6 @@ export const styles = makeStyles((theme: Theme) =>
     seeMoreButton: {
       borderRadius: "40px",
       marginRight: "10px",
-
       fontSize: "12px",
       fontWeight: 300,
       display: "flex",
@@ -304,10 +317,10 @@ export const styles = makeStyles((theme: Theme) =>
         border: "1px solid #99999987",
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
-      },
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
+        "&:hover": {
+          backgroundColor: "black",
+          color: "white",
+        },
       },
     },
 

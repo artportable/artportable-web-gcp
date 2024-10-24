@@ -99,10 +99,10 @@ export default function MessageRequestDialog({ open, onClose, props }) {
   }, []);
 
   const onPurchaseRequestClick = async () => {
-    // if (!recaptchaToken) {
-    //   alert("Please complete the reCAPTCHA");
-    //   return;
-    // }
+    if (!recaptchaToken) {
+      alert("Please complete the reCAPTCHA");
+      return;
+    }
     let isValid = true;
 
     // Validate email
@@ -131,7 +131,7 @@ export default function MessageRequestDialog({ open, onClose, props }) {
 
     // Proceed with your API call
     const response = await fetch(
-      `${apiBaseUrl}/api/messages/emailmessgerequest?email=${userEmail}&message=${customMessage}&username=${props.referTo}`,
+      `${apiBaseUrl}/api/messages/emailmessgerequest?email=${userEmail}&message=${customMessage}&username=${props.referTo}&recaptchaToken=${recaptchaToken}`,
       {
         method: "GET",
       }
@@ -257,9 +257,8 @@ export default function MessageRequestDialog({ open, onClose, props }) {
                 />
               </Grid>
             </Grid>
-
             {/* ReCAPTCHA widget */}
-            {/* <div
+            <div
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -270,8 +269,7 @@ export default function MessageRequestDialog({ open, onClose, props }) {
                 sitekey={google_captcha}
                 onChange={(token) => setRecaptchaToken(token)}
               />
-            </div> */}
-
+            </div>
             <FormGroup style={{ alignItems: "center" }}>
               <Button
                 variant="contained"

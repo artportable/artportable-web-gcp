@@ -34,12 +34,11 @@ class MyDocument extends Document {
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
           <link rel="preload" as="image" href="/images/lars2.png" />
-          <link
-            rel="preload"
-            as="image"
-            href="/images/intoTheSunsetMobile.png"
-          />
+          <link rel="preload" as="image" href="/images/katharsis.jpg" />
           <link rel="preload" as="image" href="/images/risberg3.jpeg" />
+          <link rel="preload" as="image" href="/images/otsa.png" />
+          <link rel="preload" as="image" href="/images/otsaMobiles.jpg" />
+
           <script
             dangerouslySetInnerHTML={{
               __html: `
