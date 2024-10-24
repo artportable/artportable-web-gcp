@@ -78,18 +78,25 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
-                <a href="https://artportable.com/art/8997e46a-8620-4f61-90d5-2ae857eabace">
-                  <img
-                    src={
-                      isTinyDevice
-                        ? "/images/otsa.png"
-                        : "/images/otsaMobiles.jpg"
-                    }
-                    alt={"konst"}
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </a>
+                {isTinyDevice ? (
+                  <a href="https://artportable.com/art/8997e46a-8620-4f61-90d5-2ae857eabace">
+                    <img
+                      src={"/images/otsa.png"}
+                      alt={"konst"}
+                      loading="lazy"
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </a>
+                ) : (
+                  <a href="https://artportable.com/art/61b3a5fc-a4be-47e4-8b8e-ab95b2c125e3">
+                    <img
+                      src={"/images/otsaWide.jpg"}
+                      alt={"konst"}
+                      loading="lazy"
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </a>
+                )}
               </div>
               <div className={s.headlineWrapperRest}>
                 <div className={s.headline}>{t("artistTitle")}</div>
