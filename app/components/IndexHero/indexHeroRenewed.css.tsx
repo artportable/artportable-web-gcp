@@ -9,85 +9,14 @@ export const styles = makeStyles((theme: Theme) =>
       overflow: "visible", // Ensure this is set to visible to not clip the scrollbar
       marginTop: "0px",
       height: "65vh",
-      width: "100%",
+      width: "95%",
+      margin: "0 auto",
       [theme.breakpoints.up("sm")]: {
         height: "70vh",
+        width: "100%",
       },
     },
 
-    fullWidthContainer: {
-      width: "100vw",
-      flexDirection: "column-reverse",
-    },
-    fullWidthImage: {
-      position: "relative",
-      width: "100vw",
-      height: "50vh",
-      minHeight: "400px",
-      [theme.breakpoints.up("smPlus")]: {
-        height: "calc(100vh - 90px)",
-      },
-      "& img": {
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        zIndex: 10,
-      },
-    },
-    fullWidthImageTwo: {
-      position: "relative",
-      width: "100vw",
-      height: "70vh",
-      minHeight: "400px",
-      [theme.breakpoints.up("sm")]: {
-        height: "calc(100vh - 90px)",
-      },
-      "& img": {
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        objectFit: "inherit",
-        zIndex: 10,
-      },
-    },
-    headlineContainer: {
-      position: "absolute",
-      top: "20px",
-      bottom: "20px",
-      left: "20px",
-      right: "20px",
-      display: "flex",
-      flexFlow: "column nowrap",
-      justifyContent: "center",
-      alignItems: "center",
-      // textAlign: 'center',
-    },
-    headlineContainerMobile: {
-      position: "absolute",
-      top: "20px",
-      bottom: "20px",
-      left: "20px",
-      right: "20px",
-      display: "flex",
-      flexFlow: "column nowrap",
-      justifyContent: "space-around",
-      alignItems: "center",
-    },
-    headlineContainerTwo: {
-      position: "absolute",
-      top: "0px",
-      bottom: "0px",
-      left: "0px",
-      right: "0px",
-      display: "flex",
-      flexFlow: "column nowrap",
-      justifyContent: "space-around",
-      alignItems: "center",
-      [theme.breakpoints.up("sm")]: {
-        alignItems: "flex-start",
-      },
-    },
     sectionWrapper: {
       display: "flex",
       flexDirection: "column",
@@ -114,7 +43,7 @@ export const styles = makeStyles((theme: Theme) =>
       height: "50%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "flex-start",
+      justifyContent: "center",
       padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("lg")]: {
         height: "100%",
@@ -125,10 +54,46 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#ebebeb",
       },
     },
+
+    fullWidthContainer: {
+      width: "100vw",
+      flexDirection: "column-reverse",
+    },
+    fullWidthImage: {
+      position: "relative",
+      width: "100vw",
+      height: "50vh",
+      minHeight: "400px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "calc(100vh - 90px)",
+      },
+      "& img": {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        zIndex: 10,
+      },
+    },
+
+    headlineContainer: {
+      position: "absolute",
+      top: "20px",
+      bottom: "20px",
+      left: "20px",
+      right: "20px",
+      display: "flex",
+      flexFlow: "column nowrap",
+      justifyContent: "center",
+      alignItems: "center",
+      // textAlign: 'center',
+    },
+
     imgWrapperRest: {
       backgroundColor: "white",
       width: "100vw",
       height: "50%",
+      zIndex: 20,
       [theme.breakpoints.up("lg")]: {
         backgroundColor: "white",
         width: "50vw",
@@ -141,8 +106,9 @@ export const styles = makeStyles((theme: Theme) =>
       height: "50%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "flex-start",
+      justifyContent: "center",
       padding: "10px 20px 10px 20px",
+
       [theme.breakpoints.up("lg")]: {
         height: "100%",
         width: "50vw",
@@ -210,6 +176,12 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: "28px",
         width: "80%",
       },
+    },
+
+    mailUs: {
+      fontSize: "12px",
+      color: "black",
+      marginTop: "6px",
     },
 
     headlineTwo: {
