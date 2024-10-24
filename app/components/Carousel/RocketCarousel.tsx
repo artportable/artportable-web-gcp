@@ -53,6 +53,8 @@ export default function RocketCarousel(props: Data) {
     forDesktop
   );
 
+  console.log(artworks);
+
   return (
     <div style={containerStyle}>
       <EmblaCarousel
@@ -74,6 +76,9 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const formatted = [];
   const { username, isSignedIn } = useContext(UserContext);
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_URL;
+
   items.forEach((item) => {
     const overlayContent = (
       <div className={s.rocketOverlay}>
@@ -121,18 +126,31 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
             }}
           >
             {" "}
-            {`${item.Owner.Name} ${item.Owner.Surname}`}
-            {isSignedIn.value && (
-              <div className={s.likeButton}>
-                <LikeButton
-                  content={{
-                    Item: item,
-                    LikedByMe: item.LikedByMe,
-                    Likes: item.Likes,
-                  }}
-                />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <a href={`${baseUrl}/profile/@${item.Username}`}>
+                {" "}
+                {`${item.Owner.Name} ${item.Owner.Surname}`}
+              </a>
+              <div>
+                {isSignedIn.value && (
+                  <div className={s.likeButton}>
+                    <LikeButton
+                      content={{
+                        Item: item,
+                        LikedByMe: item.LikedByMe,
+                        Likes: item.Likes,
+                      }}
+                    />
+                  </div>
+                )}
               </div>
-            )}
+            </div>
             <p
               style={{
                 fontSize: "0.70rem",
@@ -141,6 +159,31 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
               }}
             >
               {item?.Title}
+              <br />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  {" "}
+                  {item?.Price != 0 ? (
+                    <div style={{ fontSize: "14px" }}>
+                      {item?.Price} {item.Currency}
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: "14px" }}>
+                      {t("priceOnRequest")}
+                    </div>
+                  )}
+                </div>
+                <a href={`${baseUrl}/art/${item.Id}`} className={s.buyButton}>
+                  {t("buy")}
+                </a>
+              </div>
             </p>
           </div>
         </div>
