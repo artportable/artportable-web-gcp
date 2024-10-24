@@ -31,7 +31,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 12000,
+          delay: 12222000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -43,7 +43,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <a href="https://artportable.com/art/a033365e-9901-426e-b770-797990d23a3d">
                   <img
                     src={
-                      isTinyDevice ? "/images/lars2.png" : "/images/lars2.png"
+                      isTinyDevice
+                        ? "/images/lars2.png"
+                        : "/images/katharsis.jpg"
                     }
                     alt={"konst"}
                     loading="lazy"
@@ -78,7 +80,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               <div className={s.imgWrapperRest}>
                 <a href="https://artportable.com/art/8997e46a-8620-4f61-90d5-2ae857eabace">
                   <img
-                    src={isTinyDevice ? "/images/otsa.png" : "/images/otsa.png"}
+                    src={
+                      isTinyDevice
+                        ? "/images/otsa.png"
+                        : "/images/otsaMobiles.jpg"
+                    }
                     alt={"konst"}
                     loading="lazy"
                     style={{ width: "100%", height: "100%" }}
