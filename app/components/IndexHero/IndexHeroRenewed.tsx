@@ -117,7 +117,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           </SwiperSlide>
           <SwiperSlide>
             <section className={s.sectionWrapper}>
-              <div className={s.imgWrapper}>
+              <div className={s.imgWrapperRest}>
                 <a href="https://artportable.com/art/9a32dd35-f4ce-49fe-a98e-3d14e0cda4b1">
                   <img
                     src={
@@ -131,7 +131,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   />
                 </a>
               </div>
-              <div className={s.headlineWrapper}>
+              <div className={s.headlineWrapperRest}>
                 <div className={s.headlineVernissage}>
                   Konstutställning med vernissage
                 </div>
@@ -142,7 +142,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <div className={s.headlineThree}>
                     Vernissage lördag 9 november kl. 14-20
                   </div>
-                  <br />
                   <div>
                     <a href="https://galleririsberg.se/">Galleri Risberg</a>
                     <br />
@@ -157,14 +156,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       {t("seeMore")}
                     </a>
                   </div>
-                  <br />
-                  <div
-                    style={{
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      color: "black",
-                    }}
-                  >
+                  <div className={s.mailUs}>
                     Vill du synas här?{" "}
                     <a href="mailto:hello@artportable.com">
                       hello@artportable.com
