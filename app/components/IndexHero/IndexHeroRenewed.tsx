@@ -14,6 +14,7 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
+import Image from "next/image";
 
 export default function IndexHeroRenewed({ onScrollDown }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -41,16 +42,25 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
                 <a href="https://artportable.com/art/a033365e-9901-426e-b770-797990d23a3d">
-                  <img
-                    src={
-                      isTinyDevice
-                        ? "/images/lars2.png"
-                        : "/images/katharsis.jpg"
-                    }
-                    alt={"konst"}
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%" }}
-                  />
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <Image
+                      src={
+                        isTinyDevice
+                          ? "/images/larsCompressed.png"
+                          : "/images/katharsis.jpg"
+                      }
+                      alt="konst"
+                      loading="lazy"
+                      style={{ objectFit: "cover" }}
+                      layout="fill"
+                    />
+                  </div>
                 </a>
               </div>
               <div className={s.headlineWrapper}>
