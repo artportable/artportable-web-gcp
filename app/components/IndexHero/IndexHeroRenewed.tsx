@@ -91,7 +91,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   {t("artistDescription")}
                 </div>{" "}
                 <br />
-                <div className={s.buttonWrapper}>
+                <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
                     href="https://artportable.com/profile/@vivianne"
@@ -136,7 +136,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     Bergsgatan 36, Stockholm
                   </div>
                   <br />
-                  <div className={s.buttonWrapper}>
+                  <div className={s.buttonWrapperSeeMore}>
                     <a
                       className={s.seeMoreButton}
                       href="https://artportable.com/profile/@petra.risberg"

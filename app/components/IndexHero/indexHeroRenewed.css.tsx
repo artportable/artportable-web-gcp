@@ -246,7 +246,19 @@ export const styles = makeStyles((theme: Theme) =>
     buttonWrapper: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "flex-start",
+      justifyContent: "center",
+      width: "100%",
+      [theme.breakpoints.up("lg")]: {
+        justifyContent: "left",
+
+        width: "80%",
+        marginTop: "20px",
+      },
+    },
+    buttonWrapperSeeMore: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "left",
       width: "100%",
       [theme.breakpoints.up("lg")]: {
         justifyContent: "left",
@@ -294,7 +306,6 @@ export const styles = makeStyles((theme: Theme) =>
     seeMoreButton: {
       borderRadius: "40px",
       marginRight: "10px",
-
       fontSize: "12px",
       fontWeight: 300,
       display: "flex",
@@ -304,10 +315,10 @@ export const styles = makeStyles((theme: Theme) =>
         border: "1px solid #99999987",
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
-      },
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
+        "&:hover": {
+          backgroundColor: "black",
+          color: "white",
+        },
       },
     },
 
