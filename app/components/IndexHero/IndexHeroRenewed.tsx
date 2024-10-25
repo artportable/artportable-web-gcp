@@ -57,7 +57,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }
                       alt="konst"
                       loading="lazy"
-                      style={{ objectFit: "cover" }}
                       layout="fill"
                     />
                   </div>
@@ -101,7 +100,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         src={"/images/otsa.png"}
                         alt="konst"
                         loading="lazy"
-                        style={{ objectFit: "cover" }}
                         layout="fill"
                       />
                     </div>
@@ -119,7 +117,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         src={"/images/otsaWide.jpg"}
                         alt="artworkimage"
                         loading="lazy"
-                        style={{ objectFit: "cover" }}
                         layout="fill"
                       />
                     </div>
