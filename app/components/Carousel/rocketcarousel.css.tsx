@@ -42,10 +42,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     buyButton: {
-      border: "1px solid #99999987",
       borderRadius: "20px",
       padding: "5px 10px 5px 10px",
-      backgroundColor: "transparent",
+      backgroundColor: "#fadf87",
       color: "black",
       "&:hover": {
         backgroundColor: "black",
