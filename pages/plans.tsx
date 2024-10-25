@@ -270,17 +270,32 @@ export async function getPriceData() {
   };
 
   try {
-    return fetch(`${apiBaseUrl}/api/payments/prices`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((result: Array<Price>) => {
-        result.push(freeYearPlan);
-        result.push(freeMonthPlan);
+    const response = await fetch(`${apiBaseUrl}/api/payments/prices`);
 
-        return result;
-      });
+    if (!response.ok) {
+      // Log the status code and status text
+      console.error(
+        `Failed to fetch price data: ${response.status} ${response.statusText}`
+      );
+      // You can throw an error or return default data
+      throw new Error(`Failed to fetch price data`);
+    }
+
+    const result = await response.json();
+
+    // Check if result is an array
+    if (!Array.isArray(result)) {
+      console.error("Price data is not an array:", result);
+      throw new Error("Price data is not an array");
+    }
+
+    result.push(freeYearPlan);
+    result.push(freeMonthPlan);
+
+    return result;
   } catch (e) {
-    console.log("Could not fetch price info", e);
+    console.error("Could not fetch price info", e);
+    // Return default price data or handle accordingly
+    return [freeYearPlan, freeMonthPlan]; // Return at least the free plans
   }
 }
