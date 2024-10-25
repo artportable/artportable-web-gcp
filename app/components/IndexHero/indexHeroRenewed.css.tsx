@@ -55,40 +55,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
-    fullWidthContainer: {
-      width: "100vw",
-      flexDirection: "column-reverse",
-    },
-    fullWidthImage: {
-      position: "relative",
-      width: "100vw",
-      height: "50vh",
-      minHeight: "400px",
-      [theme.breakpoints.up("smPlus")]: {
-        height: "calc(100vh - 90px)",
-      },
-      "& img": {
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        zIndex: 10,
-      },
-    },
-
-    headlineContainer: {
-      position: "absolute",
-      top: "20px",
-      bottom: "20px",
-      left: "20px",
-      right: "20px",
-      display: "flex",
-      flexFlow: "column nowrap",
-      justifyContent: "center",
-      alignItems: "center",
-      // textAlign: 'center',
-    },
-
     imgWrapperRest: {
       backgroundColor: "white",
       width: "100vw",
@@ -257,7 +223,6 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         backgroundColor: "#fadf87",
         color: "color",
-
         border: "none",
       },
     },
@@ -275,6 +240,7 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {
         backgroundColor: "black",
         color: "white",
+        border: "none",
       },
     },
     seeMoreButton: {
@@ -313,7 +279,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       ".swiper-button-prev": {
-        left: "85%", // Adjust to the left of the center (with proper offset)
+        left: "85%",
         height: "60vh",
         width: "6vw",
       },
@@ -330,7 +296,7 @@ export const styles = makeStyles((theme: Theme) =>
 
       ".swiper-button-prev:not(.swiper-button-disabled), .swiper-button-next:not(.swiper-button-disabled)":
         {
-          color: "#fadf87", // Active color
+          color: "#fadf87",
         },
 
       ".swiper-button-prev:hover, .swiper-button-next:hover": {
