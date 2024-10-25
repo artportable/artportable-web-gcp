@@ -255,8 +255,8 @@ export const styles = makeStyles((theme: Theme) =>
         border: "1px solid #99999987",
       },
       "&:hover": {
-        backgroundColor: "#289528",
-        color: "white",
+        backgroundColor: "#fadf87",
+        color: "color",
 
         border: "none",
       },
