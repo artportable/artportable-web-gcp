@@ -90,21 +90,39 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
                   <a href="https://artportable.com/art/8997e46a-8620-4f61-90d5-2ae857eabace">
-                    <img
-                      src={"/images/otsa.png"}
-                      alt={"konst"}
-                      loading="lazy"
-                      style={{ width: "100%", height: "100%" }}
-                    />
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Image
+                        src={"/images/otsa.png"}
+                        alt="konst"
+                        loading="lazy"
+                        style={{ objectFit: "cover" }}
+                        layout="fill"
+                      />
+                    </div>
                   </a>
                 ) : (
                   <a href="https://artportable.com/art/61b3a5fc-a4be-47e4-8b8e-ab95b2c125e3">
-                    <img
-                      src={"/images/otsaWide.jpg"}
-                      alt={"konst"}
-                      loading="lazy"
-                      style={{ width: "100%", height: "100%" }}
-                    />
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Image
+                        src={"/images/otsaWide.jpg"}
+                        alt="artworkimage"
+                        loading="lazy"
+                        style={{ objectFit: "cover" }}
+                        layout="fill"
+                      />
+                    </div>
                   </a>
                 )}
               </div>
