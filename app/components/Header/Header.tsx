@@ -297,6 +297,18 @@ export default function Header({ navBarItems }) {
                     <div></div>
                   )}
 
+                  <div style={{ color: "black" }}>
+                    {membership.value === 1 ? (
+                      <div>Starter</div>
+                    ) : membership.value === 2 ? (
+                      <div>Portfolio Bas</div>
+                    ) : membership.value === 3 ? (
+                      <div>Portfolio Premium</div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
                   {!membership.isPending && membership.value === 3 ? (
                     <div className={s.upload}>
                       <Link href="/upload-story">
