@@ -54,9 +54,9 @@ export default function Support({ navBarItems }) {
               <Typography>{t("8-17")}</Typography>
               <Typography>{t("deviating")}</Typography>
             </div>
-            <div className={s.zendeskForm}>
+            {/* <div className={s.zendeskForm}>
               <ZendeskForm />
-            </div>
+            </div> */}
           </Paper>
         </div>
       </div>
