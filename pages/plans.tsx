@@ -185,7 +185,6 @@ export async function getStaticProps({ locale }) {
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
   const priceData = await getPriceData();
-  console.log("priceData:", priceData);
 
   return {
     props: {
