@@ -59,7 +59,7 @@ export default function Plans({ priceData }) {
           ActionType.SIGN_UP_FREE_COMPLETED,
           CategoryType.BUY
         );
-        if (isArtist) router.push("/");
+        router.push("/");
         break;
       case "portfolio":
         trackGoogleAnalytics(
