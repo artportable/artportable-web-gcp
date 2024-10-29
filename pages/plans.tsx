@@ -18,13 +18,6 @@ import {
   CategoryType,
   trackGoogleAnalytics,
 } from "../app/utils/googleAnalytics";
-import {
-  Lead,
-  PremiumLead,
-  zapierLeadFreemium,
-  zapierLeadBasic,
-  zapierLeadPremium,
-} from "../app/utils/zapierLead";
 import { UserContext } from "../app/contexts/user-context";
 import router from "next/router";
 import { inputValueFromEvent } from "react-activity-feed/dist/utils";
@@ -39,21 +32,11 @@ export interface SelectedPlanData {
 
 export interface PriceData {
   id: string;
-  product: "portfoliopremium" | "portfolio" | "free";
+  product: "Portfolio Premium" | "Portfolio" | "free";
   productKey: string;
   currency: string;
   recurringInterval: string;
   amount?: number;
-}
-
-function compareAmounts(a, b) {
-  if (a.amount < b.amount) {
-    return -1;
-  }
-  if (a.amount > b.amount) {
-    return 1;
-  }
-  return 0;
 }
 
 export default function Plans({ priceData }) {
@@ -65,79 +48,35 @@ export default function Plans({ priceData }) {
     useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
-  // const priceDataWithPremium: PriceData[] = [...priceData, {
-  //   id: "premium",
-  //   product: "portfolioPremium",
-  //   productKey: "portfolioPremium",
-  //   currency: "sek",
-  //   recurringInterval: "month",
-  // }, {
-  //   id: "premium",
-  //   product: "portfolioPremium",
-  //   productKey: "portfolioPremium",
-  //   currency: "sek",
-  //   recurringInterval: "year",
-  //   amount: 4500,
-  // }];
-
-  const noPhonenumber = () => {
-    if (email.value == "") return <input></input>;
-  };
-  const plans = getDistinct(priceData.sort(compareAmounts), (p) => p.product);
-  // plans.push("portfolioPremium");
-
   function redirectCreatedUser(plan, isArtist) {
-    // console.log(plan)
-    // console.log("hello world")
     dispatch({
       type: ADD_PRICE,
       payload: { ...plan },
     });
-    switch (plan.product.toLowerCase()) {
+    switch (plan.productKey) {
       case "free":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_FREE_COMPLETED,
           CategoryType.BUY
         );
-        if (isArtist)
-          return zapierLeadFreemium({
-            name: { value: given_name.value + " " + family_name.value } ?? "",
-            phoneNumber: { value: phone.value } ?? "",
-            email: { value: email.value } ?? "",
-            product: "free",
-            type: "artist",
-          });
-        router.push("/");
+        if (isArtist) router.push("/");
         break;
       case "portfolio":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PORTFOLIE_COMPLETED,
           CategoryType.BUY
         );
-        zapierLeadBasic({
-          name: { value: given_name.value + " " + family_name.value } ?? "",
-          phoneNumber: { value: phone.value } ?? "",
-          email: { value: email.value } ?? "",
-          product: "Portfolio",
-          type: "artist",
-        });
         router.push("/checkout");
         break;
-      case "portfoliopremium":
+      case "portfolioPremium":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PREMIUM_COMPLETED,
           CategoryType.BUY
         );
-        // console.log('premium')
-        zapierLeadPremium({
-          artistArtEnthusiast: "artist",
-          name: { value: given_name.value + " " + family_name.value } ?? "",
-          phoneNumber: { value: phone.value } ?? "",
-          email: { value: email.value } ?? "",
-          url: window.location.href,
-        });
         router.push("/checkout");
         break;
+      default:
+        console.error(`Unknown plan productKey: ${plan.productKey}`);
     }
   }
 
@@ -161,7 +100,6 @@ export default function Plans({ priceData }) {
           });
           const status = await response.status;
 
-          //If User is Created
           if (status == 201) {
             const data = await response.json();
             dispatch({
@@ -173,22 +111,34 @@ export default function Plans({ priceData }) {
             });
 
             const userType = parsedToken.user_type;
+
             var [plan, interval] = userType.split("-");
+
             var isArtist = false;
             if (plan == "artist") {
               plan = "free";
               isArtist = true;
             }
-            const p = priceData.find(
-              (pd) =>
-                pd.product.toLowerCase() === plan.toLowerCase() &&
-                pd.recurringInterval.toLowerCase() === interval.toLowerCase()
-            );
-            redirectCreatedUser(p, isArtist);
-            // console.log(plan)
-            // console.log(priceData)
-            // console.log(interval)
-            // console.log("hej" + p)
+            const p = priceData.find((pd) => {
+              return (
+                pd.productKey.toLowerCase().trim() ===
+                  plan.toLowerCase().trim() &&
+                pd.recurringInterval.toLowerCase().trim() ===
+                  interval.toLowerCase().trim()
+              );
+            });
+
+            if (p) {
+              redirectCreatedUser(p, isArtist);
+            } else {
+              console.error(
+                "No matching price found for plan:",
+                plan,
+                "interval:",
+                interval
+              );
+              setLoading(false);
+            }
           } else {
             setLoading(false);
           }
