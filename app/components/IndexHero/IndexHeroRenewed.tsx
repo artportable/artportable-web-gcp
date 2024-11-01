@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 12000,
+          delay: 2212000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/a033365e-9901-426e-b770-797990d23a3d">
+                <a href="https://artportable.com/en/art/455b4561-125f-4d72-92ff-a131631087c4">
                   <div
                     style={{
                       position: "relative",
@@ -52,13 +52,26 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/larsCompressed.png"
-                          : "/images/katharsis.jpg"
+                          ? "/images/estaifoTwo.jpg"
+                          : "/images/estaifoTwo.jpg"
                       }
                       alt="konst"
                       loading="lazy"
                       layout="fill"
+                      objectFit="cover"
                     />
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "0",
+                        left: "0",
+                        color: "white",
+                        padding: "10px",
+                        fontSize: "14px",
+                      }}
+                    >
+                      Gabriel Estaifo, Porträtt med krage 1
+                    </div>
                   </div>
                 </a>
               </div>
@@ -101,6 +114,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         alt="konst"
                         loading="lazy"
                         layout="fill"
+                        objectFit="cover"
                       />
                     </div>
                   </a>
@@ -118,6 +132,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
+                        objectFit="cover"
                       />
                     </div>
                   </a>

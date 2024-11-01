@@ -32,6 +32,7 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "white",
       width: "100vw",
       height: "50%",
+
       [theme.breakpoints.up("lg")]: {
         backgroundColor: "white",
         width: "50vw",
