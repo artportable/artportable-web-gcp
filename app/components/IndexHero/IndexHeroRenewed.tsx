@@ -60,16 +60,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       layout="fill"
                       objectFit="cover"
                     />
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: "0",
-                        left: "0",
-                        color: "white",
-                        padding: "10px",
-                        fontSize: "14px",
-                      }}
-                    >
+                    <div className={s.imageTitle}>
                       Gabriel Estaifo, Porträtt med krage 1
                     </div>
                   </div>

@@ -21,7 +21,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       height: "65vh",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         display: "flex",
         flexDirection: "row",
         height: "70vh",
@@ -32,8 +32,7 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "white",
       width: "100vw",
       height: "50%",
-
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         backgroundColor: "white",
         width: "50vw",
         height: "100%",
@@ -46,7 +45,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       padding: "10px 20px 10px 20px",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         height: "100%",
         width: "50vw",
         padding: "0px",
@@ -61,7 +60,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100vw",
       height: "50%",
       zIndex: 20,
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         backgroundColor: "white",
         width: "50vw",
         height: "100%",
@@ -76,7 +75,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       padding: "10px 20px 10px 20px",
 
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         height: "100%",
         width: "50vw",
         padding: "0px",
@@ -94,14 +93,13 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: "left",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         fontSize: "40px",
         color: "black",
         textAlign: "left",
         padding: "0px",
       },
-
-      [theme.breakpoints.up("mdPlus")]: {
+      [theme.breakpoints.up("md")]: {
         fontSize: "40px",
         width: "80%",
       },
@@ -115,7 +113,7 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: "left",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         fontSize: "40px",
         color: "black",
         textAlign: "left",
@@ -150,6 +148,17 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       marginTop: "6px",
     },
+    imageTitle: {
+      position: "absolute",
+      bottom: "0",
+      left: "0",
+      color: "white",
+      padding: "10px",
+      fontSize: "10px",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "14px",
+      },
+    },
 
     headlineTwo: {
       position: "relative",
@@ -161,7 +170,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       marginBottom: "30px",
       padding: "0px 0px 0px 0px",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("md")]: {
         fontSize: "22px",
         textAlign: "left",
         padding: "0px",
