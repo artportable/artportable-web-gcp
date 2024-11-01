@@ -101,10 +101,6 @@ export default function ProfileNew({
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
   const userProfileSummary = useGetUserProfileSummary(profileUser);
 
-  useEffect(() => {
-    console.log(userProfile?.data?.Username);
-  }, [userProfile]);
-
   const [followers, setFollowers] = useState(
     connectionscountData?.data?.followers
   );
