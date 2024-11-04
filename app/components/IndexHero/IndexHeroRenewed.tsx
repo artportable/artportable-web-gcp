@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 12000,
+          delay: 11112000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/en/art/455b4561-125f-4d72-92ff-a131631087c4">
+                <a href="https://artportable.com/en/art/5b30f481-b3ba-4b7e-abd3-b1a9c149cc3f">
                   <div
                     style={{
                       position: "relative",
@@ -51,9 +51,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        isTinyDevice
-                          ? "/images/estaifoTwo.jpg"
-                          : "/images/estaifoTwo.jpg"
+                        isTinyDevice ? "/images/tony.jpeg" : "/images/tony.jpeg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -61,7 +59,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       objectFit="cover"
                     />
                     <div className={s.imageTitle}>
-                      Gabriel Estaifo, Porträtt med krage 1
+                      <p>Tony Nilsson, </p>
+                      <p style={{ fontStyle: "italic" }}>
+                        Welcome to my world, I will never leave you
+                      </p>
                     </div>
                   </div>
                 </a>
@@ -92,7 +93,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/art/8997e46a-8620-4f61-90d5-2ae857eabace">
+                  <a href="https://artportable.com/art/3cebc973-2ce4-4c1e-a121-9ba80ec24a4c">
                     <div
                       style={{
                         position: "relative",
@@ -110,7 +111,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/art/61b3a5fc-a4be-47e4-8b8e-ab95b2c125e3">
+                  <a href="https://artportable.com/art/3cebc973-2ce4-4c1e-a121-9ba80ec24a4c">
                     <div
                       style={{
                         position: "relative",
@@ -119,7 +120,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/otsaWide.jpg"}
+                        src={"/images/helgesson.jpg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -138,7 +139,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
-                    href="https://artportable.com/profile/@vivianne"
+                    href="https://artportable.com/profile/@badkrukor"
                   >
                     {t("seeMore")}
                   </a>

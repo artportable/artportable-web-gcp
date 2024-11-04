@@ -149,12 +149,14 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "6px",
     },
     imageTitle: {
+      display: "flex",
+      flexDirection: "row",
       position: "absolute",
       bottom: "0",
       left: "0",
       color: "white",
-      padding: "10px",
-      fontSize: "10px",
+      padding: "6px",
+      fontSize: "8px",
       [theme.breakpoints.up("md")]: {
         fontSize: "14px",
       },
