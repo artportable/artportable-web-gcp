@@ -2,7 +2,13 @@ html {
   overflow: hidden auto;
 }
 
-html,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  scroll-behavior: "smooth";
+  scroll-padding-top: 70px;
+}
 body {
   padding: 0;
   margin: 0;
