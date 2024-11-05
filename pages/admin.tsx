@@ -40,6 +40,7 @@ export default function Admin({ navBarItems, users }) {
                     <th>Mejl</th>
                     <th>Namn</th>
                     <th>Skapad</th>
+                    <th>Nummer</th>
                   </tr>
                 </thead>
                 <tbody>
