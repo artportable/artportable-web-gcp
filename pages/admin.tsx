@@ -65,6 +65,7 @@ export default function Admin({ navBarItems, users }) {
                       <td style={{ padding: "8px" }}>
                         {user.Created.slice(0, 10)}
                       </td>
+                      <td style={{ padding: "8px" }}>{user.PhoneNumber}</td>
                     </tr>
                   ))}
                 </tbody>
