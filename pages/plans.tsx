@@ -83,6 +83,13 @@ export default function Plans({ priceData }) {
   useEffect(() => {
     if (initialized && keycloak.token) {
       const parsedToken = keycloak.tokenParsed as any;
+      console.log("plans page: " + parsedToken.phone_number);
+    }
+  }, [initialized, keycloak.token]);
+
+  useEffect(() => {
+    if (initialized && keycloak.token) {
+      const parsedToken = keycloak.tokenParsed as any;
       const createUser = async () => {
         try {
           const response = await fetch(`${apiBaseUrl}/api/user`, {
@@ -92,6 +99,7 @@ export default function Plans({ priceData }) {
               Name: parsedToken.given_name,
               Surname: parsedToken.family_name,
               Email: parsedToken.email,
+              PhoneNumber: parsedToken.phone_number,
             }),
             headers: {
               "Content-Type": "application/json",
