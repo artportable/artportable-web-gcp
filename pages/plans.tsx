@@ -92,6 +92,7 @@ export default function Plans({ priceData }) {
               Name: parsedToken.given_name,
               Surname: parsedToken.family_name,
               Email: parsedToken.email,
+              PhoneNumber: parsedToken.phone_number,
             }),
             headers: {
               "Content-Type": "application/json",
