@@ -4,13 +4,17 @@ import { Typography, useMediaQuery } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../app/contexts/user-context";
 
 export default function Admin({ navBarItems, users }) {
   const isMobile = useMediaQuery("(max-width:600px)");
   const { t } = useTranslation(["support"]);
   const { isSignedIn, membership } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
 
   return (
     <Main navBarItems={navBarItems}>
@@ -65,7 +69,7 @@ export default function Admin({ navBarItems, users }) {
                       <td style={{ padding: "8px" }}>
                         {user.Created.slice(0, 10)}
                       </td>
-                      <td style={{ padding: "8px" }}>{user.PhoneNumber}</td>
+                      <td style={{ padding: "8px" }}>{user?.PhoneNumber}</td>
                     </tr>
                   ))}
                 </tbody>
