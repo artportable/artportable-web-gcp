@@ -156,10 +156,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     tagsContainer: {
-      display: "flex",
-      transition: "opacity 0.3s, visibility 0.3s",
-      flexFlow: "row wrap",
-      opacity: 0,
+      display: "none",
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        transition: "opacity 0.3s, visibility 0.3s",
+        flexFlow: "row wrap",
+        opacity: 0,
+      },
     },
 
     newUser: {
