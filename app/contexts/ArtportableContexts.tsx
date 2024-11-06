@@ -76,6 +76,10 @@ export const ArtportableContexts = ({
           value: tokenParsed.user_type,
           isPending: false,
         },
+        phone_number: {
+          value: tokenParsed.phone_number,
+          isPending: false,
+        },
         phone: {
           value: tokenParsed.phone,
           isPending: false,
@@ -106,6 +110,10 @@ export const ArtportableContexts = ({
             isPending: false,
           },
           user_type: {
+            value: null,
+            isPending: false,
+          },
+          phone_number: {
             value: null,
             isPending: false,
           },
@@ -150,6 +158,10 @@ export const ArtportableContexts = ({
             isPending: false,
           },
           user_type: {
+            value: null,
+            isPending: false,
+          },
+          phone_number: {
             value: null,
             isPending: false,
           },

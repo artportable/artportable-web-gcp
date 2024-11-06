@@ -15,6 +15,7 @@ export interface ContextUser {
   family_name: AsyncValue<string>;
   given_name: AsyncValue<string>;
   user_type: AsyncValue<string>;
+  phone_number: AsyncValue<string>;
   phone: AsyncValue<string>;
   membership: AsyncValue<Membership>;
   isTyping: AsyncValue<boolean>;
@@ -50,6 +51,10 @@ export const defaultContextUser = {
     isPending: true,
   },
   user_type: {
+    value: null,
+    isPending: false,
+  },
+  phone_number: {
     value: null,
     isPending: false,
   },
