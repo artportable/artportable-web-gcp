@@ -1,6 +1,17 @@
 import Main from "../app/components/Main/Main";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { Typography, useMediaQuery } from "@material-ui/core";
+import {
+  Typography,
+  useMediaQuery,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Link,
+} from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useRouter } from "next/router";
@@ -12,10 +23,6 @@ export default function Admin({ navBarItems, users }) {
   const { t } = useTranslation(["support"]);
   const { isSignedIn, membership } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
-
   return (
     <Main navBarItems={navBarItems}>
       {isSignedIn.value && membership.value > 4 && (
@@ -24,59 +31,47 @@ export default function Admin({ navBarItems, users }) {
             {t("Portfolio Starter")}
           </Typography>
           {users && users.length > 0 ? (
-            <div
+            <TableContainer
+              component={Paper}
               style={{
                 marginTop: "20px",
                 overflowX: isMobile ? "scroll" : "visible",
               }}
             >
-              <table
-                style={{
-                  marginBottom: "20px",
-                  borderCollapse: "collapse",
-                  width: "100%",
-                  minWidth: isMobile ? "600px" : "auto",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th>Användarnamn</th>
-                    <th>Antal verk</th>
-                    <th>Mejl</th>
-                    <th>Namn</th>
-                    <th>Skapad</th>
-                    <th>Nummer</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table aria-label="users table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Användarnamn</TableCell>
+                    <TableCell>Antal verk</TableCell>
+                    <TableCell>Mejl</TableCell>
+                    <TableCell>Namn</TableCell>
+                    <TableCell>Skapad</TableCell>
+                    <TableCell>Nummer</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
                   {users.map((user) => (
-                    <tr
-                      key={user.email}
-                      style={{ borderBottom: "1px solid #ddd" }}
-                    >
-                      <td style={{ padding: "8px" }}>
-                        <strong>
-                          <a
-                            href={`${process.env.NEXT_PUBLIC_URL}/profile/@${user.Username}`}
-                            target="_self"
-                            rel="noopener noreferrer"
-                          >
-                            {user.Username}
-                          </a>
-                        </strong>
-                      </td>
-                      <td style={{ padding: "8px" }}>{user.Artworks}</td>
-                      <td style={{ padding: "8px" }}>{user.Email}</td>
-                      <td style={{ padding: "8px" }}>{user.Name}</td>
-                      <td style={{ padding: "8px" }}>
-                        {user.Created.slice(0, 10)}
-                      </td>
-                      <td style={{ padding: "8px" }}>{user?.PhoneNumber}</td>
-                    </tr>
+                    <TableRow key={user.email}>
+                      <TableCell component="th" scope="row">
+                        <Link
+                          href={`${process.env.NEXT_PUBLIC_URL}/profile/@${user.Username}`}
+                          target="_self"
+                          rel="noopener noreferrer"
+                          style={{ fontWeight: "bold" }}
+                        >
+                          {user.Username}
+                        </Link>
+                      </TableCell>
+                      <TableCell>{user.Artworks}</TableCell>
+                      <TableCell>{user.Email}</TableCell>
+                      <TableCell>{user.Name}</TableCell>
+                      <TableCell>{user.Created.slice(0, 10)}</TableCell>
+                      <TableCell>{user?.PhoneNumber}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </TableBody>
+              </Table>
+            </TableContainer>
           ) : (
             <Typography variant="body1">{t("No users found.")}</Typography>
           )}
@@ -103,7 +98,7 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       navBarItems: navBarItems,
-      users: users || [], // Pass the users as props
+      users: users || [],
       ...(await serverSideTranslations(locale, ["header", "footer", "common"])),
     },
   };
