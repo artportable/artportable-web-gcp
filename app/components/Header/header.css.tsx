@@ -104,8 +104,8 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "gotham",
       borderRadius: "14px",
       "&:hover": {
-        backgroundColor: "#e83e8c",
-        color: "white",
+        backgroundColor: "#EDFF86",
+        color: "black",
       },
     },
     uploadStoryButton: {
@@ -122,7 +122,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "14px",
 
       "&:hover": {
-        backgroundColor: "#fadf87",
+        backgroundColor: "#EDFF86",
         color: "black",
       },
     },
