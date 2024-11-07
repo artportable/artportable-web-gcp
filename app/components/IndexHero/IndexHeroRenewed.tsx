@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/en/art/5b30f481-b3ba-4b7e-abd3-b1a9c149cc3f">
+                <a href="https://artportable.com/en/art/f77757b6-de60-4cfb-b10a-5a421dfeb5f0">
                   <div
                     style={{
                       position: "relative",
@@ -51,7 +51,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        isTinyDevice ? "/images/tony.jpeg" : "/images/tony.jpeg"
+                        isTinyDevice ? "/images/unn1.jpeg" : "/images/unn1.jpeg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -59,10 +59,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       objectFit="cover"
                     />
                     <div className={s.imageTitle}>
-                      <p>Tony Nilsson, </p>
-                      <p style={{ fontStyle: "italic" }}>
-                        Welcome to my world, I will never leave you
-                      </p>
+                      <p>Unn Edberg, </p>
+                      <p style={{ fontStyle: "italic" }}>Vila</p>
                     </div>
                   </div>
                 </a>

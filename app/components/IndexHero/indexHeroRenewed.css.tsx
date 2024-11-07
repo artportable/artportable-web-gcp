@@ -154,8 +154,8 @@ export const styles = makeStyles((theme: Theme) =>
       position: "absolute",
       bottom: "0",
       left: "0",
-      color: "white",
-      padding: "6px",
+      color: "black",
+      marginLeft: "10px",
       fontSize: "8px",
       [theme.breakpoints.up("md")]: {
         fontSize: "14px",
