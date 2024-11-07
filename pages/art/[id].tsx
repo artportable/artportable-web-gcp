@@ -208,6 +208,10 @@ export default function ArtworkPage(props) {
 
   const userType = userTypes[productType] || userTypes.default;
 
+  useEffect(() => {
+    console.log(staticArtwork?.Title);
+  }, []);
+
   return (
     <Main wide navBarItems={navBarItems}>
       <Head>
@@ -223,8 +227,12 @@ export default function ArtworkPage(props) {
         <meta
           property="og:title"
           content={
-            staticArtwork?.Owner?.Name + " " + staticArtwork?.Owner?.Surname ??
-            "Artportable"
+            staticArtwork?.Title +
+              " | " +
+              staticArtwork?.Owner?.Name +
+              " " +
+              staticArtwork?.Owner?.Surname +
+              " | Köp verket här!" ?? "Artportable"
           }
         />
         <meta property="og:description" content={staticArtwork?.Title ?? ""} />
