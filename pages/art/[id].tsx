@@ -235,7 +235,7 @@ export default function ArtworkPage(props) {
                   staticArtwork?.Owner?.Name +
                   " " +
                   staticArtwork?.Owner?.Surname +
-                  `${t("art:share")}` ?? "Artportable"
+                  `${t("art:shareTitle")}` ?? "Artportable"
           }
         />
         <meta property="og:description" content={staticArtwork?.Title ?? ""} />
