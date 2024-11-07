@@ -41,6 +41,7 @@ export default function Admin({ navBarItems, users }) {
                 <thead>
                   <tr>
                     <th>Användarnamn</th>
+                    <th>Antal verk</th>
                     <th>Mejl</th>
                     <th>Namn</th>
                     <th>Skapad</th>
@@ -64,6 +65,7 @@ export default function Admin({ navBarItems, users }) {
                           </a>
                         </strong>
                       </td>
+                      <td style={{ padding: "8px" }}>{user.Artworks}</td>
                       <td style={{ padding: "8px" }}>{user.Email}</td>
                       <td style={{ padding: "8px" }}>{user.Name}</td>
                       <td style={{ padding: "8px" }}>
