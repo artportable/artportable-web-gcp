@@ -371,8 +371,24 @@ export default function Header({ navBarItems }) {
                     </Link>
                   </div>
 
-                  {membership.value < Membership.Portfolio && (
-                    <UpgradePortfolio />
+                  {membership.value < Membership.PortfolioPremium && (
+                    <Link href="/upgrade">
+                      <a>
+                        <Button
+                          onClick={() =>
+                            trackGoogleAnalytics(
+                              ActionType.UPLOAD_IMAGE_HEADER,
+                              CategoryType.INTERACTIVE
+                            )
+                          }
+                          className={s.uploadStoryButton}
+                          rounded
+                          endIcon={<FeedOutlinedIcon />}
+                        >
+                          {t("upgrade")}
+                        </Button>
+                      </a>
+                    </Link>
                   )}
                   {membership.value > 4 && (
                     <div style={{ color: "blue" }}>
