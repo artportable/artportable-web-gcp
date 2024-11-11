@@ -235,6 +235,7 @@ export default function ArtworkPage(props) {
                   staticArtwork?.Owner?.Name +
                   " " +
                   staticArtwork?.Owner?.Surname +
+                  " " +
                   `${t("art:shareTitle")}` ?? "Artportable"
           }
         />
