@@ -7,6 +7,7 @@ import { UserContext } from "../../contexts/user-context";
 import { TokenContext } from "../../contexts/token-context";
 import { LoginContext } from "../../contexts/login-context";
 import { styles } from "./likeArtworkButton.css";
+import dynamic from "next/dynamic";
 
 export default function LikeArtworkButton({ artwork }: { artwork: any }) {
   const { like } = usePostLike();
@@ -30,25 +31,72 @@ export default function LikeArtworkButton({ artwork }: { artwork: any }) {
     like(artwork?.Id, !isLiked, socialId.value, token);
   };
 
+  const [items, setItems] = useState(getStorageList());
+
+  function getStorageList() {
+    const list = localStorage.getItem("favoriteArt");
+    if (list) {
+      return JSON.parse(list);
+    } else {
+      return [];
+    }
+  }
+
+  const favorites = items === null ? false : items.includes(artwork?.Id);
+
+  const handleToggleFavourite = () => {
+    if (favorites) {
+      const currentList = getStorageList();
+      const removeItemId = artwork?.Id;
+      for (var i = 0; i < currentList.length; i++) {
+        if (currentList[i] === removeItemId) {
+          currentList.splice(i, 1);
+        }
+        setItems(currentList);
+      }
+    } else {
+      const currentList = getStorageList();
+      const newList = [...currentList, artwork?.Id];
+      setItems(newList);
+    }
+  };
+
   return (
     <div className={s.likeButtonParent}>
       <div>
-        <IconButton
-          className={s.likeButton}
-          onClick={handleLike}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-        >
-          {isLiked || isHovered ? (
-            <FavoriteIcon />
-          ) : (
-            <FavoriteBorderOutlinedIcon />
-          )}
-        </IconButton>
+        {isSignedIn.value ? (
+          <IconButton
+            className={s.likeButton}
+            onClick={handleLike}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
+            {isLiked || isHovered ? (
+              <FavoriteIcon />
+            ) : (
+              <FavoriteBorderOutlinedIcon />
+            )}
+          </IconButton>
+        ) : (
+          <IconButton
+            className={s.likeButton}
+            onClick={handleToggleFavourite}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
+            {items.includes(`${artwork?.Id}`) || isHovered ? (
+              <FavoriteIcon />
+            ) : (
+              <FavoriteBorderOutlinedIcon />
+            )}
+          </IconButton>
+        )}
       </div>
-      <div style={{ marginLeft: "2px" }}>
-        <span>{totalLikes}</span>
-      </div>
+      {isSignedIn.value && (
+        <div style={{ marginLeft: "2px" }}>
+          <span>{totalLikes}</span>
+        </div>
+      )}
     </div>
   );
 }
