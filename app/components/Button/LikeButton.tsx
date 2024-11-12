@@ -45,7 +45,6 @@ export default function LikeButton({ content }: { content: any }) {
           <FavoriteBorderOutlinedIcon /> // Outlined heart icon
         )}
       </IconButton>
-      <span>{totalLikes}</span> {/* Display the total likes */}
     </div>
   );
 }

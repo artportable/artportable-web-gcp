@@ -46,9 +46,11 @@ export default function LikeArtworkButton({ artwork }: { artwork: any }) {
           )}
         </IconButton>
       </div>
-      <div style={{ marginLeft: "2px" }}>
-        <span>{totalLikes}</span>
-      </div>
+      {isSignedIn.value && (
+        <div style={{ marginLeft: "2px" }}>
+          <span>{totalLikes}</span>
+        </div>
+      )}
     </div>
   );
 }
