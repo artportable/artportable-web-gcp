@@ -12,6 +12,7 @@ import { useTranslation } from "next-i18next";
 import { LoginContext } from "./login-context";
 import { useGetUserProfilePicture } from "../hooks/dataFetching/UserProfile";
 import router from "next/router";
+import { FavoritesProvider } from "./FavoritesContext";
 
 interface Props {
   children: any;
@@ -261,24 +262,26 @@ export const ArtportableContexts = ({
               closeLoginDialog: handleCloseLoginDialog,
             }}
           >
-            <NavigationContextComponent>
-              <>
-                {children}
-                <Snackbar
-                  open={snackbar.open}
-                  autoHideDuration={6000}
-                  onClose={handleSnackbarClose}
-                >
-                  <Alert
+            <FavoritesProvider>
+              <NavigationContextComponent>
+                <>
+                  {children}
+                  <Snackbar
+                    open={snackbar.open}
+                    autoHideDuration={6000}
                     onClose={handleSnackbarClose}
-                    variant="filled"
-                    severity={snackbar.severity}
                   >
-                    {snackbar.message}
-                  </Alert>
-                </Snackbar>
-              </>
-            </NavigationContextComponent>
+                    <Alert
+                      onClose={handleSnackbarClose}
+                      variant="filled"
+                      severity={snackbar.severity}
+                    >
+                      {snackbar.message}
+                    </Alert>
+                  </Snackbar>
+                </>
+              </NavigationContextComponent>
+            </FavoritesProvider>
           </LoginContext.Provider>
         </LoadingContext.Provider>
       </UserContext.Provider>

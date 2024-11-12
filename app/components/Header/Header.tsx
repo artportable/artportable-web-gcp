@@ -33,6 +33,9 @@ import { UserContext } from "../../contexts/user-context";
 import { ChatClientContext } from "../../contexts/chat-context";
 import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
 
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+
 import {
   ActionType,
   CategoryType,
@@ -43,6 +46,8 @@ import { RWebShare } from "react-web-share";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+
+import { FavoritesContext } from "../../contexts/FavoritesContext";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -70,6 +75,10 @@ export default function Header({ navBarItems }) {
 
   const [stripeId, setStripeId] = useState("");
   const [customerStatus, setCustomerStatus] = useState("");
+
+  const { favoriteIds } = useContext(FavoritesContext);
+
+  useEffect(() => {}, [favoriteIds]);
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -223,6 +232,9 @@ export default function Header({ navBarItems }) {
             </RWebShare> */}
             {!isSignedIn.value && (
               <div className={s.login}>
+                <IconButton>
+                  {favoriteIds.length > 0 && <FavoriteIcon></FavoriteIcon>}
+                </IconButton>
                 <Button
                   className={s.loginButton}
                   onClick={() => keycloak.login({ locale: router.locale })}
@@ -486,4 +498,45 @@ export default function Header({ navBarItems }) {
       )}
     </>
   );
+}
+
+export function useFavorites() {
+  const [favoriteIds, setFavoriteIds] = useState([]);
+
+  useEffect(() => {
+    function loadFavorites() {
+      if (typeof window !== "undefined") {
+        try {
+          const storedFavorites = localStorage.getItem("favoriteArt");
+          const parsedFavorites = storedFavorites
+            ? JSON.parse(storedFavorites)
+            : [];
+          setFavoriteIds(parsedFavorites);
+        } catch (error) {
+          console.error("Error parsing favoriteArt from localStorage:", error);
+          setFavoriteIds([]);
+        }
+      }
+    }
+
+    loadFavorites();
+
+    window.addEventListener("favoritesChanged", loadFavorites);
+
+    return () => {
+      window.removeEventListener("favoritesChanged", loadFavorites);
+    };
+  }, []);
+
+  const updateFavorites = (newFavorites) => {
+    try {
+      localStorage.setItem("favoriteArt", JSON.stringify(newFavorites));
+      setFavoriteIds(newFavorites);
+      window.dispatchEvent(new Event("favoritesChanged"));
+    } catch (error) {
+      console.error("Error updating favoriteArt in localStorage:", error);
+    }
+  };
+
+  return { favoriteIds, updateFavorites };
 }
