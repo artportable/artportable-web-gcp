@@ -61,6 +61,7 @@ export default function LikeArtworkButton({ artwork }: ArtworkProps) {
   return (
     <div className={s.likeButtonParent}>
       <div>
+
         {isSignedIn.value ? (
           <IconButton
             className={s.likeButton}
@@ -88,6 +89,20 @@ export default function LikeArtworkButton({ artwork }: ArtworkProps) {
             )}
           </IconButton>
         )}
+
+        <IconButton
+          className={s.likeButton}
+          onClick={handleLike}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          {isLiked || isHovered ? (
+            <FavoriteIcon />
+          ) : (
+            <FavoriteBorderOutlinedIcon />
+          )}
+        </IconButton>
+
       </div>
       {isSignedIn.value && (
         <div style={{ marginLeft: "2px" }}>
