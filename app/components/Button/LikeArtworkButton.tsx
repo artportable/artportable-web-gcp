@@ -7,18 +7,19 @@ import { UserContext } from "../../contexts/user-context";
 import { TokenContext } from "../../contexts/token-context";
 import { LoginContext } from "../../contexts/login-context";
 import { styles } from "./likeArtworkButton.css";
-import dynamic from "next/dynamic";
 
 export default function LikeArtworkButton({ artwork }: { artwork: any }) {
   const { like } = usePostLike();
   const { socialId } = useContext(UserContext);
   const [isLiked, setIsLiked] = useState(artwork?.LikedByMe);
   const [totalLikes, setTotalLikes] = useState(artwork?.Likes);
-  const [isHovered, setHovered] = useState(false); // New state for hover effect
+  const [isHovered, setHovered] = useState(false);
   const token = useContext(TokenContext);
   const { isSignedIn } = useContext(UserContext);
   const { openLoginDialog } = useContext(LoginContext);
   const s = styles({ isLiked });
+  const artworkId = String(artwork?.Id);
+
   const handleLike = (e) => {
     e.preventDefault();
     if (!isSignedIn.value) {
@@ -28,36 +29,51 @@ export default function LikeArtworkButton({ artwork }: { artwork: any }) {
     setIsLiked(newLikeState);
 
     setTotalLikes(newLikeState ? totalLikes + 1 : totalLikes - 1);
-    like(artwork?.Id, !isLiked, socialId.value, token);
+    like(artworkId, !isLiked, socialId.value, token);
   };
 
-  const [items, setItems] = useState(getStorageList());
+  const [items, setItems] = useState<string[]>([]);
 
-  function getStorageList() {
-    const list = localStorage.getItem("favoriteArt");
-    if (list) {
-      return JSON.parse(list);
-    } else {
-      return [];
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const favArt = localStorage.getItem("favoriteArt");
+      let favArtArray: string[] = [];
+
+      if (favArt) {
+        try {
+          favArtArray.push(JSON.parse(favArt));
+        } catch (e) {
+          console.error("Error parsing favoriteArt from localStorage:", e);
+          // Optionally remove the invalid item from localStorage
+          localStorage.removeItem("favoriteArt");
+        }
+      }
+
+      setItems(favArtArray);
     }
-  }
+  }, []);
 
-  const favorites = items === null ? false : items.includes(artwork?.Id);
+  const favorites = items.includes(artworkId);
 
   const handleToggleFavourite = () => {
-    if (favorites) {
-      const currentList = getStorageList();
-      const removeItemId = artwork?.Id;
-      for (var i = 0; i < currentList.length; i++) {
-        if (currentList[i] === removeItemId) {
-          currentList.splice(i, 1);
-        }
-        setItems(currentList);
+    if (typeof window !== "undefined" && window.localStorage) {
+      let updatedItems: string[];
+
+      if (favorites) {
+        // Remove the artwork from favorites
+        updatedItems = items.filter((id) => id !== artworkId);
+      } else {
+        // Add the artwork to favorites
+        updatedItems = [...items, artworkId];
       }
-    } else {
-      const currentList = getStorageList();
-      const newList = [...currentList, artwork?.Id];
-      setItems(newList);
+
+      try {
+        localStorage.setItem("favoriteArt", JSON.stringify(updatedItems));
+      } catch (e) {
+        console.error("Error setting favoriteArt in localStorage:", e);
+      }
+
+      setItems(updatedItems);
     }
   };
 
@@ -84,7 +100,7 @@ export default function LikeArtworkButton({ artwork }: { artwork: any }) {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
-            {items.includes(`${artwork?.Id}`) || isHovered ? (
+            {favorites || isHovered ? (
               <FavoriteIcon />
             ) : (
               <FavoriteBorderOutlinedIcon />
