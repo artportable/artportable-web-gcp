@@ -35,7 +35,7 @@ import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
 
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-import { Popper } from "@mui/base/Popper";
+import Popper from "@mui/material/Popper";
 import {
   ActionType,
   CategoryType,
@@ -49,6 +49,8 @@ import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import FavoritesPopper from "./FavoritesPopper";
+import Fade from "@mui/material/Fade";
+import Grow from "@mui/material/Grow";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -257,26 +259,31 @@ export default function Header({ navBarItems }) {
                       <IconButton>
                         <FavoriteIcon />
                       </IconButton>
+
                       <Popper
                         style={{
                           zIndex: 20000,
                           height: "auto",
-                          width: "25%",
-                          backgroundColor: "#fdf9f7",
-                          border: ".2px solid #0000003b",
-                          borderRadius: "2px",
+                          width: "35%",
                         }}
                         id={id}
                         open={open}
                         anchorEl={anchorEl}
+                        transition
                       >
-                        <section
-                          style={{
-                            padding: "15px",
-                          }}
-                        >
-                          <FavoritesPopper id={favoriteIds}></FavoritesPopper>
-                        </section>
+                        {({ TransitionProps }) => (
+                          <Fade {...TransitionProps} timeout={450}>
+                            <section
+                              style={{
+                                padding: "15px",
+                              }}
+                            >
+                              <FavoritesPopper
+                                id={favoriteIds}
+                              ></FavoritesPopper>
+                            </section>
+                          </Fade>
+                        )}
                       </Popper>
                     </section>
                   </>
