@@ -2,8 +2,11 @@ import { Link } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { styles } from "./favoritesPopper.css";
 
 export default function FavoritesPopper({ id }) {
+  const s = styles();
   const { t } = useTranslation(["art", "common", "tags", "forms", "upload"]);
   const [favoriteArtworks, setFavoriteArtworks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +22,7 @@ export default function FavoritesPopper({ id }) {
       setLoading(true);
       try {
         const artworks = await Promise.all(
-          id.slice(0, 3).map(async (artworkId) => {
+          id.slice(0, 8).map(async (artworkId) => {
             const response = await fetch(
               `${apiBaseUrl}/api/Artworks/${artworkId}`
             );
@@ -50,11 +53,21 @@ export default function FavoritesPopper({ id }) {
 
   return (
     <>
-      <section>
-        <h4>Mina favoriter </h4>
+      <section className={s.container}>
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "16px",
+            marginBottom: "0px",
+            marginTop: "10px",
+            fontWeight: "bold",
+          }}
+        >
+          {t("common:favoriteArt")}
+        </div>
         <div>
           {loading ? (
-            <p>...</p>
+            <></>
           ) : error ? (
             <p>Error loading artworks.</p>
           ) : favoriteArtworks.length > 0 ? (
@@ -68,18 +81,22 @@ export default function FavoritesPopper({ id }) {
                   }}
                 >
                   <img
-                    width={50}
+                    width={80}
                     height={50}
                     src={`${bucketBaseUrl}${artwork?.PrimaryFile.Name}`}
-                    alt="k"
+                    alt="favorite Artwork"
                   />
-                  <a href={`${publicUrl}/art/${artwork?.Id}`}>
+                  <a
+                    className={s.link}
+                    href={`${publicUrl}/art/${artwork?.Id}`}
+                  >
                     <div key={artwork.Id}>
                       <p
                         style={{
-                          fontSize: "16px",
+                          fontSize: "13px",
                           marginLeft: "10px",
                           marginBottom: "0px",
+                          fontWeight: "bold",
                         }}
                       >
                         {" "}
@@ -110,6 +127,9 @@ export default function FavoritesPopper({ id }) {
                           ? `` + artwork.Width + "x" + artwork.Height + "cm"
                           : null}
                       </p>
+                    </div>
+                    <div>
+                      <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
                     </div>
                   </a>
                 </section>
