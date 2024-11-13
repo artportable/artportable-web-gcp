@@ -135,7 +135,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 )}
               </div>
               <div className={s.headlineWrapperRest}>
-                <div className={s.headline}>{t("artistTitle")}</div>
+                <div className={s.headlineStyled}>{t("artistTitle")}</div>
                 <div className={s.headlineThree}>
                   {t("artistDescription")}
                 </div>{" "}
@@ -143,6 +143,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
+                    style={{ color: "white" }}
                     href="https://artportable.com/profile/@The.Fleurs"
                   >
                     {t("seeMore")}

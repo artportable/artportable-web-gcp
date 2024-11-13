@@ -246,7 +246,7 @@ export default function Header({ navBarItems }) {
             </RWebShare> */}
             {!isSignedIn.value && (
               <div className={s.login}>
-                {/* {favoriteIds.length > 0 && (
+                {favoriteIds.length > 0 && (
                   <>
                     <section
                       aria-describedby={id}
@@ -262,9 +262,9 @@ export default function Header({ navBarItems }) {
                           zIndex: 20000,
                           height: "auto",
                           width: "25%",
-                          backgroundColor: " white",
-                          border: "1px solid #99999987",
-                          borderRadius: "5px",
+                          backgroundColor: "#fdf9f7",
+                          border: ".2px solid #0000003b",
+                          borderRadius: "2px",
                         }}
                         id={id}
                         open={open}
@@ -272,7 +272,7 @@ export default function Header({ navBarItems }) {
                       >
                         <section
                           style={{
-                            padding: "20px",
+                            padding: "15px",
                           }}
                         >
                           <FavoritesPopper id={favoriteIds}></FavoritesPopper>
@@ -280,7 +280,7 @@ export default function Header({ navBarItems }) {
                       </Popper>
                     </section>
                   </>
-                )} */}
+                )}
                 <Button
                   className={s.loginButton}
                   onClick={() => keycloak.login({ locale: router.locale })}
