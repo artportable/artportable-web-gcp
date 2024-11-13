@@ -9,7 +9,7 @@ import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MuiButton from "@material-ui/core/Button";
-import { LinearProgress } from "@material-ui/core";
+import { LinearProgress, Popover, Typography } from "@material-ui/core";
 
 import { useTranslation } from "next-i18next";
 import clsx from "clsx";
@@ -18,7 +18,7 @@ import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import I18nSelector from "../I18nSelector/I18nSelector";
 import { styles } from "./header.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useGetActivityToken } from "../../hooks/useGetActivityClient";
 import ProfileIconButton from "../ProfileIconButton/ProfileIconButton";
 import { useKeycloak } from "@react-keycloak/ssr";
@@ -33,6 +33,9 @@ import { UserContext } from "../../contexts/user-context";
 import { ChatClientContext } from "../../contexts/chat-context";
 import { useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
 
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+import { Popper } from "@mui/base/Popper";
 import {
   ActionType,
   CategoryType,
@@ -43,6 +46,9 @@ import { RWebShare } from "react-web-share";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+
+import { FavoritesContext } from "../../contexts/FavoritesContext";
+import FavoritesPopper from "./FavoritesPopper";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -70,6 +76,23 @@ export default function Header({ navBarItems }) {
 
   const [stripeId, setStripeId] = useState("");
   const [customerStatus, setCustomerStatus] = useState("");
+
+  const { favoriteIds } = useContext(FavoritesContext);
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "open" : undefined;
 
   useEffect(() => {
     if (loadingFromContext) {
@@ -223,6 +246,41 @@ export default function Header({ navBarItems }) {
             </RWebShare> */}
             {!isSignedIn.value && (
               <div className={s.login}>
+                {/* {favoriteIds.length > 0 && (
+                  <>
+                    <section
+                      aria-describedby={id}
+                      onMouseLeave={handleClose}
+                      onScroll={handleClose}
+                      onMouseEnter={handleClick}
+                    >
+                      <IconButton>
+                        <FavoriteIcon />
+                      </IconButton>
+                      <Popper
+                        style={{
+                          zIndex: 20000,
+                          height: "auto",
+                          width: "25%",
+                          backgroundColor: " white",
+                          border: "1px solid #99999987",
+                          borderRadius: "5px",
+                        }}
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                      >
+                        <section
+                          style={{
+                            padding: "20px",
+                          }}
+                        >
+                          <FavoritesPopper id={favoriteIds}></FavoritesPopper>
+                        </section>
+                      </Popper>
+                    </section>
+                  </>
+                )} */}
                 <Button
                   className={s.loginButton}
                   onClick={() => keycloak.login({ locale: router.locale })}
@@ -486,4 +544,45 @@ export default function Header({ navBarItems }) {
       )}
     </>
   );
+}
+
+export function useFavorites() {
+  const [favoriteIds, setFavoriteIds] = useState([]);
+
+  useEffect(() => {
+    function loadFavorites() {
+      if (typeof window !== "undefined") {
+        try {
+          const storedFavorites = localStorage.getItem("favoriteArt");
+          const parsedFavorites = storedFavorites
+            ? JSON.parse(storedFavorites)
+            : [];
+          setFavoriteIds(parsedFavorites);
+        } catch (error) {
+          console.error("Error parsing favoriteArt from localStorage:", error);
+          setFavoriteIds([]);
+        }
+      }
+    }
+
+    loadFavorites();
+
+    window.addEventListener("favoritesChanged", loadFavorites);
+
+    return () => {
+      window.removeEventListener("favoritesChanged", loadFavorites);
+    };
+  }, []);
+
+  const updateFavorites = (newFavorites) => {
+    try {
+      localStorage.setItem("favoriteArt", JSON.stringify(newFavorites));
+      setFavoriteIds(newFavorites);
+      window.dispatchEvent(new Event("favoritesChanged"));
+    } catch (error) {
+      console.error("Error updating favoriteArt in localStorage:", error);
+    }
+  };
+
+  return { favoriteIds, updateFavorites };
 }

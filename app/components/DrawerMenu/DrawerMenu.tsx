@@ -93,11 +93,13 @@ export default function DrawerMenu({
   function handleClickListingPages(event) {
     setOpenListingPages(!openListingPages);
     event.stopPropagation();
+    event.preventDefault();
   }
 
   function handleClickLanguage(event) {
     setOpenopenLanguage(!openLanguage);
     event.stopPropagation();
+    event.preventDefault();
   }
 
   useEffect(() => {
@@ -205,7 +207,12 @@ export default function DrawerMenu({
       anchor="right"
       open={open}
       onClose={() => close()}
-      ModalProps={{ keepMounted: true }}
+      ModalProps={{
+        keepMounted: true,
+        disableAutoFocus: true, // Add this line
+        disableEnforceFocus: true, // Optional: Prevents focus from being trapped inside the modal
+        disableRestoreFocus: true,
+      }}
     >
       <div className={s.closeButtonFlex}>
         <IconButton
