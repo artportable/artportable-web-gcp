@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 11112000,
+          delay: 12000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -91,7 +91,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/art/3cebc973-2ce4-4c1e-a121-9ba80ec24a4c">
+                  <a href="https://artportable.com/en/profile/@The.Fleurs">
                     <div
                       style={{
                         position: "relative",
@@ -100,16 +100,19 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/helgesson.jpg"}
+                        src={"/images/fleur.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
                       />
+                      <div className={s.imageTitle}>
+                        <p style={{ color: "white" }}>The Fleurs</p>
+                      </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/art/3cebc973-2ce4-4c1e-a121-9ba80ec24a4c">
+                  <a href="https://artportable.com/en/profile/@The.Fleurs">
                     <div
                       style={{
                         position: "relative",
@@ -118,12 +121,15 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/helgesson.jpg"}
+                        src={"/images/fleur.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
                       />
+                      <div className={s.imageTitle}>
+                        <p style={{ color: "white" }}>The Fleurs</p>
+                      </div>
                     </div>
                   </a>
                 )}
@@ -137,61 +143,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
-                    href="https://artportable.com/profile/@badkrukor"
+                    href="https://artportable.com/profile/@The.Fleurs"
                   >
                     {t("seeMore")}
                   </a>
-                </div>
-              </div>
-            </section>
-          </SwiperSlide>
-          <SwiperSlide>
-            <section className={s.sectionWrapper}>
-              <div className={s.imgWrapperRest}>
-                <a href="https://artportable.com/art/9a32dd35-f4ce-49fe-a98e-3d14e0cda4b1">
-                  <img
-                    src={
-                      isTinyDevice
-                        ? "/images/risberg3.jpeg"
-                        : "/images/risberg3.jpeg"
-                    }
-                    alt={"konst"}
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </a>
-              </div>
-              <div className={s.headlineWrapperRest}>
-                <div className={s.headlineVernissage}>
-                  Konstutställning med vernissage
-                </div>
-
-                <div className={s.headlineThree}>
-                  Utställning 9-17 november kl. 13-17
-                  <br />
-                  <div className={s.headlineThree}>
-                    Vernissage lördag 9 november kl. 14-20
-                  </div>
-                  <div>
-                    <a href="https://galleririsberg.se/">Galleri Risberg</a>
-                    <br />
-                    Bergsgatan 36, Stockholm
-                  </div>
-                  <br />
-                  <div className={s.buttonWrapperSeeMore}>
-                    <a
-                      className={s.seeMoreButton}
-                      href="https://artportable.com/profile/@petra.risberg"
-                    >
-                      {t("seeMore")}
-                    </a>
-                  </div>
-                  <div className={s.mailUs}>
-                    Vill du synas här?{" "}
-                    <a href="mailto:hello@artportable.com">
-                      hello@artportable.com
-                    </a>
-                  </div>
                 </div>
               </div>
             </section>
