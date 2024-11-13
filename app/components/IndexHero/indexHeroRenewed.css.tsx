@@ -68,7 +68,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     headlineWrapperRest: {
-      backgroundColor: "#ebebeb",
+      backgroundColor: "#201d1d",
       height: "50%",
       display: "flex",
       flexDirection: "column",
@@ -81,7 +81,7 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "0px",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#ebebeb",
+        backgroundColor: "#201d1d",
       },
     },
     headline: {
@@ -89,6 +89,27 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "22px",
       color: "black",
+      zIndex: 20,
+      textAlign: "left",
+      marginBottom: "10px",
+      padding: "0px 0px 0px 0px",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "40px",
+        color: "black",
+        textAlign: "left",
+        padding: "0px",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "40px",
+        width: "80%",
+      },
+    },
+
+    headlineStyled: {
+      position: "relative",
+      fontWeight: 400,
+      fontSize: "22px",
+      color: "white",
       zIndex: 20,
       textAlign: "left",
       marginBottom: "10px",
@@ -115,7 +136,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "0px 0px 0px 0px",
       [theme.breakpoints.up("md")]: {
         fontSize: "40px",
-        color: "black",
+        color: "white",
         textAlign: "left",
         padding: "0px",
       },
@@ -172,6 +193,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       marginBottom: "30px",
       padding: "0px 0px 0px 0px",
+
       [theme.breakpoints.up("md")]: {
         fontSize: "22px",
         textAlign: "left",
@@ -183,7 +205,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       fontWeight: 400,
       fontSize: "12px",
-      color: "#00000078",
+      color: "white",
       textAlign: "left",
       zIndex: 20,
       width: "100%",
