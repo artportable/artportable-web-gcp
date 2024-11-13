@@ -14,8 +14,7 @@ export default function FavoritesPopper({ id }) {
 
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const publicUrl = process.env.NEXT_PUBLIC_URL;
-  const bucketBaseUrl =
-    "https://artportabletest-cdn.azureedge.net/artportable-test/images/";
+  const bucketBaseUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 
   useEffect(() => {
     async function fetchArtworks() {
