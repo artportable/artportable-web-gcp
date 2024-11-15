@@ -257,7 +257,7 @@ export default function Header({ navBarItems }) {
                       onMouseEnter={handleClick}
                     >
                       <IconButton>
-                        <BookmarkBorderIcon />
+                        <BookmarkBorderIcon style={{ color: "black" }} />
                       </IconButton>
 
                       <Popper
