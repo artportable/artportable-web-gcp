@@ -9,6 +9,8 @@ import { TokenContext } from "../../contexts/token-context";
 import { LoginContext } from "../../contexts/login-context";
 import { styles } from "./likeArtworkButton.css";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 
 interface ArtworkProps {
   artwork: {
@@ -76,15 +78,15 @@ export default function LikeArtworkButton({ artwork }: ArtworkProps) {
           </IconButton>
         ) : (
           <IconButton
-            className={s.likeButton}
+            className={s.bookMarkIcon}
             onClick={handleToggleFavorite}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
             {isFavorite || isHovered ? (
-              <FavoriteIcon />
+              <BookmarkAddedIcon style={{ color: "blue" }} />
             ) : (
-              <FavoriteBorderOutlinedIcon />
+              <BookmarkAddOutlinedIcon style={{ color: "black" }} />
             )}
           </IconButton>
         )}

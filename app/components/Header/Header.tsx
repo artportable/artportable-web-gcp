@@ -50,7 +50,7 @@ import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import FavoritesPopper from "./FavoritesPopper";
 import Fade from "@mui/material/Fade";
-import Grow from "@mui/material/Grow";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -257,7 +257,7 @@ export default function Header({ navBarItems }) {
                       onMouseEnter={handleClick}
                     >
                       <IconButton>
-                        <FavoriteIcon />
+                        <BookmarkBorderIcon />
                       </IconButton>
 
                       <Popper
@@ -551,45 +551,4 @@ export default function Header({ navBarItems }) {
       )}
     </>
   );
-}
-
-export function useFavorites() {
-  const [favoriteIds, setFavoriteIds] = useState([]);
-
-  useEffect(() => {
-    function loadFavorites() {
-      if (typeof window !== "undefined") {
-        try {
-          const storedFavorites = localStorage.getItem("favoriteArt");
-          const parsedFavorites = storedFavorites
-            ? JSON.parse(storedFavorites)
-            : [];
-          setFavoriteIds(parsedFavorites);
-        } catch (error) {
-          console.error("Error parsing favoriteArt from localStorage:", error);
-          setFavoriteIds([]);
-        }
-      }
-    }
-
-    loadFavorites();
-
-    window.addEventListener("favoritesChanged", loadFavorites);
-
-    return () => {
-      window.removeEventListener("favoritesChanged", loadFavorites);
-    };
-  }, []);
-
-  const updateFavorites = (newFavorites) => {
-    try {
-      localStorage.setItem("favoriteArt", JSON.stringify(newFavorites));
-      setFavoriteIds(newFavorites);
-      window.dispatchEvent(new Event("favoritesChanged"));
-    } catch (error) {
-      console.error("Error updating favoriteArt in localStorage:", error);
-    }
-  };
-
-  return { favoriteIds, updateFavorites };
 }
