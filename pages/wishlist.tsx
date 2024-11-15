@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { FavoritesContext } from "../app/contexts/FavoritesContext";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { faSmile } from "@fortawesome/free-solid-svg-icons";
 
 export default function Wishlist({ navBarItems }) {
   const s = styles();
@@ -59,7 +60,7 @@ export default function Wishlist({ navBarItems }) {
   }, [favoriteIds]);
 
   return (
-    <Main navBarItems={navBarItems}>
+    <Main fullWidth={true} noHeaderPadding navBarItems={navBarItems}>
       <Head>
         <meta name="title" content={t("contactUs")} />
         <meta name="description" content={t("yourWelcome")} />
@@ -72,8 +73,15 @@ export default function Wishlist({ navBarItems }) {
         />
         <link rel="canonical" href={`${publicUrl}/${locale}/support`} />
       </Head>
-      <div>
-        <div>
+      <section className={s.container}>
+        <header className={s.header}>
+          <h2 className={s.favoriteTitle}>My Favorites</h2>
+          <h4 className={s.favoriteText}>
+            Your Favorites are only temporarily saved. To keep them saved,
+            create an account
+          </h4>
+        </header>
+        <article className={s.artworksContainer}>
           {loading ? (
             <></>
           ) : error ? (
@@ -86,11 +94,12 @@ export default function Wishlist({ navBarItems }) {
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
+                    margin: "10px",
                   }}
                 >
                   <img
-                    width={80}
-                    height={50}
+                    width={100}
+                    height={100}
                     src={`${bucketBaseUrl}${artwork?.PrimaryFile.Name}`}
                     alt="favorite Artwork"
                   />
@@ -101,7 +110,7 @@ export default function Wishlist({ navBarItems }) {
                     <div key={artwork.Id}>
                       <p
                         style={{
-                          fontSize: "13px",
+                          fontSize: "26px",
                           marginLeft: "10px",
                           marginBottom: "0px",
                           fontWeight: "bold",
@@ -112,7 +121,8 @@ export default function Wishlist({ navBarItems }) {
                       </p>
                       <p
                         style={{
-                          fontSize: "12px",
+                          fontSize: "14px",
+                          fontWeight: "400",
                           marginLeft: "10px",
                           paddingTop: "0px",
                           marginTop: "0px",
@@ -151,8 +161,8 @@ export default function Wishlist({ navBarItems }) {
               <a>View All</a>
             </Link>
           )} */}
-        </div>
-      </div>
+        </article>
+      </section>
     </Main>
   );
 }

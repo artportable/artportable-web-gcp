@@ -50,7 +50,7 @@ import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import FavoritesPopper from "./FavoritesPopper";
 import Fade from "@mui/material/Fade";
-import Grow from "@mui/material/Grow";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -257,7 +257,7 @@ export default function Header({ navBarItems }) {
                       onMouseEnter={handleClick}
                     >
                       <IconButton>
-                        <FavoriteIcon />
+                        <BookmarkBorderIcon />
                       </IconButton>
 
                       <Popper
