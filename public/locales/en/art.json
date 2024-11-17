@@ -37,5 +37,7 @@
   "moreInfo": "More info",
   "viewPortfolio": "View portfolio",
   "promoteArtwork": "Promote",
-  "promotedArtwork": "Being Promoted"
+  "promotedArtwork": "Being Promoted",
+  "favoritesText": "Your Favorites are only temporarily saved. To keep them saved, create an account",
+  "favoriteTitle": "My favorites"
 }

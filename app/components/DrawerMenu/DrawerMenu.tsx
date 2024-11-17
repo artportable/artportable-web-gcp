@@ -44,6 +44,8 @@ import {
 } from "../../utils/googleAnalytics";
 import ManageSubscriptionsDialog from "../ManageSubscriptions/ManageSubscriptionsDialog";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { FavoritesContext } from "../../contexts/FavoritesContext";
 export default function DrawerMenu({
   open,
   setOpen,
@@ -84,6 +86,8 @@ export default function DrawerMenu({
   })();
 
   const close = () => setOpen(false);
+
+  const { favoriteIds } = useContext(FavoritesContext);
 
   const [openContact, setOpenContact] = useState(false);
   const [openManageSubscriptions, setOpenManageSubscriptions] = useState(false);
@@ -387,14 +391,16 @@ export default function DrawerMenu({
             >
               <ListItemText primary={t("login")} />
             </ListItem>
-
-            <Link href="/newsletter" passHref>
-              <a>
-                <ListItem button divider onClick={() => close()}>
-                  <ListItemText primary={t("subscribeNewsletter")} />
-                </ListItem>
-              </a>
-            </Link>
+            {favoriteIds.length > 0 && (
+              <Link href="/wishlist" passHref>
+                <a>
+                  <ListItem button divider onClick={() => close()}>
+                    <ListItemText primary={t("myFavorites")} />
+                    <BookmarkIcon></BookmarkIcon>
+                  </ListItem>
+                </a>
+              </Link>
+            )}
           </>
         )}
         {/* <Link href="/" passHref>
