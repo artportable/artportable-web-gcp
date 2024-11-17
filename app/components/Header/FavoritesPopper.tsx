@@ -7,7 +7,14 @@ import { styles } from "./favoritesPopper.css";
 
 export default function FavoritesPopper({ id }) {
   const s = styles();
-  const { t } = useTranslation(["art", "common", "tags", "forms", "upload"]);
+  const { t } = useTranslation([
+    "art",
+    "common",
+    "tags",
+    "forms",
+    "upload",
+    "header",
+  ]);
   const [favoriteArtworks, setFavoriteArtworks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +28,7 @@ export default function FavoritesPopper({ id }) {
       setLoading(true);
       try {
         const artworks = await Promise.all(
-          id.slice(0, 8).map(async (artworkId) => {
+          id.slice(0, 5).map(async (artworkId) => {
             const response = await fetch(
               `${apiBaseUrl}/api/Artworks/${artworkId}`
             );
@@ -57,12 +64,12 @@ export default function FavoritesPopper({ id }) {
           style={{
             textAlign: "center",
             fontSize: "16px",
-            marginBottom: "0px",
+            marginBottom: "10px",
             marginTop: "10px",
-            fontWeight: "bold",
+            fontWeight: "normal",
           }}
         >
-          {t("common:favoriteArt")}
+          {t("header:myFavorites")}
         </div>
         <div>
           {loading ? (
@@ -70,20 +77,27 @@ export default function FavoritesPopper({ id }) {
           ) : error ? (
             <p>Error loading artworks.</p>
           ) : favoriteArtworks.length > 0 ? (
-            favoriteArtworks.map((artwork) => (
+            favoriteArtworks.map((artwork, i) => (
               <div>
                 <section
                   style={{
                     display: "flex",
                     flexDirection: "row",
                     alignItems: "center",
+                    marginBottom: "10px",
+                    borderBottom:
+                      i < favoriteArtworks.length - 1
+                        ? "1px solid #ccc"
+                        : "none",
+                    paddingBottom: "10px",
                   }}
                 >
-                  <img
-                    width={80}
-                    height={50}
+                  <Image
+                    width={100}
+                    height={80}
                     src={`${bucketBaseUrl}${artwork?.PrimaryFile.Name}`}
                     alt="favorite Artwork"
+                    style={{ marginBottom: "20px" }}
                   />
                   <a
                     className={s.link}
@@ -137,11 +151,18 @@ export default function FavoritesPopper({ id }) {
           ) : (
             <p>No favorites to display.</p>
           )}
-          {/* {id.length > 3 && (
-            <Link href="/favorites">
-              <a>View All</a>
-            </Link>
-          )} */}
+          {id.length > 4 && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Link href="/wishlist" className={s.buttonViewMore}>
+                <a>{t("header:viewAll")}</a>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </>

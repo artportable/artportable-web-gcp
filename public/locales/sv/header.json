@@ -45,5 +45,7 @@
   "startPage": "Startsida",
   "flow": "Flöde",
   "uploadArtwork": "Ladda upp",
-  "portfolio": "Portfolio"
+  "portfolio": "Portfolio",
+  "myFavorites": "Mina favoriter",
+  "viewAll": "Visa mer"
 }
