@@ -177,33 +177,28 @@ const usePromoteArtwork = () => {
 
 export default usePromoteArtwork;
 
-export function getTimePassed(publishDate, t) {
-  var now = new Date();
-  publishDate = new Date(publishDate);
+import { DateTime } from "luxon";
+
+export function getTimePassed(publishDate: string | Date, t: Function) {
+  // Define the timezone you want to use
+  const timeZone = "Europe/Stockholm";
+
+  // Parse publishDate and set the timezone
+  const publishDateTime = DateTime.fromISO(
+    new Date(publishDate).toISOString(),
+    { zone: "utc" }
+  ).setZone(timeZone);
+
+  // Get the current time in the specified timezone
+  const now = DateTime.now().setZone(timeZone);
 
   // Calculate the difference in days
-  var publishDateMidnight = new Date(
-    publishDate.getFullYear(),
-    publishDate.getMonth(),
-    publishDate.getDate()
-  );
-  var nowDateMidnight = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate()
-  );
-  var daysDifference = Math.floor(
-    (nowDateMidnight.getTime() - publishDateMidnight.getTime()) /
-      (1000 * 60 * 60 * 24)
+  const daysDifference = Math.floor(
+    now.startOf("day").diff(publishDateTime.startOf("day"), "days").days
   );
 
   // Format the time as HH:MM
-  var hours = publishDate.getHours();
-  var minutes = publishDate.getMinutes();
-  var timeString =
-    (hours < 10 ? "0" + hours : hours) +
-    ":" +
-    (minutes < 10 ? "0" + minutes : minutes);
+  const timeString = publishDateTime.toFormat("HH:mm");
 
   // Check for today or yesterday
   if (daysDifference === 0) {
@@ -211,17 +206,8 @@ export function getTimePassed(publishDate, t) {
   } else if (daysDifference === 1) {
     return `${t("feed:igår")} ${timeString}`;
   } else {
-    var day = publishDate.getDate();
-    var month = publishDate.getMonth() + 1;
-    var year = publishDate.getFullYear() % 100;
-
-    var dateString =
-      (day < 10 ? "0" + day : day) +
-      "-" +
-      (month < 10 ? "0" + month : month) +
-      "-" +
-      (year < 10 ? "0" + year : year);
-
+    // Format the date as DD-MM-YY
+    const dateString = publishDateTime.toFormat("dd-MM-yy");
     return dateString;
   }
 }
