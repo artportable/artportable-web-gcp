@@ -191,32 +191,23 @@ export function getTimePassed(publishDate: string | Date, t: Function) {
     // If the date string lacks timezone info, assume it's in UTC
     publishDateTime = DateTime.fromISO(publishDate, { zone: "utc" });
   } else if (publishDate instanceof Date) {
-    // If publishDate is a Date object, convert it to Luxon DateTime in UTC
     publishDateTime = DateTime.fromJSDate(publishDate, { zone: "utc" });
   } else {
-    // Handle invalid date inputs
     throw new Error("Invalid publishDate format");
   }
 
-  // Convert publishDateTime to the display timezone
   publishDateTime = publishDateTime.setZone(displayTimeZone);
-
-  // Get the current time in the display timezone
   const now = DateTime.now().setZone(displayTimeZone);
-
-  // Calculate the difference in days
   const daysDifference =
     now.startOf("day").diff(publishDateTime.startOf("day"), "days").toObject()
       .days || 0;
 
-  // Format the time as HH:mm
   const timeString = publishDateTime.toFormat("HH:mm");
 
-  // Check for today or yesterday
   if (daysDifference === 0) {
-    return `${t("feed:idag")} ${timeString}`;
+    return `${t("feed:today")} ${timeString}`;
   } else if (daysDifference === 1) {
-    return `${t("feed:igår")} ${timeString}`;
+    return `${t("feed:yesterday")} ${timeString}`;
   } else {
     // Format the date as DD-MM-YY
     const dateString = publishDateTime.toFormat("dd-MM-yy");
