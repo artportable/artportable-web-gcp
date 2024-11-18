@@ -38,7 +38,7 @@ export default function ArtworkListItem({
 }) {
   const s = styles();
   const sShared = sharedStyles();
-  const { t } = useTranslation(["art", "common", "tags"]);
+  const { t } = useTranslation(["art", "common", "tags", "feed"]);
 
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
   const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();

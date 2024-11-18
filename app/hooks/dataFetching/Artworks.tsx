@@ -218,9 +218,9 @@ export function getTimePassed(publishDate: string | Date, t: Function) {
 
   // Check for today or yesterday
   if (daysDifference === 0) {
-    return `${t("feed:idag")} ${timeString}`;
+    return `${t("feed:today")} ${timeString}`;
   } else if (daysDifference === 1) {
-    return `${t("feed:igår")} ${timeString}`;
+    return `${t("feed:yesterday")} ${timeString}`;
   } else {
     // Format the date as DD-MM-YY in the specified timezone
     const dateOptions: Intl.DateTimeFormatOptions = {
