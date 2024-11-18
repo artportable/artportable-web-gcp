@@ -14,6 +14,8 @@
   "subscriptionSuccessNewsletter": "Thank you for subscribing! We will keep you updated with the latest news and promotions.",
   "subscriptionErrorNewsletter": "Oops, it appears that this email address is already subscribed to our newsletter. Thank you for your continued interest and support!",
   "seconds": "s",
+  "feed:today": "Today",
+  "feed:yesterday": "Yesterday",
   "minutes": "min",
   "hours": "h",
   "days": "d",

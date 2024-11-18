@@ -20,6 +20,8 @@
   "weeks": "v",
   "months": "mån",
   "year": "å",
+  "feed:today": "Idag",
+  "feed:yesterday": "Igår",
   "trendingArtFeed": "Trendande",
   "uploadNewWorkOfArt": "Ladda upp ett nytt konstverk",
   "priceOnRequest": "Pris på begäran"

@@ -238,36 +238,34 @@ export default function ArtworkListItem({
           <Link href={`/profile/@${artwork.Username}`}>
             <a>
               <div className={s.name}>
-                {`${artwork.Name} ${artwork.Surname}`}
-                <span
+                <div>{`${artwork.Name} ${artwork.Surname}`}</div>
+                <div
                   style={{
-                    marginLeft: "5px",
                     color: "gray",
                     fontSize: "12px",
                     fontFamily: "Gotham",
                   }}
                 >
-                  {"•"} {timePassed.Time}
-                  {timePassed.Unit}
-                </span>
+                  {getTimePassed(artwork?.Published, t)}
+                </div>
               </div>
             </a>
           </Link>
-          <div className={s.price}>
-            {artwork.SoldOut ? (
-              <>{t("common:words.sold")} </>
-            ) : artwork.Price && artwork.Price != "0" ? (
-              formattedPrice.replace(/,/g, "")
-            ) : (
-              t("priceOnRequest")
-            )}
-          </div>
         </div>
         <div className={s.likeContainer}>
           <div style={{ fontSize: "12px", fontStyle: "italic" }}>
             {artwork?.Title}
           </div>
           <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
+        </div>
+        <div className={s.price}>
+          {artwork.SoldOut ? (
+            <>{t("common:words.sold")} </>
+          ) : artwork.Price && artwork.Price != "0" ? (
+            formattedPrice.replace(/,/g, "")
+          ) : (
+            t("priceOnRequest")
+          )}
         </div>
       </div>
     </div>

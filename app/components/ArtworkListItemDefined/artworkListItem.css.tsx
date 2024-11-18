@@ -181,12 +181,11 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       marginBottom: "10px",
     },
-    footerRow: {
-      display: "flex",
-      flexFlow: "row nowrap",
-      justifyContent: "space-between",
-    },
+    footerRow: {},
     name: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
       fontSize: "0.95rem",
       fontWeight: 400,
       textOverflow: "ellipsis",
@@ -199,7 +198,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       // Padding top instead of align items center, looks better if artist name is multiple rows.
       paddingTop: "3px",
-      paddingLeft: "20px",
+
       whiteSpace: "nowrap",
     },
     soldMark: {
