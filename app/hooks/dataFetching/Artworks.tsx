@@ -180,24 +180,36 @@ export default usePromoteArtwork;
 import { DateTime } from "luxon";
 
 export function getTimePassed(publishDate: string | Date, t: Function) {
-  // Define the timezone you want to use
-  const timeZone = "Europe/Stockholm";
+  // Define the timezone you want to display in
+  const displayTimeZone = "Europe/Stockholm";
 
-  // Parse publishDate and set the timezone
-  const publishDateTime = DateTime.fromISO(
-    new Date(publishDate).toISOString(),
-    { zone: "utc" }
-  ).setZone(timeZone);
+  // Parse the publishDate string
+  // Assume the publishDate is in UTC if it lacks timezone information
+  let publishDateTime: DateTime;
 
-  // Get the current time in the specified timezone
-  const now = DateTime.now().setZone(timeZone);
+  if (typeof publishDate === "string") {
+    // If the date string lacks timezone info, assume it's in UTC
+    publishDateTime = DateTime.fromISO(publishDate, { zone: "utc" });
+  } else if (publishDate instanceof Date) {
+    // If publishDate is a Date object, convert it to Luxon DateTime in UTC
+    publishDateTime = DateTime.fromJSDate(publishDate, { zone: "utc" });
+  } else {
+    // Handle invalid date inputs
+    throw new Error("Invalid publishDate format");
+  }
+
+  // Convert publishDateTime to the display timezone
+  publishDateTime = publishDateTime.setZone(displayTimeZone);
+
+  // Get the current time in the display timezone
+  const now = DateTime.now().setZone(displayTimeZone);
 
   // Calculate the difference in days
-  const daysDifference = Math.floor(
-    now.startOf("day").diff(publishDateTime.startOf("day"), "days").days
-  );
+  const daysDifference =
+    now.startOf("day").diff(publishDateTime.startOf("day"), "days").toObject()
+      .days || 0;
 
-  // Format the time as HH:MM
+  // Format the time as HH:mm
   const timeString = publishDateTime.toFormat("HH:mm");
 
   // Check for today or yesterday
