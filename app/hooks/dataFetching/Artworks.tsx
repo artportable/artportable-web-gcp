@@ -177,33 +177,44 @@ const usePromoteArtwork = () => {
 
 export default usePromoteArtwork;
 
-export function getTimePassed(publishDate, t) {
-  var now = new Date();
-  publishDate = new Date(publishDate);
+export function getTimePassed(publishDate: string | Date, t: Function) {
+  const timeZone = "Europe/Stockholm"; // Set your local timezone
+
+  // Parse publishDate and adjust to the specified timezone
+  const publishDateInTimeZone = new Date(
+    new Date(publishDate).toLocaleString("en-US", { timeZone })
+  );
+
+  // Get the current time in the specified timezone
+  const now = new Date();
+  const nowInTimeZone = new Date(now.toLocaleString("en-US", { timeZone }));
 
   // Calculate the difference in days
-  var publishDateMidnight = new Date(
-    publishDate.getFullYear(),
-    publishDate.getMonth(),
-    publishDate.getDate()
+  const publishDateMidnight = new Date(
+    publishDateInTimeZone.getFullYear(),
+    publishDateInTimeZone.getMonth(),
+    publishDateInTimeZone.getDate()
   );
-  var nowDateMidnight = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate()
+  const nowDateMidnight = new Date(
+    nowInTimeZone.getFullYear(),
+    nowInTimeZone.getMonth(),
+    nowInTimeZone.getDate()
   );
-  var daysDifference = Math.floor(
+
+  // Use .getTime() to get numeric timestamps
+  const daysDifference = Math.floor(
     (nowDateMidnight.getTime() - publishDateMidnight.getTime()) /
       (1000 * 60 * 60 * 24)
   );
 
-  // Format the time as HH:MM
-  var hours = publishDate.getHours();
-  var minutes = publishDate.getMinutes();
-  var timeString =
-    (hours < 10 ? "0" + hours : hours) +
-    ":" +
-    (minutes < 10 ? "0" + minutes : minutes);
+  // Format the time as HH:MM in the specified timezone
+  const options: Intl.DateTimeFormatOptions = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone,
+  };
+  const timeString = publishDateInTimeZone.toLocaleTimeString("sv-SE", options);
 
   // Check for today or yesterday
   if (daysDifference === 0) {
@@ -211,17 +222,17 @@ export function getTimePassed(publishDate, t) {
   } else if (daysDifference === 1) {
     return `${t("feed:igår")} ${timeString}`;
   } else {
-    var day = publishDate.getDate();
-    var month = publishDate.getMonth() + 1;
-    var year = publishDate.getFullYear() % 100;
-
-    var dateString =
-      (day < 10 ? "0" + day : day) +
-      "-" +
-      (month < 10 ? "0" + month : month) +
-      "-" +
-      (year < 10 ? "0" + year : year);
-
+    // Format the date as DD-MM-YY in the specified timezone
+    const dateOptions: Intl.DateTimeFormatOptions = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+      timeZone,
+    };
+    const dateString = publishDateInTimeZone.toLocaleDateString(
+      "sv-SE",
+      dateOptions
+    );
     return dateString;
   }
 }
