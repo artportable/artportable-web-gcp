@@ -26,6 +26,8 @@ import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import { styles } from "./artworkListItem.css";
 import { styles as sharedStyles } from "../../../styles/shared.css";
 import LikeArtworkButton from "../Button/LikeArtworkButton";
+import { getUserProfileSummaryUri } from "../../hooks/dataFetching/UserProfile";
+import { useGetUserProfileSummary } from "../../hooks/dataFetching/UserProfile";
 
 export default function ArtworkListItem({
   artwork,
@@ -51,7 +53,7 @@ export default function ArtworkListItem({
   const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
-  const profileUser = useGetProfileUser();
+  const profileUser = useGetUserProfileSummary(artwork?.Username);
 
   // TODO: Use getFormatter function in utils/formatUtils.tsx instead.
   function getFormatter(
@@ -258,14 +260,23 @@ export default function ArtworkListItem({
           </div>
           <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
         </div>
-        <div className={s.price}>
-          {artwork.SoldOut ? (
-            <>{t("common:words.sold")} </>
-          ) : artwork.Price && artwork.Price != "0" ? (
-            formattedPrice.replace(/,/g, "")
-          ) : (
-            t("priceOnRequest")
-          )}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div className={s.price}>
+            {artwork.SoldOut ? (
+              <>{t("common:words.sold")} </>
+            ) : artwork.Price && artwork.Price != "0" ? (
+              formattedPrice.replace(/,/g, "")
+            ) : (
+              t("priceOnRequest")
+            )}
+          </div>
+          <div>{profileUser?.data?.City}</div>
         </div>
       </div>
     </div>
