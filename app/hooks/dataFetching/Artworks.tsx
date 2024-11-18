@@ -180,63 +180,48 @@ export default usePromoteArtwork;
 export function getTimePassed(publishDate, t) {
   var now = new Date();
   publishDate = new Date(publishDate);
-  var seconds = Math.floor((now.getTime() - publishDate.getTime()) / 1000);
 
-  if (seconds < 60) {
-    return {
-      Time: seconds,
-      Unit: t("feed:seconds"),
-    };
+  // Calculate the difference in days
+  var publishDateMidnight = new Date(
+    publishDate.getFullYear(),
+    publishDate.getMonth(),
+    publishDate.getDate()
+  );
+  var nowDateMidnight = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate()
+  );
+  var daysDifference = Math.floor(
+    (nowDateMidnight.getTime() - publishDateMidnight.getTime()) /
+      (1000 * 60 * 60 * 24)
+  );
+
+  // Format the time as HH:MM
+  var hours = publishDate.getHours();
+  var minutes = publishDate.getMinutes();
+  var timeString =
+    (hours < 10 ? "0" + hours : hours) +
+    ":" +
+    (minutes < 10 ? "0" + minutes : minutes);
+
+  // Check for today or yesterday
+  if (daysDifference === 0) {
+    return `${t("feed:idag")} ${timeString}`;
+  } else if (daysDifference === 1) {
+    return `${t("feed:igår")} ${timeString}`;
+  } else {
+    var day = publishDate.getDate();
+    var month = publishDate.getMonth() + 1;
+    var year = publishDate.getFullYear() % 100;
+
+    var dateString =
+      (day < 10 ? "0" + day : day) +
+      "-" +
+      (month < 10 ? "0" + month : month) +
+      "-" +
+      (year < 10 ? "0" + year : year);
+
+    return dateString;
   }
-
-  var interval = seconds / 60;
-  if (interval < 1) {
-    return {
-      Time: Math.floor(seconds),
-      Unit: t("feed:seconds"),
-    };
-  } else if (interval < 60) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:minutes"),
-    };
-  }
-
-  interval = interval / 60;
-  if (interval < 24) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:hours"),
-    };
-  }
-
-  interval = interval / 24;
-  if (interval < 7) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:days"),
-    };
-  }
-
-  interval = interval / 7;
-  if (interval < 4) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:weeks"),
-    };
-  }
-
-  interval = interval / 4;
-  if (interval < 12) {
-    return {
-      Time: Math.floor(interval),
-      Unit: t("feed:months"),
-    };
-  }
-
-  interval = interval / 12;
-  return {
-    Time: Math.floor(interval),
-    Unit: t("feed:years"),
-  };
 }
