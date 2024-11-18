@@ -108,10 +108,13 @@ export default function Wishlist({ navBarItems }) {
   return (
     <Main fullWidth={true} noHeaderPadding navBarItems={navBarItems}>
       <Head>
-        <meta name="title" content={t("contactUs")} />
-        <meta name="description" content={t("yourWelcome")} />
-        <meta property="og:title" content={t("contactUs")} />
-        <meta property="og:description" content={t("yourWelcome")} />
+        <meta name="title" content={t("wishlist:wishlist")} />
+        <meta name="description" content={t("wishlist:favoriteArtworks")} />
+        <meta property="og:title" content={t("wishlist:wishlist")} />
+        <meta
+          property="og:description"
+          content={t("wishlist:favoriteArtworks")}
+        />
         <meta property="og:url" content="https://artportable.com/wishlist" />
         <meta
           property="og:image"
