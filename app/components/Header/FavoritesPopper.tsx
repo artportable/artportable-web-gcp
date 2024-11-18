@@ -98,6 +98,7 @@ export default function FavoritesPopper({ id }) {
                     src={`${bucketBaseUrl}${artwork?.PrimaryFile.Name}`}
                     alt="favorite Artwork"
                     style={{ marginBottom: "20px" }}
+                    quality={30}
                   />
                   <a
                     className={s.link}
