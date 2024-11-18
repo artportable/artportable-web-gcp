@@ -46,6 +46,7 @@
     "isomorphic-unfetch": "^4.0.2",
     "js-cookie": "^3.0.1",
     "keycloak-js": "^15.0.0",
+    "luxon": "^3.5.0",
     "material-ui-dropzone": "^3.5.0",
     "next": "^12.1.0",
     "next-i18next": "^8.1.1",
