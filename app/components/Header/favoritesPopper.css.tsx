@@ -8,6 +8,22 @@ export const styles = makeStyles((theme: Theme) =>
       border: "1px solid #00000029",
     },
 
+    buttonViewMore: {
+      color: "black",
+      fontSize: "16px",
+      marginBottom: "10px",
+      border: "1px solid #99999987",
+      padding: "10px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
+      borderRadius: "20px",
+      "&:hover": {
+        color: "white",
+        backgroundColor: "blue",
+        textDecoration: "none",
+      },
+    },
+
     link: {
       display: "flex",
       flexDirection: "row",

@@ -45,5 +45,7 @@
   "startPage": "Home",
   "flow": "Feed",
   "uploadArtwork": "Upload",
-  "portfolio": "Portfolio"
+  "portfolio": "Portfolio",
+  "myFavorites": "My Favorites",
+  "viewAll": "View all"
 }

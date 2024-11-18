@@ -51,6 +51,7 @@ import { FavoritesContext } from "../../contexts/FavoritesContext";
 import FavoritesPopper from "./FavoritesPopper";
 import Fade from "@mui/material/Fade";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -257,7 +258,7 @@ export default function Header({ navBarItems }) {
                       onMouseEnter={handleClick}
                     >
                       <IconButton>
-                        <BookmarkBorderIcon style={{ color: "black" }} />
+                        <BookmarkIcon style={{ color: "blue" }} />
                       </IconButton>
 
                       <Popper
