@@ -121,8 +121,10 @@ export default function Wishlist({ navBarItems }) {
       </Head>
       <section className={s.container}>
         <header className={s.header}>
-          <h2 className={s.favoriteTitle}>{t("art:favoriteTitle")}</h2>
-          <h4 className={s.favoriteText}>{t("art:favoritesText")}</h4>
+          <div className={s.titleText}>
+            <h2 className={s.favoriteTitle}>{t("art:favoriteTitle")}</h2>
+            <h4 className={s.favoriteText}>{t("art:favoritesText")}</h4>
+          </div>
         </header>
         <article className={s.artworksContainer}>
           {loading ? (

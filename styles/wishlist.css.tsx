@@ -1,4 +1,5 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import cover from "../public/images/wishlist-banner.png";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
@@ -6,22 +7,25 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#FDF9F7",
       width: "100vw",
       margin: "0 auto",
+      height: "auto",
     },
     header: {
-      backgroundColor: "#ffdd84c9",
       color: "white",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       padding: "20px",
       alignItems: "center",
+      backgroundImage: `url(/images/ssbanner1.png)`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      height: "auto",
       [theme.breakpoints.up("md")]: {
-        backgroundColor: "#ffdd84c9",
         color: "white",
-        height: "auto",
+        height: "350px",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: "flex-end",
         justifyContent: "center",
       },
     },
@@ -60,21 +64,36 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "50%",
       objectFit: "cover",
     },
+    titleText: {
+      display: "flex",
+      flexDirection: "column",
+      backgroundColor: "#ffffff87",
 
+      alignItems: "flex-start",
+      width: "80%",
+      borderRadius: "2px",
+      padding: "20px",
+      [theme.breakpoints.up("md")]: {
+        width: "50%",
+        backgroundColor: "white",
+      },
+    },
     favoriteTitle: {
       fontSize: "36px",
       fontWeight: "lighter",
       margin: "0px",
       color: "black",
       [theme.breakpoints.up("md")]: {
-        fontSize: "66px",
+        color: "#313131",
+        fontSize: "32px",
         fontWeight: "lighter",
       },
     },
     favoriteText: {
-      color: "#999999",
+      color: "black",
       [theme.breakpoints.up("md")]: {
         fontWeight: "lighter",
+        color: "#313131",
       },
     },
 
