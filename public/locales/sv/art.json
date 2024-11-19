@@ -39,5 +39,6 @@
   "promoteArtwork": "Få mer synlighet",
   "promotedArtwork": "Marknadsförs",
   "favoritesText": "Dina favoriter sparas endast tillfälligt. För att behålla dem sparade, skapa ett konto.",
-  "favoriteTitle": "Mina favoriter"
+  "favoriteTitle": "Mina favoriter",
+  "missingPosition": "Ort saknas"
 }
