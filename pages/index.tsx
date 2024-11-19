@@ -112,25 +112,6 @@ export default function DiscoverPage({ navBarItems }) {
   }
 
   useEffect(() => {
-    const lastShownTime = sessionStorage.getItem("lastShownTime");
-
-    if (!lastShownTime || Date.now() - Number(lastShownTime) >= AD_INTERVAL) {
-      setOpenAdDialog(true);
-    }
-
-    // Set up a timer to automatically show the ad again after 5 minutes
-    const adTimer = setInterval(() => {
-      const lastShownTime = sessionStorage.getItem("lastShownTime");
-
-      if (!lastShownTime || Date.now() - Number(lastShownTime) >= AD_INTERVAL) {
-        setOpenAdDialog(true);
-      }
-    }, 1000); // Check every second
-
-    return () => clearInterval(adTimer); // Cleanup the interval on unmount
-  }, []);
-
-  useEffect(() => {
     if (!isSignedIn.isPending) {
       setLoading(false);
     } else {
@@ -248,19 +229,6 @@ export default function DiscoverPage({ navBarItems }) {
         <IndexHeroRenewed onScrollDown={scrollToNextSection} />
       )}
 
-      {isSignedIn.value && (
-        <>
-          {membership.value === Membership.Portfolio ? (
-            <AdDialog
-              openAdDialog={openAdDialog}
-              setOpenAdDialog={setOpenAdDialog}
-              onClose={toggleAdDialog}
-            />
-          ) : (
-            <></>
-          )}
-        </>
-      )}
       <div ref={nextSectionRef}></div>
       <RocketCarousel
         forDesktop={!isMobile}
@@ -268,14 +236,6 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "40px 0 0px 0",
         }}
       />
-
-      {/*   <div className={s.exhibitionBoost}>{t("header:boostedExhibition")}</div>
-      <StoryCarousel
-        forDesktop={!isMobile}
-        containerStyle={{
-          margin: 0,
-        }}
-      /> */}
 
       <>
         {!isSignedIn.value &&
