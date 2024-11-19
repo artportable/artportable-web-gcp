@@ -184,10 +184,6 @@ export default function DiscoverPage({ navBarItems }) {
     }
   };
 
-  function clsx(largeButtonFindArt: any, findArtButton: any, noBorder: any) {
-    throw new Error("Function not implemented.");
-  }
-
   return (
     <Main
       noHeaderPadding
