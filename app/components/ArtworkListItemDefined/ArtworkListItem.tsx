@@ -273,7 +273,7 @@ export default function ArtworkListItem({
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               justifyContent: "space-between",
             }}
           >
@@ -295,6 +295,7 @@ export default function ArtworkListItem({
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
           <div className={s.price}>

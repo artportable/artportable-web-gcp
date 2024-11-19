@@ -7,11 +7,7 @@ import { Artwork } from "../../models/Artwork";
 import DiscoverArt from "../DiscoverArt/DiscoverArt";
 import { THEME_TAGS, TECHNIQUE_TAGS } from "../DiscoverTrendingArtTab/tags";
 import { styles } from "./discoverTrendingArtTabDesktop.css";
-// import EmblaCarousel, { formatAwArtworkForEmbla } from "../Carousel/Embla/EmblaCarousel"
-import SelectedprintsCarousel from "../Carousel/SelectedprintsCarousel";
 import ArtistCarousel from "../Carousel/ArtistCarousel";
-// import { getRandomSequentialIndexes } from "../../utils/layoutUtils";
-// import SELECTED_PRINTS from "../../../data/selectedPrintsData";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Accordion from "@mui/material/Accordion";
