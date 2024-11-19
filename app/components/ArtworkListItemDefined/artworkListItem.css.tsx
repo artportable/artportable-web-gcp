@@ -179,7 +179,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     footer: {
       position: "relative",
-      marginBottom: "10px",
+      marginBottom: "5px",
     },
     footerRow: {},
     name: {
@@ -193,12 +193,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     price: {
       fontSize: "0.8rem",
-      lineHeight: "1rem",
       fontWeight: theme.typography.fontWeightMedium as number,
       display: "flex",
-      // Padding top instead of align items center, looks better if artist name is multiple rows.
-      paddingTop: "3px",
-
       whiteSpace: "nowrap",
     },
     soldMark: {

@@ -39,5 +39,6 @@
   "promoteArtwork": "Promote",
   "promotedArtwork": "Being Promoted",
   "favoritesText": "Your Favorites are only temporarily saved. To keep them saved, create an account",
-  "favoriteTitle": "My favorites"
+  "favoriteTitle": "My favorites",
+  "missingPosition": "No city specified"
 }

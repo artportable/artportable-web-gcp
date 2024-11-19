@@ -54,6 +54,9 @@ export default function ArtworkListItem({
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
   const profileUser = useGetUserProfileSummary(artwork?.Username);
+  useEffect(() => {
+    console.log(profileUser?.data?.City);
+  }, []);
 
   // TODO: Use getFormatter function in utils/formatUtils.tsx instead.
   function getFormatter(
@@ -237,29 +240,56 @@ export default function ArtworkListItem({
 
       <div className={s.footer}>
         <div className={s.footerRow}>
-          <Link href={`/profile/@${artwork.Username}`}>
-            <a>
-              <div className={s.name}>
-                <div>{`${artwork.Name} ${artwork.Surname}`}</div>
-                <div
-                  style={{
-                    color: "gray",
-                    fontSize: "12px",
-                    fontFamily: "Gotham",
-                  }}
-                >
-                  {getTimePassed(artwork?.Published, t)}
-                </div>
-              </div>
-            </a>
-          </Link>
-        </div>
-        <div className={s.likeContainer}>
-          <div style={{ fontSize: "12px", fontStyle: "italic" }}>
-            {artwork?.Title}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
+              style={{
+                color: "gray",
+                fontSize: "12px",
+                fontFamily: "Gotham",
+              }}
+            >
+              {profileUser?.data?.City === null ? (
+                <div>{t("art:missingPosition")}</div>
+              ) : (
+                <div>{profileUser?.data?.City}</div>
+              )}
+            </div>
+            <div
+              style={{
+                color: "gray",
+                fontSize: "12px",
+                fontFamily: "Gotham",
+              }}
+            >
+              {getTimePassed(artwork?.Published, t)}
+            </div>
           </div>
-          <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Link href={`/profile/@${artwork.Username}`}>
+              <a>
+                <div className={s.name}>
+                  <div>{`${artwork.Name} ${artwork.Surname}`}</div>
+                </div>
+              </a>
+            </Link>
+            <div style={{ fontSize: "12px", fontStyle: "italic" }}>
+              {artwork?.Title}
+            </div>
+          </div>
         </div>
+
         <div
           style={{
             display: "flex",
@@ -276,7 +306,7 @@ export default function ArtworkListItem({
               t("priceOnRequest")
             )}
           </div>
-          <div>{profileUser?.data?.City}</div>
+          <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
         </div>
       </div>
     </div>
