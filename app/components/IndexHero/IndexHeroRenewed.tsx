@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 12000,
+          delay: 1112000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -83,6 +83,87 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <Button className={s.buttonFindArt} onClick={onScrollDown}>
                     {t("findArt")}
                   </Button>
+                </div>
+              </div>
+            </section>
+          </SwiperSlide>
+          <SwiperSlide>
+            <section className={s.sectionWrapper}>
+              <div className={s.imgWrapperRest}>
+                {isTinyDevice ? (
+                  <a href="https://artportable.com/en/profile/@irine">
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Image
+                        src={"/images/slide3.jpeg"}
+                        alt="konst"
+                        loading="lazy"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                      <div className={s.imageTitle}>
+                        <p
+                          style={{
+                            color: "black",
+                            backgroundColor: "white",
+                            padding: "2px",
+                          }}
+                        >
+                          Irina Mylnikova
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <a href="https://artportable.com/en/profile/@irine">
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Image
+                        src={"/images/slide3.jpeg"}
+                        alt="artworkimage"
+                        loading="lazy"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                      <div className={s.imageTitle}>
+                        <p
+                          style={{
+                            color: "black",
+                            backgroundColor: "white",
+                            padding: "2px",
+                          }}
+                        >
+                          Irina Mylnikova
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                )}
+              </div>
+              <div className={s.headlineWrapperRest}>
+                <div className={s.headlineStyled}>{t("titleHeader")}</div>
+                <div className={s.headlineThree}>
+                  {t("descriptionBody")}
+                </div>{" "}
+                <br />
+                <div className={s.buttonWrapperSeeMore}>
+                  <a
+                    className={s.seeMoreButton}
+                    style={{ color: "white" }}
+                    href="https://artportable.com/akryl"
+                  >
+                    {t("seeMore")}
+                  </a>
                 </div>
               </div>
             </section>
