@@ -15,13 +15,12 @@ export const styles = makeStyles((theme: Theme) =>
       display: "none",
     },
     editProfileButton: {
-      marginLeft: "20px",
       border: "1px solid black",
     },
     lightButton: {
-      backgroundColor: 'white',
-      '&:hover': {
-        backgroundColor: 'lightgrey',
+      backgroundColor: "white",
+      "&:hover": {
+        backgroundColor: "lightgrey",
       },
     },
     editProfileIcon: {
