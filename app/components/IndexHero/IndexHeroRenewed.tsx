@@ -59,8 +59,18 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       objectFit="cover"
                     />
                     <div className={s.imageTitle}>
-                      <p>Unn Edberg, </p>
-                      <p style={{ fontStyle: "italic" }}>Vila</p>
+                      <p style={{ backgroundColor: "white", padding: "2px" }}>
+                        Unn Edberg,{" "}
+                      </p>
+                      <p
+                        style={{
+                          fontStyle: "italic",
+                          backgroundColor: "white",
+                          padding: "2px",
+                        }}
+                      >
+                        Vila
+                      </p>
                     </div>
                   </div>
                 </a>
@@ -188,7 +198,15 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         objectFit="cover"
                       />
                       <div className={s.imageTitle}>
-                        <p style={{ color: "white" }}>The Fleurs</p>
+                        <p
+                          style={{
+                            color: "black",
+                            backgroundColor: "white",
+                            padding: "2px",
+                          }}
+                        >
+                          The Fleurs
+                        </p>
                       </div>
                     </div>
                   </a>

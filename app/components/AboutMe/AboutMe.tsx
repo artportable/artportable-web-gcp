@@ -10,6 +10,7 @@ import AboutCard from "../AboutCard/AboutCard";
 
 import { styles } from "./aboutMe.css";
 import { useTranslation } from "next-i18next";
+import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 
 export default function AboutMe({
   userProfile,
@@ -33,6 +34,7 @@ export default function AboutMe({
         tags={undefined}
         onUpdateProfilePicture={onUpdateProfilePicture}
       ></AboutCard>
+
       <Box className={s.rightCol}>
         {(data?.Studio?.Location || data?.Studio?.Text) && (
           <MyArtStudioCard data={data?.Studio}></MyArtStudioCard>
