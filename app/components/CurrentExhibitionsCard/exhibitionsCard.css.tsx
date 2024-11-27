@@ -1,28 +1,28 @@
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 export const styles = makeStyles((theme) =>
   createStyles({
     exhibition: {
       display: "flex",
-      marginBottom: "10px"
+      marginBottom: "10px",
     },
     textContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: theme.spacing(0)
+      display: "flex",
+      flexDirection: "column",
+      gap: theme.spacing(0),
     },
     datesRow: {
       display: "flex",
       flexDirection: "row",
-      alignItems: "center"
+      alignItems: "center",
     },
     icon: {
       overflow: "visible",
-      marginRight: "5px"
+      marginRight: "5px",
     },
     dates: {
       fontStyle: "italic",
-      color: "grey"
+      color: "grey",
     },
     location: {
       marginLeft: theme.spacing(-0.2),
@@ -32,10 +32,10 @@ export const styles = makeStyles((theme) =>
     },
     locationText: {
       fontStyle: "italic",
-      marginBottom: '1px'
+      marginBottom: "1px",
     },
     displayNone: {
-      display: 'none'
-    }
-  }),
+      display: "none",
+    },
+  })
 );

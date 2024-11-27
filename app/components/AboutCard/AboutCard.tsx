@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState, Fragment } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  Fragment,
+} from "react";
 import {
   Avatar,
   Box,
@@ -15,6 +21,7 @@ import InspiredByCard from "../InspiredByCard/InspiredByCard";
 import { isNullOrUndefined } from "../../utils/util";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 
 export default function AboutCard({
   data,
@@ -122,34 +129,48 @@ export default function AboutCard({
                       )}
                     </div>
                   )}
-                  {data?.ProfilePicture && (
-                    <div
-                      className={s.ChangeProfilePicture}
-                      onClick={() => fileInput.current.click()}
-                    >
-                      {isMyProfile && (
-                        <div>
-                          <button className={s.profilePicBtn}>
-                            {t("profile:changeProfilePicture")}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    {data?.ProfilePicture && (
+                      <div
+                        className={s.ChangeProfilePicture}
+                        onClick={() => fileInput.current.click()}
+                      >
+                        {isMyProfile && (
+                          <div>
+                            <button className={s.profilePicBtn}>
+                              {t("profile:changeProfilePicture")}
 
-                            <input
-                              ref={fileInput}
-                              onChange={handleFileUpload}
-                              type="file"
-                              style={{ display: "none" }}
-                              multiple={false}
-                            />
-                            {isMyProfile && (
-                              <AddCircleIcon
-                                style={{ margin: "5px" }}
-                                color="primary"
+                              <input
+                                ref={fileInput}
+                                onChange={handleFileUpload}
+                                type="file"
+                                style={{ display: "none" }}
+                                multiple={false}
                               />
-                            )}
-                          </button>
-                        </div>
+                              {isMyProfile && (
+                                <AddCircleIcon
+                                  style={{ margin: "5px" }}
+                                  color="primary"
+                                />
+                              )}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    <div style={{ marginBottom: "10px" }}>
+                      {isMyProfile && (
+                        <EditProfileDialog userProfile={data} isButton={true} />
                       )}
                     </div>
-                  )}
+                  </div>
                   <div>
                     <div className={s.textContainer}>
                       {data?.Title && (
