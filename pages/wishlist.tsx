@@ -32,6 +32,7 @@ import LikeArtworkButton from "../app/components/Button/LikeArtworkButton";
 import { useGetUserProfileArtwork } from "../app/hooks/dataFetching/UserProfile";
 import Link from "next/link";
 import Image from "next/image";
+
 export default function Wishlist({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation([
@@ -69,14 +70,11 @@ export default function Wishlist({ navBarItems }) {
     setPurchaseRequestDialogOpen(true);
   }
   useEffect(() => {
-    console.log(favoriteArtworks);
-  }, [favoriteArtworks]);
-  useEffect(() => {
     async function fetchArtworks() {
       setLoading(true);
       try {
         const artworks = await Promise.all(
-          favoriteIds.map(async (artworkId) => {
+          [...favoriteIds].reverse().map(async (artworkId) => {
             const response = await fetch(
               `${apiBaseUrl}/api/Artworks/${artworkId}`
             );
