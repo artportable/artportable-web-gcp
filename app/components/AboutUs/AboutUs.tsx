@@ -35,7 +35,7 @@ export default function AboutMe() {
     {
       name: "Johan Höök",
       title: "Business Development & Founder",
-      image: "/staff/artportable_johan.jpg",
+      image: "/staff/artportable_johan.jpeg",
       email: "johan@artportable.com",
     },
     {
