@@ -170,13 +170,15 @@ export default function AboutCard({
                           )}
                         </div>
                       )}
-                      {isMyProfile && (
-                        <EditProfileDialog
-                          userProfile={data}
-                          isButton={true}
-                          buttonStyle={{}}
-                        />
-                      )}
+                      <div style={{ marginBottom: "10px" }}>
+                        {isMyProfile && (
+                          <EditProfileDialog
+                            userProfile={data}
+                            isButton={true}
+                            buttonStyle={{}}
+                          />
+                        )}
+                      </div>
                     </div>
                     <div>
                       <div className={s.textContainer}>
