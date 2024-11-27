@@ -28,7 +28,7 @@ import { styles as sharedStyles } from "../../../styles/shared.css";
 import LikeArtworkButton from "../Button/LikeArtworkButton";
 import { getUserProfileSummaryUri } from "../../hooks/dataFetching/UserProfile";
 import { useGetUserProfileSummary } from "../../hooks/dataFetching/UserProfile";
-
+import Image from "next/image";
 export default function ArtworkListItem({
   artwork,
   onLikeClick,
@@ -198,12 +198,13 @@ export default function ArtworkListItem({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a>
-            <img
+            <Image
               width={width}
               height={height}
               alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
+              quality={20}
             />
           </a>
         </Link>

@@ -282,8 +282,8 @@ export default function DiscoverArt({
                         return (
                           <ArtworkListItem
                             key={image.Name}
-                            width={smScreenOrSmaller ? "100%" : image.Width}
-                            height={smScreenOrSmaller ? "auto" : image.Height}
+                            width={image.Width}
+                            height={image.Height}
                             artwork={artwork}
                             onPurchaseRequestClick={onPurchaseRequestClick}
                             purchaseRequestAction={
