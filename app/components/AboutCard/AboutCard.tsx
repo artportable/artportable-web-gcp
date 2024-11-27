@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  Fragment,
-} from "react";
+import React, { useContext, useEffect, useRef, useState, Fragment } from "react";
 import {
   Avatar,
   Box,
@@ -21,7 +15,6 @@ import InspiredByCard from "../InspiredByCard/InspiredByCard";
 import { isNullOrUndefined } from "../../utils/util";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import EditProfileDialog from "../EditProfileDialog/EditProfileDialog";
 
 export default function AboutCard({
   data,
@@ -72,150 +65,132 @@ export default function AboutCard({
       <div style={{ marginTop: "2vh" }}>
         <div>
           <div
-            style={{
-              display: "flex",
-              marginTop: "20px",
-              width: "80vw",
-            }}
+            style={{ display: "flex", marginTop: "20px" }}
             className={s.aboutTextProfilePic}
           >
-            <div>
-              {data && (
+            {data && (
+              <div>
                 <div>
-                  <div>
-                    {data?.ProfilePicture && (
-                      <img
-                        alt="profile picture"
-                        className={s.imgClass}
-                        src={`${bucketUrl}${userProfilePicture}`}
-                      ></img>
-                    )}
-                    {!data?.ProfilePicture && (
-                      <div className={s.noProfilePic}>
-                        <div className={s.noPicBox}>
-                          {t("profile:NoProfilePicSet")}
-                        </div>
-                        {isMyProfile && (
-                          <div
+                  {data?.ProfilePicture && (
+                    <img
+                      alt="profile picture"
+                      className={s.imgClass}
+                      src={`${bucketUrl}${userProfilePicture}`}
+                    ></img>
+                  )}
+                  {!data?.ProfilePicture && (
+                    <div className={s.noProfilePic}>
+                      <div className={s.noPicBox}>
+                        {t("profile:NoProfilePicSet")}
+                      </div>
+                      {isMyProfile && (
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            margin: "10px",
+                          }}
+                        >
+                          <button
                             style={{
+                              color: "black",
+                              border: "1px solid black",
+                              borderRadius: "20px",
                               display: "flex",
-                              justifyContent: "center",
-                              margin: "10px",
+                              alignItems: "center",
+                              textAlign: "center",
+                              backgroundColor: "transparent",
+                              cursor: "pointer",
                             }}
                           >
-                            <button
-                              style={{
-                                color: "black",
-                                border: "1px solid black",
-                                borderRadius: "20px",
-                                display: "flex",
-                                alignItems: "center",
-                                textAlign: "center",
-                                backgroundColor: "transparent",
-                                cursor: "pointer",
-                              }}
-                            >
-                              <div>{t("profile:addProfilePicture")}</div>
+                            <div>{t("profile:addProfilePicture")}</div>
 
-                              <input
-                                ref={fileInput}
-                                onChange={handleFileUpload}
-                                type="file"
-                                style={{ display: "none" }}
-                                multiple={false}
-                              />
+                            <input
+                              ref={fileInput}
+                              onChange={handleFileUpload}
+                              type="file"
+                              style={{ display: "none" }}
+                              multiple={false}
+                            />
 
-                              <AddCircleIcon
-                                color="primary"
-                                onClick={() => fileInput.current.click()}
-                              />
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-
+                            <AddCircleIcon
+                              color="primary"
+                              onClick={() => fileInput.current.click()}
+                            />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {data?.ProfilePicture && (
                     <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
+                      className={s.ChangeProfilePicture}
+                      onClick={() => fileInput.current.click()}
                     >
-                      {data?.ProfilePicture && (
-                        <div
-                          className={s.ChangeProfilePicture}
-                          onClick={() => fileInput.current.click()}
-                        >
-                          {isMyProfile && (
-                            <div>
-                              <button className={s.profilePicBtn}>
-                                {t("profile:changeProfilePicture")}
+                      {isMyProfile && (
+                        <div>
+                          <button className={s.profilePicBtn}>
+                            {t("profile:changeProfilePicture")}
 
-                                <input
-                                  ref={fileInput}
-                                  onChange={handleFileUpload}
-                                  type="file"
-                                  style={{ display: "none" }}
-                                  multiple={false}
-                                />
-                                {isMyProfile && (
-                                  <AddCircleIcon
-                                    style={{ margin: "5px" }}
-                                    color="primary"
-                                  />
-                                )}
-                              </button>
-                            </div>
+                            <input
+                              ref={fileInput}
+                              onChange={handleFileUpload}
+                              type="file"
+                              style={{ display: "none" }}
+                              multiple={false}
+                            />
+                            {isMyProfile && (
+                              <AddCircleIcon
+                                style={{ margin: "5px" }}
+                                color="primary"
+                              />
+                            )}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div>
+                    <div className={s.textContainer}>
+                      {data?.Title && (
+                        <Typography>{`${data?.Title}`}</Typography>
+                      )}
+                      <div>
+                        {/*
+                        Headline now displayed in the Hero ProfileNew.tsx
+                        {data?.Headline && (
+                          <Typography>{`${data?.Headline}`}</Typography>
+                        )}
+                        */}
+                      </div>
+
+                      {data?.City ? (
+                        <Typography>
+                          {`${data?.Country}, `}
+                          {`${data?.State}, `} {`${data?.City}`}
+                        </Typography>
+                      ) : (
+                        <div>
+                          {data?.Location ? (
+                            <Typography>{`${data?.Location}`}</Typography>
+                          ) : (
+                            <div></div>
                           )}
                         </div>
                       )}
-                      <div style={{ marginBottom: "10px" }}>
-                        {isMyProfile && (
-                          <EditProfileDialog
-                            userProfile={data}
-                            isButton={true}
-                            buttonStyle={{}}
-                          />
-                        )}
-                      </div>
                     </div>
-                    <div>
-                      <div className={s.textContainer}>
-                        {data?.Title && (
-                          <Typography>{`${data?.Title}`}</Typography>
-                        )}
-                        <div></div>
-
-                        {data?.City ? (
-                          <Typography>
-                            {`${data?.Country}, `}
-                            {`${data?.State}, `} {`${data?.City}`}
-                          </Typography>
-                        ) : (
-                          <div>
-                            {data?.Location ? (
-                              <Typography>{`${data?.Location}`}</Typography>
-                            ) : (
-                              <div></div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                      <div style={{ marginTop: "5px" }}>
-                        {data?.SocialMedia && (
-                          <SocialNetworksCard
-                            data={data?.SocialMedia}
-                          ></SocialNetworksCard>
-                        )}
-                      </div>
+                    <div style={{ marginTop: "5px" }}>
+                      {data?.SocialMedia && (
+                        <SocialNetworksCard
+                          data={data?.SocialMedia}
+                        ></SocialNetworksCard>
+                      )}
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
-
-            <div className={s.bioContainer}>
+              </div>
+            )}
+            <div style={{ marginLeft: "30px" }}>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 {!data?.About && (
                   <p style={{ display: "flex", justifyContent: "center" }}>
@@ -226,6 +201,16 @@ export default function AboutCard({
 
               {data?.About && (
                 <div className={s.bioText}>
+                  <b>
+                    {t("profile:aboutArtist")}{" "}
+                    <span>
+                      {data?.Name} {data?.Surname && data?.Surname}
+                    </span>
+                    :
+                  </b>
+                  <Divider></Divider>
+                  <br />
+
                   {renderWithLineBreaks(data?.About)}
                   <Divider style={{ marginTop: "20px" }}></Divider>
                   {data?.InspiredBy && (
