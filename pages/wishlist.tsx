@@ -145,7 +145,7 @@ export default function Wishlist({ navBarItems }) {
                         height={200}
                         src={`${bucketBaseUrl}${artwork?.PrimaryFile.Name}`}
                         alt="favorite Artwork"
-                        quality={30}
+                        quality={10}
                       />
                     </a>
                     <div className={s.link}>
