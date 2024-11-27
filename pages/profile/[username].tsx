@@ -421,12 +421,10 @@ export default function Profile(props) {
       ? likedArtTabIndex
       : 3;
 
-  const fullWidth = activeTab === 1;
-
   return (
     <Main
       navBarItems={navBarItems}
-      fullWidth={fullWidth}
+      fullWidth={false}
       noHeaderPadding={true}
       paddingForTrialBanner={!isSignedIn.value}
     >
