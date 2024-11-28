@@ -29,11 +29,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     imgWrapper: {
-      backgroundColor: "white",
+      backgroundColor: "#ebebeb",
       width: "100vw",
       height: "50%",
       [theme.breakpoints.up("md")]: {
-        backgroundColor: "white",
+        backgroundColor: "#ebebeb",
         width: "50vw",
         height: "100%",
       },
@@ -175,7 +175,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: "absolute",
       bottom: "0",
       left: "0",
-      color: "black",
+      color: "white",
       marginLeft: "10px",
       fontSize: "8px",
       [theme.breakpoints.up("md")]: {
