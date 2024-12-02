@@ -46,5 +46,6 @@
   "digitallySigned": "Digitalt signerad av konstnären",
   "frame": "Ram",
   "notIncluded": "Ingår ej",
-  "included": "Ingår"
+  "included": "Ingår",
+  "digitalAI": "En viktig del av att nå rätt publik för ditt konstverk är att tagga det korrekt. Om du har använt någon form av AI-verktyg eller promt i skapandet, se till att inkludera taggarna Digital och AI. Detta ökar tydligheten för konstintresserade och gör det lättare för dem att hitta ditt verk."
 }

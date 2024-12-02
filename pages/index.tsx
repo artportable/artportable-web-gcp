@@ -65,6 +65,7 @@ import DiscoverAafArtTab from "../app/components/DiscoverAafArt/DiscoverAafArt";
 import Button from "../app/components/Button/Button";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { KeycloakInstance } from "keycloak-js";
+import DiscoverDigitalTab from "../app/components/DiscoverDigitalArt/DiscoverDigitalArtTab";
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -297,6 +298,11 @@ export default function DiscoverPage({ navBarItems }) {
                 label={t("discover:Hus & Hem")}
                 {...a11yProps(t("discover:Hus & Hem"))}
               />
+              <Tab
+                className={s.text}
+                label={t("discover:digital")}
+                {...a11yProps(t("discover:digital"))}
+              />
 
               {/*     <Tab
                 className={s.text}
@@ -385,8 +391,19 @@ export default function DiscoverPage({ navBarItems }) {
                   activeTab={activeTab}
                 />
               </TabPanel>
-
               <TabPanel value={activeTab} index={6}>
+                <DiscoverDigitalTab
+                  socialId={socialId.value}
+                  rowWidth={rowWidth}
+                  loadMore={loadMoreArtworks}
+                  loadImages={loadImages}
+                  stopLoadImages={stopLoadImages}
+                  activeTab={activeTab}
+                  header={t("discover:digital")}
+                />
+              </TabPanel>
+
+              <TabPanel value={activeTab} index={7}>
                 <DiscoverMyLikedArtTab
                   socialId={socialId.value}
                   rowWidth={rowWidth}

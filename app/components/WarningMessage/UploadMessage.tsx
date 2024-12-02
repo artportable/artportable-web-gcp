@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 
 import styles from "./warningMessage.css";
 
-export default function Button(props) {
+export default function UploadMessage(props) {
   const s = styles();
   const { t } = useTranslation(["upload"]);
 
@@ -16,15 +16,7 @@ export default function Button(props) {
         style={{ fontSize: 24 }}
       ></ErrorOutlineIcon>
       <div>
-        <Typography className={s.informationText}>
-          {t("informationOne")}
-        </Typography>
-        <Typography className={s.informationText}>
-          {t("informationTwo")}
-        </Typography>
-        <Typography className={s.informationText}>
-          {t("informationThree")}
-        </Typography>
+        <Typography className={s.informationText}>{t("digitalAI")}</Typography>
       </div>
     </div>
   );

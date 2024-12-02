@@ -16,6 +16,7 @@ import {
 import TagChip from "../TagChip/TagChip";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
+import UploadMessage from "../WarningMessage/UploadMessage";
 
 export default function UploadForm({
   title,
@@ -204,6 +205,7 @@ export default function UploadForm({
       </Box>
 
       <Box className={s.tags}>
+        <UploadMessage></UploadMessage>
         <Typography variant="h4" className={s.tagTitle}>
           {t("tags")}
         </Typography>
