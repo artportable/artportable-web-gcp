@@ -189,7 +189,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@The.Fleurs">
+                  <a href="https://artportable.com/en/art/083d6409-b618-4b39-a417-db6050a3167d">
                     <div
                       style={{
                         position: "relative",
@@ -198,19 +198,27 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/fleur.jpeg"}
+                        src={"/images/firstsnow.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
                       />
                       <div className={s.imageTitle}>
-                        <p style={{ color: "white" }}>The Fleurs</p>
+                        <p
+                          style={{
+                            backgroundColor: "white",
+                            padding: "2px",
+                            color: "black",
+                          }}
+                        >
+                          Marie Sandell
+                        </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/profile/@The.Fleurs">
+                  <a href="https://artportable.com/en/art/083d6409-b618-4b39-a417-db6050a3167d">
                     <div
                       style={{
                         position: "relative",
@@ -219,14 +227,22 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/fleur.jpeg"}
+                        src={"/images/firstsnow.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
                       />
                       <div className={s.imageTitle}>
-                        <p style={{ color: "white" }}>The Fleurs</p>
+                        <p
+                          style={{
+                            backgroundColor: "white",
+                            padding: "2px",
+                            color: "black",
+                          }}
+                        >
+                          Marie Sandell
+                        </p>
                       </div>
                     </div>
                   </a>
@@ -242,7 +258,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/profile/@The.Fleurs"
+                    href="https://artportable.com/profile/@marie.sandell"
                   >
                     {t("seeMore")}
                   </a>
