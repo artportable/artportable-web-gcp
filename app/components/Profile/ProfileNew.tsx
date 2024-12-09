@@ -88,9 +88,18 @@ export default function ProfileNew({
   const followersData = useGetFollowers(data?.Username, followersOpen);
   const followingData = useGetFollowing(data?.Username, followingOpen);
   const connectionscountData = useGetConnectionsCount(data?.Username);
+  const [advert, setAdvert] = useState(false);
   const handleClick = () => {
-    router.push("https://payment.artportable.com/b/aEU6oRd0Gfsh5OM6rD");
+    setAdvert(true);
+    // router.push("https://payment.artportable.com/b/aEU6oRd0Gfsh5OM6rD");
   };
+
+  const handleClose = () => {
+    setAdvert(!advert);
+    console.log("clicked");
+    console.log(advert);
+  };
+
   const { isSignedIn, email, username, socialId, membership, phone } =
     useContext(UserContext);
   const token = useContext(TokenContext);
@@ -396,9 +405,32 @@ export default function ProfileNew({
                 <Spacer y={24} />
               </DialogContent>
             </Dialog>
+
             <Button onClick={handleClick} className={s.annonsera}>
               {t("common:words.Annonsera")}
             </Button>
+            <Dialog
+              className={s.headlineModal}
+              maxWidth="md"
+              aria-labelledby="artwork-modal-title"
+              aria-describedby="artwork-modal-description"
+              open={advert}
+            >
+              <DialogTitle>{t("profile:editHeadline")}</DialogTitle>
+              <div onClick={handleClose}>Close</div>
+              <DialogContent
+                style={{
+                  textAlign: "right",
+                }}
+              >
+                {`${headline.length < 100 ? headline.length : 100}/100`}
+              </DialogContent>
+              <DialogContent
+                style={{
+                  textAlign: "right",
+                }}
+              ></DialogContent>
+            </Dialog>
             <Spacer y={isMobile ? 24 : 80} />
           </>
         )}
