@@ -96,8 +96,6 @@ export default function ProfileNew({
 
   const handleClose = () => {
     setAdvert(!advert);
-    console.log("clicked");
-    console.log(advert);
   };
 
   const { isSignedIn, email, username, socialId, membership, phone } =
