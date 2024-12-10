@@ -18,12 +18,23 @@ export const styles = makeStyles((theme: Theme) =>
     },
     annonsera: {
       marginTop: "10px",
-      backgroundColor: "#FFDA7A",
-      borderRadius: "20px",
-      color: "black",
+      backgroundColor: "red",
+      borderRadius: "10px",
+      color: "white",
+      width: "auto",
+      fontSize: "14px",
+      fontWeight: "bold",
       "&:hover": {
         backgroundColor: "#D6A407",
       },
+      [theme.breakpoints.up("md")]: {
+        width: "20vw",
+      },
+    },
+
+    mobileImage: {
+      maxWidth: "90%",
+      objectFit: "contain",
     },
     followFollowersArtworks: {
       display: "flex",
@@ -44,6 +55,10 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
+    advertModal: {
+      margin: "0 auto",
+      height: "80vh",
+    },
     fullName: {
       width: "100%",
       textAlign: "center",
@@ -54,6 +69,29 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         fontSize: "50px",
         lineHeight: "50px",
+      },
+    },
+    buyButton: {
+      fontSize: "14px",
+      color: "white",
+      backgroundColor: "red",
+      width: "50%",
+      margin: "0 auto",
+      borderRadius: "20px",
+      "&:hover": {
+        backgroundColor: "#D6A407",
+      },
+    },
+
+    closeButton: {
+      fontSize: "14px",
+      color: "black",
+      backgroundColor: "transparent",
+      width: "50%",
+      margin: "0 auto",
+      borderRadius: "20px",
+      "&:hover": {
+        backgroundColor: "transparent",
       },
     },
     headline: {

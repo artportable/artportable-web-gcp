@@ -26,7 +26,10 @@
     "or": "or",
     "email": "email",
     "thanks": "Thanks!",
-    "Annonsera": "Advertise"
+    "Annonsera": "Advertise",
+    "christmas": "Christmas campaign",
+    "husohem": "Publish 3 works on husohem.se",
+    "getStarted": "Get started"
   },
   "timeUnit": {
     "year": "y",

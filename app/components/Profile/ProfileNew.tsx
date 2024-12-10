@@ -58,7 +58,7 @@ import { styles } from "./profilenew.css";
 import router, { useRouter } from "next/router";
 import MessageRequestDialog from "../MessageRequestDialog/MessageRequestDialog";
 import { UrlObject } from "url";
-
+import Image from "next/image";
 export default function ProfileNew({
   userProfileUrl,
   userProfile,
@@ -187,6 +187,10 @@ export default function ProfileNew({
   }, [connectionscountData?.data?.followers]);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const handlePush = () => {
+    router.push("https://payment.artportable.com/b/bIY8wZd0G5RH4KI6st");
+  };
 
   const updateUser = async (values) => {
     try {
@@ -407,24 +411,63 @@ export default function ProfileNew({
             </Dialog>
 
             <Button onClick={handleClick} className={s.annonsera}>
-              {t("common:words.Annonsera")}
+              {t("common:words.christmas")} <br />
+              {t("common:words.husohem")}
             </Button>
             <Dialog
-              className={s.headlineModal}
-              maxWidth="md"
+              className={s.advertModal}
+              fullWidth={true}
+              maxWidth={isMobile ? "xs" : "md"}
               aria-labelledby="artwork-modal-title"
               aria-describedby="artwork-modal-description"
               open={advert}
+              PaperProps={{
+                style: {
+                  height: isMobile ? "65vh" : "90vh",
+                  width: isMobile ? "90vw" : "90vw",
+                  margin: isMobile ? "5vw auto" : "0 auto",
+                },
+              }}
             >
-              <DialogTitle>{t("profile:editHeadline")}</DialogTitle>
-              <div onClick={handleClose}>Close</div>
-              <DialogContent
+              <div style={{ marginBottom: "50px" }}></div>
+              {isMobile ? (
+                <Image
+                  src="/images/husohemMobile.png"
+                  alt="artworkimage"
+                  width={500}
+                  height={600}
+                  quality={100}
+                  unoptimized
+                  className={s.mobileImage}
+                />
+              ) : (
+                <Image
+                  src={"/images/husohemsv.png"}
+                  alt="artworkimage"
+                  width={300}
+                  height={400}
+                  quality={100}
+                  objectFit="contain"
+                  unoptimized
+                  style={{ maxWidth: "80%", height: "auto", margin: "0 auto" }}
+                />
+              )}
+              <div
                 style={{
-                  textAlign: "right",
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "20px",
+                  justifyContent: "space-between",
                 }}
               >
-                {`${headline.length < 100 ? headline.length : 100}/100`}
-              </DialogContent>
+                <Button className={s.closeButton} onClick={handleClose}>
+                  {t("common:words.close")}
+                </Button>
+                <Button className={s.buyButton} onClick={handlePush}>
+                  {t("common:words.getStarted")}
+                </Button>
+              </div>
+
               <DialogContent
                 style={{
                   textAlign: "right",
