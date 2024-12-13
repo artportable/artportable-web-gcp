@@ -4,9 +4,11 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       minWidth: "240px",
+      width: "100vw",
       backgroundColor: "var(--background-color)",
       [theme.breakpoints.up("md")]: {
         minWidth: "300px",
+        width: "20vw",
       },
     },
     nested: {
@@ -31,11 +33,7 @@ export const styles = makeStyles((theme: Theme) =>
     spacingBottom: {
       paddingBottom: theme.spacing(5),
     },
-    // [theme.breakpoints.up('sm')]: {
-    //   languageElement: {
-    //     display: 'none',
-    //   },
-    // },
+
     [theme.breakpoints.up("mdPlus")]: {
       articleLink: {
         display: "none",

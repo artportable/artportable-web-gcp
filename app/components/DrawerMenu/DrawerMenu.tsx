@@ -211,11 +211,12 @@ export default function DrawerMenu({
       anchor="right"
       open={open}
       onClose={() => close()}
+      variant="persistent"
       ModalProps={{
         keepMounted: true,
-        disableAutoFocus: true, // Add this line
-        disableEnforceFocus: true, // Optional: Prevents focus from being trapped inside the modal
-        disableRestoreFocus: true,
+        disableAutoFocus: true,
+        disableEnforceFocus: false,
+        disableRestoreFocus: false,
       }}
     >
       <div className={s.closeButtonFlex}>
