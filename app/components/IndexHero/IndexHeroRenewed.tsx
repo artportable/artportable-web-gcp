@@ -179,7 +179,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/akryl"
+                    href="https://artportable.com/akvarell"
                   >
                     {t("seeMore")}
                   </a>
