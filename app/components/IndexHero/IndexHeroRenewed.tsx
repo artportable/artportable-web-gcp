@@ -110,7 +110,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@irine">
+                  <a href="https://artportable.com/en/profile/@hedberg">
                     <div
                       style={{
                         position: "relative",
@@ -119,7 +119,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/slide3.jpeg"}
+                        src={"/images/andreas.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -133,13 +133,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Irina Mylnikova
+                          Andreas Hedberg
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/profile/@irine">
+                  <a href="https://artportable.com/en/profile/@hedberg">
                     <div
                       style={{
                         position: "relative",
@@ -148,7 +148,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/slide3.jpeg"}
+                        src={"/images/andreas.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -162,7 +162,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Irina Mylnikova
+                          Andreas Hedberg
                         </p>
                       </div>
                     </div>
