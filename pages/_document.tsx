@@ -34,7 +34,7 @@ class MyDocument extends Document {
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
           />
 
-          <link rel="preload" as="image" href="/images/unn1.jpeg" />
+          <link rel="preload" as="image" href="/images/aylin.jpeg" />
           <link rel="preload" as="image" href="/images/fleur.jpeg" />
           <link rel="preload" as="image" href="/images/slide3.jpeg" />
 

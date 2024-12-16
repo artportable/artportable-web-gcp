@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 12000,
+          delay: 200000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/d4b04948-d607-4fce-ba6a-a2ee8c92a6f0">
+                <a href="https://artportable.com/art/1872cd35-3e1e-4a1d-a089-e42d3697be00">
                   <div
                     style={{
                       position: "relative",
@@ -51,7 +51,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        isTinyDevice ? "/images/pool.jpeg" : "/images/pool.jpeg"
+                        isTinyDevice
+                          ? "/images/aylin.jpeg"
+                          : "/images/aylin.jpeg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -66,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Marcus Cederberg,&nbsp;
+                        Aylin Eriten,&nbsp;
                       </p>
                       <p
                         style={{
@@ -76,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Cool Pool
+                        Macaron Tower
                       </p>
                     </div>
                   </div>
