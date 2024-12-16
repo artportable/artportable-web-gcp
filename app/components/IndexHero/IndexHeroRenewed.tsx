@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 200000,
+          delay: 140000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -191,7 +191,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/art/083d6409-b618-4b39-a417-db6050a3167d">
+                  <a href="https://artportable.com/art/22cfbf2a-a01d-4c88-8ec4-5a6c34bc52e7">
                     <div
                       style={{
                         position: "relative",
@@ -200,7 +200,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/firstsnow.jpeg"}
+                        src={"/images/selander.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -214,13 +214,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Marie Sandell
+                          Lena Selander
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/art/083d6409-b618-4b39-a417-db6050a3167d">
+                  <a href="https://artportable.com/art/22cfbf2a-a01d-4c88-8ec4-5a6c34bc52e7">
                     <div
                       style={{
                         position: "relative",
@@ -229,7 +229,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/firstsnow.jpeg"}
+                        src={"/images/selander.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -243,7 +243,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Marie Sandell
+                          Lena Selander
                         </p>
                       </div>
                     </div>
@@ -260,7 +260,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/profile/@marie.sandell"
+                    href="https://artportable.com/profile/@lena.selander"
                   >
                     {t("seeMore")}
                   </a>
