@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/1872cd35-3e1e-4a1d-a089-e42d3697be00">
+                <a href="https://artportable.com/art/079484ed-1052-48b1-bf74-12723d77dace">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/aylin.jpeg"
-                          : "/images/aylin.jpeg"
+                          ? "/images/sepideh.jpeg"
+                          : "/images/sepideh.jpeg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -68,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Aylin Eriten,&nbsp;
+                        Sepideh Sarrafzadeh,&nbsp;
                       </p>
                       <p
                         style={{
@@ -78,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Macaron Tower
+                        2409-30
                       </p>
                     </div>
                   </div>
