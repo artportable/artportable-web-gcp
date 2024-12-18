@@ -50,11 +50,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     }}
                   >
                     <Image
-                      src={
-                        isTinyDevice
-                          ? "/images/sepideh.jpeg"
-                          : "/images/sepideh.jpeg"
-                      }
+                      src={isTinyDevice ? "/images/2.png" : "/images/2.png"}
                       alt="konst"
                       loading="lazy"
                       layout="fill"
