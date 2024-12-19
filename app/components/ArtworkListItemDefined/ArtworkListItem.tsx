@@ -54,9 +54,6 @@ export default function ArtworkListItem({
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
   const profileUser = useGetUserProfileSummary(artwork?.Username);
-  useEffect(() => {
-    console.log(profileUser?.data?.City);
-  }, []);
 
   // TODO: Use getFormatter function in utils/formatUtils.tsx instead.
   function getFormatter(

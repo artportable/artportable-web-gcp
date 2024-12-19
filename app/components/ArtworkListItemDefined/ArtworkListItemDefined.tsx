@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { i18n, useTranslation } from "next-i18next";
 import { styles } from "./artworkListItemDefined.css";
-import { styles as sharedStyles } from '../../../styles/shared.css'
+import { styles as sharedStyles } from "../../../styles/shared.css";
 import { useEffect } from "react";
-import clsx from 'clsx'
+import clsx from "clsx";
 import { UserContext } from "../../contexts/user-context";
 import {
   ActionType,
