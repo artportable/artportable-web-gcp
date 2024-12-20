@@ -106,7 +106,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@hedberg">
+                  <a href="https://artportable.com/en/profile/@karjoh">
                     <div
                       style={{
                         position: "relative",
@@ -115,7 +115,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/andreas.jpeg"}
+                        src={"/images/karin.png"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -129,13 +129,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Andreas Hedberg
+                          Karin Johansson
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/profile/@hedberg">
+                  <a href="https://artportable.com/en/profile/@karjoh">
                     <div
                       style={{
                         position: "relative",
@@ -144,7 +144,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/andreas.jpeg"}
+                        src={"/images/karin.png"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -158,7 +158,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Andreas Hedberg
+                          Karin Johansson
                         </p>
                       </div>
                     </div>
