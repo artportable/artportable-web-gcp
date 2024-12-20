@@ -205,6 +205,10 @@ export default function CheckoutForm({ email, fullName, plan }) {
     }
   }, [countdown]);
 
+  useEffect(() => {
+    console.log(plan?.productKey);
+  }, []);
+
   const handleSuccessClose = () => {
     confirmedPortfolio();
     router.push("/");
@@ -238,7 +242,11 @@ export default function CheckoutForm({ email, fullName, plan }) {
         <Box fontSize="1rem" fontWeight="bold">
           {t("total")}
         </Box>
-        <Box>{t("newPlan")}`</Box>
+        {plan?.productKey === "portfolioPremium" ? (
+          <Box>{t("newPlanPremium")}</Box>
+        ) : (
+          <Box>{t("newPlan")}`</Box>
+        )}
       </Box>
       <Box className={styles.divider}></Box>
       <Box

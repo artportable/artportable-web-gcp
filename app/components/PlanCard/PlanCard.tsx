@@ -297,7 +297,7 @@ export default function PlanCard({
               </Typography>
               <Typography variant="body1">{planSubtitle}</Typography>
               <Typography variant="h3" style={{ textAlign: "center" }}>
-                <Box>{planTrial}</Box>
+                {plan?.productKey === "portfolio" && <Box>{planTrial}</Box>}
               </Typography>
 
               <Box className={s.planPrice}>

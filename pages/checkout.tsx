@@ -97,7 +97,7 @@ export default function Checkout() {
               <Typography variant="h1" className={s.headlineMobile}>
                 {t("fewSecondsPremium")}
               </Typography>
-              <Typography variant="h5">{t("moreSeconds")}</Typography>
+              {/* <Typography variant="h5">{t("moreSeconds")}</Typography> */}
             </div>
           )}
           <Typography className={s.fillInText}>{t("pleaseFill")}</Typography>
