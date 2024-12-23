@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/079484ed-1052-48b1-bf74-12723d77dace">
+                <a href="https://artportable.com/art/0812e240-bcd5-4433-880f-b22029d725ee">
                   <div
                     style={{
                       position: "relative",
@@ -50,7 +50,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     }}
                   >
                     <Image
-                      src={isTinyDevice ? "/images/2.png" : "/images/2.png"}
+                      src={
+                        isTinyDevice
+                          ? "/images/linda-2.png"
+                          : "/images/linda-2.png"
+                      }
                       alt="konst"
                       loading="lazy"
                       layout="fill"
@@ -64,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Sepideh Sarrafzadeh,&nbsp;
+                        Linda Jakobsson,&nbsp;
                       </p>
                       <p
                         style={{
@@ -74,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        2409-30
+                        Portrait of a dress
                       </p>
                     </div>
                   </div>
