@@ -229,7 +229,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/selander.jpeg"}
+                        src={"/images/image3.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
