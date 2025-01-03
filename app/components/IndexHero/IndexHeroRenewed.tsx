@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/25900d1f-47ce-4ec6-9ed9-d20831384906">
+                <a href="https://artportable.com/art/705a291d-752c-4ad7-a9cf-421f40e5c304">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/image1.jpeg"
-                          : "/images/image1.jpeg"
+                          ? "/images/image5.png"
+                          : "/images/image5.png"
                       }
                       alt="konst"
                       loading="lazy"
@@ -68,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Katarina Eilertsen,&nbsp;
+                        Andreas Johansson,&nbsp;
                       </p>
                       <p
                         style={{
@@ -78,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Byen i turkis
+                        The king
                       </p>
                     </div>
                   </div>
