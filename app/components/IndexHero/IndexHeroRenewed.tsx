@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/0812e240-bcd5-4433-880f-b22029d725ee">
+                <a href="https://artportable.com/art/25900d1f-47ce-4ec6-9ed9-d20831384906">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/linda-2.png"
-                          : "/images/linda-2.png"
+                          ? "/images/image1.jpeg"
+                          : "/images/image1.jpeg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -68,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Linda Jakobsson,&nbsp;
+                        Katarina Eilertsen,&nbsp;
                       </p>
                       <p
                         style={{
@@ -78,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Portrait of a dress
+                        Byen i turkis
                       </p>
                     </div>
                   </div>
@@ -110,7 +110,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@karjoh">
+                  <a href="https://artportable.com/en/profile/@norumgabriella">
                     <div
                       style={{
                         position: "relative",
@@ -119,7 +119,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/karin.png"}
+                        src={"/images/image2.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -133,13 +133,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Karin Johansson
+                          Gabriella Norum
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/profile/@karjoh">
+                  <a href="https://artportable.com/en/profile/@norumgabriella">
                     <div
                       style={{
                         position: "relative",
@@ -162,7 +162,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Karin Johansson
+                          Gabriella Norum
                         </p>
                       </div>
                     </div>
@@ -179,7 +179,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/akvarell"
+                    href="https://artportable.com/en/profile/@norumgabriella"
                   >
                     {t("seeMore")}
                   </a>
@@ -191,7 +191,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/art/22cfbf2a-a01d-4c88-8ec4-5a6c34bc52e7">
+                  <a href="https://artportable.com/art/c4bd9742-1f48-4541-b62b-63ee36351f21">
                     <div
                       style={{
                         position: "relative",
@@ -200,7 +200,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/selander.jpeg"}
+                        src={"/images/image3.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -214,13 +214,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Lena Selander
+                          Daniel Zausnig
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/art/22cfbf2a-a01d-4c88-8ec4-5a6c34bc52e7">
+                  <a href="https://artportable.com/art/c4bd9742-1f48-4541-b62b-63ee36351f21">
                     <div
                       style={{
                         position: "relative",
@@ -243,7 +243,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Lena Selander
+                          Daniel Zausnig
                         </p>
                       </div>
                     </div>
@@ -260,7 +260,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/profile/@lena.selander"
+                    href="https://artportable.com/profile/@danielzausnig"
                   >
                     {t("seeMore")}
                   </a>
