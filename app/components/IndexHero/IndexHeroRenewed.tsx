@@ -148,7 +148,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/karin.png"}
+                        src={"/images/image2.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
