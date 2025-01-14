@@ -49,7 +49,7 @@ export default function latest({ navBarItems }) {
           stopLoadImages={stopLoadImages}
           activeTab={1}
           header={t("discover:latestArt")}
-          page={"latest"}
+          page={""}
         />
       </Main>
     </>
