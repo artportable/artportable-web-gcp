@@ -539,23 +539,35 @@ export default function Header({ navBarItems }) {
           </div>
           <div className={s.titleWrapper}>
             <div className={s.titlesOnHeader}>
-              <Link href={"/latest"}>{t("latest")}</Link>
+              <Link href={"/latest"} passHref>
+                {t("latest")}
+              </Link>
               <br />
             </div>
             <div className={s.titlesOnHeader}>
-              <Link href={"/discover"}>{t("findArt")}</Link>
+              <Link href={"/discover"} passHref>
+                {t("findArt")}
+              </Link>
             </div>
             <div className={s.titlesOnHeader}>
-              <Link href={"/curated"}>{t("curatet")}</Link>
+              <Link href={"/curated"} passHref>
+                {t("curatet")}
+              </Link>
             </div>
             <div className={s.titlesOnHeader}>
-              <Link href={"/collaboration"}>{t("collaboration")}</Link>
+              <Link href={"/collaboration"} passHref>
+                {t("collaboration")}
+              </Link>
             </div>
             <div className={s.titlesOnHeader}>
-              <Link href={"/artists"}>{t("artists")}</Link>
+              <Link href={"/artists"} passHref>
+                {t("artists")}
+              </Link>
             </div>
             <div className={s.titlesOnHeader}>
-              <Link href={"/discover"}>{t("story")}</Link>
+              <Link href={"/newsroom"} passHref>
+                {t("story")}
+              </Link>
             </div>
             <div className={s.titlesOnHeader}>
               <Link href={`${t("header:storiesSlug")}`} passHref>

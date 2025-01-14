@@ -8,44 +8,24 @@ import { useContext, useState } from "react";
 import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
-import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
+import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 
-export default function latest({ navBarItems }) {
+export default function newsroom({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
-  const { t } = useTranslation(["header", "index"]);
+  const { t } = useTranslation(["header"]);
   const { locale } = useRouter();
   const { username, socialId, isSignedIn, membership } =
     useContext(UserContext);
 
-  const rowWidth = useMainWidth().wide;
-  const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
-
-  const loadImages = () => {
-    setLoadMoreArtworks(true);
-  };
-
-  const stopLoadImages = () => {
-    setLoadMoreArtworks(false);
-  };
-
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false} wide>
+      <Main navBarItems={navBarItems} fullWidth>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <DiscoverHighLightsTab
-          username={username.value}
-          socialId={socialId.value}
-          rowWidth={rowWidth}
-          loadMore={loadMoreArtworks}
-          loadImages={loadImages}
-          stopLoadImages={stopLoadImages}
-          activeTab={0}
-          header={t("discover:highlights")}
-        />
+        <DiscoverStoriesTab />
       </Main>
     </>
   );
@@ -56,20 +36,13 @@ export async function getStaticProps({ locale }) {
     props: {
       navBarItems: navBarItems,
       ...(await serverSideTranslations(locale, [
-        "art",
+        "common",
         "header",
         "footer",
-        "common",
-        "discover",
-        "tags",
-        "index",
-        "plans",
-        "snackbar",
-        "support",
-        "articles",
         "feed",
-        "exhibitions",
-        "forms",
+        "support",
+        "plans",
+        "locations",
       ])),
     },
     revalidate: 60,

@@ -4,7 +4,7 @@ import { rowGap, columnGap } from "../../utils/styleUtils";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      backgroundColor: "rgba(255, 238, 246, 1)",
+      // backgroundColor: "rgba(255, 238, 246, 1)",
       height: "230px",
       marginTop: "0px",
       [theme.breakpoints.up("smPlus")]: {
@@ -18,14 +18,15 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "20px",
         height: "220px",
         marginTop: "40px",
-        backgroundColor: "red",
+        backgroundColor: "transparent",
       },
       [theme.breakpoints.up("md")]: {
         marginBottom: "20px",
         padding: "20px",
         height: "220px",
         marginTop: "40px",
-        backgroundColor: "rgba(255, 238, 246, 1)",
+        backgroundColor: "transparent",
+        width: "100%",
       },
     },
     wrapper: {

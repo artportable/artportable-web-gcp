@@ -39,7 +39,7 @@ export default function Collaboration({ navBarItems }) {
   return (
     <Main
       navBarItems={navBarItems}
-      wide={false}
+      wide={true}
       fullWidth={false}
       isShow={false}
       noHeaderPadding={true}
