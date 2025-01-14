@@ -27,7 +27,7 @@ import { useTheme } from "@material-ui/core/styles";
 import PanoramaVerticalIcon from "@material-ui/icons/PanoramaVertical";
 import PanoramaHorizontalIcon from "@material-ui/icons/PanoramaHorizontal";
 import CropSquareIcon from "@material-ui/icons/CropSquare";
-import DialogContent from "@material-ui/core/DialogContent";
+import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 
 interface DiscoverFilteredArtProps {
   username?: string;
@@ -531,9 +531,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                   }}
                   onClick={() => handleOrientationChangeMobile("Multiple")}
                 >
-                  <CropSquareIcon
+                  <AspectRatioIcon
                     style={{ marginLeft: "18px", marginRight: "-18px" }}
-                  ></CropSquareIcon>
+                  ></AspectRatioIcon>
                   <div
                     style={{
                       fontSize: "16px",
