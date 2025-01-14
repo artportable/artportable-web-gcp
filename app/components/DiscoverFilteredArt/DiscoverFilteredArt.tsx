@@ -100,7 +100,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setTempSelectedWidth,
   } = useContext(NavigationContext);
 
-  const [open, setOpen] = useState(isMobile ? false : true);
+  const [open, setOpen] = useState(isMobile ? false : false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -290,28 +290,33 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   return (
     <>
       <div className={s.mobileContainer1}>
-        <div className={s.activeButtons}>
-          <Button
-            className={s.mobileButton}
-            variant="outlined"
-            onClick={handleClickOpen}
-          >
-            <Typography>{t("common:selectOptions:filter")}</Typography>
-            <TuneIcon className={s.tuneIcon} />
-          </Button>
-          {isFilterActiveMobile() && (
+        <div>
+          <div className={s.activeButtons}>
             <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                resetFiltersMobile();
-              }}
+              className={s.mobileButton}
               variant="outlined"
-              color="secondary"
-              className={s.activeFilterClearOnScreen}
+              onClick={handleClickOpen}
             >
-              {t("common:selectOptions:clearFilter")}
+              <Typography>{t("common:selectOptions:filter")}</Typography>
+              <TuneIcon className={s.tuneIcon} />
             </Button>
-          )}
+            {isFilterActiveMobile() && (
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  resetFiltersMobile();
+                }}
+                variant="outlined"
+                color="secondary"
+                className={s.activeFilterClearOnScreen}
+              >
+                <Typography>
+                  {" "}
+                  {t("common:selectOptions:clearFilter")}
+                </Typography>
+              </Button>
+            )}
+          </div>
         </div>
 
         <Dialog
