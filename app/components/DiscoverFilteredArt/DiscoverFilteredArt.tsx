@@ -326,8 +326,8 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
             <div>
               <TuneIcon />
             </div>
-            {t("doFilter")}
-            <div>Filtrera</div>
+            {t("common:selectOptions:doFilter")}
+
             <div style={{ cursor: "pointer" }} onClick={handleClose}>
               <CloseIcon></CloseIcon>
             </div>
@@ -709,6 +709,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                   setSelectedState(selectedTempState);
                   setSelectedHeight(tempSelectedHeight);
                   setSelectedWidth(tempSelectedWidth);
+                  setOpen(isMobile ? false : true);
                 }}
                 className={s.activeFilterResult}
               >

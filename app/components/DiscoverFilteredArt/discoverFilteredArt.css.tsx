@@ -6,14 +6,21 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       dropShadow: "rgba(0, 0, 0, 0.25)",
+      gap: "10px",
+      [theme.breakpoints.up("smPlus")]: {
+        justifyContent: "flex-end",
+        marginTop: "10px",
+      },
     },
     mobileButton: {
-      width: "70%",
+      width: "50%",
       borderRadius: "20px",
       margin: "2px",
       [theme.breakpoints.up("smPlus")]: {
+        width: "30%",
+      },
+      [theme.breakpoints.up("md")]: {
         width: "20%",
-        marginLeft: "80%",
       },
     },
     activeFilterClearOnScreen: {
@@ -23,8 +30,14 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px",
       border: "1px solid rgb(0 0 0 / 23%)",
       color: "black",
-      width: "30%",
+      width: "50%",
       height: "40px",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "30%",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "20%",
+      },
     },
 
     dialogContainer: {
@@ -253,6 +266,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-evenly",
       padding: "10px",
       margin: "20px",
+      gap: "10px",
     },
     activeFilterClear: {
       backgroundColor: "transparent",
