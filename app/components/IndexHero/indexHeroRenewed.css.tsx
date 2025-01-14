@@ -11,9 +11,15 @@ export const styles = makeStyles((theme: Theme) =>
       height: "65vh",
       width: "95%",
       margin: "0 auto",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("smPlus")]: {
         height: "70vh",
         width: "100%",
+        marginTop: "0px",
+      },
+      [theme.breakpoints.up("md")]: {
+        height: "70vh",
+        width: "100%",
+        marginTop: "40px",
       },
     },
 
