@@ -53,12 +53,10 @@ export const styles = makeStyles((theme: Theme) =>
         },
         overflow: "auto !important", // Allow scrolling
         "& .MuiDialog-paper": {
-          boxShadow: "none", // Removes the shadow
-
           dropShadow: "rgba(0, 0, 0, 0.25)",
           "&::-webkit-scrollbar": {
-            width: "1px !important",
-            height: "1px", // Hides scrollbar in WebKit browsers (Chrome, Safari)
+            width: "2px !important",
+            height: "2px !important", // Hides scrollbar in WebKit browsers (Chrome, Safari)
             overflowY: "hidden !important",
             overflow: "hidden !important",
           },

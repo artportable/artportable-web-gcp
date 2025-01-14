@@ -110,20 +110,8 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setOpen(false);
   };
 
-  const handleTrendingChangeMobile = (value: number) => {
-    setTempSelectedTrending(String(value));
-  };
-
   const handleOrientationChangeMobile = (value) => {
     setTempSelectedOrientation(String(value));
-  };
-
-  const handleSizeChangeMobile = (value: number) => {
-    setTempSelectedSize(String(value));
-  };
-
-  const handlePriceChangeMobile = (value: any) => {
-    setTempSelectedPrice(value);
   };
 
   function filter(tags: string[], searchQuery = "") {
@@ -131,12 +119,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setSelectedTags(tags);
     setSearchQuery(searchQuery);
   }
-
-  const handleTagChangeMobile = (newTag: string) => {
-    if (selectedTempTags.length < 4 && !selectedTempTags.includes(newTag)) {
-      setTempSelectedTags((prevTags) => [...prevTags, newTag]);
-    }
-  };
 
   const handleTechniqueChangeMobile = (newTag: string) => {
     setSelectedTechnique(newTag);
@@ -152,12 +134,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   const handleStateChange = (value: string) => {
     setSelectedTempState(value);
-  };
-
-  const removeTagMobile = (tagToRemove: string) => {
-    setTempSelectedTags((prevTags) =>
-      prevTags.filter((tag) => tag !== tagToRemove)
-    );
   };
 
   const resetFiltersMobile = () => {
@@ -230,11 +206,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
         let url = new URL(`${apiBaseUrl}/api/Discover/artworks/filter`);
 
-        selectedTags.forEach((tag) => {
-          if (tag) {
-            url.searchParams.append("tag", tag);
-          }
-        });
         if (props.page) {
           url.searchParams.append("orderBy", props.page);
         }
