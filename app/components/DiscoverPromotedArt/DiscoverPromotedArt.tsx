@@ -66,27 +66,29 @@ const DiscoverPromotedArtTab = memo((props: DiscoverPromotedArtTabProps) => {
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <div>
           <div className={s.container}>
-            <div className={s.imgContainer}>
-              <div>
-                <img
-                  src="/Artportable_Logotyp_Black.svg"
-                  alt="Logo Artportable"
-                  className={s.apLogo}
-                />
-              </div>
-              {""}
-              <h3 className={s.x}>X</h3>
-              <div>
-                <a href="https://www.husohem.se">
+            <div className={s.wrapper}>
+              <div className={s.imgContainer}>
+                <div>
                   <img
-                    src="/images/hus-hem_pink.png"
+                    src="/Artportable_Logotyp_Black.svg"
                     alt="Logo Artportable"
                     className={s.apLogo}
                   />
-                </a>
+                </div>
+                {""}
+                <h3 className={s.x}>X</h3>
+                <div>
+                  <a href="https://www.husohem.se">
+                    <img
+                      src="/images/hus-hem_pink.png"
+                      alt="Logo Artportable"
+                      className={s.apLogo}
+                    />
+                  </a>
+                </div>
               </div>
+              <div className={s.text}>{t("common:husOhem")}</div>
             </div>
-            <div className={s.text}>{t("common:husOhem")}</div>
           </div>
 
           <DiscoverArt

@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
-      backgroundColor: "var(--background-color)",
+      backgroundColor: "white",
       // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
       // width: 'calc(100% + 10px)',
     },
@@ -26,7 +26,23 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: "14px",
       },
     },
-
+    titleWrapper: {
+      display: "none",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "14px",
+        color: "black",
+        display: "flex",
+        flexDirection: "row",
+        gap: "40px",
+        marginBottom: "20px",
+      },
+    },
+    titlesOnHeader: {
+      fontSize: "16px",
+      "&:hover": {
+        color: "#0000ffb8",
+      },
+    },
     logoContainer: {
       flexGrow: 1,
       order: 2,

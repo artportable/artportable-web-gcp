@@ -51,6 +51,7 @@ interface InputProps {
   trendingArtTab: boolean;
   likedArtTab: boolean;
   header?: string;
+  isFilterOpen?: boolean;
   insertElements?: InsertElement[];
 }
 
@@ -64,6 +65,7 @@ export default function DiscoverArt({
   trendingArtTab = null,
   likedArtTab = null,
   insertElements = [],
+  isFilterOpen,
   header = "",
 }: InputProps) {
   const s = styles();
@@ -238,9 +240,21 @@ export default function DiscoverArt({
             )}
             {showFilterLoadingSkeleton && (
               <>
-                <div className={s.row}>
+                <div
+                  className={s.row}
+                  style={{
+                    width: isFilterOpen ? "85%" : "100%",
+                    marginLeft: isFilterOpen ? "auto" : "0",
+                  }}
+                >
                   {skeletonRows && skeletonRows.length > 0 && (
-                    <div className={s.row}>
+                    <div
+                      className={s.row}
+                      style={{
+                        width: isFilterOpen ? "85%" : "100%",
+                        marginLeft: isFilterOpen ? "auto" : "0",
+                      }}
+                    >
                       {skeletonRows[0].map((image) => {
                         return (
                           <DiscoverArtSkeleton
@@ -253,9 +267,21 @@ export default function DiscoverArt({
                     </div>
                   )}
                 </div>
-                <div className={s.row}>
+                <div
+                  className={s.row}
+                  style={{
+                    width: isFilterOpen ? "85%" : "100%",
+                    marginLeft: isFilterOpen ? "auto" : "0",
+                  }}
+                >
                   {skeletonRows && skeletonRows.length > 0 && (
-                    <div className={s.row}>
+                    <div
+                      className={s.row}
+                      style={{
+                        width: isFilterOpen ? "85%" : "100%",
+                        marginLeft: isFilterOpen ? "auto" : "0",
+                      }}
+                    >
                       {skeletonRows[1].map((image) => {
                         return (
                           <DiscoverArtSkeleton
@@ -273,7 +299,14 @@ export default function DiscoverArt({
             {imageRowsWithElements &&
               imageRowsWithElements.map((row: Image[], i) =>
                 Array.isArray(row) ? (
-                  <div className={s.row} key={i}>
+                  <div
+                    style={{
+                      width: isFilterOpen ? "85%" : "100%",
+                      marginLeft: isFilterOpen ? "auto" : "0",
+                    }}
+                    className={s.row}
+                    key={i}
+                  >
                     {row.map((image) => {
                       let artwork = artworks.find(
                         (a) => a.PrimaryFile.Name === image.Name
@@ -320,7 +353,14 @@ export default function DiscoverArt({
               )}
 
             {!isLoading && loadMore && (
-              <div className={s.row} ref={loadMoreElementRef}>
+              <div
+                className={s.row}
+                ref={loadMoreElementRef}
+                style={{
+                  width: isFilterOpen ? "85%" : "100%",
+                  marginLeft: isFilterOpen ? "auto" : "0",
+                }}
+              >
                 {skeletonRows && skeletonRows.length > 0 && (
                   <div className={s.row}>
                     {skeletonRows[0].map((image) => {

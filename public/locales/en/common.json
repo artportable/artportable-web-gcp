@@ -27,7 +27,7 @@
     "email": "email",
     "thanks": "Thanks!",
     "Annonsera": "Advertise",
-    "christmas": "Campaign",
+    "christmas": "Christmas campaign",
     "husohem": "Publish 3 works on husohem.se",
     "getStarted": "Get started"
   },
@@ -122,6 +122,10 @@
     "format": "Format",
     "technique": "Technique",
     "theme": "Theme",
+    "medium": "Medium",
+    "allThemes": "All themes",
+    "allTechniques": "All techniques",
+    "allMedium": "All mediums",
     "price": "Price",
     "upTo500": "Up to 500 (SEK)",
     "upTo1000": "Up to 1000 (SEK)",
@@ -145,6 +149,8 @@
     "upTo": "Up to",
     "Vertical": "Vertical",
     "Horizontal": "Horizontal",
+    "Rectangle": "Square",
+    "Multiple": "Multiple sizes",
     "close": "Close",
     "doFilter": "Filters",
     "showResult": "Filter",
@@ -153,7 +159,9 @@
     "3000": "Up to 3000 (SEK)",
     "5000": "Up to 5000 (SEK)",
     "5001": "Over 5000 (SEK)",
-    "filter": "Filter"
+    "filter": "Filter",
+    "height": "Height",
+    "width": "Width"
   },
 
   "like": "Like",
