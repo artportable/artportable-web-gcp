@@ -26,24 +26,12 @@ export const styles = makeStyles((theme: Theme) =>
       width: "30%",
       height: "40px",
     },
-    mobileContainer: {
-      // display: "flex",
-      // flexDirection: "column",
-      // width: "100%",
-      // height: "100%",
-      // marginTop: "20px",
-      // overflow: "auto !important", // Allow scrolling
-      // // Ensure the scrollbar remains hidden until interaction
-      // "&::-webkit-scrollbar": {
-      //   width: "1px",
-      //   height: "1px",
-      // },
-    },
 
     dialogContainer: {
       top: 115,
       dropShadow: "rgba(0, 0, 0, 0.25)",
       [theme.breakpoints.up("smPlus")]: {
+        top: 115,
         width: "300px",
         "&::-webkit-scrollbar": {
           width: "1px !important",

@@ -100,7 +100,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setTempSelectedWidth,
   } = useContext(NavigationContext);
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(isMobile ? false : true);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -671,7 +671,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                               color: "black",
                             }}
                           >
-                            Alla län
+                            {t("common:allLocations")}
                           </span>
                         );
                       }
