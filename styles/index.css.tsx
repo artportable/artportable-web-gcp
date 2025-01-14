@@ -7,7 +7,7 @@ export const styles = makeStyles((theme: Theme) =>
     discoverContainer: {
       position: "relative",
       paddingTop: theme.spacing(0),
-      marginTop: "50px",
+      marginTop: "20px",
     },
     tabContainer: {
       display: "flex",

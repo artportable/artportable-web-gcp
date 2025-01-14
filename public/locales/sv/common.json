@@ -170,7 +170,7 @@
     "Rectangle": "Rektangulära",
     "Multiple": "Flera storlekar",
     "close": "Stäng",
-    "doFilter": "Filtrera på",
+    "doFilter": "Filter",
     "showResult": "Visa verk",
     "500": "Upp till 500 (SEK)",
     "1000": "Upp till 1000 (SEK)",
@@ -222,5 +222,6 @@
   "contact": "Kontakta",
   "buy": "Köp",
   "priceOnRequest": "Pris på begäran",
-  "favoriteArt": "Sparade favoriter"
+  "favoriteArt": "Sparade favoriter",
+  "allLocations": "Alla län"
 }

@@ -13,7 +13,7 @@ interface DiscoverLatestArtTabProps {
   loadImages: any;
   stopLoadImages: any;
   activeTab: number;
-  header?: string,
+  header?: string;
 }
 
 const DiscoverLatestArtTab = memo((props: DiscoverLatestArtTabProps) => {

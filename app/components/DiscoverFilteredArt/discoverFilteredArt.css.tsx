@@ -6,14 +6,21 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       dropShadow: "rgba(0, 0, 0, 0.25)",
+      gap: "10px",
+      [theme.breakpoints.up("smPlus")]: {
+        justifyContent: "flex-end",
+        marginTop: "10px",
+      },
     },
     mobileButton: {
-      width: "70%",
+      width: "50%",
       borderRadius: "20px",
       margin: "2px",
       [theme.breakpoints.up("smPlus")]: {
+        width: "30%",
+      },
+      [theme.breakpoints.up("md")]: {
         width: "20%",
-        marginLeft: "80%",
       },
     },
     activeFilterClearOnScreen: {
@@ -23,27 +30,21 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px",
       border: "1px solid rgb(0 0 0 / 23%)",
       color: "black",
-      width: "30%",
+      width: "50%",
       height: "40px",
-    },
-    mobileContainer: {
-      // display: "flex",
-      // flexDirection: "column",
-      // width: "100%",
-      // height: "100%",
-      // marginTop: "20px",
-      // overflow: "auto !important", // Allow scrolling
-      // // Ensure the scrollbar remains hidden until interaction
-      // "&::-webkit-scrollbar": {
-      //   width: "1px",
-      //   height: "1px",
-      // },
+      [theme.breakpoints.up("smPlus")]: {
+        width: "30%",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "20%",
+      },
     },
 
     dialogContainer: {
       top: 115,
       dropShadow: "rgba(0, 0, 0, 0.25)",
       [theme.breakpoints.up("smPlus")]: {
+        top: 115,
         width: "300px",
         "&::-webkit-scrollbar": {
           width: "1px !important",
@@ -265,6 +266,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-evenly",
       padding: "10px",
       margin: "20px",
+      gap: "10px",
     },
     activeFilterClear: {
       backgroundColor: "transparent",
