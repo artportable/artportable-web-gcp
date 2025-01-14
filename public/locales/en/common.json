@@ -160,6 +160,7 @@
     "5000": "Up to 5000 (SEK)",
     "5001": "Over 5000 (SEK)",
     "filter": "Filter",
+    "place": "Location",
     "height": "Height",
     "width": "Width"
   },
@@ -202,5 +203,6 @@
   "aaf": "Discover Artportable's artists at this year's Affordable Art Fair",
   "buy": "Buy",
   "priceOnRequest": "Price on request",
-  "favoriteArt": "My Favorite Artworks"
+  "favoriteArt": "My Favorite Artworks",
+  "allLocations": "All places"
 }
