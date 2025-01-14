@@ -8,6 +8,8 @@ import { useContext, useState } from "react";
 import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 export default function latest({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -27,9 +29,12 @@ export default function latest({ navBarItems }) {
     setLoadMoreArtworks(false);
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
-      <Main navBarItems={navBarItems}>
+      <Main navBarItems={navBarItems} noHeaderPadding={isMobile} isShow={false}>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />

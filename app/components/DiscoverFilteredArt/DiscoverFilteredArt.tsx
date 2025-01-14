@@ -100,7 +100,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setTempSelectedWidth,
   } = useContext(NavigationContext);
 
-  const [open, setOpen] = useState(isMobile ? false : true);
+  const [open, setOpen] = useState(isMobile ? false : false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -309,7 +309,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               color="secondary"
               className={s.activeFilterClearOnScreen}
             >
-              {t("common:selectOptions:clearFilter")}
+              <Typography> {t("common:selectOptions:clearFilter")}</Typography>
             </Button>
           )}
         </div>
