@@ -18,6 +18,15 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       width: "130px",
     },
+    titleWrapper: {
+      [theme.breakpoints.up("md")]: {},
+    },
+    titlesOnHeader: {
+      fontSize: "16px",
+      "&:hover": {
+        color: "#0000ffb8",
+      },
+    },
     closeButtonFlex: {
       display: "flex",
       justifyContent: "right",

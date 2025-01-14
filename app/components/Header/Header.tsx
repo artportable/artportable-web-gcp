@@ -177,11 +177,17 @@ export default function Header({ navBarItems }) {
       <AppBar
         elevation={0}
         style={{
-          backgroundColor: "#fdf9f7",
+          backgroundColor: "white",
           borderBottom: "1px solid #cecece6b",
         }}
       >
-        <Toolbar>
+        <Toolbar
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
+        >
           <div className={s.container}>
             <div className={s.logoContainer}>
               <Link href={logoHref}>
@@ -529,6 +535,44 @@ export default function Header({ navBarItems }) {
                   style={{ fontSize: "30px" }}
                 />
               </IconButton>
+            </div>
+          </div>
+          <div className={s.titleWrapper}>
+            <div className={s.titlesOnHeader}>
+              <Link href={"/latest"} passHref>
+                {t("latest")}
+              </Link>
+              <br />
+            </div>
+            <div className={s.titlesOnHeader}>
+              <Link href={"/discover"} passHref>
+                {t("findArt")}
+              </Link>
+            </div>
+            <div className={s.titlesOnHeader}>
+              <Link href={"/curated"} passHref>
+                {t("curatet")}
+              </Link>
+            </div>
+            <div className={s.titlesOnHeader}>
+              <Link href={"/collaboration"} passHref>
+                {t("collaboration")}
+              </Link>
+            </div>
+            <div className={s.titlesOnHeader}>
+              <Link href={"/artists"} passHref>
+                {t("artists")}
+              </Link>
+            </div>
+            <div className={s.titlesOnHeader}>
+              <Link href={"/newsroom"} passHref>
+                {t("story")}
+              </Link>
+            </div>
+            <div className={s.titlesOnHeader}>
+              <Link href={`${t("header:storiesSlug")}`} passHref>
+                {t("articles")}
+              </Link>
             </div>
           </div>
 

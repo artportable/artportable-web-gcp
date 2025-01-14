@@ -17,7 +17,7 @@
   "storiesSlug": "artiklar",
   "english": "English",
   "swedish": "Svenska",
-  "upgrade": "Uppgradera",
+  "upgrade": "Prova gratis i 10 dagar!",
   "createPortfolio": "Visa upp din konst",
   "artists": "Konstnärer",
   "productLists": "Kategorier",
@@ -47,5 +47,10 @@
   "uploadArtwork": "Ladda upp",
   "portfolio": "Portfolio",
   "myFavorites": "Mina favoriter",
-  "viewAll": "Visa mer"
+  "viewAll": "Visa mer",
+  "latest": "Nytt på Artportable",
+  "findArt": "Hitta konst",
+  "curatet": "Kurerat innehåll",
+  "story": "Nyhetsrum",
+  "collaboration": "Samarbete"
 }

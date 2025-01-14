@@ -6,6 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
     rowsContainer: {
       display: "flex",
       flexDirection: "column",
+      alignItems: "flex-end",
       ...columnGap(16),
     },
     row: {
@@ -14,6 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "flex-start",
       overflow: "hidden",
     },
+
     rowSkeleton: {
       display: "flex",
       margin: "10px",

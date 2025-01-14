@@ -418,6 +418,27 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link> */}
+        <Link href={"/latest"} passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("latest")} />
+            </ListItem>
+          </a>
+        </Link>
+        <Link href={"/discover"} passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("findArt")} />
+            </ListItem>
+          </a>
+        </Link>
+        <Link href={"/curated"} passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("curatet")} />
+            </ListItem>
+          </a>
+        </Link>
         {navBarItems && navBarItems.length > 0 && (
           <div>
             <ListItem button onClick={handleClickListingPages}>
@@ -456,6 +477,21 @@ export default function DrawerMenu({
           </div>
         )}
 
+        <Link href={"/collaboration"} passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("collaboration")} />
+            </ListItem>
+          </a>
+        </Link>
+        <Link href={"/newsroom"} passHref>
+          <a>
+            <ListItem button divider onClick={() => close()}>
+              <ListItemText primary={t("story")} />
+            </ListItem>
+          </a>
+        </Link>
+
         <Link href="/artists" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -470,6 +506,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
+
         {/* <Link href="/kurser" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
