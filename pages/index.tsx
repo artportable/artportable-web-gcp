@@ -252,169 +252,18 @@ export default function DiscoverPage({ navBarItems }) {
           // Set minHeight to avoid page jumping when switching tabs.
           style={{ minHeight: "100vh" }}
         >
-          <div className={s.tabContainer}>
-            <Tabs
-              className={s.artTabs}
-              value={activeTab}
-              onChange={(_, newValue) => setTab(newValue)}
-              variant={"scrollable"}
-              scrollButtons={"on"}
-              // Change underline color through TabIndicatorProps:
-              TabIndicatorProps={{
-                style: {
-                  backgroundColor: "black",
-                },
-              }}
-            >
-              <Tab
-                className={s.text}
-                label={t("discover:latestArt")}
-                {...a11yProps(t("discover:latestArt"))}
-              />
-              <Tab
-                className={s.text}
-                label={t("discover:topArt")}
-                {...a11yProps(t("discover:topArt"))}
-              />
-              <Tab
-                className={s.text}
-                label={t("discover:highlights")}
-                {...a11yProps(t("discover:artists"))}
-              />
-
-              <Tab
-                className={s.text}
-                label={t("discover:stories")}
-                {...a11yProps(t("discover:stories"))}
-              />
-              <Tab
-                className={s.text}
-                label={t("discover:artists")}
-                {...a11yProps(t("discover:artists"))}
-              />
-
-              <Tab
-                className={s.text}
-                label={t("discover:Hus & Hem")}
-                {...a11yProps(t("discover:Hus & Hem"))}
-              />
-              <Tab
-                className={s.text}
-                label={t("discover:digital")}
-                {...a11yProps(t("discover:digital"))}
-              />
-
-              {/*     <Tab
-                className={s.text}
-                label={t("discover:showroom")}
-                {...a11yProps(t("discover:showroom"))}
-              /> */}
-
-              {isSignedIn.value && (
-                <Tab
-                  className={s.text}
-                  label={t("discover:myLikedArt")}
-                  {...a11yProps(t("discover:myLikedArt"))}
-                />
-              )}
-            </Tabs>
-          </div>
           {!loading && (
             <Box paddingTop={4}>
-              <TabPanel value={activeTab} index={0}>
-                <DiscoverLatestArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                  header={t("discover:latestArt")}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={1}>
-                {!isMobile ? (
-                  <DiscoverTrendingArtTabDesktop
-                    username={username.value}
-                    socialId={socialId.value}
-                    rowWidth={rowWidth}
-                    loadMore={loadMoreArtworks}
-                    loadImages={loadImages}
-                    stopLoadImages={stopLoadImages}
-                    activeTab={activeTab}
-                    header={t("discover:trendingArt")}
-                  />
-                ) : (
-                  <DiscoverTrendingArtTab
-                    username={username.value}
-                    socialId={socialId.value}
-                    rowWidth={rowWidth}
-                    loadMore={loadMoreArtworks}
-                    loadImages={loadImages}
-                    stopLoadImages={stopLoadImages}
-                    activeTab={activeTab}
-                    header={t("discover:trendingArt")}
-                  />
-                )}
-              </TabPanel>
-              <TabPanel value={activeTab} index={2}>
-                <DiscoverHighLightsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                  header={t("discover:highlights")}
-                />
-              </TabPanel>
-
-              <TabPanel value={activeTab} index={3}>
-                <DiscoverStoriesTab />
-              </TabPanel>
-              <TabPanel value={activeTab} index={4}>
-                <DiscoverArtistsTab
-                  username={username.value}
-                  socialId={socialId.value}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={5}>
-                <DiscoverPromotedArtTab
-                  username={username.value}
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                />
-              </TabPanel>
-              <TabPanel value={activeTab} index={6}>
-                <DiscoverDigitalTab
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                  header={t("discover:digital")}
-                />
-              </TabPanel>
-
-              <TabPanel value={activeTab} index={7}>
-                <DiscoverMyLikedArtTab
-                  socialId={socialId.value}
-                  rowWidth={rowWidth}
-                  sold={""}
-                  loadMore={loadMoreArtworks}
-                  loadImages={loadImages}
-                  stopLoadImages={stopLoadImages}
-                  activeTab={activeTab}
-                  header={t("discover:myLikedArt")}
-                />
-              </TabPanel>
+              <DiscoverLatestArtTab
+                username={username.value}
+                socialId={socialId.value}
+                rowWidth={rowWidth}
+                loadMore={loadMoreArtworks}
+                loadImages={loadImages}
+                stopLoadImages={stopLoadImages}
+                activeTab={activeTab}
+                header={t("discover:latestArt")}
+              />
             </Box>
           )}
         </div>
