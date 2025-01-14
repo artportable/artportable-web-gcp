@@ -22,7 +22,6 @@ export const TECHNIQUE_TAGS = {
   gouache: "Gouache",
   graphic: "Grafik",
   graffiti: "Graffiti",
-  "street-art": "Gatukonst",
   illustration: "Illustration",
   collage: "Kollage",
   charcoal: "Kol",
