@@ -28,6 +28,7 @@ import PanoramaVerticalIcon from "@material-ui/icons/PanoramaVertical";
 import PanoramaHorizontalIcon from "@material-ui/icons/PanoramaHorizontal";
 import CropSquareIcon from "@material-ui/icons/CropSquare";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
+import HeaderComponent from "./HeaderComponent";
 
 interface DiscoverFilteredArtProps {
   username?: string;
@@ -260,9 +261,17 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   return (
     <>
-      <div className={s.mobileContainer1}>
-        <div>
-          <div className={s.activeButtons}>
+      {/* <HeaderComponent filterOpen={open} title={"discover"}></HeaderComponent> */}
+      <div
+        style={{
+          backgroundColor: "transparent",
+          width: open ? "85%" : "100%",
+          marginRight: "0",
+          marginLeft: "auto",
+        }}
+      >
+        <div className={s.activeButtons}>
+          {!open && (
             <Button
               className={s.mobileButton}
               variant="outlined"
@@ -271,25 +280,23 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               <Typography>{t("common:selectOptions:filter")}</Typography>
               <TuneIcon className={s.tuneIcon} />
             </Button>
-            {isFilterActiveMobile() && (
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  resetFiltersMobile();
-                }}
-                variant="outlined"
-                color="secondary"
-                className={s.activeFilterClearOnScreen}
-              >
-                <Typography>
-                  {" "}
-                  {t("common:selectOptions:clearFilter")}
-                </Typography>
-              </Button>
-            )}
-          </div>
+          )}
+          {isFilterActiveMobile() && (
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                resetFiltersMobile();
+              }}
+              variant="outlined"
+              color="secondary"
+              className={s.activeFilterClearOnScreen}
+            >
+              <Typography> {t("common:selectOptions:clearFilter")}</Typography>
+            </Button>
+          )}
         </div>
-
+      </div>
+      <div className={s.mobileContainer1}>
         <Dialog
           className={s.dialogContainer}
           fullScreen
@@ -310,42 +317,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
           </div>
           <List className={s.mobileList}>
             <div className={s.formControllWrapper}>
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:theme")}
-              </div>
-              <FormControl className={s.formControl}>
-                <Select
-                  labelId="theme-select-label"
-                  value={selectedTheme || ""}
-                  onChange={(e) =>
-                    handleThemeChangeMobile(e.target.value as string)
-                  } // Type assertion here
-                  displayEmpty
-                  className={s.selectMenu}
-                  disableUnderline
-                  renderValue={(selected) => {
-                    if (!selected) {
-                      return (
-                        <span
-                          style={{
-                            margin: "10px",
-                            color: "black",
-                          }}
-                        >
-                          {t("common:selectOptions:allThemes")}
-                        </span>
-                      );
-                    }
-                    return t(`common:themes:${selected}`);
-                  }}
-                >
-                  {Object.keys(THEME_TAGS).map((key) => (
-                    <MenuItem key={key} value={key}>
-                      {t(`common:themes:${key}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
               <div className={s.filtertitle}>
                 {t("common:selectOptions:technique")}
               </div>
@@ -383,6 +354,43 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                 </Select>
               </FormControl>
               <div className={s.filtertitle}>
+                {t("common:selectOptions:theme")}
+              </div>
+              <FormControl className={s.formControl}>
+                <Select
+                  labelId="theme-select-label"
+                  value={selectedTheme || ""}
+                  onChange={(e) =>
+                    handleThemeChangeMobile(e.target.value as string)
+                  } // Type assertion here
+                  displayEmpty
+                  className={s.selectMenu}
+                  disableUnderline
+                  renderValue={(selected) => {
+                    if (!selected) {
+                      return (
+                        <span
+                          style={{
+                            margin: "10px",
+                            color: "black",
+                          }}
+                        >
+                          {t("common:selectOptions:allThemes")}
+                        </span>
+                      );
+                    }
+                    return t(`common:themes:${selected}`);
+                  }}
+                >
+                  {Object.keys(THEME_TAGS).map((key) => (
+                    <MenuItem key={key} value={key}>
+                      {t(`common:themes:${key}`)}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <div className={s.filtertitle}>
                 {t("common:selectOptions:medium")}
               </div>
               <FormControl className={s.formControl}>
@@ -414,6 +422,40 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                   {Object.keys(MEDIUM_TAGS).map((key) => (
                     <MenuItem key={key} value={key}>
                       {t(`common:techniques:${key}`)}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <div className={s.filtertitle}>
+                {t("common:selectOptions:place")}
+              </div>
+              <FormControl className={s.formControl}>
+                <Select
+                  labelId="county-select-label"
+                  value={selectedTempState || ""}
+                  onChange={(e) => handleStateChange(e.target.value as string)}
+                  displayEmpty
+                  className={s.selectMenu}
+                  disableUnderline
+                  renderValue={(selected) => {
+                    if (!selected) {
+                      return (
+                        <span
+                          style={{
+                            margin: "10px",
+                            color: "black",
+                          }}
+                        >
+                          {t("common:allLocations")}
+                        </span>
+                      );
+                    }
+                    return t(`locations:${selected}`);
+                  }}
+                >
+                  {countryStates?.map((state, index) => (
+                    <MenuItem key={index} value={state.state}>
+                      {t(`locations:${state?.state}`)}
                     </MenuItem>
                   ))}
                 </Select>
@@ -480,7 +522,10 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                   onClick={() => handleOrientationChangeMobile("Square")}
                 >
                   <CropSquareIcon
-                    style={{ marginLeft: "18px", marginRight: "-18px" }}
+                    style={{
+                      marginLeft: "18px",
+                      marginRight: "-18px",
+                    }}
                   ></CropSquareIcon>
                   <div
                     style={{
@@ -621,41 +666,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                     step={10}
                   />
                 </div>
-              </FormControl>
-
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:place")}
-              </div>
-              <FormControl className={s.formControl}>
-                <Select
-                  labelId="county-select-label"
-                  value={selectedTempState || ""}
-                  onChange={(e) => handleStateChange(e.target.value as string)}
-                  displayEmpty
-                  className={s.selectMenu}
-                  disableUnderline
-                  renderValue={(selected) => {
-                    if (!selected) {
-                      return (
-                        <span
-                          style={{
-                            margin: "10px",
-                            color: "black",
-                          }}
-                        >
-                          {t("common:allLocations")}
-                        </span>
-                      );
-                    }
-                    return t(`locations:${selected}`);
-                  }}
-                >
-                  {countryStates?.map((state, index) => (
-                    <MenuItem key={index} value={state.state}>
-                      {t(`locations:${state?.state}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
               </FormControl>
             </div>
           </List>

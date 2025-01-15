@@ -10,6 +10,7 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import HeaderComponent from "../app/components/DiscoverFilteredArt/HeaderComponent";
 
 export default function discover({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -34,12 +35,13 @@ export default function discover({ navBarItems }) {
 
   return (
     <>
-      <Main navBarItems={navBarItems} noHeaderPadding={isMobile} isShow={false}>
+      <Main navBarItems={navBarItems} isShow={false}>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
+
         <DiscoverFilteredArt
           username={username.value}
           socialId={socialId.value}

@@ -9,8 +9,8 @@ export const styles = makeStyles((theme: Theme) =>
       gap: "10px",
       marginTop: "20px",
       [theme.breakpoints.up("smPlus")]: {
-        justifyContent: "flex-end",
-        marginTop: "10px",
+        justifyContent: "flex-start",
+        marginTop: "30px",
       },
     },
     mobileButton: {
@@ -211,10 +211,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     slider: {
-      color: "black",
-      width: "330px",
+      color: "#4652ff",
+      width: "310px",
+      height: "1px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "260px",
+        width: "230px",
       },
     },
     cancelPresentationIcon: {
