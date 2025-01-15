@@ -16,7 +16,7 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "20px",
         display: "flex",
         alignItems: "center",
-        height: "250px",
+        height: "300px",
       },
     },
     titleWrapper: {
