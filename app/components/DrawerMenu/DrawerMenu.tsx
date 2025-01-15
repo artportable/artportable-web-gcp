@@ -418,7 +418,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link> */}
-        <Link href={"/latest"} passHref>
+        <Link href={"/latestart"} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("latest")} />
