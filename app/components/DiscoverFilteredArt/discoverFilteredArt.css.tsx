@@ -42,21 +42,20 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     dialogContainer: {
-      top: 115,
       dropShadow: "rgba(0, 0, 0, 0.25)",
+      marginTop: "115px",
       [theme.breakpoints.up("smPlus")]: {
-        top: 115,
         width: "300px",
         "&::-webkit-scrollbar": {
           width: "1px !important",
           height: "1px",
         },
-        overflow: "auto !important", // Allow scrolling
+        overflow: "auto !important",
         "& .MuiDialog-paper": {
           dropShadow: "rgba(0, 0, 0, 0.25)",
           "&::-webkit-scrollbar": {
             width: "2px !important",
-            height: "2px !important", // Hides scrollbar in WebKit browsers (Chrome, Safari)
+            height: "2px !important",
             overflowY: "hidden !important",
             overflow: "hidden !important",
           },
@@ -294,6 +293,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     mobileContainer1: {
       marginBottom: "30px",
+      position: "relative",
     },
     selectedTagContainer: {
       display: "flex",
