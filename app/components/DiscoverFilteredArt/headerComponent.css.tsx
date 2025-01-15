@@ -22,14 +22,13 @@ export const styles = makeStyles((theme: Theme) =>
     titleWrapper: {
       fontSize: "22px",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "38px",
+        fontSize: "42px",
         fontWeight: "bold",
       },
     },
     titleWrapperTwo: {
       fontSize: "22px",
       display: "flex",
-
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "46px",
         fontWeight: "bold",

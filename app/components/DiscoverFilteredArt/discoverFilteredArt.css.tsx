@@ -44,7 +44,7 @@ export const styles = makeStyles((theme: Theme) =>
     dialogContainer: {
       dropShadow: "rgba(0, 0, 0, 0.25)",
       marginTop: "115px",
-      [theme.breakpoints.up("smPlus")]: {
+      [theme.breakpoints.up("md")]: {
         width: "300px",
         "&::-webkit-scrollbar": {
           width: "1px !important",
@@ -125,10 +125,8 @@ export const styles = makeStyles((theme: Theme) =>
         textAlign: "left",
         margin: "6px",
       },
-      "& ul": {
-        backgroundColor: "red",
-      },
-      [theme.breakpoints.up("smPlus")]: {
+      "& ul": {},
+      [theme.breakpoints.up("md")]: {
         width: "270px",
       },
     },

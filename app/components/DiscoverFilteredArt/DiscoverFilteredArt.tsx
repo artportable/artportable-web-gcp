@@ -696,7 +696,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                   setSelectedState(selectedTempState);
                   setSelectedHeight(tempSelectedHeight);
                   setSelectedWidth(tempSelectedWidth);
-                  setOpen(isMobile ? false : true);
+                  setOpen(isMobile ? true : false);
                 }}
                 className={s.activeFilterResult}
               >
