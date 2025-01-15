@@ -36,16 +36,18 @@ export default function latest({ navBarItems }) {
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <DiscoverHighLightsTab
-          username={username.value}
-          socialId={socialId.value}
-          rowWidth={rowWidth}
-          loadMore={loadMoreArtworks}
-          loadImages={loadImages}
-          stopLoadImages={stopLoadImages}
-          activeTab={0}
-          header={t("discover:highlights")}
-        />
+        <div style={{ marginTop: "30px" }}>
+          <DiscoverHighLightsTab
+            username={username.value}
+            socialId={socialId.value}
+            rowWidth={rowWidth}
+            loadMore={loadMoreArtworks}
+            loadImages={loadImages}
+            stopLoadImages={stopLoadImages}
+            activeTab={0}
+            header={t("discover:highlights")}
+          />
+        </div>
       </Main>
     </>
   );

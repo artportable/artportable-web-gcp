@@ -227,12 +227,15 @@ export default function DiscoverPage({ navBarItems }) {
       )}
 
       <div ref={nextSectionRef}></div>
-      <RocketCarousel
-        forDesktop={!isMobile}
-        containerStyle={{
-          margin: "40px 0 0px 0",
-        }}
-      />
+      <div style={{ marginTop: "20px" }}>
+        {" "}
+        <RocketCarousel
+          forDesktop={!isMobile}
+          containerStyle={{
+            margin: "40px 0 0px 0",
+          }}
+        />
+      </div>
 
       <>
         {!isSignedIn.value &&

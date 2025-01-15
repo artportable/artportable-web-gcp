@@ -58,7 +58,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const tags = useGetTags();
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("smPlus"));
 
   const {
     selectedTags,
@@ -101,7 +101,11 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setTempSelectedWidth,
   } = useContext(NavigationContext);
 
-  const [open, setOpen] = useState(isMobile ? false : false);
+  const [open, setOpen] = useState(isMobile ? true : false);
+
+  useEffect(() => {
+    console.log(isMobile);
+  }, [open, isMobile]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -117,8 +121,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
-    setSelectedTags(tags);
-    setSearchQuery(searchQuery);
   }
 
   const handleTechniqueChangeMobile = (newTag: string) => {
@@ -261,10 +263,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   return (
     <>
-      {/* <HeaderComponent filterOpen={open} title={"discover"}></HeaderComponent> */}
+      <HeaderComponent filterOpen={open} page={props.page}></HeaderComponent>
       <div
         style={{
-          backgroundColor: "transparent",
           width: open ? "85%" : "100%",
           marginRight: "0",
           marginLeft: "auto",

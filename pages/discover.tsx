@@ -70,6 +70,7 @@ export async function getStaticProps({ locale }) {
         "support",
         "plans",
         "locations",
+        "index",
       ])),
     },
     revalidate: 60,

@@ -34,7 +34,7 @@ export default function Latest({ navBarItems }) {
 
   return (
     <>
-      <Main navBarItems={navBarItems} noHeaderPadding={isMobile} isShow={false}>
+      <Main navBarItems={navBarItems} isShow={false}>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("latest")} />
@@ -68,6 +68,7 @@ export async function getStaticProps({ locale }) {
         "support",
         "plans",
         "locations",
+        "index",
       ])),
     },
     revalidate: 60,

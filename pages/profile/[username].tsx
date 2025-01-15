@@ -511,7 +511,7 @@ export default function Profile(props) {
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
-
+      <div style={{ marginTop: "40px" }}></div>
       <ProfileComponent
         userProfile={userProfile}
         userProfilePicture={

@@ -25,7 +25,9 @@ export default function newsroom({ navBarItems }) {
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <DiscoverStoriesTab />
+        <div style={{ marginTop: "30px" }}>
+          <DiscoverStoriesTab />
+        </div>
       </Main>
     </>
   );

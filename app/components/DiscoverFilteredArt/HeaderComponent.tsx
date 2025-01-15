@@ -15,43 +15,54 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Typography from "@mui/material/Typography";
 
-export default function IndexHeroRenewed({ title, filterOpen }) {
-  const { t } = useTranslation("index ");
+export default function IndexHeroRenewed({ page, filterOpen }) {
+  const { t } = useTranslation("index");
   const s = styles();
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
 
   useEffect(() => {
-    console.log("from header: " + filterOpen);
-  }, [filterOpen]);
+    console.log("from header: " + page);
+  }, [page]);
 
   return (
     <div
       style={{
         width: filterOpen ? "79%" : "100%",
-        marginRight: "0",
-        marginLeft: "auto",
       }}
       className={s.container}
     >
       <div
         style={{
-          padding: "10px",
+          width: filterOpen ? "100%" : "83%",
           margin: "0 auto",
         }}
       >
-        <Typography
-          className={s.titleWrapper}
-          style={{ width: filterOpen ? "80%" : "90%" }}
-        >
-          Hitta ditt originalverk och köp det direkt från konstnären
-        </Typography>
-        <Typography style={{ fontSize: "16px", width: "100%" }}>
-          På Artportable hittar du alla typer av konst; olja, akvarell,
-          fotografi eller keramik. Naturtroget eller abstrakt, här finns alla
-          tänkbara tekniker och format representerade, från hela landet. Det
-          smartaste av allt, du kontaktar själv konstnären bakom ditt
-          favoritverk och gör upp både köp och leverans. Enkelt och modernt.
-        </Typography>
+        {page === "likes" && (
+          <div>
+            {" "}
+            <Typography
+              className={s.titleWrapper}
+              style={{ width: filterOpen ? "80%" : "100%" }}
+            >
+              {t("discoverTitle")}
+            </Typography>
+            <Typography className={s.textWrapper}>
+              {t("discoverText")}
+            </Typography>
+          </div>
+        )}
+        {page === "latest" && (
+          <div>
+            {" "}
+            <Typography
+              className={s.titleWrapperTwo}
+              style={{ width: filterOpen ? "90%" : "100%" }}
+            >
+              {t("latestTitle")}
+            </Typography>
+            <Typography className={s.textWrapper}>{t("latestText")}</Typography>
+          </div>
+        )}
       </div>
     </div>
   );
