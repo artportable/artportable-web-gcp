@@ -7,10 +7,11 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       dropShadow: "rgba(0, 0, 0, 0.25)",
       gap: "10px",
-      marginTop: "20px",
+      // marginTop: "20px",
       [theme.breakpoints.up("smPlus")]: {
         justifyContent: "flex-start",
-        marginTop: "30px",
+        // marginTop: "30px",
+        width: "100%",
       },
     },
     mobileButton: {

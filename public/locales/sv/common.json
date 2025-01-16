@@ -27,7 +27,7 @@
     "email": "epost",
     "thanks": "Tack!",
     "Annonsera": "Annonsera",
-    "christmas": "Julkampanj",
+    "christmas": "Kampanj",
     "husohem": "Publicera 3 verk på husohem.se",
     "getStarted": "Kom igång"
   },
@@ -180,7 +180,9 @@
     "filter": "Filtrera",
     "place": "Plats",
     "height": "Höjd",
-    "width": "Bredd"
+    "width": "Bredd",
+    "relevance": "Relevans",
+    "latest": "Senaste"
   },
   "like": "Gilla",
   "message": "Meddelande",

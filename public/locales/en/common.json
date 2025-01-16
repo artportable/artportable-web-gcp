@@ -27,7 +27,7 @@
     "email": "email",
     "thanks": "Thanks!",
     "Annonsera": "Advertise",
-    "christmas": "Christmas campaign",
+    "christmas": "Campaign",
     "husohem": "Publish 3 works on husohem.se",
     "getStarted": "Get started"
   },
@@ -162,7 +162,9 @@
     "filter": "Filter",
     "place": "Location",
     "height": "Height",
-    "width": "Width"
+    "width": "Width",
+    "relevance": "Relevance",
+    "latest": "Latest"
   },
 
   "like": "Like",
