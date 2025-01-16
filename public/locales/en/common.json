@@ -164,7 +164,9 @@
     "height": "Height",
     "width": "Width",
     "relevance": "Relevance",
-    "latest": "Latest"
+    "latest": "Latest",
+    "lowestPrice": "Price (Low to High)",
+    "hightestPrice": "Price (High to Low)"
   },
 
   "like": "Like",

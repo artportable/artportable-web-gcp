@@ -34,7 +34,7 @@ export default function Latest({ navBarItems }) {
 
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false}>
+      <Main navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("latest")} />

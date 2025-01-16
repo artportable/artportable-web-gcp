@@ -18,7 +18,7 @@ import Dialog from "@mui/material/Dialog";
 import List from "@mui/material/List";
 import TuneIcon from "@mui/icons-material/Tune";
 import CloseIcon from "@material-ui/icons/Close";
-import Select from "@material-ui/core/Select";
+import { Select } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 import { countryStates } from "../../../public/data/countryStates";
 import Slider from "@mui/material/Slider";
@@ -163,6 +163,17 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   useEffect(() => {}, [handleClose, resetFiltersMobile]);
 
+  const [orderByFilter, setOrderByFilter] = useState(props.page || "");
+
+  useEffect(() => {
+    console.log(orderByFilter); // Logs whenever `orderByFilter` changes.
+  }, [orderByFilter]);
+
+  const handleByOrder = (event: React.ChangeEvent<{ value: unknown }>) => {
+    event.preventDefault();
+    setOrderByFilter(event.target.value as string); // Ensure the correct value is passed.
+  };
+
   const isFilterActiveMobile = () => {
     return (
       selectedTempTags.length > 0 ||
@@ -210,7 +221,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
         let url = new URL(`${apiBaseUrl}/api/Discover/artworks/filter`);
 
         if (props.page) {
-          url.searchParams.append("orderBy", props.page);
+          url.searchParams.append("orderBy", orderByFilter);
         }
         if (selectedTechnique) {
           url.searchParams.append("tag", selectedTechnique);
@@ -271,30 +282,69 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
           marginLeft: "auto",
         }}
       >
-        <div className={s.activeButtons}>
-          {!open && (
-            <Button
-              className={s.mobileButton}
-              variant="outlined"
-              onClick={handleClickOpen}
-            >
-              <Typography>{t("common:selectOptions:filter")}</Typography>
-              <TuneIcon className={s.tuneIcon} />
-            </Button>
-          )}
-          {isFilterActiveMobile() && (
-            <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                resetFiltersMobile();
-              }}
-              variant="outlined"
-              color="secondary"
-              className={s.activeFilterClearOnScreen}
-            >
-              <Typography> {t("common:selectOptions:clearFilter")}</Typography>
-            </Button>
-          )}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "20px",
+          }}
+        >
+          <div className={s.activeButtons}>
+            {!open && (
+              <Button
+                className={s.mobileButton}
+                variant="outlined"
+                onClick={handleClickOpen}
+              >
+                <Typography>{t("common:selectOptions:filter")}</Typography>
+                <TuneIcon className={s.tuneIcon} />
+              </Button>
+            )}
+            {isFilterActiveMobile() && (
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  resetFiltersMobile();
+                }}
+                variant="outlined"
+                color="secondary"
+                className={s.activeFilterClearOnScreen}
+              >
+                <Typography>
+                  {" "}
+                  {t("common:selectOptions:clearFilter")}
+                </Typography>
+              </Button>
+            )}
+          </div>
+          <div>
+            {" "}
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <Select
+                value={orderByFilter}
+                onChange={handleByOrder}
+                MenuProps={{ disableScrollLock: true }}
+              >
+                <MenuItem value="likes">
+                  {t("common:selectOptions:relevance")}
+                </MenuItem>
+                <MenuItem value="latest">
+                  {" "}
+                  {t("common:selectOptions:latest")}
+                </MenuItem>
+                <MenuItem value="lowestPrice">
+                  {" "}
+                  {t("common:selectOptions:lowestPrice")}
+                </MenuItem>
+                <MenuItem value="highestPrice">
+                  {" "}
+                  {t("common:selectOptions:hightestPrice")}
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </div>
         </div>
       </div>
       <div className={s.mobileContainer1}>

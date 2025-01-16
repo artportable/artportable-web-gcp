@@ -182,7 +182,9 @@
     "height": "Höjd",
     "width": "Bredd",
     "relevance": "Relevans",
-    "latest": "Senaste"
+    "latest": "Senaste",
+    "lowestPrice": "Billigast först",
+    "hightestPrice": "Dyrast först"
   },
   "like": "Gilla",
   "message": "Meddelande",

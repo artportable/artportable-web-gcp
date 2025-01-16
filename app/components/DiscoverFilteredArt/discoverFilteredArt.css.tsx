@@ -4,40 +4,32 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     activeButtons: {
       display: "flex",
-      justifyContent: "center",
       dropShadow: "rgba(0, 0, 0, 0.25)",
       gap: "10px",
-      marginTop: "20px",
-      [theme.breakpoints.up("smPlus")]: {
-        justifyContent: "flex-start",
-        marginTop: "30px",
-      },
+      [theme.breakpoints.up("smPlus")]: {},
     },
     mobileButton: {
-      width: "50%",
+      width: "100%",
       borderRadius: "20px",
-      margin: "2px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "30%",
+        width: "100%",
       },
       [theme.breakpoints.up("md")]: {
-        width: "20%",
+        width: "100%",
       },
     },
     activeFilterClearOnScreen: {
-      margin: "2px",
       backgroundColor: "transparent",
       borderRadius: "20px",
-      padding: "10px",
       border: "1px solid rgb(0 0 0 / 23%)",
       color: "black",
-      width: "50%",
+      width: "100%",
       height: "40px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "30%",
+        width: "100%",
       },
       [theme.breakpoints.up("md")]: {
-        width: "20%",
+        width: "200px",
       },
     },
 
