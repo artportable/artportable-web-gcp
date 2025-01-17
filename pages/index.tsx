@@ -225,10 +225,12 @@ export default function DiscoverPage({ navBarItems }) {
       {!isSignedIn.value && (
         <IndexHeroRenewed onScrollDown={scrollToNextSection} />
       )}
-
       <div ref={nextSectionRef}></div>
-      <div style={{ marginTop: "20px" }}>
-        {" "}
+
+      <div style={{ marginTop: "50px" }}>
+        <Typography variant="h3" style={{ fontWeight: 500 }}>
+          {t("featured")}
+        </Typography>
         <RocketCarousel
           forDesktop={!isMobile}
           containerStyle={{
@@ -236,7 +238,6 @@ export default function DiscoverPage({ navBarItems }) {
           }}
         />
       </div>
-
       <>
         {!isSignedIn.value &&
           activeTab != 1 &&

@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/705a291d-752c-4ad7-a9cf-421f40e5c304">
+                <a href="https://artportable.com/art/ce32fdd8-2a6f-4cb4-b987-0fb598fb9e4d">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/image5.png"
-                          : "/images/image5.png"
+                          ? "/images/annabrandt.jpg"
+                          : "/images/annabrandt.jpg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -68,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Andreas Johansson,&nbsp;
+                        Anna Brandt,&nbsp;
                       </p>
                       <p
                         style={{
@@ -78,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        The king
+                        LOIRÉGARDEN II
                       </p>
                     </div>
                   </div>
