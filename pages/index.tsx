@@ -228,7 +228,7 @@ export default function DiscoverPage({ navBarItems }) {
       <div ref={nextSectionRef}></div>
 
       <div style={{ marginTop: "50px" }}>
-        <Typography variant="h3" style={{ fontWeight: 500 }}>
+        <Typography variant="h4" style={{ fontWeight: 500 }}>
           {t("featured")}
         </Typography>
         <RocketCarousel
