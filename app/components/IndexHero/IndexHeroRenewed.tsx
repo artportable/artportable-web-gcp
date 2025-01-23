@@ -110,7 +110,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@norumgabriella">
+                  <a href="https://artportable.com/en/profile/@gabriellanorum">
                     <div
                       style={{
                         position: "relative",
