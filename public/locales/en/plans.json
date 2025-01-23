@@ -37,7 +37,6 @@
       "subtitle": "For artists who want to be prioritized and gain access to more benefits.",
       "trial": "Try it for 10 days free!",
       "listTexts": [
-        "Get 3 months of visibility in Sweden's largest interior design magazine husohem.se",
         "Everything from Portfolio",
         "Chance to be selected and featured on Artportable's homepage and social media",
         "Publish up to 1,500 works",
@@ -46,6 +45,18 @@
         "Increased visibility on Artportable",
         "Personal advice for purchase inquiries",
         "Contact with Artportable's marketing department"
+      ]
+    },
+    "portfolioPremiumPlus": {
+      "name": "Portfolio Premium Plus",
+      "subtitle": "För dig som är konstnär och vill maximera din synlighet och försäljning. Artportable hjälper dig öppna dörrar till nya möjligheter genom att låta dina verk nå en ännu större publik",
+      "trial": "",
+      "listTexts": [
+        "Allt från Portfolio Premium ingår",
+        "Ökad synlighet på Artportable",
+        "Personlig rådgivnig vid köpförfrågningar",
+        "3 marknadsförda verk per månad",
+        "Synglighet i Artportables nyhetsbrev varje månad"
       ]
     }
   },
