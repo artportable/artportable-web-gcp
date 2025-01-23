@@ -242,10 +242,10 @@ export default function CheckoutForm({ email, fullName, plan }) {
         <Box fontSize="1rem" fontWeight="bold">
           {t("total")}
         </Box>
-        {plan?.productKey === "portfolioPremium" ? (
-          <Box>{t("newPlanPremium")}</Box>
+        {plan?.productKey === "portfolioPremiumPlus" ? (
+          <Box>975 SEK</Box>
         ) : (
-          <Box>{t("newPlan")}`</Box>
+          <Box></Box>
         )}
       </Box>
       <Box className={styles.divider}></Box>

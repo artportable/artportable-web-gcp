@@ -44,6 +44,18 @@
         "Personlig rådgivning ved kjøpsforespørsler",
         "Kontakt med Artportables markedsavdeling"
       ]
+    },
+    "portfolioPremiumPlus": {
+      "name": "Portfolio Premium Plus",
+      "subtitle": "For deg som er kunstner og vil maksimere synligheten og salget ditt. Artportable hjelper deg med å åpne dører til nye muligheter ved å la verkene dine nå et enda større publikum.",
+      "trial": "",
+      "listTexts": [
+        "Alt fra Portfolio Premium er inkludert",
+        "Økt synlighet på Artportable",
+        "Personlig rådgivning ved kjøpsforespørsler",
+        "3 promoterte verk per måned",
+        "Synlighet i Artportables nyhetsbrev hver måned"
+      ]
     }
   },
   "joinTheCommunity": "Bli en del av fellesskapet",
