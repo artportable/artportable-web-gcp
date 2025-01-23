@@ -32,7 +32,11 @@ export interface SelectedPlanData {
 
 export interface PriceData {
   id: string;
-  product: "Portfolio Premium" | "Portfolio" | "free";
+  product:
+    | "Portfolio Premium Plus"
+    | "Portfolio Premium"
+    | "Portfolio"
+    | "free";
   productKey: string;
   currency: string;
   recurringInterval: string;
@@ -69,6 +73,13 @@ export default function Plans({ priceData }) {
         router.push("/checkout");
         break;
       case "portfolioPremium":
+        trackGoogleAnalytics(
+          ActionType.SIGN_UP_PREMIUM_COMPLETED,
+          CategoryType.BUY
+        );
+        router.push("/checkout");
+        break;
+      case "portfolioPremiumPlus":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PREMIUM_COMPLETED,
           CategoryType.BUY

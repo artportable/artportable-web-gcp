@@ -11,10 +11,11 @@ export const styles = makeStyles((theme: Theme) =>
     planCards: {
       display: "flex",
       flexDirection: "column",
-      margin: theme.spacing(4, 0, 0, 0),
-      gap: theme.spacing(4),
       justifyContent: "center",
-      alignItems: "stretch",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        width: "auto",
+      },
     },
     joinCommunityButton: {
       margin: theme.spacing(4),
