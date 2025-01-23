@@ -233,11 +233,20 @@ export default function PlanCard({
     return true;
   };
 
+  const backgroundImage =
+    plan?.productKey === "portfolio"
+      ? `url("/images/greenImage.png")`
+      : plan?.productKey === "portfolioPremium"
+      ? `url("/images/redStreck.png")`
+      : plan?.productKey === "portfolioPremiumPlus"
+      ? `url("/images/bluebanner.png")`
+      : `url("/images/defaultbanner.png")`;
+
   return (
     <div className={s.container}>
       {!numberExists ? (
         <div>
-          <div className={s.h3}>
+          <div>
             <Typography>
               {t(
                 "För att gå vidare med din uppgradering behöver du ange ditt telefonnummer"
@@ -275,29 +284,22 @@ export default function PlanCard({
           </div>
         </div>
       ) : (
-        <div
-          className={clsx(
-            s.cardRoot,
-            plan.productKey === "portfolio" && s.primaryCard
-          )}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "#ffe36b4a",
-              borderRadius: "4px",
-            }}
-          >
+        <div className={s.cardRoot}>
+          <div>
             <CardContent>
               <Typography variant="h6" component="h2">
-                <Box className={s.header} textAlign="center">
+                <div
+                  style={{
+                    backgroundImage: backgroundImage,
+                    backgroundSize: "cover",
+                  }}
+                  className={s.header}
+                >
                   {planName}
-                </Box>
+                </div>
               </Typography>
-              <Typography variant="body1">{planSubtitle}</Typography>
-              <Typography variant="h3" style={{ textAlign: "center" }}>
-                {plan?.productKey === "portfolio" && <Box>{planTrial}</Box>}
+              <Typography variant="body1" style={{ textAlign: "center" }}>
+                {planSubtitle}
               </Typography>
 
               <Box className={s.planPrice}>
@@ -317,13 +319,13 @@ export default function PlanCard({
                   <Link passHref href={href}>
                     <a>
                       <Button
-                        size="large"
-                        variant="contained"
+                        size="small"
                         rounded
                         style={{
                           borderRadius: 35,
-                          backgroundColor: "black",
-                          color: "white",
+                          backgroundColor: "transparent",
+                          color: "black",
+                          border: "1px solid black",
                         }}
                         onClick={(event) => upgradeWithPhone(event)}
                       >

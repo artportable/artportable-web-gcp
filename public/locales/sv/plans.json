@@ -21,20 +21,21 @@
     "portfolio": {
       "name": "Portfolio",
       "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
-      "trial": "Prova i 10 dagar gratis!",
+      "trial": "",
       "listTexts": [
         "Publicera dina verk",
-        "Chatta och få förfrågningar om dina konstverk",
+        "Få förfrågningar om dina konstverk",
         "Betala 0 % i provision på sålda verk",
         "Följ och interagera med andra konstnärer",
         "SEO-anpassad portfolio",
-        "Mobilanpassad sida"
+        "Mobilanpassad sida",
+        "Gratis provperiod i 10 dagar"
       ]
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
       "subtitle": "För dig som är konstnär och vill bli prioriterad samt få tillgång till fler förmåner.",
-      "trial": "Prova i 10 dagar gratis!",
+      "trial": "",
       "listTexts": [
         "JUST NU! Få 3 månaders synlighet på Sveriges största inredningsmagasin husohem.se! Värde 7000 SEK",
         "Allt från Portfolio",
@@ -42,9 +43,23 @@
         "Publicera upp till 1500 verk",
         "Sortera konstverk",
         "Publicera nyheter",
+        "Personlig rådgivnig vid köpförfrågningar",
+        "Kontakt med Artportables marknadsavdelning",
+        "Gratis provperiod i 10 dagar"
+      ]
+    },
+    "portfolioPremiumPlus": {
+      "name": "Portfolio Premium Plus",
+      "subtitle": "För dig som är konstnär och vill maximera din synlighet och försäljning. Artportable hjälper dig öppna dörrar till nya möjligheter genom att låta dina verk nå en ännu större publik",
+      "trial": "",
+      "listTexts": [
+        "JUST NU! Få 3 månaders synlighet på Sveriges största inredningsmagasin husohem.se! Värde 7000 SEK",
+        "Allt från Portfolio Premium ingår",
         "Ökad synlighet på Artportable",
         "Personlig rådgivnig vid köpförfrågningar",
-        "Kontakt med Artportables marknadsavdelning"
+        "3 marknadsförda verk per månad",
+        "Synglighet i Artportables nyhetsbrev varje månad",
+        "Gratis provperiod i 10 dagar"
       ]
     }
   },

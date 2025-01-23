@@ -3,39 +3,26 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      padding: theme.spacing(1),
+      padding: theme.spacing(2),
+      marginTop: "20px",
+      border: "1px solid black",
+      margin: "10px",
+      borderRadius: "20px",
+      [theme.breakpoints.up("md")]: {
+        width: "30vw",
+      },
     },
     cardRoot: {
-      backgroundColor: "#fffffff0",
-      "& .MuiCardContent-root": {
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        "& .MuiList-root": {
-          flexGrow: 1,
-        },
-        "& a": {
-          alignSelf: "center",
-        },
-        "& .MuiButton-root": {
-          minWidth: "155px",
-        },
-      },
-      [theme.breakpoints.up("md")]: {
-        marginTop: theme.spacing(3),
-      },
+      [theme.breakpoints.up("md")]: {},
     },
     header: {
       fontWeight: 500,
       fontSize: "1.5rem",
-      backgroundColor: "#F7E2A8",
-      height: "50px",
       display: "flex",
+      color: "white",
+      width: "100%",
       justifyContent: "center",
-
       alignItems: "center",
-      borderRadius: "6px",
-      margin: "10px",
     },
     planPrice: {
       color: "black",
@@ -44,30 +31,24 @@ export const styles = makeStyles((theme: Theme) =>
       margin: theme.spacing(0, 0),
     },
     textField: {
-      minHeight: "76px",
-      "& label.Mui-focused": {
-        color: "black",
-      },
-      "& .MuiOutlinedInput-root": {
-        "&.Mui-focused & fieldset": {
-          // borderColor: 'black',
-        },
-        "&.Mui-focused fieldset": {
-          border: "1px solid black",
-        },
-      },
+      // minHeight: "76px",
+      // "& label.Mui-focused": {
+      //   color: "black",
+      // },
+      // "& .MuiOutlinedInput-root": {
+      //   "&.Mui-focused & fieldset": {
+      //     // borderColor: 'black',
+      //   },
+      //   "&.Mui-focused fieldset": {
+      //     border: "1px solid black",
+      //   },
+      // },
     },
     button: {
       display: "flex",
-      margin: "auto",
+      justifyContent: "space-around",
+      alignItems: "center",
       marginTop: theme.spacing(3),
-      float: "right",
-    },
-    h3: {
-      textAlign: "left",
-      marginBottom: "-20px",
-
-      minHeight: "76px",
     },
   })
 );
