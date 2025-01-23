@@ -184,7 +184,7 @@ export default function Plans({ priceData }) {
                 {t("ourMemberships")}
               </Box>
             </Typography>
-            <PlanSelector showAll={true} priceData={priceData}></PlanSelector>
+            <PlanSelector showAll={false} priceData={priceData}></PlanSelector>
           </div>
         </div>
       )}
