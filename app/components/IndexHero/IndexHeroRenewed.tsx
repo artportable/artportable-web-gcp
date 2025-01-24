@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/ce32fdd8-2a6f-4cb4-b987-0fb598fb9e4d">
+                <a href="https://artportable.com/art/cd0c459b-d857-485d-88e1-921fa9f55ff4">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/annabrandt.jpg"
-                          : "/images/annabrandt.jpg"
+                          ? "/images/torleiv.jpeg"
+                          : "/images/torleiv.jpeg"
                       }
                       alt="konst"
                       loading="lazy"
@@ -68,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Anna Brandt,&nbsp;
+                        TORLEIV AGDESTEIN,&nbsp;
                       </p>
                       <p
                         style={{
@@ -78,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        LOIRÉGARDEN II
+                        Bortenfor
                       </p>
                     </div>
                   </div>
