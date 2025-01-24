@@ -36,7 +36,7 @@ class MyDocument extends Document {
 
           <link rel="preload" as="image" href="/images/aylin.jpeg" />
           <link rel="preload" as="image" href="/images/annabrandt.jpg.jpeg" />
-          <link rel="preload" as="image" href="/images/karin.png" />
+          <link rel="preload" as="image" href="/images/torleiv.jpeg" />
 
           <script
             dangerouslySetInnerHTML={{

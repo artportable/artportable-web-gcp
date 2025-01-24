@@ -59,6 +59,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       loading="lazy"
                       layout="fill"
                       objectFit="cover"
+                      quality={10}
                     />
                     <div className={s.imageTitle}>
                       <p
