@@ -202,6 +202,7 @@ export default function ArtworkListItem({
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
               quality={10}
+              loading="lazy"
             />
           </a>
         </Link>
