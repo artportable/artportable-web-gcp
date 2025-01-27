@@ -314,7 +314,7 @@ export default function DiscoverArt({
                       if (artwork) {
                         return (
                           <ArtworkListItem
-                            key={image.Name}
+                            key={artwork.Id}
                             width={image.Width}
                             height={image.Height}
                             artwork={artwork}
