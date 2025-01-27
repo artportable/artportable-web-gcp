@@ -201,7 +201,7 @@ export default function ArtworkListItem({
               alt={`${artwork?.Title ? artwork?.Title : "artwork"}`}
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
-              quality={30}
+              quality={10}
             />
           </a>
         </Link>
