@@ -56,7 +56,7 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
             url.searchParams.append("myUsername", username);
           }
           url.searchParams.append("page", (pageIndex + 1).toString());
-          url.searchParams.append("pageSize", "10");
+          url.searchParams.append("pageSize", "20");
           return url.href;
         }
         return previousPageData.next;
