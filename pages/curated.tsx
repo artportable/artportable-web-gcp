@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
@@ -21,7 +21,7 @@ export default function latest({ navBarItems }) {
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
 
   const loadImages = () => {
-    setLoadMoreArtworks(true);
+    setLoadMoreArtworks(false);
   };
 
   const stopLoadImages = () => {
