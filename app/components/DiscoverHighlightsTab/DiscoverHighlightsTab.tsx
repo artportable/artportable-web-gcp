@@ -44,7 +44,7 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
         }
 
         if (pageIndex == 0) {
-          let url = new URL(`${apiBaseUrl}/api/Discover/artworks/curated`);
+          let url = new URL(`${apiBaseUrl}/api/Discover/artworks/selected`);
 
           selectedTags.forEach((tag) => {
             url.searchParams.append("tag", tag);
