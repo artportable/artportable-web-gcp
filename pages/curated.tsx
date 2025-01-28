@@ -21,7 +21,7 @@ export default function latest({ navBarItems }) {
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
 
   const loadImages = () => {
-    setLoadMoreArtworks(false);
+    setLoadMoreArtworks(true);
   };
 
   const stopLoadImages = () => {
