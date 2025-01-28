@@ -52,10 +52,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/torleivs.jpeg"
-                          : "/images/torleivs.jpeg"
+                          ? "/images/torleivs.webp"
+                          : "/images/torleivs.webp"
                       }
-                      alt="konst"
+                      alt="first page artwork"
                       loading="lazy"
                       layout="fill"
                       objectFit="cover"

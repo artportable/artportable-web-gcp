@@ -29,11 +29,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <script
+          {/* <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-          />
-          <link rel="preload" as="image" href="/images/torleiv.jpeg" />
+          /> */}
+
+          <link rel="preload" as="image" href="/images/torleiv.webp" />
 
           <script
             dangerouslySetInnerHTML={{
