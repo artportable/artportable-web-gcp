@@ -792,11 +792,11 @@ export default function ArtworkPage(props) {
                             </div>
                           </div>
                         </div>
-                        <div className={s.right}>
+                        {/* <div className={s.right}>
                           <AboutCardArtwork
                             data={artwork?.data}
                           ></AboutCardArtwork>
-                        </div>
+                        </div> */}
                       </div>
                     </Paper>
                   </div>
