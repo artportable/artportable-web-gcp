@@ -46,7 +46,7 @@ class MyDocument extends Document {
             `,
             }}
           />
-          <script src="https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js" />
+          {/* <script src="https://chimpstatic.com/mcjs-connected/js/users/a5fda5bc1854d6814dcbd345d/521eee8ae4a99eba9084acae9.js" /> */}
 
           {/* <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> */}
 
