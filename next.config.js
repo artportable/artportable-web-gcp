@@ -1,7 +1,10 @@
 const { i18n } = require("./next-i18next.config");
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 // const signUpRedirect = process.env.REDIRECT_TO_SIGN_UP
-module.exports = {
+module.exports = withBundleAnalyzer({
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -43,4 +46,4 @@ module.exports = {
       },
     ];
   },
-};
+});

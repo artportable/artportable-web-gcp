@@ -71,8 +71,6 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import ArtworkMasonry from "../../app/components/Profile/ArtworkMasonry";
-// import Spacer from "../../app/components/LayoutComponents/Spacer";
 
 function a11yProps(index: any) {
   return {
@@ -119,9 +117,9 @@ export default function Profile(props) {
   const [editArtworkOpen, setEditArtworkOpen] = useState(false);
   const [artworkToEdit, setArtworkToEdit] = useState(null);
   const [isReady, setIsReady] = useState(false);
-  const [sortOpen, setSortOpen] = useState(false);
+  // const [sortOpen, setSortOpen] = useState(false);
 
-  const [hasStories, setHasStories] = useState(false);
+  // const [hasStories, setHasStories] = useState(false);
   const stories = useGetStories(profileUser, username.value);
   const oddStories = stories?.data?.filter((_, index) => index % 2 === 0);
   const evenStories = stories?.data?.filter((_, index) => index % 2 !== 0);
@@ -131,7 +129,7 @@ export default function Profile(props) {
   const userProfileSummary = useGetUserProfileSummary(profileUser);
   const tags = useGetUserProfileTags(profileUser);
   const userData = useGetUser(profileUser);
-  const similarPortfolios = useGetSimilarPortfolios(profileUser);
+  // const similarPortfolios = useGetSimilarPortfolios(profileUser);
   const userProfile = useGetUserProfile(profileUser, username.value);
   const chosenColor = userProfile?.data?.ChosenColor || "#FDF9F7";
   const chosenFont = userProfile?.data?.ChosenFont || "Gotham";
