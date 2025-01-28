@@ -64,12 +64,18 @@ const DiscoverHighLightsTab = memo((props: DiscoverHighLightsTabProps) => {
       username
     );
 
+  const uniqueArtworks = Array.from(
+    new Set(artworks?.map((artwork) => artwork.Id))
+  ).map((id) => {
+    return artworks.find((artwork) => artwork.Id === id);
+  });
+
   return (
     <>
       {!tags?.isLoading && !tags?.isError && tags?.data && (
         <>
           <DiscoverArt
-            artworks={artworks}
+            artworks={uniqueArtworks}
             tags={tags?.data}
             onFilter={filter}
             rowWidth={rowWidth}
