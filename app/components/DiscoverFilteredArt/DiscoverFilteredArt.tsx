@@ -58,7 +58,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const tags = useGetTags();
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("smPlus"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const {
     selectedTags,
@@ -101,11 +101,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setTempSelectedWidth,
   } = useContext(NavigationContext);
 
-  const [open, setOpen] = useState(isMobile ? true : false);
-
-  useEffect(() => {
-    console.log(isMobile);
-  }, [open, isMobile]);
+  const [open, setOpen] = useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -166,8 +162,10 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const [orderByFilter, setOrderByFilter] = useState(props.page || "");
 
   useEffect(() => {
-    console.log(orderByFilter); // Logs whenever `orderByFilter` changes.
-  }, [orderByFilter]);
+    if (isMobile) {
+      setOpen(false);
+    }
+  }, [isMobile]);
 
   const handleByOrder = (event: React.ChangeEvent<{ value: unknown }>) => {
     event.preventDefault();

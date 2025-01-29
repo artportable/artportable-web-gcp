@@ -20,9 +20,5 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
   const s = styles();
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
 
-  useEffect(() => {
-    console.log("from header: " + page);
-  }, [page]);
-
   return <></>;
 }
