@@ -274,7 +274,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   return (
     <>
-      <HeaderComponent filterOpen={open} page={props.page}></HeaderComponent>
+      {/* <HeaderComponent filterOpen={open} page={props.page} /> */}
 
       <div
         style={{
@@ -754,7 +754,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                   setSelectedState(selectedTempState);
                   setSelectedHeight(tempSelectedHeight);
                   setSelectedWidth(tempSelectedWidth);
-                  setOpen(isMobile ? true : false);
+                  setOpen(!isMobile ? true : false);
                 }}
                 className={s.activeFilterResult}
               >
