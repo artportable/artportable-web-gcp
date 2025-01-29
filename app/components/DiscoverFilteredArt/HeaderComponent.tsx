@@ -18,7 +18,26 @@ import Typography from "@mui/material/Typography";
 export default function IndexHeroRenewed({ page, filterOpen }) {
   const { t } = useTranslation("index");
   const s = styles();
-  const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
+  const isTinyDevice = useMediaQuery(theme.breakpoints.up("md"));
 
-  return <></>;
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: "10px",
+          backgroundColor: "#0076D5",
+          height: "250px",
+          width: filterOpen ? "85%" : "100%",
+          marginLeft: "auto",
+        }}
+      >
+        <div style={{ color: "white", marginLeft: "10px" }}>
+          {" "}
+          <h1>Köp det senaste på Artportable</h1>
+        </div>
+      </div>
+    </>
+  );
 }

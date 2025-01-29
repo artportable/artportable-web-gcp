@@ -53,6 +53,7 @@ interface InputProps {
   header?: string;
   isFilterOpen?: boolean;
   insertElements?: InsertElement[];
+  page?: string;
 }
 
 export default function DiscoverArt({
@@ -67,6 +68,7 @@ export default function DiscoverArt({
   insertElements = [],
   isFilterOpen,
   header = "",
+  page,
 }: InputProps) {
   const s = styles();
   const { t } = useTranslation(["discover", "tags"]);
