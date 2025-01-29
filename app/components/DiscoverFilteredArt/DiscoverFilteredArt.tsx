@@ -274,7 +274,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   return (
     <>
-      {/* <HeaderComponent filterOpen={open} page={props.page} /> */}
+      <HeaderComponent filterOpen={open} page={props.page} />
 
       <div
         style={{

@@ -3,23 +3,39 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      backgroundColor: "rgba(0, 118, 213, 1)",
-      color: "white",
-      gridColumn: "1/4",
-      padding: "20px",
-      height: "250px",
-      [theme.breakpoints.up("smPlus")]: {
+      display: "none",
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        backgroundColor: "rgba(0, 118, 213, 1)",
         color: "white",
+        gridColumn: "1/4",
+        padding: "20px",
         marginRight: "0",
         marginLeft: "auto",
-        padding: "20px",
+        width: "100vw",
+        alignItems: "center",
+        height: "300px",
+      },
+    },
+
+    containerLiked: {
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
         display: "flex",
+        backgroundColor: "#229059",
+        color: "white",
+        gridColumn: "1/4",
+        padding: "20px",
+        marginRight: "0",
+        marginLeft: "auto",
+        width: "100vw",
         alignItems: "center",
         height: "300px",
       },
     },
     titleWrapper: {
       fontSize: "34px",
+
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "42px",
         fontWeight: "bold",
