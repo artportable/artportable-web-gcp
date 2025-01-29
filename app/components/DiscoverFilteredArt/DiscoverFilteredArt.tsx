@@ -29,6 +29,8 @@ import PanoramaHorizontalIcon from "@material-ui/icons/PanoramaHorizontal";
 import CropSquareIcon from "@material-ui/icons/CropSquare";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import HeaderComponent from "./HeaderComponent";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
 
 interface DiscoverFilteredArtProps {
   username?: string;
@@ -273,9 +275,10 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   return (
     <>
       <HeaderComponent filterOpen={open} page={props.page}></HeaderComponent>
+
       <div
         style={{
-          width: open ? "85%" : "100%",
+          width: open ? "84%" : "100%",
           marginRight: "0",
           marginLeft: "auto",
         }}
@@ -354,7 +357,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
           disableScrollLock={!isMobile}
           hideBackdrop={!isMobile}
         >
-          <div className={s.filterTitleClose}>
+          <DialogTitle className={s.filterTitleClose}>
             <div>
               <TuneIcon />
             </div>
@@ -363,361 +366,368 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
             <div style={{ cursor: "pointer" }} onClick={handleClose}>
               <CloseIcon></CloseIcon>
             </div>
-          </div>
-          <List className={s.mobileList}>
-            <div className={s.formControllWrapper}>
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:technique")}
-              </div>
-              <FormControl className={s.formControl}>
-                <Select
-                  labelId="theme-select-label"
-                  value={selectedTechnique || ""}
-                  onChange={(e) =>
-                    handleTechniqueChangeMobile(e.target.value as string)
-                  } // Type assertion here
-                  displayEmpty
-                  className={s.selectMenu}
-                  disableUnderline
-                  renderValue={(selected) => {
-                    if (!selected) {
-                      return (
-                        <span
-                          style={{
-                            margin: "10px",
-                            color: "black",
-                          }}
-                        >
-                          {t("common:selectOptions:allTechniques")}
-                        </span>
-                      );
+          </DialogTitle>
+
+          <DialogContent className={s.dialogContent}>
+            <List className={s.mobileList}>
+              <div className={s.formControllWrapper}>
+                <div className={s.filtertitle}>
+                  {t("common:selectOptions:technique")}
+                </div>
+                <FormControl className={s.formControl}>
+                  <Select
+                    labelId="theme-select-label"
+                    value={selectedTechnique || ""}
+                    onChange={(e) =>
+                      handleTechniqueChangeMobile(e.target.value as string)
+                    } // Type assertion here
+                    displayEmpty
+                    className={s.selectMenu}
+                    disableUnderline
+                    renderValue={(selected) => {
+                      if (!selected) {
+                        return (
+                          <span
+                            style={{
+                              margin: "10px",
+                              color: "black",
+                            }}
+                          >
+                            {t("common:selectOptions:allTechniques")}
+                          </span>
+                        );
+                      }
+                      return t(`common:techniques:${selected}`);
+                    }}
+                  >
+                    {Object.keys(TECHNIQUE_TAGS).map((key) => (
+                      <MenuItem key={key} value={key}>
+                        {t(`common:techniques:${key}`)}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <div className={s.filtertitle}>
+                  {t("common:selectOptions:theme")}
+                </div>
+                <FormControl className={s.formControl}>
+                  <Select
+                    labelId="theme-select-label"
+                    value={selectedTheme || ""}
+                    onChange={(e) =>
+                      handleThemeChangeMobile(e.target.value as string)
+                    } // Type assertion here
+                    displayEmpty
+                    className={s.selectMenu}
+                    disableUnderline
+                    renderValue={(selected) => {
+                      if (!selected) {
+                        return (
+                          <span
+                            style={{
+                              margin: "10px",
+                              color: "black",
+                            }}
+                          >
+                            {t("common:selectOptions:allThemes")}
+                          </span>
+                        );
+                      }
+                      return t(`common:themes:${selected}`);
+                    }}
+                  >
+                    {Object.keys(THEME_TAGS).map((key) => (
+                      <MenuItem key={key} value={key}>
+                        {t(`common:themes:${key}`)}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <div className={s.filtertitle}>
+                  {t("common:selectOptions:medium")}
+                </div>
+                <FormControl className={s.formControl}>
+                  <Select
+                    labelId="theme-select-label"
+                    value={selectedMedium || ""}
+                    onChange={(e) =>
+                      handleMediumChangeMobile(e.target.value as string)
+                    } // Type assertion here
+                    displayEmpty
+                    className={s.selectMenu}
+                    disableUnderline
+                    renderValue={(selected) => {
+                      if (!selected) {
+                        return (
+                          <span
+                            style={{
+                              margin: "10px",
+                              color: "black",
+                            }}
+                          >
+                            {t("common:selectOptions:allMedium")}
+                          </span>
+                        );
+                      }
+                      return t(`common:medium:${selected}`);
+                    }}
+                  >
+                    {Object.keys(MEDIUM_TAGS).map((key) => (
+                      <MenuItem key={key} value={key}>
+                        {t(`common:techniques:${key}`)}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <div className={s.filtertitle}>
+                  {t("common:selectOptions:place")}
+                </div>
+                <FormControl className={s.formControl}>
+                  <Select
+                    labelId="county-select-label"
+                    value={selectedTempState || ""}
+                    onChange={(e) =>
+                      handleStateChange(e.target.value as string)
                     }
-                    return t(`common:techniques:${selected}`);
-                  }}
-                >
-                  {Object.keys(TECHNIQUE_TAGS).map((key) => (
-                    <MenuItem key={key} value={key}>
-                      {t(`common:techniques:${key}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:theme")}
-              </div>
-              <FormControl className={s.formControl}>
-                <Select
-                  labelId="theme-select-label"
-                  value={selectedTheme || ""}
-                  onChange={(e) =>
-                    handleThemeChangeMobile(e.target.value as string)
-                  } // Type assertion here
-                  displayEmpty
-                  className={s.selectMenu}
-                  disableUnderline
-                  renderValue={(selected) => {
-                    if (!selected) {
-                      return (
-                        <span
-                          style={{
-                            margin: "10px",
-                            color: "black",
-                          }}
-                        >
-                          {t("common:selectOptions:allThemes")}
-                        </span>
-                      );
-                    }
-                    return t(`common:themes:${selected}`);
-                  }}
-                >
-                  {Object.keys(THEME_TAGS).map((key) => (
-                    <MenuItem key={key} value={key}>
-                      {t(`common:themes:${key}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:medium")}
-              </div>
-              <FormControl className={s.formControl}>
-                <Select
-                  labelId="theme-select-label"
-                  value={selectedMedium || ""}
-                  onChange={(e) =>
-                    handleMediumChangeMobile(e.target.value as string)
-                  } // Type assertion here
-                  displayEmpty
-                  className={s.selectMenu}
-                  disableUnderline
-                  renderValue={(selected) => {
-                    if (!selected) {
-                      return (
-                        <span
-                          style={{
-                            margin: "10px",
-                            color: "black",
-                          }}
-                        >
-                          {t("common:selectOptions:allMedium")}
-                        </span>
-                      );
-                    }
-                    return t(`common:medium:${selected}`);
-                  }}
-                >
-                  {Object.keys(MEDIUM_TAGS).map((key) => (
-                    <MenuItem key={key} value={key}>
-                      {t(`common:techniques:${key}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:place")}
-              </div>
-              <FormControl className={s.formControl}>
-                <Select
-                  labelId="county-select-label"
-                  value={selectedTempState || ""}
-                  onChange={(e) => handleStateChange(e.target.value as string)}
-                  displayEmpty
-                  className={s.selectMenu}
-                  disableUnderline
-                  renderValue={(selected) => {
-                    if (!selected) {
-                      return (
-                        <span
-                          style={{
-                            margin: "10px",
-                            color: "black",
-                          }}
-                        >
-                          {t("common:allLocations")}
-                        </span>
-                      );
-                    }
-                    return t(`locations:${selected}`);
-                  }}
-                >
-                  {countryStates?.map((state, index) => (
-                    <MenuItem key={index} value={state.state}>
-                      {t(`locations:${state?.state}`)}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:format")}
-              </div>
-              <FormControl className={s.orientation}>
-                <div
-                  className={s.format}
-                  style={{
-                    backgroundColor:
-                      tempSelectedOrientation === "Vertical"
-                        ? "rgba(236, 236, 236, 1)"
-                        : "transparent",
-                  }}
-                  onClick={() => handleOrientationChangeMobile("Vertical")}
-                >
-                  <PanoramaVerticalIcon
-                    style={{ marginLeft: "18px", marginRight: "-18px" }}
-                  ></PanoramaVerticalIcon>{" "}
-                  <div
-                    style={{
-                      fontSize: "16px",
-                      flex: 1,
-                      textAlign: "center",
+                    displayEmpty
+                    className={s.selectMenu}
+                    disableUnderline
+                    renderValue={(selected) => {
+                      if (!selected) {
+                        return (
+                          <span
+                            style={{
+                              margin: "10px",
+                              color: "black",
+                            }}
+                          >
+                            {t("common:allLocations")}
+                          </span>
+                        );
+                      }
+                      return t(`locations:${selected}`);
                     }}
                   >
-                    {t("common:selectOptions:Vertical")}
+                    {countryStates?.map((state, index) => (
+                      <MenuItem key={index} value={state.state}>
+                        {t(`locations:${state?.state}`)}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <div className={s.filtertitle}>
+                  {t("common:selectOptions:format")}
+                </div>
+                <FormControl className={s.orientation}>
+                  <div
+                    className={s.format}
+                    style={{
+                      backgroundColor:
+                        tempSelectedOrientation === "Vertical"
+                          ? "rgba(236, 236, 236, 1)"
+                          : "transparent",
+                    }}
+                    onClick={() => handleOrientationChangeMobile("Vertical")}
+                  >
+                    <PanoramaVerticalIcon
+                      style={{ marginLeft: "18px", marginRight: "-18px" }}
+                    ></PanoramaVerticalIcon>{" "}
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        flex: 1,
+                        textAlign: "center",
+                      }}
+                    >
+                      {t("common:selectOptions:Vertical")}
+                    </div>
                   </div>
+
+                  <div
+                    className={s.format}
+                    style={{
+                      backgroundColor:
+                        tempSelectedOrientation === "Horizontal"
+                          ? "rgba(236, 236, 236, 1)"
+                          : "transparent",
+                    }}
+                    onClick={() => handleOrientationChangeMobile("Horizontal")}
+                  >
+                    <PanoramaHorizontalIcon
+                      style={{ marginLeft: "18px", marginRight: "-18px" }}
+                    ></PanoramaHorizontalIcon>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        flex: 1,
+                        textAlign: "center",
+                      }}
+                    >
+                      {t("common:selectOptions:Horizontal")}
+                    </div>
+                  </div>
+                  <div
+                    className={s.format}
+                    style={{
+                      backgroundColor:
+                        tempSelectedOrientation === "Square"
+                          ? "rgba(236, 236, 236, 1)"
+                          : "transparent",
+                    }}
+                    onClick={() => handleOrientationChangeMobile("Square")}
+                  >
+                    <CropSquareIcon
+                      style={{
+                        marginLeft: "18px",
+                        marginRight: "-18px",
+                      }}
+                    ></CropSquareIcon>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        flex: 1,
+                        textAlign: "center",
+                      }}
+                    >
+                      {t("common:selectOptions:Rectangle")}
+                    </div>
+                  </div>
+                  <div
+                    className={s.format}
+                    style={{
+                      backgroundColor:
+                        tempSelectedOrientation === "Multiple"
+                          ? "rgba(236, 236, 236, 1)"
+                          : "transparent",
+                    }}
+                    onClick={() => handleOrientationChangeMobile("Multiple")}
+                  >
+                    <AspectRatioIcon
+                      style={{ marginLeft: "18px", marginRight: "-18px" }}
+                    ></AspectRatioIcon>
+                    <div
+                      style={{
+                        fontSize: "16px",
+                        flex: 1,
+                        textAlign: "center",
+                      }}
+                    >
+                      {t("common:selectOptions:Multiple")}
+                    </div>
+                  </div>
+                </FormControl>
+
+                <div className={s.filtertitle}>
+                  {t("common:selectOptions:price")}
                 </div>
 
-                <div
-                  className={s.format}
-                  style={{
-                    backgroundColor:
-                      tempSelectedOrientation === "Horizontal"
-                        ? "rgba(236, 236, 236, 1)"
-                        : "transparent",
-                  }}
-                  onClick={() => handleOrientationChangeMobile("Horizontal")}
-                >
-                  <PanoramaHorizontalIcon
-                    style={{ marginLeft: "18px", marginRight: "-18px" }}
-                  ></PanoramaHorizontalIcon>
-                  <div
-                    style={{
-                      fontSize: "16px",
-                      flex: 1,
-                      textAlign: "center",
-                    }}
-                  >
-                    {t("common:selectOptions:Horizontal")}
+                <FormControl className={s.formControl}>
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: " space-between",
+                      }}
+                    >
+                      <Typography>
+                        {tempSelectedPrice ? tempSelectedPrice[0] : minPrice}{" "}
+                        SEK
+                      </Typography>
+                      <Typography>
+                        {tempSelectedPrice ? tempSelectedPrice[1] : maxPrice}{" "}
+                        SEK
+                      </Typography>
+                    </div>
+                    <Slider
+                      className={s.slider}
+                      value={tempSelectedPrice || [minPrice, maxPrice]}
+                      onChange={(event, newValue) =>
+                        setTempSelectedPrice(newValue as [number, number])
+                      }
+                      valueLabelDisplay="off"
+                      min={minPrice}
+                      max={maxPrice}
+                      step={100}
+                    />
                   </div>
-                </div>
-                <div
-                  className={s.format}
-                  style={{
-                    backgroundColor:
-                      tempSelectedOrientation === "Square"
-                        ? "rgba(236, 236, 236, 1)"
-                        : "transparent",
-                  }}
-                  onClick={() => handleOrientationChangeMobile("Square")}
-                >
-                  <CropSquareIcon
-                    style={{
-                      marginLeft: "18px",
-                      marginRight: "-18px",
-                    }}
-                  ></CropSquareIcon>
-                  <div
-                    style={{
-                      fontSize: "16px",
-                      flex: 1,
-                      textAlign: "center",
-                    }}
-                  >
-                    {t("common:selectOptions:Rectangle")}
-                  </div>
-                </div>
-                <div
-                  className={s.format}
-                  style={{
-                    backgroundColor:
-                      tempSelectedOrientation === "Multiple"
-                        ? "rgba(236, 236, 236, 1)"
-                        : "transparent",
-                  }}
-                  onClick={() => handleOrientationChangeMobile("Multiple")}
-                >
-                  <AspectRatioIcon
-                    style={{ marginLeft: "18px", marginRight: "-18px" }}
-                  ></AspectRatioIcon>
-                  <div
-                    style={{
-                      fontSize: "16px",
-                      flex: 1,
-                      textAlign: "center",
-                    }}
-                  >
-                    {t("common:selectOptions:Multiple")}
-                  </div>
-                </div>
-              </FormControl>
+                </FormControl>
 
-              <div className={s.filtertitle}>
-                {t("common:selectOptions:price")}
+                <div className={s.filtertitle}>
+                  {" "}
+                  {t("common:selectOptions:height")}
+                </div>
+
+                <FormControl className={s.formControl}>
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography>
+                        {tempSelectedHeight ? tempSelectedHeight[0] : minHeight}{" "}
+                        cm
+                      </Typography>
+                      <Typography>
+                        {tempSelectedHeight ? tempSelectedHeight[1] : maxHeight}{" "}
+                        cm
+                      </Typography>
+                    </div>
+                    <Slider
+                      className={s.slider}
+                      value={tempSelectedHeight || [minHeight, maxHeight]}
+                      onChange={(event, newValue) => {
+                        setTempSelectedHeight(newValue as [number, number]);
+                      }}
+                      valueLabelDisplay="off"
+                      min={minHeight}
+                      max={maxHeight}
+                      step={10}
+                    />
+                  </div>
+                </FormControl>
+
+                <div className={s.filtertitle}>
+                  {" "}
+                  {t("common:selectOptions:width")}
+                </div>
+
+                <FormControl className={s.formControl}>
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography>
+                        {tempSelectedWidth ? tempSelectedWidth[0] : minWidth} cm
+                      </Typography>
+                      <Typography>
+                        {tempSelectedWidth ? tempSelectedWidth[1] : maxWidth} cm
+                      </Typography>
+                    </div>
+                    <Slider
+                      className={s.slider}
+                      value={tempSelectedWidth || [minWidth, maxWidth]}
+                      onChange={(event, newValue) => {
+                        setTempSelectedWidth(newValue as [number, number]);
+                      }}
+                      valueLabelDisplay="off"
+                      min={minWidth}
+                      max={maxWidth}
+                      step={10}
+                    />
+                  </div>
+                </FormControl>
               </div>
-
-              <FormControl className={s.formControl}>
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: " space-between",
-                    }}
-                  >
-                    <Typography>
-                      {tempSelectedPrice ? tempSelectedPrice[0] : minPrice} SEK
-                    </Typography>
-                    <Typography>
-                      {tempSelectedPrice ? tempSelectedPrice[1] : maxPrice} SEK
-                    </Typography>
-                  </div>
-                  <Slider
-                    className={s.slider}
-                    value={tempSelectedPrice || [minPrice, maxPrice]}
-                    onChange={(event, newValue) =>
-                      setTempSelectedPrice(newValue as [number, number])
-                    }
-                    valueLabelDisplay="off"
-                    min={minPrice}
-                    max={maxPrice}
-                    step={100}
-                  />
-                </div>
-              </FormControl>
-
-              <div className={s.filtertitle}>
-                {" "}
-                {t("common:selectOptions:height")}
-              </div>
-
-              <FormControl className={s.formControl}>
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Typography>
-                      {tempSelectedHeight ? tempSelectedHeight[0] : minHeight}{" "}
-                      cm
-                    </Typography>
-                    <Typography>
-                      {tempSelectedHeight ? tempSelectedHeight[1] : maxHeight}{" "}
-                      cm
-                    </Typography>
-                  </div>
-                  <Slider
-                    className={s.slider}
-                    value={tempSelectedHeight || [minHeight, maxHeight]}
-                    onChange={(event, newValue) => {
-                      setTempSelectedHeight(newValue as [number, number]);
-                    }}
-                    valueLabelDisplay="off"
-                    min={minHeight}
-                    max={maxHeight}
-                    step={10}
-                  />
-                </div>
-              </FormControl>
-
-              <div className={s.filtertitle}>
-                {" "}
-                {t("common:selectOptions:width")}
-              </div>
-
-              <FormControl className={s.formControl}>
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Typography>
-                      {tempSelectedWidth ? tempSelectedWidth[0] : minWidth} cm
-                    </Typography>
-                    <Typography>
-                      {tempSelectedWidth ? tempSelectedWidth[1] : maxWidth} cm
-                    </Typography>
-                  </div>
-                  <Slider
-                    className={s.slider}
-                    value={tempSelectedWidth || [minWidth, maxWidth]}
-                    onChange={(event, newValue) => {
-                      setTempSelectedWidth(newValue as [number, number]);
-                    }}
-                    valueLabelDisplay="off"
-                    min={minWidth}
-                    max={maxWidth}
-                    step={10}
-                  />
-                </div>
-              </FormControl>
-            </div>
-          </List>
+            </List>
+          </DialogContent>
           <div className={s.activeFilterContainer}>
             <div className={s.activeFilter}>
               {isFilterActiveMobile() && (
