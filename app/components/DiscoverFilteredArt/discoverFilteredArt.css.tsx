@@ -37,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
       dropShadow: "rgba(0, 0, 0, 0.25)",
       marginTop: "115px",
       [theme.breakpoints.up("md")]: {
-        width: "300px",
+        width: "320px",
         "&::-webkit-scrollbar": {
           width: "1px !important",
           height: "1px",
@@ -54,6 +54,18 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
+
+    dialogContent: {
+      "&::-webkit-scrollbar": {
+        width: "2px !important",
+        height: "1px",
+        backgroundColor: "#FCF7EC",
+      },
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: "black",
+      },
+    },
+
     mobileList: {
       flexGrow: 1,
     },
@@ -62,10 +74,10 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       fontSize: "18px",
       fontWeight: "normal",
-      width: "80%",
+      width: "100%",
       margin: "0 auto",
       alignItems: "normal",
-      marginTop: "20px",
+      backgroundColor: "#FCF7EC",
     },
     // class to wrap the formControll, select and div
     formControllWrapper: {
@@ -247,13 +259,14 @@ export const styles = makeStyles((theme: Theme) =>
     },
     activeFilterContainer: {
       width: "100%",
-      marginBottom: "60px",
+      backgroundColor: "#FCF7EC",
+      marginBottom: "50px",
     },
     activeFilter: {
       display: "flex",
       backgroundColor: "transparent",
       justifyContent: "space-evenly",
-      padding: "10px",
+      padding: "0px",
       margin: "20px",
       gap: "10px",
     },
