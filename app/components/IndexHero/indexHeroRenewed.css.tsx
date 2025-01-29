@@ -44,8 +44,9 @@ export const styles = makeStyles((theme: Theme) =>
         height: "100%",
       },
     },
+
     headlineWrapper: {
-      backgroundColor: "#ebebeb",
+      backgroundColor: "#FCF7EC",
       height: "50%",
       display: "flex",
       flexDirection: "column",
@@ -57,7 +58,7 @@ export const styles = makeStyles((theme: Theme) =>
         padding: "0px",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#ebebeb",
+        backgroundColor: "#FCF7EC",
       },
     },
 
@@ -249,21 +250,19 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     buttonRegister: {
-      border: "1px solid #99999987",
       borderRadius: "40px",
       marginRight: "10px",
       padding: "10px 10px 10px 10px",
       fontSize: "12px",
       fontWeight: 300,
+      backgroundColor: "#fadf87",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
-        border: "1px solid #99999987",
       },
       "&:hover": {
-        backgroundColor: "#fadf87",
-        color: "color",
-        border: "none",
+        backgroundColor: "transparent",
+        border: "1px solid #99999987",
       },
     },
     buttonFindArt: {
