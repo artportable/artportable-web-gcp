@@ -77,7 +77,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       margin: "0 auto",
       alignItems: "normal",
-      backgroundColor: "#FCF7EC",
+      backgroundColor: "white",
     },
     // class to wrap the formControll, select and div
     formControllWrapper: {
