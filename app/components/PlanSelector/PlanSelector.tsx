@@ -78,8 +78,6 @@ export default function PlanSelector({
               );
             } else if (membership?.value === 3) {
               return plan === "Portfolio Premium Plus";
-            } else if (membership?.value === 1) {
-              return plan === "";
             }
             return true;
           })
