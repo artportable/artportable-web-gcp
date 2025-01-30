@@ -18,6 +18,7 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
             <div style={{ fontSize: "42px" }} className={s.titleWrapper}>
               {t("latestTitle")}
             </div>
+            <br />
             <div style={{ fontSize: "20px" }}>{t("latestText")}</div>
           </div>
         </div>
