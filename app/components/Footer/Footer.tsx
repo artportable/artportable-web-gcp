@@ -37,7 +37,7 @@ export default function Footer() {
                 component="div"
                 className={s.reserved}
               >
-                © 2024 Höök & Nordlander AB. All rights reserved.
+                © 2025 Höök & Nordlander AB. All rights reserved.
               </Typography>
               <Typography variant="body2" component="div" className={s.cookies}>
                 {t("cookies")}
