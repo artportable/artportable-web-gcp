@@ -22,13 +22,13 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "10px",
       color: "white",
       width: "auto",
-      fontSize: "14px",
+      fontSize: "13px",
       fontWeight: "bold",
       "&:hover": {
         backgroundColor: "#D6A407",
       },
       [theme.breakpoints.up("md")]: {
-        width: "20vw",
+        width: "25vw",
       },
     },
 

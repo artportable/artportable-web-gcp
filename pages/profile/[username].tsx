@@ -163,10 +163,6 @@ export default function Profile(props) {
     userData?.data?.MonthlyUser
   );
 
-  useEffect(() => {
-    console.log(membership?.value);
-  }, []);
-
   const handleSetMonthlyArtist = async (isMonthly) => {
     try {
       await setMonthlyArtist(token, profileUser, isMonthly);
