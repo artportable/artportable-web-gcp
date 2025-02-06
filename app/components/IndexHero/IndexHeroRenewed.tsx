@@ -111,6 +111,87 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
+                  <a href="https://artportable.com/en/profile/@annabriukhovetska">
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Image
+                        src={"/images/anna.jpg"}
+                        alt="konst"
+                        loading="lazy"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                      <div className={s.imageTitle}>
+                        <p
+                          style={{
+                            backgroundColor: "white",
+                            padding: "2px",
+                            color: "black",
+                          }}
+                        >
+                          Anna Briukhovetska
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <a href="https://artportable.com/en/profile/@annabriukhovetska">
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      <Image
+                        src={"/images/anna.jpg"}
+                        alt="artworkimage"
+                        loading="lazy"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                      <div className={s.imageTitle}>
+                        <p
+                          style={{
+                            backgroundColor: "white",
+                            padding: "2px",
+                            color: "black",
+                          }}
+                        >
+                          Anna Briukhovetska
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                )}
+              </div>
+              <div className={s.headlineWrapperRest}>
+                <div className={s.headlineStyled}>{t("artistTitle")}</div>
+                <div className={s.headlineThree}>
+                  {t("artistDescription")}
+                </div>{" "}
+                <br />
+                <div className={s.buttonWrapperSeeMore}>
+                  <a
+                    className={s.seeMoreButton}
+                    style={{ color: "white" }}
+                    href="https://artportable.com/profile/@annabriukhovetska"
+                  >
+                    {t("seeMore")}
+                  </a>
+                </div>
+              </div>
+            </section>
+          </SwiperSlide>
+          <SwiperSlide>
+            <section className={s.sectionWrapper}>
+              <div className={s.imgWrapperRest}>
+                {isTinyDevice ? (
                   <a href="https://artportable.com/en/profile/@gabriellanorum">
                     <div
                       style={{
@@ -181,87 +262,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
                     href="https://artportable.com/en/profile/@norumgabriella"
-                  >
-                    {t("seeMore")}
-                  </a>
-                </div>
-              </div>
-            </section>
-          </SwiperSlide>
-          <SwiperSlide>
-            <section className={s.sectionWrapper}>
-              <div className={s.imgWrapperRest}>
-                {isTinyDevice ? (
-                  <a href="https://artportable.com/art/c4bd9742-1f48-4541-b62b-63ee36351f21">
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <Image
-                        src={"/images/image3.jpeg"}
-                        alt="konst"
-                        loading="lazy"
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                      <div className={s.imageTitle}>
-                        <p
-                          style={{
-                            backgroundColor: "white",
-                            padding: "2px",
-                            color: "black",
-                          }}
-                        >
-                          Daniel Zausnig
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                ) : (
-                  <a href="https://artportable.com/art/c4bd9742-1f48-4541-b62b-63ee36351f21">
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <Image
-                        src={"/images/image3.jpeg"}
-                        alt="artworkimage"
-                        loading="lazy"
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                      <div className={s.imageTitle}>
-                        <p
-                          style={{
-                            backgroundColor: "white",
-                            padding: "2px",
-                            color: "black",
-                          }}
-                        >
-                          Daniel Zausnig
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                )}
-              </div>
-              <div className={s.headlineWrapperRest}>
-                <div className={s.headlineStyled}>{t("artistTitle")}</div>
-                <div className={s.headlineThree}>
-                  {t("artistDescription")}
-                </div>{" "}
-                <br />
-                <div className={s.buttonWrapperSeeMore}>
-                  <a
-                    className={s.seeMoreButton}
-                    style={{ color: "white" }}
-                    href="https://artportable.com/profile/@danielzausnig"
                   >
                     {t("seeMore")}
                   </a>

@@ -35,6 +35,7 @@ class MyDocument extends Document {
           /> */}
 
           <link rel="preload" as="image" href="/images/torleivs.webp" />
+          <link rel="preload" as="image" href="/images/anna.jpg" />
 
           <script
             dangerouslySetInnerHTML={{
