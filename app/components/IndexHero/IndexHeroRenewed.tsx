@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/cd0c459b-d857-485d-88e1-921fa9f55ff4">
+                <a href="https://artportable.com/art/d32fb374-e059-463d-b9d4-a8d162790945">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/torleivs.webp"
-                          : "/images/torleivs.webp"
+                          ? "/images/habib.jpeg"
+                          : "/images/habib.jpeg"
                       }
                       alt="first page artwork"
                       loading="lazy"
@@ -69,7 +69,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        TORLEIV AGDESTEIN,&nbsp;
+                        Suzan Habib,&nbsp;
                       </p>
                       <p
                         style={{
@@ -79,7 +79,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Bortenfor
+                        Life is a carnival
                       </p>
                     </div>
                   </div>
