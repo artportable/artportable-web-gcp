@@ -192,7 +192,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@gabriellanorum">
+                  <a href="https://artportable.com/art/31660c3b-30d3-45ff-9f51-5a3e9ac07232">
                     <div
                       style={{
                         position: "relative",
@@ -201,7 +201,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/image2.jpeg"}
+                        src={"/images/raging.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -215,13 +215,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Gabriella Norum
+                          Alena Zabolotina
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/profile/@norumgabriella">
+                  <a href="https://artportable.com/art/31660c3b-30d3-45ff-9f51-5a3e9ac07232">
                     <div
                       style={{
                         position: "relative",
@@ -230,7 +230,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/image2.jpeg"}
+                        src={"/images/raging.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -244,7 +244,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Gabriella Norum
+                          Alena Zabolotina
                         </p>
                       </div>
                     </div>
@@ -261,7 +261,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/en/profile/@norumgabriella"
+                    href="https://artportable.com/curated"
                   >
                     {t("seeMore")}
                   </a>
