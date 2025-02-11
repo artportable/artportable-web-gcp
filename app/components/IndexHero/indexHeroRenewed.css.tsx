@@ -26,7 +26,7 @@ export const styles = makeStyles((theme: Theme) =>
     sectionWrapper: {
       display: "flex",
       flexDirection: "column",
-      height: "65vh",
+      height: "70vh",
       [theme.breakpoints.up("md")]: {
         display: "flex",
         flexDirection: "row",
@@ -94,7 +94,7 @@ export const styles = makeStyles((theme: Theme) =>
     headline: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "22px",
+      fontSize: "18px",
       color: "black",
       zIndex: 20,
       textAlign: "left",
@@ -193,7 +193,7 @@ export const styles = makeStyles((theme: Theme) =>
     headlineTwo: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "13px",
+      fontSize: "12px",
       color: "#00000078",
       textAlign: "left",
       zIndex: 20,
