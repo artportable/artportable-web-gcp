@@ -42,9 +42,7 @@ export default function ArticlePage({
 
         <meta
           property="og:url"
-          content={`${publicUrl}/${encodeURIComponent(
-            article?.publishCategory?.name || "fallback-category"
-          ).toLowerCase()}/${encodeURIComponent(article?.slug)}`}
+          content={`${publicUrl}/${article?.publishCategory?.slug}/${article?.slug}`}
         />
 
         <meta
