@@ -11,6 +11,7 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { fetchWithTimeout } from "../../../app/utils/util";
 import DiscoverArtistCard from "../../../app/components/DiscoverArtistCard/DiscoverArtistCard";
+import { useEffect } from "react";
 
 export default function ArticlePage({
   article,
@@ -25,6 +26,10 @@ export default function ArticlePage({
   const { t } = useTranslation(["articles"]);
   const canonicalURL = publicUrl + router.asPath;
 
+  useEffect(() => {
+    console.log(article?.description);
+  }, []);
+
   return (
     <Main>
       <Head>
@@ -33,12 +38,13 @@ export default function ArticlePage({
         <meta name="description" content={article?.description ?? ""} />
         <meta property="og:title" content={article?.title ?? "Artportable"} />
         <meta property="og:description" content={article?.description ?? ""} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
+
         <meta
           property="og:url"
-          content={`${publicUrl}/${(
+          content={`${publicUrl}/${encodeURIComponent(
             article?.publishCategory?.name || "fallback-category"
-          ).toLowerCase()}/${article?.slug}`}
+          ).toLowerCase()}/${encodeURIComponent(article?.slug)}`}
         />
 
         <meta
