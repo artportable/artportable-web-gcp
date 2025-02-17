@@ -27,7 +27,7 @@ export default function ArticlePage({
   const canonicalURL = publicUrl + router.asPath;
 
   useEffect(() => {
-    console.log(article?.description);
+    console.log(encodeURIComponent);
   }, []);
 
   return (
@@ -61,7 +61,10 @@ export default function ArticlePage({
             </>
           );
         })}
-        <link rel="canonical" href={canonicalURL} />
+        <link
+          rel="canonical"
+          href={`${publicUrl}/${article?.publishCategory?.slug}/${article?.slug}`}
+        />
       </Head>
       {router.isFallback && (
         //implement good skeleton here
