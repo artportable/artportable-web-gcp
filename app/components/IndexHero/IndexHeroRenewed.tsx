@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/d32fb374-e059-463d-b9d4-a8d162790945">
+                <a href="https://artportable.com/artiklar/hyllad-utstallning-med-ingela-roos---chef-som-atertagit-platsen-som-konstnar">
                   <div
                     style={{
                       position: "relative",
@@ -51,9 +51,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        isTinyDevice
-                          ? "/images/habib.jpeg"
-                          : "/images/habib.jpeg"
+                        isTinyDevice ? "/images/roos.jpg" : "/images/roos.jpg"
                       }
                       alt="first page artwork"
                       loading="lazy"
@@ -69,17 +67,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Suzan Habib,&nbsp;
-                      </p>
-                      <p
-                        style={{
-                          color: "black",
-                          backgroundColor: "white",
-                          paddingRight: "4px",
-                          fontStyle: "italic",
-                        }}
-                      >
-                        Life is a carnival
+                        <span>Ingela Roos, utställning via Artportable</span>
+                        <br />
+                        <span style={{ fontStyle: "italic" }}>
+                          Fredsborgsgatan 24 i Liljeholmen
+                        </span>
                       </p>
                     </div>
                   </div>
