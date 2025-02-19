@@ -51,7 +51,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        isTinyDevice ? "/images/roos.jpg" : "/images/roos.jpg"
+                        isTinyDevice
+                          ? "/images/roostwo.jpeg"
+                          : "/images/roostwo.jpeg"
                       }
                       alt="first page artwork"
                       loading="lazy"
