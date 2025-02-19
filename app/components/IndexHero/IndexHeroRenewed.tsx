@@ -103,7 +103,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/en/profile/@annabriukhovetska">
+                  <a href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar">
                     <div
                       style={{
                         position: "relative",
@@ -112,7 +112,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/anna.jpg"}
+                        src={"/images/liljevalch.jpg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -126,13 +126,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Anna Briukhovetska
+                          Foto: Mattias Lindbäck
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/en/profile/@annabriukhovetska">
+                  <a href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar">
                     <div
                       style={{
                         position: "relative",
@@ -141,7 +141,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/anna.jpg"}
+                        src={"/images/liljevalch.jpg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -155,7 +155,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Anna Briukhovetska
+                          Foto: Mattias Lindbäck
                         </p>
                       </div>
                     </div>
@@ -172,7 +172,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/profile/@annabriukhovetska"
+                    href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar"
                   >
                     {t("seeMore")}
                   </a>
