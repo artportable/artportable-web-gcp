@@ -58,15 +58,9 @@ export default function Checkout() {
                 <Typography variant="h1" className={s.headline}>
                   {t("fewSeconds")}
                 </Typography>
-                <Typography variant="h3" className={s.headlineText}>
+                {/* <Typography variant="h3" className={s.headlineText}>
                   <strong>{t("zeroSek")}</strong> {t("moreSeconds")}
-                </Typography>
-                {/* <Typography variant="h1" className={s.headline}>
-              några sekunder från att börja
-            </Typography>
-            <Typography variant="h1" className={s.headline}>
-              ladda upp dina verk
-            </Typography> */}
+                </Typography> */}
               </div>
             ) : (
               <div className={s.headlineDiv}>
