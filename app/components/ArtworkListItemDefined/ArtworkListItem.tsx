@@ -248,9 +248,10 @@ export default function ArtworkListItem({
           >
             <div
               style={{
-                color: "gray",
                 fontSize: "12px",
-                fontFamily: "Gotham",
+                fontFamily: "Roboto",
+                fontWeight: 300,
+                textTransform: "uppercase",
               }}
             >
               {profileUser?.data?.City === null ? (
@@ -283,7 +284,14 @@ export default function ArtworkListItem({
                 </div>
               </a>
             </Link>
-            <div style={{ fontSize: "12px", fontStyle: "italic" }}>
+            <div
+              style={{
+                fontSize: "12px",
+                fontStyle: "italic",
+                fontFamily: "Roboto",
+                fontWeight: 300,
+              }}
+            >
               {artwork?.Title}
             </div>
           </div>
