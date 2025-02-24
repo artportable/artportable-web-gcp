@@ -9,6 +9,10 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       width: "100%",
+
+      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("lg")]: {},
     },
     logo: {},
     wrapper: {
@@ -47,6 +51,12 @@ export const styles = makeStyles((theme: Theme) =>
         color: "#0000ffb8",
       },
     },
+    loggedIn: {
+      // display: "none",
+      // [theme.breakpoints.up("sm")]: {
+      //   display: "flex",
+      // },
+    },
     login: {
       display: "none",
       [theme.breakpoints.up("sm")]: {
@@ -66,12 +76,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
     },
-    menuIconWithBadge: {
-      display: "none",
-    },
-    singleNotificationButton: {
-      display: "none",
-    },
+    menuIconWithBadge: {},
+    singleNotificationButton: {},
     buttonInvite: {
       display: "initial",
       marginRight: "-8px",
@@ -80,7 +86,7 @@ export const styles = makeStyles((theme: Theme) =>
     notificationButton: {
       width: "54px",
       display: "flex",
-      order: 1,
+
       color: "blue",
       [theme.breakpoints.up("smPlus")]: {
         order: "initial",
@@ -97,6 +103,31 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     upload: {},
+
+    feed: {
+      display: "none",
+    },
+
+    accountType: {
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
+      },
+    },
+
+    buttons: {
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "none",
+      },
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
+      [theme.breakpoints.up("lg")]: {},
+    },
 
     upgradeButton: {
       backgroundColor: "#FCF7EC",
@@ -126,16 +157,17 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       margin: "2px 2px 2px 2px",
-      color: "white",
+      color: "black",
       fontSize: "14px",
       fontWeight: "normal",
       fontFamily: "gotham",
       borderRadius: "14px",
       border: "1px solid #229059",
-      backgroundColor: "#229059",
+
       "&:hover": {
+        backgroundColor: "#229059",
         border: "1px solid #229059",
-        color: "black",
+        color: "white",
       },
     },
 
@@ -146,16 +178,16 @@ export const styles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       padding: theme.spacing(0, 2, 0, 2),
       margin: "1px 1px 1px 1px",
-      color: "white",
+      color: "black",
       fontSize: "14px",
       fontWeight: "normal",
       fontFamily: "gotham",
       borderRadius: "14px",
       border: "1px solid #0176D5",
-      backgroundColor: "#0176D5",
       "&:hover": {
         border: "1px solid #0176D5",
-        color: "black",
+        color: "white",
+        backgroundColor: "#0176D5",
       },
     },
   })

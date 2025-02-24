@@ -207,21 +207,14 @@ export default function Header({ navBarItems }) {
                   </a>
                 </Link>
                 {isSignedIn.value && (
-                  <MuiButton color="default" size="large">
-                    <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
-                  </MuiButton>
+                  <div className={s.feed}>
+                    <MuiButton color="default" size="large">
+                      <Link href="/feed">
+                        {t("myArtNetwork").toUpperCase()}
+                      </Link>
+                    </MuiButton>
+                  </div>
                 )}
-                <div style={{ color: "black" }}>
-                  {membership.value === 1 ? (
-                    <div>Starter</div>
-                  ) : membership.value === 2 ? (
-                    <div>Portfolio Bas</div>
-                  ) : membership.value === 3 ? (
-                    <div>Portfolio Premium</div>
-                  ) : (
-                    ""
-                  )}
-                </div>
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 {!isSignedIn.value && (
@@ -287,14 +280,46 @@ export default function Header({ navBarItems }) {
 
                 {isSignedIn.value && (
                   <>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
+                    <div className={s.buttons}>
+                      {customerStatus === "trialing" ? (
+                        <div
+                          style={{
+                            color: "black",
+                            display: "flex",
+                            flexDirection: "column-reverse",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Button
+                            onClick={async () => {
+                              try {
+                                const customerId = await fetchCustomerId();
+                                if (customerId) {
+                                  const portalUrl =
+                                    await fetchCustomerPortalSession(
+                                      customerId
+                                    );
+                                  if (portalUrl) {
+                                    window.location.href = portalUrl;
+                                  } else {
+                                    console.error(
+                                      "Customer portal URL not received."
+                                    );
+                                  }
+                                } else {
+                                  console.error("Customer ID not received.");
+                                }
+                              } catch (error) {
+                                console.error("Error in processing:", error);
+                              }
+                            }}
+                          >
+                            {t("managePayment")}
+                          </Button>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
                       <div
                         style={{
                           display: "flex",
@@ -357,47 +382,7 @@ export default function Header({ navBarItems }) {
                         </Link>
                       </div>
                     </div>
-                    <div className={s.login}>
-                      {customerStatus === "trialing" ? (
-                        <div
-                          style={{
-                            color: "black",
-                            display: "flex",
-                            flexDirection: "column-reverse",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Button
-                            onClick={async () => {
-                              try {
-                                const customerId = await fetchCustomerId();
-                                if (customerId) {
-                                  const portalUrl =
-                                    await fetchCustomerPortalSession(
-                                      customerId
-                                    );
-                                  if (portalUrl) {
-                                    window.location.href = portalUrl;
-                                  } else {
-                                    console.error(
-                                      "Customer portal URL not received."
-                                    );
-                                  }
-                                } else {
-                                  console.error("Customer ID not received.");
-                                }
-                              } catch (error) {
-                                console.error("Error in processing:", error);
-                              }
-                            }}
-                          >
-                            {t("managePayment")}
-                          </Button>
-                        </div>
-                      ) : (
-                        <div></div>
-                      )}
-
+                    <div className={s.loggedIn}>
                       <div className={s.iconButtons}>
                         <div className={s.notificationButton}>
                           {activityToken && !isError && !isLoading ? (
