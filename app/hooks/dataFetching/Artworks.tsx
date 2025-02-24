@@ -113,6 +113,25 @@ export function useGetTrendingArtworks() {
     isError: error,
   };
 }
+
+export function useGetLatestArtworksForIndex() {
+  const url = new URL(`${apiBaseUrl}/api/Discover/artworks/latest`);
+  url.searchParams.append("page", "1");
+  url.searchParams.append("pageSize", "4");
+
+  const { data, error } = useSWR(url.href, fetcher, {
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
+    refreshInterval: 10000, // Automatically re-fetch every 10 seconds
+  });
+
+  return {
+    data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+}
+
 export function useGetPromotedArtworks(
   myUsername: string = null,
   page: number = null,
