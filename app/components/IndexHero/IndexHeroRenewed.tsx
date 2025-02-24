@@ -32,7 +32,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 14000,
+          delay: 140444400,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -173,7 +173,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
-                    style={{ color: "white" }}
                     href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar"
                   >
                     {t("seeMore")}
@@ -254,7 +253,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
-                    style={{ color: "white" }}
                     href="https://artportable.com/curated"
                   >
                     {t("seeMore")}

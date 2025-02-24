@@ -47,8 +47,9 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titlesOnHeader: {
       fontSize: "16px",
+      fontFamily: "Roboto",
       "&:hover": {
-        color: "#0000ffb8",
+        color: "#0176D5",
       },
     },
     loggedIn: {
@@ -65,10 +66,13 @@ export const styles = makeStyles((theme: Theme) =>
     },
     loginButton: {
       borderRadius: "40px",
-      border: "1px solid #99999987",
-      fontWeight: 300,
+      fontWeight: 600,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "black",
+      color: "white",
       "&:hover": {
-        backgroundColor: "black",
+        backgroundColor: "#0176D5",
         color: "white",
       },
     },

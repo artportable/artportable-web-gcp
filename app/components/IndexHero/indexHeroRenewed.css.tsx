@@ -52,6 +52,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       padding: "10px 20px 10px 20px",
+      alignItems: "center",
       [theme.breakpoints.up("md")]: {
         height: "100%",
         width: "50vw",
@@ -75,40 +76,48 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     headlineWrapperRest: {
-      backgroundColor: "#201d1d",
+      backgroundColor: "#FCF7EC",
       height: "50%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       padding: "10px 20px 10px 20px",
-
+      alignItems: "center",
+      color: "black",
       [theme.breakpoints.up("md")]: {
         height: "100%",
         width: "50vw",
         padding: "0px",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#201d1d",
       },
     },
     headline: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "18px",
+      fontFamily: "Roboto",
+      fontSize: "20px",
       color: "black",
       zIndex: 20,
-      textAlign: "left",
+      textAlign: "center",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "35px",
+        color: "black",
+        textAlign: "center",
+        padding: "0px",
+        width: "80%",
+      },
       [theme.breakpoints.up("md")]: {
-        fontSize: "40px",
+        fontSize: "35px",
         color: "black",
         textAlign: "left",
         padding: "0px",
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "40px",
         width: "80%",
+      },
+      [theme.breakpoints.up("lgPlus")]: {
+        fontSize: "40px",
       },
     },
 
@@ -116,11 +125,12 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       fontWeight: 400,
       fontSize: "22px",
-      color: "white",
+      fontFamily: "Roboto",
       zIndex: 20,
       textAlign: "left",
       marginBottom: "10px",
       padding: "0px 0px 0px 0px",
+      color: "black",
       [theme.breakpoints.up("md")]: {
         fontSize: "40px",
         color: "black",
@@ -195,14 +205,20 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "12px",
       color: "#00000078",
-      textAlign: "left",
+      textAlign: "center",
       zIndex: 20,
       width: "100%",
       marginBottom: "30px",
       padding: "0px 0px 0px 0px",
-
+      fontFamily: "Joan",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "20px",
+        textAlign: "center",
+        padding: "0px",
+        width: "80%",
+      },
       [theme.breakpoints.up("md")]: {
-        fontSize: "22px",
+        fontSize: "20px",
         textAlign: "left",
         padding: "0px",
         width: "80%",
@@ -212,11 +228,18 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       fontWeight: 400,
       fontSize: "12px",
-      color: "white",
-      textAlign: "left",
+      color: "#00000078",
+      textAlign: "center",
       zIndex: 20,
       width: "100%",
       padding: "0px 0px 0px 0px",
+      fontFamily: "Joan",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "22px",
+        textAlign: "left",
+        padding: "0px",
+        width: "80%",
+      },
       [theme.breakpoints.up("lg")]: {
         fontSize: "22px",
         textAlign: "left",
@@ -239,11 +262,11 @@ export const styles = makeStyles((theme: Theme) =>
     buttonWrapperSeeMore: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "left",
+      justifyContent: "center",
       width: "100%",
       [theme.breakpoints.up("lg")]: {
         justifyContent: "left",
-
+        color: "black",
         width: "80%",
         marginTop: "20px",
       },
@@ -264,6 +287,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:hover": {
         backgroundColor: "#229059",
+
+        textDecoration: "underline",
       },
     },
     buttonFindArt: {
@@ -287,18 +312,21 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "40px",
       marginRight: "10px",
       fontSize: "12px",
-      fontWeight: 300,
+      fontFamily: "Roboto",
+      fontWeight: 600,
       display: "flex",
       justifyContent: "left",
-      color: "black",
-      [theme.breakpoints.up("lg")]: {
+      color: "white",
+      backgroundColor: "black",
+      padding: "10px 20px 10px 20px",
+      [theme.breakpoints.up("smPlus")]: {
         border: "1px solid #99999987",
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
-        "&:hover": {
-          backgroundColor: "black",
-          color: "white",
-        },
+      },
+      "&:hover": {
+        backgroundColor: "#0176D5",
+        color: "white",
       },
     },
 
