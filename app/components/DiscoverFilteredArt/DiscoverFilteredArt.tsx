@@ -42,6 +42,7 @@ interface DiscoverFilteredArtProps {
   activeTab: number;
   header?: string;
   page: string;
+  selectedCategory?: any;
 }
 
 const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
@@ -120,6 +121,12 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
   }
+
+  useEffect(() => {
+    if (props.selectedCategory) {
+      setSelectedTechnique(props.selectedCategory); // Set selectedTechnique from URL
+    }
+  }, [props.selectedCategory]);
 
   const handleTechniqueChangeMobile = (newTag: string) => {
     setSelectedTechnique(newTag);
@@ -223,6 +230,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
         if (props.page) {
           url.searchParams.append("orderBy", orderByFilter);
         }
+        if (props?.selectedCategory) {
+          url.searchParams.append("tag", props.selectedCategory);
+        }
         if (selectedTechnique) {
           url.searchParams.append("tag", selectedTechnique);
         }
@@ -262,7 +272,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
         if (username && username !== "") {
           url.searchParams.append("myUsername", username);
         }
-        url.searchParams.append("pageSize", "6");
+        url.searchParams.append("pageSize", "20");
         url.searchParams.append("page", (pageIndex + 1).toString());
 
         return url.href;
@@ -379,7 +389,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                     labelId="theme-select-label"
                     value={selectedTechnique || ""}
                     onChange={(e) =>
-                      handleTechniqueChangeMobile(e.target.value as string)
+                      handleTechniqueChangeMobile(
+                        (e.target.value as string) || props?.selectedCategory
+                      )
                     } // Type assertion here
                     displayEmpty
                     className={s.selectMenu}
