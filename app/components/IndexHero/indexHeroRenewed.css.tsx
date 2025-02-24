@@ -254,15 +254,16 @@ export const styles = makeStyles((theme: Theme) =>
       marginRight: "10px",
       padding: "10px 10px 10px 10px",
       fontSize: "12px",
-      fontWeight: 300,
-      backgroundColor: "#fadf87",
+      fontWeight: 600,
+      fontFamily: "Roboto !important",
+      backgroundColor: "#229059",
+      color: "white",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },
       "&:hover": {
-        backgroundColor: "transparent",
-        border: "1px solid #99999987",
+        backgroundColor: "#229059",
       },
     },
     buttonFindArt: {

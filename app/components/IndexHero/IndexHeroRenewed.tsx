@@ -94,9 +94,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     {t("signUp")}
                   </Button>
-                  <Button className={s.buttonFindArt} onClick={onScrollDown}>
+                  {/* <Button className={s.buttonFindArt} onClick={onScrollDown}>
                     {t("findArt")}
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </section>
