@@ -41,10 +41,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     imgContainer: {
       textAlign: "center",
-      marginBottom: "0px",
+
       display: "flex",
       flexDirection: "row",
-
+      marginBottom: "20px",
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
         padding: "0px",
@@ -54,8 +54,16 @@ export const styles = makeStyles((theme: Theme) =>
       height: "46px",
       width: "125px",
       [theme.breakpoints.up("smPlus")]: {
+        height: "66px",
+        width: "auto",
+      },
+    },
+    LogoTwo: {
+      height: "46px",
+      width: "125px",
+      [theme.breakpoints.up("smPlus")]: {
         height: "56px",
-        width: "165px",
+        width: "auto",
       },
     },
     x: {
@@ -65,7 +73,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         marginLeft: "20px",
         marginRight: "20px",
-        fontSize: "18px",
+        fontSize: "12px",
       },
     },
 
@@ -75,8 +83,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       [theme.breakpoints.up("smPlus")]: {
         width: "80%",
-        fontSize: "16px",
+        fontSize: "20px",
+        fontFamily: "Joan",
         textAlign: "left",
+        fontWeight: 400,
       },
     },
   })

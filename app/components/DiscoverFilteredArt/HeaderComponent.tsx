@@ -15,11 +15,24 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
       {page === "latest" && (
         <div className={s.container}>
           <div style={{ marginLeft: filterOpen ? "25%" : "10%" }}>
-            <div style={{ fontSize: "40px" }} className={s.titleWrapper}>
+            <div
+              style={{
+                fontSize: "35px",
+                fontFamily: "Roboto",
+                fontWeight: 400,
+              }}
+              className={s.titleWrapper}
+            >
               {t("latestTitle")}
             </div>
             <br />
-            <div style={{ fontSize: "20px", color: "#00000078" }}>
+            <div
+              style={{
+                fontSize: "20px",
+                fontFamily: "Joan",
+                fontWeight: 400,
+              }}
+            >
               {t("latestText")}
             </div>
           </div>
@@ -28,11 +41,20 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
       {page === "likes" && (
         <div className={s.containerLiked}>
           <div style={{ marginLeft: filterOpen ? "25%" : "10%" }}>
-            <div style={{ fontSize: "40px" }} className={s.titleWrapper}>
+            <div
+              style={{
+                fontSize: "35px",
+                fontFamily: "Roboto",
+                fontWeight: 400,
+              }}
+              className={s.titleWrapper}
+            >
               {t("discoverTitle")}
             </div>
             <br />
-            <div style={{ fontSize: "20px", color: "#00000078" }}>
+            <div
+              style={{ fontSize: "20px", fontFamily: "Joan", fontWeight: 400 }}
+            >
               {t("discoverText")}
             </div>
           </div>
