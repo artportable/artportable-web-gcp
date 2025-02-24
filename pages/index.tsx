@@ -10,9 +10,7 @@ import React, {
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
 import { useMediaQuery, useTheme } from "@mui/material";
-import Box from "@mui/material/Box";
 import { useDispatch, useStore } from "react-redux";
-import { SET_TAB } from "../app/redux/actions/discoverActions";
 import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import Head from "next/head";
@@ -25,12 +23,12 @@ import IndexHeroRenewed from "../app/components/IndexHero/IndexHeroRenewed";
 import dynamic from "next/dynamic"; // For dynamic imports
 import { getCurrentLanguage } from "../constants/keycloakSettings";
 import { useMainWidth } from "../app/hooks/useWidth";
+import IndexCategories from "../app/components/IndexHero/IndexCategories";
 
-// Dynamically import heavy components
-const DiscoverLatestArtTab = dynamic(
-  () => import("../app/components/DiscoverLatestArt/DiscoverLatestArt"),
-  { ssr: false }
-);
+import { useGetLatestArtworksForIndex } from "../app/hooks/dataFetching/Artworks";
+import StoryCarousel from "../app/components/Carousel/StoryCarousel";
+import LatestCarousel from "../app/components/Carousel/LatestCarousel";
+import CuratedCarousel from "../app/components/Carousel/CuratedCarousel";
 
 const RocketCarousel = dynamic(
   () => import("../app/components/Carousel/RocketCarousel")
@@ -60,6 +58,20 @@ export default function DiscoverPage({ navBarItems }) {
   const { keycloak } = useKeycloak();
   const router = useRouter();
 
+  const { data, isLoading, isError } = useGetLatestArtworksForIndex();
+
+  const [artworks, setArtworks] = useState(data);
+
+  useEffect(() => {
+    if (data?.artworks) {
+      setArtworks(data?.artworks);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    console.log(artworks);
+  }, [artworks]);
+
   const scrollToNextSection = useCallback(() => {
     const nextSection = nextSectionRef.current;
     if (nextSection) {
@@ -76,29 +88,6 @@ export default function DiscoverPage({ navBarItems }) {
   const nextSectionRef = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  useEffect(() => {
-    if (keycloak?.authenticated && !sessionStorage.getItem("loggedIn")) {
-      sessionStorage.setItem("loggedIn", "true");
-      router.push("/" + getCurrentLanguage());
-    } else if (!keycloak?.authenticated) {
-      sessionStorage.removeItem("loggedIn");
-    }
-  }, [keycloak?.authenticated, router]);
-
-  useEffect(() => {
-    if (!isSignedIn.isPending) {
-      setLoading(false);
-    } else {
-      setLoading(true);
-    }
-    if (isSignedIn.value) {
-      setActiveTab(discoverTab);
-    }
-  }, [isSignedIn]);
-
-  const loadImages = () => setLoadMoreArtworks(true);
-  const stopLoadImages = () => setLoadMoreArtworks(false);
 
   return (
     <Main
@@ -132,14 +121,6 @@ export default function DiscoverPage({ navBarItems }) {
       `,
           }}
         />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=331292174363133&ev=PageView&noscript=1"
-          />
-        </noscript>
       </Head>
 
       {!isSignedIn.value && (
@@ -158,21 +139,30 @@ export default function DiscoverPage({ navBarItems }) {
         />
       </div>
 
-      <div className={s.discoverContainer} style={{ minHeight: "100vh" }}>
-        {!loading && (
-          <Box paddingTop={4}>
-            <DiscoverLatestArtTab
-              username={username.value}
-              socialId={socialId.value}
-              rowWidth={rowWidth}
-              loadMore={loadMoreArtworks}
-              loadImages={loadImages}
-              stopLoadImages={stopLoadImages}
-              activeTab={activeTab}
-              header={t("discover:latestArt")}
-            />
-          </Box>
-        )}
+      <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
+        <IndexCategories />
+      </div>
+
+      <div style={{ marginTop: "50px" }}>
+        <div style={{ fontSize: "32px", marginBottom: "20px" }}>
+          Nytt på Artportable
+        </div>
+        <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
+      </div>
+      <div
+        style={{ fontSize: "32px", marginBottom: "20px", marginTop: "112px" }}
+      >
+        Kurerat innehåll
+      </div>
+      <div
+        style={{
+          marginTop: "50px",
+          gridColumn: "1 / 4",
+          width: !isMobile ? "90%" : "100%",
+          margin: "0 auto",
+        }}
+      >
+        <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
       </div>
     </Main>
   );
