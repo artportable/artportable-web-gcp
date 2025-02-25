@@ -139,7 +139,9 @@ export default function DiscoverPage({ navBarItems }) {
         />
       </div>
 
-      <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
+      <div
+        style={{ gridColumn: "1 / 4", width: "100vw", marginBottom: "100px" }}
+      >
         <IndexCategories />
       </div>
 

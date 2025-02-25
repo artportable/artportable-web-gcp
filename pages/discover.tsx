@@ -4,13 +4,12 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import HeaderComponent from "../app/components/DiscoverFilteredArt/HeaderComponent";
 
 export default function discover({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -33,6 +32,9 @@ export default function discover({ navBarItems }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const router = useRouter();
+  const { category } = router.query;
+
   return (
     <>
       <Main navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
@@ -52,6 +54,7 @@ export default function discover({ navBarItems }) {
           activeTab={1}
           header={t("discover:trendingArt")}
           page={"likes"}
+          selectedCategory={category}
         />
       </Main>
     </>
