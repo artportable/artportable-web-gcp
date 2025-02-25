@@ -69,20 +69,11 @@ const DiscoverPromotedArtTab = memo((props: DiscoverPromotedArtTabProps) => {
             <div className={s.wrapper}>
               <div className={s.imgContainer}>
                 <div>
-                  <img
-                    src="/Artportable_Logotyp_Black.svg"
-                    alt="Logo Artportable"
-                    className={s.apLogo}
-                  />
-                </div>
-                {""}
-                <h3 className={s.x}>X</h3>
-                <div>
                   <a href="https://www.husohem.se">
                     <img
                       src="/images/hus-hem_pink.png"
                       alt="Logo Artportable"
-                      className={s.apLogo}
+                      className={s.LogoTwo}
                     />
                   </a>
                 </div>

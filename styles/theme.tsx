@@ -114,8 +114,10 @@ const typography = {
     //"LyonDisplay",
     //"Gotham",
     //"Inter",
-    "Poppins",
+    //"Poppins",
     //"Nunito",
+    "Roboto",
+    "Joan",
   ].join(","),
 };
 
@@ -162,6 +164,7 @@ theme.overrides = {
   },
   MuiCardHeader: {
     root: {
+      fontFamily: "Roboto !important",
       padding: theme.spacing(2),
       "& + .MuiCardContent-root": {
         paddingTop: theme.spacing(0),
@@ -186,6 +189,7 @@ theme.overrides = {
   MuiButton: {
     root: {
       textTransform: "none",
+      fontFamily: "Roboto !important",
     },
   },
 };

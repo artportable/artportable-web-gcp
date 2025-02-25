@@ -6,8 +6,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("md")]: {
         display: "flex",
-        backgroundColor: "#FCF7EC",
-        color: "black",
+        backgroundColor: "#0176D5",
+        color: "white",
         gridColumn: "1/4",
         padding: "20px",
         marginRight: "0",
@@ -22,8 +22,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("smPlus")]: {
         display: "flex",
-        backgroundColor: "#FCF7EC",
-        color: "black",
+        backgroundColor: "#0176D5",
+        color: "white",
         gridColumn: "1/4",
         padding: "20px",
         marginRight: "0",
@@ -35,10 +35,8 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleWrapper: {
       fontSize: "34px",
-
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "42px",
-        fontWeight: "bold",
+        fontSize: "35px",
       },
     },
     titleWrapperTwo: {

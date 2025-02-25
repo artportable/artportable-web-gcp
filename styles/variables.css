@@ -1,7 +1,9 @@
 :root {
-  --header-height: 70px;
+  --header-height: 72px;
   --header-box-shadow-padding: 35px;
-  --header-plus-box-shadow-padding: calc(var(--header-height) + var(--header-box-shadow-padding));
+  --header-plus-box-shadow-padding: calc(
+    var(--header-height) + var(--header-box-shadow-padding)
+  );
 
   --main-section-width-sm: 430px;
   --main-section-width-md: 669px;

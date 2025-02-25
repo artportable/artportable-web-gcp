@@ -4,31 +4,39 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     toolbar: {
       backgroundColor: "white",
-      // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-      // width: 'calc(100% + 10px)',
     },
     container: {
       display: "flex",
+      flexDirection: "column",
       width: "100%",
-      height: "var(--header-height, 70px)",
-      gap: "0 16px",
-      alignItems: "center",
+
+      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.up("md")]: {},
+      [theme.breakpoints.up("lg")]: {},
     },
-    trialBanner: {
+    logo: {},
+    wrapper: {
       display: "flex",
-      backgroundColor: "white",
-      justifyContent: "center",
+
       alignItems: "center",
-      fontSize: "12px",
-      height: "25px",
-      color: "black",
+      justifyContent: "space-between",
+      height: "var(--header-height)",
+    },
+    menuDrawer: {
+      order: 3,
+      gridArea: "menuDrawer",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "14px",
+        order: "initial",
       },
+    },
+    menuIcon: {
+      display: "none",
+      gridArea: "menu",
     },
     titleWrapper: {
       display: "none",
       [theme.breakpoints.up("md")]: {
+        paddingLeft: "6px",
         fontSize: "14px",
         color: "black",
         display: "flex",
@@ -39,132 +47,50 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titlesOnHeader: {
       fontSize: "16px",
+      fontFamily: "Roboto",
       "&:hover": {
-        color: "#0000ffb8",
+        color: "#0176D5",
       },
     },
-    logoContainer: {
-      flexGrow: 1,
-      order: 2,
-      textAlign: "center",
-      [theme.breakpoints.up("smPlus")]: {
-        order: "initial",
-        textAlign: "left",
-      },
-      [theme.breakpoints.up("md")]: {
-        textAlign: "left",
-      },
-      flexBasis: "100%",
-      position: "relative",
-      "& a": {
-        position: "absolute",
-        right: "calc(50% - 72px)",
-        bottom: "-13px",
-      },
-    },
-    menuIcon: {
-      display: "none",
-      gridArea: "menu",
-    },
-    logo: {
-      paddingTop: theme.spacing(0.2),
-    },
-    navigation: {
-      display: "none",
-    },
-    buttonInvite: {
-      display: "none",
-      gridArea: "invite",
-      // color: '#ffffff',
-      whiteSpace: "nowrap",
-      // height: '31px',
-      // backgroundColor: 'var(--color-green)',
-      // '&.MuiButton-root:hover:hover':{
-      //   backgroundColor: 'var(--color-green-darker)',
+    loggedIn: {
+      // display: "none",
+      // [theme.breakpoints.up("sm")]: {
+      //   display: "flex",
       // },
     },
-    menuDrawer: {
-      order: 3,
-      gridArea: "menuDrawer",
-      [theme.breakpoints.up("smPlus")]: {
-        order: "initial",
-      },
-    },
-
     login: {
       display: "none",
-    },
-    loginButton: {
-      borderRadius: "40px",
-      border: "1px solid #99999987",
-      fontWeight: 300,
-      "&:hover": {
-        backgroundColor: "black",
-        color: "white",
-      },
-    },
-    upload: {
-      display: "none",
-      whiteSpace: "nowrap",
-    },
-    uploadButton: {
-      minWidth: "100px",
-      height: "28px",
-      minHeight: "28px",
-      whiteSpace: "nowrap",
-      padding: theme.spacing(0, 2, 0, 2),
-      margin: "1px 1px 1px 1px",
-      color: "#3d3d4e",
-      fontSize: "14px",
-      fontWeight: "normal",
-      fontFamily: "gotham",
-      borderRadius: "14px",
-      "&:hover": {
-        backgroundColor: "#EDFF86",
-        color: "black",
-      },
-    },
-    uploadStoryButton: {
-      minWidth: "100px",
-      height: "28px",
-      minHeight: "28px",
-      whiteSpace: "nowrap",
-      padding: theme.spacing(0, 2, 0, 2),
-      margin: "1px 1px 1px 1px",
-      color: "#3d3d4e",
-      fontSize: "14px",
-      fontWeight: "normal",
-      fontFamily: "gotham",
-      borderRadius: "14px",
-
-      "&:hover": {
-        backgroundColor: "#EDFF86",
-        color: "black",
-      },
-    },
-    singleNotificationButton: {
-      minWidth: "54px",
-    },
-    signUp: {
-      display: "none",
-      whiteSpace: "nowrap",
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("sm")]: {
         display: "flex",
       },
     },
-    createButton: {
-      whiteSpace: "nowrap",
-      backgroundColor: "var(--yellow-darker)",
+    loginButton: {
+      borderRadius: "40px",
+      fontWeight: 600,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "black",
+      color: "white",
       "&:hover": {
-        backgroundColor: "#ffda79b3",
-        color: "black",
+        backgroundColor: "#0176D5",
+        color: "white",
       },
+    },
+    iconButtons: {
+      display: "flex",
+      alignItems: "center",
+    },
+    menuIconWithBadge: {},
+    singleNotificationButton: {},
+    buttonInvite: {
+      display: "initial",
+      marginRight: "-8px",
     },
 
     notificationButton: {
       width: "54px",
       display: "flex",
-      order: 1,
+
       color: "blue",
       [theme.breakpoints.up("smPlus")]: {
         order: "initial",
@@ -180,115 +106,92 @@ export const styles = makeStyles((theme: Theme) =>
         fill: theme.palette.secondary.main,
       },
     },
-    premiumEmblem: {
-      backgroundImage: "linear-gradient(#d1a108, #ffeeb8)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-    },
-    premiumText: {
-      color: "#fadf87",
-      textTransform: "uppercase",
-      fontWeight: 500,
-      fontSize: "14px",
-      marginRight: "6px",
-    },
+    upload: {},
 
-    [theme.breakpoints.up("sm")]: {
-      menuDrawer: {
-        display: "initial",
-      },
-      logoContainer: {
-        flexBasis: "initial",
-        "& a": {
-          position: "static",
-        },
-      },
-    },
-
-    [theme.breakpoints.up("smPlus")]: {
-      menuIcon: {
-        display: "initial",
-      },
-      menuIconWithBadge: {
-        display: "none",
-      },
-      singleNotificationButton: {
-        display: "none",
-      },
-      buttonInvite: {
-        display: "initial",
-        marginRight: "-8px",
-      },
-
-      login: {
-        display: "flex",
-        alignItems: "center",
-        gridArea: "login",
-        // '& .MuiButton-root .MuiButton-label': {
-        //   margin: theme.spacing(0, 2)
-        // },
-        "& > *": {
-          margin: theme.spacing(0, 1),
-        },
-        "& > .MuiIconButton-root": {
-          padding: theme.spacing(0.5),
-        },
-      },
-      menuDrawer: {
-        display: "initial",
-      },
-    },
-
-    [theme.breakpoints.up("md")]: {
-      toolbar: {
-        backgroundColor: "var(--header-color)",
-        // boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-        // width: 'calc(100% + 10px)',
-        // '&.MuiPaper-elevation0': {
-        //   boxShadow: '0px -5px 40px 0px var(--ion-color-primary)',
-        // }
-      },
-      container: {
-        display: "grid",
-        width: "100%",
-        height: "var(--header-height, 70px)",
-        gap: "0 5px",
-        alignItems: "center",
-        justifyItems: "start",
-        gridTemplate:
-          '"menu logo navigation invite login language menuDrawer" auto' +
-          "/ auto auto 1fr auto auto",
-      },
-
-      upload: {
-        display: "initial",
-      },
-    },
-    text: {
-      fontSize: "18px",
-    },
-    iconButtons: {
-      display: "flex",
-      alignItems: "center",
-    },
-    language: {
+    feed: {
       display: "none",
-      [theme.breakpoints.up("md")]: {
-        display: "initial",
-        gridArea: "language",
+    },
+
+    accountType: {
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
       },
     },
-    [theme.breakpoints.up("mdPlus")]: {
-      navigation: {
-        display: "initial",
-        gridArea: "navigation",
-        marginLeft: "10px",
+
+    buttons: {
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "none",
       },
-      iconMenuColor: {
-        color: "#000",
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
       },
-      logo: {
-        width: "188px",
+      [theme.breakpoints.up("lg")]: {},
+    },
+
+    upgradeButton: {
+      backgroundColor: "#FCF7EC",
+      minWidth: "100px",
+      height: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 2, 0, 2),
+      margin: "2px 2px 2px 2px",
+      fontSize: "14px",
+      fontWeight: "normal",
+      fontFamily: "gotham",
+      borderRadius: "14px",
+      color: "black",
+      border: "1px solid black",
+      "&:hover": {
+        border: "1px solid",
+        backgroundColor: "#fadf87",
+        color: "black",
+      },
+    },
+
+    uploadButton: {
+      minWidth: "100px",
+      height: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 2, 0, 2),
+      margin: "2px 2px 2px 2px",
+      color: "black",
+      fontSize: "14px",
+      fontWeight: "normal",
+      fontFamily: "gotham",
+      borderRadius: "14px",
+      border: "1px solid #229059",
+
+      "&:hover": {
+        backgroundColor: "#229059",
+        border: "1px solid #229059",
+        color: "white",
+      },
+    },
+
+    uploadStoryButton: {
+      minWidth: "100px",
+      height: "28px",
+      minHeight: "28px",
+      whiteSpace: "nowrap",
+      padding: theme.spacing(0, 2, 0, 2),
+      margin: "1px 1px 1px 1px",
+      color: "black",
+      fontSize: "14px",
+      fontWeight: "normal",
+      fontFamily: "gotham",
+      borderRadius: "14px",
+      border: "1px solid #0176D5",
+      "&:hover": {
+        border: "1px solid #0176D5",
+        color: "white",
+        backgroundColor: "#0176D5",
       },
     },
   })

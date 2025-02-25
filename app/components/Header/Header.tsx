@@ -106,6 +106,10 @@ export default function Header({ navBarItems }) {
   }, [loadingFromContext]);
 
   useEffect(() => {
+    console.log(customerStatus);
+  }, [customerStatus]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const customerId = await fetchCustomerId();
@@ -189,390 +193,284 @@ export default function Header({ navBarItems }) {
           }}
         >
           <div className={s.container}>
-            <div className={s.logoContainer}>
-              <Link href={logoHref}>
-                <a>
-                  <img
-                    height={26}
-                    width={135}
-                    className={s.logo}
-                    src="/Artportable_Logotyp_Black.svg"
-                    alt="Logo Artportable"
-                  />
-                </a>
-              </Link>
-            </div>
-            <nav className={s.navigation}>
-              {isSignedIn.value && (
-                <>
-                  <MuiButton
-                    classes={{ root: s.feed }}
-                    color="default"
-                    size="large"
-                  >
-                    <Link href="/">{t("discoverArt").toUpperCase()}</Link>
-                  </MuiButton>
-                  <MuiButton
-                    classes={{ root: s.feed }}
-                    color="default"
-                    size="large"
-                  >
-                    <Link href="/feed">{t("myArtNetwork").toUpperCase()}</Link>
-                  </MuiButton>
-                </>
-              )}
-              {/*      <Link href={`/${t("header:storiesSlug")}`} passHref>
-                <a>
-                  <MuiButton color="default" size="large">
-                    {t("stories").toUpperCase()}
-                  </MuiButton>
-                </a>
-              </Link> */}
-              {/*    <Link href="/showroom" passHref>
-                <a>
-                  <MuiButton color="default" size="large">
-                    {t("exhibition").toUpperCase()}
-                  </MuiButton>
-                </a>
-              </Link> */}
-            </nav>
-            {/* <RWebShare
-              data={{
-                text: t('common:description'),
-                url: "https://artportable.com",
-                title: t('common:inviteFriends'),
-              }}
-              onClick={() => trackGoogleAnalytics(ActionType.INVITE_FEED)}
-            >
-              <Button
-                className={s.buttonInvite}
-                size="small"
-                variant="outlined"
-                disableElevation
-                rounded>
-                {t('invite')}
-              </Button>
-            </RWebShare> */}
-            {!isSignedIn.value && (
-              <div className={s.login}>
-                {favoriteIds.length > 0 && (
-                  <>
-                    <section
-                      aria-describedby={id}
-                      onMouseLeave={handleClose}
-                      onScroll={handleClose}
-                      onMouseEnter={handleClick}
-                    >
-                      <IconButton>
-                        <BookmarkIcon style={{ color: "blue" }} />
-                      </IconButton>
-
-                      <Popper
-                        style={{
-                          zIndex: 20000,
-                          height: "auto",
-                          width: "35%",
-                        }}
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        transition
-                      >
-                        {({ TransitionProps }) => (
-                          <Fade {...TransitionProps} timeout={450}>
-                            <section
-                              style={{
-                                padding: "15px",
-                              }}
-                            >
-                              <FavoritesPopper
-                                id={favoriteIds}
-                              ></FavoritesPopper>
-                            </section>
-                          </Fade>
-                        )}
-                      </Popper>
-                    </section>
-                  </>
-                )}
-                <Button
-                  className={s.loginButton}
-                  onClick={() => keycloak.login({ locale: router.locale })}
-                  // onClick={() =>
-                  //   keycloak.register({
-                  //     locale: router.locale,
-                  //     redirectUri: signUpRedirectHref,
-                  //   })
-                  // }
-                >
-                  {t("login")}
-                </Button>
-              </div>
-            )}
-            <div className={s.singleNotificationButton}>
-              {isSignedIn.value && (
-                <>
-                  {activityToken && !isError && !isLoading ? (
-                    <NotificationIconButton
-                      activityToken={activityToken}
-                      socialId={socialId.value}
+            <div className={s.wrapper}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Link href={logoHref}>
+                  <a>
+                    <img
+                      height={"auto"}
+                      width={175}
+                      className={s.logo}
+                      src="/ArtportableLogo.svg"
+                      alt="Logo Artportable"
                     />
-                  ) : (
-                    <IconButton aria-label="account" disabled aria-disabled>
-                      <NotificationsIcon
-                        classes={{ root: s.notificationIcon }}
-                        style={{ fontSize: "30px" }}
-                      />
-                    </IconButton>
-                  )}
-                </>
-              )}
-            </div>
-            {isSignedIn.value && (
-              <>
-                <div className={s.login}>
-                  {customerStatus === "trialing" ? (
-                    <div
-                      style={{
-                        color: "black",
-                        display: "flex",
-                        flexDirection: "column-reverse",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Button
-                        onClick={async () => {
-                          try {
-                            const customerId = await fetchCustomerId();
-                            if (customerId) {
-                              const portalUrl =
-                                await fetchCustomerPortalSession(customerId);
-                              if (portalUrl) {
-                                window.location.href = portalUrl;
-                              } else {
-                                console.error(
-                                  "Customer portal URL not received."
-                                );
-                              }
-                            } else {
-                              console.error("Customer ID not received.");
-                            }
-                          } catch (error) {
-                            console.error("Error in processing:", error);
-                          }
-                        }}
-                      >
-                        {t("managePayment")}
-                      </Button>
-                    </div>
-                  ) : (
-                    <div></div>
-                  )}
+                  </a>
+                </Link>
+                {isSignedIn.value && (
+                  <div className={s.feed}>
+                    <MuiButton color="default" size="large">
+                      <Link href="/feed">
+                        {t("myArtNetwork").toUpperCase()}
+                      </Link>
+                    </MuiButton>
+                  </div>
+                )}
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {!isSignedIn.value && (
+                  <div>
+                    {favoriteIds.length > 0 && (
+                      <>
+                        <section
+                          aria-describedby={id}
+                          onMouseLeave={handleClose}
+                          onScroll={handleClose}
+                          onMouseEnter={handleClick}
+                        >
+                          <IconButton>
+                            <BookmarkIcon style={{ color: "blue" }} />
+                          </IconButton>
 
-                  <div style={{ color: "black" }}>
-                    {membership.value === 1 ? (
-                      <div>Starter</div>
-                    ) : membership.value === 2 ? (
-                      <div>Portfolio Bas</div>
-                    ) : membership.value === 3 ? (
-                      <div>Portfolio Premium</div>
-                    ) : (
-                      ""
+                          <Popper
+                            style={{
+                              zIndex: 20000,
+                              height: "auto",
+                              width: "35%",
+                            }}
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            transition
+                          >
+                            {({ TransitionProps }) => (
+                              <Fade {...TransitionProps} timeout={450}>
+                                <section
+                                  style={{
+                                    padding: "15px",
+                                  }}
+                                >
+                                  <FavoritesPopper
+                                    id={favoriteIds}
+                                  ></FavoritesPopper>
+                                </section>
+                              </Fade>
+                            )}
+                          </Popper>
+                        </section>
+                      </>
                     )}
                   </div>
-
-                  {!membership.isPending && membership.value === 3 ? (
-                    <div className={s.upload}>
-                      <Link href="/upload-story">
-                        <a>
-                          <Button
-                            onClick={() =>
-                              trackGoogleAnalytics(
-                                ActionType.UPLOAD_IMAGE_HEADER,
-                                CategoryType.INTERACTIVE
-                              )
-                            }
-                            className={s.uploadStoryButton}
-                            rounded
-                            endIcon={<FeedOutlinedIcon />}
-                          >
-                            {t("uploadStory")}
-                          </Button>
-                        </a>
-                      </Link>
-                    </div>
-                  ) : (
-                    <div className={s.upload}>
-                      <Link href="/upgrade">
-                        <a>
-                          <Button
-                            onClick={() =>
-                              trackGoogleAnalytics(
-                                ActionType.UPLOAD_IMAGE_HEADER,
-                                CategoryType.INTERACTIVE
-                              )
-                            }
-                            className={s.uploadStoryButton}
-                            rounded
-                            endIcon={<FeedOutlinedIcon />}
-                          >
-                            {t("uploadStory")}
-                          </Button>
-                        </a>
-                      </Link>
-                    </div>
-                  )}
-
-                  <div className={s.upload}>
-                    <Link href="/upload">
-                      <a>
-                        <Button
-                          onClick={() =>
-                            trackGoogleAnalytics(
-                              ActionType.UPLOAD_IMAGE_HEADER,
-                              CategoryType.INTERACTIVE
-                            )
-                          }
-                          className={s.uploadButton}
-                          rounded
-                          endIcon={<ColorLensIcon />}
-                        >
-                          {t("upload")}
-                        </Button>
-                      </a>
-                    </Link>
+                )}
+                {!isSignedIn.value && (
+                  <div className={s.login}>
+                    <Button
+                      className={s.loginButton}
+                      onClick={() => keycloak.login({ locale: router.locale })}
+                      // onClick={() =>
+                      //   keycloak.register({
+                      //     locale: router.locale,
+                      //     redirectUri: signUpRedirectHref,
+                      //   })
+                      // }
+                    >
+                      {t("login")}
+                    </Button>
                   </div>
+                )}
 
-                  {membership.value < Membership.PortfolioPremium && (
-                    <Link href="/upgrade">
-                      <a>
-                        <Button
-                          onClick={() =>
-                            trackGoogleAnalytics(
-                              ActionType.UPLOAD_IMAGE_HEADER,
-                              CategoryType.INTERACTIVE
-                            )
-                          }
-                          className={s.uploadStoryButton}
-                          rounded
-                          endIcon={<FeedOutlinedIcon />}
+                {isSignedIn.value && (
+                  <>
+                    <div className={s.buttons}>
+                      {customerStatus === "trialing" ? (
+                        <div
+                          style={{
+                            color: "black",
+                            display: "flex",
+                            flexDirection: "column-reverse",
+                            alignItems: "center",
+                          }}
                         >
-                          {t("upgrade")}
-                        </Button>
-                      </a>
-                    </Link>
-                  )}
-                  {membership.value > 4 && (
-                    <div style={{ color: "blue" }}>
-                      <a
-                        style={{ color: "blue" }}
-                        href="/admin"
-                        target="_self"
-                        rel="noopener noreferrer"
-                      >
-                        ADMIN
-                      </a>
-                    </div>
-                  )}
-                  <div className={s.iconButtons}>
-                    <div className={s.notificationButton}>
-                      {activityToken && !isError && !isLoading ? (
-                        <NotificationIconButton
-                          activityToken={activityToken}
-                          socialId={socialId.value}
-                        />
-                      ) : (
-                        <IconButton aria-label="account" disabled aria-disabled>
-                          <NotificationsIcon
-                            classes={{ root: s.notificationIcon }}
-                            style={{
-                              fontSize: "30px",
+                          <Button
+                            onClick={async () => {
+                              try {
+                                const customerId = await fetchCustomerId();
+                                if (customerId) {
+                                  const portalUrl =
+                                    await fetchCustomerPortalSession(
+                                      customerId
+                                    );
+                                  if (portalUrl) {
+                                    window.location.href = portalUrl;
+                                  } else {
+                                    console.error(
+                                      "Customer portal URL not received."
+                                    );
+                                  }
+                                } else {
+                                  console.error("Customer ID not received.");
+                                }
+                              } catch (error) {
+                                console.error("Error in processing:", error);
+                              }
                             }}
-                          />
-                        </IconButton>
-                      )}
-                    </div>
-                    {/* <Link href="/messages">
-                      <a>
-                        <IconButton color="secondary" aria-label="account">
-                          <Badge
-                            badgeContent={unreadChatMessages}
-                            max={99}
-                            color="primary"
-                            overlap="rectangular"
                           >
-                            <MessageRoundedIcon style={{ fontSize: "30px" }} />
-                          </Badge>
-                        </IconButton>
-                      </a>
-                    </Link> */}
+                            {t("managePayment")}
+                          </Button>
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: " center",
+                        }}
+                      >
+                        {membership.value < Membership.PortfolioPremium && (
+                          <Link href="/upgrade">
+                            <a>
+                              <Button
+                                onClick={() =>
+                                  trackGoogleAnalytics(
+                                    ActionType.UPLOAD_IMAGE_HEADER,
+                                    CategoryType.INTERACTIVE
+                                  )
+                                }
+                                className={s.upgradeButton}
+                                rounded
+                              >
+                                {t("upgrade")}
+                              </Button>
+                            </a>
+                          </Link>
+                        )}
+                        <Link href="/upload-story">
+                          <a>
+                            <Button
+                              onClick={() =>
+                                trackGoogleAnalytics(
+                                  ActionType.UPLOAD_IMAGE_HEADER,
+                                  CategoryType.INTERACTIVE
+                                )
+                              }
+                              className={s.uploadStoryButton}
+                              rounded
+                              endIcon={<FeedOutlinedIcon />}
+                            >
+                              {t("uploadStory")}
+                            </Button>
+                          </a>
+                        </Link>
 
-                    <ProfileIconButton
-                      profilePicture={profilePicture}
-                    ></ProfileIconButton>
-                  </div>
+                        <Link href="/upload">
+                          <a>
+                            <Button
+                              onClick={() =>
+                                trackGoogleAnalytics(
+                                  ActionType.UPLOAD_IMAGE_HEADER,
+                                  CategoryType.INTERACTIVE
+                                )
+                              }
+                              className={s.uploadButton}
+                              rounded
+                              endIcon={<ColorLensIcon />}
+                            >
+                              {t("upload")}
+                            </Button>
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className={s.loggedIn}>
+                      <div className={s.iconButtons}>
+                        <div className={s.notificationButton}>
+                          {activityToken && !isError && !isLoading ? (
+                            <NotificationIconButton
+                              activityToken={activityToken}
+                              socialId={socialId.value}
+                            />
+                          ) : (
+                            <IconButton
+                              aria-label="account"
+                              disabled
+                              aria-disabled
+                            >
+                              <NotificationsIcon
+                                style={{
+                                  fontSize: "30px",
+                                }}
+                              />
+                            </IconButton>
+                          )}
+                        </div>
+
+                        <ProfileIconButton
+                          profilePicture={profilePicture}
+                        ></ProfileIconButton>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <div className={s.menuDrawer}>
+                  <IconButton
+                    aria-label="menu"
+                    onClick={(_) => setOpenMenu(true)}
+                  >
+                    <Badge
+                      badgeContent={unreadChatMessages}
+                      max={99}
+                      color="primary"
+                      overlap="rectangular"
+                    >
+                      <MenuIcon style={{ fontSize: "30px" }} />
+                    </Badge>
+                    <MenuIcon
+                      classes={{ root: s.menuIcon }}
+                      style={{ fontSize: "30px" }}
+                    />
+                  </IconButton>
                 </div>
-              </>
-            )}
-
-            <div className={s.menuDrawer}>
-              <IconButton
-                aria-label="menu"
-                onClick={(_) => setOpenMenu(true)}
-                className={s.iconMenuColor}
-              >
-                <Badge
-                  classes={{ root: s.menuIconWithBadge }}
-                  badgeContent={unreadChatMessages}
-                  max={99}
-                  color="primary"
-                  overlap="rectangular"
-                >
-                  <MenuIcon style={{ fontSize: "30px" }} />
-                </Badge>
-                <MenuIcon
-                  classes={{ root: s.menuIcon }}
-                  style={{ fontSize: "30px" }}
-                />
-              </IconButton>
+              </div>
             </div>
-          </div>
-          <div className={s.titleWrapper}>
-            <div className={s.titlesOnHeader}>
-              <Link href={"/latestart"} passHref>
-                {t("latest")}
-              </Link>
-              <br />
-            </div>
-            <div className={s.titlesOnHeader}>
-              <Link href={"/discover"} passHref>
-                {t("findArt")}
-              </Link>
-            </div>
-            <div className={s.titlesOnHeader}>
-              <Link href={"/curated"} passHref>
-                {t("curatet")}
-              </Link>
-            </div>
-            <div className={s.titlesOnHeader}>
-              <Link href={"/collaboration"} passHref>
-                {t("collaboration")}
-              </Link>
-            </div>
-            <div className={s.titlesOnHeader}>
-              <Link href={"/artists"} passHref>
-                {t("artists")}
-              </Link>
-            </div>
-            <div className={s.titlesOnHeader}>
-              <Link href={"/newsroom"} passHref>
-                {t("story")}
-              </Link>
-            </div>
-            <div className={s.titlesOnHeader}>
-              <Link href={`${t("header:storiesSlug")}`} passHref>
-                {t("articles")}
-              </Link>
+            <div className={s.titleWrapper}>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/latestart"} passHref>
+                  {t("latest")}
+                </Link>
+                <br />
+              </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/discover"} passHref>
+                  {t("findArt")}
+                </Link>
+              </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/curated"} passHref>
+                  {t("curatet")}
+                </Link>
+              </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/collaboration"} passHref>
+                  {t("collaboration")}
+                </Link>
+              </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/artists"} passHref>
+                  {t("artists")}
+                </Link>
+              </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/newsroom"} passHref>
+                  {t("story")}
+                </Link>
+              </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={`${t("header:storiesSlug")}`} passHref>
+                  {t("articles")}
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -584,7 +482,7 @@ export default function Header({ navBarItems }) {
           ></DrawerMenu>
         </Toolbar>
       </AppBar>
-      {globalIsLoading && (
+      {/* {globalIsLoading && (
         <LinearProgress
           style={{
             position: "absolute",
@@ -593,7 +491,7 @@ export default function Header({ navBarItems }) {
             zIndex: 1,
           }}
         />
-      )}
+      )} */}
     </>
   );
 }
