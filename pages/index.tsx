@@ -29,6 +29,11 @@ import { useGetLatestArtworksForIndex } from "../app/hooks/dataFetching/Artworks
 import StoryCarousel from "../app/components/Carousel/StoryCarousel";
 import LatestCarousel from "../app/components/Carousel/LatestCarousel";
 import CuratedCarousel from "../app/components/Carousel/CuratedCarousel";
+import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
+import DiscoverArtistCard from "../app/components/DiscoverArtistCard/DiscoverArtistCard";
+import DiscoverChosenArtists from "../app/components/DiscoverArtists/DiscoverChosenArtists";
+import IndexArtportable from "../app/components/IndexHero/IndexArtportable";
+import { Divider } from "@material-ui/core";
 
 const RocketCarousel = dynamic(
   () => import("../app/components/Carousel/RocketCarousel")
@@ -129,10 +134,32 @@ export default function DiscoverPage({ navBarItems }) {
 
       <div ref={nextSectionRef}></div>
 
-      <div style={{ marginTop: "50px" }}>
+      {/* <div style={{ marginTop: "50px" }}>
         <Typography variant="h4" style={{ fontWeight: 500 }}>
           {t("featured")}
         </Typography>
+        <div
+          style={{
+            marginTop: "50px",
+            gridColumn: "1 / 4",
+            width: !isMobile ? "90%" : "100%",
+            margin: "0 auto",
+          }}
+        >
+          <RocketCarousel
+            forDesktop={!isMobile}
+            containerStyle={{ margin: "40px 0 0px 0" }}
+          />
+        </div>
+      </div> */}
+      <div
+        style={{
+          marginTop: "50px",
+          gridColumn: "1 / 4",
+          width: !isMobile ? "90%" : "100%",
+          margin: "0 auto",
+        }}
+      >
         <RocketCarousel
           forDesktop={!isMobile}
           containerStyle={{ margin: "40px 0 0px 0" }}
@@ -145,10 +172,19 @@ export default function DiscoverPage({ navBarItems }) {
         <IndexCategories />
       </div>
 
-      <div style={{ marginTop: "50px" }}>
-        <div style={{ fontSize: "32px", marginBottom: "20px" }}>
-          Nytt på Artportable
-        </div>
+      <div
+        style={{ fontSize: "32px", marginBottom: "20px", marginTop: "112px" }}
+      >
+        Nytt på Artportable
+      </div>
+      <div
+        style={{
+          marginTop: "50px",
+          gridColumn: "1 / 4",
+          width: !isMobile ? "90%" : "100%",
+          margin: "0 auto",
+        }}
+      >
         <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
       </div>
       <div
@@ -165,6 +201,34 @@ export default function DiscoverPage({ navBarItems }) {
         }}
       >
         <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
+      </div>
+      <div
+        style={{ fontSize: "32px", marginBottom: "20px", marginTop: "112px" }}
+      >
+        Utvalda Konstnärer
+      </div>
+      <div
+        style={{
+          marginTop: "50px",
+          gridColumn: "1 / 4",
+          width: !isMobile ? "100%" : "100%",
+          margin: "0 auto",
+        }}
+      >
+        <DiscoverChosenArtists></DiscoverChosenArtists>
+      </div>
+      <div style={{ marginTop: "100px" }}>
+        <Divider></Divider>
+      </div>
+      <div
+        style={{
+          marginTop: "50px",
+          gridColumn: "1 / 4",
+          width: !isMobile ? "100%" : "100%",
+          margin: "0 auto",
+        }}
+      >
+        <IndexArtportable></IndexArtportable>
       </div>
     </Main>
   );

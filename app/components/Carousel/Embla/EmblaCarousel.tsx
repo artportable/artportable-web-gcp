@@ -221,8 +221,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
       {forDesktop && (
         <>
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+          {/* <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} /> */}
+          {/* <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} /> */}
         </>
       )}
     </section>
