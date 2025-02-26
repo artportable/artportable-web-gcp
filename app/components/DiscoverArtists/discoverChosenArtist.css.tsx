@@ -5,9 +5,23 @@ import { columnGap, rowGap } from "../../utils/styleUtils";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      marginTop: "-60px",
+      width: "auto",
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      justifyContent: "space-evenly",
+      justifyItems: "center",
       [theme.breakpoints.up("md")]: {
-        marginTop: "0",
+        flexDirection: "row",
+        gridTemplateColumns: "repeat(4, 1fr)",
+      },
+    },
+    items: {
+      width: "150px",
+      height: "200px",
+      [theme.breakpoints.up("md")]: {
+        width: "250px",
+        height: "250px",
+        margin: "20px",
       },
     },
     headerDiv: {
@@ -53,7 +67,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "15px 15px 10px 15px",
       borderWidth: "10px",
       borderStyle: "solid",
-      borderColor: "#1F1E1E #292828 #292828 #272626",
+
       background: "#F5F5F5",
       [theme.breakpoints.up("smPlus")]: {
         borderWidth: "15px",
@@ -67,23 +81,7 @@ export const styles = makeStyles((theme: Theme) =>
         borderWidth: "15px",
         padding: "30px 30px 25px 30px",
       },
-      backgroundImage: "linear-gradient(#FFFEF8, #F3F3F1)",
-      filter: "drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))",
-      position: "relative",
-      overflow: "hidden",
-      "& :before": {
-        content: '""',
-        position: "absolute",
-        top: "-175px",
-        right: "-20%",
-        width: "400px",
-        height: "400px",
-        transform: "rotateZ(-40deg)",
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,0))",
-      },
     },
-
     image: {
       borderWidth: "2px",
       borderStyle: "solid",
@@ -95,8 +93,6 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       aspectRatio: "1/1",
       objectFit: "cover",
-      backgroundColor: "#FAF3EE",
-      // marginBottom: '10px'
     },
 
     flex: {

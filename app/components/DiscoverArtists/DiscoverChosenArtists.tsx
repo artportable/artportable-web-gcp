@@ -41,18 +41,11 @@ export default function DiscoverChosenArtists({}) {
   }
 
   return (
-    <div
-      style={{
-        width: "auto",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-evenly",
-      }}
-    >
+    <div className={s.container}>
       {monthlyArtist?.map((monthly) => (
         <div key={monthly?.Owner?.SocialId}>
           {/* {monthly?.Username} */}
-          <div style={{ width: "250px", height: "250px", margin: "20px" }}>
+          <div className={s.items}>
             <a href={`/profile/@${monthly?.Username}`}>
               <div className={s.frame}>
                 <img
