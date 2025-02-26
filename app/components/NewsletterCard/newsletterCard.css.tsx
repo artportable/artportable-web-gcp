@@ -4,51 +4,31 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     newsletterContainer: {
       display: "flex",
+      alignItems: "center",
+      alignContent: "center",
+      textAlign: "center",
+      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "column",
+      },
+    },
+    form: {
+      display: "flex",
       flexDirection: "column",
-      maxHeight: "900px",
-      height: "100%",
-      width: "100%",
-      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-      borderRadius: "5px",
-      [theme.breakpoints.up("smPlus")]: {
-        maxHeight: "1100px",
-        maxWidth: "900px",
-      },
-      [theme.breakpoints.up("md")]: {
-        maxWidth: "fill-available",
-        flexDirection: "row",
-      },
+      alignItems: "center",
     },
 
-    divBackground: {
-      backgroundColor: "transparent",
-      width: "fit-content",
-    },
-
-    newsletterImg: {
-      padding: "20px",
-      width: "100%",
-      [theme.breakpoints.up("smPlus")]: {
-        padding: "60px",
-        paddingBottom: "40px",
-      },
-      [theme.breakpoints.up("md")]: {
-        padding: "50px",
-        paddingRight: 0,
-      },
-    },
+    divBackground: {},
 
     newsletterHeader: {
       fontWeight: 600,
       fontSize: "24px",
       color: "#000000",
-      fontFamily: "Gotham",
+      fontFamily: "Roboto",
       marginTop: 0,
       marginBottom: 0,
       padding: "4px 20px",
       [theme.breakpoints.up("smPlus")]: {
-        paddingLeft: "60px",
-        paddingRight: "60px",
         fontSize: "32px",
       },
       [theme.breakpoints.up("md")]: {
@@ -61,11 +41,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "16px",
       fontWeight: 400,
       color: "#000000",
+      fontFamily: "Joan",
       marginTop: 0,
       padding: "10px 20px",
       [theme.breakpoints.up("smPlus")]: {
-        paddingLeft: "60px",
-        paddingRight: "60px",
         marginBottom: "10px",
         fontWeight: 450,
       },
@@ -83,20 +62,19 @@ export const styles = makeStyles((theme: Theme) =>
     newsletterButton: {
       backgroundColor: "#000000",
       color: "#FFFFFF",
-      maxWidth: "140px",
+      maxWidth: "100px",
       width: "100%",
       [theme.breakpoints.up("smPlus")]: {
-        maxWidth: "230px",
-        width: "100%",
+        maxWidth: "30px",
+        width: "50px",
         fontSize: "20px",
       },
     },
 
     newsletterLabel: {
-      paddingLeft: "20px",
       fontWeight: 350,
+      fontFamily: "Joan",
       [theme.breakpoints.up("smPlus")]: {
-        paddingLeft: "60px",
         fontSize: "18px",
       },
     },

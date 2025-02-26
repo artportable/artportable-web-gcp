@@ -34,6 +34,7 @@ import DiscoverArtistCard from "../app/components/DiscoverArtistCard/DiscoverArt
 import DiscoverChosenArtists from "../app/components/DiscoverArtists/DiscoverChosenArtists";
 import IndexArtportable from "../app/components/IndexHero/IndexArtportable";
 import { Divider } from "@material-ui/core";
+import Newsletter from "../app/components/NewsletterCard/NewsletterCard";
 
 const RocketCarousel = dynamic(
   () => import("../app/components/Carousel/RocketCarousel")
@@ -230,6 +231,7 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <IndexArtportable></IndexArtportable>
       </div>
+      <Newsletter></Newsletter>
     </Main>
   );
 }
@@ -248,6 +250,7 @@ export async function getStaticProps({ locale }) {
         "tags",
         "index",
         "plans",
+        "feed",
       ])),
     },
     revalidate: 60,

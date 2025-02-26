@@ -9,13 +9,12 @@ export const inputStyles = makeStyles((theme: Theme) =>
       paddingTop: "5px",
       maxHeight: "100px",
       height: "100%",
-      width: "100%",
+      width: "300px",
       maxWidth: "fill-available",
-      fontFamily: "Gotham",
+      fontFamily: "Roboto",
       fontSize: "16px",
       marginLeft: "20px",
       marginRight: "20px",
-
       [theme.breakpoints.up("smPlus")]: {
         paddingLeft: "20px",
         paddingBottom: "10px",

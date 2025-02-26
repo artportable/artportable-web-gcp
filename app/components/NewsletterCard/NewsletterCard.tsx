@@ -39,35 +39,41 @@ export default function Newsletter() {
   return (
     <div className={s.divBackground}>
       <div className={s.newsletterContainer}>
-        <div className={s.imageBox}>
+        {/* <div className={s.imageBox}>
           <img
             src="/newsletter.png"
             alt="newsletter_image"
             className={s.newsletterImg}
           />
-        </div>
+        </div> */}
         <div>
           <div className={s.newsletterHeader}>{t("subscribeNewsletter")}</div>
           <div className={s.newsletterText}>
             {t("artPortableNewsLetterRegisterToGetUpdates")}
           </div>
-          <form onSubmit={subscribeUser}>
-            <label htmlFor="email-input" className={s.newsletterLabel}>
-              {t("emailCapitalLetter")}
-            </label>{" "}
-            <br />
-            <input
-              type="email"
-              id="email-input"
-              name="email"
-              ref={inputRef}
-              required
-              autoCapitalize="off"
-              autoCorrect="off"
-              placeholder="info@artportable.com"
-              className={iS.TextField}
-            />
-            <FormButton type="submit"> {t("subscribe")} </FormButton>
+          <form onSubmit={subscribeUser} className={s.form}>
+            <div>
+              <label htmlFor="email-input" className={s.newsletterLabel}>
+                {t("emailCapitalLetter")}
+              </label>{" "}
+              <br />
+              <input
+                type="email"
+                id="email-input"
+                name="email"
+                ref={inputRef}
+                required
+                autoCapitalize="off"
+                autoCorrect="off"
+                placeholder="hello@artportable.com"
+                className={iS.TextField}
+              />
+            </div>
+
+            <FormButton className={s.newsletterButton} type="submit">
+              {" "}
+              {t("subscribe")}{" "}
+            </FormButton>
           </form>
           {status === "success" && (
             <div className={s.newsletterTextBottom}>
