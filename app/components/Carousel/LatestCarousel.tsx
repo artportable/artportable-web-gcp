@@ -33,7 +33,7 @@ export default function LatestCarousel(props: Data) {
           let url = new URL(`${apiBaseUrl}/api/discover/artworks/latest`);
 
           url.searchParams.append("page", (pageIndex + 1).toString());
-          url.searchParams.append("pageSize", "4");
+          url.searchParams.append("pageSize", "10");
           if (username.value != null && username.value != "") {
             url.searchParams.append("myUsername", username.value);
           }

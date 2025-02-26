@@ -28,7 +28,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-
       [theme.breakpoints.up("smPlus")]: {
         width: "250px",
         height: "160px",
