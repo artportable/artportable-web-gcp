@@ -54,15 +54,6 @@ export default function DiscoverPage({ navBarItems }) {
   const { username, socialId, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
-  const discoverTab = store.getState()?.discover?.tab ?? 1;
-  const discoverTopArtTab = store.getState()?.discoverTopArtTab?.tab ?? 0;
-  const rowWidth = useMainWidth().wide;
-  const [activeTab, setActiveTab] = useState(discoverTopArtTab);
-  const { loading, setLoading } = useContext(LoadingContext);
-  const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
-  const [openAdDialog, setOpenAdDialog] = useState(false);
-  const { keycloak } = useKeycloak();
-  const router = useRouter();
 
   const { data, isLoading, isError } = useGetLatestArtworksForIndex();
 
@@ -99,7 +90,7 @@ export default function DiscoverPage({ navBarItems }) {
     <Main
       noHeaderPadding
       wide={true}
-      isShow={false}
+      isShow={true}
       navBarItems={navBarItems}
       fullWidth={false}
     >
