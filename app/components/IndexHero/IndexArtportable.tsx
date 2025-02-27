@@ -39,12 +39,12 @@ export default function IndexArtportable() {
               lineHeight: "30px",
             }}
           >
-            Vi är det digitala konstgalleriet. På artportable.com hittar du alla
-            typer av konst; olja, akvarell, fotografi eller keramik. Naturtroget
-            eller abstrakt, här finns alla tänkbara tekniker och format
-            representerade, från hela landet. Det smartaste av allt, du
-            kontaktar själv konstnären bakom ditt favoritverk och gör upp både
-            köp och leverans. Enkelt och modernt.
+            Vi är det digitala konstgalleriet. På Artportable.com hittar du alla
+            typer av konst: olja, akvarell, fotografi och keramik. Naturtroget
+            eller abstrakt – här finns alla tekniker och format representerade,
+            från konstnärer i hela landet. Det smartaste av allt? Du kontaktar
+            själv konstnären bakom ditt favoritverk och gör upp om både köp och
+            leverans. Enkelt och modernt.
           </div>
         </div>
         <div className={s.rightItem}>
@@ -62,8 +62,10 @@ export default function IndexArtportable() {
           Redo att ta ditt kontnärskap till nästa nivå?
         </div>
         <div className={s.registerText}>
-          Skapa din egen professionella portfolio och låt konstälskare från hela
-          världen upptäcka din konst. Starta din resa idag!
+          Artportable är en digital tjänst för dig som målar, fotar, stickar,
+          drejar eller skapar visuellt. Vi gör det enkelt och prisvärt att visa
+          upp och sälja din konst online. Vi ser fram emot att upptäcka din
+          konst!
         </div>
         <div>
           <Button
@@ -74,7 +76,7 @@ export default function IndexArtportable() {
               })
             }
           >
-            Bli medlem
+            Bli medlem.
           </Button>
         </div>
       </div>

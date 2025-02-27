@@ -30,7 +30,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: 0,
       padding: "4px 20px",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "32px",
+        fontSize: "40px",
       },
       [theme.breakpoints.up("md")]: {
         paddingTop: "50px",
@@ -39,7 +39,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     newsletterText: {
-      fontSize: "16px",
+      fontSize: "20px",
       fontWeight: 400,
       color: "#000000",
       fontFamily: "Joan",
@@ -61,7 +61,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     newsletterTextSucess: {
       padding: "20px",
-      fontSize: "14px",
+      fontSize: "20px",
       fontWeight: 400,
       color: "green",
       fontFamily: "Joan",

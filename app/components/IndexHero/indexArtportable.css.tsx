@@ -50,8 +50,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     registerText: {
       textAlign: "center",
+      fontSize: "20px",
+      fontFamily: "Joan",
+      fontWeight: 400,
+      width: "50%",
       [theme.breakpoints.up("md")]: {
-        textAlign: "start",
+        textAlign: "center",
       },
     },
 
