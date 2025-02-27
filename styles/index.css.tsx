@@ -30,7 +30,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       marginBottom: "20px",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "20px",
+        fontSize: "26px",
       },
     },
 

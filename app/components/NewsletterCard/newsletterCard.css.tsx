@@ -44,6 +44,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px 20px",
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "10px",
+        fontSize: "26px",
         fontWeight: 400,
       },
     },
@@ -54,7 +55,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px 60px 60px 60px",
-        fontSize: "20px",
+        fontSize: "12px",
       },
     },
     newsletterTextSucess: {

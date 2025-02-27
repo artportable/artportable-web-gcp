@@ -144,9 +144,14 @@ export default function DiscoverPage({ navBarItems }) {
           />
         </div>
       </div> */}
+      <div className={s.headTitle}>Utvalda konstkategorier</div>
+      <div className={s.headText}>
+        Hitta konst som passar din stil och ditt hem med hjälp av våra populära
+        konstkategorier.
+      </div>
       <div
         style={{
-          marginTop: "10000px",
+          marginTop: "100px",
           gridColumn: "1 / 4",
           width: !isMobile ? "90%" : "100%",
           margin: "0 auto",

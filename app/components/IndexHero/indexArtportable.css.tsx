@@ -59,8 +59,9 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: "20px",
       [theme.breakpoints.up("md")]: {
         textAlign: "center",
-        fontSize: "20px",
+        fontSize: "26px",
         width: "50%",
+        lineHeight: "30px",
       },
     },
     LogoBonnier: {
@@ -123,9 +124,9 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Joan",
       fontWeight: 400,
       textAlign: "start",
-      lineHeight: "20px",
+      lineHeight: "30px",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "20px",
+        fontSize: "26px",
         textAlign: "start",
       },
     },
@@ -147,12 +148,15 @@ export const styles = makeStyles((theme: Theme) =>
     partnersWrapper: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-around",
+      justifyContent: "center",
       height: "260px",
       borderBottom: "1px solid black",
       width: "90%",
+      alignItems: "center",
       [theme.breakpoints.up("smPlus")]: {
         height: "360px",
+        justifyContent: "center",
+        alignItems: "flex-start",
       },
     },
     partners: {
