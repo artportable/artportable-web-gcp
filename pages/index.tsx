@@ -146,7 +146,7 @@ export default function DiscoverPage({ navBarItems }) {
       </div> */}
       <div
         style={{
-          marginTop: "50px",
+          marginTop: "10000px",
           gridColumn: "1 / 4",
           width: !isMobile ? "90%" : "100%",
           margin: "0 auto",
@@ -194,7 +194,7 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
       </div>
-      <div className={s.headTitle}>Utvalda Konstnärer</div>
+      <div className={s.headTitle}>Utvalda konstnärer</div>
       <div className={s.headText}>Lär känna konstnärerna bakom verken.</div>
       <div
         style={{
