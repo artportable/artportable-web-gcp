@@ -27,9 +27,14 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      cursor: "pointer",
+      overflow: "hidden", // Prevents overflow issues
       [theme.breakpoints.up("smPlus")]: {
         width: "250px",
         height: "160px",
+      },
+      "&:hover $category": {
+        animation: `$fadeToSolid 1.5s forwards`, // 1.5s smooth transition to solid
       },
     },
     category: {
@@ -37,11 +42,21 @@ export const styles = makeStyles((theme: Theme) =>
       bottom: "0px",
       left: "0px",
       background:
-        "linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+        "linear-gradient(to right, #ffffff 100%, rgba(255, 255, 255, 0) 0%)",
       color: "black",
       width: "100%",
       textAlign: "left",
       padding: "8px",
+      transition: "background 1.5s ease-in-out", // Smooth transition
+    },
+    "@keyframes fadeToSolid": {
+      "0%": {
+        background:
+          "linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 0%)",
+      },
+      "100%": {
+        background: "#ffffff",
+      },
     },
   })
 );

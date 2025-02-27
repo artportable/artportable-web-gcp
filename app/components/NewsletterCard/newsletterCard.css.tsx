@@ -53,6 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "20px",
       fontSize: "9px",
       fontWeight: 400,
+      fontFamily: "Joan",
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px 60px 60px 60px",
         fontSize: "12px",

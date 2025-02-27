@@ -255,7 +255,7 @@ export default function ArtworkPage(props) {
 
       {artwork && artwork.data && (
         <>
-          <div>
+          <div style={{ marginTop: "20px" }}>
             <Paper
               style={{
                 backgroundColor: "transparent",
@@ -730,7 +730,7 @@ export default function ArtworkPage(props) {
               <div className={s.tabPanel}>
                 <div style={{ backgroundColor: "transparent" }}>
                   <div>
-                    {/* <Paper
+                    <Paper
                       style={{
                         background: "transparent",
                         margin: "0px",
@@ -791,14 +791,14 @@ export default function ArtworkPage(props) {
                               <Divider style={{ marginTop: "20px" }}></Divider>
                             </div>
                           </div>
-                        </div> */}
-                    {/* <div className={s.right}>
+                        </div>
+                        <div className={s.right}>
                           <AboutCardArtwork
                             data={artwork?.data}
                           ></AboutCardArtwork>
-                        </div> */}
-                    {/* </div>
-                    </Paper> */}
+                        </div>
+                      </div>
+                    </Paper>
                   </div>
                 </div>
               </div>

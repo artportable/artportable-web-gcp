@@ -456,11 +456,11 @@ export default function Header({ navBarItems }) {
                   {t("collaboration")}
                 </Link>
               </div>
-              <div className={s.titlesOnHeader}>
+              {/* <div className={s.titlesOnHeader}>
                 <Link href={"/artists"} passHref>
                   {t("artists")}
                 </Link>
-              </div>
+              </div> */}
               <div className={s.titlesOnHeader}>
                 <Link href={"/newsroom"} passHref>
                   {t("story")}

@@ -41,6 +41,7 @@ const AboutCardArtwork = ({ data }) => {
           alignItems: "flex-end",
           justifyContent: "center",
           height: "100%",
+          fontFamily: "Roboto",
         }}
       >
         <div style={{ display: "flex", width: "100%" }}>

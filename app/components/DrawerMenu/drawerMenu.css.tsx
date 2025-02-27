@@ -5,6 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
     container: {
       minWidth: "240px",
       width: "100vw",
+      fontFamily: "Roboto",
       backgroundColor: "var(--background-color)",
       [theme.breakpoints.up("md")]: {
         minWidth: "300px",
@@ -19,15 +20,19 @@ export const styles = makeStyles((theme: Theme) =>
       width: "130px",
     },
     titleWrapper: {
+      fontFamily: "Roboto",
       [theme.breakpoints.up("md")]: {},
     },
     titlesOnHeader: {
+      fontFamily: "Roboto",
       fontSize: "16px",
       "&:hover": {
         color: "#0000ffb8",
       },
     },
     closeButtonFlex: {
+      fontFamily: "Roboto",
+
       display: "flex",
       justifyContent: "right",
     },

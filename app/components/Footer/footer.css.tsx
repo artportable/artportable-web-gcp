@@ -92,6 +92,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         padding: "30px 30px 25px 30px",
         flexDirection: "row",
+        alignItems: "flex-start",
       },
     },
     flexItem: {
