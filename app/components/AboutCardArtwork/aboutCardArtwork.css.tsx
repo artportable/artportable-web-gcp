@@ -9,6 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "inline-block",
       overflowWrap: "break-word",
       wordBreak: "break-word",
+      fontFamily: "Joan",
       [theme.breakpoints.up("md")]: {
         maxWidth: "35vw",
       },

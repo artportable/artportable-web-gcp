@@ -9,7 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       width: "100%",
-
+      fontFamily: "Roboto",
       [theme.breakpoints.up("smPlus")]: {},
       [theme.breakpoints.up("md")]: {},
       [theme.breakpoints.up("lg")]: {},
@@ -35,6 +35,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     titleWrapper: {
       display: "none",
+      fontFamily: "Roboto",
       [theme.breakpoints.up("md")]: {
         paddingLeft: "6px",
         fontSize: "14px",
@@ -60,8 +61,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
     login: {
       display: "none",
+
       [theme.breakpoints.up("sm")]: {
         display: "flex",
+        fontFamily: "Roboto",
       },
     },
     loginButton: {
@@ -86,6 +89,7 @@ export const styles = makeStyles((theme: Theme) =>
     buttonInvite: {
       display: "initial",
       marginRight: "-8px",
+      fontFamily: "Roboto",
     },
 
     notificationButton: {
@@ -126,6 +130,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "none",
       },
       [theme.breakpoints.up("md")]: {
+        fontFamily: "Roboto",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
@@ -144,10 +149,11 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "2px 2px 2px 2px",
       fontSize: "14px",
       fontWeight: "normal",
-      fontFamily: "gotham",
+
       borderRadius: "14px",
       color: "black",
       border: "1px solid black",
+      fontFamily: "Roboto",
       "&:hover": {
         border: "1px solid",
         backgroundColor: "#fadf87",
@@ -165,10 +171,10 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       fontSize: "14px",
       fontWeight: "normal",
-      fontFamily: "gotham",
+
       borderRadius: "14px",
       border: "1px solid #229059",
-
+      fontFamily: "Roboto",
       "&:hover": {
         backgroundColor: "#229059",
         border: "1px solid #229059",
@@ -186,8 +192,8 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       fontSize: "14px",
       fontWeight: "normal",
-      fontFamily: "gotham",
       borderRadius: "14px",
+      fontFamily: "Roboto",
       border: "1px solid #0176D5",
       "&:hover": {
         border: "1px solid #0176D5",

@@ -117,7 +117,6 @@ const typography = {
     //"Poppins",
     //"Nunito",
     "Roboto",
-    "Joan",
   ].join(","),
 };
 

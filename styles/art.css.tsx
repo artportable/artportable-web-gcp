@@ -177,7 +177,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderRadius: "50%",
       objectFit: "cover",
     },
-    nameSurname: { margin: "10px" },
+    nameSurname: { margin: "10px", fontFamily: "Roboto" },
     artistSection: {
       display: "flex",
       flexDirection: "column",
@@ -211,16 +211,18 @@ export const styles = makeStyles((theme: Theme) =>
     },
     priceContainer: {
       margin: theme.spacing(0, 0, 0, 0.0),
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: 600,
       paddingBottom: theme.spacing(0),
       display: "flex",
       alignItems: "center",
       marginBottom: "20px",
+      fontFamily: "Roboto",
     },
     purchaseRequestButton: {
       backgroundColor: "#fadf87",
       color: "black",
       width: "auto",
+      fontFamily: "Roboto",
       "&:hover": {
         backgroundColor: "#fee19c",
         color: "black",
@@ -253,8 +255,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     chatButtonContainer: {
-      position: 'relative',
-      margin: '3px 12px 0 0',
+      position: "relative",
+      margin: "3px 12px 0 0",
     },
     chatButton: {
       padding: theme.spacing(0.5, 0, 0.4, 0.5),
@@ -266,6 +268,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     shareButton: {
       padding: theme.spacing(0, 0.1, 0.2, 0.5),
+      fontFamily: "Roboto",
       fontSize: "0.5rem",
       color: "#000000",
       "&:hover": {
@@ -273,8 +276,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     text: {
+      fontFamily: "Roboto",
       marginLeft: "0px",
-
+      fontFamily: "Joan",
       paddingBottom: "10px",
     },
     extraImages: {
@@ -296,11 +300,14 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       marginLeft: "0px",
+      fontFamily: "Joan",
     },
     username: {
       fontWeight: 600,
       letterSpacing: "4px",
       fontSize: "13px",
+      fontFamily: "Roboto",
+
       [theme.breakpoints.up("md")]: {
         fontWeight: 500,
         letterSpacing: "5px",
@@ -313,6 +320,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       flexWrap: "wrap",
       marginTop: "30px",
+      fontFamily: "Roboto",
     },
     chip: {
       marginRight: "5px",
@@ -323,6 +331,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "15px",
       height: "15px",
       marginRight: "5px",
+      fontFamily: "Roboto",
     },
     roomDiv: {
       placeSelf: "flex-end",
@@ -333,14 +342,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
     roomButton: {
       marginTop: "5px",
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: 600,
       border: "1px solid black",
       color: "black",
+      fontFamily: "Roboto",
     },
     flexPurchaseRoom: {
       display: "flex",
       justifyContent: "space-between",
       width: "100%",
+      fontFamily: "Roboto",
     },
     [theme.breakpoints.up("smPlus")]: {
       titleAndSizeContainer: {

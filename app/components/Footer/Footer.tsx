@@ -91,35 +91,55 @@ export default function Footer() {
                 </Typography>
                 <Link href="https://artportable.com/">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("art")}
                     </Typography>
                   </a>
                 </Link>
                 <Link href="/fotokonst">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("photography")}
                     </Typography>
                   </a>
                 </Link>
                 <Link href="/akvarell">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("aquarelle")}
                     </Typography>
                   </a>
                 </Link>
                 <Link href="/skulpturer">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("sculpture")}
                     </Typography>
                   </a>
                 </Link>
                 <Link href="/oljemalningar">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("oilPaintings")}
                     </Typography>
                   </a>
@@ -139,6 +159,7 @@ export default function Footer() {
                   component="div"
                   onClick={() => keycloak.login({ locale: router.locale })}
                   className={s.idpLink}
+                  style={{ fontFamily: "Joan" }}
                 >
                   {t("logIn")}
                 </Typography>
@@ -167,14 +188,22 @@ export default function Footer() {
                 </Typography>
                 <Link href="/support">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("contactUs")}
                     </Typography>
                   </a>
                 </Link>
                 <Link href="/about-us">
                   <a>
-                    <Typography variant="body2" component="div">
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      style={{ fontFamily: "Joan" }}
+                    >
                       {t("aboutUs")}
                     </Typography>
                   </a>
