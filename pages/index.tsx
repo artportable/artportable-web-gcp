@@ -205,12 +205,11 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <DiscoverChosenArtists></DiscoverChosenArtists>
       </div>
-      <div style={{ marginTop: "100px" }}>
+      <div className={s.divider}>
         <Divider></Divider>
       </div>
       <div
         style={{
-          marginTop: "50px",
           gridColumn: "1 / 4",
           width: !isMobile ? "100%" : "100%",
           margin: "0 auto",
