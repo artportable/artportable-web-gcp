@@ -15,17 +15,23 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     headTitle: {
-      fontSize: "32px",
+      fontSize: "26px",
       marginBottom: "10px",
       marginTop: "112px",
       fontFamily: "Roboto",
       fontWeight: 400,
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "40px",
+      },
     },
     headText: {
-      fontSize: "20px",
+      fontSize: "13px",
       fontFamily: "Joan",
       fontWeight: 400,
       marginBottom: "20px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "26px",
+      },
     },
 
     divider: {

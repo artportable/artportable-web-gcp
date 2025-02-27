@@ -22,8 +22,8 @@ export const styles = makeStyles((theme: Theme) =>
     divBackground: {},
 
     newsletterHeader: {
-      fontWeight: 600,
-      fontSize: "24px",
+      fontWeight: 400,
+      fontSize: "26px",
       color: "#000000",
       fontFamily: "Roboto",
       marginTop: 0,
@@ -36,7 +36,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     newsletterText: {
-      fontSize: "20px",
+      fontSize: "13px",
       fontWeight: 400,
       color: "#000000",
       fontFamily: "Joan",
@@ -44,16 +44,18 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px 20px",
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "10px",
+        fontSize: "26px",
         fontWeight: 400,
       },
     },
 
     newsletterTextBottom: {
       padding: "20px",
-      fontSize: "16px",
+      fontSize: "9px",
       fontWeight: 400,
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px 60px 60px 60px",
+        fontSize: "12px",
       },
     },
     newsletterTextSucess: {
