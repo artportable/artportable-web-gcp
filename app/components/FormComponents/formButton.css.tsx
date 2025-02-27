@@ -14,7 +14,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "160px",
       maxWidth: "fill-available",
       height: "35px",
-      fontSize: "40px",
+      fontSize: "16px",
       fontWeight: 600,
       textTransform: "uppercase",
       fontFamily: "Roboto",

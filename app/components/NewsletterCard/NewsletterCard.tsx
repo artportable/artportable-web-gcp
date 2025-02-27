@@ -11,6 +11,7 @@ export default function Newsletter() {
   const { t } = useTranslation(["feed"]);
   const inputRef = useRef(null);
   const [status, setStatus] = useState("");
+  const [isSucess, setSucess] = useState(false);
 
   const subscribeUser = async (e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ export default function Newsletter() {
 
       if (response.status === 201) {
         setStatus("success");
+        setSucess(true);
       } else {
         setStatus("error");
       }
@@ -35,6 +37,8 @@ export default function Newsletter() {
       setStatus("error");
     }
   };
+
+  React.useEffect(() => {}, [isSucess]);
 
   return (
     <div className={s.divBackground}>
@@ -47,36 +51,42 @@ export default function Newsletter() {
           />
         </div> */}
         <div>
-          <div className={s.newsletterHeader}>{t("subscribeNewsletter")}</div>
-          <div className={s.newsletterText}>
-            {t("artPortableNewsLetterRegisterToGetUpdates")}
-          </div>
-          <form onSubmit={subscribeUser} className={s.form}>
-            <div>
-              <label htmlFor="email-input" className={s.newsletterLabel}>
-                {t("emailCapitalLetter")}
-              </label>{" "}
-              <br />
-              <input
-                type="email"
-                id="email-input"
-                name="email"
-                ref={inputRef}
-                required
-                autoCapitalize="off"
-                autoCorrect="off"
-                placeholder="hello@artportable.com"
-                className={iS.TextField}
-              />
-            </div>
+          {!isSucess && (
+            <>
+              <div className={s.newsletterHeader}>
+                {t("subscribeNewsletter")}
+              </div>
+              <div className={s.newsletterText}>
+                {t("artPortableNewsLetterRegisterToGetUpdates")}
+              </div>
+              <form onSubmit={subscribeUser} className={s.form}>
+                <div>
+                  <label htmlFor="email-input" className={s.newsletterLabel}>
+                    {t("emailCapitalLetter")}
+                  </label>{" "}
+                  <br />
+                  <input
+                    type="email"
+                    id="email-input"
+                    name="email"
+                    ref={inputRef}
+                    required
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                    placeholder="hello@artportable.com"
+                    className={iS.TextField}
+                  />
+                </div>
 
-            <FormButton className={s.newsletterButton} type="submit">
-              {" "}
-              {t("subscribe")}{" "}
-            </FormButton>
-          </form>
+                <FormButton className={s.newsletterButton} type="submit">
+                  {" "}
+                  {t("subscribe")}{" "}
+                </FormButton>
+              </form>
+            </>
+          )}
           {status === "success" && (
-            <div className={s.newsletterTextBottom}>
+            <div className={s.newsletterTextSucess}>
               {t("subscriptionSuccessNewsletter")}
             </div>
           )}
