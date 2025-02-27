@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     styleButton: {
-      backgroundColor: "#000000",
+      backgroundColor: "#0176D5",
       color: theme.palette.primary.contrastText,
       border: "0px",
       boxShadow: "none",
@@ -20,6 +20,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Roboto",
       "&:hover": {
         backgroundColor: "#0176D5",
+        textDecoration: "underline",
       },
       [theme.breakpoints.up("smPlus")]: {
         margin: "20px 60px",

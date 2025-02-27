@@ -10,13 +10,14 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "30px",
       width: "90%",
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       justifyContent: "space-between",
       alignItems: "center",
       textAlign: "center",
       margin: "0 auto",
       [theme.breakpoints.up("smPlus")]: {
         height: "100%",
+        flexDirection: "row",
       },
       [theme.breakpoints.up("md")]: {},
     },
@@ -28,13 +29,14 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      height: "265px",
+      height: "100%",
       borderTop: "1px solid black",
       borderBottom: "1px solid black",
       borderColor: "#B3BB3",
       padding: "40px",
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px",
+        height: "265px",
       },
       [theme.breakpoints.up("md")]: {},
     },
@@ -50,11 +52,40 @@ export const styles = makeStyles((theme: Theme) =>
     },
     registerText: {
       textAlign: "center",
+      fontSize: "16px",
+      fontFamily: "Joan",
+      fontWeight: 400,
+      width: "100%",
       [theme.breakpoints.up("md")]: {
-        textAlign: "start",
+        textAlign: "center",
+        fontSize: "20px",
+        width: "50%",
       },
     },
-
+    LogoBonnier: {
+      height: "46px",
+      width: "125px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "auto",
+        width: "250px",
+      },
+    },
+    LogoEgmont: {
+      height: "46px",
+      width: "125px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "156px",
+        width: "auto",
+      },
+    },
+    LogoTwo: {
+      height: "46px",
+      width: "125px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "156px",
+        width: "360px",
+      },
+    },
     buttonRegister: {
       marginTop: "10px",
       borderRadius: "40px",
@@ -75,12 +106,40 @@ export const styles = makeStyles((theme: Theme) =>
         textDecoration: "underline",
       },
     },
+    whatIs: {
+      fontSize: "20px",
+      fontFamily: "Roboto",
+      fontWeight: 600,
+      textAlign: "center",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "40px",
+        textAlign: "start",
+      },
+    },
+
+    whatIsText: {
+      fontSize: "16px",
+      fontFamily: "Joan",
+      fontWeight: 400,
+      textAlign: "center",
+      lineHeight: "30px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "20px",
+        textAlign: "start",
+      },
+    },
 
     leftItem: {
-      width: "50%",
+      width: "100%",
       display: "flex",
       flexDirection: "column",
-      alignItems: "start",
+      alignItems: "center",
+      marginBottom: "10px",
+      [theme.breakpoints.up("smPlus")]: {
+        padding: "0px",
+        width: "50%",
+        alignItems: "start",
+      },
     },
     rightItem: {},
   })

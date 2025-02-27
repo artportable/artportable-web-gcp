@@ -30,16 +30,13 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: 0,
       padding: "4px 20px",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "32px",
+        fontSize: "40px",
       },
-      [theme.breakpoints.up("md")]: {
-        paddingTop: "50px",
-        paddingBottom: "20px",
-      },
+      [theme.breakpoints.up("md")]: {},
     },
 
     newsletterText: {
-      fontSize: "16px",
+      fontSize: "20px",
       fontWeight: 400,
       color: "#000000",
       fontFamily: "Joan",
@@ -47,13 +44,13 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px 20px",
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "10px",
-        fontWeight: 450,
+        fontWeight: 400,
       },
     },
 
     newsletterTextBottom: {
       padding: "20px",
-      fontSize: "14px",
+      fontSize: "16px",
       fontWeight: 400,
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px 60px 60px 60px",
@@ -61,7 +58,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     newsletterTextSucess: {
       padding: "20px",
-      fontSize: "14px",
+      fontSize: "20px",
       fontWeight: 400,
       color: "green",
       fontFamily: "Joan",

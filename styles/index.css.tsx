@@ -27,6 +27,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       marginBottom: "20px",
     },
+
+    divider: {
+      [theme.breakpoints.up("smPlus")]: {
+        marginTop: "100px",
+      },
+    },
     exhibitionBoost: {
       marginTop: 40,
       paddingBottom: 0,

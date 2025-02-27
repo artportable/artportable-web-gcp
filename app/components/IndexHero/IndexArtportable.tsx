@@ -17,65 +17,100 @@ export default function IndexArtportable() {
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
-    <div className={s.container}>
-      <div className={s.wrapper}>
-        <div className={s.leftItem}>
-          <div
-            style={{
-              fontSize: "40px",
-              fontFamily: "Roboto",
-              fontWeight: 600,
-              textAlign: "start",
-            }}
-          >
-            Vad är Artportable?
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gridColumn: "1 / 4",
+      }}
+    >
+      <div className={s.container}>
+        <div className={s.wrapper}>
+          <div className={s.leftItem}>
+            <div className={s.whatIs}>Vad är Artportable?</div>
+            <div className={s.whatIsText}>
+              Vi är det digitala konstgalleriet. På Artportable.com hittar du
+              alla typer av konst: olja, akvarell, fotografi och keramik.
+              Naturtroget eller abstrakt – här finns alla tekniker och format
+              representerade, från konstnärer i hela landet. Det smartaste av
+              allt? Du kontaktar själv konstnären bakom ditt favoritverk och gör
+              upp om både köp och leverans. Enkelt och modernt.
+            </div>
           </div>
-          <div
-            style={{
-              fontSize: "20px",
-              fontFamily: "Joan",
-              fontWeight: 400,
-              textAlign: "start",
-              lineHeight: "30px",
-            }}
-          >
-            Vi är det digitala konstgalleriet. På artportable.com hittar du alla
-            typer av konst; olja, akvarell, fotografi eller keramik. Naturtroget
-            eller abstrakt, här finns alla tänkbara tekniker och format
-            representerade, från hela landet. Det smartaste av allt, du
-            kontaktar själv konstnären bakom ditt favoritverk och gör upp både
-            köp och leverans. Enkelt och modernt.
+          <div className={s.rightItem}>
+            <Image
+              src={"/images/apstudio.png"}
+              alt="first page artwork"
+              width={"400px"}
+              height={"300px"}
+              quality={10}
+            />
           </div>
         </div>
-        <div className={s.rightItem}>
-          <Image
-            src={"/images/apstudio.png"}
-            alt="first page artwork"
-            width={"400px"}
-            height={"300px"}
-            quality={10}
-          />
+        <div className={s.registerWrapper}>
+          <div className={s.registerTitle}>
+            Redo att ta ditt kontnärskap till nästa nivå?
+          </div>
+          <div className={s.registerText}>
+            Artportable är en digital tjänst för dig som målar, fotar, stickar,
+            drejar eller skapar visuellt. Vi gör det enkelt och prisvärt att
+            visa upp och sälja din konst online. Vi ser fram emot att upptäcka
+            din konst!
+          </div>
+          <div>
+            <Button
+              className={s.buttonRegister}
+              onClick={() =>
+                keycloak.register({
+                  locale: router.locale,
+                })
+              }
+            >
+              Bli medlem.
+            </Button>
+          </div>
         </div>
       </div>
-      <div className={s.registerWrapper}>
-        <div className={s.registerTitle}>
-          Redo att ta ditt kontnärskap till nästa nivå?
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          height: "360px",
+          borderBottom: "1px solid black",
+
+          width: "90%",
+        }}
+      >
+        <div
+          style={{ fontSize: "40px", fontFamily: "Roboto", fontWeight: "600" }}
+        >
+          Våra samarbetspartners
         </div>
-        <div className={s.registerText}>
-          Skapa din egen professionella portfolio och låt konstälskare från hela
-          världen upptäcka din konst. Starta din resa idag!
-        </div>
-        <div>
-          <Button
-            className={s.buttonRegister}
-            onClick={() =>
-              keycloak.register({
-                locale: router.locale,
-              })
-            }
-          >
-            Bli medlem
-          </Button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}
+        >
+          <img
+            src="/images/bonnierlogo.png"
+            alt="Logo bonnier"
+            className={s.LogoBonnier}
+          />
+          <img
+            src="/images/egmont.png"
+            alt="Logo egmont"
+            className={s.LogoEgmont}
+          />
+          <img
+            src="/images/schibsted.svg"
+            alt="Logo bonnier"
+            className={s.LogoTwo}
+          />
         </div>
       </div>
     </div>
