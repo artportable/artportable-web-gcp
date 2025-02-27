@@ -72,28 +72,15 @@ export default function IndexArtportable() {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-evenly",
-          height: "360px",
-          borderBottom: "1px solid black",
-
-          width: "90%",
-        }}
-      >
-        <div
-          style={{ fontSize: "40px", fontFamily: "Roboto", fontWeight: "600" }}
-        >
-          Våra samarbetspartners
-        </div>
+      <div className={s.partnersWrapper}>
+        <div className={s.partners}>Våra samarbetspartners</div>
         <div
           style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-around",
+            width: "100%",
           }}
         >
           <img

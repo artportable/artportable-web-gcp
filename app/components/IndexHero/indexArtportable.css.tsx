@@ -33,7 +33,7 @@ export const styles = makeStyles((theme: Theme) =>
       borderTop: "1px solid black",
       borderBottom: "1px solid black",
       borderColor: "#B3BB3",
-      padding: "40px",
+      padding: "20px",
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px",
         height: "265px",
@@ -42,20 +42,21 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     registerTitle: {
-      fontSize: "20px",
+      fontSize: "26px",
       fontFamily: "Roboto",
-      fontWeight: 600,
-      textAlign: "center",
+      fontWeight: 400,
+      textAlign: "start",
       [theme.breakpoints.up("md")]: {
         fontSize: "40px",
       },
     },
     registerText: {
-      textAlign: "center",
-      fontSize: "16px",
+      textAlign: "start",
+      fontSize: "13px",
       fontFamily: "Joan",
       fontWeight: 400,
       width: "100%",
+      lineHeight: "20px",
       [theme.breakpoints.up("md")]: {
         textAlign: "center",
         fontSize: "20px",
@@ -63,7 +64,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     LogoBonnier: {
-      height: "46px",
+      height: "auto",
       width: "125px",
       [theme.breakpoints.up("smPlus")]: {
         height: "auto",
@@ -71,7 +72,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     LogoEgmont: {
-      height: "46px",
+      height: "auto",
       width: "125px",
       [theme.breakpoints.up("smPlus")]: {
         height: "156px",
@@ -79,7 +80,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     LogoTwo: {
-      height: "46px",
+      height: "auto",
       width: "125px",
       [theme.breakpoints.up("smPlus")]: {
         height: "156px",
@@ -107,10 +108,10 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     whatIs: {
-      fontSize: "20px",
+      fontSize: "26px",
       fontFamily: "Roboto",
-      fontWeight: 600,
-      textAlign: "center",
+      fontWeight: 400,
+      textAlign: "start",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "40px",
         textAlign: "start",
@@ -118,11 +119,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     whatIsText: {
-      fontSize: "16px",
+      fontSize: "13px",
       fontFamily: "Joan",
       fontWeight: 400,
-      textAlign: "center",
-      lineHeight: "30px",
+      textAlign: "start",
+      lineHeight: "20px",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "20px",
         textAlign: "start",
@@ -133,8 +134,9 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "start",
       marginBottom: "10px",
+
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px",
         width: "50%",
@@ -142,5 +144,24 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     rightItem: {},
+    partnersWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      height: "260px",
+      borderBottom: "1px solid black",
+      width: "90%",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "360px",
+      },
+    },
+    partners: {
+      fontSize: "26px",
+      fontFamily: "Roboto",
+      fontWeight: 400,
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "40px",
+      },
+    },
   })
 );
