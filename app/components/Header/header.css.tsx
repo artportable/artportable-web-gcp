@@ -69,10 +69,11 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600,
       fontFamily: "Roboto",
       fontSize: "14px",
-      backgroundColor: "black",
+      backgroundColor: "#0176D5",
       color: "white",
       "&:hover": {
         backgroundColor: "#0176D5",
+        textDecoration: "underline",
         color: "white",
       },
     },

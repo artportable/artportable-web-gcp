@@ -3,7 +3,6 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      marginTop: "100px",
       width: "100vw",
       display: "grid",
       gridTemplateColumns: "repeat(2, 1fr)",
@@ -16,7 +15,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "20px",
-        padding: "0 80px",
+        padding: "0 70px",
         height: "100%",
       },
       [theme.breakpoints.up("md")]: {},

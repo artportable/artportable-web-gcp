@@ -317,7 +317,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "left",
       color: "white",
-      backgroundColor: "black",
+      backgroundColor: "#0176D5",
       padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("smPlus")]: {
         border: "1px solid #99999987",
@@ -326,6 +326,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:hover": {
         backgroundColor: "#0176D5",
+        textDecoration: "underline",
         color: "white",
       },
     },

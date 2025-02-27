@@ -157,21 +157,22 @@ export default function DiscoverPage({ navBarItems }) {
           containerStyle={{ margin: "40px 0 0px 0" }}
         />
       </div>
-
-      <div
-        style={{ gridColumn: "1 / 4", width: "100vw", marginBottom: "100px" }}
-      >
+      <div className={s.headTitle}>Utvalda konstkategorier</div>
+      <div className={s.headText}>
+        Hitta konst som passar din stil och ditt hem med hjälp av våra populära
+        konstkategorier.
+      </div>
+      <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
         <IndexCategories />
       </div>
 
-      <div
-        style={{ fontSize: "32px", marginBottom: "20px", marginTop: "112px" }}
-      >
-        Nytt på Artportable
+      <div className={s.headTitle}>Nytt på Artportable</div>
+      <div className={s.headText}>
+        Var först med att se det senaste från våra konstnärer.
       </div>
+
       <div
         style={{
-          marginTop: "50px",
           gridColumn: "1 / 4",
           width: !isMobile ? "90%" : "100%",
           margin: "0 auto",
@@ -179,14 +180,13 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
       </div>
-      <div
-        style={{ fontSize: "32px", marginBottom: "20px", marginTop: "112px" }}
-      >
-        Kurerat innehåll
+      <div className={s.headTitle}>Kurerat innehåll</div>
+      <div className={s.headText}>
+        Svårt att välja? Vi lyfter fram den mest spännande och prisvärda konsten
+        just nu.
       </div>
       <div
         style={{
-          marginTop: "50px",
           gridColumn: "1 / 4",
           width: !isMobile ? "90%" : "100%",
           margin: "0 auto",
@@ -194,14 +194,10 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
       </div>
-      <div
-        style={{ fontSize: "32px", marginBottom: "20px", marginTop: "112px" }}
-      >
-        Utvalda Konstnärer
-      </div>
+      <div className={s.headTitle}>Utvalda Konstnärer</div>
+      <div className={s.headText}>Lär känna konstnärerna bakom verken.</div>
       <div
         style={{
-          marginTop: "50px",
           gridColumn: "1 / 4",
           width: !isMobile ? "100%" : "100%",
           margin: "0 auto",
