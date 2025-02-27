@@ -63,7 +63,7 @@ export default function AboutMe() {
         </Typography>
         <Typography variant="h4">{t("showRoom")}</Typography>
       </div>
-      <div className={s.flex}>
+      {/* <div className={s.flex}>
         <iframe
           className={s.videoFrame}
           src="https://player.vimeo.com/video/708144642?h=6eb4ca476d&amp;title=0&amp;byline=0&amp;portrait=0&amp;speed=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
@@ -71,7 +71,7 @@ export default function AboutMe() {
           allowFullScreen
           title="Artportable commercial"
         ></iframe>
-      </div>
+      </div> */}
 
       <div className={clsx(s.bottomDiv, s.staffDiv)}>
         {board.map((person) => (

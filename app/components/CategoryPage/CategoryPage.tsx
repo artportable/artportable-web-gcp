@@ -219,7 +219,10 @@ export default function CategoryPage({
                                       : ""}
                                   </Box>
                                 </Typography>
-                                <Typography variant={"subtitle1"}>
+                                <Typography
+                                  variant={"subtitle1"}
+                                  style={{ fontFamily: "Joan" }}
+                                >
                                   {article?.description}
                                 </Typography>
                               </div>
@@ -262,7 +265,10 @@ export default function CategoryPage({
                                       : ""}
                                   </Box>
                                 </Typography>
-                                <Typography variant={"subtitle1"}>
+                                <Typography
+                                  variant={"subtitle1"}
+                                  style={{ fontFamily: "Joan" }}
+                                >
                                   {article?.description}
                                 </Typography>
                               </div>
