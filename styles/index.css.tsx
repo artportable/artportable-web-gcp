@@ -13,6 +13,20 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
     },
+
+    headTitle: {
+      fontSize: "32px",
+      marginBottom: "10px",
+      marginTop: "112px",
+      fontFamily: "Roboto",
+      fontWeight: 400,
+    },
+    headText: {
+      fontSize: "20px",
+      fontFamily: "Joan",
+      fontWeight: 400,
+      marginBottom: "20px",
+    },
     exhibitionBoost: {
       marginTop: 40,
       paddingBottom: 0,
