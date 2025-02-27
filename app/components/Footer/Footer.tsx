@@ -20,35 +20,36 @@ export default function Footer() {
   return (
     <>
       {!isSignedIn.value && (
-        <footer className={s.footer}>
-          <div className={s.image}>
-            <div className={s.sunneby}>
-              <div>
-                <Link href={"/"}>
-                  <a>
-                    <img
-                      className={s.logo}
-                      src="/ArtportableLogo.svg"
-                      alt="Logo Artportable"
-                    />
-                  </a>
-                </Link>
-                <Typography
-                  variant="body2"
-                  component="div"
-                  className={s.reserved}
-                >
-                  © 2025 Höök & Nordlander AB. All rights reserved.
-                </Typography>
-                <Typography
-                  variant="body2"
-                  component="div"
-                  className={s.cookies}
-                >
-                  {t("cookies")}
-                </Typography>
-              </div>
-              {/* <div className={s.socialMediaFlex}>
+        <div style={{ padding: "20px" }}>
+          <footer className={s.footer}>
+            <div className={s.image}>
+              <div className={s.sunneby}>
+                <div>
+                  <Link href={"/"}>
+                    <a>
+                      <img
+                        className={s.logo}
+                        src="/ArtportableLogo.svg"
+                        alt="Logo Artportable"
+                      />
+                    </a>
+                  </Link>
+                  <Typography
+                    variant="body2"
+                    component="div"
+                    className={s.reserved}
+                  >
+                    © 2025 Höök & Nordlander AB. All rights reserved.
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    component="div"
+                    className={s.cookies}
+                  >
+                    {t("cookies")}
+                  </Typography>
+                </div>
+                {/* <div className={s.socialMediaFlex}>
          <Link href="https://www.instagram.com/artportableofficial/">
            <a>
              <img
@@ -78,133 +79,136 @@ export default function Footer() {
            </a>
          </Link>
        </div> */}
-            </div>
+              </div>
 
-            <div className={clsx(s.getInTouch, s.flexItem)}>
-              <Typography
-                variant="subtitle2"
-                component="div"
-                className={s.links}
-              >
-                {t("popularPages")}
-              </Typography>
-              <Link href="https://artportable.com/">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("art")}
-                  </Typography>
-                </a>
-              </Link>
-              <Link href="/fotokonst">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("photography")}
-                  </Typography>
-                </a>
-              </Link>
-              <Link href="/akvarell">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("aquarelle")}
-                  </Typography>
-                </a>
-              </Link>
-              <Link href="/skulpturer">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("sculpture")}
-                  </Typography>
-                </a>
-              </Link>
-              <Link href="/oljemalningar">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("oilPaintings")}
-                  </Typography>
-                </a>
-              </Link>
-            </div>
-
-            <div className={clsx(s.hide, s.flexItem)}>
-              <Typography
-                variant="subtitle2"
-                component="div"
-                className={s.links}
-              >
-                {t("becomeAPart")}
-              </Typography>
-              <Typography
-                variant="body2"
-                component="div"
-                onClick={() => keycloak.login({ locale: router.locale })}
-                className={s.idpLink}
-              >
-                {t("logIn")}
-              </Typography>
-              <Typography
-                variant="body2"
-                component="div"
-                onClick={() =>
-                  keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref,
-                  })
-                }
-                className={s.idpLink}
-              >
-                {t("register")}
-              </Typography>
-            </div>
-
-            <div className={clsx(s.getInTouch, s.flexItem)}>
-              <Typography
-                variant="subtitle2"
-                component="div"
-                className={s.links}
-              >
-                {t("getInTouch")}
-              </Typography>
-              <Link href="/support">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("contactUs")}
-                  </Typography>
-                </a>
-              </Link>
-              <Link href="/about-us">
-                <a>
-                  <Typography variant="body2" component="div">
-                    {t("aboutUs")}
-                  </Typography>
-                </a>
-              </Link>
-              <Link href={"/gdpr"}>
-                <a style={{ textDecoration: "underline" }}>{t("integrity")}</a>
-              </Link>
-            </div>
-
-            <div className={clsx(s.mobile, s.flexItem)}>
-              <Typography
-                variant="subtitle2"
-                component="div"
-                className={s.links}
-              >
-                {t("followUs")}
-              </Typography>
-              <div className={s.flexSocialMedia}>
-                <Link href="https://www.instagram.com/artportable/">
-                  <a>Instagram</a>
+              <div className={clsx(s.getInTouch, s.flexItem)}>
+                <Typography
+                  variant="subtitle2"
+                  component="div"
+                  className={s.links}
+                >
+                  {t("popularPages")}
+                </Typography>
+                <Link href="https://artportable.com/">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("art")}
+                    </Typography>
+                  </a>
                 </Link>
-                <Link href="https://www.facebook.com/artportable/">
-                  <a>Facebook</a>
+                <Link href="/fotokonst">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("photography")}
+                    </Typography>
+                  </a>
                 </Link>
-                <Link href="https://www.tiktok.com/@artportable">
-                  <a>Tiktok</a>
+                <Link href="/akvarell">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("aquarelle")}
+                    </Typography>
+                  </a>
+                </Link>
+                <Link href="/skulpturer">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("sculpture")}
+                    </Typography>
+                  </a>
+                </Link>
+                <Link href="/oljemalningar">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("oilPaintings")}
+                    </Typography>
+                  </a>
                 </Link>
               </div>
+
+              <div className={clsx(s.hide, s.flexItem)}>
+                <Typography
+                  variant="subtitle2"
+                  component="div"
+                  className={s.links}
+                >
+                  {t("becomeAPart")}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  component="div"
+                  onClick={() => keycloak.login({ locale: router.locale })}
+                  className={s.idpLink}
+                >
+                  {t("logIn")}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  component="div"
+                  onClick={() =>
+                    keycloak.register({
+                      locale: router.locale,
+                      redirectUri: signUpRedirectHref,
+                    })
+                  }
+                  className={s.idpLink}
+                >
+                  {t("register")}
+                </Typography>
+              </div>
+
+              <div className={clsx(s.getInTouch, s.flexItem)}>
+                <Typography
+                  variant="subtitle2"
+                  component="div"
+                  className={s.links}
+                >
+                  {t("getInTouch")}
+                </Typography>
+                <Link href="/support">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("contactUs")}
+                    </Typography>
+                  </a>
+                </Link>
+                <Link href="/about-us">
+                  <a>
+                    <Typography variant="body2" component="div">
+                      {t("aboutUs")}
+                    </Typography>
+                  </a>
+                </Link>
+                <Link href={"/gdpr"}>
+                  <a style={{ textDecoration: "underline" }}>
+                    {t("integrity")}
+                  </a>
+                </Link>
+              </div>
+
+              <div className={clsx(s.mobile, s.flexItem)}>
+                <Typography
+                  variant="subtitle2"
+                  component="div"
+                  className={s.links}
+                >
+                  {t("followUs")}
+                </Typography>
+                <div className={s.flexSocialMedia}>
+                  <Link href="https://www.instagram.com/artportable/">
+                    <a>Instagram</a>
+                  </Link>
+                  <Link href="https://www.facebook.com/artportable/">
+                    <a>Facebook</a>
+                  </Link>
+                  <Link href="https://www.tiktok.com/@artportable">
+                    <a>Tiktok</a>
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
       )}
     </>
   );
