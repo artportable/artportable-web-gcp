@@ -61,9 +61,13 @@ export default function Newsletter() {
               </div>
               <form onSubmit={subscribeUser} className={s.form}>
                 <div>
-                  <label htmlFor="email-input" className={s.newsletterLabel}>
+                  {/* <label
+                    htmlFor="email-input"
+                    style={{ textAlign: "left" }}
+                    className={s.newsletterLabel}
+                  >
                     {t("emailCapitalLetter")}
-                  </label>{" "}
+                  </label>{" "} */}
                   <br />
                   <input
                     type="email"

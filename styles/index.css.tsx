@@ -16,8 +16,8 @@ export const styles = makeStyles((theme: Theme) =>
 
     headTitle: {
       fontSize: "26px",
-      marginBottom: "10px",
-      marginTop: "112px",
+      marginBottom: "0px",
+      marginTop: "50px",
       fontFamily: "Roboto",
       fontWeight: 400,
       [theme.breakpoints.up("smPlus")]: {

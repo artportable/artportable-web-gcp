@@ -20,7 +20,7 @@ export default function IndexCategories() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          width: "100%", // Keep full width
+          width: "100%",
         }}
       >
         {" "}
@@ -73,7 +73,7 @@ export default function IndexCategories() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          width: "100%", // Keep full width
+          width: "100%",
         }}
       >
         <div className={s.category}>Collage</div>
@@ -86,7 +86,7 @@ export default function IndexCategories() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          width: "100%", // Keep full width
+          width: "100%",
         }}
       >
         <div className={s.category}>Pastell</div>

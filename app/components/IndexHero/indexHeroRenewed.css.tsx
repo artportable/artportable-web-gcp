@@ -96,7 +96,7 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       fontWeight: 400,
       fontFamily: "Roboto",
-      fontSize: "20px",
+      fontSize: "26px",
       color: "black",
       zIndex: 20,
       textAlign: "center",
@@ -110,7 +110,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "80%",
       },
       [theme.breakpoints.up("md")]: {
-        fontSize: "35px",
+        fontSize: "40px",
         color: "black",
         textAlign: "left",
         padding: "0px",
@@ -203,7 +203,7 @@ export const styles = makeStyles((theme: Theme) =>
     headlineTwo: {
       position: "relative",
       fontWeight: 400,
-      fontSize: "12px",
+      fontSize: "13px",
       color: "#00000078",
       textAlign: "center",
       zIndex: 20,
@@ -212,7 +212,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "0px 0px 0px 0px",
       fontFamily: "Joan",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "20px",
+        fontSize: "26px",
         textAlign: "center",
         padding: "0px",
         width: "80%",

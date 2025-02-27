@@ -28,15 +28,8 @@ export default function IndexArtportable() {
       <div className={s.container}>
         <div className={s.wrapper}>
           <div className={s.leftItem}>
-            <div className={s.whatIs}>Vad är Artportable?</div>
-            <div className={s.whatIsText}>
-              Vi är det digitala konstgalleriet. På Artportable.com hittar du
-              alla typer av konst: olja, akvarell, fotografi och keramik.
-              Naturtroget eller abstrakt – här finns alla tekniker och format
-              representerade, från konstnärer i hela landet. Det smartaste av
-              allt? Du kontaktar själv konstnären bakom ditt favoritverk och gör
-              upp om både köp och leverans. Enkelt och modernt.
-            </div>
+            <div className={s.whatIs}>{t("whatIs")}</div>
+            <div className={s.whatIsText}>{t("whatIsText")}</div>
           </div>
           <div className={s.rightItem}>
             <Image
@@ -49,15 +42,8 @@ export default function IndexArtportable() {
           </div>
         </div>
         <div className={s.registerWrapper}>
-          <div className={s.registerTitle}>
-            Redo att ta ditt kontnärskap till nästa nivå?
-          </div>
-          <div className={s.registerText}>
-            Artportable är en digital tjänst för dig som målar, fotar, stickar,
-            drejar eller skapar visuellt. Vi gör det enkelt och prisvärt att
-            visa upp och sälja din konst online. Vi ser fram emot att upptäcka
-            din konst!
-          </div>
+          <div className={s.registerTitle}>{t("nextLevel")}</div>
+          <div className={s.registerText}>{t("nextLevelText")}</div>
           <div>
             <Button
               className={s.buttonRegister}
@@ -67,13 +53,13 @@ export default function IndexArtportable() {
                 })
               }
             >
-              Bli medlem.
+              {t("signUpTwo")}
             </Button>
           </div>
         </div>
       </div>
       <div className={s.partnersWrapper}>
-        <div className={s.partners}>Våra samarbetspartners</div>
+        <div className={s.partners}>{t("partners")}</div>
         <div
           style={{
             display: "flex",

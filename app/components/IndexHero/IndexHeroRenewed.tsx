@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/artiklar/hyllad-utstallning-med-ingela-roos---chef-som-atertagit-platsen-som-konstnar">
+                <a href="https://artportable.com/art/d5622cac-f5e6-49c4-8105-07ac00e814fb">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/roostwo.jpeg"
-                          : "/images/roostwo.jpeg"
+                          ? "/images/thune.jpeg"
+                          : "/images/thune.jpeg"
                       }
                       alt="first page artwork"
                       loading="lazy"
@@ -69,11 +69,17 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        <span>Ingela Roos, utställning via Artportable</span>
-                        <br />
-                        <span style={{ fontStyle: "italic" }}>
-                          Fredsborgsgatan 24 i Liljeholmen
-                        </span>
+                        Nick Thuné,&nbsp;
+                      </p>
+                      <p
+                        style={{
+                          color: "black",
+                          backgroundColor: "white",
+                          paddingRight: "4px",
+                          fontStyle: "italic",
+                        }}
+                      >
+                        Single
                       </p>
                     </div>
                   </div>

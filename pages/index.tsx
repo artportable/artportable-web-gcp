@@ -125,33 +125,9 @@ export default function DiscoverPage({ navBarItems }) {
       )}
 
       <div ref={nextSectionRef}></div>
-
-      {/* <div style={{ marginTop: "50px" }}>
-        <Typography variant="h4" style={{ fontWeight: 500 }}>
-          {t("featured")}
-        </Typography>
-        <div
-          style={{
-            marginTop: "50px",
-            gridColumn: "1 / 4",
-            width: !isMobile ? "90%" : "100%",
-            margin: "0 auto",
-          }}
-        >
-          <RocketCarousel
-            forDesktop={!isMobile}
-            containerStyle={{ margin: "40px 0 0px 0" }}
-          />
-        </div>
-      </div> */}
-      <div className={s.headTitle}>Utvalda konstkategorier</div>
-      <div className={s.headText}>
-        Hitta konst som passar din stil och ditt hem med hjälp av våra populära
-        konstkategorier.
-      </div>
+      <div className={s.headTitle}>{t("chosen")}</div>
       <div
         style={{
-          marginTop: "100px",
           gridColumn: "1 / 4",
           width: !isMobile ? "90%" : "100%",
           margin: "0 auto",
@@ -162,19 +138,14 @@ export default function DiscoverPage({ navBarItems }) {
           containerStyle={{ margin: "40px 0 0px 0" }}
         />
       </div>
-      <div className={s.headTitle}>Utvalda konstkategorier</div>
-      <div className={s.headText}>
-        Hitta konst som passar din stil och ditt hem med hjälp av våra populära
-        konstkategorier.
-      </div>
+      <div className={s.headTitle}>{t("chosenCategories")}</div>
+      <div className={s.headText}>{t("chosenCategoriesText")}</div>
       <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
         <IndexCategories />
       </div>
 
-      <div className={s.headTitle}>Nytt på Artportable</div>
-      <div className={s.headText}>
-        Var först med att se det senaste från våra konstnärer.
-      </div>
+      <div className={s.headTitle}>{t("newIn")}</div>
+      <div className={s.headText}>{t("newInText")}</div>
 
       <div
         style={{
@@ -185,11 +156,8 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
       </div>
-      <div className={s.headTitle}>Kurerat innehåll</div>
-      <div className={s.headText}>
-        Svårt att välja? Vi lyfter fram den mest spännande och prisvärda konsten
-        just nu.
-      </div>
+      <div className={s.headTitle}>{t("curated")}</div>
+      <div className={s.headText}>{t("curatedText")}</div>
       <div
         style={{
           gridColumn: "1 / 4",
@@ -199,8 +167,8 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
       </div>
-      <div className={s.headTitle}>Utvalda konstnärer</div>
-      <div className={s.headText}>Lär känna konstnärerna bakom verken.</div>
+      <div className={s.headTitle}>{t("choosenArtist")}</div>
+      <div className={s.headText}>{t("knowArtist")}</div>
       <div
         style={{
           gridColumn: "1 / 4",
