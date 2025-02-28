@@ -31,6 +31,7 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
                 fontSize: "20px",
                 fontFamily: "Joan",
                 fontWeight: 400,
+                color: "#00000078",
               }}
             >
               {t("latestText")}
@@ -53,7 +54,12 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
             </div>
             <br />
             <div
-              style={{ fontSize: "20px", fontFamily: "Joan", fontWeight: 400 }}
+              style={{
+                fontSize: "20px",
+                fontFamily: "Joan",
+                fontWeight: 400,
+                color: "#00000078",
+              }}
             >
               {t("discoverText")}
             </div>

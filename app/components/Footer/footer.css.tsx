@@ -78,7 +78,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     image: {
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "column-reverse",
       alignItems: "center",
       justifyContent: "space-between",
       borderWidth: "2px",

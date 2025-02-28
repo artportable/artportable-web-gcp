@@ -6,8 +6,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("md")]: {
         display: "flex",
-        backgroundColor: "#0176D5",
-        color: "white",
+        backgroundColor: "#FCF7EC",
+        color: "black",
         gridColumn: "1/4",
         padding: "20px",
         marginRight: "0",
@@ -22,8 +22,8 @@ export const styles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("smPlus")]: {
         display: "flex",
-        backgroundColor: "#0176D5",
-        color: "white",
+        backgroundColor: "#FCF7EC",
+        color: "black",
         gridColumn: "1/4",
         padding: "20px",
         marginRight: "0",
