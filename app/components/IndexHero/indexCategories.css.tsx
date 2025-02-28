@@ -21,19 +21,26 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {},
     },
     item: {
-      width: "170px",
+      width: "100%",
       height: "100px",
       position: "relative",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       cursor: "pointer",
-      overflow: "hidden", // Prevents overflow issues
+      overflow: "hidden",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+
       [theme.breakpoints.up("smPlus")]: {
-        width: "250px",
+        width: "100%",
         height: "160px",
       },
-      "&:hover": {},
+      "&:hover": {
+        boxShadow: "0px 9px 27px 8px rgba(0,0,0,0.1)",
+        borderRadius: "5px",
+      },
     },
     category: {
       fontSize: "22px",
@@ -46,6 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
       background:
         "linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
       padding: "8px",
+      "&:hover": { borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF" },
     },
   })
 );

@@ -19,7 +19,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "150px",
       height: "200px",
       [theme.breakpoints.up("md")]: {
-        width: "250px",
+        width: "270px",
         height: "250px",
         margin: "20px",
       },
@@ -39,6 +39,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
     subHeaderTypo: {
       marginBottom: "30px",
+    },
+    artist: {
+      marginTop: "10px",
+      fontSize: "13px",
+      fontFamily: "Roboto",
+      textAlign: "center",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "20px",
+        textAlign: "start",
+      },
     },
 
     staffDiv: {
@@ -67,7 +77,6 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "15px 15px 10px 15px",
       borderWidth: "10px",
       borderStyle: "solid",
-
       background: "#F5F5F5",
       [theme.breakpoints.up("smPlus")]: {
         borderWidth: "15px",

@@ -439,7 +439,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        {navBarItems && navBarItems.length > 0 && (
+        {/* {navBarItems && navBarItems.length > 0 && (
           <div>
             <ListItem button onClick={handleClickListingPages}>
               <ListItemText primary={t("productLists")} />
@@ -458,14 +458,14 @@ export default function DrawerMenu({
                     return (
                       <Link href={"/" + item.slug} passHref key={index}>
                         {/* onClick={(_) => router.push(`/${item.slug}`)} */}
-                        <a>
+        {/* <a>
                           <ListItem
                             button
                             className={s.nested}
                             onClick={() => close()}
-                          >
-                            {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
-                            <ListItemText primary={item.menuTitle} />
+                          > */}
+        {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
+        {/* <ListItemText primary={item.menuTitle} />
                           </ListItem>
                         </a>
                       </Link>
@@ -475,7 +475,7 @@ export default function DrawerMenu({
             </Collapse>
             <Divider />
           </div>
-        )}
+        )} */}
 
         <Link href={"/collaboration"} passHref>
           <a>

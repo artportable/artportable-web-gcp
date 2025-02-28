@@ -109,7 +109,76 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
       title: item?.Title,
       linkURL: `/art/${item.Id}`,
       roundedCorners: false,
-      footer: <div></div>,
+      footer: (
+        <div>
+          <div
+            style={{
+              marginTop: "2px",
+              fontSize: "0.95rem",
+              fontWeight: 400,
+              width: "100%",
+            }}
+          >
+            {" "}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <a href={`${baseUrl}/profile/@${item.Username}`}>
+                {" "}
+                {`${item.Owner.Name} ${item.Owner.Surname}`}
+              </a>
+              <div>
+                {isSignedIn.value && (
+                  <div className={s.likeButton}>
+                    <LikeButton
+                      content={{
+                        Item: item,
+                        LikedByMe: item.LikedByMe,
+                        Likes: item.Likes,
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            <p
+              style={{
+                fontSize: "0.70rem",
+                fontStyle: "italic",
+                marginTop: "0px",
+              }}
+            >
+              {item?.Title}
+              <br />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  {" "}
+                  {item?.Price != 0 ? (
+                    <div style={{ fontSize: "14px" }}>
+                      {item?.Price} {item.Currency}
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: "14px" }}>
+                      {t("priceOnRequest")}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </p>
+          </div>
+        </div>
+      ),
     });
   });
 

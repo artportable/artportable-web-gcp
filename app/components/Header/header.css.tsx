@@ -75,9 +75,9 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#0176D5",
       color: "white",
       "&:hover": {
-        backgroundColor: "#0176D5",
-        textDecoration: "underline",
+        backgroundColor: "#E2B651",
         color: "white",
+        textDecoration: "underline",
       },
     },
     iconButtons: {
@@ -149,7 +149,6 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "2px 2px 2px 2px",
       fontSize: "14px",
       fontWeight: "normal",
-
       borderRadius: "14px",
       color: "black",
       border: "1px solid black",

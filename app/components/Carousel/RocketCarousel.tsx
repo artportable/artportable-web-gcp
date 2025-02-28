@@ -178,9 +178,9 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                     </div>
                   )}
                 </div>
-                <a href={`${baseUrl}/art/${item.Id}`} className={s.buyButton}>
+                {/* <a href={`${baseUrl}/art/${item.Id}`} className={s.buyButton}>
                   {t("buy")}
-                </a>
+                </a> */}
               </div>
             </p>
           </div>

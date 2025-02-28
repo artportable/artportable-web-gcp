@@ -17,7 +17,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
 
       [theme.breakpoints.up("md")]: {
-        alignItems: "center",
+        alignItems: "start",
       },
       [theme.breakpoints.up("lg")]: {},
     },

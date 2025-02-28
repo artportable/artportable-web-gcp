@@ -52,10 +52,14 @@ export default function DiscoverChosenArtists({}) {
                   className={s.image}
                   src={`${apiBucketUrl}${monthly?.ProfilePicture}`}
                   alt="arist image"
-                  title=""
                 />
               </div>
             </a>
+            <div className={s.artist}>
+              <a href={`/profile/@${monthly?.Username}`}>
+                {monthly?.Name} {monthly?.Surname}
+              </a>
+            </div>
           </div>
         </div>
       ))}
