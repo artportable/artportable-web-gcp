@@ -10,6 +10,7 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import { styles } from "../styles/curated.css";
+import { useMediaQuery, useTheme } from "@mui/material";
 export default function latest({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(["header", "index"]);
@@ -28,31 +29,35 @@ export default function latest({ navBarItems }) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false} wide>
+      <Main
+        noHeaderPadding
+        wide={false}
+        isShow={true}
+        navBarItems={navBarItems}
+        fullWidth={false}
+      >
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
+        <div
+          style={{
+            width: !isMobile ? "100%" : "100%",
+          }}
+          className={s.textWrapper}
+        >
+          {" "}
+          <div className={s.title}>{t("index:titleHeader")}</div>
+          <div className={s.text}>{t("index:descriptionBody")}</div>
+        </div>
         <div className={s.container}>
           {" "}
-          <div style={{ margin: "10px" }}>
-            <div
-              className={s.title}
-              style={{ fontSize: "32px", fontFamily: "Roboto" }}
-            >
-              {t("index:titleHeader")}
-            </div>
-            <div
-              className={s.text}
-              style={{ fontSize: "20px", fontFamily: "Joan" }}
-            >
-              {t("index:descriptionBody")}
-            </div>
-          </div>
           <DiscoverHighLightsTab
             username={username.value}
             socialId={socialId.value}

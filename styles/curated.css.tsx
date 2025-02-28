@@ -11,17 +11,36 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
     title: {
-      fontSize: "20px",
+      fontSize: "26px",
+      textAlign: "center",
       fontFamily: "Roboto",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "32px",
+        fontSize: "40px",
+        marginLeft: "10%",
+        textAlign: "start",
       },
     },
     text: {
       fontSize: "13px",
       fontFamily: "Joan",
+      width: "90%",
+      margin: "0 auto",
+      textAlign: "center",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "20px",
+        fontSize: "26px",
+        marginLeft: "10%",
+        textAlign: "start",
+      },
+    },
+    textWrapper: {
+      display: "flex",
+      justifyContent: "center",
+      backgroundColor: "#FCF7EC",
+      height: "150px",
+      flexDirection: "column",
+      gridColumn: "1 / 4",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "250px",
       },
     },
   });
