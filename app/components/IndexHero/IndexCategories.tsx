@@ -17,10 +17,6 @@ export default function IndexCategories() {
         className={s.item}
         style={{
           backgroundImage: `url("/images/thoralf.jpg")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
         }}
       >
         {" "}

@@ -8,6 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
     },
     headerContainer: {
+      fontFamily: "Roboto",
       display: "flex",
       flexDirection: "column",
       backgroundColor: "black",
@@ -27,6 +28,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column-reverse",
       justifyContent: "center",
       alignItems: "flex-start",
+      fontFamily: "Roboto",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
         justifyContent: "center",
@@ -36,6 +38,7 @@ export const styles = makeStyles((theme: Theme) =>
     faqAnswers: {
       width: "100vw",
       marginBottom: "10px",
+
       [theme.breakpoints.up("md")]: {
         width: "60vw",
       },
@@ -60,6 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
       gap: "10px",
       paddingLeft: "20px",
       paddingRight: "20px",
+      fontFamily: "Roboto",
       [theme.breakpoints.up("md")]: {
         fontSize: "16px",
       },
@@ -79,10 +83,13 @@ export const styles = makeStyles((theme: Theme) =>
     subTitle: {
       fontSize: "14px",
       margin: "0px",
+      fontFamily: "Roboto",
       [theme.breakpoints.up("md")]: {
         fontSize: "28px",
       },
     },
+
+    paragraph: { fontFamily: "Joan" },
     numbers: {
       fontSize: "22px",
       backgroundColor: "#fadf87",

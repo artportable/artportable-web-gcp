@@ -51,33 +51,33 @@ export default function Faq({ navBarItems }) {
             </section>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionOne")}</h4>
-              <p>{t("faq:answerOne")}</p>
+              <p className={s.paragraph}>{t("faq:answerOne")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionTwo")}</h4>
-              <p>{t("faq:answerTwo")}</p>
+              <p className={s.paragraph}>{t("faq:answerTwo")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionThree")}</h4>
-              <p>{t("faq:answerThree")}</p>
+              <p className={s.paragraph}>{t("faq:answerThree")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionFour")}</h4>
-              <p>{t("faq:answerFour")}</p>
+              <p className={s.paragraph}>{t("faq:answerFour")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionFive")}</h4>
-              <p>
+              <p className={s.paragraph}>
                 {t("faq:answerFive")} <br />
               </p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionSix")}</h4>
-              <p>{t("faq:answerSix")}</p>
+              <p className={s.paragraph}>{t("faq:answerSix")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionSeven")}</h4>
-              <p>{t("faq:answerSeven")}</p>
+              <p className={s.paragraph}>{t("faq:answerSeven")}</p>
             </article>
             <section id="section2" className={s.titlesWrapper}>
               <p className={s.numbers} style={{ backgroundColor: "#ff8383" }}>
@@ -87,23 +87,23 @@ export default function Faq({ navBarItems }) {
             </section>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionEight")}</h4>
-              <p>{t("faq:answerEight")}</p>
+              <p className={s.paragraph}>{t("faq:answerEight")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionNine")}</h4>
-              <p>{t("faq:answerNine")}</p>
+              <p className={s.paragraph}>{t("faq:answerNine")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionTen")}</h4>
-              <p>{t("faq:answerTen")}</p>
+              <p className={s.paragraph}>{t("faq:answerTen")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionEleven")}</h4>
-              <p>{t("faq:answerEleven")}</p>
+              <p className={s.paragraph}>{t("faq:answerEleven")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionTwelve")}</h4>
-              <p>{t("faq:answerTwelve")}</p>
+              <p className={s.paragraph}>{t("faq:answerTwelve")}</p>
             </article>
             <section id="section3" className={s.titlesWrapper}>
               <p className={s.numbers} style={{ backgroundColor: "#ffca40" }}>
@@ -114,23 +114,23 @@ export default function Faq({ navBarItems }) {
 
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionThirteen")}</h4>
-              <p>{t("faq:answerThirteen")}</p>
+              <p className={s.paragraph}>{t("faq:answerThirteen")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionFourteen")}</h4>
-              <p>{t("faq:answerFourteen")}</p>
+              <p className={s.paragraph}>{t("faq:answerFourteen")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionFiftheen")}</h4>
-              <p>{t("faq:answerFiftheen")}</p>
+              <p className={s.paragraph}>{t("faq:answerFiftheen")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionSixteen")}</h4>
-              <p>{t("faq:answerSixteen")}</p>
+              <p className={s.paragraph}>{t("faq:answerSixteen")}</p>
             </article>
             <article className={s.articles}>
               <h4 className={s.subTitle}>{t("faq:questionSeventeen")}</h4>
-              <p>{t("faq:answerSeventeen")}</p>
+              <p className={s.paragraph}>{t("faq:answerSeventeen")}</p>
             </article>
           </article>
           <aside className={s.boxNav}>

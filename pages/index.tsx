@@ -156,8 +156,8 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
       </div>
-      <div className={s.headTitle}>{t("curated")}</div>
-      <div className={s.headText}>{t("curatedText")}</div>
+      <div className={s.headTitle}>{t("titleHeader")}</div>
+      <div className={s.headText}>{t("descriptionBody")}</div>
       <div
         style={{
           gridColumn: "1 / 4",
@@ -172,7 +172,7 @@ export default function DiscoverPage({ navBarItems }) {
       <div
         style={{
           gridColumn: "1 / 4",
-          width: !isMobile ? "100%" : "100%",
+          width: !isMobile ? "90%" : "100%",
           margin: "0 auto",
         }}
       >

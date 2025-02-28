@@ -286,8 +286,7 @@ export const styles = makeStyles((theme: Theme) =>
         fontSize: "16px",
       },
       "&:hover": {
-        backgroundColor: "#229059",
-
+        backgroundColor: "#E2B651",
         textDecoration: "underline",
       },
     },
@@ -320,12 +319,11 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#0176D5",
       padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("smPlus")]: {
-        border: "1px solid #99999987",
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },
       "&:hover": {
-        backgroundColor: "#0176D5",
+        backgroundColor: "#E2B651",
         textDecoration: "underline",
         color: "white",
       },
