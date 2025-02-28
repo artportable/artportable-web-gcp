@@ -29,7 +29,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Joan",
       fontWeight: 400,
       marginBottom: "20px",
-      color: "#00000078",
+      color: "#000000c7",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "20px",
       },
