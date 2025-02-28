@@ -15,6 +15,8 @@ export const inputStyles = makeStyles((theme: Theme) =>
       fontSize: "16px",
       marginLeft: "20px",
       marginRight: "20px",
+      borderRadius: ".8rem",
+
       [theme.breakpoints.up("smPlus")]: {
         paddingLeft: "20px",
         paddingBottom: "10px",

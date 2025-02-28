@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import FormButton from "../FormComponents/FormButton";
 import { inputStyles } from "../../../styles/FormStyles/FormInputText.css";
 import EmailIcon from "@material-ui/icons/Email";
+
 export default function Newsletter() {
   const s = styles();
   const iS = inputStyles();
@@ -77,7 +78,7 @@ export default function Newsletter() {
                     required
                     autoCapitalize="off"
                     autoCorrect="off"
-                    placeholder="hello@artportable.com"
+                    placeholder={t("email")}
                     className={iS.TextField}
                   />
                 </div>
