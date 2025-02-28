@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
 import Image from "next/image";
+import Divider from "@mui/material/Divider";
 
 export default function IndexArtportable() {
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -41,6 +42,7 @@ export default function IndexArtportable() {
             />
           </div>
         </div>
+
         <div className={s.registerWrapper}>
           <div className={s.registerTitle}>{t("nextLevel")}</div>
           <div className={s.registerText}>{t("nextLevelText")}</div>

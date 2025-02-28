@@ -30,13 +30,12 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       alignItems: "center",
       height: "100%",
-      borderTop: "1px solid black",
-      borderBottom: "1px solid black",
+
       borderColor: "#B3BB3",
       padding: "20px",
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px",
-        height: "265px",
+        height: "300px",
       },
       [theme.breakpoints.up("md")]: {},
     },
@@ -45,21 +44,24 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "26px",
       fontFamily: "Roboto",
       fontWeight: 400,
-      textAlign: "start",
+      textAlign: "center",
       [theme.breakpoints.up("md")]: {
         fontSize: "40px",
+        textAlign: "start",
       },
     },
     registerText: {
-      textAlign: "start",
+      textAlign: "center",
       fontSize: "13px",
       fontFamily: "Joan",
       fontWeight: 400,
       width: "100%",
       lineHeight: "20px",
+      marginBottom: "20px",
+
       [theme.breakpoints.up("md")]: {
         textAlign: "center",
-        fontSize: "26px",
+        fontSize: "20px",
         width: "50%",
         lineHeight: "30px",
       },
@@ -112,7 +114,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "26px",
       fontFamily: "Roboto",
       fontWeight: 400,
-      textAlign: "start",
+      textAlign: "center",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "40px",
         textAlign: "start",
@@ -123,10 +125,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "13px",
       fontFamily: "Joan",
       fontWeight: 400,
-      textAlign: "start",
+      textAlign: "center",
       lineHeight: "30px",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "26px",
+        fontSize: "20px",
         textAlign: "start",
       },
     },
@@ -135,9 +137,8 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       display: "flex",
       flexDirection: "column",
-      alignItems: "start",
+      alignItems: "center",
       marginBottom: "10px",
-
       [theme.breakpoints.up("smPlus")]: {
         padding: "0px",
         width: "50%",

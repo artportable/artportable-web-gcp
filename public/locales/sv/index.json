@@ -6,7 +6,7 @@
   "forArtistsAndArtLovers": "konstnärer och konstsamlare",
   "artworkFrom": "Konstverk av",
   "signUp": "Konstnär? Bli medlem.",
-  "signUpTwo": "Bli medlem.",
+  "signUpTwo": "Bli medlem",
   "artworkBy": "Konstverk av",
   "artlover": "Konstintresserad",
   "artist": "Konstnär",
@@ -75,7 +75,7 @@
   "featured": "Utvalt",
   "whatIs": "Vad är Artportable?",
   "whatIsText": "Vi är det digitala konstgalleriet. Här hittar du alla typer av konst: olja, akvarell, fotografi och keramik. Naturtroget eller abstrakt – här finns alla tekniker och format representerade, från konstnärer i hela landet. Det smartaste av allt? Du kontaktar själv konstnären bakom ditt favoritverk och gör upp om både köp och leverans. Enkelt och modernt.",
-  "nextLevel": "Redo att ta ditt kontnärskap till nästa nivå?",
+  "nextLevel": "Redo att ta ditt konstnärskap till nästa nivå?",
   "nextLevelText": "  Artportable är en digital tjänst för dig som målar, fotar, stickar, drejar eller skapar visuellt. Vi gör det enkelt och prisvärt att visa upp och sälja din konst online. Vi ser fram emot att upptäcka din konst!",
   "choosenArtist": "Utvalda konstnärer",
   "knowArtist": "Lär känna konstnärerna bakom verken.",
@@ -84,7 +84,7 @@
   "newIn": "Nytt på Artportable",
   "newInText": "Var först med att se det senaste från våra konstnärer.",
   "chosen": "Utvalt",
-  "chosenCategories": "Utvalda kategorier",
+  "chosenCategories": "Hitta din stil",
   "chosenCategoriesText": "Hitta konst som passar din stil och ditt hem med hjälp av våra populära konstkategorier.",
-  "partners": "Våra samarbetspartners"
+  "partners": "I samarbete med.."
 }

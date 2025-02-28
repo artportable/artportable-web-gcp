@@ -33,30 +33,19 @@ export const styles = makeStyles((theme: Theme) =>
         width: "250px",
         height: "160px",
       },
-      "&:hover $category": {
-        animation: `$fadeToSolid 1.5s forwards`, // 1.5s smooth transition to solid
-      },
+      "&:hover": {},
     },
     category: {
+      fontSize: "22px",
       position: "absolute",
       bottom: "0px",
       left: "0px",
-      background:
-        "linear-gradient(to right, #ffffff 100%, rgba(255, 255, 255, 0) 0%)",
       color: "black",
       width: "100%",
       textAlign: "left",
+      background:
+        "linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
       padding: "8px",
-      transition: "background 1.5s ease-in-out", // Smooth transition
-    },
-    "@keyframes fadeToSolid": {
-      "0%": {
-        background:
-          "linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 0%)",
-      },
-      "100%": {
-        background: "#ffffff",
-      },
     },
   })
 );

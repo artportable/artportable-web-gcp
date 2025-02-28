@@ -9,6 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {},
     },
     mobileButton: {
+      fontFamily: "Roboto",
       width: "100%",
       borderRadius: "20px",
       [theme.breakpoints.up("smPlus")]: {
@@ -70,6 +71,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     filterTitleClose: {
+      fontFamily: "Roboto",
       display: "flex",
       justifyContent: "space-between",
       fontSize: "18px",
@@ -87,6 +89,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     // the class for the title above the select
     filtertitle: {
+      fontFamily: "Roboto",
       display: "flex",
       alignItems: "flex-end",
       fontSize: "20px",
@@ -104,6 +107,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     // the class for select menu
     selectMenu: {
+      fontFamily: "Roboto",
       width: "338px",
       backgroundColor: "white",
       height: "40px",

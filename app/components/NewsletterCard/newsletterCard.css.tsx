@@ -44,7 +44,7 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "10px 20px",
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "10px",
-        fontSize: "26px",
+        fontSize: "20px",
         fontWeight: 400,
       },
     },

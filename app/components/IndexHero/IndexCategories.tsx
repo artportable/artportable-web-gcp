@@ -105,17 +105,17 @@ export default function IndexCategories() {
         <div className={s.category}>Mixed Media</div>
       </div>
       <div
-        onClick={() => handleCategoryClick("triptych")}
+        onClick={() => handleCategoryClick("naked")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/hageman.jpg")`,
+          backgroundImage: `url("/images/marieplosjo.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%",
         }}
       >
-        <div className={s.category}>Triptych</div>
+        <div className={s.category}>Naket</div>
       </div>
     </div>
   );
