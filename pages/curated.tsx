@@ -9,10 +9,12 @@ import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
-
+import { styles } from "../styles/curated.css";
+import { useMediaQuery, useTheme } from "@mui/material";
 export default function latest({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(["header", "index"]);
+  const s = styles();
   const { locale } = useRouter();
   const { username, socialId, isSignedIn, membership } =
     useContext(UserContext);
@@ -27,16 +29,35 @@ export default function latest({ navBarItems }) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false} wide>
+      <Main
+        noHeaderPadding
+        wide={false}
+        isShow={true}
+        navBarItems={navBarItems}
+        fullWidth={false}
+      >
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <div style={{ marginTop: "30px" }}>
+        <div
+          style={{
+            width: !isMobile ? "100%" : "100%",
+          }}
+          className={s.textWrapper}
+        >
+          {" "}
+          <div className={s.title}>{t("index:titleHeader")}</div>
+          <div className={s.text}>{t("index:descriptionBody")}</div>
+        </div>
+        <div className={s.container}>
+          {" "}
           <DiscoverHighLightsTab
             username={username.value}
             socialId={socialId.value}
@@ -45,7 +66,7 @@ export default function latest({ navBarItems }) {
             loadImages={loadImages}
             stopLoadImages={stopLoadImages}
             activeTab={0}
-            header={t("discover:highlights")}
+            header={t("")}
           />
         </div>
       </Main>
