@@ -9,10 +9,11 @@ import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
-
+import { styles } from "../styles/curated.css";
 export default function latest({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(["header", "index"]);
+  const s = styles();
   const { locale } = useRouter();
   const { username, socialId, isSignedIn, membership } =
     useContext(UserContext);
@@ -36,7 +37,22 @@ export default function latest({ navBarItems }) {
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <div style={{ marginTop: "30px" }}>
+        <div className={s.container}>
+          {" "}
+          <div style={{ margin: "10px" }}>
+            <div
+              className={s.title}
+              style={{ fontSize: "32px", fontFamily: "Roboto" }}
+            >
+              {t("index:titleHeader")}
+            </div>
+            <div
+              className={s.text}
+              style={{ fontSize: "20px", fontFamily: "Joan" }}
+            >
+              {t("index:descriptionBody")}
+            </div>
+          </div>
           <DiscoverHighLightsTab
             username={username.value}
             socialId={socialId.value}
@@ -45,7 +61,7 @@ export default function latest({ navBarItems }) {
             loadImages={loadImages}
             stopLoadImages={stopLoadImages}
             activeTab={0}
-            header={t("discover:highlights")}
+            header={t("")}
           />
         </div>
       </Main>
