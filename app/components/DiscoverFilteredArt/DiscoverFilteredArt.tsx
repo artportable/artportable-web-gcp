@@ -43,6 +43,7 @@ interface DiscoverFilteredArtProps {
   header?: string;
   page: string;
   selectedCategory?: any;
+  search?: string;
 }
 
 const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
@@ -285,7 +286,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   return (
     <>
       <HeaderComponent filterOpen={open} page={props.page} />
-
       <div
         style={{
           width: open ? "84%" : "100%",
