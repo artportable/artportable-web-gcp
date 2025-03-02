@@ -44,7 +44,7 @@ interface DiscoverFilteredArtProps {
   header?: string;
   page: string;
   selectedCategory?: any;
-  search?: string;
+  search?: any;
 }
 
 const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
@@ -129,7 +129,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     }
   }, [searchQuery]);
 
-  function filter(tags: string[], searchQuery = "") {
+  function filter(tags: string, searchQuery = "") {
     props.loadImages();
   }
 
@@ -179,7 +179,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   useEffect(() => {}, [handleClose, resetFiltersMobile]);
 
-  const [orderByFilter, setOrderByFilter] = useState(props.page || "");
+  const [orderByFilter, setOrderByFilter] = useState(props.page || "latest");
 
   useEffect(() => {
     if (isMobile) {
@@ -189,7 +189,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   const handleByOrder = (event: React.ChangeEvent<{ value: unknown }>) => {
     event.preventDefault();
-    setOrderByFilter(event.target.value as string); // Ensure the correct value is passed.
+    setOrderByFilter(event.target.value as string);
   };
 
   const isFilterActiveMobile = () => {
@@ -238,7 +238,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
         let url = new URL(`${apiBaseUrl}/api/Discover/artworks/filter`);
 
-        if (props.page) {
+        if (props?.page) {
           url.searchParams.append("orderBy", orderByFilter);
         }
         if (props?.selectedCategory) {
@@ -277,13 +277,13 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
         if (selectedState) {
           url.searchParams.append("stateFilter", selectedState);
         }
-        if (searchQuery) {
-          url.searchParams.append("q", searchQuery);
+        if (props?.search) {
+          url.searchParams.append("q", props?.search);
         }
         if (username && username !== "") {
           url.searchParams.append("myUsername", username);
         }
-        url.searchParams.append("pageSize", "20");
+        url.searchParams.append("pageSize", "5");
         url.searchParams.append("page", (pageIndex + 1).toString());
 
         return url.href;
@@ -296,7 +296,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   return (
     <>
       <HeaderComponent filterOpen={open} page={props.page} />
-      <SearchField onFilter={handleSearchChange} searchQuery={searchQuery} />
+      {/* <SearchField onFilter={handleSearchChange} searchQuery={searchQuery} /> */}
       <div
         style={{
           width: open ? "84%" : "100%",

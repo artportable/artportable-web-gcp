@@ -5,25 +5,22 @@ export const styles = makeStyles((theme: Theme) =>
     inputContainer: {
       display: "flex",
       alignItems: "center",
-      backgroundColor: "#fdf9f7",
+      backgroundColor: "transparent",
       height: "38px",
       borderRadius: "20px",
-      width: "100%",
+      width: "100px",
       marginTop: "10px",
       margin: "0 auto",
       marginBottom: "5px",
-      boxShadow: "0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 3px 0 rgb(0 0 0 / 60%)",
-      "&:hover": {
-        boxShadow: "0 0px 0px 0 rgb(255 255 255 / 20%), 0 0px 6px 0 #c5c5c5a6",
-      },
+
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "20px",
-        width: "70%",
+        width: "500px",
       },
     },
     chip: {},
     selectedChip: {
-      backgroundColor: "#a35d5d",
+      backgroundColor: "transparent",
       color: "white",
       border: "1px solid #a35d5d",
     },
@@ -34,13 +31,13 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "100%",
-      fontSize: "12px",
-      fontWeight: theme.typography.fontWeightMedium,
-      fontFamily: "GT-America-Standard",
+      fontSize: "8px",
+      fontWeight: 400,
+      fontFamily: "Roboto",
       border: "none",
-      borderRadius: "20px",
       autoFocus: "false",
-      backgroundColor: "#fdf9f7",
+      backgroundColor: "transparent",
+      borderBottom: " 1px solid #0000004f",
       "&:focus": {
         border: "none",
       },
@@ -48,10 +45,7 @@ export const styles = makeStyles((theme: Theme) =>
         outline: "none",
       },
       [theme.breakpoints.up("md")]: {
-        fontSize: "21px",
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: "21px",
+        fontSize: "16px",
       },
     },
     tagsContainer: {},
@@ -59,7 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       gap: theme.spacing(1),
       paddingInlineStart: 0,
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: 500,
       listStyleType: "none",
       overflow: "auto",
       "&::-webkit-scrollbar": {

@@ -37,6 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
     dialogContainer: {
       dropShadow: "rgba(0, 0, 0, 0.25)",
       marginTop: "115px",
+      zIndex: 0,
       [theme.breakpoints.up("md")]: {
         width: "320px",
         "&::-webkit-scrollbar": {

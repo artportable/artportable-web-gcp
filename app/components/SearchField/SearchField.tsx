@@ -1,37 +1,260 @@
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import {
+  Paper,
+  TextField,
+  InputAdornment,
+  ClickAwayListener,
+  List,
+  ListItem,
+  ListItemText,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { useTranslation } from "next-i18next";
-import clsx from "clsx";
+import CloseIcon from "@material-ui/icons/Close";
+import Button from "@mui/material/Button";
 import { styles } from "./searchField.css";
-import { debounce } from "@material-ui/core/utils";
-import { useBreakpointDown } from "../../hooks/useBreakpointDown";
+import clsx from "clsx";
+import Link from "@mui/material/Link";
+import { useTranslation } from "next-i18next";
+
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const SearchField = ({ onFilter, searchQuery }) => {
+  const { t } = useTranslation(["header"]);
   const s = styles();
-  const { t } = useTranslation(["discover", "tags"]);
-  const isBreakpointSmPlusDown = useBreakpointDown("smPlus");
+  const [inputValue, setInputValue] = useState(searchQuery || "");
+  const [open, setOpen] = useState(false);
+  const inputRef = useRef(null);
+  const [artists, setArtists] = useState([]);
+  const [filteredArtists, setFilteredArtists] = useState([]);
 
-  const filterDebounced = debounce(() => {
-    onFilter(searchQuery);
-  }, 500);
+  // Fetch artists on mount
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}/api/Artists`);
+        const data = await response.json();
+        setArtists(data);
+      } catch (error) {
+        console.error("Error fetching artists:", error);
+      }
+    };
 
-  const onSearchChanged = (event) => {
-    onFilter(event.target.value); // Directly pass value to parent
+    fetchArtists();
+  }, []);
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setInputValue(value);
+
+    if (value.trim() === "") {
+      setFilteredArtists([]);
+    } else {
+      const filtered = artists
+        .filter((artist) =>
+          `${artist.Name} ${artist.Surname || ""}`
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        )
+        .slice(0, 5);
+      setFilteredArtists(filtered);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      if (filteredArtists.length === 1) {
+        setInputValue(
+          `${filteredArtists[0].Name} ${filteredArtists[0].Surname || ""}`
+        );
+        onFilter(filteredArtists[0].Name);
+      } else {
+        onFilter(inputValue);
+      }
+      setOpen(false);
+    }
+  };
+
+  const handleArtistClick = (artist) => {
+    setInputValue(`${artist.Name} ${artist.Surname || ""}`);
+    onFilter(artist.Name);
+    setOpen(false);
+  };
+
+  const handleClickAway = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  const trendingItems = ["Olja", "Akryl", "Akvarell", "Pastell"];
+
+  const handleTrendingClick = (item) => {
+    setInputValue(item);
+    onFilter(item);
+    setOpen(true);
   };
 
   return (
-    <div className={clsx(s.inputContainer)}>
-      <SearchIcon
-        classes={{ root: s.searchIcon }}
-        style={{ fontSize: 20 }}
-      ></SearchIcon>
-      <input
-        className={s.input}
-        value={searchQuery || ""}
-        onChange={onSearchChanged}
-        placeholder="Search..."
-      />
-    </div>
+    <>
+      {/* Search Input */}
+      <div className={clsx(s.inputContainer)} ref={inputRef}>
+        <SearchIcon className={s.searchIcon} style={{ fontSize: 20 }} />
+        <input
+          className={s.input}
+          value={inputValue}
+          placeholder="Sök"
+          onClick={() => setOpen(true)}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+
+      {/* Full-Width Popper at the Top */}
+      {open && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            backgroundColor: "white",
+            zIndex: 9999,
+
+            borderBottom: "1px solid #ddd",
+          }}
+        >
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <Paper
+              style={{
+                padding: "10px",
+                height: "250px",
+                overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "white",
+                zIndex: 10330,
+              }}
+            >
+              {/* Search Bar Inside Popper */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <TextField
+                  style={{ width: "85%" }}
+                  autoFocus
+                  fullWidth
+                  placeholder="Search..."
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                {/* Close Button */}
+                <Button
+                  style={{
+                    color: "black",
+                    fontWeight: 300,
+                    borderRadius: "20px",
+                    height: "40px",
+                    minWidth: "40px",
+                    fontSize: "12px",
+                    border: "1px solid black",
+                    marginRight: "20px",
+                  }}
+                  onClick={() => setOpen(false)}
+                >
+                  Stäng <CloseIcon style={{ fontSize: "15px" }} />
+                </Button>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  padding: "10px 20px 10px 20px",
+                }}
+              >
+                <div style={{ margin: "10px" }}>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      marginBottom: "10px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Trendande
+                  </div>
+
+                  {trendingItems.map((item) => (
+                    <div
+                      key={item}
+                      style={{
+                        marginBottom: "6px",
+                        cursor: "pointer",
+                        color: "black",
+                        textDecoration: "underline",
+                      }}
+                      onClick={() => handleTrendingClick(item)}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <div
+                  style={{
+                    width: "50%",
+                    textAlign: "right",
+                    marginLeft: "auto",
+                  }}
+                >
+                  {inputValue.trim() !== "" && filteredArtists.length > 0 && (
+                    <List>
+                      <ListItem>
+                        <div style={{ fontWeight: 600 }}>{t("artist")}</div>
+                      </ListItem>
+
+                      {filteredArtists.map((artist) => (
+                        <a
+                          key={artist.Username}
+                          href={`/profile/@${artist.Username}`}
+                          style={{
+                            textDecoration: "none",
+                            color: "inherit",
+                            fontSize: "12px",
+                          }}
+                        >
+                          <ListItem
+                            button
+                            component="a"
+                            style={{ marginLeft: "15px", padding: "0px" }}
+                          >
+                            <ListItemText
+                              primary={`${artist.Name} ${artist.Surname || ""}`}
+                            />
+                          </ListItem>
+                        </a>
+                      ))}
+                    </List>
+                  )}
+                </div>
+              </div>
+            </Paper>
+          </ClickAwayListener>
+        </div>
+      )}
+    </>
   );
 };
 

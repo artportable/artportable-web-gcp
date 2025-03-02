@@ -9,7 +9,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { NavigationContext } from "../../contexts/navigation-context";
 
 interface Props {
-  showAllFromStart: boolean,
+  showAllFromStart: boolean;
 }
 
 export default function artistsIndex(props: Props) {
@@ -20,10 +20,8 @@ export default function artistsIndex(props: Props) {
   const [artists, setArtists] = useState([]);
   const [letters, setLetters] = useState([]);
 
-  const {
-    searchQuery, setSearchQuery,
-    selectedLetter, setSelectedLetter,
-  } = useContext(NavigationContext);
+  const { searchQuery, setSearchQuery, selectedLetter, setSelectedLetter } =
+    useContext(NavigationContext);
 
   const handleLetterClick = (letter, event) => {
     event.preventDefault();
@@ -197,9 +195,9 @@ export default function artistsIndex(props: Props) {
         </div>
         <div className={s.alphabetcontainer}>{listLetters()}</div>
         <div className={s.groupDiv}>
-          {((searchQuery && searchQuery.length > 0) || selectedLetter || showAllFromStart) && (
-            <div>{listArtists()}</div>
-          )}
+          {((searchQuery && searchQuery.length > 0) ||
+            selectedLetter ||
+            showAllFromStart) && <div>{listArtists()}</div>}
         </div>
       </div>
     </div>

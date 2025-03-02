@@ -23,7 +23,7 @@ import { useGetActivityToken } from "../../hooks/useGetActivityClient";
 import ProfileIconButton from "../ProfileIconButton/ProfileIconButton";
 import { useKeycloak } from "@react-keycloak/ssr";
 import type { KeycloakInstance } from "keycloak-js";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { Membership } from "../../models/Membership";
 import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
 import "react-activity-feed/dist/index.css";
@@ -52,6 +52,7 @@ import FavoritesPopper from "./FavoritesPopper";
 import Fade from "@mui/material/Fade";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import SearchField from "../SearchField/SearchField";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -62,6 +63,14 @@ export default function Header({ navBarItems }) {
     useContext(UserContext);
   const { data: profilePicture } = useGetUserProfilePicture(username.value);
   const signUpRedirectHref = useSignupRedirectHref();
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (query) => {
+    if (query.trim()) {
+      router.push(`/search?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   const [unreadChatMessages, setUnreadChatMessages] = useState(0);
   const logoHref = "/";
@@ -206,6 +215,10 @@ export default function Header({ navBarItems }) {
                     />
                   </a>
                 </Link>
+                <SearchField
+                  onFilter={handleSearch}
+                  searchQuery={searchQuery}
+                />
                 {isSignedIn.value && (
                   <div className={s.feed}>
                     <MuiButton color="default" size="large">

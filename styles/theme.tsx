@@ -124,7 +124,7 @@ const palette = {
   common: { white: "#ffffff", black: "#000000" },
   background: { default: "#FDF9F7" },
   primary: {
-    main: "#C67777",
+    main: "#0176D5",
     contrastText: "#FFFFFF",
   },
   secondary: {

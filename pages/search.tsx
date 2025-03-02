@@ -31,6 +31,8 @@ export default function Search({ navBarItems }) {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const router = useRouter();
+  const searchQuery = router.query.query || "";
 
   return (
     <>
@@ -48,9 +50,9 @@ export default function Search({ navBarItems }) {
           loadImages={loadImages}
           stopLoadImages={stopLoadImages}
           activeTab={1}
-          header={t("discover:latestArt")}
-          page={"search"}
-          search={""}
+          header={t("")}
+          page={""}
+          search={searchQuery}
         />
       </Main>
     </>
