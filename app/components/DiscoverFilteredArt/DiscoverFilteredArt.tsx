@@ -119,9 +119,13 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const handleOrientationChangeMobile = (value) => {
     setTempSelectedOrientation(String(value));
   };
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+  };
+
   useEffect(() => {
     if (searchQuery) {
-      filter(searchQuery); // Assuming `filter` uses the search query.
+      filter(searchQuery);
     }
   }, [searchQuery]);
 
