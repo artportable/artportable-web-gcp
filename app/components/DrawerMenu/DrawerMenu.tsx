@@ -499,13 +499,13 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <Link href={`${t("header:storiesSlug")}`} passHref>
+        {/* <Link href={`${t("header:storiesSlug")}`} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("stories")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
 
         {/* <Link href="/kurser" passHref>
           <a>
