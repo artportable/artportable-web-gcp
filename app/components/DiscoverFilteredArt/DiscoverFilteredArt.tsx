@@ -31,6 +31,7 @@ import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import HeaderComponent from "./HeaderComponent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
+import SearchField from "../SearchField/SearchField";
 
 interface DiscoverFilteredArtProps {
   username?: string;
@@ -57,7 +58,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const s = styles();
   const { username, socialId, rowWidth, header } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [searchQuery, setSearchQuery] = useState<string>();
+  const [searchQuery, setSearchQuery] = useState("");
   const loadMoreArtworksElementRef = useRef(null);
   const tags = useGetTags();
 
@@ -118,6 +119,11 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const handleOrientationChangeMobile = (value) => {
     setTempSelectedOrientation(String(value));
   };
+  useEffect(() => {
+    if (searchQuery) {
+      filter(searchQuery); // Assuming `filter` uses the search query.
+    }
+  }, [searchQuery]);
 
   function filter(tags: string[], searchQuery = "") {
     props.loadImages();
@@ -286,6 +292,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   return (
     <>
       <HeaderComponent filterOpen={open} page={props.page} />
+      <SearchField onFilter={handleSearchChange} searchQuery={searchQuery} />
       <div
         style={{
           width: open ? "84%" : "100%",
