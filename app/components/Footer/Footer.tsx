@@ -94,7 +94,7 @@ export default function Footer() {
                   component="div"
                   onClick={() => keycloak.login({ locale: router.locale })}
                   className={s.idpLink}
-                  style={{ fontFamily: "Joan" }}
+                  style={{ fontFamily: "Roboto" }}
                 >
                   {t("logIn")}
                 </Typography>
@@ -126,7 +126,7 @@ export default function Footer() {
                     <Typography
                       variant="body2"
                       component="div"
-                      style={{ fontFamily: "Joan" }}
+                      style={{ fontFamily: "Roboto" }}
                     >
                       {t("contactUs")}
                     </Typography>
@@ -137,7 +137,7 @@ export default function Footer() {
                     <Typography
                       variant="body2"
                       component="div"
-                      style={{ fontFamily: "Joan" }}
+                      style={{ fontFamily: "Roboto" }}
                     >
                       {t("aboutUs")}
                     </Typography>

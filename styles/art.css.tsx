@@ -219,14 +219,13 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Roboto",
     },
     purchaseRequestButton: {
-      backgroundColor: "#fadf87",
+      backgroundColor: "transparent",
       color: "black",
       width: "auto",
       fontFamily: "Roboto",
       "&:hover": {
-        backgroundColor: "#fee19c",
-        color: "black",
-        boxShadow: "5px 5px 10px #e5e6e4",
+        backgroundColor: "transparent",
+        border: "1px solid black",
       },
     },
     flexLikeRoom: {

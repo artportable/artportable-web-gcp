@@ -61,7 +61,7 @@ import DialogActions from "@mui/material/DialogActions";
 
 import { Select } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-
+import Brightness1Icon from "@material-ui/icons/Brightness1";
 import LikeArtworkButton from "../../app/components/Button/LikeArtworkButton";
 
 export default function ArtworkPage(props) {
@@ -663,7 +663,11 @@ export default function ArtworkPage(props) {
                                     CategoryType.BUY
                                   );
                                 }}
-                                endIcon={<SendIcon color={"inherit"} />}
+                                startIcon={
+                                  <Brightness1Icon
+                                    style={{ color: "red", fontSize: "30px" }}
+                                  />
+                                }
                               >
                                 {capitalizeFirst(t("common:purchaseRequest"))}
                               </Button>
