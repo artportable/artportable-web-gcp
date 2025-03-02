@@ -467,10 +467,15 @@ export default function Header({ navBarItems }) {
                 </Link>
               </div>
               <div className={s.titlesOnHeader}>
+                <Link href={"/newsletter"} passHref>
+                  {t("subscribeNewsletter")}
+                </Link>
+              </div>
+              {/* <div className={s.titlesOnHeader}>
                 <Link href={`${t("header:storiesSlug")}`} passHref>
                   {t("articles")}
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
 

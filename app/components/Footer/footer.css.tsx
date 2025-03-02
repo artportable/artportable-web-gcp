@@ -43,7 +43,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     footer: {
-      fontFamily: "Joan",
+      fontFamily: "Roboto",
       listStyle: "none",
       listStyleType: "none",
       margin: "0px",
@@ -118,12 +118,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Roboto",
     },
     reserved: {
-      fontFamily: "Joan",
+      fontFamily: "Roboto",
       color: "#999999",
     },
     cookies: {
       color: "black",
-      fontFamily: "Joan",
+      fontFamily: "Roboto",
       marginBottom: theme.spacing(2),
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "0",
