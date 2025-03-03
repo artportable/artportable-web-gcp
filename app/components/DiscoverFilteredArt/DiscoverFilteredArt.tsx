@@ -31,6 +31,7 @@ import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import HeaderComponent from "./HeaderComponent";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
+import SearchField from "../SearchField/SearchField";
 
 interface DiscoverFilteredArtProps {
   username?: string;
@@ -43,6 +44,7 @@ interface DiscoverFilteredArtProps {
   header?: string;
   page: string;
   selectedCategory?: any;
+  search?: any;
 }
 
 const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
@@ -56,7 +58,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const s = styles();
   const { username, socialId, rowWidth, header } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [searchQuery, setSearchQuery] = useState<string>();
+  const [searchQuery, setSearchQuery] = useState("");
   const loadMoreArtworksElementRef = useRef(null);
   const tags = useGetTags();
 
@@ -117,8 +119,17 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const handleOrientationChangeMobile = (value) => {
     setTempSelectedOrientation(String(value));
   };
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+  };
 
-  function filter(tags: string[], searchQuery = "") {
+  useEffect(() => {
+    if (searchQuery) {
+      filter(searchQuery);
+    }
+  }, [searchQuery]);
+
+  function filter(tags: string, searchQuery = "") {
     props.loadImages();
   }
 
@@ -168,7 +179,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   useEffect(() => {}, [handleClose, resetFiltersMobile]);
 
-  const [orderByFilter, setOrderByFilter] = useState(props.page || "");
+  const [orderByFilter, setOrderByFilter] = useState(props.page || "latest");
 
   useEffect(() => {
     if (isMobile) {
@@ -178,7 +189,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   const handleByOrder = (event: React.ChangeEvent<{ value: unknown }>) => {
     event.preventDefault();
-    setOrderByFilter(event.target.value as string); // Ensure the correct value is passed.
+    setOrderByFilter(event.target.value as string);
   };
 
   const isFilterActiveMobile = () => {
@@ -227,7 +238,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
         let url = new URL(`${apiBaseUrl}/api/Discover/artworks/filter`);
 
-        if (props.page) {
+        if (props?.page) {
           url.searchParams.append("orderBy", orderByFilter);
         }
         if (props?.selectedCategory) {
@@ -266,13 +277,13 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
         if (selectedState) {
           url.searchParams.append("stateFilter", selectedState);
         }
-        if (searchQuery) {
-          url.searchParams.append("q", searchQuery);
+        if (props?.search) {
+          url.searchParams.append("q", props?.search);
         }
         if (username && username !== "") {
           url.searchParams.append("myUsername", username);
         }
-        url.searchParams.append("pageSize", "20");
+        url.searchParams.append("pageSize", "5");
         url.searchParams.append("page", (pageIndex + 1).toString());
 
         return url.href;
@@ -285,7 +296,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   return (
     <>
       <HeaderComponent filterOpen={open} page={props.page} />
-
+      {/* <SearchField onFilter={handleSearchChange} searchQuery={searchQuery} /> */}
       <div
         style={{
           width: open ? "84%" : "100%",

@@ -1,122 +1,250 @@
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import {
+  Paper,
+  TextField,
+  InputAdornment,
+  ClickAwayListener,
+  List,
+  ListItem,
+  ListItemText,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import Chip from "@material-ui/core/Chip";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import { useTranslation } from "next-i18next";
-import clsx from "clsx";
+import CloseIcon from "@material-ui/icons/Close";
+
 import { styles } from "./searchField.css";
-import { useBreakpointDown } from "../../hooks/useBreakpointDown";
-import { debounce } from "@material-ui/core/utils";
+import clsx from "clsx";
+import Button from "../Button/Button";
+import { useTranslation } from "next-i18next";
 
-const SearchField = ({ onFilter, activeTab, tags = null, tagPlaceholder }) => {
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+const SearchField = ({ onFilter, searchQuery }) => {
+  const { t } = useTranslation(["header"]);
   const s = styles();
-  const { t } = useTranslation(["discover", "tags"]);
-  const isBreakpointSmPlusDown = useBreakpointDown("smPlus");
+  const [inputValue, setInputValue] = useState(searchQuery || "");
+  const [open, setOpen] = useState(false);
+  const inputRef = useRef(null);
+  const [artists, setArtists] = useState([]);
+  const [filteredArtists, setFilteredArtists] = useState([]);
 
-  const initCategoryTags = [
-    { name: t("tags:oil"), selected: false, id: "oil" },
-    { name: t("tags:acrylic"), selected: false, id: "acrylic" },
-    { name: t("tags:NFT"), selected: false, id: "NFT" },
-    { name: t("tags:aquarelle"), selected: false, id: "aquarelle" },
-    { name: t("tags:photography"), selected: false, id: "photography" },
-    { name: t("tags:sculpture"), selected: false, id: "sculpture" },
-    { name: t("tags:nude"), selected: false, id: "nude" },
-  ];
-
+  // Fetch artists on mount
   useEffect(() => {
-    if (tags !== null) {
-      resetCategoryTags();
-    }
-  }, [isBreakpointSmPlusDown]);
+    const fetchArtists = async () => {
+      try {
+        const response = await fetch(`${apiBaseUrl}/api/Artists`);
+        const data = await response.json();
+        setArtists(data);
+      } catch (error) {
+        console.error("Error fetching artists:", error);
+      }
+    };
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
-  const [categoryTags, setCategoryTags] = useState([]);
-  const [dropdownTags, setDropdownTags] = useState(tags);
-  const [moreSelectValue, setMoreSelectValue] = useState("");
+    fetchArtists();
+  }, []);
 
-  const filterDebounced = debounce(() => {
-    onFilter(selectedTag ? [selectedTag] : [], searchQuery);
-  }, 500);
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setInputValue(value);
 
-  useEffect(() => {
-    filterDebounced();
-  }, [searchQuery, selectedTag]);
-
-  const resetCategoryTags = () => {
-    if (isBreakpointSmPlusDown) {
-      setSelectedTag("");
-      setCategoryTags([]);
+    if (value.trim() === "") {
+      setFilteredArtists([]);
     } else {
-      const filteredTags = tags.filter(
-        (t) => !initCategoryTags.some((categoryTag) => categoryTag.id === t)
-      );
-      setDropdownTags(filteredTags);
-      setCategoryTags(initCategoryTags);
+      const filtered = artists
+        .filter((artist) =>
+          `${artist.Name} ${artist.Surname || ""}`
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        )
+        .slice(0, 5);
+      setFilteredArtists(filtered);
     }
   };
 
-  const setCategoryTagSelected = (index) => {
-    if (categoryTags[index].selected) {
-      setCategoryTags([...initCategoryTags]);
-    } else {
-      const current = initCategoryTags;
-      current[index].selected = !current[index].selected;
-      setCategoryTags([...current]);
-    }
-
-    setMoreSelectValue("");
-
-    const selectedCategoryTag = categoryTags[index];
-    if (!selectedCategoryTag.selected) {
-      setSelectedTag(selectedCategoryTag.id);
-    } else {
-      setSelectedTag("");
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      if (filteredArtists.length === 1) {
+        setInputValue(
+          `${filteredArtists[0].Name} ${filteredArtists[0].Surname || ""}`
+        );
+        onFilter(filteredArtists[0].Name);
+      } else {
+        onFilter(inputValue);
+      }
+      setOpen(false);
     }
   };
 
-  const onSelectMoreChange = (e) => {
-    resetCategoryTags();
-    setMoreSelectValue((e as any).target.value);
-    setSelectedTag(e.target.value);
-  };
-  const deselectMore = (_) => {
-    setMoreSelectValue("");
-    setSelectedTag("");
+  const handleArtistClick = (artist) => {
+    setInputValue(`${artist.Name} ${artist.Surname || ""}`);
+    onFilter(artist.Name);
+    setOpen(false);
   };
 
-  const onSearchChanged = (event) => {
-    searchDebounced(event);
+  const handleClickAway = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setOpen(false);
+    }
   };
 
-  const searchDebounced = debounce((event) => {
-    setSearchQuery(event.target.value);
-  }, 500);
+  const trendingItems = ["Olja", "Akryl", "Akvarell", "Pastell"];
 
-  function handleClickListingPages(event) {
-    setOpenListingPages(!openListingPages);
-    event.stopPropagation();
-  }
-  const [sold, setSold] = useState("");
-  const [openListingPages, setOpenListingPages] = useState(false);
+  const handleTrendingClick = (item) => {
+    setInputValue(item);
+    onFilter(item);
+    setOpen(true);
+  };
 
   return (
-    <div className={clsx(s.inputContainer)}>
-      <SearchIcon
-        classes={{ root: s.searchIcon }}
-        style={{ fontSize: 20 }}
-      ></SearchIcon>
-      <input
-        onChange={onSearchChanged}
-        placeholder={
-          t(`searchForArtist`) +
-          " " +
-          t(`tags:${tagPlaceholder}`).toLocaleLowerCase()
-        }
-        className={s.input}
-      ></input>
-    </div>
+    <>
+      {/* Search Input */}
+      <div
+        className={clsx(s.inputContainer)}
+        ref={inputRef}
+        onClick={() => setOpen(true)}
+      >
+        <SearchIcon className={s.searchIcon} style={{ fontSize: 20 }} />
+        <input
+          className={s.input}
+          value={inputValue}
+          placeholder="Sök"
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
+
+      {/* Full-Width Popper at the Top */}
+      {open && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            backgroundColor: "white",
+            zIndex: 9999,
+
+            borderBottom: "1px solid #ddd",
+          }}
+        >
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <Paper
+              style={{
+                padding: "10px",
+                height: "250px",
+                overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+                backgroundColor: "white",
+                zIndex: 10330,
+              }}
+            >
+              {/* Search Bar Inside Popper */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <TextField
+                  style={{ width: "85%" }}
+                  autoFocus
+                  fullWidth
+                  placeholder="Search..."
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <Button className={s.button} onClick={() => setOpen(false)}>
+                  Stäng <CloseIcon style={{ fontSize: "15px" }} />
+                </Button>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
+                  padding: "10px 20px 10px 20px",
+                }}
+              >
+                <div style={{ margin: "10px" }}>
+                  <div
+                    style={{
+                      fontSize: "14px",
+                      marginBottom: "10px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Trendande
+                  </div>
+
+                  {trendingItems.map((item) => (
+                    <div
+                      key={item}
+                      style={{
+                        marginBottom: "6px",
+                        cursor: "pointer",
+                        color: "black",
+                        textDecoration: "underline",
+                      }}
+                      onClick={() => handleTrendingClick(item)}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <div
+                  style={{
+                    width: "50%",
+                    textAlign: "right",
+                    marginLeft: "auto",
+                  }}
+                >
+                  {inputValue.trim() !== "" && filteredArtists.length > 0 && (
+                    <List>
+                      <ListItem>
+                        <div style={{ fontWeight: 600 }}>{t("artist")}</div>
+                      </ListItem>
+
+                      {filteredArtists.map((artist) => (
+                        <a
+                          key={artist.Username}
+                          href={`/profile/@${artist.Username}`}
+                          style={{
+                            textDecoration: "none",
+                            color: "inherit",
+                            fontSize: "12px",
+                          }}
+                        >
+                          <ListItem
+                            button
+                            component="a"
+                            style={{ marginLeft: "15px", padding: "0px" }}
+                          >
+                            <ListItemText
+                              primary={`${artist.Name} ${artist.Surname || ""}`}
+                            />
+                          </ListItem>
+                        </a>
+                      ))}
+                    </List>
+                  )}
+                </div>
+              </div>
+            </Paper>
+          </ClickAwayListener>
+        </div>
+      )}
+    </>
   );
 };
 
