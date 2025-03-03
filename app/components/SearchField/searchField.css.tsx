@@ -9,12 +9,11 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "transparent",
       height: "38px",
       borderRadius: "20px",
-      width: "40px", // Adjusted width to fit the icon
+      width: "100px", // Adjusted width to fit the icon
       cursor: "pointer",
       marginTop: "10px",
-      margin: "0 auto",
-      marginBottom: "5px",
-
+      marginBottom: "20px",
+      marginLeft: "10px",
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "20px",
         width: "500px", // Full width for larger screens
@@ -41,14 +40,7 @@ export const styles = makeStyles((theme: Theme) =>
         marginRight: "50px",
       },
     },
-    searchIcon: {
-      fontSize: "20px",
-      color: "rgb(112, 112, 112)",
-      marginLeft: "210px",
-      [theme.breakpoints.up("smPlus")]: {
-        display: "none",
-      },
-    },
+    searchIcon: {},
 
     input: {
       height: "100%",
@@ -68,7 +60,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       [theme.breakpoints.down("sm")]: {
-        display: "none", // Hide input on mobile
+        fontSize: "14px",
       },
 
       [theme.breakpoints.up("md")]: {

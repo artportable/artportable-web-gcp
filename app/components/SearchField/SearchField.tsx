@@ -19,7 +19,7 @@ import { useTranslation } from "next-i18next";
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const SearchField = ({ onFilter, searchQuery }) => {
-  const { t } = useTranslation(["header"]);
+  const { t } = useTranslation(["header", "common"]);
   const s = styles();
   const [inputValue, setInputValue] = useState(searchQuery || "");
   const [open, setOpen] = useState(false);
@@ -86,7 +86,12 @@ const SearchField = ({ onFilter, searchQuery }) => {
     }
   };
 
-  const trendingItems = ["Olja", "Akryl", "Akvarell", "Pastell"];
+  const trendingItems = [
+    `${t("common:techniques:oil")}`,
+    `${t("common:techniques:acrylic")}`,
+    `${t("common:techniques:aquarelle")}`,
+    `${t("common:techniques:pastel")}`,
+  ];
 
   const handleTrendingClick = (item) => {
     setInputValue(item);
@@ -102,7 +107,6 @@ const SearchField = ({ onFilter, searchQuery }) => {
         ref={inputRef}
         onClick={() => setOpen(true)}
       >
-        <SearchIcon className={s.searchIcon} style={{ fontSize: 20 }} />
         <input
           className={s.input}
           value={inputValue}
@@ -142,8 +146,8 @@ const SearchField = ({ onFilter, searchQuery }) => {
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  justifyContent: "space-evenly",
+                  alignItems: "flex-start",
                 }}
               >
                 <TextField
@@ -164,7 +168,8 @@ const SearchField = ({ onFilter, searchQuery }) => {
                 />
 
                 <Button className={s.button} onClick={() => setOpen(false)}>
-                  Stäng <CloseIcon style={{ fontSize: "15px" }} />
+                  {t("common:selectOptions:close")}{" "}
+                  <CloseIcon style={{ fontSize: "15px" }} />
                 </Button>
               </div>
 
@@ -173,7 +178,7 @@ const SearchField = ({ onFilter, searchQuery }) => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-evenly",
-                  padding: "10px 20px 10px 20px",
+                  padding: "10px 20px 10px 25px",
                 }}
               >
                 <div style={{ margin: "10px" }}>
@@ -184,7 +189,7 @@ const SearchField = ({ onFilter, searchQuery }) => {
                       fontWeight: 600,
                     }}
                   >
-                    Trendande
+                    {t("common:selectOptions:trending")}
                   </div>
 
                   {trendingItems.map((item) => (
