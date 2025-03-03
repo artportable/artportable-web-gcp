@@ -10,6 +10,7 @@ import { styles as sharedStyles } from "../../../styles/shared.css";
 import { useInfiniteScrollWithKey } from "../../hooks/useInfiniteScroll";
 import { Artwork } from "../../models/Artwork";
 import { UserContext } from "../../contexts/user-context";
+import Brightness1Icon from "@material-ui/icons/Brightness1";
 
 type Data = {
   forDesktop: boolean;
@@ -176,6 +177,18 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                     </div>
                   )}
                 </div>
+
+                <a href={`${baseUrl}/art/${item.Id}`} className={s.buyButton}>
+                  {
+                    <Brightness1Icon
+                      style={{
+                        color: "#229059",
+                        fontSize: "30px",
+                      }}
+                    />
+                  }
+                  <div style={{ padding: "5px" }}>{t("buy")}</div>
+                </a>
               </div>
             </p>
           </div>
