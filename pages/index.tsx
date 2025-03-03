@@ -143,10 +143,8 @@ export default function DiscoverPage({ navBarItems }) {
       <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
         <IndexCategories />
       </div>
-
       <div className={s.headTitle}>{t("newIn")}</div>
       <div className={s.headText}>{t("newInText")}</div>
-
       <div
         style={{
           gridColumn: "1 / 4",

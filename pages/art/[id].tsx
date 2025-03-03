@@ -595,9 +595,12 @@ export default function ArtworkPage(props) {
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? (
                         <>{t("common:words.sold")} </>
-                      ) : artwork.data.Price && artwork.data.Price != "0" ? (
+                      ) : artwork.data.Price && artwork.data.Price !== "0" ? (
                         <span>
-                          {t("art:artworkPrice")}:{" " + artwork.data.Price}{" "}
+                          {t("art:artworkPrice")}:{" "}
+                          {Number(artwork.data.Price)
+                            .toLocaleString("sv-SE")
+                            .replace(/\u00A0/g, " ")}{" "}
                           {artwork.data.Currency !== null
                             ? artwork.data.Currency
                             : "SEK"}{" "}
@@ -606,6 +609,7 @@ export default function ArtworkPage(props) {
                         <span>{t("priceOnRequest")}</span>
                       )}
                     </div>
+
                     {isMyArt && (
                       <>
                         {artwork?.data?.IsBoosted === false ? (
@@ -665,7 +669,10 @@ export default function ArtworkPage(props) {
                                 }}
                                 startIcon={
                                   <Brightness1Icon
-                                    style={{ color: "red", fontSize: "30px" }}
+                                    style={{
+                                      color: "#229059",
+                                      fontSize: "30px",
+                                    }}
                                   />
                                 }
                               >

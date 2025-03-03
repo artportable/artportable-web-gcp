@@ -43,12 +43,12 @@ export const styles = makeStyles((theme: Theme) =>
     },
     buyButton: {
       borderRadius: "20px",
-      padding: "5px 10px 5px 10px",
-      backgroundColor: "#fadf87",
       color: "black",
+      display: "flex",
+      alignItems: "center",
+      padding: "5px",
       "&:hover": {
-        backgroundColor: "black",
-        color: "white",
+        border: "1px solid black",
       },
     },
     seeMoreButton: {

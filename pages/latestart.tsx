@@ -32,6 +32,9 @@ export default function Latest({ navBarItems }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const router = useRouter();
+  const { category } = router.query;
+
   return (
     <>
       <Main navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
@@ -50,6 +53,7 @@ export default function Latest({ navBarItems }) {
           activeTab={1}
           header={t("discover:latestArt")}
           page={"latest"}
+          selectedCategory={category}
         />
       </Main>
     </>
