@@ -15,8 +15,7 @@ export default function Search({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(["header"]);
   const { locale } = useRouter();
-  const { username, socialId, isSignedIn, membership } =
-    useContext(UserContext);
+  const { username, socialId } = useContext(UserContext);
 
   const rowWidth = useMainWidth().wide;
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
@@ -49,7 +48,7 @@ export default function Search({ navBarItems }) {
           loadMore={loadMoreArtworks}
           loadImages={loadImages}
           stopLoadImages={stopLoadImages}
-          activeTab={1}
+          activeTab={0}
           header={t("")}
           page={""}
           search={searchQuery}

@@ -377,6 +377,8 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
           onClose={handleClose}
           disableScrollLock={!isMobile}
           hideBackdrop={!isMobile}
+          disableAutoFocus
+          style={{ zIndex: 0 }}
         >
           <DialogTitle className={s.filterTitleClose}>
             <div>
