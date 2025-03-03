@@ -54,7 +54,6 @@ export default function discover({ navBarItems }) {
           activeTab={1}
           header={t("discover:trendingArt")}
           page={"likes"}
-          selectedCategory={category}
         />
       </Main>
     </>

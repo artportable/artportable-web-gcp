@@ -89,17 +89,24 @@ export default function ArtworkListItem({
   }
   const languageCode = i18n.language;
   const formatter = getFormatter(languageCode, artwork.Currency);
-
   let priceFormatter = {
-    format: (value: number) => formatter.format(value),
+    format: (value: number) =>
+      Number(value)
+        .toLocaleString("sv-SE")
+        .replace(/\u00A0/g, " "),
   };
+
   if (artwork.Currency && !excludedCurrencyCodes.includes(artwork.Currency)) {
     priceFormatter = {
-      format: (value: number) => formatter.format(value),
+      format: (value: number) =>
+        formatter.format(value).replace(/\u00A0/g, " "), // Ensure spaces are normal spaces
     };
   } else {
     priceFormatter = {
-      format: (value: number) => `${value} ${artwork.Currency || "SEK"}`,
+      format: (value: number) =>
+        `${Number(value)
+          .toLocaleString("sv-SE")
+          .replace(/\u00A0/g, " ")} ${artwork.Currency || "SEK"}`,
     };
   }
 
@@ -314,6 +321,7 @@ export default function ArtworkListItem({
               t("priceOnRequest")
             )}
           </div>
+
           <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
         </div>
       </div>

@@ -163,10 +163,12 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                 }}
               >
                 <div>
-                  {" "}
                   {item?.Price != 0 ? (
                     <div style={{ fontSize: "14px" }}>
-                      {item?.Price} {item.Currency}
+                      {Number(item?.Price)
+                        .toLocaleString("sv-SE")
+                        .replace(/\u00A0/g, " ")}{" "}
+                      {item.Currency}
                     </div>
                   ) : (
                     <div style={{ fontSize: "14px" }}>

@@ -1,13 +1,15 @@
 import { styles } from "./indexCategories.css";
 import { useRouter } from "next/router";
 import ackeberg from "./ackeberg.jpeg";
+import { useTranslation } from "next-i18next";
 
 export default function IndexCategories() {
+  const { t } = useTranslation(["common"]);
   const s = styles();
   const router = useRouter();
 
   const handleCategoryClick = (category) => {
-    router.push(`/discover?category=${category}`);
+    router.push(`/latestart?category=${category}`);
   };
 
   return (
@@ -20,7 +22,7 @@ export default function IndexCategories() {
         }}
       >
         {" "}
-        <div className={s.category}>Olja</div>
+        <div className={s.category}>{t("common:techniques:oil")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("acrylic")}
@@ -33,7 +35,7 @@ export default function IndexCategories() {
           width: "100%", // Keep full width
         }}
       >
-        <div className={s.category}>Akryl</div>
+        <div className={s.category}>{t("common:techniques:acrylic")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("aquarelle")}
@@ -46,7 +48,7 @@ export default function IndexCategories() {
           width: "100%", // Keep full width
         }}
       >
-        <div className={s.category}>Akvarell</div>
+        <div className={s.category}>{t("common:techniques:aquarelle")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("gouache")}
@@ -59,7 +61,7 @@ export default function IndexCategories() {
           width: "100%", // Keep full width
         }}
       >
-        <div className={s.category}>Gouache</div>
+        <div className={s.category}>{t("common:techniques:gouache")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("collage")}
@@ -72,10 +74,10 @@ export default function IndexCategories() {
           width: "100%",
         }}
       >
-        <div className={s.category}>Collage</div>
+        <div className={s.category}>{t("common:techniques:collage")}</div>
       </div>
       <div
-        onClick={() => handleCategoryClick("pastell")}
+        onClick={() => handleCategoryClick("pastel")}
         className={s.item}
         style={{
           backgroundImage: `url("/images/barbarapastell.jpg")`,
@@ -85,7 +87,7 @@ export default function IndexCategories() {
           width: "100%",
         }}
       >
-        <div className={s.category}>Pastell</div>
+        <div className={s.category}>{t("common:techniques:pastel")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("mixed-media")}
@@ -98,10 +100,10 @@ export default function IndexCategories() {
           width: "100%", // Keep full width
         }}
       >
-        <div className={s.category}>Mixed Media</div>
+        <div className={s.category}>{t("common:techniques:mixed-media")}</div>
       </div>
       <div
-        onClick={() => handleCategoryClick("naked")}
+        onClick={() => handleCategoryClick("nude")}
         className={s.item}
         style={{
           backgroundImage: `url("/images/marieplosjo.jpg")`,
@@ -111,7 +113,7 @@ export default function IndexCategories() {
           width: "100%",
         }}
       >
-        <div className={s.category}>Naket</div>
+        <div className={s.category}>{t("common:themes:nude")}</div>
       </div>
     </div>
   );
