@@ -10,10 +10,10 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
-import Button from "@mui/material/Button";
+
 import { styles } from "./searchField.css";
 import clsx from "clsx";
-import Link from "@mui/material/Link";
+import Button from "../Button/Button";
 import { useTranslation } from "next-i18next";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -97,13 +97,16 @@ const SearchField = ({ onFilter, searchQuery }) => {
   return (
     <>
       {/* Search Input */}
-      <div className={clsx(s.inputContainer)} ref={inputRef}>
+      <div
+        className={clsx(s.inputContainer)}
+        ref={inputRef}
+        onClick={() => setOpen(true)}
+      >
         <SearchIcon className={s.searchIcon} style={{ fontSize: 20 }} />
         <input
           className={s.input}
           value={inputValue}
           placeholder="Sök"
-          onClick={() => setOpen(true)}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
         />
@@ -160,20 +163,7 @@ const SearchField = ({ onFilter, searchQuery }) => {
                   }}
                 />
 
-                {/* Close Button */}
-                <Button
-                  style={{
-                    color: "black",
-                    fontWeight: 300,
-                    borderRadius: "20px",
-                    height: "40px",
-                    minWidth: "40px",
-                    fontSize: "12px",
-                    border: "1px solid black",
-                    marginRight: "20px",
-                  }}
-                  onClick={() => setOpen(false)}
-                >
+                <Button className={s.button} onClick={() => setOpen(false)}>
                   Stäng <CloseIcon style={{ fontSize: "15px" }} />
                 </Button>
               </div>
