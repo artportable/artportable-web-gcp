@@ -39,6 +39,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "115px",
       zIndex: 0,
       [theme.breakpoints.up("md")]: {
+        zIndex: 0,
         width: "320px",
         "&::-webkit-scrollbar": {
           width: "1px !important",
