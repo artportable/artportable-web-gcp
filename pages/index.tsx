@@ -146,7 +146,7 @@ export default function DiscoverPage({ navBarItems }) {
         <IndexCategories />
       </div>
       <Link href="/discover">
-        <Button className={s.loginButton}>{t("common:moreStyles")}</Button>
+        <Button className={s.categoriesButton}>{t("common:moreStyles")}</Button>
       </Link>
       <div className={s.headTitle}>{t("newIn")}</div>
       <div className={s.headText}>{t("newInText")}</div>

@@ -15,10 +15,8 @@ export const inputStyles = makeStyles((theme: Theme) =>
       fontSize: "16px",
       marginLeft: "20px",
       marginRight: "20px",
-      borderRadius: ".8rem",
       border: "1px solid black",
       boxShadow: "none",
-
       "&:focus": {
         outline: "none", // Removes focus outline
         boxShadow: "none", // Ensures no focus shadow

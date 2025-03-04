@@ -37,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     loginButton: {
       borderRadius: "40px",
-      fontWeight: 600,
+      fontWeight: 400,
       fontFamily: "Roboto",
       fontSize: "14px",
       backgroundColor: "#0176D5",
@@ -46,6 +46,23 @@ export const styles = makeStyles((theme: Theme) =>
       width: "auto",
       margin: "0 auto",
       "&:hover": {
+        backgroundColor: "#E2B651",
+        color: "white",
+        textDecoration: "underline",
+      },
+    },
+    categoriesButton: {
+      borderRadius: "40px",
+      fontWeight: 400,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "#0176D5",
+      color: "white",
+      marginTop: "40px",
+      width: "auto",
+      margin: "0 auto",
+      "&:hover": {
+        marginTop: "50px",
         backgroundColor: "#E2B651",
         color: "white",
         textDecoration: "underline",
