@@ -62,7 +62,6 @@ export const styles = makeStyles((theme: Theme) =>
       width: "auto",
       margin: "0 auto",
       "&:hover": {
-        marginTop: "50px",
         backgroundColor: "#E2B651",
         color: "white",
         textDecoration: "underline",
