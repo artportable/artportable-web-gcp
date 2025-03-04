@@ -16,6 +16,20 @@ export const inputStyles = makeStyles((theme: Theme) =>
       marginLeft: "20px",
       marginRight: "20px",
       borderRadius: ".8rem",
+      border: "1px solid black", // Removes borders
+      boxShadow: "none", // Removes box shadows
+
+      "&:focus": {
+        outline: "none", // Removes focus outline
+        boxShadow: "none", // Ensures no focus shadow
+      },
+
+      "@media not all and (min-resolution:.001dpcm)": {
+        "@supports (-webkit-appearance:none)": {
+          border: "none !important",
+          boxShadow: "none !important",
+        },
+      },
 
       [theme.breakpoints.up("smPlus")]: {
         paddingLeft: "20px",
