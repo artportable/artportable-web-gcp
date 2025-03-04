@@ -208,5 +208,8 @@
   "buy": "Buy",
   "priceOnRequest": "Price on request",
   "favoriteArt": "My Favorite Artworks",
-  "allLocations": "All places"
+  "allLocations": "All places",
+  "moreStyles": "See more styles",
+  "seeNew": "See the latest",
+  "seeCurated": "See the collection"
 }
