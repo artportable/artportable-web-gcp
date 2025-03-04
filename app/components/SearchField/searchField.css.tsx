@@ -52,6 +52,7 @@ export const styles = makeStyles((theme: Theme) =>
       autoFocus: "false",
       backgroundColor: "transparent",
       borderBottom: "1px solid #0000004f",
+
       "&:focus": {
         border: "none",
       },
@@ -65,6 +66,12 @@ export const styles = makeStyles((theme: Theme) =>
 
       [theme.breakpoints.up("md")]: {
         fontSize: "16px",
+      },
+      "@media not all and (min-resolution:.001dpcm)": {
+        "@supports (-webkit-appearance:none)": {
+          border: "none !important",
+          boxShadow: "none !important",
+        },
       },
     },
   })

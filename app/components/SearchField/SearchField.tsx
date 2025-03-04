@@ -115,7 +115,6 @@ const SearchField = ({ onFilter, searchQuery }) => {
           onKeyDown={handleKeyDown}
         />
       </div>
-
       {/* Full-Width Popper at the Top */}
       {open && (
         <div
