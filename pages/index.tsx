@@ -145,6 +145,9 @@ export default function DiscoverPage({ navBarItems }) {
       <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
         <IndexCategories />
       </div>
+      <Link href="/discover">
+        <Button className={s.loginButton}>{t("common:moreStyles")}</Button>
+      </Link>
       <div className={s.headTitle}>{t("newIn")}</div>
       <div className={s.headText}>{t("newInText")}</div>
       <div

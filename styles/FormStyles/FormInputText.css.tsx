@@ -16,8 +16,8 @@ export const inputStyles = makeStyles((theme: Theme) =>
       marginLeft: "20px",
       marginRight: "20px",
       borderRadius: ".8rem",
-      border: "1px solid black", // Removes borders
-      boxShadow: "none", // Removes box shadows
+      border: "1px solid black",
+      boxShadow: "none",
 
       "&:focus": {
         outline: "none", // Removes focus outline
