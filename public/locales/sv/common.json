@@ -227,5 +227,8 @@
   "buy": "Köp",
   "priceOnRequest": "Pris på begäran",
   "favoriteArt": "Sparade favoriter",
-  "allLocations": "Alla län"
+  "allLocations": "Alla län",
+  "moreStyles": "Se fler stilar",
+  "seeNew": "Se det senaste",
+  "seeCurated": "Se samlingen"
 }

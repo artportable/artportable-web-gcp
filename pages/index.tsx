@@ -35,6 +35,8 @@ import DiscoverChosenArtists from "../app/components/DiscoverArtists/DiscoverCho
 import IndexArtportable from "../app/components/IndexHero/IndexArtportable";
 import { Divider } from "@material-ui/core";
 import Newsletter from "../app/components/NewsletterCard/NewsletterCard";
+import Button from "../app/components/Button/Button";
+import Link from "next/dist/client/link";
 
 const RocketCarousel = dynamic(
   () => import("../app/components/Carousel/RocketCarousel")
@@ -154,6 +156,10 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
       </div>
+      <Link href="/latestart">
+        <Button className={s.loginButton}>{t("common:seeNew")}</Button>
+      </Link>
+
       <div className={s.headTitle}>{t("titleHeader")}</div>
       <div className={s.headText}>{t("descriptionBody")}</div>
       <div
@@ -165,6 +171,9 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
       </div>
+      <Link href="/curated">
+        <Button className={s.loginButton}>{t("common:seeCurated")}</Button>
+      </Link>
       <div className={s.headTitle}>{t("choosenArtist")}</div>
       <div className={s.headText}>{t("knowArtist")}</div>
       <div

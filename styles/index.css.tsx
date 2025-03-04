@@ -35,6 +35,23 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
+    loginButton: {
+      borderRadius: "40px",
+      fontWeight: 600,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "#0176D5",
+      color: "white",
+      marginTop: "20px",
+      width: "auto",
+      margin: "0 auto",
+      "&:hover": {
+        backgroundColor: "#E2B651",
+        color: "white",
+        textDecoration: "underline",
+      },
+    },
+
     divider: {
       [theme.breakpoints.up("smPlus")]: {
         marginTop: "100px",

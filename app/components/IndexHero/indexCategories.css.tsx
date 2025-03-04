@@ -55,5 +55,19 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "8px",
       "&:hover": { borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF" },
     },
+    loginButton: {
+      borderRadius: "40px",
+      fontWeight: 600,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "#0176D5",
+      color: "white",
+      marginTop: "30px",
+      "&:hover": {
+        backgroundColor: "#E2B651",
+        color: "white",
+        textDecoration: "underline",
+      },
+    },
   })
 );
