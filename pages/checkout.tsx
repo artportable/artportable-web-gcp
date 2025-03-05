@@ -98,7 +98,7 @@ export default function Checkout() {
           <Card className={s.card}>
             <img
               className={s.logo}
-              src="/Artportable_Logotyp_Black.svg"
+              src="/ArtportableLogo.svg"
               alt="logo"
               title=""
             />
