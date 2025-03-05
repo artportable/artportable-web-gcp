@@ -53,6 +53,7 @@ import Fade from "@mui/material/Fade";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import SearchField from "../SearchField/SearchField";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export default function Header({ navBarItems }) {
   const { t } = useTranslation(["header", "support"]);
@@ -65,6 +66,8 @@ export default function Header({ navBarItems }) {
   const signUpRedirectHref = useSignupRedirectHref();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleSearch = (query) => {
     if (query.trim()) {
@@ -81,6 +84,10 @@ export default function Header({ navBarItems }) {
     isError,
     isLoading,
   } = useGetActivityToken(username.value, socialId.value, isSignedIn.value);
+
+  useEffect(() => {
+    console.log(isSignedIn.value);
+  }, []);
 
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
@@ -114,9 +121,7 @@ export default function Header({ navBarItems }) {
     }
   }, [loadingFromContext]);
 
-  useEffect(() => {
-    console.log(customerStatus);
-  }, [customerStatus]);
+  useEffect(() => {}, [customerStatus]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -204,17 +209,33 @@ export default function Header({ navBarItems }) {
           <div className={s.container}>
             <div className={s.wrapper}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Link href={logoHref}>
-                  <a>
-                    <img
-                      height={"auto"}
-                      width={175}
-                      className={s.logo}
-                      src="/ArtportableLogo.svg"
-                      alt="Logo Artportable"
-                    />
-                  </a>
-                </Link>
+                {isMobile && isSignedIn.value ? (
+                  <Link href={logoHref}>
+                    <a>
+                      <img
+                        height={"auto"}
+                        width={40}
+                        className={s.logo}
+                        src="/Artportable.Knapp.svg"
+                        alt="Logo Artportable"
+                      />
+                    </a>
+                  </Link>
+                ) : (
+                  <Link href={logoHref}>
+                    <a>
+                      <img
+                        height={"auto"}
+                        width={175}
+                        className={s.logo}
+                        src="/ArtportableLogo.svg"
+                        alt="Logo Artportable"
+                      />
+                    </a>
+                  </Link>
+                )}
+
+                {}
                 <SearchField
                   onFilter={handleSearch}
                   searchQuery={searchQuery}
