@@ -27,8 +27,14 @@ export default function AboutMe() {
 
   const board = [
     {
+      name: "Melker Larson",
+      title: "CEO",
+      image: "",
+      email: "melker@artportable.com",
+    },
+    {
       name: "Erik Nordlander",
-      title: "CEO & Founder",
+      title: "Founder & Marketing",
       image: "/staff/artportable_erik.jpg",
       email: "erik@artportable.com",
     },
@@ -76,14 +82,14 @@ export default function AboutMe() {
       <div className={clsx(s.bottomDiv, s.staffDiv)}>
         {board.map((person) => (
           <div key={person.name} className={s.wrapper}>
-            <div className={s.frame}>
+            {/* <div className={s.frame}>
               <img
                 className={s.image}
                 src={person?.image}
                 alt="staff image"
                 title=""
               />
-            </div>
+            </div> */}
             <Typography className={s.bold}>{person?.name}</Typography>
             <Typography>{person?.title}</Typography>
             <Typography>
@@ -92,45 +98,6 @@ export default function AboutMe() {
           </div>
         ))}
       </div>
-      {router.locale === "en" ? (
-        <>
-          <div className={clsx(s.bottomDiv, s.staffDiv)}>
-            {applyEn.map((person) => (
-              <div key={person.image} className={s.wrapper}>
-                <a href={`mailto:${person?.email}`}>
-                  <div className={s.frame}>
-                    <img
-                      className={s.image}
-                      src={person?.image}
-                      alt="staff image"
-                      title=""
-                    />
-                  </div>
-                </a>
-              </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={clsx(s.bottomDiv, s.staffDiv)}>
-            {applySv.map((person) => (
-              <div key={person.image} className={s.wrapper}>
-                <a href={`mailto:${person?.email}`}>
-                  <div className={s.frame}>
-                    <img
-                      className={s.image}
-                      src={person?.image}
-                      alt="staff image"
-                      title=""
-                    />
-                  </div>
-                </a>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
     </div>
   );
 }
