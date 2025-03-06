@@ -50,6 +50,10 @@ export const styles = makeStyles((theme: Theme) =>
         color: "white",
         textDecoration: "underline",
       },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "18px",
+        padding: "10px",
+      },
     },
     categoriesButton: {
       borderRadius: "40px",
@@ -65,6 +69,10 @@ export const styles = makeStyles((theme: Theme) =>
         backgroundColor: "#E2B651",
         color: "white",
         textDecoration: "underline",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "18px",
+        padding: "10px",
       },
     },
 

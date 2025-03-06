@@ -258,7 +258,6 @@ export default function ArtworkListItem({
                 fontSize: "12px",
                 fontFamily: "Roboto",
                 fontWeight: 300,
-                textTransform: "uppercase",
               }}
             >
               {profileUser?.data?.City === null ? (

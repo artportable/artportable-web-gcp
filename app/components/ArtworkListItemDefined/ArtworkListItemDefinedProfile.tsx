@@ -143,19 +143,21 @@ export default function ArtworkListItemDefinedProfile({
                     {artwork.Title ? artwork.Title : t("untitled")}
                   </div>
                   <div className={s.priceHover}>
-                    {artwork.SoldOut ? (
-                      <>
-                        <div />
-                        {t("common:words.sold")}{" "}
-                      </>
-                    ) : artwork.Price && artwork.Price !== "0" ? (
-                      formattedPrice.replace(/,/g, "")
+                    {artwork?.SoldOut ? (
+                      <>{t("common:words.sold")} </>
+                    ) : artwork?.Price && artwork?.Price !== "0" ? (
+                      <span>
+                        {t("art:artworkPrice")}:{" "}
+                        {Number(artwork?.Price)
+                          .toLocaleString("sv-SE")
+                          .replace(/\u00A0/g, " ")}{" "}
+                        {artwork?.Currency !== null ? artwork?.Currency : "SEK"}{" "}
+                      </span>
                     ) : (
-                      t("priceOnRequest")
+                      <span>{t("priceOnRequest")}</span>
                     )}
                   </div>
 
-                  <div></div>
                   <EastOutlinedIcon style={{ marginBottom: "12px" }} />
                 </div>
                 <div className={s.tagsWrapper}>
