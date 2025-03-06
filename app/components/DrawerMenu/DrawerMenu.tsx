@@ -492,13 +492,13 @@ export default function DrawerMenu({
           </a>
         </Link>
 
-        <Link href="/artists" passHref>
+        {/* <Link href="/artists" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("artists")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
         {/* <Link href={`${t("header:storiesSlug")}`} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
