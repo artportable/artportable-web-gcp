@@ -83,13 +83,14 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "normal",
       backgroundColor: "white",
     },
-    // class to wrap the formControll, select and div
+
     formControllWrapper: {
       textAlign: "center",
       display: "flex",
       flexDirection: "column",
+      width: "100%",
     },
-    // the class for the title above the select
+
     filtertitle: {
       fontFamily: "Roboto",
       display: "flex",
@@ -100,12 +101,11 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "0 auto",
       marginTop: "10px",
     },
-    // the class for the formControl
+
     formControl: {
       marginTop: "10px",
       margin: "0px",
       alignItems: "center",
-      width: "100%",
     },
     // the class for select menu
     selectMenu: {
@@ -219,11 +219,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     slider: {
-      color: "#4652ff",
+      color: "#0176D5",
       width: "310px",
       height: "1px",
       [theme.breakpoints.up("smPlus")]: {
-        width: "230px",
+        width: "250px !important",
       },
     },
     cancelPresentationIcon: {
