@@ -21,13 +21,20 @@ export default function berit({ navBarItems }) {
         <Head>
           <title>Torleiv Agdestein – Från geologi till måleri</title>
           <meta name="description" content={t("artistsPageDescripton")} />
-          <link rel="canonical" href={`${publicUrl}/editorial`} />
+
           <meta
             property="og:title"
             content={
               "Färgsymfoni med naturen som källa: Berit Emstrands konstnärliga resa"
             }
           />
+          <meta
+            name="og:description"
+            content={
+              "Färgsymfoni med naturen som källa: Berit Emstrands konstnärliga resa"
+            }
+          />
+          <meta property="og:image" content="/images/beritart1.jpeg" />
         </Head>
         <div className={s.imageWrapper}>
           <Link href="https://artportable.com/art/ec01b296-536b-43be-bbdc-8203b728219b">
@@ -58,7 +65,7 @@ export default function berit({ navBarItems }) {
             <br />
             <br />
             <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-03-06</div>
+            <div>Publicerat: 2025-03-10</div>
             <br />
             <br />
             <div className={s.title}>En uppväxt i naturens fåra</div>

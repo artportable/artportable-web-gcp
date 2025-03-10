@@ -21,11 +21,11 @@ export default function torleiv({ navBarItems }) {
         <Head>
           <title>Torleiv Agdestein – Från geologi till måleri</title>
           <meta name="description" content={t("artistsPageDescripton")} />
-          <link rel="canonical" href={`${publicUrl}/editorial`} />
           <meta
             property="og:title"
             content={"Torleiv Agdestein – Från geologi till måleri"}
           />
+          <meta property="og:image" content="/images/torleivarticle.jpeg" />
         </Head>
         <div className={s.imageWrapper}>
           <Link href="https://artportable.site/art/9e655057-6329-4034-b85d-88599ccd6053">
@@ -56,7 +56,7 @@ export default function torleiv({ navBarItems }) {
             <br />
             <br />
             <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-03-06</div>
+            <div>Publicerat: 2025-03-10</div>
             <br />
             <br />
             <div className={s.title}>
@@ -197,7 +197,17 @@ export default function torleiv({ navBarItems }) {
               skapa konst som talar till både ögat och själen.
             </div>
           </div>
-          <div></div>
+          <br />
+          <br />
+          <div style={{ fontSize: "20px" }}>
+            Se fler verk av Torleiv:{" "}
+            <a
+              style={{ textDecoration: "underline" }}
+              href="https://artportable.com/profile/@torleiv.agdestein"
+            >
+              Torleiv Agdestein Portfolio
+            </a>
+          </div>
         </div>
       </Main>
     </div>

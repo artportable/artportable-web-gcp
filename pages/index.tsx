@@ -37,6 +37,7 @@ import { Divider } from "@material-ui/core";
 import Newsletter from "../app/components/NewsletterCard/NewsletterCard";
 import Button from "../app/components/Button/Button";
 import Link from "next/dist/client/link";
+import IndexEditorial from "../app/components/IndexHero/IndexEditorial";
 
 const RocketCarousel = dynamic(
   () => import("../app/components/Carousel/RocketCarousel")
@@ -67,9 +68,7 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [data]);
 
-  useEffect(() => {
-    console.log(artworks);
-  }, [artworks]);
+  useEffect(() => {}, [artworks]);
 
   const scrollToNextSection = useCallback(() => {
     const nextSection = nextSectionRef.current;
@@ -177,6 +176,13 @@ export default function DiscoverPage({ navBarItems }) {
       <Link href="/curated">
         <Button className={s.loginButton}>{t("common:seeCurated")}</Button>
       </Link>
+      <div className={s.headTitle}>Redaktionellt</div>
+      <div className={s.headText}>
+        Här lyfter vi konstnärer och verk som berör – och bjuder in dig att
+        upptäcka människorna bakom konsten.
+      </div>
+      <IndexEditorial></IndexEditorial>
+
       <div className={s.headTitle}>{t("choosenArtist")}</div>
       <div className={s.headText}>{t("knowArtist")}</div>
       <div

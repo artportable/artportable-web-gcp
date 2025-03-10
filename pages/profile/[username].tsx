@@ -134,10 +134,6 @@ export default function Profile(props) {
   const chosenColor = userProfile?.data?.ChosenColor || "#FDF9F7";
   const chosenFont = userProfile?.data?.ChosenFont || "Gotham";
   const useLightText = chosenColor === "#000000";
-  // console.log('chosenColor', chosenColor);
-  // console.log('userProfileSummary', userProfileSummary);
-  // console.log('userData', userData);
-  // console.log('userProfile', userProfile);
 
   const [imageRows, setImageRows] = useState(null);
   const dispatch = useDispatch();
