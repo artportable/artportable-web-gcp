@@ -14,7 +14,7 @@ export default function IndexEditorial() {
           <Link href="https://artportable.com/editorial/torleiv-agdestein-fran-geologi-till-maleri">
             <Image
               src={"/images/torleivarticle.jpeg"}
-              width={"500px"}
+              width={"600px"}
               height={"300px"}
               objectFit="cover"
               quality={10}
@@ -36,7 +36,7 @@ export default function IndexEditorial() {
       </div>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.site/art/9e655057-6329-4034-b85d-88599ccd6053">
+          <Link href="https://artportable.com/editorial/fargsymfoni-med-naturen-som-kalla">
             <Image
               src={"/images/beritart2.jpeg"}
               width={"600px"}
