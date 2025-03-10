@@ -82,26 +82,30 @@ export default function torleiv({ navBarItems }) {
             <br />
             <br />
             <div className={s.imageRow}>
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.site/art/9e655057-6329-4034-b85d-88599ccd6053">
                   <Image
                     src={"/images/torleivarticle.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
 
                 <div style={{ fontStyle: "italic" }}>Vindstille i Fjæra</div>
               </div>
 
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.site/art/91d7a500-b58f-49b2-b410-c04da73da392">
                   <Image
                     src={"/images/torleivart2.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
 
@@ -144,26 +148,30 @@ export default function torleiv({ navBarItems }) {
             </div>
             <br />
             <div className={s.imageRow}>
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.site/art/9e55ab3a-ba25-4042-a754-025aaa46ee44">
                   <Image
                     src={"/images/torleivart3.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
                 <div style={{ fontStyle: "italic" }}>
                   Levd Siv ved levd Brygge
                 </div>
               </div>
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.site/art/0b09ecde-865b-479e-b161-6534c6e8c9a3">
                   <Image
                     src={"/images/torleivart4.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
 

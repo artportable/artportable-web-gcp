@@ -35,6 +35,8 @@ export default function berit({ navBarItems }) {
               src={"/images/beritart1.jpeg"}
               layout="fill"
               objectFit="cover"
+              quality={10}
+              priority
             />
           </Link>
         </div>
@@ -77,13 +79,15 @@ export default function berit({ navBarItems }) {
             <br />
             <br />
             <div className={s.imageRow}>
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.com/art/1186b651-c622-4f97-9f90-934568b3b942">
                   <Image
                     src={"/images/beritart2.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
 
@@ -92,13 +96,15 @@ export default function berit({ navBarItems }) {
                 </div>
               </div>
 
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.com/art/e8a20d2f-67e4-4c6a-8531-132c2c2fac08">
                   <Image
                     src={"/images/beritart3.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
 
@@ -145,24 +151,28 @@ export default function berit({ navBarItems }) {
             </div>
             <br />
             <div className={s.imageRow}>
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.com/art/332571ea-8d37-4ec5-bc08-18c757005ac0">
                   <Image
                     src={"/images/berit4.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
                 <div style={{ fontStyle: "italic" }}>Tranor i vildmarken</div>
               </div>
-              <div>
+              <div className={s.image}>
                 <Link href="https://artportable.com/art/18a81c75-2fc1-475b-9f2c-0ebc7384a80b">
                   <Image
                     src={"/images/berit5.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="cover"
+                    quality={10}
+                    priority
                   />
                 </Link>
 

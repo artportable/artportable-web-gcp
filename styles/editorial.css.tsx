@@ -10,17 +10,23 @@ export const styles = makeStyles((theme: Theme) =>
       right: "auto",
     },
     textContainer: {
-      width: "60%",
+      width: "90%",
       margin: "0 auto",
       marginTop: "50px",
       display: " flex",
       flexDirection: "column",
+      [theme.breakpoints.up("mdPlus")]: {
+        width: "60%",
+      },
     },
 
     mainTitle: {
       marginTop: "20px",
-      fontSize: "48px",
+      fontSize: "32px",
       fontFamily: "Roboto",
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "48px",
+      },
     },
     mainText: {
       zIndex: 10,
@@ -38,8 +44,18 @@ export const styles = makeStyles((theme: Theme) =>
     imageRow: {
       margin: "0 auto",
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
       justifyContent: "space-between",
+      [theme.breakpoints.up("mdPlus")]: {
+        flexDirection: "row",
+      },
+    },
+
+    image: {
+      marginBottom: "20px",
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "row",
+      },
     },
   })
 );
