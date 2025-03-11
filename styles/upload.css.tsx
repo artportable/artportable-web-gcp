@@ -18,15 +18,16 @@ const styles = makeStyles((theme: Theme) =>
       //     "/  3fr      1fr",
       //   alignItems: "stretch",
       // },
-      display: 'flex',
-      flexFlow: 'column nowrap',
-      alignItems: 'center',
+      display: "flex",
+      flexFlow: "column nowrap",
+      alignItems: "center",
     },
     uploadBox: {
       gridArea: "upload",
       display: "flex",
       borderRadius: "6px",
       fontFamily: "GT-America-Standard",
+      marginTop: "20px",
       [theme.breakpoints.down("sm")]: {
         background: "transparent",
         width: "100%",
@@ -256,15 +257,15 @@ const styles = makeStyles((theme: Theme) =>
       fontWeight: 600,
     },
     publishErrorMessage: {
-      minHeight: '25px',
+      minHeight: "25px",
       marginTop: "10px",
-      color: 'red',
+      color: "red",
     },
     clampedContainer: {
-      width: '100%',
+      width: "100%",
       [theme.breakpoints.up("mdPlus")]: {
-        maxWidth: '750px',
-      }
+        maxWidth: "750px",
+      },
     },
   })
 );

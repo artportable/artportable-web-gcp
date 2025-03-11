@@ -379,23 +379,46 @@ export default function Header({ navBarItems }) {
                             </a>
                           </Link>
                         )}
-                        <Link href="/upload-story">
-                          <a>
-                            <Button
-                              onClick={() =>
-                                trackGoogleAnalytics(
-                                  ActionType.UPLOAD_IMAGE_HEADER,
-                                  CategoryType.INTERACTIVE
-                                )
-                              }
-                              className={s.uploadStoryButton}
-                              rounded
-                              endIcon={<FeedOutlinedIcon />}
-                            >
-                              {t("uploadStory")}
-                            </Button>
-                          </a>
-                        </Link>
+                        {membership.value === 3 && (
+                          <Link href="/upload-story">
+                            <a>
+                              <Button
+                                onClick={() =>
+                                  trackGoogleAnalytics(
+                                    ActionType.UPLOAD_IMAGE_HEADER,
+                                    CategoryType.INTERACTIVE
+                                  )
+                                }
+                                className={s.uploadStoryButton}
+                                rounded
+                                endIcon={<FeedOutlinedIcon />}
+                              >
+                                {t("uploadStory")}
+                              </Button>
+                            </a>
+                          </Link>
+                        )}
+                        {membership.value < 3 ? (
+                          <Link href="/upgrade">
+                            <a>
+                              <Button
+                                onClick={() =>
+                                  trackGoogleAnalytics(
+                                    ActionType.UPLOAD_IMAGE_HEADER,
+                                    CategoryType.INTERACTIVE
+                                  )
+                                }
+                                className={s.uploadStoryButton}
+                                rounded
+                                endIcon={<FeedOutlinedIcon />}
+                              >
+                                {t("uploadStory")}
+                              </Button>
+                            </a>
+                          </Link>
+                        ) : (
+                          <></>
+                        )}
 
                         <Link href="/upload">
                           <a>
