@@ -34,7 +34,7 @@ export default function AboutMe() {
     },
     {
       name: "Erik Nordlander",
-      title: "Founder & Marketing",
+      title: "Marketing & Founder",
       image: "/staff/artportable_erik.jpg",
       email: "erik@artportable.com",
     },
@@ -49,6 +49,12 @@ export default function AboutMe() {
       title: "Art Curator",
       image: "/staff/artportable_ulrika.jpg",
       email: "ulrika@artportable.com",
+    },
+    {
+      name: "Diedrik Germer",
+      title: "PR",
+      image: "/staff/artportable_ulrika.jpg",
+      email: "diedrik@artportable.com",
     },
   ];
   const applyEn = [
