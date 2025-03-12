@@ -1,7 +1,5 @@
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { useContext, useState } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { i18n, useTranslation } from "next-i18next";
 import { useEffect } from "react";
@@ -12,21 +10,11 @@ import {
   CategoryType,
   trackGoogleAnalytics,
 } from "../../utils/googleAnalytics";
-import Button from "../Button/Button";
-import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
-// import { Locales } from "../../models/i18n/locales";
-import { useRedirectToLoginIfNotLoggedIn } from "../../../app/hooks/useRedirectToLoginIfNotLoggedIn";
-import { RWebShare } from "react-web-share";
-import ShareIcon from "@material-ui/icons/Share";
 import TagChip from "../TagChip/TagChip";
-import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
-import { useGetProfileUser } from "../../hooks/dataFetching/useGetProfileUser";
 import { getTimePassed } from "../../hooks/dataFetching/Artworks";
 import { styles } from "./artworkListItem.css";
-import { styles as sharedStyles } from "../../../styles/shared.css";
 import LikeArtworkButton from "../Button/LikeArtworkButton";
-import { getUserProfileSummaryUri } from "../../hooks/dataFetching/UserProfile";
 import { useGetUserProfileSummary } from "../../hooks/dataFetching/UserProfile";
 import Image from "next/image";
 export default function ArtworkListItem({
@@ -39,23 +27,19 @@ export default function ArtworkListItem({
   topActions = undefined,
 }) {
   const s = styles();
-  const sShared = sharedStyles();
+
   const { t } = useTranslation(["art", "common", "tags", "feed"]);
 
   const [isLiked, setIsLiked] = useState(artwork.LikedByMe);
-  const redirectIfNotLoggedIn = useRedirectToLoginIfNotLoggedIn();
 
   const { isSignedIn } = useContext(UserContext);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const publicUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const timePassed = getTimePassed(artwork?.Published, t);
 
-  const router = useRouter();
   const excludedCurrencyCodes = ["SEK", "NOK", "DKK"];
 
   const profileUser = useGetUserProfileSummary(artwork?.Username);
 
-  // TODO: Use getFormatter function in utils/formatUtils.tsx instead.
   function getFormatter(
     languageCode: string,
     currency: string | null
@@ -132,13 +116,6 @@ export default function ArtworkListItem({
     }
     onLikeClick(artwork, !isLiked);
   }
-  const artworkUrl = `https://artportable.com/art/${artwork?.Id}`;
-  const shareArtworkTitle = artwork?.Title
-    ? `${t("common:share")}"${artwork?.Title}"`
-    : `${t("common:share")}`;
-  const shareArtworkText = `${t("common:checkThisArtwork")}"${
-    artwork?.Title
-  }"${t("common:atArtportable")}`;
 
   const likedFilled = !isSignedIn.value ? (
     <FavoriteBorderOutlinedIcon color="primary" />
@@ -209,7 +186,7 @@ export default function ArtworkListItem({
               key={artwork?.PrimaryFile}
               src={`${bucketUrl}${artwork.PrimaryFile.Name}`}
               quality={10}
-              loading="lazy"
+              priority
             />
           </a>
         </Link>

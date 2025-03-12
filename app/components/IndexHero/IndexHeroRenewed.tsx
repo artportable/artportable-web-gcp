@@ -56,7 +56,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           : "/images/thune.jpeg"
                       }
                       alt="first page artwork"
-                      loading="lazy"
+                      priority
                       layout="fill"
                       objectFit="cover"
                       quality={10}
