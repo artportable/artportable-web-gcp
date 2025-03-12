@@ -27,6 +27,7 @@ module.exports = withBundleAnalyzer({
       "artportabletest-cdn.azureedge.net",
       "artportableprod-azurecdn.azureedge.net",
       "images.artworksapp.com",
+      "artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net",
     ],
   },
   i18n,
