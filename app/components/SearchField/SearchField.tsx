@@ -43,19 +43,22 @@ const SearchField = ({ onFilter, searchQuery }) => {
   }, []);
 
   const handleInputChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
+    const value = event.target.value.trim().toLowerCase();
+    setInputValue(event.target.value);
 
-    if (value.trim() === "") {
+    if (value === "") {
       setFilteredArtists([]);
     } else {
+      const searchWords = value.split(" ");
       const filtered = artists
-        .filter((artist) =>
-          `${artist.Name} ${artist.Surname || ""}`
-            .toLowerCase()
-            .includes(value.toLowerCase())
-        )
+        .filter((artist) => {
+          const fullName = `${artist.Name} ${
+            artist.Surname || ""
+          }`.toLowerCase();
+          return searchWords.every((word) => fullName.includes(word));
+        })
         .slice(0, 5);
+
       setFilteredArtists(filtered);
     }
   };
