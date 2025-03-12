@@ -24,7 +24,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     titles: {
       marginBottom: "20px",
-
+      fontSize: "12px",
       [theme.breakpoints.up("smPlus")]: {
         width: "80%",
       },
@@ -36,6 +36,25 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "20px",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "32px",
+      },
+    },
+    titleTwo: {
+      fontFamily: "Roboto",
+      color: "black",
+      fontSize: "20px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "22px",
+      },
+    },
+
+    wrapperTwo: {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "22px",
+        flexDirection: "row",
+        width: "50%",
       },
     },
   })

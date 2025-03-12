@@ -11,34 +11,9 @@ export default function IndexEditorial() {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.com/editorial/torleiv-agdestein-fran-geologi-till-maleri">
-            <Image
-              src={"/images/torleivarticle.jpeg"}
-              width={"600px"}
-              height={"300px"}
-              objectFit="cover"
-              quality={10}
-              priority
-            />
-          </Link>
-        </div>
-        <div className={s.titles}>
-          {" "}
-          <Link
-            href="https://artportable.com/editorial/torleiv-agdestein-fran-geologi-till-maleri"
-            className={s.title}
-          >
-            Torleiv Agdestein – Från geologi till måleri
-          </Link>{" "}
-          <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-10</div>
-        </div>
-      </div>
-      <div className={s.wrapper}>
-        <div>
           <Link href="https://artportable.com/editorial/fargsymfoni-med-naturen-som-kalla">
             <Image
-              src={"/images/beritart2.jpeg"}
+              src={"/images/danatwo.jpeg"}
               width={"600px"}
               height={"300px"}
               objectFit="cover"
@@ -50,13 +25,67 @@ export default function IndexEditorial() {
         <div className={s.titles}>
           {" "}
           <Link
-            href="https://artportable.com/editorial/fargsymfoni-med-naturen-som-kalla"
-            className={s.title}
+            href="https://artportable.com/editorial/mellan-farg"
+            className={s.titleTwo}
           >
-            Färgsymfoni med naturen som källa: Berit Emstrands konstnärliga resa
+            Mellan färg och stillhet – Dana Ingessons inre landskap
           </Link>{" "}
           <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-10</div>
+          <div>Publicerat: 2025-03-12</div>
+        </div>
+      </div>
+
+      <div className={s.wrapperTwo}>
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/torleiv-agdestein-fran-geologi-till-maleri">
+              <Image
+                src={"/images/torleivarticle.jpeg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                quality={10}
+                priority
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/torleiv-agdestein-fran-geologi-till-maleri"
+              className={s.titleTwo}
+            >
+              Torleiv Agdestein – Från geologi till måleri
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-03-10</div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/fargsymfoni-med-naturen-som-kalla">
+              <Image
+                src={"/images/beritart2.jpeg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                quality={10}
+                priority
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/fargsymfoni-med-naturen-som-kalla"
+              className={s.titleTwo}
+            >
+              Färgsymfoni med naturen som källa: Berit Emstrands konstnärliga
+              resa
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-03-10</div>
+          </div>
         </div>
       </div>
     </div>
