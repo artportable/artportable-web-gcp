@@ -1,6 +1,5 @@
 import { styles } from "./indexCategories.css";
 import { useRouter } from "next/router";
-import ackeberg from "./ackeberg.jpeg";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
 import Link from "@mui/material/Link";
@@ -30,7 +29,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("acrylic")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/annabrandt.jpg")`,
+          backgroundImage: `url("/images/lovisacarlman.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -66,17 +65,17 @@ export default function IndexCategories() {
         <div className={s.category}>{t("common:techniques:gouache")}</div>
       </div>
       <div
-        onClick={() => handleCategoryClick("collage")}
+        onClick={() => handleCategoryClick("photography")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/christel.jpg")`,
+          backgroundImage: `url("/images/thune.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%",
         }}
       >
-        <div className={s.category}>{t("common:techniques:collage")}</div>
+        <div className={s.category}>{t("common:techniques:photography")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("pastel")}

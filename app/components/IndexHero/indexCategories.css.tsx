@@ -32,18 +32,17 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-
+      borderRadius: "10px",
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
         height: "160px",
       },
       "&:hover": {
         boxShadow: "0px 9px 27px 8px rgba(0,0,0,0.1)",
-        borderRadius: "5px",
       },
     },
     category: {
-      fontSize: "22px",
+      fontSize: "16px",
       position: "absolute",
       bottom: "0px",
       left: "0px",
