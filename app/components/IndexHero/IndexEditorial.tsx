@@ -11,7 +11,7 @@ export default function IndexEditorial() {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.com/editorial/fargsymfoni-med-naturen-som-kalla">
+          <Link href="https://artportable.com/editorial/mellan-farg">
             <Image
               src={"/images/danatwo.jpeg"}
               width={"600px"}
