@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/d5622cac-f5e6-49c4-8105-07ac00e814fb">
+                <a href="https://artportable.com/art/07106225-1add-43c1-bac0-ca651e22cc8e">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/thune.jpeg"
-                          : "/images/thune.jpeg"
+                          ? "/images/arttwo.jpeg"
+                          : "/images/arttwo.jpeg"
                       }
                       alt="first page artwork"
                       priority
@@ -69,7 +69,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Nick Thuné,&nbsp;
+                        Lovisa Carlman Bydén,&nbsp;
                       </p>
                       <p
                         style={{
@@ -79,7 +79,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Single
+                        Svaret är JA
                       </p>
                     </div>
                   </div>

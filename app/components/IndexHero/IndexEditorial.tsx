@@ -11,9 +11,9 @@ export default function IndexEditorial() {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.com/editorial/mellan-farg">
+          <Link href="https://artportable.com/editorial/konst-for-livet">
             <Image
-              src={"/images/danatwo.jpeg"}
+              src={"/images/arttwo.jpeg"}
               width={"600px"}
               height={"300px"}
               objectFit="cover"
@@ -25,17 +25,42 @@ export default function IndexEditorial() {
         <div className={s.titles}>
           {" "}
           <Link
-            href="https://artportable.com/editorial/mellan-farg"
+            href="https://artportable.com/editorial/konst-for-livet"
             className={s.titleTwo}
           >
-            Mellan färg och stillhet – Dana Ingessons inre landskap
+            Del 1: Konst för livet – en köpguide
           </Link>{" "}
           <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-12</div>
+          <div>Publicerat: 2025-03-13</div>
         </div>
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/mellan-farg">
+              <Image
+                src={"/images/danatwo.jpeg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                quality={10}
+                priority
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/mellan-farg"
+              className={s.titleTwo}
+            >
+              Mellan färg och stillhet – Dana Ingessons inre landskap
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-03-12</div>
+          </div>
+        </div>
         <div className={s.wrapper}>
           <div>
             <Link href="https://artportable.com/editorial/torleiv-agdestein-fran-geologi-till-maleri">
