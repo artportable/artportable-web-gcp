@@ -148,15 +148,6 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
             `,
           }}
         />
-
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=331292174363133&ev=PageView&noscript=1"
-          />
-        </noscript>
       </Head>
       <SSRKeycloakProvider
         keycloakConfig={keycloakConfig}
