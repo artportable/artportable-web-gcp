@@ -197,15 +197,6 @@ export default function konst({ navBarItems }) {
           </div>
           <br />
           <br />
-          <div style={{ fontSize: "20px" }}>
-            Se fler verk av:{" "}
-            <a
-              style={{ textDecoration: "underline" }}
-              href="https://artportable.com/profile/@dana-ingesson"
-            >
-              Dana Ingesson
-            </a>
-          </div>
         </div>
       </Main>
     </div>
