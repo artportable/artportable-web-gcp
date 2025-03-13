@@ -85,10 +85,6 @@ export default function Header({ navBarItems }) {
     isLoading,
   } = useGetActivityToken(username.value, socialId.value, isSignedIn.value);
 
-  useEffect(() => {
-    console.log(isSignedIn.value);
-  }, []);
-
   const chatClient = useContext(ChatClientContext);
   const { loading: loadingFromContext } = useContext(LoadingContext);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;

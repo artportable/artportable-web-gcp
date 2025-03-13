@@ -21,7 +21,7 @@ export default function DiscoverChosenArtists({}) {
       const response = await axios.get(
         `${apiBaseUrl}/api/discover/monthlyArtists?page=1&pageSize=100`
       );
-      console.log("API Response:", response.data); // Check structure
+
       setMonthlyArtist(response.data);
     } catch (error) {
       console.error("Error fetching monthly artists:", error);
@@ -31,14 +31,6 @@ export default function DiscoverChosenArtists({}) {
   useEffect(() => {
     getMonthlyArtists();
   }, []);
-
-  useEffect(() => {
-    console.log(monthlyArtist);
-  }, [monthlyArtist]);
-
-  function clsx(bottomDiv: string, staffDiv: string): string {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <div className={s.container}>
