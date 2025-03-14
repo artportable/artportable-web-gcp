@@ -36,9 +36,10 @@ export const styles = makeStyles((theme: Theme) => {
       display: "flex",
       justifyContent: "center",
       backgroundColor: "#FCF7EC",
-      height: "150px",
+      height: "180px",
       flexDirection: "column",
       gridColumn: "1 / 4",
+      marginBottom: "20px",
       [theme.breakpoints.up("smPlus")]: {
         height: "250px",
       },
