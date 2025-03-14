@@ -236,7 +236,7 @@ export default function Header({ navBarItems }) {
                   onFilter={handleSearch}
                   searchQuery={searchQuery}
                 />
-                {isSignedIn.value && (
+                {/* {isSignedIn.value && (
                   <div className={s.feed}>
                     <MuiButton color="default" size="large">
                       <Link href="/feed">
@@ -244,7 +244,7 @@ export default function Header({ navBarItems }) {
                       </Link>
                     </MuiButton>
                   </div>
-                )}
+                )} */}
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 {!isSignedIn.value && (
@@ -519,11 +519,21 @@ export default function Header({ navBarItems }) {
                   {t("story")}
                 </Link>
               </div>
-              <div className={s.titlesOnHeader}>
-                <Link href={"/newsletter"} passHref>
-                  {t("subscribeNewsletter")}
-                </Link>
-              </div>
+              {isSignedIn.value ? (
+                <>
+                  <div className={s.titlesOnHeader}>
+                    <Link href="/feed">{t("myArtNetwork")}</Link>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={s.titlesOnHeader}>
+                    <Link href={"/newsletter"} passHref>
+                      {t("subscribeNewsletter")}
+                    </Link>
+                  </div>
+                </>
+              )}
               {/* <div className={s.titlesOnHeader}>
                 <Link href={`${t("header:storiesSlug")}`} passHref>
                   {t("articles")}

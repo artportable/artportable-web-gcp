@@ -26,6 +26,7 @@ export const styles = makeStyles((theme: Theme) => {
       width: "90%",
       margin: "0 auto",
       textAlign: "center",
+      color: "rgb(0 0 0 / 47%)",
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "20px",
         marginLeft: "10%",
