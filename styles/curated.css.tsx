@@ -27,7 +27,7 @@ export const styles = makeStyles((theme: Theme) => {
       margin: "0 auto",
       textAlign: "center",
       [theme.breakpoints.up("smPlus")]: {
-        fontSize: "26px",
+        fontSize: "20px",
         marginLeft: "10%",
         textAlign: "start",
       },
@@ -41,6 +41,13 @@ export const styles = makeStyles((theme: Theme) => {
       gridColumn: "1 / 4",
       [theme.breakpoints.up("smPlus")]: {
         height: "250px",
+      },
+    },
+    wrap: {
+      width: "100%",
+      marginTop: "10px",
+      [theme.breakpoints.up("smPlus")]: {
+        width: "90%",
       },
     },
   });

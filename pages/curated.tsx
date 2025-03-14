@@ -53,8 +53,10 @@ export default function latest({ navBarItems }) {
           className={s.textWrapper}
         >
           {" "}
-          <div className={s.title}>{t("index:titleHeader")}</div>
-          <div className={s.text}>{t("index:descriptionBody")}</div>
+          <div className={s.wrap}>
+            <div className={s.title}>{t("index:titleHeader")}</div>
+            <div className={s.text}>{t("index:descriptionBody")}</div>
+          </div>
         </div>
         <div className={s.container}>
           {" "}

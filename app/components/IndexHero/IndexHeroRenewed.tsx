@@ -192,7 +192,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/art/31660c3b-30d3-45ff-9f51-5a3e9ac07232">
+                  <a href="https://artportable.com/art/8d0bf184-865f-49aa-aabf-2082b2fa6296">
                     <div
                       style={{
                         position: "relative",
@@ -201,7 +201,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/raging.jpeg"}
+                        src={"/images/curated.jpg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -215,13 +215,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Alena Zabolotina
+                          Knut Sönstevold
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/art/31660c3b-30d3-45ff-9f51-5a3e9ac07232">
+                  <a href="https://artportable.com/art/8d0bf184-865f-49aa-aabf-2082b2fa6296">
                     <div
                       style={{
                         position: "relative",
@@ -230,7 +230,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/raging.jpeg"}
+                        src={"/images/curated.jpg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -244,7 +244,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Alena Zabolotina
+                          Knut Sönstevold
                         </p>
                       </div>
                     </div>
