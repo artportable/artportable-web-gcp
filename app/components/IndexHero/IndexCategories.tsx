@@ -42,7 +42,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("aquarelle")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/plosjo.jpg")`,
+          backgroundImage: `url("/images/mimmi.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -52,17 +52,17 @@ export default function IndexCategories() {
         <div className={s.category}>{t("common:techniques:aquarelle")}</div>
       </div>
       <div
-        onClick={() => handleCategoryClick("gouache")}
+        onClick={() => handleCategoryClick("realism")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/tindra.jpg")`,
+          backgroundImage: `url("/images/bob.png")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%", // Keep full width
         }}
       >
-        <div className={s.category}>{t("common:techniques:gouache")}</div>
+        <div className={s.category}>{t("common:themes:realism")}</div>
       </div>
       <div
         onClick={() => handleCategoryClick("photography")}
@@ -81,7 +81,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("pastel")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/barbarapastell.jpg")`,
+          backgroundImage: `url("/images/tove.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -94,7 +94,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("mixed-media")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/annabri.jpg")`,
+          backgroundImage: `url("/images/tanzi.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
