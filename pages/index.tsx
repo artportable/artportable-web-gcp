@@ -139,6 +139,9 @@ export default function DiscoverPage({ navBarItems }) {
           containerStyle={{ margin: "40px 0 0px 0" }}
         />
       </div>
+      <Link href="/spotlight">
+        <Button className={s.loginButton}>{t("common:seeCurated")}</Button>
+      </Link>
       <div className={s.headTitle}>{t("chosenCategories")}</div>
       <div className={s.headText}>{t("chosenCategoriesText")}</div>
       <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
