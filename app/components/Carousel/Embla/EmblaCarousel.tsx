@@ -135,6 +135,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   priority={false}
                   objectPosition={convertImagePosition(slide.hoverCenter)}
                   alt=""
+                  unoptimized
                 />
               </div>
             )}
@@ -193,6 +194,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     priority={false}
                     objectPosition={convertImagePosition(slide.hoverCenter)}
                     alt=""
+                    unoptimized
                   />
                 </div>
               )}
