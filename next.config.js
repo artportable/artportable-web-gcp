@@ -29,6 +29,7 @@ module.exports = withBundleAnalyzer({
       "images.artworksapp.com",
       "artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net",
     ],
+    loader: "default",
   },
   i18n,
   async rewrites() {
