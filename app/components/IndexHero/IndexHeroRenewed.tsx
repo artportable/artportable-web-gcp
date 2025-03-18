@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Button from "../Button/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function IndexHeroRenewed({ onScrollDown }) {
   const { keycloak } = useKeycloak<KeycloakInstance>();
@@ -100,9 +101,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     {t("signUp")}
                   </Button>
-                  {/* <Button className={s.buttonFindArt} onClick={onScrollDown}>
-                    {t("findArt")}
-                  </Button> */}
+                  <Link href={"/discover"} passHref>
+                    <Button className={s.buttonFindArt}>{t("findArt")}</Button>
+                  </Link>
                 </div>
               </div>
             </section>

@@ -291,20 +291,21 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     buttonFindArt: {
-      border: "1px solid #99999987",
       borderRadius: "40px",
       marginRight: "10px",
       padding: "10px 10px 10px 10px",
-      fontSize: "12px",
-      fontWeight: 300,
+      fontSize: "10px",
+      fontWeight: 600,
+      fontFamily: "Roboto !important",
+      backgroundColor: "#A70201",
+      color: "white",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },
       "&:hover": {
-        backgroundColor: "black",
-        color: "white",
-        border: "none",
+        backgroundColor: "#E2B651",
+        textDecoration: "underline",
       },
     },
     seeMoreButton: {
