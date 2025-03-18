@@ -15,21 +15,20 @@ export const styles = makeStyles((theme: Theme) => {
       textAlign: "center",
       fontFamily: "Roboto",
       [theme.breakpoints.up("smPlus")]: {
+        marginLeft: "10px",
         fontSize: "40px",
-        marginLeft: "10%",
         textAlign: "start",
       },
     },
     text: {
       fontSize: "13px",
       fontFamily: "Joan",
-      width: "90%",
       margin: "0 auto",
       textAlign: "center",
       color: "rgb(0 0 0 / 47%)",
       [theme.breakpoints.up("smPlus")]: {
+        marginLeft: "10px",
         fontSize: "20px",
-        marginLeft: "10%",
         textAlign: "start",
       },
     },
@@ -46,10 +45,12 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
     wrap: {
-      width: "100%",
+      width: "90%",
       marginTop: "10px",
+      margin: "0 auto",
       [theme.breakpoints.up("smPlus")]: {
-        width: "90%",
+        width: "80%",
+        margin: "0 auto",
       },
     },
   });

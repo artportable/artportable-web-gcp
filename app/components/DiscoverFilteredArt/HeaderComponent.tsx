@@ -14,7 +14,7 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
     <>
       {page === "latest" && (
         <div className={s.container}>
-          <div style={{ marginLeft: filterOpen ? "25%" : "10%" }}>
+          <div style={{ marginLeft: filterOpen ? "23%" : "10%" }}>
             <div
               style={{
                 fontSize: "35px",
@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
       )}
       {page === "likes" && (
         <div className={s.containerLiked}>
-          <div style={{ marginLeft: filterOpen ? "25%" : "10%" }}>
+          <div style={{ marginLeft: filterOpen ? "23%" : "10%" }}>
             <div
               style={{
                 fontSize: "35px",
