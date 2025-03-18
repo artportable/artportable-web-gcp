@@ -107,7 +107,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("nude")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/marieplosjo.jpg")`,
+          backgroundImage: `url("/images/plosjotwo.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
