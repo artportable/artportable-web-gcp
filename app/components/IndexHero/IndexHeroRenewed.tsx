@@ -41,7 +41,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/07106225-1add-43c1-bac0-ca651e22cc8e">
+                <a href="https://artportable.com/art/0839e891-9c94-49e5-b1a8-0edef931848d">
                   <div
                     style={{
                       position: "relative",
@@ -52,8 +52,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <Image
                       src={
                         isTinyDevice
-                          ? "/images/arttwo.jpeg"
-                          : "/images/arttwo.jpeg"
+                          ? "/images/felix.jpeg"
+                          : "/images/felix.jpeg"
                       }
                       alt="first page artwork"
                       priority
@@ -69,7 +69,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Lovisa Carlman Bydén,&nbsp;
+                        Felix Oppenheim,&nbsp;
                       </p>
                       <p
                         style={{
@@ -79,7 +79,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Svaret är JA
+                        Expedition Kashmir
                       </p>
                     </div>
                   </div>
