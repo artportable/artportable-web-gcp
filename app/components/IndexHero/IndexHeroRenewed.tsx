@@ -111,7 +111,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar">
+                  <a href="https://artportable.com/art/372e16cf-d777-424f-94de-1ae1a47b6af0">
                     <div
                       style={{
                         position: "relative",
@@ -120,7 +120,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/liljevalch.jpg"}
+                        src={"/images/artone.jpeg"}
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -134,13 +134,16 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Foto: Mattias Lindbäck
+                          Lovisa Carlman Bydén, &nbsp;
+                          <span style={{ fontStyle: "italic" }}>
+                            Det bästa bordet är baren
+                          </span>
                         </p>
                       </div>
                     </div>
                   </a>
                 ) : (
-                  <a href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar">
+                  <a href="https://artportable.com/art/372e16cf-d777-424f-94de-1ae1a47b6af0">
                     <div
                       style={{
                         position: "relative",
@@ -149,7 +152,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/liljevalch.jpg"}
+                        src={"/images/artone.jpeg"}
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
@@ -163,7 +166,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             color: "black",
                           }}
                         >
-                          Foto: Mattias Lindbäck
+                          Lovisa Carlman Bydén, &nbsp;
+                          <span style={{ fontStyle: "italic" }}>
+                            Det bästa bordet är baren
+                          </span>
                         </p>
                       </div>
                     </div>
@@ -171,16 +177,18 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 )}
               </div>
               <div className={s.headlineWrapperRest}>
-                <div className={s.headlineStyled}>{t("artistTitle")}</div>
+                <div className={s.headlineStyled}>
+                  Del 1: Konst för livet – en köpguide
+                </div>
                 <div className={s.headlineThree}>
-                  {t("artistDescription")}
+                  Så köper du konst som känns personlig – inte bara snygg
                 </div>{" "}
                 <br />
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/artiklar/liljevalchs-varsalong-2025-har-nu-oppnat-sina-dorrar---textilkonst-populart-i-ar"
+                    href="https://artportable.com/editorial/konst-for-livet"
                   >
                     {t("seeMore")}
                   </a>
