@@ -29,7 +29,7 @@ export default function lars({ navBarItems }) {
             property="og:title"
             content="Lars Källgren fångar barndomens magi i ny utställning på Galleri Risberg"
           />
-          <meta property="og:image" content="/images/larsThree.jpeg" />
+          <meta property="og:image" content="/images/larsthree.jpeg" />
           <meta
             property="og:description"
             content="Utforska Lars Källgrens senaste utställning 'Barn i aktivitet', en samling målningar som hyllar barndomens glädje och rörelse."
