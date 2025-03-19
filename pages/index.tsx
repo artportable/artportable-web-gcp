@@ -98,9 +98,10 @@ export default function DiscoverPage({ navBarItems }) {
       <Head>
         <title>{t("index:title")}</title>
         <meta name="description" content={t("index:description")} />
+        <meta property="og:image" content="/images/ArtportableLogo.svg" />
         <meta
-          property="og:image"
-          content="/images/artportable_tv_commercial.png"
+          name="keywords"
+          content="konst, köpa konst, utställning, Galleri, oljemålningar, konstnär, tavlor"
         />
         <meta property="og:url" content="https://artportable.com/" />
         <script
