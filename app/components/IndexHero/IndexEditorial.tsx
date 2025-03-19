@@ -18,6 +18,7 @@ export default function IndexEditorial() {
               height={"300px"}
               objectFit="cover"
               priority
+              quality={10}
             />
           </Link>
         </div>
