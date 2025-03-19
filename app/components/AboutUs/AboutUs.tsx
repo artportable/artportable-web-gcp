@@ -33,6 +33,12 @@ export default function AboutMe() {
       email: "melker@artportable.com",
     },
     {
+      name: "Massi Wararoodi",
+      title: "CTO",
+      image: "",
+      email: "massi@artportable.com",
+    },
+    {
       name: "Erik Nordlander",
       title: "Marketing & Founder",
       image: "/staff/artportable_erik.jpg",
