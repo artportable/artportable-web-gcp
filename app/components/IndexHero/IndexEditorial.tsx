@@ -13,7 +13,7 @@ export default function IndexEditorial() {
         <div>
           <Link href="https://artportable.com/editorial/lars-kallgren">
             <Image
-              src={"/images/larsThree.jpeg"}
+              src={"/images/larsthree.jpeg"}
               width={"600px"}
               height={"300px"}
               objectFit="cover"
