@@ -35,8 +35,11 @@ export default function lars({ navBarItems }) {
             content="Utforska Lars Källgrens senaste utställning 'Barn i aktivitet', en samling målningar som hyllar barndomens glädje och rörelse."
           />
           <meta property="og:type" content="article" />
-          <meta property="og:url" content={`${publicUrl}/lars-kallgren`} />
-          <link rel="canonical" href={`${publicUrl}/lars-kallgren`} />
+          <meta
+            property="og:url"
+            content={`${publicUrl}/editorial/lars-kallgren`}
+          />
+          <link rel="canonical" href={`${publicUrl}/editorial/lars-kallgren`} />
         </Head>
         <div className={s.imageWrapper}>
           <Link href="https://artportable.com/art/4ba15424-3bdc-41d6-a084-5f2c287db73b">
