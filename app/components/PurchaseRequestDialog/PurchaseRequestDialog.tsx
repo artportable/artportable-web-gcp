@@ -66,11 +66,21 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
 
     if (userEmail || email.value) {
       const response = await fetch(
-        `${apiBaseUrl}/api/messages/purchaserequest?email=${userEmail}&message=${customMessage}&artworkurl=${props.url}&artworkName=${props.title}&artistId=${props.referTo}&artworkImageUrl=${props.imageUrl}&recaptchaToken=${recaptchaToken}`,
+        `${apiBaseUrl}/api/messages/purchaserequest?` +
+          new URLSearchParams({
+            email: userEmail,
+            message: customMessage,
+            artworkurl: props.url,
+            artworkName: props.title,
+            artistId: props.referTo,
+            artworkImageUrl: props.imageUrl,
+            recaptchaToken: recaptchaToken,
+          }),
         {
           method: "GET",
         }
       );
+
       setMessageResponse(response.status.toString());
     }
   };
@@ -105,7 +115,10 @@ export default function PurchaseRequestDialog({ open, onClose, props }) {
           {messageResponse == "200" ? (
             <Typography>{t("thanksForYourInterestText")}</Typography>
           ) : (
-            t("somethinWentWrongText")
+            <div>
+              {t("somethinWentWrongText")}
+              {messageResponse}
+            </div>
           )}
           <div className={s.buttonContainer}>
             <Button
