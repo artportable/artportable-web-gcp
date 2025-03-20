@@ -224,7 +224,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Knut Sönstevold
+                          Knut Sönstevold, &nbsp;
+                          <span style={{ fontStyle: "italic" }}>Fallande</span>
                         </p>
                       </div>
                     </div>
