@@ -11,9 +11,9 @@ export default function IndexEditorial() {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.com/editorial/lars-kallgren">
+          <Link href="https://artportable.com/editorial/vesterlund">
             <Image
-              src={"/images/larsthree.jpeg"}
+              src={"/images/vesterlundthree.jpeg"}
               width={"600px"}
               height={"300px"}
               objectFit="cover"
@@ -25,18 +25,46 @@ export default function IndexEditorial() {
         <div className={s.titles}>
           {" "}
           <Link
-            href="https://artportable.com/editorial/lars-kallgren"
+            href="https://artportable.com/editorial/vesterlund"
             className={s.titleTwo}
           >
-            Lars Källgren fångar barndomens magi i ny utställning på Galleri
-            Risberg
+            Färg, harmoni och naturens energi – Therese Vesterlund om sin väg in
+            i måleriet
           </Link>{" "}
           <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-19</div>
+          <div>Publicerat: 2025-03-20</div>
         </div>
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/lars-kallgren">
+                <Image
+                  src={"/images/larsthree.jpeg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/lars-kallgren"
+                className={s.titleGrid}
+              >
+                Lars Källgren fångar barndomens magi i ny utställning på Galleri
+                Risberg
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-03-19</div>
+            </div>
+          </div>
+        </div>
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>
