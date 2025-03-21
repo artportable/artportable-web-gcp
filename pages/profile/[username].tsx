@@ -586,11 +586,11 @@ export default function Profile(props) {
                   )}
 
                   {/* Liked Art tab */}
-                  {/* <Tab
+                  <Tab
                     className={clsx(s.tab, {})}
                     label={t("discover:likedArt")}
                     {...a11yProps(likedArtTabIndex)}
-                  /> */}
+                  />
 
                   {/* Conditionally render the articles tab */}
                   {articles && articles.length > 0 && (
@@ -863,7 +863,7 @@ export default function Profile(props) {
                     </TabPanel>
                   )}
                   {/* Liked Art TabPanel */}
-                  {/* <TabPanel value={activeTab} index={likedArtTabIndex}>
+                  <TabPanel value={activeTab} index={likedArtTabIndex}>
                     <DiscoverLikedArtTab
                       socialId={socialId.value}
                       rowWidth={rowWidth}
@@ -873,7 +873,7 @@ export default function Profile(props) {
                       activeTab={activeTab}
                       isMyProfile={isMyProfile}
                     />
-                  </TabPanel> */}
+                  </TabPanel>
                   {articles && articles?.length > 0 && (
                     <TabPanel value={activeTab} index={articlesTabIndex}>
                       {articles && (
