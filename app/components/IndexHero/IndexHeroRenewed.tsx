@@ -42,7 +42,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/0839e891-9c94-49e5-b1a8-0edef931848d">
+                <a href="https://artportable.com/art/3744a237-e898-47c0-8b8f-b11232d6d939">
                   <div
                     style={{
                       position: "relative",
@@ -52,15 +52,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        isTinyDevice
-                          ? "/images/felix.jpeg"
-                          : "/images/felix.jpeg"
+                        "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/3c452fa0-f1f4-451c-a8e7-dc29be8845ee.jpg"
                       }
                       alt="first page artwork"
                       priority
                       layout="fill"
                       objectFit="cover"
-                      quality={10}
+                      unoptimized
                     />
                     <div className={s.imageTitle}>
                       <p
@@ -70,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Felix Oppenheim,&nbsp;
+                        Sandra Svensson,&nbsp;
                       </p>
                       <p
                         style={{
@@ -80,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Expedition Kashmir
+                        Pink dreams
                       </p>
                     </div>
                   </div>

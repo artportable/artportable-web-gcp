@@ -60,7 +60,7 @@ export default function IndexArtportable() {
           </div>
         </div>
       </div>
-      <div className={s.partnersWrapper}>
+      {/* <div className={s.partnersWrapper}>
         <div className={s.partners}>{t("partners")}</div>
         <div
           style={{
@@ -87,7 +87,7 @@ export default function IndexArtportable() {
             className={s.LogoTwo}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
