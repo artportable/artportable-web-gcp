@@ -124,6 +124,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
+                        priority
                       />
                       <div className={s.imageTitle}>
                         <p
@@ -156,6 +157,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
+                        priority
                       />
                       <div className={s.imageTitle}>
                         <p
@@ -208,7 +210,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/curated.jpg"}
+                        src={
+                          "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/82c89d55-a979-4bc5-9b15-6cf5c2dab7f7.jpg"
+                        }
                         alt="konst"
                         loading="lazy"
                         layout="fill"
@@ -238,11 +242,15 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       }}
                     >
                       <Image
-                        src={"/images/curated.jpg"}
+                        src={
+                          "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/82c89d55-a979-4bc5-9b15-6cf5c2dab7f7.jpg"
+                        }
                         alt="artworkimage"
                         loading="lazy"
                         layout="fill"
                         objectFit="cover"
+                        unoptimized
+                        priority
                       />
                       <div className={s.imageTitle}>
                         <p
