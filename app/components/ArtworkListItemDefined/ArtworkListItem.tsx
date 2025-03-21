@@ -177,31 +177,19 @@ export default function ArtworkListItem({
     if (translatedA.length > translatedB.length) return 1;
     return 0;
   };
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className={s.container}>
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
-          <a
-            className="relative"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
+          <a className="relative">
             <Image
               width={width}
               height={height}
               alt={artwork?.Title ? artwork?.Title : "artwork"}
-              key={
-                isHovered
-                  ? artwork?.SecondaryFile?.Name
-                  : artwork?.PrimaryFile?.Name
-              }
-              src={`${bucketUrl}${
-                isHovered && artwork?.SecondaryFile?.Name
-                  ? artwork.SecondaryFile?.Name
-                  : artwork.PrimaryFile?.Name
-              }`}
+              key={artwork?.PrimaryFile?.Name}
+              src={`${bucketUrl}${artwork.PrimaryFile?.Name}`}
               unoptimized
               priority
             />
