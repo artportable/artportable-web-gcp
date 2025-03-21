@@ -234,63 +234,67 @@ export default function ProfileNew({
             : ""}
         </Typography>
         <Spacer y={20} />
-        <div className={s.counterBox}>
-          <Button
-            className={s.followersButton}
-            onClick={() => setFollowersOpen(true)}
-            style={{ paddingRight: 5 }}
-          >
-            <Typography
-              variant="caption"
-              className={clsx(s.followFollowersArtworks, {
-                [s.lightText]: useLightText,
-              })}
+        {isSignedIn.value && (
+          <div className={s.counterBox}>
+            <Button
+              className={s.followersButton}
+              onClick={() => setFollowersOpen(true)}
+              style={{ paddingRight: 5 }}
             >
-              {capitalizeFirst(t("words.followers"))}
-            </Typography>
-            <Typography
-              variant="body2"
-              className={clsx({ [s.lightText]: useLightText })}
+              <Typography
+                variant="caption"
+                className={clsx(s.followFollowersArtworks, {
+                  [s.lightText]: useLightText,
+                })}
+              >
+                {capitalizeFirst(t("words.followers"))}
+              </Typography>
+              <Typography
+                variant="body2"
+                className={clsx({ [s.lightText]: useLightText })}
+              >
+                {connectionscountData?.loading && (
+                  <CircularProgress size={10} />
+                )}
+                {followers}
+              </Typography>
+            </Button>
+            <UserListDialog
+              title={capitalizeFirst(t("words.followers"))}
+              users={followersData}
+              open={followersOpen}
+              onClose={() => setFollowersOpen(false)}
+            />
+            <Button
+              onClick={() => setFollowingOpen(true)}
+              className={s.followersButton}
+              style={{ paddingLeft: 5 }}
             >
-              {connectionscountData?.loading && <CircularProgress size={10} />}
-              {followers}
-            </Typography>
-          </Button>
-          <UserListDialog
-            title={capitalizeFirst(t("words.followers"))}
-            users={followersData}
-            open={followersOpen}
-            onClose={() => setFollowersOpen(false)}
-          />
-          <Button
-            onClick={() => setFollowingOpen(true)}
-            className={s.followersButton}
-            style={{ paddingLeft: 5 }}
-          >
-            <Typography
-              variant="caption"
-              className={clsx(s.followFollowersArtworks, {
-                [s.lightText]: useLightText,
-              })}
-            >
-              {capitalizeFirst(t("words.following"))}
-            </Typography>
-            <Typography
-              variant="body2"
-              className={clsx({ [s.lightText]: useLightText })}
-            >
-              {connectionscountData.loading && <CircularProgress size={10} />}
-              {following}
-            </Typography>
-          </Button>
+              <Typography
+                variant="caption"
+                className={clsx(s.followFollowersArtworks, {
+                  [s.lightText]: useLightText,
+                })}
+              >
+                {capitalizeFirst(t("words.following"))}
+              </Typography>
+              <Typography
+                variant="body2"
+                className={clsx({ [s.lightText]: useLightText })}
+              >
+                {connectionscountData.loading && <CircularProgress size={10} />}
+                {following}
+              </Typography>
+            </Button>
 
-          <UserListDialog
-            title={capitalizeFirst(t("words.following"))}
-            users={followingData}
-            open={followingOpen}
-            onClose={() => setFollowingOpen(false)}
-          />
-        </div>
+            <UserListDialog
+              title={capitalizeFirst(t("words.following"))}
+              users={followingData}
+              open={followingOpen}
+              onClose={() => setFollowingOpen(false)}
+            />
+          </div>
+        )}
 
         <Spacer y={20} />
 

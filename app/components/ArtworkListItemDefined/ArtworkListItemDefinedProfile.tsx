@@ -188,7 +188,7 @@ export default function ArtworkListItemDefinedProfile({
             {artwork && artwork.Title ? artwork.Title : t("untitled")}
           </div>
 
-          <IconButton
+          {/* <IconButton
             aria-label="like"
             className={s.likeButton}
             onClick={toggleLike}
@@ -197,7 +197,7 @@ export default function ArtworkListItemDefinedProfile({
             <div className={s.likeMobile}>
               {artwork && artwork.Likes > 0 ? artwork.Likes : ""}
             </div>
-          </IconButton>
+          </IconButton> */}
         </div>
       ) : (
         !indexPage &&

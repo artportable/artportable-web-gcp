@@ -134,11 +134,13 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:hover": {
         backgroundColor: "#D6A407",
+        color: "white",
       },
     },
 
     messageButton: {
-      backgroundColor: "#FDF9F7",
+      backgroundColor: "#0176D5",
+      color: "white",
       margin: "0px 10px 0px 10px",
       display: "flex",
       minWidth: 110,
@@ -149,7 +151,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "flex",
       },
       "&:hover": {
-        backgroundColor: "#f9e9e1",
+        backgroundColor: "#D6A407",
       },
     },
     following: {
