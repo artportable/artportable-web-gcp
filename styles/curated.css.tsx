@@ -6,6 +6,7 @@ export const styles = makeStyles((theme: Theme) => {
       marginTop: "0px",
       display: "flex",
       flexDirection: "column",
+
       [theme.breakpoints.up("smPlus")]: {
         marginTop: "30px",
       },
@@ -14,10 +15,12 @@ export const styles = makeStyles((theme: Theme) => {
       fontSize: "26px",
       textAlign: "center",
       fontFamily: "Roboto",
+      marginTop: "10px",
       [theme.breakpoints.up("smPlus")]: {
-        marginLeft: "10px",
-        fontSize: "40px",
+        fontSize: "35px",
         textAlign: "start",
+        marginTop: "0px",
+        marginBottom: "0px",
       },
     },
     text: {
@@ -27,26 +30,30 @@ export const styles = makeStyles((theme: Theme) => {
       textAlign: "center",
       color: "rgb(0 0 0 / 47%)",
       [theme.breakpoints.up("smPlus")]: {
-        marginLeft: "10px",
         fontSize: "20px",
         textAlign: "start",
       },
     },
     textWrapper: {
       display: "flex",
-      justifyContent: "center",
       backgroundColor: "#FCF7EC",
-      height: "180px",
-      flexDirection: "column",
-      gridColumn: "1 / 4",
+      height: "200px",
       marginBottom: "20px",
       [theme.breakpoints.up("smPlus")]: {
-        height: "250px",
+        display: "flex",
+        backgroundColor: "#FCF7EC",
+        color: "black",
+        gridColumn: "1/4",
+        padding: "20px",
+        marginRight: "0",
+        marginLeft: "auto",
+        width: "100vw",
+        alignItems: "center",
+        height: "300px",
       },
     },
     wrap: {
       width: "90%",
-      marginTop: "10px",
       margin: "0 auto",
       [theme.breakpoints.up("smPlus")]: {
         width: "80%",

@@ -10,9 +10,11 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 
+import { styles } from "../styles/curated.css";
 export default function newsroom({ navBarItems }) {
+  const s = styles();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
-  const { t } = useTranslation(["header"]);
+  const { t } = useTranslation(["header", "index"]);
   const { locale } = useRouter();
   const { username, socialId, isSignedIn, membership } =
     useContext(UserContext);
@@ -25,6 +27,19 @@ export default function newsroom({ navBarItems }) {
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
+        <div
+          style={{
+            height: "300px",
+          }}
+          className={s.textWrapper}
+        >
+          <div className={s.wrap}>
+            <div className={s.title}>{t("index:titleNews")}</div>
+            <br />
+            <div className={s.text}>{t("index:textNews")}</div>
+          </div>
+        </div>
+
         <div style={{ marginTop: "30px" }}>
           <DiscoverStoriesTab />
         </div>

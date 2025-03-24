@@ -42,7 +42,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/3744a237-e898-47c0-8b8f-b11232d6d939">
+                <a href="https://artportable.com/art/27caed1b-4d91-41f0-bac7-0b3e80fead3d">
                   <div
                     style={{
                       position: "relative",
@@ -52,7 +52,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   >
                     <Image
                       src={
-                        "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/3c452fa0-f1f4-451c-a8e7-dc29be8845ee.jpg"
+                        "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/442f87c5-1b51-4235-8bd8-51b930373761.jpg"
                       }
                       alt="first page artwork"
                       priority
@@ -68,7 +68,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           paddingLeft: "4px",
                         }}
                       >
-                        Sandra Svensson,&nbsp;
+                        Sepideh Sarrafzadeh,&nbsp;
                       </p>
                       <p
                         style={{
@@ -78,7 +78,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           fontStyle: "italic",
                         }}
                       >
-                        Pink dreams
+                        2504-46
                       </p>
                     </div>
                   </div>
@@ -121,7 +121,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       <Image
                         src={"/images/artone.jpeg"}
                         alt="konst"
-                        loading="lazy"
                         layout="fill"
                         objectFit="cover"
                         priority
@@ -154,7 +153,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       <Image
                         src={"/images/artone.jpeg"}
                         alt="artworkimage"
-                        loading="lazy"
                         layout="fill"
                         objectFit="cover"
                         priority
@@ -214,7 +212,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/82c89d55-a979-4bc5-9b15-6cf5c2dab7f7.jpg"
                         }
                         alt="konst"
-                        loading="lazy"
                         layout="fill"
                         objectFit="cover"
                       />
@@ -246,7 +243,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/82c89d55-a979-4bc5-9b15-6cf5c2dab7f7.jpg"
                         }
                         alt="artworkimage"
-                        loading="lazy"
                         layout="fill"
                         objectFit="cover"
                         unoptimized

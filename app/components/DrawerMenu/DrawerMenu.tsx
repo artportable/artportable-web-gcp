@@ -418,13 +418,13 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link> */}
-        <Link href={"/latestart"} passHref>
+        {/* <Link href={"/latestart"} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("latest")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
         <Link href={"/discover"} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
@@ -477,13 +477,13 @@ export default function DrawerMenu({
           </div>
         )} */}
 
-        <Link href={"/collaboration"} passHref>
+        {/* <Link href={"/collaboration"} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
               <ListItemText primary={t("collaboration")} />
             </ListItem>
           </a>
-        </Link>
+        </Link> */}
         <Link href={"/newsroom"} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>

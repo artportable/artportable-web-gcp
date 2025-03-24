@@ -35,7 +35,7 @@ export default function latest({ navBarItems }) {
   return (
     <>
       <Main
-        noHeaderPadding
+        noHeaderPadding={isMobile ? true : false}
         wide={false}
         isShow={true}
         navBarItems={navBarItems}
@@ -46,15 +46,11 @@ export default function latest({ navBarItems }) {
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <div
-          style={{
-            width: !isMobile ? "100%" : "100%",
-          }}
-          className={s.textWrapper}
-        >
+        <div className={s.textWrapper}>
           {" "}
           <div className={s.wrap}>
             <div className={s.title}>{t("index:titleHeader")}</div>
+            <br />
             <div className={s.text}>{t("index:descriptionBody")}</div>
           </div>
         </div>

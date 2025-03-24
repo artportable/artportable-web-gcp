@@ -488,12 +488,12 @@ export default function Header({ navBarItems }) {
               </div>
             </div>
             <div className={s.titleWrapper}>
-              <div className={s.titlesOnHeader}>
+              {/* <div className={s.titlesOnHeader}>
                 <Link href={"/latestart"} passHref>
                   {t("latest")}
                 </Link>
                 <br />
-              </div>
+              </div> */}
               <div className={s.titlesOnHeader}>
                 <Link href={"/discover"} passHref>
                   {t("findArt")}
