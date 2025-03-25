@@ -11,9 +11,9 @@ export default function IndexEditorial() {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.com/editorial/vesterlund">
+          <Link href="https://artportable.com/editorial/onneby">
             <Image
-              src={"/images/vesterlundthree.jpeg"}
+              src={"/images/onneby.jpeg"}
               width={"600px"}
               height={"300px"}
               objectFit="cover"
@@ -25,18 +25,45 @@ export default function IndexEditorial() {
         <div className={s.titles}>
           {" "}
           <Link
-            href="https://artportable.com/editorial/vesterlund"
+            href="https://artportable.com/editorial/onneby"
             className={s.titleTwo}
           >
-            Färg, harmoni och naturens energi – Therese Vesterlund om sin väg in
-            i måleriet
+            Anneli Önneby – konstnären som lyssnar till djurens berättelser
           </Link>{" "}
           <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-20</div>
+          <div>Publicerat: 2025-03-25</div>
         </div>
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/vesterlund">
+                <Image
+                  src={"/images/vesterlundthree.jpeg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/vesterlund"
+                className={s.titleGrid}
+              >
+                Färg, harmoni och naturens energi – Therese Vesterlund om sin
+                väg in i måleriet
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-03-20</div>
+            </div>
+          </div>
+        </div>
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>
