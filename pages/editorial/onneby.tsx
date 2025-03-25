@@ -31,7 +31,7 @@ export default function onneby({ navBarItems }) {
             property="og:title"
             content="Anneli Önneby – konstnären som lyssnar till djurens berättelser"
           />
-          <meta property="og:image" content="/images/onnebyjpeg" />
+          <meta property="og:image" content="/images/onneby.jpeg" />
           <meta
             property="og:description"
             content="Anneli Önneby – konstnären som lyssnar till djurens berättelser"
