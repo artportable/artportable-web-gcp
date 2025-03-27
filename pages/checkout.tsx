@@ -33,12 +33,9 @@ export default function Checkout() {
   const plan = store.getState()?.signup?.price;
   const s = styles();
 
-  // useEffect(() => {
-  //   // TODO: Do redirect of unauthed users in a better way
-  //   if (!plan) {
-  //     router.push("/plans");
-  //   }
-  // });
+  useEffect(() => {
+    console.log(plan?.id);
+  }, [plan]);
 
   useEffect(() => {
     if (initialized && keycloak.tokenParsed) {
