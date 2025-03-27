@@ -42,14 +42,6 @@ export default function PlanSelector({
     return a.amount - b.amount;
   }
 
-  useEffect(() => {
-    console.log(plans);
-  }, [plans]);
-
-  useEffect(() => {
-    console.log(membership.value);
-  }, [membership.value]);
-
   return (
     <div style={{ marginTop: "20px" }}>
       {!hideTabs && (

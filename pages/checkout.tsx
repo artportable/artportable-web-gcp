@@ -34,10 +34,6 @@ export default function Checkout() {
   const s = styles();
 
   useEffect(() => {
-    console.log(plan?.id);
-  }, [plan]);
-
-  useEffect(() => {
     if (initialized && keycloak.tokenParsed) {
       const parsedToken = keycloak.tokenParsed as any;
       setEmail(parsedToken.email);

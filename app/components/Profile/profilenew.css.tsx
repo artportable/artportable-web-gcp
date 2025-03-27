@@ -122,12 +122,13 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     actionButton: {
-      backgroundColor: "#FFDA7A",
+      border: "1px solid black",
+      backgroundColor: "white",
       margin: "0px 10px 0px 10px",
       display: "flex",
       minWidth: 110,
       fontSize: "14px",
-      border: "1px solid transparent",
+
       borderRadius: "20px",
       [theme.breakpoints.up("md")]: {
         display: "flex",
@@ -139,19 +140,20 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     messageButton: {
-      backgroundColor: "#0176D5",
-      color: "white",
+      border: "1px solid black",
+      backgroundColor: "white",
       margin: "0px 10px 0px 10px",
       display: "flex",
       minWidth: 110,
       fontSize: "14px",
       borderRadius: "20px",
-      border: "1px solid #f9e9e1",
+
       [theme.breakpoints.up("md")]: {
         display: "flex",
       },
       "&:hover": {
         backgroundColor: "#D6A407",
+        color: "white",
       },
     },
     following: {
