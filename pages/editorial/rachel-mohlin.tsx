@@ -63,9 +63,12 @@ export default function mohlin({ navBarItems }) {
 
             <br />
             <div className={s.mainText}>
-              Ett porträtt av Rachel Mohlin – Skådespelare. Imitatör.
-              Författare. Regissör. Låtskrivare. Manusförfattare. och
-              Bildskapare. <br />
+              <span style={{ fontWeight: "600" }}>
+                Ett porträtt av Rachel Mohlin – Skådespelare. Imitatör.
+                Författare. Regissör. Låtskrivare. Manusförfattare. och
+                Bildskapare.
+              </span>{" "}
+              <br />
               <br />
               Rachel Mohlin rör sig fritt mellan uttryck – men alltid med
               människan i centrum. I varje roll, varje penseldrag, varje ord
@@ -163,11 +166,10 @@ export default function mohlin({ navBarItems }) {
               målningarna ibland tala bokstavligen – med inskrivna repliker,
               skämt eller små lögner. – Jag hade en period när jag skrev på
               målningarna, berättar hon. – Korta dialoger, skämt, uppmaningar,
-              eller bara rena rama lögner. Det kommer nog tillbaka.
-              <br />
-              Det är faktiskt redan på gång. Faktum är att mitt nästa verk heter
-              just: JAG SKALL LÄMNA LÖGNER EFTER MIG. (både måleri och scenkonst
-              ryms i detta verk)
+              eller bara rena rama lögner. Det kommer nog tillbaka. Det är
+              faktiskt redan på gång. Faktum är att mitt nästa verk heter just:
+              JAG SKALL LÄMNA LÖGNER EFTER MIG. (både måleri och scenkonst ryms
+              i detta verk)
             </div>
             <br />
             <br />
@@ -220,6 +222,20 @@ export default function mohlin({ navBarItems }) {
                   alt="rachel mohlin konstverk"
                 />
               </div>
+              <div className={s.image}>
+                <Image
+                  src={"/images/rachelimage.jpeg"}
+                  width={"400px"}
+                  height={"300px"}
+                  objectFit="contain"
+                  quality={10}
+                  priority
+                  alt="rachel mohlin konstverk"
+                />
+                <div style={{ fontStyle: "italic", textAlign: "center" }}>
+                  Foto Matilda Rahm
+                </div>
+              </div>
             </div>
 
             <br />
@@ -228,9 +244,14 @@ export default function mohlin({ navBarItems }) {
             <div className={s.text}>
               Låt dig inspireras av konstnärer som skapar med hjärta, själ och
               berättelse. Utforska originalkonst direkt från konstnärer på
-              Artportable.com.
+              &nbsp;
+              <a
+                style={{ textDecoration: "underline" }}
+                href="https://artportable.com/discover"
+              >
+                Artportable.com
+              </a>
             </div>
-            <br />
           </div>
           <br />
           <br />
