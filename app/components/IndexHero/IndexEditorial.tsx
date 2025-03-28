@@ -11,9 +11,9 @@ export default function IndexEditorial() {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div>
-          <Link href="https://artportable.com/editorial/onneby">
+          <Link href="https://artportable.com/editorial/rachel-mohlin">
             <Image
-              src={"/images/onneby.jpeg"}
+              src={"/images/racheltwo.jpeg"}
               width={"600px"}
               height={"300px"}
               objectFit="cover"
@@ -25,17 +25,44 @@ export default function IndexEditorial() {
         <div className={s.titles}>
           {" "}
           <Link
-            href="https://artportable.com/editorial/onneby"
+            href="https://artportable.com/editorial/rachel-mohlin"
             className={s.titleTwo}
           >
-            Anneli Önneby – konstnären som lyssnar till djurens berättelser
+            Rachel Mohlin – &quot;Jag kommer lämna lögner efter mig&quot;
           </Link>{" "}
           <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-25</div>
+          <div>Publicerat: 2025-03-28</div>
         </div>
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/onneby">
+                <Image
+                  src={"/images/onneby.jpeg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/onneby"
+                className={s.titleGrid}
+              >
+                Anneli Önneby – konstnären som lyssnar till djurens berättelser
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-03-25</div>
+            </div>
+          </div>
+        </div>
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>
