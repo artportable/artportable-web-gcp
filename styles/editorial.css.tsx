@@ -22,7 +22,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     mainTitle: {
       marginTop: "20px",
-      fontSize: "32px",
+      fontSize: "22px",
       fontFamily: "Roboto",
       [theme.breakpoints.up("mdPlus")]: {
         fontSize: "48px",
@@ -30,7 +30,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     mainText: {
       zIndex: 10,
-      fontSize: "22px",
+      fontSize: "18px",
       fontFamily: "Joan",
     },
 

@@ -43,16 +43,19 @@ export default function mohlin({ navBarItems }) {
           />
           <link rel="canonical" href={`${publicUrl}/editorial/rachel-mohlin`} />
         </Head>
+        <div style={{ marginTop: "20px" }}></div>
         <div className={s.imageWrapper}>
           <Image
-            src={"/images/racheltwo.jpeg"}
+            src={"/images/rachelimage.jpeg"}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             priority
             alt="Rachel Mohlin konstverk"
           />
         </div>
-
+        <div style={{ fontStyle: "italic", textAlign: "center" }}>
+          Rachel Mohlin. Foto: Matilda Rahm
+        </div>
         <div className={s.textContainer}>
           <div>
             <div className={s.mainTitle}>
@@ -221,20 +224,6 @@ export default function mohlin({ navBarItems }) {
                   priority
                   alt="rachel mohlin konstverk"
                 />
-              </div>
-              <div className={s.image}>
-                <Image
-                  src={"/images/rachelimage.jpeg"}
-                  width={"400px"}
-                  height={"300px"}
-                  objectFit="contain"
-                  quality={10}
-                  priority
-                  alt="rachel mohlin konstverk"
-                />
-                <div style={{ fontStyle: "italic", textAlign: "center" }}>
-                  Foto Matilda Rahm
-                </div>
               </div>
             </div>
 

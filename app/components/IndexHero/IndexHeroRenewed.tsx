@@ -110,84 +110,77 @@ export default function IndexHeroRenewed({ onScrollDown }) {
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
-                  <a href="https://artportable.com/art/372e16cf-d777-424f-94de-1ae1a47b6af0">
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <Image
-                        src={"/images/artone.jpeg"}
-                        alt="konst"
-                        layout="fill"
-                        objectFit="cover"
-                        priority
-                      />
-                      <div className={s.imageTitle}>
-                        <p
-                          style={{
-                            backgroundColor: "white",
-                            padding: "2px",
-                            color: "black",
-                          }}
-                        >
-                          Lovisa Carlman Bydén, &nbsp;
-                          <span style={{ fontStyle: "italic" }}>
-                            Det bästa bordet är baren
-                          </span>
-                        </p>
-                      </div>
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <Image
+                      src={"/images/rachelimage.jpeg"}
+                      alt="konst"
+                      layout="fill"
+                      objectFit="cover"
+                      priority
+                    />
+                    <div className={s.imageTitle}>
+                      <p
+                        style={{
+                          backgroundColor: "white",
+                          padding: "2px",
+                          color: "black",
+                        }}
+                      >
+                        Foto: &nbsp;
+                        <span style={{ fontStyle: "italic" }}>
+                          Matilda Rahm
+                        </span>
+                      </p>
                     </div>
-                  </a>
+                  </div>
                 ) : (
-                  <a href="https://artportable.com/art/372e16cf-d777-424f-94de-1ae1a47b6af0">
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "100%",
-                        height: "100%",
-                      }}
-                    >
-                      <Image
-                        src={"/images/artone.jpeg"}
-                        alt="artworkimage"
-                        layout="fill"
-                        objectFit="cover"
-                        priority
-                      />
-                      <div className={s.imageTitle}>
-                        <p
-                          style={{
-                            backgroundColor: "white",
-                            padding: "2px",
-                            color: "black",
-                          }}
-                        >
-                          Lovisa Carlman Bydén, &nbsp;
-                          <span style={{ fontStyle: "italic" }}>
-                            Det bästa bordet är baren
-                          </span>
-                        </p>
-                      </div>
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <Image
+                      src={"/images/rachelimage.jpeg"}
+                      alt="artworkimage"
+                      layout="fill"
+                      objectFit="cover"
+                      priority
+                    />
+                    <div className={s.imageTitle}>
+                      <p
+                        style={{
+                          backgroundColor: "white",
+                          padding: "2px",
+                          color: "black",
+                        }}
+                      >
+                        Lovisa Carlman Bydén, &nbsp;
+                        <span style={{ fontStyle: "italic" }}>
+                          Det bästa bordet är baren
+                        </span>
+                      </p>
                     </div>
-                  </a>
+                  </div>
                 )}
               </div>
               <div className={s.headlineWrapperRest}>
                 <div className={s.headlineStyled}>
-                  Del 1: Konst för livet – en köpguide
+                  "Jag kommer lämna lögner efter mig"
                 </div>
-                <div className={s.headlineThree}>
-                  Så köper du konst som känns personlig – inte bara snygg
-                </div>{" "}
-                <br />
+                <div className={s.headlineThree}>– Rachel Mohlin</div> <br />
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
                     style={{ color: "white" }}
-                    href="https://artportable.com/editorial/konst-for-livet"
+                    href="https://artportable.com/editorial/rachel-mohlin"
                   >
                     {t("seeMore")}
                   </a>

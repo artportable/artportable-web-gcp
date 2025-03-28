@@ -229,7 +229,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 400,
       fontSize: "12px",
       color: "#00000078",
-      textAlign: "center",
+      textAlign: "start",
       zIndex: 20,
       width: "100%",
       padding: "0px 0px 0px 0px",
