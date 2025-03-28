@@ -164,15 +164,14 @@ export default function mohlin({ navBarItems }) {
               Hon inspireras av konstnärer som tänjer gränserna mellan uttryck:
               Marie-Louise Ekman, Marianne Lindberg De Geer, Jesper Waldersten –
               men också av stämningsrika berättare som Julie Delpy och Elizabeth
-              Strout. Och verkligen även konstnärer som: Sara-Vide Ericson och
-              Charlotte Salomon. Och som den berättare hon är, kan även
-              målningarna ibland tala bokstavligen – med inskrivna repliker,
-              skämt eller små lögner. – Jag hade en period när jag skrev på
-              målningarna, berättar hon. – Korta dialoger, skämt, uppmaningar,
-              eller bara rena rama lögner. Det kommer nog tillbaka. Det är
-              faktiskt redan på gång. Faktum är att mitt nästa verk heter just:
-              JAG SKALL LÄMNA LÖGNER EFTER MIG. (både måleri och scenkonst ryms
-              i detta verk)
+              Strout. Och verkligen även en konstnär som: Sara-Vide Ericson. Och
+              som den berättare hon är, kan även målningarna ibland tala
+              bokstavligen – med inskrivna repliker, skämt eller små lögner. –
+              Jag hade en period när jag skrev på målningarna, berättar hon. –
+              Korta dialoger, skämt, uppmaningar, eller bara rena rama lögner.
+              Det kommer nog tillbaka. Det är faktiskt redan på gång. Faktum är
+              att mitt nästa verk heter just: JAG SKALL LÄMNA LÖGNER EFTER MIG.
+              (både måleri och scenkonst ryms i detta verk)
             </div>
             <br />
             <br />
