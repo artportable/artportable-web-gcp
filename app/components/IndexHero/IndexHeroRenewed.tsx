@@ -162,9 +162,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                           color: "black",
                         }}
                       >
-                        Lovisa Carlman Bydén, &nbsp;
+                        Foto: &nbsp;
                         <span style={{ fontStyle: "italic" }}>
-                          Det bästa bordet är baren
+                          Matilda Rahm
                         </span>
                       </p>
                     </div>
