@@ -68,16 +68,16 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     loginButton: {
-      borderRadius: "40px",
+      borderRadius: "30px",
       fontWeight: 600,
       fontFamily: "Roboto",
       fontSize: "14px",
-      backgroundColor: "#0176D5",
+      backgroundColor: "black",
       color: "white",
       "&:hover": {
-        backgroundColor: "#E2B651",
-        color: "white",
-        textDecoration: "underline",
+        backgroundColor: "transparent",
+        border: "1px solid black",
+        color: "black",
       },
     },
     iconButtons: {

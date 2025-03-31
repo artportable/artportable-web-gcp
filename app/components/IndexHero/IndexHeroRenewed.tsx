@@ -63,8 +63,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <div className={s.imageTitle}>
                       <p
                         style={{
-                          color: "black",
-                          backgroundColor: "white",
+                          color: "rgb(255 255 255 / 70%)",
                           paddingLeft: "4px",
                         }}
                       >
@@ -72,8 +71,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       </p>
                       <p
                         style={{
-                          color: "black",
-                          backgroundColor: "white",
+                          color: "rgb(255 255 255 / 70%)",
                           paddingRight: "4px",
                           fontStyle: "italic",
                         }}
@@ -88,7 +86,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.headline}>{t("nordensLargestArena")}</div>
                 <div className={s.headlineTwo}>{t("underTitle")}</div>
                 <div className={s.buttonWrapper}>
-                  <Button
+                  {/* <Button
                     className={s.buttonRegister}
                     onClick={() =>
                       keycloak.register({
@@ -98,7 +96,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     }
                   >
                     {t("signUp")}
-                  </Button>
+                  </Button> */}
                   <Link href={"/discover"} passHref>
                     <Button className={s.buttonFindArt}>{t("findArt")}</Button>
                   </Link>
@@ -127,12 +125,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <div className={s.imageTitle}>
                       <p
                         style={{
-                          backgroundColor: "white",
                           padding: "2px",
-                          color: "black",
+                          color: "rgb(255 255 255 / 70%)",
                         }}
                       >
-                        Foto: &nbsp;
+                        Foto:&nbsp;
                         <span style={{ fontStyle: "italic" }}>
                           Matilda Rahm
                         </span>
@@ -157,12 +154,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     <div className={s.imageTitle}>
                       <p
                         style={{
-                          backgroundColor: "white",
                           padding: "2px",
-                          color: "black",
+                          color: "rgb(255 255 255 / 70%)",
                         }}
                       >
-                        Foto: &nbsp;
+                        Foto:&nbsp;
                         <span style={{ fontStyle: "italic" }}>
                           Matilda Rahm
                         </span>
@@ -179,7 +175,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
-                    style={{ color: "white" }}
                     href="https://artportable.com/editorial/rachel-mohlin"
                   >
                     {t("seeMore")}
@@ -211,12 +206,11 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       <div className={s.imageTitle}>
                         <p
                           style={{
-                            color: "black",
-                            backgroundColor: "white",
+                            color: "rgb(255 255 255 / 70%)",
                             padding: "2px",
                           }}
                         >
-                          Knut Sönstevold, &nbsp;
+                          Knut Sönstevold,&nbsp;
                           <span style={{ fontStyle: "italic" }}>Fallande</span>
                         </p>
                       </div>
@@ -244,8 +238,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       <div className={s.imageTitle}>
                         <p
                           style={{
-                            color: "black",
-                            backgroundColor: "white",
+                            color: "rgb(255 255 255 / 70%)",
                             padding: "2px",
                           }}
                         >
@@ -265,7 +258,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 <div className={s.buttonWrapperSeeMore}>
                   <a
                     className={s.seeMoreButton}
-                    style={{ color: "white" }}
                     href="https://artportable.com/curated"
                   >
                     {t("seeMore")}

@@ -297,15 +297,17 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "10px",
       fontWeight: 600,
       fontFamily: "Roboto !important",
-      backgroundColor: "#A70201",
+      backgroundColor: "black",
+      border: "1px solid black",
       color: "white",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },
       "&:hover": {
-        backgroundColor: "#E2B651",
-        textDecoration: "underline",
+        backgroundColor: "transparent",
+        border: "1px solid black",
+        color: "black",
       },
     },
     seeMoreButton: {
@@ -317,16 +319,17 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "left",
       color: "white",
-      backgroundColor: "#0176D5",
+      backgroundColor: "black",
+      border: "1px solid black",
       padding: "10px 20px 10px 20px",
       [theme.breakpoints.up("smPlus")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "16px",
       },
       "&:hover": {
-        backgroundColor: "#E2B651",
-        textDecoration: "underline",
-        color: "white",
+        backgroundColor: "transparent",
+        border: "1px solid black",
+        color: "black",
       },
     },
 

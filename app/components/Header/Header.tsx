@@ -295,7 +295,9 @@ export default function Header({ navBarItems }) {
                   <div className={s.login}>
                     <Button
                       className={s.loginButton}
-                      onClick={() => keycloak.login({ locale: router.locale })}
+                      onClick={() =>
+                        keycloak.register({ locale: router.locale })
+                      }
                       // onClick={() =>
                       //   keycloak.register({
                       //     locale: router.locale,
@@ -303,7 +305,7 @@ export default function Header({ navBarItems }) {
                       //   })
                       // }
                     >
-                      {t("login")}
+                      {t("sell")}
                     </Button>
                   </div>
                 )}

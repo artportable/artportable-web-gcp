@@ -31,7 +31,7 @@ export default function mohlin({ navBarItems }) {
             property="og:title"
             content='Rachel Mohlin – "Jag kommer lämna lögner efter mig"'
           />
-          <meta property="og:image" content="/images/rachelimage.jpeg" />
+          <meta property="og:image" content="/images/racheltwo.jpeg" />
           <meta
             property="og:description"
             content='Rachel Mohlin – "Jag kommer lämna lögner efter mig"'
@@ -46,16 +46,14 @@ export default function mohlin({ navBarItems }) {
         <div style={{ marginTop: "20px" }}></div>
         <div className={s.imageWrapper}>
           <Image
-            src={"/images/rachelimage.jpeg"}
+            src={"/images/racheltwo.jpeg"}
             layout="fill"
-            objectFit="contain"
+            objectFit="cover"
             priority
             alt="Rachel Mohlin konstverk"
           />
         </div>
-        <div style={{ fontStyle: "italic", textAlign: "center" }}>
-          Rachel Mohlin. Foto: Matilda Rahm
-        </div>
+
         <div className={s.textContainer}>
           <div>
             <div className={s.mainTitle}>
@@ -116,29 +114,20 @@ export default function mohlin({ navBarItems }) {
             </div>
             <br />
             <br />
-            <div className={s.imageRow}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <div className={s.image}>
                 <Image
-                  src={"/images/rachelone.jpeg"}
+                  src={"/images/rachelimage.jpeg"}
                   width={"400px"}
                   height={"300px"}
                   objectFit="contain"
                   quality={10}
                   priority
-                  alt="Rachel Mohlin konstverk"
+                  alt="rachel mohlin konstverk"
                 />
-              </div>
-
-              <div className={s.image}>
-                <Image
-                  src={"/images/racheltwo.jpeg"}
-                  width={"400px"}
-                  height={"300px"}
-                  objectFit="cover"
-                  quality={10}
-                  priority
-                  alt="Therese vesterlund konstverk"
-                />
+                <div style={{ fontStyle: "italic", textAlign: "center" }}>
+                  Rachel Mohlin. Foto: Matilda Rahm
+                </div>
               </div>
             </div>
             <br />
@@ -193,6 +182,31 @@ export default function mohlin({ navBarItems }) {
             </div>
             <br />
             <br />
+            <div className={s.imageRow}>
+              <div className={s.image}>
+                <Image
+                  src={"/images/rachelone.jpeg"}
+                  width={"400px"}
+                  height={"300px"}
+                  objectFit="contain"
+                  quality={10}
+                  priority
+                  alt="Rachel Mohlin konstverk"
+                />
+              </div>
+
+              <div className={s.image}>
+                <Image
+                  src={"/images/racheltwo.jpeg"}
+                  width={"400px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  quality={10}
+                  priority
+                  alt="Therese vesterlund konstverk"
+                />
+              </div>
+            </div>
             <div className={s.title}>
               Konsten som kraftkälla – i vardagen och i världen
             </div>
