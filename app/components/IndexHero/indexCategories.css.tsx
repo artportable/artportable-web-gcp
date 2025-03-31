@@ -41,7 +41,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     category: {
-      fontSize: "26px",
+      fontSize: "14px",
       position: "absolute",
       top: "0px",
       left: "0px",
@@ -49,9 +49,13 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       textAlign: "start",
       marginLeft: "20px",
-      fontWeight: 500,
+      fontWeight: 600,
       padding: "8px",
       "&:hover": { borderColor: "#BBBAB4 #C7C7BF #E5E4DF #C7C7BF" },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "26px",
+        fontWeight: 600,
+      },
     },
     loginButton: {
       borderRadius: "40px",
