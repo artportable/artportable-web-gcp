@@ -10,7 +10,7 @@ export default function IndexCategories() {
   const router = useRouter();
 
   const handleCategoryClick = (category) => {
-    router.push(`/latestart?category=${category}`);
+    router.push(`/discover?category=${category}`);
   };
 
   return (

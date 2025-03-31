@@ -220,7 +220,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     slider: {
       color: "#0176D5",
-      width: "310px",
+      width: "310px !important",
       height: "1px",
       [theme.breakpoints.up("smPlus")]: {
         width: "250px !important",
