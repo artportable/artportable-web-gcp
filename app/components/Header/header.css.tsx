@@ -202,6 +202,13 @@ export const styles = makeStyles((theme: Theme) =>
         color: "white",
       },
     },
+    logoButton: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      [theme.breakpoints.up("smPlus")]: {},
+    },
 
     uploadStoryButton: {
       minWidth: "100px",

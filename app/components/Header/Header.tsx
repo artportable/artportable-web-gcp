@@ -204,7 +204,7 @@ export default function Header({ navBarItems }) {
         >
           <div className={s.container}>
             <div className={s.wrapper}>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div className={s.logoButton}>
                 {isMobile && isSignedIn.value ? (
                   <Link href={logoHref}>
                     <a>
@@ -231,11 +231,17 @@ export default function Header({ navBarItems }) {
                   </Link>
                 )}
 
-                {}
-                <SearchField
+                {!isMobile && (
+                  <SearchField
+                    onFilter={handleSearch}
+                    searchQuery={searchQuery}
+                  />
+                )}
+
+                {/* <SearchField
                   onFilter={handleSearch}
                   searchQuery={searchQuery}
-                />
+                /> */}
                 {/* {isSignedIn.value && (
                   <div className={s.feed}>
                     <MuiButton color="default" size="large">
@@ -245,23 +251,7 @@ export default function Header({ navBarItems }) {
                     </MuiButton>
                   </div>
                 )} */}
-              </div>
-              {!isSignedIn.value && (
-                <div className={s.loginMobile}>
-                  <Button
-                    className={s.loginButtonMobile}
-                    onClick={() => keycloak.register({ locale: router.locale })}
-                    // onClick={() =>
-                    //   keycloak.register({
-                    //     locale: router.locale,
-                    //     redirectUri: signUpRedirectHref,
-                    //   })
-                    // }
-                  >
-                    {t("sell")}
-                  </Button>
-                </div>
-              )}
+              </div>{" "}
               <div style={{ display: "flex", alignItems: "center" }}>
                 {!isSignedIn.value && (
                   <div>
@@ -482,6 +472,25 @@ export default function Header({ navBarItems }) {
                       </div>
                     </div>
                   </>
+                )}
+
+                {!isSignedIn.value && (
+                  <div className={s.loginMobile}>
+                    <Button
+                      className={s.loginButtonMobile}
+                      onClick={() =>
+                        keycloak.register({ locale: router.locale })
+                      }
+                      // onClick={() =>
+                      //   keycloak.register({
+                      //     locale: router.locale,
+                      //     redirectUri: signUpRedirectHref,
+                      //   })
+                      // }
+                    >
+                      {t("sell")}
+                    </Button>
+                  </div>
                 )}
 
                 <div className={s.menuDrawer}>
