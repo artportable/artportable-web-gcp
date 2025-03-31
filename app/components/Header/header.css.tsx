@@ -67,6 +67,28 @@ export const styles = makeStyles((theme: Theme) =>
         fontFamily: "Roboto",
       },
     },
+
+    loginMobile: {
+      display: "flex",
+      [theme.breakpoints.up("sm")]: {
+        display: "none",
+        fontFamily: "Roboto",
+      },
+    },
+    loginButtonMobile: {
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "7px",
+      backgroundColor: "black",
+      color: "white",
+      marginLeft: "4px",
+      "&:hover": {
+        backgroundColor: "transparent",
+        border: "1px solid black",
+        color: "black",
+      },
+    },
     loginButton: {
       borderRadius: "30px",
       fontWeight: 600,

@@ -145,7 +145,6 @@ const SearchField = ({ onFilter, searchQuery }) => {
                 zIndex: 10330,
               }}
             >
-              {/* Search Bar Inside Popper */}
               <div
                 style={{
                   display: "flex",
@@ -155,7 +154,7 @@ const SearchField = ({ onFilter, searchQuery }) => {
               >
                 <TextField
                   style={{ width: "85%" }}
-                  autoFocus
+                  autoFocus={false}
                   fullWidth
                   placeholder="Search..."
                   value={inputValue}

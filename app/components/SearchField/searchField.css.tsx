@@ -8,15 +8,16 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       backgroundColor: "transparent",
       height: "38px",
-      borderRadius: "20px",
-      width: "100px", // Adjusted width to fit the icon
+      width: "60px",
       cursor: "pointer",
       marginTop: "10px",
       marginBottom: "20px",
-      marginLeft: "10px",
+      marginLeft: "5px",
+      borderBottom: "1px solid black",
       [theme.breakpoints.up("smPlus")]: {
+        marginLeft: "10px",
         marginBottom: "20px",
-        width: "500px", // Full width for larger screens
+        width: "500px",
         cursor: "default",
       },
     },
@@ -45,7 +46,7 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "100%",
-      fontSize: "14px",
+      fontSize: "12px",
       fontWeight: 400,
       fontFamily: "Roboto",
       border: "none !important",
