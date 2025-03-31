@@ -48,13 +48,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       fontWeight: 400,
       fontFamily: "Roboto",
-      border: "none",
-      autoFocus: "false",
+      border: "none !important",
+      autoFocus: "false !important",
       backgroundColor: "transparent",
       borderBottom: "1px solid #0000004f",
-
       "&:focus": {
-        border: "none",
+        border: "none !important",
       },
       "&:focus-visible": {
         outline: "none",

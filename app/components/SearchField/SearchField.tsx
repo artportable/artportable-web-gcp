@@ -116,6 +116,7 @@ const SearchField = ({ onFilter, searchQuery }) => {
           placeholder="Sök"
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
+          autoFocus={false}
         />
       </div>
       {/* Full-Width Popper at the Top */}
