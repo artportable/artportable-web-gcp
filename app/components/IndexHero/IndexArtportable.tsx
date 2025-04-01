@@ -27,7 +27,7 @@ export default function IndexArtportable() {
       }}
     >
       <div className={s.container}>
-        <div className={s.wrapper}>
+        {/* <div className={s.wrapper}>
           <div className={s.leftItem}>
             <div className={s.whatIs}>{t("whatIs")}</div>
             <div className={s.whatIsText}>{t("whatIsText")}</div>
@@ -41,7 +41,7 @@ export default function IndexArtportable() {
               quality={10}
             />
           </div>
-        </div>
+        </div> */}
 
         <div className={s.registerWrapper}>
           <div className={s.registerTitle}>{t("nextLevel")}</div>
