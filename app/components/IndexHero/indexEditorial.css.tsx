@@ -28,7 +28,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "100%",
       },
       [theme.breakpoints.up("lg")]: {
-        width: "50%",
+        width: "100%",
       },
     },
 

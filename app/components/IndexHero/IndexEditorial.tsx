@@ -9,29 +9,56 @@ export default function IndexEditorial() {
 
   return (
     <div className={s.container}>
-      <div className={s.wrapper}>
-        <div>
-          <Link href="https://artportable.com/editorial/rachel-mohlin">
-            <Image
-              src={"/images/racheltwo.jpeg"}
-              width={"600px"}
-              height={"300px"}
-              objectFit="cover"
-              priority
-              quality={10}
-            />
-          </Link>
-        </div>
-        <div className={s.titles}>
-          {" "}
-          <Link
-            href="https://artportable.com/editorial/rachel-mohlin"
-            className={s.titleTwo}
-          >
-            Rachel Mohlin – &quot;Jag kommer lämna lögner efter mig&quot;
-          </Link>{" "}
-          <div>av Erik Nordlander</div>
-          <div>Publicerat: 2025-03-28</div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/selander">
+              <Image
+                src={"/images/selanderthree.jpeg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/selander"
+              className={s.titleTwo}
+            >
+              Krister Selander – konsten som bara måste ut
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-01</div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/rachel-mohlin">
+              <Image
+                src={"/images/racheltwo.jpeg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/rachel-mohlin"
+              className={s.titleTwo}
+            >
+              Rachel Mohlin – &quot;Jag kommer lämna lögner efter mig&quot;
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-03-28</div>
+          </div>
         </div>
       </div>
 
