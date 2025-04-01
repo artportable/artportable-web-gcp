@@ -95,8 +95,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         fontWeight: 600,
                       }}
                     >
-                      Köp din favoritkonst <br />
-                      direkt från konstnären.
+                      {t("buyFrom")} <br />
+                      {t("direct")}
                       <br />
                     </p>
                     <div className={s.buttonFindArtMobile}>
