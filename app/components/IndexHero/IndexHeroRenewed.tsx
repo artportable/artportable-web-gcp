@@ -18,12 +18,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function IndexHeroRenewed({ onScrollDown }) {
-  const { keycloak } = useKeycloak<KeycloakInstance>();
-  const router = useRouter();
   const { t } = useTranslation("index");
   const s = styles();
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
-  const [signUpRedirectHref, setSignUpRedirectHref] = useState("");
 
   return (
     <div className={s.container}>
@@ -33,7 +30,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 14000,
+          delay: 1422222000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -42,65 +39,80 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapper}>
-                <a href="https://artportable.com/art/27caed1b-4d91-41f0-bac7-0b3e80fead3d">
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    <Image
-                      src={
-                        "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/442f87c5-1b51-4235-8bd8-51b930373761.jpg"
-                      }
-                      alt="first page artwork"
-                      priority
-                      layout="fill"
-                      objectFit="cover"
-                      unoptimized
-                    />
-                    <div className={s.imageTitle}>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <Image
+                    src={"/images/heroImageTwo.png"}
+                    alt="first page artwork"
+                    priority
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    unoptimized
+                  />
+                  <div className={s.imageText}>
+                    {" "}
+                    <div>
+                      {" "}
                       <p
                         style={{
-                          color: "rgb(255 255 255 / 70%)",
-                          paddingLeft: "4px",
+                          color: "white",
+                          fontWeight: 600,
                         }}
                       >
-                        Sepideh Sarrafzadeh,&nbsp;
-                      </p>
-                      <p
-                        style={{
-                          color: "rgb(255 255 255 / 70%)",
-                          paddingRight: "4px",
-                          fontStyle: "italic",
-                        }}
-                      >
-                        2504-46
+                        {t("buyFrom")} <br />
+                        {t("direct")}
+                        <br />
                       </p>
                     </div>
-                  </div>
-                </a>
+                  </div>{" "}
+                  <div className={s.imageButton}>
+                    {" "}
+                    <div className={s.buttonFindArt}>
+                      {" "}
+                      <Link href={"/discover"} passHref>
+                        {t("findArt")}
+                      </Link>
+                    </div>
+                  </div>{" "}
+                  <br />
+                </div>
               </div>
-              <div className={s.headlineWrapper}>
-                <div className={s.headline}>{t("nordensLargestArena")}</div>
-                <div className={s.headlineTwo}>{t("underTitle")}</div>
-                <div className={s.buttonWrapper}>
-                  {/* <Button
-                    className={s.buttonRegister}
-                    onClick={() =>
-                      keycloak.register({
-                        locale: router.locale,
-                        redirectUri: signUpRedirectHref,
-                      })
-                    }
-                  >
-                    {t("signUp")}
-                  </Button> */}
+              <div className={s.headlineWrapperMobile}>
+                <div className={s.imageTextMobile}>
+                  {" "}
+                  <div>
+                    {" "}
+                    <p
+                      style={{
+                        color: "black",
+                        textAlign: "center",
+                        fontWeight: 600,
+                      }}
+                    >
+                      Köp din favoritkonst <br />
+                      direkt från konstnären.
+                      <br />
+                    </p>
+                    <div className={s.buttonFindArtMobile}>
+                      {" "}
+                      <Link href={"/discover"} passHref>
+                        {t("findArt")}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className={s.buttonWrapper}>
                   <Link href={"/discover"} passHref>
                     <Button className={s.buttonFindArt}>{t("findArt")}</Button>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </section>
           </SwiperSlide>
@@ -242,7 +254,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                             padding: "2px",
                           }}
                         >
-                          Knut Sönstevold
+                          Knut Sönstevold,&nbsp;
+                          <span style={{ fontStyle: "italic" }}>Fallande</span>
                         </p>
                       </div>
                     </div>

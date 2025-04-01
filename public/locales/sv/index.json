@@ -61,7 +61,7 @@
   "orderHere": " Beställ här",
   "choosePremium": "Prova Portfolio Premium",
   "artInterest": "Konstintresserad? Se mer",
-  "findArt": "Köp originalkonst",
+  "findArt": "Utforska originalkonst",
   "titleHero": "Köp originalkonst direkt från konstnärer på Artportable",
   "artistTitle": "Vårsalongen 2025",
   "artistDescription": "Liljevalchs Vårsalong 2025 har nu öppnat sina dörrar – textilkonst populärt i år.",
@@ -84,11 +84,13 @@
   "newIn": "Nytt på Artportable",
   "newInText": "Var först med att se det senaste från våra konstnärer.",
   "chosen": "Raketen",
-  "chosenCategories": "Hitta din stil",
+  "chosenCategories": "Utforska olika stilar",
   "chosenCategoriesText": "Hitta konst som passar din stil och ditt hem med hjälp av våra populära konstkategorier.",
   "partners": "I samarbete med",
   "spotlightTitle": "I rampljuset",
   "spotlightText": "Här lyfts konstnärer fram som inspirerar, utmanar och tänjer gränser inom konsten. Deras verk fångar uppmärksamhet genom unika uttryck, engagemang eller starka berättelser. Upptäck deras konst, följ deras resa och låt dig inspireras av skaparglädje och kreativ kraft!",
   "titleNews": "Konstnärernas nyhetsflöde – utställningar, kurser och mer",
-  "textNews": "I Artportables nyhetsrum delar konstnärerna själva med sig av det senaste. Här hittar du aktuella utställningar, kommande kurser, nya samarbeten och annat spännande som händer i deras konstnärskap. Allt kommer direkt från kreatörerna – personligt, nära och alltid uppdaterat."
+  "textNews": "I Artportables nyhetsrum delar konstnärerna själva med sig av det senaste. Här hittar du aktuella utställningar, kommande kurser, nya samarbeten och annat spännande som händer i deras konstnärskap. Allt kommer direkt från kreatörerna – personligt, nära och alltid uppdaterat.",
+  "direct": "direkt från konstnären.",
+  "buyFrom": "Köp din favoritkonst"
 }

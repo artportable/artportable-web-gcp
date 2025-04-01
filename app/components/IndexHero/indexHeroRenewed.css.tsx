@@ -4,7 +4,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       gridColumn: "1/4",
-      background: theme.palette.grey[200],
+      backgroundColor: "#FCF7EC",
       // backgroundColor: "var(--background-color-darker)",
       overflow: "visible", // Ensure this is set to visible to not clip the scrollbar
       marginTop: "0px",
@@ -17,9 +17,9 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: "0px",
       },
       [theme.breakpoints.up("md")]: {
-        height: "70vh",
+        height: "85vh",
         width: "100%",
-        marginTop: "40px",
+        marginTop: "30px",
       },
     },
 
@@ -30,17 +30,18 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         display: "flex",
         flexDirection: "row",
-        height: "70vh",
+        height: "85vh",
       },
     },
 
     imgWrapper: {
-      backgroundColor: "#ebebeb",
+      backgroundColor: "#FCF7EC",
       width: "100vw",
       height: "50%",
+      marginTop: "0px",
       [theme.breakpoints.up("md")]: {
-        backgroundColor: "#ebebeb",
-        width: "50vw",
+        backgroundColor: "#FCF7EC",
+        width: "100vw",
         height: "100%",
       },
     },
@@ -60,6 +61,18 @@ export const styles = makeStyles((theme: Theme) =>
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#FCF7EC",
+      },
+    },
+    headlineWrapperMobile: {
+      backgroundColor: "#FCF7EC",
+      height: "50%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      padding: "10px 20px 10px 20px",
+      alignItems: "center",
+      [theme.breakpoints.up("md")]: {
+        display: "none",
       },
     },
 
@@ -186,6 +199,41 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       marginTop: "6px",
     },
+    imageText: {
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        bottom: "0",
+        left: "0",
+
+        color: "white",
+        height: "20%",
+        width: "30%",
+        marginBottom: "80px",
+        fontSize: "30px",
+        backgroundColor: "#ffffff91",
+      },
+    },
+    imageTextMobile: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      bottom: "0",
+      left: "0",
+      color: "white",
+      width: "100%",
+      marginBottom: "70px",
+      fontSize: "22px",
+
+      [theme.breakpoints.up("md")]: {
+        display: "none",
+      },
+    },
     imageTitle: {
       display: "flex",
       flexDirection: "row",
@@ -197,6 +245,23 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "8px",
       [theme.breakpoints.up("md")]: {
         fontSize: "14px",
+      },
+    },
+    imageButton: {
+      [theme.breakpoints.up("md")]: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        bottom: "0",
+        left: "50%",
+        transform: "translateX(-50%)",
+        color: "white",
+        height: "15%",
+        width: "40%",
+        marginBottom: "0px",
+        fontSize: "30px",
       },
     },
 
@@ -291,23 +356,32 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     buttonFindArt: {
-      borderRadius: "40px",
       marginRight: "10px",
       padding: "10px 10px 10px 10px",
       fontSize: "10px",
       fontWeight: 600,
       fontFamily: "Roboto !important",
-      backgroundColor: "black",
-      border: "1px solid black",
+
       color: "white",
+      textDecoration: "underline",
+      cursor: "pointer",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
-        fontSize: "16px",
+        fontSize: "26px",
       },
-      "&:hover": {
-        backgroundColor: "transparent",
-        border: "1px solid black",
-        color: "black",
+    },
+    buttonFindArtMobile: {
+      marginRight: "10px",
+      padding: "10px 10px 10px 10px",
+      fontSize: "22px",
+      fontWeight: 600,
+      fontFamily: "Roboto !important",
+      color: "black",
+      textDecoration: "underline",
+      cursor: "pointer",
+      textAlign: "center",
+      [theme.breakpoints.up("md")]: {
+        display: "none",
       },
     },
     seeMoreButton: {
