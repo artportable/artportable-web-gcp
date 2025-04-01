@@ -126,7 +126,7 @@ export default function DiscoverPage({ navBarItems }) {
         <IndexHeroRenewed onScrollDown={scrollToNextSection} />
       )}
 
-      <div ref={nextSectionRef}></div>
+      <div ref={nextSectionRef} style={{ marginTop: "30px" }}></div>
       <div className={s.headTitle}>{t("chosenCategories")}</div>
       <div className={s.headText}>{t("chosenCategoriesText")}</div>
       <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
