@@ -37,7 +37,7 @@ export const styles = makeStyles((theme: Theme) =>
     imgWrapper: {
       backgroundColor: "#FCF7EC",
       width: "100vw",
-      height: "50%",
+      height: "100%",
       marginTop: "0px",
       [theme.breakpoints.up("md")]: {
         backgroundColor: "#FCF7EC",
@@ -65,7 +65,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headlineWrapperMobile: {
       backgroundColor: "#FCF7EC",
-      height: "50%",
+      height: "0%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -229,7 +229,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       marginBottom: "70px",
       fontSize: "22px",
-
+      backgroundColor: "rgb(255 255 255 / 50%)",
       [theme.breakpoints.up("md")]: {
         display: "none",
       },
