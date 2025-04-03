@@ -81,9 +81,9 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
   items.forEach((item) => {
     const overlayContent = (
       <div className={s.rocketOverlay}>
-        <div className={s.rocketIcon}>
+        {/* <div className={s.rocketIcon}>
           <img src="/rocket-white.png" alt="Rocket Icon" />
-        </div>
+        </div> */}
 
         {forDesktop && (
           <div className={s.seeMoreButton + " displayOnHover"}>
