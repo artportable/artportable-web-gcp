@@ -187,7 +187,7 @@ export default function DiscoverPage({ navBarItems }) {
         upptäcka människorna bakom konsten.
       </div>
       <IndexEditorial></IndexEditorial>
-
+      {/* 
       <div className={s.headTitle}>{t("choosenArtist")}</div>
       <div className={s.headText}>{t("knowArtist")}</div>
       <div
@@ -198,7 +198,7 @@ export default function DiscoverPage({ navBarItems }) {
         }}
       >
         <DiscoverChosenArtists></DiscoverChosenArtists>
-      </div>
+      </div> */}
       <div className={s.divider}>
         <Divider></Divider>
       </div>
