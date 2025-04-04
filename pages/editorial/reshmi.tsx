@@ -65,12 +65,12 @@ export default function reshmi({ navBarItems }) {
               rum av laddad stillhet – som ibland bara varar ett ögonblick, men
               som hon lyckas tejpa fast, bokstavligt talat.
             </div>
-            <br />
+
             <br />
             <div>av Erik Nordlander</div>
             <div>Publicerat: 2025-04-04</div>
             <br />
-            <br />
+
             <div className={s.text}>
               Hennes verk är färgstarka, högljudda och i ögonfallande –
               samtidigt råa, poetiska och skavande vackra. Det är konst som
@@ -153,6 +153,7 @@ export default function reshmi({ navBarItems }) {
               blev en spegling av en tid då hon själv brottades med känslomässig
               distans och närhet – både i livet och i familjen.
               <br />
+              <br />
               Själva tejpandet är en process i faser – intuitiv, befriande och
               ibland frustrerande. Den råa gesten kommer först, sedan söker hon
               efter balansen. Texten är ofta svårast. Orden ska kännas spontana
@@ -169,14 +170,13 @@ export default function reshmi({ navBarItems }) {
               </span>
             </div>
             <br />
-            <br />
+
             <div className={s.text}>
               Hennes inspirationskällor är många, ofta oväntade. En italiensk
               läderratt, en lyktstolpe i Berlin med texten “Your husband is on
               Grinder”, en rörelse, en färg, ett minne. Det handlar inte om att
               samla på intryck, utan att filtrera – att särskilja vad som är
               meningsfullt från vad som bara är brus. Det är ett arbete i sig.
-              <br />
               <br />
               Sofia bor och verkar i både Berlin och på Falsterbonäset – två
               platser som påverkar hennes konst på olika sätt. I Berlin finns
@@ -192,14 +192,12 @@ export default function reshmi({ navBarItems }) {
             </div>
             <br />
 
-            <br />
             <div className={s.text}>
               Återkommande i hennes verk är temat om det dolda. Hon vet hur det
               är att leva med hemligheter – att inte kunna eller våga vara sann
               mot sig själv. Den erfarenheten har satt spår, och gett henne en
               särskild känslighet för allt som döljs, hålls tillbaka, kvävs i
               tystnad.
-              <br />
               <br />
               Framåt drömmer hon om utställningar i Berlin och Amsterdam, och är
               i färd med att utforska ett nytt koncept – att få Polaroiden att
@@ -214,9 +212,7 @@ export default function reshmi({ navBarItems }) {
               </span>
             </div>
             <br />
-            <br />
 
-            <br />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div className={s.image}>
                 <Link href="https://artportable.com/art/c73f95dd-73fc-4195-be94-ae261e14ad0b">
