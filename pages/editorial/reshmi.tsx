@@ -32,7 +32,9 @@ export default function reshmi({ navBarItems }) {
           <meta property="og:image" content="/images/reshmis.jpg" />
           <meta
             property="og:description"
-            content="Sofia Reshmi – konsten att tejpa fast ett ögonblick"
+            content="   Med varningstejp, Polaroider och direkta ord skapar Sofia Reshmi
+            konst i ett mellanrum – där mänskliga möten skaver, önskningar
+            kolliderar och känslor glider isär."
           />
           <meta property="og:type" content="article" />
           <meta property="og:url" content={`${publicUrl}/editorial/reshmi`} />
