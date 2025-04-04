@@ -30,7 +30,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 1422222000,
+          delay: 1400000000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -47,7 +47,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   }}
                 >
                   <Image
-                    src={"/images/heroImageTwo.png"}
+                    src={"/images/herobild.png"}
                     alt="first page artwork"
                     priority
                     layout="fill"

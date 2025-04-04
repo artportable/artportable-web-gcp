@@ -214,7 +214,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "30%",
         marginBottom: "80px",
         fontSize: "30px",
-        backgroundColor: "#ffffff91",
+        backgroundColor: "#ccba92b5",
       },
     },
     imageTextMobile: {
@@ -229,7 +229,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       marginBottom: "70px",
       fontSize: "22px",
-      backgroundColor: "rgb(255 255 255 / 50%)",
+      backgroundColor: "#ccba92b5",
       [theme.breakpoints.up("md")]: {
         display: "none",
       },
