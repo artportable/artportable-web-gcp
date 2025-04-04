@@ -17,7 +17,7 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: "0px",
       },
       [theme.breakpoints.up("md")]: {
-        height: "85vh",
+        height: "87vh",
         width: "100%",
         marginTop: "30px",
       },
@@ -30,7 +30,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         display: "flex",
         flexDirection: "row",
-        height: "85vh",
+        height: "87vh",
       },
     },
 

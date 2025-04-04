@@ -39,19 +39,15 @@ export default function reshmi({ navBarItems }) {
           <link rel="canonical" href={`${publicUrl}/editorial/reshmi`} />
         </Head>
         <div className={s.imageWrapper}>
-          <Link href="https://artportable.com/art/85d57d81-ab88-4886-8b45-bc1f4bd5383c">
-            <Image
-              src={"/images/reshmione.jpg"}
-              layout="fill"
-              objectFit="contain"
-              priority
-              alt="Krister Selander konstverk"
-            />
-          </Link>
+          <Image
+            src={"/images/reshmis.jpg"}
+            layout="fill"
+            objectFit="contain"
+            priority
+            alt="Sofia Reshmi konstverk"
+          />
         </div>
-        <div style={{ fontStyle: "italic", textAlign: "center" }}>
-          The Splitscreen Edition: The Dive I
-        </div>
+
         <div className={s.textContainer}>
           <div>
             <div className={s.mainTitle}>
@@ -140,9 +136,6 @@ export default function reshmi({ navBarItems }) {
               navigera livet utan färdiga mallar.
             </div>
             <br />
-            <br />
-
-            <br />
             <div className={s.text}>
               <span style={{ fontStyle: "italic" }}>
                 &quot;Jag vill inte tänka på vad som är rätt eller fel i
@@ -174,8 +167,6 @@ export default function reshmi({ navBarItems }) {
               </span>
             </div>
             <br />
-            <br />
-
             <br />
             <div className={s.text}>
               Hennes inspirationskällor är många, ofta oväntade. En italiensk
