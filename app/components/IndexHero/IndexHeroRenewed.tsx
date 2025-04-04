@@ -47,7 +47,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   }}
                 >
                   <Image
-                    src={"/images/herobild.png"}
+                    src={
+                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/7ed92def-3f80-4e26-9dd0-8a0eab15553f.jpg"
+                    }
                     alt="first page artwork"
                     priority
                     layout="fill"
