@@ -231,12 +231,10 @@ export default function Header({ navBarItems }) {
                   </Link>
                 )}
 
-                {!isMobile && (
-                  <SearchField
-                    onFilter={handleSearch}
-                    searchQuery={searchQuery}
-                  />
-                )}
+                <SearchField
+                  onFilter={handleSearch}
+                  searchQuery={searchQuery}
+                />
 
                 {/* <SearchField
                   onFilter={handleSearch}
