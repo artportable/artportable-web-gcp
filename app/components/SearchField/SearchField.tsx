@@ -153,10 +153,10 @@ const SearchField = ({ onFilter, searchQuery }) => {
                 }}
               >
                 <TextField
-                  style={{ width: "85%" }}
+                  style={{ width: "100%", fontSize: "17px" }}
                   autoFocus={false}
                   fullWidth
-                  placeholder="Search..."
+                  placeholder="Search"
                   value={inputValue}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyDown}

@@ -17,6 +17,18 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {
         marginLeft: "10px",
         marginBottom: "20px",
+        width: "300px",
+        cursor: "default",
+      },
+      [theme.breakpoints.up("md")]: {
+        marginLeft: "10px",
+        marginBottom: "20px",
+        width: "400px",
+        cursor: "default",
+      },
+      [theme.breakpoints.up("lg")]: {
+        marginLeft: "10px",
+        marginBottom: "20px",
         width: "500px",
         cursor: "default",
       },
@@ -28,7 +40,7 @@ export const styles = makeStyles((theme: Theme) =>
       height: "35px",
       minWidth: "40px",
       fontSize: "12px",
-      border: "1px solid black",
+
       marginRight: "0px",
       [theme.breakpoints.up("smPlus")]: {
         color: "black",
@@ -37,7 +49,6 @@ export const styles = makeStyles((theme: Theme) =>
         height: "40px",
         minWidth: "40px",
         fontSize: "12px",
-        border: "1px solid black",
         marginRight: "50px",
       },
     },
@@ -46,7 +57,7 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "100%",
-      fontSize: "12px",
+      fontSize: "17px",
       fontWeight: 400,
       fontFamily: "Roboto",
       border: "none !important",
@@ -61,11 +72,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       [theme.breakpoints.down("sm")]: {
-        fontSize: "14px",
+        fontSize: "17px",
       },
 
       [theme.breakpoints.up("md")]: {
-        fontSize: "16px",
+        fontSize: "17px",
       },
       "@media not all and (min-resolution:.001dpcm)": {
         "@supports (-webkit-appearance:none)": {
