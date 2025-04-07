@@ -98,7 +98,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "12px",
       fontWeight: 600,
       fontFamily: "Roboto !important",
-      backgroundColor: "#229059",
+      backgroundColor: "black",
       color: "white",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",

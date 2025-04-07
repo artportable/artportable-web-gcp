@@ -71,7 +71,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     newsletterButton: {
-      backgroundColor: "#000000",
+      backgroundColor: "black",
       color: "#FFFFFF",
       maxWidth: "100px",
       width: "100%",

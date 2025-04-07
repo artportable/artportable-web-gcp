@@ -3,7 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     styleButton: {
-      backgroundColor: "#0176D5",
+      backgroundColor: "black",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
