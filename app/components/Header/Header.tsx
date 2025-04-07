@@ -217,6 +217,18 @@ export default function Header({ navBarItems }) {
                       />
                     </a>
                   </Link>
+                ) : isMobile ? (
+                  <Link href={logoHref}>
+                    <a>
+                      <img
+                        height={"auto"}
+                        width={115}
+                        className={s.logo}
+                        src="/ArtportableLogo.svg"
+                        alt="Logo Artportable"
+                      />
+                    </a>
+                  </Link>
                 ) : (
                   <Link href={logoHref}>
                     <a>
