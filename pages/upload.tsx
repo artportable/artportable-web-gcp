@@ -35,6 +35,7 @@ import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import Link from "next/link";
 import { sendInformFollowersEmail } from "../app/utils/emailUtil";
+import InfoMessage from "../app/components/WarningMessage/InfoMessage";
 
 export default function UploadArtworkPage({ navBarItems }) {
   const s = styles();
@@ -476,6 +477,7 @@ export default function UploadArtworkPage({ navBarItems }) {
                     // style={{ backgroundColor: color}}
                   />
                 </div>
+
                 {/* <div className={s.backgroundColorFlex}>
           <div className={s.pickColor}  style={{ backgroundColor: '#ffffff'}} onClick={() => setColor('#ffffff')} />
           <div className={s.pickColor} style={{ backgroundColor: '#FDF9F7'}} onClick={() => setColor('#FDF9F7')} />
@@ -630,6 +632,7 @@ export default function UploadArtworkPage({ navBarItems }) {
           <div className={s.clampedContainer}>
             {/* Show warning message regardless of what "progress" user is on. */}
             <WarningMessage />
+            <InfoMessage />
             <Snackbar
               open={uploadSnackbarOpen}
               autoHideDuration={6000}

@@ -47,5 +47,11 @@
   "frame": "Ram",
   "notIncluded": "Ingår ej",
   "included": "Ingår",
-  "digitalAI": "En viktig del av att nå rätt publik för ditt konstverk är att tagga det korrekt. Om du har använt någon form av AI-verktyg eller promt i skapandet, se till att inkludera taggarna Digital och AI. Detta ökar tydligheten för konstintresserade och gör det lättare för dem att hitta ditt verk."
+  "digitalAI": "En viktig del av att nå rätt publik för ditt konstverk är att tagga det korrekt. Om du har använt någon form av AI-verktyg eller promt i skapandet, se till att inkludera taggarna Digital och AI. Detta ökar tydligheten för konstintresserade och gör det lättare för dem att hitta ditt verk.",
+  "tips": "Tips när du laddar upp ditt verk:",
+  "tipsOne": "Fotografera i dagsljus, gärna nära ett fönster. Undvik blixt och direkt solljus.",
+  "tipsTwo": "Håll kameran rakt framför verket.",
+  "tipsThree": "Lägg gärna till fler bilder: en miljöbild där verket hänger på en vägg samt eventuella detaljbilder.",
+  "tipsFour": "Se till att bilden är skarp, beskuren korrekt och fri från störande objekt i bakgrunden.",
+  "tipsFive": "När bilden är uppladdad är det dags att ge verket en titel, teknik, mått och gärna en beskrivning!"
 }

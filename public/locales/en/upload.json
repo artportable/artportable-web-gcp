@@ -49,5 +49,11 @@
   "frame": "Frame",
   "notIncluded": "Not included",
   "included": "Included",
-  "digtalAI": "An important part of reaching the right audience for your artwork is to tag it correctly. If you have used any form of AI tool or prompt in the creation, make sure to include the tags Digital and AI. This increases clarity for art enthusiasts and makes it easier for them to find your work."
+  "digtalAI": "An important part of reaching the right audience for your artwork is to tag it correctly. If you have used any form of AI tool or prompt in the creation, make sure to include the tags Digital and AI. This increases clarity for art enthusiasts and makes it easier for them to find your work.",
+  "tips": "Tips when uploading your artwork:",
+  "tipsOne": "Photograph in daylight, preferably near a window. Avoid flash and direct sunlight.",
+  "tipsTwo": "Hold the camera straight in front of the artwork.",
+  "tipsThree": "Feel free to add more images: one showing the artwork in its environment (e.g., hanging on a wall), and any detail shots.",
+  "tipsFour": "Make sure the image is sharp, properly cropped, and free from distracting objects in the background.",
+  "tipsFive": "Once the image is uploaded, it's time to add a title, technique, dimensions, and preferably a description!"
 }

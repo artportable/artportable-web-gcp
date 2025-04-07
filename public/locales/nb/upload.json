@@ -48,5 +48,11 @@
   "digitallySigned": "Digitalt signert av kunstner",
   "frame": "Ramme",
   "notIncluded": "Ikke inkludert",
-  "included": "Inkludert"
+  "included": "Inkludert",
+  "tips": "Tips når du laster opp verket ditt:",
+  "tipsOne": "Fotografer i dagslys, gjerne nær et vindu. Unngå blitz og direkte sollys.",
+  "tipsTwo": "Hold kameraet rett foran verket.",
+  "tipsThree": "Legg gjerne til flere bilder: ett miljøbilde der verket henger på en vegg, samt eventuelle detaljbilder.",
+  "tipsFour": "Sørg for at bildet er skarpt, riktig beskåret og uten forstyrrende objekter i bakgrunnen.",
+  "tipsFive": "Når bildet er lastet opp, er det på tide å legge til tittel, teknikk, mål og gjerne en beskrivelse!"
 }
