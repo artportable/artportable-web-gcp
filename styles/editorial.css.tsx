@@ -6,8 +6,14 @@ export const styles = makeStyles((theme: Theme) =>
     imageWrapper: {
       position: "relative",
       width: "100vw",
-      height: "400px",
+      height: "150px",
       right: "auto",
+      [theme.breakpoints.up("mdPlus")]: {
+        position: "relative",
+        width: "100vw",
+        height: "400px",
+        right: "auto",
+      },
     },
     textContainer: {
       width: "90%",
@@ -21,11 +27,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     mainTitle: {
-      marginTop: "20px",
-      fontSize: "22px",
+      marginTop: "10px",
+      fontSize: "32px",
       fontFamily: "Roboto",
       [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "48px",
+        fontSize: "42px",
       },
     },
     mainText: {
@@ -34,11 +40,20 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Joan",
     },
 
-    title: { fontSize: "32px", fontFamily: "Roboto" },
+    title: {
+      fontSize: "22px",
+      fontFamily: "Roboto",
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "30px",
+      },
+    },
 
     text: {
-      fontSize: "20px",
+      fontSize: "18px",
       fontFamily: "Joan",
+      [theme.breakpoints.up("mdPlus")]: {
+        fontSize: "18px",
+      },
     },
 
     imageRow: {

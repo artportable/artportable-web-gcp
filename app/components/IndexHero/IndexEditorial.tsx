@@ -12,6 +12,31 @@ export default function IndexEditorial() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div className={s.wrapper}>
           <div>
+            <Link href="https://artportable.com/editorial/konst-for-livet-del">
+              <Image
+                src={"/images/del-1.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/konst-for-livet-del"
+              className={s.titleTwo}
+            >
+              Del 2: Konst för livet – hitta verket som väcker liv i ditt hem
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-07</div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapper}>
+          <div>
             <Link href="https://artportable.com/editorial/reshmi">
               <Image
                 src={"/images/reshmis.jpg"}
@@ -35,34 +60,36 @@ export default function IndexEditorial() {
             <div>Publicerat: 2025-04-04</div>
           </div>
         </div>
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/selander">
-              <Image
-                src={"/images/selanderthree.jpeg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/selander"
-              className={s.titleTwo}
-            >
-              Krister Selander – konsten som bara måste ut
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-01</div>
-          </div>
-        </div>{" "}
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/selander">
+                <Image
+                  src={"/images/selanderthree.jpeg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/selander"
+                className={s.titleGrid}
+              >
+                Krister Selander – konsten som bara måste ut
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-01</div>
+            </div>
+          </div>
+        </div>{" "}
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>
