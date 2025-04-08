@@ -13,6 +13,7 @@ export const styles = makeStyles((theme: Theme) =>
         width: "100vw",
         height: "400px",
         right: "auto",
+        marginTop: "20px",
       },
     },
     textContainer: {

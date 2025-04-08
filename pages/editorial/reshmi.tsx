@@ -119,7 +119,7 @@ export default function reshmi({ navBarItems }) {
             </div>
             <br />
             <br />
-            <div className={s.title}>
+            <div className={s.text}>
               <span style={{ fontStyle: "italic" }}>
                 {" "}
                 &quot;Jag tejpar i mellanrum – mellan det sagda och det osagda,
@@ -178,6 +178,7 @@ export default function reshmi({ navBarItems }) {
               samla på intryck, utan att filtrera – att särskilja vad som är
               meningsfullt från vad som bara är brus. Det är ett arbete i sig.
               <br />
+              <br />
               Sofia bor och verkar i både Berlin och på Falsterbonäset – två
               platser som påverkar hennes konst på olika sätt. I Berlin finns
               inga gränser, bara ny graffiti varje vecka och en pulserande
@@ -198,6 +199,7 @@ export default function reshmi({ navBarItems }) {
               mot sig själv. Den erfarenheten har satt spår, och gett henne en
               särskild känslighet för allt som döljs, hålls tillbaka, kvävs i
               tystnad.
+              <br />
               <br />
               Framåt drömmer hon om utställningar i Berlin och Amsterdam, och är
               i färd med att utforska ett nytt koncept – att få Polaroiden att
