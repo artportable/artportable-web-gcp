@@ -281,16 +281,18 @@ export default function CheckoutForm({ email, fullName, plan }) {
         )}
       </Box>
       <Box className={styles.divider}></Box>
-      <div>
-        <TextField
-          label={t("couponCode")}
-          variant="outlined"
-          value={promotionCode}
-          onChange={(e) => setpromotionCode(e.target.value)}
-          fullWidth
-          margin="normal"
-        />
-      </div>
+      {plan?.productKey === "portfolioPremium" && (
+        <div>
+          <TextField
+            label={t("couponCode")}
+            variant="outlined"
+            value={promotionCode}
+            onChange={(e) => setpromotionCode(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+        </div>
+      )}
       <Box
         display="flex"
         position="relative"
