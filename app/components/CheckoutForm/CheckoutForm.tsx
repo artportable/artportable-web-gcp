@@ -12,6 +12,7 @@ import { useKeycloak } from "@react-keycloak/ssr";
 import type { KeycloakInstance } from "keycloak-js";
 import { UserContext } from "../../contexts/user-context";
 import { zapierLeadBasicConfirmed } from "../../utils/zapierLead";
+import TextField from "@mui/material/TextField";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 const zapierBasicConfirmedApiUrl =
@@ -33,7 +34,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const styles = checkoutFormStyles();
   const { t } = useTranslation(["checkout", "common"]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
-
+  const [promotionCode, setpromotionCode] = useState("");
   const interval = t(plan?.recurringInterval);
 
   useEffect(() => {
@@ -124,6 +125,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
             customerId: customerId,
             paymentMethodId: result.paymentMethod.id,
             priceId: plan.id,
+            promotionCode: promotionCode,
           })
             .then((result) => {
               setSucceeded(true);
@@ -137,7 +139,12 @@ export default function CheckoutForm({ email, fullName, plan }) {
   }
 
   // Create subscription
-  function createSubscription({ customerId, paymentMethodId, priceId }) {
+  function createSubscription({
+    customerId,
+    paymentMethodId,
+    priceId,
+    promotionCode,
+  }) {
     return fetch(`${apiBaseUrl}/api/Payments/subscriptions`, {
       method: "POST",
       headers: {
@@ -148,6 +155,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
         customerId: customerId,
         paymentMethodId: paymentMethodId,
         priceId: priceId,
+        promotionCodeId: promotionCode,
       }),
     })
       .then((response) => {
@@ -205,10 +213,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
     }
   }, [countdown]);
 
-  useEffect(() => {
-    console.log(plan?.productKey);
-  }, []);
-
   const handleSuccessClose = () => {
     confirmedPortfolio();
     router.push("/");
@@ -219,6 +223,31 @@ export default function CheckoutForm({ email, fullName, plan }) {
       sessionStorage.setItem("payment", "true");
     }
   }, [confirmedPortfolio]);
+
+  const validateCoupon = async () => {
+    try {
+      const response = await fetch(
+        `${apiBaseUrl}/api/Payments/validate-coupon`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ promotionCode }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.valid) {
+        // Update UI to show discount
+      } else {
+        setError("Invalid coupon code");
+      }
+    } catch (error) {
+      setError("Error validating coupon");
+    }
+  };
 
   return (
     <>
@@ -252,6 +281,16 @@ export default function CheckoutForm({ email, fullName, plan }) {
         )}
       </Box>
       <Box className={styles.divider}></Box>
+      <div>
+        <TextField
+          label={t("couponCode")}
+          variant="outlined"
+          value={promotionCode}
+          onChange={(e) => setpromotionCode(e.target.value)}
+          fullWidth
+          margin="normal"
+        />
+      </div>
       <Box
         display="flex"
         position="relative"

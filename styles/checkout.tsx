@@ -94,7 +94,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     card: {
       width: "90%",
-      height: "27rem",
+      height: "auto",
       margin: "0 16px",
       display: "flex",
       flexDirection: "column",
