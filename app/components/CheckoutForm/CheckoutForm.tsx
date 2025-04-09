@@ -240,10 +240,13 @@ export default function CheckoutForm({ email, fullName, plan }) {
       </div>
       <Box className={styles.subtotal}>
         <Box fontSize="1rem" fontWeight="bold">
-          {t(":total")}
+          {t(":Total")}
         </Box>
+
         {plan?.productKey === "portfolioPremiumPlus" ? (
           <Box>975 SEK</Box>
+        ) : plan?.productKey === "portfolioPremium" ? (
+          <Box>359 SEK</Box>
         ) : (
           <Box>{t("newPlan")}</Box>
         )}
