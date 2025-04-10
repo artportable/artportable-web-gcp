@@ -189,9 +189,6 @@ export default function gahne({ navBarItems }) {
               <br />
               Och vad är det som driver henne att fortsätta skapa?
               <br />
-              <br />
-              Och vad är det som driver henne att fortsätta skapa?
-              <br />
               <br />– Lust, glädje, inspiration... Det är just det som driver
               mig. Att omvandla en idé till en färdig bild – det är en
               fantastisk känsla.
