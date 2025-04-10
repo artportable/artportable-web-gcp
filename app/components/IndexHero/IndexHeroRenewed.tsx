@@ -22,6 +22,12 @@ export default function IndexHeroRenewed({ onScrollDown }) {
   const s = styles();
   const isTinyDevice = useMediaQuery(theme.breakpoints.up("lg"));
 
+  const router = useRouter();
+
+  const handlePriceClick = (range) => {
+    router.push(`/discover?price=${range.join(",")}`);
+  };
+
   return (
     <div className={s.container}>
       <Swiper
@@ -106,6 +112,79 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       <Link href={"/discover"} passHref>
                         {t("findArt")}
                       </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className={s.buttonWrapper}>
+                  <Link href={"/discover"} passHref>
+                    <Button className={s.buttonFindArt}>{t("findArt")}</Button>
+                  </Link>
+                </div> */}
+              </div>
+            </section>
+          </SwiperSlide>
+          <SwiperSlide>
+            <section className={s.sectionWrapper}>
+              <div className={s.imgWrapper}>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <Image
+                    src={
+                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/ced664bd-b037-4db2-9368-1efaef9a8c81.jpg"
+                    }
+                    alt="first page artwork"
+                    priority
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    unoptimized
+                  />
+                  {/* <div className={s.imageText}>
+                    {" "}
+                    <div>
+                      {" "}
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {t("buyUnder")} <br />
+                        <br />
+                      </p>
+                    </div>
+                  </div>{" "} */}
+                  <div className={s.imageButton}>
+                    {" "}
+                    <div
+                      className={s.buttonFindArtTwo}
+                      onClick={() => handlePriceClick([0, 5000])}
+                    >
+                      {" "}
+                      {t("buyUnder")}
+                    </div>
+                  </div>{" "}
+                  <br />
+                </div>
+              </div>
+              <div className={s.headlineWrapperMobile}>
+                <div className={s.imageTextMobile}>
+                  {" "}
+                  <div>
+                    {" "}
+                    <div
+                      className={s.buttonFindArtMobile}
+                      style={{ color: "black" }}
+                      onClick={() => handlePriceClick([0, 5000])}
+                    >
+                      {" "}
+                      {t("buyUnder")}
                     </div>
                   </div>
                 </div>

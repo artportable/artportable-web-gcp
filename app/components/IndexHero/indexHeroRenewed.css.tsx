@@ -367,7 +367,28 @@ export const styles = makeStyles((theme: Theme) =>
       cursor: "pointer",
       [theme.breakpoints.up("lg")]: {
         padding: "10px 20px 10px 20px",
-        fontSize: "26px",
+        fontSize: "30px",
+      },
+      "&:hover": {
+        color: "black",
+      },
+    },
+    buttonFindArtTwo: {
+      marginRight: "10px",
+      padding: "10px 10px 10px 10px",
+      fontSize: "10px",
+      fontWeight: 600,
+      fontFamily: "Roboto !important",
+
+      color: "black",
+      textDecoration: "underline",
+      cursor: "pointer",
+      [theme.breakpoints.up("lg")]: {
+        padding: "10px 20px 10px 20px",
+        fontSize: "30px",
+      },
+      "&:hover": {
+        color: "white",
       },
     },
     buttonFindArtMobile: {
@@ -425,7 +446,7 @@ export const styles = makeStyles((theme: Theme) =>
 
       ".swiper-button-prev": {
         left: "85%",
-        height: "60vh",
+        height: "70vh",
         width: "6vw",
       },
       ".swiper-button-prev::after, .swiper-button-next::after": {
@@ -435,7 +456,7 @@ export const styles = makeStyles((theme: Theme) =>
       ".swiper-button-next": {
         left: "94%",
         width: "6vw",
-        height: "60vh",
+        height: "70vh",
         padding: "8px 16px",
       },
 

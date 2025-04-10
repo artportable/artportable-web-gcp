@@ -45,6 +45,7 @@ interface DiscoverFilteredArtProps {
   page: string;
   selectedCategory?: any;
   search?: any;
+  selectedPrice?: any;
 }
 
 const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
@@ -135,9 +136,15 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   useEffect(() => {
     if (props.selectedCategory) {
-      setSelectedTechnique(props.selectedCategory); // Set selectedTechnique from URL
+      setSelectedTechnique(props.selectedCategory);
     }
   }, [props.selectedCategory]);
+
+  useEffect(() => {
+    if (props.selectedPrice) {
+      setSelectedPrice(props.selectedPrice);
+    }
+  }, [props.selectedPrice]);
 
   const handleTechniqueChangeMobile = (newTag: string) => {
     setSelectedTechnique(newTag);
@@ -259,6 +266,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
         if (selectedSize) {
           url.searchParams.append("sizeFilter", selectedSize);
         }
+
         if (selectedPrice) {
           url.searchParams.append("priceFilter", selectedPrice);
         }

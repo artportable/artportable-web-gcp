@@ -34,6 +34,11 @@ export default function discover({ navBarItems }) {
 
   const router = useRouter();
   const { category } = router.query;
+  const rawPrice = Array.isArray(router.query.price)
+    ? router.query.price[0]
+    : router.query.price;
+
+  const parsedPrice = rawPrice?.split(",").map(Number); // [5000, 10000]
 
   return (
     <>
@@ -55,6 +60,7 @@ export default function discover({ navBarItems }) {
           header={t("discover:trendingArt")}
           page={"likes"}
           selectedCategory={category}
+          selectedPrice={parsedPrice}
         />
       </Main>
     </>
