@@ -158,32 +158,48 @@ export default function CheckoutForm({ email, fullName, plan }) {
         promotionCodeId: promotionCode,
       }),
     })
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.status === "500" || result.error) {
-          // If the card is declined, display an error to the user.
+      .then((response) => {
+        // Check if the response is successful
+        if (!response.ok) {
           setErrorOpen(true);
-          throw result;
-        } else if (result.Status === "succeeded") {
+          throw new Error("Error creating subscription");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        if (result.error) {
+          setErrorOpen(true);
+          throw new Error(result.error.message);
+        }
+
+        // Check if the status is "succeeded"
+        if (result.Status === "succeeded") {
           setSucceeded(true);
           startCountdown();
           return result;
-        } else if (result.Status === "requires_action") {
-          // Handle 3D Secure: confirm the payment
+        }
+
+        // Check if 3D Secure is required
+        if (result.Status === "requires_action") {
           return stripe
             .confirmCardPayment(result.client_secret, {
               payment_method: paymentMethodId,
             })
             .then((resultConfirm) => {
               if (resultConfirm.error) {
-                // If 3D Secure is declined, display an error
                 setErrorOpen(true);
-                throw resultConfirm;
+                throw new Error(resultConfirm.error.message);
               } else {
                 if (resultConfirm.paymentIntent.status === "succeeded") {
                   setSucceeded(true);
                   startCountdown();
                   return resultConfirm;
+                } else {
+                  // If payment is not successful after confirmation, handle accordingly
+                  setErrorOpen(true);
+                  throw new Error(
+                    "Payment failed after 3D Secure authentication"
+                  );
                 }
               }
             })
@@ -197,6 +213,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
       .catch((error) => {
         setErrorOpen(true);
         setProcessing(false);
+        console.error(error);
         throw error;
       });
   }
