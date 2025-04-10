@@ -180,27 +180,25 @@ export default function CheckoutForm({ email, fullName, plan }) {
         }
 
         // Check if 3D Secure is required
-        if (result.Status === "requires_action") {
+        // Check if 3D Secure is required
+        if (result.requiresAction) {
           return stripe
-            .confirmCardPayment(result.client_secret, {
+            .confirmCardPayment(result.clientSecret, {
               payment_method: paymentMethodId,
             })
             .then((resultConfirm) => {
               if (resultConfirm.error) {
                 setErrorOpen(true);
                 throw new Error(resultConfirm.error.message);
+              } else if (resultConfirm.paymentIntent.status === "succeeded") {
+                setSucceeded(true);
+                startCountdown();
+                return resultConfirm;
               } else {
-                if (resultConfirm.paymentIntent.status === "succeeded") {
-                  setSucceeded(true);
-                  startCountdown();
-                  return resultConfirm;
-                } else {
-                  // If payment is not successful after confirmation, handle accordingly
-                  setErrorOpen(true);
-                  throw new Error(
-                    "Payment failed after 3D Secure authentication"
-                  );
-                }
+                setErrorOpen(true);
+                throw new Error(
+                  "Payment failed after 3D Secure authentication"
+                );
               }
             })
             .catch((error) => {
