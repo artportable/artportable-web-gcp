@@ -10,6 +10,32 @@ export default function IndexEditorial() {
   return (
     <div className={s.container}>
       <div style={{ display: "flex", flexDirection: "column" }}>
+        {" "}
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/gahne">
+              <Image
+                src={"/images/gahnefive.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/gahne"
+              className={s.titleTwo}
+            >
+              Kristina Gahne – Måleriet som en dialog
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-10</div>
+          </div>
+        </div>
         <div className={s.wrapper}>
           <div>
             <Link href="https://artportable.com/editorial/christer">
@@ -61,34 +87,36 @@ export default function IndexEditorial() {
             <div>Publicerat: 2025-04-07</div>
           </div>
         </div>{" "}
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/reshmi">
-              <Image
-                src={"/images/reshmis.jpg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/reshmi"
-              className={s.titleTwo}
-            >
-              Sofia Reshmi – konsten att tejpa fast ett ögonblick
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-04</div>
-          </div>
-        </div>
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/reshmi">
+                <Image
+                  src={"/images/reshmis.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/reshmi"
+                className={s.titleGrid}
+              >
+                Sofia Reshmi – konsten att tejpa fast ett ögonblick
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-04</div>
+            </div>
+          </div>
+        </div>{" "}
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>
