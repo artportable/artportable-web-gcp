@@ -240,9 +240,9 @@ export default function gahne({ navBarItems }) {
             Se fler verk av:{" "}
             <a
               style={{ textDecoration: "underline" }}
-              href="https://artportable.com/profile/@christer.aber"
+              href="https://artportable.com/profile/@kgahne"
             >
-              Christer Åberg
+              Kristina Gahne
             </a>
           </div>
           <br />
