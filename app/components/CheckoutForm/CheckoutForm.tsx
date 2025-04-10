@@ -158,11 +158,9 @@ export default function CheckoutForm({ email, fullName, plan }) {
         promotionCodeId: promotionCode,
       }),
     })
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((result) => {
-        if (result.status === 500 || result.error) {
+        if (result.status === "500" || result.error) {
           // If the card is declined, display an error to the user.
           setErrorOpen(true);
           throw result;
@@ -171,11 +169,14 @@ export default function CheckoutForm({ email, fullName, plan }) {
           startCountdown();
           return result;
         } else if (result.Status === "requires_action") {
+          // Handle 3D Secure: confirm the payment
           return stripe
-            .confirmCardPayment(result.Id, { payment_method: paymentMethodId })
+            .confirmCardPayment(result.client_secret, {
+              payment_method: paymentMethodId,
+            })
             .then((resultConfirm) => {
               if (resultConfirm.error) {
-                // If 3D Secure is declined, display an error to the user.
+                // If 3D Secure is declined, display an error
                 setErrorOpen(true);
                 throw resultConfirm;
               } else {
@@ -187,6 +188,8 @@ export default function CheckoutForm({ email, fullName, plan }) {
               }
             })
             .catch((error) => {
+              setErrorOpen(true);
+              setProcessing(false);
               throw error;
             });
         }
@@ -284,7 +287,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
       {plan?.productKey === "portfolioPremium" && (
         <div>
           <TextField
-            label={t("couponCode")}
+            label={t("Discount code")}
             variant="outlined"
             value={promotionCode}
             onChange={(e) => setpromotionCode(e.target.value)}
