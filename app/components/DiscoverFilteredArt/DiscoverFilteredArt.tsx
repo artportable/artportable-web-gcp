@@ -342,10 +342,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                 color="secondary"
                 className={s.activeFilterClearOnScreen}
               >
-                <Typography>
-                  {" "}
-                  {t("common:selectOptions:clearFilter")}
-                </Typography>
+                {t("common:selectOptions:clearFilter")}
               </Button>
             )}
           </div>

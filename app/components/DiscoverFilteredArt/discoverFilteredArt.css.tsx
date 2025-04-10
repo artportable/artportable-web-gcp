@@ -26,8 +26,11 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       width: "100%",
       height: "40px",
+      fontSize: "11px",
       [theme.breakpoints.up("smPlus")]: {
         width: "100%",
+        fontSize: "14px",
+        fontWeight: 400,
       },
       [theme.breakpoints.up("md")]: {
         width: "200px",
