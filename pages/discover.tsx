@@ -47,6 +47,7 @@ export default function discover({ navBarItems }) {
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
+          <meta property="og:title" content={t("discover")} />
         </Head>
 
         <DiscoverFilteredArt

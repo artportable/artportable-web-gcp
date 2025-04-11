@@ -10,7 +10,32 @@ export default function IndexEditorial() {
   return (
     <div className={s.container}>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        {" "}
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/catrine">
+              <Image
+                src={"/images/catrineone.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/catrine"
+              className={s.titleTwo}
+            >
+              Catrine Näsmark – Porträtt, motorer och mod att måla livet som det
+              är
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-11</div>
+          </div>
+        </div>{" "}
         <div className={s.wrapper}>
           <div>
             <Link href="https://artportable.com/editorial/gahne">

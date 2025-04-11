@@ -103,6 +103,7 @@ export default function DiscoverPage({ navBarItems }) {
           name="keywords"
           content="konst, köpa konst, utställning, Galleri, oljemålningar, konstnär, tavlor"
         />
+
         <meta property="og:url" content="https://artportable.com/" />
         <script
           dangerouslySetInnerHTML={{
