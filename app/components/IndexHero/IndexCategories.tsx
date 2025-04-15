@@ -19,7 +19,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("landscape")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/landscape.jpg")`,
+          backgroundImage: `url("/images/landscape.jpeg")`,
         }}
       >
         {" "}
@@ -29,7 +29,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("nature")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/nature.jpg")`,
+          backgroundImage: `url("/images/nature.jpeg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -42,7 +42,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("abstract")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/abstract.jpg")`,
+          backgroundImage: `url("/images/abstract.jpeg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -55,9 +55,9 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("figurative")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/figurative.jpg")`,
+          backgroundImage: `url("/images/figurative.png")`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
           width: "100%", // Keep full width
         }}
@@ -68,9 +68,9 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("sculpture")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/sculpture.jpg")`,
+          backgroundImage: `url("/images/sculpture.jpeg")`,
           backgroundSize: "cover",
-          backgroundPosition: "top",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%",
         }}
@@ -81,7 +81,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("still-life")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/still-life.jpg")`,
+          backgroundImage: `url("/images/still-life.jpeg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -94,9 +94,9 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("photography")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/photography.jpg")`,
+          backgroundImage: `url("/images/photography.jpeg")`,
           backgroundSize: "cover",
-          backgroundPosition: "bottom",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%", // Keep full width
         }}
@@ -107,7 +107,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("mixed-media")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/mixed-media.jpg")`,
+          backgroundImage: `url("/images/mixed-media.jpeg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
