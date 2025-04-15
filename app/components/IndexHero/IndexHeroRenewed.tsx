@@ -97,7 +97,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     {" "}
                     <p
                       style={{
-                        color: "black",
+                        color: "white",
                         textAlign: "center",
                         fontWeight: 600,
                       }}
@@ -106,7 +106,10 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                       {t("direct")}
                       <br />
                     </p>
-                    <div className={s.buttonFindArtMobile}>
+                    <div
+                      className={s.buttonFindArtMobile}
+                      style={{ color: "white" }}
+                    >
                       {" "}
                       <Link href={"/discover"} passHref>
                         {t("findArt")}
