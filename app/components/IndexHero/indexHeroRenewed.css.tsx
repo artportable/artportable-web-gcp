@@ -229,7 +229,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "100%",
       marginBottom: "70px",
       fontSize: "22px",
-      backgroundColor: "#ccba92b5",
+
       [theme.breakpoints.up("md")]: {
         display: "none",
       },
