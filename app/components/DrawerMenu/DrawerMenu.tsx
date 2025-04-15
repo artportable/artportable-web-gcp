@@ -74,12 +74,6 @@ export default function DrawerMenu({
         return DisplayLocales.nb;
       case Locales.da:
         return DisplayLocales.da;
-      case Locales.fi:
-        return DisplayLocales.fi;
-      case Locales.is:
-        return DisplayLocales.is;
-      case Locales.de:
-        return DisplayLocales.de;
       default:
         return DisplayLocales.en;
     }
@@ -592,27 +586,6 @@ export default function DrawerMenu({
                 onClick={(_) => handleCloseLanguage(_, Locales.da)}
               >
                 <ListItemText primary={t("Danska")} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.fi)}
-              >
-                <ListItemText primary={t("Suomi")} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.is)}
-              >
-                <ListItemText primary={t("Íslenska")} />
-              </ListItem>
-              <ListItem
-                button
-                className={s.nested}
-                onClick={(_) => handleCloseLanguage(_, Locales.de)}
-              >
-                <ListItemText primary={t("Deutsch")} />
               </ListItem>
             </List>
           </Collapse>
