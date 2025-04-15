@@ -47,14 +47,13 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               <div className={s.imgWrapper}>
                 <div
                   style={{
-                    position: "relative",
                     width: "100%",
                     height: "100%",
                   }}
                 >
                   <Image
                     src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/7ed92def-3f80-4e26-9dd0-8a0eab15553f.jpg"
+                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/ced664bd-b037-4db2-9368-1efaef9a8c81.jpg"
                     }
                     alt="first page artwork"
                     priority
@@ -129,7 +128,6 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               <div className={s.imgWrapper}>
                 <div
                   style={{
-                    position: "relative",
                     width: "100%",
                     height: "100%",
                   }}
