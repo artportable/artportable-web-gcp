@@ -91,7 +91,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   <br />
                 </div>
               </div>
-              <div className={s.headlineWrapperMobile}>
+              <div>
                 <div className={s.imageTextMobile}>
                   {" "}
                   <div>

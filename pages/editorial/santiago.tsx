@@ -68,10 +68,10 @@ export default function santiago({ navBarItems }) {
               Rekommendationen var enkel: gör något kreativt. Det blev starten
               på en resa som skulle förändra hennes liv i grunden.​
               <br />
-              <br />– – Jag köpte färg och dukar och tänkte att måla kan väl
-              inte vara så svårt. Det blev ett par ögon, en fjäril, ett försök
-              på en blomma – en grårosa sörja. Så svårt! Men också så
-              fantastiskt. Jag väckte en passion där och då.
+              <br />– Jag köpte färg och dukar och tänkte att måla kan väl inte
+              vara så svårt. Det blev ett par ögon, en fjäril, ett försök på en
+              blomma – en grårosa sörja. Så svårt! Men också så fantastiskt. Jag
+              väckte en passion där och då.
               <br />
               <br />
               Att måla blev för Madeleine inte bara en väg tillbaka, utan en väg

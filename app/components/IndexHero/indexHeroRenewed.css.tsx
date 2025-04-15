@@ -37,12 +37,12 @@ export const styles = makeStyles((theme: Theme) =>
     imgWrapper: {
       backgroundColor: "#FCF7EC",
       width: "100vw",
-      height: "100%",
-      marginTop: "0px",
+      height: "100vh",
+
       [theme.breakpoints.up("md")]: {
         backgroundColor: "#FCF7EC",
         width: "100vw",
-        height: "100%",
+        height: "100vh",
       },
     },
 
@@ -52,7 +52,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      padding: "10px 20px 10px 20px",
+
       alignItems: "center",
       [theme.breakpoints.up("md")]: {
         height: "100%",
@@ -69,7 +69,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      padding: "10px 20px 10px 20px",
+
       alignItems: "center",
       [theme.breakpoints.up("md")]: {
         display: "none",
