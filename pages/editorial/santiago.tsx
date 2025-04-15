@@ -29,7 +29,7 @@ export default function santiago({ navBarItems }) {
             property="og:title"
             content="Madeleine Santiago – konsten som blev en livsväg"
           />
-          <meta property="og:image" content="/images/gahnefive.jpg" />
+          <meta property="og:image" content="/images/santiagoone.jpg" />
           <meta
             property="og:description"
             content="För Madeleine Santiago började allt med ett råd från en läkare. Året var 2012, och hon var

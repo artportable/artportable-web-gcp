@@ -12,6 +12,31 @@ export default function IndexEditorial() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div className={s.wrapper}>
           <div>
+            <Link href="https://artportable.com/editorial/santiago">
+              <Image
+                src={"/images/santiagoone.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/santiago"
+              className={s.titleTwo}
+            >
+              Madeleine Santiago – konsten som blev en livsväg
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-15</div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapper}>
+          <div>
             <Link href="https://artportable.com/editorial/catrine">
               <Image
                 src={"/images/catrineone.jpg"}
@@ -61,60 +86,64 @@ export default function IndexEditorial() {
             <div>Publicerat: 2025-04-10</div>
           </div>
         </div>
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/christer">
-              <Image
-                src={"/images/chrisone.jpg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/christer"
-              className={s.titleTwo}
-            >
-              &quot;Att ge oron en form&quot; – möt Christer Åberg, illustratör,
-              journalist och författare
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-08</div>
-          </div>
-        </div>{" "}
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/konst-for-livet-del">
-              <Image
-                src={"/images/del-1.jpg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/konst-for-livet-del"
-              className={s.titleTwo}
-            >
-              Del 2: Konst för livet – hitta verket som väcker liv i ditt hem
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-07</div>
-          </div>
-        </div>{" "}
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/christer">
+                <Image
+                  src={"/images/chrisone.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/christer"
+                className={s.titleGrid}
+              >
+                &quot;Att ge oron en form&quot; – möt Christer Åberg,
+                illustratör, journalist och författare
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-08</div>
+            </div>{" "}
+          </div>
+        </div>{" "}
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/konst-for-livet-del">
+                <Image
+                  src={"/images/del-1.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/konst-for-livet-del"
+                className={s.titleGrid}
+              >
+                Del 2: Konst för livet – hitta verket som väcker liv i ditt hem
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-07</div>
+            </div>
+          </div>
+        </div>{" "}
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>
