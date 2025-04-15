@@ -136,7 +136,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 >
                   <Image
                     src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/ced664bd-b037-4db2-9368-1efaef9a8c81.jpg"
+                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/fa379bfa-c084-403b-b0c3-f12e040b14e2.jpg"
                     }
                     alt="first page artwork"
                     priority
@@ -164,6 +164,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     {" "}
                     <div
                       className={s.buttonFindArtTwo}
+                      style={{ color: "white" }}
                       onClick={() => handlePriceClick([0, 5000])}
                     >
                       {" "}
@@ -180,7 +181,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     {" "}
                     <div
                       className={s.buttonFindArtMobile}
-                      style={{ color: "black" }}
+                      style={{ color: "white" }}
                       onClick={() => handlePriceClick([0, 5000])}
                     >
                       {" "}
