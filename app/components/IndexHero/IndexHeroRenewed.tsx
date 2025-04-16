@@ -100,6 +100,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         color: "white",
                         textAlign: "center",
                         fontWeight: 600,
+                        backgroundColor: "#ccba92b5",
+                        width: "100vw",
+                        padding: "10px",
                       }}
                     >
                       {t("buyFrom")} <br />
