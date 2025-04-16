@@ -68,7 +68,7 @@ export default function IndexCategories() {
         onClick={() => handleCategoryClick("sculpture")}
         className={s.item}
         style={{
-          backgroundImage: `url("/images/sculpture.jpeg")`,
+          backgroundImage: `url("/images/sculpture.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
