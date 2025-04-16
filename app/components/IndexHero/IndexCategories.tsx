@@ -70,7 +70,7 @@ export default function IndexCategories() {
         style={{
           backgroundImage: `url("/images/sculpture.jpg")`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
           backgroundRepeat: "no-repeat",
           width: "100%",
         }}
