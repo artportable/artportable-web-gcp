@@ -73,13 +73,9 @@ export default function AboutMe() {
   return (
     <div className={s.container}>
       <div className={s.headerDiv}>
-        <Typography variant="h1" className={s.headerTypo}>
-          {t("aboutUs")}
-        </Typography>
-        <Typography variant="h4" className={s.subHeaderTypo}>
-          {t("digitalGallery")}
-        </Typography>
-        <Typography variant="h4">{t("showRoom")}</Typography>
+        <div className={s.headerTypo}>{t("aboutUs")}</div>
+        <div className={s.subHeaderTypo}>{t("digitalGallery")}</div>
+        <div>{t("showRoom")}</div>
       </div>
       {/* <div className={s.flex}>
         <iframe

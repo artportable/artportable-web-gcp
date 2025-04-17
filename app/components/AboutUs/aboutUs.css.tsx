@@ -25,10 +25,11 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600,
       marginBottom: "20px",
       fontFamily: "Roboto",
+      fontSize: "30px",
     },
     subHeaderTypo: {
-      marginBottom: "30px",
       fontFamily: "Joan",
+      fontSize: "20px",
     },
 
     staffDiv: {
