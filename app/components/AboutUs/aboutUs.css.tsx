@@ -12,7 +12,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     headerDiv: {
       margin: "100px 0 100px 0",
-      fontFamily: "Joan",
+
       display: "flex",
       flexDirection: "column",
 
