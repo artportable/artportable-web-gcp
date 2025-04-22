@@ -12,6 +12,31 @@ export default function IndexEditorial() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div className={s.wrapper}>
           <div>
+            <Link href="https://artportable.com/editorial/ulric">
+              <Image
+                src={"/images/ulricone.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/ulric"
+              className={s.titleTwo}
+            >
+              Ulric Rudebeck – mellan landskap och linjer
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-22</div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapper}>
+          <div>
             <Link href="https://artportable.com/editorial/santiago">
               <Image
                 src={"/images/santiagoone.jpg"}
