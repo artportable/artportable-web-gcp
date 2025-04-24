@@ -309,7 +309,7 @@ export default function Exhibition({ navBarItems }) {
             <div>
               <img
                 className={s.image}
-                src="/images/kg10.jpeg"
+                src="/images/kg101.jpg"
                 alt="kg10 image"
               />{" "}
               <div style={{ fontSize: "28px" }}>KG10</div>
