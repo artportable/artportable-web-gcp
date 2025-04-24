@@ -309,7 +309,7 @@ export default function Exhibition({ navBarItems }) {
             <div>
               <img
                 className={s.image}
-                src="/images/kg101.jpg"
+                src="/images/KG101.jpg"
                 alt="kg10 image"
               />{" "}
               <div style={{ fontSize: "28px" }}>KG10</div>
@@ -337,7 +337,7 @@ export default function Exhibition({ navBarItems }) {
             <div>
               <img
                 className={s.image}
-                src="/images/melanders.webp"
+                src="/images/Melanders.webp"
                 alt="kg10 image"
               />{" "}
               <div style={{ fontSize: "28px" }}>Melanders Södermalm</div>
