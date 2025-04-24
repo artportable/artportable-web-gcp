@@ -1,10 +1,11 @@
 {
-  "title": "Artportable Exhibitions and Showroom 2024",
+  "title": "Exhibitions",
   "artportableExhibition": "Exhibitions and Showroom",
-  "exhibitionText": "Every week a new artist exhibits at Artportable. Discover art all year round at Artportable's physical gallery in Södermalm, Stockholm. Artportable's brilliant artists also adorn the walls of ",
+  "exhibitionText": "From the lobby to the lounge – here you’ll find our current exhibitions. Artportable partners with hotels, offices, galleries and restaurants to showcase contemporary art in vibrant settings. Below you’ll find ongoing and upcoming exhibitions.",
   "exhibitQuestion": "Do you want to exhibit? Contact us at",
   "email": "hello@artportable.com",
   "welcomeText": "Welcome to visit Artportable at Åsögatan 176!",
   "news": "Artist Exhibitions",
-  "loadMore": "LOAD MORE"
+  "loadMore": "LOAD MORE",
+  "artist": "Artists"
 }

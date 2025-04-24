@@ -556,6 +556,11 @@ export default function Header({ navBarItems }) {
                   {t("story")}
                 </Link>
               </div>
+              <div className={s.titlesOnHeader}>
+                <Link href={"/exhibitions"} passHref>
+                  {t("exhibition")}
+                </Link>
+              </div>
               {isSignedIn.value ? (
                 <>
                   <div className={s.titlesOnHeader}>
