@@ -557,7 +557,7 @@ export default function Header({ navBarItems }) {
                 </Link>
               </div>
               <div className={s.titlesOnHeader}>
-                <Link href={"/exhibitions"} passHref>
+                <Link href={"/exhibition"} passHref>
                   {t("exhibition")}
                 </Link>
               </div>
