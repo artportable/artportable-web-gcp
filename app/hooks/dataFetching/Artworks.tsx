@@ -196,6 +196,76 @@ const usePromoteArtwork = () => {
 
 export default usePromoteArtwork;
 
+const useBoostArtwork = () => {
+  const boostArtwork = useCallback(async (artworkId: string, token: string) => {
+    const url = `${apiBaseUrl}/api/artworks/${artworkId}/boost`;
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      // if your API uses cookie-based auth, uncomment:
+      // credentials: "include",
+    };
+
+    try {
+      const res = await fetch(url, options);
+
+      if (res.status === 401) {
+        // handle unauthorized however you like (e.g. redirect to login)
+        throw new Error("Unauthorized");
+      }
+
+      if (!res.ok) {
+        const err = await res.json();
+        console.error("Error boosting artwork:", err);
+        throw new Error("Boost failed");
+      }
+
+      return await res.json();
+    } catch (error) {
+      console.error("useBoostArtwork:", error);
+      return false;
+    }
+  }, []);
+
+  return { boostArtwork };
+};
+
+export { useBoostArtwork };
+
+const useUnboostArtwork = () => {
+  const unboostArtwork = useCallback(
+    async (artworkId: string, token: string) => {
+      const url = `${apiBaseUrl}/api/artworks/${artworkId}/boost`;
+      const res = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        // credentials: "include" // if you need cookies
+      });
+
+      if (res.status === 401) {
+        throw new Error("Unauthorized");
+      }
+      if (!res.ok) {
+        const err = await res.json();
+        console.error("Error unboosting artwork:", err);
+        return false;
+      }
+      return await res.json();
+    },
+    []
+  );
+
+  return { unboostArtwork };
+};
+
+export { useUnboostArtwork };
+
 import { DateTime } from "luxon";
 
 export function getTimePassed(publishDate: string | Date, t: Function) {

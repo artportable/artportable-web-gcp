@@ -10,7 +10,11 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Main from "../../app/components/Main/Main";
-import { useGetArtwork } from "../../app/hooks/dataFetching/Artworks";
+import {
+  useBoostArtwork,
+  useGetArtwork,
+  useUnboostArtwork,
+} from "../../app/hooks/dataFetching/Artworks";
 import {
   Box,
   IconButton,
@@ -87,7 +91,7 @@ export default function ArtworkPage(props) {
   );
 
   const { promoteArtwork } = usePromoteArtwork();
-
+  const { boostArtwork } = useBoostArtwork();
   const [showPromoteDialog, setShowPromoteDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [promotionDuration, setPromotionDuration] = useState(3);
@@ -207,6 +211,26 @@ export default function ArtworkPage(props) {
   };
 
   const userType = userTypes[productType] || userTypes.default;
+
+  const [loading, setLoading] = useState(false);
+
+  const { unboostArtwork } = useUnboostArtwork();
+  const [loadingBoost, setLoadingBoost] = useState(false);
+
+  const handleUnboost = async () => {
+    setLoadingBoost(true);
+    const result = await unboostArtwork(artwork.data.Id, token);
+    setLoadingBoost(false);
+    if (result) window.location.reload();
+  };
+
+  const onBoost = async () => {
+    setLoading(true);
+    const result = await boostArtwork(artwork?.data?.Id, token);
+    setLoading(false);
+    if (result) {
+    }
+  };
 
   return (
     <Main wide navBarItems={navBarItems}>
@@ -609,6 +633,27 @@ export default function ArtworkPage(props) {
                         <span>{t("priceOnRequest")}</span>
                       )}
                     </div>
+                    {/* boost (admin-only, when not yet boosted) */}
+                    {membership?.value > 5 && !artwork?.data?.IsBoosted && (
+                      <Button onClick={onBoost} disabled={loading}>
+                        {loading ? "Boosting…" : "Boost Artwork"}
+                      </Button>
+                    )}
+
+                    {/* remove boost (admin-only, when already boosted) */}
+                    {membership?.value > 5 && artwork?.data?.IsBoosted && (
+                      <Button
+                        variant="outlined"
+                        color="default"
+                        onClick={handleUnboost}
+                        disabled={loadingBoost}
+                        startIcon={<RocketLaunchIcon />}
+                      >
+                        {loadingBoost
+                          ? t("common:removingBoost")
+                          : t("common:removeBoost")}
+                      </Button>
+                    )}
 
                     {isMyArt && (
                       <>
