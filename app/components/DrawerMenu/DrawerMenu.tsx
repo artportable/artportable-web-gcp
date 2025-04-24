@@ -426,6 +426,13 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
+
+        <Link href={"/exhibition"} passHref>
+          <ListItem button divider onClick={() => close()}>
+            <ListItemText primary={t("exhibition")} />
+          </ListItem>
+        </Link>
+
         <Link href={"/curated"} passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
