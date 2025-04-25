@@ -119,6 +119,7 @@ export default function ExhibitionDetailPage({ navBarItems }) {
   const s = styles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const publicUrl = process.env.NEXT_PUBLIC_URL;
   if (!data)
     return <div style={{ padding: "2rem" }}>Exhibition not found.</div>;
 
@@ -131,6 +132,15 @@ export default function ExhibitionDetailPage({ navBarItems }) {
       >
         <Head>
           <title>{data.title}</title>
+          <meta name="keywords" content={data?.description} />
+          <meta property="og:title" content={data?.title} />
+          <meta property="og:image" content={data?.image} />
+          <meta property="og:description" content={data?.description} />
+          <meta property="og:type" content="article" />
+          <meta
+            property="og:url"
+            content={`${publicUrl}/exhibition/${data?.slug}`}
+          />
         </Head>
 
         <div className={s.pageWrapper}>
