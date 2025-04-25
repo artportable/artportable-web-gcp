@@ -143,15 +143,16 @@ export const styles = makeStyles((theme: Theme) => {
       borderRadius: "4px",
     },
     footerContainer: {
-      marginTop: "70px",
+      marginTop: "30px",
       backgroundColor: "#FABDCA",
       width: "100%",
       height: "380px",
       display: "flex",
       flexDirection: "column",
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("lg")]: {
         height: "320px",
         flexDirection: "row",
+        marginTop: "70px",
       },
     },
 
