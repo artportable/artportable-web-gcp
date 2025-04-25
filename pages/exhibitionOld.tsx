@@ -8,7 +8,7 @@ import { useBreakpointDown } from "../app/hooks/useBreakpointDown";
 import { useRouter } from "next/router";
 import { useMediaQuery, useTheme } from "@mui/material";
 
-export default function Exhibition({ navBarItems }) {
+export default function Index({ navBarItems }) {
   const s = styles();
   const { t } = useTranslation("exhibitions");
 
