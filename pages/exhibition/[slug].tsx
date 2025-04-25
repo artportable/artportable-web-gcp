@@ -5,6 +5,7 @@ import Main from "../../app/components/Main/Main";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useEffect } from "react";
 export const exhibitionData = {
   "artbakery-nk": {
     title: "Art Bakery NK",
@@ -123,6 +124,10 @@ export default function ExhibitionDetailPage({ navBarItems }) {
   if (!data)
     return <div style={{ padding: "2rem" }}>Exhibition not found.</div>;
 
+  useEffect(() => {
+    console.log(slug);
+  }, []);
+
   return (
     <>
       <Main
@@ -137,10 +142,7 @@ export default function ExhibitionDetailPage({ navBarItems }) {
           <meta property="og:image" content={data?.image} />
           <meta property="og:description" content={data?.description} />
           <meta property="og:type" content="article" />
-          <meta
-            property="og:url"
-            content={`${publicUrl}/exhibition/${data?.slug}`}
-          />
+          <meta property="og:url" content={`${publicUrl}/exhibition/${slug}`} />
         </Head>
 
         <div className={s.pageWrapper}>
