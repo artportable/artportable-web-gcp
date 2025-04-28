@@ -35,6 +35,8 @@ steps:
         "--memory",
         "1Gi",
       ]
+      options:
+logging: CLOUD_LOGGING_ONLY
 
 images:
   - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-web-prod:$COMMIT_SHA"
