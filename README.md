@@ -15,5 +15,5 @@ Afterwards you can navigate to any article that currently is in draft mode.
 Before implementing groups, check out this PR:
 https://github.com/boulder/artportable-web/pull/40
 
-###############
+################
 Test deploy to staging
