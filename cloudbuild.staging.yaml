@@ -36,6 +36,7 @@ steps:
         "1Gi",
       ]
 options:
-  logging: CLOUD_LOGGING_ONLY
+  #logging: CLOUD_LOGGING_ONLY
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
 images:
   - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-web-staging:$COMMIT_SHA"
