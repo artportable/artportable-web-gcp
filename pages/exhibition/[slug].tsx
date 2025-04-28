@@ -124,10 +124,6 @@ export default function ExhibitionDetailPage({ navBarItems }) {
   if (!data)
     return <div style={{ padding: "2rem" }}>Exhibition not found.</div>;
 
-  useEffect(() => {
-    console.log(slug);
-  }, []);
-
   return (
     <>
       <Main

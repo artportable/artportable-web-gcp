@@ -1,0 +1,40 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "--platform=linux/amd64",
+        "--build-arg",
+        "ENV=prod",
+        "-t",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-web-prod:$COMMIT_SHA",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-web-prod:$COMMIT_SHA",
+      ]
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "artportable-web-prod",
+        "--image",
+        "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-web-prod:$COMMIT_SHA",
+        "--region",
+        "europe-north1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+        "--port",
+        "3000",
+        "--memory",
+        "1Gi",
+      ]
+
+images:
+  - "europe-north1-docker.pkg.dev/$PROJECT_ID/artportable-web/artportable-web-prod:$COMMIT_SHA"
