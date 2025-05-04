@@ -361,11 +361,10 @@ export const styles = makeStyles((theme: Theme) =>
       fontSize: "10px",
       fontWeight: 600,
       fontFamily: "Roboto !important",
-
       color: "white",
       textDecoration: "underline",
       cursor: "pointer",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("smPlus")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "30px",
       },
@@ -383,7 +382,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "black",
       textDecoration: "underline",
       cursor: "pointer",
-      [theme.breakpoints.up("lg")]: {
+      [theme.breakpoints.up("smPlus")]: {
         padding: "10px 20px 10px 20px",
         fontSize: "30px",
       },

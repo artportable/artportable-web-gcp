@@ -228,26 +228,13 @@ export default function ArtworkListItem({
 
       <div className={s.footer}>
         <div className={s.footerRow}>
-          <div
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
           >
-            <div
-              style={{
-                fontSize: "12px",
-                fontFamily: "Roboto",
-                fontWeight: 300,
-              }}
-            >
-              {profileUser?.data?.City === null ? (
-                <div>{t("art:missingPosition")}</div>
-              ) : (
-                <div>{profileUser?.data?.City}</div>
-              )}
-            </div>
             <div
               style={{
                 color: "gray",
@@ -257,7 +244,7 @@ export default function ArtworkListItem({
             >
               {getTimePassed(artwork?.Published, t)}
             </div>
-          </div>
+          </div> */}
           <div
             style={{
               display: "flex",
@@ -272,15 +259,20 @@ export default function ArtworkListItem({
                 </div>
               </a>
             </Link>
-            <div
-              style={{
-                fontSize: "12px",
-                fontStyle: "italic",
-                fontFamily: "Roboto",
-                fontWeight: 300,
-              }}
-            >
-              {artwork?.Title}
+            <div style={{ fontWeight: 300, fontSize: "11px" }}>
+              {artwork.MultipleSizes
+                ? " " + t("common:words.multipleSizes").toLowerCase() + ""
+                : artwork.Width && artwork.Height && artwork.Depth
+                ? " " +
+                  artwork.Width +
+                  "x" +
+                  artwork.Height +
+                  "x" +
+                  artwork.Depth +
+                  "cm"
+                : artwork.Width && artwork.Height
+                ? " " + artwork.Width + "x" + artwork.Height + "cm"
+                : null}
             </div>
           </div>
         </div>

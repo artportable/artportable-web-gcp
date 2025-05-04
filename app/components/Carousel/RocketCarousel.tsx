@@ -157,8 +157,22 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                 marginTop: "0px",
               }}
             >
-              {item?.Title}
-              <br />
+              <div style={{ fontWeight: 300, fontSize: "11px" }}>
+                {item?.MultipleSizes
+                  ? " " + t("common:words.multipleSizes").toLowerCase() + ""
+                  : item?.Width && item?.Height && item?.Depth
+                  ? " " +
+                    item?.Width +
+                    "x" +
+                    item?.Height +
+                    "x" +
+                    item?.Depth +
+                    "cm"
+                  : item?.Width && item?.Height
+                  ? " " + item?.Width + "x" + item?.Height + "cm"
+                  : null}
+              </div>
+
               <div
                 style={{
                   display: "flex",
@@ -181,18 +195,6 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                     </div>
                   )}
                 </div>
-
-                <a href={`${baseUrl}/art/${item.Id}`} className={s.buyButton}>
-                  {
-                    <Brightness1Icon
-                      style={{
-                        color: "#229059",
-                        fontSize: "30px",
-                      }}
-                    />
-                  }
-                  <div style={{ padding: "5px" }}>{t("buy")}</div>
-                </a>
               </div>
             </p>
           </div>
