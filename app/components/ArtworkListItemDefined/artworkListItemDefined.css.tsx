@@ -259,7 +259,7 @@ export const styles = makeStyles((theme: Theme) =>
     price: {
       fontSize: "0.8rem",
       lineHeight: "1rem",
-      fontWeight: theme.typography.fontWeightMedium,
+      fontWeight: 500,
       display: "flex",
     },
 

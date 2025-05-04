@@ -39,7 +39,7 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
           </div>
         </div>
       )}
-      {page === "likes" && (
+      {/* {page === "likes" && (
         <div className={s.containerLiked}>
           <div style={{ marginLeft: filterOpen ? "23%" : "10%" }}>
             <div
@@ -65,7 +65,7 @@ export default function IndexHeroRenewed({ page, filterOpen }) {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }

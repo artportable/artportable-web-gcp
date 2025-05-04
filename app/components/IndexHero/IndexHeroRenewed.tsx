@@ -202,7 +202,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               </div>
             </section>
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (
@@ -364,7 +364,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 </div>
               </div>
             </section>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </div>
       </Swiper>
     </div>

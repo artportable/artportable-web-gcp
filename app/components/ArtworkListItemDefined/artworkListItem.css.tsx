@@ -187,7 +187,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       justifyContent: "space-between",
       fontSize: "0.95rem",
-      fontWeight: 300,
+      fontWeight: 400,
       textOverflow: "ellipsis",
       lineClamp: 2,
       fontFamily: "Roboto",
@@ -198,7 +198,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       whiteSpace: "nowrap",
       fontFamily: "Roboto",
-      fontWeight: 300,
+      fontWeight: 500,
     },
     soldMark: {
       background: "#C67777",
