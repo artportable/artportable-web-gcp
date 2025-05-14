@@ -561,20 +561,10 @@ export default function Header({ navBarItems }) {
                   {t("exhibition")}
                 </Link>
               </div>
-              {isSignedIn.value ? (
-                <>
-                  <div className={s.titlesOnHeader}>
-                    <Link href="/feed">{t("myArtNetwork")}</Link>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className={s.titlesOnHeader}>
-                    <Link href={"/newsletter"} passHref>
-                      {t("subscribeNewsletter")}
-                    </Link>
-                  </div>
-                </>
+              {isSignedIn.value && (
+                <div className={s.titlesOnHeader}>
+                  <Link href="/feed">{t("myArtNetwork")}</Link>
+                </div>
               )}
               {/* <div className={s.titlesOnHeader}>
                 <Link href={`${t("header:storiesSlug")}`} passHref>
