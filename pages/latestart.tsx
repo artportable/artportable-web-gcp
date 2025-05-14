@@ -10,6 +10,8 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MainOption from "../app/components/Main/MainOption";
+import BannerText from "../app/components/BannerText/BannerText";
 
 export default function Latest({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -21,6 +23,7 @@ export default function Latest({ navBarItems }) {
   const rowWidth = useMainWidth().wide;
   const [loadMoreArtworks, setLoadMoreArtworks] = useState(true);
 
+  const [open, setOpen] = useState(false);
   const loadImages = () => {
     setLoadMoreArtworks(true);
   };
@@ -37,12 +40,24 @@ export default function Latest({ navBarItems }) {
 
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
+      <MainOption
+        navBarItems={navBarItems}
+        wide
+        isShow={false}
+        noHeaderPadding={isMobile}
+      >
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("latest")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/latest`} />
         </Head>
+
+        {!open && (
+          <BannerText
+            title={t("index:newIn")}
+            text={t("index:newInText")}
+          ></BannerText>
+        )}
         <DiscoverFilteredArt
           username={username.value}
           socialId={socialId.value}
@@ -54,8 +69,10 @@ export default function Latest({ navBarItems }) {
           header={t("discover:latestArt")}
           page={"latest"}
           selectedCategory={category}
+          open={open}
+          setOpen={setOpen}
         />
-      </Main>
+      </MainOption>
     </>
   );
 }

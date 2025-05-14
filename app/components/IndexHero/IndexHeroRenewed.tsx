@@ -36,7 +36,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
           hide: false,
         }}
         autoplay={{
-          delay: 14000,
+          delay: 140000000,
           disableOnInteraction: false,
         }}
         navigation={isTinyDevice}
@@ -52,33 +52,33 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   }}
                 >
                   <Image
-                    src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/ced664bd-b037-4db2-9368-1efaef9a8c81.jpg"
-                    }
+                    src={"/images/startpage4.png"}
                     alt="first page artwork"
                     priority
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"
-                    unoptimized
-                  />
+                  />{" "}
                   <div className={s.imageText}>
                     {" "}
-                    <div>
-                      {" "}
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {t("buyFrom")} <br />
-                        {t("direct")}
-                        <br />
-                      </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div className={s.titleOne}> {t("buyFrom")}</div>
+                      <div className={s.titleTwo}> {t("direct")}</div>
+                      <div className={s.buttonFindArt}>
+                        {" "}
+                        <Link href={"/discover"} passHref>
+                          {t("findArt")}
+                        </Link>
+                      </div>
                     </div>
                   </div>{" "}
-                  <div className={s.imageButton}>
+                  {/* <div className={s.imageButton}>
                     {" "}
                     <div className={s.buttonFindArt}>
                       {" "}
@@ -86,7 +86,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                         {t("findArt")}
                       </Link>
                     </div>
-                  </div>{" "}
+                  </div> */}
                   <br />
                 </div>
               </div>
@@ -95,29 +95,22 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                   {" "}
                   <div>
                     {" "}
-                    <p
+                    <div
                       style={{
-                        color: "white",
-                        textAlign: "center",
-                        fontWeight: 600,
-                        backgroundColor: "#ccba92b5",
-                        width: "100vw",
-                        padding: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        flexDirection: "column",
                       }}
                     >
-                      {t("buyFrom")} <br />
-                      {t("direct")}
-                      <br />
-                    </p>
-                    <div
-                      className={s.buttonFindArtMobile}
-                      style={{ color: "white" }}
-                    >
-                      {" "}
-                      <Link href={"/discover"} passHref>
-                        {t("findArt")}
-                      </Link>
-                    </div>
+                      <div className={s.titleOne}> {t("buyFrom")}</div>
+                      <div className={s.titleTwo}> {t("direct")}</div>
+                      <div className={s.buttonFindArt}>
+                        {" "}
+                        <Link href={"/discover"} passHref>
+                          {t("findArt")}
+                        </Link>
+                      </div>
+                    </div>{" "}
                   </div>
                 </div>
 
@@ -129,79 +122,7 @@ export default function IndexHeroRenewed({ onScrollDown }) {
               </div>
             </section>
           </SwiperSlide>
-          <SwiperSlide>
-            <section className={s.sectionWrapper}>
-              <div className={s.imgWrapper}>
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  <Image
-                    src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/fa379bfa-c084-403b-b0c3-f12e040b14e2.jpg"
-                    }
-                    alt="first page artwork"
-                    priority
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    unoptimized
-                  />
-                  {/* <div className={s.imageText}>
-                    {" "}
-                    <div>
-                      {" "}
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {t("buyUnder")} <br />
-                        <br />
-                      </p>
-                    </div>
-                  </div>{" "} */}
-                  <div className={s.imageButton}>
-                    {" "}
-                    <div
-                      className={s.buttonFindArtTwo}
-                      style={{ color: "white" }}
-                      onClick={() => handlePriceClick([0, 5000])}
-                    >
-                      {" "}
-                      {t("buyUnder")}
-                    </div>
-                  </div>{" "}
-                  <br />
-                </div>
-              </div>
-              <div className={s.headlineWrapperMobile}>
-                <div className={s.imageTextMobile}>
-                  {" "}
-                  <div>
-                    {" "}
-                    <div
-                      className={s.buttonFindArtMobile}
-                      style={{ color: "white" }}
-                      onClick={() => handlePriceClick([0, 5000])}
-                    >
-                      {" "}
-                      {t("buyUnder")}
-                    </div>
-                  </div>
-                </div>
 
-                {/* <div className={s.buttonWrapper}>
-                  <Link href={"/discover"} passHref>
-                    <Button className={s.buttonFindArt}>{t("findArt")}</Button>
-                  </Link>
-                </div> */}
-              </div>
-            </section>
-          </SwiperSlide>
           {/* <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
@@ -280,8 +201,8 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                 </div>
               </div>
             </section>
-          </SwiperSlide>
-          <SwiperSlide>
+          </SwiperSlide> */}
+          {/* <SwiperSlide>
             <section className={s.sectionWrapper}>
               <div className={s.imgWrapperRest}>
                 {isTinyDevice ? (

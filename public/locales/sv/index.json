@@ -66,8 +66,8 @@
   "artistTitle": "Vårsalongen 2025",
   "artistDescription": "Liljevalchs Vårsalong 2025 har nu öppnat sina dörrar – textilkonst populärt i år.",
   "seeMore": "Se mer",
-  "titleHeader": "Kroppen minns",
-  "descriptionBody": "Hur bär kroppen minnet av det vi slutat sätta ord på? Genom rörelser, hud, tyngd och blickar berättas det som aldrig blev sagt. I denna samling talar konstnärerna med kroppens språk – om lust och sårbarhet, styrka och närhet. Ett utforskande av det kroppsliga som arkiv, där varje gest bär spår av minnen, känslor och erfarenheter.",
+  "titleHeader": "Verktyg & Vilja",
+  "descriptionBody": "Vad händer i mötet mellan kropp och föremål? I denna temautställning utforskar vi relationen mellan människan och de ting vi tar i våra händer: racketen, hjälmen, handskarna, skorna. Föremål som förlänger kroppen, bär minne av rörelse, absorberar både kraft och misslyckande. Redskapet och kroppen är en betraktelse över människans försök att nå längre – med hjälp av något utanför sig själv. Här finns svetten i lindan, viljan i repetitionen, värmen som dröjer kvar i boxningshandsken. Ting som talar – inte bara om sport, utan om längtan, kontroll och de märkliga ritualer vi kallar träning.",
   "discoverTitle": "Hitta ditt originalverk och köp det direkt från konstnären",
   "discoverText": "På Artportable hittar du alla typer av konst; olja, akvarell, fotografi eller keramik. Naturtroget eller abstrakt, här finns alla tänkbara tekniker och format representerade, från hela landet. Det smartaste av allt, du kontaktar själv konstnären bakom ditt favoritverk och gör upp både köp och leverans. Enkelt och modernt.",
   "latestTitle": "Hitta nya verk, varje dag.",
@@ -83,7 +83,7 @@
   "curatedText": "Svårt att välja? Vi lyfter fram den mest spännande och prisvärda konsten just nu.",
   "newIn": "Nytt på Artportable",
   "newInText": "Var först med att se det senaste från våra konstnärer.",
-  "chosen": "Topplistan",
+  "chosen": "Spotlight",
   "chosenCategories": "Utforska olika stilar",
   "chosenCategoriesText": "Hitta konst som passar din stil och ditt hem med hjälp av våra populära konstkategorier.",
   "partners": "I samarbete med",
@@ -93,5 +93,6 @@
   "textNews": "I Artportables nyhetsrum delar konstnärerna själva med sig av det senaste. Här hittar du aktuella utställningar, kommande kurser, nya samarbeten och annat spännande som händer i deras konstnärskap. Allt kommer direkt från kreatörerna – personligt, nära och alltid uppdaterat.",
   "direct": "direkt från konstnären.",
   "buyFrom": "Köp din favoritkonst",
-  "buyUnder": "Originalverk under 5000 kronor"
+  "buyUnder": "Originalverk under 5000 kronor",
+  "chosenOne": "Ett ögonblick i konsten - här och nu."
 }

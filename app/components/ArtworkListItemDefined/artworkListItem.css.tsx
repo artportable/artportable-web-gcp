@@ -193,12 +193,19 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Roboto",
       textTransform: "uppercase",
     },
+    sizesArt: {
+      fontSize: "0.75rem",
+      flexShrink: 0,
+      flexGrow: 0,
+      fontWeight: 300,
+    },
     price: {
       fontSize: "0.8rem",
       display: "flex",
       whiteSpace: "nowrap",
       fontFamily: "Roboto",
-      fontWeight: 500,
+      fontWeight: 400,
+      fontStyle: "italic",
     },
     soldMark: {
       background: "#C67777",

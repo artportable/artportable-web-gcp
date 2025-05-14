@@ -11,6 +11,8 @@ import { UserContext } from "../app/contexts/user-context";
 import { useMainWidth } from "../app/hooks/useWidth";
 import { useMediaQuery, useTheme } from "@mui/material";
 import DiscoverSpotlightTab from "../app/components/DiscoverHighlightsTab/DiscoverSpotlightTab";
+import BannerText from "../app/components/BannerText/BannerText";
+import MainOption from "../app/components/Main/MainOption";
 export default function Spotlight({ navBarItems }) {
   const mdPlusScreenOrDown = useBreakpointDown("mdPlus");
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -34,19 +36,14 @@ export default function Spotlight({ navBarItems }) {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
-      <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
-        <div
-          style={{
-            width: !isMobile ? "100%" : "100%",
-          }}
-          className={s.textWrapper}
-        >
-          {" "}
-          <div className={s.wrap}>
-            <div className={s.title}>{t("index:spotlightTitle")}</div>
-            <div className={s.text}>{t("index:spotlightText")}</div>
-          </div>
-        </div>
+      <MainOption
+        wide={mdPlusScreenOrDown ? true : false}
+        navBarItems={navBarItems}
+      >
+        <BannerText
+          title={t("index:spotlightTitle")}
+          text={t("index:spotlightText")}
+        />
         <div className={s.container}>
           {" "}
           <DiscoverSpotlightTab
@@ -60,7 +57,7 @@ export default function Spotlight({ navBarItems }) {
             header={t("")}
           />
         </div>
-      </Main>
+      </MainOption>
     </>
   );
 }

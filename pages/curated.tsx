@@ -11,6 +11,8 @@ import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverF
 import DiscoverHighLightsTab from "../app/components/DiscoverHighlightsTab/DiscoverHighlightsTab";
 import { styles } from "../styles/curated.css";
 import { useMediaQuery, useTheme } from "@mui/material";
+import BannerText from "../app/components/BannerText/BannerText";
+import MainOption from "../app/components/Main/MainOption";
 export default function latest({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { t } = useTranslation(["header", "index"]);
@@ -34,26 +36,23 @@ export default function latest({ navBarItems }) {
 
   return (
     <>
-      <Main
+      <MainOption
         noHeaderPadding={isMobile ? true : false}
         wide={false}
         isShow={true}
         navBarItems={navBarItems}
-        fullWidth={false}
+        fullWidth={true}
       >
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <div className={s.textWrapper}>
-          {" "}
-          <div className={s.wrap}>
-            <div className={s.title}>{t("index:titleHeader")}</div>
-            <br />
-            <div className={s.text}>{t("index:descriptionBody")}</div>
-          </div>
-        </div>
+
+        <BannerText
+          title={t("index:titleHeader")}
+          text={t("index:descriptionBody")}
+        />
         <div className={s.container}>
           {" "}
           <DiscoverHighLightsTab
@@ -67,7 +66,7 @@ export default function latest({ navBarItems }) {
             header={t("")}
           />
         </div>
-      </Main>
+      </MainOption>
     </>
   );
 }

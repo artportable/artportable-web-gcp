@@ -11,6 +11,8 @@ import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverF
 import DiscoverStoriesTab from "../app/components/DiscoverStoriesTab/DiscoverStoriesTab";
 
 import { styles } from "../styles/curated.css";
+import BannerText from "../app/components/BannerText/BannerText";
+import MainOption from "../app/components/Main/MainOption";
 export default function newsroom({ navBarItems }) {
   const s = styles();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -21,29 +23,19 @@ export default function newsroom({ navBarItems }) {
 
   return (
     <>
-      <Main navBarItems={navBarItems} fullWidth>
+      <MainOption navBarItems={navBarItems} fullWidth>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
         </Head>
-        <div
-          style={{
-            height: "300px",
-          }}
-          className={s.textWrapper}
-        >
-          <div className={s.wrap}>
-            <div className={s.title}>{t("index:titleNews")}</div>
-            <br />
-            <div className={s.text}>{t("index:textNews")}</div>
-          </div>
-        </div>
+
+        <BannerText title={t("index:titleNews")} text={t("index:textNews")} />
 
         <div style={{ marginTop: "30px" }}>
           <DiscoverStoriesTab />
         </div>
-      </Main>
+      </MainOption>
     </>
   );
 }

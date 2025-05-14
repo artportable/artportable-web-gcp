@@ -12,8 +12,12 @@ export const styles = makeStyles((theme: Theme) =>
     row: {
       display: "flex",
       ...rowGap(16),
-      justifyContent: "flex-start",
+      justifyContent: "space-between",
       overflow: "hidden",
+      paddingLeft: 50,
+      paddingRight: 50,
+      width: "100%",
+      boxSizing: "border-box",
     },
 
     rowSkeleton: {

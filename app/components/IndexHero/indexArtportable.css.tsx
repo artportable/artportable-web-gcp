@@ -24,13 +24,13 @@ export const styles = makeStyles((theme: Theme) =>
 
     registerWrapper: {
       marginTop: "20px",
-      backgroundColor: "#FCF7EC",
+      backgroundColor: "#222222",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       height: "100%",
-
+      color: "white",
       borderColor: "#B3BB3",
       padding: "20px",
       [theme.breakpoints.up("smPlus")]: {
@@ -91,23 +91,25 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     buttonRegister: {
-      marginTop: "10px",
-      borderRadius: "40px",
-      marginRight: "10px",
-      padding: "10px 10px 10px 10px",
-      fontSize: "12px",
-      fontWeight: 600,
-      fontFamily: "Roboto !important",
-      backgroundColor: "black",
-      color: "white",
-      [theme.breakpoints.up("lg")]: {
-        padding: "10px 20px 10px 20px",
-        fontSize: "16px",
-      },
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginTop: "30px",
       "&:hover": {
-        backgroundColor: "#229059",
-
-        textDecoration: "underline",
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
       },
     },
     whatIs: {
