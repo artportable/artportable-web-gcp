@@ -10,6 +10,8 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import BannerText from "../app/components/BannerText/BannerText";
+import MainOption from "../app/components/Main/MainOption";
 
 export default function discover({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -28,6 +30,7 @@ export default function discover({ navBarItems }) {
   const stopLoadImages = () => {
     setLoadMoreArtworks(false);
   };
+  const [open, setOpen] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -42,14 +45,24 @@ export default function discover({ navBarItems }) {
 
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
+      <MainOption
+        navBarItems={navBarItems}
+        isShow={false}
+        noHeaderPadding={isMobile}
+        fullWidth={true}
+      >
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("discover")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/discover`} />
           <meta property="og:title" content={t("discover")} />
         </Head>
-
+        {!open && (
+          <BannerText
+            title={t("index:discoverTitle")}
+            text={t("index:discoverText")}
+          />
+        )}
         <DiscoverFilteredArt
           username={username.value}
           socialId={socialId.value}
@@ -62,8 +75,10 @@ export default function discover({ navBarItems }) {
           page={"likes"}
           selectedCategory={category}
           selectedPrice={parsedPrice}
+          open={open}
+          setOpen={setOpen}
         />
-      </Main>
+      </MainOption>
     </>
   );
 }

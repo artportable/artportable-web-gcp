@@ -40,10 +40,6 @@ export default function ArtworkListItem({
 
   const profileUser = useGetUserProfileSummary(artwork?.Username);
 
-  useEffect(() => {
-    console.log(artwork);
-  }, []);
-
   function getFormatter(
     languageCode: string,
     currency: string | null
@@ -228,13 +224,26 @@ export default function ArtworkListItem({
 
       <div className={s.footer}>
         <div className={s.footerRow}>
-          {/* <div
+          <div
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
           >
+            {/* <div
+              style={{
+                fontSize: "12px",
+                fontFamily: "Roboto",
+                fontWeight: 300,
+              }}
+            >
+              {profileUser?.data?.City === null ? (
+                <div>{t("art:missingPosition")}</div>
+              ) : (
+                <div>{profileUser?.data?.City}</div>
+              )}
+            </div>
             <div
               style={{
                 color: "gray",
@@ -243,8 +252,8 @@ export default function ArtworkListItem({
               }}
             >
               {getTimePassed(artwork?.Published, t)}
-            </div>
-          </div> */}
+            </div> */}
+          </div>
           <div
             style={{
               display: "flex",
@@ -259,21 +268,25 @@ export default function ArtworkListItem({
                 </div>
               </a>
             </Link>
-            <div style={{ fontWeight: 300, fontSize: "11px" }}>
+            {/* <div
+              style={{
+                fontSize: "12px",
+                fontStyle: "italic",
+                fontFamily: "Roboto",
+                fontWeight: 300,
+              }}
+            >
+              {artwork?.Title}
+            </div> */}
+            <span className={s.sizesArt}>
               {artwork.MultipleSizes
                 ? " " + t("common:words.multipleSizes").toLowerCase() + ""
                 : artwork.Width && artwork.Height && artwork.Depth
-                ? " " +
-                  artwork.Width +
-                  "x" +
-                  artwork.Height +
-                  "x" +
-                  artwork.Depth +
-                  "cm"
+                ? " " + artwork.Width + "x" + artwork.Height + "cm"
                 : artwork.Width && artwork.Height
                 ? " " + artwork.Width + "x" + artwork.Height + "cm"
                 : null}
-            </div>
+            </span>
           </div>
         </div>
 

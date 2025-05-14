@@ -162,7 +162,7 @@ export default function DiscoverArt({
     setImageRows(rows);
     const skeletonRows = getImageAsRows(
       skeletonImages,
-      theme.spacing(2),
+      theme.spacing(0),
       rowWidth
     );
     setSkeletonRows(skeletonRows);
@@ -188,20 +188,7 @@ export default function DiscoverArt({
     imageurl: string
   ) {
     const url = publicUrl + "/art/" + artworkId;
-    // if (isSignedIn.value) {
-    //   const originalRedirect = {
-    //     pathname: "/messages",
-    //     query: {
-    //       artwork: encodeURIComponent(JSON.stringify({
-    //         title: title,
-    //         creator: creator,
-    //         url: url,
-    //       })),
-    //       referTo: referTo,
-    //     }
-    //   }
-    //   router.push(originalRedirect);
-    // } else {
+
     setPurchaseRequestDialogData({
       title: title,
       creator: creator,
@@ -245,7 +232,7 @@ export default function DiscoverArt({
                 <div
                   className={s.row}
                   style={{
-                    width: isFilterOpen ? "85%" : "100%",
+                    width: isFilterOpen ? "75%%" : "100%",
                     marginLeft: isFilterOpen ? "auto" : "0",
                   }}
                 >
@@ -253,7 +240,7 @@ export default function DiscoverArt({
                     <div
                       className={s.row}
                       style={{
-                        width: isFilterOpen ? "85%" : "100%",
+                        width: isFilterOpen ? "75%" : "100%",
                         marginLeft: isFilterOpen ? "auto" : "0",
                       }}
                     >
@@ -272,16 +259,14 @@ export default function DiscoverArt({
                 <div
                   className={s.row}
                   style={{
-                    width: isFilterOpen ? "85%" : "100%",
-                    marginLeft: isFilterOpen ? "auto" : "0",
+                    width: isFilterOpen ? "75%" : "100%",
                   }}
                 >
                   {skeletonRows && skeletonRows.length > 0 && (
                     <div
                       className={s.row}
                       style={{
-                        width: isFilterOpen ? "85%" : "100%",
-                        marginLeft: isFilterOpen ? "auto" : "0",
+                        width: isFilterOpen ? "75%" : "100%",
                       }}
                     >
                       {skeletonRows[1].map((image) => {
@@ -303,8 +288,9 @@ export default function DiscoverArt({
                 Array.isArray(row) ? (
                   <div
                     style={{
-                      width: isFilterOpen ? "85%" : "100%",
-                      marginLeft: isFilterOpen ? "auto" : "0",
+                      width: isFilterOpen ? "calc(100% - 150px)" : "100%",
+                      marginLeft: isFilterOpen ? "300px" : "0",
+                      transition: "margin 0.3s ease, width 0.3s ease",
                     }}
                     className={s.row}
                     key={i}
@@ -359,8 +345,8 @@ export default function DiscoverArt({
                 className={s.row}
                 ref={loadMoreElementRef}
                 style={{
-                  width: isFilterOpen ? "85%" : "100%",
-                  marginLeft: isFilterOpen ? "auto" : "0",
+                  width: isFilterOpen ? "calc(100% - 150px)" : "100%",
+                  marginLeft: isFilterOpen ? "300px" : "0",
                 }}
               >
                 {skeletonRows && skeletonRows.length > 0 && (

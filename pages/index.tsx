@@ -134,9 +134,10 @@ export default function DiscoverPage({ navBarItems }) {
         <IndexCategories />
       </div>
       <Link href="/discover">
-        <Button className={s.categoriesButton}>{t("common:moreStyles")}</Button>
+        <Button className={s.loginButton}>{t("common:moreStyles")}</Button>
       </Link>
       <div className={s.headTitle}>{t("chosen")}</div>
+      <div className={s.headText}>{t("chosenOne")}</div>
       <div
         style={{
           gridColumn: "1 / 4",
@@ -146,7 +147,7 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <RocketCarousel
           forDesktop={!isMobile}
-          containerStyle={{ margin: "40px 0 0px 0" }}
+          containerStyle={{ margin: "0px 0 0px 0" }}
         />
       </div>
       <Link href="/spotlight">
@@ -200,9 +201,7 @@ export default function DiscoverPage({ navBarItems }) {
       >
         <DiscoverChosenArtists></DiscoverChosenArtists>
       </div> */}
-      <div className={s.divider}>
-        <Divider></Divider>
-      </div>
+
       <div
         style={{
           gridColumn: "1 / 4",

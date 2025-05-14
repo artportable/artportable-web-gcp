@@ -65,8 +65,8 @@
   "artistTitle": "Vårsalongen 2025",
   "artistDescription": "Liljevalchs Spring Salon 2025 has now opened its doors – textile art is popular this year.",
   "seeMore": "See more",
-  "titleHeader": "The body remembers",
-  "descriptionBody": "How does the body carry the memory of what we've stopped putting into words? Through movements, skin, weight, and gazes, the unspoken is told. In this collection, the artists speak through the language of the body – about desire and vulnerability, strength and closeness. An exploration of the body as an archive, where every gesture carries traces of memories, feelings, and experiences.",
+  "titleHeader": "Grip & Grit",
+  "descriptionBody": "What happens in the encounter between body and object? In this themed exhibition, we explore the relationship between humans and the things we take in our hands: the racket, the helmet, the gloves, the shoes. Objects that extend the body, carry memories of movement, absorb both force and failure. Grip & Grit is a reflection on humanity's attempt to reach further – with the help of something outside ourselves. Here is the sweat in the wrap, the will in repetition, the warmth lingering in the boxing glove. Things that speak – not only of sport, but of longing, control, and the strange rituals we call training.",
   "discoverTitle": "Find your original artwork and buy it directly from the artist",
   "discoverText": "At Artportable, you'll find all types of art: oil, watercolor, photography, or ceramics. Realistic or abstract, all imaginable techniques and formats are represented here, from across the country. The smartest part of all, you can contact the artist behind your favorite piece directly and arrange both the purchase and delivery. Simple and modern.",
   "latestTitle": "Buy the latest on Artportable",
@@ -82,7 +82,7 @@
   "curatedText": "Having trouble choosing? We highlight the most exciting and affordable art right now.",
   "newIn": "New at Artportable",
   "newInText": "Be the first to see the latest from our artists.",
-  "chosen": "Selected",
+  "chosen": "Spotlight",
   "chosenCategories": "Selected Categories",
   "chosenCategoriesText": "Find art that suits your style and home with the help of our popular art categories.",
   "partners": "Our Partners",
@@ -92,5 +92,6 @@
   "textNews": "In Artportable's news room, the artists themselves share the latest updates. Here, you’ll find current exhibitions, upcoming courses, new collaborations, and other exciting developments in their artistic journey. Everything comes directly from the creators – personal, close, and always up to date.",
   "direct": "directly from the artist.",
   "buyFrom": "Buy your favorite art",
-  "buyUnder": "Original artworks under 5000 SEK"
+  "buyUnder": "Original artworks under 5000 SEK",
+  "chosenOne": "A glimpse of art in the present moment."
 }

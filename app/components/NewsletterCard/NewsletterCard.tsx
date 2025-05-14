@@ -85,7 +85,6 @@ export default function Newsletter() {
 
                 <FormButton className={s.newsletterButton} type="submit">
                   {t("subscribe")}{" "}
-                  <EmailIcon style={{ marginLeft: "4px" }}></EmailIcon>
                 </FormButton>
               </form>
             </>

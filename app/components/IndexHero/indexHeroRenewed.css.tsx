@@ -208,13 +208,28 @@ export const styles = makeStyles((theme: Theme) =>
         position: "absolute",
         bottom: "0",
         left: "0",
-
         color: "white",
         height: "20%",
-        width: "30%",
+        width: "35%",
         marginBottom: "80px",
         fontSize: "30px",
-        backgroundColor: "#ccba92b5",
+      },
+    },
+
+    titleOne: {
+      fontFamily: "Roboto",
+      fontSize: "30px",
+      fontWeight: 800,
+      [theme.breakpoints.up("md")]: {
+        fontSize: "42px",
+      },
+    },
+    titleTwo: {
+      fontSize: "28px",
+      fontFamily: "Joan",
+      marginBottom: "10px",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "40px",
       },
     },
     imageTextMobile: {
@@ -255,11 +270,9 @@ export const styles = makeStyles((theme: Theme) =>
         alignItems: "center",
         position: "absolute",
         bottom: "0",
-        left: "50%",
-        transform: "translateX(-50%)",
         color: "white",
         height: "15%",
-        width: "40%",
+        width: "30%",
         marginBottom: "0px",
         fontSize: "30px",
       },
@@ -356,47 +369,57 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     buttonFindArt: {
-      marginRight: "10px",
       padding: "10px 10px 10px 10px",
       fontSize: "10px",
       fontWeight: 600,
       fontFamily: "Roboto !important",
+      backgroundColor: "#2E2E2E",
+      border: "1px solid #2E2E2E",
       color: "white",
-      textDecoration: "underline",
       cursor: "pointer",
+      width: "200px",
+      textAlign: "center",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
       [theme.breakpoints.up("smPlus")]: {
-        padding: "10px 20px 10px 20px",
-        fontSize: "30px",
+        fontSize: "14px",
+        "&:hover": {
+          backgroundColor: "white",
+          border: "1px solid #2E2E2E",
+          color: "black",
+        },
       },
-      "&:hover": {
-        color: "black",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "16px",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "18px",
       },
     },
-    buttonFindArtTwo: {
-      marginRight: "10px",
-      padding: "10px 10px 10px 10px",
-      fontSize: "10px",
-      fontWeight: 600,
-      fontFamily: "Roboto !important",
+    // buttonFindArtTwo: {
+    //   marginRight: "10px",
+    //   padding: "10px 10px 10px 10px",
+    //   fontSize: "10px",
+    //   fontWeight: 600,
+    //   fontFamily: "Roboto !important",
 
-      color: "black",
-      textDecoration: "underline",
-      cursor: "pointer",
-      [theme.breakpoints.up("smPlus")]: {
-        padding: "10px 20px 10px 20px",
-        fontSize: "30px",
-      },
-      "&:hover": {
-        color: "white",
-      },
-    },
+    //   color: "black",
+    //   textDecoration: "underline",
+    //   cursor: "pointer",
+    //   [theme.breakpoints.up("lg")]: {
+    //     padding: "10px 20px 10px 20px",
+    //     fontSize: "30px",
+    //   },
+    //   "&:hover": {
+    //     color: "white",
+    //   },
+    // },
     buttonFindArtMobile: {
       marginRight: "10px",
       padding: "10px 10px 10px 10px",
       fontSize: "22px",
       fontWeight: 600,
       fontFamily: "Roboto !important",
-      color: "black",
+      color: "white",
       textDecoration: "underline",
       cursor: "pointer",
       textAlign: "center",
@@ -404,6 +427,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "none",
       },
     },
+
     seeMoreButton: {
       borderRadius: "40px",
       marginRight: "10px",

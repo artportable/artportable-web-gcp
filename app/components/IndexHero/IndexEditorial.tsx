@@ -12,9 +12,9 @@ export default function IndexEditorial() {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div className={s.wrapper}>
           <div>
-            <Link href="https://artportable.com/editorial/ulric">
+            <Link href="https://artportable.com/editorial/fleurs">
               <Image
-                src={"/images/ulricone.jpg"}
+                src={"/images/fleursfour.jpg"}
                 width={"600px"}
                 height={"300px"}
                 objectFit="cover"
@@ -26,94 +26,204 @@ export default function IndexEditorial() {
           <div className={s.titles}>
             {" "}
             <Link
-              href="https://artportable.com/editorial/ulric"
+              href="https://artportable.com/editorial/krib"
               className={s.titleTwo}
             >
-              Ulric Rudebeck – mellan landskap och linjer
+              The Fleurs: På gränsen mellan dröm och verklighet
             </Link>{" "}
             <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-22</div>
-          </div>
-        </div>{" "}
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/santiago">
-              <Image
-                src={"/images/santiagoone.jpg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/santiago"
-              className={s.titleTwo}
-            >
-              Madeleine Santiago – konsten som blev en livsväg
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-15</div>
-          </div>
-        </div>{" "}
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/catrine">
-              <Image
-                src={"/images/catrineone.jpg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/catrine"
-              className={s.titleTwo}
-            >
-              Catrine Näsmark – Porträtt, motorer och mod att måla livet som det
-              är
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-11</div>
-          </div>
-        </div>{" "}
-        <div className={s.wrapper}>
-          <div>
-            <Link href="https://artportable.com/editorial/gahne">
-              <Image
-                src={"/images/gahnefive.jpg"}
-                width={"600px"}
-                height={"300px"}
-                objectFit="cover"
-                priority
-                quality={10}
-              />
-            </Link>
-          </div>
-          <div className={s.titles}>
-            {" "}
-            <Link
-              href="https://artportable.com/editorial/gahne"
-              className={s.titleTwo}
-            >
-              Kristina Gahne – Måleriet som en dialog
-            </Link>{" "}
-            <div>av Erik Nordlander</div>
-            <div>Publicerat: 2025-04-10</div>
+            <div>Publicerat: 2025-05-12</div>
           </div>
         </div>
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/krib">
+              <Image
+                src={"/images/kribone.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/krib"
+              className={s.titleTwo}
+            >
+              Naturen är perfekt i sin egen rytm – Krister ”KriB” Björklund
+              målar inre landskap med global räckvidd
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-05-07</div>
+          </div>
+        </div>
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/anita">
+              <Image
+                src={"/images/anitatwo.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/anita"
+              className={s.titleTwo}
+            >
+              Anita Nyberg – måleriets oväntade uppvaknande
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-05-06</div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapper}>
+          <div>
+            <Link href="https://artportable.com/editorial/jessica">
+              <Image
+                src={"/images/jessica2.jpg"}
+                width={"600px"}
+                height={"300px"}
+                objectFit="cover"
+                priority
+                quality={10}
+              />
+            </Link>
+          </div>
+          <div className={s.titles}>
+            {" "}
+            <Link
+              href="https://artportable.com/editorial/jessica"
+              className={s.titleTwo}
+            >
+              &quot;Konsten skapar helhet&quot; – Inredaren Jessica Spångberg om
+              vikten av konst i kommersiella miljöer
+            </Link>{" "}
+            <div>av Erik Nordlander</div>
+            <div>Publicerat: 2025-04-30</div>
+          </div>
+        </div>{" "}
       </div>
 
       <div className={s.wrapperTwo}>
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/ulric">
+                <Image
+                  src={"/images/ulricone.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/ulric"
+                className={s.titleGrid}
+              >
+                Ulric Rudebeck – mellan landskap och linjer
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-22</div>
+            </div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/santiago">
+                <Image
+                  src={"/images/santiagoone.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/santiago"
+                className={s.titleGrid}
+              >
+                Madeleine Santiago – konsten som blev en livsväg
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-15</div>
+            </div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/catrine">
+                <Image
+                  src={"/images/catrineone.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/catrine"
+                className={s.titleGrid}
+              >
+                Catrine Näsmark – Porträtt, motorer och mod att måla livet som
+                det är
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-11</div>
+            </div>
+          </div>
+        </div>{" "}
+        <div className={s.wrapperGrid}>
+          <div className={s.imageText}>
+            <div>
+              <Link href="https://artportable.com/editorial/gahne">
+                <Image
+                  src={"/images/gahnefive.jpg"}
+                  width={"600px"}
+                  height={"300px"}
+                  objectFit="cover"
+                  priority
+                  quality={10}
+                />
+              </Link>
+            </div>
+            <div className={s.titles}>
+              {" "}
+              <Link
+                href="https://artportable.com/editorial/gahne"
+                className={s.titleGrid}
+              >
+                Kristina Gahne – Måleriet som en dialog
+              </Link>{" "}
+              <div>av Erik Nordlander</div>
+              <div>Publicerat: 2025-04-10</div>
+            </div>
+          </div>
+        </div>
         <div className={s.wrapperGrid}>
           <div className={s.imageText}>
             <div>

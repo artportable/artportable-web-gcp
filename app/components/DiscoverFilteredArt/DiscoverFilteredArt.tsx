@@ -46,6 +46,8 @@ interface DiscoverFilteredArtProps {
   selectedCategory?: any;
   search?: any;
   selectedPrice?: any;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
 const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
@@ -107,7 +109,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     setTempSelectedWidth,
   } = useContext(NavigationContext);
 
-  const [open, setOpen] = useState(true);
+  const { open, setOpen } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -303,13 +305,10 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
 
   return (
     <>
-      <HeaderComponent filterOpen={open} page={props.page} />
-      {/* <SearchField onFilter={handleSearchChange} searchQuery={searchQuery} /> */}
       <div
         style={{
-          width: open ? "84%" : "100%",
-          marginRight: "0",
-          marginLeft: "auto",
+          marginRight: "50px",
+          marginLeft: "50px",
         }}
       >
         <div
@@ -346,32 +345,34 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               </Button>
             )}
           </div>
-          <div>
-            {" "}
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <Select
-                value={orderByFilter}
-                onChange={handleByOrder}
-                MenuProps={{ disableScrollLock: true }}
-              >
-                <MenuItem value="likes">
-                  {t("common:selectOptions:relevance")}
-                </MenuItem>
-                <MenuItem value="latest">
-                  {" "}
-                  {t("common:selectOptions:latest")}
-                </MenuItem>
-                <MenuItem value="lowestPrice">
-                  {" "}
-                  {t("common:selectOptions:lowestPrice")}
-                </MenuItem>
-                <MenuItem value="highestPrice">
-                  {" "}
-                  {t("common:selectOptions:hightestPrice")}
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+          {!open && (
+            <div>
+              {" "}
+              <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <Select
+                  value={orderByFilter}
+                  onChange={handleByOrder}
+                  MenuProps={{ disableScrollLock: true }}
+                >
+                  <MenuItem value="likes">
+                    {t("common:selectOptions:relevance")}
+                  </MenuItem>
+                  <MenuItem value="latest">
+                    {" "}
+                    {t("common:selectOptions:latest")}
+                  </MenuItem>
+                  <MenuItem value="lowestPrice">
+                    {" "}
+                    {t("common:selectOptions:lowestPrice")}
+                  </MenuItem>
+                  <MenuItem value="highestPrice">
+                    {" "}
+                    {t("common:selectOptions:hightestPrice")}
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          )}
         </div>
       </div>
       <div className={s.mobileContainer1}>

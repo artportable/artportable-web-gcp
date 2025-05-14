@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { useMediaQuery, useTheme } from "@mui/material";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography/Typography";
+import BannerText from "../../app/components/BannerText/BannerText";
+import MainOption from "../../app/components/Main/MainOption";
 
 const exhibitions = [
   {
@@ -114,6 +116,20 @@ const exhibitions = [
     image: "/images/anglais.jpg",
     artists: [{ name: "Kirsten Johansson", dates: "10 april - 10 maj 2025" }],
   },
+  {
+    slug: "crest",
+    title: "Simon Crest",
+    address: "Upplandsgatan 37, 113 28 Stockholm",
+    image: "/images/crest.png",
+    artists: [{ name: "Karin Holmström", dates: "pågående" }],
+  },
+  {
+    slug: "yono",
+    title: "Yono Sabo",
+    address: "Luntmakargatan 42, 111 37 Stockholm",
+    image: "/images/yono.jpg",
+    artists: [{ name: "Christer Åberg", dates: "1 april - 1 juni" }],
+  },
 ];
 
 export default function Index({ navBarItems }) {
@@ -126,7 +142,7 @@ export default function Index({ navBarItems }) {
 
   return (
     <>
-      <Main
+      <MainOption
         fullWidth={true}
         navBarItems={navBarItems}
         noHeaderPadding={isMobile}
@@ -141,12 +157,7 @@ export default function Index({ navBarItems }) {
           />
         </Head>
 
-        <div className={s.containerHeader}>
-          <div className={s.containerWrapper}>
-            <div className={s.titleHeader}>{t("title")}</div>
-            <div className={s.textHeader}>{t("exhibitionText")}</div>
-          </div>
-        </div>
+        <BannerText title={t("title")} text={t("exhibitionText")} />
 
         <div className={s.containerCard}>
           {exhibitions.map((exhibition) => (
@@ -215,7 +226,7 @@ export default function Index({ navBarItems }) {
             </div>
           </div>
         </div>
-      </Main>
+      </MainOption>
     </>
   );
 }

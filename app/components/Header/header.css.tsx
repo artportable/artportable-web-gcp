@@ -91,17 +91,26 @@ export const styles = makeStyles((theme: Theme) =>
     },
     loginButton: {
       borderRadius: "30px",
-      fontWeight: 600,
+      fontWeight: 500,
       fontFamily: "Roboto",
       fontSize: "14px",
-      backgroundColor: "black",
-      color: "white",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
       "&:hover": {
-        backgroundColor: "transparent",
+        backgroundColor: "black",
         border: "1px solid black",
-        color: "black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
       },
     },
+
     iconButtons: {
       display: "flex",
       alignItems: "center",
