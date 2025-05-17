@@ -12,6 +12,7 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "0 auto",
       padding: "0 20px",
       textAlign: "center",
+      backgroundColor: "#f1f1f1",
     },
     lightText: {
       color: "white",
@@ -128,13 +129,13 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       minWidth: 110,
       fontSize: "14px",
-
       borderRadius: "20px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
       [theme.breakpoints.up("md")]: {
         display: "flex",
       },
       "&:hover": {
-        backgroundColor: "#D6A407",
+        backgroundColor: "black",
         color: "white",
       },
     },
@@ -147,12 +148,12 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: 110,
       fontSize: "14px",
       borderRadius: "20px",
-
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
       [theme.breakpoints.up("md")]: {
         display: "flex",
       },
       "&:hover": {
-        backgroundColor: "#D6A407",
+        backgroundColor: "black",
         color: "white",
       },
     },

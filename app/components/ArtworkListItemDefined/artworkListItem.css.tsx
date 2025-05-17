@@ -41,6 +41,8 @@ export const styles = makeStyles((theme: Theme) =>
       position: "relative",
       overflow: "hidden",
       textAlign: "center",
+      boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.15)",
+      marginBottom: "10px",
     },
 
     // },
@@ -206,6 +208,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Roboto",
       fontWeight: 400,
       fontStyle: "italic",
+      alignItems: "center",
     },
     soldMark: {
       background: "#C67777",

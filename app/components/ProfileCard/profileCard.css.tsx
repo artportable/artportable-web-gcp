@@ -63,7 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#FFFFFF",
       textTransform: "uppercase",
       width: "100%",
-      maxWidth: '400px',
+      maxWidth: "400px",
       marginTop: "30px",
       padding: "8px",
       "& .MuiButton-label": {
@@ -83,15 +83,15 @@ export const styles = makeStyles((theme: Theme) =>
     profileData: {
       textAlign: "center",
       width: "100%",
-      '& .MuiTypography-body1': {
-        fontSize: '14px',
-        display: 'flex',
-        alignItems: 'end',
-      }
+      "& .MuiTypography-body1": {
+        fontSize: "14px",
+        display: "flex",
+        alignItems: "end",
+      },
     },
     uploadButtons: {
       display: "flex",
-      flexDirection: 'column',
+      flexDirection: "column",
       width: "100%",
       maxWidth: "350px",
       justifyContent: "center",
@@ -102,14 +102,14 @@ export const styles = makeStyles((theme: Theme) =>
     hovs: {
       display: "flex",
       justifyContent: "center",
-      width: '100%',
-      maxWidth: '160px',
+      width: "100%",
+      maxWidth: "160px",
     },
     rocketButton: {
       marginTop: "12px",
       textTransform: "uppercase",
       width: "100%",
-      maxWidth: '400px',
+      maxWidth: "400px",
       padding: "8px",
       "& .MuiButton-label": {
         fontSize: "12px",
@@ -134,7 +134,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "12px",
       textTransform: "uppercase",
       width: "100%",
-      maxWidth: '400px',
+      maxWidth: "400px",
       padding: "10px",
       "& .MuiButton-label": {
         fontSize: "12px",
@@ -143,17 +143,17 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#fff",
       "&:hover": {
         background: "theme.palette.secondary.main",
-        color: '#000000',
+        color: "#000000",
       },
     },
     headerButtonUpgrade: {
-      fontSize: '12px',
+      fontSize: "12px",
       fontWeight: 500,
     },
     buyButtons: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: '100%',
+      display: "flex",
+      justifyContent: "space-between",
+      width: "100%",
     },
     rocketButtonPremium: {
       marginTop: "12px",
@@ -169,9 +169,7 @@ export const styles = makeStyles((theme: Theme) =>
         background: "#f4d880",
       },
     },
-    hovsPremium: {
-
-    },
+    hovsPremium: {},
 
     [theme.breakpoints.up("sm")]: {
       followersButton: {
@@ -200,15 +198,15 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
       hovs: {
-        maxWidth: '126px',
-      }
+        maxWidth: "126px",
+      },
     },
 
     [theme.breakpoints.up("md")]: {
       uploadArtButton: {
         marginBottom: 0,
         marginTop: "18px",
-        padding: '8px',
+        padding: "8px",
       },
       profileBox: {
         width: "100%",
@@ -225,32 +223,32 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
       followersButton: {
-        width: '100%',
-        '& .MuiButton-label': {
-          justifyContent: 'flex-start',
+        width: "100%",
+        "& .MuiButton-label": {
+          justifyContent: "flex-start",
         },
       },
       profileData: {
         marginLeft: "10px",
       },
       locationData: {
-        justifyContent: 'start',
+        justifyContent: "start",
       },
       noPictureIcon: {
-        fontSize: '120px',
-        background: 'none',
+        fontSize: "120px",
+        background: "none",
       },
       hovs: {
-        maxWidth: '145px',
+        maxWidth: "145px",
       },
       headerButtonRocket: {
         fontSize: "12px",
       },
       upgradeButton: {
-        padding: '8px',
+        padding: "8px",
       },
       rocketButton: {
-        padding: '8px',
+        padding: "8px",
       },
     },
   })

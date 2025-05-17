@@ -279,10 +279,10 @@ export default function ArtworkPage(props) {
 
       {artwork && artwork.data && (
         <>
-          <div style={{ marginTop: "20px" }}>
+          <div style={{ marginTop: "10px" }}>
             <Paper
               style={{
-                backgroundColor: "transparent",
+                backgroundColor: "white",
               }}
             >
               <div className={s.artworkWrapper}>
@@ -618,9 +618,34 @@ export default function ArtworkPage(props) {
 
                     <div className={s.priceContainer}>
                       {artwork.data.SoldOut ? (
-                        <>{t("common:words.sold")} </>
+                        <>
+                          {" "}
+                          <Brightness1Icon
+                            style={{
+                              color: "#A70301",
+                              width: "15px",
+                              height: "15px",
+                              marginRight: "4px",
+                            }}
+                          />
+                          {t("common:words.sold")}{" "}
+                        </>
                       ) : artwork.data.Price && artwork.data.Price !== "0" ? (
-                        <span>
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            fontSize: "14px",
+                          }}
+                        >
+                          <Brightness1Icon
+                            style={{
+                              color: "#229059",
+                              width: "15px",
+                              height: "15px",
+                              marginRight: "4px",
+                            }}
+                          />
                           {t("art:artworkPrice")}:{" "}
                           {Number(artwork.data.Price)
                             .toLocaleString("sv-SE")
@@ -712,14 +737,6 @@ export default function ArtworkPage(props) {
                                     CategoryType.BUY
                                   );
                                 }}
-                                startIcon={
-                                  <Brightness1Icon
-                                    style={{
-                                      color: "#229059",
-                                      fontSize: "30px",
-                                    }}
-                                  />
-                                }
                               >
                                 {capitalizeFirst(t("common:purchaseRequest"))}
                               </Button>
@@ -784,7 +801,7 @@ export default function ArtworkPage(props) {
             </Paper>
             <div>
               <div className={s.tabPanel}>
-                <div style={{ backgroundColor: "transparent" }}>
+                <div style={{ backgroundColor: "white" }}>
                   <div>
                     <Paper
                       style={{
