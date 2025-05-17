@@ -4,7 +4,7 @@ import { columnGap } from "../app/utils/styleUtils";
 export const styles = makeStyles((theme: Theme) => {
   return createStyles({
     containerHeader: {
-      backgroundColor: "#FCF7EC",
+      backgroundColor: "#222222",
       height: "320px",
       display: "flex",
       alignItems: "center",
@@ -13,31 +13,28 @@ export const styles = makeStyles((theme: Theme) => {
       },
     },
 
-    containerWrapper: {
-      margin: "0 auto",
-      width: "90%",
-    },
+    containerWrapper: {},
 
     titleHeader: {
       fontSize: "35px",
       fontFamily: "Roboto",
-      marginBottom: "15px",
+      fontWeight: 500,
       alignItems: "center",
+      color: "white",
       [theme.breakpoints.up("mdPlus")]: {
-        width: "80%",
-        marginLeft: "95px",
+        marginLeft: "50px",
         fontSize: "35px",
+        color: "white",
       },
     },
 
     textHeader: {
-      fontSize: "20px",
+      fontSize: "14px",
       fontFamily: "Joan",
-      color: "rgb(0 0 0 / 47%)",
+      color: "white",
       [theme.breakpoints.up("md")]: {
-        width: "80%",
-        marginLeft: "95px",
-        fontSize: "20px",
+        marginLeft: "50px",
+        fontSize: "14px",
       },
     },
 
@@ -48,27 +45,61 @@ export const styles = makeStyles((theme: Theme) => {
       display: "grid",
       gridTemplateColumns: "1fr",
       gap: "20px",
+
       [theme.breakpoints.up("md")]: {
         gridTemplateColumns: "repeat(3, 1fr)",
       },
     },
 
     wrapperCard: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       width: "330px",
+      height: "430px", // You can tweak this as needed
       backgroundColor: "white",
       margin: "0 auto",
       marginTop: "10px",
-      padding: "15px",
+      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.30)",
+    },
+    statusText: {
+      fontSize: "14px",
+      fontWeight: 500,
+      textAlign: "center",
+      marginTop: "20px",
+      minHeight: "20px", // Ensures all cards start at the same vertical point
     },
 
-    image: {
-      width: "300px",
-      height: "200px",
+    artists: {
+      fontWeight: 300,
+      textAlign: "center",
+      marginTop: "10px",
     },
+
+    artistName: {
+      textDecoration: "underline",
+    },
+
     adress: {
       fontSize: "12px",
       fontStyle: "italic",
       fontWeight: 200,
+      textAlign: "center",
+      marginTop: "auto",
+    },
+    image: {
+      marginTop: "30px",
+      width: "130px",
+      height: "auto",
+      objectFit: "contain",
+    },
+    cardContent: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      flexGrow: 1,
+      width: "100%",
+      padding: "20px",
     },
 
     pageWrapper: {
@@ -81,7 +112,7 @@ export const styles = makeStyles((theme: Theme) => {
     layoutWrapper: {
       display: "flex",
       flexWrap: "wrap",
-      alignItems: "baseline",
+      alignItems: "center",
       gap: "0px",
     },
     mainImage: {
@@ -132,16 +163,32 @@ export const styles = makeStyles((theme: Theme) => {
       marginBottom: "15px",
     },
     galleryGrid: {
-      display: "grid",
+      display: "flex",
+      flexDirection: "column",
       gap: "10px",
-      gridTemplateColumns: "1fr 1fr",
     },
+
+    galleryTopImage: {
+      width: "100%",
+      aspectRatio: "2 / 1", // Optional: makes it more horizontal
+      objectFit: "cover",
+      borderRadius: "4px",
+      height: "250px",
+    },
+
+    galleryBottomRow: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "10px",
+    },
+
     galleryImage: {
       width: "100%",
       aspectRatio: "1 / 1",
       objectFit: "cover",
       borderRadius: "4px",
     },
+
     footerContainer: {
       marginTop: "30px",
       backgroundColor: "#FABDCA",

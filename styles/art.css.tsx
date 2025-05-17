@@ -219,13 +219,24 @@ export const styles = makeStyles((theme: Theme) =>
       fontFamily: "Roboto",
     },
     purchaseRequestButton: {
-      backgroundColor: "transparent",
-      color: "black",
-      width: "auto",
+      borderRadius: "30px",
+      fontWeight: 500,
       fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
       "&:hover": {
-        backgroundColor: "transparent",
+        backgroundColor: "black",
         border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
       },
     },
     flexLikeRoom: {
@@ -275,7 +286,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     text: {
-      fontFamily: "Roboto",
       marginLeft: "0px",
       fontFamily: "Joan",
       paddingBottom: "10px",

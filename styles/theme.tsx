@@ -122,7 +122,7 @@ const typography = {
 
 const palette = {
   common: { white: "#ffffff", black: "#000000" },
-  background: { default: "#FDF9F7" },
+  background: { default: "#f1f1f1" },
   primary: {
     main: "#0176D5",
     contrastText: "#FFFFFF",

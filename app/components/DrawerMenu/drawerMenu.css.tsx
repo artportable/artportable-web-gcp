@@ -6,7 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
       minWidth: "240px",
       width: "100vw",
       fontFamily: "Roboto",
-      backgroundColor: "var(--background-color)",
+      backgroundColor: "white",
       [theme.breakpoints.up("md")]: {
         minWidth: "300px",
         width: "20vw",

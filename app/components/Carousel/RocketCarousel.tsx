@@ -157,22 +157,14 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                 marginTop: "0px",
               }}
             >
-              <div style={{ fontWeight: 300, fontSize: "11px" }}>
-                {item?.MultipleSizes
-                  ? " " + t("common:words.multipleSizes").toLowerCase() + ""
-                  : item?.Width && item?.Height && item?.Depth
-                  ? " " +
-                    item?.Width +
-                    "x" +
-                    item?.Height +
-                    "x" +
-                    item?.Depth +
-                    "cm"
-                  : item?.Width && item?.Height
-                  ? " " + item?.Width + "x" + item?.Height + "cm"
-                  : null}
-              </div>
-
+              {item.MultipleSizes
+                ? " " + t("common:words.multipleSizes").toLowerCase() + ""
+                : item.Width && item.Height && item.Depth
+                ? " " + item.Width + "x" + item.Height + "cm"
+                : item.Width && item.Height
+                ? " " + item.Width + "x" + item.Height + "cm"
+                : null}
+              <br />
               <div
                 style={{
                   display: "flex",
@@ -184,6 +176,14 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                 <div>
                   {item?.Price && !isNaN(item?.Price) && item?.Price !== 0 ? (
                     <div style={{ fontSize: "14px" }}>
+                      <Brightness1Icon
+                        style={{
+                          color: "#229059",
+                          width: "8px",
+                          height: "8px",
+                          marginRight: "4px",
+                        }}
+                      />{" "}
                       {Number(item?.Price)
                         .toLocaleString("sv-SE")
                         .replace(/\u00A0/g, " ")}{" "}
@@ -191,10 +191,30 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
                     </div>
                   ) : (
                     <div style={{ fontSize: "14px" }}>
+                      <Brightness1Icon
+                        style={{
+                          color: "#229059",
+                          width: "8px",
+                          height: "8px",
+                          marginRight: "4px",
+                        }}
+                      />{" "}
                       {t("priceOnRequest")}
                     </div>
                   )}
                 </div>
+
+                {/* <a href={`${baseUrl}/art/${item.Id}`} className={s.buyButton}>
+                  {
+                    <Brightness1Icon
+                      style={{
+                        color: "#229059",
+                        fontSize: "30px",
+                      }}
+                    />
+                  }
+                  <div style={{ padding: "5px" }}>{t("buy")}</div>
+                </a> */}
               </div>
             </p>
           </div>

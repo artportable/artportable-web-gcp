@@ -17,7 +17,7 @@ const exhibitions = [
     slug: "artbakery-nk",
     title: "Art Bakery NK",
     address: "Regeringsgatan 47, 111 56 Stockholm",
-    image: "/images/artbakery.jpg",
+    image: "/images/artbakery.png",
     artists: [
       { name: "Sepideh Sarrafzadeh", dates: "16 mars - 16 juni 2025" },
       { name: "Vivecka Norberg", dates: "16 mars - 16 juni 2025" },
@@ -31,7 +31,7 @@ const exhibitions = [
     slug: "marriott",
     title: "AC Hotel by Marriott Stockholm Ulriksdal",
     address: "Kolonnvägen 41, Solna",
-    image: "/images/Marriott.jpg",
+    image: "/images/ac.png",
     artists: [
       { name: "Catrine Lindström", dates: "14 april - 14 juni 2025" },
       { name: "Gro Folkan", dates: "14 april - 14 juni 2025" },
@@ -43,7 +43,7 @@ const exhibitions = [
     slug: "arla",
     title: "Arla Sverige",
     address: "Solna",
-    image: "/images/arla.jpg",
+    image: "/images/arla.png",
     artists: [
       { name: "Kononov Gallery", dates: "25 mars - 25 maj 2025" },
       { name: "Christel Jonsson", dates: "25 mars - 25 maj 2025" },
@@ -57,7 +57,7 @@ const exhibitions = [
     slug: "artcafe-nk",
     title: "ArtCafe NK",
     address: "Hamngatan 18–20, 111 47 Stockholm",
-    image: "/images/artcafe.webp",
+    image: "/images/artcafe.png",
     artists: [
       { name: "Petra Risberg", dates: "24 mars – 23 juni 2025" },
       { name: "Dina Johnsen", dates: "23 juni - 23 sep. 2025" },
@@ -68,14 +68,14 @@ const exhibitions = [
     slug: "balder",
     title: "Balder",
     address: "Fredsborgsgatan 24, 117 58 Stockholm",
-    image: "/images/Balder.jpg",
+    image: "/images/balder.png",
     artists: [{ name: "Berit Emstrand", dates: "från 12 maj 2025" }],
   },
   {
     slug: "risberg",
     title: "Galleri Risberg",
     address: "Bergsgatan 36, 112 23 Stockholm",
-    image: "/images/Risberg-2.png",
+    image: "/images/risberga.png",
     artists: [
       { name: "Christine Halldorf", dates: "12 - 25 maj 2025" },
       { name: "Kent Wahlbeck", dates: "20 okt. - 2 nov. 2025" },
@@ -85,7 +85,7 @@ const exhibitions = [
     slug: "kg10",
     title: "KG10",
     address: "Kungsgatan 10, 111 43 Stockholm",
-    image: "/images/KG101.jpg",
+    image: "/images/kg10.png",
     artists: [
       { name: "Nathalie Palmaer", dates: "12 maj - 12 nov. 2025" },
       { name: "Stephanie Kinnard", dates: "12 maj - 12 nov. 2025" },
@@ -96,14 +96,14 @@ const exhibitions = [
     slug: "melanders",
     title: "Melanders Södermalm",
     address: "Åsögatan 111, 116 24 Stockholm",
-    image: "/images/Melanders.webp",
+    image: "/images/melanders.png",
     artists: [{ name: "Katarina Persson", dates: "Pågående" }],
   },
   {
     slug: "ps-matsal",
     title: "PS Matsal",
     address: "Nytorgsgatan 42, 116 40 Stockholm",
-    image: "/images/Matsal.jpg",
+    image: "/images/ps.png",
     artists: [
       { name: "Oliw87", dates: "pågående" },
       { name: "Annika Berglöf", dates: "pågående" },
@@ -113,21 +113,21 @@ const exhibitions = [
     slug: "anglais",
     title: "Scandic Anglais",
     address: "Humlegårdsgatan 23, 114 46 Stockholm",
-    image: "/images/anglais.jpg",
+    image: "/images/scandic.png",
     artists: [{ name: "Kirsten Johansson", dates: "10 april - 10 maj 2025" }],
   },
   {
     slug: "crest",
     title: "Simon Crest",
     address: "Upplandsgatan 37, 113 28 Stockholm",
-    image: "/images/crest.png",
+    image: "/images/simon.webp",
     artists: [{ name: "Karin Holmström", dates: "pågående" }],
   },
   {
     slug: "yono",
     title: "Yono Sabo",
     address: "Luntmakargatan 42, 111 37 Stockholm",
-    image: "/images/yono.jpg",
+    image: "/images/sabo.png",
     artists: [{ name: "Christer Åberg", dates: "1 april - 1 juni" }],
   },
 ];
@@ -161,44 +161,35 @@ export default function Index({ navBarItems }) {
 
         <div className={s.containerCard}>
           {exhibitions.map((exhibition) => (
-            <Link
-              key={exhibition.slug}
-              href={`/exhibition/${exhibition.slug}`}
-              passHref
-            >
+            <div>
               <a className={s.wrapperCard}>
-                <div>
+                <div
+                  style={{
+                    height: "40%",
+                    display: "flex",
+                    alignItems: " center",
+                  }}
+                >
+                  {" "}
                   <img
                     className={s.image}
                     src={exhibition.image}
                     alt={exhibition.title}
                   />
-                  <div style={{ fontSize: "28px" }}>{exhibition.title}</div>
-                  <div
-                    style={{
-                      fontSize: "12px",
-                      fontStyle: "italic",
-                      fontWeight: "200",
-                    }}
-                  >
-                    {exhibition.address}
-                  </div>
-                  <div style={{ marginTop: "20px", fontWeight: 500 }}>
-                    {t("artist")}
-                  </div>
-                  <div style={{ fontWeight: "300" }}>
+                </div>
+                <div className={s.cardContent}>
+                  <div className={s.statusText}>{t("onGoing")}</div>
+                  <div className={s.artists}>
                     {exhibition.artists.map((artist, i) => (
                       <div key={i}>
-                        <span style={{ textDecoration: "underline" }}>
-                          {artist.name}
-                        </span>{" "}
-                        – {artist.dates}
+                        <span className={s.artistName}>{artist.name}</span>
                       </div>
                     ))}
                   </div>
+                  <div className={s.adress}>{exhibition.address}</div>
                 </div>
               </a>
-            </Link>
+            </div>
           ))}
         </div>
         <div className={s.footerContainer}>

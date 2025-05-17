@@ -5,6 +5,7 @@ import { i18n, useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import clsx from "clsx";
 import { UserContext } from "../../contexts/user-context";
+import Brightness1Icon from "@material-ui/icons/Brightness1";
 import {
   ActionType,
   CategoryType,
@@ -180,15 +181,22 @@ export default function ArtworkListItem({
       <div className={s.imageContainer}>
         <Link href={`/art/${artwork.Id}`}>
           <a className="relative">
-            <Image
-              width={width}
-              height={height}
-              alt={artwork?.Title ? artwork?.Title : "artwork"}
-              key={artwork?.PrimaryFile?.Name}
-              src={`${bucketUrl}${artwork.PrimaryFile?.Name}`}
-              unoptimized
-              priority
-            />
+            <div
+              style={{
+                backgroundColor: "white",
+                padding: "30px",
+              }}
+            >
+              <Image
+                width={width}
+                height={height}
+                alt={artwork?.Title ? artwork?.Title : "artwork"}
+                key={artwork?.PrimaryFile?.Name}
+                src={`${bucketUrl}${artwork.PrimaryFile?.Name}`}
+                unoptimized
+                priority
+              />
+            </div>
           </a>
         </Link>
 
@@ -261,13 +269,23 @@ export default function ArtworkListItem({
               justifyContent: "space-between",
             }}
           >
-            <Link href={`/profile/@${artwork.Username}`}>
-              <a>
-                <div className={s.name}>
-                  <div>{`${artwork.Name} ${artwork.Surname}`}</div>
-                </div>
-              </a>
-            </Link>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              {" "}
+              <Link href={`/profile/@${artwork.Username}`}>
+                <a>
+                  <div className={s.name}>
+                    <div>{`${artwork.Name} ${artwork.Surname}`}</div>
+                  </div>
+                </a>
+              </Link>
+              <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
+            </div>
             {/* <div
               style={{
                 fontSize: "12px",
@@ -289,7 +307,6 @@ export default function ArtworkListItem({
             </span>
           </div>
         </div>
-
         <div
           style={{
             display: "flex",
@@ -300,15 +317,46 @@ export default function ArtworkListItem({
         >
           <div className={s.price}>
             {artwork.SoldOut ? (
-              <>{t("common:words.sold")} </>
+              <>
+                {" "}
+                <Brightness1Icon
+                  style={{
+                    color: "#A70301",
+                    width: "8px",
+                    height: "8px",
+                    marginRight: "4px",
+                  }}
+                />
+                {t("common:words.sold")}{" "}
+              </>
             ) : artwork.Price && artwork.Price != "0" ? (
-              formattedPrice.replace(/,/g, "")
+              <>
+                {" "}
+                <Brightness1Icon
+                  style={{
+                    color: "#229059",
+                    width: "8px",
+                    height: "8px",
+                    marginRight: "4px",
+                  }}
+                />{" "}
+                {formattedPrice.replace(/,/g, "")}
+              </>
             ) : (
-              t("priceOnRequest")
+              <>
+                {" "}
+                <Brightness1Icon
+                  style={{
+                    color: "#229059",
+                    width: "8px",
+                    height: "8px",
+                    marginRight: "4px",
+                  }}
+                />
+                {t("priceOnRequest")}
+              </>
             )}
           </div>
-
-          <LikeArtworkButton artwork={artwork}></LikeArtworkButton>
         </div>
       </div>
     </div>

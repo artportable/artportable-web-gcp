@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <>
       {!isSignedIn.value && (
-        <div style={{ padding: "20px" }}>
+        <div>
           <footer className={s.footer}>
             <div className={s.image}>
               <div className={s.sunneby}>

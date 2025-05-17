@@ -49,14 +49,9 @@ export const styles = makeStyles((theme: Theme) =>
       margin: "0px",
       textAlign: "center",
       display: "flex",
-      padding: "15px 15px 10px 15px",
-      borderWidth: "10px",
+      borderWidth: "0px",
       borderStyle: "solid",
-      borderColor: "#1F1E1E #292828 #292828 #272626",
-      background: "#F5F5F5",
-      backgroundColor: "#ffdd84c9",
-      boxShadow:
-        "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+      backgroundColor: "#FFFFFF",
       flexDirection: "column",
       flexWrap: "wrap",
       width: "100%",
@@ -71,7 +66,7 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("lg")]: {
         padding: "30px 30px 25px 30px",
       },
-      backgroundImage: "linear-gradient(#FFFEF8, #F3F3F1)",
+
       filter: "drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.4))",
       position: "relative",
       overflow: "hidden",
@@ -88,7 +83,7 @@ export const styles = makeStyles((theme: Theme) =>
         "0 -1px 1px rgba(0,0,0,.1), 0 1px 1px 1px rgba(255,255,255,.7)",
       maxWidth: "100%",
       width: "100%",
-      backgroundColor: "#FAF3EE",
+      backgroundColor: "#F1F1F1",
       [theme.breakpoints.up("smPlus")]: {
         padding: "30px 30px 25px 30px",
         flexDirection: "row",

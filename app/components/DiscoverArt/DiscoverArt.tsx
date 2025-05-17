@@ -24,15 +24,11 @@ import { useBreakpointDown } from "../../hooks/useBreakpointDown";
 import usePostLikeEmail from "../../hooks/dataFetching/usePostLikeEmail";
 // import SearchField from "../SearchField/SearchField";
 import { debounce } from "@material-ui/core/utils";
-// import { UserContext } from "../../../app/contexts/user-context";
-// import { useRouter } from "next/router";
+
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
 import { ActionType } from "../../utils/googleAnalytics";
-// import Stack from "@mui/material/Stack";
-// import LinearProgress from "@mui/material/LinearProgress";
-import Typography from "@material-ui/core/Typography";
 
-import { Skeleton } from "@material-ui/lab";
+import Typography from "@material-ui/core/Typography";
 
 interface InsertElement {
   element: React.ReactElement;
