@@ -14,10 +14,14 @@ export const styles = makeStyles((theme: Theme) =>
       ...rowGap(16),
       justifyContent: "space-between",
       overflow: "hidden",
-      paddingLeft: 50,
-      paddingRight: 50,
+      paddingLeft: 20,
+      paddingRight: 20,
       width: "100%",
       boxSizing: "border-box",
+      [theme.breakpoints.up("smPlus")]: {
+        paddingLeft: 50,
+        paddingRight: 50,
+      },
     },
 
     rowSkeleton: {
