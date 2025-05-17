@@ -33,7 +33,7 @@ steps:
         "--port",
         "3000",
         "--memory",
-        "8Gi",
+        "4Gi",
       ]
 
 options:
