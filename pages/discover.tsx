@@ -49,7 +49,6 @@ export default function discover({ navBarItems }) {
         navBarItems={navBarItems}
         isShow={false}
         noHeaderPadding={isMobile}
-        fullWidth={true}
       >
         <Head>
           <title>{t("discover")}</title>
