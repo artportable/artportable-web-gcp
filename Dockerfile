@@ -1,29 +1,43 @@
-# Install dependencies only when needed
+# ---------- Base Stage: Dependencies ----------
 FROM node:16.13-alpine AS deps
-RUN apk add --no-cache libc6-compat
+
 WORKDIR /app
+
+# Install system dependencies
+RUN apk add --no-cache libc6-compat
+
+# Install only deps early for better caching
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Rebuild the source code only when needed
+# ---------- Builder Stage ----------
 FROM node:16.13-alpine AS builder
+
 WORKDIR /app
 ARG ENV
-COPY . .
-COPY --from=deps /app/node_modules ./node_modules
-RUN npm run build:$ENV && npm install --production --ignore-scripts --prefer-offline
 
-# Production image, copy all the files and run next
+# Copy only necessary files to speed up cache reuse
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Build the project for the specified environment
+RUN npm run build:$ENV
+
+# Install only production deps AFTER build to avoid rebuilding node_modules unnecessarily
+RUN npm ci --production --prefer-offline
+
+# ---------- Final Stage: Runtime ----------
 FROM node:16.13-alpine AS runner
+
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+# Set up a non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001
 
-# You only need to copy next.config.js if you are NOT using the default configuration
-# COPY --from=builder /app/next.config.js ./
+# Copy required files from builder
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
@@ -31,7 +45,7 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=builder /app/next.config.js ./next.config.js
 
-
+# Set permissions and user
 USER nextjs
 
 EXPOSE 3000
