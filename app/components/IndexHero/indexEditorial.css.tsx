@@ -6,13 +6,14 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
+
       [theme.breakpoints.up("smPlus")]: {
         height: "100%",
-        flexDirection: "column",
+        flexDirection: "row",
       },
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("lg")]: {
         height: "100%",
-        flexDirection: "column",
+        flexDirection: "row",
       },
       [theme.breakpoints.up("lg")]: {
         height: "100%",
@@ -22,10 +23,10 @@ export const styles = makeStyles((theme: Theme) =>
     wrapper: {
       width: "100%",
       [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
+        width: "75%%",
       },
       [theme.breakpoints.up("md")]: {
-        width: "100%",
+        width: "85%",
       },
       [theme.breakpoints.up("lg")]: {
         width: "100%",
@@ -91,8 +92,8 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("md")]: {
         gridTemplateColumns: "repeat(2, 1fr)", // Two items per row on larger screens
-        width: "50%",
-        gap: "0px",
+        width: "70%",
+        gap: "20px",
       },
     },
   })
