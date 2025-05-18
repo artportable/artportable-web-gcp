@@ -1,0 +1,28 @@
+# Node-related
+node_modules
+.next
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Git-related
+.git
+.gitignore
+
+# Docker-related
+Dockerfile
+.dockerignore
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDEs/editors
+.vscode
+.idea
+
+# Test & docs
+coverage
+__tests__/
+docs
+*.md
