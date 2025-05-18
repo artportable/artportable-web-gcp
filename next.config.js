@@ -24,10 +24,6 @@ module.exports = withBundleAnalyzer({
     domains: [
       "artportabletest.blob.core.windows.net",
       "artportableprod.blob.core.windows.net",
-      "artportabletest-cdn.azureedge.net",
-      "artportableprod-azurecdn.azureedge.net",
-      "images.artworksapp.com",
-      "artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net",
     ],
     loader: "default",
   },
