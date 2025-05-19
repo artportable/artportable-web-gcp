@@ -48,8 +48,8 @@ export default function DiscoverStoriesTab() {
               <Button
                 aria-label="upload story"
                 variant="contained"
-                style={{ backgroundColor: "#ffd700" }}
                 rounded
+                className={s.uploadButton}
               >
                 {t("discover:uploadStory")}
               </Button>
@@ -60,13 +60,7 @@ export default function DiscoverStoriesTab() {
       <DiscoverStories stories={allStories} />
       {!isButtonDisabled && (
         <div className={s.btnContainer}>
-          <Button
-            className={s.btn}
-            color="primary"
-            aria-label="load more"
-            variant="contained"
-            onClick={loadMore}
-          >
+          <Button className={s.btn} aria-label="load more" onClick={loadMore}>
             {t("discover:loadMore")}
           </Button>
         </div>

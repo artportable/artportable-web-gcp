@@ -128,9 +128,7 @@ export default function onneby({ navBarItems }) {
               <div className={s.image}>
                 <Link href="https://artportable.com/art/e0fa183f-fc9e-4621-98fe-d129499905ed">
                   <Image
-                    src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/9cc7749d-03dd-4b9c-a818-bb7f41d91dfa.jpg"
-                    }
+                    src={"/images/onnebyone.jpeg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="contain"
@@ -148,9 +146,7 @@ export default function onneby({ navBarItems }) {
               <div className={s.image}>
                 <Link href="https://artportable.com/art/20f073d0-f267-47e2-b1be-468b1ecdb7a2">
                   <Image
-                    src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/36ff91e6-b421-40d6-bf3b-33b004432571.jpg"
-                    }
+                    src={"/images/onnebytwo.jpg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="contain"
@@ -294,9 +290,7 @@ export default function onneby({ navBarItems }) {
               <div className={s.image}>
                 <Link href="https://artportable.com/art/57a59376-02ef-433f-8334-e9c719a8e31c">
                   <Image
-                    src={
-                      "https://artportable-cdn-edhmaucaccbngbgu.z01.azurefd.net/artportable-prod/images/aa855dcb-bb59-4c13-b4a5-15e646ac0cb1.jpg"
-                    }
+                    src={"/images/onnebythree.jpg"}
                     width={"400px"}
                     height={"300px"}
                     objectFit="contain"
