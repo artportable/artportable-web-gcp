@@ -125,7 +125,7 @@ export default function FeedPage({ navBarItems }) {
       </Head>
 
       <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
-        <div style={{ marginTop: "40px" }}></div>
+        <div className={s.margin}></div>
         {!loading && (
           <Box className={s.feedContainer}>
             {!xsScreenOrDown && (

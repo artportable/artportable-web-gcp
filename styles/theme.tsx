@@ -128,7 +128,7 @@ const palette = {
     contrastText: "#FFFFFF",
   },
   secondary: {
-    main: "#A35D5D",
+    main: "#3e3e3e",
   },
 };
 
