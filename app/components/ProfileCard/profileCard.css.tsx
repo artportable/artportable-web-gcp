@@ -10,10 +10,15 @@ export const styles = makeStyles((theme: Theme) =>
       border: `0.15rem solid ${theme.palette.common.white}`,
       width: 120,
       height: 120,
+      [theme.breakpoints.up("smPlus")]: {
+        width: 90,
+        height: 90,
+      },
     },
     badgeIcon: {
       backgroundColor: "white",
       borderRadius: "50%",
+
       cursor: "pointer",
       "&:hover": {
         color: theme.palette.primary.dark,
@@ -21,6 +26,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     counterBox: {
       display: "flex",
+      flexDirection: "row",
       justifyContent: "space-evenly",
       marginTop: "16px",
       "& > *": {
@@ -58,20 +64,31 @@ export const styles = makeStyles((theme: Theme) =>
       display: "block",
       padding: 0,
     },
-    uploadArtButton: {
-      background: "#000000",
-      color: "#FFFFFF",
-      textTransform: "uppercase",
-      width: "100%",
-      maxWidth: "400px",
-      marginTop: "30px",
-      padding: "8px",
-      "& .MuiButton-label": {
-        fontSize: "12px",
+    cardContainer: {
+      height: "300px",
+      [theme.breakpoints.up("smPlus")]: {
+        height: "250px",
       },
+    },
+    uploadArtButton: {
+      borderRadius: "30px",
+      fontWeight: 400,
+      fontFamily: "Roboto",
+      fontSize: "16px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "180px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
       "&:hover": {
-        background: "theme.palette.secondary.main",
-        color: "#000000",
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
       },
     },
 
@@ -81,7 +98,9 @@ export const styles = makeStyles((theme: Theme) =>
       padding: "0",
     },
     profileData: {
-      textAlign: "center",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
       width: "100%",
       "& .MuiTypography-body1": {
         fontSize: "14px",
@@ -92,12 +111,11 @@ export const styles = makeStyles((theme: Theme) =>
     uploadButtons: {
       display: "flex",
       flexDirection: "column",
-      width: "100%",
-      maxWidth: "350px",
+      alignItems: "center",
+      margin: "0 auto",
+      marginTop: "30px",
       justifyContent: "center",
-      "& a": {
-        width: "100%",
-      },
+      "& a": {},
     },
     hovs: {
       display: "flex",
@@ -178,19 +196,19 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
       uploadButtons: {
-        width: "100%",
-        maxWidth: "300px",
+        alignItems: "center",
+        margin: "0 auto",
       },
       uploadArtButton: {
         marginTop: "28px",
         padding: "10px",
       },
       counterBox: {
+        display: "flex",
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-evenly",
         "& .MuiTypography-body2": {
-          marginRight: "20px",
           fontSize: "14px",
         },
         "& .MuiTypography-caption": {
@@ -202,7 +220,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
 
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("smPlus")]: {
       uploadArtButton: {
         marginBottom: 0,
         marginTop: "18px",
@@ -212,10 +230,13 @@ export const styles = makeStyles((theme: Theme) =>
         width: "100%",
       },
       uploadButtons: {
-        maxWidth: "350px",
+        display: "flex",
+        alignItems: "center",
+        margin: "0 auto",
       },
       counterBox: {
-        flexDirection: "column !important",
+        alignItems: "center",
+        flexDirection: "row !important",
         width: "100%",
         justifyContent: "space-between",
         "& .MuiTypography-body2": {
@@ -225,7 +246,7 @@ export const styles = makeStyles((theme: Theme) =>
       followersButton: {
         width: "100%",
         "& .MuiButton-label": {
-          justifyContent: "flex-start",
+          justifyContent: "center",
         },
       },
       profileData: {

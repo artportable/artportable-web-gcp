@@ -76,7 +76,7 @@ export default function ProfileCard({
   };
 
   return (
-    <Card elevation={2}>
+    <Card elevation={3} className={s.cardContainer}>
       <CardContent>
         <div className={s.cardData}>
           <Box textAlign="center">
@@ -87,60 +87,62 @@ export default function ProfileCard({
               style={{ display: "none" }}
               multiple={false}
             />
-            <Badge
-              overlap="circular"
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-              badgeContent={
-                isMyProfile &&
-                !hideAddBtn && (
-                  <AddCircleIcon
-                    className={s.badgeIcon}
-                    color="primary"
-                    onClick={() => fileInput.current.click()}
-                  />
-                )
-              }
-            >
-              {linkToProfile ? (
-                <Link href={`/profile/@${data?.Username}`}>
-                  <a>
-                    <Avatar className={s.avatar}>
-                      {data?.ProfilePicture ? (
-                        <Avatar
-                          src={`${bucketUrl}${data?.ProfilePicture}`}
-                          alt="Profile picture"
-                          style={{ height: "120px", width: "120px" }}
-                        />
-                      ) : (
-                        <AccountCircleIcon
-                          color="secondary"
-                          className={s.noPictureIcon}
-                        />
-                      )}
-                    </Avatar>
-                  </a>
-                </Link>
-              ) : (
-                <Avatar className={s.avatar}>
-                  {userProfilePicture ? (
-                    <Avatar
-                      src={`${bucketUrl}${userProfilePicture}`}
-                      alt="Profile picture"
-                      style={{ height: "120px", width: "120px" }}
-                    />
-                  ) : (
-                    <AccountCircleIcon
-                      color="secondary"
-                      className={s.noPictureIcon}
-                    />
-                  )}
-                </Avatar>
-              )}
-            </Badge>
+
             <div className={s.profileData}>
+              <Badge
+                overlap="circular"
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                badgeContent={
+                  isMyProfile &&
+                  !hideAddBtn && (
+                    <AddCircleIcon
+                      className={s.badgeIcon}
+                      color="primary"
+                      onClick={() => fileInput.current.click()}
+                    />
+                  )
+                }
+              >
+                {linkToProfile ? (
+                  <Link href={`/profile/@${data?.Username}`}>
+                    <a>
+                      <Avatar className={s.avatar}>
+                        {data?.ProfilePicture ? (
+                          <Avatar
+                            src={`${bucketUrl}${data?.ProfilePicture}`}
+                            alt="Profile picture"
+                            style={{ height: "120px", width: "120px" }}
+                          />
+                        ) : (
+                          <AccountCircleIcon
+                            color="secondary"
+                            className={s.noPictureIcon}
+                          />
+                        )}
+                      </Avatar>
+                    </a>
+                  </Link>
+                ) : (
+                  <Avatar className={s.avatar}>
+                    {userProfilePicture ? (
+                      <Avatar
+                        src={`${bucketUrl}${userProfilePicture}`}
+                        alt="Profile picture"
+                        style={{ height: "120px", width: "120px" }}
+                      />
+                    ) : (
+                      <AccountCircleIcon
+                        color="secondary"
+                        className={s.noPictureIcon}
+                      />
+                    )}
+                  </Avatar>
+                )}
+              </Badge>
+
               <Box fontWeight="fontWeightBold" marginTop={1}>
                 <Typography variant="h5" className={s.fullName}>
                   {linkToProfile ? (
@@ -172,9 +174,7 @@ export default function ProfileCard({
                   <Typography>{data?.Location}</Typography>
                 </Box>
               )}
-              {/*{divider &&
-           <Divider></Divider>
-         }*/}
+              <Divider></Divider>
               <Box className={s.counterBox}>
                 <Button
                   className={s.followersButton}
@@ -220,25 +220,11 @@ export default function ProfileCard({
             <Link href="/upload">
               <a>
                 <Button className={s.uploadArtButton}>
-                  {t("uploadNewWorkOfArt")}
+                  {t("feed:uploadNewWorkOfArt")}
                 </Button>
               </a>
             </Link>
           )}
-          <div className={s.buyButtons}>
-            {membership.value === Membership.Portfolio && (
-              <div className={s.hovs}>
-                <Button
-                  className={s.upgradeButton}
-                  onClick={() => router.push("/upgrade")}
-                >
-                  <Typography className={s.headerButtonUpgrade}>
-                    {t("upgradePremium")}
-                  </Typography>
-                </Button>
-              </div>
-            )}
-          </div>
         </div>
       </CardContent>
     </Card>

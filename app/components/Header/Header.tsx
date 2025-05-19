@@ -329,45 +329,6 @@ export default function Header({ navBarItems }) {
                 {isSignedIn.value && (
                   <>
                     <div className={s.buttons}>
-                      {customerStatus === "trialing" ? (
-                        <div
-                          style={{
-                            color: "black",
-                            display: "flex",
-                            flexDirection: "column-reverse",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Button
-                            onClick={async () => {
-                              try {
-                                const customerId = await fetchCustomerId();
-                                if (customerId) {
-                                  const portalUrl =
-                                    await fetchCustomerPortalSession(
-                                      customerId
-                                    );
-                                  if (portalUrl) {
-                                    window.location.href = portalUrl;
-                                  } else {
-                                    console.error(
-                                      "Customer portal URL not received."
-                                    );
-                                  }
-                                } else {
-                                  console.error("Customer ID not received.");
-                                }
-                              } catch (error) {
-                                console.error("Error in processing:", error);
-                              }
-                            }}
-                          >
-                            {t("managePayment")}
-                          </Button>
-                        </div>
-                      ) : (
-                        <div></div>
-                      )}
                       <div
                         style={{
                           display: "flex",
@@ -393,6 +354,7 @@ export default function Header({ navBarItems }) {
                             </a>
                           </Link>
                         )}
+
                         {membership.value === 3 && (
                           <Link href="/upload-story">
                             <a>

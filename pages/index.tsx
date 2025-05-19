@@ -128,14 +128,7 @@ export default function DiscoverPage({ navBarItems }) {
       )}
 
       <div ref={nextSectionRef} style={{ marginTop: "30px" }}></div>
-      <div className={s.headTitle}>{t("chosenCategories")}</div>
-      <div className={s.headText}>{t("chosenCategoriesText")}</div>
-      <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
-        <IndexCategories />
-      </div>
-      <Link href="/discover">
-        <Button className={s.loginButton}>{t("common:moreStyles")}</Button>
-      </Link>
+
       <div className={s.headTitle}>{t("chosen")}</div>
       <div className={s.headText}>{t("chosenOne")}</div>
       <div
@@ -152,6 +145,15 @@ export default function DiscoverPage({ navBarItems }) {
       </div>
       <Link href="/spotlight">
         <Button className={s.loginButton}>{t("common:seeCurated")}</Button>
+      </Link>
+
+      <div className={s.headTitle}>{t("chosenCategories")}</div>
+      <div className={s.headText}>{t("chosenCategoriesText")}</div>
+      <div style={{ gridColumn: "1 / 4", width: "100vw" }}>
+        <IndexCategories />
+      </div>
+      <Link href="/discover">
+        <Button className={s.loginButton}>{t("common:moreStyles")}</Button>
       </Link>
 
       <div className={s.headTitle}>{t("newIn")}</div>

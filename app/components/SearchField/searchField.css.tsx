@@ -23,13 +23,13 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         marginLeft: "10px",
         marginBottom: "20px",
-        width: "400px",
+        width: "200px",
         cursor: "default",
       },
       [theme.breakpoints.up("lg")]: {
         marginLeft: "10px",
         marginBottom: "20px",
-        width: "500px",
+        width: "400px",
         cursor: "default",
       },
     },
