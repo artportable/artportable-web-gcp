@@ -19,12 +19,36 @@ const exhibitions = [
     address: "Regeringsgatan 47, 111 56 Stockholm",
     image: "/images/artbakery.png",
     artists: [
-      { name: "Sepideh Sarrafzadeh", dates: "16 mars - 16 juni 2025" },
-      { name: "Vivecka Norberg", dates: "16 mars - 16 juni 2025" },
-      { name: "Anneli Önneby", dates: "17 juni - 17 sep. 2025" },
-      { name: "Lars Källgren", dates: "17 juni - 17 sep. 2025" },
-      { name: "Luuri Kononvo Gallery", dates: "18 sep. - 18 dec 2025" },
-      { name: "Ganga Roslin Bladh", dates: "18 sep. - 18 dec. 2025" },
+      {
+        name: "Sepideh Sarrafzadeh",
+        dates: "16 mars - 16 juni 2025",
+        link: "sepideh",
+      },
+      {
+        name: "Vivecka Norberg",
+        dates: "16 mars - 16 juni 2025",
+        link: "vivecka",
+      },
+      {
+        name: "Anneli Önneby",
+        dates: "17 juni - 17 sep. 2025",
+        link: "artbyaosweden",
+      },
+      {
+        name: "Lars Källgren",
+        dates: "17 juni - 17 sep. 2025",
+        link: "kallgren.lars",
+      },
+      {
+        name: "Luuri Kononvo Gallery",
+        dates: "18 sep. - 18 dec 2025",
+        link: "iuriikononov",
+      },
+      {
+        name: "Ganga Roslin Bladh",
+        dates: "18 sep. - 18 dec. 2025",
+        link: "ganga.art",
+      },
     ],
   },
   {
@@ -33,10 +57,22 @@ const exhibitions = [
     address: "Kolonnvägen 41, Solna",
     image: "/images/ac.png",
     artists: [
-      { name: "Catrine Lindström", dates: "14 april - 14 juni 2025" },
-      { name: "Gro Folkan", dates: "14 april - 14 juni 2025" },
-      { name: "Ingela Johansson", dates: "15 juni - 15 sep. 2025" },
-      { name: "Lina Murel Jardof", dates: "15 juni - 15 sep. 2025" },
+      {
+        name: "Catrine Lindström",
+        dates: "14 april - 14 juni 2025",
+        link: "artbymec",
+      },
+      { name: "Gro Folkan", dates: "14 april - 14 juni 2025", link: "g-fol" },
+      {
+        name: "Ingela Johansson",
+        dates: "15 juni - 15 sep. 2025",
+        link: "ingela.johansson",
+      },
+      {
+        name: "Lina Murel Jardof",
+        dates: "15 juni - 15 sep. 2025",
+        link: "linamureljardorf",
+      },
     ],
   },
   {
@@ -45,12 +81,36 @@ const exhibitions = [
     address: "Solna",
     image: "/images/arla.png",
     artists: [
-      { name: "Kononov Gallery", dates: "25 mars - 25 maj 2025" },
-      { name: "Christel Jonsson", dates: "25 mars - 25 maj 2025" },
-      { name: "Christine Halldoff", dates: "25 mars - 25 maj 2025" },
-      { name: "Felix Oppenheim", dates: "25 mars - 25 maj 2025" },
-      { name: "Anna Frenning", dates: "25 mars - 25 maj 2025" },
-      { name: "Thor-Ulf Löfstedt", dates: "25 mars - 25 maj 2025" },
+      {
+        name: "Kononov Gallery",
+        dates: "25 mars - 25 maj 2025",
+        link: "iuriikononov",
+      },
+      {
+        name: "Christel Jonsson",
+        dates: "25 mars - 25 maj 2025",
+        link: "chriart",
+      },
+      {
+        name: "Christine Halloff",
+        dates: "25 mars - 25 maj 2025",
+        link: "christine.halloff",
+      },
+      {
+        name: "Felix Oppenheim",
+        dates: "25 mars - 25 maj 2025",
+        link: "felix.oppenheim",
+      },
+      {
+        name: "Anna Frenning",
+        dates: "25 mars - 25 maj 2025",
+        link: "anna.frenning",
+      },
+      {
+        name: "Thor-Ulf Löfstedt",
+        dates: "25 mars - 25 maj 2025",
+        link: "thorulf.lofstedt",
+      },
     ],
   },
   {
@@ -59,9 +119,21 @@ const exhibitions = [
     address: "Hamngatan 18–20, 111 47 Stockholm",
     image: "/images/artcafe.png",
     artists: [
-      { name: "Petra Risberg", dates: "24 mars – 23 juni 2025" },
-      { name: "Dina Johnsen", dates: "23 juni - 23 sep. 2025" },
-      { name: "Magareta Öberg", dates: "23 sep. - 23 dec 2025" },
+      {
+        name: "Petra Risberg",
+        dates: "24 mars – 23 juni 2025",
+        link: "petra.risberg",
+      },
+      {
+        name: "Dina Johnsen",
+        dates: "23 juni - 23 sep. 2025",
+        link: "dinajohnsen",
+      },
+      {
+        name: "Margareta Öberg",
+        dates: "23 sep. - 23 dec 2025",
+        link: "margareta.ohberg",
+      },
     ],
   },
   {
@@ -69,7 +141,14 @@ const exhibitions = [
     title: "Balder",
     address: "Fredsborgsgatan 24, 117 58 Stockholm",
     image: "/images/balder.png",
-    artists: [{ name: "Berit Emstrand", dates: "från 12 maj 2025" }],
+    artists: [
+      {
+        name: "Berit Emstrand",
+        dates: "från 12 maj 2025",
+        link: "berit.emstrand",
+      },
+      { name: "Olof Chronvall", link: "olofchronvall" },
+    ],
   },
   {
     slug: "risberg",
@@ -77,8 +156,16 @@ const exhibitions = [
     address: "Bergsgatan 36, 112 23 Stockholm",
     image: "/images/risberga.png",
     artists: [
-      { name: "Christine Halldorf", dates: "12 - 25 maj 2025" },
-      { name: "Kent Wahlbeck", dates: "20 okt. - 2 nov. 2025" },
+      {
+        name: "Christine Halloff",
+        dates: "12 - 25 maj 2025",
+        link: "christine.halloff",
+      },
+      {
+        name: "Kent Wahlbeck",
+        dates: "20 okt. - 2 nov. 2025",
+        link: "kent",
+      },
     ],
   },
   {
@@ -87,9 +174,21 @@ const exhibitions = [
     address: "Kungsgatan 10, 111 43 Stockholm",
     image: "/images/kg10.png",
     artists: [
-      { name: "Nathalie Palmaer", dates: "12 maj - 12 nov. 2025" },
-      { name: "Stephanie Kinnard", dates: "12 maj - 12 nov. 2025" },
-      { name: "René Jacobsen", dates: "12 maj - 12 nov. 2025" },
+      {
+        name: "Nathalie Palmaer",
+        dates: "12 maj - 12 nov. 2025",
+        link: "palmaerart",
+      },
+      {
+        name: "Stephanie Kinnard",
+        dates: "12 maj - 12 nov. 2025",
+        link: "stephanie_kinnard",
+      },
+      {
+        name: "René Jacobsen",
+        dates: "12 maj - 12 nov. 2025",
+        link: "rene.jacobsen",
+      },
     ],
   },
   {
@@ -97,7 +196,9 @@ const exhibitions = [
     title: "Melanders Södermalm",
     address: "Åsögatan 111, 116 24 Stockholm",
     image: "/images/melanders.png",
-    artists: [{ name: "Katarina Persson", dates: "Pågående" }],
+    artists: [
+      { name: "Katarina Persson", dates: "Pågående", link: "katarinapersson" },
+    ],
   },
   {
     slug: "ps-matsal",
@@ -105,8 +206,8 @@ const exhibitions = [
     address: "Nytorgsgatan 42, 116 40 Stockholm",
     image: "/images/ps.png",
     artists: [
-      { name: "Oliw87", dates: "pågående" },
-      { name: "Annika Berglöf", dates: "pågående" },
+      { name: "Oliw87", dates: "pågående", link: "oliw87" },
+      { name: "Annika Berglöf", dates: "pågående", link: "annika.berglof" },
     ],
   },
   {
@@ -114,21 +215,35 @@ const exhibitions = [
     title: "Scandic Anglais",
     address: "Humlegårdsgatan 23, 114 46 Stockholm",
     image: "/images/scandic.png",
-    artists: [{ name: "Kirsten Johansson", dates: "10 april - 10 maj 2025" }],
+    artists: [
+      {
+        name: "Kirsten Johansson",
+        dates: "10 april - 10 maj 2025",
+        link: "kjdesign",
+      },
+    ],
   },
   {
     slug: "crest",
     title: "Simon Crest",
     address: "Upplandsgatan 37, 113 28 Stockholm",
     image: "/images/simon.webp",
-    artists: [{ name: "Karin Holmström", dates: "pågående" }],
+    artists: [
+      { name: "Karin Holmström", dates: "pågående", link: "karin.holmstrom" },
+    ],
   },
   {
     slug: "yono",
     title: "Yono Sabo",
     address: "Luntmakargatan 42, 111 37 Stockholm",
     image: "/images/sabo.png",
-    artists: [{ name: "Christer Åberg", dates: "1 april - 1 juni" }],
+    artists: [
+      {
+        name: "Christer Åberg",
+        dates: "1 april - 1 juni",
+        link: "christer.aber",
+      },
+    ],
   },
 ];
 
@@ -161,7 +276,7 @@ export default function Index({ navBarItems }) {
 
         <div className={s.containerCard}>
           {exhibitions.map((exhibition) => (
-            <div>
+            <div key={exhibition.slug}>
               <a className={s.wrapperCard}>
                 <div
                   style={{
@@ -181,8 +296,13 @@ export default function Index({ navBarItems }) {
                   <div className={s.statusText}>{t("onGoing")}</div>
                   <div className={s.artists}>
                     {exhibition.artists.map((artist, i) => (
-                      <div key={i}>
-                        <span className={s.artistName}>{artist.name}</span>
+                      <div key={artist.link} style={{ margin: "4px" }}>
+                        <a
+                          href={`https://artportable.com/profile/@${artist.link}`}
+                          className={s.artistName}
+                        >
+                          {artist.name}
+                        </a>
                       </div>
                     ))}
                   </div>

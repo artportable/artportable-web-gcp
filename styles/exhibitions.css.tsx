@@ -52,6 +52,7 @@ export const styles = makeStyles((theme: Theme) => {
     },
 
     wrapperCard: {
+      borderRadius: "2px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -60,7 +61,7 @@ export const styles = makeStyles((theme: Theme) => {
       backgroundColor: "white",
       margin: "0 auto",
       marginTop: "10px",
-      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.30)",
+      boxShadow: "10px 0px 10px rgba(0, 0, 0, 0.20)",
     },
     statusText: {
       fontSize: "14px",
@@ -78,6 +79,12 @@ export const styles = makeStyles((theme: Theme) => {
 
     artistName: {
       textDecoration: "underline",
+      textDecorationColor: "black",
+      fontSize: "14px",
+      "&:hover": {
+        textDecorationColor: "rgb(167, 3, 1)",
+        textDecorationThickness: "2px",
+      },
     },
 
     adress: {
