@@ -72,10 +72,11 @@ export const styles = makeStyles((theme: Theme) =>
       filter: "drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.4))",
     },
     yellowButton: {
-      border: "1px solid #3d3d4e",
+      border: "1px solid black",
       backgroundColor: "#FDF9F7",
       "&:hover": {
         backgroundColor: "black",
+        border: "1px solid black",
       },
     },
     findArtButton: {
@@ -87,6 +88,7 @@ export const styles = makeStyles((theme: Theme) =>
       "&:hover": {},
     },
     largeButtonFindArt: {
+      border: "1px solid black",
       minWidth: "100px",
       height: "50px",
       minHeight: "36px",
@@ -150,7 +152,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     noBorder: {
-      border: "none",
+      border: "1px solid black",
     },
     mediumThickness: {
       fontWeight: 500,
