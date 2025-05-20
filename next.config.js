@@ -9,13 +9,11 @@ module.exports = withBundleAnalyzer({
     ignoreBuildErrors: true,
   },
   images: {
-    domains:
-      process.env.NODE_ENV === "production"
-        ? [
-            "artportabletest.blob.core.windows.net",
-            "artportableprod.blob.core.windows.net",
-          ]
-        : [],
+    domains: [
+      "artportabletest.blob.core.windows.net",
+      "artportableprod.blob.core.windows.net",
+    ],
+
     loader: "default",
   },
   i18n,
