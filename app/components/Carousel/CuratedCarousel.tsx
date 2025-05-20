@@ -81,7 +81,7 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
   items.forEach((item) => {
     const overlayContent = (
       <div className={s.rocketOverlay}>
-        {forDesktop && (
+        {/* {forDesktop && (
           <div className={s.seeMoreButton + " displayOnHover"}>
             <Button
               className={clsx(
@@ -94,7 +94,7 @@ const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
               {t("common:seeMore")}
             </Button>
           </div>
-        )}
+        )} */}
       </div>
     );
 
