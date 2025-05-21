@@ -9,31 +9,58 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("smPlus")]: {},
     },
     mobileButton: {
+      borderRadius: "30px",
+      fontWeight: 400,
       fontFamily: "Roboto",
-      width: "100%",
-      borderRadius: "20px",
-      [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
+      fontSize: "14px",
+      backgroundColor: "#f1f1f1",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "35px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
       },
-      [theme.breakpoints.up("md")]: {
-        width: "100%",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+        marginLeft: "10px",
       },
     },
     activeFilterClearOnScreen: {
-      backgroundColor: "transparent",
-      borderRadius: "20px",
-      border: "1px solid rgb(0 0 0 / 23%)",
+      borderRadius: "30px",
+      fontWeight: 400,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "#f1f1f1",
+      border: "1px solid black",
       color: "black",
-      width: "100%",
-      height: "40px",
-      fontSize: "11px",
-      [theme.breakpoints.up("smPlus")]: {
-        width: "100%",
-        fontSize: "14px",
-        fontWeight: 400,
+      width: "150px",
+      height: "35px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginLeft: "10px",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
       },
-      [theme.breakpoints.up("md")]: {
-        width: "200px",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
+    },
+
+    buttonsOne: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "column",     alignItems: "flex-start",
       },
     },
 
@@ -41,6 +68,15 @@ export const styles = makeStyles((theme: Theme) =>
       dropShadow: "rgba(0, 0, 0, 0.25)",
       marginTop: "115px",
       zIndex: 0,
+      height: '100%',
+      "& .MuiDialog-paper": {
+        margin: 0,
+        maxHeight: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflowY: 'hidden',
+      },
       [theme.breakpoints.up("md")]: {
         zIndex: 0,
         width: "320px",
@@ -62,6 +98,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     dialogContent: {
+      flex: 1,
+      overflowY: 'auto',
+      paddingBottom: '120px',
+      WebkitOverflowScrolling: 'touch',
       "&::-webkit-scrollbar": {
         width: "2px !important",
         height: "1px",
@@ -70,10 +110,59 @@ export const styles = makeStyles((theme: Theme) =>
       "&::-webkit-scrollbar-thumb": {
         backgroundColor: "black",
       },
+      [theme.breakpoints.up("smPlus")]: {
+        marginBottom: '80px',
+      },
     },
-
+    chipStack: {
+      display: "flex",
+      flexDirection: "row",
+      gap: "10px",
+  
+      alignItems: "center",
+      flexWrap: 'wrap',
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "row",
+        flexWrap: 'wrap',
+        padding: '0 20px',
+      }
+    },
+    chipStyle: {
+      borderRadius: '0px !important',
+      backgroundColor: 'white',
+      color: 'white',
+      margin: '2px 0',
+      '& .MuiChip-deleteIcon': {
+        backgroundColor: 'transparent',
+        color: '#666363',
+        fontSize: "15px",
+        '&:hover': {
+          backgroundColor: 'transparent',
+          color: 'blue',
+        }
+      },
+      '&.MuiChip-root': {
+        borderRadius: '0px !important',
+      },
+      height: '32px',
+      '& .MuiChip-label': {
+        borderRadius: '0px !important',
+        padding: '0 12px',
+        color: "#222222",
+        fontSize: '12px'
+      },
+      '&.MuiChip-filled': {
+        borderRadius: '0px !important',
+        backgroundColor: '#f1f1f1',
+        border: "1px solid #222222",
+      },
+      '&.MuiChip-outlined': {
+        borderRadius: '0px !important'
+      }
+    },
     mobileList: {
       flexGrow: 1,
+      overflowY: 'visible',
     },
     filterTitleClose: {
       fontFamily: "Roboto",
@@ -91,24 +180,50 @@ export const styles = makeStyles((theme: Theme) =>
       textAlign: "center",
       display: "flex",
       flexDirection: "column",
+      alignItems: "center",
       width: "100%",
+      overflowY: 'visible',
     },
 
     filtertitle: {
       fontFamily: "Roboto",
       display: "flex",
       alignItems: "flex-end",
-      fontSize: "20px",
+      fontSize: "14px",
       color: "black",
-      width: "80%",
+      width: "100%",
       margin: "0 auto",
-      marginTop: "10px",
+      marginTop: "20px",
+      fontWeight: 400,
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        fontSize: "16px",
+        
+      },
+    },
+
+    filtertitleTop: {
+      fontFamily: "Roboto",
+      display: "flex",
+      alignItems: "flex-end",
+      fontSize: "14px",
+      color: "black",
+      width: "100%",
+      margin: "0 auto",
+   
+      fontWeight: 400,
+      [theme.breakpoints.up("smPlus")]: {
+        width: "100%",
+        fontSize: "16px",
+        
+      },
     },
 
     formControl: {
       marginTop: "10px",
       margin: "0px",
-      alignItems: "center",
+      alignItems: "flex-start",
+   
     },
     // the class for select menu
     selectMenu: {
@@ -116,7 +231,7 @@ export const styles = makeStyles((theme: Theme) =>
       width: "338px",
       backgroundColor: "white",
       height: "40px",
-      borderRadius: "10px",
+      borderRadius: "0px",
       border: "1px solid black",
       boxShadow: "none !important",
       "& .MuiSelect-root": {
@@ -188,7 +303,7 @@ export const styles = makeStyles((theme: Theme) =>
       border: "1px solid black",
       padding: "6px",
       width: "240px",
-      borderRadius: "10px",
+ 
       height: "35px",
       marginBottom: "10px",
       display: "flex",
@@ -222,9 +337,10 @@ export const styles = makeStyles((theme: Theme) =>
     },
 
     slider: {
-      color: "#0176D5",
+      color: "#222222",
       width: "310px !important",
       height: "1px",
+
       [theme.breakpoints.up("smPlus")]: {
         width: "250px !important",
       },
@@ -267,38 +383,66 @@ export const styles = makeStyles((theme: Theme) =>
       height: "100%",
     },
     activeFilterContainer: {
+      position: 'sticky',
+      bottom: 0,
+      left: 0,
+      right: 0,
       width: "100%",
-      backgroundColor: "#FCF7EC",
-      marginBottom: "50px",
+      backgroundColor: "#F1F1F1",
+      borderTop: "1px solid #ddd",
+      zIndex: 1,
     },
     activeFilter: {
       display: "flex",
       backgroundColor: "transparent",
       justifyContent: "space-evenly",
-      padding: "0px",
-      margin: "20px",
+      padding: "10px",
       gap: "10px",
     },
     activeFilterClear: {
-      backgroundColor: "transparent",
-      borderRadius: "20px",
-      padding: "10px",
+      borderRadius: "30px",
+      fontWeight: 400,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "#f1f1f1",
       border: "1px solid black",
       color: "black",
-      width: "125px",
-      height: "40px",
+      width: "150px",
+      height: "35px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginLeft: "10px",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
     },
 
     activeFilterResult: {
-      backgroundColor: "black",
-      borderRadius: "20px",
-      padding: "10px",
-      color: "white",
-      width: "125px",
-      height: "40px",
+      borderRadius: "30px",
+      fontWeight: 400,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "#f1f1f1",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "35px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginLeft: "10px",
       marginBottom: "60px",
       "&:hover": {
-        backgroundColor: "#e0e0e0", // Highlight color on hover
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
       },
     },
     tuneIcon: {

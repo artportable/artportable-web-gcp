@@ -61,6 +61,55 @@ export default function Wishlist({ navBarItems }) {
   const [purchaseRequestDialogOpen, setPurchaseRequestDialogOpen] =
     useState(false);
 
+  async function fetchArtworks() {
+    setLoading(true);
+    try {
+      const artworks = await Promise.all(
+        [...favoriteIds].reverse().map(async (artworkId) => {
+          try {
+            const response = await fetch(
+              `${apiBaseUrl}/api/Artworks/${artworkId}`
+            );
+            if (!response.ok) {
+              console.warn(`Failed to fetch artwork with ID ${artworkId}: ${response.status}`);
+              return null;
+            }
+            const data = await response.json();
+            return data;
+          } catch (err) {
+            console.warn(`Error fetching artwork with ID ${artworkId}:`, err);
+            return null;
+          }
+        })
+      );
+      // Filter out any null values from failed fetches
+      const validArtworks = artworks.filter(artwork => artwork !== null);
+      setFavoriteArtworks(validArtworks);
+      
+      // Only set error if all artworks failed to load
+      if (validArtworks.length === 0 && favoriteIds.length > 0) {
+        setError(new Error("Failed to load any artworks"));
+      } else {
+        setError(null);
+      }
+    } catch (err) {
+      console.error("Error in fetchArtworks:", err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (favoriteIds && favoriteIds.length > 0) {
+      fetchArtworks();
+    } else {
+      setFavoriteArtworks([]);
+      setLoading(false);
+      setError(null);
+    }
+  }, [favoriteIds]);
+
   function togglePurchaseRequestDialog() {
     setPurchaseRequestDialogOpen(!purchaseRequestDialogOpen);
   }
@@ -69,39 +118,6 @@ export default function Wishlist({ navBarItems }) {
     setSelectedArtwork(artwork);
     setPurchaseRequestDialogOpen(true);
   }
-  useEffect(() => {
-    async function fetchArtworks() {
-      setLoading(true);
-      try {
-        const artworks = await Promise.all(
-          [...favoriteIds].reverse().map(async (artworkId) => {
-            const response = await fetch(
-              `${apiBaseUrl}/api/Artworks/${artworkId}`
-            );
-            if (!response.ok) {
-              throw new Error(`Failed to fetch artwork with ID ${artworkId}`);
-            }
-            const data = await response.json();
-            return data;
-          })
-        );
-        setFavoriteArtworks(artworks);
-        setError(null);
-      } catch (err) {
-        console.error("Error fetching artworks:", err);
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    if (favoriteIds && favoriteIds.length > 0) {
-      fetchArtworks();
-    } else {
-      setFavoriteArtworks([]);
-      setLoading(false);
-    }
-  }, [favoriteIds]);
 
   return (
     <Main fullWidth={true} noHeaderPadding navBarItems={navBarItems}>
@@ -131,7 +147,29 @@ export default function Wishlist({ navBarItems }) {
           {loading ? (
             <></>
           ) : error ? (
-            <p>Error loading artworks.</p>
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              gap: '1rem',
+              padding: '2rem' 
+            }}>
+              <Typography variant="body1" color="error">
+                {t("common:errors.loadingArtworks")}
+              </Typography>
+              <Button 
+                variant="contained" 
+                onClick={() => {
+                  setError(null);
+                  setLoading(true);
+                  if (favoriteIds && favoriteIds.length > 0) {
+                    fetchArtworks();
+                  }
+                }}
+              >
+                {t("common:actions.tryAgain")}
+              </Button>
+            </div>
           ) : favoriteArtworks.length > 0 ? (
             favoriteArtworks.map((artwork) => (
               <div>
@@ -226,7 +264,7 @@ export default function Wishlist({ navBarItems }) {
                         <>{t("common:words.sold")} </>
                       ) : artwork?.Price && artwork?.Price != "0" ? (
                         <span>
-                          {" " + artwork?.Price}{" "}
+                          {Number(artwork?.Price).toLocaleString()}{" "}
                           {artwork?.Currency !== null
                             ? artwork?.Currency
                             : "SEK"}{" "}
