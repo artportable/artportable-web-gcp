@@ -2,7 +2,7 @@ import Main from "../app/components/Main/Main";
 import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/wishlist.css";
-import { Box, Paper, Typography } from "@material-ui/core";
+import { Box, Paper, Typography, Button } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
 import Head from "next/head";
@@ -13,7 +13,6 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { faSmile } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../app/contexts/user-context";
 import { useGetArtwork } from "../app/hooks/dataFetching/Artworks";
-import Button from "../app/components/Button/Button";
 import SendIcon from "@material-ui/icons/Send";
 import PurchaseRequestDialog from "../app/components/PurchaseRequestDialog/PurchaseRequestDialog";
 import { capitalizeFirst } from "../app/utils/util";
@@ -32,6 +31,8 @@ import LikeArtworkButton from "../app/components/Button/LikeArtworkButton";
 import { useGetUserProfileArtwork } from "../app/hooks/dataFetching/UserProfile";
 import Link from "next/link";
 import Image from "next/image";
+import BannerText from "../app/components/BannerText/BannerText";
+import Divider from "@mui/material/Divider";
 
 export default function Wishlist({ navBarItems }) {
   const s = styles();
@@ -45,7 +46,8 @@ export default function Wishlist({ navBarItems }) {
     "art",
     "forms",
   ]);
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const bucketBaseUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -137,12 +139,11 @@ export default function Wishlist({ navBarItems }) {
         <link rel="canonical" href={`${publicUrl}/${locale}/support`} />
       </Head>
       <section className={s.container}>
-        <header className={s.header}>
-          <div className={s.titleText}>
-            <h2 className={s.favoriteTitle}>{t("art:favoriteTitle")}</h2>
-            <h4 className={s.favoriteText}>{t("art:favoritesText")}</h4>
-          </div>
-        </header>
+     
+        <BannerText
+            title={t("art:favoriteTitle")}
+            text={t("art:favoritesText")}
+          ></BannerText>
         <article className={s.artworksContainer}>
           {loading ? (
             <></>
@@ -281,7 +282,6 @@ export default function Wishlist({ navBarItems }) {
                             <Button
                               className={s.purchaseRequestButton}
                               variant="contained"
-                              rounded
                               disableElevation
                               onClick={() => {
                                 purchaseRequest(artwork);
@@ -309,17 +309,30 @@ export default function Wishlist({ navBarItems }) {
                   </div>
                 </section>
                 <div className={s.border} />
+                <Divider></Divider>
               </div>
             ))
           ) : (
-            <p>No favorites to display.</p>
+            <div className={s.emptyStateContainer}>
+              <Typography variant="h6" className={s.emptyStateText}>
+                {t("art:favoritesText")}
+              </Typography>
+              <Link href="/discover">
+                <Button
+                  variant="contained"
+                  className={s.purchaseRequestButton}
+                >
+                  {t("header:findArt")}
+                </Button>
+              </Link>
+            </div>
           )}
 
           {selectedArtwork && (
             <PurchaseRequestDialog
               open={purchaseRequestDialogOpen}
               onClose={() => setPurchaseRequestDialogOpen(false)}
-              props={{
+              props={{  
                 pathname: "/messages",
                 title: selectedArtwork.Title,
                 creator: selectedArtwork.Owner.Username,

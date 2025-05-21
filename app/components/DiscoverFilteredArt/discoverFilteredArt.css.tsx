@@ -118,13 +118,14 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "row",
       gap: "10px",
-  
+      justifyContent: "center",
       alignItems: "center",
       flexWrap: 'wrap',
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
         flexWrap: 'wrap',
         padding: '0 20px',
+        justifyContent: "flex-start",
       }
     },
     chipStyle: {
@@ -183,6 +184,7 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       width: "100%",
       overflowY: 'visible',
+      marginBottom: "50px",
     },
 
     filtertitle: {
@@ -340,7 +342,6 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#222222",
       width: "310px !important",
       height: "1px",
-
       [theme.breakpoints.up("smPlus")]: {
         width: "250px !important",
       },
