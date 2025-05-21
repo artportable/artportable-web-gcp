@@ -34,7 +34,7 @@ export default function RocketCarousel(props: Data) {
           let url = new URL(`${apiBaseUrl}/api/Discover/artworks/boosted`);
 
           url.searchParams.append("page", (pageIndex + 1).toString());
-          url.searchParams.append("pageSize", "100");
+          url.searchParams.append("pageSize", "10");
           if (username.value != null && username.value != "") {
             url.searchParams.append("myUsername", username.value);
           }
@@ -44,7 +44,11 @@ export default function RocketCarousel(props: Data) {
       }
     );
 
-  if (artworks.length < 1) return null;
+  if (isLoadingArtWorks) {
+    return <div>Loading...</div>;
+  }
+
+  if (!artworks || artworks.length < 1) return null;
 
   const formattedSlides = formatApArtworkForEmbla(
     artworks,

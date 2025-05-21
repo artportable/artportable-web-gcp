@@ -62,7 +62,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(
     options,
-    autoPlay ? [Autoplay()] : []
+    autoPlay ? [Autoplay({
+      delay: 5000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+      playOnInit: false // Only start playing when in viewport
+    })] : []
   );
   const s = styles();
 

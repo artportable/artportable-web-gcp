@@ -10,7 +10,7 @@ import {
   TECHNIQUE_TAGS,
   MEDIUM_TAGS,
 } from "../DiscoverTrendingArtTab/tags";
-import { styles } from "./discoverFilteredArt.css";
+import { useStyles } from "./discoverFilteredArt.styles";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@mui/material/FormControl";
@@ -59,16 +59,19 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
     "discover",
     "locations",
   ]);
-  const s = styles();
+  const s = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { username, socialId, rowWidth, header } = props;
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [searchQuery, setSearchQuery] = useState("");
   const loadMoreArtworksElementRef = useRef(null);
   const tags = useGetTags();
 
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+
+
+  
   const {
     selectedTags,
     setSelectedTags,
