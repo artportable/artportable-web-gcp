@@ -58,6 +58,9 @@ export default function IndexHeroRenewed({ onScrollDown }) {
                     layout="fill"
                     objectFit="cover"
                     objectPosition="center"
+                    loading="eager"
+                    quality={75}
+                    sizes="100vw"
                   />{" "}
                   <div className={s.imageText}>
                     {" "}

@@ -6,6 +6,7 @@ import React, {
   useRef,
   useState,
   useCallback,
+  Suspense
 } from "react";
 import Main from "../app/components/Main/Main";
 import { useTranslation } from "next-i18next";
@@ -15,29 +16,56 @@ import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import Head from "next/head";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-
-import IndexHeroRenewed from "../app/components/IndexHero/IndexHeroRenewed";
-import dynamic from "next/dynamic"; // For dynamic imports
-
-import IndexCategories from "../app/components/IndexHero/IndexCategories";
-
-import { useGetLatestArtworksForIndex } from "../app/hooks/dataFetching/Artworks";
-import StoryCarousel from "../app/components/Carousel/StoryCarousel";
-import LatestCarousel from "../app/components/Carousel/LatestCarousel";
-import CuratedCarousel from "../app/components/Carousel/CuratedCarousel";
-import DiscoverArtistsTab from "../app/components/DiscoverArtistsTab/DiscoverArtistsTab";
-import DiscoverArtistCard from "../app/components/DiscoverArtistCard/DiscoverArtistCard";
-import DiscoverChosenArtists from "../app/components/DiscoverArtists/DiscoverChosenArtists";
-import IndexArtportable from "../app/components/IndexHero/IndexArtportable";
-import { Divider } from "@material-ui/core";
-import Newsletter from "../app/components/NewsletterCard/NewsletterCard";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import Button from "../app/components/Button/Button";
-import Link from "next/dist/client/link";
-import IndexEditorial from "../app/components/IndexHero/IndexEditorial";
+import { useGetLatestArtworksForIndex } from "../app/hooks/dataFetching/Artworks";
 
-const RocketCarousel = dynamic(
-  () => import("../app/components/Carousel/RocketCarousel")
-);
+// Dynamically import components
+const IndexHeroRenewed = dynamic(() => import("../app/components/IndexHero/IndexHeroRenewed"), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+});
+
+const IndexCategories = dynamic(() => import("../app/components/IndexHero/IndexCategories"), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+});
+
+const StoryCarousel = dynamic(() => import("../app/components/Carousel/StoryCarousel"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const LatestCarousel = dynamic(() => import("../app/components/Carousel/LatestCarousel"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const CuratedCarousel = dynamic(() => import("../app/components/Carousel/CuratedCarousel"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const RocketCarousel = dynamic(() => import("../app/components/Carousel/RocketCarousel"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const IndexEditorial = dynamic(() => import("../app/components/IndexHero/IndexEditorial"), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+});
+
+const Newsletter = dynamic(() => import("../app/components/NewsletterCard/NewsletterCard"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const IndexArtportable = dynamic(() => import("../app/components/IndexHero/IndexArtportable"), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+});
 
 export default function DiscoverPage({ navBarItems }) {
   const { t } = useTranslation([
@@ -49,6 +77,11 @@ export default function DiscoverPage({ navBarItems }) {
   ]);
   const s = styles();
   const store = useStore();
+  const [visibleSections, setVisibleSections] = useState({
+    rocket: false,
+    latest: false,
+    curated: false
+  });
 
   const { username, socialId, isSignedIn } = useContext(UserContext);
   const dispatch = useDispatch();
@@ -64,7 +97,39 @@ export default function DiscoverPage({ navBarItems }) {
     }
   }, [data]);
 
-  useEffect(() => {}, [artworks]);
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.1
+    };
+
+    const observers: { [key: string]: IntersectionObserver } = {};
+    const sections = {
+      rocket: document.querySelector('#rocket-carousel'),
+      latest: document.querySelector('#latest-carousel'),
+      curated: document.querySelector('#curated-carousel')
+    };
+
+    Object.entries(sections).forEach(([key, element]) => {
+      if (element) {
+        observers[key] = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setVisibleSections(prev => ({ ...prev, [key]: true }));
+              observers[key].disconnect();
+            }
+          });
+        }, observerOptions);
+
+        observers[key].observe(element);
+      }
+    });
+
+    return () => {
+      Object.values(observers).forEach(observer => observer.disconnect());
+    };
+  }, []);
 
   const scrollToNextSection = useCallback(() => {
     const nextSection = nextSectionRef.current;
@@ -134,10 +199,12 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "0 auto",
         }}
       >
-        <RocketCarousel
-          forDesktop={!isMobile}
-          containerStyle={{ margin: "0px 0 0px 0" }}
-        />
+        <div id="rocket-carousel">
+          {visibleSections.rocket && <RocketCarousel
+            forDesktop={!isMobile}
+            containerStyle={{ margin: "0px 0 0px 0" }}
+          />}
+        </div>
       </div>
       <Link href="/spotlight">
         <Button className={s.loginButton}>{t("common:seeCurated")}</Button>
@@ -161,7 +228,9 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "0 auto",
         }}
       >
-        <LatestCarousel forDesktop={!isMobile}></LatestCarousel>
+        <div id="latest-carousel">
+          {visibleSections.latest && <LatestCarousel forDesktop={!isMobile} />}
+        </div>
       </div>
       <Link href="/latestart">
         <Button className={s.loginButton}>{t("common:seeNew")}</Button>
@@ -176,7 +245,9 @@ export default function DiscoverPage({ navBarItems }) {
           margin: "0 auto",
         }}
       >
-        <CuratedCarousel forDesktop={!isMobile}></CuratedCarousel>
+        <div id="curated-carousel">
+          {visibleSections.curated && <CuratedCarousel forDesktop={!isMobile} />}
+        </div>
       </div>
       <Link href="/curated">
         <Button className={s.loginButton}>{t("common:seeCurated")}</Button>
