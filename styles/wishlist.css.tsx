@@ -4,7 +4,7 @@ import cover from "../public/images/wishlist-banner.png";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      backgroundColor: "#FDF9F7",
+  
       width: "100vw",
       margin: "0 auto",
       height: "auto",
@@ -100,6 +100,22 @@ export const styles = makeStyles((theme: Theme) =>
     artworksContainer: {
       marginTop: "40px",
       width: "80%",
+      margin: "0 auto",
+    },
+    emptyStateContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "2rem",
+      padding: "4rem 2rem",
+      textAlign: "center",
+      [theme.breakpoints.up("md")]: {
+        padding: "6rem 2rem",
+      },
+    },
+    emptyStateText: {
+      color: theme.palette.text.secondary,
+      maxWidth: "600px",
       margin: "0 auto",
     },
     sectionOne: {
@@ -222,13 +238,25 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     purchaseRequestButton: {
-      backgroundColor: "#fadf87",
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
       color: "black",
-      width: "auto",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+
       "&:hover": {
-        backgroundColor: "#fee19c",
-        color: "black",
-        boxShadow: "5px 5px 10px #e5e6e4",
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
       },
     },
 
