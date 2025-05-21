@@ -56,7 +56,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     t("common:techniques.photography"),
     t("common:themes.nature"),
     "London",
-    t("common:techniques.ceramics"),
+    t("common:medium.ceramic"),
     t("common:themes.minimalism")
   ];
 
