@@ -242,27 +242,26 @@ export default function Header({ navBarItems }) {
                     </a>
                   </Link>
                 )}
-
+              </div>
+              
+            {!isMobile && (
+                <div className={s.searchContainer}>
                 <SearchField
                   onFilter={handleSearch}
                   searchQuery={searchQuery}
+                  iconOnly={isMobile}
                 />
+              </div>
+            )}
 
-                {/* <SearchField
+              <div className={s.rightSection}>
+              {isMobile && (
+                <SearchField
                   onFilter={handleSearch}
                   searchQuery={searchQuery}
-                /> */}
-                {/* {isSignedIn.value && (
-                  <div className={s.feed}>
-                    <MuiButton color="default" size="large">
-                      <Link href="/feed">
-                        {t("myArtNetwork").toUpperCase()}
-                      </Link>
-                    </MuiButton>
-                  </div>
-                )} */}
-              </div>{" "}
-              <div style={{ display: "flex", alignItems: "center" }}>
+                  iconOnly={isMobile}
+                />
+            )}
                 {!isSignedIn.value && (
                   <div>
                     {favoriteIds.length > 0 && (
@@ -307,6 +306,7 @@ export default function Header({ navBarItems }) {
                     )}
                   </div>
                 )}
+                
                 {!isSignedIn.value && (
                   <div className={s.login}>
                     <Button

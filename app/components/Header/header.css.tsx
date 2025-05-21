@@ -10,20 +10,21 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       width: "100%",
       fontFamily: "Roboto",
-      [theme.breakpoints.up("smPlus")]: {},
-      [theme.breakpoints.up("md")]: {},
-      [theme.breakpoints.up("lg")]: {},
+      [theme.breakpoints.down("sm")]: {
+        padding: "0 8px",
+      },
     },
     logo: {},
     wrapper: {
       display: "flex",
-
       alignItems: "center",
-      justifyContent: "space-between",
-      height: "var(--header-height)",
+      width: "100%",
+      [theme.breakpoints.down("sm")]: {
+        justifyContent: "space-between",
+      },
     },
     menuDrawer: {
-      order: 3,
+      order: 5,
       gridArea: "menuDrawer",
       [theme.breakpoints.up("smPlus")]: {
         order: "initial",
@@ -214,10 +215,11 @@ export const styles = makeStyles((theme: Theme) =>
     },
     logoButton: {
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
       alignItems: "center",
-      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.down("sm")]: {
+        flex: "0 0 auto",
+        order: 2,
+      },
     },
 
     uploadStoryButton: {
@@ -240,6 +242,26 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("smPlus")]: {
         fontSize: "12px",
+      },
+    },
+    searchContainer: {
+      display: "flex",
+      alignItems: "center",
+      marginLeft: theme.spacing(2),
+      [theme.breakpoints.down("sm")]: {
+        marginLeft: 0,
+        marginRight: 0,
+        order: 3,
+      },
+    },
+    rightSection: {
+      display: "flex",
+      alignItems: "center",
+      marginLeft: "auto",
+      [theme.breakpoints.down("sm")]: {
+        flex: "0 0 auto",
+        marginLeft: 0,
+        order: 4,
       },
     },
   })

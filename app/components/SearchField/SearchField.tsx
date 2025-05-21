@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  IconButton,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
@@ -18,7 +19,7 @@ import { useTranslation } from "next-i18next";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-const SearchField = ({ onFilter, searchQuery }) => {
+const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
   const { t } = useTranslation(["header", "common"]);
   const s = styles();
   const [inputValue, setInputValue] = useState(searchQuery || "");
@@ -102,6 +103,155 @@ const SearchField = ({ onFilter, searchQuery }) => {
     setOpen(true);
   };
 
+  const renderSearchPopup = () => {
+    if (!open) return null;
+    
+    return (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          backgroundColor: "white",
+          zIndex: 9999,
+          borderBottom: "1px solid #ddd",
+        }}
+      >
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <Paper
+            style={{
+              padding: "10px",
+              height: "250px",
+              overflowY: "auto",
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: "white",
+              zIndex: 10330,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                alignItems: "flex-start",
+              }}
+            >
+              <TextField
+                style={{ width: "100%", fontSize: "17px" }}
+                autoFocus={false}
+                fullWidth
+                placeholder="Search"
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <Button className={s.button} onClick={() => setOpen(false)}>
+                {t("common:selectOptions:close")}{" "}
+                <CloseIcon style={{ fontSize: "15px" }} />
+              </Button>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                padding: "10px 20px 10px 25px",
+              }}
+            >
+              <div style={{ margin: "10px" }}>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    marginBottom: "10px",
+                    fontWeight: 600,
+                  }}
+                >
+                  {t("common:selectOptions:trending")}
+                </div>
+
+                {trendingItems.map((item) => (
+                  <div
+                    key={item}
+                    style={{
+                      marginBottom: "6px",
+                      cursor: "pointer",
+                      color: "black",
+                      textDecoration: "underline",
+                    }}
+                    onClick={() => handleTrendingClick(item)}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div
+                style={{
+                  width: "50%",
+                  textAlign: "right",
+                  marginLeft: "auto",
+                }}
+              >
+                {inputValue.trim() !== "" && filteredArtists.length > 0 && (
+                  <List>
+                    <ListItem>
+                      <div style={{ fontWeight: 600 }}>{t("artist")}</div>
+                    </ListItem>
+
+                    {filteredArtists.map((artist) => (
+                      <a
+                        key={artist.Username}
+                        href={`/profile/@${artist.Username}`}
+                        style={{
+                          textDecoration: "none",
+                          color: "inherit",
+                          fontSize: "12px",
+                        }}
+                      >
+                        <ListItem
+                          button
+                          component="a"
+                          style={{ marginLeft: "15px", padding: "0px" }}
+                        >
+                          <ListItemText
+                            primary={`${artist.Name} ${artist.Surname || ""}`}
+                          />
+                        </ListItem>
+                      </a>
+                    ))}
+                  </List>
+                )}
+              </div>
+            </div>
+          </Paper>
+        </ClickAwayListener>
+      </div>
+    );
+  };
+
+  if (iconOnly) {
+    return (
+      <>
+        <IconButton 
+          className={s.searchIconButton} 
+          onClick={() => setOpen(true)}
+        >
+          <SearchIcon />
+        </IconButton>
+        {renderSearchPopup()}
+      </>
+    );
+  }
+
   return (
     <>
       {/* Search Input */}
@@ -119,138 +269,7 @@ const SearchField = ({ onFilter, searchQuery }) => {
           autoFocus={false}
         />
       </div>
-      {/* Full-Width Popper at the Top */}
-      {open && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            backgroundColor: "white",
-            zIndex: 9999,
-
-            borderBottom: "1px solid #ddd",
-          }}
-        >
-          <ClickAwayListener onClickAway={handleClickAway}>
-            <Paper
-              style={{
-                padding: "10px",
-                height: "250px",
-                overflowY: "auto",
-                display: "flex",
-                flexDirection: "column",
-                backgroundColor: "white",
-                zIndex: 10330,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  alignItems: "flex-start",
-                }}
-              >
-                <TextField
-                  style={{ width: "100%", fontSize: "17px" }}
-                  autoFocus={false}
-                  fullWidth
-                  placeholder="Search"
-                  value={inputValue}
-                  onChange={handleInputChange}
-                  onKeyDown={handleKeyDown}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-
-                <Button className={s.button} onClick={() => setOpen(false)}>
-                  {t("common:selectOptions:close")}{" "}
-                  <CloseIcon style={{ fontSize: "15px" }} />
-                </Button>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-evenly",
-                  padding: "10px 20px 10px 25px",
-                }}
-              >
-                <div style={{ margin: "10px" }}>
-                  <div
-                    style={{
-                      fontSize: "14px",
-                      marginBottom: "10px",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {t("common:selectOptions:trending")}
-                  </div>
-
-                  {trendingItems.map((item) => (
-                    <div
-                      key={item}
-                      style={{
-                        marginBottom: "6px",
-                        cursor: "pointer",
-                        color: "black",
-                        textDecoration: "underline",
-                      }}
-                      onClick={() => handleTrendingClick(item)}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-                <div
-                  style={{
-                    width: "50%",
-                    textAlign: "right",
-                    marginLeft: "auto",
-                  }}
-                >
-                  {inputValue.trim() !== "" && filteredArtists.length > 0 && (
-                    <List>
-                      <ListItem>
-                        <div style={{ fontWeight: 600 }}>{t("artist")}</div>
-                      </ListItem>
-
-                      {filteredArtists.map((artist) => (
-                        <a
-                          key={artist.Username}
-                          href={`/profile/@${artist.Username}`}
-                          style={{
-                            textDecoration: "none",
-                            color: "inherit",
-                            fontSize: "12px",
-                          }}
-                        >
-                          <ListItem
-                            button
-                            component="a"
-                            style={{ marginLeft: "15px", padding: "0px" }}
-                          >
-                            <ListItemText
-                              primary={`${artist.Name} ${artist.Surname || ""}`}
-                            />
-                          </ListItem>
-                        </a>
-                      ))}
-                    </List>
-                  )}
-                </div>
-              </div>
-            </Paper>
-          </ClickAwayListener>
-        </div>
-      )}
+      {renderSearchPopup()}
     </>
   );
 };

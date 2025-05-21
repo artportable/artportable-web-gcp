@@ -30,11 +30,69 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "space-between",
       width: "100%",
-      textDecoration: "none", // Optional: Removes underline
-      color: "inherit", // Inherits color from parent
+      textDecoration: "none",
+      color: "inherit", 
       "&:hover": {
-        color: "blue", // Changes text color to blue on hover
+        color: "blue", 
       },
+    },
+
+    title: {
+      textAlign: "center",
+      fontSize: "16px",
+      marginBottom: "10px",
+      marginTop: "10px",
+      fontWeight: "normal",
+    },
+
+    loadingText: {
+      textAlign: "center",
+      padding: "10px",
+    },
+
+    errorText: {
+      color: "red",
+      textAlign: "center",
+      padding: "10px",
+    },
+
+    noFavoritesText: {
+      textAlign: "center",
+      padding: "10px",
+    },
+
+    artworkSection: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      marginBottom: "10px",
+      paddingBottom: "10px",
+      "&:not(:last-child)": {
+        borderBottom: "1px solid #ccc",
+      },
+    },
+
+    artworkImage: {
+      marginBottom: "20px",
+    },
+
+    artworkTitle: {
+      fontSize: "13px",
+      marginLeft: "10px",
+      marginBottom: "0px",
+      fontWeight: "bold",
+    },
+
+    artworkDimensions: {
+      fontSize: "12px",
+      marginLeft: "10px",
+      paddingTop: "0px",
+      marginTop: "0px",
+    },
+
+    viewAllContainer: {
+      display: "flex",
+      justifyContent: "center",
     },
   })
 );

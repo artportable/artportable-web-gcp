@@ -122,7 +122,7 @@ export default function Wishlist({ navBarItems }) {
   }
 
   return (
-    <Main fullWidth={true} noHeaderPadding navBarItems={navBarItems}>
+    <Main fullWidth={true}  navBarItems={navBarItems}>
       <Head>
         <meta name="title" content={t("wishlist:wishlist")} />
         <meta name="description" content={t("wishlist:favoriteArtworks")} />
