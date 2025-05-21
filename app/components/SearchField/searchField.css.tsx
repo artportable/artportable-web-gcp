@@ -13,7 +13,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "10px",
       marginBottom: "20px",
       marginLeft: "5px",
-      borderBottom: "1px solid black",
+      borderBottom: "1px solid rgb(184, 184, 184)",
       [theme.breakpoints.up("smPlus")]: {
         marginLeft: "10px",
         marginBottom: "20px",
@@ -31,6 +31,36 @@ export const styles = makeStyles((theme: Theme) =>
         marginBottom: "20px",
         width: "400px",
         cursor: "default",
+      },
+    },
+    paper: {
+
+      height: "590px",
+      padding: "30px",
+      overflowY: "auto",
+      backgroundColor: "white",
+      zIndex: 10330,
+  
+      [theme.breakpoints.up("lg")]: {
+        height: "390px",
+      },
+    },  
+    searchPopup: {
+      display: "flex",
+      flexDirection: "column",
+      marginTop: "20px",  
+      [theme.breakpoints.up("smPlus")]: {
+        flexDirection: "row",
+      },
+    },
+    categories: {
+      flex: "0 0 60%", 
+      marginTop: "50px",
+      maxHeight: "300px",
+      [theme.breakpoints.up("smPlus")]: {
+        maxHeight: "300px",
+        paddingLeft: "20px", 
+        marginTop: "0px",
       },
     },
     button: {
@@ -57,7 +87,7 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "100%",
-      fontSize: "17px",
+      fontSize: "14px",
       fontWeight: 400,
       fontFamily: "Roboto",
       border: "none !important",
@@ -72,11 +102,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       [theme.breakpoints.down("sm")]: {
-        fontSize: "17px",
+        fontSize: "14px",
       },
 
       [theme.breakpoints.up("md")]: {
-        fontSize: "17px",
+        fontSize: "14px",
       },
       "@media not all and (min-resolution:.001dpcm)": {
         "@supports (-webkit-appearance:none)": {

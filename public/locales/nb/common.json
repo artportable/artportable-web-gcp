@@ -152,7 +152,9 @@
     "3000": "Opptil 3000 (SEK)",
     "5000": "Opptil 5000 (SEK)",
     "5001": "Over 5000 (SEK)",
-    "filter": "Filtrer"
+    "filter": "Filtrer",
+    "quickSearch": "Snabbsøkning",
+    "searchForArtist": "Søk etter en kunstner"
   },
   "like": "Lik",
   "message": "Melding",
