@@ -102,6 +102,7 @@ export const styles = makeStyles((theme: Theme) =>
       overflowY: 'auto',
       paddingBottom: '120px',
       WebkitOverflowScrolling: 'touch',
+      marginBottom: "40px",
       "&::-webkit-scrollbar": {
         width: "2px !important",
         height: "1px",
