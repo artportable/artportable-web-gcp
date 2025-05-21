@@ -53,6 +53,7 @@ export const styles = makeStyles((theme: Theme) =>
         flexDirection: "row",
       },
     },
+
     categories: {
       flex: "0 0 60%", 
       marginTop: "50px",
@@ -61,7 +62,53 @@ export const styles = makeStyles((theme: Theme) =>
         maxHeight: "300px",
         paddingLeft: "20px", 
         marginTop: "0px",
+        
       },
+    },
+    categoryTitle: {
+      position: "absolute",
+      bottom: "6px",
+      left: "8px",
+      color: "white",
+      fontSize: "12px",
+      fontWeight: 500,
+      transition: "all 0.3s ease",
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "18px",
+        transform: "scale(1)",
+        transformOrigin: "left bottom",
+        "&:hover": {
+          transform: "scale(1.05)",
+        }
+      },
+    },
+    categoriesGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: "8px",
+      fontSize: "12px",
+      maxHeight: "380px",
+      overflow: "auto",
+      [theme.breakpoints.up("smPlus")]: {
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: "8px",
+        fontSize: "12px",
+        maxHeight: "280px",
+      },
+    },
+
+    categoryItem: {
+      textDecoration: "none",
+       color: "inherit",
+      position: "relative",
+                          width: "100%",
+                          height: "40px",
+                          overflow: "hidden",
+                          borderRadius: "4px",
+                          cursor: "pointer",
+                          [theme.breakpoints.up("smPlus")]: {
+                            height: "80px",
+                          },
     },
     button: {
       color: "black",

@@ -49,14 +49,14 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     t("common:techniques.oil"),
     t("common:themes.abstract"),
     "Stockholm",
-    t("common:techniques.acrylic"),
+    t("common:techniques.print"),
     t("common:themes.portraiture"),
     t("common:techniques.aquarelle"),
     t("common:themes.landscape"),
     t("common:techniques.photography"),
     t("common:themes.nature"),
     "London",
-    t("common:techniques.sculpture"),
+    t("common:techniques.ceramics"),
     t("common:themes.minimalism")
   ];
 
@@ -171,8 +171,8 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
       color: "#2c620c8f"
     },
     { 
-      title: t("common:themes.portraiture"), 
-      href: "/search?query=portraiture",
+      title: t("common:medium.print"), 
+      href: "/search?query=print",
       color: "#6f52b5"
     },
     { 
@@ -181,8 +181,8 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
       color: "#285475"
     },
     { 
-      title: t("common:medium.sculpture"), 
-      href: "/search?query=sculpture",
+      title: t("common:medium.ceramic"),  
+      href: "/search?query=keramik",
       color: "var(--ion-color-dark)"
     }
   ];
@@ -282,48 +282,32 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
                 <div style={{ fontSize: "14px", marginBottom: "10px", fontWeight: 400 }}>
                   {t("common:selectOptions:quickSearch")}
                 </div>
-                <div style={{ 
-                  display: "grid", 
-                  gridTemplateColumns: "repeat(4, 1fr)", 
-                  gap: "8px",
-                  fontSize: "12px",
-                  maxHeight: "280px",
-                  overflow: "auto"
-                }}>
+                <div className={s.categoriesGrid} >
                   {indexCategories.map((category) => (
                     <a
                       key={category.href}
                       href={category.href}
+                      className={s.categoryItem}
                       style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        position: "relative",
-                        width: "100%",
-                        height: "80px",
-                        overflow: "hidden",
-                        borderRadius: "4px",
-                        cursor: "pointer",
+
                         backgroundColor: category.color,
                       }}
                       onMouseEnter={(e) => {
                         const overlay = e.currentTarget.querySelector('.category-overlay') as HTMLDivElement;
-                        const title = e.currentTarget.querySelector('.category-title') as HTMLDivElement;
-                        if (overlay && title) {
+                        if (overlay) {
                           overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-                          title.style.transform = 'translateY(-2px)';
                         }
                       }}
                       onMouseLeave={(e) => {
                         const overlay = e.currentTarget.querySelector('.category-overlay') as HTMLDivElement;
-                        const title = e.currentTarget.querySelector('.category-title') as HTMLDivElement;
-                        if (overlay && title) {
+                        if (overlay) {
                           overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-                          title.style.transform = 'translateY(0)';
                         }
                       }}
                     >
                       <div
                         className="category-overlay"
+                   
                         style={{
                           position: "absolute",
                           top: 0,
@@ -335,16 +319,9 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
                         }}
                       />
                       <div
-                        className="category-title"
-                        style={{
-                          position: "absolute",
-                          bottom: "6px",
-                          left: "8px",
-                          color: "white",
-                          fontSize: "18px",
-                          fontWeight: 500,
-                          transition: "transform 0.3s ease",
-                        }}
+                        className={s.categoryTitle}
+
+                  
                       >
                         {category.title}
                       </div>
