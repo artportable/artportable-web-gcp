@@ -459,9 +459,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               className={s.chipStyle}
             />
           )}
-          {Array.isArray(selectedPrice) && (
+          {Array.isArray(isMobile ? tempSelectedPrice : selectedPrice) && (
             <Chip
-              label={`${selectedPrice[0].toLocaleString()} - ${selectedPrice[1].toLocaleString()}`}
+              label={`${(isMobile ? tempSelectedPrice : selectedPrice)[0].toLocaleString()} - ${(isMobile ? tempSelectedPrice : selectedPrice)[1].toLocaleString()}`}
               onDelete={() => {
                 setSelectedPrice(null);
                 setTempSelectedPrice(null);
@@ -469,9 +469,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               className={s.chipStyle}
             />
           )}
-          {Array.isArray(selectedHeight) && (
+          {Array.isArray(isMobile ? tempSelectedHeight : selectedHeight) && (
             <Chip
-              label={`${t("common:selectOptions:height")}: ${selectedHeight[0]} - ${selectedHeight[1]} cm`}
+              label={`${t("common:selectOptions:height")}: ${(isMobile ? tempSelectedHeight : selectedHeight)[0]} - ${(isMobile ? tempSelectedHeight : selectedHeight)[1]} cm`}
               onDelete={() => {
                 setSelectedHeight(null);
                 setTempSelectedHeight(null);
@@ -479,9 +479,9 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               className={s.chipStyle} 
             />
           )}
-          {Array.isArray(selectedWidth) && (
+          {Array.isArray(isMobile ? tempSelectedWidth : selectedWidth) && (
             <Chip
-              label={`${t("common:selectOptions:width")}: ${selectedWidth[0]} - ${selectedWidth[1]} cm`}
+              label={`${t("common:selectOptions:width")}: ${(isMobile ? tempSelectedWidth : selectedWidth)[0]} - ${(isMobile ? tempSelectedWidth : selectedWidth)[1]} cm`}
               onDelete={() => {
                 setSelectedWidth(null);
                 setTempSelectedWidth(null);
@@ -501,21 +501,18 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
           fullScreen
           open={open}
           onClose={handleClose}
-          disableScrollLock={!isMobile}
+          disableScrollLock={true}
           hideBackdrop={!isMobile}
           disableAutoFocus
-          style={{ 
-            zIndex: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100vh'
-          }}
+          disableEnforceFocus
+          keepMounted
         >
           <div style={{ 
             cursor: "pointer", 
             display: "flex", 
             justifyContent: "flex-end",
-            padding: '16px'
+            padding: '16px',
+            backgroundColor: '#fff'
           }} onClick={handleClose}>
             <CloseIcon />
           </div>
@@ -808,19 +805,19 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                     <Slider
                       className={s.slider}
                       value={Array.isArray(tempSelectedPrice) ? tempSelectedPrice : [minPrice, maxPrice]}
-                      onChange={(event, newValue) => {
-                        if (isMobile) {
+                      onChange={(event: Event, newValue: number | number[]) => {
+                        if (Array.isArray(newValue)) {
                           setTempSelectedPrice(newValue as [number, number]);
-                        } else {
-                          setTempSelectedPrice(newValue as [number, number]);
-                          setSelectedPrice(newValue as [number, number]);
-                          setSelectedTrending(tempSelectedTrending);
-                          setSelectedTags(selectedTempTags);
-                          setSelectedSize(selectedTempSize);
-                          setSelectedOrientation(tempSelectedOrientation);
-                          setSelectedState(selectedTempState);
-                          setSelectedHeight(tempSelectedHeight);
-                          setSelectedWidth(tempSelectedWidth);
+                          if (!isMobile) {
+                            setSelectedPrice(newValue as [number, number]);
+                            setSelectedTrending(tempSelectedTrending);
+                            setSelectedTags(selectedTempTags);
+                            setSelectedSize(selectedTempSize);
+                            setSelectedOrientation(tempSelectedOrientation);
+                            setSelectedState(selectedTempState);
+                            setSelectedHeight(tempSelectedHeight);
+                            setSelectedWidth(tempSelectedWidth);
+                          }
                         }
                       }}
                       valueLabelDisplay="off"
@@ -847,10 +844,8 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                             const value = rawValue === '' ? null : 
                                         isNaN(Number(rawValue)) ? tempSelectedPrice?.[0] : Number(rawValue);
                             const newValue = [value, tempSelectedPrice ? tempSelectedPrice[1] : maxPrice] as [number, number];
-                            if (isMobile) {
-                              setTempSelectedPrice(newValue);
-                            } else {
-                              setTempSelectedPrice(newValue);
+                            setTempSelectedPrice(newValue);
+                            if (!isMobile) {
                               setSelectedPrice(newValue);
                               setSelectedTrending(tempSelectedTrending);
                               setSelectedTags(selectedTempTags);
@@ -876,10 +871,8 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                             const value = rawValue === '' ? null : 
                                         isNaN(Number(rawValue)) ? tempSelectedPrice?.[1] : Number(rawValue);
                             const newValue = [tempSelectedPrice ? tempSelectedPrice[0] : minPrice, value] as [number, number];
-                            if (isMobile) {
-                              setTempSelectedPrice(newValue);
-                            } else {
-                              setTempSelectedPrice(newValue);
+                            setTempSelectedPrice(newValue);
+                            if (!isMobile) {
                               setSelectedPrice(newValue);
                               setSelectedTrending(tempSelectedTrending);
                               setSelectedTags(selectedTempTags);
@@ -909,19 +902,19 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                     <Slider
                       className={s.slider}
                       value={tempSelectedHeight || [minHeight, maxHeight]}
-                      onChange={(event, newValue) => {
-                        if (isMobile) {
+                      onChange={(event: Event, newValue: number | number[]) => {
+                        if (Array.isArray(newValue)) {
                           setTempSelectedHeight(newValue as [number, number]);
-                        } else {
-                          setTempSelectedHeight(newValue as [number, number]);
-                          setSelectedHeight(newValue as [number, number]);
-                          setSelectedTrending(tempSelectedTrending);
-                          setSelectedTags(selectedTempTags);
-                          setSelectedSize(selectedTempSize);
-                          setSelectedOrientation(tempSelectedOrientation);
-                          setSelectedPrice(tempSelectedPrice);
-                          setSelectedState(selectedTempState);
-                          setSelectedWidth(tempSelectedWidth);
+                          if (!isMobile) {
+                            setSelectedHeight(newValue as [number, number]);
+                            setSelectedTrending(tempSelectedTrending);
+                            setSelectedTags(selectedTempTags);
+                            setSelectedSize(selectedTempSize);
+                            setSelectedOrientation(tempSelectedOrientation);
+                            setSelectedPrice(tempSelectedPrice);
+                            setSelectedState(selectedTempState);
+                            setSelectedWidth(tempSelectedWidth);
+                          }
                         }
                       }}
                       valueLabelDisplay="off"
@@ -944,13 +937,12 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                           value={tempSelectedHeight && tempSelectedHeight[0] !== null ? tempSelectedHeight[0].toString() : ''}
                           placeholder={minHeight.toString()}
                           onChange={(e) => {
-                            const value = e.target.value === '' ? null : 
-                                        isNaN(Number(e.target.value)) ? tempSelectedHeight?.[0] : Number(e.target.value);
+                            const rawValue = e.target.value.replace(/\s/g, '');
+                            const value = rawValue === '' ? null : 
+                                        isNaN(Number(rawValue)) ? tempSelectedHeight?.[0] : Number(rawValue);
                             const newValue = [value, tempSelectedHeight ? tempSelectedHeight[1] : maxHeight] as [number, number];
-                            if (isMobile) {
-                              setTempSelectedHeight(newValue);
-                            } else {
-                              setTempSelectedHeight(newValue);
+                            setTempSelectedHeight(newValue);
+                            if (!isMobile) {
                               setSelectedHeight(newValue);
                               setSelectedTrending(tempSelectedTrending);
                               setSelectedTags(selectedTempTags);
@@ -972,13 +964,12 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                           value={tempSelectedHeight && tempSelectedHeight[1] !== null ? tempSelectedHeight[1].toString() : ''}
                           placeholder={maxHeight.toString()}
                           onChange={(e) => {
-                            const value = e.target.value === '' ? null : 
-                                        isNaN(Number(e.target.value)) ? tempSelectedHeight?.[1] : Number(e.target.value);
+                            const rawValue = e.target.value.replace(/\s/g, '');
+                            const value = rawValue === '' ? null : 
+                                        isNaN(Number(rawValue)) ? tempSelectedHeight?.[1] : Number(rawValue);
                             const newValue = [tempSelectedHeight ? tempSelectedHeight[0] : minHeight, value] as [number, number];
-                            if (isMobile) {
-                              setTempSelectedHeight(newValue);
-                            } else {
-                              setTempSelectedHeight(newValue);
+                            setTempSelectedHeight(newValue);
+                            if (!isMobile) {
                               setSelectedHeight(newValue);
                               setSelectedTrending(tempSelectedTrending);
                               setSelectedTags(selectedTempTags);
@@ -1008,19 +999,19 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                     <Slider
                       className={s.slider}
                       value={tempSelectedWidth || [minWidth, maxWidth]}
-                      onChange={(event, newValue) => {
-                        if (isMobile) {
+                      onChange={(event: Event, newValue: number | number[]) => {
+                        if (Array.isArray(newValue)) {
                           setTempSelectedWidth(newValue as [number, number]);
-                        } else {
-                          setTempSelectedWidth(newValue as [number, number]);
-                          setSelectedWidth(newValue);
-                          setSelectedTrending(tempSelectedTrending);
-                          setSelectedTags(selectedTempTags);
-                          setSelectedSize(selectedTempSize);
-                          setSelectedOrientation(tempSelectedOrientation);
-                          setSelectedPrice(tempSelectedPrice);
-                          setSelectedState(selectedTempState);
-                          setSelectedHeight(tempSelectedHeight);
+                          if (!isMobile) {
+                            setSelectedWidth(newValue as [number, number]);
+                            setSelectedTrending(tempSelectedTrending);
+                            setSelectedTags(selectedTempTags);
+                            setSelectedSize(selectedTempSize);
+                            setSelectedOrientation(tempSelectedOrientation);
+                            setSelectedPrice(tempSelectedPrice);
+                            setSelectedState(selectedTempState);
+                            setSelectedHeight(tempSelectedHeight);
+                          }
                         }
                       }}
                       valueLabelDisplay="off"
@@ -1043,13 +1034,12 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                           value={tempSelectedWidth && tempSelectedWidth[0] !== null ? tempSelectedWidth[0].toString() : ''}
                           placeholder={minWidth.toString()}
                           onChange={(e) => {
-                            const value = e.target.value === '' ? null : 
-                                        isNaN(Number(e.target.value)) ? tempSelectedWidth?.[0] : Number(e.target.value);
+                            const rawValue = e.target.value.replace(/\s/g, '');
+                            const value = rawValue === '' ? null : 
+                                        isNaN(Number(rawValue)) ? tempSelectedWidth?.[0] : Number(rawValue);
                             const newValue = [value, tempSelectedWidth ? tempSelectedWidth[1] : maxWidth] as [number, number];
-                            if (isMobile) {
-                              setTempSelectedWidth(newValue);
-                            } else {
-                              setTempSelectedWidth(newValue);
+                            setTempSelectedWidth(newValue);
+                            if (!isMobile) {
                               setSelectedWidth(newValue);
                               setSelectedTrending(tempSelectedTrending);
                               setSelectedTags(selectedTempTags);
@@ -1071,13 +1061,12 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
                           value={tempSelectedWidth && tempSelectedWidth[1] !== null ? tempSelectedWidth[1].toString() : ''}
                           placeholder={maxWidth.toString()}
                           onChange={(e) => {
-                            const value = e.target.value === '' ? null : 
-                                        isNaN(Number(e.target.value)) ? tempSelectedWidth?.[1] : Number(e.target.value);
+                            const rawValue = e.target.value.replace(/\s/g, '');
+                            const value = rawValue === '' ? null : 
+                                        isNaN(Number(rawValue)) ? tempSelectedWidth?.[1] : Number(rawValue);
                             const newValue = [tempSelectedWidth ? tempSelectedWidth[0] : minWidth, value] as [number, number];
-                            if (isMobile) {
-                              setTempSelectedWidth(newValue);
-                            } else {
-                              setTempSelectedWidth(newValue);
+                            setTempSelectedWidth(newValue);
+                            if (!isMobile) {
                               setSelectedWidth(newValue);
                               setSelectedTrending(tempSelectedTrending);
                               setSelectedTags(selectedTempTags);
@@ -1098,6 +1087,7 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
               </div>
             </List>
           </DialogContent>
+
           <div className={s.activeFilterContainer}>
             {isMobile && (
               <div className={s.activeFilter}>

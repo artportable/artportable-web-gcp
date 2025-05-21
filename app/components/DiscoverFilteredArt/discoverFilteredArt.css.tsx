@@ -68,7 +68,15 @@ export const styles = makeStyles((theme: Theme) =>
       dropShadow: "rgba(0, 0, 0, 0.25)",
       marginTop: "115px",
       zIndex: 0,
-      
+      height: '100%',
+      "& .MuiDialog-paper": {
+        margin: 0,
+        maxHeight: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflowY: 'hidden',
+      },
       [theme.breakpoints.up("md")]: {
         zIndex: 0,
         width: "320px",
@@ -92,6 +100,8 @@ export const styles = makeStyles((theme: Theme) =>
     dialogContent: {
       flex: 1,
       overflowY: 'auto',
+      paddingBottom: '120px',
+      WebkitOverflowScrolling: 'touch',
       "&::-webkit-scrollbar": {
         width: "2px !important",
         height: "1px",
@@ -106,28 +116,26 @@ export const styles = makeStyles((theme: Theme) =>
     },
     chipStack: {
       display: "flex",
-      flexDirection: "column",
-
+      flexDirection: "row",
       gap: "10px",
-      flexWrap: 'wrap', 
-      padding: '0 20px',
+  
       alignItems: "center",
-      mt: 2, 
-      mb: 2,
+      flexWrap: 'wrap',
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
-      },
+        flexWrap: 'wrap',
+        padding: '0 20px',
+      }
     },
     chipStyle: {
-    
       borderRadius: '0px !important',
       backgroundColor: 'white',
       color: 'white',
+      margin: '2px 0',
       '& .MuiChip-deleteIcon': {
         backgroundColor: 'transparent',
         color: '#666363',
         fontSize: "15px",
-
         '&:hover': {
           backgroundColor: 'transparent',
           color: 'blue',
@@ -135,7 +143,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
       '&.MuiChip-root': {
         borderRadius: '0px !important',
-        
       },
       height: '32px',
       '& .MuiChip-label': {
@@ -147,7 +154,6 @@ export const styles = makeStyles((theme: Theme) =>
       '&.MuiChip-filled': {
         borderRadius: '0px !important',
         backgroundColor: '#f1f1f1',
-     
         border: "1px solid #222222",
       },
       '&.MuiChip-outlined': {
@@ -156,6 +162,7 @@ export const styles = makeStyles((theme: Theme) =>
     },
     mobileList: {
       flexGrow: 1,
+      overflowY: 'visible',
     },
     filterTitleClose: {
       fontFamily: "Roboto",
@@ -175,6 +182,7 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       alignItems: "center",
       width: "100%",
+      overflowY: 'visible',
     },
 
     filtertitle: {
@@ -375,18 +383,20 @@ export const styles = makeStyles((theme: Theme) =>
       height: "100%",
     },
     activeFilterContainer: {
-      display: "flex",
-      justifyContent: "center",
+      position: 'sticky',
+      bottom: 0,
+      left: 0,
+      right: 0,
       width: "100%",
       backgroundColor: "#F1F1F1",
-      marginBottom: "50px",
+      borderTop: "1px solid #ddd",
+      zIndex: 1,
     },
     activeFilter: {
       display: "flex",
       backgroundColor: "transparent",
       justifyContent: "space-evenly",
-      padding: "0px",
-      margin: "20px",
+      padding: "10px",
       gap: "10px",
     },
     activeFilterClear: {
