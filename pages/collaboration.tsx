@@ -5,8 +5,7 @@ import { styles } from "../styles/support.css";
 import { Paper, Typography } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+
 import Head from "next/head";
 import clsx from "clsx";
 import { useRouter } from "next/router";

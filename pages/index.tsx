@@ -15,14 +15,10 @@ import { LoadingContext } from "../app/contexts/loading-context";
 import { UserContext } from "../app/contexts/user-context";
 import Head from "next/head";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
-import { useKeycloak } from "@react-keycloak/ssr";
-import { useRouter } from "next/router";
 
-import Typography from "@mui/material/Typography";
 import IndexHeroRenewed from "../app/components/IndexHero/IndexHeroRenewed";
 import dynamic from "next/dynamic"; // For dynamic imports
-import { getCurrentLanguage } from "../constants/keycloakSettings";
-import { useMainWidth } from "../app/hooks/useWidth";
+
 import IndexCategories from "../app/components/IndexHero/IndexCategories";
 
 import { useGetLatestArtworksForIndex } from "../app/hooks/dataFetching/Artworks";
