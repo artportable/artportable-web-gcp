@@ -10,6 +10,8 @@ import { useMainWidth } from "../app/hooks/useWidth";
 import DiscoverFilteredArt from "../app/components/DiscoverFilteredArt/DiscoverFilteredArt";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MainOption from "../app/components/Main/MainOption";
+import BannerText from "../app/components/BannerText/BannerText";
 
 export default function Search({ navBarItems }) {
   const publicUrl = process.env.NEXT_PUBLIC_URL;
@@ -33,14 +35,22 @@ export default function Search({ navBarItems }) {
   const router = useRouter();
   const searchQuery = router.query.query || "";
 
+  const [open, setOpen] = useState(false);
+
   return (
     <>
-      <Main navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
+      <MainOption navBarItems={navBarItems} isShow={false} noHeaderPadding={isMobile}>
         <Head>
           <title>{t("discover")}</title>
           <meta name="description" content={t("latest")} />
           <link rel="canonical" href={`${publicUrl}/${locale}/latest`} />
         </Head>
+        {!open && (
+          <BannerText
+            title={t("index:discoverTitle")}
+            text={t("index:discoverText")}
+          />
+        )}
         <DiscoverFilteredArt
           username={username.value}
           socialId={socialId.value}
@@ -52,8 +62,10 @@ export default function Search({ navBarItems }) {
           header={t("")}
           page={""}
           search={searchQuery}
+          open={open}
+          setOpen={setOpen}
         />
-      </Main>
+      </MainOption>
     </>
   );
 }

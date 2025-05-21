@@ -29,7 +29,8 @@
     "Annonsera": "Advertise",
     "christmas": "Campaign",
     "husohem": "Publish 3 works on husohem.se",
-    "getStarted": "Get started"
+    "getStarted": "Get started",
+    "searchFor": "Search for"
   },
   "timeUnit": {
     "year": "y",
@@ -166,7 +167,9 @@
     "relevance": "Relevance",
     "latest": "Latest",
     "lowestPrice": "Price (Low to High)",
-    "hightestPrice": "Price (High to Low)"
+    "hightestPrice": "Price (High to Low)",
+    "quickSearch": "Quick find",
+    "searchForArtist": "Search for an artist"
   },
 
   "like": "Like",

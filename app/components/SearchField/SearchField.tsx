@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import {
   Paper,
   TextField,
@@ -11,11 +11,11 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
-
 import { styles } from "./searchField.css";
 import clsx from "clsx";
 import Button from "../Button/Button";
 import { useTranslation } from "next-i18next";
+import { UserContext } from "../../contexts/user-context";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -27,7 +27,9 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
   const inputRef = useRef(null);
   const [artists, setArtists] = useState([]);
   const [filteredArtists, setFilteredArtists] = useState([]);
-
+  const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
+  const { isSignedIn } =
+    useContext(UserContext);
   // Fetch artists on mount
   useEffect(() => {
     const fetchArtists = async () => {
@@ -41,6 +43,58 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     };
 
     fetchArtists();
+  }, []);
+
+  const rotatingItems = [
+    t("common:techniques.oil"),
+    t("common:themes.abstract"),
+    "Stockholm",
+    t("common:techniques.print"),
+    t("common:themes.portraiture"),
+    t("common:techniques.aquarelle"),
+    t("common:themes.landscape"),
+    t("common:techniques.photography"),
+    t("common:themes.nature"),
+    "London",
+    t("common:techniques.ceramics"),
+    t("common:themes.minimalism")
+  ];
+
+  const trendingItems = [
+    t("common:techniques.oil"),
+    t("common:techniques.acrylic"),
+    t("common:techniques.aquarelle"),
+    t("common:techniques.photography"),
+    t("common:techniques.sculpture")
+  ];
+
+  const techniqueItems = [
+    t("common:techniques.mixed-media"),
+    t("common:techniques.digital"),
+    t("common:techniques.illustration"),
+    t("common:techniques.drawing"),
+    t("common:techniques.pastel")
+  ];
+
+  const mediumItems = [
+    t("common:medium.painting"),
+    t("common:medium.digital-art"),
+    t("common:medium.illustrations"),
+    t("common:medium.ceramic"),
+    t("common:medium.sculpture")
+  ];
+
+  // Add effect for rotating placeholder
+  useEffect(() => {
+    // Shuffle the array on component mount
+    const shuffledItems = [...rotatingItems].sort(() => Math.random() - 0.5);
+    const interval = setInterval(() => {
+      setCurrentPlaceholderIndex((prevIndex) => 
+        (prevIndex + 1) % shuffledItems.length
+      );
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleInputChange = (event) => {
@@ -78,30 +132,60 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     }
   };
 
-  const handleArtistClick = (artist) => {
-    setInputValue(`${artist.Name} ${artist.Surname || ""}`);
-    onFilter(artist.Name);
-    setOpen(false);
-  };
-
   const handleClickAway = (event) => {
     if (inputRef.current && !inputRef.current.contains(event.target)) {
       setOpen(false);
     }
   };
 
-  const trendingItems = [
-    `${t("common:techniques:oil")}`,
-    `${t("common:techniques:acrylic")}`,
-    `${t("common:techniques:aquarelle")}`,
-    `${t("common:techniques:pastel")}`,
-  ];
-
   const handleTrendingClick = (item) => {
     setInputValue(item);
     onFilter(item);
     setOpen(true);
   };
+
+  const indexCategories = [
+    { 
+      title: t("common:techniques.oil"), 
+      href: "/search?query=oil",
+      color: "#E2B651"
+    },
+    { 
+      title: t("common:techniques.acrylic"), 
+      href: "/search?query=acrylic",
+      color: "#229059"
+    },
+    { 
+      title: t("common:techniques.aquarelle"), 
+      href: "/search?query=aquarelle",
+      color: "#0076D5"
+    },
+    { 
+      title: t("common:themes.abstract"), 
+      href: "/search?query=abstract",
+      color: "#A70301"
+    },
+    { 
+      title: t("common:themes.landscape"), 
+      href: "/search?query=landscape",
+      color: "#2c620c8f"
+    },
+    { 
+      title: t("common:medium.print"), 
+      href: "/search?query=print",
+      color: "#6f52b5"
+    },
+    { 
+      title: "Stockholm", 
+      href: "/search?query=stockholm",
+      color: "#285475"
+    },
+    { 
+      title: t("common:medium.ceramic"),  
+      href: "/search?query=keramik",
+      color: "var(--ion-color-dark)"
+    }
+  ];
 
   const renderSearchPopup = () => {
     if (!open) return null;
@@ -120,15 +204,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
       >
         <ClickAwayListener onClickAway={handleClickAway}>
           <Paper
-            style={{
-              padding: "10px",
-              height: "250px",
-              overflowY: "auto",
-              display: "flex",
-              flexDirection: "column",
-              backgroundColor: "white",
-              zIndex: 10330,
-            }}
+          className={s.paper}
           >
             <div
               style={{
@@ -160,76 +236,98 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
               </Button>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                padding: "10px 20px 10px 25px",
-              }}
-            >
-              <div style={{ margin: "10px" }}>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    marginBottom: "10px",
-                    fontWeight: 600,
-                  }}
-                >
-                  {t("common:selectOptions:trending")}
-                </div>
-
-                {trendingItems.map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      marginBottom: "6px",
-                      cursor: "pointer",
-                      color: "black",
-                      textDecoration: "underline",
-                    }}
-                    onClick={() => handleTrendingClick(item)}
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div
-                style={{
-                  width: "50%",
-                  textAlign: "right",
-                  marginLeft: "auto",
-                }}
-              >
-                {inputValue.trim() !== "" && filteredArtists.length > 0 && (
-                  <List>
-                    <ListItem>
-                      <div style={{ fontWeight: 600 }}>{t("artist")}</div>
-                    </ListItem>
-
-                    {filteredArtists.map((artist) => (
-                      <a
-                        key={artist.Username}
-                        href={`/profile/@${artist.Username}`}
-                        style={{
-                          textDecoration: "none",
-                          color: "inherit",
-                          fontSize: "12px",
-                        }}
-                      >
-                        <ListItem
-                          button
-                          component="a"
-                          style={{ marginLeft: "15px", padding: "0px" }}
+            <div className={s.searchPopup} >
+              {/* Left side - Artists */}
+              <div style={{ flex: "0 0 40%", borderRight: "1px solid #eee", paddingRight: "20px" }}>
+                {inputValue.trim() !== "" && filteredArtists.length > 0 ? (
+                  <>
+                    <div style={{ fontSize: "16px", fontWeight: 600 }}>
+                      {t("artist")}
+                    </div>
+                    <List>
+                      {filteredArtists.map((artist) => (
+                        <a
+                          key={artist.Username}
+                          href={`/profile/@${artist.Username}`}
+                          style={{
+                            textDecoration: "none",
+                            color: "inherit",
+                            fontSize: "14px",
+                            display: "block",
+                           
+                          }}
                         >
-                          <ListItemText
-                            primary={`${artist.Name} ${artist.Surname || ""}`}
-                          />
-                        </ListItem>
-                      </a>
-                    ))}
-                  </List>
+                          <ListItem
+                            button
+                            component="a"
+                            style={{ padding: "8px 0" }}
+                          >
+                            <ListItemText
+                              primary={`${artist.Name} ${artist.Surname || ""}`}
+                            />
+                          </ListItem>
+                        </a>
+                      ))}
+                    </List>
+                  </>
+                ) : (
+                  <div style={{ color: "#666", fontSize: "14px" }}>
+                    {t("common:selectOptions:searchForArtist")}
+                  </div>
                 )}
+              </div>
+
+              {/* Right side - Categories */}
+              <div className={s.categories} >
+                <div style={{ fontSize: "14px", marginBottom: "10px", fontWeight: 400 }}>
+                  {t("common:selectOptions:quickSearch")}
+                </div>
+                <div className={s.categoriesGrid} >
+                  {indexCategories.map((category) => (
+                    <a
+                      key={category.href}
+                      href={category.href}
+                      className={s.categoryItem}
+                      style={{
+
+                        backgroundColor: category.color,
+                      }}
+                      onMouseEnter={(e) => {
+                        const overlay = e.currentTarget.querySelector('.category-overlay') as HTMLDivElement;
+                        if (overlay) {
+                          overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        const overlay = e.currentTarget.querySelector('.category-overlay') as HTMLDivElement;
+                        if (overlay) {
+                          overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+                        }
+                      }}
+                    >
+                      <div
+                        className="category-overlay"
+                   
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          backgroundColor: "rgba(0, 0, 0, 0)",
+                          transition: "background-color 0.3s ease",
+                        }}
+                      />
+                      <div
+                        className={s.categoryTitle}
+
+                  
+                      >
+                        {category.title}
+                      </div>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </Paper>
@@ -259,11 +357,14 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
         className={clsx(s.inputContainer)}
         ref={inputRef}
         onClick={() => setOpen(true)}
+        style={{
+          width: !isSignedIn.value ? "600px" : "300px",
+        }}
       >
         <input
           className={s.input}
           value={inputValue}
-          placeholder="Sök"
+          placeholder={`${t("common:words.searchFor")} ${rotatingItems[currentPlaceholderIndex]}`}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           autoFocus={false}

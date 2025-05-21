@@ -29,7 +29,8 @@
     "Annonsera": "Annonsera",
     "christmas": "Kampanj",
     "husohem": "Publicera 3 verk på husohem.se 1 månad ENDAST 1495:-",
-    "getStarted": "Kom igång"
+    "getStarted": "Kom igång",
+    "searchFor": "Sök efter"
   },
   "timeUnit": {
     "year": "år",
@@ -227,7 +228,9 @@
     "relevance": "Relevans",
     "latest": "Senaste",
     "lowestPrice": "Billigast först",
-    "hightestPrice": "Dyrast först"
+    "hightestPrice": "Dyrast först",
+    "quickSearch": "Snabbsökning",
+    "searchForArtist": "Sök efter en konstnär"
   },
   "like": "Gilla",
   "message": "Meddelande",
