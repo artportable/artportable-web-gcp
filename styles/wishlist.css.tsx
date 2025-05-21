@@ -245,11 +245,10 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "white",
       border: "1px solid black",
       color: "black",
-      width: "150px",
+      width: "170px",
       height: "40px",
       boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
       margin: "0 auto",
-
       "&:hover": {
         backgroundColor: "black",
         border: "1px solid black",

@@ -85,5 +85,17 @@ export const styles = makeStyles((theme: Theme) =>
         },
       },
     },
+    searchIconButton: {
+      marginRight: "0px",
+      color: "black",
+      padding: "6px",
+      "& svg": {
+        width: "30px",
+        height: "30px",
+      },
+      "&:hover": {
+        backgroundColor: "transparent",
+      },
+    },
   })
 );

@@ -26,139 +26,101 @@ export default function FavoritesPopper({ id }) {
   useEffect(() => {
     async function fetchArtworks() {
       setLoading(true);
+      setError(null);
       try {
+        if (!Array.isArray(id) || id.length === 0) {
+          setFavoriteArtworks([]);
+          return;
+        }
+
+        const validIds = id.slice(0, 5).filter(artworkId => 
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(artworkId)
+        );
+
+        if (validIds.length === 0) {
+          setFavoriteArtworks([]);
+          return;
+        }
+
         const artworks = await Promise.all(
-          id.slice(0, 5).map(async (artworkId) => {
+          validIds.map(async (artworkId) => {
             const response = await fetch(
               `${apiBaseUrl}/api/Artworks/${artworkId}`
             );
             if (!response.ok) {
-              throw new Error(`Failed to fetch artwork with ID ${artworkId}`);
+              throw new Error(`Failed to fetch artwork with ID ${artworkId}: ${response.statusText}`);
             }
             const data = await response.json();
             return data;
           })
         );
-        setFavoriteArtworks(artworks);
-        setError(null);
+        
+        const validArtworks = artworks.filter(artwork => artwork != null);
+        setFavoriteArtworks(validArtworks);
       } catch (err) {
         console.error("Error fetching artworks:", err);
-        setError(err);
+        setError(err.message || "Failed to load artworks");
       } finally {
         setLoading(false);
       }
     }
 
-    if (id && id.length > 0) {
-      fetchArtworks();
-    } else {
-      setFavoriteArtworks([]);
-      setLoading(false);
-    }
-  }, [id]);
+    fetchArtworks();
+  }, [id, apiBaseUrl]);
 
   return (
     <>
       <section className={s.container}>
-        <div
-          style={{
-            textAlign: "center",
-            fontSize: "16px",
-            marginBottom: "10px",
-            marginTop: "10px",
-            fontWeight: "normal",
-          }}
-        >
+        <div className={s.title}>
           {t("header:myFavorites")}
         </div>
         <div>
           {loading ? (
-            <></>
+            <p className={s.loadingText}>Loading...</p>
           ) : error ? (
-            <p>Error loading artworks.</p>
+            <p className={s.errorText}>{error}</p>
           ) : favoriteArtworks.length > 0 ? (
             favoriteArtworks.map((artwork, i) => (
-              <div>
-                <section
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                    borderBottom:
-                      i < favoriteArtworks.length - 1
-                        ? "1px solid #ccc"
-                        : "none",
-                    paddingBottom: "10px",
-                  }}
-                >
+              <div key={artwork.Id}>
+                <section className={s.artworkSection}>
                   <Image
                     width={100}
                     height={80}
                     src={`${bucketBaseUrl}${artwork?.PrimaryFile.Name}`}
-                    alt="favorite Artwork"
-                    style={{ marginBottom: "20px" }}
+                    alt={artwork?.Title || "Favorite Artwork"}
+                    className={s.artworkImage}
                     quality={10}
                   />
                   <a
                     className={s.link}
                     href={`${publicUrl}/art/${artwork?.Id}`}
                   >
-                    <div key={artwork.Id}>
-                      <p
-                        style={{
-                          fontSize: "13px",
-                          marginLeft: "10px",
-                          marginBottom: "0px",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {" "}
+                    <div>
+                      <p className={s.artworkTitle}>
                         {artwork.Title}
                       </p>
-                      <p
-                        style={{
-                          fontSize: "12px",
-                          marginLeft: "10px",
-                          paddingTop: "0px",
-                          marginTop: "0px",
-                        }}
-                      >
-                        {" "}
+                      <p className={s.artworkDimensions}>
                         {artwork.MultipleSizes
-                          ? `` +
-                            t("common:words.multipleSizes").toLowerCase() +
-                            ""
+                          ? t("common:words.multipleSizes").toLowerCase()
                           : artwork.Width && artwork.Height && artwork.Depth
-                          ? `` +
-                            artwork.Width +
-                            "x" +
-                            artwork.Height +
-                            "x" +
-                            artwork.Depth +
-                            "cm"
+                          ? `${artwork.Width}x${artwork.Height}x${artwork.Depth}cm`
                           : artwork?.Width && artwork?.Height
-                          ? `` + artwork.Width + "x" + artwork.Height + "cm"
+                          ? `${artwork.Width}x${artwork.Height}cm`
                           : null}
                       </p>
                     </div>
                     <div>
-                      <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
+                      <KeyboardArrowRightIcon />
                     </div>
                   </a>
                 </section>
               </div>
             ))
           ) : (
-            <p>No favorites to display.</p>
+            <p className={s.noFavoritesText}>{t("header:noFavorites")}</p>
           )}
-          {id.length > 4 && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
+          {id && id.length > 4 && (
+            <div className={s.viewAllContainer}>
               <Link href="/wishlist" className={s.buttonViewMore}>
                 <a>{t("header:viewAll")}</a>
               </Link>
