@@ -212,11 +212,10 @@ export default function TrendingArtworks({ artwork }) {
               <span>{t("priceOnRequest")}</span>
             )}
           </div>
-
           {!isSoldOut && (
             <>
               <Button
-                className={clsx(sShared.smallButton, sShared.yellowButton)}
+                className={s.buyButton}
                 onClick={() => {
                   onPurchaseRequestClick(
                     artwork.Title,
@@ -242,7 +241,9 @@ export default function TrendingArtworks({ artwork }) {
               />
             </>
           )}
+ 
         </div>
+      
       </CardActions>
     </Card>
   );

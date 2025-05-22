@@ -377,9 +377,9 @@ export default function UploadArtworkPage({ navBarItems }) {
 
   if (artworkLimitReached || artworkLimitReachedStarter) {
     return (
-      <Main navBarItems={navBarItems}>
+      <Main navBarItems={navBarItems} > 
         {" "}
-        <div className={s.flexPaper}>
+        <div className={s.flexPaper} style={{ marginTop: "50px" }}>
           <Paper className={s.paperLeft} elevation={1}>
             <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
               {t("limitArtwork")}
@@ -442,7 +442,7 @@ export default function UploadArtworkPage({ navBarItems }) {
     <Main navBarItems={navBarItems}>
       <>
         {" "}
-        <div className={s.mainGrid}>
+        <div className={s.mainGrid} style={{ marginTop: "50px" }}>
           <div className={s.clampedContainer}>
             {isDesktop ? (
               <>

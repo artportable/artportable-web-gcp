@@ -20,6 +20,12 @@ export const profileStyles = makeStyles((theme: Theme) =>
         flexDirection: "row",
       },
     },
+    profileTopMargin: {
+      marginTop: "0px",
+      [theme.breakpoints.up("smPlus")]: {
+        marginTop: "60px",
+      },
+    },
     headline: {
       textDecoration: "underline",
       marginBottom: theme.spacing(1),

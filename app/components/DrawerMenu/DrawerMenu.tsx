@@ -552,13 +552,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link>
-        <Link href="/support" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("contactUs")} />
-            </ListItem>
-          </a>
-        </Link>
+
         <div>
           <ListItem button onClick={handleClickLanguage}>
             <ListItemText primary={displayLocale} />

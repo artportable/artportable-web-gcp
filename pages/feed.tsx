@@ -124,7 +124,7 @@ export default function FeedPage({ navBarItems }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main wide={mdPlusScreenOrDown ? true : false} navBarItems={navBarItems}>
+      <Main wide={mdPlusScreenOrDown ? true : false}  navBarItems={navBarItems}>
         <div className={s.margin}></div>
         {!loading && (
           <Box className={s.feedContainer}>
