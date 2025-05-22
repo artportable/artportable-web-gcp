@@ -68,10 +68,6 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const loadMoreArtworksElementRef = useRef(null);
   const tags = useGetTags();
 
-
-
-
-  
   const {
     selectedTags,
     setSelectedTags,
@@ -295,79 +291,92 @@ const DiscoverFilteredArt = memo((props: DiscoverFilteredArtProps) => {
   const [maxPrice, setMaxPrice] = useState(100000);
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const { data: artworks, isLoading: isLoadingArtWorks } =
     useInfiniteScrollWithKey<Artwork>(
       loadMoreArtworksElementRef,
       (pageIndex, previousPageData) => {
         if (loading && !props.loadMore) {
-          props.loadImages();
-          setLoading(false);
-        }
-        if (previousPageData && !previousPageData.next) {
-          props.stopLoadImages();
-          setLoading(true);
           return null;
         }
 
-        let url = new URL(`${apiBaseUrl}/api/Discover/artworks/filter`);
+        try {
+          const url = new URL(`${apiBaseUrl}/api/discover/artworks`);
 
-        if (props?.page) {
-          url.searchParams.append("orderBy", orderByFilter);
-        }
-        if (props?.selectedCategory) {
-          url.searchParams.append("tag", props.selectedCategory);
-        }
-        if (selectedTechnique) {
-          url.searchParams.append("tag", selectedTechnique);
-        }
-        if (selectedTheme) {
-          url.searchParams.append("tag", selectedTheme);
-        }
-        if (selectedMedium) {
-          url.searchParams.append("tag", selectedMedium);
-        }
-        if (selectedOrientation) {
-          url.searchParams.append("orientation", selectedOrientation);
-        }
-        if (selectedSize) {
-          url.searchParams.append("sizeFilter", selectedSize);
-        }
+          if (selectedTags.length > 0) {
+            selectedTags.forEach((tag) => {
+              url.searchParams.append("tag", tag);
+            });
+          }
 
-        if (selectedPrice) {
-          url.searchParams.append("priceFilter", selectedPrice);
-        }
-        if (selectedHeight?.[0] !== undefined && selectedHeight?.[0] !== null) {
-          url.searchParams.append("minHeight", `${selectedHeight[0]}`);
-        }
-        if (selectedHeight?.[1] !== undefined && selectedHeight?.[1] !== null) {
-          url.searchParams.append("maxHeight", `${selectedHeight[1]}`);
-        }
-        if (selectedWidth?.[0] !== undefined && selectedWidth?.[0] !== null) {
-          url.searchParams.append("minWidth", `${selectedWidth[0]}`);
-        }
-        if (selectedWidth?.[1] !== undefined && selectedWidth?.[1] !== null) {
-          url.searchParams.append("maxWidth", `${selectedWidth[1]}`);
-        }
-        if (selectedState) {
-          url.searchParams.append("stateFilter", selectedState);
-        }
-        if (props?.search) {
-          url.searchParams.append("q", props?.search);
-        }
-        if (username && username !== "") {
-          url.searchParams.append("myUsername", username);
-        }
-        url.searchParams.append("pageSize", "5");
-        url.searchParams.append("page", (pageIndex + 1).toString());
+          if (selectedOrientation) {
+            url.searchParams.append("orientation", selectedOrientation);
+          }
 
-        return url.href;
+          if (selectedSize) {
+            url.searchParams.append("sizeFilter", selectedSize);
+          }
+
+          if (selectedPrice) {
+            url.searchParams.append("priceFilter", selectedPrice);
+          }
+
+          if (selectedState) {
+            url.searchParams.append("stateFilter", selectedState);
+          }
+
+          if (props?.search) {
+            url.searchParams.append("q", props?.search);
+          }
+
+          if (username && username !== "") {
+            url.searchParams.append("myUsername", username);
+          }
+
+          url.searchParams.append("pageSize", "5");
+          url.searchParams.append("page", (pageIndex + 1).toString());
+
+          return url.href;
+        } catch (err) {
+          console.error("Error building URL:", err);
+          setError(t("common:errors.searchError"));
+          return null;
+        }
       },
       username
     );
 
-  useEffect(() => {}, [artworks]);
+  useEffect(() => {
+    if (error) {
+      console.error("Search error:", error);
+    }
+  }, [error]);
 
-  
+  if (error) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        gap: '1rem',
+        padding: '2rem' 
+      }}>
+        <Typography variant="body1" color="error">
+          {error}
+        </Typography>
+        <Button 
+          variant="contained" 
+          onClick={() => {
+            setError(null);
+            window.location.reload();
+          }}
+        >
+          {t("common:actions.tryAgain")}
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <>
