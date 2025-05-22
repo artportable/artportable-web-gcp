@@ -94,11 +94,8 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
       );
     }, 3000); // Change every 3 seconds
 
-    // Cleanup function to clear the interval when component unmounts
-    return () => {
-      clearInterval(interval);
-    };
-  }, [rotatingItems]); // Add rotatingItems to dependency array
+    return () => clearInterval(interval);
+  }, []);
 
   const handleInputChange = (event) => {
     const value = event.target.value.trim().toLowerCase();

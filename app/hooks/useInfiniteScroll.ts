@@ -95,7 +95,6 @@ export type PageData<T> = {
 export interface useInfiniteScrollWithKeyResponse<T> {
   data: T[];
   isLoading: boolean;
-  error?: Error;
   mutate: (
     data?:
       | PageData<T>[]
@@ -105,15 +104,11 @@ export interface useInfiniteScrollWithKeyResponse<T> {
   ) => Promise<PageData<T>[]>;
 }
 
-export interface InfiniteScrollOptions extends IntersectionObserverInit {
-  onError?: (error: Error) => void;
-}
-
 export type useInfiniteScrollWithKeyProps = <T>(
   loadMoreElement: React.MutableRefObject<Element>,
   getKey: (pageIndex: number, previousPageData: PageData<T>) => string,
   load?: any,
-  options?: InfiniteScrollOptions
+  options?: IntersectionObserverInit
 ) => useInfiniteScrollWithKeyResponse<T>;
 
 export const useInfiniteScrollWithKey: useInfiniteScrollWithKeyProps = <T>(
@@ -123,16 +118,12 @@ export const useInfiniteScrollWithKey: useInfiniteScrollWithKeyProps = <T>(
     previousPageData: PageData<T>
   ) => string = _getKey,
   load?: any,
-  options: InfiniteScrollOptions = defaultOptions
+  options: IntersectionObserverInit = defaultOptions
 ) => {
-  const { data, size, setSize, mutate, error } = useSWRInfinite<PageData<T>, Error>(
+  const { data, size, setSize, mutate } = useSWRInfinite<PageData<T>, Error>(
     getKey,
     fetcher,
-    { 
-      initialSize: 1, 
-      revalidateOnFocus: false,
-      onError: options.onError
-    }
+    { initialSize: 1, revalidateOnFocus: false }
   );
   const [currentRef, setCurrentRef] = useState(null);
 
@@ -164,7 +155,6 @@ export const useInfiniteScrollWithKey: useInfiniteScrollWithKeyProps = <T>(
   return {
     data: data ? [].concat(...data.map(({ data }) => data)) : [],
     isLoading: !data,
-    error,
     mutate: mutate,
   };
 };
