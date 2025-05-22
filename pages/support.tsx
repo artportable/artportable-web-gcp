@@ -31,35 +31,7 @@ export default function Support({ navBarItems }) {
         />
         <link rel="canonical" href={`${publicUrl}/${locale}/support`} />
       </Head>
-      <div className={s.paddingWidth}>
-        <Typography variant="h1" className={s.headerTypo}>
-          {t("contactUs")}
-        </Typography>
-        <div className={s.flexPaper}>
-          <Paper className={s.paperLeft} elevation={0}>
-            <Typography className={clsx(s.textBlock, s.textBlockWidth)}>
-              {t("yourWelcome")}
-            </Typography>
-            <div className={s.iconTextFlex}>
-              <MailOutlineIcon className={s.icon} />
-              <Typography className={s.linkText}>
-                <a href="mailto:hello@artportable.com">hello@artportable.com</a>
-              </Typography>
-            </div>
-
-            <div className={s.textBlock}>
-              <Typography className={s.typoBold}>
-                {t("openingHours")}
-              </Typography>
-              <Typography>{t("8-17")}</Typography>
-              <Typography>{t("deviating")}</Typography>
-            </div>
-            {/* <div className={s.zendeskForm}>
-              <ZendeskForm />
-            </div> */}
-          </Paper>
-        </div>
-      </div>
+ 
     </Main>
   );
 }

@@ -29,7 +29,7 @@ export const styles = makeStyles((theme: Theme) =>
     margin: {
       marginTop: "0px",
       [theme.breakpoints.up("mdPlus")]: {
-        marginTop: "30px",
+        marginTop: "50px",
       },
     },
     [theme.breakpoints.up("sm")]: {

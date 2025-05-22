@@ -19,18 +19,11 @@ import {
 import { FeedItem } from "../../models/FeedItem";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import {
-  ActionType,
-  CategoryType,
-  trackGoogleAnalytics,
-} from "../../utils/googleAnalytics";
-import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
+
 import axios from "axios";
 import PurchaseRequestDialog from "../PurchaseRequestDialog/PurchaseRequestDialog";
 import {
-  useGetSimilarPortfolios,
-  useGetUserProfileTags,
-  useGetUserProfile,
+
   useGetUserProfileSummary,
   useGetUserProfilePicture,
 } from "../../hooks/dataFetching/UserProfile";
@@ -191,11 +184,12 @@ function FeedCard({ content, onLikeClick }: FeedCardProps) {
         </Link>
       </CardMedia>
       <CardActions className={s.cardActions}>
-        <LikeArtworkButton artwork={content}></LikeArtworkButton>
+        <LikeArtworkButton artwork={content.Item}></LikeArtworkButton>
         <div className={s.pricePurchase}>
           <div className={s.priceTag}>
             {artworkData?.SoldOut ? (
               <>
+                <div className={s.soldMark}></div>
                 <div>{t("common:words.sold")} </div>
               </>
             ) : artworkData?.Price && artworkData?.Price != "0" ? (

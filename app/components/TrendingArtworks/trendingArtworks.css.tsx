@@ -106,7 +106,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "flex-end",
     },
     soldMark: {
-      background: "#C67777",
+      background: "rgb(167, 3, 1)",
       borderRadius: "50%",
       width: "15px",
       height: "15px",
@@ -118,6 +118,28 @@ export const styles = makeStyles((theme: Theme) =>
       paddingBottom: theme.spacing(1),
       display: "flex",
       alignItems: "center",
+    },
+    buyButton: {
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "30px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+ 
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
     },
     // purchaseRequestButton: {
     //   color: "#a35d5d",

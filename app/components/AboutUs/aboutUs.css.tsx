@@ -9,6 +9,87 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("md")]: {
         marginTop: "0",
       },
+    },   zendeskForm: {
+      marginTop: theme.spacing(4),
+      width: "100%",
+    },
+    subHeaderTypoTwo: {
+      fontSize: "30px",
+      fontWeight: 600,
+    },
+    subHeaderTypoText: {
+      fontSize: "18px",
+      fontStyle:"italic"
+    },
+      
+    paddingWidth: {
+      [theme.breakpoints.up("lg")]: {
+        padding: "0 100px 0 100px",
+      },
+    },
+    flexPaper: {
+      display: "flex",
+      flexDirection: "column",
+      ...columnGap(20),
+      justifyContent: "center",
+      [theme.breakpoints.up("mdPlus")]: {
+        flexDirection: "row",
+        ...rowGap(20),
+      },
+    },
+    paperLeft: {
+   
+      width: "100%",  
+      backgroundColor: "transparent",
+      [theme.breakpoints.up("mdPlus")]: {
+        width: "100%",
+      },
+    },
+    paperRight: {
+      padding: "30px 20px 20px 20px", 
+      backgroundColor: "transparent",
+      [theme.breakpoints.up("mdPlus")]: {
+        height: "50%",
+      },
+    },
+    headerTypo: {
+      fontWeight: 600,
+      fontSize: "35px",
+
+    },
+    textBlock: {
+      margin: "30px 0 30px 0",
+    },
+    textBlockWidth: {
+      [theme.breakpoints.up("mdPlus")]: {
+        width: "70%",
+      },
+    },
+    textBlockRight: {
+      margin: "15px 0 15px 0",
+    },
+    typoBold: {
+      fontWeight: 500,
+    },
+    icon: {
+      marginRight: "10px",
+      fontSize: "40px",
+    },
+    iconTextFlex: {
+      display: "flex",
+      alignItems: "center",
+      ...columnGap(20),
+    },
+    linkText: {
+      fontWeight: 500,
+      fontSize: "1.1rem",
+    },
+    bold: {
+      fontWeight: 500,
+    },
+    logo: {
+      width: "200px",
+      marginBottom: "20px",
     },
     headerDiv: {
       margin: "100px 0 100px 0",
@@ -21,12 +102,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("lg")]: {},
     },
-    headerTypo: {
-      fontWeight: 600,
-      marginBottom: "20px",
-      fontFamily: "Roboto",
-      fontSize: "30px",
-    },
+
     subHeaderTypo: {
       fontFamily: "Joan",
       fontSize: "20px",
@@ -143,9 +219,6 @@ export const styles = makeStyles((theme: Theme) =>
         height: "674px",
       },
     },
-    bold: {
-      fontWeight: 500,
-      marginTop: "5px",
-    },
+
   })
 );

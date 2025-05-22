@@ -100,7 +100,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "flex-end",
     },
     soldMark: {
-      background: "#C67777",
+      background: "rgb(167, 3, 1)",
       borderRadius: "50%",
       width: "15px",
       height: "15px",
@@ -114,15 +114,25 @@ export const styles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     purchaseRequestButton: {
-      color: "#a35d5d",
-      padding: "0px 16px",
-      backgroundColor: "inherit",
-      border: "1px solid #a35d5d",
-      borderRadius: "20px",
-      marginTop: "4px",
-      '& .MuiButton-label': {
-        width: 'auto',
-      }
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white !important",
+      border: "1px solid black !important",
+      color: "black !important",
+      width: "150px",
+      height: "30px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      "&:hover": {
+        backgroundColor: "black !important",
+        border: "1px solid black !important",
+        color: "white !important",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
     },
   })
 );

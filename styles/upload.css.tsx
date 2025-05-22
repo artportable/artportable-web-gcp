@@ -194,6 +194,7 @@ const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       ...columnGap(20),
       justifyContent: "center",
+    
       [theme.breakpoints.up("mdPlus")]: {
         flexDirection: "row",
         ...rowGap(20),

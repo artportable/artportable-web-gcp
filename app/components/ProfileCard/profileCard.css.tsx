@@ -65,16 +65,16 @@ export const styles = makeStyles((theme: Theme) =>
       padding: 0,
     },
     cardContainer: {
-      height: "300px",
+      height: "350px",
       [theme.breakpoints.up("smPlus")]: {
-        height: "250px",
+        height: "350px",
       },
     },
     uploadArtButton: {
       borderRadius: "30px",
       fontWeight: 400,
       fontFamily: "Roboto",
-      fontSize: "16px",
+      fontSize: "14px",
       backgroundColor: "white",
       border: "1px solid black",
       color: "black",
