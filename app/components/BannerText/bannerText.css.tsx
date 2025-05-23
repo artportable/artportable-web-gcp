@@ -12,8 +12,13 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+   
       marginBottom: "20px",
-      [theme.breakpoints.up("smPlus")]: { marginTop: "10px" },
+      padding: "30px",
+      [theme.breakpoints.up("smPlus")]: { 
+
+        marginTop: "30px",
+        padding :"0px" },
     },
 
     title: {

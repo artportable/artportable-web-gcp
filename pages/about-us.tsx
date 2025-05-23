@@ -15,6 +15,7 @@ export default function About({ navBarItems }) {
         fullWidth={true}
         navBarItems={navBarItems}
         noHeaderPadding={isMobile}
+        wide={true}
       >
         <AboutUs />
       </MainOption>

@@ -62,18 +62,22 @@ export default function AboutUs() {
 
   const values = [
     { 
+      icon: "/icons/values-art.svg",
       title: t("weBelieveDescription"),
       description: t("valueDescription1")
     },
     { 
+      icon: "/icons/values-accessibility.svg",
       title: t("weBelieveDescription2"), 
       description: t("valueDescription2")
     },
     { 
+      icon: "/icons/values-innovation.svg",
       title: t("weBelieveDescription3"), 
       description: t("valueDescription3")
     },
     { 
+      icon: "/icons/values-community.svg",
       title: t("weBelieveDescription4"), 
       description: t("valueDescription4")
     }
@@ -82,7 +86,7 @@ export default function AboutUs() {
   return (
     <>
       {/* Header Banner - like exhibitions page */}
-      <BannerText title={t("aboutUs")} text={t("digitalGallery")} />
+      <BannerText page={true} title={t("aboutUs")} text={t("digitalGallery")} />
 
       {/* Main Content Container */}
       <div className={s.pageWrapper}>
@@ -131,6 +135,7 @@ export default function AboutUs() {
             {values.map((value, index) => (
               <div key={index} className={s.valueCard}>
                 <div className={s.cardContent}>
+                  <img src={value.icon} alt={value.title} className={s.valueIcon} />
                   <Typography variant="h6" className={s.valueTitle}>
                     {value.title}
                   </Typography>
@@ -142,34 +147,6 @@ export default function AboutUs() {
             ))}
           </div>
         </div>
-
-        {/* Team Section - Compact */}
-        <div className={s.sectionSpacing}>
-          <Typography variant="h2" className={s.sectionHeading}>
-            {t("ourTeam")}
-          </Typography>
-          <div className={s.containerCard}>
-            {team.map((person) => (
-              <div key={person.name} className={s.teamCard}>
-                <div className={s.cardContent}>
-                  <Typography variant="h6" className={s.teamMemberName}>
-                    {person.name}
-                  </Typography>
-                  <Typography variant="subtitle1" className={s.teamMemberTitle}>
-                    {person.title}
-                  </Typography>
-                  <Typography variant="body2">
-                    <Link href={`mailto:${person.email}`}>
-                      <a className={s.emailLink}>{person.email}</a>
-                    </Link>
-                  </Typography>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Contact Section */}
         <div className={s.contactSection}>
           <Typography variant="h2" className={s.sectionHeading}>
             {t("contactUs")}
@@ -201,6 +178,33 @@ export default function AboutUs() {
             </div>
           </div>
         </div>
+
+        {/* Team Section - Compact */}
+        <div className={s.sectionSpacing}>
+          <Typography variant="h2" className={s.sectionHeading}>
+            {t("ourTeam")}
+          </Typography>
+          <div className={s.containerCard}>
+            {team.map((person) => (
+              <div key={person.name} className={s.teamCard}>
+                <div className={s.cardContent}>
+                  <Typography variant="h6" className={s.teamMemberName}>
+                    {person.name}
+                  </Typography>
+                  <Typography variant="subtitle1" className={s.teamMemberTitle}>
+                    {person.title}
+                  </Typography>
+                  <Typography variant="body2">
+                    <Link href={`mailto:${person.email}`}>
+                      <a className={s.emailLink}>{person.email}</a>
+                    </Link>
+                  </Typography>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+ 
       </div>
     </>
   );

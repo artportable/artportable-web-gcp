@@ -6,24 +6,22 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     // Main layout - like exhibitions page
     pageWrapper: {
-      width: "90vw",
-      maxWidth: "1200px",
+      width: "100vw",
       backgroundColor: "transparent",
       margin: "0 auto",
-      marginTop: "20px",
-      padding: "20px",
+
+      padding: "50px 0",
       [theme.breakpoints.down("sm")]: {
-        width: "95vw",
-        padding: "10px",
+        width: "100vw",
+        padding: "50px 0",
       },
     },
     
 
     missionSection: {
-      padding: theme.spacing(3),
-      maxWidth: "800px",
       margin: "0 auto",
       marginBottom: theme.spacing(6),
+      padding: "0 50px",
     },
     missionText: {
       fontSize: "1.1rem",
@@ -31,7 +29,6 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(2),
       fontFamily: "Joan",
       color: "#555",
-      maxWidth: "100%",
       [theme.breakpoints.down("md")]: {
         maxWidth: "100%",
       },
@@ -39,30 +36,28 @@ export const styles = makeStyles((theme: Theme) =>
     
     // Section styles
     sectionSpacing: {
-      marginBottom: theme.spacing(8),
+      width: "100vw",
     },
     sectionHeading: {
       fontSize: "1.8rem",
       fontWeight: 500,
-      marginBottom: theme.spacing(4),
       textAlign: "center",
-      color: "#333",
+      color: "black",
       fontFamily: "Roboto",
       [theme.breakpoints.up("md")]: {
-        fontSize: "2.2rem",
+        fontSize: "34px",
+
       },
     },
     
     // Card container - like exhibitions page
     containerCard: {
       width: "100%",
-      maxWidth: "1000px",
       margin: "0 auto",
-      marginTop: "30px",
       display: "grid",
       gridTemplateColumns: "1fr",
-      gap: "20px",
       justifyItems: "center",
+      marginBottom: theme.spacing(8),
       [theme.breakpoints.up("md")]: {
         gridTemplateColumns: "repeat(3, 1fr)",
       },
@@ -78,8 +73,6 @@ export const styles = makeStyles((theme: Theme) =>
       height: "300px",
       backgroundColor: "transparent",
       margin: "0 auto",
-      marginTop: "10px",
- 
       transition: "all 0.3s ease",
   
     },
@@ -92,15 +85,14 @@ export const styles = makeStyles((theme: Theme) =>
     serviceTitle: {
       fontSize: "1.3rem",
       fontWeight: 600,
-      marginBottom: theme.spacing(2),
       textAlign: "center",
-      color: "#333",
       fontFamily: "Roboto",
+      color: "black",
     },
     serviceDescription: {
       fontSize: "14px",
       textAlign: "center",
-      color: "#666",
+      color: "black",
       padding: "0 20px",
     },
     
@@ -114,15 +106,21 @@ export const styles = makeStyles((theme: Theme) =>
       height: "200px",
 
       margin: "0 auto",
-      marginTop: "10px",
+     
 
  
+    },
+    valueIcon: {
+      width: "60px",
+      height: "60px",
+      marginTop: "30px",
+      marginBottom: theme.spacing(2),
     },
     valueTitle: {
       fontSize: "1.2rem",
       fontWeight: 600,
       marginBottom: theme.spacing(1),
-      marginTop: theme.spacing(2),
+    
       color: "#333",
       fontFamily: "Roboto",
       textAlign: "center",
@@ -165,7 +163,7 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 500,
     },
     emailLink: {
-      color: "#0176D5",
+  
       textDecoration: "none",
       fontWeight: 500,
       fontSize: "14px",
@@ -189,10 +187,13 @@ export const styles = makeStyles((theme: Theme) =>
     // Contact section
     contactSection: {
       marginBottom: theme.spacing(6),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
     },
     contactContainer: {
-      alignItems: "center",   
-      justifyContent: "center",
+     textAlign: "center",
       padding: theme.spacing(4),
       borderRadius: "2px",
       
