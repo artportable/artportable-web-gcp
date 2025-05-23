@@ -49,7 +49,6 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
   const rotatingItems = [
     t("common:techniques.oil"),
     t("common:themes.abstract"),
-    "Stockholm",
     t("common:techniques.print"),
     t("common:themes.portraiture"),
     t("common:techniques.aquarelle"),
@@ -88,8 +87,9 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
   const trendingArtItems = [
  
     { title: t("common:techniques.acrylic"), category: "acrylic" },
-    { title: t("common:themes.water"), category: "water" },
-    { title: "Stockholm", category: "stockholm" },
+    { title: t("common:techniques.aquarelle"), category: "aquarelle" },
+    { title: t("common:themes.portraiture"), category: "portraiture" },
+    { title: t("common:themes.architecture"), category: "architecture" },
     { title: t("common:themes.minimalism"), category: "minimalism" },
     { title: t("common:themes.street-art"), category: "street-art" }
   ];
