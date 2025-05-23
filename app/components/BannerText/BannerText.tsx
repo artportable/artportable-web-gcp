@@ -4,15 +4,16 @@ import { useTranslation } from "next-i18next";
 type BannerTextProps = {
   title: string;
   text: string;
+  page?: boolean;
 };
 
-export default function BannerText({ title, text }: BannerTextProps) {
+export default function BannerText({ title, text, page }: BannerTextProps) {
   const s = styles();
 
   return (
-    <div className={s.container}>
-      <div className={s.title}>{title}</div>
-      <div className={s.text}>{text}</div>
+    <div className={s.container} style={{ alignItems: page ? "center" : "flex-start" }}>
+      <div className={s.title} style={{ marginLeft: page ? "0px" : "50px" }}>{title}</div>
+      <div className={s.text} style={{ marginLeft: page ? "0px" : "50px" }}>{text}</div>
     </div>
   );
 }
