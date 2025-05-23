@@ -221,6 +221,16 @@ const exhibitions = [
         dates: "10 april - 10 maj 2025",
         link: "kjdesign",
       },
+      {
+        name: "Sofia Reshmi",
+        dates: "10 april - 10 maj 2025",
+        link: "x-ray_collectiveart",
+      },
+      {
+        name: "Marianne Lindqvist",
+        dates: "10 april - 10 maj 2025",
+        link: "mollamaija100",
+      },
     ],
   },
   {
