@@ -170,32 +170,32 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     { 
       title: t("common:themes.abstract"), 
       href: "/discover?category=abstract",
-      backgroundImage: "/searchimages/abstract.jpeg"
+      backgroundImage: "/searchimages/optimized/abstract-small.jpeg"
     },
     { 
       title: t("common:themes.landscape"), 
       href: "/discover?category=landscape",
-      backgroundImage: "/searchimages/landscape.jpeg"
+      backgroundImage: "/searchimages/optimized/landscape-small.jpeg"
     },
     { 
       title: t("common:themes.animal"), 
       href: "/discover?category=animal",
-      backgroundImage: "/searchimages/animal.jpeg"
+      backgroundImage: "/searchimages/optimized/animal-small.jpeg"
     },
     { 
       title: t("common:themes.figurative"), 
       href: "/discover?category=figurative",
-      backgroundImage: "/searchimages/figurative.jpeg"
+      backgroundImage: "/searchimages/optimized/figurative-small.jpeg"
     },
     { 
       title: t("common:techniques.photography"), 
       href: "/discover?category=photography",
-      backgroundImage: "/searchimages/photography.jpeg"
+      backgroundImage: "/searchimages/optimized/photography-small.jpeg"
     },
     { 
       title: t("common:themes.surrealism"), 
       href: "/discover?category=surreal",
-      backgroundImage: "/searchimages/surreal.jpeg"
+      backgroundImage: "/searchimages/optimized/surreal-small.jpeg"
     }
   ];
 
