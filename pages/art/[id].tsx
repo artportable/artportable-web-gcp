@@ -279,7 +279,7 @@ export default function ArtworkPage(props) {
 
       {artwork && artwork.data && (
         <>
-          <div style={{ marginTop: "10px" }}>
+          <div style={{ marginTop: "10px", padding: "50px 0px" }}>
             <Paper
               style={{
                 backgroundColor: "white",

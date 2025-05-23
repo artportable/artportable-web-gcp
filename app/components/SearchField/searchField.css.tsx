@@ -34,15 +34,15 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     paper: {
-
-      height: "590px",
+      height: "auto",
+      maxHeight: "590px",
       padding: "30px",
       overflowY: "auto",
       backgroundColor: "white",
       zIndex: 10330,
   
       [theme.breakpoints.up("lg")]: {
-        height: "390px",
+        maxHeight: "450px",
       },
     },  
     searchPopup: {
@@ -59,10 +59,9 @@ export const styles = makeStyles((theme: Theme) =>
       marginTop: "50px",
       maxHeight: "300px",
       [theme.breakpoints.up("smPlus")]: {
-        maxHeight: "300px",
+        maxHeight: "none",
         paddingLeft: "20px", 
         marginTop: "0px",
-        
       },
     },
     categoryTitle: {
@@ -87,13 +86,10 @@ export const styles = makeStyles((theme: Theme) =>
       gridTemplateColumns: "repeat(2, 1fr)",
       gap: "8px",
       fontSize: "12px",
-      maxHeight: "380px",
-      overflow: "auto",
       [theme.breakpoints.up("smPlus")]: {
-        gridTemplateColumns: "repeat(4, 1fr)",
+        gridTemplateColumns: "repeat(3, 1fr)",
         gap: "8px",
         fontSize: "12px",
-        maxHeight: "280px",
       },
     },
 
@@ -101,13 +97,13 @@ export const styles = makeStyles((theme: Theme) =>
       textDecoration: "none",
        color: "inherit",
       position: "relative",
-                          width: "100%",
-                          height: "40px",
-                          overflow: "hidden",
-                          borderRadius: "4px",
+      width: "100%",
+      height: "40px",
+      overflow: "hidden",
+      borderRadius: "4px",
                           cursor: "pointer",
                           [theme.breakpoints.up("smPlus")]: {
-                            height: "80px",
+                            height: "120px",
                           },
     },
     button: {
@@ -172,6 +168,20 @@ export const styles = makeStyles((theme: Theme) =>
       },
       "&:hover": {
         backgroundColor: "transparent",
+      },
+    },
+    trendingItem: {
+      padding: "8px 0",
+      cursor: "pointer",
+      fontSize: "14px",
+      color: "#333",
+      borderBottom: "1px solid #f0f0f0",
+      transition: "color 0.2s ease",
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
+      "&:hover": {
+        color: "rgb(167, 3, 1)",
       },
     },
   })
