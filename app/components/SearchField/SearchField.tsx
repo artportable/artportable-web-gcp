@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import { styles } from "./searchField.css";
 import clsx from "clsx";
 import Button from "../Button/Button";
@@ -84,6 +85,15 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     t("common:medium.sculpture")
   ];
 
+  const trendingArtItems = [
+ 
+    { title: t("common:techniques.acrylic"), category: "acrylic" },
+    { title: t("common:themes.water"), category: "water" },
+    { title: "Stockholm", category: "stockholm" },
+    { title: t("common:themes.minimalism"), category: "minimalism" },
+    { title: t("common:themes.street-art"), category: "street-art" }
+  ];
+
   // Add effect for rotating placeholder
   useEffect(() => {
     // Shuffle the array on component mount
@@ -95,6 +105,14 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     }, 3000); // Change every 3 seconds
 
     return () => clearInterval(interval);
+  }, []);
+
+  // Preload category images for faster loading
+  useEffect(() => {
+    indexCategories.forEach((category) => {
+      const img = new Image();
+      img.src = category.backgroundImage;
+    });
   }, []);
 
   const handleInputChange = (event) => {
@@ -144,46 +162,40 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     setOpen(true);
   };
 
+  const handleTrendingItemClick = (category) => {
+    window.location.href = `/discover?category=${category}`;
+  };
+
   const indexCategories = [
     { 
-      title: t("common:techniques.oil"), 
-      href: "/search?query=oil",
-      color: "#E2B651"
-    },
-    { 
-      title: t("common:techniques.acrylic"), 
-      href: "/search?query=acrylic",
-      color: "#229059"
-    },
-    { 
-      title: t("common:techniques.aquarelle"), 
-      href: "/search?query=aquarelle",
-      color: "#0076D5"
-    },
-    { 
       title: t("common:themes.abstract"), 
-      href: "/search?query=abstract",
-      color: "#A70301"
+      href: "/discover?category=abstract",
+      backgroundImage: "/searchimages/hq-optimized/abstract-hq.jpeg"
     },
     { 
       title: t("common:themes.landscape"), 
-      href: "/search?query=landscape",
-      color: "#2c620c8f"
+      href: "/discover?category=landscape",
+      backgroundImage: "/searchimages/hq-optimized/landscape-hq.jpeg"
     },
     { 
-      title: t("common:medium.print"), 
-      href: "/search?query=print",
-      color: "#6f52b5"
+      title: t("common:themes.animal"), 
+      href: "/discover?category=animal",
+      backgroundImage: "/searchimages/hq-optimized/animal-hq.jpeg"
     },
     { 
-      title: "Stockholm", 
-      href: "/search?query=stockholm",
-      color: "#285475"
+      title: t("common:themes.figurative"), 
+      href: "/discover?category=figurative",
+      backgroundImage: "/searchimages/hq-optimized/figurative-hq.jpeg"
     },
     { 
-      title: t("common:medium.ceramic"),  
-      href: "/search?query=keramik",
-      color: "var(--ion-color-dark)"
+      title: t("common:techniques.photography"), 
+      href: "/discover?category=photography",
+      backgroundImage: "/searchimages/hq-optimized/photography-hq.jpeg"
+    },
+    { 
+      title: t("common:themes.surrealism"), 
+      href: "/discover?category=surreal",
+      backgroundImage: "/searchimages/hq-optimized/surreal-hq.jpeg"
     }
   ];
 
@@ -217,7 +229,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
                 style={{ width: "100%", fontSize: "17px" }}
                 autoFocus={false}
                 fullWidth
-                placeholder="Search"
+                placeholder={t("common:words.searchPlaceholder")}
                 value={inputValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
@@ -270,10 +282,28 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
                       ))}
                     </List>
                   </>
-                ) : (
+                ) : inputValue.trim() !== "" ? (
                   <div style={{ color: "#666", fontSize: "14px" }}>
                     {t("common:selectOptions:searchForArtist")}
                   </div>
+                ) : (
+                  <>
+                    <div style={{ fontSize: "16px", fontWeight: 600, marginBottom: "15px" }}>
+                      {t("common:trendingArtFeed")}
+                    </div>
+                    <div>
+                      {trendingArtItems.map((item, index) => (
+                        <div
+                          key={index}
+                          onClick={() => handleTrendingItemClick(item.category)}
+                          className={s.trendingItem}
+                        >
+                          <TrendingUpIcon style={{ fontSize: "16px", color: "rgb(34, 144, 89)" }} />
+                          {item.title}
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 )}
               </div>
 
@@ -289,8 +319,10 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
                       href={category.href}
                       className={s.categoryItem}
                       style={{
-
-                        backgroundColor: category.color,
+                        backgroundImage: `url(${category.backgroundImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
                       }}
                       onMouseEnter={(e) => {
                         const overlay = e.currentTarget.querySelector('.category-overlay') as HTMLDivElement;
@@ -307,21 +339,18 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
                     >
                       <div
                         className="category-overlay"
-                   
                         style={{
                           position: "absolute",
                           top: 0,
                           left: 0,
                           right: 0,
                           bottom: 0,
-                          backgroundColor: "rgba(0, 0, 0, 0)",
+                          backgroundColor: "rgba(0, 0, 0, 0.3)",
                           transition: "background-color 0.3s ease",
                         }}
                       />
                       <div
                         className={s.categoryTitle}
-
-                  
                       >
                         {category.title}
                       </div>

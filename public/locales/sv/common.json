@@ -30,7 +30,8 @@
     "christmas": "Kampanj",
     "husohem": "Publicera 3 verk på husohem.se 1 månad ENDAST 1495:-",
     "getStarted": "Kom igång",
-    "searchFor": "Sök efter"
+    "searchFor": "Sök efter",
+    "searchPlaceholder": "Sök efter konstverk, konstnär, stil och mer..."
   },
   "timeUnit": {
     "year": "år",

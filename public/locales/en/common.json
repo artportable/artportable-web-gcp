@@ -30,7 +30,8 @@
     "christmas": "Campaign",
     "husohem": "Publish 3 works on husohem.se",
     "getStarted": "Get started",
-    "searchFor": "Search for"
+    "searchFor": "Search for",
+    "searchPlaceholder": "Search for artworks, artists, styles and more..."
   },
   "timeUnit": {
     "year": "y",
