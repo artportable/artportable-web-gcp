@@ -170,7 +170,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     { 
       title: t("common:themes.abstract"), 
       href: "/discover?category=abstract",
-      backgroundImage: "/searchimages/hq-optimized/abstract-hq.jpeg"
+      backgroundImage: "/searchimages/abstract.jpeg"
     },
     { 
       title: t("common:themes.landscape"), 
@@ -194,7 +194,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     },
     { 
       title: t("common:themes.surrealism"), 
-      href: "/discover?category=surreal",
+      href: "/discover?category=surrealism",
       backgroundImage: "/searchimages/hq-optimized/surreal-hq.jpeg"
     }
   ];
