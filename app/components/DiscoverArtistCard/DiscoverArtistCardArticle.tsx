@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Typography from "@material-ui/core/Typography";
 import { useGetUserProfile, useGetUserProfilePicture } from "../../hooks/dataFetching/UserProfile";
+import Divider from "@mui/material/Divider";
 
 export default function DiscoverArtistCardArticle({ artist }) {
   if (!artist) {
@@ -127,7 +128,7 @@ export default function DiscoverArtistCardArticle({ artist }) {
           </a>
         </Link>
       </div>
-      
+      <Divider style={{ width: '50%', margin: '0 auto' }} />
       {/* Call to action section */}
       <div style={{
         textAlign: 'center',
@@ -151,7 +152,8 @@ export default function DiscoverArtistCardArticle({ artist }) {
           color: '#666',
           width: '370px',
           margin: '0 auto',
-          fontSize: '12px'
+          fontSize: '12px',
+          fontFamily: 'Joan'
           
         }}>
           Låt dig inspireras av konstnärer som skapar med hjärta, själ och berättelse.

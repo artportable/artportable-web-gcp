@@ -10,17 +10,22 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "row",
       ...columnGap(20),
       flexWrap: "wrap",
+
     },
     flexHeaderButton: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
+
+           marginTop: '60px'
     },
     articleLeadFlex: {
       alignSelf: "center",
     },
     container: {
       width: "100%",
+      marginTop: '60px',
+
     },
     wrapper: {
       backgroundColor: "white",
@@ -28,15 +33,20 @@ export const styles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       [theme.breakpoints.up("md")]: {
         flexDirection: "row",
+        height: '240px'
+  
       },
     },
     headerDiv: {
+
       marginTop: "40px",
       marginBottom: "15px",
     },
     header: {
       fontFamily: "Roboto",
-      fontWeight: 600,
+      fontWeight: 300,
+      fontSize: "44px",
+
     },
     subheaderDiv: {
       maxWidth: "800px",
@@ -49,7 +59,7 @@ export const styles = makeStyles((theme: Theme) =>
       lineHeight: "1.38",
       fontFamily: "Joan",
       [theme.breakpoints.up("sm")]: {
-        fontSize: "1.3rem",
+        fontSize: "16px",
       },
       [theme.breakpoints.up("md")]: {
         marginBottom: theme.spacing(3),
@@ -87,6 +97,8 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up("lg")]: {
         flexDirection: "row",
         borderRadius: "5px 0 0 5px",
+        height: '200px'
+        
       },
     },
     dateSpan: {

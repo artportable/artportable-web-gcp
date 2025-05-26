@@ -11,11 +11,13 @@ import { useTranslation } from "next-i18next";
 interface StoryComponentProps {
   story: Story;
   isIndex: boolean;
+  showDescription?: boolean;
 }
 
 export default function StoryComponent({
   story,
   isIndex,
+  showDescription = true,
 }: StoryComponentProps) {
   const { t } = useTranslation(["common"]);
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
@@ -83,13 +85,17 @@ export default function StoryComponent({
               </time>
               <h2 className={s.title}>{story?.Title}</h2>
             </header>
-            {story.Description.length > 200 ? (
-              <p className={s.text}>
-                {story?.Description.slice(0, 200).trimEnd()}...{" "}
-                <i>{t("common:readMore")}</i>
-              </p>
-            ) : (
-              <p className={s.text}>{story?.Description}</p>
+            {showDescription && (
+              <>
+                {story.Description.length > 200 ? (
+                  <p className={s.text}>
+                    {story?.Description.slice(0, 200).trimEnd()}...{" "}
+                    <i>{t("common:readMore")}</i>
+                  </p>
+                ) : (
+                  <p className={s.text}>{story?.Description}</p>
+                )}
+              </>
             )}
           </div>
         </a>

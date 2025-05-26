@@ -4,8 +4,6 @@ import {
   Link,
   Menu,
   MenuItem,
-  Tab,
-  Tabs,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -22,6 +20,10 @@ import { UserContext } from "../../contexts/user-context";
 import { Membership } from "../../models/Membership";
 import Button from "../Button/Button";
 import ArticleLead from "../ArticleLead/ArticleLead";
+import Divider from "@mui/material/Divider";
+import { useGetLatestStories } from "../../hooks/dataFetching/Stories";
+import StoryComponent from "../Story/StoryComponent";
+import { Grid } from "@material-ui/core";
 
 export default function CategoryPage({
   category,
@@ -36,6 +38,10 @@ export default function CategoryPage({
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const canonicalURL = publicUrl + router.asPath;
   const { isSignedIn, membership, phone } = useContext(UserContext);
+
+  // Fetch latest stories
+  const { data: latestStories, isLoading: storiesLoading } = useGetLatestStories(1);
+  const displayStories = latestStories?.slice(0, 4) || [];
 
   useEffect(() => {
     setArray(category?.articles || []);
@@ -57,31 +63,20 @@ export default function CategoryPage({
     });
   }
 
-  // Debug logging
-  console.log('CategoryPage Debug:', {
-    categoryName: category?.name,
-    articlesCount: category?.articles?.length || 0,
-    arrayLength: array?.length || 0,
-    firstArticle: array?.[0],
-    firstArticlePublishedAt: array?.[0]?.published_at,
-    articlesWithPublishedAt: array?.filter(article => article?.published_at).length,
-    isFallback: router.isFallback,
-    routerReady: router.isReady,
-    currentPath: router.asPath
-  });
+  // // Debug logging
+  // console.log('CategoryPage Debug:', {
+  //   categoryName: category?.name,
+  //   articlesCount: category?.articles?.length || 0,
+  //   arrayLength: array?.length || 0,
+  //   firstArticle: array?.[0],
+  //   firstArticlePublishedAt: array?.[0]?.published_at,
+  //   articlesWithPublishedAt: array?.filter(article => article?.published_at).length,
+  //   isFallback: router.isFallback,
+  //   routerReady: router.isReady,
+  //   currentPath: router.asPath
+  // });
 
-  const [value, setValue] = useState(1);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
-
-  // Generate navigation options from actual categories
-  const navigationOptions = navBarItems.map((item) => ({
-    value: item.slug,
-    label: item.menuTitle,
-    href: `/${item.slug}`,
-  }));
 
   const [openArticleLead, setopenArticleLead] = useState(false);
 
@@ -132,6 +127,34 @@ export default function CategoryPage({
                 </Typography>
               </div>
             </div>
+            <Divider />
+
+            {/* Stories Section */}
+            <div style={{ margin: '40px 0' }}>
+              <Typography variant="h4" style={{ 
+                marginBottom: '30px', 
+                textAlign: 'center',
+                fontWeight: 'bold',
+                color: '#333'
+              }}>
+                Latest Stories
+              </Typography>
+              
+              {storiesLoading ? (
+                <div style={{ textAlign: 'center', padding: '20px' }}>
+                  <Typography>Loading stories...</Typography>
+                </div>
+              ) : (
+                <Grid container spacing={3} justifyContent="center">
+                  {displayStories.map((story) => (
+                    <Grid item xs={12} sm={6} md={3} key={story.Id}>
+                      <StoryComponent story={story} isIndex={true} showDescription={false} />
+                    </Grid>
+                  ))}
+                </Grid>
+              )}
+            </div>
+
             <div className={s.articleLeadFlex}>
               {isSignedIn.value && (
                 <div className={s.articleLeadDiv}>
@@ -156,139 +179,135 @@ export default function CategoryPage({
             onClose={toggleArticelLeadDialog}
             numberExists={numberExists}
           />
-          <div className={s.tabsContainer}>
-            <Tabs
-              className={s.artistTab}
-              value={value}
-              onChange={handleChange}
-              aria-label="navigation"
-              variant={"scrollable"}
-              scrollButtons={"on"}
-            >
-              {navigationOptions.map((option) => (
-                <Tab
-                  className={s.text}
-                  key={option.value}
-                  value={option.value}
-                  label={option.label}
-                  onClick={() => router.push(option.href)}
-                />
-              ))}
-              {isSignedIn.value && (
-                <Tab
-                  className={s.text}
-                  key="medlemserbjudanden"
-                  value="/medlemserbjudanden"
-                  label={t("membershipOffers")}
-                  onClick={() => router.push("/medlemserbjudanden")}
-                />
-              )}
-            </Tabs>
-          </div>
-          <div className={s.flex}>
+
+          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
             {array && array.length > 0 ? array.map((article) => {
               if (article && article.published_at)
                 return (
-                  <div key={article.id}>
-                    {router.locale === "en" ||
-                    router.locale === "da" ||
-                    router.locale === "nb" ? (
-                      <>
-                        <Link
-                          className={s.link}
-                          href={`/${router.locale}/${category.name
-                            .toLowerCase()
-                            .replace(
-                              "konstnärsporträtt",
-                              "konstnaersportraett"
-                            )}/${article.slug}`}
-                        >
-                          <a>
-                            <div className={s.wrapper}>
-                              <img
-                                alt="Cover Image"
-                                className={s.coverImage}
-                                src={article?.coverImage?.formats?.small?.url}
-                              />
-                              <div className={s.textContent}>
-                                <div>
-                                  {article?.published_at?.slice(0, -14)}
-                                </div>
-                                <Typography component="h2" variant={"h2"}>
-                                  <Box
-                                    fontFamily="LyonDisplay"
-                                    fontWeight="fontWeightMedium"
-                                    className={s.headline}
-                                  >
-                                    {article?.title}{" "}
-                                    {router.locale !== article?.locale
-                                      ? "(In Swedish)"
-                                      : ""}
-                                  </Box>
-                                </Typography>
-                                <Typography
-                                  variant={"subtitle1"}
-                                  style={{ fontFamily: "Joan" }}
-                                >
-                                  {article?.description}
-                                </Typography>
-                              </div>
-                              <div className={s.line}></div>
+                  <div key={article.id} style={{ marginBottom: '30px' }}>
+                    <Link
+                      href={`/${router.locale}/${category.name
+                        .toLowerCase()
+                        .replace(
+                          "konstnärsporträtt",
+                          "konstnaersportraett"
+                        )}/${article.slug}`}
+                    >
+                      <a style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <div style={{
+                          display: 'flex',
+                          backgroundColor: '#fff',
+                          alignItems: 'center',
+                          paddingLeft:"20px",
+                          borderRadius: '8px',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                          overflow: 'hidden',
+                          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                        }}>
+                          {/* Image Section */}
+                          <div style={{
+                            width: '300px',
+                            height: '200px',
+                            flexShrink: 0,
+                            overflow: 'hidden'
+                          }}>
+                            <img
+                              alt="Cover Image"
+                              src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover'
+                              }}
+                            />
+                          </div>
+                          
+                          {/* Content Section */}
+                          <div style={{
+                            flex: 1,
+                            padding: '24px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between'
+                          }}>
+                            <div>
+                              {/* Category */}
+                              <Typography style={{
+                                color: '#1976d2',
+                                fontSize: '14px',
+                                fontWeight: '500',
+                                marginBottom: '8px',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.5px'
+                              }}>
+                                {article?.categories?.[0]?.name || category?.name}
+                              </Typography>
+                              
+                              {/* Date */}
+                              <Typography style={{
+                                color: '#666',
+                                fontSize: '14px',
+                                marginBottom: '12px'
+                              }}>
+                                {article?.published_at?.slice(0, 10)}
+                              </Typography>
+                              
+                              {/* Title */}
+                              <Typography style={{
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#333',
+                                lineHeight: '1.3',
+                                marginBottom: '12px',
+                                fontFamily: 'LyonDisplay'
+                              }}>
+                                {article?.title}
+                                {router.locale !== article?.locale ? " (In Swedish)" : ""}
+                              </Typography>
+                              
+                              {/* Description */}
+                              <Typography style={{
+                                color: '#666',
+                                fontSize: '16px',
+                                lineHeight: '1.5',
+                                marginBottom: '16px',
+                                fontFamily: 'Joan'
+                              }}>
+                                {article?.description}
+                              </Typography>
                             </div>
-                          </a>
-                        </Link>
-                      </>
-                    ) : (
-                      <>
-                        <Link
-                          className={s.link}
-                          href={`/${router.locale}/${category.name
-                            .toLowerCase()
-                            .replace(
-                              "konstnärsporträtt",
-                              "konstnaersportraett"
-                            )}/${article.slug}`}
-                        >
-                          <a>
-                            <div className={s.wrapper}>
-                              <img
-                                alt="Cover Image"
-                                className={s.coverImage}
-                                src={article?.coverImage?.formats?.small?.url}
-                              />
-                              <div className={s.textContent}>
-                                <div>
-                                  {article?.published_at?.slice(0, -14)}
-                                </div>
-                                <Typography component="h2" variant={"h2"}>
-                                  <Box
-                                    fontFamily="LyonDisplay"
-                                    fontWeight="fontWeightMedium"
-                                    className={s.headline}
-                                  >
-                                    {article?.title}{" "}
-                                    {router.locale !== article?.locale
-                                      ? "(In Swedish)"
-                                      : ""}
-                                  </Box>
-                                </Typography>
-                                <Typography
-                                  variant={"subtitle1"}
-                                  style={{ fontFamily: "Joan" }}
-                                >
-                                  {article?.description}
-                                </Typography>
-                              </div>
-                              <div className={s.line}></div>
+                            
+                            {/* Read More */}
+                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                              <Typography style={{
+                                color: '#1976d2',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.5px'
+                              }}>
+                                LÄS MER
+                              </Typography>
                             </div>
-                          </a>
-                        </Link>
-                      </>
-                    )}
+                          </div>
+                        </div>
+                      </a>
+                    </Link>
                   </div>
                 );
             }) : (
-              <div>No articles found</div>
+              <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+                No articles found
+              </div>
             )}
           </div>
         </>
