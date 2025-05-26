@@ -132,19 +132,27 @@ export default function DiscoverArtistCardArticle({ artist }) {
       <div style={{
         textAlign: 'center',
         padding: '60px 20px',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
-        <Typography variant="h4" style={{ 
+        <Typography style={{ 
           marginBottom: '20px', 
           fontWeight: 'bold',
-          color: '#333'
+          color: '#333',
+          fontSize: '22px',
+          fontFamily: 'Roboto'
         }}>
           Redo att hitta konst som känns?
         </Typography>
         
         <Typography style={{ 
           marginBottom: '40px',
-          color: '#666'
+          color: '#666',
+          width: '370px',
+          margin: '0 auto',
+          fontSize: '12px'
+          
         }}>
           Låt dig inspireras av konstnärer som skapar med hjärta, själ och berättelse.
           Utforska originalkonst direkt från konstnärer på Artportable.com
