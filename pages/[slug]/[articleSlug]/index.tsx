@@ -10,8 +10,10 @@ import Link from "next/link";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { fetchWithTimeout } from "../../../app/utils/util";
-import DiscoverArtistCard from "../../../app/components/DiscoverArtistCard/DiscoverArtistCard";
+import DiscoverArtistCardArticle from "../../../app/components/DiscoverArtistCard/DiscoverArtistCardArticle";
 import { useEffect } from "react";
+import { marked } from "marked";
+
 
 export default function ArticlePage({
   article,
@@ -27,8 +29,21 @@ export default function ArticlePage({
   const canonicalURL = publicUrl + router.asPath;
 
   useEffect(() => {
-    console.log(encodeURIComponent);
-  }, []);
+    console.log('ArticlePage Debug:', {
+      article: article,
+      hasPublishedAt: !!article?.published_at,
+      publishedAt: article?.published_at,
+      created_at: article?.created_at,
+      updated_at: article?.updated_at,
+      publishedAt_v4: (article as any)?.publishedAt,
+      allFields: Object.keys(article || {}),
+      authors: article?.authors,
+      authorsLength: article?.authors?.length,
+      isFallback: router.isFallback,
+      routerReady: router.isReady,
+      params: router.query
+    });
+  }, [article, router]);
 
   return (
     <Main>
@@ -65,8 +80,11 @@ export default function ArticlePage({
         />
       </Head>
       {router.isFallback && (
-        //implement good skeleton here
-        <div>Loading...</div>
+        <div>
+          <h1>Loading article...</h1>
+          <p>Path: {router.asPath}</p>
+          <p>This article is being generated...</p>
+        </div>
       )}
       {!router.isFallback && (
         <>
@@ -75,93 +93,60 @@ export default function ArticlePage({
               Preview Mode
             </Typography>
           )}
-          <img
-            className={s.background}
-            src={article?.coverImage?.formats?.medium?.url}
-            alt="background image"
-          />
 
-          <Paper className={s.paper}>
+          <div className={s.paper}>
+            {/* Cover image as banner */}
+            <img
+              style={{
+                width: '100%',
+                height: '500px',
+                objectFit: 'cover',
+                marginBottom: '20px',
+                borderRadius: '8px 8px 0 0'
+              }}
+              src={article?.coverImage?.formats?.medium?.url}
+              alt="Cover image"
+            />
+            
             <div className={s.headingDiv}>
               <Typography variant={"h1"}>{article.title}</Typography>
+              {article?.categories && article.categories.length > 0 && (
+                <Typography  style={{ marginBottom: '0px', color: '#666', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  {article.categories[0].name}
+                </Typography>
+              )}
+              {article?.authors && article.authors.length > 0 && (
+                <Typography  style={{ marginBottom: '0px', fontStyle: 'italic' }}>
+                  By {article.authors.map(author => author.name).join(', ')}
+                </Typography>
+              )}
               <Typography>{article.published_at?.slice(0, -14)}</Typography>
             </div>
             <div className={s.line}></div>
 
             <div
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: marked(article.content || '') }}
               className={s.articleImages}
+              style={{ maxWidth: '800px', margin: '0 auto' }}
             />
 
-            {article?.authors?.map((author) => {
-              return (
-                <div className={s.authorDiv} key={author.id}>
-                  <Avatar
-                    src={author?.picture?.formats?.thumbnail?.url}
-                    className={s.authorAvatar}
-                  />
-                  <Typography className={s.authorText}>
-                    {author.name}
-                  </Typography>
-                  {author.name === "Redaktion" ||
-                  author.name === "Editorial" ? null : (
-                    <div>
-                      <Typography>{t("writer")}</Typography>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-            <div className={s.line}></div>
-            <div className={s.findArt}>
-              <Typography>{t("tagLine")}</Typography>
-              <Link href={`/`}>
-                <a>
-                  <img
-                    height={20}
-                    className={s.artportable_logo}
-                    src={"/images/Artportable_Logotyp_Black.jpg"}
-                    alt="link to artportable"
-                    title="artportable_logo"
-                  />
-                </a>
-              </Link>
-            </div>
-            <div className={s.tagDiv}>
-              {article?.categories?.map((category) => {
+
+            <div className={s.line} style={{ margin: '60px' }}></div>
+            {artist && artist.length > 0 && (
+            <div>
+              {artist.map((a) => {
                 return (
-                  <>
-                    <Link href={`/${category.slug}`}>
-                      <a>
-                        <Button
-                          rounded
-                          variant="outlined"
-                          color="primary"
-                          disableElevation
-                        >
-                          <Typography>{category.name}</Typography>
-                        </Button>
-                      </a>
-                    </Link>
-                  </>
+                  <DiscoverArtistCardArticle
+                    key={a.SocialId || a.Username}
+                    artist={a}
+                  />
                 );
               })}
             </div>
-          </Paper>
-          <div className={s.div}>
-            {artist && artist.length > 0 && (
-              <div className={s.div2}>
-                {artist.map((a) => {
-                  return (
-                    <DiscoverArtistCard
-                      artist={a}
-                      onFollowClick={null}
-                    ></DiscoverArtistCard>
-                  );
-                })}
-              </div>
-            )}
+          )}
+         
           </div>
+     
         </>
       )}
     </Main>
@@ -172,120 +157,60 @@ export default function ArticlePage({
 
 export async function getStaticProps(context) {
   const { locale, params, preview } = context;
+  
+  // First try to get the article by slug with category filter
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
-      params.articleSlug
-    }?_locale=${locale}&categories.slug=${params.slug}${
-      preview ? "&_publicationState=preview" : ""
-    }`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?filters[slug][$eq]=${params.articleSlug}&filters[categories][slug][$eq]=${params.slug}&locale=${locale}&populate[0]=coverImage&populate[1]=authors&populate[2]=authors.picture&populate[3]=categories&populate[4]=publishCategory${preview ? "&publicationState=preview" : ""}`,
     {
       // timeout: 11000
     }
   );
-  var articles = await res.json();
-  var article: Article = articles.find(
-    (article: Article) => article.locale == locale
-  );
 
-  if (article == null) {
-    let categoryRes = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}`,
-      {
-        // timeout: 11000
-      }
-    );
-
-    if (!categoryRes.ok) {
-      return {
-        notFound: true,
-      };
-    }
-
-    var currentCategory = await categoryRes.json();
-
-    let res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
-        params.articleSlug
-      }?categories_in=${currentCategory.id}&categories_in=${
-        currentCategory.localizations[0]?.id
-      }${preview ? "&_publicationState=preview" : ""}`,
-      {
-        // timeout: 11000
-      }
-    );
-
-    if (!res.ok) {
-      return {
-        notFound: true,
-      };
-    }
-
-    article = await res.json();
-
-    categoryRes = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`,
-      {
-        // timeout: 11000
-      }
-    );
-
-    var newLocaleCategories = await categoryRes.json();
-    var newLocaleCategory: Category = newLocaleCategories.find(
-      (category: Category) => category.locale == locale
-    );
-
-    if (
-      newLocaleCategory &&
-      newLocaleCategory.id !== currentCategory.id &&
-      locale !== article.locale
-    ) {
-      return {
-        redirect: {
-          destination: `/${newLocaleCategory.slug}/${article.slug}`,
-          permanent: true,
-        },
-      };
-    }
-
-    if (
-      locale !== article.locale &&
-      article.locale !== locale.sv &&
-      article.locale !== locale.en &&
-      article.locale !== locale.nb &&
-      article.locale !== locale.da &&
-      article.locale !== locale.is
-    ) {
-      var newLocaleArticle = article.localizations.find(
-        (articleLocale) => articleLocale.locale === locale
-      );
-
-      if (newLocaleArticle) {
-        let res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
-            params.articleSlug
-          }?_locale=${locale}&categories_in=${newLocaleArticle.id}${
-            preview ? "&_publicationState=preview" : ""
-          }`,
-          {
-            // timeout: 11000
-          }
-        );
-
-        if (res.ok) {
-          article = await res.json();
-        }
-      }
-    }
+  if (!res.ok) {
+    return {
+      notFound: true,
+    };
   }
 
+  const response = await res.json();
+  let article = response.data[0];
+
+  if (!article) {
+    return {
+      notFound: true,
+    };
+  }
+
+  // Convert v4 format to expected format
+  const articleData = {
+    id: article.id,
+    ...article.attributes,
+    // Map publishedAt to published_at for compatibility
+    published_at: article.attributes.publishedAt,
+    // Handle relations with null checks
+    coverImage: article.attributes.coverImage?.data?.attributes || null,
+    authors: article.attributes.authors?.data?.map(author => ({
+      id: author.id,
+      ...author.attributes,
+      picture: author.attributes.picture?.data?.attributes || null
+    })) || [],
+    categories: article.attributes.categories?.data?.map(cat => ({
+      id: cat.id,
+      ...cat.attributes
+    })) || [],
+    publishCategory: article.attributes.publishCategory?.data ? {
+      id: article.attributes.publishCategory.data.id,
+      ...article.attributes.publishCategory.data.attributes
+    } : null
+  };
+
   var artist = null;
-  if (article.artist) {
+  if (articleData.artist) {
     const url = new URL(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Discover/artists/top`
     );
-    url.searchParams.append("q", article.artist);
+    url.searchParams.append("q", articleData.artist);
     var artistResult = await fetch(url.href);
-    var artist = null;
     if (artistResult && artistResult.status === 200) {
       artist = await artistResult.json();
     }
@@ -294,7 +219,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       artist: artist,
-      article: article,
+      article: articleData,
       ...(await serverSideTranslations(locale, [
         "articles",
         "common",
@@ -318,22 +243,30 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?_locale=all`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?locale=all&populate[0]=categories&populate[1]=publishCategory`
     );
-    const articles = await res.json();
+    
+    if (!res.ok) {
+      return { paths: [], fallback: true };
+    }
+
+    const response = await res.json();
+    const articles = response.data;
 
     const paths = articles
-      .filter(
-        (article) =>
-          typeof article.publishCategory?.slug === "string" &&
-          typeof article.slug === "string"
-      )
+      .filter((article) => {
+        const publishCategory = article.attributes.publishCategory?.data?.attributes;
+        return (
+          typeof publishCategory?.slug === "string" &&
+          typeof article.attributes.slug === "string"
+        );
+      })
       .map((article) => ({
         params: {
-          slug: article.publishCategory.slug,
-          articleSlug: article.slug,
+          slug: article.attributes.publishCategory.data.attributes.slug,
+          articleSlug: article.attributes.slug,
         },
-        locale: article.locale,
+        locale: article.attributes.locale,
       }));
 
     return { paths, fallback: true };

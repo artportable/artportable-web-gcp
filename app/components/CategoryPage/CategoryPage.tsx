@@ -38,13 +38,37 @@ export default function CategoryPage({
   const { isSignedIn, membership, phone } = useContext(UserContext);
 
   useEffect(() => {
-    setArray(category?.articles);
-  }, [router.push]);
+    setArray(category?.articles || []);
+  }, [category, router.asPath]);
 
   // Kan ses över och snygga till genom att ha en array.sort en gång istället för 2.
-  const [array, setArray] = useState(category?.articles);
-  array.sort((x, y) => +new Date(x.published_at) - +new Date(y.published_at));
-  array.sort((a, b) => 0 - (a.published_at > b.published_at ? 1 : -1));
+  const [array, setArray] = useState(category?.articles || []);
+  
+  // Safe sorting with null checks
+  if (array && array.length > 0) {
+    array.sort((x, y) => {
+      const dateX = x.published_at ? +new Date(x.published_at) : 0;
+      const dateY = y.published_at ? +new Date(y.published_at) : 0;
+      return dateX - dateY;
+    });
+    array.sort((a, b) => {
+      if (!a.published_at || !b.published_at) return 0;
+      return 0 - (a.published_at > b.published_at ? 1 : -1);
+    });
+  }
+
+  // Debug logging
+  console.log('CategoryPage Debug:', {
+    categoryName: category?.name,
+    articlesCount: category?.articles?.length || 0,
+    arrayLength: array?.length || 0,
+    firstArticle: array?.[0],
+    firstArticlePublishedAt: array?.[0]?.published_at,
+    articlesWithPublishedAt: array?.filter(article => article?.published_at).length,
+    isFallback: router.isFallback,
+    routerReady: router.isReady,
+    currentPath: router.asPath
+  });
 
   const [value, setValue] = useState(1);
 
@@ -52,32 +76,12 @@ export default function CategoryPage({
     setValue(newValue);
   };
 
-  const subjectOptions = [
-    {
-      value: t("articlesSlug"),
-      label: t("articles"),
-    },
-    {
-      value: t("editorialSlug"),
-      label: t("editorial"),
-    },
-    {
-      value: t("artistPortraitSlug"),
-      label: t("artistPortrait"),
-    },
-    {
-      value: t("offersSlug"),
-      label: t("offers"),
-    },
-    {
-      value: t("coursesSlug"),
-      label: t("courses"),
-    },
-    {
-      value: t("moreArticlesSlug"),
-      label: t("moreArticlesMenu"),
-    },
-  ];
+  // Generate navigation options from actual categories
+  const navigationOptions = navBarItems.map((item) => ({
+    value: item.slug,
+    label: item.menuTitle,
+    href: `/${item.slug}`,
+  }));
 
   const [openArticleLead, setopenArticleLead] = useState(false);
 
@@ -107,8 +111,11 @@ export default function CategoryPage({
         <link rel="canonical" href={canonicalURL} />
       </Head>
       {router.isFallback && (
-        //implement good skeleton here
-        <div>Loading...</div>
+        <div>
+          <h1>Loading category page...</h1>
+          <p>Path: {router.asPath}</p>
+          <p>This page is being generated...</p>
+        </div>
       )}
       {!router.isFallback && (
         <>
@@ -158,13 +165,13 @@ export default function CategoryPage({
               variant={"scrollable"}
               scrollButtons={"on"}
             >
-              {subjectOptions.map((option) => (
+              {navigationOptions.map((option) => (
                 <Tab
                   className={s.text}
                   key={option.value}
                   value={option.value}
                   label={option.label}
-                  onClick={() => router.push(option.value)}
+                  onClick={() => router.push(option.href)}
                 />
               ))}
               {isSignedIn.value && (
@@ -179,8 +186,8 @@ export default function CategoryPage({
             </Tabs>
           </div>
           <div className={s.flex}>
-            {array.map((article) => {
-              if (article.published_at)
+            {array && array.length > 0 ? array.map((article) => {
+              if (article && article.published_at)
                 return (
                   <div key={article.id}>
                     {router.locale === "en" ||
@@ -280,7 +287,9 @@ export default function CategoryPage({
                     )}
                   </div>
                 );
-            })}
+            }) : (
+              <div>No articles found</div>
+            )}
           </div>
         </>
       )}

@@ -15,7 +15,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Image from "next/image";
 
-export default function DiscoverArtistCard({ artist, onFollowClick }) {
+export default function DiscoverArtistCardArticle({ artist, onFollowClick }) {
   const s = styles();
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
 

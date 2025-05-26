@@ -4,18 +4,18 @@ import { rowGap, columnGap } from "../app/utils/styleUtils";
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
-      maxWidth: "1000px",
-      padding: "20px",
+      padding: "25px",
       justifySelf: "center",
       zIndex: 1,
       [theme.breakpoints.up("md")]: {
-        padding: "100px",
-        marginTop: "100px",
+        height: "100%",
+        marginTop: "20px",
+        width: "calc(100vw - 50px)",
       },
     },
     line: {
       height: "2px",
-      backgroundColor: "var(--ion-color-primary)",
+      backgroundColor: "gray",
       margin: "32px 0",
     },
     description: {
@@ -55,7 +55,7 @@ export const styles = makeStyles((theme: Theme) =>
     headingDiv: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "flex-start",
       ...columnGap(16),
     },
 
