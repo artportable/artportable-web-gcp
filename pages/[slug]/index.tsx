@@ -24,7 +24,7 @@ export async function getStaticProps({ params, locale }) {
   let res = await fetch(
     `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories?filters[slug][$eq]=${params.slug}&populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*`,
     {
-      // timeout: 11000
+      // timeout: 110000 
     }
   );
 

@@ -31,14 +31,12 @@ export default function ArticlePage({
   useEffect(() => {
     console.log('ArticlePage Debug:', {
       article: article,
+      coverImage: article?.coverImage,
+      coverImageFormats: article?.coverImage?.formats,
+      coverImageUrl: article?.coverImage?.url,
+      coverImageMediumUrl: article?.coverImage?.formats?.medium?.url,
       hasPublishedAt: !!article?.published_at,
       publishedAt: article?.published_at,
-      created_at: article?.created_at,
-      updated_at: article?.updated_at,
-      publishedAt_v4: (article as any)?.publishedAt,
-      allFields: Object.keys(article || {}),
-      authors: article?.authors,
-      authorsLength: article?.authors?.length,
       isFallback: router.isFallback,
       routerReady: router.isReady,
       params: router.query
@@ -96,17 +94,29 @@ export default function ArticlePage({
 
           <div className={s.paper}>
             {/* Cover image as banner */}
-            <img
-              style={{
-                width: '100%',
-                height: '500px',
-                objectFit: 'cover',
-                marginBottom: '20px',
-                borderRadius: '8px 8px 0 0'
-              }}
-              src={article?.coverImage?.formats?.medium?.url}
-              alt="Cover image"
-            />
+            {article?.coverImage && (
+              <img
+                style={{
+                  width: '100%',
+                  height: '500px',
+                  objectFit: 'cover',
+                  marginBottom: '20px',
+                  borderRadius: '8px 8px 0 0'
+                }}
+                src={
+                  article.coverImage.formats?.medium?.url || 
+                  article.coverImage.formats?.small?.url || 
+                  article.coverImage.url ||
+                  (typeof article.coverImage === 'string' ? article.coverImage : '')
+                }
+                alt="Cover image"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  console.log('Image failed to load:', target.src);
+                  console.log('Available coverImage data:', article.coverImage);
+                }}
+              />
+            )}
             
             <div className={s.headingDiv}>
               <Typography variant={"h1"}>{article.title}</Typography>
@@ -125,7 +135,26 @@ export default function ArticlePage({
             <div className={s.line}></div>
 
             <div
-              dangerouslySetInnerHTML={{ __html: marked(article.content || '') }}
+              dangerouslySetInnerHTML={{ 
+                __html: marked(article.content || '', {
+                  renderer: (() => {
+                    const renderer = new marked.Renderer();
+                    renderer.image = function({ href, title, text }) {
+                      // Log the image details for debugging
+                      console.log('Processing image:', { href, title, text });
+                      
+                      // Check if it's a GCS signed URL that might be expired
+                      if (href && href.includes('storage.googleapis.com') && href.includes('X-Goog-Signature')) {
+                        console.log('Found GCS signed URL, might be expired:', href);
+                        // You might want to handle this differently, for now just show the image
+                      }
+                      
+                      return `<img src="${href}" alt="${text}" title="${title || ''}" style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px;" />`;
+                    };
+                    return renderer;
+                  })()
+                })
+              }}
               className={s.articleImages}
               style={{ maxWidth: '800px', margin: '0 auto' }}
             />

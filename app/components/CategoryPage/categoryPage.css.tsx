@@ -16,8 +16,6 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
-
-           marginTop: '60px'
     },
     articleLeadFlex: {
       alignSelf: "center",
@@ -38,8 +36,6 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     headerDiv: {
-
-      marginTop: "40px",
       marginBottom: "15px",
     },
     header: {
