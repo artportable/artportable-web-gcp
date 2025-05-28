@@ -101,41 +101,62 @@ export default function ArticlePage({
             )}
             
             <div className={s.headingDiv}>
-              {article?.categories && article.categories.length > 0 && (
+           
+            <div className={s.metaInfo}>
+            {article?.categories && article.categories.length > 0 && (
                 <Typography className={s.categoryText}>
                   {article.categories[0].name}
                 </Typography>
               )}
-              
-              <Typography className={s.articleTitle}>
-                {article.title}
-              </Typography>
-              
-              <div className={s.lineSpaced}></div>
-              
-              {article?.authors && article.authors.length > 0 && (
-                <Typography className={s.authorText}>
-                  By {article.authors.map(author => author.name).join(', ')}
+                {article?.authors && article.authors.length > 0 && (
+                  <Typography className={s.authorText}>
+                    By {article.authors.map(author => author.name).join(', ')}
+                  </Typography>
+                )}
+                
+                <Typography className={s.dateText}>
+                  {new Date(article.published_at).toLocaleDateString('sv-se', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </Typography>
-              )}
-              
-              <Typography className={s.dateText}>
-                {article.published_at?.slice(0, 10)}
-              </Typography>
+              </div>
             </div>
 
             <div className={s.articleContent}>
+            <Typography className={s.articleTitle}>
+                {article.title}
+              </Typography>
               <div
                 dangerouslySetInnerHTML={{ 
-                  __html: marked(article.content || '', {
-                    renderer: (() => {
-                      const renderer = new marked.Renderer();
-                      renderer.image = function({ href, title, text }) {
-                        return `<img src="${href}" alt="${text}" title="${title || ''}" style="max-width: 100%; height: auto; margin: 30px 0; border-radius: 4px;" />`;
-                      };
-                      return renderer;
-                    })()
-                  })
+                  __html: (() => {
+                    const htmlContent = marked(article.content || '', {
+                      renderer: (() => {
+                        const renderer = new marked.Renderer();
+                        renderer.image = function({ href, title, text }) {
+                          return `<img src="${href}" alt="${text}" title="${title || ''}" style="width: 100%; height: auto; margin: 0; border-radius: 4px; display: block;" class="article-image" />`;
+                        };
+                        return renderer;
+                      })()
+                    }) as string;
+                    
+                    // Post-process to wrap consecutive images in a flex container
+                    return htmlContent.replace(
+                      /(<p><img[^>]*><\/p>\s*<p><a[^>]*>[^<]*<\/a><\/p>\s*)+/g,
+                      (match) => {
+                        // Extract image+link pairs
+                        const pairs = match.match(/<p><img[^>]*><\/p>\s*<p><a[^>]*>[^<]*<\/a><\/p>/g) || [];
+                        if (pairs.length > 1) {
+                          const imageColumns = pairs.map(pair => {
+                            return `<div class="image-column">${pair}</div>`;
+                          }).join('');
+                          return `<div class="image-row">${imageColumns}</div>`;
+                        }
+                        return match;
+                      }
+                    );
+                  })()
                 }}
                 className={s.articleImages}
               />

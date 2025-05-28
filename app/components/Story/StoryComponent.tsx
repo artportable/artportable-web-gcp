@@ -87,13 +87,13 @@ export default function StoryComponent({
             </header>
             {showDescription && (
               <>
-                {story.Description.length > 200 ? (
-                  <p className={s.text}>
-                    {story?.Description.slice(0, 200).trimEnd()}...{" "}
-                    <i>{t("common:readMore")}</i>
-                  </p>
-                ) : (
-                  <p className={s.text}>{story?.Description}</p>
+            {story.Description.length > 200 ? (
+              <p className={s.text}>
+                {story?.Description.slice(0, 200).trimEnd()}...{" "}
+                <i>{t("common:readMore")}</i>
+              </p>
+            ) : (
+              <p className={s.text}>{story?.Description}</p>
                 )}
               </>
             )}
