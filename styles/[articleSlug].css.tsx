@@ -266,7 +266,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.down("sm")]: {
         padding: "0 20px",
-        marginBottom: "40px",
+        marginBottom: "10px",
       },
     },
     articleTitle: {
@@ -307,7 +307,6 @@ export const styles = makeStyles((theme: Theme) =>
       [theme.breakpoints.down("sm")]: {
         flexDirection: "column",
         alignItems: "flex-start",
-        gap: "8px",
         marginTop: "20px",
         paddingTop: "15px",
       },

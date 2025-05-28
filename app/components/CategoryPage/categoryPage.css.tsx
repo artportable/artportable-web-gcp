@@ -3,178 +3,16 @@ import { rowGap, columnGap } from "../../utils/styleUtils";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
-    flex: {
-      alignItems: "flex-start",
-      display: "flex",
-      width: "100%",
-      flexDirection: "row",
-      ...columnGap(20),
-      flexWrap: "wrap",
-
-    },
     flexHeaderButton: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
-    },
-    articleLeadFlex: {
-      alignSelf: "center",
-    },
-    container: {
-      width: "100%",
-      marginTop: '60px',
-
-    },
-    wrapper: {
-      backgroundColor: "white",
-      display: "flex",
-      flexDirection: "column",
-      [theme.breakpoints.up("md")]: {
-        flexDirection: "row",
-        height: '240px'
-  
+     
+      [theme.breakpoints.up('md')]: {
+     
+        marginTop: '30px',
       },
     },
-    headerDiv: {
-      marginBottom: "15px",
-    },
-    header: {
-      fontFamily: "Roboto",
-      fontWeight: 300,
-      fontSize: "44px",
-
-    },
-    subheaderDiv: {
-      maxWidth: "800px",
-      marginBottom: "15px",
-    },
-    subHeader: {
-      margin: theme.spacing(1, 0),
-      marginBottom: theme.spacing(2),
-      fontSize: "13px",
-      lineHeight: "1.38",
-      fontFamily: "Joan",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "16px",
-      },
-      [theme.breakpoints.up("md")]: {
-        marginBottom: theme.spacing(3),
-      },
-    },
-    tabsContainer: {
-      marginBottom: "20px",
-    },
-    artistTab: {
-      "& .MuiTabs-scroller": {
-        flexGrow: "0",
-      },
-      "& .MuiTab-root": {
-        minWidth: 0,
-      },
-      "& .MuiTabScrollButton-root": {
-        width: "unset",
-        opacity: "0.8",
-      },
-      justifyContent: "center",
-      width: "100%",
-      // marginTop: '45px',
-    },
-    text: {
-      minWidth: 0,
-    },
-    headline: {
-      fontFamily: "Roboto",
-      textDecoration: "underline",
-      marginBottom: theme.spacing(1),
-    },
-    coverImage: {
-      width: "100%",
-      borderRadius: "5px 5px 0 0",
-      [theme.breakpoints.up("lg")]: {
-        flexDirection: "row",
-        borderRadius: "5px 0 0 5px",
-        height: '200px'
-        
-      },
-    },
-    dateSpan: {
-      textAlign: "right",
-      marginTop: "8px",
-      color: "#999999",
-    },
-    line: {
-      marginTop: theme.spacing(1),
-      height: "4px",
-      backgroundColor: "var(--primary-color)",
-    },
-    textContent: {
-      padding: "20px",
-      display: "inline-block",
-
-      width: "100%",
-      blockSize: "fit-content",
-    },
-    articleLeadDiv: {
-      "& :hover": {
-        backgroundColor: "#D6A407",
-      },
-
-      display: "flex",
-      justifyContent: "center",
-    },
-    articleLeadButton: {
-      marginTop: "4px",
-      width: "300px",
-      backgroundColor: "#E0AC08",
-      color: "#fff",
-      // height: '70px'
-      marginBottom: "15px",
-    },
-    headerButton: {
-      fontFamily: "Gotham",
-      fontWeight: 500,
-    },
-    menuFlex: {
-      [theme.breakpoints.up("smPlus")]: {
-        display: "flex",
-        flexDirection: "row",
-        ...rowGap(5),
-        flexWrap: "wrap",
-        marginBottom: "20px",
-      },
-    },
-    link: {
-      "&:hover": {
-        textDecoration: "none",
-      },
-      color: "#000",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      artistTab: {
-        marginTop: "45px",
-        "& .MuiTabScrollButton-root": {
-          display: "none",
-        },
-      },
-      tabsContainer: {
-        marginBottom: "40px",
-      },
-    },
-
-    [theme.breakpoints.up("lgPlus")]: {
-      flexHeaderButton: {
-        flexDirection: "row",
-      },
-      artistTab: {
-        marginLeft: "0",
-        marginTop: "0",
-        "& .MuiTabScrollButton-root": {
-          display: "none",
-        },
-      },
-    },
-    
 
     responsiveContainer: {
       display: 'flex',
@@ -189,16 +27,16 @@ export const styles = makeStyles((theme: Theme) =>
     leftColumn: {
       width: '855px',
       flexShrink: 0,
-      margin: "20px",
+      margin: "10px",
       [theme.breakpoints.down('md')]: {
         width: '100vw',
-    
       },
     },
     
     rightColumn: {
       width: '580px',
       flexShrink: 0,
+      display: 'none',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -220,7 +58,6 @@ export const styles = makeStyles((theme: Theme) =>
         textDecoration: 'none',
       },
       [theme.breakpoints.up('md')]: {
-      
         height: "245px",
         padding: "20px",
       },
@@ -241,7 +78,6 @@ export const styles = makeStyles((theme: Theme) =>
         width: '200px',
         height: '200px',
       },
-
     },
     
     articleContent: {
@@ -276,7 +112,6 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       color: '#333',
       lineHeight: '1.3',
-     
       fontFamily: 'Roboto',
       [theme.breakpoints.up("smPlus")]: {
         fontSize: '22px',
@@ -298,8 +133,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'flex-end',
       '& span': {
         color: 'gray',
-        fontSize: '14px',
-        fontWeight: 600,
+        fontSize: '11px',
+        fontWeight: 400,
         textTransform: 'uppercase',
         letterSpacing: '0.5px',
       },
@@ -307,17 +142,25 @@ export const styles = makeStyles((theme: Theme) =>
 
     // Main container styles
     mainContainer: {
-      padding: '40px',
+      padding: '0px',
+      [theme.breakpoints.up("md")]: {
+        padding: '40px',
+      },
     },
 
     // Section headers
     sectionHeader: {
       fontFamily: "Roboto !important",
+      display: 'flex',
+      justifyContent: 'center',
       marginBottom: '30px',
-      marginTop: '20px',
+      marginTop: '0px',
       fontWeight: 'bold',
       color: '#333',
       fontSize: '28px',
+      [theme.breakpoints.up("md")]: {
+        justifyContent: 'flex-start',
+      },
     },
 
     // Loading state
@@ -408,21 +251,59 @@ export const styles = makeStyles((theme: Theme) =>
 
     // Stories section
     storiesContainer: {
-      padding: '40px',
+      padding: '0px',
+      [theme.breakpoints.up('md')]: {
+        padding: '50px',
+      },
     },
 
     storiesGrid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
       gap: '20px',
+      [theme.breakpoints.down('md')]: {
+        gridTemplateColumns: '1fr',
+      },
+    },
+
+    storiesButtonContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      marginTop: '20px',
+      marginBottom: '30px',
+      padding: '0 20px',
+    },
+
+    storiesButton: {
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginTop: "30px",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
     },
 
     storyCard: {
       display: 'flex',
       flexDirection: 'column',
+      justifyContent: 'space-between',
       backgroundColor: '#fff',
       padding: '16px',
-      borderRadius: '8px',
+      height: "300px",
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       overflow: 'hidden',
       transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -434,7 +315,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     storyImage: {
       width: '100%',
-      height: '120px',
+      height: '150px',
       overflow: 'hidden',
       marginBottom: '12px',
       borderRadius: '4px',
@@ -470,7 +351,7 @@ export const styles = makeStyles((theme: Theme) =>
       '& span': {
         color: 'gray',
         fontSize: '11px',
-        fontWeight: 600,
+        fontWeight: 400,
         textTransform: 'uppercase',
         letterSpacing: '0.5px',
       },
@@ -478,29 +359,35 @@ export const styles = makeStyles((theme: Theme) =>
 
     // Artist portraits section
     portraitsContainer: {
-      padding: '50px',
+      padding: '0px',
+      [theme.breakpoints.up('md')]: {
+        padding: '50px',
+      },
     },
 
     portraitCard: {
       display: 'flex',
-      alignItems: 'center',
-      backgroundColor: '#fff',
-      padding: '20px',
-      borderRadius: '8px',
+      backgroundColor: '#ffffff52',
+      padding: '6px',
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       overflow: 'hidden',
       transition: 'transform 0.2s ease, box-shadow 0.2s ease',
       cursor: 'pointer',
       gap: '20px',
+      alignItems: 'center',
       marginBottom: '30px',
       '&:hover': {
         textDecoration: 'none',
       },
+      [theme.breakpoints.up('md')]: {
+        height: "245px",
+        padding: "20px",
+      },
     },
 
     portraitImage: {
-      width: '200px',
-      height: '180px',
+      width: '100px',
+      height: '100px',
       flexShrink: 0,
       overflow: 'hidden',
       borderRadius: '4px',
@@ -508,6 +395,10 @@ export const styles = makeStyles((theme: Theme) =>
         width: '100%',
         height: '100%',
         objectFit: 'cover',
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        width: '200px',
+        height: '200px',
       },
     },
 
@@ -520,35 +411,43 @@ export const styles = makeStyles((theme: Theme) =>
 
     portraitCategory: {
       color: '#1976d2',
-      fontSize: '12px',
-      fontWeight: 500,
-      marginBottom: '6px',
+      fontSize: '11px',
+      fontWeight: 400,
       textTransform: 'uppercase',
-      letterSpacing: '0.5px',
       fontFamily: 'Roboto',
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: '14px',
+      },
     },
 
     portraitDate: {
       color: '#666',
-      fontSize: '12px',
-      marginBottom: '8px',
+      fontSize: '9px',
+      marginBottom: '12px',
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: '14px',
+      },
     },
 
     portraitTitle: {
-      fontSize: '20px',
+      fontSize: '11px',
       fontWeight: 'bold',
       color: '#333',
       lineHeight: '1.3',
-      marginBottom: '8px',
       fontFamily: 'Roboto',
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: '22px',
+      },
     },
 
     portraitDescription: {
       color: '#666',
-      fontSize: '14px',
-      lineHeight: '1.4',
-      marginBottom: '12px',
+      fontSize: '11px',
+      lineHeight: '1.5',
       fontFamily: 'Joan',
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: '16px',
+      },
     },
 
     portraitReadMore: {
@@ -556,8 +455,8 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: 'flex-end',
       '& span': {
         color: 'gray',
-        fontSize: '12px',
-        fontWeight: 600,
+        fontSize: '11px',
+        fontWeight: 400,
         textTransform: 'uppercase',
         letterSpacing: '0.5px',
       },

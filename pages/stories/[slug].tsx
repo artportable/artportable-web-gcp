@@ -84,7 +84,7 @@ export default function StoryPage(props: StoryProps) {
         await promise;
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        // Error handling - removed console.log
       }
       //storyData.mutate();
     } else {
@@ -113,19 +113,7 @@ export default function StoryPage(props: StoryProps) {
     <Main wide navBarItems={navBarItems}>
       <Head>
         <title>{staticStory?.Title ?? "Artportable"}</title>
-        <meta
-          name="title"
-          content={
-            staticStory?.Name + " " + staticStory?.Surname ?? "Artportable"
-          }
-        />
-        <meta name="description" content={staticStory?.Title ?? ""} />
-        <meta
-          property="og:title"
-          content={
-            staticStory?.Name + " " + staticStory?.Surname ?? "Artportable"
-          }
-        />
+  
         <meta property="og:description" content={staticStory?.Title ?? ""} />
         <meta property="og:type" content="website" />
         <meta

@@ -25,15 +25,6 @@ export default function DiscoverArtistCardArticle({ artist }) {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const profileImage = profilePictureUrl ? `${bucketUrl}${profilePictureUrl}` : null;
 
-  // Debug profile picture
-  console.log('Profile picture debug:', {
-    username,
-    profilePictureUrl,
-    bucketUrl,
-    finalProfileImage: profileImage,
-    profileData
-  });
-
   // Get bio from profile data
   const artistBio = profileData?.Bio || 
                    profileData?.Description || 

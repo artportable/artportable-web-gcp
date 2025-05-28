@@ -152,7 +152,7 @@ export default function CategoryPage({
   };
 
   return (
-    <MainOption navBarItems={navBarItems} fullWidth={true}>
+    <MainOption navBarItems={navBarItems} fullWidth={true} noHeaderPadding={true}>
       <Head>
         <meta name="title" content={t("title", "withArtInFocus")} />
         <meta name="description" content={t("description")} />
@@ -161,9 +161,9 @@ export default function CategoryPage({
       </Head>
       {router.isFallback && (
         <div>
-          <h1>Loading category page...</h1>
-          <p>Path: {router.asPath}</p>
-          <p>This page is being generated...</p>
+          <h1>Sidan laddas...</h1>
+ 
+       
         </div>
       )}
       {!router.isFallback && (
@@ -362,6 +362,15 @@ export default function CategoryPage({
                   </Link>
                 </div>
               )) : null}
+            </div>
+            
+            {/* Visa mer button */}
+            <div className={s.storiesButtonContainer}>
+              <Link href="/newsroom">
+                <Button className={s.storiesButton}>
+                  Visa mer
+                </Button>
+              </Link>
             </div>
           </div>
 

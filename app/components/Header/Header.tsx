@@ -530,8 +530,8 @@ export default function Header({ navBarItems }) {
               )}
               {router.locale === "sv" && (
                 <div className={s.titlesOnHeader}>
-                  <Link href={`${t("header:storiesSlug")}`} passHref>
-                    {t("articles")}
+                  <Link href={`/${t("header:storiesSlug")}`} passHref>
+                    <a>{t("articles")}</a>
                   </Link>
                 </div>
               )}

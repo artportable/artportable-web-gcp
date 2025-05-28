@@ -72,9 +72,8 @@ export default function ArticlePage({
       </Head>
       {router.isFallback && (
         <div>
-          <h1>Loading article...</h1>
-          <p>Path: {router.asPath}</p>
-          <p>This article is being generated...</p>
+          <h1>Sidan laddas...</h1>
+
         </div>
       )}
       {!router.isFallback && (
@@ -110,12 +109,12 @@ export default function ArticlePage({
               )}
                 {article?.authors && article.authors.length > 0 && (
                   <Typography className={s.authorText}>
-                    By {article.authors.map(author => author.name).join(', ')}
+                    {t("by")} {article.authors.map(author => author.name).join(', ')}
                   </Typography>
                 )}
                 
                 <Typography className={s.dateText}>
-                  {new Date(article.published_at).toLocaleDateString('sv-se', {
+                  {t("published")} {new Date(article.published_at).toLocaleDateString('sv-se', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
