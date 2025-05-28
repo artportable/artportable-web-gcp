@@ -9,7 +9,7 @@ export const styles = makeStyles((theme: Theme) =>
       zIndex: 1,
       [theme.breakpoints.up("md")]: {
         height: "100%",
-        marginTop: "20px",
+        marginTop: "0px",
         width: "calc(100vw - 50px)",
       },
     },
@@ -18,21 +18,16 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "gray",
       margin: "32px 0",
     },
-    description: {
-      fontSize: "1.1rem",
-      fontWeight: 500,
-      lineHeight: "1.4rem",
-    },
-    div: {
-      maxWidth: "100%",
-      justifySelf: "center",
-      marginTop: theme.spacing(8),
-    },
-    div2: {
-      maxWidth: "100%",
+    lineSpaced: {
+      height: "2px",
+      backgroundColor: "#8080805e",
+      margin: "30px 0",
+      width: "100%",
     },
     articleImages: {
       fontFamily: "Joan",
+      maxWidth: "800px",
+      margin: "0 auto",
       "& figure": {
         textAlign: "center",
       },
@@ -51,54 +46,36 @@ export const styles = makeStyles((theme: Theme) =>
       },
       width: "fit-content",
     },
-
+    coverImage: {
+      width: "100vw",
+      marginLeft: "-25px",
+      marginRight: "-25px",
+      height: "200px",
+      objectFit: "cover",
+      marginBottom: "20px",
+      [theme.breakpoints.up("md")]: {
+        marginLeft: "-50px",
+        marginRight: "-50px",
+        width: "calc(100vw - 50px + 100px)",
+      },
+    },
+    categoryText: {
+      marginBottom: "0px",
+      color: "#666",
+      textTransform: "uppercase",
+      letterSpacing: "1px",
+    },
+    authorText: {
+      marginBottom: "0px",
+      fontStyle: "italic",
+    },
     headingDiv: {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      ...columnGap(16),
-    },
-
-    authorDiv: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      paddingTop: "32px",
-    },
-    authorAvatar: {
-      width: "70px",
-      height: "70px",
-      marginBottom: "15px",
-    },
-    authorText: {
-      fontWeight: 500,
-    },
-    findArt: {
-      display: "flex",
-      flexDirection: "column",
-      marginBottom: "27px",
-      alignItems: "center",
-      [theme.breakpoints.up("sm")]: {
-        flexDirection: "row",
-        justifyContent: "center",
-      },
-    },
-    artportable_logo: {
-      margin: "8px 0 0 0",
-      [theme.breakpoints.up("sm")]: {
-        margin: "2px 0 0 10px",
-      },
-    },
-    tagDiv: {
-      display: "flex",
-      justifyContent: "center",
-      ...rowGap(16),
-    },
-    background: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
+      maxWidth: "800px",  
+      margin: "0 auto",
+      ...columnGap(2),
     },
   })
 );

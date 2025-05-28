@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Main from "../../../app/components/Main/Main";
 import { Article } from "../../../app/models/Article";
 import { Category } from "../../../app/models/Category";
-import { Avatar, Typography, Paper } from "@material-ui/core";
+import { Avatar, Typography, Paper, Divider } from "@material-ui/core";
 import { styles } from "../../../styles/[articleSlug].css";
 import Button from "../../../app/components/Button/Button";
 import Link from "next/link";
@@ -13,7 +13,8 @@ import { fetchWithTimeout } from "../../../app/utils/util";
 import DiscoverArtistCardArticle from "../../../app/components/DiscoverArtistCard/DiscoverArtistCardArticle";
 import { useEffect } from "react";
 import { marked } from "marked";
-
+import MainOption from "../../../app/components/Main/MainOption";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export default function ArticlePage({
   article,
@@ -28,23 +29,15 @@ export default function ArticlePage({
   const { t } = useTranslation(["articles"]);
   const canonicalURL = publicUrl + router.asPath;
 
-  useEffect(() => {
-    console.log('ArticlePage Debug:', {
-      article: article,
-      coverImage: article?.coverImage,
-      coverImageFormats: article?.coverImage?.formats,
-      coverImageUrl: article?.coverImage?.url,
-      coverImageMediumUrl: article?.coverImage?.formats?.medium?.url,
-      hasPublishedAt: !!article?.published_at,
-      publishedAt: article?.published_at,
-      isFallback: router.isFallback,
-      routerReady: router.isReady,
-      params: router.query
-    });
-  }, [article, router]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Main>
+    <MainOption      
+    noHeaderPadding={isMobile ? true : false}
+    wide={false}
+    isShow={true}
+    fullWidth={true}>
       <Head>
         <title>{article?.title ?? "Artportable"}</title>
         <meta name="title" content={article?.title ?? "Artportable"} />
@@ -96,13 +89,7 @@ export default function ArticlePage({
             {/* Cover image as banner */}
             {article?.coverImage && (
               <img
-                style={{
-                  width: '100%',
-                  height: '500px',
-                  objectFit: 'cover',
-                  marginBottom: '20px',
-                  borderRadius: '8px 8px 0 0'
-                }}
+                className={s.coverImage}
                 src={
                   article.coverImage.formats?.medium?.url || 
                   article.coverImage.formats?.small?.url || 
@@ -110,29 +97,30 @@ export default function ArticlePage({
                   (typeof article.coverImage === 'string' ? article.coverImage : '')
                 }
                 alt="Cover image"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  console.log('Image failed to load:', target.src);
-                  console.log('Available coverImage data:', article.coverImage);
-                }}
+              
               />
             )}
             
             <div className={s.headingDiv}>
-              <Typography variant={"h1"}>{article.title}</Typography>
+          
               {article?.categories && article.categories.length > 0 && (
-                <Typography  style={{ marginBottom: '0px', color: '#666', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <Typography className={s.categoryText}>
                   {article.categories[0].name}
                 </Typography>
               )}
               {article?.authors && article.authors.length > 0 && (
-                <Typography  style={{ marginBottom: '0px', fontStyle: 'italic' }}>
+                <Typography className={s.authorText}>
                   By {article.authors.map(author => author.name).join(', ')}
                 </Typography>
               )}
               <Typography>{article.published_at?.slice(0, -14)}</Typography>
+      
+              <br />
+              <div className={s.lineSpaced}></div>
+              <br />
+              <Typography variant={"h1"}>{article.title}</Typography>
             </div>
-            <div className={s.line}></div>
+              
 
             <div
               dangerouslySetInnerHTML={{ 
@@ -156,29 +144,28 @@ export default function ArticlePage({
                 })
               }}
               className={s.articleImages}
-              style={{ maxWidth: '800px', margin: '0 auto' }}
             />
 
 
-            <div className={s.line} style={{ margin: '60px' }}></div>
+            <div className={s.lineSpaced}></div>
             {artist && artist.length > 0 && (
-            <div>
+                    <div>
               {artist.map((a) => {
                 return (
                   <DiscoverArtistCardArticle
                     key={a.SocialId || a.Username}
                     artist={a}
                   />
-                );
-              })}
-            </div>
-          )}
+                  );
+                })}
+              </div>
+            )}
          
           </div>
      
         </>
       )}
-    </Main>
+    </MainOption>
   );
 }
 

@@ -82,13 +82,18 @@ export default function CategoryPage({
           } : null
         });
 
-        // Combine and convert articles
+        // Combine and convert articles, removing duplicates by ID
         const allArticles = [
           ...(artiklarData.data || []).map(convertArticle),
           ...(konstnaersportraettData.data || []).map(convertArticle)
         ];
 
-        setArray(allArticles);
+        // Remove duplicates based on article ID
+        const uniqueArticles = allArticles.filter((article, index, self) => 
+          index === self.findIndex(a => a.id === article.id)
+        );
+
+        setArray(uniqueArticles);
       } catch (error) {
         console.error('Error fetching articles:', error);
         setArray([]);
@@ -164,32 +169,20 @@ export default function CategoryPage({
       {!router.isFallback && (
         <>
           <div className={s.flexHeaderButton}>
-       
-              <BannerText title={t("readAboutArt")} text={t("subHeader")}></BannerText>
-           
-            {/* <Divider /> */}
-     
+            <BannerText title={t("readAboutArt")} text={t("subHeader")}></BannerText>
           </div>
-      
 
           {/* Main Content with Sidebar Layout */}
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+          <div className={s.mainContainer}>
             {isLoadingArticles ? (
-              <div style={{ textAlign: 'center', padding: '40px' }}>
+              <div className={s.loadingContainer}>
                 <Typography>Loading articles...</Typography>
               </div>
             ) : (
-              <div style={{ display: 'flex', gap: '40px' }}>
-                {/* Left Column - Main Articles (Redaktionellt) */}
-                <div style={{ flex: '2' }}>
-                  <Typography variant="h3" style={{ 
-                    fontFamily: "Roboto !important",
-                    marginBottom: '30px', 
-                    marginTop: "20px",
-                    fontWeight: 'bold',
-                    color: '#333',
-                    fontSize: '32px'
-                  }}>
+              <div className={s.responsiveContainer}>
+                {/* Left Column - Redaktionellt */}
+                <div className={s.leftColumn}>
+                  <Typography variant="h3" className={s.sectionHeader}>
                     Redaktionellt
                   </Typography>
                   
@@ -200,137 +193,68 @@ export default function CategoryPage({
                                                 'artiklar';
                       
                       return (
-                        <div key={article.id} style={{ marginBottom: '30px' }}>
-                          <Link
-                            href={`/${router.locale}/${articleCategorySlug
-                              .toLowerCase()
-                              .replace(
-                                "konstnärsporträtt",
-                                "konstnaersportraett"
-                              )}/${article.slug}`}
-                          >
-                            <a style={{ textDecoration: 'none', color: 'inherit' }}>
-                              <div style={{
-                                display: 'flex',
-                                backgroundColor: '#fff',
-                                alignItems: 'center',
-                                paddingLeft:"20px",
-                                borderRadius: '8px',
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                                overflow: 'hidden',
-                                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                                cursor: 'pointer'
-                              }}
-    
-                              >
-                                {/* Image Section */}
-                                <div style={{
-                                  width: '250px',
-                                  height: '210px',
-                                  flexShrink: 0,
-                                  overflow: 'hidden'
-                                }}>
-                                  <img
-                                    alt="Cover Image"
-                                    src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
-                                    style={{
-                                      width: '100%',
-                                      height: '100%',
-                                      objectFit: 'cover'
-                                    }}
-                                  />
-                                </div>
+                        <a
+                          href={`/${router.locale}/${articleCategorySlug
+                            .toLowerCase()
+                            .replace(
+                              "konstnärsporträtt",
+                              "konstnaersportraett"
+                            )}/${article.slug}`}
+                          key={article.id}
+                        >
+                          <div className={s.articleCard}>
+                         
+                            <div className={s.articleImage}>
+                              <img
+                                alt="Cover Image"
+                                src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
+                              />
+                            </div>
+                            
+                            {/* Content Section */}
+                            <div className={s.articleContent}>
+                              <div>
+                                {/* Category */}
+                                <Typography className={s.articleCategory}>
+                                  {article?.categories?.[0]?.name || 'Artikel'}
+                                </Typography>
                                 
-                                {/* Content Section */}
-                                <div style={{
-                                  flex: 1,
-                                  padding: '20px',
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  justifyContent: 'space-between'
-                                }}>
-                                  <div>
-                                    {/* Category */}
-                                    <Typography style={{
-                                      color: '#1976d2',
-                                      fontSize: '14px',
-                                      fontWeight: '500',
-                                      marginBottom: '8px',
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.5px'
-                                    }}>
-                                      {article?.categories?.[0]?.name || 'Artikel'}
-                                    </Typography>
-                                    
-                                    {/* Date */}
-                                    <Typography style={{
-                                      color: '#666',
-                                      fontSize: '14px',
-                                      marginBottom: '12px'
-                                    }}>
-                                      {article?.published_at?.slice(0, 10)}
-                                    </Typography>
-                                    
-                                    {/* Title */}
-                                    <Typography style={{
-                                      fontSize: '22px',
-                                      fontWeight: 'bold',
-                                      color: '#333',
-                                      lineHeight: '1.3',
-                                      marginBottom: '12px',
-                                      fontFamily: 'Roboto'
-                                    }}>
-                                      {article?.title}
-                                    </Typography>
-                                    
-                                    {/* Description */}
-                                    <Typography style={{
-                                      color: '#666',
-                                      fontSize: '15px',
-                                      lineHeight: '1.5',
-                                      marginBottom: '16px',
-                                      fontFamily: 'Joan'
-                                    }}>
-                                      {article?.description?.slice(0, 120)}...
-                                    </Typography>
-                                  </div>
-                                  
-                                  {/* Read More */}
-                                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Typography style={{
-                                      color: 'gray',
-                                      fontSize: '14px',
-                                      fontWeight: '600',
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.5px'
-                                    }}>
-                                      LÄS MER
-                                    </Typography>
-                                  </div>
-                                </div>
+                                {/* Date */}
+                                <Typography className={s.articleDate}>
+                                  {article?.published_at?.slice(0, 10)}
+                                </Typography>
+                                
+                                {/* Title */}
+                                <Typography className={s.articleTitle}>
+                                  {article?.title}
+                                </Typography>
+                                
+                                {/* Description */}
+                                <Typography className={s.articleDescription}>
+                                  {article?.description?.slice(0, 120)}...
+                                </Typography>
                               </div>
-                            </a>
-                          </Link>
-                        </div>
+                              
+                              {/* Read More */}
+                              <div className={s.readMore}>
+                                <span>LÄS MER</span>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
                       );
                     }
                     return null;
                   }) : (
-                    <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+                    <div className={s.noArticlesContainer}>
                       No articles found
                     </div>
                   )}
                 </div>
 
-                {/* Right Column - Sidebar (Fler Nyheter) */}
-                <div style={{ flex: '1', minWidth: '300px' }}>
-                  <Typography variant="h4" style={{ 
-                    marginBottom: '30px', 
-                    fontWeight: 'bold',
-                    marginTop: "20px",
-                    color: '#333',
-                    fontSize: '24px'
-                  }}>
+                {/* Right Column - Fler Nyheter */}
+                <div className={s.rightColumn}>
+                  <Typography variant="h4" className={s.sectionHeader}>
                     Fler Nyheter
                   </Typography>
                   
@@ -341,7 +265,7 @@ export default function CategoryPage({
                                                 'artiklar';
                       
                       return (
-                        <div key={`sidebar-${article.id}`} style={{ marginBottom: '20px' }}>
+                        <div key={`sidebar-${article.id}`}>
                           <Link
                             href={`/${router.locale}/${articleCategorySlug
                               .toLowerCase()
@@ -350,53 +274,43 @@ export default function CategoryPage({
                                 "konstnaersportraett"
                               )}/${article.slug}`}
                           >
-                            <a style={{ textDecoration: 'none', color: 'inherit' }}>
-                              <div style={{
-                                backgroundColor: '#fff',
-                                borderRadius: '8px',
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                                overflow: 'hidden',
-                                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                                cursor: 'pointer'
-                              }}
-                           >
-                                {/* Content Section */}
-                                <div style={{ padding: '16px' }}>
-                                  {/* Category */}
-                                  <Typography style={{
-                                    color: '#1976d2',
-                                    fontSize: '12px',
-                                    fontWeight: '500',
-                                    marginBottom: '6px',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px'
-                                  }}>
-                                    {article?.categories?.[0]?.name || 'Artikel'}
-                                  </Typography>
-                                  
-                                  {/* Title */}
-                                  <Typography style={{
-                                    fontSize: '16px',
-                                    fontWeight: 'bold',
-                                    color: '#333',
-                                    lineHeight: '1.3',
-                                    marginBottom: '8px',
-                                    fontFamily: 'LyonDisplay'
-                                  }}>
-                                    {article?.title}
-                                  </Typography>
-                                  
-                                  {/* Date */}
-                                  <Typography style={{
-                                    color: '#666',
-                                    fontSize: '12px',
-                                    marginBottom: '8px'
-                                  }}>
-                                    {article?.published_at?.slice(0, 10)}
-                                  </Typography>
+                            <div className={s.rightColumnCard}>
+                              {/* Image Section */}
+                              <div className={s.rightColumnImage}>
+                                <img
+                                  alt="Cover Image"
+                                  src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
+                                />
+                              </div>
+                              
+                              {/* Content Section */}
+                              <div>
+                                {/* Category */}
+                                <Typography className={s.rightColumnCategory}>
+                                  {article?.categories?.[0]?.name || 'Artikel'}
+                                </Typography>
+                                
+                                {/* Date */}
+                                <Typography className={s.rightColumnDate}>
+                                  {article?.published_at?.slice(0, 10)}
+                                </Typography>
+                                
+                                {/* Title */}
+                                <Typography className={s.rightColumnTitle}>
+                                  {article?.title}
+                                </Typography>
+                                
+                                {/* Description */}
+                                <Typography className={s.rightColumnDescription}>
+                                  {article?.description?.slice(0, 80)}...
+                                </Typography>
+                                
+                                {/* Read More */}
+                                <div className={s.rightColumnReadMore}>
+                                  <span>LÄS MER</span>
                                 </div>
                               </div>
-                            </a>
+                            </div>
                           </Link>
                         </div>
                       );
@@ -408,44 +322,57 @@ export default function CategoryPage({
             )}
           </div>
 
-          <div style={{  margin: "0 auto" }}>
-              <Typography variant="h4" style={{ 
-                marginBottom: '30px', 
-                textAlign: 'center',
-                fontWeight: 'bold',
-                color: '#333'
-              }}>
-                Latest Stories
-              </Typography>
-              
-              {storiesLoading ? (
-                <div style={{ textAlign: 'center', padding: '20px' }}>
-                  <Typography>Loading stories...</Typography>
+          {/* Senaste från konstnärer - Separate Section */}
+          <div className={s.storiesContainer}>
+            <Typography variant="h3" className={s.sectionHeader}>
+              Senaste från konstnärer
+            </Typography>
+            
+            <div className={s.storiesGrid}>
+              {displayStories && displayStories.length > 0 ? displayStories.slice(0, 4).map((story) => (
+                <div key={`stories-${story.Id}`}>
+                  <Link href={story?.Slug ? `/stories/${story.Slug}` : `/story/${story.Id}`}>
+                    <div className={s.storyCard}>
+                      {/* Image Section */}
+                      <div className={s.storyImage}>
+                        <img
+                          alt="Story Image"
+                          src={`${process.env.NEXT_PUBLIC_BUCKET_URL}${story?.PrimaryFile?.Name}`}
+                        />
+                      </div>
+                      
+                      {/* Content Section */}
+                      <div>
+                        {/* Author */}
+                        <Typography className={s.storyAuthor}>
+                          {story.Name} {story.Surname}
+                        </Typography>
+                        
+                        {/* Title */}
+                        <Typography className={s.storyTitle}>
+                          {story?.Title}
+                        </Typography>
+                        
+                        {/* Read More */}
+                        <div className={s.storyReadMore}>
+                          <span>VISA MER</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-              ) : (
-                <Grid container spacing={3} justifyContent="center">
-                  {displayStories.map((story) => (
-                    <Grid item xs={12} sm={6} md={3} key={story.Id}>
-                      <StoryComponent story={story} isIndex={true} showDescription={false} />
-                    </Grid>
-                  ))}
-                </Grid>
-              )}
+              )) : null}
             </div>
+          </div>
 
-          {/* Fler Konstnärsporträtt Section */}
-          <div style={{ maxWidth: '1200px', margin: '60px auto 0', padding: '0 20px' }}>
-            <Typography variant="h3" style={{ 
-              marginBottom: '30px', 
-              fontWeight: 'bold',
-              color: '#333',
-              fontSize: '28px'
-            }}>
+          {/* Fler Konstnärsporträtt - Separate Section */}
+          <div className={s.portraitsContainer}>
+            <Typography variant="h3" className={s.sectionHeader}>
               Fler Konstnärsporträtt
             </Typography>
             
             {isLoadingArticles ? (
-              <div style={{ textAlign: 'center', padding: '40px' }}>
+              <div className={s.loadingContainer}>
                 <Typography>Loading artist portraits...</Typography>
               </div>
             ) : array && array.length > 0 ? (
@@ -454,115 +381,54 @@ export default function CategoryPage({
                   article.categories?.some(cat => cat.slug === 'konstnaersportraett') ||
                   article.publishCategory?.slug === 'konstnaersportraett'
                 )
+                .slice(0, 2)
                 .map((article) => {
                   if (article && article.published_at) {
                     const articleCategorySlug = 'konstnaersportraett';
                     return (
-                      <div key={`portrait-${article.id}`} style={{ marginBottom: '30px' }}>
+                      <div key={`portrait-${article.id}`}>
                         <Link
                           href={`/${router.locale}/${articleCategorySlug}/${article.slug}`}
                         >
-                          <a style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <div style={{
-                              display: 'flex',
-                              backgroundColor: '#fff',
-                              alignItems: 'center',
-                              paddingLeft:"20px",
-                              borderRadius: '8px',
-                              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                              overflow: 'hidden',
-                              transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                              cursor: 'pointer'
-                            }}
-                         >
-                              {/* Image Section */}
-                              <div style={{
-                                width: '300px',
-                                height: '200px',
-                                flexShrink: 0,
-                                overflow: 'hidden'
-                              }}>
-                                <img
-                                  alt="Cover Image"
-                                  src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
-                                  style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover'
-                                  }}
-                                />
+                          <div className={s.portraitCard}>
+                            {/* Image Section */}
+                            <div className={s.portraitImage}>
+                              <img
+                                alt="Cover Image"
+                                src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
+                              />
+                            </div>
+                            
+                            {/* Content Section */}
+                            <div className={s.portraitContent}>
+                              <div>
+                                {/* Category */}
+                                <Typography className={s.portraitCategory}>
+                                  Konstnärsporträtt
+                                </Typography>
+                                
+                                {/* Date */}
+                                <Typography className={s.portraitDate}>
+                                  {article?.published_at?.slice(0, 10)}
+                                </Typography>
+                                
+                                {/* Title */}
+                                <Typography className={s.portraitTitle}>
+                                  {article?.title}
+                                </Typography>
+                                
+                                {/* Description */}
+                                <Typography className={s.portraitDescription}>
+                                  {article?.description?.slice(0, 120)}...
+                                </Typography>
                               </div>
                               
-                              {/* Content Section */}
-                              <div style={{
-                                flex: 1,
-                                padding: '24px',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'space-between'
-                              }}>
-                                <div>
-                                  {/* Category */}
-                                  <Typography style={{
-                                    color: '#1976d2',
-                                    fontSize: '14px',
-                                    fontWeight: '500',
-                                    marginBottom: '8px',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px'
-                                  }}>
-                                    Konstnärsporträtt
-                                  </Typography>
-                                  
-                                  {/* Date */}
-                                  <Typography style={{
-                                    color: '#666',
-                                    fontSize: '14px',
-                                    marginBottom: '12px'
-                                  }}>
-                                    {article?.published_at?.slice(0, 10)}
-                                  </Typography>
-                                  
-                                  {/* Title */}
-                                  <Typography style={{
-                                    fontSize: '24px',
-                                    fontWeight: 'bold',
-                                    color: '#333',
-                                    lineHeight: '1.3',
-                                    marginBottom: '12px',
-                                    fontFamily: 'LyonDisplay'
-                                  }}>
-                                    {article?.title}
-                                    {router.locale !== article?.locale ? " (In Swedish)" : ""}
-                                  </Typography>
-                                  
-                                  {/* Description */}
-                                  <Typography style={{
-                                    color: '#666',
-                                    fontSize: '16px',
-                                    lineHeight: '1.5',
-                                    marginBottom: '16px',
-                                    fontFamily: 'Joan'
-                                  }}>
-                                    {article?.description}
-                                  </Typography>
-                                </div>
-                                
-                                {/* Read More */}
-                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                  <Typography style={{
-                                    color: '#1976d2',
-                                    fontSize: '14px',
-                                    fontWeight: '600',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px'
-                                  }}>
-                                    LÄS MER
-                                  </Typography>
-                                </div>
+                              {/* Read More */}
+                              <div className={s.portraitReadMore}>
+                                <span>LÄS MER</span>
                               </div>
                             </div>
-                          </a>
+                          </div>
                         </Link>
                       </div>
                     );
@@ -570,7 +436,7 @@ export default function CategoryPage({
                   return null;
                 })
             ) : (
-              <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
+              <div className={s.noArticlesContainer}>
                 No artist portraits found
               </div>
             )}

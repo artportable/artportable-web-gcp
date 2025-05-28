@@ -528,11 +528,11 @@ export default function Header({ navBarItems }) {
                   <Link href="/feed">{t("myArtNetwork")}</Link>
                 </div>
               )}
-              {/* <div className={s.titlesOnHeader}>
+              <div className={s.titlesOnHeader}>
                 <Link href={`${t("header:storiesSlug")}`} passHref>
                   {t("articles")}
                 </Link>
-              </div> */}
+              </div>
             </div>
           </div>
 
