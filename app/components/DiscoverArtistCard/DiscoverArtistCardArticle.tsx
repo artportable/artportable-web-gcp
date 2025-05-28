@@ -41,7 +41,7 @@ export default function DiscoverArtistCardArticle({ artist }) {
         backgroundColor: 'transparent',
         marginTop: '40px'
       }}>
-        <Typography>Loading artist information...</Typography>
+        <Typography>Laddar...</Typography>
       </div>
     );
   }
@@ -51,7 +51,7 @@ export default function DiscoverArtistCardArticle({ artist }) {
       {/* Artist section */}
       <div style={{ 
         textAlign: 'center', 
-        padding: '60px 20px', 
+        padding: '60px 0px', 
         backgroundColor: 'transparent',
         marginTop: '40px'
       }}>
@@ -123,7 +123,7 @@ export default function DiscoverArtistCardArticle({ artist }) {
       {/* Call to action section */}
       <div style={{
         textAlign: 'center',
-        padding: '60px 20px',
+        padding: '40px 0px',
         backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center'

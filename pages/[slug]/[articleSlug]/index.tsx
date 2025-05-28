@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { marked } from "marked";
 import MainOption from "../../../app/components/Main/MainOption";
 import { useMediaQuery, useTheme } from "@mui/material";
+import React from "react";
 
 export default function ArticlePage({
   article,
@@ -57,12 +58,12 @@ export default function ArticlePage({
         />
         <meta property="og:datePublished" content={article?.published_at} />
         <meta property="og:dateModified" content={article?.updated_at} />
-        {article?.authors?.map((author) => {
+        {article?.authors?.map((author, index) => {
           return (
-            <>
+            <React.Fragment key={`author-${author.id || index}`}>
               <meta property="og:author" content={author.name} />
               <meta name="author" content={author.name} />
-            </>
+            </React.Fragment>
           );
         })}
         <link
@@ -71,9 +72,78 @@ export default function ArticlePage({
         />
       </Head>
       {router.isFallback && (
-        <div>
-          <h1>Sidan laddas...</h1>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '60vh',
+          padding: '40px 20px',
+    
+        }}>
+          {/* Animated spinner */}
+          <div style={{
+            width: '60px',
+            height: '60px',
+            border: '4px solid #e3e3e3',
+            borderTop: '4px solid #007bff',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            marginBottom: '30px',
+          }} />
+          
+          {/* Animated text */}
+          <h1 style={{
+            background: 'linear-gradient(45deg, #007bff, #6c5ce7, #a29bfe)',
+            backgroundSize: '200% 200%',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            fontSize: '28px',
+            fontWeight: 'bold',
+            fontFamily: 'Roboto, sans-serif',
+            animation: 'gradient 2s ease-in-out infinite alternate, fadeIn 0.8s ease-out',
+            textAlign: 'center',
+            margin: 0,
+          }}>
+            Artikeln laddas...
+          </h1>
+          
+          {/* Subtitle */}
+          <p style={{
+            color: '#666',
+            fontSize: '16px',
+            fontFamily: 'Joan, serif',
+            marginTop: '15px',
+            animation: 'fadeIn 1.2s ease-out',
+            textAlign: 'center',
+          }}>
+            Vi förbereder innehållet åt dig
+          </p>
 
+          {/* CSS animations */}
+          <style jsx>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            
+            @keyframes gradient {
+              0% { background-position: 0% 50%; }
+              100% { background-position: 100% 50%; }
+            }
+            
+            @keyframes fadeIn {
+              0% { 
+                opacity: 0; 
+                transform: translateY(20px); 
+              }
+              100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+              }
+            }
+          `}</style>
         </div>
       )}
       {!router.isFallback && (

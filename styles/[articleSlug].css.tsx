@@ -288,14 +288,12 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     articleContent: {
-      padding: "0 30px",
+      padding: "0px 10px 0px 10px",
+ 
       [theme.breakpoints.up("md")]: {
         padding: "20px",
       },
-      [theme.breakpoints.down("sm")]: {
-        padding: "20px",
-        width: "100%",
-      },
+   
     },
     metaInfo: {
       display: "flex",
