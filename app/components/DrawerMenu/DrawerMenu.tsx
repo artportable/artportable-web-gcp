@@ -522,7 +522,7 @@ export default function DrawerMenu({
             </ListItem>
           </a>
         </Link> */}
-        {isSignedIn.value && (
+        {/* {isSignedIn.value && (
           <Link href="/medlemserbjudanden" passHref>
             <a>
               <ListItem button divider onClick={() => close()}>
@@ -530,7 +530,7 @@ export default function DrawerMenu({
               </ListItem>
             </a>
           </Link>
-        )}
+        )} */}
         {/* <Link href="/showroom" passHref>
           <a>
             <ListItem button divider onClick={() => close()}>
