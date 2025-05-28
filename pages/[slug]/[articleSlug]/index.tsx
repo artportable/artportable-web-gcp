@@ -86,7 +86,7 @@ export default function ArticlePage({
           )}
 
           <div className={s.paper}>
-            {/* Cover image as banner */}
+            {/* Cover image */}
             {article?.coverImage && (
               <img
                 className={s.coverImage}
@@ -97,70 +97,64 @@ export default function ArticlePage({
                   (typeof article.coverImage === 'string' ? article.coverImage : '')
                 }
                 alt="Cover image"
-              
               />
             )}
             
             <div className={s.headingDiv}>
-          
               {article?.categories && article.categories.length > 0 && (
                 <Typography className={s.categoryText}>
                   {article.categories[0].name}
                 </Typography>
               )}
+              
+              <Typography className={s.articleTitle}>
+                {article.title}
+              </Typography>
+              
+              <div className={s.lineSpaced}></div>
+              
               {article?.authors && article.authors.length > 0 && (
                 <Typography className={s.authorText}>
                   By {article.authors.map(author => author.name).join(', ')}
                 </Typography>
               )}
-              <Typography>{article.published_at?.slice(0, -14)}</Typography>
-      
-              <br />
-              <div className={s.lineSpaced}></div>
-              <br />
-              <Typography variant={"h1"}>{article.title}</Typography>
-            </div>
               
+              <Typography className={s.dateText}>
+                {article.published_at?.slice(0, 10)}
+              </Typography>
+            </div>
 
-            <div
-              dangerouslySetInnerHTML={{ 
-                __html: marked(article.content || '', {
-                  renderer: (() => {
-                    const renderer = new marked.Renderer();
-                    renderer.image = function({ href, title, text }) {
-                      // Log the image details for debugging
-                      console.log('Processing image:', { href, title, text });
-                      
-                      // Check if it's a GCS signed URL that might be expired
-                      if (href && href.includes('storage.googleapis.com') && href.includes('X-Goog-Signature')) {
-                        console.log('Found GCS signed URL, might be expired:', href);
-                        // You might want to handle this differently, for now just show the image
-                      }
-                      
-                      return `<img src="${href}" alt="${text}" title="${title || ''}" style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px;" />`;
-                    };
-                    return renderer;
-                  })()
-                })
-              }}
-              className={s.articleImages}
-            />
+            <div className={s.articleContent}>
+              <div
+                dangerouslySetInnerHTML={{ 
+                  __html: marked(article.content || '', {
+                    renderer: (() => {
+                      const renderer = new marked.Renderer();
+                      renderer.image = function({ href, title, text }) {
+                        return `<img src="${href}" alt="${text}" title="${title || ''}" style="max-width: 100%; height: auto; margin: 30px 0; border-radius: 4px;" />`;
+                      };
+                      return renderer;
+                    })()
+                  })
+                }}
+                className={s.articleImages}
+              />
+            </div>
 
-
-            <div className={s.lineSpaced}></div>
+            <div className={s.line}></div>
+            
             {artist && artist.length > 0 && (
-                    <div>
-              {artist.map((a) => {
-                return (
-                  <DiscoverArtistCardArticle
-                    key={a.SocialId || a.Username}
-                    artist={a}
-                  />
+              <div>
+                {artist.map((a) => {
+                  return (
+                    <DiscoverArtistCardArticle
+                      key={a.SocialId || a.Username}
+                      artist={a}
+                    />
                   );
                 })}
               </div>
             )}
-         
           </div>
      
         </>
