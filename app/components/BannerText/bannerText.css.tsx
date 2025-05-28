@@ -7,16 +7,14 @@ export const styles = makeStyles((theme: Theme) =>
       backgroundColor: "#222222",
       color: "white",
       width: "100vw",
-      margin: "0 auto",
       marginTop: "0px",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-   
+      alignItems: "center", 
       marginBottom: "20px",
-      padding: "30px",
+      padding: "0px",
       [theme.breakpoints.up("smPlus")]: { 
-
         marginTop: "30px",
         padding :"0px" },
     },
@@ -24,7 +22,8 @@ export const styles = makeStyles((theme: Theme) =>
     title: {
       fontFamily: "Roboto",
       fontWeight: 500,
-      fontSize: "20px",
+      fontSize: "18px",
+      width: "70%",
       marginLeft: "20px",
       marginRight: "20px",
       [theme.breakpoints.up("smPlus")]: {
@@ -33,9 +32,9 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     text: {
-      fontSize: "11px",
+      fontSize: "9px",
       fontFamily: "Joan",
-      maxWidth: "1000px",
+      width: "70%",
       marginLeft: "20px",
       marginRight: "20px",
       [theme.breakpoints.up("smPlus")]: {

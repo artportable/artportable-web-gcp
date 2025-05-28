@@ -12,6 +12,8 @@ module.exports = withBundleAnalyzer({
     domains: [
       "artportabletest.blob.core.windows.net",
       "artportableprod.blob.core.windows.net",
+      "artportable-assets.storage.googleapis.com",
+      "storage.googleapis.com"
     ],
 
     loader: "default",

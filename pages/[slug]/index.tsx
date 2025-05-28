@@ -4,247 +4,155 @@ import { Locales } from "../../app/models/i18n/locales";
 import { Article } from "../../app/models/Article";
 import { Localization } from "../../app/models/Localization";
 import CategoryPage from "../../app/components/CategoryPage/CategoryPage";
-import ProductListPage from "../../app/components/ProductListPage/ProductListPage";
-import { ProductList } from "../../app/models/ProductList";
 import { NavBarItem } from "../../app/models/NavBarItem";
 import { getNavBarItems } from "../../app/utils/getNavBarItems";
-import { fetchWithTimeout } from "../../app/utils/util";
-import { useEffect } from "react";
 
 export default function slugPage({
   category = null,
-  productList = null,
   navBarItems = [],
 }: {
   category: Category;
-  productList: ProductList;
   navBarItems: NavBarItem[];
 }) {
-  const page = () => {
-    if (category)
-      return <CategoryPage category={category} navBarItems={navBarItems} />;
-    if (productList)
-      return (
-        <ProductListPage productList={productList} navBarItems={navBarItems} />
-      );
-    return <></>;
-  };
-
-  return page();
+  if (category) {
+    return <CategoryPage category={category} navBarItems={navBarItems} />;
+  }
+  return <></>;
 }
 
 export async function getStaticProps({ params, locale }) {
-  let pageType;
-
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}?populate=articles,articles.coverImage,articles.authors,articles.authors.picture,localizations`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories?filters[slug][$eq]=${params.slug}&populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*`,
     {
-      // timeout: 11000
+      // timeout: 110000 
     }
   );
 
-  if (res.ok) {
-    pageType = "articleCategory";
-  } else {
-    res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/slug/${params.slug}`,
+  if (!res.ok) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const response = await res.json();
+  var category = response.data[0];
+  
+  if (!category) {
+    return { notFound: true };
+  }
+
+  // Extract attributes and add id for v4 compatibility
+  const categoryData = {
+    id: category.id,
+    ...category.attributes,
+    // Convert articles from v4 format
+    articles: category.attributes.articles?.data?.map(article => ({
+      id: article.id,
+      ...article.attributes,
+      // Map publishedAt to published_at for compatibility
+      published_at: article.attributes.publishedAt,
+      coverImage: article.attributes.coverImage?.data?.attributes || null,
+      authors: article.attributes.authors?.data?.map(author => ({
+        id: author.id,
+        ...author.attributes,
+        picture: author.attributes.picture?.data?.attributes || null
+      })) || []
+    })) || []
+  };
+
+  const navBarItems = await getNavBarItems();
+
+  if (locale != categoryData.locale) {
+    var newLocale = categoryData.localizations?.data?.find(
+      (categoryLocale: any) => categoryLocale.attributes.locale == locale
+    );
+
+    if (newLocale == null) {
+      return {
+        notFound: true,
+      };
+    }
+
+    let localeRes = await fetch(
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories/${newLocale.id}?populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*`,
       {
         // timeout: 11000
       }
     );
+    
+    if (localeRes.ok) {
+      const localeResponse = await localeRes.json();
+      const localizedCategory = {
+        id: localeResponse.data.id,
+        ...localeResponse.data.attributes,
+        // Convert articles from v4 format
+        articles: localeResponse.data.attributes.articles?.data?.map(article => ({
+          id: article.id,
+          ...article.attributes,
+          // Map publishedAt to published_at for compatibility
+          published_at: article.attributes.publishedAt,
+          coverImage: article.attributes.coverImage?.data?.attributes || null,
+          authors: article.attributes.authors?.data?.map(author => ({
+            id: author.id,
+            ...author.attributes,
+            picture: author.attributes.picture?.data?.attributes || null
+          })) || []
+        })) || []
+      };
 
-    if (res.ok) {
-      pageType = "productList";
-    } else {
       return {
-        notFound: true,
+        redirect: {
+          destination: `/${locale}/${localizedCategory.slug}`,
+          permanent: true,
+        },
       };
     }
   }
 
-  const navBarItems = await getNavBarItems();
-  switch (pageType) {
-    case "articleCategory":
-      var category = await res.json();
-
-      if (locale != category.locale) {
-        var newLocale = category.localizations.find(
-          (categoryLocale: Localization) => categoryLocale.locale == locale
-        );
-
-        if (newLocale == null) {
-          return {
-            notFound: true,
-          };
-        }
-
-        let res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/${newLocale.id}?populate=articles,articles.authors,articles.coverImage,articles.authors.picture,localizations`,
-          {
-            // timeout: 11000
-          }
-        );
-        category = await res.json();
-
-        return {
-          redirect: {
-            destination: `/${locale}/${category.slug}`,
-            permanent: true,
-          },
-        };
-      }
-
-      if (
-        category.locale !== Locales.sv &&
-        category.locale !== Locales.en &&
-        category.locale !== Locales.nb &&
-        category.locale !== Locales.da &&
-        category.locale !== Locales.is
-      ) {
-        var localizedCategory = category.localizations.find(
-          (locale) => locale.locale === locale
-        );
-
-        if (localizedCategory) {
-          let res = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?categories[]=${localizedCategory.id}`,
-            {
-              // timeout: 11000
-            }
-          );
-
-          var localizedArticles: Article[] = await res.json();
-
-          if (localizedArticles && localizedArticles.length > 0) {
-            localizedArticles = localizedArticles.filter(
-              (article) =>
-                !article.localizations.some(
-                  (locale) =>
-                    locale.locale == Locales.en ||
-                    locale.locale == Locales.sv ||
-                    locale.locale == Locales.nb ||
-                    locale.locale == Locales.da ||
-                    locale.locale == Locales.is
-                )
-            );
-
-            category.articles.push(...localizedArticles);
-          }
-        }
-      }
-
-      return {
-        props: {
-          navBarItems: navBarItems,
-          category: category,
-          ...(await serverSideTranslations(locale, [
-            "articles",
-            "common",
-            "header",
-            "footer",
-            "profile",
-            "tags",
-            "art",
-            "upload",
-            "support",
-            "plans",
-          ])),
-        },
-        revalidate: 60,
-      };
-
-    case "productList":
-      var productList = await res.json();
-
-      if (locale != productList.locale) {
-        var newLocale = productList.localizations.find(
-          (productListLocale) => productListLocale.locale == locale
-        );
-        if (newLocale == null) {
-          return {
-            notFound: true,
-          };
-        }
-
-        let res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists/${newLocale.id}`,
-          {
-            // timeout: 11000
-          }
-        );
-        productList = await res.json();
-
-        return {
-          redirect: {
-            destination: `/${productList.slug}`,
-            permanent: true,
-          },
-        };
-      }
-
-      return {
-        props: {
-          navBarItems: navBarItems,
-          productList: productList,
-          ...(await serverSideTranslations(locale, [
-            "articles",
-            "common",
-            "header",
-            "footer",
-            "profile",
-            "tags",
-            "art",
-            "upload",
-            "support",
-            "plans",
-          ])),
-        },
-        revalidate: 60,
-      };
-
-    default:
-      return {
-        props: {},
-        notFound: true,
-        revalidate: 60,
-      };
-  }
+  return {
+    props: {
+      navBarItems: navBarItems,
+      category: categoryData,
+      ...(await serverSideTranslations(locale, [
+        "articles",
+        "common",
+        "header",
+        "footer",
+        "profile",
+        "tags",
+        "art",
+        "upload",
+        "support",
+        "plans",
+      ])),
+    },
+    revalidate: 60,
+  };
 }
 
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/categories`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories`, {
     // timeout: 11000
   });
-  const categories = await res.json();
+  
+  if (!res.ok) {
+    return { paths: [], fallback: true };
+  }
 
-  const result = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/productlists`,
-    {
-      // timeout: 11000
-    }
-  );
-  const productlists = await result.json();
+  const response = await res.json();
+  const categories = response.data;
 
   var categoriesPaths = [];
-  var productListsPaths = [];
-  // Get the paths we want to pre-render based on posts
-  if (categories)
-    categoriesPaths = categories.map((category: Category) => ({
-      params: { slug: category.slug },
-      locale: category.locale,
+  
+  if (categories) {
+    categoriesPaths = categories.map((category: any) => ({
+      params: { slug: category.attributes.slug },
+      locale: category.attributes.locale,
     }));
-  if (productlists)
-    productListsPaths = productlists.map((productList) => ({
-      params: { slug: productList.slug },
-      locale: productList.locale,
-    }));
+  }
 
-  const paths = [...categoriesPaths, ...productListsPaths];
-  // We'll pre-render only these paths at build time.
-  // {fallback: blocking } will server-render pages
-  // on-demand if the path doesn't exist.
-  return { paths, fallback: true };
+  return { paths: categoriesPaths, fallback: true };
 }

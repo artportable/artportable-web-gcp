@@ -3,15 +3,19 @@ import { useRouter } from "next/router";
 import Main from "../../../app/components/Main/Main";
 import { Article } from "../../../app/models/Article";
 import { Category } from "../../../app/models/Category";
-import { Avatar, Typography, Paper } from "@material-ui/core";
+import { Avatar, Typography, Paper, Divider } from "@material-ui/core";
 import { styles } from "../../../styles/[articleSlug].css";
 import Button from "../../../app/components/Button/Button";
 import Link from "next/link";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { fetchWithTimeout } from "../../../app/utils/util";
-import DiscoverArtistCard from "../../../app/components/DiscoverArtistCard/DiscoverArtistCard";
+import DiscoverArtistCardArticle from "../../../app/components/DiscoverArtistCard/DiscoverArtistCardArticle";
 import { useEffect } from "react";
+import { marked } from "marked";
+import MainOption from "../../../app/components/Main/MainOption";
+import { useMediaQuery, useTheme } from "@mui/material";
+import React from "react";
 
 export default function ArticlePage({
   article,
@@ -26,12 +30,15 @@ export default function ArticlePage({
   const { t } = useTranslation(["articles"]);
   const canonicalURL = publicUrl + router.asPath;
 
-  useEffect(() => {
-    console.log(encodeURIComponent);
-  }, []);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Main>
+    <MainOption      
+    noHeaderPadding={isMobile ? true : false}
+    wide={false}
+    isShow={true}
+    fullWidth={true}>
       <Head>
         <title>{article?.title ?? "Artportable"}</title>
         <meta name="title" content={article?.title ?? "Artportable"} />
@@ -51,12 +58,12 @@ export default function ArticlePage({
         />
         <meta property="og:datePublished" content={article?.published_at} />
         <meta property="og:dateModified" content={article?.updated_at} />
-        {article?.authors?.map((author) => {
+        {article?.authors?.map((author, index) => {
           return (
-            <>
+            <React.Fragment key={`author-${author.id || index}`}>
               <meta property="og:author" content={author.name} />
               <meta name="author" content={author.name} />
-            </>
+            </React.Fragment>
           );
         })}
         <link
@@ -65,8 +72,79 @@ export default function ArticlePage({
         />
       </Head>
       {router.isFallback && (
-        //implement good skeleton here
-        <div>Loading...</div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '60vh',
+          padding: '40px 20px',
+    
+        }}>
+          {/* Animated spinner */}
+          <div style={{
+            width: '60px',
+            height: '60px',
+            border: '4px solid #e3e3e3',
+            borderTop: '4px solid #007bff',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            marginBottom: '30px',
+          }} />
+          
+          {/* Animated text */}
+          <h1 style={{
+            background: 'linear-gradient(45deg, #007bff, #6c5ce7, #a29bfe)',
+            backgroundSize: '200% 200%',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            fontSize: '28px',
+            fontWeight: 'bold',
+            fontFamily: 'Roboto, sans-serif',
+            animation: 'gradient 2s ease-in-out infinite alternate, fadeIn 0.8s ease-out',
+            textAlign: 'center',
+            margin: 0,
+          }}>
+            Artikeln laddas...
+          </h1>
+          
+          {/* Subtitle */}
+          <p style={{
+            color: '#666',
+            fontSize: '16px',
+            fontFamily: 'Joan, serif',
+            marginTop: '15px',
+            animation: 'fadeIn 1.2s ease-out',
+            textAlign: 'center',
+          }}>
+            Vi förbereder innehållet åt dig
+          </p>
+
+          {/* CSS animations */}
+          <style jsx>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            
+            @keyframes gradient {
+              0% { background-position: 0% 50%; }
+              100% { background-position: 100% 50%; }
+            }
+            
+            @keyframes fadeIn {
+              0% { 
+                opacity: 0; 
+                transform: translateY(20px); 
+              }
+              100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+              }
+            }
+          `}</style>
+        </div>
       )}
       {!router.isFallback && (
         <>
@@ -75,96 +153,103 @@ export default function ArticlePage({
               Preview Mode
             </Typography>
           )}
-          <img
-            className={s.background}
-            src={article?.coverImage?.formats?.medium?.url}
-            alt="background image"
-          />
 
-          <Paper className={s.paper}>
+          <div className={s.paper}>
+            {/* Cover image */}
+            {article?.coverImage && (
+              <img
+                className={s.coverImage}
+                src={
+                  article.coverImage.formats?.medium?.url || 
+                  article.coverImage.formats?.small?.url || 
+                  article.coverImage.url ||
+                  (typeof article.coverImage === 'string' ? article.coverImage : '')
+                }
+                alt="Cover image"
+              />
+            )}
+            
             <div className={s.headingDiv}>
-              <Typography variant={"h1"}>{article.title}</Typography>
-              <Typography>{article.published_at?.slice(0, -14)}</Typography>
-            </div>
-            <div className={s.line}></div>
-
-            <div
-              dangerouslySetInnerHTML={{ __html: article.content }}
-              className={s.articleImages}
-            />
-
-            {article?.authors?.map((author) => {
-              return (
-                <div className={s.authorDiv} key={author.id}>
-                  <Avatar
-                    src={author?.picture?.formats?.thumbnail?.url}
-                    className={s.authorAvatar}
-                  />
+           
+            <div className={s.metaInfo}>
+            {article?.categories && article.categories.length > 0 && (
+                <Typography className={s.categoryText}>
+                  {article.categories[0].name}
+                </Typography>
+              )}
+                {article?.authors && article.authors.length > 0 && (
                   <Typography className={s.authorText}>
-                    {author.name}
+                    {t("by")} {article.authors.map(author => author.name).join(', ')}
                   </Typography>
-                  {author.name === "Redaktion" ||
-                  author.name === "Editorial" ? null : (
-                    <div>
-                      <Typography>{t("writer")}</Typography>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                )}
+                
+                <Typography className={s.dateText}>
+                  {t("published")} {new Date(article.published_at).toLocaleDateString('sv-se', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </Typography>
+              </div>
+            </div>
+
+            <div className={s.articleContent}>
+            <Typography className={s.articleTitle}>
+                {article.title}
+              </Typography>
+              <div
+                dangerouslySetInnerHTML={{ 
+                  __html: (() => {
+                    const htmlContent = marked(article.content || '', {
+                      renderer: (() => {
+                        const renderer = new marked.Renderer();
+                        renderer.image = function({ href, title, text }) {
+                          return `<img src="${href}" alt="${text}" title="${title || ''}" style="width: 100%; height: auto; margin: 0; border-radius: 4px; display: block;" class="article-image" />`;
+                        };
+                        return renderer;
+                      })()
+                    }) as string;
+                    
+                    // Post-process to wrap consecutive images in a flex container
+                    return htmlContent.replace(
+                      /(<p><img[^>]*><\/p>\s*<p><a[^>]*>[^<]*<\/a><\/p>\s*)+/g,
+                      (match) => {
+                        // Extract image+link pairs
+                        const pairs = match.match(/<p><img[^>]*><\/p>\s*<p><a[^>]*>[^<]*<\/a><\/p>/g) || [];
+                        if (pairs.length > 1) {
+                          const imageColumns = pairs.map(pair => {
+                            return `<div class="image-column">${pair}</div>`;
+                          }).join('');
+                          return `<div class="image-row">${imageColumns}</div>`;
+                        }
+                        return match;
+                      }
+                    );
+                  })()
+                }}
+                className={s.articleImages}
+              />
+            </div>
+
             <div className={s.line}></div>
-            <div className={s.findArt}>
-              <Typography>{t("tagLine")}</Typography>
-              <Link href={`/`}>
-                <a>
-                  <img
-                    height={20}
-                    className={s.artportable_logo}
-                    src={"/images/Artportable_Logotyp_Black.jpg"}
-                    alt="link to artportable"
-                    title="artportable_logo"
-                  />
-                </a>
-              </Link>
-            </div>
-            <div className={s.tagDiv}>
-              {article?.categories?.map((category) => {
-                return (
-                  <>
-                    <Link href={`/${category.slug}`}>
-                      <a>
-                        <Button
-                          rounded
-                          variant="outlined"
-                          color="primary"
-                          disableElevation
-                        >
-                          <Typography>{category.name}</Typography>
-                        </Button>
-                      </a>
-                    </Link>
-                  </>
-                );
-              })}
-            </div>
-          </Paper>
-          <div className={s.div}>
+            
             {artist && artist.length > 0 && (
-              <div className={s.div2}>
+              <div>
                 {artist.map((a) => {
                   return (
-                    <DiscoverArtistCard
+                    <DiscoverArtistCardArticle
+                      key={a.SocialId || a.Username}
                       artist={a}
-                      onFollowClick={null}
-                    ></DiscoverArtistCard>
+                    />
                   );
                 })}
               </div>
             )}
           </div>
+     
         </>
       )}
-    </Main>
+    </MainOption>
   );
 }
 
@@ -172,120 +257,60 @@ export default function ArticlePage({
 
 export async function getStaticProps(context) {
   const { locale, params, preview } = context;
+  
+  // First try to get the article by slug with category filter
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
-      params.articleSlug
-    }?_locale=${locale}&categories.slug=${params.slug}${
-      preview ? "&_publicationState=preview" : ""
-    }`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?filters[slug][$eq]=${params.articleSlug}&filters[categories][slug][$eq]=${params.slug}&locale=${locale}&populate[0]=coverImage&populate[1]=authors&populate[2]=authors.picture&populate[3]=categories&populate[4]=publishCategory${preview ? "&publicationState=preview" : ""}`,
     {
       // timeout: 11000
     }
   );
-  var articles = await res.json();
-  var article: Article = articles.find(
-    (article: Article) => article.locale == locale
-  );
 
-  if (article == null) {
-    let categoryRes = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories/slug/${params.slug}`,
-      {
-        // timeout: 11000
-      }
-    );
-
-    if (!categoryRes.ok) {
-      return {
-        notFound: true,
-      };
-    }
-
-    var currentCategory = await categoryRes.json();
-
-    let res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
-        params.articleSlug
-      }?categories_in=${currentCategory.id}&categories_in=${
-        currentCategory.localizations[0]?.id
-      }${preview ? "&_publicationState=preview" : ""}`,
-      {
-        // timeout: 11000
-      }
-    );
-
-    if (!res.ok) {
-      return {
-        notFound: true,
-      };
-    }
-
-    article = await res.json();
-
-    categoryRes = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/categories?localizations.id=${article.publishCategory.id}&_locale=${locale}`,
-      {
-        // timeout: 11000
-      }
-    );
-
-    var newLocaleCategories = await categoryRes.json();
-    var newLocaleCategory: Category = newLocaleCategories.find(
-      (category: Category) => category.locale == locale
-    );
-
-    if (
-      newLocaleCategory &&
-      newLocaleCategory.id !== currentCategory.id &&
-      locale !== article.locale
-    ) {
-      return {
-        redirect: {
-          destination: `/${newLocaleCategory.slug}/${article.slug}`,
-          permanent: true,
-        },
-      };
-    }
-
-    if (
-      locale !== article.locale &&
-      article.locale !== locale.sv &&
-      article.locale !== locale.en &&
-      article.locale !== locale.nb &&
-      article.locale !== locale.da &&
-      article.locale !== locale.is
-    ) {
-      var newLocaleArticle = article.localizations.find(
-        (articleLocale) => articleLocale.locale === locale
-      );
-
-      if (newLocaleArticle) {
-        let res = await fetch(
-          `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles/slug/${
-            params.articleSlug
-          }?_locale=${locale}&categories_in=${newLocaleArticle.id}${
-            preview ? "&_publicationState=preview" : ""
-          }`,
-          {
-            // timeout: 11000
-          }
-        );
-
-        if (res.ok) {
-          article = await res.json();
-        }
-      }
-    }
+  if (!res.ok) {
+    return {
+      notFound: true,
+    };
   }
 
+  const response = await res.json();
+  let article = response.data[0];
+
+  if (!article) {
+    return {
+      notFound: true,
+    };
+  }
+
+  // Convert v4 format to expected format
+  const articleData = {
+    id: article.id,
+    ...article.attributes,
+    // Map publishedAt to published_at for compatibility
+    published_at: article.attributes.publishedAt,
+    // Handle relations with null checks
+    coverImage: article.attributes.coverImage?.data?.attributes || null,
+    authors: article.attributes.authors?.data?.map(author => ({
+      id: author.id,
+      ...author.attributes,
+      picture: author.attributes.picture?.data?.attributes || null
+    })) || [],
+    categories: article.attributes.categories?.data?.map(cat => ({
+      id: cat.id,
+      ...cat.attributes
+    })) || [],
+    publishCategory: article.attributes.publishCategory?.data ? {
+      id: article.attributes.publishCategory.data.id,
+      ...article.attributes.publishCategory.data.attributes
+    } : null
+  };
+
   var artist = null;
-  if (article.artist) {
+  if (articleData.artist) {
     const url = new URL(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/Discover/artists/top`
     );
-    url.searchParams.append("q", article.artist);
+    url.searchParams.append("q", articleData.artist);
     var artistResult = await fetch(url.href);
-    var artist = null;
     if (artistResult && artistResult.status === 200) {
       artist = await artistResult.json();
     }
@@ -294,7 +319,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       artist: artist,
-      article: article,
+      article: articleData,
       ...(await serverSideTranslations(locale, [
         "articles",
         "common",
@@ -318,22 +343,30 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/articles?_locale=all`
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?locale=all&populate[0]=categories&populate[1]=publishCategory`
     );
-    const articles = await res.json();
+    
+    if (!res.ok) {
+      return { paths: [], fallback: true };
+    }
+
+    const response = await res.json();
+    const articles = response.data;
 
     const paths = articles
-      .filter(
-        (article) =>
-          typeof article.publishCategory?.slug === "string" &&
-          typeof article.slug === "string"
-      )
+      .filter((article) => {
+        const publishCategory = article.attributes.publishCategory?.data?.attributes;
+        return (
+          typeof publishCategory?.slug === "string" &&
+          typeof article.attributes.slug === "string"
+        );
+      })
       .map((article) => ({
         params: {
-          slug: article.publishCategory.slug,
-          articleSlug: article.slug,
+          slug: article.attributes.publishCategory.data.attributes.slug,
+          articleSlug: article.attributes.slug,
         },
-        locale: article.locale,
+        locale: article.attributes.locale,
       }));
 
     return { paths, fallback: true };

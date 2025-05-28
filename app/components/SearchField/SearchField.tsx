@@ -195,7 +195,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     { 
       title: t("common:themes.surrealism"), 
       href: "/discover?category=surrealism",
-      backgroundImage: "/searchimages/hq-optimized/surreal-hq.jpeg"
+      backgroundImage: "/searchimages/surrealism.jpeg"
     }
   ];
 
