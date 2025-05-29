@@ -70,21 +70,24 @@ export default function Boost(props) {
     <>
       <div className={s.root}>
         <div className={s.fullContainer}>
-          <div className={s.container}>
-            <div className={s.top}>
-              <div className={s.textOnImage}>
-                {" "}
-                <div className={s.imgText}>
-                  <Typography variant="h4" className={s.textOne}>
-                    {t("promoteYourArt")}
-                  </Typography>
-                  <Typography variant="h5" className={s.textOne}>
-                    "{artwork?.data?.Title}"
-                  </Typography>
-                </div>
-              </div>
+          <div className={s.top}>
+            <div className={s.imgText}>
+              <div className={s.textOne}>{t("promoteYourArt")}</div>
+              <ul
+                style={{
+                  fontSize: "18px",
+
+                  marginTop: "1.5rem",
+                  textAlign: "center",
+                }}
+              >
+                <li>{t("showlist")}</li>
+                <br />
+                <li>{t("showlisttwo")}</li>
+              </ul>
             </div>
-            <div className={s.downMobile}>
+          </div>
+          {/* <div className={s.downMobile}>
               <div className={s.contentPointHeader}>
                 {t("increaseVisibility")}
               </div>
@@ -110,8 +113,8 @@ export default function Boost(props) {
               <div>
                 <div className={s.contentText}>{t("startPage")}</div>
               </div>
-            </div>
-          </div>
+            </div> */}
+
           <div className={s.right}>
             <div
               style={{
@@ -122,7 +125,7 @@ export default function Boost(props) {
             >
               <img
                 className={s.logo}
-                src="/Artportable_Logotyp_Black.svg"
+                src="/ArtportableLogo.svg"
                 alt="logo"
                 title=""
               />

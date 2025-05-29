@@ -202,9 +202,9 @@ export default function CheckoutFormRocket({ email, fullName, artworkId }) {
         </Box>
         <Box fontSize="1rem" fontWeight="bold">
           <div style={{ textDecoration: "line-through", fontWeight: "300" }}>
-            {t("795 SEK")}
+            {t("395 SEK")}
           </div>{" "}
-          {t("395 SEK")}
+          {t("195 SEK")}
         </Box>
       </Box>
       <Box className={styles.divider}></Box>
@@ -215,12 +215,8 @@ export default function CheckoutFormRocket({ email, fullName, artworkId }) {
         marginTop="2rem"
       >
         <Button
-          variant="contained"
-          style={{
-            backgroundColor: "#FFDA7A",
-            color: "black",
-          }}
-          rounded
+        className={styles.button}
+       
           onClick={createPaymentMethod}
           disabled={processing || disabled || succeeded}
         >

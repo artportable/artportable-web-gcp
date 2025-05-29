@@ -86,7 +86,7 @@ export default function ArticlePage({
             width: '60px',
             height: '60px',
             border: '4px solid #e3e3e3',
-            borderTop: '4px solid #007bff',
+            borderTop: '4px solidrgb(220, 64, 16)',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite',
             marginBottom: '30px',
@@ -94,19 +94,38 @@ export default function ArticlePage({
           
           {/* Animated text */}
           <h1 style={{
-            background: 'linear-gradient(45deg, #007bff, #6c5ce7, #a29bfe)',
+            background: 'linear-gradient(45deg,rgb(0, 0, 0),rgb(47, 46, 54),rgb(168, 167, 190))',
             backgroundSize: '200% 200%',
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             color: 'transparent',
-            fontSize: '28px',
+            fontSize: '38px',
             fontWeight: 'bold',
             fontFamily: 'Roboto, sans-serif',
             animation: 'gradient 2s ease-in-out infinite alternate, fadeIn 0.8s ease-out',
             textAlign: 'center',
             margin: 0,
+        
           }}>
-            Artikeln laddas...
+            Artikeln laddas
+            <span style={{
+              color: 'rgb(139, 0, 0)', // Dark red color
+              fontSize: '28px',
+              fontWeight: 'bold',
+            }}>
+              <span style={{ 
+                animation: 'dots 1.5s infinite',
+                animationDelay: '0s' 
+              }}>.</span>
+              <span style={{ 
+                animation: 'dots 1.5s infinite',
+                animationDelay: '0.5s' 
+              }}>.</span>
+              <span style={{ 
+                animation: 'dots 1.5s infinite',
+                animationDelay: '1s' 
+              }}>.</span>
+            </span>
           </h1>
           
           {/* Subtitle */}
@@ -115,7 +134,7 @@ export default function ArticlePage({
             fontSize: '16px',
             fontFamily: 'Joan, serif',
             marginTop: '15px',
-            animation: 'fadeIn 1.2s ease-out',
+            animation: 'fadeIn 1.8s ease-out',
             textAlign: 'center',
           }}>
             Vi förbereder innehållet åt dig
@@ -142,6 +161,12 @@ export default function ArticlePage({
                 opacity: 1; 
                 transform: translateY(0); 
               }
+            }
+
+            @keyframes dots {
+              0%, 20% { opacity: 0; }
+              50% { opacity: 1; }
+              100% { opacity: 0; }
             }
           `}</style>
         </div>
