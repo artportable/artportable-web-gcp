@@ -26,5 +26,28 @@ export const checkoutFormStyles = makeStyles((theme: Theme) =>
     divider: {
       borderBottom: "solid 1px black",
     },
+    button: {
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "30px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginTop: "0px",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
+    },
+    
   })
 );

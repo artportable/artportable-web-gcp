@@ -5,7 +5,7 @@ export const styles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: "100%",
-      height: "auto",
+      height: "100%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -18,28 +18,31 @@ export const styles = makeStyles((theme: Theme) =>
     fullContainer: {
       display: "flex",
       flexDirection: "column",
+      height: "100vh",
       [theme.breakpoints.up("smPlus")]: {
         flexDirection: "row",
-        height: "80vh",
+        height: "auto",
       },
     },
-    container: {
-      [theme.breakpoints.up("smPlus")]: {
-        borderRadius: "0px 10px 10px 0px",
-      },
-    },
+    // container: {
+    //   height: "100vh",
+    //   [theme.breakpoints.up("smPlus")]: {
+    //     height: "auto",
+    //     borderRadius: "0px 10px 10px 0px",
+    //   },
+    // },
     top: {
       width: "100vw",
-      height: "40vh",
+      height: "50%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      backgroundImage: "url(/images/flowers.png)",
+      backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(/images/boostimage.png)`,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
       [theme.breakpoints.up("smPlus")]: {
-        height: "40vh",
+        height: "100%",
         width: "40vw",
       },
     },
@@ -47,26 +50,16 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       flexDirection: "row",
     },
-    textOnImage: {
-      width: "260px",
-      height: "228px",
-      backgroundColor: "#fbebd0d4",
-      borderRadius: "2px",
-      [theme.breakpoints.up("smPlus")]: {
-        backgroundColor: "#fbebd0d4",
-        width: "440px",
-        height: "auto",
-      },
-    },
+
     imgText: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      color: "black",
+      color: "white",
       borderRadius: "2px",
+      width: "100%",
       [theme.breakpoints.up("smPlus")]: {
-        backgroundColor: "#fbebd07a",
         width: "440px",
         height: "auto",
       },
@@ -75,10 +68,12 @@ export const styles = makeStyles((theme: Theme) =>
       fontWeight: 600,
       fontSize: "22px",
       letterSpacing: "1px",
-      marginTop: "20px",
+      marginTop: "0px",
       marginBottom: "10px",
       textAlign: "center",
-      [theme.breakpoints.up("smPlus")]: {},
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "30px",
+      },
     },
     textTwo: {
       fontWeight: 600,
@@ -92,7 +87,7 @@ export const styles = makeStyles((theme: Theme) =>
     right: {
       backgroundColor: "#FFFFFF",
       width: "100vw",
-      height: "auto",
+      height: "50%",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
