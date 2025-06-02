@@ -107,7 +107,10 @@ export default function Checkout() {
             </Typography>
             <div className={s.productInfo}>
               <Typography className={s.productName}>
-                {plan?.product === "Portfolio" ? t("portfolioPremium") : plan?.product}
+                {plan?.productKey === "portfolio" ? "Bas" : 
+                 plan?.productKey === "portfolioPremium" ? "Premium" :
+                 plan?.productKey === "portfolioPremiumPlus" ? "Premium +" :
+                 plan?.product || "Portfolio"}
               </Typography>
               <Typography className={s.productPrice}>
                 {formatPrice(plan)}

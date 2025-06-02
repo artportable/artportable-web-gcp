@@ -491,7 +491,10 @@ export default function CheckoutForm({ email, fullName, plan }) {
                 fontSize: "18px"
               }}
             >
-              {plan?.product === "Portfolio" ? t("portfolioPremium", { ns: "payment" }) : plan?.product}
+              {plan?.productKey === "portfolio" ? "Bas" : 
+               plan?.productKey === "portfolioPremium" ? "Premium" :
+               plan?.productKey === "portfolioPremiumPlus" ? "Premium +" :
+               plan?.product || "Portfolio"}
             </Typography>
           </div>
 
