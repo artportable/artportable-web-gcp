@@ -1,5 +1,6 @@
 {
   "faq": "Vanliga frågor och svar",
+  "heroSubtitle": "Allt du behöver veta om Artportable",
   "titleOne": "Köpa konst på Artportable",
   "questionOne": "Hur köper jag konst på Artportable?",
   "answerOne": "Om du vill köpa ett eller flera originalkonstverk, kan du börja med att söka efter ett specifikt namn eller utforska detrendande verken under \"Upptäck\"-fliken. Du kan även användailter för teknik, tema, storlek och pris för att hitta konstverk som passar dig. Många konstnärer har också angivit sin bostadsort, vilket kan underlätta om du vill se verket på plats innan du köper. Skicka en köpförfrågan för att komma i kontakt med konstnären och få mer information om verket.",
@@ -25,7 +26,7 @@
   "questionEleven": "Finns AI-konst och NFT på Artportable?",
   "answerEleven": "Vi välkomnar olika konstnärliga uttryck och medium på Artportable, inklusive AI-genererad konst och NFT. Om konstverket är skapat med hjälp av AI, ombeds konstnären att tydligt ange det i beskrivningen. En NFT kan beskrivas som ett unikt digitalt konstverk eller produkt som det är möjligt att köpa äganderätten till. Köparen får äganderätten till en dataenhet som lagras på en blockkedja, en typ av databas, som sedan kan säljas vidare på den digitala marknaden. Artportable är inte en specifik marknadsplats för NFT:s, men vissa av våra konstnärer kan visa upp NFT:er och hänvisa till marknadsplatser där de kan köpas.",
   "questionTwelve": "Vad gör jag när det står \"Pris på förfrågan\" på ett konstverk?",
-  "answerTwelve": "Om ett konstverk är markerat med ”Pris på förfrågan” betyder det att du kan fråga konstnären om pris, det gör du genom att skicka en köpförfrågan. Du kan alltid ställa frågor direkt till konstnären om pris, eventuell frakt eller om det finns liknande verk tillgängliga. Det är alltid bra att fråga, ofta leder det till något positivt!",
+  "answerTwelve": "Om ett konstverk är markerat med \"Pris på förfrågan\" betyder det att du kan fråga konstnären om pris, det gör du genom att skicka en köpförfrågan. Du kan alltid ställa frågor direkt till konstnären om pris, eventuell frakt eller om det finns liknande verk tillgängliga. Det är alltid bra att fråga, ofta leder det till något positivt!",
   "titleThree": "Övriga tjänster",
   "questionThirteen": "Jag har sett att ni har fysiska utställningar, är det bara för Premium-medlemmar och innebär det en kostnad?",
   "answerThirteen": "Vi uppdaterar kontinuerligt med restauranger, hotell och kontor där vi kan erbjuda förmånliga utställningsplatser för konstverk. Det är tillgängligt för alla våra medlemmar, men Premium-medlemmar har förtur. Kostnaden för att delta i en utställning varierar beroende på perioden (1-6 månader) och platsen. En konst-kurator från Artportable ansvarar för att hänga och kurera utställningen. Eventuella vernissager kan ordnas i samarbete med konstnären och platsen där utställningen äger rum.",
@@ -38,5 +39,6 @@
   "questionSeventeen": "Hur kan jag veta att en spekulant är seriös?",
   "answerSeventeen": "I regel är det seriösa privatpersoner, företag eller konstföreningar som skickar köpförfrågningar på Artportable. Men det gäller som med allt annat att vara försiktig! För Portfolio Premium-medlemmar erbjuder vi råd och hjälp vid köpförfrågningar. Vi kan även hjälpa till med att svara på förfrågningar. Om en Portfolio Bas-användare misstänker att en köpförfrågan är oseriös, hjälper vi naturligtvis också till. Vi rekommenderar att du aldrig skickar iväg ett verk utan att ha mottagit betalning. Det finns också säkra betaltjänster där betalningen hålls tills konstverket har levererats. Vi kan ge tips om olika betaltjänster som erbjuder säkerhet för båda parterna.",
   "notFound": "Kunde du inte hitta svaret du behövde?",
+  "contactSubtitle": "Hittar du inte det du letar efter? Vi är här för att hjälpa dig.",
   "contactUs": "Kontakta oss"
 }

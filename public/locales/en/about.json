@@ -4,6 +4,11 @@
   "digitalGalleryDescription": "Artportable was born from a simple but powerful idea: to make art more accessible to both creators and buyers. We are a digital platform and a creative movement that helps artists to be seen, grow and sell, while making it easier than ever for art enthusiasts to discover and buy original art directly from the creators.",
   "digitalGalleryDescription2": "We want to democratize the art world. With us, every artist gets a place to express themselves through their own artist page, and every artwork a context where it can reach the right viewer or buyer. We build bridges between artists, collectors and galleries, both digitally and in real life.",
   "digitalGalleryDescription3": "Whether you are an artist on your way to the world, or a buyer looking for something authentic, unique and personal, Artportable is the place where these meetings happen. We are not just a window for art - we are a marketplace for originality, emotion and creative spirit.",
+  "sectionMission": "Our Mission",
+  "sectionWhatWeDo": "What We Do",
+  "sectionValues": "Our Values",
+  "sectionTeam": "Our Team",
+  "sectionContact": "Get In Touch",
   "whatWeDo": "What we do",
   "artistPages": "Artist Pages",
   "artMarketplace": "Art Marketplace",
@@ -52,5 +57,6 @@
     "logIn": "Log in to the menu",  
     "startReceivingEmails": "Yes, I want to receive emails",
     "stopReceivingEmails": "No, I don't want to receive emails"
-  }
+  },
+  "emailLabel": "Email"
 }

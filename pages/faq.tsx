@@ -1,22 +1,67 @@
 import Main from "../app/components/Main/Main";
-import ZendeskForm from "../app/components/ZendeskFormMenu/ZendeskFormMenu";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { styles } from "../styles/faq.css";
-import { Paper, Typography } from "@material-ui/core";
+import { Typography, Box, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
 import { useTranslation } from "next-i18next";
 import { getNavBarItems } from "../app/utils/getNavBarItems";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import Head from "next/head";
-import clsx from "clsx";
 import { useRouter } from "next/router";
 import Footer from "../app/components/Footer/Footer";
+import { useState } from "react";
 
 export default function Faq({ navBarItems }) {
   const s = styles();
-  const { t } = useTranslation(["support"]);
+  const { t } = useTranslation(["faq", "support"]);
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const { locale } = useRouter();
+  const [expandedSection, setExpandedSection] = useState<string | false>(false);
+
+  const handleAccordionChange = (panel: string) => (event: React.ChangeEvent<{}>, isExpanded: boolean) => {
+    setExpandedSection(isExpanded ? panel : false);
+  };
+
+  const faqSections = [
+    {
+      id: "section1",
+      title: t("titleOne"),
+      color: "#4a4a4a",
+      questions: [
+        { question: t("questionOne"), answer: t("answerOne") },
+        { question: t("questionTwo"), answer: t("answerTwo") },
+        { question: t("questionThree"), answer: t("answerThree") },
+        { question: t("questionFour"), answer: t("answerFour") },
+        { question: t("questionFive"), answer: t("answerFive") },
+        { question: t("questionSix"), answer: t("answerSix") },
+        { question: t("questionSeven"), answer: t("answerSeven") },
+      ]
+    },
+    {
+      id: "section2", 
+      title: t("titleTwo"),
+      color: "#6b6b6b",
+      questions: [
+        { question: t("questionEight"), answer: t("answerEight") },
+        { question: t("questionNine"), answer: t("answerNine") },
+        { question: t("questionTen"), answer: t("answerTen") },
+        { question: t("questionEleven"), answer: t("answerEleven") },
+        { question: t("questionTwelve"), answer: t("answerTwelve") },
+      ]
+    },
+    {
+      id: "section3",
+      title: t("titleThree"), 
+      color: "#8a8a8a",
+      questions: [
+        { question: t("questionThirteen"), answer: t("answerThirteen") },
+        { question: t("questionFourteen"), answer: t("answerFourteen") },
+        { question: t("questionFiftheen"), answer: t("answerFiftheen") },
+        { question: t("questionSixteen"), answer: t("answerSixteen") },
+        { question: t("questionSeventeen"), answer: t("answerSeventeen") },
+      ]
+    }
+  ];
 
   return (
     <Main
@@ -26,193 +71,98 @@ export default function Faq({ navBarItems }) {
       isShow={false}
     >
       <Head>
-        <meta name="title" content={t("contactUs")} />
-        <meta name="description" content={t("yourWelcome")} />
-        <meta property="og:title" content={t("contactUs")} />
-        <meta property="og:description" content={t("yourWelcome")} />
-        <meta property="og:url" content="https://artportable.com/support" />
+        <meta name="title" content={t("faq")} />
+        <meta name="description" content={t("notFound")} />
+        <meta property="og:title" content={t("faq")} />
+        <meta property="og:description" content={t("notFound")} />
+        <meta property="og:url" content="https://artportable.com/faq" />
         <meta
           property="og:image"
           content="/images/artportable_tv_commercial.png"
         />
-        <link rel="canonical" href={`${publicUrl}/${locale}/support`} />
+        <link rel="canonical" href={`${publicUrl}/${locale}/faq`} />
       </Head>
-      <body className={s.container}>
-        <section className={s.headerContainer}>
-          <h1>{t("faq:faq")}</h1>
+      
+      <div className={s.scandinavianContainer}>
+        
+        {/* Hero Section */}
+        <section className={s.heroSection}>
+          <div className={s.heroContent}>
+            <div className={s.heroTextBlock}>
+              <Typography variant="h1" className={s.heroTitle}>
+                {t("faq")}
+              </Typography>
+              <div className={s.accentLine}></div>
+              <Typography variant="body1" className={s.heroSubtitle}>
+                {t("heroSubtitle")}
+              </Typography>
+            </div>
+          </div>
         </section>
-        <section className={s.faqContainer}>
-          <article className={s.faqAnswers}>
-            <section id="section1" className={s.titlesWrapper}>
-              <p className={s.numbers} style={{ backgroundColor: "#a684ff" }}>
-                1
-              </p>
-              <h1 className={s.h1}>{t("faq:titleOne")}</h1>
-            </section>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionOne")}</h4>
-              <p className={s.paragraph}>{t("faq:answerOne")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionTwo")}</h4>
-              <p className={s.paragraph}>{t("faq:answerTwo")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionThree")}</h4>
-              <p className={s.paragraph}>{t("faq:answerThree")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionFour")}</h4>
-              <p className={s.paragraph}>{t("faq:answerFour")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionFive")}</h4>
-              <p className={s.paragraph}>
-                {t("faq:answerFive")} <br />
-              </p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionSix")}</h4>
-              <p className={s.paragraph}>{t("faq:answerSix")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionSeven")}</h4>
-              <p className={s.paragraph}>{t("faq:answerSeven")}</p>
-            </article>
-            <section id="section2" className={s.titlesWrapper}>
-              <p className={s.numbers} style={{ backgroundColor: "#ff8383" }}>
-                2
-              </p>
-              <h1 className={s.subTitle}>{t("faq:titleTwo")}</h1>
-            </section>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionEight")}</h4>
-              <p className={s.paragraph}>{t("faq:answerEight")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionNine")}</h4>
-              <p className={s.paragraph}>{t("faq:answerNine")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionTen")}</h4>
-              <p className={s.paragraph}>{t("faq:answerTen")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionEleven")}</h4>
-              <p className={s.paragraph}>{t("faq:answerEleven")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionTwelve")}</h4>
-              <p className={s.paragraph}>{t("faq:answerTwelve")}</p>
-            </article>
-            <section id="section3" className={s.titlesWrapper}>
-              <p className={s.numbers} style={{ backgroundColor: "#ffca40" }}>
-                3
-              </p>
-              <h1 style={{ fontSize: "30px" }}>{t("faq:titleThree")}</h1>
-            </section>
 
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionThirteen")}</h4>
-              <p className={s.paragraph}>{t("faq:answerThirteen")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionFourteen")}</h4>
-              <p className={s.paragraph}>{t("faq:answerFourteen")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionFiftheen")}</h4>
-              <p className={s.paragraph}>{t("faq:answerFiftheen")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionSixteen")}</h4>
-              <p className={s.paragraph}>{t("faq:answerSixteen")}</p>
-            </article>
-            <article className={s.articles}>
-              <h4 className={s.subTitle}>{t("faq:questionSeventeen")}</h4>
-              <p className={s.paragraph}>{t("faq:answerSeventeen")}</p>
-            </article>
-          </article>
-          <aside className={s.boxNav}>
-            <section className={s.titlesWrapper}>
-              <p
-                className={s.numbers}
-                style={{
-                  backgroundColor: "#a684ff",
-                  fontSize: "10px",
-                  width: "30px",
-                  height: "30px",
-                }}
-              >
-                1
-              </p>
-              <a
-                href="#section1"
-                style={{ fontWeight: "bold", textDecoration: "underline" }}
-              >
-                {" "}
-                {t("faq:titleOne")}
-              </a>
+        {/* FAQ Sections */}
+        <div className={s.contentContainer}>
+          {faqSections.map((section, sectionIndex) => (
+            <section key={section.id} className={s.faqSection}>
+              <Typography variant="h2" className={s.sectionLabel}>
+                {String(sectionIndex + 1).padStart(2, '0')} — {section.title}
+              </Typography>
+              
+              <div className={s.questionsContainer}>
+                {section.questions.map((item, questionIndex) => (
+                  <div key={`${section.id}-${questionIndex}`} className={s.questionWrapper}>
+                    <Accordion 
+                      className={s.questionAccordion}
+                      expanded={expandedSection === `${section.id}-${questionIndex}`}
+                      onChange={handleAccordionChange(`${section.id}-${questionIndex}`)}
+                      elevation={0}
+                    >
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon className={s.expandIcon} />}
+                        className={s.questionSummary}
+                      >
+                        <Typography variant="h4" className={s.questionTitle}>
+                          {item.question}
+                        </Typography>
+                      </AccordionSummary>
+                      <AccordionDetails className={s.answerDetails}>
+                        <Typography variant="body1" className={s.answerText}>
+                          {item.answer}
+                        </Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </div>
+                ))}
+              </div>
             </section>
-            <section className={s.titlesWrapper}>
-              <p
-                className={s.numbers}
-                style={{
-                  backgroundColor: "#ff8383",
-                  fontSize: "10px",
-                  width: "30px",
-                  height: "30px",
-                }}
-              >
-                2
-              </p>
-              <a
-                href="#section2"
-                style={{ fontWeight: "bold", textDecoration: "underline" }}
-              >
-                {t("faq:titleTwo")}
-              </a>
-            </section>
-            <section className={s.titlesWrapper}>
-              <p
-                className={s.numbers}
-                style={{
-                  backgroundColor: "#ffca40",
-                  fontSize: "10px",
-                  width: "30px",
-                  height: "30px",
-                }}
-              >
-                3
-              </p>
-              <a
-                href="#section3"
-                style={{ fontWeight: "bold", textDecoration: "underline" }}
-              >
-                {t("faq:titleThree")}
-              </a>{" "}
-            </section>
+          ))}
+        </div>
 
-            <section
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <div style={{ borderBottom: "1px solid black" }}></div>
-              <p>{t("faq:notFound")}</p>
-              <a
-                className={s.contactButton}
-                href="mailto:hello@artportable.com"
-              >
-                {t("faq:contactUs")}
-              </a>
-            </section>
-          </aside>
+        {/* Contact Section */}
+        <section className={s.contactSection}>
+          <div className={s.contentContainer}>
+            <div className={s.contactContent}>
+              <Typography variant="h2" className={s.contactTitle}>
+                {t("notFound")}
+              </Typography>
+              <Typography variant="body1" className={s.contactText}>
+                {t("contactSubtitle")}
+              </Typography>
+              <div className={s.contactActions}>
+                <a 
+                  href="mailto:hello@artportable.com"
+                  className={s.contactButton}
+                >
+                  <MailOutlineIcon className={s.contactIcon} />
+                  {t("contactUs")}
+                </a>
+              </div>
+            </div>
+          </div>
         </section>
-        <Footer />
-      </body>
+        
+      </div>
+      <Footer />
     </Main>
   );
 }
@@ -222,7 +172,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       navBarItems: navBarItems,
-      ...(await serverSideTranslations(locale, ["header", "footer", "faq"])),
+      ...(await serverSideTranslations(locale, ["header", "footer", "faq", "support"])),
     },
     revalidate: 60,
   };
