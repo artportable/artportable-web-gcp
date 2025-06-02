@@ -133,7 +133,7 @@ export const styles = makeStyles((theme: Theme) =>
       gridTemplateColumns: "1fr 300px",
       gap: "80px",
       alignItems: "center",
-      [theme.breakpoints.down("md")]: {
+      [theme.breakpoints.down("smPlus")]: {
         gridTemplateColumns: "1fr",
         gap: "48px",
       },
@@ -156,7 +156,7 @@ export const styles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      [theme.breakpoints.down("md")]: {
+      [theme.breakpoints.down("smPlus")]: {
         display: "none",
       },
     },
