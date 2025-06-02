@@ -1,6 +1,12 @@
 import { checkoutFormStyles } from "./checkoutForm.css";
 import { Box, CircularProgress, Snackbar } from "@material-ui/core";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { 
+  CardNumberElement, 
+  CardExpiryElement, 
+  CardCvcElement, 
+  useElements, 
+  useStripe 
+} from "@stripe/react-stripe-js";
 import Button from "../Button/Button";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
@@ -13,10 +19,19 @@ import type { KeycloakInstance } from "keycloak-js";
 import { UserContext } from "../../contexts/user-context";
 import { zapierLeadBasicConfirmed } from "../../utils/zapierLead";
 import TextField from "@mui/material/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import Typography from "@material-ui/core/Typography";
+import Slide from "@material-ui/core/Slide";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 const zapierBasicConfirmedApiUrl =
   process.env.NEXT_PUBLIC_ZAPIER_BASIC_CONFIRMED;
+
+const Transition = React.forwardRef(function Transition(props: any, ref: any) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function CheckoutForm({ email, fullName, plan }) {
   const [succeeded, setSucceeded] = useState(false);
@@ -26,16 +41,32 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const [disabled, setDisabled] = useState(true);
   const [customerId, setCustomerId] = useState("");
   const [countdown, setCountdown] = useState(6);
+  const [cardholderName, setCardholderName] = useState(fullName || "");
+  const [cardNumberComplete, setCardNumberComplete] = useState(false);
+  const [cardExpiryComplete, setCardExpiryComplete] = useState(false);
+  const [cardCvcComplete, setCardCvcComplete] = useState(false);
   const token = useContext(TokenContext);
   const countdownRef = useRef(null);
   const { family_name, given_name, phone, user_type } = useContext(UserContext);
   const stripe = useStripe();
   const elements = useElements();
   const styles = checkoutFormStyles();
-  const { t } = useTranslation(["checkout", "common"]);
+  const { t } = useTranslation(["payment", "common"]);
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
   const [promotionCode, setpromotionCode] = useState("");
-  const interval = t(plan?.recurringInterval);
+
+  // Update fullName when it's available
+  useEffect(() => {
+    if (fullName && !cardholderName) {
+      setCardholderName(fullName);
+    }
+  }, [fullName]);
+
+  // Check if form is complete
+  useEffect(() => {
+    const isComplete = cardNumberComplete && cardExpiryComplete && cardCvcComplete && cardholderName.trim() !== "";
+    setDisabled(!isComplete);
+  }, [cardNumberComplete, cardExpiryComplete, cardCvcComplete, cardholderName]);
 
   useEffect(() => {
     if (email !== null && fullName !== null && plan !== null) {
@@ -62,57 +93,55 @@ export default function CheckoutForm({ email, fullName, plan }) {
     }
   }, [email, fullName, plan]);
 
-  const cardStyle = {
+  const cardElementOptions = {
     style: {
       base: {
-        color: "#32325d",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "18px",
+        fontSize: "16px",
+        color: "#424770",
         "::placeholder": {
           color: "#aab7c4",
         },
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: "antialiased",
       },
       invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a",
+        color: "#9e2146",
       },
     },
   };
 
   const confirmedPortfolio = () => {
     setPaymentConfirmed(true);
-    zapierLeadBasicConfirmed({
-      name: { value: given_name.value + " " + family_name.value } ?? "",
-      phoneNumber: { value: phone.value } ?? "",
-      email: { email } ?? "",
-      product: "portfolio",
-      type: { value: user_type.value } ?? "",
-    });
+
   };
-  const handleChange = async (event) => {
-    setDisabled(event.empty);
+
+  const handleCardNumberChange = (event) => {
+    setCardNumberComplete(event.complete);
+    setError(event.error ? event.error.message : "");
+  };
+
+  const handleCardExpiryChange = (event) => {
+    setCardExpiryComplete(event.complete);
+    setError(event.error ? event.error.message : "");
+  };
+
+  const handleCardCvcChange = (event) => {
+    setCardCvcComplete(event.complete);
     setError(event.error ? event.error.message : "");
   };
 
   // Create payment method towards Stripe
   function createPaymentMethod() {
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
-
     setProcessing(true);
 
-    const cardElement = elements.getElement(CardElement);
-
-    const billingName = fullName;
+    const cardNumberElement = elements.getElement(CardNumberElement);
 
     stripe
       .createPaymentMethod({
         type: "card",
-        card: cardElement,
+        card: cardNumberElement,
         billing_details: {
-          name: billingName,
+          name: cardholderName,
         },
       })
       .then((result) => {
@@ -180,7 +209,6 @@ export default function CheckoutForm({ email, fullName, plan }) {
         }
 
         // Check if 3D Secure is required
-        // Check if 3D Secure is required
         if (result.requiresAction) {
           return stripe
             .confirmCardPayment(result.clientSecret, {
@@ -233,7 +261,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   const handleSuccessClose = () => {
     confirmedPortfolio();
-    router.push("/");
+    router.push("/upload");
   };
 
   useEffect(() => {
@@ -269,92 +297,273 @@ export default function CheckoutForm({ email, fullName, plan }) {
 
   return (
     <>
-      <div className={styles.cardElementContainer}>
-        <CardElement
-          id="card-element"
-          options={cardStyle}
-          onChange={handleChange}
-        />
-      </div>
-      {/* Show any error that happens when processing the payment */}
-      <div className={styles.cardErrorContainer} role="alert">
-        {error}
-      </div>
+      <div className={styles.formContainer}>
+        {/* Card details section */}
+        <div className={styles.sectionTitle}>{t("cardDetails")}</div>
+        
+        {/* Card Number */}
+        <div className={styles.fieldGroup}>
+          <label className={styles.fieldLabel}>{t("cardNumber")}*</label>
+          <div className={styles.cardElementContainer}>
+            <CardNumberElement
+              options={cardElementOptions}
+              onChange={handleCardNumberChange}
+            />
+          </div>
+        </div>
 
-      <div className={styles.product}>
-        <Box fontSize="1rem">{t("product")}</Box>
-        <Box>{plan?.product}</Box>
-      </div>
-      <Box className={styles.subtotal}>
-        <Box fontSize="1rem" fontWeight="bold">
-          {t(":Total")}
-        </Box>
+        {/* Payment method icons */}
+        <div className={styles.paymentIcons}>
+          <img src="/icons/visa.svg" alt="Visa" className={styles.paymentIcon} />
+          <img src="/icons/mastercard.svg" alt="MasterCard" className={styles.paymentIcon} />
+          <img src="/icons/amex.svg" alt="American Express" className={styles.paymentIcon} />
+          <img src="/icons/maestro.svg" alt="Maestro" className={styles.paymentIcon} />
+        </div>
 
-        {plan?.productKey === "portfolioPremiumPlus" ? (
-          <Box>975 SEK</Box>
-        ) : plan?.productKey === "portfolioPremium" ? (
-          <Box>359 SEK</Box>
-        ) : (
-          <Box>{t("newPlan")}</Box>
-        )}
-      </Box>
-      <Box className={styles.divider}></Box>
-      {plan?.productKey === "portfolioPremium" && (
-        <div>
-          <TextField
-            label={t("Discount code")}
-            variant="outlined"
-            value={promotionCode}
-            onChange={(e) => setpromotionCode(e.target.value)}
-            fullWidth
-            margin="normal"
+        {/* Expiry and CVC row */}
+        <div className={styles.fieldRow}>
+          <div className={styles.fieldGroup}>
+            <label className={styles.fieldLabel}>{t("expiryDate")}</label>
+            <div className={styles.cardElementContainer}>
+              <CardExpiryElement
+                options={cardElementOptions}
+                onChange={handleCardExpiryChange}
+              />
+            </div>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label className={styles.fieldLabel}>{t("securityCode")}</label>
+            <div className={styles.cardElementContainer}>
+              <CardCvcElement
+                options={cardElementOptions}
+                onChange={handleCardCvcChange}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Cardholder name */}
+        <div className={styles.fieldGroup}>
+          <label className={styles.fieldLabel}>{t("cardholderName")}</label>
+          <input
+            type="text"
+            value={cardholderName}
+            onChange={(e) => setCardholderName(e.target.value)}
+            className={styles.textInput}
+            placeholder={t("cardholderName")}
           />
         </div>
-      )}
-      <Box
-        display="flex"
-        position="relative"
-        justifyContent="flex-end"
-        marginTop="2rem"
+
+        {/* Show any error that happens when processing the payment */}
+        {error && (
+          <div className={styles.cardErrorContainer} role="alert">
+            {error}
+          </div>
+        )}
+
+        {/* Discount code for premium plans */}
+        {plan?.productKey === "portfolioPremium" && (
+          <div className={styles.fieldGroup}>
+            <TextField
+              label={t("discountCode")}
+              variant="outlined"
+              value={promotionCode}
+              onChange={(e) => setpromotionCode(e.target.value)}
+              fullWidth
+              margin="normal"
+              size="small"
+            />
+          </div>
+        )}
+
+        {/* Payment button */}
+        <div className={styles.buttonContainer}>
+          <Button
+            variant="contained"
+            color="primary"
+            disableElevation
+            rounded
+            onClick={createPaymentMethod}
+            disabled={processing || disabled || succeeded}
+            className={styles.payButton}
+          >
+            {t("pay")}
+            {processing && (
+              <CircularProgress
+                size={24}
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  marginTop: "-12px",
+                  marginLeft: "-12px",
+                }}
+              />
+            )}
+          </Button>
+        </div>
+      </div>
+
+      {/* Beautiful Success Modal */}
+      <Dialog
+        open={succeeded}
+        onClose={handleSuccessClose}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          style: {
+            borderRadius: "20px",
+            padding: "0",
+            overflow: "visible",
+          },
+        }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          disableElevation
-          rounded
-          onClick={createPaymentMethod}
-          disabled={processing || disabled || succeeded}
-        >
-          {capitalizeFirst(t("common:words.pay"))}
-          {processing && (
-            <CircularProgress
-              size={24}
+        <DialogContent style={{ padding: "48px 32px", textAlign: "center" }}>
+          {/* Success Icon */}
+          <div
+            style={{
+              width: "80px",
+              height: "80px",
+              backgroundColor: "#22c55e",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 24px",
+              animation: "successBounce 0.6s ease-out",
+            }}
+          >
+            <CheckCircleIcon
               style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                marginTop: "-12px",
-                marginLeft: "-12px",
+                fontSize: "48px",
+                color: "white",
               }}
             />
-          )}
-        </Button>
-      </Box>
+          </div>
 
-      <Snackbar open={succeeded} onClose={handleSuccessClose}>
-        <Alert
-          severity="success"
-          variant="filled"
-          action={
-            <Button style={{ color: "#fff" }} onClick={() => startCountdown()}>
-              {t("takeMeThereNow")}
-            </Button>
+          {/* Success Title */}
+          <Typography
+            variant="h4"
+            style={{
+              fontWeight: "bold",
+              color: "#1f2937",
+              marginBottom: "12px",
+              fontSize: "28px",
+            }}
+          >
+            {t("paymentSuccessful", { ns: "checkout" })}
+          </Typography>
+
+          {/* Success Message */}
+          <Typography
+            variant="body1"
+            style={{
+              color: "#6b7280",
+              marginBottom: "32px",
+              fontSize: "16px",
+              lineHeight: "1.6",
+            }}
+          >
+            {t("welcomeToArtportable", { ns: "checkout" }) || "Welcome to Artportable! Your subscription is now active and you can start uploading your artwork."}
+          </Typography>
+
+          {/* Plan Information Card */}
+          <div
+            style={{
+              backgroundColor: "#f9fafb",
+              border: "1px solid #e5e7eb",
+              borderRadius: "12px",
+              padding: "20px",
+              marginBottom: "32px",
+            }}
+          >
+            <Typography
+              variant="subtitle2"
+              style={{ color: "#6b7280", marginBottom: "8px", fontSize: "14px" }}
+            >
+              {t("product", { ns: "payment" })}
+            </Typography>
+            <Typography
+              variant="h6"
+              style={{ 
+                fontWeight: "600", 
+                color: "#1f2937",
+                fontSize: "18px"
+              }}
+            >
+              {plan?.product === "Portfolio" ? t("portfolioPremium", { ns: "payment" }) : plan?.product}
+            </Typography>
+          </div>
+
+          {/* Action Buttons */}
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleSuccessClose}
+            style={{
+              borderRadius: "30px",
+              fontWeight: 500,
+              fontFamily: "Roboto",
+              fontSize: "14px",
+              backgroundColor: "white",
+              border: "1px solid black",
+              color: "black",
+              width: "150px",
+              height: "40px",
+              boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+              marginBottom: "10px",
+            }}
+          >
+            {t("startUploading", { ns: "checkout" }) || "Start Uploading"}
+          </Button>
+
+          {/* Countdown */}
+          <Typography
+            variant="caption"
+            style={{
+              color: "#9ca3af",
+              fontSize: "14px",
+              display: "block",
+            }}
+          >
+            {t("autoRedirectIn", { ns: "checkout" }) || "Auto-redirecting in"}: {countdown}s{" "}
+            <span
+              onClick={() => {
+                clearInterval(countdownRef.current);
+                confirmedPortfolio();
+                router.push("/");
+              }}
+              style={{
+                color: "#3b82f6",
+                cursor: "pointer",
+                textDecoration: "underline",
+                fontWeight: "500",
+              }}
+            >
+              {t("skipWait", { ns: "checkout" }) || "Skip wait"}
+            </span>
+          </Typography>
+        </DialogContent>
+      </Dialog>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        @keyframes successBounce {
+          0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 0;
           }
-        >
-          <AlertTitle>{t("paymentSuccessful")}</AlertTitle>
-          {t("redirectingIn")}: {countdown}...
-        </Alert>
-      </Snackbar>
+          50% {
+            transform: scale(1.3) rotate(180deg);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+          }
+        }
+      `}</style>
 
       <Snackbar
         open={errorOpen}

@@ -49,5 +49,15 @@
   "article": "Artikkel",
   "monthlyArtist": "Månedens kunstner",
   "categoryPage": "Kategoriside",
-  "buy": "Kjøp"
+  "buy": "Kjøp",
+  "stepFourOfFour": "Steg 4 av 4",
+  "addCardAndPay": "Legg til kort og betal",
+  "product": "Produkt",
+  "cardDetails": "Kortopplysninger",
+  "cardNumber": "Kortnummer",
+  "expiryDate": "Utløpsdato",
+  "securityCode": "Sikkerhetskode",
+  "cardholderName": "Navn på kort",
+  "discountCode": "Rabattkode",
+  "pay": "Betal"
 }
