@@ -172,7 +172,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       navBarItems: navBarItems,
-      ...(await serverSideTranslations(locale, ["header", "footer", "faq", "support"])),
+      ...(await serverSideTranslations(locale, ["header", "footer", "faq", "support", "common", "header"])),
     },
     revalidate: 60,
   };
