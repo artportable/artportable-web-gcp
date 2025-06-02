@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Drawer,
   List,
@@ -11,6 +12,8 @@ import {
   Collapse,
   Divider,
   Button,
+  Typography,
+  Box,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -23,6 +26,18 @@ import NotificationIconButton from "../NotificationIconButton/NotificationIconBu
 import MessageRoundedIcon from "@material-ui/icons/MessageRounded";
 import SupervisorAccountSharpIcon from "@material-ui/icons/SupervisorAccountSharp";
 import LanguageRoundedIcon from "@material-ui/icons/LanguageRounded";
+import PersonIcon from "@material-ui/icons/Person";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import ExploreIcon from "@material-ui/icons/Explore";
+import CollectionsIcon from "@material-ui/icons/Collections";
+import InfoIcon from "@material-ui/icons/Info";
+import HelpIcon from "@material-ui/icons/Help";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import FiberNewIcon from "@material-ui/icons/FiberNew";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import { useTranslation } from "next-i18next";
 import { styles } from "./drawerMenu.css";
 import { useKeycloak } from "@react-keycloak/ssr";
@@ -46,6 +61,7 @@ import ManageSubscriptionsDialog from "../ManageSubscriptions/ManageSubscription
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
+
 export default function DrawerMenu({
   open,
   setOpen,
@@ -64,6 +80,7 @@ export default function DrawerMenu({
   const [stripeId, setStripeId] = useState("");
   const [customerStatus, setCustomerStatus] = useState("");
   const [daysRemaining, setDaysRemaining] = useState(0);
+  
   const displayLocale = (() => {
     switch (router.locale) {
       case Locales.sv:
@@ -80,7 +97,6 @@ export default function DrawerMenu({
   })();
 
   const close = () => setOpen(false);
-
   const { favoriteIds } = useContext(FavoritesContext);
 
   const [openContact, setOpenContact] = useState(false);
@@ -175,6 +191,7 @@ export default function DrawerMenu({
       router.push(router.asPath, null, { locale: locale });
     }
   }
+
   const handleClickContact = () => {
     setOpenContact(true);
   };
@@ -199,9 +216,53 @@ export default function DrawerMenu({
     setOpenUpgrade(false);
   };
 
+  // Navigation menu items organized by section
+  const navigationSections = [
+    {
+      title: t("upptäck"),
+      items: [
+        {
+          href: "/discover",
+          label: t("findArt"),
+          icon: <ExploreIcon />,
+        },
+        {
+          href: "/exhibition",
+          label: t("exhibition"),
+          icon: <AccountBalanceIcon />,
+        },
+        {
+          href: "/curated",
+          label: t("curatet"),
+          icon: <CollectionsIcon />,
+        },
+        {
+          href: "/newsroom",
+          label: t("story"),
+          icon: <FiberNewIcon />,
+        },
+      ],
+    },
+    {
+      title: t("information"),
+      items: [
+        {
+          href: "/about-us",
+          label: t("aboutUs"),
+          icon: <InfoIcon />,
+        },
+        {
+          href: "/faq",
+          label: t("FAQ"),
+          icon: <HelpIcon />,
+        },
+      ],
+    },
+  ];
+
   return (
     <Drawer
-      classes={{ paper: s.container }}
+      classes={{ paper: `${s.container} ${s.slideIn}` }}
       anchor="right"
       open={open}
       onClose={() => close()}
@@ -213,399 +274,356 @@ export default function DrawerMenu({
         disableRestoreFocus: false,
       }}
     >
-      <div className={s.closeButtonFlex}>
+      {/* Header Section */}
+      <Box className={s.drawerHeader}>
+        <Box className={s.brandSection}>
+          <Image
+            src="/ArtportableLogo.svg"
+            alt="ArtPortable Logo"
+            width={100}
+            height={44}
+            className={s.brandLogo}
+            priority
+          />
+        </Box>
         <IconButton
           aria-label="close menu"
           onClick={() => close()}
           className={s.closeButton}
         >
-          <CloseIcon style={{ fontSize: "30px" }} />
+          <CloseIcon />
         </IconButton>
-      </div>
+      </Box>
 
-      <List>
+      {/* Scrollable Content Area */}
+      <Box className={s.scrollableContent}>
+        {/* User Section */}
         {isSignedIn.value ? (
-          <>
+          <Box className={s.userSection}>
+            {/* Upgrade Section */}
             {membership.value < Membership.Portfolio && (
-              <div>
-                <ListItem
-                  button
-                  divider
-                  onClick={() => {
-                    handleClickUpgrade();
-                    trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY);
-                  }}
-                >
-                  <ListItemText primary={t("upgrade")} />
-                </ListItem>
-                <Upgrade
-                  openUpgrade={openUpgrade}
-                  handleCloseUpgrade={handleCloseUpgrade}
+              <ListItem
+                button
+                className={`${s.profileItem} ${s.upgradeItem}`}
+                onClick={() => {
+                  handleClickUpgrade();
+                  trackGoogleAnalytics(ActionType.UPGRADE, CategoryType.BUY);
+                }}
+              >
+                <ListItemIcon className={s.listItemIcon}>
+                  <TrendingUpIcon />
+                </ListItemIcon>
+                <ListItemText 
+                  primary={t("upgrade")} 
+                  className={s.listItemText}
                 />
-              </div>
+              </ListItem>
             )}
+
+            {/* Admin Section */}
             {isSignedIn.value && membership.value > 4 && (
-              <ListItem button divider>
-                <ListItemIcon>
-                  <Badge max={99}>
-                    <SupervisorAccountSharpIcon style={{ fontSize: 30 }} />
-                  </Badge>
-                </ListItemIcon>
-                <a href="/admin" target="_self" rel="noopener noreferrer">
-                  ADMIN
-                </a>
-              </ListItem>
-            )}
-            <Link href={`/profile/@${username.value}`} passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemAvatar>
-                  <ProfileAvatar
-                    size={30}
-                    profilePicture={profilePicture}
-                  ></ProfileAvatar>
-                </ListItemAvatar>
-                <ListItemText primary={t("profile")} />
-              </ListItem>
-            </Link>
-            <Link href="/feed" passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemIcon>
-                  <Badge max={99}>
-                    <SupervisorAccountSharpIcon
-                      style={{ fontSize: 30, color: "#343a40" }}
-                    />
-                  </Badge>
-                </ListItemIcon>
-                <ListItemText primary={t("myArtNetwork")} />
-              </ListItem>
-            </Link>
-            {/* <Link href="/messages" passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemIcon>
-                  <Badge
-                    badgeContent={unreadChatMessages}
-                    max={99}
-                    color="primary"
-                  >
-                    <MessageRoundedIcon
-                      color="secondary"
-                      style={{ fontSize: 30 }}
-                    />
-                  </Badge>
-                </ListItemIcon>
-                <ListItemText primary={t("messages")} />
-              </ListItem>
-            </Link> */}
-
-            <Link href="/upload" passHref>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemIcon>
-                  <InsertPhotoIcon style={{ fontSize: 30, color: "#6f42c1" }} />
-                </ListItemIcon>
-                <ListItemText primary={t("upload")} />
-              </ListItem>
-            </Link>
-
-            {!membership.isPending && membership.value === 3 ? (
-              <div className={s.upload}>
-                <Link href="/upload-story">
-                  <ListItem button divider onClick={() => close()}>
-                    <ListItemIcon>
-                      <InsertPhotoIcon
-                        style={{ fontSize: 30, color: "#ffc107" }}
-                      />
+              <Link href="/admin">
+                <a className={s.noDecoration}>
+                  <ListItem button className={s.profileItem} onClick={() => close()}>
+                    <ListItemIcon className={s.listItemIcon}>
+                      <SupervisorAccountSharpIcon />
                     </ListItemIcon>
-                    <ListItemText primary={t("uploadStory")} />
-                  </ListItem>
-                </Link>
-              </div>
-            ) : (
-              <div className={s.upload}>
-                <Link href="/upgrade">
-                  <ListItem button divider onClick={() => close()}>
-                    <ListItemIcon>
-                      <FeedOutlinedIcon
-                        style={{ fontSize: 30, color: "#e83e8c" }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText primary={t("uploadStory")} />
-                  </ListItem>
-                </Link>
-              </div>
-            )}
-
-            {customerStatus === "trialing" ? (
-              <div style={{ color: "black", marginRight: "10px" }}>
-                <div
-                  onClick={async () => {
-                    try {
-                      const customerId = await fetchCustomerId();
-                      if (customerId) {
-                        const portalUrl = await fetchCustomerPortalSession(
-                          customerId
-                        );
-                        if (portalUrl) {
-                          window.location.href = portalUrl;
-                        } else {
-                          console.error("Customer portal URL not received.");
-                        }
-                      } else {
-                        console.error("Customer ID not received.");
-                      }
-                    } catch (error) {
-                      console.error("Error in processing:", error);
-                    }
-                  }}
-                >
-                  <ListItem button divider onClick={() => close()}>
-                    <ListItemText primary={t("managePayment")} />
-                  </ListItem>
-                </div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </>
-        ) : (
-          <>
-            <ListItem button divider>
-              <ListItemText
-                primary={t("signUp")}
-                onClick={() =>
-                  keycloak.register({
-                    locale: router.locale,
-                    redirectUri: signUpRedirectHref,
-                  })
-                }
-              />
-            </ListItem>
-            <ListItem
-              button
-              divider
-              onClick={() => keycloak.login({ locale: router.locale })}
-            >
-              <ListItemText primary={t("login")} />
-            </ListItem>
-            {favoriteIds.length > 0 && (
-              <Link href="/wishlist" passHref>
-                <a>
-                  <ListItem button divider onClick={() => close()}>
-                    <ListItemText primary={t("myFavorites")} />
-                    <BookmarkIcon></BookmarkIcon>
+                    <ListItemText 
+                      primary="ADMIN" 
+                      className={s.listItemText}
+                    />
                   </ListItem>
                 </a>
               </Link>
             )}
-          </>
-        )}
-        {/* <Link href="/" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("discover")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* <Link href="https://artportable.store/" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("store")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* <Link href={"/latestart"} passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("latest")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        <Link href={"/discover"} passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("findArt")} />
-            </ListItem>
-          </a>
-        </Link>
 
-        <Link href={"/exhibition"} passHref>
-          <ListItem button divider onClick={() => close()}>
-            <ListItemText primary={t("exhibition")} />
-          </ListItem>
-        </Link>
+            {/* Profile Section */}
+            <Link href={`/profile/@${username.value}`}>
+              <a className={s.noDecoration}>
+                <ListItem button className={s.profileItem} onClick={() => close()}>
+                  <ListItemAvatar className={s.avatarSection}>
+                    <ProfileAvatar
+                      size={28}
+                      profilePicture={profilePicture}
+                    />
+                  </ListItemAvatar>
+                  <ListItemText 
+                    primary={t("profile")} 
+                    className={s.listItemText}
+                  />
+                </ListItem>
+              </a>
+            </Link>
 
-        <Link href={"/curated"} passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("curatet")} />
-            </ListItem>
-          </a>
-        </Link>
-        {/* {navBarItems && navBarItems.length > 0 && (
-          <div>
-            <ListItem button onClick={handleClickListingPages}>
-              <ListItemText primary={t("productLists")} />
-              {openListingPages ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={openListingPages} timeout="auto">
-              <List component="div" disablePadding>
-                {navBarItems.map((item, index) => {
-                  navBarItems.sort((a, b) => {
-                    if (a.menuTitle.toUpperCase() < b.menuTitle.toUpperCase())
-                      return -1;
-                    if (a.menuTitle.toUpperCase() > b.menuTitle.toUpperCase())
-                      return +1;
-                  });
-                  if (item.locale == router.locale)
-                    return (
-                      <Link href={"/" + item.slug} passHref key={index}>
-                        {/* onClick={(_) => router.push(`/${item.slug}`)} */}
-        {/* <a>
-                          <ListItem
-                            button
-                            className={s.nested}
-                            onClick={() => close()}
-                          > */}
-        {/* <ListItem button className={s.nested} onClick={() => { close(); router.push(`${'/' + item.slug}`);}}> */}
-        {/* <ListItemText primary={item.menuTitle} />
-                          </ListItem>
-                        </a>
-                      </Link>
-                    );
-                })}
-              </List>
-            </Collapse>
-            <Divider />
-          </div>
-        )} */}
+            {/* My Art Network */}
+            <Link href="/feed">
+              <a className={s.noDecoration}>
+                <ListItem button className={s.profileItem} onClick={() => close()}>
+                  <ListItemIcon className={s.listItemIcon}>
+                    <SupervisorAccountSharpIcon />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={t("myArtNetwork")} 
+                    className={s.listItemText}
+                  />
+                </ListItem>
+              </a>
+            </Link>
 
-        {/* <Link href={"/collaboration"} passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("collaboration")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        <Link href={"/newsroom"} passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("story")} />
-            </ListItem>
-          </a>
-        </Link>
+            {/* Upload Section */}
+            <Link href="/upload">
+              <a className={s.noDecoration}>
+                <ListItem button className={s.profileItem} onClick={() => close()}>
+                  <ListItemIcon className={s.listItemIcon}>
+                    <InsertPhotoIcon />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={t("upload")} 
+                    className={s.listItemText}
+                  />
+                </ListItem>
+              </a>
+            </Link>
 
-        {/* <Link href="/artists" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("artists")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* <Link href={`${t("header:storiesSlug")}`} passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("stories")} />
-            </ListItem>
-          </a>
-        </Link> */}
+            {/* Upload Story */}
+            {!membership.isPending && membership.value === 3 ? (
+              <Link href="/upload-story">
+                <a className={s.noDecoration}>
+                  <ListItem button className={s.profileItem} onClick={() => close()}>
+                    <ListItemIcon className={s.listItemIcon}>
+                      <FeedOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary={t("uploadStory")} 
+                      className={s.listItemText}
+                    />
+                  </ListItem>
+                </a>
+              </Link>
+            ) : (
+              <Link href="/upgrade">
+                <a className={s.noDecoration}>
+                  <ListItem button className={s.profileItem} onClick={() => close()}>
+                    <ListItemIcon className={s.listItemIcon}>
+                      <FeedOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary={t("uploadStory")} 
+                      className={s.listItemText}
+                    />
+                  </ListItem>
+                </a>
+              </Link>
+            )}
 
-        {/* <Link href="/kurser" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("courses")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* <Link href="/kampanj" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("offers")} />
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* {isSignedIn.value && (
-          <Link href="/medlemserbjudanden" passHref>
-            <a>
-              <ListItem button divider onClick={() => close()}>
-                <ListItemText primary={t("membershipOffers")} />
+            {/* Payment Management */}
+            {customerStatus === "trialing" && (
+              <ListItem
+                button
+                className={s.profileItem}
+                onClick={async () => {
+                  try {
+                    const customerId = await fetchCustomerId();
+                    if (customerId) {
+                      const portalUrl = await fetchCustomerPortalSession(customerId);
+                      if (portalUrl) {
+                        window.location.href = portalUrl;
+                      } else {
+                        console.error("Customer portal URL not received.");
+                      }
+                    } else {
+                      console.error("Customer ID not received.");
+                    }
+                  } catch (error) {
+                    console.error("Error in processing:", error);
+                  }
+                  close();
+                }}
+              >
+                <ListItemText 
+                  primary={t("managePayment")} 
+                  className={s.listItemText}
+                />
               </ListItem>
-            </a>
-          </Link>
-        )} */}
-        {/* <Link href="/showroom" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("exhibition")} />
+            )}
+          </Box>
+        ) : (
+          /* Guest User Section */
+          <Box className={s.userSection}>
+            <ListItem
+              button
+              className={s.profileItem}
+              onClick={() =>
+                keycloak.register({
+                  locale: router.locale,
+                  redirectUri: signUpRedirectHref,
+                })
+              }
+            >
+              <ListItemIcon className={s.listItemIcon}>
+                <AccountCircleIcon />
+              </ListItemIcon>
+              <ListItemText 
+                primary={t("signUp")} 
+                className={s.listItemText}
+              />
             </ListItem>
-          </a>
-        </Link> */}
-        <Link href="/about-us" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("aboutUs")} />
-            </ListItem>
-          </a>
-        </Link>
-        <Link href="/faq" passHref>
-          <a>
-            <ListItem button divider onClick={() => close()}>
-              <ListItemText primary={t("FAQ")} />
-            </ListItem>
-          </a>
-        </Link>
 
-        <div>
-          <ListItem button onClick={handleClickLanguage}>
-            <ListItemText primary={displayLocale} />
-            {openLanguage ? <ExpandLess /> : <ExpandMore />}
+            <ListItem
+              button
+              className={s.profileItem}
+              onClick={() => keycloak.login({ locale: router.locale })}
+            >
+              <ListItemIcon className={s.listItemIcon}>
+                <LockOpenIcon />
+              </ListItemIcon>
+              <ListItemText 
+                primary={t("login")} 
+                className={s.listItemText}
+              />
+            </ListItem>
+
+            {/* Favorites for guest users */}
+            {favoriteIds.length > 0 && (
+              <Link href="/wishlist">
+                <a className={s.noDecoration}>
+                  <ListItem button className={s.profileItem} onClick={() => close()}>
+                    <ListItemIcon className={s.listItemIcon}>
+                      <BookmarkIcon />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary={t("myFavorites")} 
+                      className={s.listItemText}
+                    />
+                    <Badge 
+                      badgeContent={favoriteIds.length} 
+                      className={s.favoriteBadge}
+                    />
+                  </ListItem>
+                </a>
+              </Link>
+            )}
+          </Box>
+        )}
+
+        {/* Navigation Sections */}
+        {navigationSections.map((section, sectionIndex) => (
+          <Box key={sectionIndex} className={s.navigationSection}>
+            <Typography className={s.sectionHeader}>
+              {section.title}
+            </Typography>
+            <List className={s.compactList}>
+              {section.items.map((item, itemIndex) => (
+                <Link key={itemIndex} href={item.href}>
+                  <a className={s.noDecoration}>
+                    <ListItem 
+                      button 
+                      className={`${s.listItem} ${s.touchTarget}`}
+                      onClick={() => close()}
+                    >
+                      <ListItemIcon className={s.listItemIcon}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <ListItemText 
+                        primary={item.label} 
+                        className={s.listItemText}
+                      />
+                    </ListItem>
+                  </a>
+                </Link>
+              ))}
+            </List>
+          </Box>
+        ))}
+
+        {/* Language Selection */}
+        <Box className={s.languageSection}>
+          <ListItem 
+            button 
+            onClick={handleClickLanguage}
+            className={s.languageHeader}
+          >
+            <ListItemIcon className={s.listItemIcon}>
+              <LanguageRoundedIcon />
+            </ListItemIcon>
+            <ListItemText 
+              primary={displayLocale} 
+              className={s.listItemText}
+            />
+            <Box 
+              className={`${s.languageIcon} ${openLanguage ? s.languageIconExpanded : ''}`}
+            >
+              <ExpandMore />
+            </Box>
           </ListItem>
           <Collapse in={openLanguage} timeout="auto">
-            <List component="div" disablePadding>
+            <List component="div" disablePadding className={s.compactList}>
               <ListItem
                 button
-                className={s.nested}
+                className={`${s.nested} ${s.touchTarget}`}
                 onClick={(_) => handleCloseLanguage(_, Locales.sv)}
               >
-                <ListItemText primary={t("Swedish")} />
+                <ListItemText 
+                  primary={t("Swedish")} 
+                  className={s.nestedText}
+                />
               </ListItem>
               <ListItem
                 button
-                className={s.nested}
+                className={`${s.nested} ${s.touchTarget}`}
                 onClick={(_) => handleCloseLanguage(_, Locales.en)}
               >
-                <ListItemText primary={t("english")} />
+                <ListItemText 
+                  primary={t("english")} 
+                  className={s.nestedText}
+                />
               </ListItem>
               <ListItem
                 button
-                className={s.nested}
+                className={`${s.nested} ${s.touchTarget}`}
                 onClick={(_) => handleCloseLanguage(_, Locales.nb)}
               >
-                <ListItemText primary={t("Norsk")} />
+                <ListItemText 
+                  primary={t("Norsk")} 
+                  className={s.nestedText}
+                />
               </ListItem>
               <ListItem
                 button
-                className={s.nested}
+                className={`${s.nested} ${s.touchTarget}`}
                 onClick={(_) => handleCloseLanguage(_, Locales.da)}
               >
-                <ListItemText primary={t("Danska")} />
+                <ListItemText 
+                  primary={t("Danska")} 
+                  className={s.nestedText}
+                />
               </ListItem>
             </List>
           </Collapse>
-          <Divider />
-        </div>
+        </Box>
+      </Box>
 
-        {isSignedIn.value ? (
-          <>
-            <ListItem button divider onClick={() => keycloak.logout()}>
-              <ListItemIcon>
-                <ExitToAppIcon style={{ fontSize: 30 }} />
-              </ListItemIcon>
-              <ListItemText primary={t("logout")} />
-            </ListItem>
-          </>
-        ) : (
-          ""
-        )}
-      </List>
+      {/* Footer Section - Logout - Always visible at bottom */}
+      {isSignedIn.value && (
+        <Box className={s.footerSection}>
+          <ListItem 
+            button 
+            className={`${s.logoutItem} ${s.touchTarget}`}
+            onClick={() => keycloak.logout()}
+          >
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary={t("logout")} />
+          </ListItem>
+        </Box>
+      )}
+
+      {/* Dialog Components */}
+      <Upgrade
+        openUpgrade={openUpgrade}
+        handleCloseUpgrade={handleCloseUpgrade}
+      />
     </Drawer>
   );
 }
