@@ -130,7 +130,7 @@ export const styles = makeStyles((theme: Theme) =>
     input: {
       height: "100%",
       width: "100%",
-      fontSize: "14px",
+      fontSize: "18px",
       fontWeight: 400,
       fontFamily: "Roboto",
       border: "none !important",
@@ -145,11 +145,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
 
       [theme.breakpoints.down("sm")]: {
-        fontSize: "14px",
+        fontSize: "18px",
       },
 
       [theme.breakpoints.up("md")]: {
-        fontSize: "14px",
+        fontSize: "18px",
       },
       "@media not all and (min-resolution:.001dpcm)": {
         "@supports (-webkit-appearance:none)": {

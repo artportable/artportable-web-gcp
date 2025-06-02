@@ -243,7 +243,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
               />
 
               <Button className={s.button} onClick={() => setOpen(false)}>
-                {t("common:selectOptions:close")}{" "}
+          
                 <CloseIcon style={{ fontSize: "15px" }} />
               </Button>
             </div>
