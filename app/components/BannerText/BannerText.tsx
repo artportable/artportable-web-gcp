@@ -11,9 +11,9 @@ export default function BannerText({ title, text, page }: BannerTextProps) {
   const s = styles();
 
   return (
-    <div className={s.container} style={{ alignItems: page ? "center" : "flex-start" }}>
-      <div className={s.title} style={{ marginLeft: page ? "0px" : "50px" }}>{title}</div>
-      <div className={s.text} style={{ marginLeft: page ? "0px" : "50px" }}>{text}</div>
+    <div className={s.container} style={{ alignItems: page ? "flex-start" : "flex-start" }}>
+      <div className={s.title} style={{ marginLeft: page ? "50px" : "50px" }}>{title}</div>
+      <div className={s.text} style={{ marginLeft: page ? "50px" : "50px" }}>{text}</div>
     </div>
   );
 }
