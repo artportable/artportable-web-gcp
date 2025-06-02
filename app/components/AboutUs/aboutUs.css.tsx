@@ -130,12 +130,13 @@ export const styles = makeStyles((theme: Theme) =>
     // Mission Section
     missionGrid: {
       display: "grid",
+   
+      gridTemplateColumns: "1fr",
+      gap: "48px",
+      [theme.breakpoints.up("smPlus")]: {
       gridTemplateColumns: "1fr 300px",
       gap: "80px",
       alignItems: "center",
-      [theme.breakpoints.down("smPlus")]: {
-        gridTemplateColumns: "1fr",
-        gap: "48px",
       },
     },
     missionTextContainer: {
@@ -153,11 +154,11 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     missionVisual: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      [theme.breakpoints.down("smPlus")]: {
-        display: "none",
+      display: "none",
+      [theme.breakpoints.up("smPlus")]: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       },
     },
     geometricShape: {
@@ -278,7 +279,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#1a1a1a",
       marginBottom: "8px",
       lineHeight: 1.3,
-      fontFamily: "Roboto",
+      fontFamily: "Joan",
     },
     teamRole: {
       fontSize: "0.875rem",
@@ -301,12 +302,13 @@ export const styles = makeStyles((theme: Theme) =>
     // Contact Section
     contactGrid: {
       display: "grid",
-      gridTemplateColumns: "1fr 400px",
-      gap: "80px",
       alignItems: "start",
-      [theme.breakpoints.down("md")]: {
-        gridTemplateColumns: "1fr",
-        gap: "48px",
+      gridTemplateColumns: "1fr",
+      gap: "48px",
+      [theme.breakpoints.up("smPlus")]: {
+        gridTemplateColumns: "1fr 400px",
+        gap: "80px",
+        alignItems: "start",
       },
     },
     contactInfo: {
