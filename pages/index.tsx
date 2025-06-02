@@ -237,7 +237,7 @@ export default function DiscoverPage({ navBarItems }) {
       </Link>
 
       <div className={s.headTitle}>{t("titleHeader")}</div>
-      <div className={s.headText}>{t("descriptionBody")}</div>
+      <div className={s.headText}>{t("descriptionBodyCurated")}</div>
       <div
         style={{
           gridColumn: "1 / 4",

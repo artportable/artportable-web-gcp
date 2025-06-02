@@ -21,11 +21,6 @@ export default function AboutUs() {
       email: "massi@artportable.com",
     },
     {
-      name: "Erik Nordlander",
-      title: "Marketing & Founder",
-      email: "erik@artportable.com",
-    },
-    {
       name: "Johan Höök",
       title: "Business Development & Founder", 
       email: "johan@artportable.com",
