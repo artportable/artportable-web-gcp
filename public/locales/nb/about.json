@@ -4,6 +4,11 @@
   "digitalGalleryDescription": "Artportable ble født fra en enkel men kraftfull idé: å gjøre kunsten mer tilgjengelig for både skapere og kjøpere. Vi er en digital plattform og en kreativ bevegelse som hjelper kunstnere å bli sett, vokse og selge, mens vi gjør det enklere enn noen gang for kunstinteresserte å oppdage og kjøpe originalkunst direkte fra skaperne.",
   "digitalGalleryDescription2": "Vi vil demokratisere kunstverdenen. Hos oss får hver kunstner en plass å uttrykke seg gjennom sin egen kunstnerside, og hvert kunstverk en sammenheng der det kan nå fram til riktig betrakter eller kjøper. Vi bygger broer mellom kunstnere, samlere og gallerier, både digitalt og i det virkelige liv.",
   "digitalGalleryDescription3": "Uansett om du er kunstner på vei ut i verden, eller en kjøper på jakt etter noe ekte, unikt og personlig, er Artportable stedet der disse møtene skjer. Vi er ikke bare et utstillingsvindu for kunst - vi er en markedsplass for originalitet, følelse og kreativt mot.",
+  "sectionMission": "Vårt Oppdrag",
+  "sectionWhatWeDo": "Hva Vi Gjør",
+  "sectionValues": "Våre Verdier",
+  "sectionTeam": "Vårt Team",
+  "sectionContact": "Ta Kontakt",
   "whatWeDo": "Hva vi gjør",
   "whatWeDoDescription": "Vi tilbyr hver kunstner en egen kunstnerside som er enkel å lage og kraftfull å dele.",
   "whatWeDoDescription2": "Vi gjør det lett for kunstkjøpere å utforske og kjøpe originalkunst som berører.",
@@ -44,5 +49,6 @@
     "logIn": "Logg inn i menyen",
     "startReceivingEmails": "Ja, jeg vil få e-post",
     "stopReceivingEmails": "Nei, jeg vil ikke få e-post"
-  }
+  },
+  "emailLabel": "E-post"
 }

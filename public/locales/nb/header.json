@@ -47,5 +47,14 @@
   "startPage": "Hjem",
   "flow": "Feed",
   "uploadArtwork": "Last opp",
-  "portfolio": "Portefølje"
+  "portfolio": "Portefølje",
+  "myFavorites": "Mine favoritter",
+  "viewAll": "Vis alle",
+  "latest": "Nytt på Artportable",
+  "findArt": "Kjøp kunst",
+  "curatet": "Inspiration",
+  "story": "Nyheter",
+  "collaboration": "Samarbeid",
+  "artist": "Kunstner",
+  "sell": "Salg din kunst"
 }

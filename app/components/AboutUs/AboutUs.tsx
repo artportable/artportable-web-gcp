@@ -41,17 +41,17 @@ export default function AboutUs() {
     {
       icon: "/icons/artist-page.svg",
       title: t("artistPages"),
-      description: t("whatWeDoDescription")
+      description: t("whatWeDoDescription"),
     },
     {
       icon: "/icons/marketplace.svg", 
       title: t("artMarketplace"),
-      description: t("whatWeDoDescription2")
+      description: t("whatWeDoDescription2"),
     },
     {
       icon: "/icons/exhibition.svg",
       title: t("exposureOpportunities"), 
-      description: t("whatWeDoDescription3")
+      description: t("whatWeDoDescription3"),
     }
   ];
 
@@ -59,57 +59,80 @@ export default function AboutUs() {
     { 
       icon: "/icons/values-art.svg",
       title: t("weBelieveDescription"),
-      description: t("valueDescription1")
+      description: t("valueDescription1"),
     },
     { 
       icon: "/icons/values-accessibility.svg",
       title: t("weBelieveDescription2"), 
-      description: t("valueDescription2")
+      description: t("valueDescription2"),
     },
-    { 
-      icon: "/icons/values-innovation.svg",
-      title: t("weBelieveDescription3"), 
-      description: t("valueDescription3")
-    },
+   
     { 
       icon: "/icons/values-community.svg",
       title: t("weBelieveDescription4"), 
-      description: t("valueDescription4")
+      description: t("valueDescription4"),
     }
   ];
 
   return (
-    <>
-      {/* Header Banner - like exhibitions page */}
-      <BannerText page={true} title={t("aboutUs")} text={t("digitalGallery")} />
-
-      {/* Main Content Container */}
-      <div className={s.pageWrapper}>
-        
-        {/* Mission Section */}
-        <div className={s.missionSection}>
-          <Typography variant="body1" className={s.missionText}>
-            {t("digitalGalleryDescription")}
-          </Typography>
-          <Typography variant="body1" className={s.missionText}>
-            {t("digitalGalleryDescription2")}
-          </Typography>
-          <Typography variant="body1" className={s.missionText}>
-            {t("digitalGalleryDescription3")}
-          </Typography>
+    <div className={s.scandinavianContainer}>
+      
+      {/* Hero Section */}
+      <section className={s.heroSection}>
+        <div className={s.heroContent}>
+          <div className={s.heroTextBlock}>
+            <Typography variant="h1" className={s.heroTitle}>
+              {t("aboutUs")}
+            </Typography>
+            <div className={s.accentLine}></div>
+            <Typography variant="body1" className={s.heroSubtitle}>
+              {t("digitalGallery")}
+            </Typography>
+          </div>
         </div>
+      </section>
 
-        {/* What We Do Section */}
-        <div className={s.sectionSpacing}>
-          <Typography variant="h2" className={s.sectionHeading}>
-            {t("whatWeDo")}
+      {/* Mission Statement */}
+      <section className={s.missionSection}>
+        <div className={s.contentContainer}>
+          <div className={s.missionGrid}>
+            <div className={s.missionTextContainer}>
+              <Typography variant="h2" className={s.sectionLabel}>
+                01 — {t("sectionMission")}
+              </Typography>
+              <Typography variant="body1" className={s.missionText}>
+                {t("digitalGalleryDescription")}
+              </Typography>
+              <Typography variant="body1" className={s.missionText}>
+                {t("digitalGalleryDescription2")}
+              </Typography>
+              <Typography variant="body1" className={s.missionText}>
+                {t("digitalGalleryDescription3")}
+              </Typography>
+            </div>
+            <div className={s.missionVisual}>
+              <div className={s.geometricShape}>
+                <img src={"/images/artportableCommercial.jpg"} style={{width: "100%", height: "100%"}} alt="Geometric Shape" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className={s.servicesSection}>
+        <div className={s.contentContainer}>
+          <Typography variant="h2" className={s.sectionLabel}>
+            02 — {t("sectionWhatWeDo")}
           </Typography>
-          <div className={s.containerCard}>
+          <div className={s.servicesGrid}>
             {services.map((service, index) => (
-              <div key={index} className={s.serviceCard}>
-                <div className={s.cardContent}>
-                  <img src={service.icon} alt={service.title} className={s.serviceIcon} />
-                  <Typography variant="h6" className={s.serviceTitle}>
+              <div key={index} className={s.serviceItem}>
+                <div className={s.serviceNumber}>
+                  {String(index + 1).padStart(2, '0')}
+                </div>
+                <div className={s.serviceContent}>
+                  <Typography variant="h3" className={s.serviceTitle}>
                     {service.title}
                   </Typography>
                   <Typography variant="body2" className={s.serviceDescription}>
@@ -120,87 +143,92 @@ export default function AboutUs() {
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Our Values Section */}
-        <div className={s.sectionSpacing}>
-          <Typography variant="h2" className={s.sectionHeading}>
-            {t("weBelieve")}
+      {/* Values Section */}
+      <section className={s.valuesSection}>
+        <div className={s.contentContainer}>
+          <Typography variant="h2" className={s.sectionLabel}>
+            03 — {t("sectionValues")}
           </Typography>
-          <div className={s.containerCard}>
+          <div className={s.valuesGrid}>
             {values.map((value, index) => (
               <div key={index} className={s.valueCard}>
-                <div className={s.cardContent}>
-                  <img src={value.icon} alt={value.title} className={s.valueIcon} />
-                  <Typography variant="h6" className={s.valueTitle}>
-                    {value.title}
+                <Typography variant="h4" className={s.valueTitle}>
+                  {value.title}
+                </Typography>
+                <Typography variant="body2" className={s.valueDescription}>
+                  {value.description}
+                </Typography>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className={s.teamSection}>
+        <div className={s.contentContainer}>
+          <Typography variant="h2" className={s.sectionLabel}>
+            04 — {t("sectionTeam")}
+          </Typography>
+          <div className={s.teamGrid}>
+            {team.map((person, index) => (
+              <div key={person.name} className={s.teamMember}>
+                <div className={s.teamInfo}>
+                  <Typography variant="h4" className={s.teamName}>
+                    {person.name}
                   </Typography>
-                  <Typography variant="body2" className={s.valueDescription}>
-                    {value.description}
+                  <Typography variant="body2" className={s.teamRole}>
+                    {person.title}
                   </Typography>
+                  <Link href={`mailto:${person.email}`}>
+                    <a className={s.teamEmail}>{person.email}</a>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className={s.contactSection}>
-          <Typography variant="h2" className={s.sectionHeading}>
-            {t("contactUs")}
-          </Typography>
-          <div className={s.contactContainer}>
-            <div className={s.contactContent}>
+      </section>
+
+      {/* Contact Section */}
+      <section className={s.contactSection}>
+        <div className={s.contentContainer}>
+          <div className={s.contactGrid}>
+            <div className={s.contactInfo}>
+              <Typography variant="h2" className={s.sectionLabel}>
+                05 — {t("sectionContact")}
+              </Typography>
               <Typography variant="body1" className={s.contactText}>
                 {t("yourWelcome")}
               </Typography>
-              <div className={s.contactInfo}>
-                <Typography variant="h6" className={s.contactLabel}>
-                  Email
+            </div>
+            <div className={s.contactDetails}>
+              <div className={s.contactItem}>
+                <Typography variant="body2" className={s.contactLabel}>
+                  {t("emailLabel")}
                 </Typography>
                 <Link href="mailto:hello@artportable.com">
-                  <a className={s.emailLink}>hello@artportable.com</a>
+                  <a className={s.contactLink}>hello@artportable.com</a>
                 </Link>
               </div>
-              <div className={s.contactInfo}>
-                <Typography variant="h6" className={s.contactLabel}>
+              <div className={s.contactItem}>
+                <Typography variant="body2" className={s.contactLabel}>
                   {t("openingHours")}
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" className={s.contactValue}>
                   {t("8-17")}
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" className={s.contactValue}>
                   {t("deviating")}
                 </Typography>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Team Section - Compact */}
-        <div className={s.sectionSpacing}>
-          <Typography variant="h2" className={s.sectionHeading}>
-            {t("ourTeam")}
-          </Typography>
-          <div className={s.containerCard}>
-            {team.map((person) => (
-              <div key={person.name} className={s.teamCard}>
-                <div className={s.cardContent}>
-                  <Typography variant="h6" className={s.teamMemberName}>
-                    {person.name}
-                  </Typography>
-                  <Typography variant="subtitle1" className={s.teamMemberTitle}>
-                    {person.title}
-                  </Typography>
-                  <Typography variant="body2">
-                    <Link href={`mailto:${person.email}`}>
-                      <a className={s.emailLink}>{person.email}</a>
-                    </Link>
-                  </Typography>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
- 
-      </div>
-    </>
+    </div>
   );
 }
