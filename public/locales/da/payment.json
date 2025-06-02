@@ -49,5 +49,15 @@
   "article": "Article",
   "monthlyArtist": "Artist of the month",
   "categoryPage": "Category Page",
-  "buy": "Buy"
+  "buy": "Buy",
+  "stepFourOfFour": "Trin 4 af 4",
+  "addCardAndPay": "Tilføj kort og betal",
+  "product": "Produkt",
+  "cardDetails": "Kortoplysninger",
+  "cardNumber": "Kortnummer",
+  "expiryDate": "Udløbsdato",
+  "securityCode": "Sikkerhedskode",
+  "cardholderName": "Navn på kort",
+  "discountCode": "Rabatkode",
+  "pay": "Betal"
 }

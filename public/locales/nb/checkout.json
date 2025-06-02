@@ -11,7 +11,7 @@
   "checkoutTermsFooter": "Artportable kan kontakte meg angående produkter og tjenester. Mer informasjon finnes i vår personvernpolitikk. Du kan når som helst avbryte abonnementet.",
   "backButton": "Tilbake",
   "finishButton": "Fullfør",
-  "paymentSuccessful": "Betaling vellykket",
+  "paymentSuccessful": "Betaling vellykket!",
   "paymentUnsuccessful": "Betaling mislykket",
   "redirectingIn": "Omdirigerer om",
   "takeMeThereNow": "Klikk for å komme inn",
@@ -32,5 +32,9 @@
   "fillInDetails": "Vennligst fyll inn dine detaljer",
   "promoteYourArt": "Promoter ditt verk!",
   "showlist": "Vis ditt verk på vår startside i 7 dager for kun 195 kr.",
-  "showlisttwo": "Perfekt for deg som vil fange nye øyne, skape interesse og øke salget."
+  "showlisttwo": "Perfekt for deg som vil fange nye øyne, skape interesse og øke salget.",
+  "welcomeToArtportable": "Velkommen til Artportable! Abonnementet ditt er nå aktivt og du kan begynne å laste opp kunstverkene dine.",
+  "startUploading": "Begynn å laste opp",
+  "autoRedirectIn": "Automatisk omdirigering om",
+  "skipWait": "Hopp over ventetid"
 }

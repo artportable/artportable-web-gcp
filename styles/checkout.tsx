@@ -1,116 +1,165 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import { BorderBottomSharp } from "@material-ui/icons";
 
 export const styles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      backgroundColor: "var(--yellow-lemon)",
-      [theme.breakpoints.up("md")]: {
-        backgroundColor: "var(--background-color)",
-      },
-      height: "100%",
+      height: "100vh",
       display: "flex",
+      flexDirection: "column",
+      overflow: "hidden",
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row-reverse",
+      },
+    },
+    leftSide: {
+      display: "none", // Hidden on mobile by default
+      [theme.breakpoints.up("md")]: {
+        display: "block",
+        width: "50%",
+        backgroundColor: "#ffffff",
+        height: "100vh",
+      },
+    },
+    artisticContent: {
+      width: "100%",
+      height: "100%",
+      padding: "0",
+      margin: "0",
+    },
+    heroImage: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      display: "block",
+    },
+    rightSide: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      height: "100vh",
+      [theme.breakpoints.up("md")]: {
+        width: "50%",
+      },
+    },
+    formWrapper: {
+      maxWidth: "500px",
+      width: "100%",
+      padding: "15px",
+      [theme.breakpoints.up("md")]: {
+        maxWidth: "600px",
+        padding: "30px",
+      },
+    },
+    stepIndicator: {
+      fontSize: "14px",
+      color: "#666666",
+      textAlign: "center",
+      marginBottom: "16px",
+      fontWeight: 400,
+    },
+    mainHeading: {
+      fontSize: "24px",
+      fontWeight: 600,
+      color: "#000000",
+      textAlign: "center",
+      marginBottom: "20px",
+      lineHeight: "1.2",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "28px",
+        marginBottom: "24px",
+      },
+    },
+    productSection: {
+      marginBottom: "20px",
+      [theme.breakpoints.up("md")]: {
+        marginBottom: "24px",
+      },
+    },
+    productLabel: {
+      fontSize: "16px",
+      fontWeight: 600,
+      color: "#000000",
+      marginBottom: "8px",
+      [theme.breakpoints.up("md")]: {
+        fontSize: "18px",
+        marginBottom: "12px",
+      },
+    },
+    productInfo: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingBottom: "12px",
+      [theme.breakpoints.up("md")]: {
+        paddingBottom: "16px",
+      },
+    },
+    productName: {
+      fontSize: "16px",
+      color: "#000000",
+      textDecoration: "underline",
+      fontWeight: 400,
+    },
+    productPrice: {
+      fontSize: "16px",
+      color: "#000000",
+      fontWeight: 400,
+    },
+    paymentSection: {
+      "& .StripeElement": {
+        width: "100%",
+        padding: "12px",
+        border: "1px solid #ddd",
+        borderRadius: "4px",
+        backgroundColor: "#ffffff",
+        fontSize: "16px",
+        boxSizing: "border-box",
+      },
+      "& .StripeElement--focus": {
+        borderColor: "#000000",
+        outline: "none",
+      },
+      "& .StripeElement--invalid": {
+        borderColor: "#fa755a",
+      },
+    },
+    // Legacy styles (keeping for compatibility)
+    container: {
+      display: "none",
     },
     left: {
-      backgroundColor: "var(--yellow-lemon)",
-      height: "100%",
-      width: "100%",
       display: "none",
-      justifyContent: "center",
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-      },
     },
     right: {
-      height: "100%",
-      width: "100%",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      [theme.breakpoints.up("md")]: {
-        justifyContent: "center",
-      },
+      display: "none",
     },
     fillInText: {
-      fontWeight: 500,
-      marginBottom: "10px",
+      display: "none",
     },
     leftContent: {
-      display: "flex",
+      display: "none",
     },
     headlineDiv: {
-      width: "500px",
-      margin: "auto",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "flex-start", // Align items to the start of the flex-direction column
+      display: "none",
     },
-
     headline: {
-      fontWeight: 600,
-      fontSize: "0.8rem",
-
-      margin: "0 16px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "2.5rem",
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "2.5rem",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "3.5",
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "3.5",
-      },
+      display: "none",
     },
     headlineText: {
-      fontSize: "0.8rem",
-      margin: "0 16px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "2.5rem",
-      },
-      [theme.breakpoints.up("smPlus")]: {
-        fontSize: "1.5rem",
-      },
-      [theme.breakpoints.up("mdPlus")]: {
-        fontSize: "3.5",
-      },
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "3.5",
-      },
+      display: "none",
     },
     headlineMobile: {
-      fontWeight: 600,
-      fontSize: "1.5rem",
+      display: "none",
     },
     headlineDivMobile: {
-      width: "300px",
-      margin: "40px 0",
-      [theme.breakpoints.up("md")]: {
-        display: "none",
-      },
+      display: "none",
     },
     card: {
-      width: "90%",
-      height: "auto",
-      margin: "0 16px",
-      display: "flex",
-      flexDirection: "column",
-
-      [theme.breakpoints.up("sm")]: {
-        width: "25rem",
-      },
-      "& .MuiCardContent-root > *:not(:last-child)": {
-        marginBottom: "8px",
-      },
-      [theme.breakpoints.up("md")]: {
-        width: "35rem",
-      },
+      display: "none",
     },
     cardContentWidth: {
-      width: "100%",
+      display: "none",
     },
     subtotal: {
       display: "flex",
@@ -123,10 +172,7 @@ export const styles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
     },
     logo: {
-      marginTop: "30px",
-      width: "150px",
-      marginBottom: "16px",
-      alignSelf: "center",
+      display: "none",
     },
     stripe: {
       width: "300px",

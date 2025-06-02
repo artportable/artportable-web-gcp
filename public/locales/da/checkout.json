@@ -11,7 +11,7 @@
   "checkoutTermsFooter": "Artportable kan kontakte mig vedrørende produkter og tjenester. Yderligere oplysninger findes i vores privatlivspolitik. Du kan til enhver tid afmelde abonnementet.",
   "backButton": "Tilbage",
   "finishButton": "Afslut",
-  "paymentSuccessful": "Betaling vellykket",
+  "paymentSuccessful": "Betaling vellykket!",
   "paymentUnsuccessful": "Betaling mislykkedes",
   "redirectingIn": "Omdirigerer om",
   "takeMeThereNow": "Klik for at komme ind",
@@ -21,12 +21,16 @@
   "zeroSek": "0 kr",
   "moreSeconds": "i 10 dage, derefter 99 kr/måned",
   "pleaseFill": "Udfyld venligst dine oplysninger",
-  "fewSecondsPremium": "You are only a few seconds from uploading your artworks…",
+  "fewSecondsPremium": "Du er kun få sekunder fra at uploade dine kunstværker...",
   "promoteYourArt": "Fremme dit værk!",
   "increaseVisibility": "Øg din synlighed",
   "priceNow": "Kun 395 SEK nu!",
   "broaderPublic": "Nå et bredere publikum",
   "moreSale": "Mulighed for øget salg",
   "startPage": "Dit værk i spotlightet! Fremvises øverst på Artportables startside i 10 dage!",
-  "fillInDetails": "Venligst udfyld dine detaljer"
+  "fillInDetails": "Venligst udfyld dine detaljer",
+  "welcomeToArtportable": "Velkommen til Artportable! Dit abonnement er nu aktivt og du kan begynde at uploade dine kunstværker.",
+  "startUploading": "Begynd at uploade",
+  "autoRedirectIn": "Automatisk omdirigering om",
+  "skipWait": "Spring venten over"
 }

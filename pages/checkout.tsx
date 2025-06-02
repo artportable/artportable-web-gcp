@@ -4,18 +4,15 @@ import { Elements } from "@stripe/react-stripe-js";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Box from "@material-ui/core/Box";
 import CheckoutForm from "../app/components/CheckoutForm/CheckoutForm";
-import InputLabel from "@material-ui/core/InputLabel";
 import { styles } from "../styles/checkout";
 import { useRouter } from "next/router";
 import { useStore } from "react-redux";
 import { useKeycloak } from "@react-keycloak/ssr";
 import { KeycloakInstance } from "keycloak-js";
 
-// Make sure to call loadStripe outside of a component’s render to avoid
+// Make sure to call loadStripe outside of a component's render to avoid
 // recreating the Stripe object on every render.
 // loadStripe is initialized with your real test publishable API key.
 
@@ -24,7 +21,7 @@ export default function Checkout() {
   const promise = loadStripe(stripeKey);
 
   const store = useStore();
-  const { t } = useTranslation(["checkout", "common"]);
+  const { t } = useTranslation(["payment", "common"]);
   const router = useRouter();
 
   const { keycloak, initialized } = useKeycloak<KeycloakInstance>();
@@ -32,6 +29,42 @@ export default function Checkout() {
   const [fullName, setFullName] = useState(null);
   const plan = store.getState()?.signup?.price;
   const s = styles();
+
+  // Helper function to format price
+  const formatPrice = (plan) => {
+    if (!plan) {
+      // Internationalized fallback
+      return `359 kr/${t("words.month", { ns: "common" })}`;
+    }
+    
+    if (plan.amount && plan.currency) {
+      const amount = plan.amount;
+      const currency = plan.currency.toUpperCase();
+      const interval = plan.recurringInterval;
+      
+      if (interval) {
+        const intervalText = interval === "month" ? t("words.month", { ns: "common" }) : 
+                           interval === "year" ? t("words.year", { ns: "common" }) : 
+                           interval;
+        return `${amount} ${currency}/${intervalText}`;
+      }
+      return `${amount} ${currency}`;
+    }
+    
+    if (plan.price) {
+      return plan.price;
+    }
+    
+    // Internationalized fallbacks based on product key
+    switch (plan.productKey) {
+      case "portfolioPremiumPlus":
+        return `975 kr/${t("words.month", { ns: "common" })}`;
+      case "portfolioPremium":
+        return `359 kr/${t("words.month", { ns: "common" })}`;
+      default:
+        return `359 kr/${t("words.month", { ns: "common" })}`;
+    }
+  };
 
   useEffect(() => {
     if (initialized && keycloak.tokenParsed) {
@@ -42,76 +75,55 @@ export default function Checkout() {
   }, [initialized]);
 
   return (
-    <>
-      <Box className={s.root}>
-        <div className={s.left}>
-          <div className={s.leftContent}>
-            {plan?.product === "Portfolio" ? (
-              <div className={s.headlineDiv}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("fewSeconds")}
-                </Typography>
-                {/* <Typography variant="h3" className={s.headlineText}>
-                  <strong>{t("zeroSek")}</strong> {t("moreSeconds")}
-                </Typography> */}
-              </div>
-            ) : (
-              <div className={s.headlineDiv}>
-                <Typography variant="h1" className={s.headline}>
-                  {t("fewSecondsPremium")}
-                </Typography>
-              </div>
-            )}
-            {/* <img
-              className={s.image}
-              src="/images/majadror.png"
-              alt=""
-              title="" /> */}
+    <Box className={s.root}>
+      {/* Desktop Left Side - Artistic Content */}
+      <div className={s.leftSide}>
+        <div className={s.artisticContent}>
+          <img
+            src="/images/step2.jpeg"
+            alt="Artist with paintings"
+            className={s.heroImage}
+          />
+        </div>
+      </div>
+
+      {/* Right Side - Checkout Form */}
+      <div className={s.rightSide}>
+        <div className={s.formWrapper}>
+          {/* Step indicator */}
+          <Typography variant="body2" className={s.stepIndicator}>
+            {t("stepFourOfFour")}
+          </Typography>
+
+          {/* Main heading */}
+          <Typography variant="h1" className={s.mainHeading}>
+            {t("addCardAndPay")}
+          </Typography>
+
+          {/* Product information */}
+          <div className={s.productSection}>
+            <Typography variant="h6" className={s.productLabel}>
+              {t("product")}
+            </Typography>
+            <div className={s.productInfo}>
+              <Typography className={s.productName}>
+                {plan?.product === "Portfolio" ? t("portfolioPremium") : plan?.product}
+              </Typography>
+              <Typography className={s.productPrice}>
+                {formatPrice(plan)}
+              </Typography>
+            </div>
+          </div>
+
+          {/* Payment form */}
+          <div className={s.paymentSection}>
+            <Elements stripe={promise}>
+              <CheckoutForm email={email} fullName={fullName} plan={plan} />
+            </Elements>
           </div>
         </div>
-        <div className={s.right}>
-          {plan?.product === "Portfolio" ? (
-            <div className={s.headlineDivMobile}>
-              <Typography variant="h1" className={s.headlineMobile}>
-                {t("fewSeconds")}
-              </Typography>
-              <Typography variant="h3" className={s.headlineText}>
-                <strong>{t("zeroSek")}</strong> {t("moreSeconds")}
-              </Typography>
-            </div>
-          ) : (
-            <div className={s.headlineDivMobile}>
-              <Typography variant="h1" className={s.headlineMobile}>
-                {t("fewSecondsPremium")}
-              </Typography>
-              {/* <Typography variant="h5">{t("moreSeconds")}</Typography> */}
-            </div>
-          )}
-          <Typography className={s.fillInText}>{t("pleaseFill")}</Typography>
-          <Card className={s.card}>
-            <img
-              className={s.logo}
-              src="/ArtportableLogo.svg"
-              alt="logo"
-              title=""
-            />
-            <CardContent className={s.cardContentWidth}>
-              <Typography variant="h5" component="h1">
-                {/* <Box fontWeight="medium" marginBottom={3}>
-              {t('checkoutHeader')}
-            </Box> */}
-              </Typography>
-
-              <InputLabel>{t("paymentDetails")}</InputLabel>
-              {/* Stripe checkout HERE */}
-              <Elements stripe={promise}>
-                <CheckoutForm email={email} fullName={fullName} plan={plan} />
-              </Elements>
-            </CardContent>
-          </Card>
-        </div>
-      </Box>
-    </>
+      </div>
+    </Box>
   );
 }
 
@@ -122,9 +134,11 @@ export async function getStaticProps({ context, locale }) {
         "common",
         "header",
         "footer",
-        "checkout",
+        "payment",
         "support",
         "plans",
+        "checkout", 
+        
       ])),
     },
   };

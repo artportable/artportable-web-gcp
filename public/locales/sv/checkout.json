@@ -13,7 +13,7 @@
   "checkoutTermsFooter": "Artportable får informera mig med anpassade e-postmeddelanden om produkter och tjänster. Mer information finns i vår Sekretesspolicy. Du kan när som helst avbryta prenumerationen.",
   "backButton": "Tillbaka",
   "finishButton": "Slutför",
-  "paymentSuccessful": "Betalning lyckades",
+  "paymentSuccessful": "Betalning lyckades!",
   "paymentUnsuccessful": "Payment unsuccessful",
   "redirectingIn": "Omdirigerar om",
   "takeMeThereNow": "Klicka för gå vidare",
@@ -35,5 +35,17 @@
   "startPageExhibition": "Din utställning i rampljuset! Syns överst på Artportables startsida i 14 dagar!",
   "promoteYourArt": "Maxa din synlighet genom att marknadsföra ditt verk!",
   "showlist": "Visa upp ditt verk på vår startsida i 7 dagar för endast 195 kr.",
-  "showlisttwo": "Perfekt för dig som vill fånga nya ögon, skapa intresse och öka din försäljning."
+  "showlisttwo": "Perfekt för dig som vill fånga nya ögon, skapa intresse och öka din försäljning.",
+  "addCardAndPay": "Lägg till kort och betala",
+  "stepXOfY": "Steg {step} av {total}",
+  "cardNumber": "Kortnummer",
+  "expiryDate": "Utgångsdatum",
+  "securityCode": "Säkerhetskod",
+  "cardholderName": "Namn på kortet",
+  "discountCode": "Rabattkod",
+  "pay": "Betala",
+  "welcomeToArtportable": "Välkommen till Artportable! Din prenumeration är nu aktiv och du kan börja ladda upp dina konstverk.",
+  "startUploading": "Börja ladda upp",
+  "autoRedirectIn": "Automatisk omdirigering om",
+  "skipWait": "Hoppa över väntan"
 }

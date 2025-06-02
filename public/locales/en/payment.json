@@ -49,5 +49,15 @@
   "article": "Article",
   "monthlyArtist": "Artist of the month",
   "categoryPage": "Category Page",
-  "buy": "Buy"
+  "buy": "Buy",
+  "stepFourOfFour": "Step 4 of 4",
+  "addCardAndPay": "Add card and pay",
+  "product": "Product",
+  "cardDetails": "Card details",
+  "cardNumber": "Card number",
+  "expiryDate": "Expiry date",
+  "securityCode": "Security code",
+  "cardholderName": "Cardholder name",
+  "discountCode": "Discount code",
+  "pay": "Pay"
 }
