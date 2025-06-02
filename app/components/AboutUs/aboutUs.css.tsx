@@ -279,7 +279,7 @@ export const styles = makeStyles((theme: Theme) =>
       color: "#1a1a1a",
       marginBottom: "8px",
       lineHeight: 1.3,
-      fontFamily: "Joan",
+   
     },
     teamRole: {
       fontSize: "0.875rem",
