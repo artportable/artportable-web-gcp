@@ -133,5 +133,22 @@
     "saveAndClose": "Spara och stäng",
     "save": "Spara"
   },
-  "choosePremium": "Prova Portfolio Premium"
+  "choosePremium": "Prova Portfolio Premium",
+  "artworkStatistics": "Konstverksstatistik",
+  "totalArtworkViews": "Totala konstverksvisningar",
+  "totalArtworks": "Totala konstverk",
+  "averageViewsPerArtwork": "Genomsnittliga visningar per konstverk",
+  "artworkViewsThisMonth": "Konstverksvisningar denna månad",
+  "individualArtworkPerformance": "Individuell konstverksprestanda",
+  "artworkTitle": "Konstverk",
+  "untitledArtwork": "Utan titel",
+  "noArtworkData": "Ingen konstverksdata tillgänglig",
+  "showingTopArtworks": "Visar topp 10 konstverk av",
+  "timePeriodLast7Days": "Senaste 7 dagarna",
+  "timePeriodLast30Days": "Senaste 30 dagarna",
+  "timePeriodLast90Days": "Senaste 90 dagarna",
+  "timePeriodLastYear": "Senaste året",
+  "views": "Visningar",
+  "popularArtworks": "Dina populäraste verk",
+  "noArtworkViewsYet": "Inga konstverksvisningar än"
 }

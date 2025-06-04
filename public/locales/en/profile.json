@@ -132,5 +132,22 @@
     "saveAndClose": "Save and close",
     "save": "Save"
   },
-  "choosePremium": "Try Portfolio Premium"
+  "choosePremium": "Try Portfolio Premium",
+  "artworkStatistics": "Artwork Statistics",
+  "totalArtworkViews": "Total Artwork Views",
+  "totalArtworks": "Total Artworks",
+  "averageViewsPerArtwork": "Average Views per Artwork",
+  "artworkViewsThisMonth": "Artwork Views This Month",
+  "individualArtworkPerformance": "Individual Artwork Performance",
+  "artworkTitle": "Artwork",
+  "untitledArtwork": "Untitled",
+  "noArtworkData": "No artwork data available",
+  "showingTopArtworks": "Showing top 10 artworks of",
+  "timePeriodLast7Days": "Last 7 days",
+  "timePeriodLast30Days": "Last 30 days",
+  "timePeriodLast90Days": "Last 90 days",
+  "timePeriodLastYear": "Last year",
+  "views": "Views",
+  "popularArtworks": "Your most popular artworks",
+  "noArtworkViewsYet": "No artwork views yet"
 }

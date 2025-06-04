@@ -67,6 +67,7 @@ import { Select } from "@mui/material";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import Brightness1Icon from "@material-ui/icons/Brightness1";
 import LikeArtworkButton from "../../app/components/Button/LikeArtworkButton";
+import ArtworkStats from "../../analytics/ArtworkStats/ArtworkStats";
 
 export default function ArtworkPage(props) {
   const s = styles();
@@ -217,6 +218,50 @@ export default function ArtworkPage(props) {
   const { unboostArtwork } = useUnboostArtwork();
   const [loadingBoost, setLoadingBoost] = useState(false);
 
+  // Analytics: Track artwork views
+  useEffect(() => {
+    const trackArtworkView = async () => {
+      if (!artwork?.data?.Id || !apiBaseUrl) return;
+      
+      // Don't track if viewing own artwork
+      if (isMyArt) return;
+
+      try {
+        // Get or create session ID
+        let sessionId = localStorage.getItem('artportable_session_id');
+        if (!sessionId) {
+          sessionId = 'session_' + Math.random().toString(36).substring(2) + '_' + Date.now();
+          localStorage.setItem('artportable_session_id', sessionId);
+        }
+
+        // Track the artwork view
+        const response = await fetch(`${apiBaseUrl}/api/artworkviews`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            artworkId: artwork.data.Id,
+            sessionId: sessionId
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Artwork view tracked:', result);
+        }
+      } catch (error) {
+        console.log('Artwork analytics tracking failed:', error);
+        // Fail silently - don't disrupt user experience
+      }
+    };
+
+    // Track after artwork data is loaded
+    if (artwork?.data?.Id && !artwork.isLoading) {
+      trackArtworkView();
+    }
+  }, [artwork?.data?.Id, isMyArt, apiBaseUrl, artwork?.isLoading]);
+
   const handleUnboost = async () => {
     setLoadingBoost(true);
     const result = await unboostArtwork(artwork.data.Id, token);
@@ -238,30 +283,12 @@ export default function ArtworkPage(props) {
         <title>{staticArtwork?.Title ?? "Artportable"}</title>
         <meta
           name="title"
-          content={
-            staticArtwork?.Owner?.Name + " " + staticArtwork?.Owner?.Surname ??
-            "Artportable"
-          }
+        
         />
         <meta name="description" content={staticArtwork?.Title ?? ""} />
         <meta
           property="og:title"
-          content={
-            staticArtwork.Sold
-              ? staticArtwork?.Title +
-                  " | " +
-                  staticArtwork?.Owner?.Name +
-                  " " +
-                  staticArtwork?.Owner?.Surname +
-                  `${t("art:shareSold")}` ?? "Artportable"
-              : staticArtwork?.Title +
-                  " | " +
-                  staticArtwork?.Owner?.Name +
-                  " " +
-                  staticArtwork?.Owner?.Surname +
-                  " " +
-                  `${t("art:shareTitle")}` ?? "Artportable"
-          }
+
         />
         <meta property="og:description" content={staticArtwork?.Title ?? ""} />
         <meta property="og:type" content="website" />
