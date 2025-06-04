@@ -71,6 +71,7 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
+import ProfileAnalytics from "../../components/Profile/ProfileAnalytics";
 
 function a11yProps(index: any) {
   return {
@@ -191,6 +192,50 @@ export default function Profile(props) {
       setIsReady(true);
     }
   }, [isSignedIn, userProfile.isLoading]);
+
+  // Analytics: Track profile views
+  useEffect(() => {
+    const trackProfileView = async () => {
+      if (!profileUser || !apiBaseUrl) return;
+      
+      // Don't track if viewing own profile
+      if (isMyProfile) return;
+
+      try {
+        // Get or create session ID
+        let sessionId = localStorage.getItem('artportable_session_id');
+        if (!sessionId) {
+          sessionId = 'session_' + Math.random().toString(36).substring(2) + '_' + Date.now();
+          localStorage.setItem('artportable_session_id', sessionId);
+        }
+
+        // Track the profile view
+        const response = await fetch(`${apiBaseUrl}/api/profileviews`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            profileUsername: profileUser,
+            sessionId: sessionId
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Profile view tracked:', result);
+        }
+      } catch (error) {
+        console.log('Analytics tracking failed:', error);
+        // Fail silently - don't disrupt user experience
+      }
+    };
+
+    // Track after component is ready and profile data is loaded
+    if (isReady && profileUser && !userProfile.isLoading) {
+      trackProfileView();
+    }
+  }, [isReady, profileUser, isMyProfile, apiBaseUrl, userProfile.isLoading]);
 
   const onUpdateProfilePicture = (profilePicture: any) => {
     dispatch({
@@ -414,6 +459,11 @@ export default function Profile(props) {
       : likedArtTabIndex !== 2
       ? likedArtTabIndex
       : 3;
+  
+  // Analytics tab only shows for profile owners
+  const analyticsTabIndex = isMyProfile 
+    ? (articles && articles?.length > 0 ? articlesTabIndex + 1 : likedArtTabIndex + 1)
+    : -1;
 
   return (
     <Main
@@ -495,13 +545,7 @@ export default function Profile(props) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta
-          property="twitter:image"
-          content={
-            `${bucketUrl}${staticUserProfile?.CoverPhoto}` ??
-            "/images/facebookshare.png"
-          }
-        />
+
 
         <link rel="canonical" href={canonicalURL} />
       </Head>
@@ -598,6 +642,15 @@ export default function Profile(props) {
                       className={clsx(s.tab, {})}
                       label={t("profile:articles")}
                       {...a11yProps(articlesTabIndex)}
+                    />
+                  )}
+
+                  {/* Analytics tab - only for profile owners */}
+                  {isMyProfile && (
+                    <Tab
+                      className={clsx(s.tab, {})}
+                      label={t("profile:analytics")}
+                      {...a11yProps(analyticsTabIndex)}
                     />
                   )}
                 </Tabs>
@@ -921,6 +974,13 @@ export default function Profile(props) {
                           ))}
                         </div>
                       )}
+                    </TabPanel>
+                  )}
+
+                  {/* Analytics TabPanel - only for profile owners */}
+                  {isMyProfile && (
+                    <TabPanel value={activeTab} index={analyticsTabIndex}>
+                      <ProfileAnalytics username={profileUser} t={t} />
                     </TabPanel>
                   )}
                 </Box>
