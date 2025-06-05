@@ -60,6 +60,7 @@
     "react-redux": "^7.2.2",
     "react-responsive-masonry": "^2.2.0",
     "react-web-share": "^1.1.6",
+    "recharts": "^2.15.3",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
     "swiper": "^11.1.12",

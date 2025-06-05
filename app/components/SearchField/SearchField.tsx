@@ -175,12 +175,12 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     { 
       title: t("common:themes.landscape"), 
       href: "/discover?category=landscape",
-      backgroundImage: "/searchimages/hq-optimized/landscape-hq.jpeg"
+      backgroundImage: "/searchimages/landskap.jpeg"
     },
     { 
       title: t("common:themes.animal"), 
       href: "/discover?category=animal",
-      backgroundImage: "/searchimages/hq-optimized/animal-hq.jpeg"
+      backgroundImage: "/searchimages/djur.jpeg"
     },
     { 
       title: t("common:themes.figurative"), 
@@ -190,7 +190,7 @@ const SearchField = ({ onFilter, searchQuery, iconOnly = false }) => {
     { 
       title: t("common:techniques.photography"), 
       href: "/discover?category=photography",
-      backgroundImage: "/searchimages/hq-optimized/photography-hq.jpeg"
+      backgroundImage: "/searchimages/fotografi.jpeg"
     },
     { 
       title: t("common:themes.surrealism"), 
