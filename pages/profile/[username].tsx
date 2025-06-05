@@ -71,7 +71,7 @@ import { Membership } from "../../app/models/Membership";
 import { DiscoverLikedArtTab } from "../../app/components/DiscoverLikedArt/DiscoverLikedArt";
 import ArtworkListItemDefinedProfile from "../../app/components/ArtworkListItemDefined/ArtworkListItemDefinedProfile";
 import ArtworkListSortable from "../../app/components/ArtworkListItemDefined/ArtworkListSortable";
-import ProfileAnalytics from "../../components/Profile/ProfileAnalytics";
+import ProfileAnalytics from "../../analytics/ProfileAnalytics";
 
 function a11yProps(index: any) {
   return {
@@ -170,7 +170,7 @@ export default function Profile(props) {
   };
 
   const isPremium = membership.value === 3;
-  const isAdmin = membership.value > 9;
+  const isAdmin = membership.value > 4;
 
   useEffect(() => {
     if (userData?.data?.MonthlyUser !== undefined) {
@@ -451,19 +451,16 @@ export default function Profile(props) {
     setLoadMoreArtworks(false);
   };
 
-  const storiesTabIndex = stories?.data?.length > 0 ? 2 : -1;
-  const likedArtTabIndex = storiesTabIndex !== -1 ? storiesTabIndex + 1 : 2;
+  // Analytics tab shows for profile owners and admins (index 2 right after About Me)
+  const analyticsTabIndex = (isMyProfile || isAdmin) ? 2 : -1;
+  
+  // Adjust other tab indices based on whether analytics is shown
+  const storiesTabIndex = stories?.data?.length > 0 ? ((isMyProfile || isAdmin) ? 3 : 2) : -1;
+  const likedArtTabIndex = storiesTabIndex !== -1 ? storiesTabIndex + 1 : ((isMyProfile || isAdmin) ? 3 : 2);
   const articlesTabIndex =
     articles && articles?.length > 0
       ? likedArtTabIndex + 1
-      : likedArtTabIndex !== 2
-      ? likedArtTabIndex
-      : 3;
-  
-  // Analytics tab only shows for profile owners
-  const analyticsTabIndex = isMyProfile 
-    ? (articles && articles?.length > 0 ? articlesTabIndex + 1 : likedArtTabIndex + 1)
-    : -1;
+      : -1;
 
   return (
     <Main
@@ -621,6 +618,15 @@ export default function Profile(props) {
                     {...a11yProps(t("profile:aboutMe"))}
                   />
 
+                  {/* Analytics tab - for profile owners and admins (index 2) */}
+                  {(isMyProfile || isAdmin) && (
+                    <Tab
+                      className={clsx(s.tab, {})}
+                      label={t("profile:analytics")}
+                      {...a11yProps(analyticsTabIndex)}
+                    />
+                  )}
+
                   {stories?.data?.length > 0 && (
                     <Tab
                       className={clsx(s.tab, {})}
@@ -642,15 +648,6 @@ export default function Profile(props) {
                       className={clsx(s.tab, {})}
                       label={t("profile:articles")}
                       {...a11yProps(articlesTabIndex)}
-                    />
-                  )}
-
-                  {/* Analytics tab - only for profile owners */}
-                  {isMyProfile && (
-                    <Tab
-                      className={clsx(s.tab, {})}
-                      label={t("profile:analytics")}
-                      {...a11yProps(analyticsTabIndex)}
                     />
                   )}
                 </Tabs>
@@ -834,6 +831,14 @@ export default function Profile(props) {
                       onUpdateProfilePicture={updateImage}
                     ></AboutMe>
                   </TabPanel>
+
+                  {/* Analytics TabPanel - for profile owners and admins (index 2) */}
+                  {(isMyProfile || isAdmin) && (
+                    <TabPanel value={activeTab} index={analyticsTabIndex}>
+                      <ProfileAnalytics username={profileUser} t={t} />
+                    </TabPanel>
+                  )}
+
                   {/* TabPanels */}
                   {stories?.data?.length > 0 && (
                     <TabPanel value={activeTab} index={storiesTabIndex}>
@@ -974,13 +979,6 @@ export default function Profile(props) {
                           ))}
                         </div>
                       )}
-                    </TabPanel>
-                  )}
-
-                  {/* Analytics TabPanel - only for profile owners */}
-                  {isMyProfile && (
-                    <TabPanel value={activeTab} index={analyticsTabIndex}>
-                      <ProfileAnalytics username={profileUser} t={t} />
                     </TabPanel>
                   )}
                 </Box>

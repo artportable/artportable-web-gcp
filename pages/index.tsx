@@ -20,6 +20,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Button from "../app/components/Button/Button";
 import { useGetLatestArtworksForIndex } from "../app/hooks/dataFetching/Artworks";
+import PlatformTracker from "../app/components/PlatformTracker/PlatformTracker";
 
 // Dynamically import components
 const IndexHeroRenewed = dynamic(() => import("../app/components/IndexHero/IndexHeroRenewed"), {
@@ -156,6 +157,11 @@ export default function DiscoverPage({ navBarItems }) {
       navBarItems={navBarItems}
       fullWidth={false}
     >
+      {/* Track platform visits */}
+      <PlatformTracker 
+        apiBaseUrl={process.env.NEXT_PUBLIC_API_BASE_URL} 
+        pageUrl="/" 
+      />
       <Head>
         <title>{t("index:title")}</title>
         <meta name="description" content={t("index:description")} />
