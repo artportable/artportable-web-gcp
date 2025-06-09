@@ -26,7 +26,7 @@ export const styles = makeStyles<Theme, LikeButtonStylesProps>((theme: Theme) =>
     likeButton: {
       position: "relative",
       "& svg": {
-        color: "#ff8383",
+        color: "#A70301",
         transition: "color 0.9s ease",
         backgroundColor: "transparent",
       },

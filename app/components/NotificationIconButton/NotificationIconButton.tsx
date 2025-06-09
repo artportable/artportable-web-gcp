@@ -155,7 +155,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
           <div>
             <Badge badgeContent={unreadNotificationsCount} max={99}>
               <NotificationsIcon
-                style={{ fontSize: "30px", color: "#ff8383" }}
+                style={{ fontSize: "30px", color: "#A70301" }}
               />
             </Badge>
           </div>
