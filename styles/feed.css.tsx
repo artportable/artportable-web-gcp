@@ -32,7 +32,7 @@ export const styles = makeStyles((theme: Theme) =>
         marginTop: "50px",
       },
     },
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("smPlus")]: {
       colLeft: {
         width: "100%",
         marginRight: "20px",
@@ -63,6 +63,7 @@ export const styles = makeStyles((theme: Theme) =>
         display: "flex",
         width: "100%",
         marginBottom: "20px",
+        top: "160px",
       },
     },
 
@@ -87,7 +88,7 @@ export const styles = makeStyles((theme: Theme) =>
         maxWidth: "340px",
         alignSelf: "flex-start",
         position: "sticky",
-        top: "calc(var(--header-height) + var(--header-box-shadow-padding))",
+        top: "160px",
       },
       colFeed: {
         width: "100%",
