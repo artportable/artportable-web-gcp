@@ -199,17 +199,17 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({ username, t }) => {
     const fetchArtworkStats = async () => {
       if (!apiBaseUrl || !username) return;
       
-      console.log('🎨 Starting artwork stats fetch for:', username);
+
 
       try {
         setArtworkStatsLoading(true);
         
         // First, get all artworks for this user
         const artworksUrl = `${apiBaseUrl}/api/artworks?owner=${username}`;
-        console.log('🎨 Fetching artworks from:', artworksUrl);
+
         
         const artworksResponse = await fetch(artworksUrl);
-        console.log('🎨 Artworks response status:', artworksResponse.status);
+
         
         if (!artworksResponse.ok) {
           console.log('🎨 Artworks fetch failed with status:', artworksResponse.status);
@@ -218,7 +218,7 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({ username, t }) => {
         }
         
         const artworks: ArtworkData[] = await artworksResponse.json();
-        console.log('🎨 Found artworks:', artworks.length, artworks);
+
         
         if (artworks.length === 0) {
           console.log('🎨 No artworks found for user');
@@ -231,14 +231,14 @@ const ProfileAnalytics: React.FC<ProfileAnalyticsProps> = ({ username, t }) => {
         const statsPromises = artworks.map(async (artwork) => {
           try {
             const statsUrl = `${apiBaseUrl}/api/ArtworkViews/${artwork?.Id}/stats`;
-            console.log('🎨 Fetching stats for artwork:', artwork.Id, 'from:', statsUrl);
+
             
             const statsResponse = await fetch(statsUrl);
-            console.log('🎨 Stats response for', artwork.Id, 'status:', statsResponse.status);
+            
             
             if (statsResponse.ok) {
               const stats = await statsResponse.json();
-              console.log('🎨 Stats for', artwork.Id, ':', stats);
+
               
               return {
                 artworkId: artwork.Id,

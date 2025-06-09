@@ -220,7 +220,23 @@ export const ArtportableContexts = ({
                   value: json.SocialId,
                   isPending: false,
                 },
-              }));
+                            }));
+              
+   
+              
+              // Redirect existing users to feed page after login
+              if (
+                router.pathname === "/" ||
+                router.pathname === "/en" ||
+                router.pathname === "/sv" ||
+                router.pathname === "/nb"
+              ) {
+                const currentLang = router.locale || "sv";
+                const feedPath = currentLang === "sv" ? "/feed" : `/${currentLang}/feed`;
+                router.push(feedPath);
+              } else {
+  
+              }
             });
           }
         })

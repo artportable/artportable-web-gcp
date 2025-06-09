@@ -62,14 +62,22 @@ function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
       // Redirect to the index page if the user is not logged in
       router.push("/");
     } else if (event === "onAuthSuccess") {
+      // Debug: Log the auth success event
+
+      
       // Redirect to the feed page if the user is logged in
       if (
-        router.asPath === "/" ||
-        router.asPath === "/en" ||
-        router.asPath === "/sv" ||
-        router.asPath === "/nb"
+        router.pathname === "/" ||
+        router.pathname === "/en" ||
+        router.pathname === "/sv" ||
+        router.pathname === "/nb"
       ) {
-        router.push("/" + getCurrentLanguage());
+        const currentLang = getCurrentLanguage();
+        const feedPath = currentLang === "sv" ? "/feed" : `/${currentLang}/feed`;
+
+        router.push(feedPath);
+      } else {
+
       }
     }
 

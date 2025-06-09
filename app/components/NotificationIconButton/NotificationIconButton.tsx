@@ -75,9 +75,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
     };
   }, [socialId, activityToken]);
 
-  useEffect(() => {
-    console.log(unreadNotificationsCount);
-  }, [unreadNotifications]);
+
 
   const onLoadMore = async () => {
     if (readNotifications.length > 0 || unreadNotifications.length > 0) {
@@ -155,7 +153,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
           <div>
             <Badge badgeContent={unreadNotificationsCount} max={99}>
               <NotificationsIcon
-                style={{ fontSize: "30px", color: "#ff8383" }}
+                style={{ fontSize: "30px", color: "#A70301" }}
               />
             </Badge>
           </div>

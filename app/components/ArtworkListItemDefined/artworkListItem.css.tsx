@@ -117,13 +117,13 @@ export const styles = makeStyles((theme: Theme) =>
       color: "red !important",
       "&:hover": {
         backgroundColor: "transparent",
-        color: "#ff8383",
+        color: "#A70301",
       },
       "& svg": {
         color: "black",
         "&:hover": {
           backgroundColor: "transparent",
-          color: "#ff8383",
+          color: "#A70301",
         },
       },
     },

@@ -118,13 +118,7 @@ export default function ArtworkListItem({
     onLikeClick(artwork, !isLiked);
   }
 
-  const likedFilled = !isSignedIn.value ? (
-    <FavoriteBorderOutlinedIcon color="primary" />
-  ) : isLiked ? (
-    <FavoriteIcon color="primary" />
-  ) : (
-    <FavoriteBorderOutlinedIcon color="primary" />
-  );
+
 
   if (width === null || height === null) return <></>;
 
