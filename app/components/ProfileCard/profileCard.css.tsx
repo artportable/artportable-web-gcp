@@ -65,9 +65,9 @@ export const styles = makeStyles((theme: Theme) =>
       padding: 0,
     },
     cardContainer: {
-      height: "350px",
+      height: "300px",
       [theme.breakpoints.up("smPlus")]: {
-        height: "350px",
+        height: "260px",
       },
     },
     uploadArtButton: {
