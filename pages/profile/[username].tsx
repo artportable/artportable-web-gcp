@@ -571,6 +571,14 @@ export default function Profile(props) {
               open={openMonthlyDialogOpen}
               onClose={toggleMonthlyDialog}
             />
+            {isAdmin && ( 
+              <div style={{marginBottom: "10px", fontSize: "30px"}}>
+                <a href={`mailto:${userData?.data?.Email}`}>{userData?.data?.Email}</a>
+              </div>
+            )}
+
+
+            
             <DialogPortfolioPremium
               open={openPortfolioPremium}
               onClose={togglePortfolioPremiumDialog}
