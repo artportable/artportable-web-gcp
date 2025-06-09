@@ -30,11 +30,11 @@ const PlatformTracker: React.FC<PlatformTrackerProps> = ({ apiBaseUrl, pageUrl =
 
         if (response.ok) {
           const result = await response.json();
-          console.log(`Platform visit ${result.counted ? 'counted' : 'already tracked'}:`, result.message);
+
         }
       } catch (error) {
         // Silent fail - don't disrupt user experience
-        console.log('Platform tracking error (non-critical):', error);
+
       }
     };
 

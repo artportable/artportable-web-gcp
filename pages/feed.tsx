@@ -71,8 +71,12 @@ export default function FeedPage({ navBarItems }) {
 
     const checkSignedInAsync = async () => {
       if (!isSignedIn.isPending) {
+        
         if (!isSignedIn.value) {
+    
           await router.push("/");
+        } else {
+
         }
         setLoading(false);
       }

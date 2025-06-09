@@ -75,9 +75,7 @@ const NotificationIconButton = (props: NotificationIconButtonProps) => {
     };
   }, [socialId, activityToken]);
 
-  useEffect(() => {
-    console.log(unreadNotificationsCount);
-  }, [unreadNotifications]);
+
 
   const onLoadMore = async () => {
     if (readNotifications.length > 0 || unreadNotifications.length > 0) {
