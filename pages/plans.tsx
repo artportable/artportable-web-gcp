@@ -33,7 +33,7 @@ export interface SelectedPlanData {
 export interface PriceData {
   id: string;
   product:
-    | "Portfolio Premium Plus"
+    | "Portfolio Mini"
     | "Portfolio Premium"
     | "Portfolio"
     | "free";
@@ -79,7 +79,7 @@ export default function Plans({ priceData }) {
         );
         router.push("/checkout");
         break;
-      case "portfolioPremiumPlus":
+      case "portfolioMini":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PREMIUM_COMPLETED,
           CategoryType.BUY
