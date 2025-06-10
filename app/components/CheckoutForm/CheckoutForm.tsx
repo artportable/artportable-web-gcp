@@ -494,6 +494,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
               {plan?.productKey === "portfolio" ? "Bas" : 
                plan?.productKey === "portfolioPremium" ? "Premium" :
                plan?.productKey === "portfolioPremiumPlus" ? "Premium +" :
+               plan?.productKey === "portfolioMini" ? "Mini" :
                plan?.product || "Portfolio"}
             </Typography>
           </div>

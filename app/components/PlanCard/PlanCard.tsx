@@ -240,6 +240,8 @@ export default function PlanCard({
       ? `url("/images/redStreck.png")`
       : plan?.productKey === "portfolioPremiumPlus"
       ? `url("/images/bluebanner.png")`
+      : plan?.productKey === "portfolioMini"
+      ? `url("/images/defaultbanner.png")`
       : `url("/images/defaultbanner.png")`;
 
   return (

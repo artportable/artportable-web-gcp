@@ -61,6 +61,10 @@ export default function Checkout() {
         return `975 kr/${t("words.month", { ns: "common" })}`;
       case "portfolioPremium":
         return `359 kr/${t("words.month", { ns: "common" })}`;
+      case "portfolioMini":
+        return `99 kr/${t("words.month", { ns: "common" })}`;
+      case "portfolio":
+        return `359 kr/${t("words.month", { ns: "common" })}`;
       default:
         return `359 kr/${t("words.month", { ns: "common" })}`;
     }
@@ -110,6 +114,7 @@ export default function Checkout() {
                 {plan?.productKey === "portfolio" ? "Bas" : 
                  plan?.productKey === "portfolioPremium" ? "Premium" :
                  plan?.productKey === "portfolioPremiumPlus" ? "Premium +" :
+                 plan?.productKey === "portfolioMini" ? "Mini" :
                  plan?.product || "Portfolio"}
               </Typography>
               <Typography className={s.productPrice}>
