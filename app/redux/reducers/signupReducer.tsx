@@ -1,6 +1,6 @@
 import { ADD_DATA, ADD_PRICE } from '../actions/signupActions';
 
-const initialSignupState = null;
+const initialSignupState = {};
 
 const signupReducer = (state = initialSignupState, action) => {
   switch (action.type) {
@@ -9,7 +9,7 @@ const signupReducer = (state = initialSignupState, action) => {
     case ADD_PRICE:
       return {...state, price: action.payload};
     default:
-      return {...state};
+      return state;
   }
 };
 

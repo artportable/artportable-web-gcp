@@ -209,26 +209,10 @@ export default function PlanCard({
       trackGoogleAnalytics(ActionType.SIGN_UP_FREE, CategoryType.BUY);
       var [userType, interval] = user_type.value.split("-");
       if (userType === "artist") upgradeWithPhone(event);
-      return zapierLeadFreemium(
-        (lead = {
-          name: { value: given_name.value + " " + family_name.value } ?? "",
-          phoneNumber: { value: phone.value } ?? "",
-          email: { value: email.value } ?? "",
-          product: "free",
-          type: { value: user_type.value } ?? "",
-        })
-      );
+
     } else if (plan.product.toLowerCase() === "portfolio") {
       trackGoogleAnalytics(ActionType.SIGN_UP_PORTFOLIE, CategoryType.BUY);
-      zapierLeadBasic(
-        (lead = {
-          name: { value: given_name.value + " " + family_name.value } ?? "",
-          phoneNumber: { value: phone.value } ?? "",
-          email: { value: email.value } ?? "",
-          product: "portfolio",
-          type: { value: user_type.value } ?? "",
-        })
-      );
+
     }
     return true;
   };
@@ -238,8 +222,8 @@ export default function PlanCard({
       ? `url("/images/greenImage.png")`
       : plan?.productKey === "portfolioPremium"
       ? `url("/images/redStreck.png")`
-      : plan?.productKey === "portfolioPremiumPlus"
-      ? `url("/images/bluebanner.png")`
+      : plan?.productKey === "portfolioMini"
+      ? `url("/images/defaultbanner.png")`
       : `url("/images/defaultbanner.png")`;
 
   return (

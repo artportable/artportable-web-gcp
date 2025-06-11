@@ -18,6 +18,17 @@
         "Read articles and get updates about exhibitions"
       ]
     },
+    "portfolioMini": {
+      "name": "Mini",
+      "subtitle": "For artists wanting to try with limited access.",
+      "trial": "10-day free trial!",
+      "listTexts": [
+        "Publish up to 3 works",
+        "Basic visibility on Artportable",
+        "Access to special offers",
+        "Limited purchase inquiries"
+      ]
+    },
     "portfolio": {
       "name": "Portfolio",
       "subtitle": "Artist - boost your art career and get inquiries using Portfolio.",
