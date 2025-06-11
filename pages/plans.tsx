@@ -35,8 +35,7 @@ export interface PriceData {
   product:
     | "Portfolio Mini"
     | "Portfolio Premium"
-    | "Portfolio"
-    | "free";
+    | "Portfolio";
   productKey: string;
   currency: string;
   recurringInterval: string;
@@ -58,28 +57,21 @@ export default function Plans({ priceData }) {
       payload: { ...plan },
     });
     switch (plan.productKey) {
-      case "free":
-        trackGoogleAnalytics(
-          ActionType.SIGN_UP_FREE_COMPLETED,
-          CategoryType.BUY
-        );
-        router.push("/");
-        break;
-      case "portfolio":
+      case "Portfolio":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PORTFOLIE_COMPLETED,
           CategoryType.BUY
         );
         router.push("/checkout");
         break;
-      case "portfolioPremium":
+      case "PortfolioPremium":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PREMIUM_COMPLETED,
           CategoryType.BUY
         );
         router.push("/checkout");
         break;
-      case "portfolioMini":
+      case "PortfolioMini":
         trackGoogleAnalytics(
           ActionType.SIGN_UP_PREMIUM_COMPLETED,
           CategoryType.BUY
@@ -124,6 +116,7 @@ export default function Plans({ priceData }) {
 
             const userType = parsedToken.user_type;
             console.log("Plans page - userType from token:", userType);
+            console.log("Plans page - full JWT token:", parsedToken);
 
             var [plan, interval] = userType.split("-");
             console.log("Plans page - parsed plan:", plan, "interval:", interval);
@@ -136,8 +129,9 @@ export default function Plans({ priceData }) {
 
             var isArtist = false;
             if (plan == "artist") {
-              plan = "free";
-              isArtist = true;
+              // No free plan available, redirect to plans page to choose
+              setLoading(false);
+              return;
             }
 
             // Map IDP plan names to web-gcp productKey values
@@ -145,7 +139,10 @@ export default function Plans({ priceData }) {
               "portfolioMini": "PortfolioMini",
               "portfolio": "Portfolio", 
               "portfolioPremium": "PortfolioPremium",
-              "free": "free"
+              // Handle userType format (mini, basic, premium)
+              "mini": "PortfolioMini",
+              "basic": "Portfolio",
+              "premium": "PortfolioPremium"
             };
 
             const mappedPlan = planMapping[plan] || plan;
@@ -238,23 +235,6 @@ export async function getStaticProps({ locale }) {
 }
 
 export async function getPriceData() {
-  const freeYearPlan: Price = {
-    amount: 0,
-    currency: "sek",
-    id: "free_month",
-    product: "free",
-    productKey: "free",
-    recurringInterval: "month",
-  };
-  const freeMonthPlan: Price = {
-    amount: 0,
-    currency: "sek",
-    id: "free_year",
-    product: "free",
-    productKey: "free",
-    recurringInterval: "year",
-  };
-
   try {
     const response = await fetch(`${apiBaseUrl}/api/payments/prices`);
 
@@ -275,13 +255,10 @@ export async function getPriceData() {
       throw new Error("Price data is not an array");
     }
 
-    result.push(freeYearPlan);
-    result.push(freeMonthPlan);
-
     return result;
   } catch (e) {
     console.error("Could not fetch price info", e);
-    // Return default price data or handle accordingly
-    return [freeYearPlan, freeMonthPlan]; // Return at least the free plans
+    // Return empty array if fetching fails
+    return [];
   }
 }
