@@ -30,14 +30,23 @@ export default function Checkout() {
   const plan = store.getState()?.signup?.price;
   const s = styles();
 
+  // If no plan in Redux, redirect to plans page
+  useEffect(() => {
+    if (initialized && !plan) {
+      router.push('/plans');
+    }
+  }, [initialized, plan]);
+
   // Helper function to format price
   const formatPrice = (plan) => {
+    
     if (!plan) {
       // Internationalized fallback
       return `359 kr/${t("words.month", { ns: "common" })}`;
     }
     
-    if (plan.amount && plan.currency) {
+    // Use actual plan data if available
+    if (plan.amount !== undefined && plan.amount !== null && plan.currency) {
       const amount = plan.amount;
       const currency = plan.currency.toUpperCase();
       const interval = plan.recurringInterval;
@@ -55,18 +64,20 @@ export default function Checkout() {
       return plan.price;
     }
     
-    // Internationalized fallbacks based on product key
-    switch (plan.productKey) {
-      case "portfolioPremiumPlus":
-        return `975 kr/${t("words.month", { ns: "common" })}`;
+    // Internationalized fallbacks based on product key (handle both cases)
+    const productKey = plan.productKey || plan.product;
+    switch (productKey) {
       case "portfolioPremium":
+      case "PortfolioPremium":
         return `359 kr/${t("words.month", { ns: "common" })}`;
       case "portfolioMini":
-        return `99 kr/${t("words.month", { ns: "common" })}`;
+      case "PortfolioMini":
+        return `49 kr/${t("words.month", { ns: "common" })}`;
       case "portfolio":
-        return `359 kr/${t("words.month", { ns: "common" })}`;
+      case "Portfolio":
+        return `99 kr/${t("words.month", { ns: "common" })}`;
       default:
-        return `359 kr/${t("words.month", { ns: "common" })}`;
+        return `99 kr/${t("words.month", { ns: "common" })}`;
     }
   };
 
@@ -111,10 +122,9 @@ export default function Checkout() {
             </Typography>
             <div className={s.productInfo}>
               <Typography className={s.productName}>
-                {plan?.productKey === "portfolio" ? "Bas" : 
-                 plan?.productKey === "portfolioPremium" ? "Premium" :
-                 plan?.productKey === "portfolioPremiumPlus" ? "Premium +" :
-                 plan?.productKey === "portfolioMini" ? "Mini" :
+                {(plan?.productKey === "portfolio" || plan?.productKey === "Portfolio") ? "Bas" : 
+                 (plan?.productKey === "portfolioPremium" || plan?.productKey === "PortfolioPremium") ? "Premium" :
+                 (plan?.productKey === "portfolioMini" || plan?.productKey === "PortfolioMini") ? "Mini" :
                  plan?.product || "Portfolio"}
               </Typography>
               <Typography className={s.productPrice}>

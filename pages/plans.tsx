@@ -123,22 +123,46 @@ export default function Plans({ priceData }) {
             });
 
             const userType = parsedToken.user_type;
+            console.log("Plans page - userType from token:", userType);
 
             var [plan, interval] = userType.split("-");
+            console.log("Plans page - parsed plan:", plan, "interval:", interval);
+
+            // Default interval to "month" if not provided
+            if (!interval) {
+              interval = "month";
+              console.log("Plans page - defaulting interval to:", interval);
+            }
 
             var isArtist = false;
             if (plan == "artist") {
               plan = "free";
               isArtist = true;
             }
+
+            // Map IDP plan names to web-gcp productKey values
+            const planMapping = {
+              "portfolioMini": "PortfolioMini",
+              "portfolio": "Portfolio", 
+              "portfolioPremium": "PortfolioPremium",
+              "free": "free"
+            };
+
+            const mappedPlan = planMapping[plan] || plan;
+            console.log("Plans page - mapped plan from", plan, "to", mappedPlan);
+            
+            console.log("Plans page - available priceData:", priceData);
+            
             const p = priceData.find((pd) => {
               return (
                 pd.productKey.toLowerCase().trim() ===
-                  plan.toLowerCase().trim() &&
+                  mappedPlan.toLowerCase().trim() &&
                 pd.recurringInterval.toLowerCase().trim() ===
                   interval.toLowerCase().trim()
               );
             });
+
+            console.log("Plans page - found matching plan:", p);
 
             if (p) {
               redirectCreatedUser(p, isArtist);

@@ -15,6 +15,8 @@ import { UserContext } from "../../contexts/user-context";
 import RemoveIcon from "@material-ui/icons/Remove";
 // Remove the import since we'll use the public path directly
 import Typography from "@material-ui/core/Typography/Typography";
+import { useDispatch } from "react-redux";
+import { ADD_PRICE } from "../../redux/actions/signupActions";
 
 interface Props {
   priceData: PriceData[];
@@ -53,6 +55,7 @@ export default function PlanSelector({
 }: Props) {
   const { t } = useTranslation(["plans", "common"]);
   const s = styles();
+  const dispatch = useDispatch();
   const { keycloak } = useKeycloak<KeycloakInstance>();
   const router = useRouter();
   const signUpRedirectHref = useSignupRedirectHref();
@@ -201,6 +204,12 @@ export default function PlanSelector({
         if (selectedPriceData) {
           console.log("Selected plan data:", selectedPriceData);
           
+          // Dispatch the plan data to Redux store
+          dispatch({
+            type: ADD_PRICE,
+            payload: { ...selectedPriceData },
+          });
+          
           // If in landing page mode, trigger signup
           if (landingPageMode) {
             keycloak.register({
@@ -213,12 +222,12 @@ export default function PlanSelector({
           // Normal plan selection flow
           if (keycloak.authenticated) {
             // User is logged in, proceed to checkout or plan update
-            router.push(`/checkout?plan=${selectedPriceData.id}&interval=${paymentInterval}`);
+            router.push(`/checkout`);
           } else {
             // User not logged in, redirect to signup with plan
             keycloak.register({
               locale: router.locale,
-              redirectUri: `${window.location.origin}/checkout?plan=${selectedPriceData.id}&interval=${paymentInterval}`,
+              redirectUri: `${window.location.origin}/checkout`,
             });
           }
         }
