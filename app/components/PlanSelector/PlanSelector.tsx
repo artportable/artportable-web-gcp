@@ -189,6 +189,23 @@ export default function PlanSelector({
 
   const handlePlanSelect = (planId: string) => {
     setSelectedPlan(planId);
+    
+    // Find the selected plan data
+    const selectedPlanData = filteredPlans.find(plan => plan.id === planId);
+    if (selectedPlanData) {
+      // Find the corresponding price data
+      const selectedPriceData = priceData.find(
+        (pd) => pd.product === selectedPlanData.name && pd.recurringInterval === paymentInterval
+      );
+      
+      if (selectedPriceData) {
+        // Store plan in Redux immediately
+        dispatch({
+          type: ADD_PRICE,
+          payload: { ...selectedPriceData },
+        });
+      }
+    }
   };
 
   const handleContinue = () => {
@@ -203,12 +220,6 @@ export default function PlanSelector({
         
         if (selectedPriceData) {
           console.log("Selected plan data:", selectedPriceData);
-          
-          // Dispatch the plan data to Redux store
-          dispatch({
-            type: ADD_PRICE,
-            payload: { ...selectedPriceData },
-          });
           
           // If in landing page mode, trigger signup
           if (landingPageMode) {

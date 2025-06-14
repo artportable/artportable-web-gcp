@@ -51,6 +51,28 @@ export default function Plans({ priceData }) {
     useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
+  // Add effect to check sessionStorage for plan
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const sessionPlan = sessionStorage.getItem('plan');
+      if (sessionPlan && priceData) {
+        // Find matching plan in priceData
+        const matchingPlan = priceData.find(pd => 
+          pd.productKey.toLowerCase() === sessionPlan.toLowerCase()
+        );
+        if (matchingPlan) {
+          // Store plan in Redux
+          dispatch({
+            type: ADD_PRICE,
+            payload: { ...matchingPlan },
+          });
+          // Redirect to checkout
+          router.push('/checkout');
+        }
+      }
+    }
+  }, [priceData]);
+
   function redirectCreatedUser(plan, isArtist) {
     dispatch({
       type: ADD_PRICE,
