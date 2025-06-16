@@ -154,5 +154,7 @@
   "upgradeToShowArtworksDescription": "Upgrade your plan to showcase your artworks in your profile and start selling your art.",
   "upgradeNow": "Upgrade Now",
   "upgradeToShowMoreArtworks": "Upgrade to Show More Artworks",
-  "upgradeToShowMoreArtworksDescription": "Upgrade your plan to showcase all your artworks in your profile and get more visibility."
+  "upgradeToShowMoreArtworksDescription": "Upgrade your plan to showcase all your artworks in your profile and get more visibility.",
+  "profileNotAvailable": "Profile Not Available",
+  "profileNotAvailableDescription": "This artist's profile is not currently available. Please check back later."
 }

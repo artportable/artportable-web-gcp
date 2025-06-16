@@ -171,6 +171,7 @@ export default function Profile(props) {
   const isAdmin = membership.value > 4;
   const isProfileOwnerFree = !userData?.data?.ProductId || userData.data.ProductId < 1;
   const isProfileOwnerMini = userData?.data?.ProductId === 1;
+  const shouldHideContent = isProfileOwnerFree && !isMyProfile;
 
   useEffect(() => {
     if (userData?.data?.MonthlyUser !== undefined) {
@@ -597,20 +598,7 @@ export default function Profile(props) {
                 </Tabs>
                 <Box paddingY={1}>
                   <TabPanel value={activeTab} index={0}>
-                    {/* <Button onClick={() => setSortOpen(!sortOpen)} variant="outlined">*Sortera*</Button> */}
-                    {/* {isMyProfile && isPremium && !sortOpen && (
-                      <div className={s.masonryContainer}>
-                        <ArtworkMasonry
-                          items={artworks.data}
-                          layout={userProfile?.data?.ChosenLayout}
-                          frame={userProfile?.data?.ChosenFrame}
-                          corners={userProfile?.data?.ChosenCorners}
-                          shadow={userProfile?.data?.ChosenShadow}
-                          isMyProfile={isMyProfile}
-                        />
-                      </div>
-                    )} */}
-                    {isProfileOwnerFree ? (
+                    {shouldHideContent ? null : isProfileOwnerFree ? (
                       <div className={s.portfolioContainer} style={{ textAlign: 'center', padding: '2rem' }}>
                         <Typography variant="h6" gutterBottom>
                           {t("profile:upgradeToShowArtworks")}
