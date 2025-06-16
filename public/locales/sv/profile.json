@@ -153,5 +153,7 @@
   "noArtworkViewsYet": "Inga konstverksvisningar än",
   "upgradeToShowArtworks": "Uppgradera för att visa dina konstverk",
   "upgradeToShowArtworksDescription": "Uppgradera ditt konto för att visa dina konstverk i din profil och börja sälja din konst.",
-  "upgradeNow": "Uppgradera nu"
+  "upgradeNow": "Uppgradera nu",
+  "upgradeToShowMoreArtworks": "Uppgradera för att visa fler konstverk",
+  "upgradeToShowMoreArtworksDescription": "Uppgradera ditt konto för att visa alla dina konstverk i din profil och få mer synlighet."
 }

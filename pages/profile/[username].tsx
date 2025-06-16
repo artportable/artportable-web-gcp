@@ -170,6 +170,7 @@ export default function Profile(props) {
   const isPremium = membership.value === 3;
   const isAdmin = membership.value > 4;
   const isProfileOwnerFree = !userData?.data?.ProductId || userData.data.ProductId < 1;
+  const isProfileOwnerMini = userData?.data?.ProductId === 1;
 
   useEffect(() => {
     if (userData?.data?.MonthlyUser !== undefined) {
@@ -619,10 +620,10 @@ export default function Profile(props) {
                         </Typography>
                         <Button
                           variant="contained"
-                          className={s.upgradeButton}
                           color="primary"
                           onClick={() => router.push('/upgrade')}
-                          style={{ marginTop: '1rem', width: "140px" }}
+                          className={s.upgradeButton}
+                          style={{ marginTop: '1rem' }}
                         >
                           {t("profile:upgradeNow")}
                         </Button>
@@ -648,102 +649,139 @@ export default function Profile(props) {
                         {(!isMyProfile || !isPremium) && (
                           <div className={s.portfolioContainer}>
                             {imageRows &&
-                              imageRows.map((row: Image[], i) => (
-                                <div className={s.portfolioRow} key={i}>
-                                  {row.map((image) => {
-                                    let artwork = artworks.data?.find(
-                                      (a) => a.PrimaryFile.Name === image.Name
-                                    );
-
-                                    if (artwork) {
-                                      return (
-                                        <ArtworkListItemDefinedProfile
-                                          key={image.Name}
-                                          width={
-                                            smScreenOrSmaller ? "100%" : image.Width
-                                          }
-                                          height={
-                                            smScreenOrSmaller
-                                              ? "auto"
-                                              : image.Height
-                                          }
-                                          artwork={artwork}
-                                          topActions={
-                                            isMyProfile && (
-                                              <>
-                                                <div
-                                                  style={{
-                                                    display: "flex",
-                                                    flexDirection: "column",
-                                                    alignItems: "center",
-                                                  }}
-                                                >
-                                                  <div>
-                                                    <Button
-                                                      aria-label="edit"
-                                                      className={s.editButton}
-                                                      onClick={() =>
-                                                        openEditArtworkDialog(
-                                                          artwork
-                                                        )
-                                                      }
-                                                      startIcon={<BrushSharpIcon />}
-                                                    >
-                                                      {t("profile:editButton")}
-                                                    </Button>
-                                                  </div>
-                                                  <div>
-                                                    {artwork?.IsBoosted ===
-                                                    false ? (
-                                                      <Button
-                                                        aria-label="boost"
-                                                        className={s.boostButton}
-                                                        onClick={() => {
-                                                          router.push(
-                                                            `/checkoutboost?${artwork.Id}`
-                                                          );
-                                                        }}
-                                                        startIcon={
-                                                          <RocketLaunchIcon />
-                                                        }
-                                                      >
-                                                        {t(
-                                                          "profile:promoteArtwork"
-                                                        )}
-                                                      </Button>
-                                                    ) : (
-                                                      <Button
-                                                        aria-label="boost"
-                                                        className={s.boostButton}
-                                                        disabled
-                                                        startIcon={
-                                                          <RocketLaunchIcon />
-                                                        }
-                                                      >
-                                                        {t(
-                                                          "profile:promotedArtwork"
-                                                        )}
-                                                      </Button>
-                                                    )}
-                                                  </div>
-                                                </div>
-                                              </>
-                                            )
-                                          }
-                                          onPurchaseRequestClick={
-                                            onPurchaseRequestClick
-                                          }
-                                          purchaseRequestAction={
-                                            ActionType.PURCHASE_REQUEST_LIST_PROFILE
-                                          }
-                                          onLikeClick={onLikeClick}
-                                          indexPage={false}
-                                        />
+                              imageRows.map((row: Image[], i) => {
+                                // For Mini plan users, only show first 3 artworks
+                                if (isProfileOwnerMini) {
+                                  // Count total artworks shown so far
+                                  const artworksShown = imageRows
+                                    .slice(0, i)
+                                    .reduce((total, r) => total + r.length, 0);
+                                  
+                                  // If we've shown 3 or more artworks, don't show this row
+                                  if (artworksShown >= 3) return null;
+                                  
+                                  // For the last row that will be shown, only show enough artworks to reach 3 total
+                                  if (artworksShown + row.length > 3) {
+                                    row = row.slice(0, 3 - artworksShown);
+                                  }
+                                }
+                                
+                                return (
+                                  <div className={s.portfolioRow} key={i}>
+                                    {row.map((image) => {
+                                      let artwork = artworks.data?.find(
+                                        (a) => a.PrimaryFile.Name === image.Name
                                       );
-                                    }
-                                  })}
-                                </div>
-                              ))}
+
+                                      if (artwork) {
+                                        return (
+                                          <ArtworkListItemDefinedProfile
+                                            key={image.Name}
+                                            width={
+                                              smScreenOrSmaller ? "100%" : image.Width
+                                            }
+                                            height={
+                                              smScreenOrSmaller
+                                                ? "auto"
+                                                : image.Height
+                                            }
+                                            artwork={artwork}
+                                            topActions={
+                                              isMyProfile && (
+                                                <>
+                                                  <div
+                                                    style={{
+                                                      display: "flex",
+                                                      flexDirection: "column",
+                                                      alignItems: "center",
+                                                    }}
+                                                  >
+                                                    <div>
+                                                      <Button
+                                                        aria-label="edit"
+                                                        className={s.editButton}
+                                                        onClick={() =>
+                                                          openEditArtworkDialog(
+                                                            artwork
+                                                          )
+                                                        }
+                                                        startIcon={<BrushSharpIcon />}
+                                                      >
+                                                        {t("profile:editButton")}
+                                                      </Button>
+                                                    </div>
+                                                    <div>
+                                                      {artwork?.IsBoosted ===
+                                                      false ? (
+                                                        <Button
+                                                          aria-label="boost"
+                                                          className={s.boostButton}
+                                                          onClick={() => {
+                                                            router.push(
+                                                              `/checkoutboost?${artwork.Id}`
+                                                            );
+                                                          }}
+                                                          startIcon={
+                                                            <RocketLaunchIcon />
+                                                          }
+                                                        >
+                                                          {t(
+                                                            "profile:promoteArtwork"
+                                                          )}
+                                                        </Button>
+                                                      ) : (
+                                                        <Button
+                                                          aria-label="boost"
+                                                          className={s.boostButton}
+                                                          disabled
+                                                          startIcon={
+                                                            <RocketLaunchIcon />
+                                                          }
+                                                        >
+                                                          {t(
+                                                            "profile:promotedArtwork"
+                                                          )}
+                                                        </Button>
+                                                      )}
+                                                    </div>
+                                                  </div>
+                                                </>
+                                              )
+                                            }
+                                            onPurchaseRequestClick={
+                                              onPurchaseRequestClick
+                                            }
+                                            purchaseRequestAction={
+                                              ActionType.PURCHASE_REQUEST_LIST_PROFILE
+                                            }
+                                            onLikeClick={onLikeClick}
+                                            indexPage={false}
+                                          />
+                                        );
+                                      }
+                                    })}
+                                  </div>
+                                );
+                              })}
+                            {isProfileOwnerMini && (
+                              <div style={{ textAlign: 'center', padding: '2rem' }}>
+                                <Typography variant="h6" gutterBottom>
+                                  {t("profile:upgradeToShowMoreArtworks")}
+                                </Typography>
+                                <Typography variant="body1" gutterBottom>
+                                  {t("profile:upgradeToShowMoreArtworksDescription")}
+                                </Typography>
+                                <Button
+                                  variant="contained"
+                                  color="primary"
+                                  onClick={() => router.push('/upgrade')}
+                                  className={s.upgradeButton}
+                                  style={{ marginTop: '1rem' }}
+                                >
+                                  {t("profile:upgradeNow")}
+                                </Button>
+                              </div>
+                            )}
                           </div>
                         )}
                       </>
