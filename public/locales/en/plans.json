@@ -19,55 +19,65 @@
       ]
     },
     "portfolioMini": {
-      "name": "Mini",
+      "name": "Portfolio Mini",
       "subtitle": "For artists wanting to try with limited access.",
       "trial": "10-day free trial!",
       "listTexts": [
         "Publish up to 3 works",
         "Basic visibility on Artportable",
+        "Pay 0% commission on sold artwork",
         "Access to special offers",
         "Limited purchase inquiries"
       ]
     },
     "portfolio": {
       "name": "Portfolio",
-      "subtitle": "Artist - boost your art career and get inquiries using Portfolio.",
+      "subtitle": "For artists who want to showcase and sell their work.",
       "trial": "10-day free trial!",
       "listTexts": [
-        "Upload your artwork",
-        "Chat and get inquiries about your artwork",
-        "Pay 0 % in commission on sold artwork",
-        "Follow and interact with other artists",
-        "Read articles and get updates about exhibitions",
+        "Publish up to 10 works",
+        "Standard visibility on Artportable",
+        "Pay 0% commission on sold artwork",
+        "10% discount on art materials",
+        "Access to exhibitions",
         "SEO-optimized portfolio",
         "Mobile-optimized page"
       ]
     },
     "portfolioPremium": {
       "name": "Portfolio Premium",
-      "subtitle": "For artists who want to be prioritized and gain access to more benefits.",
-      "trial": "Try it for 10 days free!",
+      "subtitle": "For artists who want priority visibility and additional benefits.",
+      "trial": "10-day free trial!",
       "listTexts": [
-        "Everything from Portfolio",
-        "Chance to be selected and featured on Artportable's homepage and social media",
         "Publish up to 1,500 works",
-        "Sort artworks",
-        "Publish news",
-        "Increased visibility on Artportable",
-        "Personal advice for purchase inquiries",
-        "Contact with Artportable's marketing department"
+        "High visibility on Artportable",
+        "Pay 0% commission on sold artwork",
+        "20% discount on art materials",
+        "Access to exhibitions",
+        "Publish news and updates",
+        "Organize your works",
+        "Personal advice for inquiries",
+        "Detailed statistics",
+        "1 promoted work per month"
       ]
     },
     "portfolioPremiumPlus": {
       "name": "Portfolio Premium Plus",
-      "subtitle": "For artists who want to maximize their visibility and sales. Artportable helps you open doors to new opportunities by letting your works reach an even larger audience.",
+      "subtitle": "For artists who want to maximize their visibility and sales. Artportable helps you open doors to new opportunities.",
       "trial": "",
       "listTexts": [
-        "Everything included in Portfolio Premium",
-        "Increased visibility on Artportable",
-        "Personal advice for purchase inquiries",
+        "Unlimited work uploads",
+        "Maximum visibility on Artportable",
+        "Pay 0% commission on sold artwork",
+        "30% discount on art materials",
+        "Access to exhibitions",
+        "Publish news and updates",
+        "Organize your works",
+        "Personal advice for inquiries",
+        "Detailed statistics",
         "3 promoted works per month",
-        "Visibility in Artportable's newsletter every month"
+        "Monthly newsletter feature",
+        "Marketing support"
       ]
     }
   },

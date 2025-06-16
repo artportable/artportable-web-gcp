@@ -149,5 +149,8 @@
   "timePeriodLastYear": "Last year",
   "views": "Views",
   "popularArtworks": "Your most popular artworks",
-  "noArtworkViewsYet": "No artwork views yet"
+  "noArtworkViewsYet": "No artwork views yet",
+  "upgradeToShowArtworks": "Upgrade to Show Your Artworks",
+  "upgradeToShowArtworksDescription": "Upgrade your plan to showcase your artworks in your profile and start selling your art.",
+  "upgradeNow": "Upgrade Now"
 }

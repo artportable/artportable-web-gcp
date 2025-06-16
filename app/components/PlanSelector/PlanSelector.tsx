@@ -102,43 +102,64 @@ export default function PlanSelector({
     let features = [];
     if (planName === "Portfolio Premium Plus") {
       features = [
-        { key: "publishWorks", available: true },
-        { key: "visibility", available: true },
-        { key: "commission", available: true },
-        { key: "discounts", available: true },
+        { key: "publishWorks", available: "Unlimited" },
+        { key: "visibility", available: "Maximum" },
+        { key: "commission", available: "0%" },
+        { key: "discounts", available: "30% on materials" },
         { key: "exhibitions", available: true },
         { key: "newsUpdates", available: true },
         { key: "organizeWorks", available: true },
         { key: "personalAdvice", available: true },
         { key: "statistics", available: true },
-        { key: "promotedWorks", available: true },
+        { key: "promotedWorks", available: "3 per month" },
+        { key: "newsletter", available: "Monthly feature" },
+        { key: "marketingSupport", available: true }
       ];
     } else if (planName === "Portfolio Premium") {
       features = [
-        { key: "publishWorks", available: true },
-        { key: "visibility", available: true },
-        { key: "commission", available: true },
-        { key: "discounts", available: true },
+        { key: "publishWorks", available: "Up to 1,500" },
+        { key: "visibility", available: "High" },
+        { key: "commission", available: "0%" },
+        { key: "discounts", available: "20% on materials" },
         { key: "exhibitions", available: true },
         { key: "newsUpdates", available: true },
         { key: "organizeWorks", available: true },
         { key: "personalAdvice", available: true },
-        { key: "statistics", available: false },
-        { key: "promotedWorks", available: false },
+        { key: "statistics", available: true },
+        { key: "promotedWorks", available: "1 per month" },
+        { key: "newsletter", available: false },
+        { key: "marketingSupport", available: false }
       ];
-    } else {
-      // Basic plan (Portfolio Mini)
+    } else if (planName === "Portfolio") {
       features = [
-        { key: "publishWorks", available: "upp till 10 verk" },
-        { key: "visibility", available: true },
-        { key: "commission", available: true },
-        { key: "discounts", available: true },
+        { key: "publishWorks", available: "Up to 10" },
+        { key: "visibility", available: "Standard" },
+        { key: "commission", available: "0%" },
+        { key: "discounts", available: "10% on materials" },
         { key: "exhibitions", available: true },
         { key: "newsUpdates", available: false },
         { key: "organizeWorks", available: false },
         { key: "personalAdvice", available: false },
         { key: "statistics", available: false },
         { key: "promotedWorks", available: false },
+        { key: "newsletter", available: false },
+        { key: "marketingSupport", available: false }
+      ];
+    } else {
+      // Portfolio Mini
+      features = [
+        { key: "publishWorks", available: "Up to 3" },
+        { key: "visibility", available: "Basic" },
+        { key: "commission", available: "0%" },
+        { key: "discounts", available: false },
+        { key: "exhibitions", available: false },
+        { key: "newsUpdates", available: false },
+        { key: "organizeWorks", available: false },
+        { key: "personalAdvice", available: false },
+        { key: "statistics", available: false },
+        { key: "promotedWorks", available: false },
+        { key: "newsletter", available: false },
+        { key: "marketingSupport", available: false }
       ];
     }
 
@@ -164,11 +185,13 @@ export default function PlanSelector({
   // Determine current plan based on membership
   const getCurrentPlan = () => {
     if (membership?.value === 3) {
-      return "Portfolio Premium Plus";  
+      return "Portfolio Premium";  
     } else if (membership?.value === 2) { 
-      return "Portfolio Premium"; 
+      return "Portfolio"; 
     } else if (membership?.value === 1) {
       return "Portfolio Mini"; 
+    } else if (membership?.value === 0) {
+      return "Free";
     }
     return null; // No current plan
   };
@@ -178,11 +201,11 @@ export default function PlanSelector({
   const filteredPlans = plansData.filter((plan) => {
     if (membership?.value === 2) {
       return (
-        plan.name === "Portfolio Premium" ||
-        plan.name === "Portfolio Premium Plus"
+        plan.name === "Portfolio" ||
+        plan.name === "Portfolio Premium"
       );
     } else if (membership?.value === 3) {
-      return plan.name === "Portfolio Premium Plus";
+      return plan.name === "Portfolio Premium";
     }
     return true;
   });

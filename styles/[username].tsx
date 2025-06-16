@@ -40,6 +40,28 @@ export const profileStyles = makeStyles((theme: Theme) =>
         height: "100%",
       },
     },
+    upgradeButton: {
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginTop: "30px",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
+    },
     line: {
       marginTop: theme.spacing(1),
       height: "4px",

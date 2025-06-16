@@ -150,5 +150,8 @@
   "timePeriodLastYear": "Senaste året",
   "views": "Visningar",
   "popularArtworks": "Dina populäraste verk",
-  "noArtworkViewsYet": "Inga konstverksvisningar än"
+  "noArtworkViewsYet": "Inga konstverksvisningar än",
+  "upgradeToShowArtworks": "Uppgradera för att visa dina konstverk",
+  "upgradeToShowArtworksDescription": "Uppgradera ditt konto för att visa dina konstverk i din profil och börja sälja din konst.",
+  "upgradeNow": "Uppgradera nu"
 }
