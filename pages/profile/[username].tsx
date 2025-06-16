@@ -171,6 +171,7 @@ export default function Profile(props) {
   const isAdmin = membership.value > 4;
   const isProfileOwnerFree = !userData?.data?.ProductId || userData.data.ProductId < 1;
   const isProfileOwnerMini = userData?.data?.ProductId === 1;
+  const isMyProfileMini = userData?.data?.ProductId === 1 && isMyProfile;
   const shouldHideContent = isProfileOwnerFree && !isMyProfile;
 
   useEffect(() => {
@@ -751,7 +752,7 @@ export default function Profile(props) {
                                   </div>
                                 );
                               })}
-                            {isProfileOwnerMini && (
+                            {isMyProfileMini && (
                               <div style={{ textAlign: 'center', padding: '2rem' }}>
                                 <Typography variant="h6" gutterBottom>
                                   {t("profile:upgradeToShowMoreArtworks")}
