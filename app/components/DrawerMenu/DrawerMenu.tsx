@@ -42,7 +42,7 @@ import { useTranslation } from "next-i18next";
 import { styles } from "./drawerMenu.css";
 import { useKeycloak } from "@react-keycloak/ssr";
 import type { KeycloakInstance } from "keycloak-js";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import ProfileAvatar from "../ProfileAvatar/ProfileAvatar";
 import useSignupRedirectHref from "../../hooks/useSignupRedirectHref";
 import { UserContext } from "../../contexts/user-context";
@@ -236,11 +236,11 @@ export default function DrawerMenu({
           label: t("curatet"),
           icon: <CollectionsIcon />,
         },
-        {
-          href: "/newsroom",
-          label: t("story"),
-          icon: <FiberNewIcon />,
-        },
+        ...(router.locale === "sv" ? [{
+          href: `/${t("header:storiesSlug")}`,
+          label: t("articles"),
+          icon: <FeedOutlinedIcon />,
+        }] : []),
       ],
     },
     {
