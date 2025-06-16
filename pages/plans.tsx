@@ -149,22 +149,17 @@ export default function Plans({ priceData }) {
               console.log("Plans page - defaulting interval to:", interval);
             }
 
-            var isArtist = false;
-            if (plan == "artist") {
-              // No free plan available, redirect to plans page to choose
-              setLoading(false);
-              return;
-            }
+            var isArtist = true;
 
             // Map IDP plan names to web-gcp productKey values
             const planMapping = {
-              "portfolioMini": "PortfolioMini",
-              "portfolio": "Portfolio", 
-              "portfolioPremium": "PortfolioPremium",
+              portfolioMini: "PortfolioMini",
+              portfolio: "Portfolio",
+              portfolioPremium: "PortfolioPremium",
               // Handle userType format (mini, basic, premium)
-              "mini": "PortfolioMini",
-              "basic": "Portfolio",
-              "premium": "PortfolioPremium"
+              mini: "PortfolioMini",
+              basic: "Portfolio",
+              premium: "PortfolioPremium",
             };
 
             const mappedPlan = planMapping[plan] || plan;
