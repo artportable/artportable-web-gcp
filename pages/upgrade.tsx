@@ -44,7 +44,7 @@ export default function Upgrade({ navBarItems, priceData }) {
 
   return (
     <Main isShow={false} navBarItems={navBarItems}>
-      <PlanSelector showAll={true} priceData={priceDataFor} />
+      <PlanSelector showAll={true} priceData={priceDataFor ?? priceData} />
     </Main>
   );
 }
