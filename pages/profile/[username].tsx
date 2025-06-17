@@ -628,11 +628,6 @@ export default function Profile(props) {
                               }
                               t={t}
                             />
-                            <EditArtworkDialog
-                              artwork={artworkToEdit}
-                              open={editArtworkOpen}
-                              onClose={onEditArtworkClose}
-                            />
                           </div>
                         )}
                         {(!isMyProfile || !isPremium) && (
@@ -772,6 +767,13 @@ export default function Profile(props) {
                               </div>
                             )}
                           </div>
+                        )}
+                        {isMyProfile && (
+                          <EditArtworkDialog
+                            artwork={artworkToEdit}
+                            open={editArtworkOpen}
+                            onClose={onEditArtworkClose}
+                          />
                         )}
                       </>
                     )}

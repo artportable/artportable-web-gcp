@@ -493,6 +493,11 @@ export default function Header({ navBarItems }) {
                 </Link>
                 <br />
               </div> */}
+                {isSignedIn.value && (
+                <div className={s.titlesOnHeader}>
+                  <Link href="/feed">{t("myArtNetwork")}</Link>
+                </div>
+              )}
               <div className={s.titlesOnHeader}>
                 <Link href={"/discover"} passHref>
                   {t("findArt")}
@@ -523,11 +528,7 @@ export default function Header({ navBarItems }) {
                   {t("exhibition")}
                 </Link>
               </div>
-              {isSignedIn.value && (
-                <div className={s.titlesOnHeader}>
-                  <Link href="/feed">{t("myArtNetwork")}</Link>
-                </div>
-              )}
+            
               {router.locale === "sv" && (
                 <div className={s.titlesOnHeader}>
                   <Link href={`/${t("header:storiesSlug")}`} passHref>

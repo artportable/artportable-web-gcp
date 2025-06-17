@@ -22,27 +22,27 @@
   "selectPremiumPlus": "Välj Premium Plus",
     "selectPremium": "Välj Premium", 
   "selectBasic": "Välj Basic",
-  "monthlyPayment": "Månadsvis",
-  "yearlyPayment": "Årsvis",
-  "featurePublishWorks": "Publicera obegränsat med verk",
-  "featureVisibility": "Synlighet i Artportables olika flöden",
-  "featureYourArt": "Din konst = dina pengar. Ta emot köpförfrågningar och sälj direkt utan provision",
+  "featurePublishWorks": "Publicera dina verk",
+  "featureVisibility": "Exponering i Artportables flöden och kategorisidor",
+  "featureYourArt": "Sälj utan provision",
   "featureDiscounts": "Få rabatter på konstnärsmaterial (10-25%)",
-  "featureExhibitions": "Få utställningserbjudanden",
+  "featureExhibitions": "Erbjudanden om utställningar",
   "featureNewsUpdates": "Skapa nyhetsuppdateringar",
   "featureOrganizeWorks": "Sortera och organisera dina verk som du vill",
   "featurePersonalAdvice": "Personlig rådgivning vid köpförfrågningar",
   "featureStatistics": "Se statistik över dina mest populära verk och profilvisningar",
-  "featurePromotedWorks": "3 marknadsförda verk per månad till ett värde av 1185kr",
+
   "plans": {
-    "free": {
-      "name": "Gratis",
-      "subtitle": "Konstintresserad – skaffa ett gratiskonto idag och hitta originalkonst till hemmet.",
+    "portfolioMini": {
+      "name": "Portfolio Mini",
+      "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
+      "trial": "",  
       "listTexts": [
-        "Följ konstnärer",
-        "Hitta konstverk till ditt hem",
-        "Chatta och skicka förfrågan om konstverk",
-        "Läs artiklar och få uppdateringar om utställningar"
+        "Publicera dina verk (Upp till 3 verk)",
+        "Exponering i Artportables flöden och kategorisidor",
+        "Sälj utan provision",
+        "Följ och interagera med andra konstnärer",
+        "Erbjudanden om utställningar"     
       ]
     },
     "portfolio": {
@@ -50,7 +50,7 @@
       "subtitle": "För dig som är konstnär och vill visa upp och sälja dina verk",
       "trial": "",
       "listTexts": [
-        "Publicera dina verk",
+        "Publicera dina verk (Upp till 10 verk)",
         "Få förfrågningar om dina konstverk",
         "Betala 0 % i provision på sålda verk",
         "Följ och interagera med andra konstnärer",
@@ -72,19 +72,8 @@
         "Personlig rådgivnig vid köpförfrågningar",
         "Gratis provperiod i 10 dagar"
       ]
-    },
-    "portfolioPremiumPlus": {
-      "name": "Portfolio Premium Plus",
-      "subtitle": "För dig som är konstnär och vill maximera din synlighet och försäljning. Artportable hjälper dig öppna dörrar till nya möjligheter genom att låta dina verk nå en ännu större publik",
-      "trial": "",
-      "listTexts": [
-        "Allt från Portfolio Premium ingår",
-        "Ökad synlighet på Artportable",
-        "Personlig rådgivnig vid köpförfrågningar",
-        "3 marknadsförda verk per månad",
-        "Synglighet i Artportables nyhetsbrev varje månad"
-      ]
     }
+
   },
   "joinTheCommunity": "Gå med i gemenskapen",
   "Endast siffror": "Endast siffror",

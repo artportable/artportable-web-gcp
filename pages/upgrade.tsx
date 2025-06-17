@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import { PriceData, getPriceData } from "../pages/plans";
 import { UserContext } from "../app/contexts/user-context";
@@ -22,29 +22,9 @@ export default function Upgrade({ navBarItems, priceData }) {
     }
   }, [isSignedIn, router]);
 
-  const [priceDataFor, setPriceData] = useState<PriceData[]>(null);
-  useEffect(() => {
-    const abortCont = new AbortController();
-    async function getPriceData() {
-      try {
-        var response = await fetch(`${apiBaseUrl}/api/payments/prices`, {
-          signal: abortCont.signal,
-        });
-        if (response.ok) setPriceData(await response.json());
-      } catch (e) {
-        if (e.name == "AbortError") {
-          console.log("fetch aborted");
-        }
-        console.log("Could not fetch price info", e);
-      }
-    }
-    getPriceData();
-    return () => abortCont.abort();
-  }, []);
-
   return (
     <Main isShow={false} navBarItems={navBarItems}>
-      <PlanSelector showAll={true} priceData={priceDataFor ?? priceData} />
+      <PlanSelector showAll={true} priceData={priceData} />
     </Main>
   );
 }
