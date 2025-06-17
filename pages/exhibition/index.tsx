@@ -19,16 +19,7 @@ const exhibitions = [
     address: "Regeringsgatan 47, 111 56 Stockholm",
     image: "/images/artbakery.png",
     artists: [
-      {
-        name: "Sepideh Sarrafzadeh",
-        dates: "16 mars - 16 juni 2025",
-        link: "sepideh",
-      },
-      {
-        name: "Vivecka Norberg",
-        dates: "16 mars - 16 juni 2025",
-        link: "vivecka",
-      },
+ 
       {
         name: "Anneli Önneby",
         dates: "17 juni - 17 sep. 2025",
@@ -39,16 +30,7 @@ const exhibitions = [
         dates: "17 juni - 17 sep. 2025",
         link: "kallgren.lars",
       },
-      {
-        name: "Luuri Kononvo Gallery",
-        dates: "18 sep. - 18 dec 2025",
-        link: "iuriikononov",
-      },
-      {
-        name: "Ganga Roslin Bladh",
-        dates: "18 sep. - 18 dec. 2025",
-        link: "ganga.art",
-      },
+   
     ],
   },
   {
@@ -57,11 +39,7 @@ const exhibitions = [
     address: "Kolonnvägen 41, Solna",
     image: "/images/ac.png",
     artists: [
-      {
-        name: "Catrine Lindström",
-        dates: "14 april - 14 juni 2025",
-        link: "artbymec",
-      },
+  
       { name: "Gro Folkan", dates: "14 april - 14 juni 2025", link: "g-fol" },
       {
         name: "Ingela Johansson",
@@ -81,35 +59,27 @@ const exhibitions = [
     address: "Solna",
     image: "/images/arla.png",
     artists: [
+   
+    
       {
-        name: "Kononov Gallery",
+        name: "Aleksandra Łojek-Szymanowska",
         dates: "25 mars - 25 maj 2025",
-        link: "iuriikononov",
+        link: "olaartlojekszymanowska",
       },
       {
-        name: "Christel Jonsson",
+        name: "Ylva Liljefors",
         dates: "25 mars - 25 maj 2025",
-        link: "chriart",
+        link: "ylva.liljefors",
       },
       {
-        name: "Christine Halloff",
+        name: "Lars Orrskog",
         dates: "25 mars - 25 maj 2025",
-        link: "christine.halloff",
+        link: "lasseo",
       },
       {
-        name: "Felix Oppenheim",
+        name: "Brygida Schille",
         dates: "25 mars - 25 maj 2025",
-        link: "felix.oppenheim",
-      },
-      {
-        name: "Anna Frenning",
-        dates: "25 mars - 25 maj 2025",
-        link: "anna.frenning",
-      },
-      {
-        name: "Thor-Ulf Löfstedt",
-        dates: "25 mars - 25 maj 2025",
-        link: "thorulf.lofstedt",
+        link: "brygida",
       },
     ],
   },
@@ -120,20 +90,11 @@ const exhibitions = [
     image: "/images/artcafe.png",
     artists: [
       {
-        name: "Petra Risberg",
+        name: "Anne Gro Greve ",
         dates: "24 mars – 23 juni 2025",
-        link: "petra.risberg",
+        link: "pagsg",
       },
-      {
-        name: "Dina Johnsen",
-        dates: "23 juni - 23 sep. 2025",
-        link: "dinajohnsen",
-      },
-      {
-        name: "Margareta Öberg",
-        dates: "23 sep. - 23 dec 2025",
-        link: "margareta.ohberg",
-      },
+   
     ],
   },
   {
@@ -239,7 +200,7 @@ const exhibitions = [
     address: "Upplandsgatan 37, 113 28 Stockholm",
     image: "/images/simon.webp",
     artists: [
-      { name: "Karin Holmström", dates: "pågående", link: "karin.holmstrom" },
+      { name: "Ulrika Melin", dates: "pågående", link: "ulrikaart" },
     ],
   },
   {
@@ -249,9 +210,9 @@ const exhibitions = [
     image: "/images/sabo.png",
     artists: [
       {
-        name: "Christer Åberg",
+        name: "Klas Wiréhn",
         dates: "1 april - 1 juni",
-        link: "christer.aber",
+        link: "klaswirehn",
       },
     ],
   },
