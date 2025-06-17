@@ -13,14 +13,10 @@ import { useDispatch } from "react-redux";
 import { LOGIN_USER } from "../app/redux/actions/userActions";
 import { getDistinct } from "../app/utils/util";
 import { ADD_PRICE } from "../app/redux/actions/signupActions";
-import {
-  ActionType,
-  CategoryType,
-  trackGoogleAnalytics,
-} from "../app/utils/googleAnalytics";
+
 import { UserContext } from "../app/contexts/user-context";
 import router from "next/router";
-import { inputValueFromEvent } from "react-activity-feed/dist/utils";
+
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -34,8 +30,9 @@ export interface PriceData {
   id: string;
   product:
     | "Portfolio Mini"
+    | "Portfolio"
     | "Portfolio Premium"
-    | "Portfolio";
+
   productKey: string;
   currency: string;
   recurringInterval: string;
@@ -51,53 +48,21 @@ export default function Plans({ priceData }) {
     useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
-  // Add effect to check sessionStorage for plan
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const sessionPlan = sessionStorage.getItem('plan');
-      if (sessionPlan && priceData) {
-        // Find matching plan in priceData
-        const matchingPlan = priceData.find(pd => 
-          pd.productKey.toLowerCase() === sessionPlan.toLowerCase()
-        );
-        if (matchingPlan) {
-          // Store plan in Redux
-          dispatch({
-            type: ADD_PRICE,
-            payload: { ...matchingPlan },
-          });
-          // Redirect to checkout
-          router.push('/checkout');
-        }
-      }
-    }
-  }, [priceData]);
-
   function redirectCreatedUser(plan, isArtist) {
     dispatch({
       type: ADD_PRICE,
       payload: { ...plan },
     });
     switch (plan.productKey) {
-      case "Portfolio":
-        trackGoogleAnalytics(
-          ActionType.SIGN_UP_PORTFOLIE_COMPLETED,
-          CategoryType.BUY
-        );
+      case "portfolio":
+
         router.push("/checkout");
         break;
-      case "PortfolioPremium":
-        trackGoogleAnalytics(
-          ActionType.SIGN_UP_PREMIUM_COMPLETED,
-          CategoryType.BUY
-        );
+      case "portfolioPremium":
+
         router.push("/checkout");
         break;
-      case "PortfolioMini":
-        trackGoogleAnalytics(
-          ActionType.SIGN_UP_PREMIUM_COMPLETED,
-          CategoryType.BUY
-        );
+      case "portfolioMini":
         router.push("/checkout");
         break;
       default:
@@ -137,51 +102,31 @@ export default function Plans({ priceData }) {
             });
 
             const userType = parsedToken.user_type;
-            console.log("Plans page - userType from token:", userType);
-            console.log("Plans page - full JWT token:", parsedToken);
 
-            var [plan, interval] = userType.split("-");
-            console.log("Plans page - parsed plan:", plan, "interval:", interval);
-
-            // Default interval to "month" if not provided
-            if (!interval) {
-              interval = "month";
-              console.log("Plans page - defaulting interval to:", interval);
-            }
-
-            var isArtist = false;
-            if (plan == "artist") {
-              // No free plan available, redirect to plans page to choose
+            if (typeof userType !== 'string' || userType.trim() === '') {
               setLoading(false);
               return;
             }
 
-            // Map IDP plan names to web-gcp productKey values
-            const planMapping = {
-              "portfolioMini": "PortfolioMini",
-              "portfolio": "Portfolio", 
-              "portfolioPremium": "PortfolioPremium",
-              // Handle userType format (mini, basic, premium)
-              "mini": "PortfolioMini",
-              "basic": "Portfolio",
-              "premium": "PortfolioPremium"
-            };
+            let [plan, interval] = userType.split("-");
 
-            const mappedPlan = planMapping[plan] || plan;
-            console.log("Plans page - mapped plan from", plan, "to", mappedPlan);
-            
-            console.log("Plans page - available priceData:", priceData);
-            
+            if (!interval) {
+              interval = 'month';
+            }
+
+            var isArtist = false;
+            if (plan == "artist") {
+              plan = "free";
+              isArtist = true;
+            }
             const p = priceData.find((pd) => {
               return (
                 pd.productKey.toLowerCase().trim() ===
-                  mappedPlan.toLowerCase().trim() &&
+                  plan.toLowerCase().trim() &&
                 pd.recurringInterval.toLowerCase().trim() ===
                   interval.toLowerCase().trim()
               );
             });
-
-            console.log("Plans page - found matching plan:", p);
 
             if (p) {
               redirectCreatedUser(p, isArtist);
@@ -274,13 +219,15 @@ export async function getPriceData() {
     // Check if result is an array
     if (!Array.isArray(result)) {
       console.error("Price data is not an array:", result);
-      throw new Error("Price data is not an array");
+      // Return an empty array or handle as needed
+      return [];
     }
 
     return result;
-  } catch (e) {
-    console.error("Could not fetch price info", e);
-    // Return empty array if fetching fails
+  } catch (error) {
+    console.error("Error in getPriceData:", error);
+    // Depending on requirements, you might want to return a default
+    // or empty array, or rethrow the error.
     return [];
   }
 }
