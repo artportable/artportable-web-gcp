@@ -27,6 +27,7 @@ type PropType = {
   externalLink: boolean;
   isStoryCarousel?: boolean;
   dotsVisible?: boolean;
+  showArrows?: boolean;
 };
 
 type Slide = {
@@ -59,6 +60,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     externalLink = false,
     isStoryCarousel = false,
     dotsVisible = true,
+    showArrows = true,
   } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(
     options,
@@ -226,10 +228,10 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className={s.embla__container}>{slideElements}</div>
       </div>
 
-      {forDesktop && (
+      {showArrows && forDesktop && (
         <>
-          {/* <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} /> */}
-          {/* <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} /> */}
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </>
       )}
     </section>

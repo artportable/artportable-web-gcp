@@ -55,7 +55,8 @@ export default function RocketCarousel(props: Data) {
     s,
     sShared,
     t,
-    forDesktop
+    forDesktop,
+    isSignedIn
   );
 
   return (
@@ -70,15 +71,22 @@ export default function RocketCarousel(props: Data) {
         useDynamicSlideWidth={true}
         forDesktop={forDesktop}
         externalLink={false}
+        showArrows={true}
       />
     </div>
   );
 }
 
-const formatApArtworkForEmbla = (items, s, sShared, t, forDesktop) => {
+const formatApArtworkForEmbla = (
+  items,
+  s,
+  sShared,
+  t,
+  forDesktop,
+  isSignedIn
+) => {
   const bucketUrl = process.env.NEXT_PUBLIC_BUCKET_URL;
   const formatted = [];
-  const { username, isSignedIn } = useContext(UserContext);
   const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const baseUrl = process.env.NEXT_PUBLIC_URL;
 
