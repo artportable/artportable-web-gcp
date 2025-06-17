@@ -29,6 +29,7 @@ export const styles = makeStyles((theme: Theme) =>
     plansContainer: {
       display: "block",
       backgroundColor: "transparent",
+      marginTop: "20px",
       [theme.breakpoints.up("smPlus")]: {
         marginBottom: "auto",
       },
@@ -439,18 +440,37 @@ export const styles = makeStyles((theme: Theme) =>
       bottom: "20px",
       left: "50%",
       transform: "translateX(-50%)",
-      backgroundColor: "#A70201",
-      color: "white",
+
+    
       padding: "16px 32px",
-      borderRadius: "8px",
-      fontSize: "16px",
-      fontWeight: 500,
+
+
       textTransform: "none",
-      border: "none",
+
       cursor: "pointer",
       zIndex: 9999,
-      boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+   
       minWidth: "200px",
+      borderRadius: "30px",
+      fontWeight: 500,
+      fontFamily: "Roboto",
+      fontSize: "14px",
+      backgroundColor: "white",
+      border: "1px solid black",
+      color: "black",
+      width: "150px",
+      height: "40px",
+      boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.25)",
+      margin: "0 auto",
+      marginTop: "30px",
+      "&:hover": {
+        backgroundColor: "black",
+        border: "1px solid black",
+        color: "white",
+      },
+      [theme.breakpoints.up("smPlus")]: {
+        fontSize: "14px",
+      },
       "&:disabled": {
         backgroundColor: "#ccc",
         color: "#666",

@@ -7,17 +7,17 @@
   "monthlyPayment": "Monthly payment",
   "sek": "SEK",
   "signUp": "Sign up",
+  "featurePublishWorks": "Publish your works",
+  "featureVisibility": "Exposure in Artportable's flows and category pages",
+  "featureYourArt": "Sell your art without commission",
+  "featureDiscounts": "Get discounts on artist materials (10-25%)",
+  "featureExhibitions": "Access to exhibitions",
+  "featureNewsUpdates": "Create news updates",
+  "featureOrganizeWorks": "Organize your works as you want",
+  "featurePersonalAdvice": "Personal advice for inquiries",
+  "featureStatistics": "See statistics about your most popular works and profile views",
+
   "plans": {
-    "free": {
-      "name": "Free",
-      "subtitle": "Art lover - get a free account today and find original artwork.",
-      "listTexts": [
-        "Follow artists",
-        "Find art for your home",
-        "Chat and send inquiries about artwork",
-        "Read articles and get updates about exhibitions"
-      ]
-    },
     "portfolioMini": {
       "name": "Portfolio Mini",
       "subtitle": "For artists wanting to try with limited access.",
@@ -59,25 +59,6 @@
         "Personal advice for inquiries",
         "Detailed statistics",
         "1 promoted work per month"
-      ]
-    },
-    "portfolioPremiumPlus": {
-      "name": "Portfolio Premium Plus",
-      "subtitle": "For artists who want to maximize their visibility and sales. Artportable helps you open doors to new opportunities.",
-      "trial": "",
-      "listTexts": [
-        "Unlimited work uploads",
-        "Maximum visibility on Artportable",
-        "Pay 0% commission on sold artwork",
-        "30% discount on art materials",
-        "Access to exhibitions",
-        "Publish news and updates",
-        "Organize your works",
-        "Personal advice for inquiries",
-        "Detailed statistics",
-        "3 promoted works per month",
-        "Monthly newsletter feature",
-        "Marketing support"
       ]
     }
   },
