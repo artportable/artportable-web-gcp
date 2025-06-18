@@ -36,9 +36,10 @@ export const styles = makeStyles((theme: Theme) =>
     rightColumn: {
       width: '580px',
       flexShrink: 0,
-      display: 'none',
+      display: 'block',
       [theme.breakpoints.down('md')]: {
-        display: 'none',
+        width: '100vw',
+        marginTop: '20px',
       },
     },
     
@@ -171,7 +172,7 @@ export const styles = makeStyles((theme: Theme) =>
 
     noArticlesContainer: {
       textAlign: 'center',
-      padding: '40px',
+      padding: '20px',
       color: '#666',
     },
 
@@ -355,6 +356,101 @@ export const styles = makeStyles((theme: Theme) =>
         textTransform: 'uppercase',
         letterSpacing: '0.5px',
       },
+    },
+
+    // Articles container (replaces left/right column layout)
+    articlesContainer: {
+      width: '100%',
+      maxWidth: '100%',
+  
+      padding: '10px',
+      [theme.breakpoints.up('md')]: {
+        padding: '0px',
+      },
+    },
+
+    // Pagination styles
+    paginationContainer: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginTop: '20px',
+      marginBottom: '40px',
+      gap: '20px',
+    },
+
+    paginationInfo: {
+      textAlign: 'center',
+    },
+
+    paginationText: {
+      color: '#666',
+      fontSize: '14px',
+      fontFamily: 'Roboto',
+    },
+
+    paginationControls: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    },
+
+    paginationButton: {
+      padding: '8px 16px',
+      backgroundColor: '#fff',
+      border: '1px solid #ddd',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      fontSize: '14px',
+      fontFamily: 'Roboto',
+      transition: 'all 0.2s ease',
+      '&:hover:not(.disabled)': {
+        backgroundColor: '#f5f5f5',
+        borderColor: '#999',
+      },
+      '&.disabled': {
+        opacity: 0,
+        cursor: 'not-allowed',
+      },
+    },
+
+    pageNumbers: {
+      display: 'flex',
+      gap: '5px',
+    },
+
+    pageNumber: {
+      padding: '8px 12px',
+      backgroundColor: '#fff',
+      border: '1px solid #ddd',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      fontSize: '14px',
+      fontFamily: 'Roboto',
+      transition: 'all 0.2s ease',
+      '&:hover': {
+        backgroundColor: '#f5f5f5',
+        borderColor: '#999',
+      },
+      '&.active': {
+        backgroundColor: '#1976d2',
+        borderColor: '#1976d2',
+        color: '#fff',
+      },
+    },
+
+    disabled: {
+      display: 'none',
+      opacity: 0,
+      cursor: 'not-allowed',
+    },
+
+    active: {
+      backgroundColor: '#1976d2',
+      borderColor: '#1976d2',
+      color: '#fff',
     },
 
     // Artist portraits section

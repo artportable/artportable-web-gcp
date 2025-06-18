@@ -22,7 +22,7 @@ export default function slugPage({
 
 export async function getStaticProps({ params, locale }) {
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories?filters[slug][$eq]=${params.slug}&populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*`,
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories?filters[slug][$eq]=${params.slug}&populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*&pagination[pageSize]=100`,
     {
       // timeout: 110000 
     }
@@ -60,6 +60,8 @@ export async function getStaticProps({ params, locale }) {
     })) || []
   };
 
+
+
   const navBarItems = await getNavBarItems();
 
   if (locale != categoryData.locale) {
@@ -74,7 +76,7 @@ export async function getStaticProps({ params, locale }) {
     }
 
     let localeRes = await fetch(
-      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories/${newLocale.id}?populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*`,
+      `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/categories/${newLocale.id}?populate[articles][populate][0]=coverImage&populate[articles][populate][1]=authors&populate[articles][populate][2]=authors.picture&populate[localizations]=*&pagination[pageSize]=100`,
       {
         // timeout: 11000
       }

@@ -48,6 +48,10 @@ export default function CategoryPage({
   // State for all articles from both categories
   const [array, setArray] = useState([]);
   const [isLoadingArticles, setIsLoadingArticles] = useState(true);
+  
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 10;
 
   // Fetch articles from both categories
   useEffect(() => {
@@ -57,8 +61,8 @@ export default function CategoryPage({
         
         // Fetch articles from both categories
         const [artiklarRes, konstnaersportraettRes] = await Promise.all([
-          fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?filters[categories][slug][$eq]=artiklar&locale=${router.locale}&populate[0]=coverImage&populate[1]=categories&populate[2]=publishCategory`),
-          fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?filters[categories][slug][$eq]=konstnaersportraett&locale=${router.locale}&populate[0]=coverImage&populate[1]=categories&populate[2]=publishCategory`)
+          fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?filters[categories][slug][$eq]=artiklar&locale=${router.locale}&populate[0]=coverImage&populate[1]=categories&populate[2]=publishCategory&pagination[pageSize]=100`),
+          fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/articles?filters[categories][slug][$eq]=konstnaersportraett&locale=${router.locale}&populate[0]=coverImage&populate[1]=categories&populate[2]=publishCategory&pagination[pageSize]=100`)
         ]);
 
         const [artiklarData, konstnaersportraettData] = await Promise.all([
@@ -118,18 +122,39 @@ export default function CategoryPage({
     });
   }
 
-  // // Debug logging
-  // console.log('CategoryPage Debug:', {
-  //   categoryName: category?.name,
-  //   articlesCount: category?.articles?.length || 0,
-  //   arrayLength: array?.length || 0,
-  //   firstArticle: array?.[0],
-  //   firstArticlePublishedAt: array?.[0]?.published_at,
-  //   articlesWithPublishedAt: array?.filter(article => article?.published_at).length,
-  //   isFallback: router.isFallback,
-  //   routerReady: router.isReady,
-  //   currentPath: router.asPath
-  // });
+  // Calculate pagination
+  const publishedArticles = array.filter(article => article?.published_at);
+  const totalPages = Math.ceil(publishedArticles.length / articlesPerPage);
+  const startIndex = (currentPage - 1) * articlesPerPage;
+  const endIndex = startIndex + articlesPerPage;
+  const currentArticles = publishedArticles.slice(startIndex, endIndex);
+
+  // Pagination handlers
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    
+    // Reliable cross-browser scroll to top
+    if (typeof window !== 'undefined') {
+      // Use requestAnimationFrame for better performance and Safari compatibility
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
+
 
 
 
@@ -179,72 +204,66 @@ export default function CategoryPage({
                 <Typography>Loading articles...</Typography>
               </div>
             ) : (
-              <div className={s.responsiveContainer}>
-                {/* Left Column - Redaktionellt */}
-                <div className={s.leftColumn}>
-                  <Typography variant="h3" className={s.sectionHeader}>
-                    Redaktionellt
-                  </Typography>
+              <>
+                <div className={s.articlesContainer}>
+               
                   
-                  {array && array.length > 0 ? array.slice(0, 4).map((article) => {
-                    if (article && article.published_at) {
-                      const articleCategorySlug = article.categories?.[0]?.slug || 
-                                                article.publishCategory?.slug || 
-                                                'artiklar';
-                      
-                      return (
-                        <a
-                          href={`/${router.locale}/${articleCategorySlug
-                            .toLowerCase()
-                            .replace(
-                              "konstnärsporträtt",
-                              "konstnaersportraett"
-                            )}/${article.slug}`}
-                          key={article.id}
-                        >
-                          <div className={s.articleCard}>
-                         
-                            <div className={s.articleImage}>
-                              <img
-                                alt="Cover Image"
-                                src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
-                              />
+                  {currentArticles && currentArticles.length > 0 ? currentArticles.map((article) => {
+                    const articleCategorySlug = article.categories?.[0]?.slug || 
+                                              article.publishCategory?.slug || 
+                                              'artiklar';
+                    
+                    return (
+                      <a
+                        href={`/${router.locale}/${articleCategorySlug
+                          .toLowerCase()
+                          .replace(
+                            "konstnärsporträtt",
+                            "konstnaersportraett"
+                          )}/${article.slug}`}
+                        key={article.id}
+                      >
+                        <div className={s.articleCard}>
+                       
+                          <div className={s.articleImage}>
+                            <img
+                              alt="Cover Image"
+                              src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
+                            />
+                          </div>
+                          
+                          {/* Content Section */}
+                          <div className={s.articleContent}>
+                            <div>
+                              {/* Category */}
+                              <Typography className={s.articleCategory}>
+                                {article?.categories?.[0]?.name || 'Artikel'}
+                              </Typography>
+                              
+                              {/* Date */}
+                              <Typography className={s.articleDate}>
+                                {article?.published_at?.slice(0, 10)}
+                              </Typography>
+                              
+                              {/* Title */}
+                              <Typography className={s.articleTitle}>
+                                {article?.title}
+                              </Typography>
+                              
+                              {/* Description */}
+                              <Typography className={s.articleDescription}>
+                                {article?.description?.slice(0, 120)}...
+                              </Typography>
                             </div>
                             
-                            {/* Content Section */}
-                            <div className={s.articleContent}>
-                              <div>
-                                {/* Category */}
-                                <Typography className={s.articleCategory}>
-                                  {article?.categories?.[0]?.name || 'Artikel'}
-                                </Typography>
-                                
-                                {/* Date */}
-                                <Typography className={s.articleDate}>
-                                  {article?.published_at?.slice(0, 10)}
-                                </Typography>
-                                
-                                {/* Title */}
-                                <Typography className={s.articleTitle}>
-                                  {article?.title}
-                                </Typography>
-                                
-                                {/* Description */}
-                                <Typography className={s.articleDescription}>
-                                  {article?.description?.slice(0, 120)}...
-                                </Typography>
-                              </div>
-                              
-                              {/* Read More */}
-                              <div className={s.readMore}>
-                                <span>LÄS MER</span>
-                              </div>
+                            {/* Read More */}
+                            <div className={s.readMore}>
+                              <span>LÄS MER</span>
                             </div>
                           </div>
-                        </a>
-                      );
-                    }
-                    return null;
+                        </div>
+                      </a>
+                    );
                   }) : (
                     <div className={s.noArticlesContainer}>
                       No articles found
@@ -252,73 +271,43 @@ export default function CategoryPage({
                   )}
                 </div>
 
-                {/* Right Column - Fler Nyheter */}
-                <div className={s.rightColumn}>
-                  <Typography variant="h4" className={s.sectionHeader}>
-                    Fler Nyheter
-                  </Typography>
-                  
-                  {array && array.length > 4 ? array.slice(4, 8).map((article) => {
-                    if (article && article.published_at) {
-                      const articleCategorySlug = article.categories?.[0]?.slug || 
-                                                article.publishCategory?.slug || 
-                                                'artiklar';
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className={s.paginationContainer}>
+                
+                    
+                    <div className={s.paginationControls}>
+                      <button
+                        className={`${s.paginationButton} ${currentPage === 1 ? s.disabled : ''}`}
+                        onClick={handlePreviousPage}
+                        disabled={currentPage === 1}
+                      >
+                        Föregående
+                      </button>
                       
-                      return (
-                        <div key={`sidebar-${article.id}`}>
-                          <Link
-                            href={`/${router.locale}/${articleCategorySlug
-                              .toLowerCase()
-                              .replace(
-                                "konstnärsporträtt",
-                                "konstnaersportraett"
-                              )}/${article.slug}`}
+                      <div className={s.pageNumbers}>
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                          <button
+                            key={page}
+                            className={`${s.pageNumber} ${currentPage === page ? s.active : ''}`}
+                            onClick={() => handlePageChange(page)}
                           >
-                            <div className={s.rightColumnCard}>
-                              {/* Image Section */}
-                              <div className={s.rightColumnImage}>
-                                <img
-                                  alt="Cover Image"
-                                  src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
-                                />
-                              </div>
-                              
-                              {/* Content Section */}
-                              <div>
-                                {/* Category */}
-                                <Typography className={s.rightColumnCategory}>
-                                  {article?.categories?.[0]?.name || 'Artikel'}
-                                </Typography>
-                                
-                                {/* Date */}
-                                <Typography className={s.rightColumnDate}>
-                                  {article?.published_at?.slice(0, 10)}
-                                </Typography>
-                                
-                                {/* Title */}
-                                <Typography className={s.rightColumnTitle}>
-                                  {article?.title}
-                                </Typography>
-                                
-                                {/* Description */}
-                                <Typography className={s.rightColumnDescription}>
-                                  {article?.description?.slice(0, 80)}...
-                                </Typography>
-                                
-                                {/* Read More */}
-                                <div className={s.rightColumnReadMore}>
-                                  <span>LÄS MER</span>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      );
-                    }
-                    return null;
-                  }) : null}
-                </div>
-              </div>
+                            {page}
+                          </button>
+                        ))}
+                      </div>
+                      
+                      <button
+                        className={`${s.paginationButton} ${currentPage === totalPages ? s.disabled : ''}`}
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                      >
+                        Nästa
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -374,82 +363,7 @@ export default function CategoryPage({
             </div>
           </div>
 
-          {/* Fler Konstnärsporträtt - Separate Section */}
-          <div className={s.portraitsContainer}>
-            <Typography variant="h3" className={s.sectionHeader}>
-              Fler Konstnärsporträtt
-            </Typography>
-            
-            {isLoadingArticles ? (
-              <div className={s.loadingContainer}>
-                <Typography>Loading artist portraits...</Typography>
-              </div>
-            ) : array && array.length > 0 ? (
-              array
-                .filter(article => 
-                  article.categories?.some(cat => cat.slug === 'konstnaersportraett') ||
-                  article.publishCategory?.slug === 'konstnaersportraett'
-                )
-                .slice(0, 2)
-                .map((article) => {
-                  if (article && article.published_at) {
-                    const articleCategorySlug = 'konstnaersportraett';
-                    return (
-                      <div key={`portrait-${article.id}`}>
-                        <Link
-                          href={`/${router.locale}/${articleCategorySlug}/${article.slug}`}
-                        >
-                          <div className={s.portraitCard}>
-                            {/* Image Section */}
-                            <div className={s.portraitImage}>
-                              <img
-                                alt="Cover Image"
-                                src={article?.coverImage?.formats?.medium?.url || article?.coverImage?.formats?.small?.url}
-                              />
-                            </div>
-                            
-                            {/* Content Section */}
-                            <div className={s.portraitContent}>
-                              <div>
-                                {/* Category */}
-                                <Typography className={s.portraitCategory}>
-                                  Konstnärsporträtt
-                                </Typography>
-                                
-                                {/* Date */}
-                                <Typography className={s.portraitDate}>
-                                  {article?.published_at?.slice(0, 10)}
-                                </Typography>
-                                
-                                {/* Title */}
-                                <Typography className={s.portraitTitle}>
-                                  {article?.title}
-                                </Typography>
-                                
-                                {/* Description */}
-                                <Typography className={s.portraitDescription}>
-                                  {article?.description?.slice(0, 120)}...
-                                </Typography>
-                              </div>
-                              
-                              {/* Read More */}
-                              <div className={s.portraitReadMore}>
-                                <span>LÄS MER</span>
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      </div>
-                    );
-                  }
-                  return null;
-                })
-            ) : (
-              <div className={s.noArticlesContainer}>
-                No artist portraits found
-              </div>
-            )}
-          </div>
+      
         </>
       )}
     </MainOption>

@@ -8,7 +8,7 @@ export const styles = makeStyles((theme: Theme) =>
       zIndex: 1,
       maxWidth: "1200px",
       margin: "0 auto",
-
+      backgroundColor: "#fff",
       padding:"20px",
       marginTop: "40px",
       [theme.breakpoints.up("md")]: {
@@ -209,17 +209,16 @@ export const styles = makeStyles((theme: Theme) =>
     },
     coverImage: {
       width: "100%",
-      height: "250px",
-      objectFit: "cover",
+      height: "450px",
+      objectFit: "contain",
       marginTop: "20px",
       marginBottom: "30px",
-   
       [theme.breakpoints.down("md")]: {
-        height: "350px",
+        height: "450px",
         marginBottom: "0px",
       },
       [theme.breakpoints.down("sm")]: {
-        height: "150px",
+        height: "250px",
     
       },
     },

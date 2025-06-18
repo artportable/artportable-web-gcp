@@ -92,7 +92,7 @@ export const styles = makeStyles((theme: Theme) =>
       },
       [theme.breakpoints.up("md")]: {
         gridTemplateColumns: "repeat(2, 1fr)", // Two items per row on larger screens
-        width: "70%",
+        width: "50%",
         gap: "20px",
       },
     },
