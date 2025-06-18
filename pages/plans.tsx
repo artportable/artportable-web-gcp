@@ -55,7 +55,6 @@ export default function Plans({ priceData }) {
     });
     switch (plan.productKey) {
       case "portfolio":
-
         router.push("/checkout");
         break;
       case "portfolioPremium":
