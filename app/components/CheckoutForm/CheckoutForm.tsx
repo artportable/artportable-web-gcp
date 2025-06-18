@@ -24,6 +24,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import { Membership } from "../../models/Membership";
 
 const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 const zapierBasicConfirmedApiUrl =
@@ -47,7 +48,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
   const [cardCvcComplete, setCardCvcComplete] = useState(false);
   const token = useContext(TokenContext);
   const countdownRef = useRef(null);
-  const { family_name, given_name, phone, user_type } = useContext(UserContext);
+  const { family_name, given_name, phone, user_type, membership } = useContext(UserContext);
   const stripe = useStripe();
   const elements = useElements();
   const styles = checkoutFormStyles();
@@ -150,19 +151,40 @@ export default function CheckoutForm({ email, fullName, plan }) {
           setProcessing(false);
           setDisabled(true);
         } else {
-          createSubscription({
-            customerId: customerId,
-            paymentMethodId: result.paymentMethod.id,
-            priceId: plan.id,
-            promotionCode: promotionCode,
-          })
-            .then((result) => {
-              setSucceeded(true);
-              setProcessing(false);
+          // Determine if this is an upgrade or new subscription
+          const hasExistingSubscription = membership?.value && membership.value > Membership.Free;
+          
+          if (hasExistingSubscription) {
+            // Call upgrade endpoint
+            upgradeSubscription({
+              customerId: customerId,
+              paymentMethodId: result.paymentMethod.id,
+              priceId: plan.id,
+              promotionCode: promotionCode,
             })
-            .catch((error) => {
-              setErrorOpen(true);
-            });
+              .then((result) => {
+                setSucceeded(true);
+                setProcessing(false);
+              })
+              .catch((error) => {
+                setErrorOpen(true);
+              });
+          } else {
+            // Call regular subscription endpoint
+            createSubscription({
+              customerId: customerId,
+              paymentMethodId: result.paymentMethod.id,
+              priceId: plan.id,
+              promotionCode: promotionCode,
+            })
+              .then((result) => {
+                setSucceeded(true);
+                setProcessing(false);
+              })
+              .catch((error) => {
+                setErrorOpen(true);
+              });
+          }
         }
       });
   }
@@ -192,6 +214,83 @@ export default function CheckoutForm({ email, fullName, plan }) {
         if (!response.ok) {
           setErrorOpen(true);
           throw new Error("Error creating subscription");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        if (result.error) {
+          setErrorOpen(true);
+          throw new Error(result.error.message);
+        }
+
+        // Check if the status is "succeeded"
+        if (result.Status === "succeeded") {
+          setSucceeded(true);
+          startCountdown();
+          return result;
+        }
+
+        // Check if 3D Secure is required
+        if (result.requiresAction) {
+          return stripe
+            .confirmCardPayment(result.clientSecret, {
+              payment_method: paymentMethodId,
+            })
+            .then((resultConfirm) => {
+              if (resultConfirm.error) {
+                setErrorOpen(true);
+                throw new Error(resultConfirm.error.message);
+              } else if (resultConfirm.paymentIntent.status === "succeeded") {
+                setSucceeded(true);
+                startCountdown();
+                return resultConfirm;
+              } else {
+                setErrorOpen(true);
+                throw new Error(
+                  "Payment failed after 3D Secure authentication"
+                );
+              }
+            })
+            .catch((error) => {
+              setErrorOpen(true);
+              setProcessing(false);
+              throw error;
+            });
+        }
+      })
+      .catch((error) => {
+        setErrorOpen(true);
+        setProcessing(false);
+        console.error(error);
+        throw error;
+      });
+  }
+
+  // Upgrade subscription
+  function upgradeSubscription({
+    customerId,
+    paymentMethodId,
+    priceId,
+    promotionCode,
+  }) {
+    return fetch(`${apiBaseUrl}/api/Payments/upgrade`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        customerId: customerId,
+        paymentMethodId: paymentMethodId,
+        priceId: priceId,
+        promotionCodeId: promotionCode,
+      }),
+    })
+      .then((response) => {
+        // Check if the response is successful
+        if (!response.ok) {
+          setErrorOpen(true);
+          throw new Error("Error upgrading subscription");
         }
         return response.json();
       })
@@ -362,7 +461,7 @@ export default function CheckoutForm({ email, fullName, plan }) {
         )}
 
         {/* Discount code for premium plans */}
-        {plan?.productKey === "portfolioPremium" && (
+        {plan?.productKey === "portfolioPremium"  || plan?.productKey  === "portfolio" && (
           <div className={styles.fieldGroup}>
             <TextField
               label={t("discountCode")}
