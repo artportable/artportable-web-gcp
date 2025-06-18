@@ -286,7 +286,6 @@ export default function PlanSelector({
     
     const plans = getDistinct(priceData.sort((a, b) => a.amount - b.amount), (p) => p.product);
 
-
     return plans.map((planName) => {
       const monthlyPrice = priceData.find(pd => pd.product === planName && pd.recurringInterval === "month");
       const yearlyPrice = priceData.find(pd => pd.product === planName && pd.recurringInterval === "year");
@@ -343,12 +342,12 @@ export default function PlanSelector({
 
       return {
         id: planName.toLowerCase().replace(/\s+/g, ""),
-        name: t(`plans.${translationKey}.name`),
+        name: t(`plans:plans.${translationKey}.name`) || planName,
         type: planName.includes("Premium") ? "premium" : "basic",
         colorTheme: planName.includes("Plus") ? "green" : planName.includes("Premium") ? "blue" : "red",
         prices: {
-          month: monthlyPrice ? `${monthlyPrice.amount}kr/månad` : "",
-          year: yearlyPrice ? `${yearlyPrice.amount}kr/år` : "",
+          month: monthlyPrice && monthlyPrice.amount !== null && monthlyPrice.amount !== undefined ? `${monthlyPrice.amount}kr/månad` : "",
+          year: yearlyPrice && yearlyPrice.amount !== null && yearlyPrice.amount !== undefined ? `${yearlyPrice.amount}kr/år` : "",
         },
         features,
         buttonText: t(`plans:select${planName.replace(/\s+/g, "")}`) || "Select Plan",
