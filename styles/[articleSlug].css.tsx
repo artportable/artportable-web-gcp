@@ -6,7 +6,7 @@ export const styles = makeStyles((theme: Theme) =>
     paper: {
       justifySelf: "center",
       zIndex: 1,
-      maxWidth: "1200px",
+      maxWidth: "1000px",
       margin: "0 auto",
       backgroundColor: "#fff",
       padding:"20px",
@@ -229,10 +229,11 @@ export const styles = makeStyles((theme: Theme) =>
       textTransform: "uppercase",
       letterSpacing: "2px",
       fontFamily: "'Roboto', 'Helvetica Neue', 'Arial', sans-serif",
+      alignSelf: "center",
       [theme.breakpoints.down("sm")]: {
         fontSize: "10px",
         letterSpacing: "1.5px",
-        marginBottom: "12px",
+       
       },
     },
     authorText: {
@@ -252,6 +253,7 @@ export const styles = makeStyles((theme: Theme) =>
       marginBottom: "20px",
       fontFamily: "'Joan', 'Georgia', 'Times New Roman', serif",
       fontWeight: 400,
+      alignSelf: "center",
       [theme.breakpoints.down("sm")]: {
         fontSize: "13px",
       },
@@ -269,25 +271,26 @@ export const styles = makeStyles((theme: Theme) =>
       },
     },
     articleTitle: {
-      fontSize: "48px",
+      fontSize: "34px",
       fontWeight: 700,
       lineHeight: "1.1",
       color: "#1a1a1a",
-      marginBottom: "0",
+      marginBottom: "30px",
+      textAlign: "center",
       fontFamily: "'Roboto', 'Helvetica Neue', 'Arial', sans-serif",
       marginTop: "30px",
       [theme.breakpoints.down("md")]: {
-        fontSize: "36px",
+        fontSize: "28px",
         marginTop: "25px",
       },
       [theme.breakpoints.down("sm")]: {
-        fontSize: "28px",
+        fontSize: "24px",
         lineHeight: "1.2",
         marginTop: "20px",
       },
     },
     articleContent: {
-      padding: "0px 10px 0px 10px",
+      padding: "0px 20px 0px 20px",
  
       [theme.breakpoints.up("md")]: {
         padding: "20px",

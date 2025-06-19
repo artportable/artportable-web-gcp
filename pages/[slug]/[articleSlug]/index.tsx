@@ -202,11 +202,11 @@ export default function ArticlePage({
                   {article.categories[0].name}
                 </Typography>
               )}
-                {article?.authors && article.authors.length > 0 && (
+                {/* {article?.authors && article.authors.length > 0 && (
                   <Typography className={s.authorText}>
                     {t("by")} {article.authors.map(author => author.name).join(', ')}
                   </Typography>
-                )}
+                )} */}
                 
                 <Typography className={s.dateText}>
                   {t("published")} {new Date(article.published_at).toLocaleDateString('sv-se', {
