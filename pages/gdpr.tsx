@@ -139,7 +139,7 @@ export default function GdprPage({ navBarItems }) {
               <p>
                 <strong>Company</strong> (referred to as either &quot;the
                 Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot;
-                in this Agreement) refers to Höök & Nordlander AB
+                in this Agreement) refers to Artport AB
               </p>
             </li>
             <li>
