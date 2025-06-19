@@ -26,11 +26,21 @@ export default function DiscoverArtistCardArticle({ artist }) {
   const profileImage = profilePictureUrl ? `${bucketUrl}${profilePictureUrl}` : null;
 
   // Get bio from profile data
-  const artistBio = profileData?.Bio || 
-                   profileData?.Description || 
-                   profileData?.About || 
-                   profileData?.Summary ||
-                   null;
+  const fullBio = profileData?.Bio || 
+                  profileData?.Description || 
+                  profileData?.About || 
+                  profileData?.Summary ||
+                  null;
+
+  // Truncate bio to max 100 words
+  const truncateToWords = (text: string, maxWords: number): string => {
+    if (!text) return '';
+    const words = text.trim().split(/\s+/);
+    if (words.length <= maxWords) return text;
+    return words.slice(0, maxWords).join(' ') + '...';
+  };
+
+  const artistBio = fullBio ? truncateToWords(fullBio, 100) : null;
 
   // Show loading state if data is still being fetched
   if (profileLoading || pictureLoading) {
