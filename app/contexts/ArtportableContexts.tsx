@@ -40,6 +40,7 @@ export const ArtportableContexts = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userContext, setUserContext] =
     useState<ContextUser>(defaultContextUser);
+  const [justLoggedIn, setJustLoggedIn] = useState<boolean>(false);
   const [snackbar, setSnackbar] = useState<Snackbar>({
     open: false,
     message: "",
@@ -55,6 +56,7 @@ export const ArtportableContexts = ({
     const tokenParsed = keycloak.tokenParsed as any;
 
     if (keycloakState === "onAuthSuccess") {
+      setJustLoggedIn(true);
       setUserContext((prevValue) => ({
         ...prevValue,
         isSignedIn: {
@@ -224,16 +226,18 @@ export const ArtportableContexts = ({
               
    
               
-              // Redirect existing users to feed page after login
+              // Only redirect existing users to feed page if they just logged in
               if (
-                router.pathname === "/" ||
+                justLoggedIn &&
+                (router.pathname === "/" ||
                 router.pathname === "/en" ||
                 router.pathname === "/sv" ||
-                router.pathname === "/nb"
+                router.pathname === "/nb")
               ) {
                 const currentLang = router.locale || "sv";
                 const feedPath = currentLang === "sv" ? "/feed" : `/${currentLang}/feed`;
                 router.push(feedPath);
+                setJustLoggedIn(false); // Reset the flag after redirect
               } else {
   
               }
@@ -244,7 +248,7 @@ export const ArtportableContexts = ({
           console.warn(err);
         });
     }
-  }, [userContext]);
+  }, [userContext, justLoggedIn]);
 
   const handleSnackbarClose = (
     event?: React.SyntheticEvent,
