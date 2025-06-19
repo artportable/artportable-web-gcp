@@ -39,7 +39,7 @@ export default function Footer() {
                     component="div"
                     className={s.reserved}
                   >
-                    © 2025 Höök & Nordlander AB. All rights reserved.
+                    © 2025 Artport AB. All rights reserved.
                   </Typography>
                   <Typography
                     variant="body2"
